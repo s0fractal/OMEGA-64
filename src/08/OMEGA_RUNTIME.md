@@ -6694,12 +6694,12 @@ const semanticBonuses = new Int32Array(
   new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
 );
 const semanticBonusesBuffer = semanticBonuses.buffer;
-const RESOURCE_MAX_RAW = 2_000_000_000;
+const RESOURCE_MAX = 2_000_000_000;
 
 const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
   if (value <= 0) return 0;
-  if (value >= RESOURCE_MAX_RAW) return RESOURCE_MAX_RAW;
+  if (value >= RESOURCE_MAX) return RESOURCE_MAX;
   return Math.trunc(value);
 };
 

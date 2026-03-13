@@ -25,8 +25,8 @@ export const PHYSICS_ENGINE = {
   },
 
   getGridIdx: (x: number, y: number) => {
-    const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-    const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+    const gx = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_X, x)) / OFFSETS.SPATIAL_CELL_SIZE);
+    const gy = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_Y, y)) / OFFSETS.SPATIAL_CELL_SIZE);
     return gy * GRID_W + gx;
   },
 

@@ -26,5 +26,3 @@ pub use pulse::PulseOrchestrator;
 pub use shadow::run_shadow_simulation;
 pub use vm::LambdaVM;
 
-// Layer 63 Legacy Mappings
-#[path = "63/00/core.rs"] pub mod l63_mod;

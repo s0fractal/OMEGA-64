@@ -1,4 +1,4 @@
-const ASSEMBLY_PATH = "src/00/01/assembly/index.ts";
+const ASSEMBLY_PATH = "src/00/01/assembly/pulse_orchestrator.ts";
 const WORKER_PATH = "src/02/PULSE_WORKER.ts";
 const PULSE_PATH = "src/02/PULSE.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";

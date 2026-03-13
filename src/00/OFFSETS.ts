@@ -7,6 +7,9 @@ export const SAFETY_BUFFER = 8000000;
 export const GRID_W = 140;
 export const GRID_H = 80;
 export const GRID_CELLS = 11200;
+export const SPATIAL_CELL_SIZE = 10;
+export const WORLD_MAX_X = 1399;
+export const WORLD_MAX_Y = 799;
 export const SCALE = 1000;
 export const CELL_CAPACITY = 32;
 export const MAX_PC = 64;
@@ -23,6 +26,7 @@ export const SECRETION_STATS_SIZE = 12;
 export const ATOM_CONTEXT_SIZE = 16;
 export const ATOM_GENOME_SIZE = 8;
 export const ATOM_INSTRUCTION_SIZE = 64;
+export const RESOURCE_MAX = 2000000000;
 
 const U64_BYTES = 8;
 const I32_BYTES = 4;

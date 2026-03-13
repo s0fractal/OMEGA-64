@@ -1,6 +1,6 @@
 
 import { RISC, STATE_MATRIX, SYS } from "@00";
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 import { PULSE } from "../02/PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
@@ -28,8 +28,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PRODUCER);
     STATE_MATRIX.setEnergy(idx, 20000); // 20k energy base
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     idx++;
   }
 
@@ -38,8 +38,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_NEUTRAL);
     STATE_MATRIX.setEnergy(idx, 50000);
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     // Give Prey an empty script (just YIELD)
     idx++;
   }
@@ -49,8 +49,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PARASITE); // Predator is PARASITE role=4
     STATE_MATRIX.setEnergy(idx, 100000); // Higher energy capacity
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     STATE_MATRIX.setInstructions(idx, SIMPLE_PREDATOR_SCRIPT);
     idx++;
   }
@@ -73,8 +73,8 @@ function renderGrid(tick: number) {
 
   for (let i = 1; i <= TOTAL_STARTING; i++) { // For an actual dynamic system, we'd check MAX_ATOMS
     if (STATE_MATRIX.getId(i) > 0n && STATE_MATRIX.getEnergy(i) > 0) {
-      const x = Math.floor(STATE_MATRIX.getX(i) / 10);
-      const y = Math.floor(STATE_MATRIX.getY(i) / 10);
+      const x = Math.floor(STATE_MATRIX.getX(i) / SPATIAL_CELL_SIZE);
+      const y = Math.floor(STATE_MATRIX.getY(i) / SPATIAL_CELL_SIZE);
       const role = STATE_MATRIX.getRole(i);
       const energy = STATE_MATRIX.getEnergy(i);
       totalEnergy += energy;

@@ -1,4 +1,4 @@
-import { GRID_W } from "../00/OFFSETS.ts";
+import { GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 // OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
 // Turing-complete bytecode executor with registers, stack, and messaging.
 
@@ -219,8 +219,8 @@ export const LAMBDA_VM = {
       case ISA.FEED: {
         const requested = p1;
         let consumed = 0;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         let current = Atomics.load(state.nutrients, idx);
@@ -264,8 +264,8 @@ export const LAMBDA_VM = {
       case ISA.SENSE: {
         const type = p1;
         const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         let val = 0;
@@ -321,8 +321,8 @@ export const LAMBDA_VM = {
           }
           case 0x0B: { // ERA 55: Same-role quorum count in local cell
             if (state.quorumData && state.role !== undefined) {
-              const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-              const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
               const safeRole = Math.min(7, Math.max(0, state.role));
               val = Math.min(
                 255,
@@ -333,8 +333,8 @@ export const LAMBDA_VM = {
           }
           case 0x0C: { // ERA 56: Imprint age (ticks since last IMPRINT in this cell)
             if (state.hiveMemory) {
-              const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-              const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
               const hBase = (gy * GRID_W + gx) * 16;
               // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
               const imprintTick = state.hiveMemory[hBase + 8] |
@@ -357,15 +357,15 @@ export const LAMBDA_VM = {
             break;
           }
           case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
-            const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-            const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+            const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+            const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
             const cellBase = (gy * GRID_W + gx) * 32;
             val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
             break;
           }
           case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
-            const px = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-            const py = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+            const px = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+            const py = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
             const dx = state.pheromoneGrid[py * GRID_W + px + 1] -
               state.pheromoneGrid[py * GRID_W + px - 1];
             const dy = state.pheromoneGrid[(py + 1) * 140 + px] -
@@ -466,8 +466,8 @@ export const LAMBDA_VM = {
 
       case ISA.SELF_REP: {
         // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 80;
         const friction = density > 10 ? (density - 10) * 10 : 0;
@@ -482,8 +482,8 @@ export const LAMBDA_VM = {
 
       case ISA.CROSS_REP: {
         // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 100;
         const friction = density > 10 ? (density - 10) * 15 : 0;
@@ -636,8 +636,8 @@ export const LAMBDA_VM = {
         // --- ERA 51: Collective Memory — encode snapshot ---
         // Read current local pheromone + phase and request worker to write to hiveMemory
         if (state.resonance > 20 && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const pIdx = gy * GRID_W + gx;
           const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
           const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
@@ -657,8 +657,8 @@ export const LAMBDA_VM = {
         // p1 = field (0=phero intensity, 1=pheromone type, 2=phase)
         // p2 = destination register index
         if (state.hiveMemory && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const hBase = (gy * GRID_W + gx) * 16;
           const raw32 = state.hiveMemory[hBase] |
             (state.hiveMemory[hBase + 1] << 8) |
@@ -809,8 +809,8 @@ export const LAMBDA_VM = {
         const threshold = p1 > 0 ? p1 : 5;
 
         if (state.quorumData && state.role !== undefined && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const safeRole = Math.min(7, Math.max(0, state.role));
           const quorumCount = state.quorumData[(gy * GRID_W + gx) * 8 + safeRole];
 
@@ -848,8 +848,8 @@ export const LAMBDA_VM = {
         // p1 = weight slot to reinforce (0-2)
         // p2 = reinforce amplitude (0=light +1, >0=use p2 value)
         if (state.hiveMemory && state.synapticStack && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const hBase = (gy * GRID_W + gx) * 16;
           // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
           const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
@@ -947,8 +947,8 @@ export const LAMBDA_VM = {
         // p1: 0=constructive (sync), 1=destructive (anti-phase)
         // Reads spatialGrid slot 31 = local phase average
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const cellAvgPhase = state.spatialGrid[(gy * GRID_W + gx) * 32 + 31];
           const targetPhase = p1 === 1
             ? (cellAvgPhase + 128) % 256 // destructive: anti-phase
@@ -968,8 +968,8 @@ export const LAMBDA_VM = {
         // Reads local pheromone gradient and encodes direction as 0-255 angle.
         // 0=right, 64=up, 128=left, 192=down. Stores in register p1.
         // p2: 0=angle, 1=dx-component, 2=dy-component
-        const gPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-        const gPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+        const gPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+        const gPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
         const gDx = state.pheromoneGrid[gPy * GRID_W + gPx + 1] -
           state.pheromoneGrid[gPy * GRID_W + gPx - 1];
         const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] -
@@ -997,8 +997,8 @@ export const LAMBDA_VM = {
         //   Zone 2 = Base    (low:   otherwise)               → Producer role
         // Emits morphRequest with zone + gradient angle.
         if (!dryRun) {
-          const mPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-          const mPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+          const mPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const mPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const conc = Math.abs(state.pheromoneGrid[mPy * GRID_W + mPx]);
           const hiThresh = (p1 > 0 ? p1 : 10) * 100;
           const loThresh = (p2 > 0 ? p2 : 3) * 100;
@@ -1027,8 +1027,8 @@ export const LAMBDA_VM = {
         // Writes atom's own 8-byte logic signature to the cell's viralGrid.
         // p1 = intensity/TTL of the plasmid (added to 9th byte).
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           // cellBase for viralGrid is 9 bytes per cell
           const cellBase = (gy * GRID_W + gx) * 9;
           const intensity = p1 > 0 ? p1 : 128; // default intensity
@@ -1046,8 +1046,8 @@ export const LAMBDA_VM = {
         // Reads viralGrid at current cell. If intensity (byte 8) > p1 threshold,
         // incorporates it by overwriting own 8-byte logic.
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const cellBase = (gy * GRID_W + gx) * 9;
           const threshold = p1 > 0 ? p1 : 50;
           const plasmidIntensity = state.viralGrid[cellBase + 8];
@@ -1107,8 +1107,8 @@ export const LAMBDA_VM = {
       case ISA.PLUG: { // ERA 69: Crystalline Neural Network
         const mode = p1; // 0: Read Charge, 1: Write Charge, 2: Set Type, 3: Set State
         const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         if (mode === 0) { // READ CHARGE
@@ -1181,8 +1181,8 @@ export const LAMBDA_VM = {
             regs[p3 % 8] = Atomics.load(state.hiveMemory, p2 & 1023);
             res.energyDelta -= 0.5;
           } else if (mode === 2) {
-            const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-            const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+            const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+            const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
             const idx = gy * GRID_W + gx;
             // intensity p2, type p3
             Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);

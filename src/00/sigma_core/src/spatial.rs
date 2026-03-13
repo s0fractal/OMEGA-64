@@ -1,7 +1,7 @@
 //! Spatial Fabric Topology & Cognition Grid
 
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_CELLS};
+use crate::constants::{GRID_W, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE};
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.
@@ -33,18 +33,18 @@ impl SigmaState {
             if x < 0 {
                 x = 0;
             }
-            if x > 1399 {
-                x = 1399;
+            if x > WORLD_MAX_X {
+                x = WORLD_MAX_X;
             }
             if y < 0 {
                 y = 0;
             }
-            if y > 799 {
-                y = 799;
+            if y > WORLD_MAX_Y {
+                y = WORLD_MAX_Y;
             }
 
-            let cell_x = (x / 10) as usize;
-            let cell_y = (y / 10) as usize;
+            let cell_x = (x / SPATIAL_CELL_SIZE) as usize;
+            let cell_y = (y / SPATIAL_CELL_SIZE) as usize;
             let cell_idx = (cell_y * (GRID_W as usize)) + cell_x;
 
             let sg_base = cell_idx * 32;

@@ -7,6 +7,9 @@ export const SAFETY_BUFFER: usize = 8000000;
 export const GRID_W: i32 = 140;
 export const GRID_H: i32 = 80;
 export const GRID_CELLS: usize = 11200;
+export const SPATIAL_CELL_SIZE: i32 = 10;
+export const WORLD_MAX_X: i32 = 1399;
+export const WORLD_MAX_Y: i32 = 799;
 export const SCALE: i32 = 1000;
 export const CELL_CAPACITY: usize = 32;
 export const MAX_PC: u8 = 64;
@@ -23,6 +26,7 @@ export const SECRETION_STATS_SIZE: usize = 12;
 export const ATOM_CONTEXT_SIZE: usize = 16;
 export const ATOM_GENOME_SIZE: usize = 8;
 export const ATOM_INSTRUCTION_SIZE: usize = 64;
+export const RESOURCE_MAX: i32 = 2000000000;
 
 export const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;
 export const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;

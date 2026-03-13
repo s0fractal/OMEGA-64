@@ -5,6 +5,9 @@
     ],
     "strict": true
   },
+  "exclude": [
+    "src/00/01/assembly/"
+  ],
   "tasks": {
     "lint": "deno lint",
     "core:export": "deno run -A src/07/02/export_core.ts && deno run -A src/07/02/export_rust.ts",
@@ -137,7 +140,8 @@
       "UI/",
       "63/",
       "00/01/assembly/",
-      "public/"
+      "public/",
+      "src/00/01/assembly"
     ],
     "rules": {
       "tags": [

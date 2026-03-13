@@ -1,7 +1,7 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 
-const CELL_SIZE = 10; // Finer resolution for bonding
+const CELL_SIZE = SPATIAL_CELL_SIZE; // Finer resolution for bonding
  // 1400 / 10
  // 800 / 10
 const TOTAL_CELLS = GRID_CELLS;
@@ -25,8 +25,8 @@ export const SPATIAL_HASH = {
     }
 
     for (const idx of activeIndices) {
-      const x = Math.max(0, Math.min(1399, STATE_MATRIX.getX(idx)));
-      const y = Math.max(0, Math.min(799, STATE_MATRIX.getY(idx)));
+      const x = Math.max(0, Math.min(WORLD_MAX_X, STATE_MATRIX.getX(idx)));
+      const y = Math.max(0, Math.min(WORLD_MAX_Y, STATE_MATRIX.getY(idx)));
 
       const cellX = Math.floor(x / CELL_SIZE);
       const cellY = Math.floor(y / CELL_SIZE);
@@ -107,8 +107,8 @@ export const SPATIAL_HASH = {
   },
 
   hash: (x: number, y: number) => {
-    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / 10)));
-    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / 10)));
+    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)));
+    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)));
     return hy * GRID_W + hx;
   },
 };

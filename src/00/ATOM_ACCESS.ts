@@ -3,12 +3,10 @@ import { GRID_W, GRID_H, GRID_CELLS } from "./OFFSETS.ts";
 import * as OFFSETS from "./OFFSETS.ts";
 import * as views from "./memory_views.ts";
 
-const RESOURCE_MAX_RAW = 2_000_000_000;
-
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
   if (value <= 0) return 0;
-  if (value >= RESOURCE_MAX_RAW) return RESOURCE_MAX_RAW;
+  if (value >= OFFSETS.RESOURCE_MAX) return OFFSETS.RESOURCE_MAX;
   return Math.trunc(value);
 };
 

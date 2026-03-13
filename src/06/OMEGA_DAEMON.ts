@@ -1389,12 +1389,12 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
       target_x: clamp(
         Math.round(asFiniteNumber(payloadSource.target_x, 700)),
         0,
-        1399,
+        OFFSETS.WORLD_MAX_X,
       ),
       target_y: clamp(
         Math.round(asFiniteNumber(payloadSource.target_y, 400)),
         0,
-        799,
+        OFFSETS.WORLD_MAX_Y,
       ),
       intensity: clamp(asFiniteNumber(payloadSource.intensity, 100), 1, 2000),
       hex_code: hexCode,

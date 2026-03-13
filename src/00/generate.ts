@@ -7,6 +7,9 @@ const SYSTEM_CONSTANTS: Record<string, [number, string]> = {
   GRID_W:              [140,       "i32"],
   GRID_H:              [80,        "i32"],
   GRID_CELLS:          [140 * 80,  "usize"],
+  SPATIAL_CELL_SIZE:   [10,        "i32"],
+  WORLD_MAX_X:         [(140 * 10) - 1, "i32"],
+  WORLD_MAX_Y:         [(80 * 10) - 1, "i32"],
   SCALE:               [1000,      "i32"],
   CELL_CAPACITY:       [32,        "usize"],
   MAX_PC:              [64,        "u8"],
@@ -23,6 +26,7 @@ const SYSTEM_CONSTANTS: Record<string, [number, string]> = {
   ATOM_CONTEXT_SIZE:   [16,        "usize"],
   ATOM_GENOME_SIZE:    [8,         "usize"],
   ATOM_INSTRUCTION_SIZE: [64,      "usize"],
+  RESOURCE_MAX:        [2_000_000_000, "i32"],
 };
 
 // Generate TypeScript Offsets (Imperative Shell)
@@ -173,27 +177,27 @@ export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): Mem
 
   for (const item of sorted) {
     if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {
-      errors.push(`[${item.name}] offset/size must be finite numbers`);
+      errors.push(\`[\${item.name}] offset/size must be finite numbers\`);
       continue;
     }
-    if (item.size <= 0) errors.push(`[${item.name}] size must be > 0, got ${item.size}`);
+    if (item.size <= 0) errors.push(\`[\${item.name}] size must be > 0, got \${item.size}\`);
     if (item.align <= 0) {
-      errors.push(`[${item.name}] align must be > 0, got ${item.align}`);
+      errors.push(\`[\${item.name}] align must be > 0, got \${item.align}\`);
     } else if (item.offset % item.align !== 0) {
-      errors.push(`[${item.name}] misaligned offset=${item.offset} align=${item.align}`);
+      errors.push(\`[\${item.name}] misaligned offset=\${item.offset} align=\${item.align}\`);
     }
     const end = item.offset + item.size;
-    if (end > wasmBytes) errors.push(`[${item.name}] out of wasm bounds: end=${end} > wasmBytes=${wasmBytes}`);
+    if (end > wasmBytes) errors.push(\`[\${item.name}] out of wasm bounds: end=\${end} > wasmBytes=\${wasmBytes}\`);
   }
 
   for (let i = 1; i < sorted.length; i++) {
     const prev = sorted[i - 1]; const next = sorted[i];
     const prevEnd = prev.offset + prev.size;
-    if (prevEnd > next.offset) errors.push(`[${prev.name}] overlaps [${next.name}] (${prevEnd} > ${next.offset})`);
+    if (prevEnd > next.offset) errors.push(\`[\${prev.name}] overlaps [\${next.name}] (\${prevEnd} > \${next.offset})\`);
   }
 
   const maxRegionEnd = sorted.reduce((max, item) => Math.max(max, item.offset + item.size), 0);
-  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(`[LATTICE_MEMORY_END] too small: ${LATTICE_MEMORY_END} < required=${maxRegionEnd}`);
+  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(\`[LATTICE_MEMORY_END] too small: \${LATTICE_MEMORY_END} < required=\${maxRegionEnd}\`);
 
   return { ok: errors.length === 0, errors, regions: sorted, latticeEnd: LATTICE_MEMORY_END, wasmBytes };
 };

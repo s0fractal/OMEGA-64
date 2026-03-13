@@ -5,7 +5,7 @@ use crate::isa::{
 };
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_H};
+use crate::constants::{GRID_W, GRID_H, SPATIAL_CELL_SIZE};
 
 pub struct LambdaVM {}
 
@@ -208,10 +208,10 @@ impl LambdaVM {
                     gas_used += cost;
                 }
                 GlyphOp::ResonateKuramoto => {
-                    let gx = (state.matrix.xs[atom_idx] as i32) / 1000;
-                    let gy = (state.matrix.ys[atom_idx] as i32) / 1000;
+                    let gx = (state.matrix.xs[atom_idx] as i32) / (100 * SPATIAL_CELL_SIZE);
+                    let gy = (state.matrix.ys[atom_idx] as i32) / (100 * SPATIAL_CELL_SIZE);
 
-                    // Note: Deno physics clamp / 1000 logic is actually (xs / 10) / 100 -> xs / 1000.
+                    // Note: Deno physics clamp logic is actually (xs / SPATIAL_CELL_SIZE) / 100.
                     // Let's use grid coordinates as mapped by build_spatial_hash (which are units of 10)
                     let current_phase = state.matrix.phase[atom_idx] as i32;
                     let mut sum_sin: i32 = 0;

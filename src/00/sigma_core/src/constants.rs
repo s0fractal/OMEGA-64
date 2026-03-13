@@ -7,6 +7,9 @@ pub const SAFETY_BUFFER: usize = 8000000;
 pub const GRID_W: i32 = 140;
 pub const GRID_H: i32 = 80;
 pub const GRID_CELLS: usize = 11200;
+pub const SPATIAL_CELL_SIZE: i32 = 10;
+pub const WORLD_MAX_X: i32 = 1399;
+pub const WORLD_MAX_Y: i32 = 799;
 pub const SCALE: i32 = 1000;
 pub const CELL_CAPACITY: usize = 32;
 pub const MAX_PC: u8 = 64;
@@ -23,6 +26,7 @@ pub const SECRETION_STATS_SIZE: usize = 12;
 pub const ATOM_CONTEXT_SIZE: usize = 16;
 pub const ATOM_GENOME_SIZE: usize = 8;
 pub const ATOM_INSTRUCTION_SIZE: usize = 64;
+pub const RESOURCE_MAX: i32 = 2000000000;
 
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]

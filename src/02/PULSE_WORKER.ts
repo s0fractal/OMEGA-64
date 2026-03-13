@@ -396,8 +396,8 @@ function handle_syscall(atomIdx: number) {
                   }
                 }
 
-                const dx = (tx - ox) / 10.0;
-                const dy = (ty - oy) / 10.0;
+                const dx = (tx - ox) / OFFSETS.SPATIAL_CELL_SIZE;
+                const dy = (ty - oy) / OFFSETS.SPATIAL_CELL_SIZE;
                 const distSq = dx * dx + dy * dy;
 
                 if (distSq <= 2.25) {
@@ -613,20 +613,20 @@ function handle_syscall(atomIdx: number) {
         const dyStr = intensity > 0 ? dySign : -dySign;
 
         if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * 10;
-          let ny = oy + dyStr * 10;
+          let nx = ox + dxStr * OFFSETS.SPATIAL_CELL_SIZE;
+          let ny = oy + dyStr * OFFSETS.SPATIAL_CELL_SIZE;
           LOGGER.debug(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
 
           if (nx < 0) nx = 0;
-          else if (nx > 1399) nx = 1399;
+          else if (nx > OFFSETS.WORLD_MAX_X) nx = OFFSETS.WORLD_MAX_X;
           if (ny < 0) ny = 0;
-          else if (ny > 799) ny = 799;
+          else if (ny > OFFSETS.WORLD_MAX_Y) ny = OFFSETS.WORLD_MAX_Y;
 
-          const nGridX = Math.floor(nx / 10);
-          const nGridY = Math.floor(ny / 10);
+          const nGridX = Math.floor(nx / OFFSETS.SPATIAL_CELL_SIZE);
+          const nGridY = Math.floor(ny / OFFSETS.SPATIAL_CELL_SIZE);
           const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
