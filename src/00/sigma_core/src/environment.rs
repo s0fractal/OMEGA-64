@@ -1,9 +1,5 @@
-use crate::constants::MAX_ATOMS;
+use crate::constants::{GRID_H, GRID_W, MAX_ATOMS};
 use crate::SigmaState;
-
-// Deno constants
-const GRID_W: i32 = 140;
-const GRID_H: i32 = 80;
 const STR_VOID: i32 = 0;
 const STR_WIRE: i32 = 1;
 const STR_NODE: i32 = 2;
@@ -363,7 +359,7 @@ pub fn tick_structure_grid(state: &mut SigmaState) {
             let _state_param = (cell_val >> 24) & 0xFF;
 
             // Resonance Shielding
-            let spatial_idx = (y * 140 + x) as usize;
+            let spatial_idx = (y * GRID_W + x) as usize;
             let avg_phase = state.matrix.spatial_grid[spatial_idx * 32 + 31];
             let decay = if avg_phase > 128 { 2 } else { 10 };
 
