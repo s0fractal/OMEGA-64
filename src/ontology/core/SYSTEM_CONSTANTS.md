@@ -7,6 +7,9 @@ values:
   MAX_ATOMS: 
     value: 500000
     type: usize
+  LAYOUT_VERSION:
+    value: 1
+    type: u32
   SAFETY_BUFFER: 
     value: 8000000
     type: usize

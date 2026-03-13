@@ -7,49 +7,55 @@ const GEN_DIR_TS = new URL("../_", import.meta.url).pathname;
 const GEN_DIR_RS = new URL("../00/sigma_core/src/ontology_gen", import.meta.url).pathname;
 const GEN_DIR_AS = new URL("../_as", import.meta.url).pathname;
 
+import { z } from "npm:zod@4.3.6";
+
+const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
+
+export const NodeTypeSchema = z.enum(["pure_fn", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module"]);
+export type NodeType = z.infer<typeof NodeTypeSchema>;
+
+export const OntologyNodeSchema = z.object({
+  id: z.string(),
+  type: NodeTypeSchema,
+  description: z.string().optional(),
+  deps: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  args: z.record(z.string(), z.string()).nullable().optional(),
+  rsArgs: z.record(z.string(), z.string()).nullable().optional(),
+  returns: z.string().nullable().optional(),
+  asImports: z.array(z.string()).nullable().optional(),
+  dataType: z.string().nullable().optional(),
+  values: z.any().optional(),
+  base_offset: z.string().nullable().optional(),
+  regions: z.array(z.object({
+    name: z.string(),
+    size: z.any(),
+    align: z.any(),
+    offset: z.number().optional()
+  })).nullable().optional(),
+  vars: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  optimization: z.enum(["inline", "hot", "cold"]).optional(),
+  status: z.enum(["stable", "experimental", "deprecated"]).optional(),
+  tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
+  rust: z.string().optional(), // Raw rust code for substrate modules
+});
+
+export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
+
 interface ArgDesc { name: string; type: string; }
 interface TestDesc { inputs: any[]; expected: any; }
 
-export type NodeType = "pure_fn" | "struct" | "enum" | "constants" | "static_table" | "memory_layout" | "substrate_module";
-
-interface OntologyNode {
-  id: string;
-  type: NodeType;
-  description?: string;
-  deps: string[];
-  args?: Record<string, string>;
-  target?: string;
-  rsArgs?: Record<string, string>;
-  returns?: string;
-  asImports?: string[];
-  payload?: any[]; // Moved
-  rust?: string; // New field for raw Rust code
-
-  // static_table specific
-  dataType?: string;
-
-  // enum / constants specific
-  values?: any; // Record<string, string | number | {value?: any, type?: string, expr?: string}>
-
-  // memory_layout specific
-  baseOffset?: string;
-  regions?: { name: string, size: any, align: any, offset?: number }[];
-
-  // pure_fn specific
-  tests?: TestDesc[];
+interface OntologyNode extends OntologyNodeMeta {
+  payload?: any[];
   rustCode?: string;
   tsCode?: string;
   asCode?: string;
-
-  vars?: string[];
-
   level: number;
 }
 
-const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+
 const nodes = new Map<string, OntologyNode>();
 
-// 1. Inhalation (Load)
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
     const raw = Deno.readTextFileSync(entry.path);
@@ -62,24 +68,23 @@ try {
     }
     
     const yamlStr = yamlMatch[1];
-    const meta = parseYaml(yamlStr) as any;
+    let meta: OntologyNodeMeta;
+    try {
+      meta = OntologyNodeSchema.parse(parseYaml(yamlStr));
+    } catch (err: any) {
+      console.error(`[FATAL] Schema validation failed for ${entry.path}:\n`, err.errors || err);
+      Deno.exit(1);
+    }
+    
+    if (meta.status === "deprecated") {
+      console.warn(`[WARN] ⚠️ Node ${meta.id} (${entry.path}) is DEPRECATED.`);
+    }
     
     const node: OntologyNode = {
-      id: meta.id,
-      type: meta.type,
-      description: meta.description || "",
-      deps: meta.deps || [],
-      dataType: meta.dataType,
-      args: {},
-      rsArgs: meta.rsArgs || undefined,
-      returns: meta.returns,
+      ...meta,
       tests: [],
-      values: meta.values,
-      baseOffset: meta.base_offset,
-      regions: meta.regions,
-      vars: meta.vars || [],
-      asImports: meta.asImports,
-      rust: meta.rust, // Added for substrate_module
+      // Standardize the casing mapping from yaml schema
+      base_offset: meta.base_offset,
       level: -1
     };
 
@@ -100,13 +105,13 @@ try {
     }
 
     if (node.type === "pure_fn") {
-      // Validate types
-      if (node.returns && !ALLOWED_TYPES.includes(node.returns)) {
+      // Validate types explicitly since Zod just checks strings here
+      if (node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)) {
         console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
         Deno.exit(1);
       }
       for (const [argName, argType] of Object.entries(node.args || {})) {
-        if (!ALLOWED_TYPES.includes(argType)) {
+        if (!ALLOWED_TYPES_RUNTIME.includes(argType as any)) {
           console.error(`[FATAL] Invalid arg type ${argType} in ${node.id}`);
           Deno.exit(1);
         }
@@ -259,7 +264,7 @@ for (const node of nodes.values()) {
       break;
     case "memory_layout":
       tsOut += `// Memory Layout: ${node.id}\n`;
-      let curOffExpr = node.baseOffset || "0";
+      let curOffExpr = node.base_offset || "0";
       
       for (const region of node.regions || []) {
         // Offset alignment logic applied via bitwise macro evaluations native to TS
@@ -389,7 +394,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       }
     } else if (node.type === "memory_layout") {
       rsOut += `// Memory Layout: ${node.id}\n`;
-      let curOffExpr = node.baseOffset || "0";
+      let curOffExpr = node.base_offset || "0";
       
       for (const region of node.regions || []) {
         const align = region.align || 1;
@@ -423,6 +428,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
         const rsArr = Array.isArray(node.args) ? node.args : 
                    (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
         rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+      }
+      if (node.optimization === "inline") {
+        rsOut += `#[inline(always)]\n`;
       }
       rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns!)} {\n`;
       rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
@@ -481,9 +489,10 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     
     // Use assemblyscript code block if available, fallback to typescript code logic
     const logicCode = node.asCode || node.tsCode;
-    let asArgStr = arr.map((a: any) => `${a.name}: ${a.type === 'boolean' ? 'bool' : a.type}`).join(", ");
-    let asRet = (node.returns === 'boolean' || node.returns === 'bool') ? 'bool' : node.returns;
-    asOut += `@inline\nexport function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
+    const asArgStr = arr.map((a: any) => `${a.name}: ${a.type === 'boolean' ? 'bool' : a.type}`).join(", ");
+    const asRet = (node.returns === 'boolean' || node.returns === 'bool') ? 'bool' : node.returns;
+    const inlineDirective = node.optimization === "inline" ? "@inline\n" : (node.optimization === "cold" ? "" : "@inline\n"); // Default inline unless specified cold
+    asOut += `${inlineDirective}export function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
   }
   
   if (node.type !== "substrate_module") {

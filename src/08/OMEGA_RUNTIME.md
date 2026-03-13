@@ -1,6 +1,6 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T15:41:28.820Z*
+*Generated: 2026-03-13T16:11:25.502Z*
 *Exported Files in Category: 386*
 *Total Exported Files: 507*
 *Runtime Roots: 10*
@@ -10,8 +10,8 @@
 *Experimental Code Files: 58*
 *Manifest SHA256: 39b9ee6963a688da2ecdc24e66b2f51b41a8b035978a4bc3a418688653156c74*
 *Export Set SHA256: 1195bde2bb124a617253afa4d3ade8414b7ad212de57c355b4230e24d39b455f*
-*Export Content SHA256: 6db052e48ef8b3ff59b98af14516d05736a6202a6337f09e01072f7d9f92f75b*
-*Git Commit: 43142f83b3d3*
+*Export Content SHA256: d75805c79199c3a49982aa369a90dd377470acad6b557fde50a1aa45cf66ce3c*
+*Git Commit: 0d8f56b190d5*
 
 ---
 
@@ -9645,18 +9645,7 @@ export const clamp01 = (x: number): number => {
   return x;
 };
 
-export const clampByte = (x: number): number => {
-  const n = Math.round(x);
-  if (n < 0) return 0;
-  if (n > 255) return 255;
-  return n;
-};
 
-export const clampI16 = (x: number): number => {
-  if (x < -32768) return -32768;
-  if (x > 32767) return 32767;
-  return x;
-};
 
 export const normalizeAngle = (angle: number): number => {
   const tau = 2 * Math.PI;
@@ -9685,15 +9674,7 @@ export const makeXorShift32 = (seed: number): () => number => {
   };
 };
 
-const I16_DATA = {
-  MIN: -32768,
-  MAX: 32767,
-  max: 32767,
-  span: 65536,
-  LEVEL_COUNT: 64,
-};
-export const I16_LIMITS_I16_LIMITS = Object.assign(() => I16_DATA, I16_DATA);
-export const I16_CLAMP__00_00_I16_CLAMP = clampI16;
+
 
 ```
 
@@ -10174,12 +10155,13 @@ import {
 } from "./crypto_shim.ts";
 import {
   clamp01,
-  clampByte,
-  clampI16,
   normalizeAngle,
   toInt16BigEndian,
   makeXorShift32,
 } from "./math_utils.ts";
+
+const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
+const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
 
 export const deriveFeatureVector = (
   state: unknown,
@@ -28312,7 +28294,7 @@ export const validateGateProposals = async (
 import { GRID_H } from "../_/mod.ts";
 import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP, I16_LIMITS_I16_LIMITS as I16_LIMITS, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { validateGateProposals } from "@03";
@@ -28332,7 +28314,8 @@ export interface ReplayInvariantReport {
 
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;
-const I16 = I16_LIMITS();
+const I16 = { MIN: -32768, MAX: 32767, max: 32767, span: 65536, LEVEL_COUNT: 64 };
+const I16_CLAMP = (x: number): number => Math.max(-32768, Math.min(32767, x));
 
 export interface GateRuntimeContext {
   bridge_invariant_report?: ReplayInvariantReport;

@@ -2,6 +2,7 @@
 
 // Constants: SYSTEM_CONSTANTS
 pub const MAX_ATOMS: usize = 500000;
+pub const LAYOUT_VERSION: u32 = 1;
 pub const SAFETY_BUFFER: usize = 8000000;
 pub const GRID_W: i32 = 140;
 pub const GRID_H: i32 = 80;
