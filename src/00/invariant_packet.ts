@@ -2,12 +2,14 @@
 // Signed invariant packet trace for invariant bridging
 
 import {
-  stableStringify,
-  sha256Hex,
-  importHmac,
-  bytesToHex,
-  hexToBytes,
-} from "./crypto_shim.ts";
+  stable_stringify,
+  sha256_hex,
+  import_hmac,
+  base64_to_bytes,
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+} from "../_/mod.ts";
 import type { REPLAY_AUDIT__08_00_ReplayInvariantReport } from "./SHIMS.ts"; // Need a lightweight import loop break or leave the type mapped.
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
@@ -98,9 +100,9 @@ const signInvariantPacketHash = async (
   packetHash: string,
   secret: string,
 ): Promise<string> => {
-  const key = await importHmac(secret, ["sign"]);
+  const key = await import_hmac(secret, ["sign"]);
   const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(packetHash));
-  return bytesToHex(new Uint8Array(sig));
+  return bytes_to_base64(new Uint8Array(sig));
 };
 
 const verifyInvariantPacketSignature = async (
@@ -108,9 +110,9 @@ const verifyInvariantPacketSignature = async (
   signature: string,
   secret: string,
 ): Promise<boolean> => {
-  const sigBytes = hexToBytes(signature);
+  const sigBytes = base64_to_bytes(signature);
   if (!sigBytes) return false;
-  const key = await importHmac(secret, ["verify"]);
+  const key = await import_hmac(secret, ["verify"]);
   return await crypto.subtle.verify(
     "HMAC",
     key,
@@ -131,10 +133,10 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket> | string,
   ): Promise<string> => {
     if (typeof packet === "string") {
-      return await sha256Hex(packet);
+      return await sha256_hex(stable_stringify(packet));
     }
     const normalized = canonicalInvariantPacket(packet);
-    return await sha256Hex(canonicalInvariantPacketPayload(normalized));
+    return await sha256_hex(canonicalInvariantPacketPayload(normalized));
   },
 
   seal: async (

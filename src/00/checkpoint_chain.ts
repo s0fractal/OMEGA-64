@@ -2,7 +2,7 @@
 // Replay Invariant State Hash Checkpointing
 
 import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
-import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex, normalize_hex64 } from "../_/mod.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
 
@@ -18,8 +18,8 @@ const checkpointRecordHash = async (
   body: Record<string, unknown>,
   prevCheckpointHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: CHECKPOINT_CHAIN_VERSION,
       prev_checkpoint_hash: prevCheckpointHash,
       body,
@@ -80,7 +80,7 @@ const verifyCheckpointChainDetailedInternal = async (
 
     const recordedPrev = row.prev_checkpoint_hash === null
       ? null
-      : normalizeHex64(row.prev_checkpoint_hash);
+      : normalize_hex64(row.prev_checkpoint_hash);
     if (
       row.prev_checkpoint_hash !== null &&
       typeof row.prev_checkpoint_hash !== "string"
@@ -91,7 +91,7 @@ const verifyCheckpointChainDetailedInternal = async (
       failures.push(`CHECKPOINT_CHAIN_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
     }
 
-    const recordedHash = normalizeHex64(row.checkpoint_hash);
+    const recordedHash = normalize_hex64(row.checkpoint_hash);
     if (!recordedHash) {
       failures.push(`CHECKPOINT_CHAIN_HASH_INVALID_AT_LINE_${lineNo}`);
       prevAnchoredHash = expectedHash;

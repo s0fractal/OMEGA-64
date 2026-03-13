@@ -3,7 +3,6 @@
 // This file has been modularized. It now serves purely as a barrel file
 // to prevent breaking imports in the `src/` modules.
 
-import { REJECTION } from "./STATE_SNAPSHOT.ts";
 export type REPLAY_AUDIT__08_00_ReplayInvariantReport = any;
 
 const LOAD_DATA = {
@@ -12,7 +11,7 @@ const LOAD_DATA = {
 };
 export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
-export * from "./crypto_shim.ts";
+export type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
 export * from "../_/mod.ts";
 export * from "./stream_utils.ts";
 export * from "./agent_signature.ts";

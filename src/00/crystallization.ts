@@ -1,7 +1,7 @@
 // OMEGA-64 | crystallization.ts
 // Gate Admission & Consensus Crystallization Policy
 
-import { stableStringify, sha256Hex } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex } from "../_/mod.ts";
 
 const CRY_DATA = {
   policy: "STABLE",
@@ -22,7 +22,7 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
 );
 
 const canonicalCrystallizationPolicyPayload = (): string =>
-  stableStringify({
+  stable_stringify({
     policyVersion: CRY_DATA.policyVersion,
     window: CRY_DATA.window,
     minSoftPasses: CRY_DATA.minSoftPasses,
@@ -40,7 +40,7 @@ const canonicalCrystallizationPolicyPayload = (): string =>
 export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
   canonicalPayload: canonicalCrystallizationPolicyPayload,
   hash: async (): Promise<string> =>
-    await sha256Hex(canonicalCrystallizationPolicyPayload()),
+    await sha256_hex(canonicalCrystallizationPolicyPayload()),
   verify: async (
     input?:
       | string

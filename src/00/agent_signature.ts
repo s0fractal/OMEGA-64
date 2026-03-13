@@ -2,24 +2,24 @@
 // Legacy Compliance Shims - Proposal Signatures
 
 import {
-  base64ToBytes,
-  bytesToBase64,
-  bytesToHex,
-  hexToBytes,
-  importEd25519Private,
-  importEd25519Public,
-  importHmac,
-  sha256Hex,
-  stableStringify,
-} from "./crypto_shim.ts";
+  base64_to_bytes,
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+  import_ed25519_private,
+  import_ed25519_public,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
+} from "../_/mod.ts";
 import { REJECTION } from "./STATE_SNAPSHOT.ts";
-import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "./crypto_shim.ts";
+import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
 
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
 
 const canonicalProposalPayload = (proposal: any): string =>
-  stableStringify(AGENT_SIGNATURE.toCanonicalObject(proposal));
+  stable_stringify(AGENT_SIGNATURE.toCanonicalObject(proposal));
 
 export const AGENT_SIGNATURE = {
   toCanonicalObject: (p: any) => ({
@@ -40,7 +40,7 @@ export const AGENT_SIGNATURE = {
   }),
 
   proposalEnvelopeHash: async (p: any): Promise<string> =>
-    await sha256Hex(canonicalProposalPayload(p)),
+    await sha256_hex(canonicalProposalPayload(p)),
 
   generateEd25519KeyPair: async (): Promise<{
     public_key_b64: string;
@@ -60,8 +60,8 @@ export const AGENT_SIGNATURE = {
     );
 
     return {
-      public_key_b64: bytesToBase64(publicKey),
-      private_key_pkcs8_b64: bytesToBase64(privateKey),
+      public_key_b64: bytes_to_base64(publicKey),
+      private_key_pkcs8_b64: bytes_to_base64(privateKey),
     };
   },
 
@@ -71,14 +71,14 @@ export const AGENT_SIGNATURE = {
   ): Promise<string> => {
     const payload = encoder.encode(canonicalProposalPayload(proposal));
     if (signingKey.scheme === "hmac-sha256/v1") {
-      const key = await importHmac(signingKey.secret, ["sign"]);
+      const key = await import_hmac(signingKey.secret, ["sign"]);
       const sig = await crypto.subtle.sign("HMAC", key, payload);
-      return bytesToHex(new Uint8Array(sig));
+      return bytes_to_hex(new Uint8Array(sig));
     }
     if (signingKey.scheme === "ed25519/v1") {
-      const key = await importEd25519Private(signingKey.private_key_pkcs8_b64);
+      const key = await import_ed25519_private(signingKey.private_key_pkcs8_b64);
       const sig = await crypto.subtle.sign("Ed25519", key, payload);
-      return bytesToHex(new Uint8Array(sig));
+      return bytes_to_hex(new Uint8Array(sig));
     }
     throw new Error("SIGNATURE_SCHEME_UNSUPPORTED");
   },
@@ -100,12 +100,12 @@ export const AGENT_SIGNATURE = {
         return { ok: false, reason: REJECTION.SIGNATURE_SCHEME_UNSUPPORTED };
       }
 
-      const sigBytes = hexToBytes(signature);
+      const sigBytes = hex_to_bytes(signature);
       if (!sigBytes) return { ok: false, reason: REJECTION.SIGNATURE_INVALID };
 
       const payload = encoder.encode(canonicalProposalPayload(proposal));
       if (verifyKey.scheme === "hmac-sha256/v1") {
-        const key = await importHmac(verifyKey.secret, ["verify"]);
+        const key = await import_hmac(verifyKey.secret, ["verify"]);
         const ok = await crypto.subtle.verify(
           "HMAC",
           key,
@@ -117,7 +117,7 @@ export const AGENT_SIGNATURE = {
           : { ok: false, reason: REJECTION.SIGNATURE_INVALID };
       }
       if (verifyKey.scheme === "ed25519/v1") {
-        const key = await importEd25519Public(verifyKey.public_key_b64);
+        const key = await import_ed25519_public(verifyKey.public_key_b64);
         const ok = await crypto.subtle.verify(
           "Ed25519",
           key,
@@ -136,5 +136,5 @@ export const AGENT_SIGNATURE = {
   },
 
   sign: async (data: unknown): Promise<string> =>
-    await sha256Hex(typeof data === "string" ? data : stableStringify(data)),
+    await sha256_hex(typeof data === "string" ? data : stable_stringify(data)),
 };

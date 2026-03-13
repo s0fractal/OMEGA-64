@@ -2,11 +2,13 @@
 // Topological Signatures and 2D/1D Projections
 
 import {
-  stableStringify,
-  sha256HexBytes,
+  stable_stringify,
+  sha256_hex_bytes,
   fnv1a32,
-  normalizeHex64,
-} from "./crypto_shim.ts";
+  normalize_hex64,
+  import_ed25519_public,
+  bytes_to_base64,
+} from "../_/mod.ts";
 import {
   clamp01,
   normalize_angle,
@@ -21,7 +23,7 @@ export const deriveFeatureVector = (
   state: unknown,
   size: number = 16,
 ): number[] => {
-  const text = stableStringify(state);
+  const text = stable_stringify(state);
   const out = new Array<number>(size).fill(0);
   for (let i = 0; i < text.length; i++) {
     const code = text.charCodeAt(i);
@@ -193,7 +195,7 @@ const project2D = (
   const center = resolution / 2;
   const maxRadius = Math.max(1, center - 1);
   const features = deriveFeatureVector(state, 16);
-  const seed = fnv1a32(stableStringify({ state, options: opts })) || 1;
+  const seed = fnv1a32(stable_stringify({ state, options: opts })) || 1;
   const nextRand = make_xor_shift32(seed);
 
   for (let y = 0; y < resolution; y++) {
@@ -264,6 +266,12 @@ const projectThread1D = (
         Math.max(0, Math.floor(theta * (cfg.angular_bins - 1))),
       );
       const k = rBin * cfg.angular_bins + aBin;
+      // NOTE: The instruction provided a line `const key = await import_ed25519_public(verificationKeyB64);`
+      // but `verificationKeyB64` is not defined in this scope, and `await` is not allowed at the top level
+      // or in a non-async function. Assuming this was a placeholder or an incomplete instruction,
+      // I'm omitting it to maintain syntactical correctness and avoid undefined variables.
+      // If this line is critical, please provide the full context for `verificationKeyB64` and
+      // ensure `projectThread1D` is an async function.
       const idx = (y * resolution + x) * 4;
       const lum = Math.round(
         (rgba[idx] + rgba[idx + 1] + rgba[idx + 2]) / 3 - 127,
@@ -291,7 +299,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   CANONICAL_2D_OPTIONS: TOPO_CANONICAL_2D_OPTIONS,
   CANONICAL_THREAD_CONFIG: TOPO_CANONICAL_THREAD_CONFIG,
 
-  validateHash: (hash: string): boolean => normalizeHex64(hash) !== null,
+  validateHash: (hash: string): boolean => normalize_hex64(hash) !== null,
 
   project2D,
 
@@ -303,7 +311,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       TOPO_CANONICAL_2D_OPTIONS,
   ): Promise<string> => {
     const rgba = project2D(state, options);
-    return await sha256HexBytes(rgba);
+    return await sha256_hex_bytes(rgba);
   },
 
   hashThread1D: async (
@@ -316,7 +324,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     const opts = normalizeProjectionOptions(options);
     const rgba = project2D(state, opts);
     const thread = projectThread1D(rgba, opts.resolution, config);
-    return await sha256HexBytes(to_int16_big_endian(thread));
+    return await sha256_hex_bytes(to_int16_big_endian(thread));
   },
 
   snapshotToOrganismState: toOrganismState,
@@ -324,8 +332,8 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   build: async (
     input: TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignatureInput,
   ): Promise<TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature> => {
-    const artifactHash = normalizeHex64(input.artifact_hash);
-    const stateHash = normalizeHex64(input.state_hash);
+    const artifactHash = normalize_hex64(input.artifact_hash);
+    const stateHash = normalize_hex64(input.state_hash);
     if (!artifactHash) {
       throw new Error("Invalid artifact_hash: expected SHA-256 lowercase hex");
     }
@@ -338,13 +346,13 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
     const opts = normalizeProjectionOptions(TOPO_CANONICAL_2D_OPTIONS);
     const rgba = project2D(input.state, opts);
-    const projection2dHash = await sha256HexBytes(rgba);
+    const projection2dHash = await sha256_hex_bytes(rgba);
     const thread = projectThread1D(
       rgba,
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(to_int16_big_endian(thread));
+    const thread1dHash = await sha256_hex_bytes(to_int16_big_endian(thread));
 
     return {
       artifact_hash: artifactHash,
@@ -363,16 +371,16 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     state: unknown,
   ): Promise<{ ok: boolean; reasons: string[]; failures: string[] }> => {
     const reasons: string[] = [];
-    if (!normalizeHex64(signature.artifact_hash)) {
+    if (!normalize_hex64(signature.artifact_hash)) {
       reasons.push("INVALID_ARTIFACT_HASH");
     }
-    if (!normalizeHex64(signature.state_hash)) {
+    if (!normalize_hex64(signature.state_hash)) {
       reasons.push("INVALID_STATE_HASH");
     }
-    if (!normalizeHex64(signature.projection_2d_hash)) {
+    if (!normalize_hex64(signature.projection_2d_hash)) {
       reasons.push("INVALID_PROJECTION_2D_HASH");
     }
-    if (!normalizeHex64(signature.thread_1d_hash)) {
+    if (!normalize_hex64(signature.thread_1d_hash)) {
       reasons.push("INVALID_THREAD_1D_HASH");
     }
     if (signature.projection_version !== TOPO_PROJECTION_VERSION) {
@@ -381,7 +389,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
     const opts = normalizeProjectionOptions(TOPO_CANONICAL_2D_OPTIONS);
     const rgba = project2D(state, opts);
-    const projection2dHash = await sha256HexBytes(rgba);
+    const projection2dHash = await sha256_hex_bytes(rgba);
     if (projection2dHash !== signature.projection_2d_hash) {
       reasons.push("PROJECTION_2D_HASH_MISMATCH");
     }
@@ -391,7 +399,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(to_int16_big_endian(thread));
+    const thread1dHash = await sha256_hex_bytes(to_int16_big_endian(thread));
     if (thread1dHash !== signature.thread_1d_hash) {
       reasons.push("THREAD_1D_HASH_MISMATCH");
     }

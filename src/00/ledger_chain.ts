@@ -2,7 +2,7 @@
 // Ledger Chain and Proposal Envelope Index verification
 
 import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
-import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex, normalize_hex64 } from "../_/mod.ts";
 
 const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
 
@@ -18,8 +18,8 @@ const ledgerEventHash = async (
   body: Record<string, unknown>,
   prevEventHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: LEDGER_CHAIN_VERSION,
       prev_event_hash: prevEventHash,
       body,
@@ -80,7 +80,7 @@ const verifyLedgerChainDetailedInternal = async (
 
     const recordedPrev = row.prev_event_hash === null
       ? null
-      : normalizeHex64(row.prev_event_hash);
+      : normalize_hex64(row.prev_event_hash);
     if (
       row.prev_event_hash !== null &&
       typeof row.prev_event_hash !== "string"
@@ -91,7 +91,7 @@ const verifyLedgerChainDetailedInternal = async (
       failures.push(`LEDGER_CHAIN_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
     }
 
-    const recordedHash = normalizeHex64(row.event_hash);
+    const recordedHash = normalize_hex64(row.event_hash);
     if (!recordedHash) {
       failures.push(`LEDGER_CHAIN_EVENT_HASH_INVALID_AT_LINE_${lineNo}`);
       prevAnchoredHash = expectedHash;
@@ -192,7 +192,7 @@ const canonicalEnvelopeIndexPayload = (entry: {
   envelope_hash: string;
   source_event_id?: string;
 }): string =>
-  stableStringify({
+  stable_stringify({
     tick: entry.tick,
     proposal_id: entry.proposal_id,
     envelope_hash: entry.envelope_hash,
@@ -208,8 +208,8 @@ const envelopeIndexRecordHash = async (
   },
   prevIndexHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
       prev_index_hash: prevIndexHash,
       payload: JSON.parse(canonicalEnvelopeIndexPayload(entry)),
@@ -228,7 +228,7 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
       const proposalId = typeof row.proposal_id === "string"
         ? row.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash) ?? "";
+      const envelopeHash = normalize_hex64(row.envelope_hash) ?? "";
       const sourceEventId = typeof row.source_event_id === "string"
         ? row.source_event_id
         : undefined;
@@ -239,7 +239,7 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
         continue;
       }
       seen.add(envelopeHash);
-      const recordedHash = normalizeHex64(row.index_hash);
+      const recordedHash = normalize_hex64(row.index_hash);
       if (recordedHash) {
         tail = recordedHash;
       } else {
@@ -261,13 +261,13 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
 export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
   STORAGE_PATH: defaultEnvelopeIndexPath(),
   add: (envelopeHash?: string, path?: string): void => {
-    const hash = normalizeHex64(envelopeHash);
+    const hash = normalize_hex64(envelopeHash);
     if (!hash) return;
     const indexPath = resolveEnvelopeIndexPath(path);
     getEnvelopeIndexSeen(indexPath).add(hash);
   },
   check: (envelopeHash?: string, path?: string): boolean => {
-    const hash = normalizeHex64(envelopeHash);
+    const hash = normalize_hex64(envelopeHash);
     if (!hash) return false;
     const indexPath = resolveEnvelopeIndexPath(path);
     return getEnvelopeIndexSeen(indexPath).has(hash);
@@ -306,7 +306,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
       const proposalId = typeof row.proposal_id === "string"
         ? row.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash);
+      const envelopeHash = normalize_hex64(row.envelope_hash);
       const sourceEventId = typeof row.source_event_id === "string"
         ? row.source_event_id
         : undefined;
@@ -342,13 +342,13 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
 
       const recordedPrev = row.prev_index_hash === null
         ? null
-        : normalizeHex64(row.prev_index_hash);
+        : normalize_hex64(row.prev_index_hash);
       const hasRecordedPrev = row.prev_index_hash !== undefined;
       if (hasRecordedPrev && recordedPrev !== prevHash) {
         failures.push(`ENVELOPE_INDEX_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
       }
 
-      const recordedHash = normalizeHex64(row.index_hash);
+      const recordedHash = normalize_hex64(row.index_hash);
       if (row.index_hash !== undefined && !recordedHash) {
         failures.push(
           `ENVELOPE_INDEX_RECORD_HASH_INVALID_AT_LINE_${lineNo}`,
@@ -405,7 +405,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
       const proposalId = typeof env?.proposal_id === "string"
         ? env.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(env?.envelope_hash) ?? "";
+      const envelopeHash = normalize_hex64(env?.envelope_hash) ?? "";
       if (!envelopeHash) continue;
       const indexHash = await envelopeIndexRecordHash({
         tick,
