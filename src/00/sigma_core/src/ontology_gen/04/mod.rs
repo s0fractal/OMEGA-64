@@ -11,6 +11,9 @@ pub use sigma_vm::*;
 #[path = "add_resonance.rs"]
 pub mod add_resonance;
 pub use add_resonance::*;
+#[path = "tick_membrane_physics.rs"]
+pub mod tick_membrane_physics;
+pub use tick_membrane_physics::*;
 #[path = "secrete_glyph.rs"]
 pub mod secrete_glyph;
 pub use secrete_glyph::*;
