@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 pub fn dir8_y(n: i32) -> i32 {
     if n == 2 || n == 4 || n == 5 {

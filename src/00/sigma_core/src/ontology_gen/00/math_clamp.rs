@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 pub fn math_clamp(val: i32, min: i32, max: i32) -> i32 {
     if val < min {

@@ -2,7 +2,7 @@
 // Level: 4
 // LambdaVM Execution Engine
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L03::*;
 
 use crate::{

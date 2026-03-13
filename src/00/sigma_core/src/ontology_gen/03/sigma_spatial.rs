@@ -2,7 +2,7 @@
 // Level: 3
 // Implements the 2D grid hashing algorithm enabling fast localized queries
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 // Spatial Fabric Topology & Cognition Grid

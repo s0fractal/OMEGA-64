@@ -2,7 +2,7 @@
 // Level: 3
 // Handles wave interference physics and optical secretion
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 use crate::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};

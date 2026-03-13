@@ -2,7 +2,7 @@
 // Level: 2
 // The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L01::*;
 
 // Sigma-Core Memory Layout

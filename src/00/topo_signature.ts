@@ -9,10 +9,10 @@ import {
 } from "./crypto_shim.ts";
 import {
   clamp01,
-  normalizeAngle,
-  toInt16BigEndian,
-  makeXorShift32,
-} from "./math_utils.ts";
+  normalize_angle,
+  to_int16_big_endian,
+  make_xor_shift32,
+} from "../_/mod.ts";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
@@ -194,7 +194,7 @@ const project2D = (
   const maxRadius = Math.max(1, center - 1);
   const features = deriveFeatureVector(state, 16);
   const seed = fnv1a32(stableStringify({ state, options: opts })) || 1;
-  const nextRand = makeXorShift32(seed);
+  const nextRand = make_xor_shift32(seed);
 
   for (let y = 0; y < resolution; y++) {
     for (let x = 0; x < resolution; x++) {
@@ -202,7 +202,7 @@ const project2D = (
       const dx = x - center;
       const dy = y - center;
       const rho = Math.min(1, Math.sqrt(dx * dx + dy * dy) / maxRadius);
-      const theta = normalizeAngle(Math.atan2(dy, dx));
+      const theta = normalize_angle(Math.atan2(dy, dx));
       const fx = features[(x + y) % features.length];
       const fy = features[(x * 3 + y * 5) % features.length];
       const fz = features[(x * 7 + y * 11) % features.length];
@@ -254,7 +254,7 @@ const projectThread1D = (
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist > maxDist) continue;
       const rho = dist / maxDist;
-      const theta = normalizeAngle(Math.atan2(dy, dx));
+      const theta = normalize_angle(Math.atan2(dy, dx));
       const rBin = Math.min(
         cfg.radial_bins - 1,
         Math.max(0, Math.floor(rho * (cfg.radial_bins - 1))),
@@ -316,7 +316,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     const opts = normalizeProjectionOptions(options);
     const rgba = project2D(state, opts);
     const thread = projectThread1D(rgba, opts.resolution, config);
-    return await sha256HexBytes(toInt16BigEndian(thread));
+    return await sha256HexBytes(to_int16_big_endian(thread));
   },
 
   snapshotToOrganismState: toOrganismState,
@@ -344,7 +344,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(toInt16BigEndian(thread));
+    const thread1dHash = await sha256HexBytes(to_int16_big_endian(thread));
 
     return {
       artifact_hash: artifactHash,
@@ -391,7 +391,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(toInt16BigEndian(thread));
+    const thread1dHash = await sha256HexBytes(to_int16_big_endian(thread));
     if (thread1dHash !== signature.thread_1d_hash) {
       reasons.push("THREAD_1D_HASH_MISMATCH");
     }

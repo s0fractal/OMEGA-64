@@ -6,7 +6,7 @@
     "strict": true
   },
   "exclude": [
-    "src/00/01/assembly/"
+    "src/_as/"
   ],
   "tasks": {
     "lint": "deno lint",
@@ -140,9 +140,8 @@
       "I.ts",
       "UI/",
       "63/",
-      "00/01/assembly/",
       "public/",
-      "src/00/01/assembly"
+      "src/_as/"
     ],
     "rules": {
       "tags": [
@@ -155,7 +154,7 @@
     }
   },
   "imports": {
-    "@omega": "./src/mod.ts",
+    "@omega": "./src/_/mod.ts",
     "@00": "./src/00/mod.ts",
     "@01": "./src/01/mod.ts",
     "@02": "./src/02/mod.ts",
@@ -182,7 +181,7 @@
       "src/02/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
       "src/06/OMEGA_DAEMON.ts",
-      "src/00/01/assembly/index.ts",
+      "src/_as/mod.ts",
       "src/06/MUTATION_TELEMETRY.ts",
       "src/06/TUI_DASHBOARD.ts",
       "src/06/AGENT_PROXY.ts",
@@ -216,7 +215,7 @@
       "src/02/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
       "src/06/OMEGA_DAEMON.ts",
-      "src/00/01/assembly/index.ts",
+      "src/_as/mod.ts",
       "src/06/MUTATION_TELEMETRY.ts",
       "src/06/TUI_DASHBOARD.ts",
       "src/06/AGENT_PROXY.ts",

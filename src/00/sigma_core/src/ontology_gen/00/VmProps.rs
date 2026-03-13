@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 // Enum: VmProps
 pub const PROP_ENERGY: u8 = 0;

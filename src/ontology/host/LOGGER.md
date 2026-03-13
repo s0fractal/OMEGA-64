@@ -1,3 +1,15 @@
+---
+id: LOGGER
+type: module
+description: "Cross-platform Host Logger"
+tags: ["host", "console"]
+min_level: 6
+deps: []
+returns: void
+---
+
+### TypeScript
+```typescript
 export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
@@ -69,3 +81,4 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
+```

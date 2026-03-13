@@ -1,5 +1,3 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
-pub fn pack_glyph_header(kind: i32, amplitude: i32) -> i32 {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

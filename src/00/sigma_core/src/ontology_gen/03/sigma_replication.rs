@@ -2,7 +2,7 @@
 // Level: 3
 // Manages autopoietic mitosis processes and genome verification
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 // Replication Engine

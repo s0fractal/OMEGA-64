@@ -2,7 +2,7 @@
 // Level: 0
 // Mathematical Coprocessor (Deterministic LUT Trigonometry)
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 // Flatten the levels backwards into the math namespace so external code can just use `crate::math_sin`
 pub use crate::ontology_gen::L01::*;

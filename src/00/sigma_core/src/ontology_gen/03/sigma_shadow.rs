@@ -2,7 +2,7 @@
 // Level: 3
 // Implements the speculative execution engine for quantum divergence
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 use crate::SigmaState;

@@ -1,6 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L03::*;
 
-pub fn glyph_transport(tick: i32) -> () {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

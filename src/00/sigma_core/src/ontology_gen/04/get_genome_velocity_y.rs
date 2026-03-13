@@ -1,6 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L03::*;
 
-pub fn get_genome_velocity_y(idx: i32) -> i32 {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

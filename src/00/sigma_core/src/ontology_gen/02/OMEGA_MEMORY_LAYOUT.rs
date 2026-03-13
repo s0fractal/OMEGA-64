@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L01::*;
 
 // Memory Layout: OMEGA_MEMORY_LAYOUT

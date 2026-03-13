@@ -2,7 +2,7 @@
 // Level: 3
 // FFI bridging logic and memory alignment for WebAssembly workers
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 #[allow(non_snake_case)]

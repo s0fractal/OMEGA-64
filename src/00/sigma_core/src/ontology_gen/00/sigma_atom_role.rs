@@ -2,7 +2,7 @@
 // Level: 0
 // Defines the role enumerations for OMEGA atoms
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 pub const U64_BYTES: usize = 8;
 pub const I32_BYTES: usize = 4;

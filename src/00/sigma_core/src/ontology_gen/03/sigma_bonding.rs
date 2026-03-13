@@ -2,7 +2,7 @@
 // Level: 3
 // Solves simultaneous structural bonding intents using spatial hashes
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 // Symbiotic Bonding Engine

@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L00::*;
 
 pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {

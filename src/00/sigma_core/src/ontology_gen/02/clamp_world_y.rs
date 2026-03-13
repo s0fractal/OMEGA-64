@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L01::*;
 
 pub fn clamp_world_y(y: i32) -> i32 {

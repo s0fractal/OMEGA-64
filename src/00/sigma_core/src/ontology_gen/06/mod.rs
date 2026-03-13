@@ -2,9 +2,21 @@
 
 pub use super::L05::*;
 
+#[path = "pulse_orchestrator.rs"]
+pub mod pulse_orchestrator;
+pub use pulse_orchestrator::*;
 #[path = "execute_atom.rs"]
 pub mod execute_atom;
 pub use execute_atom::*;
+#[path = "LOGGER.rs"]
+pub mod LOGGER;
+pub use LOGGER::*;
+#[path = "make_xor_shift32.rs"]
+pub mod make_xor_shift32;
+pub use make_xor_shift32::*;
+#[path = "to_int16_big_endian.rs"]
+pub mod to_int16_big_endian;
+pub use to_int16_big_endian::*;
 #[path = "tick_environment.rs"]
 pub mod tick_environment;
 pub use tick_environment::*;

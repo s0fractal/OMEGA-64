@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L00::*;
 
 pub fn clamp_resource(value: i64) -> i32 {

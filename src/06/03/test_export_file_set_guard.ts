@@ -44,7 +44,6 @@ const REQUIRED_RUNTIME_SURFACE = [
   "src/05/SOVEREIGN_ORACLE.ts",
   "src/06/MUTATION_TELEMETRY.ts",
   "src/06/SNAPSHOT_ENGINE.ts",
-  "src/00/LOGGER.ts",
 ] as const;
 
 const isForbidden = (path: string): boolean => {

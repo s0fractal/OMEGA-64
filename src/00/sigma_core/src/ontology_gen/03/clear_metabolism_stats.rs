@@ -1,6 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
-pub fn clear_metabolism_stats() -> () {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

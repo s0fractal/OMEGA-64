@@ -1,6 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
-pub fn set_neural_coherence(value: i32) -> () {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

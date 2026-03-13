@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L00::*;
 
 pub fn math_sin(angle: i32, highRes: i32) -> i32 {

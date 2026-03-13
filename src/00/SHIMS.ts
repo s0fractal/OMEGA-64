@@ -13,7 +13,7 @@ const LOAD_DATA = {
 export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
 export * from "./crypto_shim.ts";
-export * from "./math_utils.ts";
+export * from "../_/mod.ts";
 export * from "./stream_utils.ts";
 export * from "./agent_signature.ts";
 export * from "./gate_admission.ts";

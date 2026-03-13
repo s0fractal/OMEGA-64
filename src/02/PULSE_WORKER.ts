@@ -1,12 +1,10 @@
-/// <reference lib="deno.worker" />
-import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
+import { SYSTEM_TICK_HZ, WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   LOGGER,
   SCALE,
-  WASM_PATH,
   SYS_YIELD,
   SYS_READ_MEM,
   SYS_WRITE_MEM,
@@ -862,7 +860,7 @@ self.onmessage = async (e) => {
     LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
 try {
       const wasmRes = await fetch(
-        WASM_PATH.href,
+        AS_WASM_PATH.href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (

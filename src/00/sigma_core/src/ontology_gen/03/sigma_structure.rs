@@ -2,7 +2,7 @@
 // Level: 3
 // Handles the cellular automaton lifecycle of the crystalline grid
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L02::*;
 
 // Architecture Intent Engine

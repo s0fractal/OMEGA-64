@@ -15762,7 +15762,7 @@ self.onmessage = async (e) => {
     LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
 try {
       const wasmRes = await fetch(
-        WASM_PATH.href,
+        AS_WASM_PATH.href,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (

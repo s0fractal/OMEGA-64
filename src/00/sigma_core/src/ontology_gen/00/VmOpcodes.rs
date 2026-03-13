@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 // Enum: VmOpcodes
 pub const OP_NOP: u8 = 0;

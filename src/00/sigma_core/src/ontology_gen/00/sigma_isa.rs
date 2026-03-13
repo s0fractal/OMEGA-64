@@ -2,7 +2,7 @@
 // Level: 0
 // Defines the Instruction Set Architecture values for the interpreter.
 
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]

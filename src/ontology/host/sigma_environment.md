@@ -19,9 +19,6 @@ use crate::{
 };
 use crate::SigmaState;
 
-pub fn in_grid(x: i32, y: i32) -> bool {
-    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
-}
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);

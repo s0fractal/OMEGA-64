@@ -1,6 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 use super::super::L04::*;
 
-pub fn tick_structure_grid() -> () {
-    unimplemented!()
-}
+// Omitted: manual substrate implementation

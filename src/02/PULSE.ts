@@ -5,7 +5,7 @@ import {
   sharedBuffer,
   STATE_MATRIX,
   SYS,
-  WASM_PATH,
+  AS_WASM_PATH,
   LOGGER,
 } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
@@ -150,7 +150,7 @@ const SPAWN_SLOT_BYTES = 16;
 
 const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
   try {
-    const bytes = await Deno.readFile(WASM_PATH);
+    const bytes = await Deno.readFile(AS_WASM_PATH);
     return await WebAssembly.compile(bytes);
   } catch (err) {
     LOGGER.error(`Failed to cache WASM module: ${(err as Error).message}`);
@@ -1372,7 +1372,7 @@ const wasmPreflight = async (): Promise<WasmPreflightReport> => {
     };
   }
   try {
-    const bytes = await Deno.readFile(WASM_PATH);
+    const bytes = await Deno.readFile(AS_WASM_PATH);
     if (bytes.byteLength <= 0) {
       return { ok: false, bytes: 0, reason: "EMPTY_WASM_ARTIFACT" };
     }

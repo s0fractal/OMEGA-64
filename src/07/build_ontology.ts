@@ -11,7 +11,7 @@ import { z } from "npm:zod@4.3.6";
 
 const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module"]);
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
@@ -36,12 +36,19 @@ export const OntologyNodeSchema = z.object({
   optimization: z.enum(["inline", "hot", "cold"]).optional(),
   status: z.enum(["stable", "experimental", "deprecated"]).optional(),
   tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
+  tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  min_level: z.number().optional(),
   rust: z.string().optional(), // Raw rust code for substrate modules
 });
 
-export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
+const MIN_LEVEL_FOR_TAG: Record<string, number> = {
+  "console": 4,
+  "class": 5,
+  "host": 6,
+  "fs": 7,
+};
 
-interface ArgDesc { name: string; type: string; }
+export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
 interface TestDesc { inputs: any[]; expected: any; }
 
 interface OntologyNode extends OntologyNodeMeta {
@@ -50,6 +57,7 @@ interface OntologyNode extends OntologyNodeMeta {
   tsCode?: string;
   asCode?: string;
   level: number;
+  tests: any[];
 }
 
 const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
@@ -119,11 +127,12 @@ try {
 
       // Parse Code Blocks
       const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
-      if (!rustMatch) {
-        console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
-        Deno.exit(1);
+      if (rustMatch) {
+         node.rustCode = rustMatch[1].trim();
+      } else if (!node.tags.includes("host") && !node.tags.includes("substrate")) {
+         console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
+         Deno.exit(1);
       }
-      node.rustCode = rustMatch[1].trim();
 
       const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
       if (!tsMatch) {
@@ -135,6 +144,21 @@ try {
       const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
       if (asMatch) {
         node.asCode = asMatch[1].trim();
+      }
+
+    } else if (node.type === "module") {
+      const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
+      if (tsMatch) node.tsCode = tsMatch[1].trim();
+
+      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      if (asMatch) node.asCode = asMatch[1].trim();
+
+      const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
+      if (rustMatch) node.rustCode = rustMatch[1].trim();
+
+      if (!tsMatch && !asMatch && !rustMatch) {
+        console.error(`[FATAL] Missing code block in module ${node.id}`);
+        Deno.exit(1);
       }
 
     } else if (node.type === "static_table") {
@@ -177,7 +201,7 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
 
   stack.add(id);
   
-  let maxDepLevel = -1;
+  let maxDepLevel = node.min_level !== undefined ? (node.min_level - 1) : -1;
   for (const dep of node.deps) {
     const depLevel = computeLevel(dep, visited, stack);
     maxDepLevel = Math.max(maxDepLevel, depLevel);
@@ -186,6 +210,28 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
   node.level = maxDepLevel + 1;
   stack.delete(id);
   visited.add(id);
+
+  // Semantic Firewall Check
+  for (const tag of node.tags) {
+    const minLevel = MIN_LEVEL_FOR_TAG[tag];
+    if (minLevel !== undefined && node.level < minLevel) {
+      console.error(`[FATAL] Semantic Firewall Violation: Node '${node.id}' has tag '${tag}' which requires minimum causality level ${minLevel}, but resolved to level ${node.level}.`);
+      Deno.exit(1);
+    }
+  }
+
+  // Regex Heuristics (Fallback Firewall)
+  if (node.tsCode) {
+    if (/\bconsole\./.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["console"]) {
+      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'console' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["console"]}. Add tags: ["console"] or remove side-effect.`);
+      Deno.exit(1);
+    }
+    if (/\bclass\s/.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["class"]) {
+      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'class' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["class"]}. Add tags: ["class"] or use pure functions.`);
+      Deno.exit(1);
+    }
+  }
+
   return node.level;
 }
 
@@ -329,15 +375,23 @@ ${(node.regions || []).map((r, i, arr) => {
 }\n`;
       break;
     case "pure_fn":
-      const nodeArgsArr = Array.isArray(node.args) ? node.args : 
-                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-      const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-      tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
-      tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-      tsOut += `\n}\n`;
+      if (node.tags.includes("host") || node.tags.includes("substrate")) {
+          tsOut += node.tsCode! + "\n";
+      } else {
+        const nodeArgsArr = Array.isArray(node.args) ? node.args : 
+                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
+        tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
+        tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
+        tsOut += `\n}\n`;
+      }
       break;
     case "substrate_module":
       // Substrate modules are purely raw passthrough blocks, bypass AST args.
+      break;
+    case "module":
+      // module type acts similarly to host pure_fn, no wrapper emitted
+      tsOut += node.tsCode! + "\n";
       break;
     default:
       // No TS output for other types like 'struct'
@@ -354,7 +408,7 @@ ${(node.regions || []).map((r, i, arr) => {
     rsOut = `// Substrate Node: ${node.id}
 // Level: ${node.level}
 ${node.description ? `// ${node.description}\n` : ""}\n`;
-    rsOut += `#[allow(unused_imports)]\n`;
+    rsOut += `#![allow(unused_imports)]\n`;
     if (node.level > 0) {
       const prevLevel = formatLevel(node.level - 1);
       rsOut += `use super::super::L${prevLevel}::*;\n`;
@@ -365,7 +419,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       rsOut += node.rust;
     }
   } else {
-    rsOut = `#[allow(unused_imports)]\n`;
+    rsOut = `#![allow(unused_imports)]\n`;
     if (node.level > 0) {
       const prevLevel = formatLevel(node.level - 1);
       rsOut += `use super::super::L${prevLevel}::*;\n`;
@@ -391,6 +445,11 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
           valStr += ".0";
         }
         rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
+      }
+    } else if (node.type === "module") {
+      // If a module contains Rust code, output it verbatim without wrapping
+      if (node.rustCode) {
+        rsOut += node.rustCode + "\n";
       }
     } else if (node.type === "memory_layout") {
       rsOut += `// Memory Layout: ${node.id}\n`;
@@ -421,20 +480,37 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       }
       rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
     } else if (node.type === "pure_fn") {
-      let rsArgStr = "";
-      if (node.rsArgs) {
-        rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+      if (node.rustCode === undefined) {
+         if (node.tags.includes("host") || node.tags.includes("substrate")) {
+            // Valid intentional omission for pure JS/host functions
+            rsOut += `// Host-only function: ${node.id} omitted from Rust build.\n`;
+         } else {
+            console.error(`[FATAL] Missing rust code block in pure_fn ${node.id} during emit.`);
+            Deno.exit(1);
+         }
       } else {
-        const rsArr = Array.isArray(node.args) ? node.args : 
-                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-        rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+         let rsArgStr = "";
+         if (node.rsArgs) {
+           rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+         } else {
+           const rsArr = Array.isArray(node.args) ? node.args : 
+                      (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+           rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+         }
+         if (node.rustCode.trim().startsWith("unimplemented!")) {
+            // Handled manually by a substrate module, do not generate duplicate wrapper
+            rsOut += `// Omitted: manual substrate implementation\n`;
+         } else {
+             if (node.optimization === "inline") {
+               rsOut += `#[inline(always)]\n`;
+             } else if (node.optimization === "cold") {
+               rsOut += `#[cold]\n`;
+             }
+             rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns as string || "void")} {\n`;
+             rsOut += node.rustCode.split("\n").map(l => `    ${l}`).join("\n");
+             rsOut += `\n}\n`;
+         }
       }
-      if (node.optimization === "inline") {
-        rsOut += `#[inline(always)]\n`;
-      }
-      rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns!)} {\n`;
-      rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
-      rsOut += `\n}\n`;
     }
   }
 
@@ -496,7 +572,13 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   }
   
   if (node.type !== "substrate_module") {
-    Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+    if (node.tags.includes("host") || node.tags.includes("substrate")) {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
+    } else if (node.type === "module" && node.asCode) {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, node.asCode);
+    } else {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+    }
   }
 }
 
@@ -527,7 +609,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   
   // TS Mod file generation
   const tsModExports = levelNodesNoSubstrate.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}.ts";`;
     } else {
       return `export { ${n.id} } from "./${n.id}.ts";`;
@@ -545,8 +627,9 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
-  const asModExports = levelNodesNoSubstrate.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+  const levelNodesAs = levelNodes.filter(n => n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
+  const asModExports = levelNodesAs.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}";`;
     } else {
       return `export { ${n.id} } from "./${n.id}";`;
@@ -562,13 +645,14 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
 
 // Re-export core topological state that lives outside the pure DAG
 mainTsOut += `export * from "../00/STATE_MATRIX.ts";\n`;
-mainTsOut += `export * from "../00/LOGGER.ts";\n`;
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
 mainTsOut += `export * from "../00/STATE_SNAPSHOT.ts";\n`;
 mainTsOut += `export * from "../00/ENV_PARSE.ts";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
-mainTsOut += `export { WASM_PATH } from "../00/mod.ts";\n`;
+mainTsOut += `export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);\n`;
+
+mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
 Deno.writeTextFileSync(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
 Deno.writeTextFileSync(`${GEN_DIR_RS}/mod.rs`, mainRsOut);

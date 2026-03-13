@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 // Enum: VmSys
 pub const SYS_YIELD: i32 = 1;

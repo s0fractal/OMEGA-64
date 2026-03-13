@@ -39,6 +39,9 @@ pub use unpack_glyph_kind::*;
 #[path = "COS_LUT.rs"]
 pub mod COS_LUT;
 pub use COS_LUT::*;
+#[path = "normalize_angle.rs"]
+pub mod normalize_angle;
+pub use normalize_angle::*;
 #[path = "fast_abs.rs"]
 pub mod fast_abs;
 pub use fast_abs::*;
@@ -48,6 +51,9 @@ pub use fast_max::*;
 #[path = "prng_next.rs"]
 pub mod prng_next;
 pub use prng_next::*;
+#[path = "clamp01.rs"]
+pub mod clamp01;
+pub use clamp01::*;
 #[path = "fast_sign.rs"]
 pub mod fast_sign;
 pub use fast_sign::*;

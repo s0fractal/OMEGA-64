@@ -9,12 +9,12 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   Deno.exit(1);
 }
 
-const artifactsDir = resolveFsVectorSync("@00");
+const artifactsDir = new URL("../../_as", import.meta.url).pathname;
 await Deno.mkdir(artifactsDir, { recursive: true });
 await assertWasmLayout();
 
 const wasmFile = `${artifactsDir}/release.wasm`;
-const assemblyFile = `${resolveFsVectorSync("@00")}/01/assembly/index.ts`;
+const assemblyFile = `${artifactsDir}/mod.ts`;
 
 const args = [
   "run",

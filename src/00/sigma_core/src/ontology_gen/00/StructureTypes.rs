@@ -1,4 +1,4 @@
-#[allow(unused_imports)]
+#![allow(unused_imports)]
 
 // Enum: StructureTypes
 pub const STR_VOID: i32 = 0;
