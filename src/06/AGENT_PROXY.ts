@@ -1,8 +1,8 @@
-import { RISC, STATE_MATRIX, SYS } from "@00";
+import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { SPATIAL_HASH } from "@01";
 import { assembleScript } from "@02";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export class AgentProxy {
   port: number;

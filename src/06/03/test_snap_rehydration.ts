@@ -1,8 +1,8 @@
 // OMEGA-64 | test_snap_rehydration.ts | Era 71: The Quantum Snap
-import { sharedBuffer, STATE_MATRIX } from "@00";
+import { sharedBuffer, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { SNAP_ENGINE } from "@06";
 import { seedSeededSwarmScenario } from "@02";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import { crypto } from "https://deno.land/std@0.224.0/crypto/mod.ts";
 import { encodeHex } from "https://deno.land/std@0.224.0/encoding/hex.ts";

@@ -1,4 +1,4 @@
-import { STATE_MATRIX, wasmMemory } from "@00";
+import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GLYPH_BUFFER } from "@01";
 
 async function runGeneticEvolutionTests() {

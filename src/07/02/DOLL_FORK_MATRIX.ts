@@ -1,6 +1,6 @@
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "@00";
-import { sharedBuffer as mainlineBuffer } from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { sharedBuffer as mainlineBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 /**
  * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.

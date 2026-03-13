@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // test_matrix_engine.ts
 import { MATRIX_ENGINE } from "@01";
 

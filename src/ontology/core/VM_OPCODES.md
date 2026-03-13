@@ -1,0 +1,36 @@
+---
+id: VM_OPCODES
+type: enum
+dataType: u8
+description: "Instruction Set Architecture (ISA) Opcodes"
+deps: []
+values:
+  OP_NOP: 0x00
+  OP_SET: 0x01
+  OP_GET: 0x02
+  OP_PUT: 0x03
+  OP_ADD: 0x04
+  OP_SUB: 0x05
+  OP_JZ: 0x10
+  OP_JNZ: 0x11
+  OP_JMP: 0x12
+  OP_SYSCALL: 0x60
+  OP_REPLICATE: 0x80
+  OP_SIGNAL: 0x81
+  OP_BIND: 0x82
+  OP_SHARE: 0x83
+  OP_HEBB: 0x8A
+  OP_FIRE: 0x8B
+  OP_DECAY: 0x91
+  OP_PLUG: 0xA4
+  OP_TENSEGRITY: 0xA5
+  OP_COLLECTIVE: 0xA6
+  OP_BUILD: 0xA8
+  OP_SPORE_DRIVE: 0xA8
+  OP_SENSE: 0xA9
+  OP_SENSE_AS: 0xB2
+  OP_SECRETE_PLASMID: 0xAA
+  OP_INCORPORATE_PLASMID: 0xAB
+  OP_RESOLVE: 0xB0
+  OP_RESONATE_KURAMOTO: 0xB1
+---

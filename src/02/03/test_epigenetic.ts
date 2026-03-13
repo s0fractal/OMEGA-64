@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_epigenetic.ts | Era 56: Epigenetic Inheritance Verification
 // Tests: weight inheritance in MITOSIS/MEIOSIS, ISA.INHERIT voluntary sync, SENSE type 0x0C.
 
 import { ISA, LAMBDA_VM } from "@02";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   assert,
   assertEquals,

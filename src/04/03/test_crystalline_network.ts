@@ -1,4 +1,4 @@
-import { STATE_MATRIX, STRUCTURE } from "@00";
+import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 
 async function testCrystallineNetwork() {

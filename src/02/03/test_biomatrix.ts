@@ -1,5 +1,5 @@
 // OMEGA-64 | test_biomatrix.ts | Phase 14: Bio-Matrix Coupling Verification
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { CRYSTAL_MEME, CRYSTAL_STANDARD, MATRIX_ENGINE } from "@01";
 

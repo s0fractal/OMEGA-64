@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { ISA, LAMBDA_VM } from "@02";
 
 console.log("💞 [TEST] Initializing Meiosis Verification...");

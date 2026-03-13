@@ -2,7 +2,7 @@
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{
+pub use crate::{
     ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
     HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
     SECRETION_STATS_SIZE, MAX_ASCENSION_STATS_RESERVED, MAX_EGRESS_EVENTS, MAX_LEDGER_EVENTS,
@@ -418,252 +418,252 @@ mod tests {
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
-            crate::constants::ENERGY_OFFSET,
+            crate::ENERGY_OFFSET,
             "energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance),
-            crate::constants::RESONANCE_OFFSET,
+            crate::RESONANCE_OFFSET,
             "resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, phase),
-            crate::constants::PHASE_OFFSET,
+            crate::PHASE_OFFSET,
             "phase"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, logic),
-            crate::constants::LOGIC_OFFSET,
+            crate::LOGIC_OFFSET,
             "logic"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bonds),
-            crate::constants::BONDS_OFFSET,
+            crate::BONDS_OFFSET,
             "bonds"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, stiffness),
-            crate::constants::STIFFNESS_OFFSET,
+            crate::STIFFNESS_OFFSET,
             "stiffness"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, instructions),
-            crate::constants::INSTRUCTIONS_OFFSET,
+            crate::INSTRUCTIONS_OFFSET,
             "instructions"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, context),
-            crate::constants::CONTEXT_OFFSET,
+            crate::CONTEXT_OFFSET,
             "context"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, evolution_reserved),
-            crate::constants::EVOLUTION_OFFSET,
+            crate::EVOLUTION_OFFSET,
             "evolution_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spawn_requests),
-            crate::constants::SPAWN_REQUESTS_OFFSET,
+            crate::SPAWN_REQUESTS_OFFSET,
             "spawn_requests"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
-            crate::constants::MEIOSIS_OFFSET,
+            crate::MEIOSIS_OFFSET,
             "meiosis_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
-            crate::constants::BOND_REQUESTS_OFFSET,
+            crate::BOND_REQUESTS_OFFSET,
             "bond_requests"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spatial_grid),
-            crate::constants::SPATIAL_GRID_OFFSET,
+            crate::SPATIAL_GRID_OFFSET,
             "spatial_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, roles),
-            crate::constants::ROLES_OFFSET,
+            crate::ROLES_OFFSET,
             "roles"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_grid),
-            crate::constants::STRUCTURE_GRID_OFFSET,
+            crate::STRUCTURE_GRID_OFFSET,
             "structure_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, signal_grid),
-            crate::constants::SIGNAL_GRID_OFFSET,
+            crate::SIGNAL_GRID_OFFSET,
             "signal_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, memory_grid),
-            crate::constants::MEMORY_GRID_OFFSET,
+            crate::MEMORY_GRID_OFFSET,
             "memory_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats_reserved),
-            crate::constants::ASCENSION_STATS_OFFSET,
+            crate::ASCENSION_STATS_OFFSET,
             "ascension_stats_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_distances),
-            crate::constants::BOND_DISTANCES_OFFSET,
+            crate::BOND_DISTANCES_OFFSET,
             "bond_distances"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, synaptic_weights),
-            crate::constants::SYNAPTIC_WEIGHTS_OFFSET,
+            crate::SYNAPTIC_WEIGHTS_OFFSET,
             "synaptic_weights"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, damping),
-            crate::constants::DAMPING_OFFSET,
+            crate::DAMPING_OFFSET,
             "damping"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, causality),
-            crate::constants::CAUSALITY_OFFSET,
+            crate::CAUSALITY_OFFSET,
             "causality"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_memory),
-            crate::constants::HIVE_MEMORY_OFFSET,
+            crate::HIVE_MEMORY_OFFSET,
             "hive_memory"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_balance),
-            crate::constants::HIVE_BALANCE_OFFSET,
+            crate::HIVE_BALANCE_OFFSET,
             "hive_balance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, quorum),
-            crate::constants::QUORUM_OFFSET,
+            crate::QUORUM_OFFSET,
             "quorum"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, coherence),
-            crate::constants::COHERENCE_OFFSET,
+            crate::COHERENCE_OFFSET,
             "coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, neural_coherence),
-            crate::constants::NEURAL_COHERENCE_OFFSET,
+            crate::NEURAL_COHERENCE_OFFSET,
             "neural_coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_xs),
-            crate::constants::PHYSICS_READ_XS_OFFSET,
+            crate::PHYSICS_READ_XS_OFFSET,
             "physics_read_xs"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_ys),
-            crate::constants::PHYSICS_READ_YS_OFFSET,
+            crate::PHYSICS_READ_YS_OFFSET,
             "physics_read_ys"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_energy),
-            crate::constants::PHYSICS_READ_ENERGY_OFFSET,
+            crate::PHYSICS_READ_ENERGY_OFFSET,
             "physics_read_energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_resonance),
-            crate::constants::PHYSICS_READ_RESONANCE_OFFSET,
+            crate::PHYSICS_READ_RESONANCE_OFFSET,
             "physics_read_resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy_delta),
-            crate::constants::ENERGY_DELTA_OFFSET,
+            crate::ENERGY_DELTA_OFFSET,
             "energy_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance_delta),
-            crate::constants::RESONANCE_DELTA_OFFSET,
+            crate::RESONANCE_DELTA_OFFSET,
             "resonance_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_owner),
-            crate::constants::STRUCTURE_BUILD_OWNER_OFFSET,
+            crate::STRUCTURE_BUILD_OWNER_OFFSET,
             "structure_build_owner"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_value),
-            crate::constants::STRUCTURE_BUILD_VALUE_OFFSET,
+            crate::STRUCTURE_BUILD_VALUE_OFFSET,
             "structure_build_value"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_charge_intent),
-            crate::constants::STRUCTURE_CHARGE_INTENT_OFFSET,
+            crate::STRUCTURE_CHARGE_INTENT_OFFSET,
             "structure_charge_intent"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, attention_field),
-            crate::constants::ATTENTION_FIELD_OFFSET,
+            crate::ATTENTION_FIELD_OFFSET,
             "attention_field"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_energy_pool),
-            crate::constants::HIVE_ENERGY_POOL_OFFSET,
+            crate::HIVE_ENERGY_POOL_OFFSET,
             "hive_energy_pool"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_header),
-            crate::constants::GLYPH_HEADER_OFFSET,
+            crate::GLYPH_HEADER_OFFSET,
             "glyph_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_payload),
-            crate::constants::GLYPH_PAYLOAD_OFFSET,
+            crate::GLYPH_PAYLOAD_OFFSET,
             "glyph_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_header),
-            crate::constants::GLYPH_SCRATCH_HEADER_OFFSET,
+            crate::GLYPH_SCRATCH_HEADER_OFFSET,
             "glyph_scratch_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_payload),
-            crate::constants::GLYPH_SCRATCH_PAYLOAD_OFFSET,
+            crate::GLYPH_SCRATCH_PAYLOAD_OFFSET,
             "glyph_scratch_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            crate::constants::HORMONE_OFFSET,
+            crate::HORMONE_OFFSET,
             "hormones"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, secretion_stats),
-            crate::constants::SECRETION_STATS_OFFSET,
+            crate::SECRETION_STATS_OFFSET,
             "secretion_stats"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, lineage),
-            crate::constants::LINEAGE_OFFSET,
+            crate::LINEAGE_OFFSET,
             "lineage"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, mailbox),
-            crate::constants::MAILBOX_OFFSET,
+            crate::MAILBOX_OFFSET,
             "mailbox"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_head),
-            crate::constants::LEDGER_HEAD_OFFSET,
+            crate::LEDGER_HEAD_OFFSET,
             "ledger_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_data),
-            crate::constants::LEDGER_DATA_OFFSET,
+            crate::LEDGER_DATA_OFFSET,
             "ledger_data"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_head),
-            crate::constants::EGRESS_HEAD_OFFSET,
+            crate::EGRESS_HEAD_OFFSET,
             "egress_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_data),
-            crate::constants::EGRESS_DATA_OFFSET,
+            crate::EGRESS_DATA_OFFSET,
             "egress_data"
         );
     }

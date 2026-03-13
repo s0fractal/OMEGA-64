@@ -1,6 +1,6 @@
 import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
 import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
-import * as OFFSETS from "../OFFSETS.ts";
+import * as OFFSETS from "@00";
 
 /**
  * Stage 5.3: Secretion Energetics Audit

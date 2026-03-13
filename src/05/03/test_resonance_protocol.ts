@@ -1,8 +1,8 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
-import { STATE_MATRIX } from "@00";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { SOVEREIGN_ORACLE } from "@05";
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");

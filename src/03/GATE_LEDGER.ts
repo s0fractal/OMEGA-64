@@ -1,7 +1,7 @@
-import { type BridgeModeEvent, type GateConfig } from "@00";
-import { type LedgerEvent } from "@00";
+import { type BridgeModeEvent, type GateConfig } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@00";
+    as PROPOSAL_ENVELOPE_INDEX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

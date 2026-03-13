@@ -1,7 +1,7 @@
 use proptest::prelude::*;
 use sigma_core::memory::SigmaState;
 use sigma_core::vm::LambdaVM;
-use sigma_core::constants::{MAX_ATOMS, MAX_PC};
+use sigma_core::ontology_gen::L01::{MAX_ATOMS, MAX_PC};
 
 proptest! {
     // Fuzzing fetch_instruction across full integer domain

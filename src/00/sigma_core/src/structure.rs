@@ -10,7 +10,7 @@ impl SigmaState {
     /// Attempts to publish a build intent to the specified cell.
     /// Arbitration happens via the `ownerToken` mechanism to resolve racing logic during a tick.
     pub fn publish_build_intent(&self, cell_idx: usize, owner_atom_idx: usize, build_value: i32) {
-        if cell_idx >= crate::constants::GRID_CELLS {
+        if cell_idx >= crate::GRID_CELLS {
             return;
         }
 
@@ -62,7 +62,7 @@ impl SigmaState {
     /// Reads the state of a structure cell, viewing the immediate intent if present,
     /// otherwise returning the finalized grid value.
     pub fn read_structure_cell(&self, cell_idx: usize) -> i32 {
-        if cell_idx >= crate::constants::GRID_CELLS {
+        if cell_idx >= crate::GRID_CELLS {
             return 0;
         }
 
@@ -85,7 +85,7 @@ impl SigmaState {
 
     /// Mutates the charge intent for OP_PLUG.
     pub fn set_structure_charge_intent(&self, cell_idx: usize, charge: i32) {
-        if cell_idx < crate::constants::GRID_CELLS {
+        if cell_idx < crate::GRID_CELLS {
             let intent_atomic = self.structure_charge_intent_atomic();
             let mut current = intent_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
             loop {

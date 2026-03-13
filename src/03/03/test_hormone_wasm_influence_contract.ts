@@ -13,7 +13,7 @@
  *   5. Asserts the metric has changed in the expected direction.
  */
 
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 let passed = 0;
 let failed = 0;

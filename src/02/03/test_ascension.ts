@@ -1,4 +1,4 @@
-import { GRID_W , GRID_H, GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H, GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_ascension.ts | Era 63 & 64: The Final Fractal Convergence Verification
 // Tests ISA.PHI (Golden Angle phase shift) and ISA.ASCEND (Crystallization to Matrixland).
 
@@ -8,7 +8,7 @@ import {
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 
 function baseState(overrides: Record<string, unknown> = {}) {

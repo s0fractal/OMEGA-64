@@ -4,10 +4,10 @@
 // Scans the Root, Lifts Atoms, and Builds the Living Map.
 
 import { IMMUNE } from "@02/IMMUNE.ts";
-import { ID_TO_IDX, IDX_TO_ID } from "@00";
-import { STATE_MATRIX } from "@00";
+import { ID_TO_IDX, IDX_TO_ID } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export interface Atom {
   id: string; // The Filename (Address)

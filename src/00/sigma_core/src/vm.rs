@@ -1,11 +1,11 @@
 //! LambdaVM Execution Engine
 
-use crate::constants::{
+use crate::{
     GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
 use crate::environment::in_grid;
 use crate::isa::GlyphOp;
-use crate::constants::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
+use crate::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
 
@@ -292,7 +292,7 @@ impl LambdaVM {
                         }
 
                         let sender_energy = state.matrix.energy[atom_idx];
-                        let scaled_amount = amount * crate::constants::SCALE;
+                        let scaled_amount = amount * crate::SCALE;
 
                         if sender_energy >= scaled_amount {
                             state.energy_atomic()[atom_idx]
@@ -313,7 +313,7 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * crate::constants::SCALE
+                    if energy > e_thresh * crate::SCALE
                         && state.matrix.resonance[atom_idx] > r_thresh
                     {
                         let cx = state.matrix.xs[atom_idx] as i32;
@@ -724,14 +724,14 @@ impl LambdaVM {
                     } else if mode == 3 {
                         // Hive Deposit
                         let val = (p2 & 0xFF) as i32;
-                        if energy >= val * crate::constants::SCALE {
+                        if energy >= val * crate::SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
                             state.energy_atomic()[atom_idx].fetch_sub(
-                                val * crate::constants::SCALE,
+                                val * crate::SCALE,
                                 std::sync::atomic::Ordering::Relaxed,
                             );
-                            energy -= val * crate::constants::SCALE;
+                            energy -= val * crate::SCALE;
                         }
                         gas_used += 15;
                     } else if mode == 4 {
@@ -755,10 +755,10 @@ impl LambdaVM {
                             ) {
                                 Ok(_) => {
                                     state.energy_atomic()[atom_idx].fetch_add(
-                                        curr_amt * crate::constants::SCALE,
+                                        curr_amt * crate::SCALE,
                                         std::sync::atomic::Ordering::Relaxed,
                                     );
-                                    energy += curr_amt * crate::constants::SCALE;
+                                    energy += curr_amt * crate::SCALE;
                                     amount = curr_amt;
                                     break;
                                 }

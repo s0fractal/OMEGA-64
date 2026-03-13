@@ -1,5 +1,5 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
-import { STATE_MATRIX, STRUCTURE } from "@00";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { STRUCTURE_ENGINE } from "@01";
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 

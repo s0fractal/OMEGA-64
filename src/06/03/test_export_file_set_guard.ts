@@ -28,7 +28,6 @@ const REQUIRED_RUNTIME_SURFACE = [
   "src/02/PULSE.ts",
   "src/02/PULSE_WORKER.ts",
   "src/00/STATE_MATRIX.ts",
-  "src/00/OFFSETS.ts",
   "src/00/ENV_PARSE.ts",
   "src/03/RUNTIME_POLICY.ts",
   "src/03/DAEMON_INGRESS_POLICY.ts",

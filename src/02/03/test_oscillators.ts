@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_oscillators.ts | Era 58: Resonance Oscillators Verification
 // Tests ISA.OSCILLATE phase ripple, ISA.LOCK_PHASE constructive/destructive,
 // SENSE type 0x0E cell phase average, and sinusoidal amplitude.

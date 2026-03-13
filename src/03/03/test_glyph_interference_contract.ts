@@ -1,5 +1,5 @@
 import { GLYPH_BUFFER, GLYPH_KIND } from "@01";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

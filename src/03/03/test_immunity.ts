@@ -1,5 +1,5 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
-import { STATE_MATRIX } from "@00";
+import { GRID_W } from "../../_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { ISA } from "@02";
 import { GATE } from "@03";

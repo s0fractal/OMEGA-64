@@ -1,7 +1,7 @@
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;

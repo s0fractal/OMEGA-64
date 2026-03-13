@@ -1,5 +1,5 @@
 // OMEGA-64 | test_risc.ts | VM Verification Suite
-import { RISC, STATE_MATRIX } from "@00";
+import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function runTest() {
   console.log("🚀 Initializing RISC VM Test...");

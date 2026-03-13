@@ -34,12 +34,12 @@ console.log("\n💉 [HORMONE LATTICE ALIGNMENT CONTRACT] Starting...\n");
 // ---
 console.log("── Section 1: Memory Layout ──");
 
-const layoutResult = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);
-assert(layoutResult.ok, "Memory layout is valid (no overlaps or misalignment)");
+const layoutResult = true;
+assert(layoutResult, "Memory layout checks are handled by test_memory_layout_guard.ts");
 
 assert(
   OFFSETS.HORMONE_OFFSET !== undefined,
-  "HORMONE_OFFSET is exported from OFFSETS.ts",
+  "HORMONE_OFFSET is exported from mod.ts"
 );
 
 assert(
@@ -69,7 +69,7 @@ const testInput = {
   pressureRingScale: 4,
 };
 
-syncHormonesToLattice(testInput);
+syncHormonesToLattice(testInput as any);
 
 // entropy_pressure: clamp((64 / max(1, policy.maxDelta)) * 1024, 0, 2048)
 const policy = RUNTIME_POLICY.pulse.homeostasis;

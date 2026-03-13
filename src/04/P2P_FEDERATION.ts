@@ -1,10 +1,10 @@
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { IDX_TO_ID } from "@02";
-import { PRNG } from "@00";
-import { LOGGER } from "@00";
+import { PRNG } from "../00/PRNG.ts";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;

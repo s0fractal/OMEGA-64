@@ -1,5 +1,5 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 
 const PORT = RUNTIME_POLICY.p2p.port;

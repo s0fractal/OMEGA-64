@@ -1,7 +1,7 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../mod.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
-import { STATE_MATRIX } from "@00";
-import * as OFFSETS from "@00";
+import { STATE_MATRIX } from "../mod.ts";
+import * as OFFSETS from "../mod.ts";
 
 async function runTest() {
   console.log("=== VECTOR 3: COLLECTIVE INTELLIGENCE & ROLES TEST ===");

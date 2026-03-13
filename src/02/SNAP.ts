@@ -1,13 +1,13 @@
 // OMEGA-64 | SNAP.ts | The Persistent Observer (Era 15)
 // Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
 
-import { MAX_ATOMS, STATE_MATRIX } from "@00";
-import { IDX_TO_ID } from "@00";
+import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { IDX_TO_ID } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
 } from "jsr:@std/yaml@^1.0.5";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export const SNAP = {
   // Sync Matrix State to .md Files with Atomic "Write-then-Rename"

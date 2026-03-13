@@ -7,8 +7,12 @@
 
 #[path = "00/sigma_core/src/bonding.rs"]
 pub mod bonding;
-#[path = "00/sigma_core/src/constants.rs"]
-pub mod constants;
+#[path = "00/sigma_core/src/atom_role.rs"]
+pub mod atom_role;
+pub use atom_role::*;
+#[path = "00/sigma_core/src/ontology_gen/mod.rs"]
+pub mod ontology_gen;
+pub use ontology_gen::L01::*;
 #[path = "00/sigma_core/src/environment.rs"]
 pub mod environment;
 #[path = "00/sigma_core/src/ffi.rs"]

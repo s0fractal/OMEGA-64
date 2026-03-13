@@ -1,7 +1,7 @@
 // OMEGA-64 | test_immune_maturity.ts | Stage 26: Immune System Maturity Verification
-import { MAX_ATOMS, SCALE, STATE_MATRIX } from "@00";
+import { MAX_ATOMS, SCALE, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { IMMUNE } from "@02";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function runTest() {
   LOGGER.info(

@@ -1,5 +1,5 @@
 // OMEGA-64 | test_automaton.ts | Phase 24: Pure Automaton Verification
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { GATE } from "@03";
 

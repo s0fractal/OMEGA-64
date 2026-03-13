@@ -1,8 +1,8 @@
 // OMEGA-64 | ECOLOGY_ENGINE.ts | The Biological Layer
 // Handles Metabolism, Resonance, Cultural Drift, and Caste Logic.
 
-import { STATE_MATRIX } from "@00";
-import { PRNG } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { PRNG } from "../00/PRNG.ts";
 
 export const ECOLOGY_ENGINE = {
   // Metabolism: Energy and Resonance decay

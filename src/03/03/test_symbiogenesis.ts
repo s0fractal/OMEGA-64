@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GATE } from "@03";
 
 console.log("🛡️ [TEST] Verifying Era 35: Symbiogenesis...");

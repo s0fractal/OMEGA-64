@@ -1,4 +1,4 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_W } from "../../_/mod.ts";
 import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {

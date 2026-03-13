@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_collective_memory.ts | Era 51: Collective Memory Verification
 // Direct unit tests for ISA.IMPRINT, ISA.RECALL, and ISA.SENSE type 0x07.
 // Tests exercise LAMBDA_VM directly and simulate PULSE_WORKER's imprintRequest path.

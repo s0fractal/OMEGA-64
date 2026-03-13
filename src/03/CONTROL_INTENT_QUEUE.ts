@@ -1,10 +1,10 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
-import { MAX_ATOMS, STATE_MATRIX } from "@00";
+import { GRID_W, GRID_H } from "../_/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
-import { PRNG } from "@00";
+import { PRNG } from "../00/PRNG.ts";
 
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 import { GLYPH_BUFFER, PHYSICS_ENGINE } from "@01";

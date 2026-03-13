@@ -3,7 +3,7 @@
 // an atom triggering a SPORE_DRIVE payload.
 
 import { SwarmNexus } from "@04";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { P2P_CODEC } from "@04";
 import { PULSE } from "@02";
 

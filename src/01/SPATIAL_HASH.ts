@@ -1,5 +1,5 @@
-import { GRID_W, GRID_H, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
-import { STATE_MATRIX } from "@00";
+import { GRID_W, GRID_H, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const CELL_SIZE = SPATIAL_CELL_SIZE; // Finer resolution for bonding
  // 1400 / 10

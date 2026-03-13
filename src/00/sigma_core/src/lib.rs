@@ -3,7 +3,8 @@ pub mod environment;
 pub mod ffi;
 pub mod glyph_transport;
 pub mod isa;
-pub mod constants;
+pub mod ontology_gen;
+pub use ontology_gen::L01::*;
 
 pub mod math;
 pub mod memory;

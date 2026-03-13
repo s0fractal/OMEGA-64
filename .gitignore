@@ -56,3 +56,6 @@ codex/
 sigma_core/target/
 target/
 src/_
+
+# Auto-generated AssemblyScript layer
+src/_as/

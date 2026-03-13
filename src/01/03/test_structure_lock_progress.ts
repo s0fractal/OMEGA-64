@@ -1,6 +1,6 @@
-import { GRID_H, GRID_W , GRID_CELLS} from "../../00/OFFSETS.ts";
-import { STATE_MATRIX, STRUCTURE } from "@00";
-import * as OFFSETS from "@00";
+import { GRID_H, GRID_W , GRID_CELLS} from "../../_/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const LOCK_BIT = -2147483648;
 

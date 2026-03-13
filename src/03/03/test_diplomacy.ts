@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GATE } from "@03";
 import { LAMBDA_VM } from "@02";
 

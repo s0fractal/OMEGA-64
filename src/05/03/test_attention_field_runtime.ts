@@ -1,6 +1,6 @@
 import { AVATAR_ENGINE } from "@05";
 import { PHYSICS_ENGINE } from "@01";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const assert = (cond: boolean, reason: string): void => {
   if (!cond) {

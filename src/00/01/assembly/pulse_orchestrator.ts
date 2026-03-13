@@ -8,7 +8,7 @@ import {
   LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
   EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
   ROLES_OFFSET, STRUCTURE_GRID_OFF, SIGNAL_GRID_OFF, MEMORY_GRID_OFF,
-  ASCENSION_STATS_OFF, BOND_DIST_OFF, DAMPING_OFF, CAUSALITY_OFF,
+  ASCENSION_STATS_OFF, BOND_DISTANCES_OFFSET, DAMPING_OFF, CAUSALITY_OFF,
   HIVE_MEMORY_OFF, HIVE_BALANCE_OFF, QUORUM_OFFSET, SPAWN_REQUESTS_OFF,
   SPAWN_GRID_OFF, COHERENCE_OFF, NEURAL_COHERENCE_OFF, PHYSICS_READ_XS_OFF,
   PHYSICS_READ_YS_OFF, PHYSICS_READ_ENERGY_OFF, PHYSICS_READ_RESONANCE_OFF,
@@ -16,13 +16,13 @@ import {
   STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, ATTENTION_FIELD_OFF,
   HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
   GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
-  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
+  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_RESERVED_OFFSET, METABOLISM_SCRATCH_OFFSET,
   SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
   GRID_W, GRID_H, GRID_CELLS, SPATIAL_CELL_SIZE,
   STR_VOID, STR_WIRE, STR_NODE, STR_DIODE, STR_SOURCE, STR_SINK,
   STR_CAPACITOR, STR_INVERTER, STR_LATCH,
   MAX_GLYPH_AMP, MIN_GLYPH_AMP
-} from "./constants.assembly";
+} from "../../../_as/mod";
 
 @external("index", "trace_atom")
 declare function trace_atom(
@@ -34,9 +34,8 @@ declare function trace_atom(
 ): void;
 
 
-import { fast_abs, fast_min, fast_max, fast_sign } from "./math";
-import { math_sin, math_cos } from "../../../_/mod.ts";
-import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
+import { fast_abs, fast_min, fast_max, fast_sign, math_sin, math_cos } from "../../../_as/mod";
+import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "../../../_as/mod";
 import {
   RESOURCE_MAX, clampResource, getEnergy, setEnergy, genomeKey16,
   getResonance, setResonance, getPhase, setPhase, getLineage, addResonance,
@@ -866,7 +865,7 @@ function applyBondSprings(idx: i32, x: i32, y: i32): void {
     let targetIdx = getBondTarget(idx, b);
     if (targetIdx == 0 || targetIdx >= MAX_ATOMS) continue;
 
-    let targetDist = load<u8>(BOND_DIST_OFF + (idx << 2) + b as usize);
+    let targetDist = load<u8>(BOND_DISTANCES_OFFSET + (idx << 2) + b as usize);
     if (targetDist == 0) targetDist = 50;
 
     let stiffness = getBondStiffness(idx, b);
@@ -1607,7 +1606,7 @@ export function reset_neural_coherence(): void {
 export function clear_metabolism_stats(): void {
   // Clear genome count scratch (65536 * 4 bytes = 256KB)
   // and generic stats (population, noveltyDelta, symbiosisDelta, etc)
-  memory.fill(METABOLISM_SCRATCH_OFF, 0, (65536 * 4) + 64);
+  memory.fill(METABOLISM_SCRATCH_OFFSET, 0, (65536 * 4) + 64);
 }
 
 export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
@@ -1617,9 +1616,9 @@ export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
 
     const key = genomeKey16(i);
     // Atomic add to genome frequency map in scratch space
-    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (key << 2), 1);
+    atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (key << 2), 1);
     // Atomic add to global population counter (scratch end)
-    atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4), 1);
+    atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4), 1);
   }
 }
 
@@ -1637,7 +1636,7 @@ export function apply_metabolism_kernel(
   starvationFloor: i32,
   subsidyEnabled: i32,
 ): void {
-  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4));
+  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4));
   if (population == 0) return;
 
   const overflowActive = spatialOverflowRatio >= overflowThreshold;
@@ -1737,7 +1736,7 @@ export function apply_metabolism_kernel(
 
     const key = genomeKey16(i);
     const sameGenomeCount = atomic.load<i32>(
-      METABOLISM_SCRATCH_OFF + (key << 2),
+      METABOLISM_SCRATCH_OFFSET + (key << 2),
     );
 
     let delta: i32 = 0;
@@ -1819,8 +1818,8 @@ export function apply_metabolism_kernel(
       if (next != current) {
         setEnergy(i, next);
         // Track stats for telemetry
-        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 4, 1);
-        atomic.add<i32>(METABOLISM_SCRATCH_OFF + (65536 * 4) + 8, delta);
+        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4, 1);
+        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8, delta);
       }
     }
   }

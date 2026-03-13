@@ -1,6 +1,6 @@
 // OMEGA-64 | ATOM_ACCESS.ts
-import { GRID_W, GRID_H, GRID_CELLS } from "./OFFSETS.ts";
-import * as OFFSETS from "./OFFSETS.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../_/01/mod.ts";
+import * as OFFSETS from "../_/02/mod.ts";
 import * as views from "./memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {

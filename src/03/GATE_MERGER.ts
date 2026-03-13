@@ -1,8 +1,8 @@
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@00";
-import { LOAD_LOAD as LOAD } from "@00";
-import { LOGGER } from "@00";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOAD_LOAD as LOAD } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GATE_BUDGET } from "@03/GATE_BUDGET.ts";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 type I16Limits = {
   max: number;

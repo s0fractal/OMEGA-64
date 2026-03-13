@@ -1,4 +1,4 @@
-import { RISC } from "@00";
+import { RISC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   BRIDGE_GLYPH_IDS,
   GLYPH_SPECS,

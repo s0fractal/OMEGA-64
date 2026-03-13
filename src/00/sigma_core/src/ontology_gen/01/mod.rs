@@ -2,6 +2,9 @@
 
 pub use super::L00::*;
 
+#[path = "GRID_METRICS.rs"]
+pub mod GRID_METRICS;
+pub use GRID_METRICS::*;
 #[path = "calculate_shannon_entropy.rs"]
 pub mod calculate_shannon_entropy;
 pub use calculate_shannon_entropy::*;
@@ -11,3 +14,6 @@ pub use math_sin::*;
 #[path = "math_cos.rs"]
 pub mod math_cos;
 pub use math_cos::*;
+#[path = "inGrid.rs"]
+pub mod inGrid;
+pub use inGrid::*;

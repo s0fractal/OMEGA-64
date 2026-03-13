@@ -1,5 +1,5 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
-import { STATE_MATRIX, STRUCTURE } from "@00";
+import { GRID_W, GRID_H } from "../_/mod.ts";
+import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const DIR4 = [[-1, 0], [1, 0], [0, -1], [0, 1]] as const;
 const DIR8 = [

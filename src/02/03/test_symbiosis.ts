@@ -1,4 +1,4 @@
-import { GRID_W , GRID_H, GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H, GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_symbiosis.ts | Era 61: Symbiotic Bonding Verification
 // Tests ISA.SHARE (energy transfer to bonded neighbor) and ISA.EAT (nutrient consumption).
 
@@ -8,7 +8,7 @@ import {
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const SCALE = 100;
 

@@ -1,5 +1,5 @@
-import { RISC } from "@00";
-import { SYS } from "@00";
+import { RISC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 // Utility to assemble RISC script
 export function assembleScript(ops: number[]): Uint8Array {

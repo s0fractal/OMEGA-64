@@ -1,9 +1,16 @@
-// OMEGA-64 | memory_views.ts
-import { GRID_W, GRID_H, GRID_CELLS } from "./OFFSETS.ts";
-import * as OFFSETS from "./OFFSETS.ts";
-
-const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-const SCALE = OFFSETS.SCALE;
+import { 
+  MAX_ATOMS, 
+  SCALE, 
+  GRID_CELLS, 
+  MAX_LEDGER_EVENTS, 
+  HIVE_ENERGY_POOL_SIZE, 
+  HIVE_MEMORY_SIZE, 
+  MAX_HORMONES, 
+  ATOM_GENOME_SIZE, 
+  ATOM_INSTRUCTION_SIZE, 
+  ATOM_CONTEXT_SIZE 
+} from "../_/01/mod.ts";
+import * as OFFSETS from "../_/02/mod.ts";
 
 if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   throw new Error(

@@ -1,4 +1,4 @@
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
 import { resolveFsVectorSync } from "@07/01/vector_decoder.ts";
 

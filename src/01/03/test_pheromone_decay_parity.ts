@@ -1,7 +1,7 @@
 // OMEGA-64 | test_pheromone_decay_parity.ts | Era 72: Absolute Coherence
-import { STATE_MATRIX, wasmMemory } from "@00";
+import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PHYSICS_ENGINE } from "@01";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
 async function runTest() {

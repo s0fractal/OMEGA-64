@@ -1,7 +1,7 @@
 // OMEGA-64 | SOVEREIGNTY_ENGINE.ts | The Governance Layer
 // Handles Regent Election, Decrees, and Legitimacy.
 
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { IDX_TO_ID } from "@02";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(

@@ -1,5 +1,5 @@
 // OMEGA-64 | test_matrix.ts | The Awakened Matrix Verification
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { MATRIX_ENGINE } from "@01";
 

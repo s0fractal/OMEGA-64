@@ -4,8 +4,8 @@ import {
   assertLess,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { RISC, STATE_MATRIX, SYS } from "@00";
-import * as OFFSETS from "@00";
+import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 Deno.test({
   name: "Stage 44: Vector Cognitive - Math LUTs and Kuramoto Resonance",

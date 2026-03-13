@@ -15,7 +15,7 @@ import {
   OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO,
   PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, 
   PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS
-} from "./constants.assembly";
+} from "../../../_as/mod";
 
 import {
   getReg,
@@ -34,14 +34,12 @@ import {
   setResonance
 } from "./memory_access";
 
-import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
+import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "../../../_as/mod";
 
-import { math_sin, math_cos } from "../../../_/mod.ts";
+import { math_sin, math_cos, fast_abs, fast_max, fast_min } from "../../../_as/mod";
 
 // We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
 import { readStructureCharge } from "./pulse_orchestrator";
-
-// Opcodes and Properties are now auto-generated in constants.assembly.ts
 
 export function evaluate_opcodes(
   atomIndex: i32,

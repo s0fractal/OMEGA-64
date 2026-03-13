@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H } from "../../_/mod.ts";
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,

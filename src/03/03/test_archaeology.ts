@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PHYSICS_ENGINE } from "@01";
 import { AUDIT_ENGINE } from "@03";
 

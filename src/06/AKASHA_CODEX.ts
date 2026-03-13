@@ -1,11 +1,11 @@
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { RISC, STATE_MATRIX } from "@00";
-import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
+import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
 import type { GlyphSnapshot } from "@01";
 import { LLM_SYNAPSE } from "@05";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;

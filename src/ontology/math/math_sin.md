@@ -5,6 +5,9 @@ description: "Обчислення синуса з динамічною точн
 deps: 
   - SIN_LUT
   - COS_LUT
+vars:
+  - SIN_LUT
+  - COS_LUT
 args:
   angle: i32
   highRes: i32

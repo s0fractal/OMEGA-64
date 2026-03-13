@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_temporal.ts | Era 54: Temporal Cognition Verification
 // Tests ISA.AGE, ISA.PHASE_LIFE lifecycle phases, SENSE type 0x0A, and apoptosis.
 
 import { ISA, LAMBDA_VM } from "@02";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   assert,
   assertEquals,

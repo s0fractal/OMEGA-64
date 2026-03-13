@@ -1,5 +1,5 @@
 use sigma_core::isa::GlyphOp;
-use sigma_core::constants::MAX_ATOMS;
+use sigma_core::ontology_gen::L01::MAX_ATOMS;
 use sigma_core::{PulseOrchestrator, SigmaState};
 
 #[test]

@@ -1,8 +1,8 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_W } from "../../_/mod.ts";
 // OMEGA-64 | test_morpho.ts | Phase 13: Crystalline Intelligence Verification
 // Tests: WASM-accelerated matrix tick, signal propagation, and Memetic Nodes.
 
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { CRYSTAL_MEME, CRYSTAL_STANDARD, CRYSTAL_THRESHOLD, MATRIX_ENGINE } from "@01";
 

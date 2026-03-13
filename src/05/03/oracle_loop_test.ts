@@ -4,7 +4,7 @@ import {
   assertEquals,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import { NEXUS_DAEMON, PULSE } from "@02";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { SOVEREIGN_ORACLE } from "@05";
 import { LLM_SYNAPSE } from "@05";
 

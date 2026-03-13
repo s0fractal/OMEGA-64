@@ -1,7 +1,7 @@
 // OMEGA-64 | RIBOSOME_TICK.ts | Zero-IOPS Execution Kernel
 // Interprets the Logic Prefix (8 hex chars) directly from eigenvalues.
 
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export const MAPPING: Record<string, string> = {
   "0": "[0]",

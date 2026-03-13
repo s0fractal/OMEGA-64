@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_emergent_roles.ts | Era 53: Emergent Roles Verification
 // Tests ISA.ATTUNE, signal tally accumulation, role derivation, and SENSE type 0x09.
 // All tests exercise LAMBDA_VM directly.
 
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { ISA, LAMBDA_VM } from "@02";
 import {
   assert,

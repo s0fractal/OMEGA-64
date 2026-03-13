@@ -1,0 +1,32 @@
+
+// Constants: SYSTEM_CONSTANTS
+pub const MAX_ATOMS: usize = 500000;
+pub const SAFETY_BUFFER: usize = 8000000;
+pub const GRID_W: i32 = 140;
+pub const GRID_H: i32 = 80;
+pub const SPATIAL_CELL_SIZE: i32 = 10;
+pub const SCALE: i32 = 1000;
+pub const CELL_CAPACITY: usize = 32;
+pub const MAX_PC: u8 = 64;
+pub const MAX_EXECUTION_STEPS: usize = 64;
+pub const ATOM_LOGIC_SIZE: usize = 64;
+pub const MAX_LEDGER_EVENTS: usize = 65536;
+pub const MAX_EGRESS_EVENTS: usize = 8192;
+pub const WASM_PAGE_BYTES: usize = 65536;
+pub const WASM_MEMORY_PAGES: usize = 7630;
+pub const HIVE_MEMORY_SIZE: usize = 1024;
+pub const HIVE_ENERGY_POOL_SIZE: usize = 256;
+pub const MAX_HORMONES: usize = 8;
+pub const SECRETION_STATS_SIZE: usize = 12;
+pub const MAX_SPAWN_REQUESTS: usize = 1024;
+pub const MAX_MEIOSIS_EVENTS: usize = 75000;
+pub const MAX_ASCENSION_STATS: usize = 62500;
+pub const MAX_ASCENSION_STATS_RESERVED: usize = 1250000;
+pub const ATOM_CONTEXT_SIZE: usize = 16;
+pub const ATOM_GENOME_SIZE: usize = 8;
+pub const ATOM_INSTRUCTION_SIZE: usize = 64;
+pub const RESOURCE_MAX: i32 = 2000000000;
+pub const MAX_GLYPH_AMP: i32 = 8388607;
+pub const MIN_GLYPH_AMP: i32 = -8388608;
+pub const SPAWN_MAX: i32 = 1024;
+pub const SPAWN_SLOT: i32 = 24;

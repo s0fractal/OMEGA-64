@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "@00";
+import { STATE_MATRIX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 import { mutateUniversalConstants } from "@03";
 import { SOVEREIGN_ORACLE } from "@05";

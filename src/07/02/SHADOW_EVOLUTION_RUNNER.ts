@@ -10,7 +10,7 @@ import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "./DOLL_FORK_RUNNER.ts";
 import { DriftWarden } from "./DRIFT_WARDEN.ts";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type SemanticProposal = {
   id: string;

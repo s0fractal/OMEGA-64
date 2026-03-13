@@ -1,4 +1,4 @@
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const main = () => {
   const report = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);

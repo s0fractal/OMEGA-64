@@ -7,8 +7,8 @@ import {
   SYS,
   WASM_PATH,
   LOGGER,
-} from "@00";
-import * as OFFSETS from "@00";
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "@03/GATE.ts";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";

@@ -1,9 +1,9 @@
-import { GRID_H } from "../00/OFFSETS.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@00";
-import { type LedgerEvent } from "@00";
+import { GRID_H } from "../_/mod.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP, I16_LIMITS_I16_LIMITS as I16_LIMITS, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@00";
-import { LOGGER } from "@00";
+    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { validateGateProposals } from "@03";
 import { mergeGateProposals } from "@03";
 import { persistGateLedgerArtifacts } from "@03";

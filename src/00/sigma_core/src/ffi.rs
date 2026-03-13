@@ -14,7 +14,7 @@ use std::mem::ManuallyDrop;
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = crate::constants::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
+    let base_ptr = crate::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -61,7 +61,7 @@ pub extern "C" fn tick_structure_grid() {
 use std::cell::RefCell;
 
 thread_local! {
-    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::constants::MAX_ATOMS));
+    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::MAX_ATOMS));
 }
 
 #[unsafe(no_mangle)]
@@ -71,18 +71,18 @@ pub extern "C" fn tick_membrane_physics() {
     VISITED_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
-        visited.resize(crate::constants::MAX_ATOMS, 0);
+        visited.resize(crate::MAX_ATOMS, 0);
 
-        for i in 1..crate::constants::MAX_ATOMS {
+        for i in 1..crate::MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
-                state.matrix.roles[i] &= !(crate::constants::AtomRole::MetazoanFlag as u8);
+                state.matrix.roles[i] &= !(crate::AtomRole::MetazoanFlag as u8);
                 state.matrix.evolution_reserved[i] = 0;
             }
         }
 
         let mut rings: Vec<Vec<usize>> = Vec::new();
 
-        for start_node in 1..crate::constants::MAX_ATOMS {
+        for start_node in 1..crate::MAX_ATOMS {
             if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
                 continue;
             }
@@ -104,7 +104,7 @@ pub extern "C" fn tick_membrane_physics() {
                 for b_slot in 0..4 {
                     let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
                     if target > 0
-                        && target < crate::constants::MAX_ATOMS
+                        && target < crate::MAX_ATOMS
                         && state.matrix.ids[target] != 0
                     {
                         if target == start && depth >= 2 {
@@ -141,7 +141,7 @@ pub extern "C" fn tick_membrane_physics() {
             for &node in ring {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+                state.matrix.roles[node] |= crate::AtomRole::MetazoanFlag as u8;
             }
 
             let avg_energy = (sum_energy / count as i64) as i32;
@@ -298,7 +298,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 
     hasher.update(tick.to_le_bytes());
 
-    for i in 1..crate::constants::MAX_ATOMS {
+    for i in 1..crate::MAX_ATOMS {
         let id = state.matrix.ids[i];
         if id != 0 {
             hasher.update(id.to_le_bytes());
@@ -311,7 +311,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         }
     }
 
-    for i in 0..crate::constants::GRID_CELLS {
+    for i in 0..crate::GRID_CELLS {
         let owner = state.matrix.structure_build_owner[i];
         if owner > 0 {
             hasher.update((i as u32).to_le_bytes());

@@ -1,6 +1,6 @@
 // OMEGA-64 | test_stability.ts | Verify RISC VM Integration
 import { PULSE } from "@02";
-import { MAX_ATOMS, STATE_MATRIX } from "@00";
+import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function run() {
   console.log("🧪 Starting RISC VM Stability Test...");

@@ -1,4 +1,4 @@
-import { LOGGER, type LogLevel } from "@00";
+import { LOGGER, type LogLevel } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 type SinkCounts = {
   debug: number;

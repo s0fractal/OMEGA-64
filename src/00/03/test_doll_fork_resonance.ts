@@ -2,7 +2,7 @@
 import { DollFork } from "@07/02/doll_fork/DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "@07/02/doll_fork/DOLL_FORK_RUNNER.ts";
 import { RelicCultivator } from "@07/02/relics/RELIC_CULTIVATION.ts";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.211.0/assert/mod.ts";
 
 async function testDollForkResonance() {

@@ -1,12 +1,12 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // OMEGA-64 | test_environment_parity.ts
 // Verifies bit-identical parity for the unified environmental physics.
 
 import { assertEquals } from "https://deno.land/std/assert/mod.ts";
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PHYSICS_ENGINE } from "@01";
 import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
-import { STATE_MATRIX, wasmMemory } from "@00";
+import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_PATH = "src/00/release.wasm";
 

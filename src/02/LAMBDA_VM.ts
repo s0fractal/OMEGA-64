@@ -1,4 +1,4 @@
-import { GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
+import { GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
 // OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
 // Turing-complete bytecode executor with registers, stack, and messaging.
 

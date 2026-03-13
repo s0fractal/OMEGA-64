@@ -1,4 +1,4 @@
-import { RISC } from "@00";
+import { RISC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import { scriptToGlyphTape } from "@07/04/opcode_to_glyph.ts";
 

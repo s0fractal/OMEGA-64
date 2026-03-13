@@ -1,7 +1,7 @@
 //! Glyph Transport Engine
 //! Handles wave interference physics and optical secretion
 
-use crate::constants::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
+use crate::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
 use crate::memory::SigmaState;
 
 pub fn unpack_glyph_kind(header: i32) -> u8 {
@@ -26,7 +26,7 @@ pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
 impl SigmaState {
     /// Models optical wave interference on a flat 2D grid cell.
     pub fn atomic_deposit_glyph_header(&self, cell: usize, kind: u8, amplitude: i32) {
-        if amplitude == 0 || cell >= crate::constants::GRID_CELLS {
+        if amplitude == 0 || cell >= crate::GRID_CELLS {
             return;
         }
 

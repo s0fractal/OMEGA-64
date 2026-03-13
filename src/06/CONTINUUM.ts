@@ -1,4 +1,4 @@
-import { LATTICE_MEMORY_END } from "@00";
+import { LATTICE_MEMORY_END } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
 import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
 

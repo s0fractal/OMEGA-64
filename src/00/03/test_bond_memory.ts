@@ -1,5 +1,5 @@
-import * as OFFSETS from "@00";
-import { STATE_MATRIX } from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const memory = STATE_MATRIX.wasmMemory;
 const buffer = memory.buffer;

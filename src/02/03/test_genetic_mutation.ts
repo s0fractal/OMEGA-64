@@ -1,8 +1,8 @@
 // OMEGA-64 | test_genetic_mutation.ts | Stage 34 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "@00";
+import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
-import { LOGGER } from "@00";
+import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   LOGGER.info("--- STAGE 34: GENETIC MUTATION TEST ---");

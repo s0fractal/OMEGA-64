@@ -1,4 +1,4 @@
-import * as OFFSETS from "@00";
+import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { loadSoakStabilityConfig } from "@02/03/worker_gate_thresholds.ts";
 import {
   assertSeededSwarmWorldInvariants,
