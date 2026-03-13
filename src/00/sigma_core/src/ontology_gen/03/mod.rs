@@ -8,6 +8,9 @@ pub use sigma_structure::*;
 #[path = "sigma_pulse.rs"]
 pub mod sigma_pulse;
 pub use sigma_pulse::*;
+#[path = "sigma_glyph_transport.rs"]
+pub mod sigma_glyph_transport;
+pub use sigma_glyph_transport::*;
 #[path = "sigma_spatial.rs"]
 pub mod sigma_spatial;
 pub use sigma_spatial::*;
@@ -20,6 +23,9 @@ pub use sigma_ffi::*;
 #[path = "sigma_shadow.rs"]
 pub mod sigma_shadow;
 pub use sigma_shadow::*;
+#[path = "sigma_environment.rs"]
+pub mod sigma_environment;
+pub use sigma_environment::*;
 #[path = "sigma_replication.rs"]
 pub mod sigma_replication;
 pub use sigma_replication::*;

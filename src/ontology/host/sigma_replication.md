@@ -15,7 +15,7 @@ description: Manages autopoietic mitosis processes and genome verification
 // Replication Engine
 // Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
 
-use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::{SigmaState, MAX_ATOMS};
 use crate::{SPAWN_MAX, SPAWN_SLOT};
 
 impl SigmaState {

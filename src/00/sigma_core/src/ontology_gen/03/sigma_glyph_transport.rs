@@ -1,8 +1,12 @@
-//! Glyph Transport Engine
-//! Handles wave interference physics and optical secretion
+// Substrate Node: sigma_glyph_transport
+// Level: 3
+// Handles wave interference physics and optical secretion
+
+#[allow(unused_imports)]
+use super::super::L02::*;
 
 use crate::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
-use crate::memory::SigmaState;
+use crate::SigmaState;
 
 pub fn unpack_glyph_kind(header: i32) -> u8 {
     (header & 0xFF) as u8

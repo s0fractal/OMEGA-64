@@ -5,30 +5,17 @@
 // It maps the historically scattered vector logic into a single coherent tree
 // without aggressively flattening them out of their topological layers just yet.
 
-#[path = "00/sigma_core/src/atom_role.rs"]
-pub mod atom_role;
-pub use atom_role::*;
 #[path = "00/sigma_core/src/ontology_gen/mod.rs"]
 pub mod ontology_gen;
+
+pub use ontology_gen::L00::*;
 pub use ontology_gen::L01::*;
-#[path = "00/sigma_core/src/environment.rs"]
-pub mod environment;
-#[path = "00/sigma_core/src/glyph_transport.rs"]
-pub mod glyph_transport;
-#[path = "00/sigma_core/src/isa.rs"]
-pub mod isa;
-#[path = "00/sigma_core/src/math.rs"]
-pub mod math;
-use crate::ontology_gen::L02::{SigmaMatrix, SigmaState};
+pub use ontology_gen::L02::*;
+pub use ontology_gen::L03::*;
+pub use ontology_gen::L04::*;
+pub use ontology_gen::L05::*;
+pub use ontology_gen::L06::*;
 
-#[path = "00/sigma_core/src/vm.rs"]
-pub mod vm;
-
-pub mod memory {
-    pub use crate::ontology_gen::L02::*;
-}
-
-pub use isa::GlyphOp;
-pub use ontology_gen::L02::{SigmaMatrix as _, SigmaState as _};
-pub use ontology_gen::L03::{PulseOrchestrator, run_shadow_simulation};
-pub use vm::LambdaVM;
+pub use ontology_gen::L02::{SigmaMatrix, SigmaState};
+// PulseOrchestrator and run_shadow_simulation should be exported correctly by the globs
+// so we don't necessarily need explicit paths for them, unless required by old aliases.

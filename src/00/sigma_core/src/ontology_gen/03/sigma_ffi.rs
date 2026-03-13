@@ -20,7 +20,7 @@ use std::mem::ManuallyDrop;
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = crate::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
+    let base_ptr = crate::SAFETY_BUFFER as *mut crate::SigmaMatrix;
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -40,14 +40,15 @@ pub extern "C" fn debug_get_xs(idx: usize) -> i32 {
 #[unsafe(no_mangle)]
 pub extern "C" fn execute_atom(idx: usize) {
     let mut state = unsafe { get_ffi_state() };
-    let mut vm = crate::vm::LambdaVM::new();
+    let mut vm = crate::LambdaVM::new();
     vm.step(&mut state, idx);
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tick_environment(tick: u32) {
+#[export_name = "tick_environment"]
+pub extern "C" fn ffi_tick_environment(tick: u32) {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_environment(&mut state, tick as i32);
+    crate::tick_environment(&mut state, tick as i32);
 }
 
 #[unsafe(no_mangle)]
@@ -59,9 +60,10 @@ pub extern "C" fn tick_matrix() {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tick_structure_grid() {
+#[export_name = "tick_structure_grid"]
+pub extern "C" fn ffi_tick_structure_grid() {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_structure_grid(&mut state);
+    crate::tick_structure_grid(&mut state);
 }
 
 use std::cell::RefCell;
@@ -101,7 +103,7 @@ pub extern "C" fn tick_membrane_physics() {
                 start: usize,
                 depth: usize,
                 path: &mut Vec<usize>,
-                state: &crate::memory::SigmaState,
+                state: &crate::SigmaState,
             ) -> bool {
                 if depth >= 8 {
                     return false;
@@ -205,9 +207,10 @@ pub extern "C" fn set_neural_coherence(val: i32) {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tickGlyphTransport(_tick: u32) {
+#[export_name = "tickGlyphTransport"]
+pub extern "C" fn ffi_tick_glyph_transport(_tick: u32) {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_glyph_transport(&mut state);
+    crate::tick_glyph_transport(&mut state);
 }
 
 #[unsafe(no_mangle)]

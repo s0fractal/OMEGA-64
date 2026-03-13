@@ -8,7 +8,7 @@ use super::super::L02::*;
 // Architecture Intent Engine
 // Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
 
-use crate::memory::SigmaState;
+use crate::SigmaState;
 
 pub const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648; // 0x80000000
 

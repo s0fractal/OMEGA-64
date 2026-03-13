@@ -12,7 +12,7 @@ description: Implements the speculative execution engine for quantum divergence
 # `Shadow Simulation` Engine
 
 ```rust
-use crate::memory::SigmaState;
+use crate::SigmaState;
 use crate::PulseOrchestrator;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.

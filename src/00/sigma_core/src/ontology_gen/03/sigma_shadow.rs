@@ -5,7 +5,7 @@
 #[allow(unused_imports)]
 use super::super::L02::*;
 
-use crate::memory::SigmaState;
+use crate::SigmaState;
 use crate::PulseOrchestrator;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.

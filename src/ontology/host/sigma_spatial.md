@@ -15,7 +15,7 @@ description: Implements the 2D grid hashing algorithm enabling fast localized qu
 // Spatial Fabric Topology & Cognition Grid
 
 use crate::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
-use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::{SigmaState, MAX_ATOMS};
 use std::sync::atomic::Ordering;
 
 impl SigmaState {

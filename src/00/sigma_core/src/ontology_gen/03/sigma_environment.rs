@@ -1,3 +1,10 @@
+// Substrate Node: sigma_environment
+// Level: 3
+// Ticks environmental cellular automata, structural cells, and glyphi transport
+
+#[allow(unused_imports)]
+use super::super::L02::*;
+
 use crate::{
     GRID_H, GRID_W, MAX_ATOMS, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, STR_NODE,
     STR_SOURCE, STR_VOID, STR_WIRE, MAX_GLYPH_AMP, MIN_GLYPH_AMP
@@ -503,7 +510,7 @@ fn update_charge_inverter(state: &SigmaState, x: i32, y: i32) -> i32 {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
-                max_neighbor_charge = n_charge;
+                max_neighbor_charge = n_charge; // Inverter passes zero when charged neighbors exist
             }
         }
     }

@@ -18,6 +18,15 @@ pub use SYSTEM_CONSTANTS::*;
 #[path = "VmOpcodes.rs"]
 pub mod VmOpcodes;
 pub use VmOpcodes::*;
+#[path = "sigma_isa.rs"]
+pub mod sigma_isa;
+pub use sigma_isa::*;
+#[path = "sigma_math.rs"]
+pub mod sigma_math;
+pub use sigma_math::*;
+#[path = "sigma_atom_role.rs"]
+pub mod sigma_atom_role;
+pub use sigma_atom_role::*;
 #[path = "pack_glyph_header.rs"]
 pub mod pack_glyph_header;
 pub use pack_glyph_header::*;

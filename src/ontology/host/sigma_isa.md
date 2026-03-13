@@ -1,5 +1,15 @@
-//! Instruction Set Architecture for Sigma-Core
+---
+id: sigma_isa
+type: substrate_module
+target: rust
+level: 1
+deps:
+description: Defines the Instruction Set Architecture values for the interpreter.
+---
 
+# `ISA` Constants
+
+```rust
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
 pub enum GlyphOp {
@@ -66,7 +76,4 @@ impl From<u8> for GlyphOp {
         }
     }
 }
-
-// PROP_* constants have been moved to constants.rs by generator
-
-// SYS_ constants have been moved to constants.rs by generator
+```

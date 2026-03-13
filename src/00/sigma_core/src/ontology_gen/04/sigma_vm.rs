@@ -1,13 +1,18 @@
-//! LambdaVM Execution Engine
+// Substrate Node: sigma_vm
+// Level: 4
+// LambdaVM Execution Engine
+
+#[allow(unused_imports)]
+use super::super::L03::*;
 
 use crate::{
     GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
-use crate::environment::in_grid;
-use crate::isa::GlyphOp;
+use crate::in_grid;
+use crate::GlyphOp;
 use crate::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
-use crate::math::{math_cos, math_sin};
-use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::{math_cos, math_sin};
+use crate::{SigmaState, MAX_ATOMS};
 
 pub struct LambdaVM {}
 
@@ -39,7 +44,7 @@ impl LambdaVM {
     /// +1 base computation energy cost, scaled exponentially based on `hormone` friction/entropy
     /// equations simulating thermodynamics across the Tensegrity lattice.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
-        if atom_idx >= crate::memory::MAX_ATOMS {
+        if atom_idx >= crate::MAX_ATOMS {
             return;
         }
 
@@ -644,8 +649,8 @@ impl LambdaVM {
                                 mock_new[offset as usize..(offset as usize + 8)]
                                     .copy_from_slice(&new_bytes);
 
-                                let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
-                                let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
+                                let entropy_old = crate::calculate_shannon_entropy(&mock_old);
+                                let entropy_new = crate::calculate_shannon_entropy(&mock_new);
 
                                 let is_desperate = energy < (100_000_000 / 10);
 
@@ -1064,7 +1069,7 @@ impl LambdaVM {
         let mut cached_entropy_plus_one = state.matrix.context[atom_idx][15];
         if cached_entropy_plus_one == 0 {
             let entropy =
-                crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
+                calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
             cached_entropy_plus_one = entropy + 1;
             state.context_atomic(atom_idx)[15].store(
                 cached_entropy_plus_one,

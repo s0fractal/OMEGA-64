@@ -74,8 +74,8 @@ impl<'a> PulseOrchestrator<'a> {
         let _ = state.drain_spawn_requests(tick_number as i32);
 
         // 5. Environment Phase
-        crate::environment::tick_glyph_transport(state);
-        crate::environment::tick_structure_grid(state);
+        crate::tick_glyph_transport(state);
+        crate::tick_structure_grid(state);
 
         // 6. Metabolism Phase & 7. Immune Phase (GC)
         let base_entropy_tax = 10;

@@ -15,7 +15,7 @@ description: Solves simultaneous structural bonding intents using spatial hashes
 // Symbiotic Bonding Engine
 // Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
 
-use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::{SigmaState, MAX_ATOMS};
 
 impl SigmaState {
     /// Attempts to establish a bond by pushing a request to the `bond_requests` array.

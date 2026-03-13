@@ -5,6 +5,9 @@ pub use super::L03::*;
 #[path = "build_spatial_hash.rs"]
 pub mod build_spatial_hash;
 pub use build_spatial_hash::*;
+#[path = "sigma_vm.rs"]
+pub mod sigma_vm;
+pub use sigma_vm::*;
 #[path = "add_resonance.rs"]
 pub mod add_resonance;
 pub use add_resonance::*;
