@@ -76,9 +76,9 @@ async function runTest() {
   // Initial check
   console.log(
     "-> Roles assigned: Atom0=",
-    STATE_MATRIX.getRole(0),
+    STATE_MATRIX.get_role(0),
     "Atom1=",
-    STATE_MATRIX.getRole(1),
+    STATE_MATRIX.get_role(1),
   );
 
   // 3. Setup Environment
@@ -94,8 +94,8 @@ async function runTest() {
   execute_atom(1); // Atom 1 sets role and loads from hive
 
   console.log("-> Verification:");
-  console.log("   Atom 0 Role:", STATE_MATRIX.getRole(0), "(Expected: 1)");
-  console.log("   Atom 1 Role:", STATE_MATRIX.getRole(1), "(Expected: 2)");
+  console.log("   Atom 0 Role:", STATE_MATRIX.get_role(0), "(Expected: 1)");
+  console.log("   Atom 1 Role:", STATE_MATRIX.get_role(1), "(Expected: 2)");
 
   // Check Hive Memory
   const hiveView = new Uint8Array(
@@ -119,7 +119,7 @@ async function runTest() {
   scriptC[2] = 200;
   scriptC[3] = 5;
   STATE_MATRIX.setInstructions(0, scriptC);
-  STATE_MATRIX.setPC(0, 0);
+  STATE_MATRIX.set_p_c(0, 0);
   execute_atom(0);
 
   const gx = Math.floor(100 / 10);
@@ -138,7 +138,7 @@ async function runTest() {
   ); // 200 << 8 | 5 = 0xC805
 
   if (
-    STATE_MATRIX.getRole(0) === 1 && hiveView[1] === 88 && regsView[0] === 88 &&
+    STATE_MATRIX.get_role(0) === 1 && hiveView[1] === 88 && regsView[0] === 88 &&
     (pValue & 0xFFFF) === 0xc805
   ) {
     console.log(

@@ -11,11 +11,11 @@ const main = async () => {
       abort: () => {},
     },
   });
-  const tickGlyphTransport = instantiated.instance.exports
-    .tickGlyphTransport as (tick: number) => void;
+  const glyph_transport = instantiated.instance.exports
+    .glyph_transport as (tick: number) => void;
 
   const tick = (t: number) => {
-    tickGlyphTransport(t);
+    glyph_transport(t);
     return GLYPH_BUFFER.snapshot();
   };
 

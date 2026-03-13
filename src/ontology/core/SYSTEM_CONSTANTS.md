@@ -20,6 +20,36 @@ values:
   SPATIAL_CELL_SIZE: 
     value: 10
     type: i32
+  STRUCTURE_INTENT_SPIN_LIMIT:
+    value: 128
+    type: i32
+  PHEROMONE_COST_BASE:
+    value: 10
+    type: i32
+  PLASMID_COST_BASE:
+    value: 25
+    type: i32
+  ROLE_NEUTRAL:
+    value: 0
+    type: u8
+  ROLE_PRODUCER:
+    value: 1
+    type: u8
+  ROLE_GUARDIAN:
+    value: 2
+    type: u8
+  ROLE_ARCHITECT:
+    value: 3
+    type: u8
+  ROLE_PARASITE:
+    value: 4
+    type: u8
+  STRUCTURE_INTENT_LOCK_BIT:
+    value: -2147483648
+    type: i32
+  STRUCTURE_INTENT_OWNER_MASK:
+    value: 2147483647
+    type: i32
 
   SCALE: 
     value: 1000

@@ -16,13 +16,13 @@ async function runTest() {
 
   STATE_MATRIX.setX(atomA, 100);
   STATE_MATRIX.setY(atomA, 100);
-  STATE_MATRIX.setResonance(atomA, 50);
-  STATE_MATRIX.setPhase(atomA, 1000);
+  STATE_MATRIX.set_resonance(atomA, 50);
+  STATE_MATRIX.set_phase(atomA, 1000);
 
   STATE_MATRIX.setX(atomB, 101); // Close to atomA
   STATE_MATRIX.setY(atomB, 101);
-  STATE_MATRIX.setResonance(atomB, 50);
-  STATE_MATRIX.setPhase(atomB, 2000); // Different phase
+  STATE_MATRIX.set_resonance(atomB, 50);
+  STATE_MATRIX.set_phase(atomB, 2000); // Different phase
 
   // 2. Test QuorumAdvocate evaluation
   const activeIdx = [atomA, atomB];

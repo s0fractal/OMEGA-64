@@ -15,31 +15,31 @@ import {
   OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO,
   PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, 
   PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS
-} from "../../../_as/mod";
+} from "../../../_as/mod.ts";
 
 import {
-  getReg,
-  setReg,
-  getPC,
-  setPC,
-  setPendingSyscall,
-  getX,
-  getY,
-  getPhase,
-  setPhase,
-  getSpatialGridCount,
-  getSpatialGridAtom,
-  getHormone,
-  setEnergy,
-  setResonance
-} from "./memory_access";
+  get_reg,
+  set_reg,
+  get_p_c,
+  set_p_c,
+  set_pending_syscall,
+  get_x,
+  get_y,
+  get_phase,
+  set_phase,
+  get_spatial_grid_count,
+  get_spatial_grid_atom,
+  get_hormone,
+  set_energy,
+  set_resonance
+} from "../../../_as/mod.ts";
 
-import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "../../../_as/mod";
+import { WORLD_MAX_X, WORLD_MAX_Y, clamp_world_x, clamp_world_y, store_clamped_pos, dir4_x, dir4_y, dir8_x, dir8_y, in_grid } from "../../../_as/mod.ts";
 
-import { math_sin, math_cos, fast_abs, fast_max, fast_min } from "../../../_as/mod";
+import { math_sin, math_cos, fast_abs, fast_max, fast_min } from "../../../_as/mod.ts";
 
 // We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
-import { readStructureCharge } from "./pulse_orchestrator";
+import { read_structure_charge } from "../../../_as/mod.ts";
 
 export function evaluate_opcodes(
   atomIndex: i32,
@@ -47,7 +47,7 @@ export function evaluate_opcodes(
   resonance: i32,
   mass: i32
 ): i32 {
-  let pc = getPC(atomIndex);
+  let pc = get_p_c(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
   let gasUsed: i32 = 0;
@@ -67,7 +67,7 @@ export function evaluate_opcodes(
       case OP_SET: {
         let reg = load<u8>(instr_base + (pc + 1) as usize);
         let imm = load<i8>(instr_base + (pc + 2) as usize);
-        setReg(atomIndex, reg as i32, imm as i32);
+        set_reg(atomIndex, reg as i32, imm as i32);
         pc += 3;
         gasUsed += 1;
         break;
@@ -78,39 +78,39 @@ export function evaluate_opcodes(
         let val: i32 = 0;
         if (prop == PROP_ENERGY) val = energy;
         else if (prop == PROP_RESONANCE) val = resonance;
-        else if (prop == PROP_X) val = getX(atomIndex) as i32;
-        else if (prop == PROP_Y) val = getY(atomIndex) as i32;
-        else if (prop == PROP_PHASE) val = getPhase(atomIndex);
+        else if (prop == PROP_X) val = get_x(atomIndex) as i32;
+        else if (prop == PROP_Y) val = get_y(atomIndex) as i32;
+        else if (prop == PROP_PHASE) val = get_phase(atomIndex);
         else if (prop == PROP_GRID_CHARGE) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
+          let rx = get_x(atomIndex) as i32;
+          let ry = get_y(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (inGrid(gx, gy)) {
-            val = readStructureCharge(gy * GRID_W + gx);
+          if (in_grid(gx, gy)) {
+            val = read_structure_charge(gy * GRID_W + gx);
           }
         } else if (prop == PROP_QUORUM) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
+          let rx = get_x(atomIndex) as i32;
+          let ry = get_y(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (inGrid(gx, gy)) {
-            val = getSpatialGridCount(gx, gy);
+          if (in_grid(gx, gy)) {
+            val = get_spatial_grid_count(gx, gy);
           }
         } else if (prop == PROP_NEURAL_COHERENCE) {
           val = atomic.load<i32>(NEURAL_COHERENCE_OFF);
         } else if (prop == PROP_MEMORY) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
+          let rx = get_x(atomIndex) as i32;
+          let ry = get_y(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (inGrid(gx, gy)) {
+          if (in_grid(gx, gy)) {
             val = load<u8>(MEMORY_GRID_OFF + ((gy * GRID_W + gx) << 3)) as i32;
           }
         } else if (prop == PROP_CONSENSUS) {
-          val = getHormone(6) as i32;
+          val = get_hormone(6) as i32;
         }
-        setReg(atomIndex, reg as i32, val);
+        set_reg(atomIndex, reg as i32, val);
         pc += 3;
         gasUsed += 2;
         break;
@@ -118,10 +118,10 @@ export function evaluate_opcodes(
       case OP_PUT: {
         let reg = load<u8>(instr_base + (pc + 1) as usize);
         let prop = load<u8>(instr_base + (pc + 2) as usize);
-        let val = getReg(atomIndex, reg as i32);
+        let val = get_reg(atomIndex, reg as i32);
         if (prop == PROP_ENERGY) {
           energy = val;
-          setEnergy(atomIndex, val);
+          set_energy(atomIndex, val);
         } else if (prop == PROP_RESONANCE) {
           if (val > resonance) {
             let diff = val - resonance;
@@ -137,9 +137,9 @@ export function evaluate_opcodes(
             // Free stealth drop
             resonance = val;
           }
-          setResonance(atomIndex, resonance);
-          setEnergy(atomIndex, energy);
-        } else if (prop == PROP_PHASE) setPhase(atomIndex, val);
+          set_resonance(atomIndex, resonance);
+          set_energy(atomIndex, energy);
+        } else if (prop == PROP_PHASE) set_phase(atomIndex, val);
         pc += 3;
         gasUsed += 2;
         break;
@@ -147,10 +147,10 @@ export function evaluate_opcodes(
       case OP_ADD: {
         let r1 = load<u8>(instr_base + (pc + 1) as usize);
         let r2 = load<u8>(instr_base + (pc + 2) as usize);
-        setReg(
+        set_reg(
           atomIndex,
           r1 as i32,
-          getReg(atomIndex, r1 as i32) + getReg(atomIndex, r2 as i32),
+          get_reg(atomIndex, r1 as i32) + get_reg(atomIndex, r2 as i32),
         );
         pc += 3;
         gasUsed += 1;
@@ -159,10 +159,10 @@ export function evaluate_opcodes(
       case OP_SUB: {
         let r1 = load<u8>(instr_base + (pc + 1) as usize);
         let r2 = load<u8>(instr_base + (pc + 2) as usize);
-        setReg(
+        set_reg(
           atomIndex,
           r1 as i32,
-          getReg(atomIndex, r1 as i32) - getReg(atomIndex, r2 as i32),
+          get_reg(atomIndex, r1 as i32) - get_reg(atomIndex, r2 as i32),
         );
         pc += 3;
         gasUsed += 1;
@@ -171,7 +171,7 @@ export function evaluate_opcodes(
       case OP_JNZ: {
         let reg = load<u8>(instr_base + (pc + 1) as usize);
         let target = load<u8>(instr_base + (pc + 2) as usize);
-        if (getReg(atomIndex, reg as i32) != 0) pc = target;
+        if (get_reg(atomIndex, reg as i32) != 0) pc = target;
         else pc += 3;
         gasUsed += 2;
         break;
@@ -182,7 +182,7 @@ export function evaluate_opcodes(
         break;
       }
       case OP_SYSCALL: {
-        setPendingSyscall(atomIndex, 1);
+        set_pending_syscall(atomIndex, 1);
         pc += 1;
         gasUsed += 10;
         gasLimit = 0; // force yield to host
@@ -193,8 +193,8 @@ export function evaluate_opcodes(
         let angleReg = load<u8>(instr_base + ((pc + 2) as usize));
         let modeReg = load<u8>(instr_base + ((pc + 3) as usize));
 
-        let angle = getReg(atomIndex, angleReg as i32);
-        let modeVal = getReg(atomIndex, modeReg as i32);
+        let angle = get_reg(atomIndex, angleReg as i32);
+        let modeVal = get_reg(atomIndex, modeReg as i32);
 
         // modeVal decoding:
         // 0: Sin Direct  (1 Gas)
@@ -221,31 +221,31 @@ export function evaluate_opcodes(
           val = math_cos(angle, highRes);
         }
 
-        setReg(atomIndex, destReg as i32, val);
+        set_reg(atomIndex, destReg as i32, val);
         pc += 4;
         gasUsed += cost;
         break;
       }
       case OP_RESONATE_KURAMOTO: {
-        let gx = (getX(atomIndex) / 1000) as i32;
-        let gy = (getY(atomIndex) / 1000) as i32;
+        let gx = (get_x(atomIndex) / 1000) as i32;
+        let gy = (get_y(atomIndex) / 1000) as i32;
         let sumSin = 0;
-        let currentPhase = getPhase(atomIndex);
+        let currentPhase = get_phase(atomIndex);
         let neighborCount = 0;
 
         for (let dx = -1; dx <= 1; dx++) {
           for (let dy = -1; dy <= 1; dy++) {
             let nx = gx + dx;
             let ny = gy + dy;
-            if (inGrid(nx, ny)) {
-              let count = getSpatialGridCount(nx, ny);
+            if (in_grid(nx, ny)) {
+              let count = get_spatial_grid_count(nx, ny);
               for (let i = 0; i < count; i++) {
-                let neighborId = getSpatialGridAtom(nx, ny, i);
+                let neighborId = get_spatial_grid_atom(nx, ny, i);
                 if (
                   neighborId > 0 && neighborId != atomIndex &&
                   neighborId < MAX_ATOMS
                 ) {
-                  let neighborPhase = getPhase(neighborId);
+                  let neighborPhase = get_phase(neighborId);
                   let diff = (neighborPhase - currentPhase) & 255;
                   sumSin += math_sin(diff, 0); // Direct lookup for density scaling
                   neighborCount++;
@@ -262,7 +262,7 @@ export function evaluate_opcodes(
         if (neighborCount > 0) {
           let d_theta = (K * sumSin) >> 15;
           let theta_next = (currentPhase + d_theta) & 255;
-          setPhase(atomIndex, theta_next);
+          set_phase(atomIndex, theta_next);
         }
 
         pc += 1;
@@ -270,14 +270,14 @@ export function evaluate_opcodes(
         break;
       }
       case OP_SPORE_DRIVE: {
-        setPendingSyscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
+        set_pending_syscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
         pc += 1;
         gasUsed += 10;
         gasLimit = 0; // force yield to host
         break;
       }
       case OP_SENSE_AS: {
-        setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
+        set_pending_syscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
         pc += 1;
         gasUsed += 2;
         gasLimit = 0; // force yield to host
@@ -292,7 +292,7 @@ export function evaluate_opcodes(
     }
     if (pc >= 64) pc = 0;
   }
-  setPC(atomIndex, pc);
+  set_p_c(atomIndex, pc);
   
   // We mutated resonance and energy inside OP_PUT, return them if we had multiple returns, but here we expect caller to just fetch them again. Yes! So we just return gasUsed!
   return gasUsed;

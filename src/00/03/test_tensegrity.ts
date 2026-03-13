@@ -46,8 +46,8 @@ async function runTest() {
   STATE_MATRIX.seedAtom(1, 2n, 110, 110, 5000, 100);
 
   // Bind them together
-  STATE_MATRIX.setBondTarget(0, 0, 1);
-  STATE_MATRIX.setBondStiffness(0, 0, 0.9); // Rigid
+  STATE_MATRIX.set_bond_target(0, 0, 1);
+  STATE_MATRIX.set_bond_stiffness(0, 0, 0.9); // Rigid
   STATE_MATRIX.setBondDistance(0, 0, 100);
 
   // Verify instructions in memory
@@ -67,8 +67,8 @@ async function runTest() {
   console.log(
     "-> Initial distance:",
     Math.hypot(
-      STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
-      STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
+      STATE_MATRIX.get_x(1) - STATE_MATRIX.get_x(0),
+      STATE_MATRIX.get_y(1) - STATE_MATRIX.get_y(0),
     ).toFixed(2),
   );
 
@@ -79,16 +79,16 @@ async function runTest() {
     execute_atom(1);
 
     // Physics Update (JS-side mimic of PULSE_WORKER)
-    const x0 = STATE_MATRIX.getX(0);
-    const y0 = STATE_MATRIX.getY(0);
-    const x1 = STATE_MATRIX.getX(1);
-    const y1 = STATE_MATRIX.getY(1);
+    const x0 = STATE_MATRIX.get_x(0);
+    const y0 = STATE_MATRIX.get_y(0);
+    const x1 = STATE_MATRIX.get_x(1);
+    const y1 = STATE_MATRIX.get_y(1);
 
     const dx = x1 - x0;
     const dy = y1 - y0;
     const dist = Math.hypot(dx, dy) || 1;
     const targetDist = STATE_MATRIX.getBondDistance(0, 0) || 50;
-    const stiffness = STATE_MATRIX.getBondStiffness(0, 0);
+    const stiffness = STATE_MATRIX.get_bond_stiffness(0, 0);
 
     if (stiffness > 0.8) {
       const force = (dist - targetDist) * 0.5;
@@ -115,24 +115,24 @@ async function runTest() {
   }
 
   const finalDist = Math.hypot(
-    STATE_MATRIX.getX(1) - STATE_MATRIX.getX(0),
-    STATE_MATRIX.getY(1) - STATE_MATRIX.getY(0),
+    STATE_MATRIX.get_x(1) - STATE_MATRIX.get_x(0),
+    STATE_MATRIX.get_y(1) - STATE_MATRIX.get_y(0),
   );
   console.log("-> Final distance:", finalDist.toFixed(2));
 
   // 5. Test Damping (Structural Locking)
   console.log("\n-> Locking Atom 0 into Structure (Damping=255)...");
-  STATE_MATRIX.setDamping(0, 255);
+  STATE_MATRIX.set_damping(0, 255);
   console.log("-> New Damping (Atom 0):", STATE_MATRIX.getDamping(0));
 
-  const oldX = STATE_MATRIX.getX(0);
+  const oldX = STATE_MATRIX.get_x(0);
   // Force a massive displacement in physics
   // Atom 1 tries to pull Atom 0 to distance 150
   STATE_MATRIX.setBondDistance(0, 0, 150);
 
   // Run one update
-  const x0 = STATE_MATRIX.getX(0);
-  const x1 = STATE_MATRIX.getX(1);
+  const x0 = STATE_MATRIX.get_x(0);
+  const x1 = STATE_MATRIX.get_x(1);
   const dx = x1 - x0;
   const force = (dx - 150) * 0.5;
   const d0 = 1 - (STATE_MATRIX.getDamping(0) / 255);
@@ -140,7 +140,7 @@ async function runTest() {
 
   console.log(
     "-> Atom 0 Move test (should be 0):",
-    (STATE_MATRIX.getX(0) - oldX).toFixed(2),
+    (STATE_MATRIX.get_x(0) - oldX).toFixed(2),
   );
 
   if (Math.abs(finalDist - 100) < 5 && STATE_MATRIX.getDamping(0) === 255) {

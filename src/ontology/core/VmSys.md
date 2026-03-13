@@ -1,0 +1,28 @@
+---
+id: VmSys
+type: enum
+dataType: i32
+description: "LambdaVM System Call Indices"
+deps: []
+values:
+  SYS_YIELD: 1
+  SYS_READ_MEM: 2
+  SYS_WRITE_MEM: 3
+  SYS_SPAWN: 4
+  SYS_BIND: 5
+  SYS_SET_ROLE: 6
+  SYS_MUTATE: 7
+  SYS_MSG: 8
+  SYS_READ_INBOX: 9
+  SYS_TRANSFER: 10
+  SYS_REPLICATE: 11
+  SYS_EMIT: 12
+  SYS_SCAN: 13
+  SYS_MOVE: 14
+  SYS_EAT: 15
+  SYS_BET: 16
+  SYS_ATTRACT: 17
+  SYS_FOLD: 18
+  SYS_SPORE_DRIVE: 20
+  SYS_SENSE_PHASE: 21
+---

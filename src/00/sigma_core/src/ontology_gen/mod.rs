@@ -10,3 +10,7 @@ pub mod L01;
 pub mod L02;
 #[path = "03/mod.rs"]
 pub mod L03;
+#[path = "04/mod.rs"]
+pub mod L04;
+#[path = "05/mod.rs"]
+pub mod L05;

@@ -10,7 +10,7 @@ const bondsJS = new Int32Array(
   OFFSETS.MAX_ATOMS * 4,
 );
 
-STATE_MATRIX.setBondTarget(2, 0, 1);
+STATE_MATRIX.set_bond_target(2, 0, 1);
 console.log(
   `[JS] Bond for Atom 2, Slot 0 written. Internal Array View:`,
   bondsJS[(2 * 4) + 0],

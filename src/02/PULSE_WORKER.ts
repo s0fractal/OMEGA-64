@@ -909,7 +909,7 @@ try {
         .get_neural_coherence as any;
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
-      tick_glyph_transport_fn = wasmInstance.exports.tickGlyphTransport as any;
+      tick_glyph_transport_fn = wasmInstance.exports.glyph_transport as any;
       tick_membrane_physics_fn = wasmInstance.exports.tick_membrane_physics as any;
       resolve_bond_requests_fn = wasmInstance.exports
         .resolve_bond_requests as any;

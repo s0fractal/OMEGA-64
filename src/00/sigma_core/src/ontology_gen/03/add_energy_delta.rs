@@ -1,0 +1,5 @@
+use super::super::L02::*;
+
+pub fn add_energy_delta(idx: i32, delta: i32) -> () {
+    unimplemented!("Memory accessors are host/WASM specific");
+}

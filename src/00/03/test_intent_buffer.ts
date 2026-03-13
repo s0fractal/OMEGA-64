@@ -5,7 +5,7 @@ async function testIntentBuffer() {
 
   // 1. Initialize Atom 0 with high energy
   STATE_MATRIX.setId(0, 1n);
-  STATE_MATRIX.setEnergy(0, 100000); // 100 * SCALE
+  STATE_MATRIX.set_energy(0, 100000); // 100 * SCALE
 
   // 2. Load WASM
   const wasmCode = await Deno.readFile("src/00/release.wasm");
@@ -27,7 +27,7 @@ async function testIntentBuffer() {
   const rawIntent = intents[0];
   const opcode = rawIntent & 0xFF;
 
-  console.log(`[ATOM 0] Energy after tick: ${STATE_MATRIX.getEnergy(0)}`);
+  console.log(`[ATOM 0] Energy after tick: ${STATE_MATRIX.get_energy(0)}`);
   console.log(
     `[ATOM 0] Intent Buffer Hex: 0x${rawIntent.toString(16).padStart(8, "0")}`,
   );

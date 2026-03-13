@@ -75,10 +75,10 @@ async function runSecretionOpcodeTests() {
 
   console.log("✅ [TEST] WASM native secretion opcodes verified via KERNEL!");
 
-  // 5. Test Grid Leakage (tickGlyphTransport)
-  console.log("--- Executing tickGlyphTransport for Grid Leakage ---");
+  // 5. Test Grid Leakage (glyph_transport)
+  console.log("--- Executing glyph_transport for Grid Leakage ---");
   const tick_glyph_transport = instantiated.instance.exports
-    .tickGlyphTransport as (tick: number) => void;
+    .glyph_transport as (tick: number) => void;
 
   GLYPH_BUFFER.clear();
 

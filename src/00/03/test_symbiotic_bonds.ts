@@ -62,8 +62,8 @@ setupTestState();
 STATE_MATRIX.setId(1, 100n);
 STATE_MATRIX.setX(1, 100);
 STATE_MATRIX.setY(1, 100);
-STATE_MATRIX.setEnergy(1, 400);
-STATE_MATRIX.setResonance(1, 200);
+STATE_MATRIX.set_energy(1, 400);
+STATE_MATRIX.set_resonance(1, 200);
 
 // Population of read buffers for spatial grid and proximity
 const readXs = new Int16Array(
@@ -144,8 +144,8 @@ bondsView[(bondsOff + (1 * 16)) >> 2] = 2; // Atom 1 bond 0 -> Atom 2
 // Resonance: Atom 1 = 200, Atom 2 = 0
 STATE_MATRIX.setId(1, 101n);
 STATE_MATRIX.setId(2, 201n);
-STATE_MATRIX.setResonance(1, 200);
-STATE_MATRIX.setResonance(2, 0);
+STATE_MATRIX.set_resonance(1, 200);
+STATE_MATRIX.set_resonance(2, 0);
 
 readResonance[1] = 200;
 readResonance[2] = 0;

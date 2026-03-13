@@ -2897,7 +2897,7 @@ export const PULSE = {
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let totalPhase = 0;
         for (const idx of activeIdx) {
-          totalPhase += Math.abs(STATE_MATRIX.getPhase(idx));
+          totalPhase += Math.abs(STATE_MATRIX.get_phase(idx));
         }
         const avgPhase = activeIdx.length > 0
           ? totalPhase / activeIdx.length
@@ -3084,7 +3084,7 @@ export const PULSE = {
 
       // --- STAGE 26: Immunological Phagocyte ---
       {
-        const entropyPressure = STATE_MATRIX.getHormone(0); // H0: entropy_pressure
+        const entropyPressure = STATE_MATRIX.get_hormone(0); // H0: entropy_pressure
         const purgeList = IMMUNE.phagocytePass(entropyPressure);
         if (purgeList.length > 0) {
           for (const idx of purgeList) {
@@ -3211,7 +3211,7 @@ export const PULSE = {
             script: instructionsView.slice(idx * 64, idx * 64 + 64),
             energy: energiesView[idx],
             resonance: resonancesView[idx],
-            aggression: STATE_MATRIX.getHormone(2),
+            aggression: STATE_MATRIX.get_hormone(2),
             legacyAllowed: true,
           });
 
@@ -3303,7 +3303,7 @@ export const PULSE = {
               let eliteIdx = active[0];
               let maxEnergy = 0;
               for (const idx of active) {
-                const energy = STATE_MATRIX.getEnergy(idx);
+                const energy = STATE_MATRIX.get_energy(idx);
                 if (energy > maxEnergy) {
                   maxEnergy = energy;
                   eliteIdx = idx;
@@ -3379,9 +3379,9 @@ export const PULSE = {
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let hashSum = 0n;
         for (let i = 1; i < STATE_MATRIX.MAX_ATOMS; i++) {
-          if (STATE_MATRIX.getEnergy(i) > 0) {
-            hashSum += BigInt(STATE_MATRIX.getEnergy(i)) +
-              BigInt(STATE_MATRIX.getPhase(i));
+          if (STATE_MATRIX.get_energy(i) > 0) {
+            hashSum += BigInt(STATE_MATRIX.get_energy(i)) +
+              BigInt(STATE_MATRIX.get_phase(i));
           }
         }
         noosphereDelegate?.broadcastEpochConsensus(currentTick, hashSum);
