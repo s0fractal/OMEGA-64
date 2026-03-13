@@ -522,43 +522,4 @@ for (const node of nodes.values()) {
   }
 }
 
-// 6. Generation of OMEGA_LORE.md
-const lorePath = new URL("../08/OMEGA_LORE.md", import.meta.url).pathname;
-let loreContent = `# OMEGA-64 | ARCHITECTURE LORE (ONTOLOGY AST)\n\n`;
-loreContent += `*Generated: ${new Date().toISOString()}*\n`;
-loreContent += `*Total Registered Nodes: ${nodes.size}*\n`;
-loreContent += `*Causality Layers: ${maxLevel + 1}*\n\n---\n\n`;
-
-for (let lvl = 0; lvl <= maxLevel; lvl++) {
-  const nodesInLevel = Array.from(nodes.values()).filter((n) => n.level === lvl);
-  if (nodesInLevel.length === 0) continue;
-  
-  loreContent += `## Layer L${formatLevel(lvl)}\n\n`;
-  for (const node of nodesInLevel) {
-    loreContent += `### \`${node.id}\` \u2014 *(Type: ${node.type || 'unknown'} | Level: ${node.level})*\n`;
-    if (node.description) loreContent += `> ${node.description}\n\n`;
-    
-    if (node.deps && node.deps.length > 0) {
-      loreContent += `- **Dependencies:** ${node.deps.map(d => `\`${d}\``).join(", ")}\n`;
-    }
-    if (node.vars && node.vars.length > 0) {
-      loreContent += `- **Variables:** ${node.vars.map(v => `\`${v}\``).join(", ")}\n`;
-    }
-    if (node.type === "pure_fn") {
-      const arr = Array.isArray(node.args) ? node.args : (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-      const argStr = arr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-      loreContent += `- **Signature:** \`(${argStr}) -> ${node.returns}\`\n`;
-    }
-    
-    loreContent += `\n---\n\n`;
-  }
-}
-
-try {
-  ensureDirSync(new URL("../08", import.meta.url).pathname);
-  Deno.writeTextFileSync(lorePath, loreContent);
-} catch (e: any) {
-  console.error(`[WARN] Could not write OMEGA_LORE.md to ${lorePath}: ${e.message}`);
-}
-
 console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
