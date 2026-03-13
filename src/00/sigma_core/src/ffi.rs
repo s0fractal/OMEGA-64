@@ -310,7 +310,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         }
     }
 
-    for i in 0..crate::memory::GRID_CELLS {
+    for i in 0..crate::constants::GRID_CELLS {
         let owner = state.matrix.structure_build_owner[i];
         if owner > 0 {
             hasher.update((i as u32).to_le_bytes());

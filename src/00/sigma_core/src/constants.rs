@@ -2,22 +2,20 @@
 //! Defines system-wide physical constants and enumerations for the OMEGA-64 Sigma Core.
 //! These values are isomorphically synchronized with the TypeScript layer.
 
-/// The maximum number of atoms supported by the continuous Memory Matrix.
 pub const MAX_ATOMS: usize = 500000;
-
-/// Spatial Hash Grid dimensions
-pub const GRID_WIDTH: i32 = 140;
-pub const GRID_HEIGHT: i32 = 80;
-pub const GRID_SIZE: usize = (GRID_WIDTH * GRID_HEIGHT) as usize;
+pub const SAFETY_BUFFER: usize = 8000000;
+pub const GRID_W: i32 = 140;
+pub const GRID_H: i32 = 80;
+pub const GRID_CELLS: usize = 11200;
+pub const SCALE: i32 = 1000;
 pub const CELL_CAPACITY: usize = 32;
-
-/// Maximum boundaries for execution scopes
 pub const MAX_PC: u8 = 64;
 pub const MAX_EXECUTION_STEPS: usize = 64;
 pub const ATOM_LOGIC_SIZE: usize = 64;
-
-/// Energy representation scaling factor (Fractional to Integer boundary mapping via Deno)
-pub const ENERGY_SCALE: i32 = 1000;
+pub const MAX_LEDGER_EVENTS: usize = 65536;
+pub const MAX_EGRESS_EVENTS: usize = 8192;
+pub const WASM_PAGE_BYTES: usize = 65536;
+pub const WASM_MEMORY_PAGES: usize = 7630;
 
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]

@@ -25,7 +25,7 @@ pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
 impl SigmaState {
     /// Models optical wave interference on a flat 2D grid cell.
     pub fn atomic_deposit_glyph_header(&self, cell: usize, kind: u8, amplitude: i32) {
-        if amplitude == 0 || cell >= crate::memory::GRID_CELLS {
+        if amplitude == 0 || cell >= crate::constants::GRID_CELLS {
             return;
         }
 

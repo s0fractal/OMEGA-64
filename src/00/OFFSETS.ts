@@ -3,16 +3,24 @@
 // Unified Memory Lattice Constants - Relocated for WASM Safety
 
 export const MAX_ATOMS = 500000;
-export const SCALE = 1000;
+export const SAFETY_BUFFER = 8000000;
 export const GRID_W = 140;
 export const GRID_H = 80;
-export const GRID_CELLS = GRID_W * GRID_H;
+export const GRID_CELLS = 11200;
+export const SCALE = 1000;
+export const CELL_CAPACITY = 32;
+export const MAX_PC = 64;
+export const MAX_EXECUTION_STEPS = 64;
+export const ATOM_LOGIC_SIZE = 64;
+export const MAX_LEDGER_EVENTS = 65536;
+export const MAX_EGRESS_EVENTS = 8192;
+export const WASM_PAGE_BYTES = 65536;
+export const WASM_MEMORY_PAGES = 7630;
+
 const U64_BYTES = 8;
 const I32_BYTES = 4;
 const I16_BYTES = 2;
 const F32_BYTES = 4;
-
-export const SAFETY_BUFFER = 8000000;
 
 export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
 export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
@@ -68,11 +76,9 @@ export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860;
 export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912;
 export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912;
 
-export const MAX_LEDGER_EVENTS = 65536;
 export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912;
 export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916;
 
-export const MAX_EGRESS_EVENTS = 8192;
 export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492;
 export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496;
 
@@ -140,10 +146,8 @@ export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
   region("EGRESS_DATA", EGRESS_DATA_OFFSET, MAX_EGRESS_EVENTS * 128, 4),
 ];
 
-export const WASM_PAGE_BYTES = 65536;
 export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
 export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES));
-export const WASM_MEMORY_PAGES = 7630;
 export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
 
 export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): MemoryLayoutValidationResult => {

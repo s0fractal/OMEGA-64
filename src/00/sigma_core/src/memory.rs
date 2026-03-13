@@ -1,13 +1,9 @@
 //! Sigma-Core Memory Layout
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{MAX_ATOMS, GRID_WIDTH};
+pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS};
 
 pub const SAFETY_BUFFER: usize = 8_000_000;
-// For backward compatibility within local module
-pub const GRID_W: usize = GRID_WIDTH as usize;
-pub const GRID_H: usize = 80;
-pub const GRID_CELLS: usize = GRID_W * GRID_H;
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]

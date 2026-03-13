@@ -1,7 +1,7 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-12T23:41:43.974Z*
-*Exported Files: 16*
+*Generated: 2026-03-13T01:13:19.365Z*
+*Exported Files: 15*
 
 ---
 
@@ -22,7 +22,6 @@
 - src/00/sigma_core/src/spatial.rs
 - src/00/sigma_core/src/structure.rs
 - src/00/sigma_core/src/vm.rs
-- src/00/sigma_core/target_tests.rs
 
 ---
 
@@ -132,22 +131,20 @@ impl SigmaState {
 //! Defines system-wide physical constants and enumerations for the OMEGA-64 Sigma Core.
 //! These values are isomorphically synchronized with the TypeScript layer.
 
-/// The maximum number of atoms supported by the continuous Memory Matrix.
 pub const MAX_ATOMS: usize = 500000;
-
-/// Spatial Hash Grid dimensions
-pub const GRID_WIDTH: i32 = 140;
-pub const GRID_HEIGHT: i32 = 80;
-pub const GRID_SIZE: usize = (GRID_WIDTH * GRID_HEIGHT) as usize;
+pub const SAFETY_BUFFER: usize = 8000000;
+pub const GRID_W: i32 = 140;
+pub const GRID_H: i32 = 80;
+pub const GRID_CELLS: usize = 11200;
+pub const SCALE: i32 = 1000;
 pub const CELL_CAPACITY: usize = 32;
-
-/// Maximum boundaries for execution scopes
 pub const MAX_PC: u8 = 64;
 pub const MAX_EXECUTION_STEPS: usize = 64;
 pub const ATOM_LOGIC_SIZE: usize = 64;
-
-/// Energy representation scaling factor (Fractional to Integer boundary mapping via Deno)
-pub const ENERGY_SCALE: i32 = 1000;
+pub const MAX_LEDGER_EVENTS: usize = 65536;
+pub const MAX_EGRESS_EVENTS: usize = 8192;
+pub const WASM_PAGE_BYTES: usize = 65536;
+pub const WASM_MEMORY_PAGES: usize = 7630;
 
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]
@@ -1064,7 +1061,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         }
     }
 
-    for i in 0..crate::memory::GRID_CELLS {
+    for i in 0..crate::constants::GRID_CELLS {
         let owner = state.matrix.structure_build_owner[i];
         if owner > 0 {
             hasher.update((i as u32).to_le_bytes());
@@ -1114,7 +1111,7 @@ pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
 impl SigmaState {
     /// Models optical wave interference on a flat 2D grid cell.
     pub fn atomic_deposit_glyph_header(&self, cell: usize, kind: u8, amplitude: i32) {
-        if amplitude == 0 || cell >= crate::memory::GRID_CELLS {
+        if amplitude == 0 || cell >= crate::constants::GRID_CELLS {
             return;
         }
 
@@ -1369,13 +1366,9 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 //! Sigma-Core Memory Layout
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{MAX_ATOMS, GRID_WIDTH};
+pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS};
 
 pub const SAFETY_BUFFER: usize = 8_000_000;
-// For backward compatibility within local module
-pub const GRID_W: usize = GRID_WIDTH as usize;
-pub const GRID_H: usize = 80;
-pub const GRID_CELLS: usize = GRID_W * GRID_H;
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
@@ -2112,8 +2105,8 @@ impl<'a> PulseOrchestrator<'a> {
                         state.matrix.ys[i] = state.matrix.ys[host_idx];
                         
                         // Pay up 90% of current energy
-                        if e > crate::constants::ENERGY_SCALE {
-                            let transfer = ((e - crate::constants::ENERGY_SCALE) as f64 * 0.9) as i32;
+                        if e > crate::constants::SCALE {
+                            let transfer = ((e - crate::constants::SCALE) as f64 * 0.9) as i32;
                             if transfer > 0 {
                                 state.matrix.energy[host_idx] += transfer;
                                 e -= transfer;
@@ -2152,8 +2145,8 @@ impl<'a> PulseOrchestrator<'a> {
                     if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
                         let cx = state.matrix.xs[i] as usize;
                         let cy = state.matrix.ys[i] as usize;
-                        let gx = cx / (crate::constants::ENERGY_SCALE as usize);
-                        let gy = cy / (crate::constants::ENERGY_SCALE as usize);
+                        let gx = cx / (crate::constants::SCALE as usize);
+                        let gy = cy / (crate::constants::SCALE as usize);
                         
                         if gx < 140 && gy < 80 {
                             let cell_idx = gy * 140 + gx;
@@ -2761,7 +2754,7 @@ impl SigmaState {
     /// Attempts to publish a build intent to the specified cell.
     /// Arbitration happens via the `ownerToken` mechanism to resolve racing logic during a tick.
     pub fn publish_build_intent(&self, cell_idx: usize, owner_atom_idx: usize, build_value: i32) {
-        if cell_idx >= crate::memory::GRID_CELLS {
+        if cell_idx >= crate::constants::GRID_CELLS {
             return;
         }
 
@@ -2813,7 +2806,7 @@ impl SigmaState {
     /// Reads the state of a structure cell, viewing the immediate intent if present,
     /// otherwise returning the finalized grid value.
     pub fn read_structure_cell(&self, cell_idx: usize) -> i32 {
-        if cell_idx >= crate::memory::GRID_CELLS {
+        if cell_idx >= crate::constants::GRID_CELLS {
             return 0;
         }
 
@@ -2836,7 +2829,7 @@ impl SigmaState {
 
     /// Mutates the charge intent for OP_PLUG.
     pub fn set_structure_charge_intent(&self, cell_idx: usize, charge: i32) {
-        if cell_idx < crate::memory::GRID_CELLS {
+        if cell_idx < crate::constants::GRID_CELLS {
             let intent_atomic = self.structure_charge_intent_atomic();
             let mut current = intent_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
             loop {
@@ -3154,7 +3147,7 @@ impl LambdaVM {
                         }
 
                         let sender_energy = state.matrix.energy[atom_idx];
-                        let scaled_amount = amount * crate::constants::ENERGY_SCALE;
+                        let scaled_amount = amount * crate::constants::SCALE;
 
                         if sender_energy >= scaled_amount {
                             state.energy_atomic()[atom_idx]
@@ -3175,7 +3168,7 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * crate::constants::ENERGY_SCALE && state.matrix.resonance[atom_idx] > r_thresh {
+                    if energy > e_thresh * crate::constants::SCALE && state.matrix.resonance[atom_idx] > r_thresh {
                         let cx = state.matrix.xs[atom_idx] as i32;
                         let cy = state.matrix.ys[atom_idx] as i32;
 
@@ -3568,12 +3561,12 @@ impl LambdaVM {
                     } else if mode == 3 {
                         // Hive Deposit
                         let val = (p2 & 0xFF) as i32;
-                        if energy >= val * crate::constants::ENERGY_SCALE {
+                        if energy >= val * crate::constants::SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
                             state.energy_atomic()[atom_idx]
-                                .fetch_sub(val * crate::constants::ENERGY_SCALE, std::sync::atomic::Ordering::Relaxed);
-                            energy -= val * crate::constants::ENERGY_SCALE;
+                                .fetch_sub(val * crate::constants::SCALE, std::sync::atomic::Ordering::Relaxed);
+                            energy -= val * crate::constants::SCALE;
                         }
                         gas_used += 15;
                     } else if mode == 4 {
@@ -3597,10 +3590,10 @@ impl LambdaVM {
                             ) {
                                 Ok(_) => {
                                     state.energy_atomic()[atom_idx].fetch_add(
-                                        curr_amt * crate::constants::ENERGY_SCALE,
+                                        curr_amt * crate::constants::SCALE,
                                         std::sync::atomic::Ordering::Relaxed,
                                     );
-                                    energy += curr_amt * crate::constants::ENERGY_SCALE;
+                                    energy += curr_amt * crate::constants::SCALE;
                                     amount = curr_amt;
                                     break;
                                 }
@@ -3980,78 +3973,6 @@ impl LambdaVM {
         if final_energy == 0 {
             state.ids_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
         }
-    }
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/target_tests.rs
-
-```rust
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use std::mem::offset_of;
-
-    #[test]
-    fn verify_memory_offsets() {
-        assert_eq!(offset_of!(SigmaMatrix, ids), 8_000_000, "ids");
-        assert_eq!(offset_of!(SigmaMatrix, xs), 8_800_000, "xs");
-        assert_eq!(offset_of!(SigmaMatrix, ys), 9_000_000, "ys");
-        assert_eq!(offset_of!(SigmaMatrix, energy), 9_200_000, "energy");
-        assert_eq!(offset_of!(SigmaMatrix, resonance), 9_600_000, "resonance");
-        assert_eq!(offset_of!(SigmaMatrix, phase), 10_000_000, "phase");
-        assert_eq!(offset_of!(SigmaMatrix, logic), 10_400_000, "logic");
-        assert_eq!(offset_of!(SigmaMatrix, bonds), 11_200_000, "bonds");
-        assert_eq!(offset_of!(SigmaMatrix, stiffness), 12_800_000, "stiffness");
-        assert_eq!(offset_of!(SigmaMatrix, instructions), 14_400_000, "instructions");
-        assert_eq!(offset_of!(SigmaMatrix, context), 20_800_000, "context");
-        assert_eq!(offset_of!(SigmaMatrix, evolution_reserved), 27_200_000, "evolution");
-        assert_eq!(offset_of!(SigmaMatrix, spawn_requests), 27_600_000, "spawn_requests");
-        assert_eq!(offset_of!(SigmaMatrix, meiosis), 28_800_000, "meiosis");
-        assert_eq!(offset_of!(SigmaMatrix, bond_requests), 30_000_000, "bond_requests");
-        assert_eq!(offset_of!(SigmaMatrix, spatial_grid), 31_200_000, "spatial_grid");
-        
-        assert_eq!(offset_of!(SigmaMatrix, roles), 41_200_000, "roles");
-        assert_eq!(offset_of!(SigmaMatrix, structure_grid), 42_200_000, "structure_grid");
-        assert_eq!(offset_of!(SigmaMatrix, signal_grid), 43_200_000, "signal_grid");
-        assert_eq!(offset_of!(SigmaMatrix, memory_grid), 44_200_000, "memory_grid");
-        assert_eq!(offset_of!(SigmaMatrix, ascension_stats), 45_200_000, "ascension_stats");
-        assert_eq!(offset_of!(SigmaMatrix, bond_distances), 46_200_000, "bond_distances");
-        assert_eq!(offset_of!(SigmaMatrix, damping), 47_200_000, "damping");
-        assert_eq!(offset_of!(SigmaMatrix, causality), 47_300_000, "causality");
-        assert_eq!(offset_of!(SigmaMatrix, hive_memory), 48_200_000, "hive_memory");
-        assert_eq!(offset_of!(SigmaMatrix, hive_balance), 48_201_024, "hive_balance");
-        assert_eq!(offset_of!(SigmaMatrix, quorum), 48_300_000, "quorum");
-        assert_eq!(offset_of!(SigmaMatrix, coherence), 48_700_100, "coherence");
-        assert_eq!(offset_of!(SigmaMatrix, neural_coherence), 48_700_104, "neural_coherence");
-
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_xs), 48_800_000, "physics_read_xs");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_ys), 49_000_000, "physics_read_ys");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_energy), 49_200_000, "physics_read_energy");
-        assert_eq!(offset_of!(SigmaMatrix, physics_read_resonance), 49_600_000, "physics_read_resonance");
-
-        assert_eq!(offset_of!(SigmaMatrix, energy_delta), 50_000_000, "energy_delta");
-        assert_eq!(offset_of!(SigmaMatrix, resonance_delta), 50_400_000, "resonance_delta");
-
-        assert_eq!(offset_of!(SigmaMatrix, structure_build_owner), 50_800_000, "structure_build_owner");
-        assert_eq!(offset_of!(SigmaMatrix, structure_build_value), 50_844_800, "structure_build_value");
-        assert_eq!(offset_of!(SigmaMatrix, structure_charge_intent), 50_889_600, "structure_charge_intent");
-        assert_eq!(offset_of!(SigmaMatrix, attention_field), 50_934_400, "attention_field");
-        assert_eq!(offset_of!(SigmaMatrix, hive_energy_pool), 50_979_200, "hive_energy_pool");
-
-        assert_eq!(offset_of!(SigmaMatrix, glyph_header), 50_980_224, "glyph_header");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_payload), 51_025_024, "glyph_payload");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_scratch_header), 51_114_624, "glyph_scratch_header");
-        assert_eq!(offset_of!(SigmaMatrix, glyph_scratch_payload), 51_159_424, "glyph_scratch_payload");
-        assert_eq!(offset_of!(SigmaMatrix, hormones), 51_249_024, "hormones");
-        assert_eq!(offset_of!(SigmaMatrix, secretion_stats), 51_249_040, "secretion_stats");
-        assert_eq!(offset_of!(SigmaMatrix, lineage), 51_400_000, "lineage");
-        assert_eq!(offset_of!(SigmaMatrix, mailbox), 52_200_000, "mailbox");
-        assert_eq!(offset_of!(SigmaMatrix, ledger_head), 53_000_000, "ledger_head");
-        assert_eq!(offset_of!(SigmaMatrix, ledger_data), 53_000_004, "ledger_data");
     }
 }
 
