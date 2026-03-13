@@ -2,21 +2,8 @@
 // @ts-nocheck
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
-import { execute_atom as vm_execute_atom, build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../../../_as/mod";
 export * from "../../../_as/mod";
-
-@external("index", "trace_atom")
-declare function trace_atom(
-  idx: i32,
-  opcode: i32,
-  gx: i32,
-  gy: i32,
-  targetIdx: i32,
-): void;
-
-export function execute_atom(atomIndex: i32): void {
-  vm_execute_atom(atomIndex);
-}
+import { build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../../../_as/mod";
 
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;

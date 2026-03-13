@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T14:17:44.525Z*
-*Exported Files in Category: 387*
-*Total Exported Files: 493*
+*Generated: 2026-03-13T15:41:28.820Z*
+*Exported Files in Category: 386*
+*Total Exported Files: 507*
 *Runtime Roots: 10*
 *Runtime Closure Files: 318*
-*Non-Runtime Code Files: 69*
+*Non-Runtime Code Files: 68*
 *Runtime-Support Code Files: 10*
-*Experimental Code Files: 59*
+*Experimental Code Files: 58*
 *Manifest SHA256: 39b9ee6963a688da2ecdc24e66b2f51b41a8b035978a4bc3a418688653156c74*
-*Export Set SHA256: edabd03000eb576e1659081cca04b5998d8daedd01a5a977073859225d9277f5*
-*Export Content SHA256: ad6e427053753de1e1fe52499a804cfbd60a2104297dc70c114f4f61173429d3*
-*Git Commit: e75378e4227d*
+*Export Set SHA256: 1195bde2bb124a617253afa4d3ade8414b7ad212de57c355b4230e24d39b455f*
+*Export Content SHA256: 6db052e48ef8b3ff59b98af14516d05736a6202a6337f09e01072f7d9f92f75b*
+*Git Commit: 43142f83b3d3*
 
 ---
 
@@ -702,15 +702,15 @@ export * from "./VmOpcodes.ts";
 export { pack_glyph_header } from "./pack_glyph_header.ts";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude.ts";
 export { unpack_glyph_kind } from "./unpack_glyph_kind.ts";
-export { COS_LUT } from "./COS_LUT.ts";
+export * from "./COS_LUT.ts";
 export { fast_abs } from "./fast_abs.ts";
 export { fast_max } from "./fast_max.ts";
 export { prng_next } from "./prng_next.ts";
 export { fast_sign } from "./fast_sign.ts";
 export { math_clamp } from "./math_clamp.ts";
-export { SIN_LUT } from "./SIN_LUT.ts";
+export * from "./SIN_LUT.ts";
 export { fast_min } from "./fast_min.ts";
-export { C_LOG2_C_LUT } from "./C_LOG2_C_LUT.ts";
+export * from "./C_LOG2_C_LUT.ts";
 export { encode_force_tuple } from "./encode_force_tuple.ts";
 export { dir8_y } from "./dir8_y.ts";
 export { dir4_y } from "./dir4_y.ts";
@@ -3405,15 +3405,15 @@ export * from "./VmOpcodes";
 export { pack_glyph_header } from "./pack_glyph_header";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude";
 export { unpack_glyph_kind } from "./unpack_glyph_kind";
-export { COS_LUT } from "./COS_LUT";
+export * from "./COS_LUT";
 export { fast_abs } from "./fast_abs";
 export { fast_max } from "./fast_max";
 export { prng_next } from "./prng_next";
 export { fast_sign } from "./fast_sign";
 export { math_clamp } from "./math_clamp";
-export { SIN_LUT } from "./SIN_LUT";
+export * from "./SIN_LUT";
 export { fast_min } from "./fast_min";
-export { C_LOG2_C_LUT } from "./C_LOG2_C_LUT";
+export * from "./C_LOG2_C_LUT";
 export { encode_force_tuple } from "./encode_force_tuple";
 export { dir8_y } from "./dir8_y";
 export { dir4_y } from "./dir4_y";
@@ -6703,23 +6703,6 @@ export * from "../../../_as/mod";
 
 ---
 
-## FILE: src/00/01/assembly/math.ts
-
-```typescript
-// deno-lint-ignore-file
-// @ts-nocheck
-
-// Mathematical functions (SIN_LUT, COS_LUT, math_sin, math_cos) 
-// have been successfully migrated to the Ontological Graph! (src/ontology)
-// They are now imported from the generated source in `src/_/mod.ts`.
-
-
-
-
-```
-
----
-
 ## FILE: src/00/01/assembly/pulse_orchestrator.ts
 
 ```typescript
@@ -6727,178 +6710,8 @@ export * from "../../../_as/mod";
 // @ts-nocheck
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
-import {
-  MAX_ATOMS, SAFETY_BUFFER, TICK_COUNTER_OFF, IDS_OFFSET,
-  XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET,
-  LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
-  EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
-  ROLES_OFFSET, STRUCTURE_GRID_OFF, SIGNAL_GRID_OFF, MEMORY_GRID_OFF,
-  ASCENSION_STATS_OFF, BOND_DISTANCES_OFFSET, DAMPING_OFF, CAUSALITY_OFF,
-  HIVE_MEMORY_OFF, HIVE_BALANCE_OFF, QUORUM_OFFSET, SPAWN_REQUESTS_OFF,
-  SPAWN_GRID_OFF, COHERENCE_OFF, NEURAL_COHERENCE_OFF, PHYSICS_READ_XS_OFF,
-  PHYSICS_READ_YS_OFF, PHYSICS_READ_ENERGY_OFF, PHYSICS_READ_RESONANCE_OFF,
-  ENERGY_DELTA_OFF, RESONANCE_DELTA_OFF, STRUCTURE_BUILD_OWNER_OFF,
-  STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, ATTENTION_FIELD_OFF,
-  HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
-  GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
-  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_RESERVED_OFFSET, METABOLISM_SCRATCH_OFFSET,
-  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
-  GRID_W, GRID_H, GRID_CELLS, SPATIAL_CELL_SIZE,
-  STR_VOID, STR_WIRE, STR_NODE, STR_DIODE, STR_SOURCE, STR_SINK,
-  STR_CAPACITOR, STR_INVERTER, STR_LATCH,
-  MAX_GLYPH_AMP, MIN_GLYPH_AMP
-} from "../../../_as/mod.ts";
-
-import {
-  read_structure_charge, apply_bond_springs, glyph_transport, secrete_glyph,
-  publish_build_intent, resolve_bond_requests, calculate_trophism, get_glyph_influence,
-  get_genome_velocity_x, get_genome_velocity_y, get_attention_cell, fire_signal,
-  encode_force_tuple, read_structure_cell, publish_charge_intent, decay_for_kind,
-  diffusion_share_for_kind, get_neural_coherence, set_neural_coherence,
-  reset_neural_coherence, clear_secretion_stats, clear_metabolism_stats,
-  accumulate_metabolism_stats, apply_metabolism_kernel, tick_structure_grid,
-  diffuse_viral_semantics, tick_environment, reduce_atom_deltas
-} from "../../../_as/mod.ts";
-
-@external("index", "trace_atom")
-declare function trace_atom(
-  idx: i32,
-  opcode: i32,
-  gx: i32,
-  gy: i32,
-  targetIdx: i32,
-): void;
-
-
-import { fast_abs, fast_min, fast_max, fast_sign, math_sin, math_cos, execute_atom as vm_execute_atom, build_spatial_hash as core_build_spatial_hash } from "../../../_as/mod.ts";
-import { WORLD_MAX_X, WORLD_MAX_Y, clamp_world_x, clamp_world_y, store_clamped_pos, dir4_x, dir4_y, dir8_x, dir8_y, in_grid } from "../../../_as/mod.ts";
-import {
-  RESOURCE_MAX, clamp_resource, get_energy, set_energy, genome_key16,
-  get_resonance, set_resonance, get_phase, set_phase, get_lineage, add_resonance,
-  get_hormone, get_x, get_y, get_read_x, get_read_y, get_read_energy, get_read_resonance,
-  add_energy_delta, add_resonance_delta, get_logic_byte, get_bond_target, set_bond_target,
-  get_bond_stiffness, set_bond_stiffness, get_spatial_grid_count, get_spatial_grid_atom,
-  get_reg, set_reg, get_p_c, set_p_c, get_pending_syscall, set_pending_syscall,
-  set_bond_dist, set_damping, get_role, set_role, set_hive_memory, get_hive_memory,
-  get_hive_balance, add_hive_balance
-} from "../../../_as/mod.ts";
-
-// Genomes are at the start of instructions
-
-// Crystal type constants
-const CRYSTAL_OSCILLATOR: i32 = 5;
-
-const CRYSTAL_MEME: i32 = 10; // Type for memetic nodes
-const MEME_TRANSFER_PROB: i32 = 8; // ~12.5% chance per tick for meme absorption
-const MAX_ASCENSIONS: i32 = 64;
-const PHEROMONE_COST_BASE: i32 = 10;
-const PLASMID_COST_BASE: i32 = 25;
-
-// Globals used during a single atom's execution cycle to prevent the "Triple Move" bug.
-let accForceX: f32 = 0;
-let accForceY: f32 = 0;
-
-
-const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
-const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
-const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
-
-
-
-
-
-
-
-
- 
-
-function lcgNext(seed: u32): u32 {
-  return seed * 1664525 + 1013904223;
-}
-
-function genomePoolSlot(atomIdx: i32): i32 {
-  let hash: u32 = 2166136261;
-  for (let i = 0; i < 8; i++) {
-    hash = (hash ^ (get_logic_byte(atomIdx, i) as u32)) * 16777619;
-  }
-  return (hash & 255) as i32;
-}
-
-
-
-const ROLE_NEUTRAL: u8 = 0;
-const ROLE_PRODUCER: u8 = 1;
-const ROLE_GUARDIAN: u8 = 2;
-const ROLE_ARCHITECT: u8 = 3;
-const ROLE_PARASITE: u8 = 4;
-
-
-
-
-
-// --- PER-ROLE SECRETION PREDICATES ---
-
-function guardianShouldEmitPheromone(
-  tick: i32,
-  idx: i32,
-  phase: i32,
-  resonance: i32,
-): bool {
-  if (load<u8>(CAUSALITY_OFF + idx) == 0) return false;
-  if (((tick + idx) % 64) != 0) return false;
-  return resonance > 300;
-}
-
-function architectShouldEmitPlasmid(
-  tick: i32,
-  idx: i32,
-  phase: i32,
-  resonance: i32,
-  energy: i32,
-): bool {
-  if (((tick + idx) % 32) != 0) return false;
-  return resonance > 200;
-}
-
-function producerShouldEmitPheromone(
-  tick: i32,
-  idx: i32,
-  phase: i32,
-  resonance: i32,
-  energy: i32,
-): bool {
-  if (((tick + idx) % 128) != 0) return false;
-  return resonance > 400;
-}
-
-function producerShouldEmitPlasmid(
-  tick: i32,
-  idx: i32,
-  phase: i32,
-  resonance: i32,
-  energy: i32,
-): bool {
-  if (((tick + idx) % 128) != 0) return false;
-  return energy > 800;
-}
-
-function neutralShouldEmitPheromone(
-  tick: i32,
-  idx: i32,
-  phase: i32,
-  resonance: i32,
-): bool {
-  if (((tick + idx) % 256) != 0) return false;
-  return resonance > 500;
-}
-
-
-
-
-
-export function execute_atom(atomIndex: i32): void {
-  vm_execute_atom(atomIndex);
-}
+export * from "../../../_as/mod";
+import { build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../../../_as/mod";
 
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;
@@ -6917,174 +6730,10 @@ export function build_spatial_hash(): void {
   spatialHashOverflowCount = (result & 0xFFFFFFFF) as i32;
 }
 
-// --- OMEGA-64 | Environmental Physics: Viral Diffusion ---
-
 export { diffuse_viral_semantics as diffuseViralSemantics };
 
-// Deprecated in favor of tick_environment
 export function tick_matrix(): void {
   tick_structure_grid();
-}
-
- 
- 
-
-const membraneVisited = new StaticArray<u8>(MAX_ATOMS);
-
-function dfsMembrane(
-  current: i32,
-  start: i32,
-  depth: i32,
-  pathNodes: StaticArray<i32>,
-  pathLen: i32
-): i32 {
-  if (depth >= 8) return 0;
-  
-  for (let b_slot = 0; b_slot < 4; b_slot++) {
-    const target = atomic.load<i32>(
-      BONDS_OFFSET + (((current << 2) + b_slot) << 2) as usize
-    );
-    if (target > 0 && target < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) != 0) {
-      if (target == start && depth >= 2) {
-        return pathLen;
-      }
-      if (target < start) continue;
-      
-      let contains = false;
-      for (let i = 0; i < pathLen; i++) {
-        if (unchecked(pathNodes[i]) == target) {
-          contains = true;
-          break;
-        }
-      }
-      if (!contains) {
-        unchecked(pathNodes[pathLen] = target);
-        const finalLen = dfsMembrane(target, start, depth + 1, pathNodes, pathLen + 1);
-        if (finalLen > 0) {
-          return finalLen;
-        }
-      }
-    }
-  }
-  return 0;
-}
-
-export function tick_membrane_physics(): void {
-  for (let i = 1; i < MAX_ATOMS; i++) {
-    const id = atomic.load<i64>(IDS_OFFSET + (i << 3) as usize);
-    if (id != 0) {
-      const roleOff = ROLES_OFFSET + i;
-      const role = atomic.load<u8>(roleOff as usize);
-      atomic.store<u8>(roleOff as usize, role & ~0x80);
-      atomic.store<i32>(EVOLUTION_OFFSET + (i << 2) as usize, 0);
-      unchecked(membraneVisited[i] = 0);
-    }
-  }
-
-  const pathNodes = new StaticArray<i32>(8);
-
-  for (let i = 1; i < MAX_ATOMS; i++) {
-    if (atomic.load<i64>(IDS_OFFSET + (i << 3) as usize) == 0 || membraneVisited[i] == 1) {
-      continue;
-    }
-
-    unchecked(pathNodes[0] = i);
-    const ringLen = dfsMembrane(i, i, 0, pathNodes, 1);
-    
-    if (ringLen > 0) {
-      // Phase 41: Morphogenesis BFS Component Expansion
-      const componentNodes = new StaticArray<i32>(64);
-      let head = 0;
-      let tail = 0;
-
-      // Initialize component with the detected Membrane ring
-      for (let k = 0; k < ringLen; k++) {
-        const node = unchecked(pathNodes[k]);
-        unchecked(membraneVisited[node] = 1);
-        unchecked(componentNodes[tail++] = node);
-      }
-
-      // BFS to expand the Metazoan tissue mask to all connected edges
-      while (head < tail && tail < 64) {
-        const curr = unchecked(componentNodes[head++]);
-        
-        for (let s = 0; s < 4; s++) {
-          const neighbor = atomic.load<i32>(BONDS_OFFSET + ((curr << 2) + s) * 4 as usize);
-          if (neighbor != 0) {
-            // Only absorb if it hasn't mapped to a membrane component yet
-            if (membraneVisited[neighbor] == 0 && tail < 64) {
-              unchecked(membraneVisited[neighbor] = 1);
-              unchecked(componentNodes[tail++] = neighbor);
-            }
-          }
-        }
-      }
-
-      // 1. Calculate the Resource Pool over the ENTIRE tissue
-      let sumEnergy: i64 = 0;
-      let sumResonance: i64 = 0;
-
-      for (let k = 0; k < tail; k++) {
-        const node = unchecked(componentNodes[k]);
-        sumEnergy += get_energy(node);
-        sumResonance += atomic.load<i32>(RESONANCE_OFFSET + (node << 2) as usize);
-      }
-
-      const avgEnergy = i32(sumEnergy / tail);
-      const avgResonance = i32(sumResonance / tail);
-      const totalResonance = i32(sumResonance);
-
-      // 2. Distribute pool & Differentiate Organelles (Morphogenesis)
-      for (let k = 0; k < tail; k++) {
-        const node = unchecked(componentNodes[k]);
-        set_energy(node, avgEnergy);
-        atomic.store<i32>(RESONANCE_OFFSET + (node << 2) as usize, avgResonance);
-        atomic.store<i32>(EVOLUTION_OFFSET + (node << 2) as usize, totalResonance);
-        
-        // Count internal bonds to figure out topological layer (Surface vs Core)
-        let internalBonds = 0;
-        for (let s = 0; s < 4; s++) {
-          const neighbor = atomic.load<i32>(BONDS_OFFSET + ((node << 2) + s) * 4 as usize);
-          if (neighbor != 0) {
-            // Verify if neighbor is part of this exact tissue component
-            let isInternal = false;
-            for (let c = 0; c < tail; c++) {
-              if (unchecked(componentNodes[c]) == neighbor) {
-                isInternal = true;
-                break;
-              }
-            }
-            if (isInternal) {
-              internalBonds++;
-            }
-          }
-        }
-
-        // Morphological Differentiation
-        const roleOff = ROLES_OFFSET + node;
-        let role = atomic.load<u8>(roleOff as usize);
-        
-        // Clear underlying lower 7 bits for differentiation
-        role = role & 0x80;
-
-        // Apply topological epigenetics
-        if (internalBonds >= 3) {
-          // Core / Architect (Protected Processor)
-          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
-        } else {
-          // Surface / Guardian (Radar & Armor)
-          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
-        }
-        
-        // Ensure Metazoan flag exists
-        role = role | 0x80;
-
-        atomic.store<u8>(roleOff as usize, role);
-      }
-      
-      for (let k = 0; k < 8; k++) unchecked(pathNodes[k] = 0);
-    }
-  }
 }
 
 ```
@@ -49109,16 +48758,20 @@ const GEN_DIR_AS = new URL("../_as", import.meta.url).pathname;
 interface ArgDesc { name: string; type: string; }
 interface TestDesc { inputs: any[]; expected: any; }
 
+export type NodeType = "pure_fn" | "struct" | "enum" | "constants" | "static_table" | "memory_layout" | "substrate_module";
+
 interface OntologyNode {
   id: string;
-  type?: "static_table" | "pure_fn" | "struct" | "enum" | "constants" | "memory_layout";
+  type: NodeType;
   description?: string;
   deps: string[];
-  args?: Record<string, string>; // Changed type and moved
-  rsArgs?: Record<string, string>; // New field
-  returns?: string; // Moved
-  asImports?: string[]; // Custom ASM linking
+  args?: Record<string, string>;
+  target?: string;
+  rsArgs?: Record<string, string>;
+  returns?: string;
+  asImports?: string[];
   payload?: any[]; // Moved
+  rust?: string; // New field for raw Rust code
 
   // static_table specific
   dataType?: string;
@@ -49174,6 +48827,7 @@ try {
       regions: meta.regions,
       vars: meta.vars || [],
       asImports: meta.asImports,
+      rust: meta.rust, // Added for substrate_module
       level: -1
     };
 
@@ -49234,6 +48888,13 @@ try {
         Deno.exit(1);
       }
       node.payload = JSON.parse(payloadMatch[1]);
+    } else if (node.type === "substrate_module") {
+      const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
+      if (!rustMatch) {
+        console.error(`[FATAL] Missing rust code block in substrate_module ${node.id}`);
+        Deno.exit(1);
+      }
+      node.rust = rustMatch[1].trim();
     }
 
     nodes.set(node.id, node);
@@ -49326,58 +48987,62 @@ for (const node of nodes.values()) {
   tsOut += `\n`;
 
   // Code for TS
-  if (node.type === "static_table") {
-    tsOut += `export const ${node.id}: number[] = [${node.payload?.join(", ")}];\n`;
-  } else if (node.type === "enum") {
-    tsOut += `// Enum: ${node.id}\n`;
-    for (const [k, v] of Object.entries(node.values || {})) {
-       tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
-    }
-  } else if (node.type === "constants") {
-    tsOut += `// Constants: ${node.id}\n`;
-    for (const [k, def] of Object.entries(node.values || {})) {
-       const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-       const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
-       tsOut += `export const ${k}: ${tsType} = ${v};\n`;
-    }
-  } else if (node.type === "memory_layout") {
-    tsOut += `// Memory Layout: ${node.id}\n`;
-    let curOffExpr = node.baseOffset || "0";
-    
-    for (const region of node.regions || []) {
-       // Offset alignment logic applied via bitwise macro evaluations native to TS
-       const align = region.align || 1;
-       if (align > 1) {
-           curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
-       }
-       tsOut += `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
-       tsOut += `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
-       
-       // Backwards aliases
-       if (region.name === "EVOLUTION") tsOut += `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
-       if (region.name === "INSTRUCTIONS") tsOut += `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
-       if (region.name === "ASCENSION_STATS_RESERVED") {
-           tsOut += `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "HORMONES") {
-           tsOut += `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "SPAWN_REQUESTS") {
-           tsOut += `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
-       }
-       
-       // Next offset starts after this size
-       curOffExpr = `${region.name}_OFFSET + (${region.size})`;
-    }
-    tsOut += `export const LATTICE_MEMORY_END: number = ${curOffExpr};\n`;
-    tsOut += `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
-    tsOut += `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
+  switch (node.type) {
+    case "static_table":
+      tsOut += `export const ${node.id}: number[] = [${node.payload?.join(", ")}];\n`;
+      break;
+    case "enum":
+      tsOut += `// Enum: ${node.id}\n`;
+      for (const [k, v] of Object.entries(node.values || {})) {
+        tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+      }
+      break;
+    case "constants":
+      tsOut += `// Constants: ${node.id}\n`;
+      for (const [k, def] of Object.entries(node.values || {})) {
+        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
+        tsOut += `export const ${k}: ${tsType} = ${v};\n`;
+      }
+      break;
+    case "memory_layout":
+      tsOut += `// Memory Layout: ${node.id}\n`;
+      let curOffExpr = node.baseOffset || "0";
+      
+      for (const region of node.regions || []) {
+        // Offset alignment logic applied via bitwise macro evaluations native to TS
+        const align = region.align || 1;
+        if (align > 1) {
+            curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
+        }
+        tsOut += `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
+        tsOut += `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
+        
+        // Backwards aliases
+        if (region.name === "EVOLUTION") tsOut += `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
+        if (region.name === "INSTRUCTIONS") tsOut += `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
+        if (region.name === "ASCENSION_STATS_RESERVED") {
+            tsOut += `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "HORMONES") {
+            tsOut += `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "SPAWN_REQUESTS") {
+            tsOut += `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
+        }
+        
+        // Next offset starts after this size
+        curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+      }
+      tsOut += `export const LATTICE_MEMORY_END: number = ${curOffExpr};\n`;
+      tsOut += `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
+      tsOut += `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
 
-    tsOut += `
+      tsOut += `
 export function validateMemoryLayout(memorySize: number) {
   const regions = [
 ${(node.regions || []).map((r, i, arr) => {
@@ -49405,86 +49070,112 @@ ${(node.regions || []).map((r, i, arr) => {
 
   return { ok, errors, regions, latticeEnd: LATTICE_MEMORY_END };
 }\n`;
-  } else if (node.type === "pure_fn") {
-    const arr = Array.isArray(node.args) ? node.args : 
-               (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-    const argStr = arr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-    tsOut += `export function ${node.id}(${argStr}): ${node.returns} {\n`;
-    tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-    tsOut += `\n}\n`;
+      break;
+    case "pure_fn":
+      const nodeArgsArr = Array.isArray(node.args) ? node.args : 
+                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+      const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
+      tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
+      tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
+      tsOut += `\n}\n`;
+      break;
+    case "substrate_module":
+      // Substrate modules are purely raw passthrough blocks, bypass AST args.
+      break;
+    default:
+      // No TS output for other types like 'struct'
+      break;
   }
   
-  Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+  if (node.type !== "substrate_module") {
+    Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+  }
 
   // Generate RS
   let rsOut = ``;
-  // Imports for RS (using crate paths based on aggregation)
-  if (node.level > 0) {
-    const prevLevel = formatLevel(node.level - 1);
-    rsOut += `use super::super::L${prevLevel}::*;\n`;
-  }
-  rsOut += `\n`;
-
-  if (node.type === "static_table") {
-    rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
-  } else if (node.type === "enum") {
-    rsOut += `// Enum: ${node.id}\n`;
-    for (const [k, v] of Object.entries(node.values || {})) {
-       rsOut += `pub const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+  if (node.type === "substrate_module") {
+    rsOut = `// Substrate Node: ${node.id}
+// Level: ${node.level}
+${node.description ? `// ${node.description}\n` : ""}\n`;
+    rsOut += `#[allow(unused_imports)]\n`;
+    if (node.level > 0) {
+      const prevLevel = formatLevel(node.level - 1);
+      rsOut += `use super::super::L${prevLevel}::*;\n`;
     }
-  } else if (node.type === "constants") {
-    rsOut += `// Constants: ${node.id}\n`;
-    for (const [k, def] of Object.entries(node.values || {})) {
-       const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-       const rsType = mapRsType((def as any).type as string);
-       let valStr = v.toString();
-       if ((def as any).expr !== undefined) {
-         valStr = `(${valStr}) as ${rsType}`;
-       } else if (rsType.startsWith("f") && Number.isInteger(v)) {
-         valStr += ".0";
-       }
-       rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
-    }
-  } else if (node.type === "memory_layout") {
-    rsOut += `// Memory Layout: ${node.id}\n`;
-    let curOffExpr = node.baseOffset || "0";
+    rsOut += `\n`;
     
-    for (const region of node.regions || []) {
-       const align = region.align || 1;
-       if (align > 1) {
-           curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
-       }
-       rsOut += `pub const ${region.name}_OFFSET: usize = ${curOffExpr};\n`;
-       rsOut += `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
-       
-       // Backcompat aliases
-       if (region.name === "EVOLUTION") rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
-       if (region.name === "INSTRUCTIONS") rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
-       if (region.name === "ASCENSION_STATS_RESERVED") {
-           rsOut += `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "SPAWN_REQUESTS") {
-           rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
-       }
-       
-       curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+    if (node.rust) {
+      rsOut += node.rust;
     }
-    rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
-  } else if (node.type === "pure_fn") {
-    let argStr = "";
-    if (node.rsArgs) {
-      argStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
-    } else {
-      const arr = Array.isArray(node.args) ? node.args : 
-                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-      argStr = arr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+  } else {
+    rsOut = `#[allow(unused_imports)]\n`;
+    if (node.level > 0) {
+      const prevLevel = formatLevel(node.level - 1);
+      rsOut += `use super::super::L${prevLevel}::*;\n`;
     }
-    rsOut += `pub fn ${node.id}(${argStr}) -> ${mapRsType(node.returns!)} {\n`;
-    rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
-    rsOut += `\n}\n`;
+    rsOut += `\n`;
+
+    if (node.type === "static_table") {
+      rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
+    } else if (node.type === "enum") {
+      rsOut += `// Enum: ${node.id}\n`;
+      for (const [k, v] of Object.entries(node.values || {})) {
+        rsOut += `pub const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+      }
+    } else if (node.type === "constants") {
+      rsOut += `// Constants: ${node.id}\n`;
+      for (const [k, def] of Object.entries(node.values || {})) {
+        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const rsType = mapRsType((def as any).type as string);
+        let valStr = v.toString();
+        if ((def as any).expr !== undefined) {
+          valStr = `(${valStr}) as ${rsType}`;
+        } else if (rsType.startsWith("f") && Number.isInteger(v)) {
+          valStr += ".0";
+        }
+        rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
+      }
+    } else if (node.type === "memory_layout") {
+      rsOut += `// Memory Layout: ${node.id}\n`;
+      let curOffExpr = node.baseOffset || "0";
+      
+      for (const region of node.regions || []) {
+        const align = region.align || 1;
+        if (align > 1) {
+            curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
+        }
+        rsOut += `pub const ${region.name}_OFFSET: usize = ${curOffExpr};\n`;
+        rsOut += `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
+        
+        // Backcompat aliases
+        if (region.name === "EVOLUTION") rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        if (region.name === "INSTRUCTIONS") rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        if (region.name === "ASCENSION_STATS_RESERVED") {
+            rsOut += `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "SPAWN_REQUESTS") {
+            rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
+        }
+        
+        curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+      }
+      rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
+    } else if (node.type === "pure_fn") {
+      let rsArgStr = "";
+      if (node.rsArgs) {
+        rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+      } else {
+        const rsArr = Array.isArray(node.args) ? node.args : 
+                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+        rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+      }
+      rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns!)} {\n`;
+      rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
+      rsOut += `\n}\n`;
+    }
   }
 
   Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, rsOut);
@@ -49543,7 +49234,9 @@ ${(node.regions || []).map((r, i, arr) => {
     asOut += `@inline\nexport function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
   }
   
-  Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+  if (node.type !== "substrate_module") {
+    Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+  }
 }
 
 // 4. Aggregation (Facades)
@@ -49567,20 +49260,38 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }
 
-  const nodesInLevel = Array.from(nodes.values()).filter(n => n.level === lvl);
-  for (const node of nodesInLevel) {
-    if (node.type === "enum" || node.type === "constants" || node.type === "memory_layout") {
-      lvlTsOut += `export * from "./${node.id}.ts";\n`;
-      lvlAsOut += `export * from "./${node.id}";\n`;
-    } else {
-      lvlTsOut += `export { ${node.id} } from "./${node.id}.ts";\n`;
-      lvlAsOut += `export { ${node.id} } from "./${node.id}";\n`;
-    }
-    lvlRsOut += `#[path = "${node.id}.rs"]\npub mod ${node.id};\npub use ${node.id}::*;\n`;
-  }
+  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl);
   
+  const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
+  
+  // TS Mod file generation
+  const tsModExports = levelNodesNoSubstrate.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+      return `export * from "./${n.id}.ts";`;
+    } else {
+      return `export { ${n.id} } from "./${n.id}.ts";`;
+    }
+  }).join("\n");
+  if (tsModExports) lvlTsOut += tsModExports + "\n";
   Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
+
+  // RS Mod file generation
+  const rsModExports = levelNodes.map(n => {
+    // Substrate modules are purely rust, they are always included.
+    return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
+  }).join("\n");
+  if (rsModExports) lvlRsOut += rsModExports + "\n";
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
+
+  // AS Mod file generation
+  const asModExports = levelNodesNoSubstrate.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+      return `export * from "./${n.id}";`;
+    } else {
+      return `export { ${n.id} } from "./${n.id}";`;
+    }
+  }).join("\n");
+  if (asModExports) lvlAsOut += asModExports + "\n";
   Deno.writeTextFileSync(`${dirPathAs}/mod.ts`, lvlAsOut);
   
   mainTsOut += `export * from "./${lvlStr}/mod.ts";\n`;

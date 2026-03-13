@@ -9,12 +9,13 @@ import {
 } from "./crypto_shim.ts";
 import {
   clamp01,
-  clampByte,
-  clampI16,
   normalizeAngle,
   toInt16BigEndian,
   makeXorShift32,
 } from "./math_utils.ts";
+
+const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
+const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
 
 export const deriveFeatureVector = (
   state: unknown,

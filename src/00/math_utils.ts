@@ -7,18 +7,7 @@ export const clamp01 = (x: number): number => {
   return x;
 };
 
-export const clampByte = (x: number): number => {
-  const n = Math.round(x);
-  if (n < 0) return 0;
-  if (n > 255) return 255;
-  return n;
-};
 
-export const clampI16 = (x: number): number => {
-  if (x < -32768) return -32768;
-  if (x > 32767) return 32767;
-  return x;
-};
 
 export const normalizeAngle = (angle: number): number => {
   const tau = 2 * Math.PI;
@@ -47,12 +36,4 @@ export const makeXorShift32 = (seed: number): () => number => {
   };
 };
 
-const I16_DATA = {
-  MIN: -32768,
-  MAX: 32767,
-  max: 32767,
-  span: 65536,
-  LEVEL_COUNT: 64,
-};
-export const I16_LIMITS_I16_LIMITS = Object.assign(() => I16_DATA, I16_DATA);
-export const I16_CLAMP__00_00_I16_CLAMP = clampI16;
+
