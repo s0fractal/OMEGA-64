@@ -31,7 +31,7 @@ declare function trace_atom(
 ): void;
 
 
-import { math_sin, math_cos } from "./math";
+import { math_sin, math_cos, fast_abs, fast_min, fast_max, fast_sign } from "./math";
 import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
 import {
   RESOURCE_MAX, clampResource, getEnergy, setEnergy, genomeKey16,
@@ -93,7 +93,7 @@ function publishBuildIntent(
 function publishChargeIntent(cellIdx: i32, requestedCharge: i32): void {
   const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
   let charge = requestedCharge;
-  if (charge < 0) charge = 0;
+  charge = fast_max(charge, 0);
   if (charge > 255) charge = 255;
 
   for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
@@ -535,7 +535,7 @@ function packGlyphHeader(kind: i32, amplitude: i32): i32 {
 }
 
 function decayForKind(kind: i32, amplitude: i32): i32 {
-  const absAmp = Math.abs(amplitude) as i32;
+  const absAmp = fast_abs(amplitude);
   let decayAmt = 0;
   if (kind == 2) { // PLASMID
     decayAmt = absAmp > 256 ? 3 : 1;
@@ -548,7 +548,7 @@ function decayForKind(kind: i32, amplitude: i32): i32 {
 }
 
 function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
-  const absAmp = Math.abs(amplitude) as i32;
+  const absAmp = fast_abs(amplitude);
   let shareAmt = 0;
   if (kind == 2) { // PLASMID
     shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
@@ -577,7 +577,7 @@ function atomicDepositGlyphHeader(
 
     // Mismatched kind: standard replacement strategy but with absolute power checks
     if (currentKind != 0 && currentKind != kind) {
-      if (Math.abs(amplitude) <= Math.abs(currentAmplitude)) return;
+      if (fast_abs(amplitude) <= fast_abs(currentAmplitude)) return;
       const observed = atomic.cmpxchg<i32>(
         ptr,
         current,
@@ -673,7 +673,7 @@ function secreteGlyph(
   // Halo spill for Pheromones (kind=1)
   if (kind == 1) {
     const spill = phaseIntensity >> 2;
-    if (Math.abs(spill) > 0) {
+    if (fast_abs(spill) > 0) {
       if (gx > 0) {
         atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
       }
@@ -711,13 +711,13 @@ export function tickGlyphTransport(tick: i32): void {
     let retained = 0;
     if (amp > 0) {
       retained = amp - decay;
-      if (retained < 0) retained = 0;
+      retained = fast_max(retained, 0);
     } else {
       retained = amp - decay; // decay is negative when amp is negative
-      if (retained > 0) retained = 0;
+      retained = fast_min(retained, 0);
     }
 
-    if (Math.abs(retained) > 0) {
+    if (fast_abs(retained) > 0) {
       atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -727,7 +727,7 @@ export function tickGlyphTransport(tick: i32): void {
     }
 
     const share = diffusionShareForKind(kind, amp);
-    if (Math.abs(share) > 0) {
+    if (fast_abs(share) > 0) {
       const gx = cell % GRID_W;
       const gy = cell / GRID_W;
 
@@ -756,7 +756,7 @@ export function tickGlyphTransport(tick: i32): void {
   // 2. Seeding: Internal Reflection (Signal -> Pheromone)
   for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
     const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
-    const absSignal = signal < 0 ? -signal : signal;
+    const absSignal = fast_abs(signal);
     if (absSignal >= 1) {
       let amp = absSignal >> 1;
       if (amp < 16) amp = 16;
@@ -1781,7 +1781,7 @@ export function apply_metabolism_kernel(
     }
 
     const deviation = interimEnergy - targetEnergy;
-    const absDeviation = Math.abs(deviation);
+    const absDeviation = fast_abs(deviation);
 
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
