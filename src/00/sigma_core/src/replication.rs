@@ -2,9 +2,7 @@
 //! Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
 
 use crate::memory::{SigmaState, MAX_ATOMS};
-
-pub const SPAWN_MAX: i32 = 1024;
-pub const SPAWN_SLOT: i32 = 24;
+use crate::constants::{SPAWN_MAX, SPAWN_SLOT};
 
 impl SigmaState {
     /// Pushes a spawn request into the ring-buffer at the current write head.

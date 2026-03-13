@@ -3,7 +3,7 @@
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
 import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
-import { STATE_MATRIX } from "@00";
+import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@00";
 import { SOVEREIGNTY_ENGINE } from "@03";
 import { LOGGER } from "@00";
 import { RUNTIME_POLICY } from "@03";
@@ -316,8 +316,8 @@ export const SOVEREIGN_ORACLE = {
             // Pack kind 3 (plasmid) and amplitude into the 32-bit header
             const kind = 3;
             let amp = charge;
-            if (amp > 8388607) amp = 8388607;
-            if (amp < -8388608) amp = -8388608;
+            if (amp > MAX_GLYPH_AMP) amp = MAX_GLYPH_AMP;
+            if (amp < MIN_GLYPH_AMP) amp = MIN_GLYPH_AMP;
             const packedHeader = (amp << 8) | (kind & 0xFF);
 
             STATE_MATRIX.glyphHeaders[trueCellIdx] = packedHeader;

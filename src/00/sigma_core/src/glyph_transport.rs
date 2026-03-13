@@ -1,6 +1,7 @@
 //! Glyph Transport Engine
 //! Handles wave interference physics and optical secretion
 
+use crate::constants::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
 use crate::memory::SigmaState;
 
 pub fn unpack_glyph_kind(header: i32) -> u8 {
@@ -13,11 +14,11 @@ pub fn unpack_glyph_amplitude(header: i32) -> i32 {
 
 pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
     let mut amp = amplitude;
-    if amp > 8388607 {
-        amp = 8388607;
+    if amp > MAX_GLYPH_AMP {
+        amp = MAX_GLYPH_AMP;
     }
-    if amp < -8388608 {
-        amp = -8388608;
+    if amp < MIN_GLYPH_AMP {
+        amp = MIN_GLYPH_AMP;
     }
     (amp << 8) | (kind as i32 & 0xFF)
 }
@@ -44,11 +45,11 @@ impl SigmaState {
         } else {
             // Matching kind (or zeroed cell): additive wave interference
             let mut next_amplitude = current_amp + amplitude;
-            if next_amplitude > 8388607 {
-                next_amplitude = 8388607;
+            if next_amplitude > MAX_GLYPH_AMP {
+                next_amplitude = MAX_GLYPH_AMP;
             }
-            if next_amplitude < -8388608 {
-                next_amplitude = -8388608;
+            if next_amplitude < MIN_GLYPH_AMP {
+                next_amplitude = MIN_GLYPH_AMP;
             }
 
             // Annihilation (perfect destructive interference) clears the cell kind

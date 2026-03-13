@@ -1,13 +1,8 @@
-use crate::constants::{GRID_H, GRID_W, MAX_ATOMS};
+use crate::constants::{
+    GRID_H, GRID_W, MAX_ATOMS, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, STR_NODE,
+    STR_SOURCE, STR_VOID, STR_WIRE, MAX_GLYPH_AMP, MIN_GLYPH_AMP
+};
 use crate::SigmaState;
-const STR_VOID: i32 = 0;
-const STR_WIRE: i32 = 1;
-const STR_NODE: i32 = 2;
-const STR_DIODE: i32 = 3;
-const STR_SOURCE: i32 = 4;
-const STR_CAPACITOR: i32 = 6;
-const STR_INVERTER: i32 = 7;
-const STR_LATCH: i32 = 8;
 
 pub fn in_grid(x: i32, y: i32) -> bool {
     x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
@@ -109,11 +104,11 @@ fn deposit_scratch_glyph_header(
     }
 
     let mut next_amplitude = current_amplitude + amplitude;
-    if next_amplitude > 8388607 {
-        next_amplitude = 8388607;
+    if next_amplitude > MAX_GLYPH_AMP {
+        next_amplitude = MAX_GLYPH_AMP;
     }
-    if next_amplitude < -8388608 {
-        next_amplitude = -8388608;
+    if next_amplitude < MIN_GLYPH_AMP {
+        next_amplitude = MIN_GLYPH_AMP;
     }
 
     let next_kind = if next_amplitude == 0 { 0 } else { kind };

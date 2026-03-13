@@ -3,7 +3,7 @@
 // OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
 
 import {
-  SIN_LUT, COS_LUT, MAX_ATOMS, SAFETY_BUFFER, TICK_COUNTER_OFF, IDS_OFFSET,
+  MAX_ATOMS, SAFETY_BUFFER, TICK_COUNTER_OFF, IDS_OFFSET,
   XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET,
   LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
   EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
@@ -18,7 +18,10 @@ import {
   GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
   SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
   SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
-  GRID_W, GRID_H, GRID_CELLS, SPATIAL_CELL_SIZE
+  GRID_W, GRID_H, GRID_CELLS, SPATIAL_CELL_SIZE,
+  STR_VOID, STR_WIRE, STR_NODE, STR_DIODE, STR_SOURCE, STR_SINK,
+  STR_CAPACITOR, STR_INVERTER, STR_LATCH,
+  MAX_GLYPH_AMP, MIN_GLYPH_AMP
 } from "./constants.assembly";
 
 @external("index", "trace_atom")
@@ -529,8 +532,8 @@ function unpackGlyphAmplitude(header: i32): i32 {
 }
 
 function packGlyphHeader(kind: i32, amplitude: i32): i32 {
-  if (amplitude < -8388608) amplitude = -8388608;
-  if (amplitude > 8388607) amplitude = 8388607;
+  if (amplitude < MIN_GLYPH_AMP) amplitude = MIN_GLYPH_AMP;
+  if (amplitude > MAX_GLYPH_AMP) amplitude = MAX_GLYPH_AMP;
   return (amplitude << 8) | (kind & 0xFF);
 }
 
@@ -598,8 +601,8 @@ function atomicDepositGlyphHeader(
 
     // Matching kind: Optical Wave Interference (Additive)
     let nextAmplitude = currentAmplitude + amplitude;
-    if (nextAmplitude > 8388607) nextAmplitude = 8388607;
-    if (nextAmplitude < -8388608) nextAmplitude = -8388608;
+    if (nextAmplitude > MAX_GLYPH_AMP) nextAmplitude = MAX_GLYPH_AMP;
+    if (nextAmplitude < MIN_GLYPH_AMP) nextAmplitude = MIN_GLYPH_AMP;
 
     // If waves perfectly annihilate, clear the glyph entirely
     const nextKind = nextAmplitude == 0 ? 0 : kind;
@@ -1128,15 +1131,7 @@ export function execute_atom(atomIndex: i32): void {
   );
 }
 
-const STR_VOID: i32 = 0;
-const STR_WIRE: i32 = 1;
-const STR_NODE: i32 = 2;
-const STR_DIODE: i32 = 3;
-const STR_SOURCE: i32 = 4;
-const STR_SINK: i32 = 5;
-const STR_CAPACITOR: i32 = 6;
-const STR_INVERTER: i32 = 7;
-const STR_LATCH: i32 = 8;
+
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;
 

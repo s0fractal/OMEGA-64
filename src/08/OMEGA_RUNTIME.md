@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T03:02:07.961Z*
-*Exported Files in Category: 147*
-*Total Exported Files: 147*
+*Generated: 2026-03-13T06:42:44.443Z*
+*Exported Files in Category: 164*
+*Total Exported Files: 164*
 *Runtime Roots: 10*
-*Runtime Closure Files: 79*
+*Runtime Closure Files: 96*
 *Non-Runtime Code Files: 68*
 *Runtime-Support Code Files: 10*
 *Experimental Code Files: 58*
-*Manifest SHA256: f5400d96e6c2e8da8a78b542e4c124e7b5312ac1d7a0d47c3a0d5ba7f62b4bb6*
-*Export Set SHA256: 72a5007f67aeb3af15aaaf69de75ea246d5e45b7404b1eaa635896d24cc2ac26*
-*Export Content SHA256: a2728dae5c9f89b9958adf354e0e88686785619cc2dd447006ea88e70a6b3b97*
-*Git Commit: 871ad099425a*
+*Manifest SHA256: a49e2539a4965db00a44333029ef5d854ce89523e602694f610e1e0a4c8380ac*
+*Export Set SHA256: d690e425cf2682622d4e70c1ffbb2ce079e7603bb5a22a528c5e922d0d5095dc*
+*Export Content SHA256: 827e4d20f1dd5847885a49fa042fcba3e4443547c87c72c13b2d832305507a58*
+*Git Commit: 58054d4f4f0a*
 
 ---
 
@@ -34,15 +34,32 @@
 
 - src/00/01/assembly/constants.assembly.ts
 - src/00/01/assembly/index.ts
+- src/00/01/assembly/math.ts
+- src/00/01/assembly/memory_access.ts
+- src/00/01/assembly/pulse_orchestrator.ts
+- src/00/01/assembly/spatial.ts
+- src/00/01/assembly/vm.ts
+- src/00/agent_signature.ts
+- src/00/ATOM_ACCESS.ts
 - src/00/ATOM_INDEX.ts
+- src/00/checkpoint_chain.ts
+- src/00/crypto_shim.ts
+- src/00/crystallization.ts
 - src/00/ENV_PARSE.ts
+- src/00/gate_admission.ts
+- src/00/invariant_packet.ts
+- src/00/ledger_chain.ts
 - src/00/LOGGER.ts
+- src/00/math_utils.ts
+- src/00/memory_views.ts
 - src/00/mod.ts
 - src/00/OFFSETS.ts
 - src/00/PRNG.ts
 - src/00/SHIMS.ts
 - src/00/STATE_MATRIX.ts
 - src/00/STATE_SNAPSHOT.ts
+- src/00/stream_utils.ts
+- src/00/topo_signature.ts
 - src/01/GLYPH_BUFFER.ts
 - src/01/mod.ts
 - src/01/PHYSICS_ENGINE.ts
@@ -131,35 +148,32 @@ const OFFSETS_FILE = resolve("./src/00/OFFSETS.ts");
 // 5. Hardcoded const declarations: const GRID_COLS = 140;
 
 const replacements = [
-  // Standalone and common multiplications
-  { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
-  { regex: /\bgy\s*\*\s*140\b/g, replacement: "gy * GRID_W" },
-  { regex: /\bpy\s*\*\s*140\b/g, replacement: "py * GRID_W" },
-  { regex: /\by\s*\*\s*140\b/g, replacement: "y * GRID_W" },
-  { regex: /\bgPy\s*\*\s*140\b/g, replacement: "gPy * GRID_W" },
-  { regex: /\bmPy\s*\*\s*140\b/g, replacement: "mPy * GRID_W" },
-  { regex: /\bnGridY\s*\*\s*140\b/g, replacement: "nGridY * GRID_W" },
-  { regex: /\b\(\s*py\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(py $1 1) * GRID_W" },
-  { regex: /\b\(\s*gy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gy $1 1) * GRID_W" },
-  { regex: /\b\(\s*y\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(y $1 1) * GRID_W" },
-  { regex: /\b\(\s*gPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gPy $1 1) * GRID_W" },
-  { regex: /\b\(\s*mPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(mPy $1 1) * GRID_W" },
-  { regex: /\bMath\.floor\(\s*gCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(gCell / GRID_W)" },
-  { regex: /\bgCell\s*%\s*140\b/g, replacement: "gCell % GRID_W" },
-  { regex: /\bpCell\s*%\s*140\b/g, replacement: "pCell % GRID_W" },
-  { regex: /\bMath\.floor\(\s*pCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(pCell / GRID_W)" },
+  // 1. Array creations or direct products
+  { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_CELLS" },
+  { regex: /\bGRID_W\s*\*\s*80\b/g, replacement: "GRID_CELLS" },
+  { regex: /\b80\s*\*\s*GRID_W\b/g, replacement: "GRID_CELLS" },
+  { regex: /\bGRID_W\s*\*\s*GRID_H\b/g, replacement: "GRID_CELLS" },
 
-  // Boundaries checks
-  { regex: /\b< 140\b/g, replacement: "< GRID_W" },
-  { regex: /\b>= 140\b/g, replacement: ">= GRID_W" },
-  { regex: /\b< 80\b/g, replacement: "< GRID_H" },
-  { regex: /\b>= 80\b/g, replacement: ">= GRID_H" },
-  
-  // Loops
-  { regex: /\b(x)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
-  { regex: /\b(y)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
-  { regex: /\b(gx)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
-  { regex: /\b(gy)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
+  // 2. Linear Indexing (y * width + x)
+  { regex: /\b([a-zA-Z]*y|Y)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
+  { regex: /\b\(\s*([a-zA-Z]*y|Y)\s*(\+|\-)\s*\d+\s*\)\s*\*\s*140\b/g, replacement: "($1 $2 1) * GRID_W" },
+  { regex: /\b(\d+)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
+  { regex: /\b140\s*\*\s*(\d+)\b/g, replacement: "GRID_W * $1" },
+
+  // 3. Grid bounds clamping/checking (e.g. x < 140, gx >= 140)
+  { regex: /\b([a-zA-Z]*x|X)\s*<\s*140\b/g, replacement: "$1 < GRID_W" },
+  { regex: /\b([a-zA-Z]*x|X)\s*>=\s*140\b/g, replacement: "$1 >= GRID_W" },
+  { regex: /\b([a-zA-Z]*y|Y)\s*<\s*80\b/g, replacement: "$1 < GRID_H" },
+  { regex: /\b([a-zA-Z]*y|Y)\s*>=\s*80\b/g, replacement: "$1 >= GRID_H" },
+  { regex: /\b140\s*>\s*([a-zA-Z]*x|X)\b/g, replacement: "GRID_W > $1" },
+  { regex: /\b80\s*>\s*([a-zA-Z]*y|Y)\b/g, replacement: "GRID_H > $1" },
+
+  // 4. Modulo/Div math
+  { regex: /\bMath\.floor\(\s*([a-zA-Z]*Cell)\s*\/\s*140\s*\)/g, replacement: "Math.floor($1 / GRID_W)" },
+  { regex: /\b([a-zA-Z]*Cell)\s*%\s*140\b/g, replacement: "$1 % GRID_W" },
+
+  // 5. Specific test hardcodes (Array instantiations like Array(140))
+  // We'll let the second pass of replacing `Array(80)` to `Array(GRID_H)` handle this safely.
 ];
 
 function getRelativeImportPath(fromFile: string, toFile: string): string {
@@ -239,8 +253,9 @@ async function processFile(filePath: string) {
         const importRegex = /import\s+\{.*\}\s+from\s+["'].*OFFSETS.*["'];?/;
         const missingW = newContent.includes("GRID_W") && !newContent.match(/import.*GRID_W.*OFFSETS/);
         const missingH = newContent.includes("GRID_H") && !newContent.match(/import.*GRID_H.*OFFSETS/);
+        const missingC = newContent.includes("GRID_CELLS") && !newContent.match(/import.*GRID_CELLS.*OFFSETS/);
 
-        if (missingW || missingH) {
+        if (missingW || missingH || missingC) {
             // Check if there is already an import from OFFSETS
             if (importRegex.test(newContent)) {
                  // Try to augment existing import
@@ -249,12 +264,14 @@ async function processFile(filePath: string) {
                      let inner = match[2];
                      if (missingW) inner += ", GRID_W";
                      if (missingH) inner += ", GRID_H";
+                     if (missingC) inner += ", GRID_CELLS";
                      newContent = newContent.replace(match[0], `${match[1]}${inner}${match[3]}`);
                  }
             } else {
-                let toImport = [];
+                const toImport = [];
                 if (missingW) toImport.push("GRID_W");
                 if (missingH) toImport.push("GRID_H");
+                if (missingC) toImport.push("GRID_CELLS");
                 
                 // Exclude the OFFSETS.ts file itself
                 if (filePath !== OFFSETS_FILE) {
@@ -296,13 +313,17 @@ main();
 ```typescript
 // AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
 // OMEGA-64 | constants.assembly.ts | Era 69
-// Isomorphic WASM Constants and Math LUTs
+// Isomorphic WASM Constants
+
 
 export const MAX_ATOMS: i32 = 500000;
 export const SAFETY_BUFFER: usize = 8000000;
 export const GRID_W: i32 = 140;
 export const GRID_H: i32 = 80;
 export const GRID_CELLS: usize = 11200;
+export const SPATIAL_CELL_SIZE: i32 = 10;
+export const WORLD_MAX_X: i32 = 1399;
+export const WORLD_MAX_Y: i32 = 799;
 export const SCALE: i32 = 1000;
 export const CELL_CAPACITY: usize = 32;
 export const MAX_PC: u8 = 64;
@@ -312,6 +333,86 @@ export const MAX_LEDGER_EVENTS: usize = 65536;
 export const MAX_EGRESS_EVENTS: usize = 8192;
 export const WASM_PAGE_BYTES: usize = 65536;
 export const WASM_MEMORY_PAGES: usize = 7630;
+export const HIVE_MEMORY_SIZE: usize = 1024;
+export const HIVE_ENERGY_POOL_SIZE: usize = 256;
+export const MAX_HORMONES: usize = 8;
+export const SECRETION_STATS_SIZE: usize = 12;
+export const MAX_SPAWN_REQUESTS: usize = 1024;
+export const MAX_MEIOSIS_EVENTS: usize = 75000;
+export const MAX_ASCENSION_STATS: usize = 62500;
+export const MAX_ASCENSION_STATS_RESERVED: usize = 1250000;
+export const ATOM_CONTEXT_SIZE: usize = 16;
+export const ATOM_GENOME_SIZE: usize = 8;
+export const ATOM_INSTRUCTION_SIZE: usize = 64;
+export const RESOURCE_MAX: i32 = 2000000000;
+
+export const OP_NOP: u8 = 0;
+export const OP_SET: u8 = 1;
+export const OP_GET: u8 = 2;
+export const OP_PUT: u8 = 3;
+export const OP_ADD: u8 = 4;
+export const OP_SUB: u8 = 5;
+export const OP_JZ: u8 = 16;
+export const OP_JNZ: u8 = 17;
+export const OP_JMP: u8 = 18;
+export const OP_SYSCALL: u8 = 96;
+export const OP_REPLICATE: u8 = 128;
+export const OP_SIGNAL: u8 = 129;
+export const OP_BIND: u8 = 130;
+export const OP_SHARE: u8 = 131;
+export const OP_HEBB: u8 = 138;
+export const OP_FIRE: u8 = 139;
+export const OP_DECAY: u8 = 145;
+export const OP_PLUG: u8 = 164;
+export const OP_TENSEGRITY: u8 = 165;
+export const OP_COLLECTIVE: u8 = 166;
+export const OP_BUILD: u8 = 168;
+export const OP_SPORE_DRIVE: u8 = 168;
+export const OP_SENSE: u8 = 169;
+export const OP_SENSE_AS: u8 = 178;
+export const OP_SECRETE_PLASMID: u8 = 170;
+export const OP_INCORPORATE_PLASMID: u8 = 171;
+export const OP_RESOLVE: u8 = 176;
+export const OP_RESONATE_KURAMOTO: u8 = 177;
+export const PROP_ENERGY: u8 = 0;
+export const PROP_RESONANCE: u8 = 1;
+export const PROP_X: u8 = 2;
+export const PROP_Y: u8 = 3;
+export const PROP_PHASE: u8 = 4;
+export const PROP_GRID_CHARGE: u8 = 7;
+export const PROP_QUORUM: u8 = 8;
+export const PROP_NEURAL_COHERENCE: u8 = 9;
+export const PROP_MEMORY: u8 = 10;
+export const PROP_CONSENSUS: u8 = 11;
+export const SYS_YIELD: i32 = 1;
+export const SYS_READ_MEM: i32 = 2;
+export const SYS_WRITE_MEM: i32 = 3;
+export const SYS_SPAWN: i32 = 4;
+export const SYS_BIND: i32 = 5;
+export const SYS_SET_ROLE: i32 = 6;
+export const SYS_MUTATE: i32 = 7;
+export const SYS_MSG: i32 = 8;
+export const SYS_READ_INBOX: i32 = 9;
+export const SYS_TRANSFER: i32 = 10;
+export const SYS_REPLICATE: i32 = 11;
+export const SYS_EMIT: i32 = 12;
+export const SYS_SCAN: i32 = 13;
+export const SYS_MOVE: i32 = 14;
+export const SYS_EAT: i32 = 15;
+export const SYS_BET: i32 = 16;
+export const SYS_ATTRACT: i32 = 17;
+export const SYS_FOLD: i32 = 18;
+export const SYS_SPORE_DRIVE: i32 = 20;
+export const SYS_SENSE_PHASE: i32 = 21;
+export const STR_VOID: i32 = 0;
+export const STR_WIRE: i32 = 1;
+export const STR_NODE: i32 = 2;
+export const STR_DIODE: i32 = 3;
+export const STR_SOURCE: i32 = 4;
+export const STR_SINK: i32 = 5;
+export const STR_CAPACITOR: i32 = 6;
+export const STR_INVERTER: i32 = 7;
+export const STR_LATCH: i32 = 8;
 
 export const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;
 export const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;
@@ -407,16 +508,6 @@ export const EGRESS_DATA_OFFSET: usize = SAFETY_BUFFER + 141994496;
 
 export const SPAWN_MAX: i32 = 1024;
 export const SPAWN_SLOT: i32 = 24;
-export const LATTICE_MEMORY_END: usize = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
-
-// Mathematical Trigonometric LUTs (Q15 Format)
-export const SIN_LUT: StaticArray<i16> = [
-  /* [TRUNCATED LUT ARRAY] */
-];
-
-export const COS_LUT: StaticArray<i16> = [
-  /* [TRUNCATED LUT ARRAY] */
-];
 
 ```
 
@@ -425,35 +516,29 @@ export const COS_LUT: StaticArray<i16> = [
 ## FILE: src/00/01/assembly/index.ts
 
 ```typescript
-// OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
+export * from "./pulse_orchestrator";
+export * from "./memory_access";
+export * from "./math";
+export * from "./spatial";
+export * from "./vm";
 
-import {
-  SIN_LUT, COS_LUT, MAX_ATOMS, SAFETY_BUFFER, TICK_COUNTER_OFF, IDS_OFFSET,
-  XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET,
-  LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
-  EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
-  ROLES_OFFSET, STRUCTURE_GRID_OFF, SIGNAL_GRID_OFF, MEMORY_GRID_OFF,
-  ASCENSION_STATS_OFF, BOND_DIST_OFF, DAMPING_OFF, CAUSALITY_OFF,
-  HIVE_MEMORY_OFF, HIVE_BALANCE_OFF, QUORUM_OFFSET, SPAWN_REQUESTS_OFF,
-  SPAWN_GRID_OFF, COHERENCE_OFF, NEURAL_COHERENCE_OFF, PHYSICS_READ_XS_OFF,
-  PHYSICS_READ_YS_OFF, PHYSICS_READ_ENERGY_OFF, PHYSICS_READ_RESONANCE_OFF,
-  ENERGY_DELTA_OFF, RESONANCE_DELTA_OFF, STRUCTURE_BUILD_OWNER_OFF,
-  STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, ATTENTION_FIELD_OFF,
-  HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
-  GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
-  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
-  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
-  GRID_W, GRID_H, GRID_CELLS
-} from "./constants.assembly";
+```
 
-declare function trace_atom(
-  idx: i32,
-  opcode: i32,
-  gx: i32,
-  gy: i32,
-  targetIdx: i32,
-): void;
+---
 
+## FILE: src/00/01/assembly/math.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+
+export const SIN_LUT: StaticArray<i16> = [
+  /* [TRUNCATED LUT ARRAY] */
+];
+
+export const COS_LUT: StaticArray<i16> = [
+  /* [TRUNCATED LUT ARRAY] */
+];
 
 export function math_sin(angle: i32, highRes: i32): i32 {
   if (highRes == 0) {
@@ -498,7 +583,253 @@ export function math_cos(angle: i32, highRes: i32): i32 {
   let term2 = (d2 * frac * frac) >> 16;
   return c_base - term1 - term2;
 }
-const RESOURCE_MAX: i32 = 2000000000;
+
+// --- Fast Integer Math Helpers ---
+
+@inline
+export function fast_abs(v: i32): i32 {
+  const mask = v >> 31;
+  return (v + mask) ^ mask;
+}
+
+@inline
+export function fast_min(a: i32, b: i32): i32 {
+  const diff = a - b;
+  return b + (diff & (diff >> 31));
+}
+
+@inline
+export function fast_max(a: i32, b: i32): i32 {
+  const diff = a - b;
+  return a - (diff & (diff >> 31));
+}
+
+@inline
+export function fast_sign(v: i32): i32 {
+  return (v >> 31) | (<i32>(<u32>-v) >>> 31);
+}
+
+```
+
+---
+
+## FILE: src/00/01/assembly/memory_access.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+import {
+  MAX_ATOMS, TICK_COUNTER_OFF, IDS_OFFSET,
+  XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET,
+  LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
+  EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
+  ROLES_OFFSET, STRUCTURE_GRID_OFF, SIGNAL_GRID_OFF, MEMORY_GRID_OFF,
+  ASCENSION_STATS_OFF, BOND_DIST_OFF, DAMPING_OFF, CAUSALITY_OFF,
+  HIVE_MEMORY_OFF, HIVE_BALANCE_OFF, QUORUM_OFFSET, SPAWN_REQUESTS_OFF,
+  SPAWN_GRID_OFF, COHERENCE_OFF, NEURAL_COHERENCE_OFF, PHYSICS_READ_XS_OFF,
+  PHYSICS_READ_YS_OFF, PHYSICS_READ_ENERGY_OFF, PHYSICS_READ_RESONANCE_OFF,
+  ENERGY_DELTA_OFF, RESONANCE_DELTA_OFF, STRUCTURE_BUILD_OWNER_OFF,
+  STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, ATTENTION_FIELD_OFF,
+  HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
+  GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
+  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
+  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
+  GRID_W, GRID_H, GRID_CELLS, RESOURCE_MAX
+} from "./constants.assembly";
+
+export { RESOURCE_MAX };
+
+export function clampResource(value: i64): i32 {
+  if (value < 0) return 0;
+  if (value > RESOURCE_MAX as i64) return RESOURCE_MAX;
+  return value as i32;
+}
+export function getEnergy(idx: i32): i32 {
+  return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
+}
+export function setEnergy(idx: i32, val: i32): void {
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
+}
+
+export function genomeKey16(idx: i32): i32 {
+  const ptr = (LOGIC_OFFSET + (idx << 3)) as usize;
+  const b0 = load<u8>(ptr) as i32;
+  const b1 = load<u8>(ptr + 1) as i32;
+  return (b0 << 8) | b1;
+}
+
+export function getResonance(idx: i32): i32 {
+  return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
+}
+export function setResonance(idx: i32, val: i32): void {
+  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, clampResource(val as i64));
+}
+export function getPhase(idx: i32): i32 {
+  return load<i32>(PHASE_OFFSET + (idx << 2) as usize);
+}
+export function setPhase(idx: i32, val: i32): void {
+  store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
+}
+export function getLineage(idx: i32): u64 {
+  return load<u64>(LINEAGE_OFFSET + (idx << 3) as usize);
+}
+export function addResonance(idx: i32, delta: i32): void {
+  setResonance(idx, getResonance(idx) + delta);
+}
+
+export function getHormone(id: i32): u16 {
+  return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
+}
+export function getX(idx: i32): i16 {
+  return load<i16>(XS_OFFSET + (idx << 1) as usize);
+}
+export function getY(idx: i32): i16 {
+  return load<i16>(YS_OFFSET + (idx << 1) as usize);
+}
+export function getReadX(idx: i32): i16 {
+  return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1) as usize);
+}
+export function getReadY(idx: i32): i16 {
+  return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1) as usize);
+}
+export function getReadEnergy(idx: i32): i32 {
+  return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2) as usize);
+}
+export function getReadResonance(idx: i32): i32 {
+  return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2) as usize);
+}
+export function addEnergyDelta(idx: i32, delta: i32): void {
+  if (delta != 0) {
+    atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2) as usize, delta);
+  }
+}
+export function addResonanceDelta(idx: i32, delta: i32): void {
+  if (delta != 0) {
+    atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2) as usize, delta);
+  }
+}
+export function getLogicByte(idx: i32, slot: i32): u8 {
+  return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize);
+}
+export function getBondTarget(atomIdx: i32, slot: i32): i32 {
+  return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize);
+}
+export function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void {
+  store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx);
+}
+export function getBondStiffness(atomIdx: i32, slot: i32): f32 {
+  return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize);
+}
+export function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void {
+  store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, val);
+}
+export function getSpatialGridCount(gx: i32, gy: i32): i32 {
+  let cellIdx = gy * GRID_W + gx;
+  return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) as usize);
+}
+export function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 {
+  let cellIdx = gy * GRID_W + gx;
+  return load<i32>(
+    SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize,
+  );
+}
+export function getReg(atomIdx: i32, reg: i32): i32 {
+  return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize);
+}
+export function setReg(atomIdx: i32, reg: i32, val: i32): void {
+  store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize, val);
+}
+export function getPC(atomIdx: i32): u8 {
+  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize);
+}
+export function setPC(atomIdx: i32, val: u8): void {
+  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize, val);
+}
+export function getPendingSyscall(atomIdx: i32): u8 {
+  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize);
+}
+export function setPendingSyscall(atomIdx: i32, val: u8): void {
+  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize, val);
+}
+export function setBondDist(atomIdx: i32, slot: i32, dist: u8): void {
+  store<u8>(BOND_DIST_OFF + (atomIdx << 2) + slot as usize, dist);
+}
+export function setDamping(atomIdx: i32, val: u8): void {
+  store<u8>(DAMPING_OFF + atomIdx as usize, val);
+}
+export function getRole(atomIdx: i32): u8 {
+  return load<u8>(ROLES_OFFSET + atomIdx as usize);
+}
+export function setRole(atomIdx: i32, val: u8): void {
+  store<u8>(ROLES_OFFSET + atomIdx as usize, val);
+}
+export function setHiveMemory(addr: i32, val: u8): void {
+  store<u8>(HIVE_MEMORY_OFF + (addr & 1023) as usize, val);
+}
+export function getHiveMemory(addr: i32): u8 {
+  return load<u8>(HIVE_MEMORY_OFF + (addr & 1023) as usize);
+}
+export function getHiveBalance(): i32 {
+  return atomic.load<i32>(HIVE_BALANCE_OFF);
+}
+export function addHiveBalance(val: i32): i32 {
+  return atomic.add<i32>(HIVE_BALANCE_OFF, val);
+}
+
+```
+
+---
+
+## FILE: src/00/01/assembly/pulse_orchestrator.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+// OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
+
+import {
+  MAX_ATOMS, SAFETY_BUFFER, TICK_COUNTER_OFF, IDS_OFFSET,
+  XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET,
+  LOGIC_OFFSET, BONDS_OFFSET, STIFFNESS_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET,
+  EVOLUTION_OFFSET, INTENT_OFFSET, BOND_REQUESTS_OFFSET, SPATIAL_GRID_OFFSET,
+  ROLES_OFFSET, STRUCTURE_GRID_OFF, SIGNAL_GRID_OFF, MEMORY_GRID_OFF,
+  ASCENSION_STATS_OFF, BOND_DIST_OFF, DAMPING_OFF, CAUSALITY_OFF,
+  HIVE_MEMORY_OFF, HIVE_BALANCE_OFF, QUORUM_OFFSET, SPAWN_REQUESTS_OFF,
+  SPAWN_GRID_OFF, COHERENCE_OFF, NEURAL_COHERENCE_OFF, PHYSICS_READ_XS_OFF,
+  PHYSICS_READ_YS_OFF, PHYSICS_READ_ENERGY_OFF, PHYSICS_READ_RESONANCE_OFF,
+  ENERGY_DELTA_OFF, RESONANCE_DELTA_OFF, STRUCTURE_BUILD_OWNER_OFF,
+  STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, ATTENTION_FIELD_OFF,
+  HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
+  GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
+  SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
+  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
+  GRID_W, GRID_H, GRID_CELLS, SPATIAL_CELL_SIZE,
+  STR_VOID, STR_WIRE, STR_NODE, STR_DIODE, STR_SOURCE, STR_SINK,
+  STR_CAPACITOR, STR_INVERTER, STR_LATCH
+} from "./constants.assembly";
+
+@external("index", "trace_atom")
+declare function trace_atom(
+  idx: i32,
+  opcode: i32,
+  gx: i32,
+  gy: i32,
+  targetIdx: i32,
+): void;
+
+
+import { math_sin, math_cos, fast_abs, fast_min, fast_max, fast_sign } from "./math";
+import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
+import {
+  RESOURCE_MAX, clampResource, getEnergy, setEnergy, genomeKey16,
+  getResonance, setResonance, getPhase, setPhase, getLineage, addResonance,
+  getHormone, getX, getY, getReadX, getReadY, getReadEnergy, getReadResonance,
+  addEnergyDelta, addResonanceDelta, getLogicByte, getBondTarget, setBondTarget,
+  getBondStiffness, setBondStiffness, getSpatialGridCount, getSpatialGridAtom,
+  getReg, setReg, getPC, setPC, getPendingSyscall, setPendingSyscall,
+  setBondDist, setDamping, getRole, setRole, setHiveMemory, getHiveMemory,
+  getHiveBalance, addHiveBalance
+} from "./memory_access";
 
 // Genomes are at the start of instructions
 
@@ -515,78 +846,7 @@ const PLASMID_COST_BASE: i32 = 25;
 let accForceX: f32 = 0;
 let accForceY: f32 = 0;
 
-function clampResource(value: i64): i32 {
-  if (value < 0) return 0;
-  if (value > RESOURCE_MAX as i64) return RESOURCE_MAX;
-  return value as i32;
-}
-function getEnergy(idx: i32): i32 {
-  return load<i32>(ENERGY_OFFSET + (idx << 2) as usize);
-}
-function setEnergy(idx: i32, val: i32): void {
-  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, val);
-}
 
-function genomeKey16(idx: i32): i32 {
-  const ptr = (LOGIC_OFFSET + (idx << 3)) as usize;
-  const b0 = load<u8>(ptr) as i32;
-  const b1 = load<u8>(ptr + 1) as i32;
-  return (b0 << 8) | b1;
-}
-
-function getResonance(idx: i32): i32 {
-  return load<i32>(RESONANCE_OFFSET + (idx << 2) as usize);
-}
-function setResonance(idx: i32, val: i32): void {
-  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, clampResource(val as i64));
-}
-function getPhase(idx: i32): i32 {
-  return load<i32>(PHASE_OFFSET + (idx << 2) as usize);
-}
-function setPhase(idx: i32, val: i32): void {
-  store<i32>(PHASE_OFFSET + (idx << 2) as usize, val);
-}
-function getLineage(idx: i32): u64 {
-  return load<u64>(LINEAGE_OFFSET + (idx << 3) as usize);
-}
-function addResonance(idx: i32, delta: i32): void {
-  setResonance(idx, getResonance(idx) + delta);
-}
-
-// Read a global hormone value from the shared lattice (index 0..6).
-// 0=entropy_pressure 1=time_viscosity 2=aggression 3=replication_bias 4=repair_drive 5=mutation_friction 6=global_consensus
-
-function getHormone(id: i32): u16 {
-  return atomic.load<u16>(HORMONE_OFF + (id << 1) as usize);
-}
-function getX(idx: i32): i16 {
-  return load<i16>(XS_OFFSET + (idx << 1) as usize);
-}
-function getY(idx: i32): i16 {
-  return load<i16>(YS_OFFSET + (idx << 1) as usize);
-}
-function getReadX(idx: i32): i16 {
-  return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1) as usize);
-}
-function getReadY(idx: i32): i16 {
-  return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1) as usize);
-}
-function getReadEnergy(idx: i32): i32 {
-  return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2) as usize);
-}
-function getReadResonance(idx: i32): i32 {
-  return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2) as usize);
-}
-function addEnergyDelta(idx: i32, delta: i32): void {
-  if (delta != 0) {
-    atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2) as usize, delta);
-  }
-}
-function addResonanceDelta(idx: i32, delta: i32): void {
-  if (delta != 0) {
-    atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2) as usize, delta);
-  }
-}
 const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
 const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
 const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
@@ -620,7 +880,7 @@ function publishBuildIntent(
 function publishChargeIntent(cellIdx: i32, requestedCharge: i32): void {
   const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
   let charge = requestedCharge;
-  if (charge < 0) charge = 0;
+  charge = fast_max(charge, 0);
   if (charge > 255) charge = 255;
 
   for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
@@ -647,7 +907,7 @@ function readStructureCell(cellIdx: i32): i32 {
   // Stale lock fallback: preserve forward progress under adversarial contention.
   return atomic.load<i32>(gridPtr);
 }
-function readStructureCharge(cellIdx: i32): i32 {
+export function readStructureCharge(cellIdx: i32): i32 {
   const cellVal = readStructureCell(cellIdx);
   const baseCharge = (cellVal >> 16) & 0xFF;
   const intentCharge = atomic.load<i32>(
@@ -655,21 +915,7 @@ function readStructureCharge(cellIdx: i32): i32 {
   );
   return intentCharge > baseCharge ? intentCharge : baseCharge;
 }
-function getLogicByte(idx: i32, slot: i32): u8 {
-  return load<u8>(LOGIC_OFFSET + (idx << 3) + slot as usize);
-}
-function getBondTarget(atomIdx: i32, slot: i32): i32 {
-  return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize);
-}
-function setBondTarget(atomIdx: i32, slot: i32, targetIdx: i32): void {
-  store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, targetIdx);
-}
-function getBondStiffness(atomIdx: i32, slot: i32): f32 {
-  return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize);
-}
-function setBondStiffness(atomIdx: i32, slot: i32, val: f32): void {
-  store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2) as usize, val);
-}
+
 
 function writeBondRequest(initiator: i32, target: i32): void {
   let offset = BOND_REQUESTS_OFFSET + (initiator * 12);
@@ -678,16 +924,7 @@ function writeBondRequest(initiator: i32, target: i32): void {
   store<i32>((offset + 8) as usize, 1); // Status: Active
 }
 
-function getSpatialGridCount(gx: i32, gy: i32): i32 {
-  let cellIdx = gy * GRID_W + gx;
-  return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) as usize);
-}
-function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 {
-  let cellIdx = gy * GRID_W + gx;
-  return load<i32>(
-    SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize,
-  );
-}
+
 
 function findNextFreeSlot(start: i32): i32 {
   for (let i = 0; i < MAX_ATOMS; i++) {
@@ -863,32 +1100,7 @@ function fireSignal(atomIndex: i32): void {
   }
 }
 
-// RISC-I Opcodes
-const OP_NOP: u8 = 0x00;
-const OP_SET: u8 = 0x01; // SET Reg, Imm8
-const OP_GET: u8 = 0x02; // GET Reg, Prop
-const OP_PUT: u8 = 0x03; // PUT Reg, Prop
-const OP_ADD: u8 = 0x04; // ADD R1, R2
-const OP_SUB: u8 = 0x05; // SUB R1, R2
-const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
-const OP_JMP: u8 = 0x12; // JMP RelAddr
-const OP_SYSCALL: u8 = 0x60;
-const OP_RESOLVE: u8 = 0xB0;
-const OP_RESONATE_KURAMOTO: u8 = 0xB1;
-const OP_SENSE: u8 = 0xB2;
-const OP_SPORE_DRIVE: u8 = 0xA8;
-
-// Property IDs for GET/PUT
-const PROP_ENERGY: u8 = 0;
-const PROP_RESONANCE: u8 = 1;
-const PROP_X: u8 = 2;
-const PROP_Y: u8 = 3;
-const PROP_PHASE: u8 = 4;
-const PROP_GRID_CHARGE: u8 = 7;
-const PROP_QUORUM: u8 = 8;
-const PROP_NEURAL_COHERENCE: u8 = 9;
-const PROP_MEMORY: u8 = 10;
-const PROP_CONSENSUS: u8 = 11;
+import { evaluate_opcodes } from "./vm";
 
 function lcgNext(seed: u32): u32 {
   return seed * 1664525 + 1013904223;
@@ -902,97 +1114,14 @@ function genomePoolSlot(atomIdx: i32): i32 {
   return (hash & 255) as i32;
 }
 
-function getReg(atomIdx: i32, reg: i32): i32 {
-  return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize);
-}
-function setReg(atomIdx: i32, reg: i32, val: i32): void {
-  store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2) as usize, val);
-}
-function getPC(atomIdx: i32): u8 {
-  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize);
-}
-function setPC(atomIdx: i32, val: u8): void {
-  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32 as usize, val);
-}
-function getPendingSyscall(atomIdx: i32): u8 {
-  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize);
-}
-function setPendingSyscall(atomIdx: i32, val: u8): void {
-  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33 as usize, val);
-}
-function setBondDist(atomIdx: i32, slot: i32, dist: u8): void {
-  store<u8>(BOND_DIST_OFF + (atomIdx << 2) + slot as usize, dist);
-}
-function setDamping(atomIdx: i32, val: u8): void {
-  store<u8>(DAMPING_OFF + atomIdx as usize, val);
-}
-function getRole(atomIdx: i32): u8 {
-  return load<u8>(ROLES_OFFSET + atomIdx as usize);
-}
-function setRole(atomIdx: i32, val: u8): void {
-  store<u8>(ROLES_OFFSET + atomIdx as usize, val);
-}
-function setHiveMemory(addr: i32, val: u8): void {
-  store<u8>(HIVE_MEMORY_OFF + (addr & 1023) as usize, val);
-}
-function getHiveMemory(addr: i32): u8 {
-  return load<u8>(HIVE_MEMORY_OFF + (addr & 1023) as usize);
-}
-function getHiveBalance(): i32 {
-  return atomic.load<i32>(HIVE_BALANCE_OFF);
-}
-function addHiveBalance(val: i32): i32 {
-  return atomic.add<i32>(HIVE_BALANCE_OFF, val);
-}
+
 
 const ROLE_NEUTRAL: u8 = 0;
 const ROLE_PRODUCER: u8 = 1;
 const ROLE_GUARDIAN: u8 = 2;
 const ROLE_ARCHITECT: u8 = 3;
 const ROLE_PARASITE: u8 = 4;
-const WORLD_MAX_X: i32 = 1399;
-const WORLD_MAX_Y: i32 = 799;
 
-function clampWorldX(x: i32): i32 {
-  if (x < 0) return 0;
-  if (x > WORLD_MAX_X) return WORLD_MAX_X;
-  return x;
-}
-
-function clampWorldY(y: i32): i32 {
-  if (y < 0) return 0;
-  if (y > WORLD_MAX_Y) return WORLD_MAX_Y;
-  return y;
-}
-
-function storeClampedPos(idx: i32, x: i32, y: i32): void {
-  store<i16>(XS_OFFSET + (idx << 1) as usize, clampWorldX(x) as i16);
-  store<i16>(YS_OFFSET + (idx << 1) as usize, clampWorldY(y) as i16);
-}
-
-function dir4X(n: i32): i32 {
-  if (n == 0) return -1;
-  if (n == 1) return 1;
-  return 0;
-}
-
-function dir4Y(n: i32): i32 {
-  if (n == 2) return -1;
-  if (n == 3) return 1;
-  return 0;
-}
-
-function dir8X(n: i32): i32 {
-  if (n == 0 || n == 4 || n == 6) return -1;
-  if (n == 1 || n == 5 || n == 7) return 1;
-  return 0;
-}
-
-function dir8Y(n: i32): i32 {
-  if (n == 2 || n == 4 || n == 5) return -1;
-  if (n == 3 || n == 6 || n == 7) return 1;
-  return 0;
-}
 
 function getGenomeVelocityX(idx: i32): i32 {
   let vx: i32 = 0;
@@ -1027,15 +1156,15 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
   const burn: i32 = (1.0 * 1000.0) as i32;
   let energy = getReadEnergy(idx);
 
-  const gx = x / 10;
-  const gy = y / 10;
+  const gx = x / SPATIAL_CELL_SIZE;
+  const gy = y / SPATIAL_CELL_SIZE;
 
   // Scan neighborhood for chemotaxis, trophic flow, and social recognition
   for (let oy = -3; oy <= 3; oy++) {
     for (let ox = -3; ox <= 3; ox++) {
       let cx = gx + ox;
       let cy = gy + oy;
-      if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      if (inGrid(cx, cy)) {
         let count = getSpatialGridCount(cx, cy);
         for (let s = 0; s < count; s++) {
           let otherIdx = getSpatialGridAtom(cx, cy, s);
@@ -1163,7 +1292,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
       }
       let cx = gx + ox;
       let cy = gy + oy;
-      if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      if (inGrid(cx, cy)) {
         let cell = readStructureCell(cy * GRID_W + cx);
         let density = (cell >> 8) & 0xFF;
         let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
@@ -1193,7 +1322,7 @@ function packGlyphHeader(kind: i32, amplitude: i32): i32 {
 }
 
 function decayForKind(kind: i32, amplitude: i32): i32 {
-  const absAmp = Math.abs(amplitude) as i32;
+  const absAmp = fast_abs(amplitude);
   let decayAmt = 0;
   if (kind == 2) { // PLASMID
     decayAmt = absAmp > 256 ? 3 : 1;
@@ -1206,7 +1335,7 @@ function decayForKind(kind: i32, amplitude: i32): i32 {
 }
 
 function diffusionShareForKind(kind: i32, amplitude: i32): i32 {
-  const absAmp = Math.abs(amplitude) as i32;
+  const absAmp = fast_abs(amplitude);
   let shareAmt = 0;
   if (kind == 2) { // PLASMID
     shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
@@ -1235,7 +1364,7 @@ function atomicDepositGlyphHeader(
 
     // Mismatched kind: standard replacement strategy but with absolute power checks
     if (currentKind != 0 && currentKind != kind) {
-      if (Math.abs(amplitude) <= Math.abs(currentAmplitude)) return;
+      if (fast_abs(amplitude) <= fast_abs(currentAmplitude)) return;
       const observed = atomic.cmpxchg<i32>(
         ptr,
         current,
@@ -1291,8 +1420,8 @@ function secreteGlyph(
   payloadPtr: usize = 0,
 ): void {
   if (intensity <= 0) return;
-  const gx = x / 10;
-  const gy = y / 10;
+  const gx = x / SPATIAL_CELL_SIZE;
+  const gy = y / SPATIAL_CELL_SIZE;
   if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return;
 
   const cell = gy * GRID_W + gx;
@@ -1331,7 +1460,7 @@ function secreteGlyph(
   // Halo spill for Pheromones (kind=1)
   if (kind == 1) {
     const spill = phaseIntensity >> 2;
-    if (Math.abs(spill) > 0) {
+    if (fast_abs(spill) > 0) {
       if (gx > 0) {
         atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 1, 1, spill);
       }
@@ -1369,13 +1498,13 @@ export function tickGlyphTransport(tick: i32): void {
     let retained = 0;
     if (amp > 0) {
       retained = amp - decay;
-      if (retained < 0) retained = 0;
+      retained = fast_max(retained, 0);
     } else {
       retained = amp - decay; // decay is negative when amp is negative
-      if (retained > 0) retained = 0;
+      retained = fast_min(retained, 0);
     }
 
-    if (Math.abs(retained) > 0) {
+    if (fast_abs(retained) > 0) {
       atomicDepositGlyphHeader(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained);
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -1385,14 +1514,14 @@ export function tickGlyphTransport(tick: i32): void {
     }
 
     const share = diffusionShareForKind(kind, amp);
-    if (Math.abs(share) > 0) {
+    if (fast_abs(share) > 0) {
       const gx = cell % GRID_W;
       const gy = cell / GRID_W;
 
       for (let i = 0; i < 4; i++) {
         let nx = gx + dx[i];
         let ny = gy + dy[i];
-        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+        if (inGrid(nx, ny)) {
           const nextCell = ny * GRID_W + nx;
           atomicDepositGlyphHeader(
             GLYPH_SCRATCH_HEADER_OFF,
@@ -1414,7 +1543,7 @@ export function tickGlyphTransport(tick: i32): void {
   // 2. Seeding: Internal Reflection (Signal -> Pheromone)
   for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
     const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
-    const absSignal = signal < 0 ? -signal : signal;
+    const absSignal = fast_abs(signal);
     if (absSignal >= 1) {
       let amp = absSignal >> 1;
       if (amp < 16) amp = 16;
@@ -1602,7 +1731,7 @@ export function execute_atom(atomIndex: i32): void {
     let phase = getPhase(atomIndex);
     let res = getResonance(atomIndex);
     const tick = load<i32>(TICK_COUNTER_OFF);
-    const cell = (curY / 10) * GRID_W + (curX / 10);
+    const cell = (curY / SPATIAL_CELL_SIZE) * GRID_W + (curX / SPATIAL_CELL_SIZE);
 
     // DECENTRALIZED SECRETION
     if (
@@ -1696,9 +1825,9 @@ export function execute_atom(atomIndex: i32): void {
 
     // Hard float clamping before rounding limits any NaN/Infinity physics bugs
     if (nextX < 0.0) nextX = 0.0;
-    if (nextX > 1399.0) nextX = 1399.0;
+    if (nextX > (WORLD_MAX_X as f32)) nextX = (WORLD_MAX_X as f32);
     if (nextY < 0.0) nextY = 0.0;
-    if (nextY > 799.0) nextY = 799.0;
+    if (nextY > (WORLD_MAX_Y as f32)) nextY = (WORLD_MAX_Y as f32);
 
     if (atomIndex == 11) {
       trace_atom(
@@ -1729,249 +1858,7 @@ export function execute_atom(atomIndex: i32): void {
     if (target > 0 && target < MAX_ATOMS) mass++;
   }
 
-  let gasUsed: i32 = 0;
-  // Hard cap to prevent WASM thread lockup, bounded by physical energy
-  let baseLimit: i32 = energy < 100 ? energy : 100;
-  let gasLimit: i32 = baseLimit / mass;
-  if (gasLimit < 1) gasLimit = 1;
-
-  while (gasUsed < gasLimit) {
-    const op = load<u8>(instr_base + (pc as usize));
-    if (op == OP_NOP) {
-      gasUsed += 1;
-      break;
-    }
-
-    switch (op) {
-      case OP_SET: {
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let imm = load<i8>(instr_base + (pc + 2) as usize);
-        setReg(atomIndex, reg as i32, imm as i32);
-        pc += 3;
-        gasUsed += 1;
-        break;
-      }
-      case OP_GET: {
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let prop = load<u8>(instr_base + (pc + 2) as usize);
-        let val: i32 = 0;
-        if (prop == PROP_ENERGY) val = energy;
-        else if (prop == PROP_RESONANCE) val = resonance;
-        else if (prop == PROP_X) val = getX(atomIndex) as i32;
-        else if (prop == PROP_Y) val = getY(atomIndex) as i32;
-        else if (prop == PROP_PHASE) val = getPhase(atomIndex);
-        else if (prop == PROP_GRID_CHARGE) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          let gx = rx / 10;
-          let gy = ry / 10;
-          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-            val = readStructureCharge(gy * GRID_W + gx);
-          }
-        } else if (prop == PROP_QUORUM) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          let gx = rx / 10;
-          let gy = ry / 10;
-          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-            val = getSpatialGridCount(gx, gy);
-          }
-        } else if (prop == PROP_NEURAL_COHERENCE) {
-          val = atomic.load<i32>(NEURAL_COHERENCE_OFF);
-        } else if (prop == PROP_MEMORY) {
-          let rx = getX(atomIndex) as i32;
-          let ry = getY(atomIndex) as i32;
-          let gx = rx / 10;
-          let gy = ry / 10;
-          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-            val = load<u8>(MEMORY_GRID_OFF + ((gy * GRID_W + gx) << 3)) as i32;
-          }
-        } else if (prop == PROP_CONSENSUS) {
-          val = getHormone(6) as i32;
-        }
-        setReg(atomIndex, reg as i32, val);
-        pc += 3;
-        gasUsed += 2;
-        break;
-      }
-      case OP_PUT: {
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let prop = load<u8>(instr_base + (pc + 2) as usize);
-        let val = getReg(atomIndex, reg as i32);
-        if (prop == PROP_ENERGY) {
-          energy = val;
-          setEnergy(atomIndex, val);
-        } else if (prop == PROP_RESONANCE) {
-          if (val > resonance) {
-            let diff = val - resonance;
-            let cost = diff * 1000; // Energy is stored in thousandths
-            if (energy >= cost) {
-              energy -= cost;
-              resonance = val;
-            } else {
-              resonance += energy / 1000;
-              energy = 0;
-            }
-          } else {
-            // Free stealth drop
-            resonance = val;
-          }
-          setResonance(atomIndex, resonance);
-          setEnergy(atomIndex, energy);
-        } else if (prop == PROP_PHASE) setPhase(atomIndex, val);
-        pc += 3;
-        gasUsed += 2;
-        break;
-      }
-      case OP_ADD: {
-        let r1 = load<u8>(instr_base + (pc + 1) as usize);
-        let r2 = load<u8>(instr_base + (pc + 2) as usize);
-        setReg(
-          atomIndex,
-          r1 as i32,
-          getReg(atomIndex, r1 as i32) + getReg(atomIndex, r2 as i32),
-        );
-        pc += 3;
-        gasUsed += 1;
-        break;
-      }
-      case OP_SUB: {
-        let r1 = load<u8>(instr_base + (pc + 1) as usize);
-        let r2 = load<u8>(instr_base + (pc + 2) as usize);
-        setReg(
-          atomIndex,
-          r1 as i32,
-          getReg(atomIndex, r1 as i32) - getReg(atomIndex, r2 as i32),
-        );
-        pc += 3;
-        gasUsed += 1;
-        break;
-      }
-      case OP_JNZ: {
-        let reg = load<u8>(instr_base + (pc + 1) as usize);
-        let target = load<u8>(instr_base + (pc + 2) as usize);
-        if (getReg(atomIndex, reg as i32) != 0) pc = target;
-        else pc += 3;
-        gasUsed += 2;
-        break;
-      }
-      case OP_JMP: {
-        pc = load<u8>(instr_base + (pc + 1) as usize);
-        gasUsed += 2;
-        break;
-      }
-      case OP_SYSCALL: {
-        setPendingSyscall(atomIndex, 1);
-        pc += 1;
-        gasUsed += 10;
-        gasLimit = 0; // force yield to host
-        break;
-      }
-      case OP_RESOLVE: {
-        let destReg = load<u8>(instr_base + ((pc + 1) as usize));
-        let angleReg = load<u8>(instr_base + ((pc + 2) as usize));
-        let modeReg = load<u8>(instr_base + ((pc + 3) as usize));
-
-        let angle = getReg(atomIndex, angleReg as i32);
-        let modeVal = getReg(atomIndex, modeReg as i32);
-
-        // modeVal decoding:
-        // 0: Sin Direct  (1 Gas)
-        // 1: Sin LERP    (5 Gas)
-        // 2: Cos Direct  (1 Gas)
-        // 3: Cos LERP    (5 Gas)
-        // 4: Sin Taylor2 (10 Gas - Reserved)
-
-        let val = 0;
-        let cost = 1;
-        let highRes = 0;
-
-        if (modeVal == 1 || modeVal == 3) {
-          highRes = 1;
-          cost = 5;
-        } else if (modeVal == 4 || modeVal == 5) {
-          highRes = 2; // Reserved for Taylor2
-          cost = 10;
-        }
-
-        if (modeVal == 0 || modeVal == 1 || modeVal == 4) {
-          val = math_sin(angle, highRes);
-        } else {
-          val = math_cos(angle, highRes);
-        }
-
-        setReg(atomIndex, destReg as i32, val);
-        pc += 4;
-        gasUsed += cost;
-        break;
-      }
-      case OP_RESONATE_KURAMOTO: {
-        let gx = (getX(atomIndex) / 1000) as i32;
-        let gy = (getY(atomIndex) / 1000) as i32;
-        let sumSin = 0;
-        let currentPhase = getPhase(atomIndex);
-        let neighborCount = 0;
-
-        for (let dx = -1; dx <= 1; dx++) {
-          for (let dy = -1; dy <= 1; dy++) {
-            let nx = gx + dx;
-            let ny = gy + dy;
-            if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
-              let count = getSpatialGridCount(nx, ny);
-              for (let i = 0; i < count; i++) {
-                let neighborId = getSpatialGridAtom(nx, ny, i);
-                if (
-                  neighborId > 0 && neighborId != atomIndex &&
-                  neighborId < MAX_ATOMS
-                ) {
-                  let neighborPhase = getPhase(neighborId);
-                  let diff = (neighborPhase - currentPhase) & 255;
-                  sumSin += math_sin(diff, 0); // Direct lookup for density scaling
-                  neighborCount++;
-                }
-              }
-            }
-          }
-        }
-
-        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF);
-        let K = 5 + (coh / 100);
-        if (K > 128) K = 128;
-
-        if (neighborCount > 0) {
-          let d_theta = (K * sumSin) >> 15;
-          let theta_next = (currentPhase + d_theta) & 255;
-          setPhase(atomIndex, theta_next);
-        }
-
-        pc += 1;
-        gasUsed += 5 + neighborCount * 2;
-        break;
-      }
-      case OP_SPORE_DRIVE: {
-        setPendingSyscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
-        pc += 1;
-        gasUsed += 10;
-        gasLimit = 0; // force yield to host
-        break;
-      }
-      case OP_SENSE: {
-        setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
-        pc += 1;
-        gasUsed += 2;
-        gasLimit = 0; // force yield to host
-        break;
-      }
-      default: {
-        pc = 0; // Reset or stop
-        gasUsed += 1;
-        gasLimit = 0; // stop execution on invalid opcode
-        break;
-      }
-    }
-    if (pc >= 64) pc = 0;
-  }
-  setPC(atomIndex, pc);
+  let gasUsed = evaluate_opcodes(atomIndex, energy, resonance, mass);
 
   // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
   let entropyH: i32 = getHormone(0) as i32;
@@ -2028,15 +1915,7 @@ export function execute_atom(atomIndex: i32): void {
   );
 }
 
-const STR_VOID: i32 = 0;
-const STR_WIRE: i32 = 1;
-const STR_NODE: i32 = 2;
-const STR_DIODE: i32 = 3;
-const STR_SOURCE: i32 = 4;
-const STR_SINK: i32 = 5;
-const STR_CAPACITOR: i32 = 6;
-const STR_INVERTER: i32 = 7;
-const STR_LATCH: i32 = 8;
+
 let spatialHashOverflowCount: i32 = 0;
 let spatialHashMaxCellCount: i32 = 0;
 
@@ -2076,12 +1955,12 @@ export function build_spatial_hash(): void {
 
     // Clamp
     if (x < 0) x = 0;
-    if (x > 1399) x = 1399;
+    if (x > WORLD_MAX_X) x = WORLD_MAX_X;
     if (y < 0) y = 0;
-    if (y > 799) y = 799;
+    if (y > WORLD_MAX_Y) y = WORLD_MAX_Y;
 
-    let cellX = x / 10;
-    let cellY = y / 10;
+    let cellX = x / SPATIAL_CELL_SIZE;
+    let cellY = y / SPATIAL_CELL_SIZE;
     let cellIdx = cellY * GRID_W + cellX;
     let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
@@ -2156,7 +2035,7 @@ export function diffuseViralSemantics(pulseId: i32): void {
         const nx = x + (v2 > 0.5 ? 1 : -1);
         const ny = y + (v3 > 0.5 ? 1 : -1);
 
-        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+        if (inGrid(nx, ny)) {
           const nIdx = (ny * GRID_W + nx) * 9;
           const nTargetOff = SIGNAL_GRID_OFF + (nIdx as usize);
           const nIntensity = atomic.load<u8>(nTargetOff + 8);
@@ -2225,7 +2104,7 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 8; n++) {
           let nx = x + dir8X(n);
           let ny = y + dir8Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          if (inGrid(nx, ny)) {
             let ni = ny * GRID_W + nx;
             const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
             const nCharge = (nVal >> 16) & 0xFF;
@@ -2306,7 +2185,7 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 4; n++) {
           let nx = x + dir4X(n);
           let ny = y + dir4Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          if (inGrid(nx, ny)) {
             let ni = ny * GRID_W + nx;
             let nCharge = readStructureCharge(ni);
             if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
@@ -2336,7 +2215,7 @@ export function tick_structure_grid(): void {
         else if (state == 2) ny--;
         else if (state == 3) ny++;
 
-        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+        if (inGrid(nx, ny)) {
           let ni = ny * GRID_W + nx;
           let nCharge = readStructureCharge(ni);
           let flow = nCharge - 5;
@@ -2347,7 +2226,7 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 4; n++) {
           let nx = x + dir4X(n);
           let ny = y + dir4Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          if (inGrid(nx, ny)) {
             let ni = ny * GRID_W + nx;
             let nCharge = readStructureCharge(ni);
             if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
@@ -2360,13 +2239,13 @@ export function tick_structure_grid(): void {
         // n=0 (Left): SET
         let setX = x + dir4X(0);
         let setY = y + dir4Y(0);
-        if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
+        if (inGrid(setX, setY)) {
           if (readStructureCharge(setY * GRID_W + setX) > 100) newState = 1;
         }
         // n=1 (Right): RESET
         let rstX = x + dir4X(1);
         let rstY = y + dir4Y(1);
-        if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
+        if (inGrid(rstX, rstY)) {
           if (readStructureCharge(rstY * GRID_W + rstX) > 100) newState = 0;
         }
         if (newState != state) {
@@ -2381,7 +2260,7 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 4; n++) {
           let nx = x + dir4X(n);
           let ny = y + dir4Y(n);
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          if (inGrid(nx, ny)) {
             let ni = ny * GRID_W + nx;
             let nCharge = readStructureCharge(ni);
             if (nCharge > 20) {
@@ -2567,8 +2446,8 @@ export function apply_metabolism_kernel(
 
       let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
       let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
-      let gx = cx / 10;
-      let gy = cy / 10;
+      let gx = cx / SPATIAL_CELL_SIZE;
+      let gy = cy / SPATIAL_CELL_SIZE;
       let cellIdx = gy * GRID_W + gx;
 
       trace_atom(i, 0xDD, gx, gy, 0);
@@ -2681,7 +2560,7 @@ export function apply_metabolism_kernel(
     }
 
     const deviation = interimEnergy - targetEnergy;
-    const absDeviation = Math.abs(deviation);
+    const absDeviation = fast_abs(deviation);
 
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
@@ -2886,6 +2765,373 @@ export function tick_membrane_physics(): void {
       for (let k = 0; k < 8; k++) unchecked(pathNodes[k] = 0);
     }
   }
+}
+
+```
+
+---
+
+## FILE: src/00/01/assembly/spatial.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+import { XS_OFFSET, YS_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, GRID_W, GRID_H } from "./constants.assembly";
+
+export { WORLD_MAX_X, WORLD_MAX_Y };
+
+export function clampWorldX(x: i32): i32 {
+  if (x < 0) return 0;
+  if (x > WORLD_MAX_X) return WORLD_MAX_X;
+  return x;
+}
+
+export function clampWorldY(y: i32): i32 {
+  if (y < 0) return 0;
+  if (y > WORLD_MAX_Y) return WORLD_MAX_Y;
+  return y;
+}
+
+export function storeClampedPos(idx: i32, x: i32, y: i32): void {
+  store<i16>(XS_OFFSET + (idx << 1) as usize, clampWorldX(x) as i16);
+  store<i16>(YS_OFFSET + (idx << 1) as usize, clampWorldY(y) as i16);
+}
+
+export function dir4X(n: i32): i32 {
+  if (n == 0) return -1;
+  if (n == 1) return 1;
+  return 0;
+}
+
+export function dir4Y(n: i32): i32 {
+  if (n == 2) return -1;
+  if (n == 3) return 1;
+  return 0;
+}
+
+export function dir8X(n: i32): i32 {
+  if (n == 0 || n == 4 || n == 6) return -1;
+  if (n == 1 || n == 5 || n == 7) return 1;
+  return 0;
+}
+
+export function dir8Y(n: i32): i32 {
+  if (n == 2 || n == 4 || n == 5) return -1;
+  if (n == 3 || n == 6 || n == 7) return 1;
+  return 0;
+}
+
+export function inGrid(x: i32, y: i32): boolean {
+  return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
+}
+
+```
+
+---
+
+## FILE: src/00/01/assembly/vm.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+import {
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  GRID_W,
+  GRID_H,
+  NEURAL_COHERENCE_OFF,
+  MEMORY_GRID_OFF,
+  CAUSALITY_OFF,
+  HIVE_MEMORY_OFF,
+  OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_SYSCALL, 
+  OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_HEBB, OP_FIRE, OP_DECAY, OP_PLUG, 
+  OP_TENSEGRITY, OP_COLLECTIVE, OP_BUILD, OP_SPORE_DRIVE, OP_SENSE, OP_SENSE_AS, 
+  OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO,
+  PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, 
+  PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS
+} from "./constants.assembly";
+
+import {
+  getReg,
+  setReg,
+  getPC,
+  setPC,
+  setPendingSyscall,
+  getX,
+  getY,
+  getPhase,
+  setPhase,
+  getSpatialGridCount,
+  getSpatialGridAtom,
+  getHormone,
+  setEnergy,
+  setResonance
+} from "./memory_access";
+
+import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
+
+import { math_sin, math_cos } from "./math";
+
+// We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
+import { readStructureCharge } from "./pulse_orchestrator";
+
+// Opcodes and Properties are now auto-generated in constants.assembly.ts
+
+export function evaluate_opcodes(
+  atomIndex: i32,
+  energy: i32,
+  resonance: i32,
+  mass: i32
+): i32 {
+  let pc = getPC(atomIndex);
+  const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
+
+  let gasUsed: i32 = 0;
+  // Hard cap to prevent WASM thread lockup, bounded by physical energy
+  let baseLimit: i32 = energy < 100 ? energy : 100;
+  let gasLimit: i32 = baseLimit / mass;
+  if (gasLimit < 1) gasLimit = 1;
+
+  while (gasUsed < gasLimit) {
+    const op = load<u8>(instr_base + (pc as usize));
+    if (op == OP_NOP) {
+      gasUsed += 1;
+      break;
+    }
+
+    switch (op) {
+      case OP_SET: {
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let imm = load<i8>(instr_base + (pc + 2) as usize);
+        setReg(atomIndex, reg as i32, imm as i32);
+        pc += 3;
+        gasUsed += 1;
+        break;
+      }
+      case OP_GET: {
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let prop = load<u8>(instr_base + (pc + 2) as usize);
+        let val: i32 = 0;
+        if (prop == PROP_ENERGY) val = energy;
+        else if (prop == PROP_RESONANCE) val = resonance;
+        else if (prop == PROP_X) val = getX(atomIndex) as i32;
+        else if (prop == PROP_Y) val = getY(atomIndex) as i32;
+        else if (prop == PROP_PHASE) val = getPhase(atomIndex);
+        else if (prop == PROP_GRID_CHARGE) {
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          let gx = rx / 10;
+          let gy = ry / 10;
+          if (inGrid(gx, gy)) {
+            val = readStructureCharge(gy * GRID_W + gx);
+          }
+        } else if (prop == PROP_QUORUM) {
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          let gx = rx / 10;
+          let gy = ry / 10;
+          if (inGrid(gx, gy)) {
+            val = getSpatialGridCount(gx, gy);
+          }
+        } else if (prop == PROP_NEURAL_COHERENCE) {
+          val = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+        } else if (prop == PROP_MEMORY) {
+          let rx = getX(atomIndex) as i32;
+          let ry = getY(atomIndex) as i32;
+          let gx = rx / 10;
+          let gy = ry / 10;
+          if (inGrid(gx, gy)) {
+            val = load<u8>(MEMORY_GRID_OFF + ((gy * GRID_W + gx) << 3)) as i32;
+          }
+        } else if (prop == PROP_CONSENSUS) {
+          val = getHormone(6) as i32;
+        }
+        setReg(atomIndex, reg as i32, val);
+        pc += 3;
+        gasUsed += 2;
+        break;
+      }
+      case OP_PUT: {
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let prop = load<u8>(instr_base + (pc + 2) as usize);
+        let val = getReg(atomIndex, reg as i32);
+        if (prop == PROP_ENERGY) {
+          energy = val;
+          setEnergy(atomIndex, val);
+        } else if (prop == PROP_RESONANCE) {
+          if (val > resonance) {
+            let diff = val - resonance;
+            let cost = diff * 1000; // Energy is stored in thousandths
+            if (energy >= cost) {
+              energy -= cost;
+              resonance = val;
+            } else {
+              resonance += energy / 1000;
+              energy = 0;
+            }
+          } else {
+            // Free stealth drop
+            resonance = val;
+          }
+          setResonance(atomIndex, resonance);
+          setEnergy(atomIndex, energy);
+        } else if (prop == PROP_PHASE) setPhase(atomIndex, val);
+        pc += 3;
+        gasUsed += 2;
+        break;
+      }
+      case OP_ADD: {
+        let r1 = load<u8>(instr_base + (pc + 1) as usize);
+        let r2 = load<u8>(instr_base + (pc + 2) as usize);
+        setReg(
+          atomIndex,
+          r1 as i32,
+          getReg(atomIndex, r1 as i32) + getReg(atomIndex, r2 as i32),
+        );
+        pc += 3;
+        gasUsed += 1;
+        break;
+      }
+      case OP_SUB: {
+        let r1 = load<u8>(instr_base + (pc + 1) as usize);
+        let r2 = load<u8>(instr_base + (pc + 2) as usize);
+        setReg(
+          atomIndex,
+          r1 as i32,
+          getReg(atomIndex, r1 as i32) - getReg(atomIndex, r2 as i32),
+        );
+        pc += 3;
+        gasUsed += 1;
+        break;
+      }
+      case OP_JNZ: {
+        let reg = load<u8>(instr_base + (pc + 1) as usize);
+        let target = load<u8>(instr_base + (pc + 2) as usize);
+        if (getReg(atomIndex, reg as i32) != 0) pc = target;
+        else pc += 3;
+        gasUsed += 2;
+        break;
+      }
+      case OP_JMP: {
+        pc = load<u8>(instr_base + (pc + 1) as usize);
+        gasUsed += 2;
+        break;
+      }
+      case OP_SYSCALL: {
+        setPendingSyscall(atomIndex, 1);
+        pc += 1;
+        gasUsed += 10;
+        gasLimit = 0; // force yield to host
+        break;
+      }
+      case OP_RESOLVE: {
+        let destReg = load<u8>(instr_base + ((pc + 1) as usize));
+        let angleReg = load<u8>(instr_base + ((pc + 2) as usize));
+        let modeReg = load<u8>(instr_base + ((pc + 3) as usize));
+
+        let angle = getReg(atomIndex, angleReg as i32);
+        let modeVal = getReg(atomIndex, modeReg as i32);
+
+        // modeVal decoding:
+        // 0: Sin Direct  (1 Gas)
+        // 1: Sin LERP    (5 Gas)
+        // 2: Cos Direct  (1 Gas)
+        // 3: Cos LERP    (5 Gas)
+        // 4: Sin Taylor2 (10 Gas - Reserved)
+
+        let val = 0;
+        let cost = 1;
+        let highRes = 0;
+
+        if (modeVal == 1 || modeVal == 3) {
+          highRes = 1;
+          cost = 5;
+        } else if (modeVal == 4 || modeVal == 5) {
+          highRes = 2; // Reserved for Taylor2
+          cost = 10;
+        }
+
+        if (modeVal == 0 || modeVal == 1 || modeVal == 4) {
+          val = math_sin(angle, highRes);
+        } else {
+          val = math_cos(angle, highRes);
+        }
+
+        setReg(atomIndex, destReg as i32, val);
+        pc += 4;
+        gasUsed += cost;
+        break;
+      }
+      case OP_RESONATE_KURAMOTO: {
+        let gx = (getX(atomIndex) / 1000) as i32;
+        let gy = (getY(atomIndex) / 1000) as i32;
+        let sumSin = 0;
+        let currentPhase = getPhase(atomIndex);
+        let neighborCount = 0;
+
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            let nx = gx + dx;
+            let ny = gy + dy;
+            if (inGrid(nx, ny)) {
+              let count = getSpatialGridCount(nx, ny);
+              for (let i = 0; i < count; i++) {
+                let neighborId = getSpatialGridAtom(nx, ny, i);
+                if (
+                  neighborId > 0 && neighborId != atomIndex &&
+                  neighborId < MAX_ATOMS
+                ) {
+                  let neighborPhase = getPhase(neighborId);
+                  let diff = (neighborPhase - currentPhase) & 255;
+                  sumSin += math_sin(diff, 0); // Direct lookup for density scaling
+                  neighborCount++;
+                }
+              }
+            }
+          }
+        }
+
+        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+        let K = 5 + (coh / 100);
+        if (K > 128) K = 128;
+
+        if (neighborCount > 0) {
+          let d_theta = (K * sumSin) >> 15;
+          let theta_next = (currentPhase + d_theta) & 255;
+          setPhase(atomIndex, theta_next);
+        }
+
+        pc += 1;
+        gasUsed += 5 + neighborCount * 2;
+        break;
+      }
+      case OP_SPORE_DRIVE: {
+        setPendingSyscall(atomIndex, 20); // 20 = SYS_SPORE_DRIVE in JS Host
+        pc += 1;
+        gasUsed += 10;
+        gasLimit = 0; // force yield to host
+        break;
+      }
+      case OP_SENSE_AS: {
+        setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
+        pc += 1;
+        gasUsed += 2;
+        gasLimit = 0; // force yield to host
+        break;
+      }
+      default: {
+        pc = 0; // Reset or stop
+        gasUsed += 1;
+        gasLimit = 0; // stop execution on invalid opcode
+        break;
+      }
+    }
+    if (pc >= 64) pc = 0;
+  }
+  setPC(atomIndex, pc);
+  
+  // We mutated resonance and energy inside OP_PUT, return them if we had multiple returns, but here we expect caller to just fetch them again. Yes! So we just return gasUsed!
+  return gasUsed;
 }
 
 ```
@@ -3834,967 +4080,28 @@ export * from "./build_wasm.ts";
 
 ---
 
-## FILE: src/00/ATOM_INDEX.ts
+## FILE: src/00/agent_signature.ts
 
 ```typescript
-// OMEGA-64 | ATOM_INDEX.ts
-// Lightweight ID↔Index registry shared across runtime modules.
-
-export const ID_TO_IDX = new Map<string, number>();
-export const IDX_TO_ID = new Map<number, string>();
-
-```
-
----
-
-## FILE: src/00/ENV_PARSE.ts
-
-```typescript
-export const parseEnvBool = (
-  raw: string | undefined,
-  fallback: boolean,
-): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-
-export const parseEnvBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-```
-
----
-
-## FILE: src/00/generate.ts
-
-```typescript
-// OMEGA-64 | Isomorphic Topological Generator | Era 69
-// This script generates the symmetric physical constants for both Deno and Rust layers.
-
-const SYSTEM_CONSTANTS: Record<string, [number, string]> = {
-  MAX_ATOMS:           [500_000,   "usize"],
-  SAFETY_BUFFER:       [8_000_000, "usize"],
-  GRID_W:              [140,       "i32"],
-  GRID_H:              [80,        "i32"],
-  GRID_CELLS:          [140 * 80,  "usize"],
-  SCALE:               [1000,      "i32"],
-  CELL_CAPACITY:       [32,        "usize"],
-  MAX_PC:              [64,        "u8"],
-  MAX_EXECUTION_STEPS: [64,        "usize"],
-  ATOM_LOGIC_SIZE:     [64,        "usize"],
-  MAX_LEDGER_EVENTS:   [65_536,    "usize"],
-  MAX_EGRESS_EVENTS:   [8192,      "usize"],
-  WASM_PAGE_BYTES:     [64 * 1024, "usize"],
-  WASM_MEMORY_PAGES:   [7630,      "usize"],
-};
-
-// Generate TypeScript Offsets (Imperative Shell)
-const TS_OFFSETS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-// OMEGA-64 | OFFSETS.ts | Era 69: Absolute Coherence
-// Unified Memory Lattice Constants - Relocated for WASM Safety
-
-${Object.entries(SYSTEM_CONSTANTS)
-  .map(([name, [value, _]]) => `export const ${name} = ${value};`)
-  .join("\n")}
-
-const U64_BYTES = 8;
-const I32_BYTES = 4;
-const I16_BYTES = 2;
-const F32_BYTES = 4;
-
-export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
-export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
-
-export const IDS_OFFSET = SAFETY_BUFFER + 0;
-export const XS_OFFSET = SAFETY_BUFFER + 4000000;
-export const YS_OFFSET = SAFETY_BUFFER + 5000000;
-export const ENERGY_OFFSET = SAFETY_BUFFER + 6000000;
-export const RESONANCE_OFFSET = SAFETY_BUFFER + 8000000;
-export const PHASE_OFFSET = SAFETY_BUFFER + 10000000;
-export const LOGIC_OFFSET = SAFETY_BUFFER + 12000000;
-export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
-export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
-export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
-export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
-export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000;
-export const INTENT_OFFSET = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
-export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
-export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 104024584;
-export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 110024584;
-export const ROLES_OFFSET = SAFETY_BUFFER + 111458184;
-export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 111958184;
-export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
-export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
-export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
-export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
-export const SYNAPTIC_WEIGHTS_OFFSET = SAFETY_BUFFER + 119137384;
-export const DAMPING_OFFSET = SAFETY_BUFFER + 121137384;
-export const CAUSALITY_OFFSET = SAFETY_BUFFER + 121637384;
-export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 122137384;
-export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 122138408;
-export const QUORUM_OFFSET = SAFETY_BUFFER + 122138412;
-export const COHERENCE_OFFSET = SAFETY_BUFFER + 122496812;
-export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 122496816;
-export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 122496820;
-export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 123496820;
-export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 124496820;
-export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 126496820;
-export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
-export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 130496820;
-export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 132496820;
-export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 132541620;
-export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 132586420;
-export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 132631220;
-export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 132676020;
-export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 132677044;
-export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132721844;
-export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 132811444;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132856244;
-export const HORMONE_OFFSET = SAFETY_BUFFER + 132945844;
-export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860;
-export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912;
-export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912;
-
-export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912;
-export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916;
-
-export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492;
-export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496;
-
-type MemoryLayoutRegion = { name: string; offset: number; size: number; align: number; };
-
-export type MemoryLayoutValidationResult = { ok: boolean; errors: string[]; regions: MemoryLayoutRegion[]; latticeEnd: number; wasmBytes: number; };
-
-const region = (name: string, offset: number, size: number, align: number): MemoryLayoutRegion => ({ name, offset, size, align });
-
-export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
-  region("TICK_COUNTER", TICK_COUNTER_OFFSET, I32_BYTES, I32_BYTES),
-  region("SYNC_STATE", SYNC_STATE_OFFSET, I32_BYTES, I32_BYTES),
-  region("IDS", IDS_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
-  region("XS", XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("YS", YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("ENERGY", ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("RESONANCE", RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("PHASE", PHASE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("LOGIC", LOGIC_OFFSET, MAX_ATOMS * 8, 1),
-  region("BONDS", BONDS_OFFSET, MAX_ATOMS * 4 * I32_BYTES, I32_BYTES),
-  region("STIFFNESS", STIFFNESS_OFFSET, MAX_ATOMS * 4 * F32_BYTES, F32_BYTES),
-  region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * 64, 1),
-  region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * 64, I32_BYTES),
-  region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
-  region("MEIOSIS_RESERVED", MEIOSIS_OFFSET, BOND_REQUESTS_OFFSET - MEIOSIS_OFFSET, I32_BYTES),
-  region("BOND_REQUESTS", BOND_REQUESTS_OFFSET, MAX_ATOMS * 3 * I32_BYTES, I32_BYTES),
-  region("SPATIAL_GRID", SPATIAL_GRID_OFFSET, GRID_CELLS * 32 * I32_BYTES, I32_BYTES),
-  region("ROLES", ROLES_OFFSET, MAX_ATOMS, 1),
-  region("STRUCTURE_GRID", STRUCTURE_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("SIGNAL_GRID", SIGNAL_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("MEMORY_GRID", MEMORY_GRID_OFFSET, GRID_CELLS * 8, 1),
-  region("ASCENSION_STATS_RESERVED", ASCENSION_STATS_OFFSET, BOND_DISTANCES_OFFSET - ASCENSION_STATS_OFFSET, I32_BYTES),
-  region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
-  region("SYNAPTIC_WEIGHTS", SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4, 1),
-  region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
-  region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
-  region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, 1024, 1),
-  region("HIVE_BALANCE", HIVE_BALANCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("QUORUM", QUORUM_OFFSET, COHERENCE_OFFSET - QUORUM_OFFSET, I32_BYTES),
-  region("COHERENCE", COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("NEURAL_COHERENCE", NEURAL_COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("PHYSICS_READ_XS", PHYSICS_READ_XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("PHYSICS_READ_YS", PHYSICS_READ_YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("PHYSICS_READ_ENERGY", PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("PHYSICS_READ_RESONANCE", PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("ENERGY_DELTA", ENERGY_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("RESONANCE_DELTA", RESONANCE_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_BUILD_OWNER", STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_BUILD_VALUE", STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_CHARGE_INTENT", STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("ATTENTION_FIELD", ATTENTION_FIELD_OFFSET, GRID_CELLS * F32_BYTES, F32_BYTES),
-  region("HIVE_ENERGY_POOL", HIVE_ENERGY_POOL_OFFSET, 256 * I32_BYTES, I32_BYTES),
-  region("GLYPH_HEADER", GLYPH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
-  region("GLYPH_SCRATCH_HEADER", GLYPH_SCRATCH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("GLYPH_SCRATCH_PAYLOAD", GLYPH_SCRATCH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
-  region("HORMONES", HORMONE_OFFSET, 16, 2),
-  region("SECRETION_STATS", SECRETION_STATS_OFFSET, 48, 4),
-  region("LINEAGE", LINEAGE_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
-  region("MAILBOX", MAILBOX_OFFSET, MAX_ATOMS * 8, I32_BYTES),
-  region("LEDGER_HEAD", LEDGER_HEAD_OFFSET, 4, 4),
-  region("LEDGER_DATA", LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 16, 4),
-  region("EGRESS_HEAD", EGRESS_HEAD_OFFSET, 4, 4),
-  region("EGRESS_DATA", EGRESS_DATA_OFFSET, MAX_EGRESS_EVENTS * 128, 4),
-];
-
-export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
-export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES));
-export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
-
-export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): MemoryLayoutValidationResult => {
-  const errors: string[] = [];
-  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) => a.offset - b.offset);
-
-  for (const item of sorted) {
-    if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {
-      errors.push(\`[\${item.name}] offset/size must be finite numbers\`);
-      continue;
-    }
-    if (item.size <= 0) errors.push(\`[\${item.name}] size must be > 0, got \${item.size}\`);
-    if (item.align <= 0) {
-      errors.push(\`[\${item.name}] align must be > 0, got \${item.align}\`);
-    } else if (item.offset % item.align !== 0) {
-      errors.push(\`[\${item.name}] misaligned offset=\${item.offset} align=\${item.align}\`);
-    }
-    const end = item.offset + item.size;
-    if (end > wasmBytes) errors.push(\`[\${item.name}] out of wasm bounds: end=\${end} > wasmBytes=\${wasmBytes}\`);
-  }
-
-  for (let i = 1; i < sorted.length; i++) {
-    const prev = sorted[i - 1]; const next = sorted[i];
-    const prevEnd = prev.offset + prev.size;
-    if (prevEnd > next.offset) errors.push(\`[\${prev.name}] overlaps [\${next.name}] (\${prevEnd} > \${next.offset})\`);
-  }
-
-  const maxRegionEnd = sorted.reduce((max, item) => Math.max(max, item.offset + item.size), 0);
-  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(\`[LATTICE_MEMORY_END] too small: \${LATTICE_MEMORY_END} < required=\${maxRegionEnd}\`);
-
-  return { ok: errors.length === 0, errors, regions: sorted, latticeEnd: LATTICE_MEMORY_END, wasmBytes };
-};
-
-export const MAX_ASCENSIONS_PER_TICK = 64;
-`;
-
-// Generate Rust Constants (Functional Core)
-const RS_CONSTANTS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-//! Defines system-wide physical constants and enumerations for the OMEGA-64 Sigma Core.
-//! These values are isomorphically synchronized with the TypeScript layer.
-
-${Object.entries(SYSTEM_CONSTANTS)
-  .map(([name, [value, type]]) => `pub const ${name}: ${type} = ${value};`)
-  .join("\n")}
-
-/// Strongly typed roles for LambdaVM Atoms
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum AtomRole {
-    None = 0,
-    Guardian = 1,
-    Architect = 2,
-    Artisan = 3,
-    Parasite = 4,
-    Mitochondria = 5,
-    MetazoanFlag = 0x80,
-}
-
-impl AtomRole {
-    pub fn from_u8(val: u8) -> Self {
-        match val {
-            1 => Self::Guardian,
-            2 => Self::Architect,
-            3 => Self::Artisan,
-            4 => Self::Parasite,
-            5 => Self::Mitochondria,
-            0x80 => Self::MetazoanFlag,
-            _ => Self::None,
-        }
-    }
-}
-`;
-
-Deno.writeTextFileSync(new URL("./OFFSETS.ts", import.meta.url), TS_OFFSETS);
-Deno.writeTextFileSync(new URL("./sigma_core/src/constants.rs", import.meta.url), RS_CONSTANTS);
-
-// Generate Mathematical LUTs (Q15 deterministic trig)
-const SIN_LUT = Array.from({length: 256}, (_, i) => Math.round(Math.sin((i / 256) * Math.PI * 2) * 32767));
-const COS_LUT = Array.from({length: 256}, (_, i) => Math.round(Math.cos((i / 256) * Math.PI * 2) * 32767));
-
-const MATH_LUT_RS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-//! Mathematical Coprocessor (Deterministic LUT Trigonometry)
-
-pub const SIN_LUT: [i16; 256] = [
-  /* [TRUNCATED LUT ARRAY] */
-];
-
-pub const COS_LUT: [i16; 256] = [
-  /* [TRUNCATED LUT ARRAY] */
-];
-
-pub const C_LOG2_C_LUT: [i32; 65] = [
-0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000
-];
-
-pub fn math_sin(angle: i32, high_res: i32) -> i32 {
-    if high_res == 0 {
-        let idx = (angle & 255) as usize;
-        return SIN_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if high_res == 1 {
-        let v0 = SIN_LUT[idx] as i32;
-        let v1 = SIN_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    // TAYLOR2
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (c_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (s_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    s_base + term1 - term2
-}
-
-pub fn math_cos(angle: i32, high_res: i32) -> i32 {
-    if high_res == 0 {
-        let idx = (angle & 255) as usize;
-        return COS_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if high_res == 1 {
-        let v0 = COS_LUT[idx] as i32;
-        let v1 = COS_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (s_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (c_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    c_base - term1 - term2
-}
-
-pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
-    let mut counts = [0i32; 256];
-    for &b in data.iter() {
-        counts[b as usize] += 1;
-    }
-
-    let mut sum_c_log_c = 0;
-    for &c in counts.iter() {
-        if c > 0 {
-            sum_c_log_c += C_LOG2_C_LUT[c as usize];
-        }
-    }
-
-    let mut entropy = 6000 - (sum_c_log_c >> 6);
-    
-    if entropy < 0 {
-        entropy = 0;
-    } else if entropy > 6000 {
-        entropy = 6000;
-    }
-    
-    entropy
-}
-`;
-
-Deno.writeTextFileSync(new URL("./sigma_core/src/math.rs", import.meta.url), MATH_LUT_RS);
-
-const AS_CONSTANTS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-// OMEGA-64 | constants.assembly.ts | Era 69
-// Isomorphic WASM Constants and Math LUTs
-
-${Object.entries(SYSTEM_CONSTANTS)
-  .map(([name, [value, type]]) => {
-    const asType = (name === "MAX_ATOMS") ? "i32" : type;
-    return `export const ${name}: ${asType} = ${value};`;
-  })
-  .join("\n")}
-
-export const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;
-export const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;
-export const TICK_COUNTER_OFF: usize = TICK_COUNTER_OFFSET;
-export const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
-export const XS_OFFSET: usize = SAFETY_BUFFER + 4000000;
-export const YS_OFFSET: usize = SAFETY_BUFFER + 5000000;
-export const ENERGY_OFFSET: usize = SAFETY_BUFFER + 6000000;
-export const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 8000000;
-export const PHASE_OFFSET: usize = SAFETY_BUFFER + 10000000;
-export const LOGIC_OFFSET: usize = SAFETY_BUFFER + 12000000;
-export const BONDS_OFFSET: usize = SAFETY_BUFFER + 16000000;
-export const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 24000000;
-export const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 32000000;
-export const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
-export const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 64000000;
-export const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 96000000;
-export const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 98000000;
-export const SPAWN_REQUESTS_OFF: usize = SPAWN_REQUESTS_OFFSET;
-export const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFFSET;
-export const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
-export const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
-export const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;
-export const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
-export const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 104024584;
-export const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 110024584;
-export const ROLES_OFFSET: usize = SAFETY_BUFFER + 111458184;
-export const STRUCTURE_GRID_OFFSET: usize = SAFETY_BUFFER + 111958184;
-export const STRUCTURE_GRID_OFF: usize = STRUCTURE_GRID_OFFSET;
-export const SIGNAL_GRID_OFFSET: usize = SAFETY_BUFFER + 112002984;
-export const SIGNAL_GRID_OFF: usize = SIGNAL_GRID_OFFSET;
-export const MEMORY_GRID_OFFSET: usize = SAFETY_BUFFER + 112047784;
-export const MEMORY_GRID_OFF: usize = MEMORY_GRID_OFFSET;
-export const ASCENSION_STATS_OFFSET: usize = SAFETY_BUFFER + 112137384;
-export const ASCENSION_STATS_OFF: usize = ASCENSION_STATS_OFFSET;
-export const BOND_DISTANCES_OFFSET: usize = SAFETY_BUFFER + 117137384;
-export const BOND_DIST_OFF: usize = BOND_DISTANCES_OFFSET;
-export const SYNAPTIC_WEIGHTS_OFFSET: usize = SAFETY_BUFFER + 119137384;
-export const DAMPING_OFFSET: usize = SAFETY_BUFFER + 121137384;
-export const DAMPING_OFF: usize = DAMPING_OFFSET;
-export const CAUSALITY_OFFSET: usize = SAFETY_BUFFER + 121637384;
-export const CAUSALITY_OFF: usize = CAUSALITY_OFFSET;
-export const HIVE_MEMORY_OFFSET: usize = SAFETY_BUFFER + 122137384;
-export const HIVE_MEMORY_OFF: usize = HIVE_MEMORY_OFFSET;
-export const HIVE_BALANCE_OFFSET: usize = SAFETY_BUFFER + 122138408;
-export const HIVE_BALANCE_OFF: usize = HIVE_BALANCE_OFFSET;
-export const QUORUM_OFFSET: usize = SAFETY_BUFFER + 122138412;
-export const COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496812;
-export const COHERENCE_OFF: usize = COHERENCE_OFFSET;
-export const NEURAL_COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496816;
-export const NEURAL_COHERENCE_OFF: usize = NEURAL_COHERENCE_OFFSET;
-export const PHYSICS_READ_XS_OFFSET: usize = SAFETY_BUFFER + 122496820;
-export const PHYSICS_READ_XS_OFF: usize = PHYSICS_READ_XS_OFFSET;
-export const PHYSICS_READ_YS_OFFSET: usize = SAFETY_BUFFER + 123496820;
-export const PHYSICS_READ_YS_OFF: usize = PHYSICS_READ_YS_OFFSET;
-export const PHYSICS_READ_ENERGY_OFFSET: usize = SAFETY_BUFFER + 124496820;
-export const PHYSICS_READ_ENERGY_OFF: usize = PHYSICS_READ_ENERGY_OFFSET;
-export const PHYSICS_READ_RESONANCE_OFFSET: usize = SAFETY_BUFFER + 126496820;
-export const PHYSICS_READ_RESONANCE_OFF: usize = PHYSICS_READ_RESONANCE_OFFSET;
-export const ENERGY_DELTA_OFFSET: usize = SAFETY_BUFFER + 128496820;
-export const ENERGY_DELTA_OFF: usize = ENERGY_DELTA_OFFSET;
-export const RESONANCE_DELTA_OFFSET: usize = SAFETY_BUFFER + 130496820;
-export const RESONANCE_DELTA_OFF: usize = RESONANCE_DELTA_OFFSET;
-export const STRUCTURE_BUILD_OWNER_OFFSET: usize = SAFETY_BUFFER + 132496820;
-export const STRUCTURE_BUILD_OWNER_OFF: usize = STRUCTURE_BUILD_OWNER_OFFSET;
-export const STRUCTURE_BUILD_VALUE_OFFSET: usize = SAFETY_BUFFER + 132541620;
-export const STRUCTURE_BUILD_VALUE_OFF: usize = STRUCTURE_BUILD_VALUE_OFFSET;
-export const STRUCTURE_CHARGE_INTENT_OFFSET: usize = SAFETY_BUFFER + 132586420;
-export const STRUCTURE_CHARGE_INTENT_OFF: usize = STRUCTURE_CHARGE_INTENT_OFFSET;
-export const ATTENTION_FIELD_OFFSET: usize = SAFETY_BUFFER + 132631220;
-export const ATTENTION_FIELD_OFF: usize = ATTENTION_FIELD_OFFSET;
-export const HIVE_ENERGY_POOL_OFFSET: usize = SAFETY_BUFFER + 132676020;
-export const HIVE_ENERGY_POOL_OFF: usize = HIVE_ENERGY_POOL_OFFSET;
-export const GLYPH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132677044;
-export const GLYPH_HEADER_OFF: usize = GLYPH_HEADER_OFFSET;
-export const GLYPH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132721844;
-export const GLYPH_PAYLOAD_OFF: usize = GLYPH_PAYLOAD_OFFSET;
-export const GLYPH_SCRATCH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132811444;
-export const GLYPH_SCRATCH_HEADER_OFF: usize = GLYPH_SCRATCH_HEADER_OFFSET;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132856244;
-export const GLYPH_SCRATCH_PAYLOAD_OFF: usize = GLYPH_SCRATCH_PAYLOAD_OFFSET;
-export const HORMONE_OFFSET: usize = SAFETY_BUFFER + 132945844;
-export const HORMONE_OFF: usize = HORMONE_OFFSET;
-export const SECRETION_STATS_OFFSET: usize = SAFETY_BUFFER + 132945860;
-export const SECRETION_STATS_OFF: usize = SECRETION_STATS_OFFSET;
-export const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 132945912;
-export const MAILBOX_OFFSET: usize = SAFETY_BUFFER + 136945912;
-export const LEDGER_HEAD_OFFSET: usize = SAFETY_BUFFER + 140945912;
-export const LEDGER_DATA_OFFSET: usize = SAFETY_BUFFER + 140945916;
-export const EGRESS_HEAD_OFFSET: usize = SAFETY_BUFFER + 141994492;
-export const EGRESS_DATA_OFFSET: usize = SAFETY_BUFFER + 141994496;
-
-export const SPAWN_MAX: i32 = 1024;
-export const SPAWN_SLOT: i32 = 24;
-export const LATTICE_MEMORY_END: usize = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
-
-// Mathematical Trigonometric LUTs (Q15 Format)
-export const SIN_LUT: StaticArray<i16> = [
-  /* [TRUNCATED LUT ARRAY] */
-];
-
-export const COS_LUT: StaticArray<i16> = [
-  /* [TRUNCATED LUT ARRAY] */
-];
-`;
-
-Deno.writeTextFileSync(new URL("./01/assembly/constants.assembly.ts", import.meta.url), AS_CONSTANTS);
-console.log("[DAG] Successfully generated Isomorphic Topology (`OFFSETS.ts`, `constants.rs`, `math.rs`, and `constants.assembly.ts`)");
-
-```
-
----
-
-## FILE: src/00/LOGGER.ts
-
-```typescript
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
-
-const LEVEL_WEIGHT: Record<LogLevel, number> = {
-  debug: 10,
-  info: 20,
-  warn: 30,
-  error: 40,
-  silent: 50,
-};
-
-const readEnv = (key: string): string | undefined => {
-  try {
-    const deno = (globalThis as {
-      Deno?: { env?: { get?: (k: string) => string | undefined } };
-    }).Deno;
-    return deno?.env?.get?.(key);
-  } catch {
-    return undefined;
-  }
-};
-
-const normalizeLevel = (raw: string | undefined): LogLevel => {
-  const value = raw?.trim().toLowerCase();
-  if (value === "debug") return "debug";
-  if (value === "info") return "info";
-  if (value === "warn" || value === "warning") return "warn";
-  if (value === "error") return "error";
-  if (value === "silent" || value === "off" || value === "none") {
-    return "silent";
-  }
-  return "warn";
-};
-
-let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
-
-const shouldLog = (level: LogLevel): boolean => {
-  if (currentLevel === "silent") return false;
-  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
-};
-
-const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
-  const sink =
-    (console as unknown as Record<string, (...xs: unknown[]) => void>)[
-      method
-    ] ??
-      console.log;
-  sink(...args);
-};
-
-export const LOGGER = {
-  getLevel: (): LogLevel => currentLevel,
-  setLevel: (level: LogLevel): void => {
-    currentLevel = level;
-  },
-  refreshLevelFromEnv: (): LogLevel => {
-    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
-    return currentLevel;
-  },
-  debug: (...args: unknown[]) => {
-    if (shouldLog("debug")) emit("debug", args);
-  },
-  info: (...args: unknown[]) => {
-    if (shouldLog("info")) emit("info", args);
-  },
-  warn: (...args: unknown[]) => {
-    if (shouldLog("warn")) emit("warn", args);
-  },
-  error: (...args: unknown[]) => {
-    if (shouldLog("error")) emit("error", args);
-  },
-};
-
-```
-
----
-
-## FILE: src/00/mod.ts
-
-```typescript
-export * from "@00/OFFSETS.ts";
-export * from "@00/SHIMS.ts";
-export * from "@00/STATE_MATRIX.ts";
-export * from "@00/LOGGER.ts";
-export * from "@00/ATOM_INDEX.ts";
-export * from "@00/STATE_SNAPSHOT.ts";
-export * from "@00/ENV_PARSE.ts";
-export * from "@00/PRNG.ts";
-export const WASM_PATH = new URL("./release.wasm", import.meta.url);
-
-```
-
----
-
-## FILE: src/00/OFFSETS.ts
-
-```typescript
-// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-// OMEGA-64 | OFFSETS.ts | Era 69: Absolute Coherence
-// Unified Memory Lattice Constants - Relocated for WASM Safety
-
-export const MAX_ATOMS = 500000;
-export const SAFETY_BUFFER = 8000000;
-export const GRID_W = 140;
-export const GRID_H = 80;
-export const GRID_CELLS = 11200;
-export const SCALE = 1000;
-export const CELL_CAPACITY = 32;
-export const MAX_PC = 64;
-export const MAX_EXECUTION_STEPS = 64;
-export const ATOM_LOGIC_SIZE = 64;
-export const MAX_LEDGER_EVENTS = 65536;
-export const MAX_EGRESS_EVENTS = 8192;
-export const WASM_PAGE_BYTES = 65536;
-export const WASM_MEMORY_PAGES = 7630;
-
-const U64_BYTES = 8;
-const I32_BYTES = 4;
-const I16_BYTES = 2;
-const F32_BYTES = 4;
-
-export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
-export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
-
-export const IDS_OFFSET = SAFETY_BUFFER + 0;
-export const XS_OFFSET = SAFETY_BUFFER + 4000000;
-export const YS_OFFSET = SAFETY_BUFFER + 5000000;
-export const ENERGY_OFFSET = SAFETY_BUFFER + 6000000;
-export const RESONANCE_OFFSET = SAFETY_BUFFER + 8000000;
-export const PHASE_OFFSET = SAFETY_BUFFER + 10000000;
-export const LOGIC_OFFSET = SAFETY_BUFFER + 12000000;
-export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
-export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
-export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
-export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
-export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000;
-export const INTENT_OFFSET = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
-export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
-export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 104024584;
-export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 110024584;
-export const ROLES_OFFSET = SAFETY_BUFFER + 111458184;
-export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 111958184;
-export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
-export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
-export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
-export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
-export const SYNAPTIC_WEIGHTS_OFFSET = SAFETY_BUFFER + 119137384;
-export const DAMPING_OFFSET = SAFETY_BUFFER + 121137384;
-export const CAUSALITY_OFFSET = SAFETY_BUFFER + 121637384;
-export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 122137384;
-export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 122138408;
-export const QUORUM_OFFSET = SAFETY_BUFFER + 122138412;
-export const COHERENCE_OFFSET = SAFETY_BUFFER + 122496812;
-export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 122496816;
-export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 122496820;
-export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 123496820;
-export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 124496820;
-export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 126496820;
-export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
-export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 130496820;
-export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 132496820;
-export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 132541620;
-export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 132586420;
-export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 132631220;
-export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 132676020;
-export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 132677044;
-export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132721844;
-export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 132811444;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132856244;
-export const HORMONE_OFFSET = SAFETY_BUFFER + 132945844;
-export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860;
-export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912;
-export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912;
-
-export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912;
-export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916;
-
-export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492;
-export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496;
-
-type MemoryLayoutRegion = { name: string; offset: number; size: number; align: number; };
-
-export type MemoryLayoutValidationResult = { ok: boolean; errors: string[]; regions: MemoryLayoutRegion[]; latticeEnd: number; wasmBytes: number; };
-
-const region = (name: string, offset: number, size: number, align: number): MemoryLayoutRegion => ({ name, offset, size, align });
-
-export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
-  region("TICK_COUNTER", TICK_COUNTER_OFFSET, I32_BYTES, I32_BYTES),
-  region("SYNC_STATE", SYNC_STATE_OFFSET, I32_BYTES, I32_BYTES),
-  region("IDS", IDS_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
-  region("XS", XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("YS", YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("ENERGY", ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("RESONANCE", RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("PHASE", PHASE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("LOGIC", LOGIC_OFFSET, MAX_ATOMS * 8, 1),
-  region("BONDS", BONDS_OFFSET, MAX_ATOMS * 4 * I32_BYTES, I32_BYTES),
-  region("STIFFNESS", STIFFNESS_OFFSET, MAX_ATOMS * 4 * F32_BYTES, F32_BYTES),
-  region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * 64, 1),
-  region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * 64, I32_BYTES),
-  region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
-  region("MEIOSIS_RESERVED", MEIOSIS_OFFSET, BOND_REQUESTS_OFFSET - MEIOSIS_OFFSET, I32_BYTES),
-  region("BOND_REQUESTS", BOND_REQUESTS_OFFSET, MAX_ATOMS * 3 * I32_BYTES, I32_BYTES),
-  region("SPATIAL_GRID", SPATIAL_GRID_OFFSET, GRID_CELLS * 32 * I32_BYTES, I32_BYTES),
-  region("ROLES", ROLES_OFFSET, MAX_ATOMS, 1),
-  region("STRUCTURE_GRID", STRUCTURE_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("SIGNAL_GRID", SIGNAL_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("MEMORY_GRID", MEMORY_GRID_OFFSET, GRID_CELLS * 8, 1),
-  region("ASCENSION_STATS_RESERVED", ASCENSION_STATS_OFFSET, BOND_DISTANCES_OFFSET - ASCENSION_STATS_OFFSET, I32_BYTES),
-  region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
-  region("SYNAPTIC_WEIGHTS", SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4, 1),
-  region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
-  region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
-  region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, 1024, 1),
-  region("HIVE_BALANCE", HIVE_BALANCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("QUORUM", QUORUM_OFFSET, COHERENCE_OFFSET - QUORUM_OFFSET, I32_BYTES),
-  region("COHERENCE", COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("NEURAL_COHERENCE", NEURAL_COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
-  region("PHYSICS_READ_XS", PHYSICS_READ_XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("PHYSICS_READ_YS", PHYSICS_READ_YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
-  region("PHYSICS_READ_ENERGY", PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("PHYSICS_READ_RESONANCE", PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("ENERGY_DELTA", ENERGY_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("RESONANCE_DELTA", RESONANCE_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_BUILD_OWNER", STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_BUILD_VALUE", STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("STRUCTURE_CHARGE_INTENT", STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("ATTENTION_FIELD", ATTENTION_FIELD_OFFSET, GRID_CELLS * F32_BYTES, F32_BYTES),
-  region("HIVE_ENERGY_POOL", HIVE_ENERGY_POOL_OFFSET, 256 * I32_BYTES, I32_BYTES),
-  region("GLYPH_HEADER", GLYPH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
-  region("GLYPH_SCRATCH_HEADER", GLYPH_SCRATCH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
-  region("GLYPH_SCRATCH_PAYLOAD", GLYPH_SCRATCH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
-  region("HORMONES", HORMONE_OFFSET, 16, 2),
-  region("SECRETION_STATS", SECRETION_STATS_OFFSET, 48, 4),
-  region("LINEAGE", LINEAGE_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
-  region("MAILBOX", MAILBOX_OFFSET, MAX_ATOMS * 8, I32_BYTES),
-  region("LEDGER_HEAD", LEDGER_HEAD_OFFSET, 4, 4),
-  region("LEDGER_DATA", LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 16, 4),
-  region("EGRESS_HEAD", EGRESS_HEAD_OFFSET, 4, 4),
-  region("EGRESS_DATA", EGRESS_DATA_OFFSET, MAX_EGRESS_EVENTS * 128, 4),
-];
-
-export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
-export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES));
-export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
-
-export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): MemoryLayoutValidationResult => {
-  const errors: string[] = [];
-  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) => a.offset - b.offset);
-
-  for (const item of sorted) {
-    if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {
-      errors.push(`[${item.name}] offset/size must be finite numbers`);
-      continue;
-    }
-    if (item.size <= 0) errors.push(`[${item.name}] size must be > 0, got ${item.size}`);
-    if (item.align <= 0) {
-      errors.push(`[${item.name}] align must be > 0, got ${item.align}`);
-    } else if (item.offset % item.align !== 0) {
-      errors.push(`[${item.name}] misaligned offset=${item.offset} align=${item.align}`);
-    }
-    const end = item.offset + item.size;
-    if (end > wasmBytes) errors.push(`[${item.name}] out of wasm bounds: end=${end} > wasmBytes=${wasmBytes}`);
-  }
-
-  for (let i = 1; i < sorted.length; i++) {
-    const prev = sorted[i - 1]; const next = sorted[i];
-    const prevEnd = prev.offset + prev.size;
-    if (prevEnd > next.offset) errors.push(`[${prev.name}] overlaps [${next.name}] (${prevEnd} > ${next.offset})`);
-  }
-
-  const maxRegionEnd = sorted.reduce((max, item) => Math.max(max, item.offset + item.size), 0);
-  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(`[LATTICE_MEMORY_END] too small: ${LATTICE_MEMORY_END} < required=${maxRegionEnd}`);
-
-  return { ok: errors.length === 0, errors, regions: sorted, latticeEnd: LATTICE_MEMORY_END, wasmBytes };
-};
-
-export const MAX_ASCENSIONS_PER_TICK = 64;
-
-```
-
----
-
-## FILE: src/00/PRNG.ts
-
-```typescript
-// OMEGA-64 | PRNG.ts | The Immutable Deterministic Oracle
-// A seeded Linear Congruential Generator (LCG) for reproducible evolution.
-// In Era 8, this is immutable to prevent race conditions in the Memory Matrix.
-
-export class PRNG {
-  private readonly state: number;
-
-  constructor(seed: number) {
-    this.state = seed >>> 0;
-  }
-
-  /**
-   * Generates the next value and a new PRNG instance.
-   * @returns { value: number, next: PRNG }
-   */
-  next(): { value: number; next: PRNG } {
-    // LCG constants from Numerical Recipes
-    const nextState = (this.state * 1664525 + 1013904223) >>> 0;
-    return {
-      value: nextState / 0xFFFFFFFF,
-      next: new PRNG(nextState),
-    };
-  }
-
-  /**
-   * Static helper to derive a seed from tick and atom ID.
-   */
-  static seedFrom(tick: number, atomId: string): number {
-    let hash = tick;
-    for (let i = 0; i < atomId.length; i++) {
-      hash = ((hash << 5) - hash) + atomId.charCodeAt(i);
-      hash |= 0; // Convert to 32bit int
-    }
-    return Math.abs(hash);
-  }
-}
-
-```
-
----
-
-## FILE: src/00/SHIMS.ts
-
-```typescript
-// SHIMS.ts
-// OMEGA-64 | Legacy Compliance Shims
-// Shared dependency surface for Gate/runtime paths.
-
-import { REJECTION } from "@00/STATE_SNAPSHOT.ts";
-
-const crypto = globalThis.crypto;
+// OMEGA-64 | agent_signature.ts
+// Legacy Compliance Shims - Proposal Signatures
+
+import {
+  base64ToBytes,
+  bytesToBase64,
+  bytesToHex,
+  hexToBytes,
+  importEd25519Private,
+  importEd25519Public,
+  importHmac,
+  sha256Hex,
+  stableStringify,
+} from "./crypto_shim.ts";
+import { REJECTION } from "./STATE_SNAPSHOT.ts";
+import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "./crypto_shim.ts";
 
 const encoder = new TextEncoder();
-const decoder = new TextDecoder();
-
-const bytesToHex = (bytes: Uint8Array): string =>
-  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
-
-const hexToBytes = (hex: string): Uint8Array | null => {
-  if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
-  const out = new Uint8Array(hex.length / 2);
-  for (let i = 0; i < out.length; i++) {
-    const byte = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
-    if (!Number.isFinite(byte)) return null;
-    out[i] = byte;
-  }
-  return out;
-};
-
-const bytesToBase64 = (bytes: Uint8Array): string =>
-  btoa(String.fromCharCode(...bytes));
-const base64ToBytes = (b64: string): Uint8Array =>
-  Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
-
-const stableStringify = (value: unknown): string => {
-  if (Array.isArray(value)) {
-    return `[${value.map((v) => stableStringify(v)).join(",")}]`;
-  }
-  if (value && typeof value === "object") {
-    const entries = Object.entries(value as Record<string, unknown>)
-      .sort(([a], [b]) => a.localeCompare(b));
-    return `{${
-      entries.map(([k, v]) => `${JSON.stringify(k)}:${stableStringify(v)}`)
-        .join(",")
-    }}`;
-  }
-  return JSON.stringify(value);
-};
-
-const sha256Hex = async (input: string): Promise<string> => {
-  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(input));
-  return bytesToHex(new Uint8Array(digest));
-};
-
-const appendJsonl = async (path: string, entry: unknown): Promise<void> => {
-  await Deno.writeTextFile(path, `${JSON.stringify(entry)}\n`, {
-    append: true,
-    create: true,
-  });
-};
-
-const readJsonl = async function* (path: string): AsyncGenerator<any> {
-  try {
-    const raw = await Deno.readTextFile(path);
-    for (const line of raw.split("\n")) {
-      const t = line.trim();
-      if (!t) continue;
-      try {
-        yield JSON.parse(t);
-      } catch {
-        // skip malformed rows for compatibility
-      }
-    }
-  } catch {
-    // no file => empty stream
-  }
-};
-
-export type REPLAY_AUDIT__08_00_ReplayInvariantReport = any;
-
-const I16_DATA = {
-  MIN: -32768,
-  MAX: 32767,
-  max: 32767,
-  span: 65536,
-  LEVEL_COUNT: 64,
-};
-export const I16_LIMITS_I16_LIMITS = Object.assign(() => I16_DATA, I16_DATA);
-export const I16_CLAMP__00_00_I16_CLAMP = (v: number): number =>
-  Math.floor(Math.max(-32768, Math.min(32767, v)));
-
-type Ed25519SigningKey = {
-  scheme: "ed25519/v1";
-  private_key_pkcs8_b64: string;
-};
-type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
-type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
-
-const importHmac = async (
-  secret: string,
-  usages: KeyUsage[],
-): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "raw",
-    encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    usages,
-  );
-
-const importEd25519Private = async (b64: string): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "pkcs8",
-    base64ToBytes(b64) as unknown as BufferSource,
-    { name: "Ed25519" },
-    false,
-    ["sign"],
-  );
-
-const importEd25519Public = async (b64: string): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "spki",
-    base64ToBytes(b64) as unknown as BufferSource,
-    { name: "Ed25519" },
-    false,
-    ["verify"],
-  );
+const crypto = globalThis.crypto;
 
 const canonicalProposalPayload = (proposal: any): string =>
   stableStringify(AGENT_SIGNATURE.toCanonicalObject(proposal));
@@ -4917,139 +4224,581 @@ export const AGENT_SIGNATURE = {
     await sha256Hex(typeof data === "string" ? data : stableStringify(data)),
 };
 
-type BridgeInvariantReportLike = {
-  index_chain_checked?: boolean;
-  index_chain_ok?: boolean;
-  index_chain_failures?: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_failures?: string[];
+```
+
+---
+
+## FILE: src/00/ATOM_ACCESS.ts
+
+```typescript
+// OMEGA-64 | ATOM_ACCESS.ts
+import { GRID_W, GRID_H, GRID_CELLS } from "./OFFSETS.ts";
+import * as OFFSETS from "./OFFSETS.ts";
+import * as views from "./memory_views.ts";
+
+export const clampResourceRaw = (value: number): number => {
+  if (!Number.isFinite(value)) return 0;
+  if (value <= 0) return 0;
+  if (value >= OFFSETS.RESOURCE_MAX) return OFFSETS.RESOURCE_MAX;
+  return Math.trunc(value);
 };
 
-const resolveBridgeMode = (
-  report?: BridgeInvariantReportLike,
-): { mode: "GREEN" | "AMBER" | "RED"; reason: string } => {
-  if (!report) {
-    return { mode: "AMBER", reason: "INVARIANT_REPORT_MISSING" };
-  }
+export const toClampedEnergyRaw = (value: number): number =>
+  clampResourceRaw(Math.round(value * OFFSETS.SCALE));
 
-  const indexChecked = report.index_chain_checked === true;
-  const indexOk = report.index_chain_ok !== false;
-  const gateChecked = report.gate_admission_index_chain_checked === true;
-  const gateOk = report.gate_admission_index_chain_ok !== false;
+export const SYNC = {
+  IDLE: 0,
+  WASM_TICKING: 1,
+  HOST_LOCK: 2,
+};
 
-  if (!indexOk) {
-    const failure = report.index_chain_failures?.[0] ?? "INDEX_CHAIN_FAILED";
-    return { mode: "RED", reason: failure };
-  }
-  if (!gateOk) {
-    const failure = report.gate_admission_index_chain_failures?.[0] ??
-      "GATE_ADMISSION_INDEX_CHAIN_FAILED";
-    return { mode: "RED", reason: failure };
-  }
+export const RISC = {
+  OP_NOP: 0x00,
+  OP_SET: 0x01,
+  OP_GET: 0x02,
+  OP_PUT: 0x03,
+  OP_ADD: 0x04,
+  OP_SUB: 0x05,
+  OP_JZ: 0x10,
+  OP_JNZ: 0x11,
+  OP_JMP: 0x12,
+  OP_REPLICATE: 0x80,
+  OP_SIGNAL: 0x81,
+  OP_BIND: 0x82,
+  OP_SHARE: 0x83,
+  OP_PLUG: 0x84,
+  OP_TENSEGRITY: 0x85,
+  OP_ENTANGLE: 0x86,
+  OP_BUILD: 0xA4,
+  OP_SENSE: 0xA5,
+  OP_COLLECTIVE: 0xA6,
+  OP_ROLE: 0xA7,
+  OP_SPORE_DRIVE: 0xA8,
+  OP_WISDOM: 0xA9,
+  OP_RESOLVE: 0xB0,
+  OP_RESONATE_KURAMOTO: 0xB1,
+  OP_SYSCALL: 0x60,
+  PROP_ENERGY: 0,
+  PROP_RESONANCE: 1,
+  PROP_X: 2,
+  PROP_Y: 3,
+  PROP_PHASE: 4,
+  PROP_GRID_CHARGE: 7,
+  PROP_QUORUM: 8,
+  PROP_NEURAL_COHERENCE: 9,
+  PROP_MEMORY: 10,
+};
 
-  if (!indexChecked || !gateChecked) {
-    const missingChecks: string[] = [];
-    if (!indexChecked) missingChecks.push("INDEX_CHAIN_UNCHECKED");
-    if (!gateChecked) {
-      missingChecks.push("GATE_ADMISSION_INDEX_CHAIN_UNCHECKED");
+export const SYS = {
+  YIELD: 0x01,
+  READ_MEM: 0x02,
+  WRITE_MEM: 0x03,
+  SPAWN: 0x04,
+  BIND: 0x05,
+  SET_ROLE: 0x06,
+  MUTATE: 0x07,
+  MSG: 0x08,
+  READ_INBOX: 0x09,
+  TRANSFER: 0x0A,
+  REPLICATE: 0x0B,
+  EMIT: 0x0C,
+  SCAN: 0x0D,
+  ATTRACT: 0x11,
+  FOLD: 0x12,
+  BET: 0x10,
+};
+
+export const STRUCTURE = {
+  VOID: 0,
+  WIRE: 1,
+  NODE: 2,
+  DIODE: 3,
+  SOURCE: 4,
+  SINK: 5,
+  CAPACITOR: 6,
+  INVERTER: 7,
+  LATCH: 8,
+};
+
+const DEFAULT_BOOT_SCRIPT = (() => {
+  const boot = new Uint8Array(64);
+  boot[0] = RISC.OP_SET;
+  boot[1] = 0;
+  boot[2] = SYS.YIELD;
+  boot[3] = RISC.OP_SYSCALL;
+  return boot;
+})();
+
+const GUARDIAN_COHERENCE_THRESHOLD = 200;
+
+export const ATOM_ACCESS = {
+  MAX_ATOMS: OFFSETS.MAX_ATOMS,
+  buffer: views.sharedBuffer,
+  wasmMemory: views.wasmMemory,
+  SCALE: OFFSETS.SCALE,
+  syncState: views.syncState,
+  tickCounter: views.tickCounter,
+  SYNC,
+  phases: views.phases,
+  evolutionReserved: views.evolutionReserved,
+  roles: views.roles,
+  spatialGrid: views.spatialGrid,
+  structureGrid: views.structureGrid,
+  signalGrid: views.signalGrid,
+  memoryGrid: views.memoryGrid,
+  attentionField: views.attentionField,
+  glyphHeaders: views.glyphHeaders,
+  glyphPayload: views.glyphPayload,
+  hiveEnergyPool: views.hiveEnergyPool,
+  coherence: views.coherence,
+  neuralCoherence: views.neuralCoherence,
+  hormones: views.hormones,
+  lineage: views.lineage,
+  instructions: views.instructions,
+  ledgerHeadView: views.ledgerHeadView,
+  ledgerDataView: views.ledgerDataView,
+  contexts: views.contexts,
+  semanticBonuses: views.semanticBonuses,
+  RISC,
+
+  memoryGridBuffer: views.memoryGridBuffer,
+  signalGridBuffer: views.signalGridBuffer,
+  structureGridBuffer: views.structureGridBuffer,
+  attentionFieldBuffer: views.attentionFieldBuffer,
+  glyphHeaderBuffer: views.glyphHeaderBuffer,
+  glyphPayloadBuffer: views.glyphPayloadBuffer,
+  roleRegistryBuffer: views.roleBuffer,
+  bondStiffnessBuffer: views.stiffnessBuffer,
+  bondDistancesBuffer: views.bondDistBuffer,
+  dampingBuffer: views.dampingBuffer,
+  semanticBonusesBuffer: views.semanticBonusesBuffer,
+  immuneBuffer: views.signalGridBuffer,
+  currentReadBuffer: views.signalGridBuffer,
+  synapticStackBuffer: views.signalGridBuffer,
+  viralGrid: views.signalGrid,
+  viralGridBuffer: views.signalGridBuffer,
+  hiveMemoryBuffer: views.hiveMemoryBuffer,
+  hiveEnergyPoolBuffer: views.hiveEnergyPoolBuffer,
+  hormoneBuffer: views.hormoneBuffer,
+  lineageBuffer: views.lineageBuffer,
+
+  ROLE_NEUTRAL: 0,
+  ROLE_PRODUCER: 1,
+  ROLE_GUARDIAN: 2,
+  ROLE_ARCHITECT: 3,
+  ROLE_PARASITE: 4,
+  ROLE_MITOCHONDRIA: 5,
+
+  getId: (i: number) => Atomics.load(views.ids, i),
+  getX: (i: number) => Atomics.load(views.xs, i),
+  getY: (i: number) => Atomics.load(views.ys, i),
+  getRole: (i: number) => Atomics.load(views.roles, i),
+  getEnergy: (i: number) => Atomics.load(views.energies, i) / OFFSETS.SCALE,
+  getResonance: (i: number) => Atomics.load(views.resonances, i),
+  getPhase: (i: number) => Atomics.load(views.phases, i),
+  getEvolutionReserved: (i: number) => Atomics.load(views.evolutionReserved, i),
+  getLogic: (i: number) => views.logic.subarray(i * 8, i * 8 + 8),
+  getBonds: (i: number) => views.bonds.subarray(i * 4, i * 4 + 4),
+  setBonds: (i: number, val: Uint32Array) => views.bonds.set(val, i * 4),
+  getBondTarget: (i: number, slot: number) => Atomics.load(views.bonds, i * 4 + slot),
+  getBondStiffness: (i: number, slot: number) => views.bondStiffness[i * 4 + slot],
+  getBondDistance: (i: number, slot: number) => Atomics.load(views.bondDistances, i * 4 + slot),
+  hasBondRequest: (i: number) => Atomics.load(views.bondRequests, i * 3) !== 0,
+  getBondRequestInitiator: (i: number) => Atomics.load(views.bondRequests, i * 3),
+  getBondRequestTarget: (i: number) => Atomics.load(views.bondRequests, i * 3 + 1),
+  getBondRequestDistance: (i: number) => Atomics.load(views.bondRequests, i * 3 + 2),
+  getDamping: (i: number) => Atomics.load(views.damping, i),
+  getLineage: (i: number) => Atomics.load(views.lineage, i),
+  getMailboxMsgType: (i: number) => Atomics.load(views.mailboxes, i * 2),
+  getMailboxPayload: (i: number) => Atomics.load(views.mailboxes, i * 2 + 1),
+  getHiveMemory: (addr: number) => Atomics.load(views.hiveMemory, addr & 1023),
+  setHiveMemory: (addr: number, val: number) => { Atomics.store(views.hiveMemory, addr & 1023, val); },
+  getHiveBalance: () => Atomics.load(views.hiveBalance, 0),
+  setHiveBalance: (val: number) => { Atomics.store(views.hiveBalance, 0, val); },
+  addHiveBalance: (val: number) => Atomics.add(views.hiveBalance, 0, val),
+  getHiveEnergyPoolSlot: (slot: number) => Atomics.load(views.hiveEnergyPool, slot & 255),
+  setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(views.hiveEnergyPool, slot & 255, val),
+  addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(views.hiveEnergyPool, slot & 255, val),
+
+  getInstructions: (i: number) => views.instructions.subarray(i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE),
+  getCode: (i: number) => views.codeWords.subarray(i * 16, i * 16 + 16),
+  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) => Atomics.load(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) => views.contextByteView.subarray(i * (OFFSETS.ATOM_CONTEXT_SIZE * 4), i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + (OFFSETS.ATOM_CONTEXT_SIZE * 4)),
+
+  setId: (i: number, val: bigint) => Atomics.store(views.ids, i, val),
+  setX: (i: number, val: number) => Atomics.store(views.xs, i, Math.round(val)),
+  setY: (i: number, val: number) => Atomics.store(views.ys, i, Math.round(val)),
+  getSynapticWeight: (index: number, slot: number): number => views.synapticWeights[index * 4 + slot],
+  setSynapticWeight: (index: number, slot: number, weight: number) => { views.synapticWeights[index * 4 + slot] = weight; },
+  setRole: (i: number, val: number) => Atomics.store(views.roles, i, val),
+  setEnergy: (i: number, val: number) => Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
+  setResonance: (i: number, val: number) => Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
+  setPhase: (i: number, val: number) => Atomics.store(views.phases, i, val),
+  setLogic: (i: number, val: Uint8Array) => views.logic.set(val, i * 8),
+  setBondTarget: (i: number, slot: number, target: number) => Atomics.store(views.bonds, i * 4 + slot, target),
+  setBondStiffness: (i: number, slot: number, val: number) => { views.bondStiffness[i * 4 + slot] = val; },
+  setBondDistance: (i: number, slot: number, val: number) => Atomics.store(views.bondDistances, i * 4 + slot, val),
+  setDamping: (i: number, val: number) => Atomics.store(views.damping, i, val),
+  setLineage: (i: number, val: bigint) => Atomics.store(views.lineage, i, val),
+  setMailboxMsgType: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2, val),
+  setMailboxPayload: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2 + 1, val),
+
+  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * OFFSETS.ATOM_INSTRUCTION_SIZE),
+  setCode: (i: number, val: Uint32Array | Uint8Array) => {
+    const codeStart = i * 16;
+    if (val instanceof Uint32Array) {
+      views.codeWords.fill(0, codeStart, codeStart + 16);
+      views.codeWords.set(val.subarray(0, 16), codeStart);
+      return;
     }
-    return { mode: "AMBER", reason: missingChecks.join("+") };
-  }
+    const instStart = i * OFFSETS.ATOM_INSTRUCTION_SIZE;
+    views.instructions.fill(0, instStart, instStart + OFFSETS.ATOM_INSTRUCTION_SIZE);
+    views.instructions.set(val.subarray(0, OFFSETS.ATOM_INSTRUCTION_SIZE), instStart);
+  },
+  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
+  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
 
-  return { mode: "GREEN", reason: "INVARIANT_INDEX_CHAIN_VERIFIED" };
-};
+  getBondRequest: (i: number) => {
+    const base = i * 3;
+    const initiator = Atomics.load(views.bondRequests, base);
+    return initiator !== 0 ? views.bondRequests.subarray(base, base + 3) : null;
+  },
+  clearBondRequest: (i: number) => Atomics.store(views.bondRequests, i * 3, 0),
 
-const proposalIsCanonBound = (proposal: unknown): boolean => {
-  const p = proposal as { target_path?: string; canon_bound?: boolean };
-  if (p?.canon_bound === true) return true;
-  const target = typeof p?.target_path === "string"
-    ? p.target_path.trim().toUpperCase()
-    : "";
-  return target === "CANON" || target.startsWith("CANON/") ||
-    target.startsWith("CANON:") || target.startsWith("/CANON");
-};
+  recycleAtom: (i: number) => {
+    Atomics.store(views.ids, i, 0n);
+    Atomics.store(views.energies, i, 0);
+    Atomics.store(views.resonances, i, 0);
+    Atomics.store(views.phases, i, 0);
+    Atomics.store(views.roles, i, 0);
+    views.bonds.fill(0, i * 4, i * 4 + 4);
+    views.bondStiffness.fill(0, i * 4, i * 4 + 4);
+    views.bondDistances.fill(0, i * 4, i * 4 + 4);
+    Atomics.store(views.damping, i, 0);
+    Atomics.store(views.lineage, i, 0n);
+    views.instructions.fill(0, i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE);
+    views.contexts.fill(0, i * OFFSETS.ATOM_CONTEXT_SIZE, i * OFFSETS.ATOM_CONTEXT_SIZE + OFFSETS.ATOM_CONTEXT_SIZE);
+  },
 
-const extractBridgeInvariantReport = (
-  state: unknown,
-  explicit?: BridgeInvariantReportLike,
-): BridgeInvariantReportLike | undefined => {
-  if (explicit) return explicit;
-  if (!state || typeof state !== "object") return undefined;
-  const s = state as Record<string, unknown>;
-  const direct = s.bridge_invariant_report;
-  if (direct && typeof direct === "object") {
-    return direct as BridgeInvariantReportLike;
-  }
-  const runtime = s.runtime;
-  if (runtime && typeof runtime === "object") {
-    const fromRuntime = (runtime as Record<string, unknown>)
-      .bridge_invariant_report;
-    if (fromRuntime && typeof fromRuntime === "object") {
-      return fromRuntime as BridgeInvariantReportLike;
+  clear: () => {
+    views.latticeClearView.fill(0);
+    views.semanticBonuses.fill(0);
+  },
+  getActiveIndices: () => {
+    const active: number[] = [];
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (Atomics.load(views.ids, i) !== 0n) active.push(i);
     }
-  }
-  const replayAudit = s.replay_audit;
-  if (replayAudit && typeof replayAudit === "object") {
-    const invariantReport = (replayAudit as Record<string, unknown>)
-      .invariantReport;
-    if (invariantReport && typeof invariantReport === "object") {
-      return invariantReport as BridgeInvariantReportLike;
+    return active;
+  },
+  getTopResonantIndices: (count: number) => {
+    const limit = Math.max(0, Math.min(OFFSETS.MAX_ATOMS, Math.trunc(count)));
+    if (limit === 0) return [];
+
+    const top: Array<{ idx: number; resonance: number }> = [];
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (Atomics.load(views.ids, i) === 0n) continue;
+      const resonance = Atomics.load(views.resonances, i);
+      if (top.length < limit) {
+        top.push({ idx: i, resonance });
+        continue;
+      }
+
+      let minPos = 0;
+      for (let j = 1; j < top.length; j++) {
+        if (top[j].resonance < top[minPos].resonance) minPos = j;
+      }
+      if (resonance > top[minPos].resonance) {
+        top[minPos] = { idx: i, resonance };
+      }
     }
-  }
-  return undefined;
+    top.sort((a, b) => b.resonance - a.resonance);
+    return top.map((entry) => entry.idx);
+  },
+
+  findFreeSlot: (): number => {
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (Atomics.load(views.ids, i) === 0n) return i;
+    }
+    return -1;
+  },
+  findEmptySlot: (): number => {
+    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+      if (Atomics.load(views.ids, i) === 0n) return i;
+    }
+    return -1;
+  },
+
+  packRenderFrame: (): Float32Array => {
+    const active = ATOM_ACCESS.getActiveIndices();
+    const len = active.length;
+    const packet = new Float32Array(len * 4);
+
+    for (let j = 0; j < len; j++) {
+      const idx = active[j];
+      const offset = j * 4;
+      packet[offset] = Atomics.load(views.xs, idx);
+      packet[offset + 1] = Atomics.load(views.ys, idx);
+      packet[offset + 2] = Atomics.load(views.roles, idx);
+      packet[offset + 3] = Atomics.load(views.resonances, idx);
+    }
+    return packet;
+  },
+
+  packPanopticonFrame: (): ArrayBuffer => {
+    const active = ATOM_ACCESS.getActiveIndices();
+    const atomCount = active.length;
+    const gridCells = GRID_CELLS;
+    const bytesPerAtom = 24;
+    
+    const totalBytes = 16 + gridCells + (atomCount * bytesPerAtom);
+    const buffer = new ArrayBuffer(totalBytes);
+    const cv = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+    
+    u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
+    let offset = 4;
+    
+    cv.setInt32(offset, Atomics.load(views.tickCounter, 0), true);
+    offset += 4;
+    
+    cv.setInt32(offset, gridCells, true);
+    offset += 4;
+    
+    for(let i=0; i < gridCells; i++) {
+        const type = ATOM_ACCESS.getGridType(i);
+        const hasPlasmid = views.memoryGrid[i*8] > 0 ? 0x80 : 0;
+        u8[offset++] = type | hasPlasmid;
+    }
+    
+    cv.setInt32(offset, atomCount, true);
+    offset += 4;
+    
+    for(let j=0; j < atomCount; j++) {
+        const idx = active[j];
+        cv.setInt16(offset, Atomics.load(views.xs, idx), true); offset += 2;
+        cv.setInt16(offset, Atomics.load(views.ys, idx), true); offset += 2;
+        u8[offset++] = Atomics.load(views.roles, idx);
+        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(views.resonances, idx)));
+        cv.setUint16(offset, idx, true); offset += 2;
+        
+        cv.setUint32(offset, Atomics.load(views.bonds, idx*4), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 1), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 2), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 3), true); offset+=4;
+    }
+    
+    return buffer;
+  },
+
+  seedAtom: (
+    i: number,
+    id: bigint,
+    x: number,
+    y: number,
+    energy: number,
+    resonance: number,
+    logicVal?: Uint8Array,
+    script?: Uint8Array,
+  ) => {
+    Atomics.store(views.ids, i, id);
+    Atomics.store(views.xs, i, Math.round(x));
+    Atomics.store(views.ys, i, Math.round(y));
+    Atomics.store(views.energies, i, Math.round(energy * OFFSETS.SCALE));
+    Atomics.store(views.resonances, i, Math.trunc(resonance));
+    Atomics.store(views.phases, i, 0);
+    Atomics.store(views.roles, i, 0);
+    Atomics.store(views.semanticBonuses, i, 0);
+
+    if (logicVal) views.logic.set(logicVal, i * 8);
+
+    const boot = script || DEFAULT_BOOT_SCRIPT;
+    views.instructions.set(boot, i * OFFSETS.ATOM_INSTRUCTION_SIZE);
+
+    for (let r = 0; r < OFFSETS.ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + r, 0);
+    Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, 0);
+  },
+
+  seedGuardian: (
+    i: number,
+    id: bigint,
+    x: number,
+    y: number,
+    energy: number = 10,
+    resonance: number = 100,
+  ) => {
+    const genome = new Uint8Array(8);
+    const script = ATOM_ACCESS.getGuardianScript();
+    ATOM_ACCESS.seedAtom(i, id, x, y, energy, resonance, genome, script);
+    ATOM_ACCESS.setRole(i, ATOM_ACCESS.ROLE_GUARDIAN);
+  },
+
+  getGuardianScript: () => {
+    const script = new Uint8Array(64);
+    let pc = 0;
+
+    script[pc++] = RISC.OP_GET;
+    script[pc++] = 0;
+    script[pc++] = RISC.PROP_NEURAL_COHERENCE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = GUARDIAN_COHERENCE_THRESHOLD;
+    script[pc++] = RISC.OP_SUB;
+    script[pc++] = 1;
+    script[pc++] = 0;
+    script[pc++] = RISC.OP_JNZ;
+    script[pc++] = 1;
+    script[pc++] = 22;
+
+    script[pc++] = RISC.OP_SIGNAL;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 0;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 2;
+    script[pc++] = RISC.OP_SYSCALL;
+    script[pc++] = RISC.OP_JMP;
+    script[pc++] = 0;
+
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 0;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 3;
+    script[pc++] = RISC.OP_SYSCALL;
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
+    script[pc++] = RISC.OP_JMP;
+    script[pc++] = 0;
+
+    return script;
+  },
+
+  getArchitectScript: () => {
+    const script = new Uint8Array(64);
+    let pc = 0;
+
+    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = 0;
+    script[pc++] = 0;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 0;
+    script[pc++] = SYS.SET_ROLE;
+    script[pc++] = RISC.OP_SET;
+    script[pc++] = 1;
+    script[pc++] = 3;
+    script[pc++] = RISC.OP_SYSCALL;
+    script[pc++] = RISC.OP_JMP;
+    script[pc++] = 0;
+
+    return script;
+  },
+
+  getMatrixResonance: () => {
+    let total = 0;
+    for (let i = 0; i < GRID_CELLS; i++) {
+      total += Atomics.load(views.signalGrid, i);
+    }
+    return total;
+  },
+
+  getClusterSync: () => {
+    let sync = 0;
+    for (let i = 0; i < GRID_CELLS; i++) {
+      const res = Atomics.load(views.signalGrid, i);
+      if (res > 100) sync++;
+    }
+    return sync;
+  },
+
+  getMemorySummary: () => {
+    const counts = new Map<number, number>();
+    for (let i = 0; i < GRID_CELLS; i++) {
+      const energy = views.memoryGrid[i * 8] + (views.memoryGrid[i * 8 + 1] << 8);
+      if (energy > 0) {
+        const sig = views.memoryGrid[i * 8 + 4];
+        counts.set(sig, (counts.get(sig) || 0) + 1);
+      }
+    }
+    return Array.from(counts.entries()).map(([sig, count]) => ({ sig, count }));
+  },
+
+  injectEnergy: (amount: number) => {
+    let count = 0;
+    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      if (Atomics.load(views.ids, i) !== 0n) {
+        const current = Atomics.load(views.energies, i);
+        Atomics.store(views.energies, i, current + Math.round(amount * OFFSETS.SCALE));
+        count++;
+      }
+    }
+    return count;
+  },
+
+  getGridType: (i: number) => Atomics.load(views.structureGrid, i) & 0xFF,
+  getGridDensity: (i: number) => (Atomics.load(views.structureGrid, i) >> 8) & 0xFF,
+  getGridCharge: (i: number) => (Atomics.load(views.structureGrid, i) >> 16) & 0xFF,
+  getGridState: (i: number) => (Atomics.load(views.structureGrid, i) >> 24) & 0xFF,
+  getGlyphHeader: (i: number) => Atomics.load(views.glyphHeaders, i),
+  getGlyphPayload: (i: number) => views.glyphPayload.subarray(i * 8, i * 8 + 8),
+  setGlyphHeader: (i: number, val: number) => Atomics.store(views.glyphHeaders, i, val),
+  setGlyphPayload: (i: number, val: Uint8Array) => {
+    views.glyphPayload.fill(0, i * 8, i * 8 + 8);
+    views.glyphPayload.set(val.subarray(0, 8), i * 8);
+  },
+
+  setGridType: (i: number, val: number) => {
+    Atomics.and(views.structureGrid, i, ~0x000000FF);
+    Atomics.or(views.structureGrid, i, val & 0xFF);
+  },
+  setGridDensity: (i: number, val: number) => {
+    Atomics.and(views.structureGrid, i, ~0x0000FF00);
+    Atomics.or(views.structureGrid, i, (val & 0xFF) << 8);
+  },
+  setGridCharge: (i: number, val: number) => {
+    Atomics.and(views.structureGrid, i, ~0x00FF0000);
+    Atomics.or(views.structureGrid, i, (val & 0xFF) << 16);
+  },
+  setGridState: (i: number, val: number) => {
+    Atomics.and(views.structureGrid, i, ~0xFF000000);
+    Atomics.or(views.structureGrid, i, (val & 0xFF) << 24);
+  },
+  getCausality: (idx: number) => Atomics.load(views.causality, idx),
+  setCausality: (idx: number, val: number) => Atomics.store(views.causality, idx, val),
+  clearDamping: () => views.damping.fill(0),
+  getHormone: (id: number) => Atomics.load(views.hormones, id),
+  setHormone: (id: number, val: number) => Atomics.store(views.hormones, id, val),
 };
 
-const bridgeVerifyDetailed = (
-  state: unknown,
-  proposals: unknown,
-  explicitReport?: BridgeInvariantReportLike,
-): {
-  ok: boolean;
-  mode: "GREEN" | "AMBER" | "RED";
-  reason: string;
-  canon_bound_proposals: string[];
-  blocked_canon_proposals: string[];
-} => {
-  const list = Array.isArray(proposals) ? proposals : [];
-  const canonBound = list
-    .filter((p) => proposalIsCanonBound(p))
-    .map((p, idx) => {
-      const id =
-        typeof (p as { proposal_id?: unknown }).proposal_id === "string"
-          ? ((p as { proposal_id: string }).proposal_id)
-          : `canon_${idx}`;
-      return id;
-    });
-  const report = extractBridgeInvariantReport(state, explicitReport);
-  const resolution = resolveBridgeMode(report);
-  const blocked = resolution.mode === "GREEN" ? [] : [...canonBound];
-  return {
-    ok: blocked.length === 0,
-    mode: resolution.mode,
-    reason: resolution.reason,
-    canon_bound_proposals: canonBound,
-    blocked_canon_proposals: blocked,
-  };
-};
+```
 
-export const CANON_CAUSAL_BRIDGE = {
-  verify: (
-    state: unknown,
-    proposals: unknown,
-    report?: BridgeInvariantReportLike,
-  ): boolean => bridgeVerifyDetailed(state, proposals, report).ok,
-  verifyDetailed: bridgeVerifyDetailed,
-  resolveMode: (report?: BridgeInvariantReportLike) =>
-    resolveBridgeMode(report),
-  isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
-};
+---
 
-const LOAD_DATA = {
-  load: (_id: string) => null,
-  calculate: (_cfg: any, _phase: number) => 1.0,
-};
-export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
+## FILE: src/00/ATOM_INDEX.ts
+
+```typescript
+// OMEGA-64 | ATOM_INDEX.ts
+// Lightweight ID↔Index registry shared across runtime modules.
+
+export const ID_TO_IDX = new Map<string, number>();
+export const IDX_TO_ID = new Map<number, string>();
+
+```
+
+---
+
+## FILE: src/00/checkpoint_chain.ts
+
+```typescript
+// OMEGA-64 | checkpoint_chain.ts
+// Replay Invariant State Hash Checkpointing
+
+import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
+import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
 
@@ -5065,11 +4814,13 @@ const checkpointRecordHash = async (
   body: Record<string, unknown>,
   prevCheckpointHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(stableStringify({
-    chain_version: CHECKPOINT_CHAIN_VERSION,
-    prev_checkpoint_hash: prevCheckpointHash,
-    body,
-  }));
+  await sha256Hex(
+    stableStringify({
+      chain_version: CHECKPOINT_CHAIN_VERSION,
+      prev_checkpoint_hash: prevCheckpointHash,
+      body,
+    }),
+  );
 
 type CheckpointChainReportInternal = {
   ok: boolean;
@@ -5235,6 +4986,1143 @@ export const CHECKPOINT_CHECKPOINT = {
   },
 };
 
+```
+
+---
+
+## FILE: src/00/crypto_shim.ts
+
+```typescript
+// OMEGA-64 | crypto_shim.ts
+// Legacy Compliance Shims - Cryptography, Hashing, and Signing
+
+const crypto = globalThis.crypto;
+const encoder = new TextEncoder();
+
+export const bytesToHex = (bytes: Uint8Array): string =>
+  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+export const hexToBytes = (hex: string): Uint8Array | null => {
+  if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const byte = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+    if (!Number.isFinite(byte)) return null;
+    out[i] = byte;
+  }
+  return out;
+};
+
+export const bytesToBase64 = (bytes: Uint8Array): string =>
+  btoa(String.fromCharCode(...bytes));
+
+export const base64ToBytes = (b64: string): Uint8Array =>
+  Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
+
+export const stableStringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return "[" + value.map((v) => stableStringify(v)).join(",") + "]";
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    return "{" +
+      entries.map(([k, v]) => JSON.stringify(k) + ":" + stableStringify(v))
+        .join(",") +
+      "}";
+  }
+  return JSON.stringify(value);
+};
+
+export const sha256Hex = async (input: string): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(input));
+  return bytesToHex(new Uint8Array(digest));
+};
+
+export const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    bytes as unknown as BufferSource,
+  );
+  return bytesToHex(new Uint8Array(digest));
+};
+
+export const normalizeHex64 = (value: unknown): string | null => {
+  if (typeof value !== "string") return null;
+  const t = value.trim().toLowerCase();
+  return /^[a-f0-9]{64}$/u.test(t) ? t : null;
+};
+
+export const fnv1a32 = (input: string): number => {
+  let hash = 0x811C9DC5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+};
+
+export type Ed25519SigningKey = {
+  scheme: "ed25519/v1";
+  private_key_pkcs8_b64: string;
+};
+export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
+export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+export const importHmac = async (
+  secret: string,
+  usages: KeyUsage[],
+): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    usages,
+  );
+
+export const importEd25519Private = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "pkcs8",
+    base64ToBytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
+
+export const importEd25519Public = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "spki",
+    base64ToBytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+
+```
+
+---
+
+## FILE: src/00/crystallization.ts
+
+```typescript
+// OMEGA-64 | crystallization.ts
+// Gate Admission & Consensus Crystallization Policy
+
+import { stableStringify, sha256Hex } from "./crypto_shim.ts";
+
+const CRY_DATA = {
+  policy: "STABLE",
+  policyVersion: "crystallization/v1",
+  window: 512,
+  minSoftPasses: 5,
+  defaultRequiredWindows: 3,
+  projectionDriftMaxP95: 1024,
+  projectionDriftTopLevels: 8,
+  gateAdmissionOutOfPhasePressureMaxMean: 1.0,
+  gateAdmissionMinCoherenceCoverage: 0.0,
+  gateAdmissionTopAgents: 8,
+  verifyLedgerChain: true,
+};
+export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
+  () => CRY_DATA,
+  CRY_DATA,
+);
+
+const canonicalCrystallizationPolicyPayload = (): string =>
+  stableStringify({
+    policyVersion: CRY_DATA.policyVersion,
+    window: CRY_DATA.window,
+    minSoftPasses: CRY_DATA.minSoftPasses,
+    defaultRequiredWindows: CRY_DATA.defaultRequiredWindows,
+    projectionDriftMaxP95: CRY_DATA.projectionDriftMaxP95,
+    projectionDriftTopLevels: CRY_DATA.projectionDriftTopLevels,
+    gateAdmissionOutOfPhasePressureMaxMean:
+      CRY_DATA.gateAdmissionOutOfPhasePressureMaxMean,
+    gateAdmissionMinCoherenceCoverage:
+      CRY_DATA.gateAdmissionMinCoherenceCoverage,
+    gateAdmissionTopAgents: CRY_DATA.gateAdmissionTopAgents,
+    verifyLedgerChain: CRY_DATA.verifyLedgerChain,
+  });
+
+export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
+  canonicalPayload: canonicalCrystallizationPolicyPayload,
+  hash: async (): Promise<string> =>
+    await sha256Hex(canonicalCrystallizationPolicyPayload()),
+  verify: async (
+    input?:
+      | string
+      | { policy_hash?: string; policy_version?: string }
+      | { policyHash?: string; policyVersion?: string },
+  ): Promise<boolean> => {
+    const expectedHash = await CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY
+      .hash();
+    if (typeof input === "undefined") return true;
+    if (typeof input === "string") return input === expectedHash;
+    const maybeVersion = "policy_version" in input
+      ? (input as any).policy_version
+      : (input as any).policyVersion;
+    const maybeHash = "policy_hash" in input
+      ? (input as any).policy_hash
+      : (input as any).policyHash;
+    if (
+      typeof maybeVersion === "string" &&
+      maybeVersion !== CRY_DATA.policyVersion
+    ) {
+      return false;
+    }
+    if (typeof maybeHash === "string") {
+      return maybeHash === expectedHash;
+    }
+    return true;
+  },
+};
+
+```
+
+---
+
+## FILE: src/00/ENV_PARSE.ts
+
+```typescript
+export const parseEnvBool = (
+  raw: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+
+export const parseEnvBoundedInt = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
+
+```
+
+---
+
+## FILE: src/00/gate_admission.ts
+
+```typescript
+// OMEGA-64 | gate_admission.ts
+// L32 Gate Causal Bridge Admission rules
+
+export type BridgeInvariantReportLike = {
+  index_chain_checked?: boolean;
+  index_chain_ok?: boolean;
+  index_chain_failures?: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_failures?: string[];
+};
+
+const resolveBridgeMode = (
+  report?: BridgeInvariantReportLike,
+): { mode: "GREEN" | "AMBER" | "RED"; reason: string } => {
+  if (!report) {
+    return { mode: "AMBER", reason: "INVARIANT_REPORT_MISSING" };
+  }
+
+  const indexChecked = report.index_chain_checked === true;
+  const indexOk = report.index_chain_ok !== false;
+  const gateChecked = report.gate_admission_index_chain_checked === true;
+  const gateOk = report.gate_admission_index_chain_ok !== false;
+
+  if (!indexOk) {
+    const failure = report.index_chain_failures?.[0] ?? "INDEX_CHAIN_FAILED";
+    return { mode: "RED", reason: failure };
+  }
+  if (!gateOk) {
+    const failure = report.gate_admission_index_chain_failures?.[0] ??
+      "GATE_ADMISSION_INDEX_CHAIN_FAILED";
+    return { mode: "RED", reason: failure };
+  }
+
+  if (!indexChecked || !gateChecked) {
+    const missingChecks: string[] = [];
+    if (!indexChecked) missingChecks.push("INDEX_CHAIN_UNCHECKED");
+    if (!gateChecked) {
+      missingChecks.push("GATE_ADMISSION_INDEX_CHAIN_UNCHECKED");
+    }
+    return { mode: "AMBER", reason: missingChecks.join("+") };
+  }
+
+  return { mode: "GREEN", reason: "INVARIANT_INDEX_CHAIN_VERIFIED" };
+};
+
+const proposalIsCanonBound = (proposal: unknown): boolean => {
+  const p = proposal as { target_path?: string; canon_bound?: boolean };
+  if (p?.canon_bound === true) return true;
+  const target = typeof p?.target_path === "string"
+    ? p.target_path.trim().toUpperCase()
+    : "";
+  return target === "CANON" || target.startsWith("CANON/") ||
+    target.startsWith("CANON:") || target.startsWith("/CANON");
+};
+
+const extractBridgeInvariantReport = (
+  state: unknown,
+  explicit?: BridgeInvariantReportLike,
+): BridgeInvariantReportLike | undefined => {
+  if (explicit) return explicit;
+  if (!state || typeof state !== "object") return undefined;
+  const s = state as Record<string, unknown>;
+  const direct = s.bridge_invariant_report;
+  if (direct && typeof direct === "object") {
+    return direct as BridgeInvariantReportLike;
+  }
+  const runtime = s.runtime;
+  if (runtime && typeof runtime === "object") {
+    const fromRuntime = (runtime as Record<string, unknown>)
+      .bridge_invariant_report;
+    if (fromRuntime && typeof fromRuntime === "object") {
+      return fromRuntime as BridgeInvariantReportLike;
+    }
+  }
+  const replayAudit = s.replay_audit;
+  if (replayAudit && typeof replayAudit === "object") {
+    const invariantReport = (replayAudit as Record<string, unknown>)
+      .invariantReport;
+    if (invariantReport && typeof invariantReport === "object") {
+      return invariantReport as BridgeInvariantReportLike;
+    }
+  }
+  return undefined;
+};
+
+const bridgeVerifyDetailed = (
+  state: unknown,
+  proposals: unknown,
+  explicitReport?: BridgeInvariantReportLike,
+): {
+  ok: boolean;
+  mode: "GREEN" | "AMBER" | "RED";
+  reason: string;
+  canon_bound_proposals: string[];
+  blocked_canon_proposals: string[];
+} => {
+  const list = Array.isArray(proposals) ? proposals : [];
+  const canonBound = list
+    .filter((p) => proposalIsCanonBound(p))
+    .map((p, idx) => {
+      const id =
+        typeof (p as { proposal_id?: unknown }).proposal_id === "string"
+          ? ((p as { proposal_id: string }).proposal_id)
+          : "canon_" + idx;
+      return id;
+    });
+  const report = extractBridgeInvariantReport(state, explicitReport);
+  const resolution = resolveBridgeMode(report);
+  const blocked = resolution.mode === "GREEN" ? [] : [...canonBound];
+  return {
+    ok: blocked.length === 0,
+    mode: resolution.mode,
+    reason: resolution.reason,
+    canon_bound_proposals: canonBound,
+    blocked_canon_proposals: blocked,
+  };
+};
+
+export const CANON_CAUSAL_BRIDGE = {
+  verify: (
+    state: unknown,
+    proposals: unknown,
+    report?: BridgeInvariantReportLike,
+  ): boolean => bridgeVerifyDetailed(state, proposals, report).ok,
+  verifyDetailed: bridgeVerifyDetailed,
+  resolveMode: (report?: BridgeInvariantReportLike) =>
+    resolveBridgeMode(report),
+  isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
+};
+
+```
+
+---
+
+## FILE: src/00/generate.ts
+
+```typescript
+// OMEGA-64 | Isomorphic Topological Generator | Era 69
+// This script generates the symmetric physical constants for both Deno and Rust layers.
+
+const SYSTEM_CONSTANTS: Record<string, [number, string]> = {
+  MAX_ATOMS:           [500_000,   "usize"],
+  SAFETY_BUFFER:       [8_000_000, "usize"],
+  GRID_W:              [140,       "i32"],
+  GRID_H:              [80,        "i32"],
+  GRID_CELLS:          [140 * 80,  "usize"],
+  SPATIAL_CELL_SIZE:   [10,        "i32"],
+  WORLD_MAX_X:         [(140 * 10) - 1, "i32"],
+  WORLD_MAX_Y:         [(80 * 10) - 1, "i32"],
+  SCALE:               [1000,      "i32"],
+  CELL_CAPACITY:       [32,        "usize"],
+  MAX_PC:              [64,        "u8"],
+  MAX_EXECUTION_STEPS: [64,        "usize"],
+  ATOM_LOGIC_SIZE:     [64,        "usize"],
+  MAX_LEDGER_EVENTS:   [65_536,    "usize"],
+  MAX_EGRESS_EVENTS:   [8192,      "usize"],
+  WASM_PAGE_BYTES:     [64 * 1024, "usize"],
+  WASM_MEMORY_PAGES:   [7630,      "usize"],
+  HIVE_MEMORY_SIZE:    [1024,      "usize"],
+  HIVE_ENERGY_POOL_SIZE: [256,     "usize"],
+  MAX_HORMONES:        [8,         "usize"],
+  SECRETION_STATS_SIZE:[12,        "usize"],
+  MAX_SPAWN_REQUESTS:  [1024,      "usize"],
+  MAX_MEIOSIS_EVENTS:  [75000,     "usize"],
+  MAX_ASCENSION_STATS: [62500,     "usize"],
+  MAX_ASCENSION_STATS_RESERVED: [1250000, "usize"],
+  ATOM_CONTEXT_SIZE:   [16,        "usize"],
+  ATOM_GENOME_SIZE:    [8,         "usize"],
+  ATOM_INSTRUCTION_SIZE: [64,      "usize"],
+  RESOURCE_MAX:        [2_000_000_000, "i32"],
+};
+
+const VM_OPCODES: Record<string, number> = {
+  OP_NOP: 0x00,
+  OP_SET: 0x01,
+  OP_GET: 0x02,
+  OP_PUT: 0x03,
+  OP_ADD: 0x04,
+  OP_SUB: 0x05,
+  OP_JZ: 0x10,
+  OP_JNZ: 0x11,
+  OP_JMP: 0x12,
+  OP_SYSCALL: 0x60,
+  OP_REPLICATE: 0x80,
+  OP_SIGNAL: 0x81,
+  OP_BIND: 0x82,
+  OP_SHARE: 0x83,
+  OP_HEBB: 0x8A,
+  OP_FIRE: 0x8B,
+  OP_DECAY: 0x91,
+  OP_PLUG: 0xA4,
+  OP_TENSEGRITY: 0xA5,
+  OP_COLLECTIVE: 0xA6,
+  OP_BUILD: 0xA8,
+  OP_SPORE_DRIVE: 0xA8,
+  OP_SENSE: 0xA9, // From Rust ISA
+  OP_SENSE_AS: 0xB2, // From AS legacy
+  OP_SECRETE_PLASMID: 0xAA,
+  OP_INCORPORATE_PLASMID: 0xAB,
+  OP_RESOLVE: 0xB0,
+  OP_RESONATE_KURAMOTO: 0xB1,
+};
+
+const VM_PROPS: Record<string, number> = {
+  PROP_ENERGY: 0,
+  PROP_RESONANCE: 1,
+  PROP_X: 2,
+  PROP_Y: 3,
+  PROP_PHASE: 4,
+  PROP_GRID_CHARGE: 7,
+  PROP_QUORUM: 8,
+  PROP_NEURAL_COHERENCE: 9,
+  PROP_MEMORY: 10,
+  PROP_CONSENSUS: 11,
+};
+
+const VM_SYS: Record<string, number> = {
+  SYS_YIELD: 1,
+  SYS_READ_MEM: 2,
+  SYS_WRITE_MEM: 3,
+  SYS_SPAWN: 4,
+  SYS_BIND: 5,
+  SYS_SET_ROLE: 6,
+  SYS_MUTATE: 7,
+  SYS_MSG: 8,
+  SYS_READ_INBOX: 9,
+  SYS_TRANSFER: 10,
+  SYS_REPLICATE: 11,
+  SYS_EMIT: 12,
+  SYS_SCAN: 13,
+  SYS_MOVE: 14,
+  SYS_EAT: 15,
+  SYS_BET: 16,
+  SYS_ATTRACT: 17,
+  SYS_FOLD: 18,
+  SYS_SPORE_DRIVE: 20,
+  SYS_SENSE_PHASE: 21,
+};
+
+const STRUCTURE_TYPES: Record<string, number> = {
+  STR_VOID: 0,
+  STR_WIRE: 1,
+  STR_NODE: 2,
+  STR_DIODE: 3,
+  STR_SOURCE: 4,
+  STR_SINK: 5,
+  STR_CAPACITOR: 6,
+  STR_INVERTER: 7,
+  STR_LATCH: 8,
+};
+
+// Generate TypeScript Offsets (Imperative Shell)
+const TS_OFFSETS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
+// OMEGA-64 | OFFSETS.ts | Era 69: Absolute Coherence
+// Unified Memory Lattice Constants - Relocated for WASM Safety
+
+${Object.entries(SYSTEM_CONSTANTS)
+  .map(([name, [value, _]]) => `export const ${name} = ${value};`)
+  .join("\n")}
+
+${Object.entries(VM_OPCODES).map(([n,v]) => `export const ${n} = ${v};`).join('\n')}
+${Object.entries(VM_PROPS).map(([n,v]) => `export const ${n} = ${v};`).join('\n')}
+${Object.entries(VM_SYS).map(([n,v]) => `export const ${n} = ${v};`).join('\n')}
+${Object.entries(STRUCTURE_TYPES).map(([n,v]) => `export const ${n} = ${v};`).join('\n')}
+
+const U64_BYTES = 8;
+const I32_BYTES = 4;
+const I16_BYTES = 2;
+const F32_BYTES = 4;
+
+export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
+export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
+
+export const IDS_OFFSET = SAFETY_BUFFER + 0;
+export const XS_OFFSET = SAFETY_BUFFER + 4000000;
+export const YS_OFFSET = SAFETY_BUFFER + 5000000;
+export const ENERGY_OFFSET = SAFETY_BUFFER + 6000000;
+export const RESONANCE_OFFSET = SAFETY_BUFFER + 8000000;
+export const PHASE_OFFSET = SAFETY_BUFFER + 10000000;
+export const LOGIC_OFFSET = SAFETY_BUFFER + 12000000;
+export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
+export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
+export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
+export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
+export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000;
+export const INTENT_OFFSET = EVOLUTION_OFFSET;
+export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
+export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
+export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 104024584;
+export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 110024584;
+export const ROLES_OFFSET = SAFETY_BUFFER + 111458184;
+export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 111958184;
+export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
+export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
+export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
+export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
+export const SYNAPTIC_WEIGHTS_OFFSET = SAFETY_BUFFER + 119137384;
+export const DAMPING_OFFSET = SAFETY_BUFFER + 121137384;
+export const CAUSALITY_OFFSET = SAFETY_BUFFER + 121637384;
+export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 122137384;
+export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 122138408;
+export const QUORUM_OFFSET = SAFETY_BUFFER + 122138412;
+export const COHERENCE_OFFSET = SAFETY_BUFFER + 122496812;
+export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 122496816;
+export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 122496820;
+export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 123496820;
+export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 124496820;
+export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 126496820;
+export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
+export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 130496820;
+export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 132496820;
+export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 132541620;
+export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 132586420;
+export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 132631220;
+export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 132676020;
+export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 132677044;
+export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132721844;
+export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 132811444;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132856244;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 132945844;
+export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860;
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912;
+export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912;
+
+export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912;
+export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916;
+
+export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492;
+export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496;
+
+type MemoryLayoutRegion = { name: string; offset: number; size: number; align: number; };
+
+export type MemoryLayoutValidationResult = { ok: boolean; errors: string[]; regions: MemoryLayoutRegion[]; latticeEnd: number; wasmBytes: number; };
+
+const region = (name: string, offset: number, size: number, align: number): MemoryLayoutRegion => ({ name, offset, size, align });
+
+export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
+  region("TICK_COUNTER", TICK_COUNTER_OFFSET, I32_BYTES, I32_BYTES),
+  region("SYNC_STATE", SYNC_STATE_OFFSET, I32_BYTES, I32_BYTES),
+  region("IDS", IDS_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
+  region("XS", XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("YS", YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("ENERGY", ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("RESONANCE", RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("PHASE", PHASE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("LOGIC", LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE, 1),
+  region("BONDS", BONDS_OFFSET, MAX_ATOMS * 4 * I32_BYTES, I32_BYTES),
+  region("STIFFNESS", STIFFNESS_OFFSET, MAX_ATOMS * 4 * F32_BYTES, F32_BYTES),
+  region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE, 1),
+  region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE, I32_BYTES),
+  region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
+  region("MEIOSIS_RESERVED", MEIOSIS_OFFSET, BOND_REQUESTS_OFFSET - MEIOSIS_OFFSET, I32_BYTES),
+  region("BOND_REQUESTS", BOND_REQUESTS_OFFSET, MAX_ATOMS * 3 * I32_BYTES, I32_BYTES),
+  region("SPATIAL_GRID", SPATIAL_GRID_OFFSET, GRID_CELLS * 32 * I32_BYTES, I32_BYTES),
+  region("ROLES", ROLES_OFFSET, MAX_ATOMS, 1),
+  region("STRUCTURE_GRID", STRUCTURE_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("SIGNAL_GRID", SIGNAL_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("MEMORY_GRID", MEMORY_GRID_OFFSET, GRID_CELLS * 8, 1),
+  region("ASCENSION_STATS_RESERVED", ASCENSION_STATS_OFFSET, BOND_DISTANCES_OFFSET - ASCENSION_STATS_OFFSET, I32_BYTES),
+  region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
+  region("SYNAPTIC_WEIGHTS", SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4, 1),
+  region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
+  region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
+  region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE, 1),
+  region("HIVE_BALANCE", HIVE_BALANCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("QUORUM", QUORUM_OFFSET, COHERENCE_OFFSET - QUORUM_OFFSET, I32_BYTES),
+  region("COHERENCE", COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("NEURAL_COHERENCE", NEURAL_COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("PHYSICS_READ_XS", PHYSICS_READ_XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("PHYSICS_READ_YS", PHYSICS_READ_YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("PHYSICS_READ_ENERGY", PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("PHYSICS_READ_RESONANCE", PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("ENERGY_DELTA", ENERGY_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("RESONANCE_DELTA", RESONANCE_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_BUILD_OWNER", STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_BUILD_VALUE", STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_CHARGE_INTENT", STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("ATTENTION_FIELD", ATTENTION_FIELD_OFFSET, GRID_CELLS * F32_BYTES, F32_BYTES),
+  region("HIVE_ENERGY_POOL", HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE * I32_BYTES, I32_BYTES),
+  region("GLYPH_HEADER", GLYPH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
+  region("GLYPH_SCRATCH_HEADER", GLYPH_SCRATCH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("GLYPH_SCRATCH_PAYLOAD", GLYPH_SCRATCH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
+  region("HORMONES", HORMONE_OFFSET, MAX_HORMONES * 2, 2),
+  region("SECRETION_STATS", SECRETION_STATS_OFFSET, SECRETION_STATS_SIZE * 4, 4),
+  region("LINEAGE", LINEAGE_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
+  region("MAILBOX", MAILBOX_OFFSET, MAX_ATOMS * 8, I32_BYTES),
+  region("LEDGER_HEAD", LEDGER_HEAD_OFFSET, 4, 4),
+  region("LEDGER_DATA", LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 16, 4),
+  region("EGRESS_HEAD", EGRESS_HEAD_OFFSET, 4, 4),
+  region("EGRESS_DATA", EGRESS_DATA_OFFSET, MAX_EGRESS_EVENTS * 128, 4),
+];
+
+export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
+export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES));
+export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
+
+export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): MemoryLayoutValidationResult => {
+  const errors: string[] = [];
+  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) => a.offset - b.offset);
+
+  for (const item of sorted) {
+    if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {
+      errors.push(\`[\${item.name}] offset/size must be finite numbers\`);
+      continue;
+    }
+    if (item.size <= 0) errors.push(\`[\${item.name}] size must be > 0, got \${item.size}\`);
+    if (item.align <= 0) {
+      errors.push(\`[\${item.name}] align must be > 0, got \${item.align}\`);
+    } else if (item.offset % item.align !== 0) {
+      errors.push(\`[\${item.name}] misaligned offset=\${item.offset} align=\${item.align}\`);
+    }
+    const end = item.offset + item.size;
+    if (end > wasmBytes) errors.push(\`[\${item.name}] out of wasm bounds: end=\${end} > wasmBytes=\${wasmBytes}\`);
+  }
+
+  for (let i = 1; i < sorted.length; i++) {
+    const prev = sorted[i - 1]; const next = sorted[i];
+    const prevEnd = prev.offset + prev.size;
+    if (prevEnd > next.offset) errors.push(\`[\${prev.name}] overlaps [\${next.name}] (\${prevEnd} > \${next.offset})\`);
+  }
+
+  const maxRegionEnd = sorted.reduce((max, item) => Math.max(max, item.offset + item.size), 0);
+  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(\`[LATTICE_MEMORY_END] too small: \${LATTICE_MEMORY_END} < required=\${maxRegionEnd}\`);
+
+  return { ok: errors.length === 0, errors, regions: sorted, latticeEnd: LATTICE_MEMORY_END, wasmBytes };
+};
+
+export const MAX_ASCENSIONS_PER_TICK = 64;
+`;
+
+
+const rsLayoutVariables = "pub const U64_BYTES: usize = 8;\npub const I32_BYTES: usize = 4;\npub const I16_BYTES: usize = 2;\npub const F32_BYTES: usize = 4;\npub const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;\npub const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;\npub const IDS_OFFSET: usize = SAFETY_BUFFER + 0;\npub const XS_OFFSET: usize = SAFETY_BUFFER + 4000000;\npub const YS_OFFSET: usize = SAFETY_BUFFER + 5000000;\npub const ENERGY_OFFSET: usize = SAFETY_BUFFER + 6000000;\npub const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 8000000;\npub const PHASE_OFFSET: usize = SAFETY_BUFFER + 10000000;\npub const LOGIC_OFFSET: usize = SAFETY_BUFFER + 12000000;\npub const BONDS_OFFSET: usize = SAFETY_BUFFER + 16000000;\npub const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 24000000;\npub const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 32000000;\npub const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 64000000;\npub const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 96000000;\npub const INTENT_OFFSET: usize = EVOLUTION_OFFSET;\npub const SPAWN_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 98000000;\npub const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;\npub const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 104024584;\npub const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 110024584;\npub const ROLES_OFFSET: usize = SAFETY_BUFFER + 111458184;\npub const STRUCTURE_GRID_OFFSET: usize = SAFETY_BUFFER + 111958184;\npub const SIGNAL_GRID_OFFSET: usize = SAFETY_BUFFER + 112002984;\npub const MEMORY_GRID_OFFSET: usize = SAFETY_BUFFER + 112047784;\npub const ASCENSION_STATS_OFFSET: usize = SAFETY_BUFFER + 112137384;\npub const BOND_DISTANCES_OFFSET: usize = SAFETY_BUFFER + 117137384;\npub const SYNAPTIC_WEIGHTS_OFFSET: usize = SAFETY_BUFFER + 119137384;\npub const DAMPING_OFFSET: usize = SAFETY_BUFFER + 121137384;\npub const CAUSALITY_OFFSET: usize = SAFETY_BUFFER + 121637384;\npub const HIVE_MEMORY_OFFSET: usize = SAFETY_BUFFER + 122137384;\npub const HIVE_BALANCE_OFFSET: usize = SAFETY_BUFFER + 122138408;\npub const QUORUM_OFFSET: usize = SAFETY_BUFFER + 122138412;\npub const COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496812;\npub const NEURAL_COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496816;\npub const PHYSICS_READ_XS_OFFSET: usize = SAFETY_BUFFER + 122496820;\npub const PHYSICS_READ_YS_OFFSET: usize = SAFETY_BUFFER + 123496820;\npub const PHYSICS_READ_ENERGY_OFFSET: usize = SAFETY_BUFFER + 124496820;\npub const PHYSICS_READ_RESONANCE_OFFSET: usize = SAFETY_BUFFER + 126496820;\npub const ENERGY_DELTA_OFFSET: usize = SAFETY_BUFFER + 128496820;\npub const RESONANCE_DELTA_OFFSET: usize = SAFETY_BUFFER + 130496820;\npub const STRUCTURE_BUILD_OWNER_OFFSET: usize = SAFETY_BUFFER + 132496820;\npub const STRUCTURE_BUILD_VALUE_OFFSET: usize = SAFETY_BUFFER + 132541620;\npub const STRUCTURE_CHARGE_INTENT_OFFSET: usize = SAFETY_BUFFER + 132586420;\npub const ATTENTION_FIELD_OFFSET: usize = SAFETY_BUFFER + 132631220;\npub const HIVE_ENERGY_POOL_OFFSET: usize = SAFETY_BUFFER + 132676020;\npub const GLYPH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132677044;\npub const GLYPH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132721844;\npub const GLYPH_SCRATCH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132811444;\npub const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132856244;\npub const HORMONE_OFFSET: usize = SAFETY_BUFFER + 132945844;\npub const SECRETION_STATS_OFFSET: usize = SAFETY_BUFFER + 132945860;\npub const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 132945912;\npub const MAILBOX_OFFSET: usize = SAFETY_BUFFER + 136945912;\npub const LEDGER_HEAD_OFFSET: usize = SAFETY_BUFFER + 140945912;\npub const LEDGER_DATA_OFFSET: usize = SAFETY_BUFFER + 140945916;\npub const EGRESS_HEAD_OFFSET: usize = SAFETY_BUFFER + 141994492;\npub const EGRESS_DATA_OFFSET: usize = SAFETY_BUFFER + 141994496;\npub const LATTICE_MEMORY_END: usize = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);";
+
+// Generate Rust Constants (Functional Core)
+const RS_CONSTANTS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
+//! Defines system-wide physical constants and enumerations for the OMEGA-64 Sigma Core.
+//! These values are isomorphically synchronized with the TypeScript layer.
+
+${Object.entries(SYSTEM_CONSTANTS)
+  .map(([name, [value, type]]) => `pub const ${name}: ${type} = ${value};`)
+  .join("\n")}
+
+${Object.entries(VM_OPCODES).map(([n,v]) => `pub const ${n}: u8 = ${v};`).join('\n')}
+${Object.entries(VM_PROPS).map(([n,v]) => `pub const ${n}: u8 = ${v};`).join('\n')}
+
+// Sycall Indices
+${Object.entries(VM_SYS).map(([n,v]) => `pub const ${n}: i32 = ${v};`).join('\n')}
+
+// Structure Types
+${Object.entries(STRUCTURE_TYPES).map(([n,v]) => `pub const ${n}: i32 = ${v};`).join('\n')}
+
+${rsLayoutVariables}
+
+/// Strongly typed roles for LambdaVM Atoms
+#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AtomRole {
+    None = 0,
+    Guardian = 1,
+    Architect = 2,
+    Artisan = 3,
+    Parasite = 4,
+    Mitochondria = 5,
+    MetazoanFlag = 0x80,
+}
+
+impl AtomRole {
+    pub fn from_u8(val: u8) -> Self {
+        match val {
+            1 => Self::Guardian,
+            2 => Self::Architect,
+            3 => Self::Artisan,
+            4 => Self::Parasite,
+            5 => Self::Mitochondria,
+            0x80 => Self::MetazoanFlag,
+            _ => Self::None,
+        }
+    }
+}
+`;
+
+Deno.writeTextFileSync(new URL("./OFFSETS.ts", import.meta.url), TS_OFFSETS);
+Deno.writeTextFileSync(new URL("./sigma_core/src/constants.rs", import.meta.url), RS_CONSTANTS);
+
+const AS_CONSTANTS = `// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
+// OMEGA-64 | constants.assembly.ts | Era 69
+// Isomorphic WASM Constants
+
+
+${Object.entries(SYSTEM_CONSTANTS)
+  .map(([name, [value, type]]) => {
+    const asType = (name === "MAX_ATOMS") ? "i32" : type;
+    return `export const ${name}: ${asType} = ${value};`;
+  })
+  .join("\n")}
+
+${Object.entries(VM_OPCODES).map(([n,v]) => `export const ${n}: u8 = ${v};`).join('\n')}
+${Object.entries(VM_PROPS).map(([n,v]) => `export const ${n}: u8 = ${v};`).join('\n')}
+${Object.entries(VM_SYS).map(([n,v]) => `export const ${n}: i32 = ${v};`).join('\n')}
+${Object.entries(STRUCTURE_TYPES).map(([n,v]) => `export const ${n}: i32 = ${v};`).join('\n')}
+
+export const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;
+export const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;
+export const TICK_COUNTER_OFF: usize = TICK_COUNTER_OFFSET;
+export const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
+export const XS_OFFSET: usize = SAFETY_BUFFER + 4000000;
+export const YS_OFFSET: usize = SAFETY_BUFFER + 5000000;
+export const ENERGY_OFFSET: usize = SAFETY_BUFFER + 6000000;
+export const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 8000000;
+export const PHASE_OFFSET: usize = SAFETY_BUFFER + 10000000;
+export const LOGIC_OFFSET: usize = SAFETY_BUFFER + 12000000;
+export const BONDS_OFFSET: usize = SAFETY_BUFFER + 16000000;
+export const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 24000000;
+export const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 32000000;
+export const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
+export const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 64000000;
+export const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 96000000;
+export const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
+export const SPAWN_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 98000000;
+export const SPAWN_REQUESTS_OFF: usize = SPAWN_REQUESTS_OFFSET;
+export const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFFSET;
+export const SPAWN_HEAD_OFF: usize = SPAWN_GRID_OFF;
+export const SPAWN_DATA_OFF: usize = SPAWN_GRID_OFF + 8;
+export const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;
+export const METABOLISM_SCRATCH_OFF: usize = MEIOSIS_OFFSET;
+export const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 104024584;
+export const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 110024584;
+export const ROLES_OFFSET: usize = SAFETY_BUFFER + 111458184;
+export const STRUCTURE_GRID_OFFSET: usize = SAFETY_BUFFER + 111958184;
+export const STRUCTURE_GRID_OFF: usize = STRUCTURE_GRID_OFFSET;
+export const SIGNAL_GRID_OFFSET: usize = SAFETY_BUFFER + 112002984;
+export const SIGNAL_GRID_OFF: usize = SIGNAL_GRID_OFFSET;
+export const MEMORY_GRID_OFFSET: usize = SAFETY_BUFFER + 112047784;
+export const MEMORY_GRID_OFF: usize = MEMORY_GRID_OFFSET;
+export const ASCENSION_STATS_OFFSET: usize = SAFETY_BUFFER + 112137384;
+export const ASCENSION_STATS_OFF: usize = ASCENSION_STATS_OFFSET;
+export const BOND_DISTANCES_OFFSET: usize = SAFETY_BUFFER + 117137384;
+export const BOND_DIST_OFF: usize = BOND_DISTANCES_OFFSET;
+export const SYNAPTIC_WEIGHTS_OFFSET: usize = SAFETY_BUFFER + 119137384;
+export const DAMPING_OFFSET: usize = SAFETY_BUFFER + 121137384;
+export const DAMPING_OFF: usize = DAMPING_OFFSET;
+export const CAUSALITY_OFFSET: usize = SAFETY_BUFFER + 121637384;
+export const CAUSALITY_OFF: usize = CAUSALITY_OFFSET;
+export const HIVE_MEMORY_OFFSET: usize = SAFETY_BUFFER + 122137384;
+export const HIVE_MEMORY_OFF: usize = HIVE_MEMORY_OFFSET;
+export const HIVE_BALANCE_OFFSET: usize = SAFETY_BUFFER + 122138408;
+export const HIVE_BALANCE_OFF: usize = HIVE_BALANCE_OFFSET;
+export const QUORUM_OFFSET: usize = SAFETY_BUFFER + 122138412;
+export const COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496812;
+export const COHERENCE_OFF: usize = COHERENCE_OFFSET;
+export const NEURAL_COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496816;
+export const NEURAL_COHERENCE_OFF: usize = NEURAL_COHERENCE_OFFSET;
+export const PHYSICS_READ_XS_OFFSET: usize = SAFETY_BUFFER + 122496820;
+export const PHYSICS_READ_XS_OFF: usize = PHYSICS_READ_XS_OFFSET;
+export const PHYSICS_READ_YS_OFFSET: usize = SAFETY_BUFFER + 123496820;
+export const PHYSICS_READ_YS_OFF: usize = PHYSICS_READ_YS_OFFSET;
+export const PHYSICS_READ_ENERGY_OFFSET: usize = SAFETY_BUFFER + 124496820;
+export const PHYSICS_READ_ENERGY_OFF: usize = PHYSICS_READ_ENERGY_OFFSET;
+export const PHYSICS_READ_RESONANCE_OFFSET: usize = SAFETY_BUFFER + 126496820;
+export const PHYSICS_READ_RESONANCE_OFF: usize = PHYSICS_READ_RESONANCE_OFFSET;
+export const ENERGY_DELTA_OFFSET: usize = SAFETY_BUFFER + 128496820;
+export const ENERGY_DELTA_OFF: usize = ENERGY_DELTA_OFFSET;
+export const RESONANCE_DELTA_OFFSET: usize = SAFETY_BUFFER + 130496820;
+export const RESONANCE_DELTA_OFF: usize = RESONANCE_DELTA_OFFSET;
+export const STRUCTURE_BUILD_OWNER_OFFSET: usize = SAFETY_BUFFER + 132496820;
+export const STRUCTURE_BUILD_OWNER_OFF: usize = STRUCTURE_BUILD_OWNER_OFFSET;
+export const STRUCTURE_BUILD_VALUE_OFFSET: usize = SAFETY_BUFFER + 132541620;
+export const STRUCTURE_BUILD_VALUE_OFF: usize = STRUCTURE_BUILD_VALUE_OFFSET;
+export const STRUCTURE_CHARGE_INTENT_OFFSET: usize = SAFETY_BUFFER + 132586420;
+export const STRUCTURE_CHARGE_INTENT_OFF: usize = STRUCTURE_CHARGE_INTENT_OFFSET;
+export const ATTENTION_FIELD_OFFSET: usize = SAFETY_BUFFER + 132631220;
+export const ATTENTION_FIELD_OFF: usize = ATTENTION_FIELD_OFFSET;
+export const HIVE_ENERGY_POOL_OFFSET: usize = SAFETY_BUFFER + 132676020;
+export const HIVE_ENERGY_POOL_OFF: usize = HIVE_ENERGY_POOL_OFFSET;
+export const GLYPH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132677044;
+export const GLYPH_HEADER_OFF: usize = GLYPH_HEADER_OFFSET;
+export const GLYPH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132721844;
+export const GLYPH_PAYLOAD_OFF: usize = GLYPH_PAYLOAD_OFFSET;
+export const GLYPH_SCRATCH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132811444;
+export const GLYPH_SCRATCH_HEADER_OFF: usize = GLYPH_SCRATCH_HEADER_OFFSET;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132856244;
+export const GLYPH_SCRATCH_PAYLOAD_OFF: usize = GLYPH_SCRATCH_PAYLOAD_OFFSET;
+export const HORMONE_OFFSET: usize = SAFETY_BUFFER + 132945844;
+export const HORMONE_OFF: usize = HORMONE_OFFSET;
+export const SECRETION_STATS_OFFSET: usize = SAFETY_BUFFER + 132945860;
+export const SECRETION_STATS_OFF: usize = SECRETION_STATS_OFFSET;
+export const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 132945912;
+export const MAILBOX_OFFSET: usize = SAFETY_BUFFER + 136945912;
+export const LEDGER_HEAD_OFFSET: usize = SAFETY_BUFFER + 140945912;
+export const LEDGER_DATA_OFFSET: usize = SAFETY_BUFFER + 140945916;
+export const EGRESS_HEAD_OFFSET: usize = SAFETY_BUFFER + 141994492;
+export const EGRESS_DATA_OFFSET: usize = SAFETY_BUFFER + 141994496;
+
+export const SPAWN_MAX: i32 = 1024;
+export const SPAWN_SLOT: i32 = 24;
+`;
+
+Deno.writeTextFileSync(new URL("./01/assembly/constants.assembly.ts", import.meta.url), AS_CONSTANTS);
+console.log("[DAG] Successfully generated Isomorphic Topology (`OFFSETS.ts`, `constants.rs`, and `constants.assembly.ts`)");
+
+```
+
+---
+
+## FILE: src/00/invariant_packet.ts
+
+```typescript
+// OMEGA-64 | invariant_packet.ts
+// Signed invariant packet trace for invariant bridging
+
+import {
+  stableStringify,
+  sha256Hex,
+  importHmac,
+  bytesToHex,
+  hexToBytes,
+} from "./crypto_shim.ts";
+import type { REPLAY_AUDIT__08_00_ReplayInvariantReport } from "./SHIMS.ts"; // Need a lightweight import loop break or leave the type mapped.
+
+export interface INVARIANT_PACKET__08_00_InvariantPacket {
+  version: string;
+  tick_anchor: number;
+  canon_index_chain_checked: boolean;
+  canon_index_chain_ok: boolean;
+  gate_admission_index_chain_checked: boolean;
+  gate_admission_index_chain_ok: boolean;
+  ledger_chain_checked?: boolean;
+  ledger_chain_ok?: boolean;
+  witness?: string;
+  packet_hash?: string;
+  signature_scheme?: "hmac-sha256/v1";
+  packet_signature?: string;
+}
+
+type InvariantPacketSigningKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
+const encoder = new TextEncoder();
+const crypto = globalThis.crypto;
+
+const packetSigningSecret = (
+  key?: InvariantPacketSigningKey,
+): string | undefined => {
+  if (key?.scheme === "hmac-sha256/v1" && key.secret.length > 0) {
+    return key.secret;
+  }
+  const envSecret = Deno.env.get("OMEGA_INVARIANT_PACKET_HMAC_SECRET");
+  return envSecret && envSecret.length > 0 ? envSecret : undefined;
+};
+
+const canonicalInvariantPacket = (
+  packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+): INVARIANT_PACKET__08_00_InvariantPacket => {
+  const tickAnchor =
+    Number.isInteger(packet.tick_anchor) && packet.tick_anchor! >= 0
+      ? packet.tick_anchor!
+      : 0;
+  const normalized: INVARIANT_PACKET__08_00_InvariantPacket = {
+    version: INVARIANT_PACKET_VERSION,
+    tick_anchor: tickAnchor,
+    canon_index_chain_checked: packet.canon_index_chain_checked === true,
+    canon_index_chain_ok: packet.canon_index_chain_ok === true,
+    gate_admission_index_chain_checked:
+      packet.gate_admission_index_chain_checked === true,
+    gate_admission_index_chain_ok:
+      packet.gate_admission_index_chain_ok === true,
+  };
+  if (packet.ledger_chain_checked !== undefined) {
+    normalized.ledger_chain_checked = packet.ledger_chain_checked === true;
+    normalized.ledger_chain_ok = packet.ledger_chain_ok === true;
+  }
+  if (typeof packet.witness === "string" && packet.witness.trim().length > 0) {
+    normalized.witness = packet.witness.trim();
+  }
+  if (typeof packet.packet_hash === "string" && packet.packet_hash.length > 0) {
+    normalized.packet_hash = packet.packet_hash;
+  }
+  if (
+    packet.signature_scheme === "hmac-sha256/v1" &&
+    typeof packet.packet_signature === "string"
+  ) {
+    normalized.signature_scheme = packet.signature_scheme;
+    normalized.packet_signature = packet.packet_signature;
+  }
+  return normalized;
+};
+
+const canonicalInvariantPacketPayload = (
+  packet: INVARIANT_PACKET__08_00_InvariantPacket,
+): string =>
+  stableStringify({
+    version: packet.version,
+    tick_anchor: packet.tick_anchor,
+    canon_index_chain_checked: packet.canon_index_chain_checked,
+    canon_index_chain_ok: packet.canon_index_chain_ok,
+    gate_admission_index_chain_checked:
+      packet.gate_admission_index_chain_checked,
+    gate_admission_index_chain_ok: packet.gate_admission_index_chain_ok,
+    ledger_chain_checked: packet.ledger_chain_checked,
+    ledger_chain_ok: packet.ledger_chain_ok,
+    witness: packet.witness,
+  });
+
+const signInvariantPacketHash = async (
+  packetHash: string,
+  secret: string,
+): Promise<string> => {
+  const key = await importHmac(secret, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(packetHash));
+  return bytesToHex(new Uint8Array(sig));
+};
+
+const verifyInvariantPacketSignature = async (
+  packetHash: string,
+  signature: string,
+  secret: string,
+): Promise<boolean> => {
+  const sigBytes = hexToBytes(signature);
+  if (!sigBytes) return false;
+  const key = await importHmac(secret, ["verify"]);
+  return await crypto.subtle.verify(
+    "HMAC",
+    key,
+    sigBytes as unknown as BufferSource,
+    encoder.encode(packetHash),
+  );
+};
+
+const invariantPacketFailures = (
+  label: string,
+  ok: boolean,
+): string[] => ok ? [] : [`INVARIANT_PACKET_${label}_FAIL`];
+
+export const INVARIANT_PACKET_INVARIANT_PACKET = {
+  VERSION: INVARIANT_PACKET_VERSION,
+
+  hash: async (
+    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket> | string,
+  ): Promise<string> => {
+    if (typeof packet === "string") {
+      return await sha256Hex(packet);
+    }
+    const normalized = canonicalInvariantPacket(packet);
+    return await sha256Hex(canonicalInvariantPacketPayload(normalized));
+  },
+
+  seal: async (
+    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+    signingKey?: InvariantPacketSigningKey,
+  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> => {
+    const normalized = canonicalInvariantPacket(packet);
+    const packetHash = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
+    const sealed: INVARIANT_PACKET__08_00_InvariantPacket = {
+      ...normalized,
+      packet_hash: packetHash,
+    };
+    const secret = packetSigningSecret(signingKey);
+    if (secret) {
+      sealed.signature_scheme = "hmac-sha256/v1";
+      sealed.packet_signature = await signInvariantPacketHash(
+        packetHash,
+        secret,
+      );
+    }
+    return sealed;
+  },
+
+  verify: async (
+    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+    verifyKey?: InvariantPacketSigningKey,
+  ): Promise<{
+    ok: boolean;
+    expected?: string;
+    actual?: string;
+    reasons: string[];
+    failures: string[];
+  }> => {
+    const normalized = canonicalInvariantPacket(packet);
+    const reasons: string[] = [];
+
+    if (
+      packet.version !== undefined &&
+      packet.version !== INVARIANT_PACKET_VERSION
+    ) {
+      reasons.push("UNSUPPORTED_VERSION");
+    }
+    if (
+      !Number.isInteger(packet.tick_anchor) || (packet.tick_anchor ?? -1) < 0
+    ) {
+      reasons.push("INVALID_TICK_ANCHOR");
+    }
+    if (
+      typeof packet.packet_hash !== "string" || packet.packet_hash.length === 0
+    ) {
+      reasons.push("MISSING_PACKET_HASH");
+      return {
+        ok: false,
+        reasons,
+        failures: [...reasons],
+      };
+    }
+
+    const expected = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
+    if (expected !== packet.packet_hash) {
+      reasons.push("PACKET_HASH_MISMATCH");
+    }
+
+    const hasSignature = typeof packet.packet_signature === "string" &&
+      packet.packet_signature.length > 0;
+    if (
+      packet.signature_scheme && packet.signature_scheme !== "hmac-sha256/v1"
+    ) {
+      reasons.push("UNSUPPORTED_SIGNATURE_SCHEME");
+    } else if (hasSignature) {
+      const secret = packetSigningSecret(verifyKey);
+      if (!secret) {
+        reasons.push("SIGNATURE_KEY_MISSING");
+      } else {
+        const verified = await verifyInvariantPacketSignature(
+          packet.packet_hash,
+          packet.packet_signature!,
+          secret,
+        );
+        if (!verified) {
+          reasons.push("PACKET_SIGNATURE_INVALID");
+        }
+      }
+    } else if (packet.signature_scheme === "hmac-sha256/v1") {
+      reasons.push("MISSING_PACKET_SIGNATURE");
+    }
+
+    return {
+      ok: reasons.length === 0,
+      expected,
+      actual: packet.packet_hash,
+      reasons,
+      failures: [...reasons],
+    };
+  },
+
+  fromInvariantReport: async (
+    report: any, // Use `any` to break circular dependency with SHIMS.ts ReplayInvariantReport type
+    opts: { tick_anchor: number; witness?: string } = { tick_anchor: 0 },
+  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> =>
+    await INVARIANT_PACKET_INVARIANT_PACKET.seal({
+      tick_anchor: opts.tick_anchor,
+      witness: opts.witness,
+      canon_index_chain_checked: report?.index_chain_checked === true,
+      canon_index_chain_ok: report?.index_chain_ok !== false,
+      gate_admission_index_chain_checked:
+        report?.gate_admission_index_chain_checked === true,
+      gate_admission_index_chain_ok:
+        report?.gate_admission_index_chain_ok !== false,
+      ledger_chain_checked: report?.ledger_chain_checked === true,
+      ledger_chain_ok: report?.ledger_chain_ok === true,
+    }),
+
+  toInvariantReport: (
+    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+  ): any => {
+    const p = canonicalInvariantPacket(packet);
+    const out: Record<string, unknown> = {
+      index_chain_checked: p.canon_index_chain_checked,
+      index_chain_ok: p.canon_index_chain_ok,
+      index_chain_checked_records: 0,
+      index_chain_failures: invariantPacketFailures(
+        "CANON",
+        p.canon_index_chain_ok,
+      ),
+      gate_admission_index_chain_checked: p.gate_admission_index_chain_checked,
+      gate_admission_index_chain_ok: p.gate_admission_index_chain_ok,
+      gate_admission_index_chain_checked_records: 0,
+      gate_admission_index_chain_failures: invariantPacketFailures(
+        "GATE_ADMISSION",
+        p.gate_admission_index_chain_ok,
+      ),
+    };
+    if (p.ledger_chain_checked !== undefined) {
+      out.ledger_chain_checked = p.ledger_chain_checked;
+      out.ledger_chain_ok = p.ledger_chain_ok === true;
+      out.ledger_chain_failures = p.ledger_chain_checked
+        ? invariantPacketFailures("LEDGER", p.ledger_chain_ok === true)
+        : ["INVARIANT_PACKET_LEDGER_UNCHECKED"];
+    }
+    return out;
+  },
+};
+
+```
+
+---
+
+## FILE: src/00/ledger_chain.ts
+
+```typescript
+// OMEGA-64 | ledger_chain.ts
+// Ledger Chain and Proposal Envelope Index verification
+
+import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
+import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
+
 const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
 
 const stripLedgerChainFields = (entry: Record<string, unknown>) => {
@@ -5249,11 +6137,13 @@ const ledgerEventHash = async (
   body: Record<string, unknown>,
   prevEventHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(stableStringify({
-    chain_version: LEDGER_CHAIN_VERSION,
-    prev_event_hash: prevEventHash,
-    body,
-  }));
+  await sha256Hex(
+    stableStringify({
+      chain_version: LEDGER_CHAIN_VERSION,
+      prev_event_hash: prevEventHash,
+      body,
+    }),
+  );
 
 type LedgerChainReportInternal = {
   ok: boolean;
@@ -5391,47 +6281,390 @@ export const LEDGER__08_00_LEDGER = {
   },
 };
 
-const normalizeHex64 = (value: unknown): string | null => {
-  if (typeof value !== "string") return null;
-  const t = value.trim().toLowerCase();
-  return /^[a-f0-9]{64}$/u.test(t) ? t : null;
+// -------------------------------------------------------------------------
+// PROPOSAL ENVELOPE INDEX
+// -------------------------------------------------------------------------
+
+const defaultEnvelopeIndexPath = (): string =>
+  `${LEDGER__08_00_LEDGER.STORAGE_PATH}.proposal_envelope_index.jsonl`;
+
+const resolveEnvelopeIndexPath = (path?: string): string =>
+  path ?? PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
+
+const ENVELOPE_INDEX_CHAIN_VERSION = "proposal-envelope-index/v1";
+const envelopeIndexSeenByPath = new Map<string, Set<string>>();
+const envelopeIndexTailByPath = new Map<string, string | null>();
+const envelopeIndexCacheLoaded = new Set<string>();
+
+const getEnvelopeIndexSeen = (path: string): Set<string> => {
+  let seen = envelopeIndexSeenByPath.get(path);
+  if (!seen) {
+    seen = new Set<string>();
+    envelopeIndexSeenByPath.set(path, seen);
+  }
+  return seen;
 };
 
-const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
-  const digest = await crypto.subtle.digest(
-    "SHA-256",
-    bytes as unknown as BufferSource,
+const canonicalEnvelopeIndexPayload = (entry: {
+  tick: number;
+  proposal_id: string;
+  envelope_hash: string;
+  source_event_id?: string;
+}): string =>
+  stableStringify({
+    tick: entry.tick,
+    proposal_id: entry.proposal_id,
+    envelope_hash: entry.envelope_hash,
+    source_event_id: entry.source_event_id,
+  });
+
+const envelopeIndexRecordHash = async (
+  entry: {
+    tick: number;
+    proposal_id: string;
+    envelope_hash: string;
+    source_event_id?: string;
+  },
+  prevIndexHash: string | null,
+): Promise<string> =>
+  await sha256Hex(
+    stableStringify({
+      chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
+      prev_index_hash: prevIndexHash,
+      payload: JSON.parse(canonicalEnvelopeIndexPayload(entry)),
+    }),
   );
-  return bytesToHex(new Uint8Array(digest));
+
+const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
+  if (envelopeIndexCacheLoaded.has(path)) return;
+  const seen = getEnvelopeIndexSeen(path);
+  let tail: string | null = null;
+  const lines = await readJsonlLines(path);
+  for (const line of lines) {
+    try {
+      const row = JSON.parse(line) as Record<string, unknown>;
+      const tick = Number(row.tick);
+      const proposalId = typeof row.proposal_id === "string"
+        ? row.proposal_id
+        : "";
+      const envelopeHash = normalizeHex64(row.envelope_hash) ?? "";
+      const sourceEventId = typeof row.source_event_id === "string"
+        ? row.source_event_id
+        : undefined;
+      if (
+        !Number.isInteger(tick) || tick < 0 || proposalId.length === 0 ||
+        envelopeHash.length === 0
+      ) {
+        continue;
+      }
+      seen.add(envelopeHash);
+      const recordedHash = normalizeHex64(row.index_hash);
+      if (recordedHash) {
+        tail = recordedHash;
+      } else {
+        tail = await envelopeIndexRecordHash({
+          tick,
+          proposal_id: proposalId,
+          envelope_hash: envelopeHash,
+          source_event_id: sourceEventId,
+        }, tail);
+      }
+    } catch {
+      // ignore malformed historical lines in cache warmup
+    }
+  }
+  envelopeIndexTailByPath.set(path, tail);
+  envelopeIndexCacheLoaded.add(path);
 };
 
-const clamp01 = (x: number): number => {
+export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
+  STORAGE_PATH: defaultEnvelopeIndexPath(),
+  add: (envelopeHash?: string, path?: string): void => {
+    const hash = normalizeHex64(envelopeHash);
+    if (!hash) return;
+    const indexPath = resolveEnvelopeIndexPath(path);
+    getEnvelopeIndexSeen(indexPath).add(hash);
+  },
+  check: (envelopeHash?: string, path?: string): boolean => {
+    const hash = normalizeHex64(envelopeHash);
+    if (!hash) return false;
+    const indexPath = resolveEnvelopeIndexPath(path);
+    return getEnvelopeIndexSeen(indexPath).has(hash);
+  },
+  pathForLedger: (ledgerPath: string) =>
+    `${ledgerPath}.proposal_envelope_index.jsonl`,
+  resetCacheForTests: (path?: string) => {
+    if (path) {
+      const p = resolveEnvelopeIndexPath(path);
+      envelopeIndexSeenByPath.delete(p);
+      envelopeIndexTailByPath.delete(p);
+      envelopeIndexCacheLoaded.delete(p);
+      return;
+    }
+    envelopeIndexSeenByPath.clear();
+    envelopeIndexTailByPath.clear();
+    envelopeIndexCacheLoaded.clear();
+  },
+  verifyChainDetailed: async (path?: string) => {
+    const indexPath = resolveEnvelopeIndexPath(path);
+    const lines = await readJsonlLines(indexPath);
+    const failures: string[] = [];
+    let prevHash: string | null = null;
+
+    for (let i = 0; i < lines.length; i++) {
+      const lineNo = i + 1;
+      let row: Record<string, unknown>;
+      try {
+        row = JSON.parse(lines[i]) as Record<string, unknown>;
+      } catch {
+        failures.push(`ENVELOPE_INDEX_JSON_PARSE_FAIL_AT_LINE_${lineNo}`);
+        continue;
+      }
+
+      const tick = Number(row.tick);
+      const proposalId = typeof row.proposal_id === "string"
+        ? row.proposal_id
+        : "";
+      const envelopeHash = normalizeHex64(row.envelope_hash);
+      const sourceEventId = typeof row.source_event_id === "string"
+        ? row.source_event_id
+        : undefined;
+      if (!Number.isInteger(tick) || tick < 0) {
+        failures.push(`ENVELOPE_INDEX_TICK_INVALID_AT_LINE_${lineNo}`);
+        continue;
+      }
+      if (proposalId.length === 0) {
+        failures.push(`ENVELOPE_INDEX_PROPOSAL_ID_INVALID_AT_LINE_${lineNo}`);
+        continue;
+      }
+      if (!envelopeHash) {
+        failures.push(
+          `ENVELOPE_INDEX_ENVELOPE_HASH_INVALID_AT_LINE_${lineNo}`,
+        );
+        continue;
+      }
+      if (
+        row.chain_version !== undefined &&
+        row.chain_version !== ENVELOPE_INDEX_CHAIN_VERSION
+      ) {
+        failures.push(
+          `ENVELOPE_INDEX_CHAIN_VERSION_UNSUPPORTED_AT_LINE_${lineNo}`,
+        );
+      }
+
+      const expectedHash = await envelopeIndexRecordHash({
+        tick,
+        proposal_id: proposalId,
+        envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+      }, prevHash);
+
+      const recordedPrev = row.prev_index_hash === null
+        ? null
+        : normalizeHex64(row.prev_index_hash);
+      const hasRecordedPrev = row.prev_index_hash !== undefined;
+      if (hasRecordedPrev && recordedPrev !== prevHash) {
+        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
+      }
+
+      const recordedHash = normalizeHex64(row.index_hash);
+      if (row.index_hash !== undefined && !recordedHash) {
+        failures.push(
+          `ENVELOPE_INDEX_RECORD_HASH_INVALID_AT_LINE_${lineNo}`,
+        );
+      }
+      if (!hasRecordedPrev && recordedHash && i > 0) {
+        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISSING_AT_LINE_${lineNo}`);
+      }
+      if (recordedHash && recordedHash !== expectedHash) {
+        failures.push(
+          `ENVELOPE_INDEX_RECORD_HASH_MISMATCH_AT_LINE_${lineNo}`,
+        );
+      }
+
+      prevHash = recordedHash ?? expectedHash;
+    }
+
+    return {
+      ok: failures.length === 0,
+      checked_records: lines.length,
+      failures,
+    };
+  },
+  getRecentEnvelopeHashes: async (
+    startTick: number,
+    endTick: number,
+    path?: string,
+  ): Promise<Set<string>> => {
+    const result = new Set<string>();
+    for await (const row of readJsonl(resolveEnvelopeIndexPath(path))) {
+      const tick = Number(row?.tick ?? -1);
+      const envelopeHash = typeof row?.envelope_hash === "string"
+        ? row.envelope_hash
+        : "";
+      if (!envelopeHash) continue;
+      if (tick >= startTick && tick <= endTick) result.add(envelopeHash);
+    }
+    return result;
+  },
+  appendFromLedgerEvent: async (event: any, path?: string): Promise<void> => {
+    const indexPath = resolveEnvelopeIndexPath(path);
+    await ensureEnvelopeIndexCache(indexPath);
+    const seen = getEnvelopeIndexSeen(indexPath);
+    const tick = Number(event?.tick ?? -1);
+    const envelopes = Array.isArray(event?.accepted_proposal_envelopes)
+      ? event.accepted_proposal_envelopes
+      : [];
+    const sourceEventId = typeof event?.event_id === "string"
+      ? event.event_id
+      : undefined;
+    let prevIndexHash = envelopeIndexTailByPath.get(indexPath) ?? null;
+
+    for (const env of envelopes) {
+      const proposalId = typeof env?.proposal_id === "string"
+        ? env.proposal_id
+        : "";
+      const envelopeHash = normalizeHex64(env?.envelope_hash) ?? "";
+      if (!envelopeHash) continue;
+      const indexHash = await envelopeIndexRecordHash({
+        tick,
+        proposal_id: proposalId,
+        envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+      }, prevIndexHash);
+      await appendJsonl(indexPath, {
+        tick,
+        proposal_id: proposalId,
+        envelope_hash: envelopeHash,
+        source_event_id: sourceEventId,
+        chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
+        prev_index_hash: prevIndexHash,
+        index_hash: indexHash,
+      });
+      seen.add(envelopeHash);
+      prevIndexHash = indexHash;
+    }
+    envelopeIndexTailByPath.set(indexPath, prevIndexHash);
+    envelopeIndexCacheLoaded.add(indexPath);
+  },
+};
+
+```
+
+---
+
+## FILE: src/00/LOGGER.ts
+
+```typescript
+export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+const LEVEL_WEIGHT: Record<LogLevel, number> = {
+  debug: 10,
+  info: 20,
+  warn: 30,
+  error: 40,
+  silent: 50,
+};
+
+const readEnv = (key: string): string | undefined => {
+  try {
+    const deno = (globalThis as {
+      Deno?: { env?: { get?: (k: string) => string | undefined } };
+    }).Deno;
+    return deno?.env?.get?.(key);
+  } catch {
+    return undefined;
+  }
+};
+
+const normalizeLevel = (raw: string | undefined): LogLevel => {
+  const value = raw?.trim().toLowerCase();
+  if (value === "debug") return "debug";
+  if (value === "info") return "info";
+  if (value === "warn" || value === "warning") return "warn";
+  if (value === "error") return "error";
+  if (value === "silent" || value === "off" || value === "none") {
+    return "silent";
+  }
+  return "warn";
+};
+
+let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+
+const shouldLog = (level: LogLevel): boolean => {
+  if (currentLevel === "silent") return false;
+  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
+};
+
+const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
+  const sink =
+    (console as unknown as Record<string, (...xs: unknown[]) => void>)[
+      method
+    ] ??
+      console.log;
+  sink(...args);
+};
+
+export const LOGGER = {
+  getLevel: (): LogLevel => currentLevel,
+  setLevel: (level: LogLevel): void => {
+    currentLevel = level;
+  },
+  refreshLevelFromEnv: (): LogLevel => {
+    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+    return currentLevel;
+  },
+  debug: (...args: unknown[]) => {
+    if (shouldLog("debug")) emit("debug", args);
+  },
+  info: (...args: unknown[]) => {
+    if (shouldLog("info")) emit("info", args);
+  },
+  warn: (...args: unknown[]) => {
+    if (shouldLog("warn")) emit("warn", args);
+  },
+  error: (...args: unknown[]) => {
+    if (shouldLog("error")) emit("error", args);
+  },
+};
+
+```
+
+---
+
+## FILE: src/00/math_utils.ts
+
+```typescript
+// OMEGA-64 | math_utils.ts
+// Legacy Compliance Shims - Math & Typed Arrays Helpers
+
+export const clamp01 = (x: number): number => {
   if (x < 0) return 0;
   if (x > 1) return 1;
   return x;
 };
 
-const clampByte = (x: number): number => {
+export const clampByte = (x: number): number => {
   const n = Math.round(x);
   if (n < 0) return 0;
   if (n > 255) return 255;
   return n;
 };
 
-const clampI16 = (x: number): number => {
+export const clampI16 = (x: number): number => {
   if (x < -32768) return -32768;
   if (x > 32767) return 32767;
   return x;
 };
 
-const normalizeAngle = (angle: number): number => {
+export const normalizeAngle = (angle: number): number => {
   const tau = 2 * Math.PI;
   let a = angle % tau;
   if (a < 0) a += tau;
   return a / tau;
 };
 
-const toInt16BigEndian = (values: Int16Array): Uint8Array => {
+export const toInt16BigEndian = (values: Int16Array): Uint8Array => {
   const out = new Uint8Array(values.length * 2);
   for (let i = 0; i < values.length; i++) {
     const v = values[i] < 0 ? values[i] + 0x1_0000 : values[i];
@@ -5441,16 +6674,7 @@ const toInt16BigEndian = (values: Int16Array): Uint8Array => {
   return out;
 };
 
-const fnv1a32 = (input: string): number => {
-  let hash = 0x811C9DC5;
-  for (let i = 0; i < input.length; i++) {
-    hash ^= input.charCodeAt(i);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return hash >>> 0;
-};
-
-const makeXorShift32 = (seed: number): () => number => {
+export const makeXorShift32 = (seed: number): () => number => {
   let state = (seed >>> 0) || 1;
   return () => {
     state ^= state << 13;
@@ -5460,19 +6684,771 @@ const makeXorShift32 = (seed: number): () => number => {
   };
 };
 
-const canonicalCausalRefs = (refs: unknown): string[] => {
-  if (!Array.isArray(refs)) return [];
-  const out = new Set<string>();
-  for (const ref of refs) {
-    if (typeof ref !== "string") continue;
-    const trimmed = ref.trim();
-    if (!trimmed) continue;
-    out.add(trimmed);
+const I16_DATA = {
+  MIN: -32768,
+  MAX: 32767,
+  max: 32767,
+  span: 65536,
+  LEVEL_COUNT: 64,
+};
+export const I16_LIMITS_I16_LIMITS = Object.assign(() => I16_DATA, I16_DATA);
+export const I16_CLAMP__00_00_I16_CLAMP = clampI16;
+
+```
+
+---
+
+## FILE: src/00/memory_views.ts
+
+```typescript
+// OMEGA-64 | memory_views.ts
+import { GRID_W, GRID_H, GRID_CELLS } from "./OFFSETS.ts";
+import * as OFFSETS from "./OFFSETS.ts";
+
+const MAX_ATOMS = OFFSETS.MAX_ATOMS;
+const SCALE = OFFSETS.SCALE;
+
+if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+  throw new Error(
+    "[STATE_MATRIX] WASM memory too small: pages=" + OFFSETS.WASM_MEMORY_PAGES + 
+    ", required=" + OFFSETS.MIN_WASM_MEMORY_PAGES,
+  );
+}
+const layoutValidation = OFFSETS.validateMemoryLayout(
+  OFFSETS.WASM_MEMORY_BYTES,
+);
+if (!layoutValidation.ok) {
+  throw new Error(
+    "[STATE_MATRIX] Invalid OFFSETS memory layout:\\n" +
+      layoutValidation.errors.map((entry) => "- " + entry).join("\\n")
+  );
+}
+
+// Base Buffers for UI/WASM compatibility
+export const wasmMemory = new WebAssembly.Memory({
+  initial: OFFSETS.MIN_WASM_MEMORY_PAGES,
+  maximum: OFFSETS.WASM_MEMORY_PAGES,
+  shared: true,
+});
+export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
+
+// Expose underlying buffers for UI export
+export const idBuffer = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS).buffer;
+export const xBuffer = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS).buffer;
+export const yBuffer = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS).buffer;
+export const energyBuffer = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS).buffer;
+export const resonanceBuffer = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS).buffer;
+export const phaseBuffer = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS).buffer;
+export const logicBuffer = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE).buffer;
+export const bondBuffer = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4).buffer;
+export const stiffnessBuffer = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
+export const bondDistBuffer = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
+export const synapticWeightBuffer = new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
+export const dampingBuffer = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
+export const causalityBuffer = new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS).buffer;
+export const roleBuffer = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
+export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, OFFSETS.HIVE_MEMORY_SIZE).buffer;
+export const hiveBalanceBuffer = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
+export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, OFFSETS.HIVE_ENERGY_POOL_SIZE).buffer;
+export const memoryGridBuffer = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
+export const signalGridBuffer = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
+export const structureGridBuffer = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
+export const attentionFieldBuffer = new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
+export const glyphHeaderBuffer = new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
+export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
+export const coherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
+export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
+export const hormoneBuffer = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES).buffer;
+export const lineageBuffer = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
+export const mailboxBuffer = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
+
+// TypedArray Views (Host side)
+export const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
+export const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
+export const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+export const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
+export const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
+export const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
+export const evolutionReserved = new Int32Array(sharedBuffer, OFFSETS.EVOLUTION_OFFSET, MAX_ATOMS);
+export const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+export const synapticWeights = new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
+export const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE);
+export const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+export const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
+export const bondDistances = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+export const bondRequests = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET, OFFSETS.MAX_ATOMS * 3);
+export const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
+export const causality = new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS);
+export const hiveMemory = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, OFFSETS.HIVE_MEMORY_SIZE);
+export const hiveBalance = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1);
+export const hiveEnergyPool = new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, OFFSETS.HIVE_ENERGY_POOL_SIZE);
+export const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
+export const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS);
+export const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_CELLS);
+export const memoryGrid = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_CELLS * 8);
+export const attentionField = new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_CELLS);
+export const glyphHeaders = new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_CELLS);
+export const glyphPayload = new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
+export const ledgerHeadView = new Int32Array(sharedBuffer, OFFSETS.LEDGER_HEAD_OFFSET, 1);
+export const ledgerDataView = new Int32Array(sharedBuffer, OFFSETS.LEDGER_DATA_OFFSET, OFFSETS.MAX_LEDGER_EVENTS * 4);
+export const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+export const neuralCoherence = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1);
+export const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES);
+export const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
+export const mailboxes = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
+export const instructions = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * OFFSETS.ATOM_INSTRUCTION_SIZE);
+export const codeWords = new Uint32Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
+export const contexts = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * OFFSETS.ATOM_CONTEXT_SIZE);
+export const contextByteView = new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * (OFFSETS.ATOM_CONTEXT_SIZE * 4));
+
+export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
+export const semanticBonusesBuffer = semanticBonuses.buffer;
+
+export const latticeClearView = new Uint8Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET);
+export const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
+export const tickCounter = new Int32Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET, 1);
+
+```
+
+---
+
+## FILE: src/00/mod.ts
+
+```typescript
+export * from "@00/OFFSETS.ts";
+export * from "@00/SHIMS.ts";
+export * from "@00/STATE_MATRIX.ts";
+export * from "@00/LOGGER.ts";
+export * from "@00/ATOM_INDEX.ts";
+export * from "@00/STATE_SNAPSHOT.ts";
+export * from "@00/ENV_PARSE.ts";
+export * from "@00/PRNG.ts";
+export const WASM_PATH = new URL("./release.wasm", import.meta.url);
+
+```
+
+---
+
+## FILE: src/00/OFFSETS.ts
+
+```typescript
+// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
+// OMEGA-64 | OFFSETS.ts | Era 69: Absolute Coherence
+// Unified Memory Lattice Constants - Relocated for WASM Safety
+
+export const MAX_ATOMS = 500000;
+export const SAFETY_BUFFER = 8000000;
+export const GRID_W = 140;
+export const GRID_H = 80;
+export const GRID_CELLS = 11200;
+export const SPATIAL_CELL_SIZE = 10;
+export const WORLD_MAX_X = 1399;
+export const WORLD_MAX_Y = 799;
+export const SCALE = 1000;
+export const CELL_CAPACITY = 32;
+export const MAX_PC = 64;
+export const MAX_EXECUTION_STEPS = 64;
+export const ATOM_LOGIC_SIZE = 64;
+export const MAX_LEDGER_EVENTS = 65536;
+export const MAX_EGRESS_EVENTS = 8192;
+export const WASM_PAGE_BYTES = 65536;
+export const WASM_MEMORY_PAGES = 7630;
+export const HIVE_MEMORY_SIZE = 1024;
+export const HIVE_ENERGY_POOL_SIZE = 256;
+export const MAX_HORMONES = 8;
+export const SECRETION_STATS_SIZE = 12;
+export const MAX_SPAWN_REQUESTS = 1024;
+export const MAX_MEIOSIS_EVENTS = 75000;
+export const MAX_ASCENSION_STATS = 62500;
+export const MAX_ASCENSION_STATS_RESERVED = 1250000;
+export const ATOM_CONTEXT_SIZE = 16;
+export const ATOM_GENOME_SIZE = 8;
+export const ATOM_INSTRUCTION_SIZE = 64;
+export const RESOURCE_MAX = 2000000000;
+
+export const OP_NOP = 0;
+export const OP_SET = 1;
+export const OP_GET = 2;
+export const OP_PUT = 3;
+export const OP_ADD = 4;
+export const OP_SUB = 5;
+export const OP_JZ = 16;
+export const OP_JNZ = 17;
+export const OP_JMP = 18;
+export const OP_SYSCALL = 96;
+export const OP_REPLICATE = 128;
+export const OP_SIGNAL = 129;
+export const OP_BIND = 130;
+export const OP_SHARE = 131;
+export const OP_HEBB = 138;
+export const OP_FIRE = 139;
+export const OP_DECAY = 145;
+export const OP_PLUG = 164;
+export const OP_TENSEGRITY = 165;
+export const OP_COLLECTIVE = 166;
+export const OP_BUILD = 168;
+export const OP_SPORE_DRIVE = 168;
+export const OP_SENSE = 169;
+export const OP_SENSE_AS = 178;
+export const OP_SECRETE_PLASMID = 170;
+export const OP_INCORPORATE_PLASMID = 171;
+export const OP_RESOLVE = 176;
+export const OP_RESONATE_KURAMOTO = 177;
+export const PROP_ENERGY = 0;
+export const PROP_RESONANCE = 1;
+export const PROP_X = 2;
+export const PROP_Y = 3;
+export const PROP_PHASE = 4;
+export const PROP_GRID_CHARGE = 7;
+export const PROP_QUORUM = 8;
+export const PROP_NEURAL_COHERENCE = 9;
+export const PROP_MEMORY = 10;
+export const PROP_CONSENSUS = 11;
+export const SYS_YIELD = 1;
+export const SYS_READ_MEM = 2;
+export const SYS_WRITE_MEM = 3;
+export const SYS_SPAWN = 4;
+export const SYS_BIND = 5;
+export const SYS_SET_ROLE = 6;
+export const SYS_MUTATE = 7;
+export const SYS_MSG = 8;
+export const SYS_READ_INBOX = 9;
+export const SYS_TRANSFER = 10;
+export const SYS_REPLICATE = 11;
+export const SYS_EMIT = 12;
+export const SYS_SCAN = 13;
+export const SYS_MOVE = 14;
+export const SYS_EAT = 15;
+export const SYS_BET = 16;
+export const SYS_ATTRACT = 17;
+export const SYS_FOLD = 18;
+export const SYS_SPORE_DRIVE = 20;
+export const SYS_SENSE_PHASE = 21;
+export const STR_VOID = 0;
+export const STR_WIRE = 1;
+export const STR_NODE = 2;
+export const STR_DIODE = 3;
+export const STR_SOURCE = 4;
+export const STR_SINK = 5;
+export const STR_CAPACITOR = 6;
+export const STR_INVERTER = 7;
+export const STR_LATCH = 8;
+
+const U64_BYTES = 8;
+const I32_BYTES = 4;
+const I16_BYTES = 2;
+const F32_BYTES = 4;
+
+export const SYNC_STATE_OFFSET = SAFETY_BUFFER - 4;
+export const TICK_COUNTER_OFFSET = SAFETY_BUFFER - 8;
+
+export const IDS_OFFSET = SAFETY_BUFFER + 0;
+export const XS_OFFSET = SAFETY_BUFFER + 4000000;
+export const YS_OFFSET = SAFETY_BUFFER + 5000000;
+export const ENERGY_OFFSET = SAFETY_BUFFER + 6000000;
+export const RESONANCE_OFFSET = SAFETY_BUFFER + 8000000;
+export const PHASE_OFFSET = SAFETY_BUFFER + 10000000;
+export const LOGIC_OFFSET = SAFETY_BUFFER + 12000000;
+export const BONDS_OFFSET = SAFETY_BUFFER + 16000000;
+export const STIFFNESS_OFFSET = SAFETY_BUFFER + 24000000;
+export const INSTRUCTIONS_OFFSET = SAFETY_BUFFER + 32000000;
+export const CONTEXT_OFFSET = SAFETY_BUFFER + 64000000;
+export const EVOLUTION_OFFSET = SAFETY_BUFFER + 96000000;
+export const INTENT_OFFSET = EVOLUTION_OFFSET;
+export const SPAWN_REQUESTS_OFFSET = SAFETY_BUFFER + 98000000;
+export const MEIOSIS_OFFSET = SAFETY_BUFFER + 98024584;
+export const BOND_REQUESTS_OFFSET = SAFETY_BUFFER + 104024584;
+export const SPATIAL_GRID_OFFSET = SAFETY_BUFFER + 110024584;
+export const ROLES_OFFSET = SAFETY_BUFFER + 111458184;
+export const STRUCTURE_GRID_OFFSET = SAFETY_BUFFER + 111958184;
+export const SIGNAL_GRID_OFFSET = SAFETY_BUFFER + 112002984;
+export const MEMORY_GRID_OFFSET = SAFETY_BUFFER + 112047784;
+export const ASCENSION_STATS_OFFSET = SAFETY_BUFFER + 112137384;
+export const BOND_DISTANCES_OFFSET = SAFETY_BUFFER + 117137384;
+export const SYNAPTIC_WEIGHTS_OFFSET = SAFETY_BUFFER + 119137384;
+export const DAMPING_OFFSET = SAFETY_BUFFER + 121137384;
+export const CAUSALITY_OFFSET = SAFETY_BUFFER + 121637384;
+export const HIVE_MEMORY_OFFSET = SAFETY_BUFFER + 122137384;
+export const HIVE_BALANCE_OFFSET = SAFETY_BUFFER + 122138408;
+export const QUORUM_OFFSET = SAFETY_BUFFER + 122138412;
+export const COHERENCE_OFFSET = SAFETY_BUFFER + 122496812;
+export const NEURAL_COHERENCE_OFFSET = SAFETY_BUFFER + 122496816;
+export const PHYSICS_READ_XS_OFFSET = SAFETY_BUFFER + 122496820;
+export const PHYSICS_READ_YS_OFFSET = SAFETY_BUFFER + 123496820;
+export const PHYSICS_READ_ENERGY_OFFSET = SAFETY_BUFFER + 124496820;
+export const PHYSICS_READ_RESONANCE_OFFSET = SAFETY_BUFFER + 126496820;
+export const ENERGY_DELTA_OFFSET = SAFETY_BUFFER + 128496820;
+export const RESONANCE_DELTA_OFFSET = SAFETY_BUFFER + 130496820;
+export const STRUCTURE_BUILD_OWNER_OFFSET = SAFETY_BUFFER + 132496820;
+export const STRUCTURE_BUILD_VALUE_OFFSET = SAFETY_BUFFER + 132541620;
+export const STRUCTURE_CHARGE_INTENT_OFFSET = SAFETY_BUFFER + 132586420;
+export const ATTENTION_FIELD_OFFSET = SAFETY_BUFFER + 132631220;
+export const HIVE_ENERGY_POOL_OFFSET = SAFETY_BUFFER + 132676020;
+export const GLYPH_HEADER_OFFSET = SAFETY_BUFFER + 132677044;
+export const GLYPH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132721844;
+export const GLYPH_SCRATCH_HEADER_OFFSET = SAFETY_BUFFER + 132811444;
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET = SAFETY_BUFFER + 132856244;
+export const HORMONE_OFFSET = SAFETY_BUFFER + 132945844;
+export const SECRETION_STATS_OFFSET = SAFETY_BUFFER + 132945860;
+export const LINEAGE_OFFSET = SAFETY_BUFFER + 132945912;
+export const MAILBOX_OFFSET = SAFETY_BUFFER + 136945912;
+
+export const LEDGER_HEAD_OFFSET = SAFETY_BUFFER + 140945912;
+export const LEDGER_DATA_OFFSET = SAFETY_BUFFER + 140945916;
+
+export const EGRESS_HEAD_OFFSET = SAFETY_BUFFER + 141994492;
+export const EGRESS_DATA_OFFSET = SAFETY_BUFFER + 141994496;
+
+type MemoryLayoutRegion = { name: string; offset: number; size: number; align: number; };
+
+export type MemoryLayoutValidationResult = { ok: boolean; errors: string[]; regions: MemoryLayoutRegion[]; latticeEnd: number; wasmBytes: number; };
+
+const region = (name: string, offset: number, size: number, align: number): MemoryLayoutRegion => ({ name, offset, size, align });
+
+export const MEMORY_LAYOUT_REGIONS: MemoryLayoutRegion[] = [
+  region("TICK_COUNTER", TICK_COUNTER_OFFSET, I32_BYTES, I32_BYTES),
+  region("SYNC_STATE", SYNC_STATE_OFFSET, I32_BYTES, I32_BYTES),
+  region("IDS", IDS_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
+  region("XS", XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("YS", YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("ENERGY", ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("RESONANCE", RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("PHASE", PHASE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("LOGIC", LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE, 1),
+  region("BONDS", BONDS_OFFSET, MAX_ATOMS * 4 * I32_BYTES, I32_BYTES),
+  region("STIFFNESS", STIFFNESS_OFFSET, MAX_ATOMS * 4 * F32_BYTES, F32_BYTES),
+  region("INSTRUCTIONS", INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE, 1),
+  region("CONTEXT", CONTEXT_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE, I32_BYTES),
+  region("EVOLUTION", EVOLUTION_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("SPAWN_REQUESTS", SPAWN_REQUESTS_OFFSET, 8 + (1024 * 24), 8),
+  region("MEIOSIS_RESERVED", MEIOSIS_OFFSET, BOND_REQUESTS_OFFSET - MEIOSIS_OFFSET, I32_BYTES),
+  region("BOND_REQUESTS", BOND_REQUESTS_OFFSET, MAX_ATOMS * 3 * I32_BYTES, I32_BYTES),
+  region("SPATIAL_GRID", SPATIAL_GRID_OFFSET, GRID_CELLS * 32 * I32_BYTES, I32_BYTES),
+  region("ROLES", ROLES_OFFSET, MAX_ATOMS, 1),
+  region("STRUCTURE_GRID", STRUCTURE_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("SIGNAL_GRID", SIGNAL_GRID_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("MEMORY_GRID", MEMORY_GRID_OFFSET, GRID_CELLS * 8, 1),
+  region("ASCENSION_STATS_RESERVED", ASCENSION_STATS_OFFSET, BOND_DISTANCES_OFFSET - ASCENSION_STATS_OFFSET, I32_BYTES),
+  region("BOND_DISTANCES", BOND_DISTANCES_OFFSET, MAX_ATOMS * 4, 1),
+  region("SYNAPTIC_WEIGHTS", SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4, 1),
+  region("DAMPING", DAMPING_OFFSET, MAX_ATOMS, 1),
+  region("CAUSALITY", CAUSALITY_OFFSET, MAX_ATOMS, 1),
+  region("HIVE_MEMORY", HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE, 1),
+  region("HIVE_BALANCE", HIVE_BALANCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("QUORUM", QUORUM_OFFSET, COHERENCE_OFFSET - QUORUM_OFFSET, I32_BYTES),
+  region("COHERENCE", COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("NEURAL_COHERENCE", NEURAL_COHERENCE_OFFSET, I32_BYTES, I32_BYTES),
+  region("PHYSICS_READ_XS", PHYSICS_READ_XS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("PHYSICS_READ_YS", PHYSICS_READ_YS_OFFSET, MAX_ATOMS * I16_BYTES, I16_BYTES),
+  region("PHYSICS_READ_ENERGY", PHYSICS_READ_ENERGY_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("PHYSICS_READ_RESONANCE", PHYSICS_READ_RESONANCE_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("ENERGY_DELTA", ENERGY_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("RESONANCE_DELTA", RESONANCE_DELTA_OFFSET, MAX_ATOMS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_BUILD_OWNER", STRUCTURE_BUILD_OWNER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_BUILD_VALUE", STRUCTURE_BUILD_VALUE_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("STRUCTURE_CHARGE_INTENT", STRUCTURE_CHARGE_INTENT_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("ATTENTION_FIELD", ATTENTION_FIELD_OFFSET, GRID_CELLS * F32_BYTES, F32_BYTES),
+  region("HIVE_ENERGY_POOL", HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE * I32_BYTES, I32_BYTES),
+  region("GLYPH_HEADER", GLYPH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("GLYPH_PAYLOAD", GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
+  region("GLYPH_SCRATCH_HEADER", GLYPH_SCRATCH_HEADER_OFFSET, GRID_CELLS * I32_BYTES, I32_BYTES),
+  region("GLYPH_SCRATCH_PAYLOAD", GLYPH_SCRATCH_PAYLOAD_OFFSET, GRID_CELLS * 8, 1),
+  region("HORMONES", HORMONE_OFFSET, MAX_HORMONES * 2, 2),
+  region("SECRETION_STATS", SECRETION_STATS_OFFSET, SECRETION_STATS_SIZE * 4, 4),
+  region("LINEAGE", LINEAGE_OFFSET, MAX_ATOMS * U64_BYTES, U64_BYTES),
+  region("MAILBOX", MAILBOX_OFFSET, MAX_ATOMS * 8, I32_BYTES),
+  region("LEDGER_HEAD", LEDGER_HEAD_OFFSET, 4, 4),
+  region("LEDGER_DATA", LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 16, 4),
+  region("EGRESS_HEAD", EGRESS_HEAD_OFFSET, 4, 4),
+  region("EGRESS_DATA", EGRESS_DATA_OFFSET, MAX_EGRESS_EVENTS * 128, 4),
+];
+
+export const LATTICE_MEMORY_END = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
+export const MIN_WASM_MEMORY_PAGES = Math.max(2600, Math.ceil(LATTICE_MEMORY_END / WASM_PAGE_BYTES));
+export const WASM_MEMORY_BYTES = WASM_MEMORY_PAGES * WASM_PAGE_BYTES;
+
+export const validateMemoryLayout = (wasmBytes: number = WASM_MEMORY_BYTES): MemoryLayoutValidationResult => {
+  const errors: string[] = [];
+  const sorted = [...MEMORY_LAYOUT_REGIONS].sort((a, b) => a.offset - b.offset);
+
+  for (const item of sorted) {
+    if (!Number.isFinite(item.offset) || !Number.isFinite(item.size)) {
+      errors.push(`[${item.name}] offset/size must be finite numbers`);
+      continue;
+    }
+    if (item.size <= 0) errors.push(`[${item.name}] size must be > 0, got ${item.size}`);
+    if (item.align <= 0) {
+      errors.push(`[${item.name}] align must be > 0, got ${item.align}`);
+    } else if (item.offset % item.align !== 0) {
+      errors.push(`[${item.name}] misaligned offset=${item.offset} align=${item.align}`);
+    }
+    const end = item.offset + item.size;
+    if (end > wasmBytes) errors.push(`[${item.name}] out of wasm bounds: end=${end} > wasmBytes=${wasmBytes}`);
   }
-  return Array.from(out).sort();
+
+  for (let i = 1; i < sorted.length; i++) {
+    const prev = sorted[i - 1]; const next = sorted[i];
+    const prevEnd = prev.offset + prev.size;
+    if (prevEnd > next.offset) errors.push(`[${prev.name}] overlaps [${next.name}] (${prevEnd} > ${next.offset})`);
+  }
+
+  const maxRegionEnd = sorted.reduce((max, item) => Math.max(max, item.offset + item.size), 0);
+  if (maxRegionEnd > LATTICE_MEMORY_END) errors.push(`[LATTICE_MEMORY_END] too small: ${LATTICE_MEMORY_END} < required=${maxRegionEnd}`);
+
+  return { ok: errors.length === 0, errors, regions: sorted, latticeEnd: LATTICE_MEMORY_END, wasmBytes };
 };
 
-const deriveFeatureVector = (
+export const MAX_ASCENSIONS_PER_TICK = 64;
+
+```
+
+---
+
+## FILE: src/00/PRNG.ts
+
+```typescript
+// OMEGA-64 | PRNG.ts | The Immutable Deterministic Oracle
+// A seeded Linear Congruential Generator (LCG) for reproducible evolution.
+// In Era 8, this is immutable to prevent race conditions in the Memory Matrix.
+
+export class PRNG {
+  private readonly state: number;
+
+  constructor(seed: number) {
+    this.state = seed >>> 0;
+  }
+
+  /**
+   * Generates the next value and a new PRNG instance.
+   * @returns { value: number, next: PRNG }
+   */
+  next(): { value: number; next: PRNG } {
+    // LCG constants from Numerical Recipes
+    const nextState = (this.state * 1664525 + 1013904223) >>> 0;
+    return {
+      value: nextState / 0xFFFFFFFF,
+      next: new PRNG(nextState),
+    };
+  }
+
+  /**
+   * Static helper to derive a seed from tick and atom ID.
+   */
+  static seedFrom(tick: number, atomId: string): number {
+    let hash = tick;
+    for (let i = 0; i < atomId.length; i++) {
+      hash = ((hash << 5) - hash) + atomId.charCodeAt(i);
+      hash |= 0; // Convert to 32bit int
+    }
+    return Math.abs(hash);
+  }
+}
+
+```
+
+---
+
+## FILE: src/00/SHIMS.ts
+
+```typescript
+// OMEGA-64 | SHIMS.ts
+// Legacy Compliance Re-exports
+// This file has been modularized. It now serves purely as a barrel file
+// to prevent breaking imports in the `src/` modules.
+
+import { REJECTION } from "./STATE_SNAPSHOT.ts";
+export type REPLAY_AUDIT__08_00_ReplayInvariantReport = any;
+
+const LOAD_DATA = {
+  load: (_id: string) => null,
+  calculate: (_cfg: any, _phase: number) => 1.0,
+};
+export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
+
+export * from "./crypto_shim.ts";
+export * from "./math_utils.ts";
+export * from "./stream_utils.ts";
+export * from "./agent_signature.ts";
+export * from "./gate_admission.ts";
+export * from "./checkpoint_chain.ts";
+export * from "./ledger_chain.ts";
+export * from "./topo_signature.ts";
+export * from "./crystallization.ts";
+export * from "./invariant_packet.ts";
+
+```
+
+---
+
+## FILE: src/00/STATE_MATRIX.ts
+
+```typescript
+// OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
+// Segmented into memory_views.ts and ATOM_ACCESS.ts (Phase 2 Refactoring)
+
+export * from "./memory_views.ts";
+export * from "./ATOM_ACCESS.ts";
+
+export { ATOM_ACCESS as STATE_MATRIX } from "./ATOM_ACCESS.ts";
+
+```
+
+---
+
+## FILE: src/00/STATE_SNAPSHOT.ts
+
+```typescript
+// STATE_SNAPSHOT.ts
+// 🛡️ OMEGA-64 | Glider Lite | State & Proposal Types
+// Normative definitions for the Gemini Glider Lite runtime.
+
+/**
+ * StateSnapshot: The canonical state of the system at a specific tick.
+ * This is the input for all agents.
+ */
+export interface StateSnapshot {
+  tick: number; // uint64
+  state_i16: Int16Array; // int16[64] - The core state vector
+  state_hash: string; // hex32 - Identity anchor
+
+  // Optional projections (for observablity)
+  phase_u16?: Uint16Array; // uint16[64]
+  stability_q15?: Float32Array; // 0..1
+  entropy_i16?: Int16Array; // -32768..32767
+}
+
+/**
+ * AutonomyState: Represents the sovereignty levels of the system.
+ */
+export interface AutonomyState {
+  state: number; // [0..1]
+  gov: number; // [0..1]
+  code: number; // [0..1]
+}
+
+/**
+ * DeltaProposal: A request from an agent to modify the state.
+ */
+export interface DeltaProposal {
+  proposal_id: string; // UUID or unique semantic ID
+  tick: number; // Must match StateSnapshot.tick
+  base_state_hash: string; // Must match StateSnapshot.state_hash
+  agent_id: string; // Who is proposing?
+  agent_phase_u16?: number; // Optional agent phase anchor [0..65535] for LOAD mismatch cost
+  intent?: string; // Human-readable intent
+  confidence: number; // float32 (0..1)
+  delta: Array<{ level: number; value: number }>; // Sparse delta: level (0-63), value (int16)
+  cost_estimate?: number; // uint64
+  artifact_hash?: string; // Identity anchor of the agent's internal state
+  semantic_fingerprint?: string; // hex32 - Semantic drift metric
+  causal_refs?: string[]; // hex32[] - Optional lineage anchors
+  target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
+  quorum_strength?: number; // range [0..1] - Local group coherence factor for Stage 25
+  origin_atom_idx?: number; // index of the proposing atom in the lattice
+  resonance?: number; // resonance level of the proposing atom
+  signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
+  agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
+  proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
+}
+
+/**
+ * GateConfig: Configuration for the L32 Gate.
+ */
+export interface GateConfig {
+  max_abs_delta_per_level: number; // uint16
+  max_total_abs_delta_per_tick: number; // uint32
+  max_total_cost_per_tick?: number; // uint64 (optional global cost cap)
+  max_cost_per_agent: number; // uint64
+  reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
+  reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
+  reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
+  dry_run: boolean; // If true, state is NOT mutated
+  global_syntropy?: number; // range [0..1] - System-wide structural organization for Stage 25
+  signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
+  agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
+  anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window
+}
+
+export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
+export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
+export type AgentSignatureKey =
+  | { scheme: "ed25519/v1"; public_key_b64: string }
+  | { scheme: "hmac-sha256/v1"; secret: string };
+
+/**
+ * GateDecision: The result of the L32 Gate processing.
+ */
+export interface GateDecision {
+  accepted_proposals: string[]; // IDs of accepted proposals
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  budget_used: number; // uint32
+  cost_used: number; // uint64
+  accepted_delta: Array<{ level: number; value: number }>; // The final merged delta
+}
+
+/**
+ * LedgerEvent: The canonical record of a state transition.
+ */
+export interface LedgerEvent {
+  event_id: string;
+  tick: number;
+  ts_unix_ms: number;
+  state_before_hash: string;
+  state_after_hash: string;
+  accepted_delta: Array<{ level: number; value: number }>;
+  proposal_digest: string; // Hash of all proposals (for integrity)
+  accepted_proposals: string[];
+  accepted_proposal_metrics?: Array<{
+    proposal_id: string;
+    agent_id: string;
+    confidence: number;
+    reliability_base: number;
+    reliability_effective: number;
+    phase_coherence?: number;
+    weight: number;
+    physical_cost: number;
+    agent_phase_u16?: number;
+  }>;
+  accepted_proposal_envelopes?: Array<
+    { proposal_id: string; envelope_hash: string }
+  >;
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  cost_total: number;
+  cost_limit?: number;
+  budget_used: number;
+  budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
+  gate_config_version: string;
+  signature_artifact_hash?: string; // hash anchor of transition artifact (usually proposal_digest)
+  signature_tick?: number; // tick used by topological signature builder
+  signature_causal_refs?: string[]; // canonical sorted causal refs
+  projection_2d_hash?: string; // deterministic 2D projection hash
+  thread_1d_hash?: string; // deterministic 1D thread hash
+  projection_version?: string; // signature projection version
+  policy_version?: string; // crystallization/gate policy version
+  policy_hash?: string; // SHA-256 of canonical crystallization policy payload
+  chain_version?: string; // ledger hash-chain schema version
+  prev_event_hash?: string | null; // hash anchor to previous ledger line
+  event_hash?: string; // hash of this event payload + prev_event_hash
+  witness?: string;
+}
+
+/**
+ * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
+ * Includes invariant packet hash for lightweight witness exchange.
+ */
+export interface BridgeModeEvent {
+  event_type: "BRIDGE_MODE_EVENT";
+  tick: number;
+  state_hash: string;
+  mode: "GREEN" | "AMBER" | "RED";
+  index_chain_checked: boolean;
+  index_chain_ok: boolean;
+  index_chain_checked_records: number;
+  index_chain_failures: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_checked_records?: number;
+  gate_admission_index_chain_failures?: string[];
+  invariant_packet_hash?: string;
+  canon_bound_proposals: string[];
+  blocked_canon_proposals: string[];
+  reason: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+// Canonical Rejection Reasons
+export const REJECTION = {
+  SCHEMA_INVALID: "SCHEMA_INVALID",
+  TICK_MISMATCH: "TICK_MISMATCH",
+  BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
+  UNKNOWN_AGENT: "UNKNOWN_AGENT",
+  COST_OVER_BUDGET: "COST_OVER_BUDGET",
+  EMPTY_DELTA: "EMPTY_DELTA",
+  OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
+  CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
+  SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
+  SIGNATURE_INVALID: "SIGNATURE_INVALID",
+  SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
+  SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
+  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
+  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
+};
+
+```
+
+---
+
+## FILE: src/00/stream_utils.ts
+
+```typescript
+// OMEGA-64 | stream_utils.ts
+// Lightweight JSONL appender and reader generator
+
+export const appendJsonl = async (
+  path: string,
+  entry: unknown,
+): Promise<void> => {
+  await Deno.writeTextFile(path, JSON.stringify(entry) + "\n", {
+    append: true,
+    create: true,
+  });
+};
+
+export const readJsonl = async function* (path: string): AsyncGenerator<any> {
+  try {
+    const raw = await Deno.readTextFile(path);
+    for (const line of raw.split("\n")) {
+      const t = line.trim();
+      if (!t) continue;
+      try {
+        yield JSON.parse(t);
+      } catch {
+        // skip malformed rows for compatibility
+      }
+    }
+  } catch {
+    // no file => empty stream
+  }
+};
+
+export const readJsonlLines = async (path: string): Promise<string[]> => {
+  try {
+    const raw = await Deno.readTextFile(path);
+    return raw.split("\n").map((x) => x.trim()).filter((x) => x.length > 0);
+  } catch {
+    return [];
+  }
+};
+
+```
+
+---
+
+## FILE: src/00/topo_signature.ts
+
+```typescript
+// OMEGA-64 | topo_signature.ts
+// Topological Signatures and 2D/1D Projections
+
+import {
+  stableStringify,
+  sha256HexBytes,
+  fnv1a32,
+  normalizeHex64,
+} from "./crypto_shim.ts";
+import {
+  clamp01,
+  clampByte,
+  clampI16,
+  normalizeAngle,
+  toInt16BigEndian,
+  makeXorShift32,
+} from "./math_utils.ts";
+
+export const deriveFeatureVector = (
   state: unknown,
   size: number = 16,
 ): number[] => {
@@ -5729,6 +7705,18 @@ const projectThread1D = (
   return thread;
 };
 
+const canonicalCausalRefs = (refs: unknown): string[] => {
+  if (!Array.isArray(refs)) return [];
+  const out = new Set<string>();
+  for (const ref of refs) {
+    if (typeof ref !== "string") continue;
+    const trimmed = ref.trim();
+    if (!trimmed) continue;
+    out.add(trimmed);
+  }
+  return Array.from(out).sort();
+};
+
 export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   PROJECTION_VERSION: TOPO_PROJECTION_VERSION,
   CANONICAL_2D_OPTIONS: TOPO_CANONICAL_2D_OPTIONS,
@@ -5841,1677 +7829,6 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
     return { ok: reasons.length === 0, reasons, failures: [...reasons] };
   },
-};
-
-const CRY_DATA = {
-  policy: "STABLE",
-  policyVersion: "crystallization/v1",
-  window: 512,
-  minSoftPasses: 5,
-  defaultRequiredWindows: 3,
-  projectionDriftMaxP95: 1024,
-  projectionDriftTopLevels: 8,
-  gateAdmissionOutOfPhasePressureMaxMean: 1.0,
-  gateAdmissionMinCoherenceCoverage: 0.0,
-  gateAdmissionTopAgents: 8,
-  verifyLedgerChain: true,
-};
-export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
-  () => CRY_DATA,
-  CRY_DATA,
-);
-
-const canonicalCrystallizationPolicyPayload = (): string =>
-  stableStringify({
-    policyVersion: CRY_DATA.policyVersion,
-    window: CRY_DATA.window,
-    minSoftPasses: CRY_DATA.minSoftPasses,
-    defaultRequiredWindows: CRY_DATA.defaultRequiredWindows,
-    projectionDriftMaxP95: CRY_DATA.projectionDriftMaxP95,
-    projectionDriftTopLevels: CRY_DATA.projectionDriftTopLevels,
-    gateAdmissionOutOfPhasePressureMaxMean:
-      CRY_DATA.gateAdmissionOutOfPhasePressureMaxMean,
-    gateAdmissionMinCoherenceCoverage:
-      CRY_DATA.gateAdmissionMinCoherenceCoverage,
-    gateAdmissionTopAgents: CRY_DATA.gateAdmissionTopAgents,
-    verifyLedgerChain: CRY_DATA.verifyLedgerChain,
-  });
-
-export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
-  canonicalPayload: canonicalCrystallizationPolicyPayload,
-  hash: async (): Promise<string> =>
-    await sha256Hex(canonicalCrystallizationPolicyPayload()),
-  verify: async (
-    input?:
-      | string
-      | { policy_hash?: string; policy_version?: string }
-      | { policyHash?: string; policyVersion?: string },
-  ): Promise<boolean> => {
-    const expectedHash = await CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY
-      .hash();
-    if (typeof input === "undefined") return true;
-    if (typeof input === "string") return input === expectedHash;
-    const maybeVersion = "policy_version" in input
-      ? (input as any).policy_version
-      : (input as any).policyVersion;
-    const maybeHash = "policy_hash" in input
-      ? (input as any).policy_hash
-      : (input as any).policyHash;
-    if (
-      typeof maybeVersion === "string" &&
-      maybeVersion !== CRY_DATA.policyVersion
-    ) {
-      return false;
-    }
-    if (typeof maybeHash === "string") {
-      return maybeHash === expectedHash;
-    }
-    return true;
-  },
-};
-
-const defaultEnvelopeIndexPath = (): string =>
-  `${LEDGER__08_00_LEDGER.STORAGE_PATH}.proposal_envelope_index.jsonl`;
-
-const resolveEnvelopeIndexPath = (path?: string): string =>
-  path ?? PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH;
-
-const ENVELOPE_INDEX_CHAIN_VERSION = "proposal-envelope-index/v1";
-const envelopeIndexSeenByPath = new Map<string, Set<string>>();
-const envelopeIndexTailByPath = new Map<string, string | null>();
-const envelopeIndexCacheLoaded = new Set<string>();
-
-const getEnvelopeIndexSeen = (path: string): Set<string> => {
-  let seen = envelopeIndexSeenByPath.get(path);
-  if (!seen) {
-    seen = new Set<string>();
-    envelopeIndexSeenByPath.set(path, seen);
-  }
-  return seen;
-};
-
-const canonicalEnvelopeIndexPayload = (entry: {
-  tick: number;
-  proposal_id: string;
-  envelope_hash: string;
-  source_event_id?: string;
-}): string =>
-  stableStringify({
-    tick: entry.tick,
-    proposal_id: entry.proposal_id,
-    envelope_hash: entry.envelope_hash,
-    source_event_id: entry.source_event_id,
-  });
-
-const envelopeIndexRecordHash = async (
-  entry: {
-    tick: number;
-    proposal_id: string;
-    envelope_hash: string;
-    source_event_id?: string;
-  },
-  prevIndexHash: string | null,
-): Promise<string> =>
-  await sha256Hex(stableStringify({
-    chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
-    prev_index_hash: prevIndexHash,
-    payload: JSON.parse(canonicalEnvelopeIndexPayload(entry)),
-  }));
-
-const readJsonlLines = async (path: string): Promise<string[]> => {
-  try {
-    const raw = await Deno.readTextFile(path);
-    return raw.split("\n").map((x) => x.trim()).filter((x) => x.length > 0);
-  } catch {
-    return [];
-  }
-};
-
-const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
-  if (envelopeIndexCacheLoaded.has(path)) return;
-  const seen = getEnvelopeIndexSeen(path);
-  let tail: string | null = null;
-  const lines = await readJsonlLines(path);
-  for (const line of lines) {
-    try {
-      const row = JSON.parse(line) as Record<string, unknown>;
-      const tick = Number(row.tick);
-      const proposalId = typeof row.proposal_id === "string"
-        ? row.proposal_id
-        : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash) ?? "";
-      const sourceEventId = typeof row.source_event_id === "string"
-        ? row.source_event_id
-        : undefined;
-      if (
-        !Number.isInteger(tick) || tick < 0 || proposalId.length === 0 ||
-        envelopeHash.length === 0
-      ) {
-        continue;
-      }
-      seen.add(envelopeHash);
-      const recordedHash = normalizeHex64(row.index_hash);
-      if (recordedHash) {
-        tail = recordedHash;
-      } else {
-        tail = await envelopeIndexRecordHash({
-          tick,
-          proposal_id: proposalId,
-          envelope_hash: envelopeHash,
-          source_event_id: sourceEventId,
-        }, tail);
-      }
-    } catch {
-      // ignore malformed historical lines in cache warmup
-    }
-  }
-  envelopeIndexTailByPath.set(path, tail);
-  envelopeIndexCacheLoaded.add(path);
-};
-
-export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
-  STORAGE_PATH: defaultEnvelopeIndexPath(),
-  add: (envelopeHash?: string, path?: string): void => {
-    const hash = normalizeHex64(envelopeHash);
-    if (!hash) return;
-    const indexPath = resolveEnvelopeIndexPath(path);
-    getEnvelopeIndexSeen(indexPath).add(hash);
-  },
-  check: (envelopeHash?: string, path?: string): boolean => {
-    const hash = normalizeHex64(envelopeHash);
-    if (!hash) return false;
-    const indexPath = resolveEnvelopeIndexPath(path);
-    return getEnvelopeIndexSeen(indexPath).has(hash);
-  },
-  pathForLedger: (ledgerPath: string) =>
-    `${ledgerPath}.proposal_envelope_index.jsonl`,
-  resetCacheForTests: (path?: string) => {
-    if (path) {
-      const p = resolveEnvelopeIndexPath(path);
-      envelopeIndexSeenByPath.delete(p);
-      envelopeIndexTailByPath.delete(p);
-      envelopeIndexCacheLoaded.delete(p);
-      return;
-    }
-    envelopeIndexSeenByPath.clear();
-    envelopeIndexTailByPath.clear();
-    envelopeIndexCacheLoaded.clear();
-  },
-  verifyChainDetailed: async (path?: string) => {
-    const indexPath = resolveEnvelopeIndexPath(path);
-    const lines = await readJsonlLines(indexPath);
-    const failures: string[] = [];
-    let prevHash: string | null = null;
-
-    for (let i = 0; i < lines.length; i++) {
-      const lineNo = i + 1;
-      let row: Record<string, unknown>;
-      try {
-        row = JSON.parse(lines[i]) as Record<string, unknown>;
-      } catch {
-        failures.push(`ENVELOPE_INDEX_JSON_PARSE_FAIL_AT_LINE_${lineNo}`);
-        continue;
-      }
-
-      const tick = Number(row.tick);
-      const proposalId = typeof row.proposal_id === "string"
-        ? row.proposal_id
-        : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash);
-      const sourceEventId = typeof row.source_event_id === "string"
-        ? row.source_event_id
-        : undefined;
-      if (!Number.isInteger(tick) || tick < 0) {
-        failures.push(`ENVELOPE_INDEX_TICK_INVALID_AT_LINE_${lineNo}`);
-        continue;
-      }
-      if (proposalId.length === 0) {
-        failures.push(`ENVELOPE_INDEX_PROPOSAL_ID_INVALID_AT_LINE_${lineNo}`);
-        continue;
-      }
-      if (!envelopeHash) {
-        failures.push(`ENVELOPE_INDEX_ENVELOPE_HASH_INVALID_AT_LINE_${lineNo}`);
-        continue;
-      }
-      if (
-        row.chain_version !== undefined &&
-        row.chain_version !== ENVELOPE_INDEX_CHAIN_VERSION
-      ) {
-        failures.push(
-          `ENVELOPE_INDEX_CHAIN_VERSION_UNSUPPORTED_AT_LINE_${lineNo}`,
-        );
-      }
-
-      const expectedHash = await envelopeIndexRecordHash({
-        tick,
-        proposal_id: proposalId,
-        envelope_hash: envelopeHash,
-        source_event_id: sourceEventId,
-      }, prevHash);
-
-      const recordedPrev = row.prev_index_hash === null
-        ? null
-        : normalizeHex64(row.prev_index_hash);
-      const hasRecordedPrev = row.prev_index_hash !== undefined;
-      if (hasRecordedPrev && recordedPrev !== prevHash) {
-        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
-      }
-
-      const recordedHash = normalizeHex64(row.index_hash);
-      if (row.index_hash !== undefined && !recordedHash) {
-        failures.push(`ENVELOPE_INDEX_RECORD_HASH_INVALID_AT_LINE_${lineNo}`);
-      }
-      if (!hasRecordedPrev && recordedHash && i > 0) {
-        failures.push(`ENVELOPE_INDEX_PREV_HASH_MISSING_AT_LINE_${lineNo}`);
-      }
-      if (recordedHash && recordedHash !== expectedHash) {
-        failures.push(`ENVELOPE_INDEX_RECORD_HASH_MISMATCH_AT_LINE_${lineNo}`);
-      }
-
-      prevHash = recordedHash ?? expectedHash;
-    }
-
-    return {
-      ok: failures.length === 0,
-      checked_records: lines.length,
-      failures,
-    };
-  },
-  getRecentEnvelopeHashes: async (
-    startTick: number,
-    endTick: number,
-    path?: string,
-  ): Promise<Set<string>> => {
-    const result = new Set<string>();
-    for await (const row of readJsonl(resolveEnvelopeIndexPath(path))) {
-      const tick = Number(row?.tick ?? -1);
-      const envelopeHash = typeof row?.envelope_hash === "string"
-        ? row.envelope_hash
-        : "";
-      if (!envelopeHash) continue;
-      if (tick >= startTick && tick <= endTick) result.add(envelopeHash);
-    }
-    return result;
-  },
-  appendFromLedgerEvent: async (event: any, path?: string): Promise<void> => {
-    const indexPath = resolveEnvelopeIndexPath(path);
-    await ensureEnvelopeIndexCache(indexPath);
-    const seen = getEnvelopeIndexSeen(indexPath);
-    const tick = Number(event?.tick ?? -1);
-    const envelopes = Array.isArray(event?.accepted_proposal_envelopes)
-      ? event.accepted_proposal_envelopes
-      : [];
-    const sourceEventId = typeof event?.event_id === "string"
-      ? event.event_id
-      : undefined;
-    let prevIndexHash = envelopeIndexTailByPath.get(indexPath) ?? null;
-
-    for (const env of envelopes) {
-      const proposalId = typeof env?.proposal_id === "string"
-        ? env.proposal_id
-        : "";
-      const envelopeHash = normalizeHex64(env?.envelope_hash) ?? "";
-      if (!envelopeHash) continue;
-      const indexHash = await envelopeIndexRecordHash({
-        tick,
-        proposal_id: proposalId,
-        envelope_hash: envelopeHash,
-        source_event_id: sourceEventId,
-      }, prevIndexHash);
-      await appendJsonl(indexPath, {
-        tick,
-        proposal_id: proposalId,
-        envelope_hash: envelopeHash,
-        source_event_id: sourceEventId,
-        chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
-        prev_index_hash: prevIndexHash,
-        index_hash: indexHash,
-      });
-      seen.add(envelopeHash);
-      prevIndexHash = indexHash;
-    }
-    envelopeIndexTailByPath.set(indexPath, prevIndexHash);
-    envelopeIndexCacheLoaded.add(indexPath);
-  },
-};
-
-export interface INVARIANT_PACKET__08_00_InvariantPacket {
-  version: string;
-  tick_anchor: number;
-  canon_index_chain_checked: boolean;
-  canon_index_chain_ok: boolean;
-  gate_admission_index_chain_checked: boolean;
-  gate_admission_index_chain_ok: boolean;
-  ledger_chain_checked?: boolean;
-  ledger_chain_ok?: boolean;
-  witness?: string;
-  packet_hash?: string;
-  signature_scheme?: "hmac-sha256/v1";
-  packet_signature?: string;
-}
-
-type InvariantPacketSigningKey = { scheme: "hmac-sha256/v1"; secret: string };
-
-const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
-
-const packetSigningSecret = (
-  key?: InvariantPacketSigningKey,
-): string | undefined => {
-  if (key?.scheme === "hmac-sha256/v1" && key.secret.length > 0) {
-    return key.secret;
-  }
-  const envSecret = Deno.env.get("OMEGA_INVARIANT_PACKET_HMAC_SECRET");
-  return envSecret && envSecret.length > 0 ? envSecret : undefined;
-};
-
-const canonicalInvariantPacket = (
-  packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
-): INVARIANT_PACKET__08_00_InvariantPacket => {
-  const tickAnchor =
-    Number.isInteger(packet.tick_anchor) && packet.tick_anchor! >= 0
-      ? packet.tick_anchor!
-      : 0;
-  const normalized: INVARIANT_PACKET__08_00_InvariantPacket = {
-    version: INVARIANT_PACKET_VERSION,
-    tick_anchor: tickAnchor,
-    canon_index_chain_checked: packet.canon_index_chain_checked === true,
-    canon_index_chain_ok: packet.canon_index_chain_ok === true,
-    gate_admission_index_chain_checked:
-      packet.gate_admission_index_chain_checked === true,
-    gate_admission_index_chain_ok:
-      packet.gate_admission_index_chain_ok === true,
-  };
-  if (packet.ledger_chain_checked !== undefined) {
-    normalized.ledger_chain_checked = packet.ledger_chain_checked === true;
-    normalized.ledger_chain_ok = packet.ledger_chain_ok === true;
-  }
-  if (typeof packet.witness === "string" && packet.witness.trim().length > 0) {
-    normalized.witness = packet.witness.trim();
-  }
-  if (typeof packet.packet_hash === "string" && packet.packet_hash.length > 0) {
-    normalized.packet_hash = packet.packet_hash;
-  }
-  if (
-    packet.signature_scheme === "hmac-sha256/v1" &&
-    typeof packet.packet_signature === "string"
-  ) {
-    normalized.signature_scheme = packet.signature_scheme;
-    normalized.packet_signature = packet.packet_signature;
-  }
-  return normalized;
-};
-
-const canonicalInvariantPacketPayload = (
-  packet: INVARIANT_PACKET__08_00_InvariantPacket,
-): string =>
-  stableStringify({
-    version: packet.version,
-    tick_anchor: packet.tick_anchor,
-    canon_index_chain_checked: packet.canon_index_chain_checked,
-    canon_index_chain_ok: packet.canon_index_chain_ok,
-    gate_admission_index_chain_checked:
-      packet.gate_admission_index_chain_checked,
-    gate_admission_index_chain_ok: packet.gate_admission_index_chain_ok,
-    ledger_chain_checked: packet.ledger_chain_checked,
-    ledger_chain_ok: packet.ledger_chain_ok,
-    witness: packet.witness,
-  });
-
-const signInvariantPacketHash = async (
-  packetHash: string,
-  secret: string,
-): Promise<string> => {
-  const key = await importHmac(secret, ["sign"]);
-  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(packetHash));
-  return bytesToHex(new Uint8Array(sig));
-};
-
-const verifyInvariantPacketSignature = async (
-  packetHash: string,
-  signature: string,
-  secret: string,
-): Promise<boolean> => {
-  const sigBytes = hexToBytes(signature);
-  if (!sigBytes) return false;
-  const key = await importHmac(secret, ["verify"]);
-  return await crypto.subtle.verify(
-    "HMAC",
-    key,
-    sigBytes as unknown as BufferSource,
-    encoder.encode(packetHash),
-  );
-};
-
-const invariantPacketFailures = (
-  label: string,
-  ok: boolean,
-): string[] => ok ? [] : [`INVARIANT_PACKET_${label}_FAIL`];
-
-export const INVARIANT_PACKET_INVARIANT_PACKET = {
-  VERSION: INVARIANT_PACKET_VERSION,
-
-  hash: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket> | string,
-  ): Promise<string> => {
-    if (typeof packet === "string") {
-      return await sha256Hex(packet);
-    }
-    const normalized = canonicalInvariantPacket(packet);
-    return await sha256Hex(canonicalInvariantPacketPayload(normalized));
-  },
-
-  seal: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
-    signingKey?: InvariantPacketSigningKey,
-  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> => {
-    const normalized = canonicalInvariantPacket(packet);
-    const packetHash = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
-    const sealed: INVARIANT_PACKET__08_00_InvariantPacket = {
-      ...normalized,
-      packet_hash: packetHash,
-    };
-    const secret = packetSigningSecret(signingKey);
-    if (secret) {
-      sealed.signature_scheme = "hmac-sha256/v1";
-      sealed.packet_signature = await signInvariantPacketHash(
-        packetHash,
-        secret,
-      );
-    }
-    return sealed;
-  },
-
-  verify: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
-    verifyKey?: InvariantPacketSigningKey,
-  ): Promise<{
-    ok: boolean;
-    expected?: string;
-    actual?: string;
-    reasons: string[];
-    failures: string[];
-  }> => {
-    const normalized = canonicalInvariantPacket(packet);
-    const reasons: string[] = [];
-
-    if (
-      packet.version !== undefined &&
-      packet.version !== INVARIANT_PACKET_VERSION
-    ) {
-      reasons.push("UNSUPPORTED_VERSION");
-    }
-    if (
-      !Number.isInteger(packet.tick_anchor) || (packet.tick_anchor ?? -1) < 0
-    ) {
-      reasons.push("INVALID_TICK_ANCHOR");
-    }
-    if (
-      typeof packet.packet_hash !== "string" || packet.packet_hash.length === 0
-    ) {
-      reasons.push("MISSING_PACKET_HASH");
-      return {
-        ok: false,
-        reasons,
-        failures: [...reasons],
-      };
-    }
-
-    const expected = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
-    if (expected !== packet.packet_hash) {
-      reasons.push("PACKET_HASH_MISMATCH");
-    }
-
-    const hasSignature = typeof packet.packet_signature === "string" &&
-      packet.packet_signature.length > 0;
-    if (
-      packet.signature_scheme && packet.signature_scheme !== "hmac-sha256/v1"
-    ) {
-      reasons.push("UNSUPPORTED_SIGNATURE_SCHEME");
-    } else if (hasSignature) {
-      const secret = packetSigningSecret(verifyKey);
-      if (!secret) {
-        reasons.push("SIGNATURE_KEY_MISSING");
-      } else {
-        const verified = await verifyInvariantPacketSignature(
-          packet.packet_hash,
-          packet.packet_signature!,
-          secret,
-        );
-        if (!verified) {
-          reasons.push("PACKET_SIGNATURE_INVALID");
-        }
-      }
-    } else if (packet.signature_scheme === "hmac-sha256/v1") {
-      reasons.push("MISSING_PACKET_SIGNATURE");
-    }
-
-    return {
-      ok: reasons.length === 0,
-      expected,
-      actual: packet.packet_hash,
-      reasons,
-      failures: [...reasons],
-    };
-  },
-
-  fromInvariantReport: async (
-    report: REPLAY_AUDIT__08_00_ReplayInvariantReport,
-    opts: { tick_anchor: number; witness?: string } = { tick_anchor: 0 },
-  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> =>
-    await INVARIANT_PACKET_INVARIANT_PACKET.seal({
-      tick_anchor: opts.tick_anchor,
-      witness: opts.witness,
-      canon_index_chain_checked: report?.index_chain_checked === true,
-      canon_index_chain_ok: report?.index_chain_ok !== false,
-      gate_admission_index_chain_checked:
-        report?.gate_admission_index_chain_checked === true,
-      gate_admission_index_chain_ok:
-        report?.gate_admission_index_chain_ok !== false,
-      ledger_chain_checked: report?.ledger_chain_checked === true,
-      ledger_chain_ok: report?.ledger_chain_ok === true,
-    }),
-
-  toInvariantReport: (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
-  ): REPLAY_AUDIT__08_00_ReplayInvariantReport => {
-    const p = canonicalInvariantPacket(packet);
-    const out: Record<string, unknown> = {
-      index_chain_checked: p.canon_index_chain_checked,
-      index_chain_ok: p.canon_index_chain_ok,
-      index_chain_checked_records: 0,
-      index_chain_failures: invariantPacketFailures(
-        "CANON",
-        p.canon_index_chain_ok,
-      ),
-      gate_admission_index_chain_checked: p.gate_admission_index_chain_checked,
-      gate_admission_index_chain_ok: p.gate_admission_index_chain_ok,
-      gate_admission_index_chain_checked_records: 0,
-      gate_admission_index_chain_failures: invariantPacketFailures(
-        "GATE_ADMISSION",
-        p.gate_admission_index_chain_ok,
-      ),
-    };
-    if (p.ledger_chain_checked !== undefined) {
-      out.ledger_chain_checked = p.ledger_chain_checked;
-      out.ledger_chain_ok = p.ledger_chain_ok === true;
-      out.ledger_chain_failures = p.ledger_chain_checked
-        ? invariantPacketFailures("LEDGER", p.ledger_chain_ok === true)
-        : ["INVARIANT_PACKET_LEDGER_UNCHECKED"];
-    }
-    return out;
-  },
-};
-
-```
-
----
-
-## FILE: src/00/STATE_MATRIX.ts
-
-```typescript
-import { GRID_W, GRID_H } from "./OFFSETS.ts";
-// OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "@00/OFFSETS.ts";
-
-const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-const SCALE = OFFSETS.SCALE;
-
-if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
-  throw new Error(
-    `[STATE_MATRIX] WASM memory too small: pages=${OFFSETS.WASM_MEMORY_PAGES}, required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
-  );
-}
-const layoutValidation = OFFSETS.validateMemoryLayout(
-  OFFSETS.WASM_MEMORY_BYTES,
-);
-if (!layoutValidation.ok) {
-  throw new Error(
-    `[STATE_MATRIX] Invalid OFFSETS memory layout:\n${
-      layoutValidation.errors.map((entry) => `- ${entry}`).join("\n")
-    }`,
-  );
-}
-
-// Base Buffers for UI/WASM compatibility
-export const wasmMemory = new WebAssembly.Memory({
-  initial: OFFSETS.MIN_WASM_MEMORY_PAGES,
-  maximum: OFFSETS.WASM_MEMORY_PAGES,
-  shared: true,
-});
-export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
-
-// Expose underlying buffers for UI export
-export const idBuffer =
-  new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS).buffer;
-export const xBuffer =
-  new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS).buffer;
-export const yBuffer =
-  new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS).buffer;
-export const energyBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS).buffer;
-export const resonanceBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS).buffer;
-export const phaseBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS).buffer;
-export const logicBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8).buffer;
-export const bondBuffer =
-  new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4).buffer;
-export const stiffnessBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4)
-    .buffer;
-export const bondDistBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4)
-    .buffer;
-export const synapticWeightBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4)
-    .buffer;
-export const dampingBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
-export const causalityBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS).buffer;
-export const roleBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
-export const hiveMemoryBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024).buffer;
-export const hiveBalanceBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
-export const hiveEnergyPoolBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
-export const memoryGridBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_W * GRID_H * 8).buffer;
-export const signalGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_W * GRID_H).buffer;
-export const structureGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_W * GRID_H).buffer;
-export const attentionFieldBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_W * GRID_H)
-    .buffer;
-export const glyphHeaderBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_W * GRID_H).buffer;
-export const glyphPayloadBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_W * GRID_H * 8)
-    .buffer;
-export const coherenceBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
-export const neuralCoherenceBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
-export const hormoneBuffer =
-  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8).buffer;
-export const lineageBuffer =
-  new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
-export const mailboxBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
-
-// TypedArray Views (Host side)
-const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
-const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-const resonances = new Int32Array(
-  sharedBuffer,
-  OFFSETS.RESONANCE_OFFSET,
-  MAX_ATOMS,
-);
-const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-const evolutionReserved = new Int32Array(
-  sharedBuffer,
-  OFFSETS.EVOLUTION_OFFSET,
-  MAX_ATOMS,
-);
-const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
-const synapticWeights = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.SYNAPTIC_WEIGHTS_OFFSET,
-  MAX_ATOMS * 4,
-);
-const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
-const bonds = new Uint32Array(
-  sharedBuffer,
-  OFFSETS.BONDS_OFFSET,
-  MAX_ATOMS * 4,
-);
-const bondStiffness = new Float32Array(
-  sharedBuffer,
-  OFFSETS.STIFFNESS_OFFSET,
-  MAX_ATOMS * 4,
-);
-const bondDistances = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.BOND_DISTANCES_OFFSET,
-  MAX_ATOMS * 4,
-);
-const bondRequests = new Int32Array(
-  sharedBuffer,
-  OFFSETS.BOND_REQUESTS_OFFSET,
-  MAX_ATOMS * 3,
-);
-const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
-const causality = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.CAUSALITY_OFFSET,
-  MAX_ATOMS,
-);
-const hiveMemory = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.HIVE_MEMORY_OFFSET,
-  1024,
-);
-const hiveBalance = new Int32Array(
-  sharedBuffer,
-  OFFSETS.HIVE_BALANCE_OFFSET,
-  1,
-);
-const hiveEnergyPool = new Int32Array(
-  sharedBuffer,
-  OFFSETS.HIVE_ENERGY_POOL_OFFSET,
-  256,
-);
-const spatialGrid = new Int32Array(
-  sharedBuffer,
-  OFFSETS.SPATIAL_GRID_OFFSET,
-  GRID_W * GRID_H * 32,
-);
-const structureGrid = new Int32Array(
-  sharedBuffer,
-  OFFSETS.STRUCTURE_GRID_OFFSET,
-  GRID_W * GRID_H,
-);
-const signalGrid = new Int32Array(
-  sharedBuffer,
-  OFFSETS.SIGNAL_GRID_OFFSET,
-  GRID_W * GRID_H,
-);
-const memoryGrid = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.MEMORY_GRID_OFFSET,
-  GRID_W * GRID_H * 8,
-);
-const attentionField = new Float32Array(
-  sharedBuffer,
-  OFFSETS.ATTENTION_FIELD_OFFSET,
-  GRID_W * GRID_H,
-);
-const glyphHeaders = new Int32Array(
-  sharedBuffer,
-  OFFSETS.GLYPH_HEADER_OFFSET,
-  GRID_W * GRID_H,
-);
-const glyphPayload = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.GLYPH_PAYLOAD_OFFSET,
-  GRID_W * GRID_H * 8,
-);
-const ledgerHeadView = new Int32Array(
-  sharedBuffer,
-  OFFSETS.LEDGER_HEAD_OFFSET,
-  1,
-);
-const ledgerDataView = new Int32Array(
-  sharedBuffer,
-  OFFSETS.LEDGER_DATA_OFFSET,
-  OFFSETS.MAX_LEDGER_EVENTS * 4,
-);
-const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
-const neuralCoherence = new Int32Array(
-  sharedBuffer,
-  OFFSETS.NEURAL_COHERENCE_OFFSET,
-  1,
-);
-const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
-const lineage = new BigUint64Array(
-  sharedBuffer,
-  OFFSETS.LINEAGE_OFFSET,
-  MAX_ATOMS,
-);
-const mailboxes = new Int32Array(
-  sharedBuffer,
-  OFFSETS.MAILBOX_OFFSET,
-  MAX_ATOMS * 2,
-);
-
-const instructions = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.INSTRUCTIONS_OFFSET,
-  MAX_ATOMS * 64,
-);
-const codeWords = new Uint32Array(
-  sharedBuffer,
-  OFFSETS.INSTRUCTIONS_OFFSET,
-  MAX_ATOMS * 16,
-);
-const contexts = new Int32Array(
-  sharedBuffer,
-  OFFSETS.CONTEXT_OFFSET,
-  MAX_ATOMS * 16,
-); // 16 * 4 = 64 bytes
-const contextByteView = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.CONTEXT_OFFSET,
-  MAX_ATOMS * 64,
-);
-const semanticBonuses = new Int32Array(
-  new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
-);
-const semanticBonusesBuffer = semanticBonuses.buffer;
-const RESOURCE_MAX = 2_000_000_000;
-
-const clampResourceRaw = (value: number): number => {
-  if (!Number.isFinite(value)) return 0;
-  if (value <= 0) return 0;
-  if (value >= RESOURCE_MAX) return RESOURCE_MAX;
-  return Math.trunc(value);
-};
-
-const toClampedEnergyRaw = (value: number): number =>
-  clampResourceRaw(Math.round(value * SCALE));
-const latticeClearView = new Uint8Array(
-  sharedBuffer,
-  OFFSETS.TICK_COUNTER_OFFSET,
-);
-
-// Coordination Views (Atomic)
-const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
-const tickCounter = new Int32Array(
-  sharedBuffer,
-  OFFSETS.TICK_COUNTER_OFFSET,
-  1,
-);
-
-export const SYNC = {
-  IDLE: 0,
-  WASM_TICKING: 1,
-  HOST_LOCK: 2,
-};
-
-// Legacy biological opcodes removed in Stage 27 (Universal Syscall Interface)
-
-export const RISC = {
-  OP_NOP: 0x00,
-  OP_SET: 0x01,
-  OP_GET: 0x02,
-  OP_PUT: 0x03,
-  OP_ADD: 0x04,
-  OP_SUB: 0x05,
-  OP_JZ: 0x10,
-  OP_JNZ: 0x11,
-  OP_JMP: 0x12,
-
-  // Legacy biological opcodes (for tests and bridge reductions)
-  OP_REPLICATE: 0x80,
-  OP_SIGNAL: 0x81,
-  OP_BIND: 0x82,
-  OP_SHARE: 0x83,
-  OP_PLUG: 0x84,
-  OP_TENSEGRITY: 0x85,
-  OP_ENTANGLE: 0x86,
-  OP_BUILD: 0xA4,
-  OP_SENSE: 0xA5,
-  OP_COLLECTIVE: 0xA6,
-  OP_ROLE: 0xA7,
-  OP_SPORE_DRIVE: 0xA8,
-  OP_WISDOM: 0xA9,
-  OP_RESOLVE: 0xB0,
-  OP_RESONATE_KURAMOTO: 0xB1,
-
-  // Universal Syscall Interface
-  OP_SYSCALL: 0x60, // The only way an atom should interact with the world
-
-  // Data properties
-
-  PROP_ENERGY: 0,
-  PROP_RESONANCE: 1,
-  PROP_X: 2,
-  PROP_Y: 3,
-  PROP_PHASE: 4,
-  PROP_GRID_CHARGE: 7,
-  PROP_QUORUM: 8,
-  PROP_NEURAL_COHERENCE: 9,
-  PROP_MEMORY: 10,
-};
-
-// Universal Syscall Interface (ABI)
-export const SYS = {
-  YIELD: 0x01,
-  READ_MEM: 0x02,
-  WRITE_MEM: 0x03,
-  SPAWN: 0x04,
-  BIND: 0x05,
-  SET_ROLE: 0x06,
-  MUTATE: 0x07,
-  MSG: 0x08,
-  READ_INBOX: 0x09,
-  TRANSFER: 0x0A,
-  REPLICATE: 0x0B,
-  EMIT: 0x0C,
-  SCAN: 0x0D,
-  ATTRACT: 0x11,
-  FOLD: 0x12,
-  BET: 0x10,
-};
-const DEFAULT_BOOT_SCRIPT = (() => {
-  const boot = new Uint8Array(64);
-  // Default biological script: GET Energy into R0, then Yield
-  boot[0] = RISC.OP_GET;
-  boot[1] = 0;
-  boot[2] = RISC.PROP_ENERGY;
-  boot[3] = RISC.OP_SET;
-  boot[4] = 1;
-  boot[5] = SYS.YIELD;
-  boot[6] = RISC.OP_SYSCALL; // Expects R0=syscall (we used R1 here... wait, SYS expects R0)
-
-  // Let's rewrite it properly for the ABI:
-  // R0 = SYS.YIELD
-  // SYSCALL
-  boot[0] = RISC.OP_SET;
-  boot[1] = 0;
-  boot[2] = SYS.YIELD;
-  boot[3] = RISC.OP_SYSCALL;
-  return boot;
-})();
-
-const GUARDIAN_COHERENCE_THRESHOLD = 200;
-
-export const STRUCTURE = {
-  VOID: 0,
-  WIRE: 1, // Passive conductor
-  NODE: 2, // Logical aggregator
-  DIODE: 3, // One-way (Phase bit defines direction)
-  SOURCE: 4, // Constant charge
-  SINK: 5, // Energy drain
-  CAPACITOR: 6, // Slow decay
-  INVERTER: 7, // NOT gate
-  LATCH: 8, // SR-Latch
-};
-
-export const STATE_MATRIX = {
-  MAX_ATOMS,
-  buffer: sharedBuffer,
-  wasmMemory,
-  SCALE,
-  syncState,
-  tickCounter,
-  SYNC,
-  phases,
-  evolutionReserved,
-  roles,
-  spatialGrid,
-  structureGrid,
-  signalGrid,
-  memoryGrid,
-  attentionField,
-  glyphHeaders,
-  glyphPayload,
-  hiveEnergyPool,
-  coherence,
-  neuralCoherence,
-  hormones,
-  lineage,
-  instructions,
-  ledgerHeadView,
-  ledgerDataView,
-  contexts,
-  semanticBonuses,
-  RISC,
-
-  // Legacy mapping for UI and external engines
-  memoryGridBuffer,
-  signalGridBuffer,
-  structureGridBuffer,
-  attentionFieldBuffer,
-  glyphHeaderBuffer,
-  glyphPayloadBuffer,
-  roleRegistryBuffer: roleBuffer,
-  bondStiffnessBuffer: stiffnessBuffer,
-  bondDistancesBuffer: bondDistBuffer,
-  dampingBuffer: dampingBuffer,
-  semanticBonusesBuffer,
-  immuneBuffer: signalGridBuffer, // Alias for immunity overlay
-  currentReadBuffer: signalGridBuffer, // Alias for signal overlay
-  synapticStackBuffer: signalGridBuffer, // Alias for synaptic overlay
-  viralGrid: signalGrid, // Legacy alias for sensory/immune overlays
-  viralGridBuffer: signalGridBuffer, // Legacy alias for UI endpoints
-  hiveMemoryBuffer,
-  hiveEnergyPoolBuffer,
-  hormoneBuffer,
-  lineageBuffer,
-
-  // Roles
-  ROLE_NEUTRAL: 0,
-  ROLE_PRODUCER: 1,
-  ROLE_GUARDIAN: 2,
-  ROLE_ARCHITECT: 3,
-  ROLE_PARASITE: 4,
-  ROLE_MITOCHONDRIA: 5,
-
-  getId: (i: number) => Atomics.load(ids, i),
-  getX: (i: number) => Atomics.load(xs, i),
-  getY: (i: number) => Atomics.load(ys, i),
-  getRole: (i: number) => Atomics.load(roles, i),
-  getEnergy: (i: number) => Atomics.load(energies, i) / SCALE,
-  getResonance: (i: number) => Atomics.load(resonances, i),
-  getPhase: (i: number) => Atomics.load(phases, i),
-  getEvolutionReserved: (i: number) => Atomics.load(evolutionReserved, i),
-  getLogic: (i: number) => logic.subarray(i * 8, i * 8 + 8),
-  getBonds: (i: number) => bonds.subarray(i * 4, i * 4 + 4),
-  setBonds: (i: number, val: Uint32Array) => bonds.set(val, i * 4),
-  getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
-  getBondStiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
-  getBondDistance: (i: number, slot: number) =>
-    Atomics.load(bondDistances, i * 4 + slot),
-  hasBondRequest: (i: number) => Atomics.load(bondRequests, i * 3) !== 0,
-  getBondRequestInitiator: (i: number) => Atomics.load(bondRequests, i * 3),
-  getBondRequestTarget: (i: number) => Atomics.load(bondRequests, i * 3 + 1),
-  getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
-  getDamping: (i: number) => Atomics.load(damping, i),
-  getLineage: (i: number) => Atomics.load(lineage, i),
-  getMailboxMsgType: (i: number) => Atomics.load(mailboxes, i * 2),
-  getMailboxPayload: (i: number) => Atomics.load(mailboxes, i * 2 + 1),
-  getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
-  setHiveMemory: (addr: number, val: number) => {
-    Atomics.store(hiveMemory, addr & 1023, val);
-  },
-
-  getHiveBalance: () => Atomics.load(hiveBalance, 0),
-  setHiveBalance: (val: number) => {
-    Atomics.store(hiveBalance, 0, val);
-  },
-  addHiveBalance: (val: number) => Atomics.add(hiveBalance, 0, val),
-  getHiveEnergyPoolSlot: (slot: number) =>
-    Atomics.load(hiveEnergyPool, slot & 255),
-  setHiveEnergyPoolSlot: (slot: number, val: number) =>
-    Atomics.store(hiveEnergyPool, slot & 255, val),
-  addHiveEnergyPoolSlot: (slot: number, val: number) =>
-    Atomics.add(hiveEnergyPool, slot & 255, val),
-
-  getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
-  getCode: (i: number) => codeWords.subarray(i * 16, i * 16 + 16),
-  getReg: (i: number, reg: number) => Atomics.load(contexts, i * 16 + reg),
-  getPC: (i: number) => Atomics.load(contextByteView, i * 64 + 32),
-  getContext: (i: number) => contextByteView.subarray(i * 64, i * 64 + 64),
-
-  setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
-  setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
-  setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
-  getSynapticWeight: (index: number, slot: number): number =>
-    synapticWeights[index * 4 + slot],
-  setSynapticWeight: (index: number, slot: number, weight: number) => {
-    synapticWeights[index * 4 + slot] = weight;
-  },
-  setRole: (i: number, val: number) => Atomics.store(roles, i, val),
-  setEnergy: (i: number, val: number) =>
-    Atomics.store(energies, i, toClampedEnergyRaw(val)),
-  setResonance: (i: number, val: number) =>
-    Atomics.store(resonances, i, clampResourceRaw(val)),
-  setPhase: (i: number, val: number) => Atomics.store(phases, i, val),
-  setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
-  setBondTarget: (i: number, slot: number, target: number) =>
-    Atomics.store(bonds, i * 4 + slot, target),
-  setBondStiffness: (i: number, slot: number, val: number) => {
-    bondStiffness[i * 4 + slot] = val;
-  },
-  setBondDistance: (i: number, slot: number, val: number) =>
-    Atomics.store(bondDistances, i * 4 + slot, val),
-  setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
-  setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
-  setMailboxMsgType: (i: number, val: number) =>
-    Atomics.store(mailboxes, i * 2, val),
-  setMailboxPayload: (i: number, val: number) =>
-    Atomics.store(mailboxes, i * 2 + 1, val),
-
-  setInstructions: (i: number, val: Uint8Array) =>
-    instructions.set(val, i * 64),
-  setCode: (i: number, val: Uint32Array | Uint8Array) => {
-    const codeStart = i * 16;
-    if (val instanceof Uint32Array) {
-      codeWords.fill(0, codeStart, codeStart + 16);
-      codeWords.set(val.subarray(0, 16), codeStart);
-      return;
-    }
-    const instStart = i * 64;
-    instructions.fill(0, instStart, instStart + 64);
-    instructions.set(val.subarray(0, 64), instStart);
-  },
-  setReg: (i: number, reg: number, val: number) =>
-    Atomics.store(contexts, i * 16 + reg, val),
-  setPC: (i: number, val: number) =>
-    Atomics.store(contextByteView, i * 64 + 32, val),
-
-  getBondRequest: (i: number) => {
-    const base = i * 3;
-    const initiator = Atomics.load(bondRequests, base);
-    return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
-  },
-  clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
-
-  recycleAtom: (i: number) => {
-    Atomics.store(ids, i, 0n);
-    Atomics.store(energies, i, 0);
-    Atomics.store(resonances, i, 0);
-    Atomics.store(phases, i, 0);
-    Atomics.store(roles, i, 0);
-    bonds.fill(0, i * 4, i * 4 + 4);
-    bondStiffness.fill(0, i * 4, i * 4 + 4);
-    bondDistances.fill(0, i * 4, i * 4 + 4);
-    Atomics.store(damping, i, 0);
-    Atomics.store(lineage, i, 0n);
-    instructions.fill(0, i * 64, i * 64 + 64);
-    contexts.fill(0, i * 16, i * 16 + 16);
-  },
-
-  clear: () => {
-    // Preserve low-memory wasm runtime segments; wipe only the lattice region.
-    latticeClearView.fill(0);
-    semanticBonuses.fill(0);
-  },
-  getActiveIndices: () => {
-    const active: number[] = [];
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(ids, i) !== 0n) active.push(i);
-    }
-    return active;
-  },
-  getTopResonantIndices: (count: number) => {
-    const limit = Math.max(0, Math.min(MAX_ATOMS, Math.trunc(count)));
-    if (limit === 0) return [];
-
-    const top: Array<{ idx: number; resonance: number }> = [];
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(ids, i) === 0n) continue;
-      const resonance = Atomics.load(resonances, i);
-      if (top.length < limit) {
-        top.push({ idx: i, resonance });
-        continue;
-      }
-
-      let minPos = 0;
-      for (let j = 1; j < top.length; j++) {
-        if (top[j].resonance < top[minPos].resonance) minPos = j;
-      }
-      if (resonance > top[minPos].resonance) {
-        top[minPos] = { idx: i, resonance };
-      }
-    }
-    top.sort((a, b) => b.resonance - a.resonance);
-    return top.map((entry) => entry.idx);
-  },
-
-  findFreeSlot: (): number => {
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(ids, i) === 0n) return i;
-    }
-    return -1;
-  },
-  findEmptySlot: (): number => {
-    for (let i = 1; i < MAX_ATOMS; i++) {
-      if (Atomics.load(ids, i) === 0n) return i;
-    }
-    return -1;
-  },
-
-  packRenderFrame: (): Float32Array => {
-    const active = STATE_MATRIX.getActiveIndices();
-    const len = active.length;
-    // 4 floats per atom -> 16 bytes per atom. 500k atoms = 8MB packet.
-    const packet = new Float32Array(len * 4);
-
-    for (let j = 0; j < len; j++) {
-      const idx = active[j];
-      const offset = j * 4;
-      packet[offset] = Atomics.load(xs, idx); // x
-      packet[offset + 1] = Atomics.load(ys, idx); // y
-      packet[offset + 2] = Atomics.load(roles, idx); // color
-      packet[offset + 3] = Atomics.load(resonances, idx); // resonance
-    }
-    return packet;
-  },
-
-  /**
-   * Serializes the entire visible universe for the Panopticon Canvas Client.
-   * Format:
-   * [Header: 4 bytes] 'OMGA'
-   * [Tick: 4 bytes] Int32
-   * [GridSize: 4 bytes] Int32 (GRID_W * GRID_H = 11200)
-   * [GridData: 11200 bytes] Uint8Array (Structure | memory)
-   * [AtomCount: 4 bytes] Int32
-   * [AtomData: AtomCount * 24 bytes] (x(2), y(2), role(1), resonance(1), id(2), 4x bonds(4x4=16)) => 24 bytes per atom
-   */
-  packPanopticonFrame: (): ArrayBuffer => {
-    const active = STATE_MATRIX.getActiveIndices();
-    const atomCount = active.length;
-    const gridCells = GRID_W * GRID_H;
-    const bytesPerAtom = 24;
-    
-    // Header(4) + Tick(4) + GridSize(4) + GridData(11200) + AtomCount(4) + AtomData(atomCount * 24)
-    const totalBytes = 16 + gridCells + (atomCount * bytesPerAtom);
-    const buffer = new ArrayBuffer(totalBytes);
-    const view = new DataView(buffer);
-    const u8 = new Uint8Array(buffer);
-    
-    // 1. Header 'OMGA'
-    u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
-    let offset = 4;
-    
-    // 2. Tick
-    view.setInt32(offset, Atomics.load(tickCounter, 0), true);
-    offset += 4;
-    
-    // 3. GridSize
-    view.setInt32(offset, gridCells, true);
-    offset += 4;
-    
-    // 4. GridData
-    for(let i=0; i < gridCells; i++) {
-        const type = STATE_MATRIX.getGridType(i);
-        // Pack Memory Grid Plasmids into upper bits if present
-        const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
-        u8[offset++] = type | hasPlasmid;
-    }
-    
-    // 5. AtomCount
-    view.setInt32(offset, atomCount, true);
-    offset += 4;
-    
-    // 6. AtomData
-    for(let j=0; j < atomCount; j++) {
-        const idx = active[j];
-        view.setInt16(offset, Atomics.load(xs, idx), true); offset += 2;
-        view.setInt16(offset, Atomics.load(ys, idx), true); offset += 2;
-        u8[offset++] = Atomics.load(roles, idx);
-        // clamp resonance to 0-255 for compact transport
-        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(resonances, idx)));
-        view.setUint16(offset, idx, true); offset += 2;
-        
-        view.setUint32(offset, Atomics.load(bonds, idx*4), true); offset+=4;
-        view.setUint32(offset, Atomics.load(bonds, idx*4 + 1), true); offset+=4;
-        view.setUint32(offset, Atomics.load(bonds, idx*4 + 2), true); offset+=4;
-        view.setUint32(offset, Atomics.load(bonds, idx*4 + 3), true); offset+=4;
-    }
-    
-    return buffer;
-  },
-
-  seedAtom: (
-    i: number,
-    id: bigint,
-    x: number,
-    y: number,
-    energy: number,
-    resonance: number,
-    logicVal?: Uint8Array,
-    script?: Uint8Array,
-  ) => {
-    Atomics.store(ids, i, id);
-    Atomics.store(xs, i, Math.round(x));
-    Atomics.store(ys, i, Math.round(y));
-    Atomics.store(energies, i, Math.round(energy * SCALE));
-    Atomics.store(resonances, i, resonance);
-    Atomics.store(phases, i, 0);
-    Atomics.store(roles, i, 0);
-    Atomics.store(semanticBonuses, i, 0);
-
-    if (logicVal) logic.set(logicVal, i * 8);
-
-    const boot = script || DEFAULT_BOOT_SCRIPT;
-    instructions.set(boot, i * 64);
-
-    // Reset Context
-    for (let r = 0; r < 16; r++) Atomics.store(contexts, i * 16 + r, 0);
-    // PC is at offset 32 (Reg index 8)
-    Atomics.store(contextByteView, i * 64 + 32, 0);
-  },
-
-  seedGuardian: (
-    i: number,
-    id: bigint,
-    x: number,
-    y: number,
-    energy: number = 10,
-    resonance: number = 100,
-  ) => {
-    const genome = new Uint8Array(8);
-    const script = STATE_MATRIX.getGuardianScript();
-    STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
-    STATE_MATRIX.setRole(i, STATE_MATRIX.ROLE_GUARDIAN);
-  },
-
-  getGuardianScript: () => {
-    const script = new Uint8Array(64);
-    let pc = 0;
-
-    // 1. R0 = neural coherence
-    script[pc++] = RISC.OP_GET;
-    script[pc++] = 0;
-    script[pc++] = RISC.PROP_NEURAL_COHERENCE;
-    // 2. R1 = threshold
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 1;
-    script[pc++] = GUARDIAN_COHERENCE_THRESHOLD;
-    // 3. R1 = threshold - coherence
-    script[pc++] = RISC.OP_SUB;
-    script[pc++] = 1;
-    script[pc++] = 0;
-    // 4. If R1 != 0, route to repair branch.
-    script[pc++] = RISC.OP_JNZ;
-    script[pc++] = 1;
-    script[pc++] = 22;
-
-    // --- STABLE FIELD ---
-    script[pc++] = RISC.OP_SIGNAL;
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 1;
-    script[pc++] = 2; // ROLE_GUARDIAN
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_JMP;
-    script[pc++] = 0;
-
-    // --- REPAIR BRANCH ---
-    // The coherence broadcast is capped upstream, so R1!=0 means "below threshold".
-    // We switch to ARCHITECT (Role = 3) via SYS.SET_ROLE
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 1;
-    script[pc++] = 3;
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_BUILD;
-    script[pc++] = 0;
-    script[pc++] = 0;
-    script[pc++] = RISC.OP_JMP;
-    script[pc++] = 0;
-
-    return script;
-  },
-
-  getArchitectScript: () => {
-    const script = new Uint8Array(64);
-    let pc = 0;
-
-    script[pc++] = RISC.OP_BUILD;
-    script[pc++] = 0;
-    script[pc++] = 0;
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
-    script[pc++] = 1;
-    script[pc++] = 3; // ROLE_ARCHITECT
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_JMP;
-    script[pc++] = 0;
-
-    return script;
-  },
-
-  getMatrixResonance: () => {
-    let total = 0;
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
-      total += Atomics.load(signalGrid, i);
-    }
-    return total;
-  },
-
-  getClusterSync: () => {
-    // Heuristic: measure how many neighboring cells in the Matrix have similar high resonance
-    let sync = 0;
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
-      const res = Atomics.load(signalGrid, i);
-      if (res > 100) sync++;
-    }
-    return sync;
-  },
-
-  getMemorySummary: () => {
-    // Implementation for Era 67 memetic summaries
-    const counts = new Map<number, number>();
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
-      const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
-      if (energy > 0) {
-        const sig = memoryGrid[i * 8 + 4]; // First byte of meme
-        counts.set(sig, (counts.get(sig) || 0) + 1);
-      }
-    }
-    return Array.from(counts.entries()).map(([sig, count]) => ({ sig, count }));
-  },
-
-  injectEnergy: (amount: number) => {
-    let count = 0;
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(ids, i) !== 0n) {
-        const current = Atomics.load(energies, i);
-        Atomics.store(energies, i, current + Math.round(amount * SCALE));
-        count++;
-      }
-    }
-    return count;
-  },
-
-  // --- ERA 69: Crystalline Neural Network Helpers ---
-  getGridType: (i: number) => Atomics.load(structureGrid, i) & 0xFF,
-  getGridDensity: (i: number) => (Atomics.load(structureGrid, i) >> 8) & 0xFF,
-  getGridCharge: (i: number) => (Atomics.load(structureGrid, i) >> 16) & 0xFF,
-  getGridState: (i: number) => (Atomics.load(structureGrid, i) >> 24) & 0xFF,
-  getGlyphHeader: (i: number) => Atomics.load(glyphHeaders, i),
-  getGlyphPayload: (i: number) => glyphPayload.subarray(i * 8, i * 8 + 8),
-  setGlyphHeader: (i: number, val: number) =>
-    Atomics.store(glyphHeaders, i, val),
-  setGlyphPayload: (i: number, val: Uint8Array) => {
-    glyphPayload.fill(0, i * 8, i * 8 + 8);
-    glyphPayload.set(val.subarray(0, 8), i * 8);
-  },
-
-  setGridType: (i: number, val: number) => {
-    Atomics.and(structureGrid, i, ~0x000000FF);
-    Atomics.or(structureGrid, i, val & 0xFF);
-  },
-  setGridDensity: (i: number, val: number) => {
-    Atomics.and(structureGrid, i, ~0x0000FF00);
-    Atomics.or(structureGrid, i, (val & 0xFF) << 8);
-  },
-  setGridCharge: (i: number, val: number) => {
-    Atomics.and(structureGrid, i, ~0x00FF0000);
-    Atomics.or(structureGrid, i, (val & 0xFF) << 16);
-  },
-  setGridState: (i: number, val: number) => {
-    Atomics.and(structureGrid, i, ~0xFF000000);
-    Atomics.or(structureGrid, i, (val & 0xFF) << 24);
-  },
-  getCausality: (idx: number) => Atomics.load(causality, idx),
-  setCausality: (idx: number, val: number) =>
-    Atomics.store(causality, idx, val),
-  clearDamping: () => damping.fill(0),
-  getHormone: (id: number) => Atomics.load(hormones, id),
-  setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
-};
-
-```
-
----
-
-## FILE: src/00/STATE_SNAPSHOT.ts
-
-```typescript
-// STATE_SNAPSHOT.ts
-// 🛡️ OMEGA-64 | Glider Lite | State & Proposal Types
-// Normative definitions for the Gemini Glider Lite runtime.
-
-/**
- * StateSnapshot: The canonical state of the system at a specific tick.
- * This is the input for all agents.
- */
-export interface StateSnapshot {
-  tick: number; // uint64
-  state_i16: Int16Array; // int16[64] - The core state vector
-  state_hash: string; // hex32 - Identity anchor
-
-  // Optional projections (for observablity)
-  phase_u16?: Uint16Array; // uint16[64]
-  stability_q15?: Float32Array; // 0..1
-  entropy_i16?: Int16Array; // -32768..32767
-}
-
-/**
- * AutonomyState: Represents the sovereignty levels of the system.
- */
-export interface AutonomyState {
-  state: number; // [0..1]
-  gov: number; // [0..1]
-  code: number; // [0..1]
-}
-
-/**
- * DeltaProposal: A request from an agent to modify the state.
- */
-export interface DeltaProposal {
-  proposal_id: string; // UUID or unique semantic ID
-  tick: number; // Must match StateSnapshot.tick
-  base_state_hash: string; // Must match StateSnapshot.state_hash
-  agent_id: string; // Who is proposing?
-  agent_phase_u16?: number; // Optional agent phase anchor [0..65535] for LOAD mismatch cost
-  intent?: string; // Human-readable intent
-  confidence: number; // float32 (0..1)
-  delta: Array<{ level: number; value: number }>; // Sparse delta: level (0-63), value (int16)
-  cost_estimate?: number; // uint64
-  artifact_hash?: string; // Identity anchor of the agent's internal state
-  semantic_fingerprint?: string; // hex32 - Semantic drift metric
-  causal_refs?: string[]; // hex32[] - Optional lineage anchors
-  target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
-  quorum_strength?: number; // range [0..1] - Local group coherence factor for Stage 25
-  origin_atom_idx?: number; // index of the proposing atom in the lattice
-  resonance?: number; // resonance level of the proposing atom
-  signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
-  agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
-  proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
-}
-
-/**
- * GateConfig: Configuration for the L32 Gate.
- */
-export interface GateConfig {
-  max_abs_delta_per_level: number; // uint16
-  max_total_abs_delta_per_tick: number; // uint32
-  max_total_cost_per_tick?: number; // uint64 (optional global cost cap)
-  max_cost_per_agent: number; // uint64
-  reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
-  reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
-  reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
-  dry_run: boolean; // If true, state is NOT mutated
-  global_syntropy?: number; // range [0..1] - System-wide structural organization for Stage 25
-  signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
-  agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
-  anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window
-}
-
-export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
-export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
-export type AgentSignatureKey =
-  | { scheme: "ed25519/v1"; public_key_b64: string }
-  | { scheme: "hmac-sha256/v1"; secret: string };
-
-/**
- * GateDecision: The result of the L32 Gate processing.
- */
-export interface GateDecision {
-  accepted_proposals: string[]; // IDs of accepted proposals
-  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
-  budget_used: number; // uint32
-  cost_used: number; // uint64
-  accepted_delta: Array<{ level: number; value: number }>; // The final merged delta
-}
-
-/**
- * LedgerEvent: The canonical record of a state transition.
- */
-export interface LedgerEvent {
-  event_id: string;
-  tick: number;
-  ts_unix_ms: number;
-  state_before_hash: string;
-  state_after_hash: string;
-  accepted_delta: Array<{ level: number; value: number }>;
-  proposal_digest: string; // Hash of all proposals (for integrity)
-  accepted_proposals: string[];
-  accepted_proposal_metrics?: Array<{
-    proposal_id: string;
-    agent_id: string;
-    confidence: number;
-    reliability_base: number;
-    reliability_effective: number;
-    phase_coherence?: number;
-    weight: number;
-    physical_cost: number;
-    agent_phase_u16?: number;
-  }>;
-  accepted_proposal_envelopes?: Array<
-    { proposal_id: string; envelope_hash: string }
-  >;
-  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
-  cost_total: number;
-  cost_limit?: number;
-  budget_used: number;
-  budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
-  gate_config_version: string;
-  signature_artifact_hash?: string; // hash anchor of transition artifact (usually proposal_digest)
-  signature_tick?: number; // tick used by topological signature builder
-  signature_causal_refs?: string[]; // canonical sorted causal refs
-  projection_2d_hash?: string; // deterministic 2D projection hash
-  thread_1d_hash?: string; // deterministic 1D thread hash
-  projection_version?: string; // signature projection version
-  policy_version?: string; // crystallization/gate policy version
-  policy_hash?: string; // SHA-256 of canonical crystallization policy payload
-  chain_version?: string; // ledger hash-chain schema version
-  prev_event_hash?: string | null; // hash anchor to previous ledger line
-  event_hash?: string; // hash of this event payload + prev_event_hash
-  witness?: string;
-}
-
-/**
- * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
- * Includes invariant packet hash for lightweight witness exchange.
- */
-export interface BridgeModeEvent {
-  event_type: "BRIDGE_MODE_EVENT";
-  tick: number;
-  state_hash: string;
-  mode: "GREEN" | "AMBER" | "RED";
-  index_chain_checked: boolean;
-  index_chain_ok: boolean;
-  index_chain_checked_records: number;
-  index_chain_failures: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_checked_records?: number;
-  gate_admission_index_chain_failures?: string[];
-  invariant_packet_hash?: string;
-  canon_bound_proposals: string[];
-  blocked_canon_proposals: string[];
-  reason: string;
-  chain_version?: string;
-  prev_event_hash?: string | null;
-  event_hash?: string;
-  witness?: string;
-}
-
-// Canonical Rejection Reasons
-export const REJECTION = {
-  SCHEMA_INVALID: "SCHEMA_INVALID",
-  TICK_MISMATCH: "TICK_MISMATCH",
-  BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
-  UNKNOWN_AGENT: "UNKNOWN_AGENT",
-  COST_OVER_BUDGET: "COST_OVER_BUDGET",
-  EMPTY_DELTA: "EMPTY_DELTA",
-  OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
-  CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
-  SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
-  SIGNATURE_INVALID: "SIGNATURE_INVALID",
-  SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
-  SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
-  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
-  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
 
 ```
@@ -7868,12 +8185,12 @@ export const GLYPH_BUFFER = {
 ## FILE: src/01/MATRIX_ENGINE.ts
 
 ```typescript
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
 
-const TOTAL_CELLS = GRID_W * GRID_H;
+const TOTAL_CELLS = GRID_CELLS;
 
 // Crystal type constants for logic gates
 export const CRYSTAL_STANDARD = 1; // Default conducting crystal
@@ -8029,14 +8346,14 @@ export * from "@01/SPATIAL_HASH.ts";
 ## FILE: src/01/PHYSICS_ENGINE.ts
 
 ```typescript
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PRNG } from "@00";
 import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
 import * as OFFSETS from "@00";
 
 
-const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
+const envBuffer = new SharedArrayBuffer(GRID_CELLS * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
 
 const ATTENTION_PHEROMONES = STATE_MATRIX.attentionField;
@@ -8049,15 +8366,15 @@ export const PHYSICS_ENGINE = {
   ATTENTION_PHEROMONES,
   // Spatial Memory
   pheromones: {
-    "WORKER": new Float32Array(GRID_W * GRID_H),
-    "GUARDIAN": new Float32Array(GRID_W * GRID_H),
-    "NUCLEUS": new Float32Array(GRID_W * GRID_H),
-    "PARASITE": new Float32Array(GRID_W * GRID_H),
+    "WORKER": new Float32Array(GRID_CELLS),
+    "GUARDIAN": new Float32Array(GRID_CELLS),
+    "NUCLEUS": new Float32Array(GRID_CELLS),
+    "PARASITE": new Float32Array(GRID_CELLS),
   },
 
   getGridIdx: (x: number, y: number) => {
-    const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
-    const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
+    const gx = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_X, x)) / OFFSETS.SPATIAL_CELL_SIZE);
+    const gy = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_Y, y)) / OFFSETS.SPATIAL_CELL_SIZE);
     return gy * GRID_W + gx;
   },
 
@@ -8083,7 +8400,7 @@ export const PHYSICS_ENGINE = {
 
     // --- ERA 50: Persistent Pheromone Decay ---
     if (pheroGrid) {
-      for (let i = 0; i < GRID_W * GRID_H; i++) {
+      for (let i = 0; i < GRID_CELLS; i++) {
         const cell = Atomics.load(pheroGrid, i);
         if (cell === 0) continue;
         const intensity = (cell >> 8) & 0xFFFFFF;
@@ -8303,7 +8620,7 @@ export const PHYSICS_ENGINE = {
     viralGrid: Uint8Array,
   ) => {
         
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
+    for (let i = 0; i < GRID_CELLS; i++) {
       const cell = Atomics.load(structureGrid, i);
       let density = (cell >> 8) & 0xFF;
       const type = cell & 0xFF;
@@ -8387,13 +8704,13 @@ export const PHYSICS_ENGINE = {
 ## FILE: src/01/SPATIAL_HASH.ts
 
 ```typescript
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 
-const CELL_SIZE = 10; // Finer resolution for bonding
+const CELL_SIZE = SPATIAL_CELL_SIZE; // Finer resolution for bonding
  // 1400 / 10
  // 800 / 10
-const TOTAL_CELLS = GRID_W * GRID_H;
+const TOTAL_CELLS = GRID_CELLS;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
 const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory
@@ -8414,8 +8731,8 @@ export const SPATIAL_HASH = {
     }
 
     for (const idx of activeIndices) {
-      const x = Math.max(0, Math.min(1399, STATE_MATRIX.getX(idx)));
-      const y = Math.max(0, Math.min(799, STATE_MATRIX.getY(idx)));
+      const x = Math.max(0, Math.min(WORLD_MAX_X, STATE_MATRIX.getX(idx)));
+      const y = Math.max(0, Math.min(WORLD_MAX_Y, STATE_MATRIX.getY(idx)));
 
       const cellX = Math.floor(x / CELL_SIZE);
       const cellY = Math.floor(y / CELL_SIZE);
@@ -8496,8 +8813,8 @@ export const SPATIAL_HASH = {
   },
 
   hash: (x: number, y: number) => {
-    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / 10)));
-    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / 10)));
+    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)));
+    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)));
     return hy * GRID_W + hx;
   },
 };
@@ -10624,7 +10941,7 @@ export const IMMUNE = {
 ## FILE: src/02/LAMBDA_VM.ts
 
 ```typescript
-import { GRID_W } from "../00/OFFSETS.ts";
+import { GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 // OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
 // Turing-complete bytecode executor with registers, stack, and messaging.
 
@@ -10845,8 +11162,8 @@ export const LAMBDA_VM = {
       case ISA.FEED: {
         const requested = p1;
         let consumed = 0;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         let current = Atomics.load(state.nutrients, idx);
@@ -10890,8 +11207,8 @@ export const LAMBDA_VM = {
       case ISA.SENSE: {
         const type = p1;
         const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         let val = 0;
@@ -10947,8 +11264,8 @@ export const LAMBDA_VM = {
           }
           case 0x0B: { // ERA 55: Same-role quorum count in local cell
             if (state.quorumData && state.role !== undefined) {
-              const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-              const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
               const safeRole = Math.min(7, Math.max(0, state.role));
               val = Math.min(
                 255,
@@ -10959,8 +11276,8 @@ export const LAMBDA_VM = {
           }
           case 0x0C: { // ERA 56: Imprint age (ticks since last IMPRINT in this cell)
             if (state.hiveMemory) {
-              const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-              const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
               const hBase = (gy * GRID_W + gx) * 16;
               // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
               const imprintTick = state.hiveMemory[hBase + 8] |
@@ -10983,15 +11300,15 @@ export const LAMBDA_VM = {
             break;
           }
           case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
-            const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-            const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+            const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+            const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
             const cellBase = (gy * GRID_W + gx) * 32;
             val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
             break;
           }
           case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
-            const px = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-            const py = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+            const px = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+            const py = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
             const dx = state.pheromoneGrid[py * GRID_W + px + 1] -
               state.pheromoneGrid[py * GRID_W + px - 1];
             const dy = state.pheromoneGrid[(py + 1) * 140 + px] -
@@ -11092,8 +11409,8 @@ export const LAMBDA_VM = {
 
       case ISA.SELF_REP: {
         // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 80;
         const friction = density > 10 ? (density - 10) * 10 : 0;
@@ -11108,8 +11425,8 @@ export const LAMBDA_VM = {
 
       case ISA.CROSS_REP: {
         // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 100;
         const friction = density > 10 ? (density - 10) * 15 : 0;
@@ -11262,8 +11579,8 @@ export const LAMBDA_VM = {
         // --- ERA 51: Collective Memory — encode snapshot ---
         // Read current local pheromone + phase and request worker to write to hiveMemory
         if (state.resonance > 20 && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const pIdx = gy * GRID_W + gx;
           const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
           const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
@@ -11283,8 +11600,8 @@ export const LAMBDA_VM = {
         // p1 = field (0=phero intensity, 1=pheromone type, 2=phase)
         // p2 = destination register index
         if (state.hiveMemory && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const hBase = (gy * GRID_W + gx) * 16;
           const raw32 = state.hiveMemory[hBase] |
             (state.hiveMemory[hBase + 1] << 8) |
@@ -11435,8 +11752,8 @@ export const LAMBDA_VM = {
         const threshold = p1 > 0 ? p1 : 5;
 
         if (state.quorumData && state.role !== undefined && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const safeRole = Math.min(7, Math.max(0, state.role));
           const quorumCount = state.quorumData[(gy * GRID_W + gx) * 8 + safeRole];
 
@@ -11474,8 +11791,8 @@ export const LAMBDA_VM = {
         // p1 = weight slot to reinforce (0-2)
         // p2 = reinforce amplitude (0=light +1, >0=use p2 value)
         if (state.hiveMemory && state.synapticStack && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-          const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
           const hBase = (gy * GRID_W + gx) * 16;
           // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
           const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
@@ -11573,8 +11890,8 @@ export const LAMBDA_VM = {
         // p1: 0=constructive (sync), 1=destructive (anti-phase)
         // Reads spatialGrid slot 31 = local phase average
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const cellAvgPhase = state.spatialGrid[(gy * GRID_W + gx) * 32 + 31];
           const targetPhase = p1 === 1
             ? (cellAvgPhase + 128) % 256 // destructive: anti-phase
@@ -11594,8 +11911,8 @@ export const LAMBDA_VM = {
         // Reads local pheromone gradient and encodes direction as 0-255 angle.
         // 0=right, 64=up, 128=left, 192=down. Stores in register p1.
         // p2: 0=angle, 1=dx-component, 2=dy-component
-        const gPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-        const gPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+        const gPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+        const gPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
         const gDx = state.pheromoneGrid[gPy * GRID_W + gPx + 1] -
           state.pheromoneGrid[gPy * GRID_W + gPx - 1];
         const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] -
@@ -11623,8 +11940,8 @@ export const LAMBDA_VM = {
         //   Zone 2 = Base    (low:   otherwise)               → Producer role
         // Emits morphRequest with zone + gradient angle.
         if (!dryRun) {
-          const mPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
-          const mPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
+          const mPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const mPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const conc = Math.abs(state.pheromoneGrid[mPy * GRID_W + mPx]);
           const hiThresh = (p1 > 0 ? p1 : 10) * 100;
           const loThresh = (p2 > 0 ? p2 : 3) * 100;
@@ -11653,8 +11970,8 @@ export const LAMBDA_VM = {
         // Writes atom's own 8-byte logic signature to the cell's viralGrid.
         // p1 = intensity/TTL of the plasmid (added to 9th byte).
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           // cellBase for viralGrid is 9 bytes per cell
           const cellBase = (gy * GRID_W + gx) * 9;
           const intensity = p1 > 0 ? p1 : 128; // default intensity
@@ -11672,8 +11989,8 @@ export const LAMBDA_VM = {
         // Reads viralGrid at current cell. If intensity (byte 8) > p1 threshold,
         // incorporates it by overwriting own 8-byte logic.
         if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
+          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
+          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
           const cellBase = (gy * GRID_W + gx) * 9;
           const threshold = p1 > 0 ? p1 : 50;
           const plasmidIntensity = state.viralGrid[cellBase + 8];
@@ -11733,8 +12050,8 @@ export const LAMBDA_VM = {
       case ISA.PLUG: { // ERA 69: Crystalline Neural Network
         const mode = p1; // 0: Read Charge, 1: Write Charge, 2: Set Type, 3: Set State
         const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-        const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
         const idx = gy * GRID_W + gx;
 
         if (mode === 0) { // READ CHARGE
@@ -11807,8 +12124,8 @@ export const LAMBDA_VM = {
             regs[p3 % 8] = Atomics.load(state.hiveMemory, p2 & 1023);
             res.energyDelta -= 0.5;
           } else if (mode === 2) {
-            const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
-            const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
+            const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
+            const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
             const idx = gy * GRID_W + gx;
             // intensity p2, type p3
             Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);
@@ -11867,7 +12184,7 @@ export * from "@02/PULSE.ts";
 
 ```typescript
 /// <reference lib="deno.worker" />
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00";
@@ -11875,6 +12192,26 @@ import {
   LOGGER,
   SCALE,
   WASM_PATH,
+  SYS_YIELD,
+  SYS_READ_MEM,
+  SYS_WRITE_MEM,
+  SYS_SPAWN,
+  SYS_BIND,
+  SYS_SET_ROLE,
+  SYS_MUTATE,
+  SYS_MSG,
+  SYS_READ_INBOX,
+  SYS_TRANSFER,
+  SYS_REPLICATE,
+  SYS_EMIT,
+  SYS_SCAN,
+  SYS_MOVE,
+  SYS_EAT,
+  SYS_BET,
+  SYS_ATTRACT,
+  SYS_FOLD,
+  SYS_SPORE_DRIVE,
+  SYS_SENSE_PHASE,
 } from "@00";
 import { STATE_MATRIX } from "@00";
 const resolveWithPhase = (
@@ -11964,26 +12301,7 @@ let ledgerDataView: Int32Array | null = null;
 let marketState: Int32Array | null = null;
 let betPoolInt: Int32Array | null = null;
 
-const SYS_YIELD = 1;
-const SYS_READ_MEM = 2;
-const SYS_WRITE_MEM = 3;
-const SYS_SPAWN = 4;
-const SYS_BIND = 5;
-const SYS_SET_ROLE = 6;
-const SYS_MUTATE = 7;
-const SYS_MSG = 8;
-const SYS_READ_INBOX = 9;
-const SYS_TRANSFER = 10;
-const SYS_REPLICATE = 11;
-const SYS_EMIT = 12;
-const SYS_SCAN = 13;
-const SYS_MOVE = 14;
-const SYS_EAT = 15;
-const SYS_BET = 16;
-const SYS_ATTRACT = 17;
-const SYS_FOLD = 18;
-const SYS_SPORE_DRIVE = 20;
-const SYS_SENSE_PHASE = 21;
+
 
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
@@ -12087,7 +12405,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_READ_MEM: {
       const gx = r1, gy = r2;
       let val = 0;
-      if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
@@ -12102,7 +12420,7 @@ function handle_syscall(atomIdx: number) {
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
-        gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView &&
+        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && buildOwnerView &&
         buildValueView
       ) {
         const cellIdx = gy * GRID_W + gx;
@@ -12114,7 +12432,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_SPAWN: {
       const childGx = r1, childGy = r2;
       if (
-        childGx >= 0 && childGx < 140 && childGy >= 0 && childGy < 80 &&
+        childGx >= 0 && childGx < GRID_W && childGy >= 0 && childGy < GRID_H &&
         spawnHeadView && spawnDataView
       ) {
         const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;
@@ -12264,8 +12582,8 @@ function handle_syscall(atomIdx: number) {
                   }
                 }
 
-                const dx = (tx - ox) / 10.0;
-                const dy = (ty - oy) / 10.0;
+                const dx = (tx - ox) / OFFSETS.SPATIAL_CELL_SIZE;
+                const dy = (ty - oy) / OFFSETS.SPATIAL_CELL_SIZE;
                 const distSq = dx * dx + dy * dy;
 
                 if (distSq <= 2.25) {
@@ -12481,20 +12799,20 @@ function handle_syscall(atomIdx: number) {
         const dyStr = intensity > 0 ? dySign : -dySign;
 
         if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * 10;
-          let ny = oy + dyStr * 10;
+          let nx = ox + dxStr * OFFSETS.SPATIAL_CELL_SIZE;
+          let ny = oy + dyStr * OFFSETS.SPATIAL_CELL_SIZE;
           LOGGER.debug(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
 
           if (nx < 0) nx = 0;
-          else if (nx > 1399) nx = 1399;
+          else if (nx > OFFSETS.WORLD_MAX_X) nx = OFFSETS.WORLD_MAX_X;
           if (ny < 0) ny = 0;
-          else if (ny > 799) ny = 799;
+          else if (ny > OFFSETS.WORLD_MAX_Y) ny = OFFSETS.WORLD_MAX_Y;
 
-          const nGridX = Math.floor(nx / 10);
-          const nGridY = Math.floor(ny / 10);
+          const nGridX = Math.floor(nx / OFFSETS.SPATIAL_CELL_SIZE);
+          const nGridY = Math.floor(ny / OFFSETS.SPATIAL_CELL_SIZE);
           const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
@@ -12668,22 +12986,22 @@ self.onmessage = async (e) => {
     structureGridView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_GRID_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     spatialGridView = new Int32Array(
       sb,
       OFFSETS.SPATIAL_GRID_OFFSET,
-      GRID_W * GRID_H * 32,
+      GRID_CELLS * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     buildValueView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(
@@ -20472,7 +20790,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         signalCount: 1,
         registers: [100, 0, 0, 0, 0, 0, 0, 0],
         finalStructureChargeIntent: {
-          [5 * 140 + 5]: 100,
+          [5 * GRID_W + 5]: 100,
         },
       },
     },
@@ -25258,6 +25576,7 @@ export const validateGateProposals = async (
 ## FILE: src/03/GATE.ts
 
 ```typescript
+import { GRID_H } from "../00/OFFSETS.ts";
 import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@00";
 import { type LedgerEvent } from "@00";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, I16_CLAMP__00_00_I16_CLAMP as I16_CLAMP, I16_LIMITS_I16_LIMITS as I16_LIMITS, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
@@ -25655,7 +25974,7 @@ export const GATE = {
       if (!hasBonds && feedCount > 2) malignancy += 30;
 
       // Apply Audit Decisions
-      if (malignancy >= 80) {
+      if (malignancy >= GRID_H) {
         stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
         LOGGER.warn(
           `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,
@@ -30954,6 +31273,7 @@ export * from "@05/LLM_SYNAPSE.ts";
 ## FILE: src/05/SEMANTIC_MEMBRANE.ts
 
 ```typescript
+import { GRID_W, GRID_H, GRID_CELLS } from "../00/OFFSETS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
@@ -31435,7 +31755,7 @@ export const SEMANTIC_MEMBRANE = {
     const GRID_W = 70;
     const GRID_H = 40;
 
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
+    for (let i = 0; i < GRID_CELLS; i++) {
       const cell = grid[i];
       const density = (cell >> 8) & 0xFF; // Pack: [Density (8 bits) | Type (8 bits)]
 
@@ -32564,7 +32884,7 @@ if (import.meta.main) {
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { RISC, STATE_MATRIX } from "@00";
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 import type { GlyphSnapshot } from "@01";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "@00";
@@ -33662,9 +33982,9 @@ const hashHex = async (input: string): Promise<string> => {
 
 const findRelicCandidate = (): RelicCandidate | null => {
   const grid = STATE_MATRIX.structureGrid;
-  const visited = new Uint8Array(GRID_W * GRID_H);
+  const visited = new Uint8Array(GRID_CELLS);
   const active = STATE_MATRIX.getActiveIndices();
-  const occupied = new Uint8Array(GRID_W * GRID_H);
+  const occupied = new Uint8Array(GRID_CELLS);
   for (const idx of active) {
     const x = STATE_MATRIX.getX(idx);
     const y = STATE_MATRIX.getY(idx);
@@ -33674,9 +33994,9 @@ const findRelicCandidate = (): RelicCandidate | null => {
   }
 
   let best: RelicCandidate | null = null;
-  const queue = new Int32Array(GRID_W * GRID_H);
+  const queue = new Int32Array(GRID_CELLS);
 
-  for (let i = 0; i < GRID_W * GRID_H; i++) {
+  for (let i = 0; i < GRID_CELLS; i++) {
     const type = grid[i] & 0xFF;
     if (type === 0 || visited[i] === 1) continue;
 
@@ -33703,7 +34023,7 @@ const findRelicCandidate = (): RelicCandidate | null => {
 
       const nbs = [cur - GRID_W, cur + GRID_W, cur - 1, cur + 1];
       for (const n of nbs) {
-        if (n < 0 || n >= GRID_W * GRID_H) continue;
+        if (n < 0 || n >= GRID_CELLS) continue;
         const nx = n % GRID_W;
         const ny = Math.floor(n / GRID_W);
         if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
@@ -37431,12 +37751,12 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
       target_x: clamp(
         Math.round(asFiniteNumber(payloadSource.target_x, 700)),
         0,
-        1399,
+        OFFSETS.WORLD_MAX_X,
       ),
       target_y: clamp(
         Math.round(asFiniteNumber(payloadSource.target_y, 400)),
         0,
-        799,
+        OFFSETS.WORLD_MAX_Y,
       ),
       intensity: clamp(asFiniteNumber(payloadSource.intensity, 100), 1, 2000),
       hex_code: hexCode,
@@ -38953,7 +39273,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ```typescript
 
 import { RISC, STATE_MATRIX, SYS } from "@00";
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../00/OFFSETS.ts";
 import { PULSE } from "../02/PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
@@ -38981,8 +39301,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PRODUCER);
     STATE_MATRIX.setEnergy(idx, 20000); // 20k energy base
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     idx++;
   }
 
@@ -38991,8 +39311,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_NEUTRAL);
     STATE_MATRIX.setEnergy(idx, 50000);
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     // Give Prey an empty script (just YIELD)
     idx++;
   }
@@ -39002,8 +39322,8 @@ async function initSimulation() {
     STATE_MATRIX.setId(idx, BigInt(idx));
     STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PARASITE); // Predator is PARASITE role=4
     STATE_MATRIX.setEnergy(idx, 100000); // Higher energy capacity
-    STATE_MATRIX.setX(idx, Math.random() * 1399);
-    STATE_MATRIX.setY(idx, Math.random() * 799);
+    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
+    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
     STATE_MATRIX.setInstructions(idx, SIMPLE_PREDATOR_SCRIPT);
     idx++;
   }
@@ -39026,8 +39346,8 @@ function renderGrid(tick: number) {
 
   for (let i = 1; i <= TOTAL_STARTING; i++) { // For an actual dynamic system, we'd check MAX_ATOMS
     if (STATE_MATRIX.getId(i) > 0n && STATE_MATRIX.getEnergy(i) > 0) {
-      const x = Math.floor(STATE_MATRIX.getX(i) / 10);
-      const y = Math.floor(STATE_MATRIX.getY(i) / 10);
+      const x = Math.floor(STATE_MATRIX.getX(i) / SPATIAL_CELL_SIZE);
+      const y = Math.floor(STATE_MATRIX.getY(i) / SPATIAL_CELL_SIZE);
       const role = STATE_MATRIX.getRole(i);
       const energy = STATE_MATRIX.getEnergy(i);
       totalEnergy += energy;
@@ -40983,7 +41303,7 @@ if (import.meta.main) {
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
@@ -42298,15 +42618,15 @@ setInterval(() => {
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     35200000 + 4096,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const memoryGrid = new Int32Array(
     STATE_MATRIX.buffer,
     36100000 + 4096,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   // Seed a strong signal in the center
-  const center = 40 * 140 + 70;
+  const center = 40 * GRID_W + 70;
   Atomics.store(signalGrid, center, 1000);
   Atomics.store(memoryGrid, center, 500);
 }, 100);

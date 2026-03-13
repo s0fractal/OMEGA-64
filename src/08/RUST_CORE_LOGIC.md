@@ -1,6 +1,6 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-13T03:02:08.088Z*
+*Generated: 2026-03-13T06:42:44.489Z*
 *Exported Files: 15*
 
 ---
@@ -136,6 +136,9 @@ pub const SAFETY_BUFFER: usize = 8000000;
 pub const GRID_W: i32 = 140;
 pub const GRID_H: i32 = 80;
 pub const GRID_CELLS: usize = 11200;
+pub const SPATIAL_CELL_SIZE: i32 = 10;
+pub const WORLD_MAX_X: i32 = 1399;
+pub const WORLD_MAX_Y: i32 = 799;
 pub const SCALE: i32 = 1000;
 pub const CELL_CAPACITY: usize = 32;
 pub const MAX_PC: u8 = 64;
@@ -145,6 +148,152 @@ pub const MAX_LEDGER_EVENTS: usize = 65536;
 pub const MAX_EGRESS_EVENTS: usize = 8192;
 pub const WASM_PAGE_BYTES: usize = 65536;
 pub const WASM_MEMORY_PAGES: usize = 7630;
+pub const HIVE_MEMORY_SIZE: usize = 1024;
+pub const HIVE_ENERGY_POOL_SIZE: usize = 256;
+pub const MAX_HORMONES: usize = 8;
+pub const SECRETION_STATS_SIZE: usize = 12;
+pub const MAX_SPAWN_REQUESTS: usize = 1024;
+pub const MAX_MEIOSIS_EVENTS: usize = 75000;
+pub const MAX_ASCENSION_STATS: usize = 62500;
+pub const MAX_ASCENSION_STATS_RESERVED: usize = 1250000;
+pub const ATOM_CONTEXT_SIZE: usize = 16;
+pub const ATOM_GENOME_SIZE: usize = 8;
+pub const ATOM_INSTRUCTION_SIZE: usize = 64;
+pub const RESOURCE_MAX: i32 = 2000000000;
+
+pub const OP_NOP: u8 = 0;
+pub const OP_SET: u8 = 1;
+pub const OP_GET: u8 = 2;
+pub const OP_PUT: u8 = 3;
+pub const OP_ADD: u8 = 4;
+pub const OP_SUB: u8 = 5;
+pub const OP_JZ: u8 = 16;
+pub const OP_JNZ: u8 = 17;
+pub const OP_JMP: u8 = 18;
+pub const OP_SYSCALL: u8 = 96;
+pub const OP_REPLICATE: u8 = 128;
+pub const OP_SIGNAL: u8 = 129;
+pub const OP_BIND: u8 = 130;
+pub const OP_SHARE: u8 = 131;
+pub const OP_HEBB: u8 = 138;
+pub const OP_FIRE: u8 = 139;
+pub const OP_DECAY: u8 = 145;
+pub const OP_PLUG: u8 = 164;
+pub const OP_TENSEGRITY: u8 = 165;
+pub const OP_COLLECTIVE: u8 = 166;
+pub const OP_BUILD: u8 = 168;
+pub const OP_SPORE_DRIVE: u8 = 168;
+pub const OP_SENSE: u8 = 169;
+pub const OP_SENSE_AS: u8 = 178;
+pub const OP_SECRETE_PLASMID: u8 = 170;
+pub const OP_INCORPORATE_PLASMID: u8 = 171;
+pub const OP_RESOLVE: u8 = 176;
+pub const OP_RESONATE_KURAMOTO: u8 = 177;
+pub const PROP_ENERGY: u8 = 0;
+pub const PROP_RESONANCE: u8 = 1;
+pub const PROP_X: u8 = 2;
+pub const PROP_Y: u8 = 3;
+pub const PROP_PHASE: u8 = 4;
+pub const PROP_GRID_CHARGE: u8 = 7;
+pub const PROP_QUORUM: u8 = 8;
+pub const PROP_NEURAL_COHERENCE: u8 = 9;
+pub const PROP_MEMORY: u8 = 10;
+pub const PROP_CONSENSUS: u8 = 11;
+
+// Sycall Indices
+pub const SYS_YIELD: i32 = 1;
+pub const SYS_READ_MEM: i32 = 2;
+pub const SYS_WRITE_MEM: i32 = 3;
+pub const SYS_SPAWN: i32 = 4;
+pub const SYS_BIND: i32 = 5;
+pub const SYS_SET_ROLE: i32 = 6;
+pub const SYS_MUTATE: i32 = 7;
+pub const SYS_MSG: i32 = 8;
+pub const SYS_READ_INBOX: i32 = 9;
+pub const SYS_TRANSFER: i32 = 10;
+pub const SYS_REPLICATE: i32 = 11;
+pub const SYS_EMIT: i32 = 12;
+pub const SYS_SCAN: i32 = 13;
+pub const SYS_MOVE: i32 = 14;
+pub const SYS_EAT: i32 = 15;
+pub const SYS_BET: i32 = 16;
+pub const SYS_ATTRACT: i32 = 17;
+pub const SYS_FOLD: i32 = 18;
+pub const SYS_SPORE_DRIVE: i32 = 20;
+pub const SYS_SENSE_PHASE: i32 = 21;
+
+// Structure Types
+pub const STR_VOID: i32 = 0;
+pub const STR_WIRE: i32 = 1;
+pub const STR_NODE: i32 = 2;
+pub const STR_DIODE: i32 = 3;
+pub const STR_SOURCE: i32 = 4;
+pub const STR_SINK: i32 = 5;
+pub const STR_CAPACITOR: i32 = 6;
+pub const STR_INVERTER: i32 = 7;
+pub const STR_LATCH: i32 = 8;
+
+pub const U64_BYTES: usize = 8;
+pub const I32_BYTES: usize = 4;
+pub const I16_BYTES: usize = 2;
+pub const F32_BYTES: usize = 4;
+pub const SYNC_STATE_OFFSET: usize = SAFETY_BUFFER - 4;
+pub const TICK_COUNTER_OFFSET: usize = SAFETY_BUFFER - 8;
+pub const IDS_OFFSET: usize = SAFETY_BUFFER + 0;
+pub const XS_OFFSET: usize = SAFETY_BUFFER + 4000000;
+pub const YS_OFFSET: usize = SAFETY_BUFFER + 5000000;
+pub const ENERGY_OFFSET: usize = SAFETY_BUFFER + 6000000;
+pub const RESONANCE_OFFSET: usize = SAFETY_BUFFER + 8000000;
+pub const PHASE_OFFSET: usize = SAFETY_BUFFER + 10000000;
+pub const LOGIC_OFFSET: usize = SAFETY_BUFFER + 12000000;
+pub const BONDS_OFFSET: usize = SAFETY_BUFFER + 16000000;
+pub const STIFFNESS_OFFSET: usize = SAFETY_BUFFER + 24000000;
+pub const INSTRUCTIONS_OFFSET: usize = SAFETY_BUFFER + 32000000;
+pub const CONTEXT_OFFSET: usize = SAFETY_BUFFER + 64000000;
+pub const EVOLUTION_OFFSET: usize = SAFETY_BUFFER + 96000000;
+pub const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
+pub const SPAWN_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 98000000;
+pub const MEIOSIS_OFFSET: usize = SAFETY_BUFFER + 98024584;
+pub const BOND_REQUESTS_OFFSET: usize = SAFETY_BUFFER + 104024584;
+pub const SPATIAL_GRID_OFFSET: usize = SAFETY_BUFFER + 110024584;
+pub const ROLES_OFFSET: usize = SAFETY_BUFFER + 111458184;
+pub const STRUCTURE_GRID_OFFSET: usize = SAFETY_BUFFER + 111958184;
+pub const SIGNAL_GRID_OFFSET: usize = SAFETY_BUFFER + 112002984;
+pub const MEMORY_GRID_OFFSET: usize = SAFETY_BUFFER + 112047784;
+pub const ASCENSION_STATS_OFFSET: usize = SAFETY_BUFFER + 112137384;
+pub const BOND_DISTANCES_OFFSET: usize = SAFETY_BUFFER + 117137384;
+pub const SYNAPTIC_WEIGHTS_OFFSET: usize = SAFETY_BUFFER + 119137384;
+pub const DAMPING_OFFSET: usize = SAFETY_BUFFER + 121137384;
+pub const CAUSALITY_OFFSET: usize = SAFETY_BUFFER + 121637384;
+pub const HIVE_MEMORY_OFFSET: usize = SAFETY_BUFFER + 122137384;
+pub const HIVE_BALANCE_OFFSET: usize = SAFETY_BUFFER + 122138408;
+pub const QUORUM_OFFSET: usize = SAFETY_BUFFER + 122138412;
+pub const COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496812;
+pub const NEURAL_COHERENCE_OFFSET: usize = SAFETY_BUFFER + 122496816;
+pub const PHYSICS_READ_XS_OFFSET: usize = SAFETY_BUFFER + 122496820;
+pub const PHYSICS_READ_YS_OFFSET: usize = SAFETY_BUFFER + 123496820;
+pub const PHYSICS_READ_ENERGY_OFFSET: usize = SAFETY_BUFFER + 124496820;
+pub const PHYSICS_READ_RESONANCE_OFFSET: usize = SAFETY_BUFFER + 126496820;
+pub const ENERGY_DELTA_OFFSET: usize = SAFETY_BUFFER + 128496820;
+pub const RESONANCE_DELTA_OFFSET: usize = SAFETY_BUFFER + 130496820;
+pub const STRUCTURE_BUILD_OWNER_OFFSET: usize = SAFETY_BUFFER + 132496820;
+pub const STRUCTURE_BUILD_VALUE_OFFSET: usize = SAFETY_BUFFER + 132541620;
+pub const STRUCTURE_CHARGE_INTENT_OFFSET: usize = SAFETY_BUFFER + 132586420;
+pub const ATTENTION_FIELD_OFFSET: usize = SAFETY_BUFFER + 132631220;
+pub const HIVE_ENERGY_POOL_OFFSET: usize = SAFETY_BUFFER + 132676020;
+pub const GLYPH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132677044;
+pub const GLYPH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132721844;
+pub const GLYPH_SCRATCH_HEADER_OFFSET: usize = SAFETY_BUFFER + 132811444;
+pub const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = SAFETY_BUFFER + 132856244;
+pub const HORMONE_OFFSET: usize = SAFETY_BUFFER + 132945844;
+pub const SECRETION_STATS_OFFSET: usize = SAFETY_BUFFER + 132945860;
+pub const LINEAGE_OFFSET: usize = SAFETY_BUFFER + 132945912;
+pub const MAILBOX_OFFSET: usize = SAFETY_BUFFER + 136945912;
+pub const LEDGER_HEAD_OFFSET: usize = SAFETY_BUFFER + 140945912;
+pub const LEDGER_DATA_OFFSET: usize = SAFETY_BUFFER + 140945916;
+pub const EGRESS_HEAD_OFFSET: usize = SAFETY_BUFFER + 141994492;
+pub const EGRESS_DATA_OFFSET: usize = SAFETY_BUFFER + 141994496;
+pub const LATTICE_MEMORY_END: usize = EGRESS_DATA_OFFSET + (MAX_EGRESS_EVENTS * 128);
 
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]
@@ -180,16 +329,15 @@ impl AtomRole {
 ## FILE: src/00/sigma_core/src/environment.rs
 
 ```rust
-use crate::constants::{GRID_H, GRID_W, MAX_ATOMS};
+use crate::constants::{
+    GRID_H, GRID_W, MAX_ATOMS, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, STR_NODE,
+    STR_SOURCE, STR_VOID, STR_WIRE,
+};
 use crate::SigmaState;
-const STR_VOID: i32 = 0;
-const STR_WIRE: i32 = 1;
-const STR_NODE: i32 = 2;
-const STR_DIODE: i32 = 3;
-const STR_SOURCE: i32 = 4;
-const STR_CAPACITOR: i32 = 6;
-const STR_INVERTER: i32 = 7;
-const STR_LATCH: i32 = 8;
+
+pub fn in_grid(x: i32, y: i32) -> bool {
+    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
+}
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
@@ -350,7 +498,7 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
             for i in 0..4 {
                 let nx = gx + dx[i];
                 let ny = gy + dy[i];
-                if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                if in_grid(nx, ny) {
                     let next_cell = (ny * GRID_W + nx) as usize;
                     let payload = if share >= 128 || share <= -128 {
                         Some(state.matrix.glyph_payload[cell])
@@ -509,7 +657,7 @@ pub fn tick_structure_grid(state: &mut SigmaState) {
                 for n in 0..8 {
                     let nx = x + dir8_x(n);
                     let ny = y + dir8_y(n);
-                    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                    if in_grid(nx, ny) {
                         let ni = (ny * GRID_W + nx) as usize;
                         let n_val = state.matrix.structure_grid[ni];
                         let n_charge = (n_val >> 16) & 0xFF;
@@ -573,7 +721,7 @@ pub fn tick_structure_grid(state: &mut SigmaState) {
                 for n in 0..4 {
                     let nx = x + dir4_x(n);
                     let ny = y + dir4_y(n);
-                    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                    if in_grid(nx, ny) {
                         let ni = (ny * GRID_W + nx) as usize;
                         let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
                         if n_charge > 20 {
@@ -608,7 +756,7 @@ fn update_charge_wire_node_cap(
     for n in 0..4 {
         let nx = x + dir4_x(n);
         let ny = y + dir4_y(n);
-        if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+        if in_grid(nx, ny) {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
@@ -666,7 +814,7 @@ fn update_charge_diode(
     }
 
     let mut next_charge = current_next_charge;
-    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+    if in_grid(nx, ny) {
         let ni = (ny * GRID_W + nx) as usize;
         let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
         let flow = n_charge - 5;
@@ -682,7 +830,7 @@ fn update_charge_inverter(state: &SigmaState, x: i32, y: i32) -> i32 {
     for n in 0..4 {
         let nx = x + dir4_x(n);
         let ny = y + dir4_y(n);
-        if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+        if in_grid(nx, ny) {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
@@ -703,7 +851,7 @@ fn update_charge_latch(state: &SigmaState, x: i32, y: i32, cell_state: i32) -> (
     // n=0 (Left): SET
     let set_x = x + dir4_x(0);
     let set_y = y + dir4_y(0);
-    if set_x >= 0 && set_x < GRID_W && set_y >= 0 && set_y < GRID_H {
+    if in_grid(set_x, set_y) {
         let n_charge =
             (state.matrix.structure_grid[(set_y * GRID_W + set_x) as usize] >> 16) & 0xFF;
         if n_charge > 100 {
@@ -714,7 +862,7 @@ fn update_charge_latch(state: &SigmaState, x: i32, y: i32, cell_state: i32) -> (
     // n=1 (Right): RESET
     let rst_x = x + dir4_x(1);
     let rst_y = y + dir4_y(1);
-    if rst_x >= 0 && rst_x < GRID_W && rst_y >= 0 && rst_y < GRID_H {
+    if in_grid(rst_x, rst_y) {
         let n_charge =
             (state.matrix.structure_grid[(rst_y * GRID_W + rst_x) as usize] >> 16) & 0xFF;
         if n_charge > 100 {
@@ -755,15 +903,13 @@ use std::mem::ManuallyDrop;
 // By taking the 0-indexed memory pointer from WASM + 7,999,992 bytes,
 // we alias directly onto our Struct matching JS indices perfectly.
 
-// `SigmaMatrix` logically begins at address 8_000_000 natively matching the Deno SAB.
-
-const WASM_MEMORY_OFFSET: usize = 8_000_000;
+// `SigmaMatrix` logically begins at address SAFETY_BUFFER natively matching the Deno SAB.
 
 /// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = WASM_MEMORY_OFFSET as *mut crate::memory::SigmaMatrix;
+    let base_ptr = crate::constants::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -816,12 +962,12 @@ thread_local! {
 #[unsafe(no_mangle)]
 pub extern "C" fn tick_membrane_physics() {
     let mut state = unsafe { get_ffi_state() };
-    
+
     VISITED_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
         visited.resize(crate::constants::MAX_ATOMS, 0);
-        
+
         for i in 1..crate::constants::MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
                 state.matrix.roles[i] &= !(crate::constants::AtomRole::MetazoanFlag as u8);
@@ -836,70 +982,73 @@ pub extern "C" fn tick_membrane_physics() {
                 continue;
             }
 
-        let mut path = Vec::with_capacity(8);
-        path.push(start_node);
+            let mut path = Vec::with_capacity(8);
+            path.push(start_node);
 
-        fn dfs(
-            current: usize,
-            start: usize,
-            depth: usize,
-            path: &mut Vec<usize>,
-            state: &crate::memory::SigmaState,
-        ) -> bool {
-            if depth >= 8 {
-                return false;
-            }
-            
-            for b_slot in 0..4 {
-                let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
-                if target > 0 && target < crate::constants::MAX_ATOMS && state.matrix.ids[target] != 0 {
-                    if target == start && depth >= 2 {
-                        return true;
-                    }
-                    if target < start {
-                        continue;
-                    }
-                    if !path.contains(&target) {
-                        path.push(target);
-                        if dfs(target, start, depth + 1, path, state) {
+            fn dfs(
+                current: usize,
+                start: usize,
+                depth: usize,
+                path: &mut Vec<usize>,
+                state: &crate::memory::SigmaState,
+            ) -> bool {
+                if depth >= 8 {
+                    return false;
+                }
+
+                for b_slot in 0..4 {
+                    let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
+                    if target > 0
+                        && target < crate::constants::MAX_ATOMS
+                        && state.matrix.ids[target] != 0
+                    {
+                        if target == start && depth >= 2 {
                             return true;
                         }
-                        path.pop();
+                        if target < start {
+                            continue;
+                        }
+                        if !path.contains(&target) {
+                            path.push(target);
+                            if dfs(target, start, depth + 1, path, state) {
+                                return true;
+                            }
+                            path.pop();
+                        }
                     }
                 }
+                false
             }
-            false
-        }
 
-        if dfs(start_node, start_node, 0, &mut path, &*state) {
-            rings.push(path.clone());
-            for &node in &path {
-                visited[node] = 1;
+            if dfs(start_node, start_node, 0, &mut path, &*state) {
+                rings.push(path.clone());
+                for &node in &path {
+                    visited[node] = 1;
+                }
             }
         }
-    }
 
-    for ring in &rings {
-        let count = ring.len() as i32;
-        let mut sum_energy: i64 = 0;
-        let mut sum_resonance: i64 = 0;
+        for ring in &rings {
+            let count = ring.len() as i32;
+            let mut sum_energy: i64 = 0;
+            let mut sum_resonance: i64 = 0;
 
-        for &node in ring {
-            sum_energy += state.matrix.energy[node] as i64;
-            sum_resonance += state.matrix.resonance[node] as i64;
-            state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+            for &node in ring {
+                sum_energy += state.matrix.energy[node] as i64;
+                sum_resonance += state.matrix.resonance[node] as i64;
+                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+            }
+
+            let avg_energy = (sum_energy / count as i64) as i32;
+            let avg_resonance = (sum_resonance / count as i64) as i32;
+            let total_resonance = sum_resonance as i32;
+
+            for &node in ring {
+                state.matrix.energy[node] = avg_energy;
+                state.matrix.resonance[node] = avg_resonance;
+                state.matrix.evolution_reserved[node] = total_resonance;
+            }
         }
-
-        let avg_energy = (sum_energy / count as i64) as i32;
-        let avg_resonance = (sum_resonance / count as i64) as i32;
-        let total_resonance = sum_resonance as i32;
-
-        for &node in ring {
-            state.matrix.energy[node] = avg_energy;
-            state.matrix.resonance[node] = avg_resonance;
-            state.matrix.evolution_reserved[node] = total_resonance;
-        }
-    }
     });
 }
 
@@ -1220,22 +1369,9 @@ impl From<u8> for GlyphOp {
     }
 }
 
-pub const PROP_ENERGY: u8 = 0;
-pub const PROP_RESONANCE: u8 = 1;
-pub const PROP_X: u8 = 2;
-pub const PROP_Y: u8 = 3;
-pub const PROP_PHASE: u8 = 4;
-pub const PROP_GRID_CHARGE: u8 = 7;
-pub const PROP_QUORUM: u8 = 8;
-pub const PROP_NEURAL_COHERENCE: u8 = 9;
-pub const PROP_MEMORY: u8 = 10;
-pub const PROP_CONSENSUS: u8 = 11;
+// PROP_* constants have been moved to constants.rs by generator
 
-pub const SYS_SPAWN: i32 = 4;
-pub const SYS_BIND: i32 = 5;
-pub const SYS_TRANSFER: i32 = 10;
-pub const SYS_ATTRACT: i32 = 17;
-pub const SYS_FOLD: i32 = 18;
+// SYS_ constants have been moved to constants.rs by generator
 
 ```
 
@@ -1272,7 +1408,6 @@ pub use vm::LambdaVM;
 ## FILE: src/00/sigma_core/src/math.rs
 
 ```rust
-// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
 //! Mathematical Coprocessor (Deterministic LUT Trigonometry)
 
 pub const SIN_LUT: [i16; 256] = [
@@ -1407,68 +1542,73 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 ```rust
 //! Sigma-Core Memory Layout
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
+//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS, SAFETY_BUFFER};
+pub use crate::constants::{
+    ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
+    HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
+    SECRETION_STATS_SIZE, MAX_ASCENSION_STATS_RESERVED, MAX_EGRESS_EVENTS, MAX_LEDGER_EVENTS,
+    MAX_ASCENSION_STATS, MAX_MEIOSIS_EVENTS, MAX_SPAWN_REQUESTS,
+};
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
 pub struct SigmaMatrix {
-    pub ids: [u64; 500000],
-    pub xs: [i16; 500000],
-    pub ys: [i16; 500000],
-    pub energy: [i32; 500000],
-    pub resonance: [i32; 500000],
-    pub phase: [i32; 500000],
-    pub logic: [[u8; 8]; 500000],
-    pub bonds: [i32; 2000000],
-    pub stiffness: [f32; 2000000],
-    pub instructions: [[u8; 64]; 500000],
-    pub context: [[i32; 16]; 500000],
-    pub evolution_reserved: [i32; 500000],
-    pub spawn_requests: [u8; 24584],
-    pub meiosis: [i32; 300000],
-    pub _pad_to_bond_requests: [u8; 4800000],
-    pub bond_requests: [i32; 1500000],
-    pub spatial_grid: [i32; 358400],
-    pub roles: [u8; 500000],
+    pub ids: [u64; MAX_ATOMS],
+    pub xs: [i16; MAX_ATOMS],
+    pub ys: [i16; MAX_ATOMS],
+    pub energy: [i32; MAX_ATOMS],
+    pub resonance: [i32; MAX_ATOMS],
+    pub phase: [i32; MAX_ATOMS],
+    pub logic: [[u8; ATOM_GENOME_SIZE]; MAX_ATOMS],
+    pub bonds: [i32; MAX_ATOMS * 4],
+    pub stiffness: [f32; MAX_ATOMS * 4],
+    pub instructions: [[u8; ATOM_INSTRUCTION_SIZE]; MAX_ATOMS],
+    pub context: [[i32; ATOM_CONTEXT_SIZE]; MAX_ATOMS],
+    pub evolution_reserved: [i32; MAX_ATOMS],
+    pub spawn_requests: [u8; 8 + (MAX_SPAWN_REQUESTS * 24)],
+    pub meiosis_reserved: [i32; MAX_MEIOSIS_EVENTS], // Size 300,000 bytes
+    pub _pad_to_bond_requests: [u8; 112024584 - (106024584 + (MAX_MEIOSIS_EVENTS * 4))], // 112024584 - 106324584 = 5700000 bytes
+    pub bond_requests: [i32; MAX_ATOMS * 3],
+    pub spatial_grid: [i32; GRID_CELLS * 32],
+    pub roles: [u8; MAX_ATOMS],
     pub structure_grid: [i32; GRID_CELLS],
     pub signal_grid: [i32; GRID_CELLS],
     pub memory_grid: [[u8; 8]; GRID_CELLS],
-    pub ascension_stats: [i32; 250000],
-    pub _pad_to_bond_distances: [u8; 4000000],
-    pub bond_distances: [u8; 2000000],
-    pub synaptic_weights: [u8; 2000000],
-    pub damping: [u8; 500000],
-    pub causality: [u8; 500000],
-    pub hive_memory: [u8; 1024],
+    pub ascension_stats_reserved: [i32; MAX_ASCENSION_STATS_RESERVED],
+    pub bond_distances: [u8; MAX_ATOMS * 4],
+    pub synaptic_weights: [u8; MAX_ATOMS * 4],
+    pub damping: [u8; MAX_ATOMS],
+    pub causality: [u8; MAX_ATOMS],
+    pub hive_memory: [u8; HIVE_MEMORY_SIZE],
     pub hive_balance: i32,
-    pub quorum: [i32; 89600],
+    pub quorum: [i32; GRID_CELLS * 8],
     pub coherence: i32,
     pub neural_coherence: i32,
-    pub physics_read_xs: [i16; 500000],
-    pub physics_read_ys: [i16; 500000],
-    pub physics_read_energy: [i32; 500000],
-    pub physics_read_resonance: [i32; 500000],
-    pub energy_delta: [i32; 500000],
-    pub resonance_delta: [i32; 500000],
+    pub physics_read_xs: [i16; MAX_ATOMS],
+    pub physics_read_ys: [i16; MAX_ATOMS],
+    pub physics_read_energy: [i32; MAX_ATOMS],
+    pub physics_read_resonance: [i32; MAX_ATOMS],
+    pub energy_delta: [i32; MAX_ATOMS],
+    pub resonance_delta: [i32; MAX_ATOMS],
     pub structure_build_owner: [i32; GRID_CELLS],
     pub structure_build_value: [i32; GRID_CELLS],
     pub structure_charge_intent: [i32; GRID_CELLS],
     pub attention_field: [f32; GRID_CELLS],
-    pub hive_energy_pool: [i32; 256],
+    pub hive_energy_pool: [i32; HIVE_ENERGY_POOL_SIZE],
     pub glyph_header: [i32; GRID_CELLS],
     pub glyph_payload: [[u8; 8]; GRID_CELLS],
     pub glyph_scratch_header: [i32; GRID_CELLS],
     pub glyph_scratch_payload: [[u8; 8]; GRID_CELLS],
-    pub hormones: [u16; 8],
-    pub secretion_stats: [i32; 12],
+    pub hormones: [u16; MAX_HORMONES],
+    pub secretion_stats: [i32; SECRETION_STATS_SIZE],
     pub _pad_to_lineage: [u8; 4],
-    pub lineage: [u64; 500000],
-    pub mailbox: [[i32; 2]; 500000],
+    pub lineage: [u64; MAX_ATOMS],
+    pub mailbox: [[i32; 2]; MAX_ATOMS],
     pub ledger_head: i32,
-    pub ledger_data: [[i32; 4]; 65536],
+    pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
     pub egress_head: i32,
-    pub egress_data: [[u8; 256]; 8192],
+    pub egress_data: [[u8; 256]; MAX_EGRESS_EVENTS],
 }
 
 pub struct SigmaState {
@@ -1538,7 +1678,7 @@ impl SigmaState {
         unsafe {
             std::slice::from_raw_parts(
                 self.matrix.context[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
-                16,
+                ATOM_CONTEXT_SIZE,
             )
         }
     }
@@ -1574,7 +1714,7 @@ impl SigmaState {
         unsafe {
             std::slice::from_raw_parts(
                 self.matrix.hive_memory.as_ptr() as *const std::sync::atomic::AtomicU8,
-                1024,
+                HIVE_MEMORY_SIZE,
             )
         }
     }
@@ -1745,7 +1885,7 @@ impl SigmaState {
         }
     }
 
-    pub fn read_genome(&self, index: usize) -> Option<&[u8; 8]> {
+    pub fn read_genome(&self, index: usize) -> Option<&[u8]> {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
@@ -1765,14 +1905,14 @@ impl SigmaState {
         let idx = (head as usize) % max_events;
 
         let mut payload = [0u8; 256];
-        payload[0..64].copy_from_slice(&self.matrix.instructions[atom_idx]);
+        payload[0..ATOM_INSTRUCTION_SIZE].copy_from_slice(&self.matrix.instructions[atom_idx]);
         payload[64..68].copy_from_slice(&current_energy.to_le_bytes());
         payload[68..72].copy_from_slice(&self.matrix.phase[atom_idx].to_le_bytes());
         payload[72..76].copy_from_slice(&self.matrix.resonance[atom_idx].to_le_bytes());
         payload[76..80].copy_from_slice(&nx.to_le_bytes());
         payload[80..84].copy_from_slice(&ny.to_le_bytes());
 
-        for i in 0..16 {
+        for i in 0..ATOM_CONTEXT_SIZE {
             let offset = 84 + (i * 4);
             payload[offset..offset + 4]
                 .copy_from_slice(&self.matrix.context[atom_idx][i].to_le_bytes());
@@ -1803,257 +1943,269 @@ mod tests {
     // export const XS_OFFSET = 12000000;
     #[test]
     fn verify_memory_offsets() {
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, ids), SAFETY_BUFFER + (8000000 - 8000000), "ids");
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, xs), SAFETY_BUFFER + (12000000 - 8000000), "xs");
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, ys), SAFETY_BUFFER + (13000000 - 8000000), "ys");
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ids),
+            SAFETY_BUFFER + (8000000 - 8000000),
+            "ids"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, xs),
+            SAFETY_BUFFER + (12000000 - 8000000),
+            "xs"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ys),
+            SAFETY_BUFFER + (13000000 - 8000000),
+            "ys"
+        );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
-            14000000,
+            crate::constants::ENERGY_OFFSET,
             "energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance),
-            16000000,
+            crate::constants::RESONANCE_OFFSET,
             "resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, phase),
-            18000000,
+            crate::constants::PHASE_OFFSET,
             "phase"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, logic),
-            20000000,
+            crate::constants::LOGIC_OFFSET,
             "logic"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bonds),
-            24000000,
+            crate::constants::BONDS_OFFSET,
             "bonds"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, stiffness),
-            32000000,
+            crate::constants::STIFFNESS_OFFSET,
             "stiffness"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, instructions),
-            40000000,
+            crate::constants::INSTRUCTIONS_OFFSET,
             "instructions"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, context),
-            72000000,
+            crate::constants::CONTEXT_OFFSET,
             "context"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, evolution_reserved),
-            104000000,
+            crate::constants::EVOLUTION_OFFSET,
             "evolution_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spawn_requests),
-            106000000,
+            crate::constants::SPAWN_REQUESTS_OFFSET,
             "spawn_requests"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis),
-            106024584,
-            "meiosis"
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
+            crate::constants::MEIOSIS_OFFSET,
+            "meiosis_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
-            112024584,
+            crate::constants::BOND_REQUESTS_OFFSET,
             "bond_requests"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, spatial_grid),
-            118024584,
+            crate::constants::SPATIAL_GRID_OFFSET,
             "spatial_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, roles),
-            119458184,
+            crate::constants::ROLES_OFFSET,
             "roles"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_grid),
-            119958184,
+            crate::constants::STRUCTURE_GRID_OFFSET,
             "structure_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, signal_grid),
-            120002984,
+            crate::constants::SIGNAL_GRID_OFFSET,
             "signal_grid"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, memory_grid),
-            120047784,
+            crate::constants::MEMORY_GRID_OFFSET,
             "memory_grid"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats),
-            120137384,
-            "ascension_stats"
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats_reserved),
+            crate::constants::ASCENSION_STATS_OFFSET,
+            "ascension_stats_reserved"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_distances),
-            125137384,
+            crate::constants::BOND_DISTANCES_OFFSET,
             "bond_distances"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, synaptic_weights),
-            127137384,
+            crate::constants::SYNAPTIC_WEIGHTS_OFFSET,
             "synaptic_weights"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, damping),
-            129137384,
+            crate::constants::DAMPING_OFFSET,
             "damping"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, causality),
-            129637384,
+            crate::constants::CAUSALITY_OFFSET,
             "causality"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_memory),
-            130137384,
+            crate::constants::HIVE_MEMORY_OFFSET,
             "hive_memory"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_balance),
-            130138408,
+            crate::constants::HIVE_BALANCE_OFFSET,
             "hive_balance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, quorum),
-            130138412,
+            crate::constants::QUORUM_OFFSET,
             "quorum"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, coherence),
-            130496812,
+            crate::constants::COHERENCE_OFFSET,
             "coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, neural_coherence),
-            130496816,
+            crate::constants::NEURAL_COHERENCE_OFFSET,
             "neural_coherence"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_xs),
-            130496820,
+            crate::constants::PHYSICS_READ_XS_OFFSET,
             "physics_read_xs"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_ys),
-            131496820,
+            crate::constants::PHYSICS_READ_YS_OFFSET,
             "physics_read_ys"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_energy),
-            132496820,
+            crate::constants::PHYSICS_READ_ENERGY_OFFSET,
             "physics_read_energy"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_resonance),
-            134496820,
+            crate::constants::PHYSICS_READ_RESONANCE_OFFSET,
             "physics_read_resonance"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy_delta),
-            136496820,
+            crate::constants::ENERGY_DELTA_OFFSET,
             "energy_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance_delta),
-            138496820,
+            crate::constants::RESONANCE_DELTA_OFFSET,
             "resonance_delta"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_owner),
-            140496820,
+            crate::constants::STRUCTURE_BUILD_OWNER_OFFSET,
             "structure_build_owner"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_value),
-            140541620,
+            crate::constants::STRUCTURE_BUILD_VALUE_OFFSET,
             "structure_build_value"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_charge_intent),
-            140586420,
+            crate::constants::STRUCTURE_CHARGE_INTENT_OFFSET,
             "structure_charge_intent"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, attention_field),
-            140631220,
+            crate::constants::ATTENTION_FIELD_OFFSET,
             "attention_field"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_energy_pool),
-            140676020,
+            crate::constants::HIVE_ENERGY_POOL_OFFSET,
             "hive_energy_pool"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_header),
-            140677044,
+            crate::constants::GLYPH_HEADER_OFFSET,
             "glyph_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_payload),
-            140721844,
+            crate::constants::GLYPH_PAYLOAD_OFFSET,
             "glyph_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_header),
-            140811444,
+            crate::constants::GLYPH_SCRATCH_HEADER_OFFSET,
             "glyph_scratch_header"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_payload),
-            140856244,
+            crate::constants::GLYPH_SCRATCH_PAYLOAD_OFFSET,
             "glyph_scratch_payload"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            140945844,
+            crate::constants::HORMONE_OFFSET,
             "hormones"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, secretion_stats),
-            140945860,
+            crate::constants::SECRETION_STATS_OFFSET,
             "secretion_stats"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, lineage),
-            140945912,
+            crate::constants::LINEAGE_OFFSET,
             "lineage"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, mailbox),
-            144945912,
+            crate::constants::MAILBOX_OFFSET,
             "mailbox"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_head),
-            148945912,
+            crate::constants::LEDGER_HEAD_OFFSET,
             "ledger_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_data),
-            148945916,
+            crate::constants::LEDGER_DATA_OFFSET,
             "ledger_data"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_head),
-            149994492,
+            crate::constants::EGRESS_HEAD_OFFSET,
             "egress_head"
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_data),
-            149994496,
+            crate::constants::EGRESS_DATA_OFFSET,
             "egress_data"
         );
     }
@@ -2066,7 +2218,7 @@ mod tests {
 ## FILE: src/00/sigma_core/src/pulse.rs
 
 ```rust
-use crate::constants::{MAX_ATOMS, GRID_W, GRID_H};
+use crate::constants::{GRID_H, GRID_W, MAX_ATOMS};
 use crate::{LambdaVM, SigmaState};
 
 pub struct PulseOrchestrator<'a> {
@@ -2107,7 +2259,10 @@ impl<'a> PulseOrchestrator<'a> {
                 for b_slot in 0..4 {
                     let bond_idx = (i * 4) + b_slot;
                     let target = state.matrix.bonds[bond_idx];
-                    if target > 0 && (target as usize) < MAX_ATOMS && state.matrix.ids[target as usize] != 0 {
+                    if target > 0
+                        && (target as usize) < MAX_ATOMS
+                        && state.matrix.ids[target as usize] != 0
+                    {
                         mass += 1;
                     }
                 }
@@ -2134,16 +2289,17 @@ impl<'a> PulseOrchestrator<'a> {
         for i in 1..MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
                 let role = state.matrix.roles[i] & 0x7F;
-                
+
                 let mut e = state.matrix.energy[i];
 
-                if role == 5 { // ROLE_MITOCHONDRIA
+                if role == 5 {
+                    // ROLE_MITOCHONDRIA
                     let host_idx = state.matrix.context[i][12] as usize;
                     if host_idx > 0 && host_idx < MAX_ATOMS && state.matrix.ids[host_idx] != 0 {
                         // Enforce Coordinate Lock
                         state.matrix.xs[i] = state.matrix.xs[host_idx];
                         state.matrix.ys[i] = state.matrix.ys[host_idx];
-                        
+
                         // Pay up 90% of current energy
                         if e > crate::constants::SCALE {
                             let transfer = ((e - crate::constants::SCALE) as f64 * 0.9) as i32;
@@ -2166,57 +2322,61 @@ impl<'a> PulseOrchestrator<'a> {
                 for b_slot in 0..4 {
                     let bond_idx = (i * 4) + b_slot;
                     let target = state.matrix.bonds[bond_idx];
-                    if target > 0 && (target as usize) < MAX_ATOMS && state.matrix.ids[target as usize] != 0 {
+                    if target > 0
+                        && (target as usize) < MAX_ATOMS
+                        && state.matrix.ids[target as usize] != 0
+                    {
                         mass += 1;
                     }
                 }
 
                 let effective_tax = base_entropy_tax / mass;
-                
+
                 e -= effective_tax;
                 e -= base_friction; // Friction remains constant for mechanical movement parity
 
                 if e <= 0 {
-                    // PH 43: Fossilization Check 
+                    // PH 43: Fossilization Check
                     let resonance = state.matrix.resonance[i];
                     let role = state.matrix.roles[i] & 0x7F; // Strip metazoan flag
-                    let has_immunity = state.matrix.context[i][13] != 0 || state.matrix.context[i][14] != 0;
-                    
+                    let has_immunity =
+                        state.matrix.context[i][13] != 0 || state.matrix.context[i][14] != 0;
+
                     if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
                         let cx = state.matrix.xs[i] as usize;
                         let cy = state.matrix.ys[i] as usize;
                         let gx = cx / (crate::constants::SCALE as usize);
                         let gy = cy / (crate::constants::SCALE as usize);
-                        
+
                         if gx < (GRID_W as usize) && gy < (GRID_H as usize) {
                             let cell_idx = gy * (GRID_W as usize) + gx;
                             let structure_val = state.matrix.structure_grid[cell_idx];
                             let structure_type = structure_val & 0xFF;
-                            
+
                             // 1. Structural Crystallization
                             if structure_type == 0 || structure_type == 1 {
                                 let mut charge = resonance.clamp(10, 255);
                                 let base_charge = (structure_val >> 16) & 0xFF;
                                 charge = std::cmp::max(charge, base_charge);
-                                
+
                                 let new_type = if role == 3 {
                                     6 // STR_CAPACITOR (Architects leave energy banks)
                                 } else {
                                     1 // STR_WIRE (Guardians and others leave hardened walls/pathways)
                                 };
-                                
+
                                 state.matrix.structure_grid[cell_idx] = new_type | (charge << 16);
                             }
-                            
+
                             // 2. Epigenetic Hash Trace (CRISPR memory spill)
                             let mut scroll_hash = state.matrix.context[i][13];
                             if scroll_hash == 0 {
                                 scroll_hash = state.matrix.context[i][14];
                             }
-                            
+
                             if scroll_hash != 0 {
                                 let mut mem = state.matrix.memory_grid[cell_idx];
-                                
+
                                 // To organically decay into a kind=2 plasmid via tick_glyph_transport,
                                 // memory_grid triggers off of the first 3-bytes being a 24-bit charge >= 1.
                                 // We'll put the scroll into the 4 upper bytes (4..8) as payload,
@@ -2225,9 +2385,10 @@ impl<'a> PulseOrchestrator<'a> {
                                 mem[5] = ((scroll_hash >> 16) & 0xFF) as u8;
                                 mem[6] = ((scroll_hash >> 8) & 0xFF) as u8;
                                 mem[7] = (scroll_hash & 0xFF) as u8;
-                                
-                                // memory_lo triggers charge. 
-                                let memory_lo = u32::from_le_bytes([mem[0], mem[1], mem[2], mem[3]]);
+
+                                // memory_lo triggers charge.
+                                let memory_lo =
+                                    u32::from_le_bytes([mem[0], mem[1], mem[2], mem[3]]);
                                 let mut charge = (memory_lo & 0xFFFFFF) as i32;
                                 if charge < 100 {
                                     charge = 100; // Provide enough plasma generic charge to bleed off into a kind=2
@@ -2236,7 +2397,7 @@ impl<'a> PulseOrchestrator<'a> {
                                     mem[2] = ((charge >> 16) & 0xFF) as u8;
                                     // keep mem[3] unaltered
                                 }
-                                
+
                                 state.matrix.memory_grid[cell_idx] = mem;
                             }
                         }
@@ -2251,7 +2412,7 @@ impl<'a> PulseOrchestrator<'a> {
 
         // 8. Membrane Physics (Metazoan Emergence)
         self.visited.fill(0);
-        
+
         for i in 1..MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
                 state.matrix.roles[i] &= !0x80;
@@ -2280,7 +2441,7 @@ impl<'a> PulseOrchestrator<'a> {
                 if depth >= 8 {
                     return false;
                 }
-                
+
                 for b_slot in 0..4 {
                     let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
                     if target > 0 && target < MAX_ATOMS && state.matrix.ids[target] != 0 {
@@ -2320,7 +2481,8 @@ impl<'a> PulseOrchestrator<'a> {
             for &node in ring {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8; // Metazoan flag
+                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+                // Metazoan flag
             }
 
             let avg_energy = (sum_energy / count as i64) as i32;
@@ -2471,7 +2633,10 @@ impl SigmaState {
                 // O(1) Search via index hinting: The lower 32-bits of p_id contain the parent index
                 let parent_hint = (p_id & 0xFFFFFFFF) as usize;
                 let mut parent_idx = 0;
-                if parent_hint > 0 && parent_hint < MAX_ATOMS && self.matrix.ids[parent_hint] == p_id {
+                if parent_hint > 0
+                    && parent_hint < MAX_ATOMS
+                    && self.matrix.ids[parent_hint] == p_id
+                {
                     parent_idx = parent_hint;
                 } else {
                     // Fallback to linear search in case of desync
@@ -2511,7 +2676,7 @@ impl SigmaState {
                     self.matrix.phase[f] = 0;
                     self.matrix.context[f] = [0; 16];
                     self.matrix.context[f][8] = 0; // PC
-                    
+
                     // CRISPR Inheritance
                     // Pass adaptive immunity (Reg 13) down to the child
                     self.matrix.context[f][13] = self.matrix.context[parent_idx][13];
@@ -2607,50 +2772,51 @@ pub fn run_shadow_simulation(
         visited.resize(crate::constants::MAX_ATOMS, 0);
         let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
-    for i in 0..ticks {
-        orchestrator.tick(&mut shadow_state, start_tick + i);
-    }
-
-    // 4. Calculate topological divergence
-    let final_energy = shadow_state.matrix.energy[target_idx];
-    let final_resonance = shadow_state.matrix.resonance[target_idx];
-    let final_structural_value = shadow_state
-        .matrix
-        .structure_build_value
-        .iter()
-        .sum::<i32>();
-
-    let final_population = shadow_state
-        .matrix
-        .ids
-        .iter()
-        .filter(|&&id| id != 0)
-        .count() as i32;
-    let final_coherence = shadow_state.matrix.neural_coherence;
-
-    let final_bonds: Vec<i32> = {
-        let start = target_idx * 4;
-        shadow_state.matrix.bonds[start..start + 4].to_vec()
-    };
-
-    let mut bonds_broken = 0;
-    let mut bonds_formed = 0;
-
-    for i in 0..4 {
-        if original_bonds[i] != 0 && final_bonds[i] == 0 {
-            bonds_broken += 1;
+        for i in 0..ticks {
+            orchestrator.tick(&mut shadow_state, start_tick + i);
         }
-        if original_bonds[i] == 0 && final_bonds[i] != 0 {
-            bonds_formed += 1;
+
+        // 4. Calculate topological divergence
+        let final_energy = shadow_state.matrix.energy[target_idx];
+        let final_resonance = shadow_state.matrix.resonance[target_idx];
+        let final_structural_value = shadow_state
+            .matrix
+            .structure_build_value
+            .iter()
+            .sum::<i32>();
+
+        let final_population = shadow_state
+            .matrix
+            .ids
+            .iter()
+            .filter(|&&id| id != 0)
+            .count() as i32;
+        let final_coherence = shadow_state.matrix.neural_coherence;
+
+        let final_bonds: Vec<i32> = {
+            let start = target_idx * 4;
+            shadow_state.matrix.bonds[start..start + 4].to_vec()
+        };
+
+        let mut bonds_broken = 0;
+        let mut bonds_formed = 0;
+
+        for i in 0..4 {
+            if original_bonds[i] != 0 && final_bonds[i] == 0 {
+                bonds_broken += 1;
+            }
+            if original_bonds[i] == 0 && final_bonds[i] != 0 {
+                bonds_formed += 1;
+            }
         }
-    }
 
         DriftMetrics {
             energy_diff: final_energy.saturating_sub(initial_energy),
             resonance_diff: final_resonance.saturating_sub(initial_resonance),
             bonds_broken,
             bonds_formed,
-            structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
+            structural_value_change: final_structural_value
+                .saturating_sub(initial_structural_value),
             population_diff: final_population.saturating_sub(initial_population),
             coherence_diff: final_coherence.saturating_sub(initial_coherence),
             divergence_tick: start_tick + ticks,
@@ -2667,8 +2833,8 @@ pub fn run_shadow_simulation(
 ```rust
 //! Spatial Fabric Topology & Cognition Grid
 
+use crate::constants::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_CELLS};
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.
@@ -2700,18 +2866,18 @@ impl SigmaState {
             if x < 0 {
                 x = 0;
             }
-            if x > 1399 {
-                x = 1399;
+            if x > WORLD_MAX_X {
+                x = WORLD_MAX_X;
             }
             if y < 0 {
                 y = 0;
             }
-            if y > 799 {
-                y = 799;
+            if y > WORLD_MAX_Y {
+                y = WORLD_MAX_Y;
             }
 
-            let cell_x = (x / 10) as usize;
-            let cell_y = (y / 10) as usize;
+            let cell_x = (x / SPATIAL_CELL_SIZE) as usize;
+            let cell_y = (y / SPATIAL_CELL_SIZE) as usize;
             let cell_idx = (cell_y * (GRID_W as usize)) + cell_x;
 
             let sg_base = cell_idx * 32;
@@ -2752,8 +2918,8 @@ impl SigmaState {
             let sg_base = i * 32;
             let count = spatial_atomic[sg_base].load(std::sync::atomic::Ordering::Relaxed);
             if count > 0 {
-                let sum = spatial_atomic[sg_base + phase_slot]
-                    .load(std::sync::atomic::Ordering::Relaxed);
+                let sum =
+                    spatial_atomic[sg_base + phase_slot].load(std::sync::atomic::Ordering::Relaxed);
                 spatial_atomic[sg_base + phase_slot]
                     .store(sum / count, std::sync::atomic::Ordering::Relaxed);
             }
@@ -2901,12 +3067,14 @@ impl SigmaState {
 ```rust
 //! LambdaVM Execution Engine
 
-use crate::isa::{
-    GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SYS_TRANSFER,
+use crate::constants::{
+    GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
+use crate::environment::in_grid;
+use crate::isa::GlyphOp;
+use crate::constants::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_H};
 
 pub struct LambdaVM {}
 
@@ -2918,7 +3086,10 @@ impl LambdaVM {
     #[inline(always)]
     pub fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
-        state.matrix.instructions.get(atom_idx)
+        state
+            .matrix
+            .instructions
+            .get(atom_idx)
             .map(|inst| inst[actual_pc as usize])
             .unwrap_or(0) // Default to NOP if indices completely invalid
     }
@@ -2930,8 +3101,8 @@ impl LambdaVM {
     /// degrade cleanly into NOP executions. Array manipulation operates primarily through
     /// safely ordered hardware-level atomics to prevent simultaneous VM tick data races.
     ///
-    /// # Metabolic Economics 
-    /// Standard execution runs at zero gas until operations resolve. Each opcode natively applies 
+    /// # Metabolic Economics
+    /// Standard execution runs at zero gas until operations resolve. Each opcode natively applies
     /// +1 base computation energy cost, scaled exponentially based on `hormone` friction/entropy
     /// equations simulating thermodynamics across the Tensegrity lattice.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
@@ -3109,10 +3280,10 @@ impl LambdaVM {
                     gas_used += cost;
                 }
                 GlyphOp::ResonateKuramoto => {
-                    let gx = (state.matrix.xs[atom_idx] as i32) / 1000;
-                    let gy = (state.matrix.ys[atom_idx] as i32) / 1000;
+                    let gx = (state.matrix.xs[atom_idx] as i32) / (100 * SPATIAL_CELL_SIZE);
+                    let gy = (state.matrix.ys[atom_idx] as i32) / (100 * SPATIAL_CELL_SIZE);
 
-                    // Note: Deno physics clamp / 1000 logic is actually (xs / 10) / 100 -> xs / 1000.
+                    // Note: Deno physics clamp logic is actually (xs / SPATIAL_CELL_SIZE) / 100.
                     // Let's use grid coordinates as mapped by build_spatial_hash (which are units of 10)
                     let current_phase = state.matrix.phase[atom_idx] as i32;
                     let mut sum_sin: i32 = 0;
@@ -3126,7 +3297,7 @@ impl LambdaVM {
                             let nx = grid_cx + dx;
                             let ny = grid_cy + dy;
 
-                            if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                            if in_grid(nx, ny) {
                                 let count = state.get_spatial_grid_count(nx, ny);
                                 for i in 0..count {
                                     if neighbor_count >= 32 {
@@ -3209,7 +3380,9 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * crate::constants::SCALE && state.matrix.resonance[atom_idx] > r_thresh {
+                    if energy > e_thresh * crate::constants::SCALE
+                        && state.matrix.resonance[atom_idx] > r_thresh
+                    {
                         let cx = state.matrix.xs[atom_idx] as i32;
                         let cy = state.matrix.ys[atom_idx] as i32;
 
@@ -3444,13 +3617,15 @@ impl LambdaVM {
                         // Read 8 bytes from genome
                         let mut payload = [0u8; 8];
                         payload.copy_from_slice(
-                            &state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)],
+                            &state.matrix.instructions[atom_idx]
+                                [offset as usize..(offset as usize + 8)],
                         );
 
                         // Deposit into payload atomically
                         let payload_atomic = state.glyph_payload_atomic();
                         for i in 0..8 {
-                            payload_atomic[cell_idx * 8 + i].store(payload[i], std::sync::atomic::Ordering::Relaxed);
+                            payload_atomic[cell_idx * 8 + i]
+                                .store(payload[i], std::sync::atomic::Ordering::Relaxed);
                         }
 
                         // Trigger interference map: Kind 3 (PLASMID), Max Amplitude (255)
@@ -3475,16 +3650,18 @@ impl LambdaVM {
                         let cy = state.matrix.ys[atom_idx] as usize;
                         let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
-                        let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
+                        let header = state.glyph_header_atomic()[cell_idx]
+                            .load(std::sync::atomic::Ordering::Relaxed);
                         let kind = (header & 0xFF) as u8;
 
                         if kind == 3 {
                             let payload_atomic = state.glyph_payload_atomic();
                             let mut new_bytes = [0u8; 8];
                             for i in 0..8 {
-                                new_bytes[i] = payload_atomic[cell_idx * 8 + i].load(std::sync::atomic::Ordering::Relaxed);
+                                new_bytes[i] = payload_atomic[cell_idx * 8 + i]
+                                    .load(std::sync::atomic::Ordering::Relaxed);
                             }
-                            
+
                             // CRISPR Immunity Check
                             // Fast hash: shifting the first 4 bytes into a 32-bit integer.
                             let mut plasmid_hash: i32 = 0;
@@ -3493,18 +3670,22 @@ impl LambdaVM {
                             plasmid_hash |= (new_bytes[2] as i32) << 8;
                             plasmid_hash |= new_bytes[3] as i32;
 
-                            let immune_memory = state.context_atomic(atom_idx)[13].load(std::sync::atomic::Ordering::Relaxed);
+                            let immune_memory = state.context_atomic(atom_idx)[13]
+                                .load(std::sync::atomic::Ordering::Relaxed);
 
                             if immune_memory != 0 && immune_memory == plasmid_hash {
                                 // MATCH! Execute OP_PURGE immunity mechanism.
                                 // 1. Destroy payload in environment
                                 for i in 0..8 {
-                                    payload_atomic[cell_idx * 8 + i].store(0, std::sync::atomic::Ordering::Relaxed);
+                                    payload_atomic[cell_idx * 8 + i]
+                                        .store(0, std::sync::atomic::Ordering::Relaxed);
                                 }
-                                state.glyph_header_atomic()[cell_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                                state.glyph_header_atomic()[cell_idx]
+                                    .store(0, std::sync::atomic::Ordering::Relaxed);
 
                                 // 2. Metabolic Bonus (+50_000 raw energy)
-                                state.energy_atomic()[atom_idx].fetch_add(50_000, std::sync::atomic::Ordering::Relaxed);
+                                state.energy_atomic()[atom_idx]
+                                    .fetch_add(50_000, std::sync::atomic::Ordering::Relaxed);
                                 energy += 50_000;
 
                                 // 3. Abort insertion
@@ -3512,22 +3693,27 @@ impl LambdaVM {
                             } else {
                                 // NAIVE ENCOUNTER
                                 // Record the hash into Trauma Tracker (Reg 14) for potential learning at end of step
-                                state.context_atomic(atom_idx)[14].store(plasmid_hash, std::sync::atomic::Ordering::Relaxed);
+                                state.context_atomic(atom_idx)[14]
+                                    .store(plasmid_hash, std::sync::atomic::Ordering::Relaxed);
 
                                 // Thermodynamic Safeguard
                                 let mut current_bytes = [0u8; 8];
-                                current_bytes.copy_from_slice(&state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)]);
-                                
+                                current_bytes.copy_from_slice(
+                                    &state.matrix.instructions[atom_idx]
+                                        [offset as usize..(offset as usize + 8)],
+                                );
+
                                 // We need full 64 byte frames for entropy calculations
                                 let mut mock_old = [0u8; 64];
                                 mock_old.copy_from_slice(&state.matrix.instructions[atom_idx]);
                                 let mut mock_new = [0u8; 64];
                                 mock_new.copy_from_slice(&state.matrix.instructions[atom_idx]);
-                                mock_new[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                mock_new[offset as usize..(offset as usize + 8)]
+                                    .copy_from_slice(&new_bytes);
 
                                 let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
                                 let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
-                                
+
                                 let is_desperate = energy < (100_000_000 / 10);
 
                                 if entropy_new < entropy_old || is_desperate {
@@ -3535,12 +3721,15 @@ impl LambdaVM {
                                     // Under the parallel execution model, no other thread writes to our `atom_idx` instruction block
                                     // concurrently. Atomic protection applies inter-atom, but intra-atom we have absolute sovereignty.
                                     unsafe {
-                                        let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
+                                        let inst_ptr =
+                                            state.matrix.instructions.as_ptr() as *mut [u8; 64];
                                         let atom_inst = &mut *inst_ptr.add(atom_idx);
-                                        atom_inst[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                        atom_inst[offset as usize..(offset as usize + 8)]
+                                            .copy_from_slice(&new_bytes);
                                     }
                                     // Evict Entropy Cache
-                                    state.context_atomic(atom_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                                    state.context_atomic(atom_idx)[15]
+                                        .store(0, std::sync::atomic::Ordering::Relaxed);
                                 }
                             }
                         }
@@ -3605,8 +3794,10 @@ impl LambdaVM {
                         if energy >= val * crate::constants::SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
-                            state.energy_atomic()[atom_idx]
-                                .fetch_sub(val * crate::constants::SCALE, std::sync::atomic::Ordering::Relaxed);
+                            state.energy_atomic()[atom_idx].fetch_sub(
+                                val * crate::constants::SCALE,
+                                std::sync::atomic::Ordering::Relaxed,
+                            );
                             energy -= val * crate::constants::SCALE;
                         }
                         gas_used += 15;
@@ -3662,7 +3853,7 @@ impl LambdaVM {
                         // Quorum PC Sync
                         let cx = state.matrix.xs[atom_idx] as i32 / 10;
                         let cy = state.matrix.ys[atom_idx] as i32 / 10;
-                        if cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H {
+                        if in_grid(cx, cy) {
                             let count = state.get_spatial_grid_count(cx, cy);
                             for i in 0..count {
                                 let peer = state.get_spatial_grid_atom(cx, cy, i) as usize;
@@ -3684,234 +3875,239 @@ impl LambdaVM {
                     pc += 4; // Length is 4 according to verification harness
                 }
                 GlyphOp::Syscall => {
-                        let context_regs = state.context_atomic(atom_idx);
-                        let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
-                        let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
-                        let r2 = context_regs[2].load(std::sync::atomic::Ordering::Relaxed);
-                        let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
+                    let context_regs = state.context_atomic(atom_idx);
+                    let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
+                    let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
+                    let r2 = context_regs[2].load(std::sync::atomic::Ordering::Relaxed);
+                    let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
 
-                        match sys_id {
-                            crate::isa::SYS_ATTRACT => {
-                                let target_idx = r1 as usize;
-                                let attract_force = r2;
+                    match sys_id {
+                        SYS_ATTRACT => {
+                            let target_idx = r1 as usize;
+                            let attract_force = r2;
 
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && state.matrix.ids[target_idx] != 0
-                                {
-                                    let ox = state.matrix.xs[atom_idx] as i32;
-                                    let oy = state.matrix.ys[atom_idx] as i32;
-                                    let tx = state.matrix.xs[target_idx] as i32;
-                                    let ty = state.matrix.ys[target_idx] as i32;
+                            if target_idx > 0
+                                && target_idx < MAX_ATOMS
+                                && state.matrix.ids[target_idx] != 0
+                            {
+                                let ox = state.matrix.xs[atom_idx] as i32;
+                                let oy = state.matrix.ys[atom_idx] as i32;
+                                let tx = state.matrix.xs[target_idx] as i32;
+                                let ty = state.matrix.ys[target_idx] as i32;
 
-                                    let dx = tx - ox;
-                                    let dy = ty - oy;
+                                let dx = tx - ox;
+                                let dy = ty - oy;
 
-                                    let dx_sign = if dx > 0 {
-                                        1
-                                    } else if dx < 0 {
-                                        -1
+                                let dx_sign = if dx > 0 {
+                                    1
+                                } else if dx < 0 {
+                                    -1
+                                } else {
+                                    0
+                                };
+                                let dy_sign = if dy > 0 {
+                                    1
+                                } else if dy < 0 {
+                                    -1
+                                } else {
+                                    0
+                                };
+
+                                let move_dir_x = if attract_force > 0 { dx_sign } else { -dx_sign };
+                                let move_dir_y = if attract_force > 0 { dy_sign } else { -dy_sign };
+
+                                if move_dir_x != 0 || move_dir_y != 0 {
+                                    let nx = ox + (move_dir_x * 10);
+                                    let ny = oy + (move_dir_y * 10);
+
+                                    let is_escaped = nx < 0 || nx > 1399 || ny < 0 || ny > 799;
+
+                                    if is_escaped {
+                                        state.dispatch_egress(atom_idx, nx, ny, energy);
+                                        state.energy_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        state.ids_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        energy = 0;
                                     } else {
-                                        0
-                                    };
-                                    let dy_sign = if dy > 0 {
-                                        1
-                                    } else if dy < 0 {
-                                        -1
-                                    } else {
-                                        0
-                                    };
-
-                                    let move_dir_x =
-                                        if attract_force > 0 { dx_sign } else { -dx_sign };
-                                    let move_dir_y =
-                                        if attract_force > 0 { dy_sign } else { -dy_sign };
-
-                                    if move_dir_x != 0 || move_dir_y != 0 {
-                                        let nx = ox + (move_dir_x * 10);
-                                        let ny = oy + (move_dir_y * 10);
-
-                                        let is_escaped = nx < 0 || nx > 1399 || ny < 0 || ny > 799;
-
-                                        if is_escaped {
-                                            state.dispatch_egress(atom_idx, nx, ny, energy);
-                                            state.energy_atomic()[atom_idx]
-                                                .store(0, std::sync::atomic::Ordering::Relaxed);
-                                            state.ids_atomic()[atom_idx]
-                                                .store(0, std::sync::atomic::Ordering::Relaxed);
-                                            energy = 0;
-                                        } else {
-                                            let n_grid_x = nx / 10;
-                                            let n_grid_y = ny / 10;
-                                            let count_in_cell =
-                                                state.get_spatial_grid_count(n_grid_x, n_grid_y);
-                                            if count_in_cell < 31 {
-                                                state.xs_atomic()[atom_idx].store(
-                                                    nx as i16,
-                                                    std::sync::atomic::Ordering::Relaxed,
-                                                );
-                                                state.ys_atomic()[atom_idx].store(
-                                                    ny as i16,
-                                                    std::sync::atomic::Ordering::Relaxed,
-                                                );
-                                            }
+                                        let n_grid_x = nx / 10;
+                                        let n_grid_y = ny / 10;
+                                        let count_in_cell =
+                                            state.get_spatial_grid_count(n_grid_x, n_grid_y);
+                                        if count_in_cell < 31 {
+                                            state.xs_atomic()[atom_idx].store(
+                                                nx as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                            state.ys_atomic()[atom_idx].store(
+                                                ny as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
                                         }
                                     }
                                 }
-                                gas_used += 10;
                             }
-                            crate::isa::SYS_FOLD => {
-                                gas_used += 10;
+                            gas_used += 10;
+                        }
+                        SYS_FOLD => {
+                            gas_used += 10;
+                        }
+                        SYS_SPAWN => {
+                            let child_energy = r1 * 1000;
+                            let dx = r2;
+                            let dy = r3;
+
+                            if energy > child_energy {
+                                let cx = (state.matrix.xs[atom_idx] as i32) + dx;
+                                let cy = (state.matrix.ys[atom_idx] as i32) + dy;
+
+                                state.push_spawn_request(atom_idx, cx, cy, child_energy);
+
+                                state.energy_atomic()[atom_idx]
+                                    .fetch_sub(child_energy, std::sync::atomic::Ordering::Relaxed);
+                                energy -= child_energy;
                             }
-                            crate::isa::SYS_SPAWN => {
-                                let child_energy = r1 * 1000;
-                                let dx = r2;
-                                let dy = r3;
-
-                                if energy > child_energy {
-                                    let cx = (state.matrix.xs[atom_idx] as i32) + dx;
-                                    let cy = (state.matrix.ys[atom_idx] as i32) + dy;
-
-                                    state.push_spawn_request(atom_idx, cx, cy, child_energy);
-
-                                    state.energy_atomic()[atom_idx].fetch_sub(
-                                        child_energy,
-                                        std::sync::atomic::Ordering::Relaxed,
-                                    );
-                                    energy -= child_energy;
-                                }
-                                gas_used += 20;
+                            gas_used += 20;
+                        }
+                        SYS_BIND => {
+                            let target_idx = r1 as usize;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && target_idx != atom_idx {
+                                state.push_bond_request(atom_idx, atom_idx, target_idx);
                             }
-                            crate::isa::SYS_BIND => {
-                                let target_idx = r1 as usize;
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && target_idx != atom_idx
-                                {
-                                    state.push_bond_request(atom_idx, atom_idx, target_idx);
-                                }
-                                gas_used += 15;
-                            }
-                            SYS_TRANSFER => {
-                                let target_idx = r1 as usize;
-                                let resource_type = r2;
-                                let amount = r3; // positive to give, negative to take (steal)
+                            gas_used += 15;
+                        }
+                        SYS_TRANSFER => {
+                            let target_idx = r1 as usize;
+                            let resource_type = r2;
+                            let amount = r3; // positive to give, negative to take (steal)
 
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && amount != 0
-                                    && state.matrix.ids[target_idx] != 0
-                                {
-                                    if resource_type == 0 {
-                                        // Energy
-                                        if amount > 0 {
-                                            // Giving
-                                            let scaled_amount = amount * 1000;
-                                            if state.matrix.energy[atom_idx] >= scaled_amount {
-                                                state.energy_atomic()[atom_idx].fetch_sub(
-                                                    scaled_amount,
+                            if target_idx > 0
+                                && target_idx < MAX_ATOMS
+                                && amount != 0
+                                && state.matrix.ids[target_idx] != 0
+                            {
+                                if resource_type == 0 {
+                                    // Energy
+                                    if amount > 0 {
+                                        // Giving
+                                        let scaled_amount = amount * 1000;
+                                        if state.matrix.energy[atom_idx] >= scaled_amount {
+                                            state.energy_atomic()[atom_idx].fetch_sub(
+                                                scaled_amount,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                            energy -= scaled_amount;
+                                            let energy_atomic = state.energy_atomic();
+                                            energy_atomic[target_idx].fetch_add(
+                                                scaled_amount,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                        }
+                                    } else {
+                                        // Taking/Stealing (negative amount)
+                                        let my_role = state.roles_atomic()[atom_idx]
+                                            .load(std::sync::atomic::Ordering::Relaxed)
+                                            & 0x7F;
+                                        let target_role = state.roles_atomic()[target_idx]
+                                            .load(std::sync::atomic::Ordering::Relaxed)
+                                            & 0x7F;
+
+                                        if my_role == 3 && target_role == 1 {
+                                            let t_energy = state.energy_atomic()[target_idx]
+                                                .load(std::sync::atomic::Ordering::Acquire);
+                                            if t_energy > 20_000 {
+                                                // Mutate to Mitochondria (role 5)
+                                                let current_role = state.roles_atomic()[target_idx]
+                                                    .load(std::sync::atomic::Ordering::Relaxed);
+                                                state.roles_atomic()[target_idx].store(
+                                                    5 | (current_role & 0x80),
                                                     std::sync::atomic::Ordering::Relaxed,
                                                 );
-                                                energy -= scaled_amount;
-                                                let energy_atomic = state.energy_atomic();
-                                                energy_atomic[target_idx].fetch_add(
-                                                    scaled_amount,
+                                                // Store host atom_idx in Context Reg 12
+                                                state.context_atomic(target_idx)[12].store(
+                                                    atom_idx as i32,
                                                     std::sync::atomic::Ordering::Relaxed,
                                                 );
+                                                break; // Engulfment replaces stealing
                                             }
-                                        } else {
-                                            // Taking/Stealing (negative amount)
-                                            let my_role = state.roles_atomic()[atom_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
-                                            let target_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
+                                        }
 
-                                            if my_role == 3 && target_role == 1 {
-                                                let t_energy = state.energy_atomic()[target_idx].load(std::sync::atomic::Ordering::Acquire);
-                                                if t_energy > 20_000 {
-                                                    // Mutate to Mitochondria (role 5)
-                                                    let current_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed);
-                                                    state.roles_atomic()[target_idx].store(5 | (current_role & 0x80), std::sync::atomic::Ordering::Relaxed);
-                                                    // Store host atom_idx in Context Reg 12
-                                                    state.context_atomic(target_idx)[12].store(atom_idx as i32, std::sync::atomic::Ordering::Relaxed);
-                                                    break; // Engulfment replaces stealing
-                                                }
-                                            }
-
-                                            let my_resonance = state.matrix.resonance[atom_idx];
-                                            let target_defense = if state.matrix.evolution_reserved[target_idx] > 0 {
+                                        let my_resonance = state.matrix.resonance[atom_idx];
+                                        let target_defense =
+                                            if state.matrix.evolution_reserved[target_idx] > 0 {
                                                 state.matrix.evolution_reserved[target_idx]
                                             } else {
                                                 state.matrix.resonance[target_idx]
                                             };
 
-                                            if my_resonance > target_defense {
-                                                let ox = state.matrix.xs[atom_idx] as f32;
-                                                let oy = state.matrix.ys[atom_idx] as f32;
-                                                let tx = state.matrix.xs[target_idx] as f32;
-                                                let ty = state.matrix.ys[target_idx] as f32;
+                                        if my_resonance > target_defense {
+                                            let ox = state.matrix.xs[atom_idx] as f32;
+                                            let oy = state.matrix.ys[atom_idx] as f32;
+                                            let tx = state.matrix.xs[target_idx] as f32;
+                                            let ty = state.matrix.ys[target_idx] as f32;
 
-                                                let dx = (tx - ox) / 10.0;
-                                                let dy = (ty - oy) / 10.0;
-                                                let dist_sq = dx * dx + dy * dy;
+                                            let dx = (tx - ox) / 10.0;
+                                            let dy = (ty - oy) / 10.0;
+                                            let dist_sq = dx * dx + dy * dy;
 
-                                                if dist_sq <= 2.25 {
-                                                    let steal_amount = (-amount) * 1000;
-                                                    let energy_atomic = state.energy_atomic();
-                                                    let mut t_energy = energy_atomic[target_idx]
-                                                        .load(std::sync::atomic::Ordering::Acquire);
-                                                    let mut final_take = 0;
-                                                    loop {
-                                                        let take_amount =
-                                                            std::cmp::min(steal_amount, t_energy);
-                                                        if take_amount <= 0 {
-                                                            break;
-                                                        }
-                                                        match energy_atomic[target_idx]
-                                                            .compare_exchange(
+                                            if dist_sq <= 2.25 {
+                                                let steal_amount = (-amount) * 1000;
+                                                let energy_atomic = state.energy_atomic();
+                                                let mut t_energy = energy_atomic[target_idx]
+                                                    .load(std::sync::atomic::Ordering::Acquire);
+                                                let mut final_take = 0;
+                                                loop {
+                                                    let take_amount =
+                                                        std::cmp::min(steal_amount, t_energy);
+                                                    if take_amount <= 0 {
+                                                        break;
+                                                    }
+                                                    match energy_atomic[target_idx]
+                                                        .compare_exchange(
                                                             t_energy,
                                                             t_energy - take_amount,
                                                             std::sync::atomic::Ordering::AcqRel,
                                                             std::sync::atomic::Ordering::Acquire,
                                                         ) {
-                                                            Ok(_) => {
-                                                                final_take = take_amount;
-                                                                break;
-                                                            }
-                                                            Err(actual) => t_energy = actual,
+                                                        Ok(_) => {
+                                                            final_take = take_amount;
+                                                            break;
                                                         }
+                                                        Err(actual) => t_energy = actual,
                                                     }
-                                                    if final_take > 0 {
-                                                        state.energy_atomic()[atom_idx].fetch_add(
-                                                            final_take,
-                                                            std::sync::atomic::Ordering::Relaxed,
-                                                        );
-                                                        energy += final_take;
-                                                    }
+                                                }
+                                                if final_take > 0 {
+                                                    state.energy_atomic()[atom_idx].fetch_add(
+                                                        final_take,
+                                                        std::sync::atomic::Ordering::Relaxed,
+                                                    );
+                                                    energy += final_take;
                                                 }
                                             }
                                         }
-                                    } else if resource_type == 1 {
-                                        // Resonance (only giving permitted for now)
-                                        if amount > 0 && state.matrix.resonance[atom_idx] >= amount
-                                        {
-                                            state.resonance_atomic()[atom_idx].fetch_sub(
-                                                amount,
-                                                std::sync::atomic::Ordering::Relaxed,
-                                            );
-                                            resonance -= amount;
-                                            let res_atomic = state.resonance_atomic();
-                                            res_atomic[target_idx].fetch_add(
-                                                amount,
-                                                std::sync::atomic::Ordering::Relaxed,
-                                            );
-                                        }
+                                    }
+                                } else if resource_type == 1 {
+                                    // Resonance (only giving permitted for now)
+                                    if amount > 0 && state.matrix.resonance[atom_idx] >= amount {
+                                        state.resonance_atomic()[atom_idx].fetch_sub(
+                                            amount,
+                                            std::sync::atomic::Ordering::Relaxed,
+                                        );
+                                        resonance -= amount;
+                                        let res_atomic = state.resonance_atomic();
+                                        res_atomic[target_idx].fetch_add(
+                                            amount,
+                                            std::sync::atomic::Ordering::Relaxed,
+                                        );
                                     }
                                 }
-                                gas_used += if amount < 0 { 30 } else { 10 };
                             }
-                            _ => {
-                                gas_used += 10;
-                            }
+                            gas_used += if amount < 0 { 30 } else { 10 };
                         }
+                        _ => {
+                            gas_used += 10;
+                        }
+                    }
                     pc += 1; // Basic jump over opcode for next resume if applicable
                     gas_limit = 0; // Yield to host
                 }
@@ -3934,9 +4130,13 @@ impl LambdaVM {
         // Structural Thermodynamics (Shannon Entropy Noise Tax)
         let mut cached_entropy_plus_one = state.matrix.context[atom_idx][15];
         if cached_entropy_plus_one == 0 {
-            let entropy = crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
+            let entropy =
+                crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
             cached_entropy_plus_one = entropy + 1;
-            state.context_atomic(atom_idx)[15].store(cached_entropy_plus_one, std::sync::atomic::Ordering::Relaxed);
+            state.context_atomic(atom_idx)[15].store(
+                cached_entropy_plus_one,
+                std::sync::atomic::Ordering::Relaxed,
+            );
         }
         let entropy_val = cached_entropy_plus_one - 1;
 
@@ -3956,8 +4156,11 @@ impl LambdaVM {
 
         let base_compute_cost = gas_used >> discount;
         let noise_tax = (base_compute_cost * entropy_val) >> 12;
-        let metabolic_cost =
-            1 + base_compute_cost + noise_tax + ((gas_used * entropy_h) >> (12 + discount)) + (friction_h >> 8);
+        let metabolic_cost = 1
+            + base_compute_cost
+            + noise_tax
+            + ((gas_used * entropy_h) >> (12 + discount))
+            + (friction_h >> 8);
 
         // Phase Synchronization
         if coherence_val > 500 {
@@ -4001,10 +4204,12 @@ impl LambdaVM {
         // If the atom suffered massive metabolic drain but survived (0 < final_energy <= starvation floor)
         // we persist the temporary Trauma Tracker (Reg 14) into permanent CRISPR Cassette (Reg 13).
         if final_energy > 0 && final_energy <= 100_000 {
-            let trauma_hash = state.context_atomic(atom_idx)[14].load(std::sync::atomic::Ordering::Relaxed);
+            let trauma_hash =
+                state.context_atomic(atom_idx)[14].load(std::sync::atomic::Ordering::Relaxed);
             if trauma_hash != 0 {
                 // Learn the traumatic signature
-                state.context_atomic(atom_idx)[13].store(trauma_hash, std::sync::atomic::Ordering::Relaxed);
+                state.context_atomic(atom_idx)[13]
+                    .store(trauma_hash, std::sync::atomic::Ordering::Relaxed);
                 state.context_atomic(atom_idx)[14].store(0, std::sync::atomic::Ordering::Relaxed);
             }
         }

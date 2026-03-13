@@ -1,4 +1,4 @@
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET } from "@00";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@00";
 import { STATE_MATRIX } from "@00";
 
 const GLYPH_KIND_MASK = 0xFF;
@@ -51,8 +51,8 @@ const clamp = (value: number, min: number, max: number): number =>
 
 const packHeader = (kind: GlyphKind, amplitude: number): number => {
   let amp = Math.round(amplitude);
-  if (amp < -8388608) amp = -8388608;
-  if (amp > 8388607) amp = 8388607;
+  if (amp < MIN_GLYPH_AMP) amp = MIN_GLYPH_AMP;
+  if (amp > MAX_GLYPH_AMP) amp = MAX_GLYPH_AMP;
   return ((amp << GLYPH_AMPLITUDE_SHIFT) | (kind & GLYPH_KIND_MASK)) >>> 0;
 };
 
@@ -79,8 +79,8 @@ const depositHeader = (
   let nextAmplitude = Math.round(amplitude);
   if (nextAmplitude === 0) return;
 
-  if (nextAmplitude < -8388608) nextAmplitude = -8388608;
-  if (nextAmplitude > 8388607) nextAmplitude = 8388607;
+  if (nextAmplitude < MIN_GLYPH_AMP) nextAmplitude = MIN_GLYPH_AMP;
+  if (nextAmplitude > MAX_GLYPH_AMP) nextAmplitude = MAX_GLYPH_AMP;
 
   const current = STATE_MATRIX.getGlyphHeader(cell);
   const currentKind = unpackKind(current);
@@ -91,8 +91,8 @@ const depositHeader = (
 
   if (currentKind === kind || currentKind === GLYPH_KIND.NONE) {
     mergedAmplitude = currentAmplitude + nextAmplitude;
-    if (mergedAmplitude < -8388608) mergedAmplitude = -8388608;
-    if (mergedAmplitude > 8388607) mergedAmplitude = 8388607;
+    if (mergedAmplitude < MIN_GLYPH_AMP) mergedAmplitude = MIN_GLYPH_AMP;
+    if (mergedAmplitude > MAX_GLYPH_AMP) mergedAmplitude = MAX_GLYPH_AMP;
     // Annihilation check
     if (mergedAmplitude === 0) finalKind = GLYPH_KIND.NONE;
   } else {
