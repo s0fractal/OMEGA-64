@@ -1,5 +1,12 @@
-//! Symbiotic Bonding Engine
-//! Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
+// Substrate Node: sigma_bonding
+// Level: 3
+// Solves simultaneous structural bonding intents using spatial hashes
+
+#[allow(unused_imports)]
+use super::super::L02::*;
+
+// Symbiotic Bonding Engine
+// Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
 
 use crate::memory::{SigmaState, MAX_ATOMS};
 

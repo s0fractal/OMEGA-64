@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 use super::super::L02::*;
 
 pub fn genome_key16(idx: i32) -> i32 {

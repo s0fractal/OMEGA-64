@@ -1,5 +1,19 @@
-//! Architecture Intent Engine
-//! Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
+---
+id: sigma_structure
+type: substrate_module
+target: rust
+deps:
+  - SYSTEM_CONSTANTS
+  - GRID_METRICS
+  - sigma_memory
+description: Handles the cellular automaton lifecycle of the crystalline grid
+---
+
+# `Membrane & Structure` Engine
+
+```rust
+// Architecture Intent Engine
+// Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
 
 use crate::memory::SigmaState;
 
@@ -107,3 +121,4 @@ impl SigmaState {
         }
     }
 }
+```

@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 use super::super::L02::*;
 
 pub fn set_energy(idx: i32, val: i32) -> () {

@@ -7,7 +7,6 @@ pub mod ontology_gen;
 pub use ontology_gen::L01::*;
 
 pub mod math;
-pub mod memory;
 pub mod pulse;
 pub mod replication;
 pub mod shadow;
@@ -16,7 +15,7 @@ pub mod structure;
 pub mod vm;
 
 pub use isa::GlyphOp;
-pub use memory::{SigmaMatrix, SigmaState};
+pub use ontology_gen::sigma_memory::{SigmaMatrix, SigmaState};
 pub use pulse::PulseOrchestrator;
 pub use shadow::run_shadow_simulation;
 pub use vm::LambdaVM;

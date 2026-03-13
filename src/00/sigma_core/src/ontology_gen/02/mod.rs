@@ -5,6 +5,9 @@ pub use super::L01::*;
 #[path = "OMEGA_MEMORY_LAYOUT.rs"]
 pub mod OMEGA_MEMORY_LAYOUT;
 pub use OMEGA_MEMORY_LAYOUT::*;
+#[path = "sigma_memory.rs"]
+pub mod sigma_memory;
+pub use sigma_memory::*;
 #[path = "clamp_world_y.rs"]
 pub mod clamp_world_y;
 pub use clamp_world_y::*;

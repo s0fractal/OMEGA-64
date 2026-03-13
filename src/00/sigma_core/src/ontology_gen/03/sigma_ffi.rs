@@ -1,5 +1,11 @@
-#![allow(non_snake_case)]
-use crate::memory::SigmaState;
+// Substrate Node: sigma_ffi
+// Level: 3
+// FFI bridging logic and memory alignment for WebAssembly workers
+
+#[allow(unused_imports)]
+use super::super::L02::*;
+
+#[allow(non_snake_case)]
 use std::mem::ManuallyDrop;
 
 // The Deno `SharedArrayBuffer` uses real pointers but from JS the offset starts at 0.
@@ -266,7 +272,7 @@ pub extern "C" fn run_shadow_simulation_ffi(
     let tick_ptr = 7_999_992 as *const i32;
     let start_tick = unsafe { *tick_ptr as u32 };
 
-    let metrics = crate::shadow::run_shadow_simulation(
+    let metrics = crate::run_shadow_simulation(
         &state,
         atom_id as u64,
         hallucination_bytes,

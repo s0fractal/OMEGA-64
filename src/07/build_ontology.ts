@@ -10,16 +10,20 @@ const GEN_DIR_AS = new URL("../_as", import.meta.url).pathname;
 interface ArgDesc { name: string; type: string; }
 interface TestDesc { inputs: any[]; expected: any; }
 
+export type NodeType = "pure_fn" | "struct" | "enum" | "constants" | "static_table" | "memory_layout" | "substrate_module";
+
 interface OntologyNode {
   id: string;
-  type?: "static_table" | "pure_fn" | "struct" | "enum" | "constants" | "memory_layout";
+  type: NodeType;
   description?: string;
   deps: string[];
-  args?: Record<string, string>; // Changed type and moved
-  rsArgs?: Record<string, string>; // New field
-  returns?: string; // Moved
-  asImports?: string[]; // Custom ASM linking
+  args?: Record<string, string>;
+  target?: string;
+  rsArgs?: Record<string, string>;
+  returns?: string;
+  asImports?: string[];
   payload?: any[]; // Moved
+  rust?: string; // New field for raw Rust code
 
   // static_table specific
   dataType?: string;
@@ -75,6 +79,7 @@ try {
       regions: meta.regions,
       vars: meta.vars || [],
       asImports: meta.asImports,
+      rust: meta.rust, // Added for substrate_module
       level: -1
     };
 
@@ -135,6 +140,13 @@ try {
         Deno.exit(1);
       }
       node.payload = JSON.parse(payloadMatch[1]);
+    } else if (node.type === "substrate_module") {
+      const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
+      if (!rustMatch) {
+        console.error(`[FATAL] Missing rust code block in substrate_module ${node.id}`);
+        Deno.exit(1);
+      }
+      node.rust = rustMatch[1].trim();
     }
 
     nodes.set(node.id, node);
@@ -227,58 +239,62 @@ for (const node of nodes.values()) {
   tsOut += `\n`;
 
   // Code for TS
-  if (node.type === "static_table") {
-    tsOut += `export const ${node.id}: number[] = [${node.payload?.join(", ")}];\n`;
-  } else if (node.type === "enum") {
-    tsOut += `// Enum: ${node.id}\n`;
-    for (const [k, v] of Object.entries(node.values || {})) {
-       tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
-    }
-  } else if (node.type === "constants") {
-    tsOut += `// Constants: ${node.id}\n`;
-    for (const [k, def] of Object.entries(node.values || {})) {
-       const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-       const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
-       tsOut += `export const ${k}: ${tsType} = ${v};\n`;
-    }
-  } else if (node.type === "memory_layout") {
-    tsOut += `// Memory Layout: ${node.id}\n`;
-    let curOffExpr = node.baseOffset || "0";
-    
-    for (const region of node.regions || []) {
-       // Offset alignment logic applied via bitwise macro evaluations native to TS
-       const align = region.align || 1;
-       if (align > 1) {
-           curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
-       }
-       tsOut += `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
-       tsOut += `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
-       
-       // Backwards aliases
-       if (region.name === "EVOLUTION") tsOut += `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
-       if (region.name === "INSTRUCTIONS") tsOut += `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
-       if (region.name === "ASCENSION_STATS_RESERVED") {
-           tsOut += `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "HORMONES") {
-           tsOut += `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "SPAWN_REQUESTS") {
-           tsOut += `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
-           tsOut += `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
-       }
-       
-       // Next offset starts after this size
-       curOffExpr = `${region.name}_OFFSET + (${region.size})`;
-    }
-    tsOut += `export const LATTICE_MEMORY_END: number = ${curOffExpr};\n`;
-    tsOut += `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
-    tsOut += `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
+  switch (node.type) {
+    case "static_table":
+      tsOut += `export const ${node.id}: number[] = [${node.payload?.join(", ")}];\n`;
+      break;
+    case "enum":
+      tsOut += `// Enum: ${node.id}\n`;
+      for (const [k, v] of Object.entries(node.values || {})) {
+        tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+      }
+      break;
+    case "constants":
+      tsOut += `// Constants: ${node.id}\n`;
+      for (const [k, def] of Object.entries(node.values || {})) {
+        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
+        tsOut += `export const ${k}: ${tsType} = ${v};\n`;
+      }
+      break;
+    case "memory_layout":
+      tsOut += `// Memory Layout: ${node.id}\n`;
+      let curOffExpr = node.baseOffset || "0";
+      
+      for (const region of node.regions || []) {
+        // Offset alignment logic applied via bitwise macro evaluations native to TS
+        const align = region.align || 1;
+        if (align > 1) {
+            curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
+        }
+        tsOut += `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
+        tsOut += `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
+        
+        // Backwards aliases
+        if (region.name === "EVOLUTION") tsOut += `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
+        if (region.name === "INSTRUCTIONS") tsOut += `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
+        if (region.name === "ASCENSION_STATS_RESERVED") {
+            tsOut += `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "HORMONES") {
+            tsOut += `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "SPAWN_REQUESTS") {
+            tsOut += `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
+            tsOut += `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
+        }
+        
+        // Next offset starts after this size
+        curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+      }
+      tsOut += `export const LATTICE_MEMORY_END: number = ${curOffExpr};\n`;
+      tsOut += `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
+      tsOut += `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
 
-    tsOut += `
+      tsOut += `
 export function validateMemoryLayout(memorySize: number) {
   const regions = [
 ${(node.regions || []).map((r, i, arr) => {
@@ -306,86 +322,112 @@ ${(node.regions || []).map((r, i, arr) => {
 
   return { ok, errors, regions, latticeEnd: LATTICE_MEMORY_END };
 }\n`;
-  } else if (node.type === "pure_fn") {
-    const arr = Array.isArray(node.args) ? node.args : 
-               (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-    const argStr = arr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-    tsOut += `export function ${node.id}(${argStr}): ${node.returns} {\n`;
-    tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-    tsOut += `\n}\n`;
+      break;
+    case "pure_fn":
+      const nodeArgsArr = Array.isArray(node.args) ? node.args : 
+                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+      const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
+      tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
+      tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
+      tsOut += `\n}\n`;
+      break;
+    case "substrate_module":
+      // Substrate modules are purely raw passthrough blocks, bypass AST args.
+      break;
+    default:
+      // No TS output for other types like 'struct'
+      break;
   }
   
-  Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+  if (node.type !== "substrate_module") {
+    Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+  }
 
   // Generate RS
   let rsOut = ``;
-  // Imports for RS (using crate paths based on aggregation)
-  if (node.level > 0) {
-    const prevLevel = formatLevel(node.level - 1);
-    rsOut += `use super::super::L${prevLevel}::*;\n`;
-  }
-  rsOut += `\n`;
-
-  if (node.type === "static_table") {
-    rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
-  } else if (node.type === "enum") {
-    rsOut += `// Enum: ${node.id}\n`;
-    for (const [k, v] of Object.entries(node.values || {})) {
-       rsOut += `pub const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+  if (node.type === "substrate_module") {
+    rsOut = `// Substrate Node: ${node.id}
+// Level: ${node.level}
+${node.description ? `// ${node.description}\n` : ""}\n`;
+    rsOut += `#[allow(unused_imports)]\n`;
+    if (node.level > 0) {
+      const prevLevel = formatLevel(node.level - 1);
+      rsOut += `use super::super::L${prevLevel}::*;\n`;
     }
-  } else if (node.type === "constants") {
-    rsOut += `// Constants: ${node.id}\n`;
-    for (const [k, def] of Object.entries(node.values || {})) {
-       const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-       const rsType = mapRsType((def as any).type as string);
-       let valStr = v.toString();
-       if ((def as any).expr !== undefined) {
-         valStr = `(${valStr}) as ${rsType}`;
-       } else if (rsType.startsWith("f") && Number.isInteger(v)) {
-         valStr += ".0";
-       }
-       rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
-    }
-  } else if (node.type === "memory_layout") {
-    rsOut += `// Memory Layout: ${node.id}\n`;
-    let curOffExpr = node.baseOffset || "0";
+    rsOut += `\n`;
     
-    for (const region of node.regions || []) {
-       const align = region.align || 1;
-       if (align > 1) {
-           curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
-       }
-       rsOut += `pub const ${region.name}_OFFSET: usize = ${curOffExpr};\n`;
-       rsOut += `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
-       
-       // Backcompat aliases
-       if (region.name === "EVOLUTION") rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
-       if (region.name === "INSTRUCTIONS") rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
-       if (region.name === "ASCENSION_STATS_RESERVED") {
-           rsOut += `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
-       }
-       if (region.name === "SPAWN_REQUESTS") {
-           rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
-           rsOut += `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
-       }
-       
-       curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+    if (node.rust) {
+      rsOut += node.rust;
     }
-    rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
-  } else if (node.type === "pure_fn") {
-    let argStr = "";
-    if (node.rsArgs) {
-      argStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
-    } else {
-      const arr = Array.isArray(node.args) ? node.args : 
-                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-      argStr = arr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+  } else {
+    rsOut = `#[allow(unused_imports)]\n`;
+    if (node.level > 0) {
+      const prevLevel = formatLevel(node.level - 1);
+      rsOut += `use super::super::L${prevLevel}::*;\n`;
     }
-    rsOut += `pub fn ${node.id}(${argStr}) -> ${mapRsType(node.returns!)} {\n`;
-    rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
-    rsOut += `\n}\n`;
+    rsOut += `\n`;
+
+    if (node.type === "static_table") {
+      rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
+    } else if (node.type === "enum") {
+      rsOut += `// Enum: ${node.id}\n`;
+      for (const [k, v] of Object.entries(node.values || {})) {
+        rsOut += `pub const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+      }
+    } else if (node.type === "constants") {
+      rsOut += `// Constants: ${node.id}\n`;
+      for (const [k, def] of Object.entries(node.values || {})) {
+        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const rsType = mapRsType((def as any).type as string);
+        let valStr = v.toString();
+        if ((def as any).expr !== undefined) {
+          valStr = `(${valStr}) as ${rsType}`;
+        } else if (rsType.startsWith("f") && Number.isInteger(v)) {
+          valStr += ".0";
+        }
+        rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
+      }
+    } else if (node.type === "memory_layout") {
+      rsOut += `// Memory Layout: ${node.id}\n`;
+      let curOffExpr = node.baseOffset || "0";
+      
+      for (const region of node.regions || []) {
+        const align = region.align || 1;
+        if (align > 1) {
+            curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
+        }
+        rsOut += `pub const ${region.name}_OFFSET: usize = ${curOffExpr};\n`;
+        rsOut += `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
+        
+        // Backcompat aliases
+        if (region.name === "EVOLUTION") rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        if (region.name === "INSTRUCTIONS") rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        if (region.name === "ASCENSION_STATS_RESERVED") {
+            rsOut += `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "SPAWN_REQUESTS") {
+            rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
+            rsOut += `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
+        }
+        
+        curOffExpr = `${region.name}_OFFSET + (${region.size})`;
+      }
+      rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
+    } else if (node.type === "pure_fn") {
+      let rsArgStr = "";
+      if (node.rsArgs) {
+        rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+      } else {
+        const rsArr = Array.isArray(node.args) ? node.args : 
+                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+        rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+      }
+      rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns!)} {\n`;
+      rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
+      rsOut += `\n}\n`;
+    }
   }
 
   Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, rsOut);
@@ -444,7 +486,9 @@ ${(node.regions || []).map((r, i, arr) => {
     asOut += `@inline\nexport function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
   }
   
-  Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+  if (node.type !== "substrate_module") {
+    Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+  }
 }
 
 // 4. Aggregation (Facades)
@@ -468,20 +512,38 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }
 
-  const nodesInLevel = Array.from(nodes.values()).filter(n => n.level === lvl);
-  for (const node of nodesInLevel) {
-    if (node.type === "enum" || node.type === "constants" || node.type === "memory_layout") {
-      lvlTsOut += `export * from "./${node.id}.ts";\n`;
-      lvlAsOut += `export * from "./${node.id}";\n`;
-    } else {
-      lvlTsOut += `export { ${node.id} } from "./${node.id}.ts";\n`;
-      lvlAsOut += `export { ${node.id} } from "./${node.id}";\n`;
-    }
-    lvlRsOut += `#[path = "${node.id}.rs"]\npub mod ${node.id};\npub use ${node.id}::*;\n`;
-  }
+  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl);
   
+  const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
+  
+  // TS Mod file generation
+  const tsModExports = levelNodesNoSubstrate.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+      return `export * from "./${n.id}.ts";`;
+    } else {
+      return `export { ${n.id} } from "./${n.id}.ts";`;
+    }
+  }).join("\n");
+  if (tsModExports) lvlTsOut += tsModExports + "\n";
   Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
+
+  // RS Mod file generation
+  const rsModExports = levelNodes.map(n => {
+    // Substrate modules are purely rust, they are always included.
+    return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
+  }).join("\n");
+  if (rsModExports) lvlRsOut += rsModExports + "\n";
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
+
+  // AS Mod file generation
+  const asModExports = levelNodesNoSubstrate.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+      return `export * from "./${n.id}";`;
+    } else {
+      return `export { ${n.id} } from "./${n.id}";`;
+    }
+  }).join("\n");
+  if (asModExports) lvlAsOut += asModExports + "\n";
   Deno.writeTextFileSync(`${dirPathAs}/mod.ts`, lvlAsOut);
   
   mainTsOut += `export * from "./${lvlStr}/mod.ts";\n`;

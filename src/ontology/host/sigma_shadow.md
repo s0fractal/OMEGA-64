@@ -1,5 +1,19 @@
+---
+id: sigma_shadow
+type: substrate_module
+target: rust
+deps:
+  - SYSTEM_CONSTANTS
+  - GRID_METRICS
+  - sigma_memory
+description: Implements the speculative execution engine for quantum divergence
+---
+
+# `Shadow Simulation` Engine
+
+```rust
 use crate::memory::SigmaState;
-use crate::pulse::PulseOrchestrator;
+use crate::PulseOrchestrator;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.
 #[repr(C)]
@@ -119,3 +133,4 @@ pub fn run_shadow_simulation(
         }
     })
 }
+```

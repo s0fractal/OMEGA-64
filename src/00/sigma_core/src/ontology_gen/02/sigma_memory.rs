@@ -1,13 +1,12 @@
-//! Sigma-Core Memory Layout
-//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
-//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
+// Substrate Node: sigma_memory
+// Level: 2
+// The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
 
-pub use crate::{
-    ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
-    HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
-    SECRETION_STATS_SIZE, MAX_ASCENSION_STATS_RESERVED, MAX_EGRESS_EVENTS, MAX_LEDGER_EVENTS,
-    MAX_ASCENSION_STATS, MAX_MEIOSIS_EVENTS, MAX_SPAWN_REQUESTS,
-};
+#[allow(unused_imports)]
+use super::super::L01::*;
+
+// Sigma-Core Memory Layout
+// Byte-for-byte compatible with OMEGA-64 OFFSETS.ts
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]

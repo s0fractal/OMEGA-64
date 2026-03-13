@@ -1,5 +1,13 @@
+// Substrate Node: sigma_pulse
+// Level: 3
+// Multithreaded tick orchestrator and phase sequencer using Rayon
+
+#[allow(unused_imports)]
+use super::super::L02::*;
+
 use crate::{GRID_H, GRID_W, MAX_ATOMS};
 use crate::{LambdaVM, SigmaState};
+use rayon::prelude::*;
 
 pub struct PulseOrchestrator<'a> {
     pub visited: &'a mut [u8],

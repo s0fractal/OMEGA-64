@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 
 pub fn dir8_x(n: i32) -> i32 {
     if n == 0 || n == 4 || n == 6 {

@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 
 pub fn dir4_y(n: i32) -> i32 {
     if n == 2 {

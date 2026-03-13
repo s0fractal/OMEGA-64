@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 
 // Constants: SYSTEM_CONSTANTS
 pub const MAX_ATOMS: usize = 500000;

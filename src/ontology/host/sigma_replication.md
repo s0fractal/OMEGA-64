@@ -1,5 +1,19 @@
-//! Replication Engine
-//! Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
+---
+id: sigma_replication
+type: substrate_module
+target: rust
+deps:
+  - SYSTEM_CONSTANTS
+  - GRID_METRICS
+  - sigma_memory
+description: Manages autopoietic mitosis processes and genome verification
+---
+
+# `Replication Engine`
+
+```rust
+// Replication Engine
+// Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
 
 use crate::memory::{SigmaState, MAX_ATOMS};
 use crate::{SPAWN_MAX, SPAWN_SLOT};
@@ -185,3 +199,4 @@ impl SigmaState {
         spawned
     }
 }
+```

@@ -1,7 +1,15 @@
-//! Spatial Fabric Topology & Cognition Grid
+// Substrate Node: sigma_spatial
+// Level: 3
+// Implements the 2D grid hashing algorithm enabling fast localized queries
+
+#[allow(unused_imports)]
+use super::super::L02::*;
+
+// Spatial Fabric Topology & Cognition Grid
 
 use crate::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
 use crate::memory::{SigmaState, MAX_ATOMS};
+use std::sync::atomic::Ordering;
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.

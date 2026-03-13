@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 use super::super::L02::*;
 
 pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
