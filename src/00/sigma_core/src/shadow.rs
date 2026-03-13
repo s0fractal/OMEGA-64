@@ -68,50 +68,51 @@ pub fn run_shadow_simulation(
         visited.resize(crate::constants::MAX_ATOMS, 0);
         let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
-    for i in 0..ticks {
-        orchestrator.tick(&mut shadow_state, start_tick + i);
-    }
-
-    // 4. Calculate topological divergence
-    let final_energy = shadow_state.matrix.energy[target_idx];
-    let final_resonance = shadow_state.matrix.resonance[target_idx];
-    let final_structural_value = shadow_state
-        .matrix
-        .structure_build_value
-        .iter()
-        .sum::<i32>();
-
-    let final_population = shadow_state
-        .matrix
-        .ids
-        .iter()
-        .filter(|&&id| id != 0)
-        .count() as i32;
-    let final_coherence = shadow_state.matrix.neural_coherence;
-
-    let final_bonds: Vec<i32> = {
-        let start = target_idx * 4;
-        shadow_state.matrix.bonds[start..start + 4].to_vec()
-    };
-
-    let mut bonds_broken = 0;
-    let mut bonds_formed = 0;
-
-    for i in 0..4 {
-        if original_bonds[i] != 0 && final_bonds[i] == 0 {
-            bonds_broken += 1;
+        for i in 0..ticks {
+            orchestrator.tick(&mut shadow_state, start_tick + i);
         }
-        if original_bonds[i] == 0 && final_bonds[i] != 0 {
-            bonds_formed += 1;
+
+        // 4. Calculate topological divergence
+        let final_energy = shadow_state.matrix.energy[target_idx];
+        let final_resonance = shadow_state.matrix.resonance[target_idx];
+        let final_structural_value = shadow_state
+            .matrix
+            .structure_build_value
+            .iter()
+            .sum::<i32>();
+
+        let final_population = shadow_state
+            .matrix
+            .ids
+            .iter()
+            .filter(|&&id| id != 0)
+            .count() as i32;
+        let final_coherence = shadow_state.matrix.neural_coherence;
+
+        let final_bonds: Vec<i32> = {
+            let start = target_idx * 4;
+            shadow_state.matrix.bonds[start..start + 4].to_vec()
+        };
+
+        let mut bonds_broken = 0;
+        let mut bonds_formed = 0;
+
+        for i in 0..4 {
+            if original_bonds[i] != 0 && final_bonds[i] == 0 {
+                bonds_broken += 1;
+            }
+            if original_bonds[i] == 0 && final_bonds[i] != 0 {
+                bonds_formed += 1;
+            }
         }
-    }
 
         DriftMetrics {
             energy_diff: final_energy.saturating_sub(initial_energy),
             resonance_diff: final_resonance.saturating_sub(initial_resonance),
             bonds_broken,
             bonds_formed,
-            structural_value_change: final_structural_value.saturating_sub(initial_structural_value),
+            structural_value_change: final_structural_value
+                .saturating_sub(initial_structural_value),
             population_diff: final_population.saturating_sub(initial_population),
             coherence_diff: final_coherence.saturating_sub(initial_coherence),
             divergence_tick: start_tick + ticks,

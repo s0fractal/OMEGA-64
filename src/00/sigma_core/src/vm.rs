@@ -1,11 +1,12 @@
 //! LambdaVM Execution Engine
 
-use crate::isa::{
-    GlyphOp, SYS_TRANSFER,
+use crate::constants::{
+    GRID_H, GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
+use crate::environment::in_grid;
+use crate::isa::{GlyphOp, SYS_TRANSFER};
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_H, SPATIAL_CELL_SIZE, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE};
 
 pub struct LambdaVM {}
 
@@ -17,7 +18,10 @@ impl LambdaVM {
     #[inline(always)]
     pub fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
-        state.matrix.instructions.get(atom_idx)
+        state
+            .matrix
+            .instructions
+            .get(atom_idx)
             .map(|inst| inst[actual_pc as usize])
             .unwrap_or(0) // Default to NOP if indices completely invalid
     }
@@ -29,8 +33,8 @@ impl LambdaVM {
     /// degrade cleanly into NOP executions. Array manipulation operates primarily through
     /// safely ordered hardware-level atomics to prevent simultaneous VM tick data races.
     ///
-    /// # Metabolic Economics 
-    /// Standard execution runs at zero gas until operations resolve. Each opcode natively applies 
+    /// # Metabolic Economics
+    /// Standard execution runs at zero gas until operations resolve. Each opcode natively applies
     /// +1 base computation energy cost, scaled exponentially based on `hormone` friction/entropy
     /// equations simulating thermodynamics across the Tensegrity lattice.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
@@ -225,7 +229,7 @@ impl LambdaVM {
                             let nx = grid_cx + dx;
                             let ny = grid_cy + dy;
 
-                            if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                            if in_grid(nx, ny) {
                                 let count = state.get_spatial_grid_count(nx, ny);
                                 for i in 0..count {
                                     if neighbor_count >= 32 {
@@ -308,7 +312,9 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * crate::constants::SCALE && state.matrix.resonance[atom_idx] > r_thresh {
+                    if energy > e_thresh * crate::constants::SCALE
+                        && state.matrix.resonance[atom_idx] > r_thresh
+                    {
                         let cx = state.matrix.xs[atom_idx] as i32;
                         let cy = state.matrix.ys[atom_idx] as i32;
 
@@ -543,13 +549,15 @@ impl LambdaVM {
                         // Read 8 bytes from genome
                         let mut payload = [0u8; 8];
                         payload.copy_from_slice(
-                            &state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)],
+                            &state.matrix.instructions[atom_idx]
+                                [offset as usize..(offset as usize + 8)],
                         );
 
                         // Deposit into payload atomically
                         let payload_atomic = state.glyph_payload_atomic();
                         for i in 0..8 {
-                            payload_atomic[cell_idx * 8 + i].store(payload[i], std::sync::atomic::Ordering::Relaxed);
+                            payload_atomic[cell_idx * 8 + i]
+                                .store(payload[i], std::sync::atomic::Ordering::Relaxed);
                         }
 
                         // Trigger interference map: Kind 3 (PLASMID), Max Amplitude (255)
@@ -574,16 +582,18 @@ impl LambdaVM {
                         let cy = state.matrix.ys[atom_idx] as usize;
                         let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
-                        let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
+                        let header = state.glyph_header_atomic()[cell_idx]
+                            .load(std::sync::atomic::Ordering::Relaxed);
                         let kind = (header & 0xFF) as u8;
 
                         if kind == 3 {
                             let payload_atomic = state.glyph_payload_atomic();
                             let mut new_bytes = [0u8; 8];
                             for i in 0..8 {
-                                new_bytes[i] = payload_atomic[cell_idx * 8 + i].load(std::sync::atomic::Ordering::Relaxed);
+                                new_bytes[i] = payload_atomic[cell_idx * 8 + i]
+                                    .load(std::sync::atomic::Ordering::Relaxed);
                             }
-                            
+
                             // CRISPR Immunity Check
                             // Fast hash: shifting the first 4 bytes into a 32-bit integer.
                             let mut plasmid_hash: i32 = 0;
@@ -592,18 +602,22 @@ impl LambdaVM {
                             plasmid_hash |= (new_bytes[2] as i32) << 8;
                             plasmid_hash |= new_bytes[3] as i32;
 
-                            let immune_memory = state.context_atomic(atom_idx)[13].load(std::sync::atomic::Ordering::Relaxed);
+                            let immune_memory = state.context_atomic(atom_idx)[13]
+                                .load(std::sync::atomic::Ordering::Relaxed);
 
                             if immune_memory != 0 && immune_memory == plasmid_hash {
                                 // MATCH! Execute OP_PURGE immunity mechanism.
                                 // 1. Destroy payload in environment
                                 for i in 0..8 {
-                                    payload_atomic[cell_idx * 8 + i].store(0, std::sync::atomic::Ordering::Relaxed);
+                                    payload_atomic[cell_idx * 8 + i]
+                                        .store(0, std::sync::atomic::Ordering::Relaxed);
                                 }
-                                state.glyph_header_atomic()[cell_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                                state.glyph_header_atomic()[cell_idx]
+                                    .store(0, std::sync::atomic::Ordering::Relaxed);
 
                                 // 2. Metabolic Bonus (+50_000 raw energy)
-                                state.energy_atomic()[atom_idx].fetch_add(50_000, std::sync::atomic::Ordering::Relaxed);
+                                state.energy_atomic()[atom_idx]
+                                    .fetch_add(50_000, std::sync::atomic::Ordering::Relaxed);
                                 energy += 50_000;
 
                                 // 3. Abort insertion
@@ -611,22 +625,27 @@ impl LambdaVM {
                             } else {
                                 // NAIVE ENCOUNTER
                                 // Record the hash into Trauma Tracker (Reg 14) for potential learning at end of step
-                                state.context_atomic(atom_idx)[14].store(plasmid_hash, std::sync::atomic::Ordering::Relaxed);
+                                state.context_atomic(atom_idx)[14]
+                                    .store(plasmid_hash, std::sync::atomic::Ordering::Relaxed);
 
                                 // Thermodynamic Safeguard
                                 let mut current_bytes = [0u8; 8];
-                                current_bytes.copy_from_slice(&state.matrix.instructions[atom_idx][offset as usize..(offset as usize + 8)]);
-                                
+                                current_bytes.copy_from_slice(
+                                    &state.matrix.instructions[atom_idx]
+                                        [offset as usize..(offset as usize + 8)],
+                                );
+
                                 // We need full 64 byte frames for entropy calculations
                                 let mut mock_old = [0u8; 64];
                                 mock_old.copy_from_slice(&state.matrix.instructions[atom_idx]);
                                 let mut mock_new = [0u8; 64];
                                 mock_new.copy_from_slice(&state.matrix.instructions[atom_idx]);
-                                mock_new[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                mock_new[offset as usize..(offset as usize + 8)]
+                                    .copy_from_slice(&new_bytes);
 
                                 let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
                                 let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
-                                
+
                                 let is_desperate = energy < (100_000_000 / 10);
 
                                 if entropy_new < entropy_old || is_desperate {
@@ -634,12 +653,15 @@ impl LambdaVM {
                                     // Under the parallel execution model, no other thread writes to our `atom_idx` instruction block
                                     // concurrently. Atomic protection applies inter-atom, but intra-atom we have absolute sovereignty.
                                     unsafe {
-                                        let inst_ptr = state.matrix.instructions.as_ptr() as *mut [u8; 64];
+                                        let inst_ptr =
+                                            state.matrix.instructions.as_ptr() as *mut [u8; 64];
                                         let atom_inst = &mut *inst_ptr.add(atom_idx);
-                                        atom_inst[offset as usize..(offset as usize + 8)].copy_from_slice(&new_bytes);
+                                        atom_inst[offset as usize..(offset as usize + 8)]
+                                            .copy_from_slice(&new_bytes);
                                     }
                                     // Evict Entropy Cache
-                                    state.context_atomic(atom_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                                    state.context_atomic(atom_idx)[15]
+                                        .store(0, std::sync::atomic::Ordering::Relaxed);
                                 }
                             }
                         }
@@ -704,8 +726,10 @@ impl LambdaVM {
                         if energy >= val * crate::constants::SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
-                            state.energy_atomic()[atom_idx]
-                                .fetch_sub(val * crate::constants::SCALE, std::sync::atomic::Ordering::Relaxed);
+                            state.energy_atomic()[atom_idx].fetch_sub(
+                                val * crate::constants::SCALE,
+                                std::sync::atomic::Ordering::Relaxed,
+                            );
                             energy -= val * crate::constants::SCALE;
                         }
                         gas_used += 15;
@@ -761,7 +785,7 @@ impl LambdaVM {
                         // Quorum PC Sync
                         let cx = state.matrix.xs[atom_idx] as i32 / 10;
                         let cy = state.matrix.ys[atom_idx] as i32 / 10;
-                        if cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H {
+                        if in_grid(cx, cy) {
                             let count = state.get_spatial_grid_count(cx, cy);
                             for i in 0..count {
                                 let peer = state.get_spatial_grid_atom(cx, cy, i) as usize;
@@ -783,234 +807,239 @@ impl LambdaVM {
                     pc += 4; // Length is 4 according to verification harness
                 }
                 GlyphOp::Syscall => {
-                        let context_regs = state.context_atomic(atom_idx);
-                        let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
-                        let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
-                        let r2 = context_regs[2].load(std::sync::atomic::Ordering::Relaxed);
-                        let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
+                    let context_regs = state.context_atomic(atom_idx);
+                    let sys_id = context_regs[0].load(std::sync::atomic::Ordering::Relaxed); // R0
+                    let r1 = context_regs[1].load(std::sync::atomic::Ordering::Relaxed);
+                    let r2 = context_regs[2].load(std::sync::atomic::Ordering::Relaxed);
+                    let r3 = context_regs[3].load(std::sync::atomic::Ordering::Relaxed);
 
-                        match sys_id {
-                            crate::isa::SYS_ATTRACT => {
-                                let target_idx = r1 as usize;
-                                let attract_force = r2;
+                    match sys_id {
+                        crate::isa::SYS_ATTRACT => {
+                            let target_idx = r1 as usize;
+                            let attract_force = r2;
 
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && state.matrix.ids[target_idx] != 0
-                                {
-                                    let ox = state.matrix.xs[atom_idx] as i32;
-                                    let oy = state.matrix.ys[atom_idx] as i32;
-                                    let tx = state.matrix.xs[target_idx] as i32;
-                                    let ty = state.matrix.ys[target_idx] as i32;
+                            if target_idx > 0
+                                && target_idx < MAX_ATOMS
+                                && state.matrix.ids[target_idx] != 0
+                            {
+                                let ox = state.matrix.xs[atom_idx] as i32;
+                                let oy = state.matrix.ys[atom_idx] as i32;
+                                let tx = state.matrix.xs[target_idx] as i32;
+                                let ty = state.matrix.ys[target_idx] as i32;
 
-                                    let dx = tx - ox;
-                                    let dy = ty - oy;
+                                let dx = tx - ox;
+                                let dy = ty - oy;
 
-                                    let dx_sign = if dx > 0 {
-                                        1
-                                    } else if dx < 0 {
-                                        -1
+                                let dx_sign = if dx > 0 {
+                                    1
+                                } else if dx < 0 {
+                                    -1
+                                } else {
+                                    0
+                                };
+                                let dy_sign = if dy > 0 {
+                                    1
+                                } else if dy < 0 {
+                                    -1
+                                } else {
+                                    0
+                                };
+
+                                let move_dir_x = if attract_force > 0 { dx_sign } else { -dx_sign };
+                                let move_dir_y = if attract_force > 0 { dy_sign } else { -dy_sign };
+
+                                if move_dir_x != 0 || move_dir_y != 0 {
+                                    let nx = ox + (move_dir_x * 10);
+                                    let ny = oy + (move_dir_y * 10);
+
+                                    let is_escaped = nx < 0 || nx > 1399 || ny < 0 || ny > 799;
+
+                                    if is_escaped {
+                                        state.dispatch_egress(atom_idx, nx, ny, energy);
+                                        state.energy_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        state.ids_atomic()[atom_idx]
+                                            .store(0, std::sync::atomic::Ordering::Relaxed);
+                                        energy = 0;
                                     } else {
-                                        0
-                                    };
-                                    let dy_sign = if dy > 0 {
-                                        1
-                                    } else if dy < 0 {
-                                        -1
-                                    } else {
-                                        0
-                                    };
-
-                                    let move_dir_x =
-                                        if attract_force > 0 { dx_sign } else { -dx_sign };
-                                    let move_dir_y =
-                                        if attract_force > 0 { dy_sign } else { -dy_sign };
-
-                                    if move_dir_x != 0 || move_dir_y != 0 {
-                                        let nx = ox + (move_dir_x * 10);
-                                        let ny = oy + (move_dir_y * 10);
-
-                                        let is_escaped = nx < 0 || nx > 1399 || ny < 0 || ny > 799;
-
-                                        if is_escaped {
-                                            state.dispatch_egress(atom_idx, nx, ny, energy);
-                                            state.energy_atomic()[atom_idx]
-                                                .store(0, std::sync::atomic::Ordering::Relaxed);
-                                            state.ids_atomic()[atom_idx]
-                                                .store(0, std::sync::atomic::Ordering::Relaxed);
-                                            energy = 0;
-                                        } else {
-                                            let n_grid_x = nx / 10;
-                                            let n_grid_y = ny / 10;
-                                            let count_in_cell =
-                                                state.get_spatial_grid_count(n_grid_x, n_grid_y);
-                                            if count_in_cell < 31 {
-                                                state.xs_atomic()[atom_idx].store(
-                                                    nx as i16,
-                                                    std::sync::atomic::Ordering::Relaxed,
-                                                );
-                                                state.ys_atomic()[atom_idx].store(
-                                                    ny as i16,
-                                                    std::sync::atomic::Ordering::Relaxed,
-                                                );
-                                            }
+                                        let n_grid_x = nx / 10;
+                                        let n_grid_y = ny / 10;
+                                        let count_in_cell =
+                                            state.get_spatial_grid_count(n_grid_x, n_grid_y);
+                                        if count_in_cell < 31 {
+                                            state.xs_atomic()[atom_idx].store(
+                                                nx as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                            state.ys_atomic()[atom_idx].store(
+                                                ny as i16,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
                                         }
                                     }
                                 }
-                                gas_used += 10;
                             }
-                            crate::isa::SYS_FOLD => {
-                                gas_used += 10;
+                            gas_used += 10;
+                        }
+                        crate::isa::SYS_FOLD => {
+                            gas_used += 10;
+                        }
+                        crate::isa::SYS_SPAWN => {
+                            let child_energy = r1 * 1000;
+                            let dx = r2;
+                            let dy = r3;
+
+                            if energy > child_energy {
+                                let cx = (state.matrix.xs[atom_idx] as i32) + dx;
+                                let cy = (state.matrix.ys[atom_idx] as i32) + dy;
+
+                                state.push_spawn_request(atom_idx, cx, cy, child_energy);
+
+                                state.energy_atomic()[atom_idx]
+                                    .fetch_sub(child_energy, std::sync::atomic::Ordering::Relaxed);
+                                energy -= child_energy;
                             }
-                            crate::isa::SYS_SPAWN => {
-                                let child_energy = r1 * 1000;
-                                let dx = r2;
-                                let dy = r3;
-
-                                if energy > child_energy {
-                                    let cx = (state.matrix.xs[atom_idx] as i32) + dx;
-                                    let cy = (state.matrix.ys[atom_idx] as i32) + dy;
-
-                                    state.push_spawn_request(atom_idx, cx, cy, child_energy);
-
-                                    state.energy_atomic()[atom_idx].fetch_sub(
-                                        child_energy,
-                                        std::sync::atomic::Ordering::Relaxed,
-                                    );
-                                    energy -= child_energy;
-                                }
-                                gas_used += 20;
+                            gas_used += 20;
+                        }
+                        crate::isa::SYS_BIND => {
+                            let target_idx = r1 as usize;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && target_idx != atom_idx {
+                                state.push_bond_request(atom_idx, atom_idx, target_idx);
                             }
-                            crate::isa::SYS_BIND => {
-                                let target_idx = r1 as usize;
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && target_idx != atom_idx
-                                {
-                                    state.push_bond_request(atom_idx, atom_idx, target_idx);
-                                }
-                                gas_used += 15;
-                            }
-                            SYS_TRANSFER => {
-                                let target_idx = r1 as usize;
-                                let resource_type = r2;
-                                let amount = r3; // positive to give, negative to take (steal)
+                            gas_used += 15;
+                        }
+                        SYS_TRANSFER => {
+                            let target_idx = r1 as usize;
+                            let resource_type = r2;
+                            let amount = r3; // positive to give, negative to take (steal)
 
-                                if target_idx > 0
-                                    && target_idx < MAX_ATOMS
-                                    && amount != 0
-                                    && state.matrix.ids[target_idx] != 0
-                                {
-                                    if resource_type == 0 {
-                                        // Energy
-                                        if amount > 0 {
-                                            // Giving
-                                            let scaled_amount = amount * 1000;
-                                            if state.matrix.energy[atom_idx] >= scaled_amount {
-                                                state.energy_atomic()[atom_idx].fetch_sub(
-                                                    scaled_amount,
+                            if target_idx > 0
+                                && target_idx < MAX_ATOMS
+                                && amount != 0
+                                && state.matrix.ids[target_idx] != 0
+                            {
+                                if resource_type == 0 {
+                                    // Energy
+                                    if amount > 0 {
+                                        // Giving
+                                        let scaled_amount = amount * 1000;
+                                        if state.matrix.energy[atom_idx] >= scaled_amount {
+                                            state.energy_atomic()[atom_idx].fetch_sub(
+                                                scaled_amount,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                            energy -= scaled_amount;
+                                            let energy_atomic = state.energy_atomic();
+                                            energy_atomic[target_idx].fetch_add(
+                                                scaled_amount,
+                                                std::sync::atomic::Ordering::Relaxed,
+                                            );
+                                        }
+                                    } else {
+                                        // Taking/Stealing (negative amount)
+                                        let my_role = state.roles_atomic()[atom_idx]
+                                            .load(std::sync::atomic::Ordering::Relaxed)
+                                            & 0x7F;
+                                        let target_role = state.roles_atomic()[target_idx]
+                                            .load(std::sync::atomic::Ordering::Relaxed)
+                                            & 0x7F;
+
+                                        if my_role == 3 && target_role == 1 {
+                                            let t_energy = state.energy_atomic()[target_idx]
+                                                .load(std::sync::atomic::Ordering::Acquire);
+                                            if t_energy > 20_000 {
+                                                // Mutate to Mitochondria (role 5)
+                                                let current_role = state.roles_atomic()[target_idx]
+                                                    .load(std::sync::atomic::Ordering::Relaxed);
+                                                state.roles_atomic()[target_idx].store(
+                                                    5 | (current_role & 0x80),
                                                     std::sync::atomic::Ordering::Relaxed,
                                                 );
-                                                energy -= scaled_amount;
-                                                let energy_atomic = state.energy_atomic();
-                                                energy_atomic[target_idx].fetch_add(
-                                                    scaled_amount,
+                                                // Store host atom_idx in Context Reg 12
+                                                state.context_atomic(target_idx)[12].store(
+                                                    atom_idx as i32,
                                                     std::sync::atomic::Ordering::Relaxed,
                                                 );
+                                                break; // Engulfment replaces stealing
                                             }
-                                        } else {
-                                            // Taking/Stealing (negative amount)
-                                            let my_role = state.roles_atomic()[atom_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
-                                            let target_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed) & 0x7F;
+                                        }
 
-                                            if my_role == 3 && target_role == 1 {
-                                                let t_energy = state.energy_atomic()[target_idx].load(std::sync::atomic::Ordering::Acquire);
-                                                if t_energy > 20_000 {
-                                                    // Mutate to Mitochondria (role 5)
-                                                    let current_role = state.roles_atomic()[target_idx].load(std::sync::atomic::Ordering::Relaxed);
-                                                    state.roles_atomic()[target_idx].store(5 | (current_role & 0x80), std::sync::atomic::Ordering::Relaxed);
-                                                    // Store host atom_idx in Context Reg 12
-                                                    state.context_atomic(target_idx)[12].store(atom_idx as i32, std::sync::atomic::Ordering::Relaxed);
-                                                    break; // Engulfment replaces stealing
-                                                }
-                                            }
-
-                                            let my_resonance = state.matrix.resonance[atom_idx];
-                                            let target_defense = if state.matrix.evolution_reserved[target_idx] > 0 {
+                                        let my_resonance = state.matrix.resonance[atom_idx];
+                                        let target_defense =
+                                            if state.matrix.evolution_reserved[target_idx] > 0 {
                                                 state.matrix.evolution_reserved[target_idx]
                                             } else {
                                                 state.matrix.resonance[target_idx]
                                             };
 
-                                            if my_resonance > target_defense {
-                                                let ox = state.matrix.xs[atom_idx] as f32;
-                                                let oy = state.matrix.ys[atom_idx] as f32;
-                                                let tx = state.matrix.xs[target_idx] as f32;
-                                                let ty = state.matrix.ys[target_idx] as f32;
+                                        if my_resonance > target_defense {
+                                            let ox = state.matrix.xs[atom_idx] as f32;
+                                            let oy = state.matrix.ys[atom_idx] as f32;
+                                            let tx = state.matrix.xs[target_idx] as f32;
+                                            let ty = state.matrix.ys[target_idx] as f32;
 
-                                                let dx = (tx - ox) / 10.0;
-                                                let dy = (ty - oy) / 10.0;
-                                                let dist_sq = dx * dx + dy * dy;
+                                            let dx = (tx - ox) / 10.0;
+                                            let dy = (ty - oy) / 10.0;
+                                            let dist_sq = dx * dx + dy * dy;
 
-                                                if dist_sq <= 2.25 {
-                                                    let steal_amount = (-amount) * 1000;
-                                                    let energy_atomic = state.energy_atomic();
-                                                    let mut t_energy = energy_atomic[target_idx]
-                                                        .load(std::sync::atomic::Ordering::Acquire);
-                                                    let mut final_take = 0;
-                                                    loop {
-                                                        let take_amount =
-                                                            std::cmp::min(steal_amount, t_energy);
-                                                        if take_amount <= 0 {
-                                                            break;
-                                                        }
-                                                        match energy_atomic[target_idx]
-                                                            .compare_exchange(
+                                            if dist_sq <= 2.25 {
+                                                let steal_amount = (-amount) * 1000;
+                                                let energy_atomic = state.energy_atomic();
+                                                let mut t_energy = energy_atomic[target_idx]
+                                                    .load(std::sync::atomic::Ordering::Acquire);
+                                                let mut final_take = 0;
+                                                loop {
+                                                    let take_amount =
+                                                        std::cmp::min(steal_amount, t_energy);
+                                                    if take_amount <= 0 {
+                                                        break;
+                                                    }
+                                                    match energy_atomic[target_idx]
+                                                        .compare_exchange(
                                                             t_energy,
                                                             t_energy - take_amount,
                                                             std::sync::atomic::Ordering::AcqRel,
                                                             std::sync::atomic::Ordering::Acquire,
                                                         ) {
-                                                            Ok(_) => {
-                                                                final_take = take_amount;
-                                                                break;
-                                                            }
-                                                            Err(actual) => t_energy = actual,
+                                                        Ok(_) => {
+                                                            final_take = take_amount;
+                                                            break;
                                                         }
+                                                        Err(actual) => t_energy = actual,
                                                     }
-                                                    if final_take > 0 {
-                                                        state.energy_atomic()[atom_idx].fetch_add(
-                                                            final_take,
-                                                            std::sync::atomic::Ordering::Relaxed,
-                                                        );
-                                                        energy += final_take;
-                                                    }
+                                                }
+                                                if final_take > 0 {
+                                                    state.energy_atomic()[atom_idx].fetch_add(
+                                                        final_take,
+                                                        std::sync::atomic::Ordering::Relaxed,
+                                                    );
+                                                    energy += final_take;
                                                 }
                                             }
                                         }
-                                    } else if resource_type == 1 {
-                                        // Resonance (only giving permitted for now)
-                                        if amount > 0 && state.matrix.resonance[atom_idx] >= amount
-                                        {
-                                            state.resonance_atomic()[atom_idx].fetch_sub(
-                                                amount,
-                                                std::sync::atomic::Ordering::Relaxed,
-                                            );
-                                            resonance -= amount;
-                                            let res_atomic = state.resonance_atomic();
-                                            res_atomic[target_idx].fetch_add(
-                                                amount,
-                                                std::sync::atomic::Ordering::Relaxed,
-                                            );
-                                        }
+                                    }
+                                } else if resource_type == 1 {
+                                    // Resonance (only giving permitted for now)
+                                    if amount > 0 && state.matrix.resonance[atom_idx] >= amount {
+                                        state.resonance_atomic()[atom_idx].fetch_sub(
+                                            amount,
+                                            std::sync::atomic::Ordering::Relaxed,
+                                        );
+                                        resonance -= amount;
+                                        let res_atomic = state.resonance_atomic();
+                                        res_atomic[target_idx].fetch_add(
+                                            amount,
+                                            std::sync::atomic::Ordering::Relaxed,
+                                        );
                                     }
                                 }
-                                gas_used += if amount < 0 { 30 } else { 10 };
                             }
-                            _ => {
-                                gas_used += 10;
-                            }
+                            gas_used += if amount < 0 { 30 } else { 10 };
                         }
+                        _ => {
+                            gas_used += 10;
+                        }
+                    }
                     pc += 1; // Basic jump over opcode for next resume if applicable
                     gas_limit = 0; // Yield to host
                 }
@@ -1033,9 +1062,13 @@ impl LambdaVM {
         // Structural Thermodynamics (Shannon Entropy Noise Tax)
         let mut cached_entropy_plus_one = state.matrix.context[atom_idx][15];
         if cached_entropy_plus_one == 0 {
-            let entropy = crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
+            let entropy =
+                crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
             cached_entropy_plus_one = entropy + 1;
-            state.context_atomic(atom_idx)[15].store(cached_entropy_plus_one, std::sync::atomic::Ordering::Relaxed);
+            state.context_atomic(atom_idx)[15].store(
+                cached_entropy_plus_one,
+                std::sync::atomic::Ordering::Relaxed,
+            );
         }
         let entropy_val = cached_entropy_plus_one - 1;
 
@@ -1055,8 +1088,11 @@ impl LambdaVM {
 
         let base_compute_cost = gas_used >> discount;
         let noise_tax = (base_compute_cost * entropy_val) >> 12;
-        let metabolic_cost =
-            1 + base_compute_cost + noise_tax + ((gas_used * entropy_h) >> (12 + discount)) + (friction_h >> 8);
+        let metabolic_cost = 1
+            + base_compute_cost
+            + noise_tax
+            + ((gas_used * entropy_h) >> (12 + discount))
+            + (friction_h >> 8);
 
         // Phase Synchronization
         if coherence_val > 500 {
@@ -1100,10 +1136,12 @@ impl LambdaVM {
         // If the atom suffered massive metabolic drain but survived (0 < final_energy <= starvation floor)
         // we persist the temporary Trauma Tracker (Reg 14) into permanent CRISPR Cassette (Reg 13).
         if final_energy > 0 && final_energy <= 100_000 {
-            let trauma_hash = state.context_atomic(atom_idx)[14].load(std::sync::atomic::Ordering::Relaxed);
+            let trauma_hash =
+                state.context_atomic(atom_idx)[14].load(std::sync::atomic::Ordering::Relaxed);
             if trauma_hash != 0 {
                 // Learn the traumatic signature
-                state.context_atomic(atom_idx)[13].store(trauma_hash, std::sync::atomic::Ordering::Relaxed);
+                state.context_atomic(atom_idx)[13]
+                    .store(trauma_hash, std::sync::atomic::Ordering::Relaxed);
                 state.context_atomic(atom_idx)[14].store(0, std::sync::atomic::Ordering::Relaxed);
             }
         }

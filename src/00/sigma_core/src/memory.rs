@@ -2,7 +2,11 @@
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS, SAFETY_BUFFER, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, ATOM_CONTEXT_SIZE, HIVE_MEMORY_SIZE, HIVE_ENERGY_POOL_SIZE, MAX_HORMONES, SECRETION_STATS_SIZE};
+pub use crate::constants::{
+    ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
+    HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
+    SECRETION_STATS_SIZE,
+};
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
@@ -397,9 +401,21 @@ mod tests {
     // export const XS_OFFSET = 12000000;
     #[test]
     fn verify_memory_offsets() {
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, ids), SAFETY_BUFFER + (8000000 - 8000000), "ids");
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, xs), SAFETY_BUFFER + (12000000 - 8000000), "xs");
-        assert_eq!(SAFETY_BUFFER + offset_of!(SigmaMatrix, ys), SAFETY_BUFFER + (13000000 - 8000000), "ys");
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ids),
+            SAFETY_BUFFER + (8000000 - 8000000),
+            "ids"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, xs),
+            SAFETY_BUFFER + (12000000 - 8000000),
+            "xs"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ys),
+            SAFETY_BUFFER + (13000000 - 8000000),
+            "ys"
+        );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
             14000000,

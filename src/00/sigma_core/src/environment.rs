@@ -9,6 +9,10 @@ const STR_CAPACITOR: i32 = 6;
 const STR_INVERTER: i32 = 7;
 const STR_LATCH: i32 = 8;
 
+pub fn in_grid(x: i32, y: i32) -> bool {
+    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
+}
+
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
     tick_glyph_transport(state);
@@ -168,7 +172,7 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
             for i in 0..4 {
                 let nx = gx + dx[i];
                 let ny = gy + dy[i];
-                if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                if in_grid(nx, ny) {
                     let next_cell = (ny * GRID_W + nx) as usize;
                     let payload = if share >= 128 || share <= -128 {
                         Some(state.matrix.glyph_payload[cell])
@@ -327,7 +331,7 @@ pub fn tick_structure_grid(state: &mut SigmaState) {
                 for n in 0..8 {
                     let nx = x + dir8_x(n);
                     let ny = y + dir8_y(n);
-                    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                    if in_grid(nx, ny) {
                         let ni = (ny * GRID_W + nx) as usize;
                         let n_val = state.matrix.structure_grid[ni];
                         let n_charge = (n_val >> 16) & 0xFF;
@@ -391,7 +395,7 @@ pub fn tick_structure_grid(state: &mut SigmaState) {
                 for n in 0..4 {
                     let nx = x + dir4_x(n);
                     let ny = y + dir4_y(n);
-                    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+                    if in_grid(nx, ny) {
                         let ni = (ny * GRID_W + nx) as usize;
                         let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
                         if n_charge > 20 {
@@ -426,7 +430,7 @@ fn update_charge_wire_node_cap(
     for n in 0..4 {
         let nx = x + dir4_x(n);
         let ny = y + dir4_y(n);
-        if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+        if in_grid(nx, ny) {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
@@ -484,7 +488,7 @@ fn update_charge_diode(
     }
 
     let mut next_charge = current_next_charge;
-    if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+    if in_grid(nx, ny) {
         let ni = (ny * GRID_W + nx) as usize;
         let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
         let flow = n_charge - 5;
@@ -500,7 +504,7 @@ fn update_charge_inverter(state: &SigmaState, x: i32, y: i32) -> i32 {
     for n in 0..4 {
         let nx = x + dir4_x(n);
         let ny = y + dir4_y(n);
-        if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
+        if in_grid(nx, ny) {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
@@ -521,7 +525,7 @@ fn update_charge_latch(state: &SigmaState, x: i32, y: i32, cell_state: i32) -> (
     // n=0 (Left): SET
     let set_x = x + dir4_x(0);
     let set_y = y + dir4_y(0);
-    if set_x >= 0 && set_x < GRID_W && set_y >= 0 && set_y < GRID_H {
+    if in_grid(set_x, set_y) {
         let n_charge =
             (state.matrix.structure_grid[(set_y * GRID_W + set_x) as usize] >> 16) & 0xFF;
         if n_charge > 100 {
@@ -532,7 +536,7 @@ fn update_charge_latch(state: &SigmaState, x: i32, y: i32, cell_state: i32) -> (
     // n=1 (Right): RESET
     let rst_x = x + dir4_x(1);
     let rst_y = y + dir4_y(1);
-    if rst_x >= 0 && rst_x < GRID_W && rst_y >= 0 && rst_y < GRID_H {
+    if in_grid(rst_x, rst_y) {
         let n_charge =
             (state.matrix.structure_grid[(rst_y * GRID_W + rst_x) as usize] >> 16) & 0xFF;
         if n_charge > 100 {

@@ -126,7 +126,10 @@ impl SigmaState {
                 // O(1) Search via index hinting: The lower 32-bits of p_id contain the parent index
                 let parent_hint = (p_id & 0xFFFFFFFF) as usize;
                 let mut parent_idx = 0;
-                if parent_hint > 0 && parent_hint < MAX_ATOMS && self.matrix.ids[parent_hint] == p_id {
+                if parent_hint > 0
+                    && parent_hint < MAX_ATOMS
+                    && self.matrix.ids[parent_hint] == p_id
+                {
                     parent_idx = parent_hint;
                 } else {
                     // Fallback to linear search in case of desync
@@ -166,7 +169,7 @@ impl SigmaState {
                     self.matrix.phase[f] = 0;
                     self.matrix.context[f] = [0; 16];
                     self.matrix.context[f][8] = 0; // PC
-                    
+
                     // CRISPR Inheritance
                     // Pass adaptive immunity (Reg 13) down to the child
                     self.matrix.context[f][13] = self.matrix.context[parent_idx][13];

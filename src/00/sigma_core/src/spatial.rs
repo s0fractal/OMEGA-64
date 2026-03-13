@@ -1,7 +1,7 @@
 //! Spatial Fabric Topology & Cognition Grid
 
+use crate::constants::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE};
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.
@@ -85,8 +85,8 @@ impl SigmaState {
             let sg_base = i * 32;
             let count = spatial_atomic[sg_base].load(std::sync::atomic::Ordering::Relaxed);
             if count > 0 {
-                let sum = spatial_atomic[sg_base + phase_slot]
-                    .load(std::sync::atomic::Ordering::Relaxed);
+                let sum =
+                    spatial_atomic[sg_base + phase_slot].load(std::sync::atomic::Ordering::Relaxed);
                 spatial_atomic[sg_base + phase_slot]
                     .store(sum / count, std::sync::atomic::Ordering::Relaxed);
             }
