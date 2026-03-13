@@ -1,7 +1,8 @@
 //! Sigma-Core Memory Layout
 //! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
+//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
 
-pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS, SAFETY_BUFFER};
+pub use crate::constants::{GRID_CELLS, GRID_W, MAX_ATOMS, SAFETY_BUFFER, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, ATOM_CONTEXT_SIZE, HIVE_MEMORY_SIZE, HIVE_ENERGY_POOL_SIZE, MAX_HORMONES, SECRETION_STATS_SIZE};
 
 /// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
 #[repr(C)]
@@ -12,11 +13,11 @@ pub struct SigmaMatrix {
     pub energy: [i32; 500000],
     pub resonance: [i32; 500000],
     pub phase: [i32; 500000],
-    pub logic: [[u8; 8]; 500000],
+    pub logic: [[u8; ATOM_GENOME_SIZE]; 500000],
     pub bonds: [i32; 2000000],
     pub stiffness: [f32; 2000000],
-    pub instructions: [[u8; 64]; 500000],
-    pub context: [[i32; 16]; 500000],
+    pub instructions: [[u8; ATOM_INSTRUCTION_SIZE]; 500000],
+    pub context: [[i32; ATOM_CONTEXT_SIZE]; 500000],
     pub evolution_reserved: [i32; 500000],
     pub spawn_requests: [u8; 24584],
     pub meiosis: [i32; 300000],
@@ -33,7 +34,7 @@ pub struct SigmaMatrix {
     pub synaptic_weights: [u8; 2000000],
     pub damping: [u8; 500000],
     pub causality: [u8; 500000],
-    pub hive_memory: [u8; 1024],
+    pub hive_memory: [u8; HIVE_MEMORY_SIZE],
     pub hive_balance: i32,
     pub quorum: [i32; 89600],
     pub coherence: i32,
@@ -48,13 +49,13 @@ pub struct SigmaMatrix {
     pub structure_build_value: [i32; GRID_CELLS],
     pub structure_charge_intent: [i32; GRID_CELLS],
     pub attention_field: [f32; GRID_CELLS],
-    pub hive_energy_pool: [i32; 256],
+    pub hive_energy_pool: [i32; HIVE_ENERGY_POOL_SIZE],
     pub glyph_header: [i32; GRID_CELLS],
     pub glyph_payload: [[u8; 8]; GRID_CELLS],
     pub glyph_scratch_header: [i32; GRID_CELLS],
     pub glyph_scratch_payload: [[u8; 8]; GRID_CELLS],
-    pub hormones: [u16; 8],
-    pub secretion_stats: [i32; 12],
+    pub hormones: [u16; MAX_HORMONES],
+    pub secretion_stats: [i32; SECRETION_STATS_SIZE],
     pub _pad_to_lineage: [u8; 4],
     pub lineage: [u64; 500000],
     pub mailbox: [[i32; 2]; 500000],
@@ -131,7 +132,7 @@ impl SigmaState {
         unsafe {
             std::slice::from_raw_parts(
                 self.matrix.context[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
-                16,
+                ATOM_CONTEXT_SIZE,
             )
         }
     }
@@ -167,7 +168,7 @@ impl SigmaState {
         unsafe {
             std::slice::from_raw_parts(
                 self.matrix.hive_memory.as_ptr() as *const std::sync::atomic::AtomicU8,
-                1024,
+                HIVE_MEMORY_SIZE,
             )
         }
     }
@@ -338,7 +339,7 @@ impl SigmaState {
         }
     }
 
-    pub fn read_genome(&self, index: usize) -> Option<&[u8; 8]> {
+    pub fn read_genome(&self, index: usize) -> Option<&[u8]> {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
@@ -358,14 +359,14 @@ impl SigmaState {
         let idx = (head as usize) % max_events;
 
         let mut payload = [0u8; 256];
-        payload[0..64].copy_from_slice(&self.matrix.instructions[atom_idx]);
+        payload[0..ATOM_INSTRUCTION_SIZE].copy_from_slice(&self.matrix.instructions[atom_idx]);
         payload[64..68].copy_from_slice(&current_energy.to_le_bytes());
         payload[68..72].copy_from_slice(&self.matrix.phase[atom_idx].to_le_bytes());
         payload[72..76].copy_from_slice(&self.matrix.resonance[atom_idx].to_le_bytes());
         payload[76..80].copy_from_slice(&nx.to_le_bytes());
         payload[80..84].copy_from_slice(&ny.to_le_bytes());
 
-        for i in 0..16 {
+        for i in 0..ATOM_CONTEXT_SIZE {
             let offset = 84 + (i * 4);
             payload[offset..offset + 4]
                 .copy_from_slice(&self.matrix.context[atom_idx][i].to_le_bytes());

@@ -16,6 +16,13 @@ pub const MAX_LEDGER_EVENTS: usize = 65536;
 pub const MAX_EGRESS_EVENTS: usize = 8192;
 pub const WASM_PAGE_BYTES: usize = 65536;
 pub const WASM_MEMORY_PAGES: usize = 7630;
+pub const HIVE_MEMORY_SIZE: usize = 1024;
+pub const HIVE_ENERGY_POOL_SIZE: usize = 256;
+pub const MAX_HORMONES: usize = 8;
+pub const SECRETION_STATS_SIZE: usize = 12;
+pub const ATOM_CONTEXT_SIZE: usize = 16;
+pub const ATOM_GENOME_SIZE: usize = 8;
+pub const ATOM_INSTRUCTION_SIZE: usize = 64;
 
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]

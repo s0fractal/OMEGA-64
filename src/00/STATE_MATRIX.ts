@@ -43,7 +43,7 @@ export const resonanceBuffer =
 export const phaseBuffer =
   new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS).buffer;
 export const logicBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8).buffer;
+  new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE).buffer;
 export const bondBuffer =
   new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4).buffer;
 export const stiffnessBuffer =
@@ -62,11 +62,11 @@ export const causalityBuffer =
 export const roleBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
 export const hiveMemoryBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, 1024).buffer;
+  new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, OFFSETS.HIVE_MEMORY_SIZE).buffer;
 export const hiveBalanceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
 export const hiveEnergyPoolBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, OFFSETS.HIVE_ENERGY_POOL_SIZE).buffer;
 export const memoryGridBuffer =
   new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
 export const signalGridBuffer =
@@ -86,7 +86,7 @@ export const coherenceBuffer =
 export const neuralCoherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
 export const hormoneBuffer =
-  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8).buffer;
+  new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES).buffer;
 export const lineageBuffer =
   new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
 export const mailboxBuffer =
@@ -114,7 +114,7 @@ const synapticWeights = new Uint8Array(
   OFFSETS.SYNAPTIC_WEIGHTS_OFFSET,
   MAX_ATOMS * 4,
 );
-const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * 8);
+const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE);
 const bonds = new Uint32Array(
   sharedBuffer,
   OFFSETS.BONDS_OFFSET,
@@ -144,7 +144,7 @@ const causality = new Uint8Array(
 const hiveMemory = new Uint8Array(
   sharedBuffer,
   OFFSETS.HIVE_MEMORY_OFFSET,
-  1024,
+  OFFSETS.HIVE_MEMORY_SIZE,
 );
 const hiveBalance = new Int32Array(
   sharedBuffer,
@@ -154,7 +154,7 @@ const hiveBalance = new Int32Array(
 const hiveEnergyPool = new Int32Array(
   sharedBuffer,
   OFFSETS.HIVE_ENERGY_POOL_OFFSET,
-  256,
+  OFFSETS.HIVE_ENERGY_POOL_SIZE,
 );
 const spatialGrid = new Int32Array(
   sharedBuffer,
@@ -207,7 +207,7 @@ const neuralCoherence = new Int32Array(
   OFFSETS.NEURAL_COHERENCE_OFFSET,
   1,
 );
-const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, 8);
+const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES);
 const lineage = new BigUint64Array(
   sharedBuffer,
   OFFSETS.LINEAGE_OFFSET,
@@ -222,7 +222,7 @@ const mailboxes = new Int32Array(
 const instructions = new Uint8Array(
   sharedBuffer,
   OFFSETS.INSTRUCTIONS_OFFSET,
-  MAX_ATOMS * 64,
+  MAX_ATOMS * OFFSETS.ATOM_INSTRUCTION_SIZE,
 );
 const codeWords = new Uint32Array(
   sharedBuffer,
@@ -232,12 +232,12 @@ const codeWords = new Uint32Array(
 const contexts = new Int32Array(
   sharedBuffer,
   OFFSETS.CONTEXT_OFFSET,
-  MAX_ATOMS * 16,
+  MAX_ATOMS * OFFSETS.ATOM_CONTEXT_SIZE,
 ); // 16 * 4 = 64 bytes
 const contextByteView = new Uint8Array(
   sharedBuffer,
   OFFSETS.CONTEXT_OFFSET,
-  MAX_ATOMS * 64,
+  MAX_ATOMS * (OFFSETS.ATOM_CONTEXT_SIZE * 4),
 );
 const semanticBonuses = new Int32Array(
   new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
@@ -473,11 +473,11 @@ export const STATE_MATRIX = {
   addHiveEnergyPoolSlot: (slot: number, val: number) =>
     Atomics.add(hiveEnergyPool, slot & 255, val),
 
-  getInstructions: (i: number) => instructions.subarray(i * 64, i * 64 + 64),
+  getInstructions: (i: number) => instructions.subarray(i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE),
   getCode: (i: number) => codeWords.subarray(i * 16, i * 16 + 16),
-  getReg: (i: number, reg: number) => Atomics.load(contexts, i * 16 + reg),
-  getPC: (i: number) => Atomics.load(contextByteView, i * 64 + 32),
-  getContext: (i: number) => contextByteView.subarray(i * 64, i * 64 + 64),
+  getReg: (i: number, reg: number) => Atomics.load(contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) => Atomics.load(contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) => contextByteView.subarray(i * (OFFSETS.ATOM_CONTEXT_SIZE * 4), i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + (OFFSETS.ATOM_CONTEXT_SIZE * 4)),
 
   setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
   setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
@@ -509,7 +509,7 @@ export const STATE_MATRIX = {
     Atomics.store(mailboxes, i * 2 + 1, val),
 
   setInstructions: (i: number, val: Uint8Array) =>
-    instructions.set(val, i * 64),
+    instructions.set(val, i * OFFSETS.ATOM_INSTRUCTION_SIZE),
   setCode: (i: number, val: Uint32Array | Uint8Array) => {
     const codeStart = i * 16;
     if (val instanceof Uint32Array) {
@@ -517,14 +517,14 @@ export const STATE_MATRIX = {
       codeWords.set(val.subarray(0, 16), codeStart);
       return;
     }
-    const instStart = i * 64;
-    instructions.fill(0, instStart, instStart + 64);
-    instructions.set(val.subarray(0, 64), instStart);
+    const instStart = i * OFFSETS.ATOM_INSTRUCTION_SIZE;
+    instructions.fill(0, instStart, instStart + OFFSETS.ATOM_INSTRUCTION_SIZE);
+    instructions.set(val.subarray(0, OFFSETS.ATOM_INSTRUCTION_SIZE), instStart);
   },
   setReg: (i: number, reg: number, val: number) =>
-    Atomics.store(contexts, i * 16 + reg, val),
+    Atomics.store(contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
   setPC: (i: number, val: number) =>
-    Atomics.store(contextByteView, i * 64 + 32, val),
+    Atomics.store(contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
 
   getBondRequest: (i: number) => {
     const base = i * 3;
@@ -544,8 +544,8 @@ export const STATE_MATRIX = {
     bondDistances.fill(0, i * 4, i * 4 + 4);
     Atomics.store(damping, i, 0);
     Atomics.store(lineage, i, 0n);
-    instructions.fill(0, i * 64, i * 64 + 64);
-    contexts.fill(0, i * 16, i * 16 + 16);
+    instructions.fill(0, i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE);
+    contexts.fill(0, i * OFFSETS.ATOM_CONTEXT_SIZE, i * OFFSETS.ATOM_CONTEXT_SIZE + OFFSETS.ATOM_CONTEXT_SIZE);
   },
 
   clear: () => {
@@ -702,12 +702,12 @@ export const STATE_MATRIX = {
     if (logicVal) logic.set(logicVal, i * 8);
 
     const boot = script || DEFAULT_BOOT_SCRIPT;
-    instructions.set(boot, i * 64);
+    instructions.set(boot, i * OFFSETS.ATOM_INSTRUCTION_SIZE);
 
     // Reset Context
-    for (let r = 0; r < 16; r++) Atomics.store(contexts, i * 16 + r, 0);
+    for (let r = 0; r < OFFSETS.ATOM_CONTEXT_SIZE; r++) Atomics.store(contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + r, 0);
     // PC is at offset 32 (Reg index 8)
-    Atomics.store(contextByteView, i * 64 + 32, 0);
+    Atomics.store(contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, 0);
   },
 
   seedGuardian: (
