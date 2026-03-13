@@ -1,0 +1,271 @@
+import { ensureDirSync, emptyDirSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
+import { parse as parseYaml } from "https://deno.land/std@0.224.0/yaml/mod.ts";
+import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
+
+const SRC_ONTOLOGY_DIR = new URL("../ontology", import.meta.url).pathname;
+const GEN_DIR = new URL("../_", import.meta.url).pathname;
+
+interface ArgDesc { name: string; type: string; }
+interface TestDesc { inputs: any[]; expected: any; }
+
+interface OntologyNode {
+  id: string;
+  type: "static_table" | "pure_fn";
+  description: string;
+  deps: string[];
+  
+  // static_table specific
+  dataType?: string;
+  payload?: any[];
+
+  // pure_fn specific
+  args?: ArgDesc[];
+  returns?: string;
+  tests?: TestDesc[];
+  rustCode?: string;
+  tsCode?: string;
+
+  level: number;
+}
+
+const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "i16", "usize"];
+const nodes = new Map<string, OntologyNode>();
+
+// 1. Inhalation (Load)
+try {
+  for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
+    const raw = Deno.readTextFileSync(entry.path);
+    
+    // Parse YAML Frontmatter
+    const yamlMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+    if (!yamlMatch) {
+      console.warn(`[WARN] No YAML frontmatter found in ${entry.path}`);
+      continue;
+    }
+    
+    const yamlStr = yamlMatch[1];
+    const meta = parseYaml(yamlStr) as any;
+    
+    const node: OntologyNode = {
+      id: meta.id,
+      type: meta.type,
+      description: meta.description || "",
+      deps: meta.deps || [],
+      dataType: meta.dataType,
+      args: [],
+      returns: meta.returns,
+      tests: [],
+      level: -1
+    };
+
+    if (meta.args) {
+      for (const [key, val] of Object.entries(meta.args)) {
+        node.args!.push({ name: key, type: val as string });
+      }
+    }
+
+    if (meta.tests && Array.isArray(meta.tests)) {
+      for (const t of meta.tests) {
+        if (Array.isArray(t) && t.length > 0) {
+           const tCopy = [...t];
+           const expected = tCopy.pop();
+           node.tests!.push({ inputs: tCopy, expected });
+        }
+      }
+    }
+
+    if (node.type === "pure_fn") {
+      // Validate types
+      if (node.returns && !ALLOWED_TYPES.includes(node.returns)) {
+        console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
+        Deno.exit(1);
+      }
+      for (const arg of node.args || []) {
+        if (!ALLOWED_TYPES.includes(arg.type)) {
+          console.error(`[FATAL] Invalid arg type ${arg.type} in ${node.id}`);
+          Deno.exit(1);
+        }
+      }
+
+      // Parse Code Blocks
+      const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
+      if (!rustMatch) {
+        console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
+        Deno.exit(1);
+      }
+      node.rustCode = rustMatch[1].trim();
+
+      const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
+      if (!tsMatch) {
+        console.error(`[FATAL] Missing typescript code block in pure_fn ${node.id}`);
+        Deno.exit(1);
+      }
+      node.tsCode = tsMatch[1].trim();
+
+    } else if (node.type === "static_table") {
+      // Parse payload
+      const payloadMatch = raw.match(/## payload:\s*(\[.*\])/);
+      if (!payloadMatch) {
+        console.error(`[FATAL] Missing payload array in static_table ${node.id}`);
+        Deno.exit(1);
+      }
+      node.payload = JSON.parse(payloadMatch[1]);
+    }
+
+    nodes.set(node.id, node);
+  }
+} catch (e) {
+  if (!(e instanceof Deno.errors.NotFound)) { throw e; }
+}
+
+// 2. Topological Sort (DAG)
+function computeLevel(id: string, visited: Set<string>, stack: Set<string>): number {
+  const node = nodes.get(id);
+  if (!node) {
+    console.error(`[FATAL] Dependency ${id} not found.`);
+    Deno.exit(1);
+  }
+
+  if (stack.has(id)) {
+    console.error(`[FATAL] Cyclic dependency detected involving ${id}`);
+    Deno.exit(1);
+  }
+
+  if (visited.has(id)) return node.level;
+
+  stack.add(id);
+  
+  let maxDepLevel = -1;
+  for (const dep of node.deps) {
+    const depLevel = computeLevel(dep, visited, stack);
+    maxDepLevel = Math.max(maxDepLevel, depLevel);
+  }
+  
+  node.level = maxDepLevel + 1;
+  stack.delete(id);
+  visited.add(id);
+  return node.level;
+}
+
+const visited = new Set<string>();
+for (const id of nodes.keys()) {
+  computeLevel(id, visited, new Set<string>());
+}
+
+let maxLevel = -1;
+for (const node of nodes.values()) {
+  maxLevel = Math.max(maxLevel, node.level);
+}
+
+// 3. File Emission
+// Wipe the entire generation directory to prevent stale files from lingering
+// if an ontology node changes causality level.
+emptyDirSync(GEN_DIR);
+
+function formatLevel(lvl: number) {
+  return lvl.toString().padStart(2, "0");
+}
+
+function mapRsType(tsType: string) {
+  return tsType; // i32, i64, f32, f64, u8, i16, usize map 1:1 in our restricted set
+}
+
+for (const node of nodes.values()) {
+  const dirPath = `${GEN_DIR}/${formatLevel(node.level)}`;
+  ensureDirSync(dirPath);
+
+  // Generate TS
+  let tsOut = `// AUTOGENERATED - DO NOT EDIT DIRECTLY\n// Ontological Node: ${node.id} (${node.description})\n\n`;
+  
+  // Imports for TS
+  if (node.level > 0 && node.deps.length > 0) {
+    const prevLevel = formatLevel(node.level - 1);
+    tsOut += `import { ${node.deps.join(", ")} } from "../${prevLevel}/mod.ts";\n`;
+  }
+  tsOut += `\n`;
+
+  // Code for TS
+  if (node.type === "static_table") {
+    tsOut += `export const ${node.id}: StaticArray<${node.dataType}> = [${node.payload?.join(", ")}];\n`;
+  } else if (node.type === "pure_fn") {
+    const argStr = (node.args || []).map(a => `${a.name}: ${a.type}`).join(", ");
+    tsOut += `export function ${node.id}(${argStr}): ${node.returns} {\n`;
+    tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
+    tsOut += `\n}\n`;
+  }
+  
+  Deno.writeTextFileSync(`${dirPath}/${node.id}.ts`, tsOut);
+
+  // Generate RS
+  let rsOut = `// AUTOGENERATED - DO NOT EDIT DIRECTLY\n// Ontological Node: ${node.id} (${node.description})\n\n`;
+  // Imports for RS (using crate paths based on aggregation)
+  if (node.level > 0 && node.deps.length > 0) {
+    const prevLevel = formatLevel(node.level - 1);
+    rsOut += `use crate::L${prevLevel}::*;\n`;
+  }
+  rsOut += `\n`;
+
+  if (node.type === "static_table") {
+    rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
+  } else if (node.type === "pure_fn") {
+    const argStr = (node.args || []).map(a => `${a.name}: ${mapRsType(a.type)}`).join(", ");
+    rsOut += `pub fn ${node.id}(${argStr}) -> ${mapRsType(node.returns!)} {\n`;
+    rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
+    rsOut += `\n}\n`;
+  }
+
+  Deno.writeTextFileSync(`${dirPath}/${node.id}.rs`, rsOut);
+}
+
+// 4. Aggregation (Facades)
+let mainTsOut = `// AUTOGENERATED FACADE\n`;
+let mainRsOut = `// AUTOGENERATED FACADE\n`;
+
+for (let lvl = 0; lvl <= maxLevel; lvl++) {
+  const lvlStr = formatLevel(lvl);
+  const dirPath = `${GEN_DIR}/${lvlStr}`;
+  let lvlTsOut = `// AUTOGENERATED LEVEL FACADE\n`;
+  let lvlRsOut = `// AUTOGENERATED LEVEL FACADE\n\n`;
+  
+  if (lvl > 0) {
+    const prevLvlStr = formatLevel(lvl - 1);
+    lvlTsOut += `export * from "../${prevLvlStr}/mod.ts";\n`;
+    lvlRsOut += `pub use crate::L${prevLvlStr}::*;\n\n`;
+  }
+
+  const nodesInLevel = Array.from(nodes.values()).filter(n => n.level === lvl);
+  for (const node of nodesInLevel) {
+    lvlTsOut += `export * from "./${node.id}.ts";\n`;
+    lvlRsOut += `pub mod ${node.id};\npub use ${node.id}::*;\n`;
+  }
+  
+  Deno.writeTextFileSync(`${dirPath}/mod.ts`, lvlTsOut);
+  Deno.writeTextFileSync(`${dirPath}/mod.rs`, lvlRsOut);
+  
+  mainTsOut += `export * as L${lvlStr} from "./${lvlStr}/mod.ts";\n`;
+  mainRsOut += `#[path = "${lvlStr}/mod.rs"]\npub mod L${lvlStr};\n`;
+}
+
+Deno.writeTextFileSync(`${GEN_DIR}/mod.ts`, mainTsOut);
+Deno.writeTextFileSync(`${GEN_DIR}/lib.rs`, mainRsOut);
+
+// 5. Emission of tests
+const testsDir = `${GEN_DIR}/tests`;
+ensureDirSync(testsDir);
+for (const node of nodes.values()) {
+  if (node.type === "pure_fn" && node.tests && node.tests.length > 0) {
+    let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
+    testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
+    
+    testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
+    for (let i = 0; i < node.tests.length; i++) {
+        const t = node.tests[i];
+        const args = t.inputs.join(", ");
+        testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+    }
+    testOut += `});\n`;
+    Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
+  }
+}
+
+console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
