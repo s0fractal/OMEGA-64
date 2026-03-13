@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
 import * as OFFSETS from "@00";
@@ -66,7 +67,7 @@ Deno.test({
     const structureGrid = new Int32Array(
       STATE_MATRIX.buffer,
       OFFSETS.STRUCTURE_GRID_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     const targetIdx = 50 * 140 + 50;
 

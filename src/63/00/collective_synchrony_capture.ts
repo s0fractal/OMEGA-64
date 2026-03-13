@@ -1,9 +1,9 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_SYNCHRONY_CAPTURE__";
 const OP_COLLECTIVE = 0xA6;
-const GRID_W = 140;
 const PHASE_CELL_X = 105;
 const PHASE_CELL_Y = 105;
 const QUORUM_CELL_X = 205;
@@ -64,7 +64,7 @@ const setSpatialCell = (cellIdx: number, atoms: number[]): void => {
   const spatialGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.SPATIAL_GRID_OFFSET,
-    140 * 80 * 32,
+    GRID_W * GRID_H * 32,
   );
   const base = cellIdx * 32;
   spatialGrid.fill(0, base, base + 32);

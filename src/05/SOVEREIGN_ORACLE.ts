@@ -1,3 +1,4 @@
+
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
@@ -8,6 +9,7 @@ import { LOGGER } from "@00";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
 import { SEMANTIC_MEMBRANE } from "@05/SEMANTIC_MEMBRANE.ts";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -57,8 +59,6 @@ type OracleDrainStats = {
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
-const GRID_W = 140;
-const GRID_H = 80;
 const GRID_CELL_BYTES = 8;
 
 const toGridIndexNearRegent = (regentIndex: number): number | null => {
@@ -236,8 +236,8 @@ export const SOVEREIGN_ORACLE = {
             for (let dy = -1; dy <= 1; dy++) {
               const gx = rx + dx;
               const gy = ry + dy;
-              if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                const gridIdx = (gy * 140 + gx) * 8;
+              if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+                const gridIdx = (gy * GRID_W + gx) * 8;
                 STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
                 STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
                 seededCells++;
@@ -612,10 +612,9 @@ export const SOVEREIGN_ORACLE = {
           return;
         }
 
-        // Drop the plasmid randomly near center
-        const cx = 70 + Math.floor(Math.random() * 20 - 10);
-        const cy = 40 + Math.floor(Math.random() * 20 - 10);
-        const gridIdx = (cy * 140 + cx) * 8;
+        const cx = Math.floor(GRID_W / 2) + Math.floor(Math.random() * 20 - 10);
+        const cy = Math.floor(GRID_H / 2) + Math.floor(Math.random() * 20 - 10);
+        const gridIdx = (cy * GRID_W + cx) * 8;
 
         SOVEREIGN_ORACLE.queueMutation({
           kind: "oracle_plasmid_injection",
@@ -657,9 +656,9 @@ export const SOVEREIGN_ORACLE = {
     const seed = (((currentTick * 2654435761) >>> 0) ^
       ((telemetry.matrixResonance | 0) >>> 0) ^
       ((neuralCoherence | 0) << 8)) >>> 0;
-    const gx = seed % 140;
-    const gy = Math.floor(seed / 140) % 80;
-    const gridIdx = (gy * 140 + gx) * 8;
+    const gx = seed % GRID_W;
+    const gy = Math.floor(seed / GRID_W) % GRID_H;
+    const gridIdx = (gy * GRID_W + gx) * 8;
 
     const charge = Math.min(0xFFFF, 800 + Math.max(0, neuralCoherence | 0));
     const meme = new Uint8Array([

@@ -1,3 +1,4 @@
+import { GRID_W } from "../00/OFFSETS.ts";
 // OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
 // Turing-complete bytecode executor with registers, stack, and messaging.
 
@@ -220,7 +221,7 @@ export const LAMBDA_VM = {
         let consumed = 0;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         let current = Atomics.load(state.nutrients, idx);
         if (dryRun) {
@@ -265,7 +266,7 @@ export const LAMBDA_VM = {
         const regIdx = p2 % 8;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         let val = 0;
         switch (type) {
@@ -325,7 +326,7 @@ export const LAMBDA_VM = {
               const safeRole = Math.min(7, Math.max(0, state.role));
               val = Math.min(
                 255,
-                state.quorumData[(gy * 140 + gx) * 8 + safeRole],
+                state.quorumData[(gy * GRID_W + gx) * 8 + safeRole],
               );
             }
             break;
@@ -334,7 +335,7 @@ export const LAMBDA_VM = {
             if (state.hiveMemory) {
               const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
               const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-              const hBase = (gy * 140 + gx) * 16;
+              const hBase = (gy * GRID_W + gx) * 16;
               // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
               const imprintTick = state.hiveMemory[hBase + 8] |
                 (state.hiveMemory[hBase + 9] << 8) |
@@ -358,15 +359,15 @@ export const LAMBDA_VM = {
           case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
             const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
             const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-            const cellBase = (gy * 140 + gx) * 32;
+            const cellBase = (gy * GRID_W + gx) * 32;
             val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
             break;
           }
           case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
             const px = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
             const py = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-            const dx = state.pheromoneGrid[py * 140 + px + 1] -
-              state.pheromoneGrid[py * 140 + px - 1];
+            const dx = state.pheromoneGrid[py * GRID_W + px + 1] -
+              state.pheromoneGrid[py * GRID_W + px - 1];
             const dy = state.pheromoneGrid[(py + 1) * 140 + px] -
               state.pheromoneGrid[(py - 1) * 140 + px];
             val = Math.min(255, Math.floor(Math.sqrt(dx * dx + dy * dy) / 100));
@@ -467,7 +468,7 @@ export const LAMBDA_VM = {
         // --- ERA 48: High-Density Friction ---
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 80;
         const friction = density > 10 ? (density - 10) * 10 : 0;
         const totalCost = baseCost + friction;
@@ -483,7 +484,7 @@ export const LAMBDA_VM = {
         // --- ERA 48: High-Density Friction ---
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 100;
         const friction = density > 10 ? (density - 10) * 15 : 0;
         const totalCost = baseCost + friction;
@@ -637,7 +638,7 @@ export const LAMBDA_VM = {
         if (state.resonance > 20 && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const pIdx = gy * 140 + gx;
+          const pIdx = gy * GRID_W + gx;
           const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
           const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
           res.imprintRequest = {
@@ -658,7 +659,7 @@ export const LAMBDA_VM = {
         if (state.hiveMemory && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const hBase = (gy * 140 + gx) * 16;
+          const hBase = (gy * GRID_W + gx) * 16;
           const raw32 = state.hiveMemory[hBase] |
             (state.hiveMemory[hBase + 1] << 8) |
             (state.hiveMemory[hBase + 2] << 16) |
@@ -811,7 +812,7 @@ export const LAMBDA_VM = {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
           const safeRole = Math.min(7, Math.max(0, state.role));
-          const quorumCount = state.quorumData[(gy * 140 + gx) * 8 + safeRole];
+          const quorumCount = state.quorumData[(gy * GRID_W + gx) * 8 + safeRole];
 
           if (quorumCount >= threshold) {
             const collectiveType = p2 % 3;
@@ -849,7 +850,7 @@ export const LAMBDA_VM = {
         if (state.hiveMemory && state.synapticStack && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const hBase = (gy * 140 + gx) * 16;
+          const hBase = (gy * GRID_W + gx) * 16;
           // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
           const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
           const slot = p1 % 3;
@@ -948,7 +949,7 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-          const cellAvgPhase = state.spatialGrid[(gy * 140 + gx) * 32 + 31];
+          const cellAvgPhase = state.spatialGrid[(gy * GRID_W + gx) * 32 + 31];
           const targetPhase = p1 === 1
             ? (cellAvgPhase + 128) % 256 // destructive: anti-phase
             : cellAvgPhase; // constructive: sync
@@ -969,8 +970,8 @@ export const LAMBDA_VM = {
         // p2: 0=angle, 1=dx-component, 2=dy-component
         const gPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
         const gPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-        const gDx = state.pheromoneGrid[gPy * 140 + gPx + 1] -
-          state.pheromoneGrid[gPy * 140 + gPx - 1];
+        const gDx = state.pheromoneGrid[gPy * GRID_W + gPx + 1] -
+          state.pheromoneGrid[gPy * GRID_W + gPx - 1];
         const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] -
           state.pheromoneGrid[(gPy - 1) * 140 + gPx];
         let gradVal: number;
@@ -998,13 +999,13 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const mPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
           const mPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-          const conc = Math.abs(state.pheromoneGrid[mPy * 140 + mPx]);
+          const conc = Math.abs(state.pheromoneGrid[mPy * GRID_W + mPx]);
           const hiThresh = (p1 > 0 ? p1 : 10) * 100;
           const loThresh = (p2 > 0 ? p2 : 3) * 100;
           const zone = conc > hiThresh ? 0 : conc > loThresh ? 1 : 2;
           // Gradient angle for orientation
-          const mDx = state.pheromoneGrid[mPy * 140 + mPx + 1] -
-            state.pheromoneGrid[mPy * 140 + mPx - 1];
+          const mDx = state.pheromoneGrid[mPy * GRID_W + mPx + 1] -
+            state.pheromoneGrid[mPy * GRID_W + mPx - 1];
           const mDy = state.pheromoneGrid[(mPy + 1) * 140 + mPx] -
             state.pheromoneGrid[(mPy - 1) * 140 + mPx];
           const gradAngle = Math.floor(
@@ -1029,7 +1030,7 @@ export const LAMBDA_VM = {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
           // cellBase for viralGrid is 9 bytes per cell
-          const cellBase = (gy * 140 + gx) * 9;
+          const cellBase = (gy * GRID_W + gx) * 9;
           const intensity = p1 > 0 ? p1 : 128; // default intensity
           res.secretePlasmidRequest = {
             logic: new Uint8Array(logic),
@@ -1047,7 +1048,7 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-          const cellBase = (gy * 140 + gx) * 9;
+          const cellBase = (gy * GRID_W + gx) * 9;
           const threshold = p1 > 0 ? p1 : 50;
           const plasmidIntensity = state.viralGrid[cellBase + 8];
 
@@ -1108,7 +1109,7 @@ export const LAMBDA_VM = {
         const regIdx = p2 % 8;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         if (mode === 0) { // READ CHARGE
           const charge = (Atomics.load(state.structureGrid, idx) >> 16) & 0xFF;
@@ -1182,7 +1183,7 @@ export const LAMBDA_VM = {
           } else if (mode === 2) {
             const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
             const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-            const idx = gy * 140 + gx;
+            const idx = gy * GRID_W + gx;
             // intensity p2, type p3
             Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);
             res.energyDelta -= 5;

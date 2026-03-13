@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_hgt.ts | Era 60: Horizontal Gene Transfer Verification
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
@@ -10,7 +11,6 @@ import {
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { STATE_MATRIX } from "@00";
 
-const GRID_W = 140;
 
 function makeViralGrid(): Uint8Array {
   return new Uint8Array(new SharedArrayBuffer(GRID_W * 80 * 9));

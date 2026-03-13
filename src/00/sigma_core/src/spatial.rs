@@ -1,15 +1,15 @@
 //! Spatial Fabric Topology & Cognition Grid
 
 use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::constants::{GRID_W, GRID_CELLS};
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.
     /// Perfectly maps to the TypeScript bit-for-bit implementation.
     pub fn build_spatial_hash(&mut self) -> (i32, i32) {
-        let grid_cols = 140;
-        let total_cells = 11200;
-        let cell_capacity = 31;
-        let max_atom_slots = cell_capacity - 1;
+        // Slot 31 is the phase slot, slots 1..30 are for atoms
+        let phase_slot = 31;
+        let max_atom_slots = 30;
 
         // 1. Clear Grid and Quorum
         self.matrix.spatial_grid[..].fill(0);
@@ -45,7 +45,7 @@ impl SigmaState {
 
             let cell_x = (x / 10) as usize;
             let cell_y = (y / 10) as usize;
-            let cell_idx = (cell_y * grid_cols) + cell_x;
+            let cell_idx = (cell_y * (GRID_W as usize)) + cell_x;
 
             let sg_base = cell_idx * 32;
 
@@ -59,9 +59,9 @@ impl SigmaState {
                 spatial_atomic[sg_base + (next_slot as usize)]
                     .store(idx as i32, std::sync::atomic::Ordering::Relaxed);
 
-                // Accumulate Phase into slot 31 (cell_capacity)
+                // Accumulate Phase into slot 31 (phase_slot)
                 let my_phase = self.matrix.phase[idx] as i32;
-                spatial_atomic[sg_base + (cell_capacity as usize)]
+                spatial_atomic[sg_base + phase_slot]
                     .fetch_add(my_phase, std::sync::atomic::Ordering::Relaxed);
 
                 // Role quorum counting
@@ -81,13 +81,13 @@ impl SigmaState {
         }
 
         // 3. Finalize Phase Averages
-        for i in 0..total_cells {
+        for i in 0..GRID_CELLS {
             let sg_base = i * 32;
             let count = spatial_atomic[sg_base].load(std::sync::atomic::Ordering::Relaxed);
             if count > 0 {
-                let sum = spatial_atomic[sg_base + (cell_capacity as usize)]
+                let sum = spatial_atomic[sg_base + phase_slot]
                     .load(std::sync::atomic::Ordering::Relaxed);
-                spatial_atomic[sg_base + (cell_capacity as usize)]
+                spatial_atomic[sg_base + phase_slot]
                     .store(sum / count, std::sync::atomic::Ordering::Relaxed);
             }
         }
@@ -97,13 +97,13 @@ impl SigmaState {
 
     /// Helper to get number of atoms in a specific grid cell
     pub fn get_spatial_grid_count(&self, gx: i32, gy: i32) -> i32 {
-        let cell_idx = (gy * 140 + gx) as usize;
+        let cell_idx = (gy * GRID_W + gx) as usize;
         self.matrix.spatial_grid[cell_idx * 32]
     }
 
     /// Helper to get a specific atom index from a grid cell
     pub fn get_spatial_grid_atom(&self, gx: i32, gy: i32, sub_idx: i32) -> i32 {
-        let cell_idx = (gy * 140 + gx) as usize;
+        let cell_idx = (gy * GRID_W + gx) as usize;
         self.matrix.spatial_grid[cell_idx * 32 + ((sub_idx + 1) as usize)]
     }
 }

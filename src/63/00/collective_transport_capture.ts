@@ -1,10 +1,10 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_COLLECTIVE_TRANSPORT_CAPTURE__";
 
 const OP_COLLECTIVE = 0xA6;
-const GRID_W = 140;
 const CELL_X = 105;
 const CELL_Y = 105;
 const HIVE_ADDR = 1;
@@ -65,7 +65,7 @@ const buildSnapshot = (): Snapshot => {
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
 
   return {

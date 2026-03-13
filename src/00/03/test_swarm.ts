@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../OFFSETS.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
@@ -123,11 +124,11 @@ async function runTest() {
 
   const gx = Math.floor(100 / 10);
   const gy = Math.floor(100 / 10);
-  const pidx = gy * 140 + gx;
+  const pidx = gy * GRID_W + gx;
   const pheroGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const pValue = pheroGrid[pidx];
   console.log(

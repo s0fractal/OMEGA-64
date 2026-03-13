@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_ascension.ts | Era 63 & 64: The Final Fractal Convergence Verification
 // Tests ISA.PHI (Golden Angle phase shift) and ISA.ASCEND (Crystallization to Matrixland).
 
@@ -9,7 +10,6 @@ import {
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { STATE_MATRIX } from "@00";
 
-const GRID_W = 140;
 
 function baseState(overrides: Record<string, unknown> = {}) {
   return {
@@ -124,7 +124,7 @@ Deno.test("Era 64: PULSE_WORKER transforms atom into Crystal structure", () => {
   const y = 400;
   const gx = 50;
   const gy = 40;
-  const cellIdx = gy * 140 + gx; // 5650
+  const cellIdx = gy * GRID_W + gx; // 5650
 
   // Simulate PULSE_WORKER receiving ascendRequest
   const crystalData = 1 | (255 << 8); // type 1, density 255

@@ -15,7 +15,8 @@ import {
   HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
   GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
   SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
-  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET
+  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
+  GRID_W, GRID_H, GRID_CELLS
 } from "./constants.assembly";
 
 declare function trace_atom(
@@ -26,9 +27,6 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const STR_WIDTH: i32 = 140;
-const STR_HEIGHT: i32 = 80;
-const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 
 export function math_sin(angle: i32, highRes: i32): i32 {
   if (highRes == 0) {
@@ -1624,9 +1622,6 @@ export function get_spatial_hash_max_cell_count(): i32 {
 }
 
 export function build_spatial_hash(): void {
-  const GRID_COLS: i32 = 140;
-  const GRID_ROWS: i32 = 80;
-  const TOTAL_CELLS: i32 = 11200; // 140 * 80
   const CELL_CAPACITY: i32 = 31;
   const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
 
@@ -1634,7 +1629,7 @@ export function build_spatial_hash(): void {
   spatialHashMaxCellCount = 0;
 
   // 1. Clear Grid and Quorum
-  for (let i = 0; i < TOTAL_CELLS; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     atomic.store<i32>(SPATIAL_GRID_OFFSET + (i << 7) as usize, 0);
     // Clear Quorum (8 roles)
     let qOff = QUORUM_OFFSET + (i << 5) as usize;
@@ -1660,7 +1655,7 @@ export function build_spatial_hash(): void {
 
     let cellX = x / 10;
     let cellY = y / 10;
-    let cellIdx = cellY * GRID_COLS + cellX;
+    let cellIdx = cellY * GRID_W + cellX;
     let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
     // Atomic update of count
@@ -1690,7 +1685,7 @@ export function build_spatial_hash(): void {
   }
 
   // 3. Finalize Phase Averages
-  for (let i = 0; i < TOTAL_CELLS; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     let offset = SPATIAL_GRID_OFFSET + (i << 7);
     let count = atomic.load<i32>(offset as usize);
     if (count > 0) {
@@ -1708,8 +1703,6 @@ function prng_next(state: u32): u32 {
 }
 
 export function diffuseViralSemantics(pulseId: i32): void {
-  const GRID_W: i32 = 140;
-  const GRID_H: i32 = 80;
   let state = pulseId as u32;
 
   for (let y = 0; y < GRID_H; y++) {
@@ -1756,9 +1749,6 @@ export function diffuseViralSemantics(pulseId: i32): void {
 }
 
 export function tick_structure_grid(): void {
-  const GRID_W: i32 = 140;
-  const GRID_H: i32 = 80;
-
   // Use a temporary stack buffer for charges if possible, or just write-behind
   // Since this is usually called from one worker, we can afford a bit of drift or use a small scratchpad
   // But for 11200 cells, we should probably just use a dedicated scratch area in shared memory if we want bit-perfection
@@ -1808,8 +1798,8 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 8; n++) {
           let nx = x + dir8X(n);
           let ny = y + dir8Y(n);
-          if (nx >= 0 && nx < STR_WIDTH && ny >= 0 && ny < STR_HEIGHT) {
-            let ni = ny * STR_WIDTH + nx;
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            let ni = ny * GRID_W + nx;
             const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
             const nCharge = (nVal >> 16) & 0xFF;
             if (nCharge > maxNCharge) maxNCharge = nCharge;

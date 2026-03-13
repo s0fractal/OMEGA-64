@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
 import { ISA } from "@02";
@@ -34,11 +35,11 @@ Deno.test("Era 49: Viral Infection & PURGE", async () => {
   const memoryGrid = (STATE_MATRIX as any).memoryGrid;
   const gx = 10;
   const gy = 10;
-  const mIdx = (gy * 140 + gx) * 8;
+  const mIdx = (gy * GRID_W + gx) * 8;
   for (let i = 0; i < 8; i++) memoryGrid[mIdx + i] = neutralLogic[i];
 
   const viralGrid = (STATE_MATRIX as any).viralGrid;
-  const vIdx = (gy * 140 + gx) * 9;
+  const vIdx = (gy * GRID_W + gx) * 9;
   for (let i = 0; i < 8; i++) Atomics.store(viralGrid, vIdx + i, 0xFF);
   Atomics.store(viralGrid, vIdx + 8, 250);
 

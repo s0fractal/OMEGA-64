@@ -1,9 +1,8 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_STRUCTURE_CHARGE_CAPTURE__";
-const GRID_W = 140;
-const GRID_H = 80;
 const OP_SET = 0x01;
 const OP_PLUG = 0xA4;
 

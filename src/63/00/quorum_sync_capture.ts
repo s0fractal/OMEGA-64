@@ -1,8 +1,8 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { RISC, STATE_MATRIX } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_QUORUM_SYNC_CAPTURE__";
-const GRID_W = 140;
 
 type QuorumSnapshot = {
   sourcePc: number;
@@ -39,7 +39,7 @@ const setSpatialCell = (cellIdx: number, atoms: number[]): void => {
   const spatialGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.SPATIAL_GRID_OFFSET,
-    140 * 80 * 32,
+    GRID_W * GRID_H * 32,
   );
   const base = cellIdx * 32;
   spatialGrid.fill(0, base, base + 32);
@@ -150,7 +150,7 @@ const runCapture = async (): Promise<CapturePayload> => {
   const spatialGridCount = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.SPATIAL_GRID_OFFSET,
-    140 * 80 * 32,
+    GRID_W * GRID_H * 32,
   )[gy * 32 * 140 + gx * 32];
   console.error(`[DEBUG] Part 1: count at (${gx},${gy}) = ${spatialGridCount}`);
   console.error(`[DEBUG] Part 1: neighbor 0 ID = ${STATE_MATRIX.getId(0)}`);

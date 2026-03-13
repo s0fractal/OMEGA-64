@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, wasmMemory } from "@00";
 import { RIBOSOME } from "@02";
 import { GLYPH_BUFFER } from "@01";
@@ -84,7 +85,7 @@ async function runSecretionOpcodeTests() {
   // Set high signal in a cell (use multiple of 32 due to WASM sampling)
   const cellIdx = 512;
   Atomics.store(
-    new Int32Array(STATE_MATRIX.buffer, 35200000 + 8000000, 140 * 80),
+    new Int32Array(STATE_MATRIX.buffer, 35200000 + 8000000, GRID_W * GRID_H),
     cellIdx,
     1000,
   ); // SIGNAL_GRID_OFF
@@ -94,7 +95,7 @@ async function runSecretionOpcodeTests() {
   const memoryGrid = new Uint8Array(
     STATE_MATRIX.buffer,
     36200000 + 8000000,
-    140 * 80 * 8,
+    GRID_W * GRID_H * 8,
   );
 
   memoryGrid[memoryBase] = 200;

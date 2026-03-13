@@ -1,9 +1,8 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import { STRUCTURE_ENGINE } from "@01";
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 
-const GRID_W = 140;
-const GRID_H = 80;
 
 function clearGrid() {
   for (let i = 0; i < GRID_W * GRID_H; i++) {

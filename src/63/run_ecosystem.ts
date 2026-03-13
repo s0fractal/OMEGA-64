@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 // OMEGA-64 | run_ecosystem.ts | Long-term Evolution Simulator
 
 import { STATE_MATRIX } from "@00";
@@ -112,7 +113,7 @@ async function run() {
 
       // Count ascensions by looking at the structure grid
       let currentCrystals = 0;
-      for (let i = 0; i < 140 * 80; i++) {
+      for (let i = 0; i < GRID_W * GRID_H; i++) {
         const cell = Atomics.load(STATE_MATRIX.structureGrid, i);
         if ((cell & 0xFF) === 1 && ((cell >> 8) & 0xFF) === 255) {
           currentCrystals++;

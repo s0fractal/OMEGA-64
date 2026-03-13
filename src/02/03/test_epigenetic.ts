@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_epigenetic.ts | Era 56: Epigenetic Inheritance Verification
 // Tests: weight inheritance in MITOSIS/MEIOSIS, ISA.INHERIT voluntary sync, SENSE type 0x0C.
 
@@ -10,7 +11,7 @@ import {
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 
 function makeHiveMemory(refWeight = 0): Uint8Array {
-  const arr = new Uint8Array(new SharedArrayBuffer(140 * 80 * 16));
+  const arr = new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 16));
   // Pre-fill cell at (500,400) → gx=50, gy=40 → hBase=(40*140+50)*16=5650*16=90400
   const hBase = (40 * 140 + 50) * 16;
   arr[hBase + 1] = refWeight; // intensity octet = reference weight
@@ -21,11 +22,11 @@ function baseState(overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(140 * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,

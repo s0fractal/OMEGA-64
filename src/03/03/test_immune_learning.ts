@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_immune_learning.ts | Era 62: Immune Learning Verification
 // Tests GATE.ts tracking average resonance of novel plasmids and promoting them cleanly.
 
@@ -35,7 +36,7 @@ function mockStateMatrix(
     setQuarantine: (i: number, level: number) => {
       atoms[i].quarantine = level;
     },
-    viralGrid: new Uint8Array(140 * 80 * 9),
+    viralGrid: new Uint8Array(GRID_W * GRID_H * 9),
   } as any;
 }
 

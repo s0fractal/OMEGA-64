@@ -1,7 +1,6 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 
-const GRID_W = 140;
-const GRID_H = 80;
 const DIR4 = [[-1, 0], [1, 0], [0, -1], [0, 1]] as const;
 const DIR8 = [
   [-1, 0],
@@ -52,7 +51,7 @@ export const STRUCTURE_ENGINE = {
         const state = STATE_MATRIX.getGridState(i);
 
         // AUTOPOIESIS: Resonance Shielding
-        const spatialIdx = y * 140 + x;
+        const spatialIdx = y * GRID_W + x;
         const avgPhase = STATE_MATRIX.spatialGrid[spatialIdx * 32 + 31];
 
         let decay = 10;

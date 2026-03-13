@@ -1,10 +1,9 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PRNG } from "@00";
 import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
 import * as OFFSETS from "@00";
 
-const GRID_W = 140;
-const GRID_H = 80;
 
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
@@ -53,7 +52,7 @@ export const PHYSICS_ENGINE = {
 
     // --- ERA 50: Persistent Pheromone Decay ---
     if (pheroGrid) {
-      for (let i = 0; i < 140 * 80; i++) {
+      for (let i = 0; i < GRID_W * GRID_H; i++) {
         const cell = Atomics.load(pheroGrid, i);
         if (cell === 0) continue;
         const intensity = (cell >> 8) & 0xFFFFFF;
@@ -272,9 +271,7 @@ export const PHYSICS_ENGINE = {
     memoryGrid: Uint8Array,
     viralGrid: Uint8Array,
   ) => {
-    const GRID_W = 140;
-    const GRID_H = 80;
-
+        
     for (let i = 0; i < GRID_W * GRID_H; i++) {
       const cell = Atomics.load(structureGrid, i);
       let density = (cell >> 8) & 0xFF;

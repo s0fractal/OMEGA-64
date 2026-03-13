@@ -1,10 +1,9 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
 
-const GRID_COLS = 140;
-const GRID_ROWS = 80;
-const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
+const TOTAL_CELLS = GRID_W * GRID_H;
 
 // Crystal type constants for logic gates
 export const CRYSTAL_STANDARD = 1; // Default conducting crystal
@@ -19,19 +18,19 @@ export const MATRIX_ENGINE = {
     const signal = STATE_MATRIX.signalGrid;
     const nextSignal = new Int32Array(TOTAL_CELLS);
 
-    for (let cy = 0; cy < GRID_ROWS; cy++) {
-      for (let cx = 0; cx < GRID_COLS; cx++) {
-        const i = cy * GRID_COLS + cx;
+    for (let cy = 0; cy < GRID_H; cy++) {
+      for (let cx = 0; cx < GRID_W; cx++) {
+        const i = cy * GRID_W + cx;
         const type = Atomics.load(structure, i);
         if (type === 0) continue;
 
         let currentRes = Atomics.load(signal, i);
 
         const neighbors = [
-          (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1,
-          (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1,
-          (cx > 0) ? cy * GRID_COLS + (cx - 1) : -1,
-          (cx < GRID_COLS - 1) ? cy * GRID_COLS + (cx + 1) : -1,
+          (cy > 0) ? (cy - 1) * GRID_W + cx : -1,
+          (cy < GRID_H - 1) ? (cy + 1) * GRID_W + cx : -1,
+          (cx > 0) ? cy * GRID_W + (cx - 1) : -1,
+          (cx < GRID_W - 1) ? cy * GRID_W + (cx + 1) : -1,
         ];
 
         for (const ni of neighbors) {
@@ -62,8 +61,8 @@ export const MATRIX_ENGINE = {
   inject: (x: number, y: number, amount: number) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      Atomics.add(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx, amount);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      Atomics.add(STATE_MATRIX.signalGrid, cy * GRID_W + cx, amount);
     }
   },
 
@@ -71,8 +70,8 @@ export const MATRIX_ENGINE = {
   read: (x: number, y: number): number => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      return Atomics.load(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      return Atomics.load(STATE_MATRIX.signalGrid, cy * GRID_W + cx);
     }
     return 0;
   },
@@ -81,8 +80,8 @@ export const MATRIX_ENGINE = {
   setStructure: (x: number, y: number, type: number) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      Atomics.store(STATE_MATRIX.structureGrid, cy * GRID_COLS + cx, type);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      Atomics.store(STATE_MATRIX.structureGrid, cy * GRID_W + cx, type);
     }
   },
 
@@ -92,8 +91,8 @@ export const MATRIX_ENGINE = {
   establishMeme: (x: number, y: number, genomeBytes: BigInt64Array) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      const memeIdx = cy * GRID_COLS + cx;
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      const memeIdx = cy * GRID_W + cx;
       // Write genome into memoryGrid (8 bytes = 1 i64 slot)
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
@@ -111,8 +110,8 @@ export const MATRIX_ENGINE = {
   readMeme: (x: number, y: number): bigint => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      const memeIdx = cy * GRID_COLS + cx;
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      const memeIdx = cy * GRID_W + cx;
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
         OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,

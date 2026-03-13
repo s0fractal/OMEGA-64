@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | tests/test_necropolis.ts
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/assert_equals.ts";
 import { PULSE } from "@02";
@@ -30,8 +31,8 @@ Deno.test({
 
     // --- Setup Atom Guardian ---
     STATE_MATRIX.setId(ATOM_GUARDIAN, 100n);
-    STATE_MATRIX.setX(ATOM_GUARDIAN, (gCell % 140) * 10); // gCell X
-    STATE_MATRIX.setY(ATOM_GUARDIAN, Math.floor(gCell / 140) * 10); // gCell Y
+    STATE_MATRIX.setX(ATOM_GUARDIAN, (gCell % GRID_W) * 10); // gCell X
+    STATE_MATRIX.setY(ATOM_GUARDIAN, Math.floor(gCell / GRID_W) * 10); // gCell Y
     STATE_MATRIX.setRole(ATOM_GUARDIAN, STATE_MATRIX.ROLE_GUARDIAN);
     STATE_MATRIX.setResonance(ATOM_GUARDIAN, 150); // High resonance triggers fossilization
     STATE_MATRIX.setEnergy(ATOM_GUARDIAN, 0); // Born dead to trigger Fossilization on first pulse
@@ -42,8 +43,8 @@ Deno.test({
 
     // --- Setup Atom Producer ---
     // STATE_MATRIX.setId(ATOM_PRODUCER, 200n);
-    // STATE_MATRIX.setX(ATOM_PRODUCER, (pCell % 140) * 10); 
-    // STATE_MATRIX.setY(ATOM_PRODUCER, Math.floor(pCell / 140) * 10); 
+    // STATE_MATRIX.setX(ATOM_PRODUCER, (pCell % GRID_W) * 10); 
+    // STATE_MATRIX.setY(ATOM_PRODUCER, Math.floor(pCell / GRID_W) * 10); 
     // STATE_MATRIX.setRole(ATOM_PRODUCER, STATE_MATRIX.ROLE_PRODUCER);
     // STATE_MATRIX.setResonance(ATOM_PRODUCER, 0); // Low resonance, no fossilization
     // STATE_MATRIX.setEnergy(ATOM_PRODUCER, 0); // Born dead to properly recycle

@@ -1,9 +1,10 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
-const GRID_COLS = 140; // 1400 / 10
-const GRID_ROWS = 80; // 800 / 10
-const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
+ // 1400 / 10
+ // 800 / 10
+const TOTAL_CELLS = GRID_W * GRID_H;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
 const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory
@@ -29,7 +30,7 @@ export const SPATIAL_HASH = {
 
       const cellX = Math.floor(x / CELL_SIZE);
       const cellY = Math.floor(y / CELL_SIZE);
-      const cellIdx = cellY * GRID_COLS + cellX;
+      const cellIdx = cellY * GRID_W + cellX;
 
       const offset = cellIdx * (CELL_CAPACITY + 1);
 
@@ -68,13 +69,13 @@ export const SPATIAL_HASH = {
   queryRadius: (x: number, y: number, radius: number): number[] => {
     const results: number[] = [];
     const minX = Math.max(0, Math.floor((x - radius) / CELL_SIZE));
-    const maxX = Math.min(GRID_COLS - 1, Math.floor((x + radius) / CELL_SIZE));
+    const maxX = Math.min(GRID_W - 1, Math.floor((x + radius) / CELL_SIZE));
     const minY = Math.max(0, Math.floor((y - radius) / CELL_SIZE));
-    const maxY = Math.min(GRID_ROWS - 1, Math.floor((y + radius) / CELL_SIZE));
+    const maxY = Math.min(GRID_H - 1, Math.floor((y + radius) / CELL_SIZE));
 
     for (let cy = minY; cy <= maxY; cy++) {
       for (let cx = minX; cx <= maxX; cx++) {
-        const cellIdx = cy * GRID_COLS + cx;
+        const cellIdx = cy * GRID_W + cx;
         const offset = cellIdx * (CELL_CAPACITY + 1);
         const count = Atomics.load(gridView, offset);
 
@@ -96,13 +97,13 @@ export const SPATIAL_HASH = {
   getGridIdx: (x: number, y: number) => {
     const cellX = Math.max(
       0,
-      Math.min(GRID_COLS - 1, Math.floor(x / CELL_SIZE)),
+      Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)),
     );
     const cellY = Math.max(
       0,
-      Math.min(GRID_ROWS - 1, Math.floor(y / CELL_SIZE)),
+      Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)),
     );
-    return cellY * GRID_COLS + cellX;
+    return cellY * GRID_W + cellX;
   },
 
   hash: (x: number, y: number) => {

@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_symbiosis.ts | Era 61: Symbiotic Bonding Verification
 // Tests ISA.SHARE (energy transfer to bonded neighbor) and ISA.EAT (nutrient consumption).
 
@@ -9,7 +10,6 @@ import {
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { STATE_MATRIX } from "@00";
 
-const GRID_W = 140;
 const SCALE = 100;
 
 function baseState(overrides: Record<string, unknown> = {}) {

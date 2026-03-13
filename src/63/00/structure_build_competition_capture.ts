@@ -1,9 +1,9 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { PULSE } from "../PULSE.ts";
 import { STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_STRUCTURE_BUILD_COMPETITION_CAPTURE__";
-const GRID_W = 140;
 const OP_ROLE = 0xA7;
 const OP_BUILD = 0xA8;
 const LOWER_STATE = 17;

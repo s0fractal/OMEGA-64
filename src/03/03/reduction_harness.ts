@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
@@ -175,8 +176,6 @@ export type ReductionHarnessArtifact = {
 };
 
 const REDUCTION_DIFF_ROOT = "src/03/03/verification/reduction_diffs";
-const GRID_W = 140;
-const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const cloneEffects = (): ShadowEffects => ({

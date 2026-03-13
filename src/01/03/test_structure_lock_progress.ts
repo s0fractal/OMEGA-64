@@ -1,7 +1,7 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import * as OFFSETS from "@00";
 
-const GRID_W = 140;
 const LOCK_BIT = -2147483648;
 
 const gridIndex = (x: number, y: number): number => y * GRID_W + x;

@@ -2,6 +2,7 @@
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { RISC, STATE_MATRIX } from "@00";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import type { GlyphSnapshot } from "@01";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "@00";
@@ -1099,21 +1100,21 @@ const hashHex = async (input: string): Promise<string> => {
 
 const findRelicCandidate = (): RelicCandidate | null => {
   const grid = STATE_MATRIX.structureGrid;
-  const visited = new Uint8Array(140 * 80);
+  const visited = new Uint8Array(GRID_W * GRID_H);
   const active = STATE_MATRIX.getActiveIndices();
-  const occupied = new Uint8Array(140 * 80);
+  const occupied = new Uint8Array(GRID_W * GRID_H);
   for (const idx of active) {
     const x = STATE_MATRIX.getX(idx);
     const y = STATE_MATRIX.getY(idx);
     const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
     const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-    occupied[gy * 140 + gx] = 1;
+    occupied[gy * GRID_W + gx] = 1;
   }
 
   let best: RelicCandidate | null = null;
-  const queue = new Int32Array(140 * 80);
+  const queue = new Int32Array(GRID_W * GRID_H);
 
-  for (let i = 0; i < 140 * 80; i++) {
+  for (let i = 0; i < GRID_W * GRID_H; i++) {
     const type = grid[i] & 0xFF;
     if (type === 0 || visited[i] === 1) continue;
 
@@ -1140,7 +1141,7 @@ const findRelicCandidate = (): RelicCandidate | null => {
 
       const nbs = [cur - 140, cur + 140, cur - 1, cur + 1];
       for (const n of nbs) {
-        if (n < 0 || n >= 140 * 80) continue;
+        if (n < 0 || n >= GRID_W * GRID_H) continue;
         const nx = n % 140;
         const ny = Math.floor(n / 140);
         if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
@@ -1184,7 +1185,7 @@ const recordRelic = async (tick: number): Promise<void> => {
   for (let y = y0; y <= y1; y++) {
     let row = "";
     for (let x = x0; x <= x1; x++) {
-      const idx = y * 140 + x;
+      const idx = y * GRID_W + x;
       row += typeSymbol(STATE_MATRIX.structureGrid[idx] & 0xFF);
     }
     rows.push(row);

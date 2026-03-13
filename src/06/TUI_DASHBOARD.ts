@@ -1,5 +1,7 @@
+
 import { RISC, STATE_MATRIX, SYS } from "@00";
-import { PULSE } from "@02";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { PULSE } from "../02/PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
 import { LOGGER } from "@00";
@@ -65,7 +67,7 @@ async function initSimulation() {
 }
 
 function renderGrid(tick: number) {
-  const grid = Array(80).fill(0).map(() => Array(140).fill(" "));
+  const grid = Array(GRID_H).fill(0).map(() => Array(GRID_W).fill(" "));
   let prods = 0, preys = 0, preds = 0;
   let totalEnergy = 0;
 
@@ -77,7 +79,7 @@ function renderGrid(tick: number) {
       const energy = STATE_MATRIX.getEnergy(i);
       totalEnergy += energy;
 
-      if (x >= 0 && x < 140 && y >= 0 && y < 80) {
+      if (x >= 0 && x < 140 && y >= 0 && y < GRID_H) {
         if (role === STATE_MATRIX.ROLE_PRODUCER) {
           grid[y][x] = "\x1b[32m*\x1b[0m"; // Green *
           prods++;

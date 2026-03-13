@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_quorum.ts | Era 55: Quorum Sensing Verification
 // Tests ISA.QUORUM collective behaviors, quorumBuffer census, and SENSE type 0x0B.
 
@@ -11,8 +12,8 @@ import {
 
 // Helper: build a quorumData view with specific counts per role per cell
 function makeQuorum(cellCounts: Record<number, number[]>): Int32Array {
-  // 140*80 cells * 8 roles each
-  const arr = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  // GRID_W * GRID_H cells * 8 roles each
+  const arr = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   // gx=50, gy=40 → cell index = 40*140+50 = 5650
   const cellIdx = 40 * 140 + 50;
   for (const [role, counts] of Object.entries(cellCounts)) {
@@ -32,11 +33,11 @@ function baseState(
   return {
     x: 500,
     y: 400, // maps to gx=50, gy=40
-    nutrients: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(140 * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,
@@ -51,7 +52,7 @@ function baseState(
 // ---------- Test 1: QUORUM fires when count >= threshold ----------
 Deno.test("Era 55: ISA.QUORUM emits quorumRequest when same-role count >= threshold", () => {
   // cell at (500,400): role 1 has count=8
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 1] = 8; // role 1 count = 8
 
@@ -80,7 +81,7 @@ Deno.test("Era 55: ISA.QUORUM emits quorumRequest when same-role count >= thresh
 
 // ---------- Test 2: QUORUM suppressed when count < threshold ----------
 Deno.test("Era 55: ISA.QUORUM suppressed when same-role count < threshold", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 1] = 3; // only 3, threshold=5
 
@@ -99,7 +100,7 @@ Deno.test("Era 55: ISA.QUORUM suppressed when same-role count < threshold", () =
 
 // ---------- Test 3: Collective type 0 (resonance cascade) ----------
 Deno.test("Era 55: QUORUM type 0 gives resonance bonus proportional to count", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 2] = 10; // role 2, count=10
 
@@ -120,7 +121,7 @@ Deno.test("Era 55: QUORUM type 0 gives resonance bonus proportional to count", (
 
 // ---------- Test 4: Collective type 1 (coordinated STAMP) ----------
 Deno.test("Era 55: QUORUM type 1 emits pheromone flood intent level 19", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 3] = 7; // role 3, count=7
 
@@ -139,7 +140,7 @@ Deno.test("Era 55: QUORUM type 1 emits pheromone flood intent level 19", () => {
 
 // ---------- Test 5: Collective type 2 (role lock) ----------
 Deno.test("Era 55: QUORUM type 2 grants resonance for role lock", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 1] = 6;
 
@@ -165,7 +166,7 @@ Deno.test("Era 55: QUORUM type 2 grants resonance for role lock", () => {
 
 // ---------- Test 6: Default threshold = 5 when p1 = 0 ----------
 Deno.test("Era 55: ISA.QUORUM default threshold is 5 when p1=0", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 0] = 5; // role 0, count=5 — exactly at default threshold
 
@@ -183,7 +184,7 @@ Deno.test("Era 55: ISA.QUORUM default threshold is 5 when p1=0", () => {
 
 // ---------- Test 7: SENSE type 0x0B reads same-role count ----------
 Deno.test("Era 55: ISA.SENSE type 0x0B reads quorum count into register", () => {
-  const qData = new Int32Array(new SharedArrayBuffer(140 * 80 * 8 * 4));
+  const qData = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 8 * 4));
   const cellIdx = 40 * 140 + 50;
   qData[cellIdx * 8 + 2] = 42; // role 2, count=42
 

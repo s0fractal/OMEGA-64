@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_consciousness.ts | Phase 19: Planetary Consciousness
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
@@ -40,7 +41,7 @@ async function runTest() {
 
   // Manually call get_neural_coherence via WASM (through STATE_MATRIX shared memory check)
   let oscillatorCount = 0;
-  for (let i = 0; i < 140 * 80; i++) {
+  for (let i = 0; i < GRID_W * GRID_H; i++) {
     if (Atomics.load(STATE_MATRIX.structureGrid, i) === CRYSTAL_OSCILLATOR) {
       oscillatorCount++;
     }

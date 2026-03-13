@@ -1,11 +1,12 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
 
-const gridIndex = (x: number, y: number): number => y * 140 + x;
+const gridIndex = (x: number, y: number): number => y * GRID_W + x;
 
 function resetStructureGrid() {
-  for (let y = 0; y < 80; y++) {
-    for (let x = 0; x < 140; x++) {
+  for (let y = 0; y < GRID_H; y++) {
+    for (let x = 0; x < GRID_W; x++) {
       const i = gridIndex(x, y);
       STATE_MATRIX.setGridType(i, STRUCTURE.VOID);
       STATE_MATRIX.setGridDensity(i, 0);

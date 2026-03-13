@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {
@@ -52,7 +53,6 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
-const GRID_W = 140;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {

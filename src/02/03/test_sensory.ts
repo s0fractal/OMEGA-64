@@ -1,3 +1,4 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
 import { ISA } from "@02";
@@ -18,7 +19,7 @@ Deno.test("Era 47: Sensory Transduction - Full Multi-Modal Suite", async () => {
   const y = 405;
   const gx = 50;
   const gy = 40;
-  const gridIdx = gy * 140 + gx;
+  const gridIdx = gy * GRID_W + gx;
 
   // Atom 1 (The Sensor)
   STATE_MATRIX.setId(idx, 100n);

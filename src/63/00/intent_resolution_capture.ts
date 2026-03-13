@@ -1,8 +1,8 @@
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { RISC, STATE_MATRIX, STRUCTURE } from "../STATE_MATRIX.ts";
 import * as OFFSETS from "../OFFSETS.ts";
 
 const CAPTURE_MARKER = "__OMEGA_INTENT_RESOLUTION_CAPTURE__";
-const GRID_W = 140;
 
 type RoleSnapshot = {
   originalRole: number;

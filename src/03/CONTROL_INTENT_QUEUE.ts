@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
 import { LOGGER } from "@00";
@@ -182,8 +183,6 @@ const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
 const FEDERATION_ADMISSION_POLICY = RUNTIME_POLICY.federation.admission;
 const FEDERATION_ADMISSION_HISTORY_LIMIT = 24;
-const GRID_W = 140;
-const GRID_H = 80;
 const GRID_CELL_BYTES = 8;
 const WORLD_W = GRID_W * 10;
 const WORLD_H = GRID_H * 10;

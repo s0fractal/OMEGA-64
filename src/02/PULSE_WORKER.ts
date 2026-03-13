@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 /// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00";
@@ -218,7 +219,7 @@ function handle_syscall(atomIdx: number) {
       const gx = r1, gy = r2;
       let val = 0;
       if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
-        val = structureGridView[gy * 140 + gx] & 0xFF;
+        val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
@@ -235,7 +236,7 @@ function handle_syscall(atomIdx: number) {
         gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView &&
         buildValueView
       ) {
-        const cellIdx = gy * 140 + gx;
+        const cellIdx = gy * GRID_W + gx;
         Atomics.store(buildOwnerView, cellIdx, atomIdx);
         Atomics.store(buildValueView, cellIdx, newVal);
       }
@@ -535,23 +536,21 @@ function handle_syscall(atomIdx: number) {
           const cy = ysView[atomIdx] / 100;
 
           const CELL_SIZE = 10;
-          const GRID_COLS = 140;
-          const GRID_ROWS = 80;
-
+                    
           const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
           const endX = Math.min(
-            GRID_COLS - 1,
+            GRID_W - 1,
             Math.floor((cx + radius) / CELL_SIZE),
           );
           const startY = Math.max(0, Math.floor((cy - radius) / CELL_SIZE));
           const endY = Math.min(
-            GRID_ROWS - 1,
+            GRID_H - 1,
             Math.floor((cy + radius) / CELL_SIZE),
           );
 
           for (let y = startY; y <= endY; y++) {
             for (let x = startX; x <= endX; x++) {
-              const cellIdx = y * GRID_COLS + x;
+              const cellIdx = y * GRID_W + x;
               const cellBase = cellIdx * 32; // 32 slots per cell (1 count + 31 items)
 
               const count = spatialGridView[cellBase];
@@ -627,7 +626,7 @@ function handle_syscall(atomIdx: number) {
 
           const nGridX = Math.floor(nx / 10);
           const nGridY = Math.floor(ny / 10);
-          const nCellIdx = nGridY * 140 + nGridX;
+          const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
           const emptySlotOffset = -1;
@@ -800,22 +799,22 @@ self.onmessage = async (e) => {
     structureGridView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_GRID_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     spatialGridView = new Int32Array(
       sb,
       OFFSETS.SPATIAL_GRID_OFFSET,
-      140 * 80 * 32,
+      GRID_W * GRID_H * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     buildValueView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(
@@ -1149,7 +1148,7 @@ try {
       ? Math.max(0, Math.min(2000, Math.floor(delayRaw)))
       : 0;
     await maybeDelay();
-    self.postMessage({ type: "DEBUG_DELAY_SET", pulseId });
+    (self as any).postMessage({ type: "DEBUG_DELAY_SET", pulseId });
   }
 
   if (type === "SET_DEBUG_JITTER") {
@@ -1164,7 +1163,7 @@ try {
     debugJitterMinMs = Math.min(minMs, maxMs);
     debugJitterMaxMs = Math.max(minMs, maxMs);
     await maybeDelay();
-    self.postMessage({
+    (self as any).postMessage({
       type: "DEBUG_JITTER_SET",
       minMs: debugJitterMinMs,
       maxMs: debugJitterMaxMs,

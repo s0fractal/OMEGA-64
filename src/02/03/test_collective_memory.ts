@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_collective_memory.ts | Era 51: Collective Memory Verification
 // Direct unit tests for ISA.IMPRINT, ISA.RECALL, and ISA.SENSE type 0x07.
 // Tests exercise LAMBDA_VM directly and simulate PULSE_WORKER's imprintRequest path.
@@ -13,14 +14,14 @@ import {
 // ---------- Shared helpers ----------
 
 function makePhero(value = 0): Int32Array {
-  const buf = new SharedArrayBuffer(140 * 80 * 4);
+  const buf = new SharedArrayBuffer(GRID_W * GRID_H * 4);
   const arr = new Int32Array(buf);
   if (value !== 0) arr.fill(value);
   return arr;
 }
 
 function makeHiveMemory(): Uint8Array {
-  return new Uint8Array(new SharedArrayBuffer(140 * 80 * 16));
+  return new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 16));
 }
 
 function baseState(
@@ -29,11 +30,11 @@ function baseState(
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(140 * 80 * 9)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
     pheromoneGrid: makePhero(),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 32 * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 50,
@@ -91,7 +92,7 @@ Deno.test("Era 51: applying imprintRequest writes correct 16-byte layout to hive
   const y = 400;
   const gx = Math.floor(x / 10);
   const gy = Math.floor(y / 10);
-  const hBase = (gy * 140 + gx) * 16;
+  const hBase = (gy * GRID_W + gx) * 16;
 
   const pheroSnap = (80 << 8) | 5; // intensity=80, type=5
   const phaseSnap = 150;
@@ -140,7 +141,7 @@ Deno.test("Era 51: ISA.RECALL reads pheromone intensity field (p1=0) into regist
   const y = 400;
   const gx = Math.floor(x / 10);
   const gy = Math.floor(y / 10);
-  const hBase = (gy * 140 + gx) * 16;
+  const hBase = (gy * GRID_W + gx) * 16;
 
   // Write intensity=120, type=7 to hiveMemory
   const pheroSnap = (120 << 8) | 7;
@@ -174,7 +175,7 @@ Deno.test("Era 51: ISA.SENSE type 0x07 reads hive-memory intensity into register
   const y = 400;
   const gx = Math.floor(x / 10);
   const gy = Math.floor(y / 10);
-  const hBase = (gy * 140 + gx) * 16;
+  const hBase = (gy * GRID_W + gx) * 16;
 
   const pheroSnap = (200 << 8) | 4;
   hiveMemory[hBase + 0] = pheroSnap & 0xFF;

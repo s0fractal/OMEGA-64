@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
 import { SOVEREIGN_ORACLE } from "@05";
@@ -16,7 +17,7 @@ async function testResonance() {
   const structureGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const neuralCoherenceView = new Int32Array(
     sharedBuffer,
@@ -49,8 +50,8 @@ async function testResonance() {
   );
   const gx = 10;
   const gy = 10;
-  const cellIdx = gy * 140 + gx;
-  const neighborIdx = gy * 140 + gx + 1;
+  const cellIdx = gy * GRID_W + gx;
+  const neighborIdx = gy * GRID_W + gx + 1;
   // Set neighbor to high charge (Type 1 WIRE, Charge 251, State 1)
   // Autopoiesis triggers at charge > 100
   Atomics.store(structureGrid, neighborIdx, (1 << 24) | (251 << 16) | 1);
@@ -75,7 +76,7 @@ async function testResonance() {
   const memoryGrid = STATE_MATRIX.memoryGrid;
   const countSeededCells = () => {
     let count = 0;
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       const base = i * 8;
       if (memoryGrid[base] !== 0 || memoryGrid[base + 1] !== 0) count++;
     }

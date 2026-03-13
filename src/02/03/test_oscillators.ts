@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_oscillators.ts | Era 58: Resonance Oscillators Verification
 // Tests ISA.OSCILLATE phase ripple, ISA.LOCK_PHASE constructive/destructive,
 // SENSE type 0x0E cell phase average, and sinusoidal amplitude.
@@ -9,14 +10,13 @@ import {
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 
-const GRID_COLS = 140;
 const CELL_CAPACITY = 32; // slots per cell in spatialGrid
 
 function makeSpatialGrid(cellPhaseAvg = 0): Int32Array {
-  // 140*80 cells * 32 ints each
-  const arr = new Int32Array(new SharedArrayBuffer(140 * 80 * 32 * 4));
+  // GRID_W * GRID_H cells * 32 ints each
+  const arr = new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4));
   // Cell at (500,400) → gx=50, gy=40 → cellBase=(40*140+50)*32 = 5650*32=180800
-  const cellBase = (40 * GRID_COLS + 50) * CELL_CAPACITY;
+  const cellBase = (40 * GRID_W + 50) * CELL_CAPACITY;
   arr[cellBase + 31] = cellPhaseAvg; // slot 31 = phase average
   return arr;
 }
@@ -25,10 +25,10 @@ function baseState(phase: number, overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400, // gx=50, gy=40
-    nutrients: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(140 * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
     spatialGrid: makeSpatialGrid(100), // cell avg phase = 100
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,

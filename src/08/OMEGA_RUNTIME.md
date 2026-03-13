@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T01:41:14.950Z*
-*Exported Files in Category: 146*
-*Total Exported Files: 146*
+*Generated: 2026-03-13T02:32:01.922Z*
+*Exported Files in Category: 147*
+*Total Exported Files: 147*
 *Runtime Roots: 10*
 *Runtime Closure Files: 79*
-*Non-Runtime Code Files: 67*
+*Non-Runtime Code Files: 68*
 *Runtime-Support Code Files: 10*
-*Experimental Code Files: 57*
-*Manifest SHA256: 355cbbc56271a500b428c314bb7283d002311c88d6bd36f391f6c8e1fe11e444*
-*Export Set SHA256: 92aa72bebef2d6ae1e5f41feb3f926017509fbafca750bad8c5041618cdb7075*
-*Export Content SHA256: 7ad3e58c24ed5c54a3d39c81e13bc3ede87c33ea6860965bcdd5d6cdec48a997*
-*Git Commit: f9e7823e52eb*
+*Experimental Code Files: 58*
+*Manifest SHA256: f5400d96e6c2e8da8a78b542e4c124e7b5312ac1d7a0d47c3a0d5ba7f62b4bb6*
+*Export Set SHA256: 72a5007f67aeb3af15aaaf69de75ea246d5e45b7404b1eaa635896d24cc2ac26*
+*Export Content SHA256: 04795b01503cfc6e779282329c8ae05df13ca6f1f3753298f7146e0068b9afc6*
+*Git Commit: ee39111cdb43*
 
 ---
 
@@ -111,6 +111,183 @@
 - src/07/05/GENESIS_BOOT.ts
 - src/07/05/GENESIS_INCEPTOR.ts
 - src/07/05/GENESIS_REIFIED.ts
+
+---
+
+## FILE: scripts/replace_dimensions.ts
+
+```typescript
+import { walk } from "https://deno.land/std@0.210.0/fs/walk.ts";
+import { join, dirname, relative, resolve } from "https://deno.land/std@0.210.0/path/mod.ts";
+
+const SRC_DIR = resolve("./src");
+const OFFSETS_FILE = resolve("./src/00/OFFSETS.ts");
+
+// Complex regexes to safely catch grid dimensions
+// 1. Array creations: new Uint8Array(140 * 80) or new Float32Array(140 * 80 * 2)
+// 2. Linear indexing: gy * 140 + gx or (y + 1) * 140
+// 3. Simple bounds limit checks: < 140, < 80, >= 140
+// 4. Standalone dimensions: 140 * 80
+// 5. Hardcoded const declarations: const GRID_COLS = 140;
+
+const replacements = [
+  // Standalone and common multiplications
+  { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
+  { regex: /\bgy\s*\*\s*140\b/g, replacement: "gy * GRID_W" },
+  { regex: /\bpy\s*\*\s*140\b/g, replacement: "py * GRID_W" },
+  { regex: /\by\s*\*\s*140\b/g, replacement: "y * GRID_W" },
+  { regex: /\bgPy\s*\*\s*140\b/g, replacement: "gPy * GRID_W" },
+  { regex: /\bmPy\s*\*\s*140\b/g, replacement: "mPy * GRID_W" },
+  { regex: /\bnGridY\s*\*\s*140\b/g, replacement: "nGridY * GRID_W" },
+  { regex: /\b\(\s*py\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(py $1 1) * GRID_W" },
+  { regex: /\b\(\s*gy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gy $1 1) * GRID_W" },
+  { regex: /\b\(\s*y\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(y $1 1) * GRID_W" },
+  { regex: /\b\(\s*gPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(gPy $1 1) * GRID_W" },
+  { regex: /\b\(\s*mPy\s*(\+|\-)\s*1\s*\)\s*\*\s*140\b/g, replacement: "(mPy $1 1) * GRID_W" },
+  { regex: /\bMath\.floor\(\s*gCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(gCell / GRID_W)" },
+  { regex: /\bgCell\s*%\s*140\b/g, replacement: "gCell % GRID_W" },
+  { regex: /\bpCell\s*%\s*140\b/g, replacement: "pCell % GRID_W" },
+  { regex: /\bMath\.floor\(\s*pCell\s*\/\s*140\s*\)/g, replacement: "Math.floor(pCell / GRID_W)" },
+
+  // Boundaries checks
+  { regex: /\b< 140\b/g, replacement: "< GRID_W" },
+  { regex: /\b>= 140\b/g, replacement: ">= GRID_W" },
+  { regex: /\b< 80\b/g, replacement: "< GRID_H" },
+  { regex: /\b>= 80\b/g, replacement: ">= GRID_H" },
+  
+  // Loops
+  { regex: /\b(x)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
+  { regex: /\b(y)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
+  { regex: /\b(gx)\s*<\s*140\s*(;|\))/g, replacement: "$1 < GRID_W$2" },
+  { regex: /\b(gy)\s*<\s*80\s*(;|\))/g, replacement: "$1 < GRID_H$2" },
+];
+
+function getRelativeImportPath(fromFile: string, toFile: string): string {
+  let rel = relative(dirname(fromFile), toFile);
+  if (!rel.startsWith(".")) {
+    rel = "./" + rel;
+  }
+  // replace backslashes (Windows) with forward slashes
+  rel = rel.replace(/\\/g, "/");
+  // remove the .ts extension
+  rel = rel.replace(/\.ts$/, ".ts"); // Deno imports require the exact extension usually, or we can use the ts extension. In this codebase they use explicit .ts usually.
+  return rel;
+}
+
+async function processFile(filePath: string) {
+  const content = await Deno.readTextFile(filePath);
+  
+  // Skip generation files and AS files for now, dealing only with core TS logically.
+  if (filePath.includes("generate.ts") || filePath.includes("assembly/")) {
+      return;
+  }
+  
+  // Deno explicit rule: don't format string literals that happen to look like dimensions like `width="140%"`
+  // Our regexes are mostly bounded to prevent this.
+
+  let newContent = content;
+  let modified = false;
+
+  // 1. Remove redundancy local declarations since they will conflict
+  const redundantDecls = [
+    /const GRID_COLS = 140;\n?/g,
+    /const GRID_ROWS = 80;\n?/g,
+    /const GRID_W = 140;\n?/g,
+    /const GRID_H = 80;\n?/g,
+    /const GRID_ROWS = 80; \/\/ 800 \/ 10\n?/g
+  ];
+
+  for (const regex of redundantDecls) {
+    if (regex.test(newContent)) {
+      newContent = newContent.replace(regex, "");
+      modified = true;
+    }
+  }
+
+  // Also replace `GRID_ROWS` and `GRID_COLS` with `GRID_H` and `GRID_W` everywhere in the rest of the text
+  if (newContent.includes("GRID_COLS") || newContent.includes("GRID_ROWS")) {
+      newContent = newContent.replace(/\bGRID_COLS\b/g, "GRID_W");
+      newContent = newContent.replace(/\bGRID_ROWS\b/g, "GRID_H");
+      modified = true;
+  }
+
+  // 2. Apply rules
+  for (const { regex, replacement } of replacements) {
+    if (regex.test(newContent)) {
+      newContent = newContent.replace(regex, replacement);
+      modified = true;
+    }
+  }
+  
+  // Fallbacks for arrays initialized like `Array(80)`
+  const arrayMatches = [
+      { regex: /\bArray\(80\)/g, replacement: "Array(GRID_H)" },
+      { regex: /\bArray\(140\)/g, replacement: "Array(GRID_W)" }
+  ];
+  for (const { regex, replacement } of arrayMatches) {
+    if (regex.test(newContent)) {
+      newContent = newContent.replace(regex, replacement);
+      modified = true;
+    }
+  }
+
+  if (modified) {
+    // 3. Inject standard import if missing
+    if (!newContent.includes("GRID_W") && !newContent.includes("GRID_H")) {
+       // if we accidentally replaced everything back to normals, skip
+    } else {
+        const importRegex = /import\s+\{.*\}\s+from\s+["'].*OFFSETS.*["'];?/;
+        const missingW = newContent.includes("GRID_W") && !newContent.match(/import.*GRID_W.*OFFSETS/);
+        const missingH = newContent.includes("GRID_H") && !newContent.match(/import.*GRID_H.*OFFSETS/);
+
+        if (missingW || missingH) {
+            // Check if there is already an import from OFFSETS
+            if (importRegex.test(newContent)) {
+                 // Try to augment existing import
+                 const match = newContent.match(/(import\s+\{)(.*)(\}\s+from\s+["'].*OFFSETS.*["'];?)/);
+                 if (match) {
+                     let inner = match[2];
+                     if (missingW) inner += ", GRID_W";
+                     if (missingH) inner += ", GRID_H";
+                     newContent = newContent.replace(match[0], `${match[1]}${inner}${match[3]}`);
+                 }
+            } else {
+                let toImport = [];
+                if (missingW) toImport.push("GRID_W");
+                if (missingH) toImport.push("GRID_H");
+                
+                // Exclude the OFFSETS.ts file itself
+                if (filePath !== OFFSETS_FILE) {
+                    const importPath = getRelativeImportPath(filePath, OFFSETS_FILE);
+                    const importStatement = `import { ${toImport.join(", ")} } from "${importPath}";\n`;
+                    // Prepend after the first docstring or shebang if it exists, otherwise line 1
+                    if (newContent.startsWith("//") || newContent.startsWith("/*")) {
+                         // simple naive insert for now
+                         newContent = importStatement + newContent;
+                    } else {
+                         newContent = importStatement + newContent;
+                    }
+                }
+            }
+        }
+    }
+
+    await Deno.writeTextFile(filePath, newContent);
+    console.log(`Updated ${filePath}`);
+  }
+}
+
+async function main() {
+  for await (const entry of walk(SRC_DIR, { exts: [".ts"] })) {
+    if (entry.isFile) {
+      await processFile(entry.path);
+    }
+  }
+}
+
+main();
+
+```
 
 ---
 
@@ -265,7 +442,8 @@ import {
   HIVE_ENERGY_POOL_OFF, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF,
   GLYPH_SCRATCH_HEADER_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, HORMONE_OFF,
   SECRETION_STATS_OFF, LINEAGE_OFFSET, MEIOSIS_OFFSET, METABOLISM_SCRATCH_OFF,
-  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET
+  SPAWN_MAX, SPAWN_SLOT, SPAWN_HEAD_OFF, SPAWN_DATA_OFF, GENOMES_OFFSET,
+  GRID_W, GRID_H, GRID_CELLS
 } from "./constants.assembly";
 
 declare function trace_atom(
@@ -276,9 +454,6 @@ declare function trace_atom(
   targetIdx: i32,
 ): void;
 
-const STR_WIDTH: i32 = 140;
-const STR_HEIGHT: i32 = 80;
-const STR_GRID_SIZE: i32 = STR_WIDTH * STR_HEIGHT;
 
 export function math_sin(angle: i32, highRes: i32): i32 {
   if (highRes == 0) {
@@ -1874,9 +2049,6 @@ export function get_spatial_hash_max_cell_count(): i32 {
 }
 
 export function build_spatial_hash(): void {
-  const GRID_COLS: i32 = 140;
-  const GRID_ROWS: i32 = 80;
-  const TOTAL_CELLS: i32 = 11200; // 140 * 80
   const CELL_CAPACITY: i32 = 31;
   const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
 
@@ -1884,7 +2056,7 @@ export function build_spatial_hash(): void {
   spatialHashMaxCellCount = 0;
 
   // 1. Clear Grid and Quorum
-  for (let i = 0; i < TOTAL_CELLS; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     atomic.store<i32>(SPATIAL_GRID_OFFSET + (i << 7) as usize, 0);
     // Clear Quorum (8 roles)
     let qOff = QUORUM_OFFSET + (i << 5) as usize;
@@ -1910,7 +2082,7 @@ export function build_spatial_hash(): void {
 
     let cellX = x / 10;
     let cellY = y / 10;
-    let cellIdx = cellY * GRID_COLS + cellX;
+    let cellIdx = cellY * GRID_W + cellX;
     let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
     // Atomic update of count
@@ -1940,7 +2112,7 @@ export function build_spatial_hash(): void {
   }
 
   // 3. Finalize Phase Averages
-  for (let i = 0; i < TOTAL_CELLS; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     let offset = SPATIAL_GRID_OFFSET + (i << 7);
     let count = atomic.load<i32>(offset as usize);
     if (count > 0) {
@@ -1958,8 +2130,6 @@ function prng_next(state: u32): u32 {
 }
 
 export function diffuseViralSemantics(pulseId: i32): void {
-  const GRID_W: i32 = 140;
-  const GRID_H: i32 = 80;
   let state = pulseId as u32;
 
   for (let y = 0; y < GRID_H; y++) {
@@ -2006,9 +2176,6 @@ export function diffuseViralSemantics(pulseId: i32): void {
 }
 
 export function tick_structure_grid(): void {
-  const GRID_W: i32 = 140;
-  const GRID_H: i32 = 80;
-
   // Use a temporary stack buffer for charges if possible, or just write-behind
   // Since this is usually called from one worker, we can afford a bit of drift or use a small scratchpad
   // But for 11200 cells, we should probably just use a dedicated scratch area in shared memory if we want bit-perfection
@@ -2058,8 +2225,8 @@ export function tick_structure_grid(): void {
         for (let n = 0; n < 8; n++) {
           let nx = x + dir8X(n);
           let ny = y + dir8Y(n);
-          if (nx >= 0 && nx < STR_WIDTH && ny >= 0 && ny < STR_HEIGHT) {
-            let ni = ny * STR_WIDTH + nx;
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            let ni = ny * GRID_W + nx;
             const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2));
             const nCharge = (nVal >> 16) & 0xFF;
             if (nCharge > maxNCharge) maxNCharge = nCharge;
@@ -6283,6 +6450,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 ## FILE: src/00/STATE_MATRIX.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "./OFFSETS.ts";
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00/OFFSETS.ts";
 
@@ -6352,18 +6520,18 @@ export const hiveBalanceBuffer =
 export const hiveEnergyPoolBuffer =
   new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
 export const memoryGridBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8).buffer;
+  new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_W * GRID_H * 8).buffer;
 export const signalGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_W * GRID_H).buffer;
 export const structureGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_W * GRID_H).buffer;
 export const attentionFieldBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80)
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_W * GRID_H)
     .buffer;
 export const glyphHeaderBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_W * GRID_H).buffer;
 export const glyphPayloadBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, 140 * 80 * 8)
+  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_W * GRID_H * 8)
     .buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
@@ -6443,37 +6611,37 @@ const hiveEnergyPool = new Int32Array(
 const spatialGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.SPATIAL_GRID_OFFSET,
-  140 * 80 * 32,
+  GRID_W * GRID_H * 32,
 );
 const structureGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.STRUCTURE_GRID_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const signalGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.SIGNAL_GRID_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const memoryGrid = new Uint8Array(
   sharedBuffer,
   OFFSETS.MEMORY_GRID_OFFSET,
-  140 * 80 * 8,
+  GRID_W * GRID_H * 8,
 );
 const attentionField = new Float32Array(
   sharedBuffer,
   OFFSETS.ATTENTION_FIELD_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const glyphHeaders = new Int32Array(
   sharedBuffer,
   OFFSETS.GLYPH_HEADER_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const glyphPayload = new Uint8Array(
   sharedBuffer,
   OFFSETS.GLYPH_PAYLOAD_OFFSET,
-  140 * 80 * 8,
+  GRID_W * GRID_H * 8,
 );
 const ledgerHeadView = new Int32Array(
   sharedBuffer,
@@ -6904,7 +7072,7 @@ export const STATE_MATRIX = {
    * Format:
    * [Header: 4 bytes] 'OMGA'
    * [Tick: 4 bytes] Int32
-   * [GridSize: 4 bytes] Int32 (140 * 80 = 11200)
+   * [GridSize: 4 bytes] Int32 (GRID_W * GRID_H = 11200)
    * [GridData: 11200 bytes] Uint8Array (Structure | memory)
    * [AtomCount: 4 bytes] Int32
    * [AtomData: AtomCount * 24 bytes] (x(2), y(2), role(1), resonance(1), id(2), 4x bonds(4x4=16)) => 24 bytes per atom
@@ -6912,7 +7080,7 @@ export const STATE_MATRIX = {
   packPanopticonFrame: (): ArrayBuffer => {
     const active = STATE_MATRIX.getActiveIndices();
     const atomCount = active.length;
-    const gridCells = 140 * 80;
+    const gridCells = GRID_W * GRID_H;
     const bytesPerAtom = 24;
     
     // Header(4) + Tick(4) + GridSize(4) + GridData(11200) + AtomCount(4) + AtomData(atomCount * 24)
@@ -7082,7 +7250,7 @@ export const STATE_MATRIX = {
 
   getMatrixResonance: () => {
     let total = 0;
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       total += Atomics.load(signalGrid, i);
     }
     return total;
@@ -7091,7 +7259,7 @@ export const STATE_MATRIX = {
   getClusterSync: () => {
     // Heuristic: measure how many neighboring cells in the Matrix have similar high resonance
     let sync = 0;
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       const res = Atomics.load(signalGrid, i);
       if (res > 100) sync++;
     }
@@ -7101,7 +7269,7 @@ export const STATE_MATRIX = {
   getMemorySummary: () => {
     // Implementation for Era 67 memetic summaries
     const counts = new Map<number, number>();
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
       if (energy > 0) {
         const sig = memoryGrid[i * 8 + 4]; // First byte of meme
@@ -7701,13 +7869,12 @@ export const GLYPH_BUFFER = {
 ## FILE: src/01/MATRIX_ENGINE.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
 
-const GRID_COLS = 140;
-const GRID_ROWS = 80;
-const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
+const TOTAL_CELLS = GRID_W * GRID_H;
 
 // Crystal type constants for logic gates
 export const CRYSTAL_STANDARD = 1; // Default conducting crystal
@@ -7722,19 +7889,19 @@ export const MATRIX_ENGINE = {
     const signal = STATE_MATRIX.signalGrid;
     const nextSignal = new Int32Array(TOTAL_CELLS);
 
-    for (let cy = 0; cy < GRID_ROWS; cy++) {
-      for (let cx = 0; cx < GRID_COLS; cx++) {
-        const i = cy * GRID_COLS + cx;
+    for (let cy = 0; cy < GRID_H; cy++) {
+      for (let cx = 0; cx < GRID_W; cx++) {
+        const i = cy * GRID_W + cx;
         const type = Atomics.load(structure, i);
         if (type === 0) continue;
 
         let currentRes = Atomics.load(signal, i);
 
         const neighbors = [
-          (cy > 0) ? (cy - 1) * GRID_COLS + cx : -1,
-          (cy < GRID_ROWS - 1) ? (cy + 1) * GRID_COLS + cx : -1,
-          (cx > 0) ? cy * GRID_COLS + (cx - 1) : -1,
-          (cx < GRID_COLS - 1) ? cy * GRID_COLS + (cx + 1) : -1,
+          (cy > 0) ? (cy - 1) * GRID_W + cx : -1,
+          (cy < GRID_H - 1) ? (cy + 1) * GRID_W + cx : -1,
+          (cx > 0) ? cy * GRID_W + (cx - 1) : -1,
+          (cx < GRID_W - 1) ? cy * GRID_W + (cx + 1) : -1,
         ];
 
         for (const ni of neighbors) {
@@ -7765,8 +7932,8 @@ export const MATRIX_ENGINE = {
   inject: (x: number, y: number, amount: number) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      Atomics.add(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx, amount);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      Atomics.add(STATE_MATRIX.signalGrid, cy * GRID_W + cx, amount);
     }
   },
 
@@ -7774,8 +7941,8 @@ export const MATRIX_ENGINE = {
   read: (x: number, y: number): number => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      return Atomics.load(STATE_MATRIX.signalGrid, cy * GRID_COLS + cx);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      return Atomics.load(STATE_MATRIX.signalGrid, cy * GRID_W + cx);
     }
     return 0;
   },
@@ -7784,8 +7951,8 @@ export const MATRIX_ENGINE = {
   setStructure: (x: number, y: number, type: number) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      Atomics.store(STATE_MATRIX.structureGrid, cy * GRID_COLS + cx, type);
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      Atomics.store(STATE_MATRIX.structureGrid, cy * GRID_W + cx, type);
     }
   },
 
@@ -7795,8 +7962,8 @@ export const MATRIX_ENGINE = {
   establishMeme: (x: number, y: number, genomeBytes: BigInt64Array) => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      const memeIdx = cy * GRID_COLS + cx;
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      const memeIdx = cy * GRID_W + cx;
       // Write genome into memoryGrid (8 bytes = 1 i64 slot)
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
@@ -7814,8 +7981,8 @@ export const MATRIX_ENGINE = {
   readMeme: (x: number, y: number): bigint => {
     const cx = Math.floor(x / 10);
     const cy = Math.floor(y / 10);
-    if (cx >= 0 && cx < GRID_COLS && cy >= 0 && cy < GRID_ROWS) {
-      const memeIdx = cy * GRID_COLS + cx;
+    if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+      const memeIdx = cy * GRID_W + cx;
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
         OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
@@ -7863,13 +8030,12 @@ export * from "@01/SPATIAL_HASH.ts";
 ## FILE: src/01/PHYSICS_ENGINE.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PRNG } from "@00";
 import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
 import * as OFFSETS from "@00";
 
-const GRID_W = 140;
-const GRID_H = 80;
 
 const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
@@ -7918,7 +8084,7 @@ export const PHYSICS_ENGINE = {
 
     // --- ERA 50: Persistent Pheromone Decay ---
     if (pheroGrid) {
-      for (let i = 0; i < 140 * 80; i++) {
+      for (let i = 0; i < GRID_W * GRID_H; i++) {
         const cell = Atomics.load(pheroGrid, i);
         if (cell === 0) continue;
         const intensity = (cell >> 8) & 0xFFFFFF;
@@ -8137,9 +8303,7 @@ export const PHYSICS_ENGINE = {
     memoryGrid: Uint8Array,
     viralGrid: Uint8Array,
   ) => {
-    const GRID_W = 140;
-    const GRID_H = 80;
-
+        
     for (let i = 0; i < GRID_W * GRID_H; i++) {
       const cell = Atomics.load(structureGrid, i);
       let density = (cell >> 8) & 0xFF;
@@ -8224,12 +8388,13 @@ export const PHYSICS_ENGINE = {
 ## FILE: src/01/SPATIAL_HASH.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
-const GRID_COLS = 140; // 1400 / 10
-const GRID_ROWS = 80; // 800 / 10
-const TOTAL_CELLS = GRID_COLS * GRID_ROWS;
+ // 1400 / 10
+ // 800 / 10
+const TOTAL_CELLS = GRID_W * GRID_H;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
 const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory
@@ -8255,7 +8420,7 @@ export const SPATIAL_HASH = {
 
       const cellX = Math.floor(x / CELL_SIZE);
       const cellY = Math.floor(y / CELL_SIZE);
-      const cellIdx = cellY * GRID_COLS + cellX;
+      const cellIdx = cellY * GRID_W + cellX;
 
       const offset = cellIdx * (CELL_CAPACITY + 1);
 
@@ -8294,13 +8459,13 @@ export const SPATIAL_HASH = {
   queryRadius: (x: number, y: number, radius: number): number[] => {
     const results: number[] = [];
     const minX = Math.max(0, Math.floor((x - radius) / CELL_SIZE));
-    const maxX = Math.min(GRID_COLS - 1, Math.floor((x + radius) / CELL_SIZE));
+    const maxX = Math.min(GRID_W - 1, Math.floor((x + radius) / CELL_SIZE));
     const minY = Math.max(0, Math.floor((y - radius) / CELL_SIZE));
-    const maxY = Math.min(GRID_ROWS - 1, Math.floor((y + radius) / CELL_SIZE));
+    const maxY = Math.min(GRID_H - 1, Math.floor((y + radius) / CELL_SIZE));
 
     for (let cy = minY; cy <= maxY; cy++) {
       for (let cx = minX; cx <= maxX; cx++) {
-        const cellIdx = cy * GRID_COLS + cx;
+        const cellIdx = cy * GRID_W + cx;
         const offset = cellIdx * (CELL_CAPACITY + 1);
         const count = Atomics.load(gridView, offset);
 
@@ -8322,13 +8487,13 @@ export const SPATIAL_HASH = {
   getGridIdx: (x: number, y: number) => {
     const cellX = Math.max(
       0,
-      Math.min(GRID_COLS - 1, Math.floor(x / CELL_SIZE)),
+      Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)),
     );
     const cellY = Math.max(
       0,
-      Math.min(GRID_ROWS - 1, Math.floor(y / CELL_SIZE)),
+      Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)),
     );
-    return cellY * GRID_COLS + cellX;
+    return cellY * GRID_W + cellX;
   },
 
   hash: (x: number, y: number) => {
@@ -8345,10 +8510,9 @@ export const SPATIAL_HASH = {
 ## FILE: src/01/STRUCTURE_ENGINE.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 
-const GRID_W = 140;
-const GRID_H = 80;
 const DIR4 = [[-1, 0], [1, 0], [0, -1], [0, 1]] as const;
 const DIR8 = [
   [-1, 0],
@@ -8399,7 +8563,7 @@ export const STRUCTURE_ENGINE = {
         const state = STATE_MATRIX.getGridState(i);
 
         // AUTOPOIESIS: Resonance Shielding
-        const spatialIdx = y * 140 + x;
+        const spatialIdx = y * GRID_W + x;
         const avgPhase = STATE_MATRIX.spatialGrid[spatialIdx * 32 + 31];
 
         let decay = 10;
@@ -10461,6 +10625,7 @@ export const IMMUNE = {
 ## FILE: src/02/LAMBDA_VM.ts
 
 ```typescript
+import { GRID_W } from "../00/OFFSETS.ts";
 // OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
 // Turing-complete bytecode executor with registers, stack, and messaging.
 
@@ -10683,7 +10848,7 @@ export const LAMBDA_VM = {
         let consumed = 0;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         let current = Atomics.load(state.nutrients, idx);
         if (dryRun) {
@@ -10728,7 +10893,7 @@ export const LAMBDA_VM = {
         const regIdx = p2 % 8;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         let val = 0;
         switch (type) {
@@ -10788,7 +10953,7 @@ export const LAMBDA_VM = {
               const safeRole = Math.min(7, Math.max(0, state.role));
               val = Math.min(
                 255,
-                state.quorumData[(gy * 140 + gx) * 8 + safeRole],
+                state.quorumData[(gy * GRID_W + gx) * 8 + safeRole],
               );
             }
             break;
@@ -10797,7 +10962,7 @@ export const LAMBDA_VM = {
             if (state.hiveMemory) {
               const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
               const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-              const hBase = (gy * 140 + gx) * 16;
+              const hBase = (gy * GRID_W + gx) * 16;
               // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
               const imprintTick = state.hiveMemory[hBase + 8] |
                 (state.hiveMemory[hBase + 9] << 8) |
@@ -10821,15 +10986,15 @@ export const LAMBDA_VM = {
           case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
             const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
             const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-            const cellBase = (gy * 140 + gx) * 32;
+            const cellBase = (gy * GRID_W + gx) * 32;
             val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
             break;
           }
           case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
             const px = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
             const py = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-            const dx = state.pheromoneGrid[py * 140 + px + 1] -
-              state.pheromoneGrid[py * 140 + px - 1];
+            const dx = state.pheromoneGrid[py * GRID_W + px + 1] -
+              state.pheromoneGrid[py * GRID_W + px - 1];
             const dy = state.pheromoneGrid[(py + 1) * 140 + px] -
               state.pheromoneGrid[(py - 1) * 140 + px];
             val = Math.min(255, Math.floor(Math.sqrt(dx * dx + dy * dy) / 100));
@@ -10930,7 +11095,7 @@ export const LAMBDA_VM = {
         // --- ERA 48: High-Density Friction ---
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 80;
         const friction = density > 10 ? (density - 10) * 10 : 0;
         const totalCost = baseCost + friction;
@@ -10946,7 +11111,7 @@ export const LAMBDA_VM = {
         // --- ERA 48: High-Density Friction ---
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const density = Atomics.load(state.spatialGrid, (gy * 140 + gx) * 32);
+        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
         const baseCost = 100;
         const friction = density > 10 ? (density - 10) * 15 : 0;
         const totalCost = baseCost + friction;
@@ -11100,7 +11265,7 @@ export const LAMBDA_VM = {
         if (state.resonance > 20 && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const pIdx = gy * 140 + gx;
+          const pIdx = gy * GRID_W + gx;
           const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
           const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
           res.imprintRequest = {
@@ -11121,7 +11286,7 @@ export const LAMBDA_VM = {
         if (state.hiveMemory && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const hBase = (gy * 140 + gx) * 16;
+          const hBase = (gy * GRID_W + gx) * 16;
           const raw32 = state.hiveMemory[hBase] |
             (state.hiveMemory[hBase + 1] << 8) |
             (state.hiveMemory[hBase + 2] << 16) |
@@ -11274,7 +11439,7 @@ export const LAMBDA_VM = {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
           const safeRole = Math.min(7, Math.max(0, state.role));
-          const quorumCount = state.quorumData[(gy * 140 + gx) * 8 + safeRole];
+          const quorumCount = state.quorumData[(gy * GRID_W + gx) * 8 + safeRole];
 
           if (quorumCount >= threshold) {
             const collectiveType = p2 % 3;
@@ -11312,7 +11477,7 @@ export const LAMBDA_VM = {
         if (state.hiveMemory && state.synapticStack && !dryRun) {
           const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
           const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-          const hBase = (gy * 140 + gx) * 16;
+          const hBase = (gy * GRID_W + gx) * 16;
           // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
           const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
           const slot = p1 % 3;
@@ -11411,7 +11576,7 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-          const cellAvgPhase = state.spatialGrid[(gy * 140 + gx) * 32 + 31];
+          const cellAvgPhase = state.spatialGrid[(gy * GRID_W + gx) * 32 + 31];
           const targetPhase = p1 === 1
             ? (cellAvgPhase + 128) % 256 // destructive: anti-phase
             : cellAvgPhase; // constructive: sync
@@ -11432,8 +11597,8 @@ export const LAMBDA_VM = {
         // p2: 0=angle, 1=dx-component, 2=dy-component
         const gPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
         const gPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-        const gDx = state.pheromoneGrid[gPy * 140 + gPx + 1] -
-          state.pheromoneGrid[gPy * 140 + gPx - 1];
+        const gDx = state.pheromoneGrid[gPy * GRID_W + gPx + 1] -
+          state.pheromoneGrid[gPy * GRID_W + gPx - 1];
         const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] -
           state.pheromoneGrid[(gPy - 1) * 140 + gPx];
         let gradVal: number;
@@ -11461,13 +11626,13 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const mPx = Math.max(1, Math.min(138, Math.floor(state.x / 10)));
           const mPy = Math.max(1, Math.min(78, Math.floor(state.y / 10)));
-          const conc = Math.abs(state.pheromoneGrid[mPy * 140 + mPx]);
+          const conc = Math.abs(state.pheromoneGrid[mPy * GRID_W + mPx]);
           const hiThresh = (p1 > 0 ? p1 : 10) * 100;
           const loThresh = (p2 > 0 ? p2 : 3) * 100;
           const zone = conc > hiThresh ? 0 : conc > loThresh ? 1 : 2;
           // Gradient angle for orientation
-          const mDx = state.pheromoneGrid[mPy * 140 + mPx + 1] -
-            state.pheromoneGrid[mPy * 140 + mPx - 1];
+          const mDx = state.pheromoneGrid[mPy * GRID_W + mPx + 1] -
+            state.pheromoneGrid[mPy * GRID_W + mPx - 1];
           const mDy = state.pheromoneGrid[(mPy + 1) * 140 + mPx] -
             state.pheromoneGrid[(mPy - 1) * 140 + mPx];
           const gradAngle = Math.floor(
@@ -11492,7 +11657,7 @@ export const LAMBDA_VM = {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
           // cellBase for viralGrid is 9 bytes per cell
-          const cellBase = (gy * 140 + gx) * 9;
+          const cellBase = (gy * GRID_W + gx) * 9;
           const intensity = p1 > 0 ? p1 : 128; // default intensity
           res.secretePlasmidRequest = {
             logic: new Uint8Array(logic),
@@ -11510,7 +11675,7 @@ export const LAMBDA_VM = {
         if (!dryRun) {
           const gx = Math.max(0, Math.min(139, Math.floor(state.x / 10)));
           const gy = Math.max(0, Math.min(79, Math.floor(state.y / 10)));
-          const cellBase = (gy * 140 + gx) * 9;
+          const cellBase = (gy * GRID_W + gx) * 9;
           const threshold = p1 > 0 ? p1 : 50;
           const plasmidIntensity = state.viralGrid[cellBase + 8];
 
@@ -11571,7 +11736,7 @@ export const LAMBDA_VM = {
         const regIdx = p2 % 8;
         const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
         const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-        const idx = gy * 140 + gx;
+        const idx = gy * GRID_W + gx;
 
         if (mode === 0) { // READ CHARGE
           const charge = (Atomics.load(state.structureGrid, idx) >> 16) & 0xFF;
@@ -11645,7 +11810,7 @@ export const LAMBDA_VM = {
           } else if (mode === 2) {
             const gx = Math.floor(Math.max(0, Math.min(1399, state.x)) / 10);
             const gy = Math.floor(Math.max(0, Math.min(799, state.y)) / 10);
-            const idx = gy * 140 + gx;
+            const idx = gy * GRID_W + gx;
             // intensity p2, type p3
             Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);
             res.energyDelta -= 5;
@@ -11702,6 +11867,7 @@ export * from "@02/PULSE.ts";
 ## FILE: src/02/PULSE_WORKER.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 /// <reference lib="deno.worker" />
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00";
@@ -11922,7 +12088,7 @@ function handle_syscall(atomIdx: number) {
       const gx = r1, gy = r2;
       let val = 0;
       if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && structureGridView) {
-        val = structureGridView[gy * 140 + gx] & 0xFF;
+        val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
@@ -11939,7 +12105,7 @@ function handle_syscall(atomIdx: number) {
         gx >= 0 && gx < 140 && gy >= 0 && gy < 80 && buildOwnerView &&
         buildValueView
       ) {
-        const cellIdx = gy * 140 + gx;
+        const cellIdx = gy * GRID_W + gx;
         Atomics.store(buildOwnerView, cellIdx, atomIdx);
         Atomics.store(buildValueView, cellIdx, newVal);
       }
@@ -12239,23 +12405,21 @@ function handle_syscall(atomIdx: number) {
           const cy = ysView[atomIdx] / 100;
 
           const CELL_SIZE = 10;
-          const GRID_COLS = 140;
-          const GRID_ROWS = 80;
-
+                    
           const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
           const endX = Math.min(
-            GRID_COLS - 1,
+            GRID_W - 1,
             Math.floor((cx + radius) / CELL_SIZE),
           );
           const startY = Math.max(0, Math.floor((cy - radius) / CELL_SIZE));
           const endY = Math.min(
-            GRID_ROWS - 1,
+            GRID_H - 1,
             Math.floor((cy + radius) / CELL_SIZE),
           );
 
           for (let y = startY; y <= endY; y++) {
             for (let x = startX; x <= endX; x++) {
-              const cellIdx = y * GRID_COLS + x;
+              const cellIdx = y * GRID_W + x;
               const cellBase = cellIdx * 32; // 32 slots per cell (1 count + 31 items)
 
               const count = spatialGridView[cellBase];
@@ -12331,7 +12495,7 @@ function handle_syscall(atomIdx: number) {
 
           const nGridX = Math.floor(nx / 10);
           const nGridY = Math.floor(ny / 10);
-          const nCellIdx = nGridY * 140 + nGridX;
+          const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
           const emptySlotOffset = -1;
@@ -12504,22 +12668,22 @@ self.onmessage = async (e) => {
     structureGridView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_GRID_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     spatialGridView = new Int32Array(
       sb,
       OFFSETS.SPATIAL_GRID_OFFSET,
-      140 * 80 * 32,
+      GRID_W * GRID_H * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     buildValueView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-      140 * 80,
+      GRID_W * GRID_H,
     );
     spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(
@@ -12853,7 +13017,7 @@ try {
       ? Math.max(0, Math.min(2000, Math.floor(delayRaw)))
       : 0;
     await maybeDelay();
-    self.postMessage({ type: "DEBUG_DELAY_SET", pulseId });
+    (self as any).postMessage({ type: "DEBUG_DELAY_SET", pulseId });
   }
 
   if (type === "SET_DEBUG_JITTER") {
@@ -12868,7 +13032,7 @@ try {
     debugJitterMinMs = Math.min(minMs, maxMs);
     debugJitterMaxMs = Math.max(minMs, maxMs);
     await maybeDelay();
-    self.postMessage({
+    (self as any).postMessage({
       type: "DEBUG_JITTER_SET",
       minMs: debugJitterMinMs,
       maxMs: debugJitterMaxMs,
@@ -18958,6 +19122,7 @@ export * from "./reduction_harness.ts";
 ## FILE: src/03/03/reduction_cases.ts
 
 ```typescript
+import { GRID_W } from "../../00/OFFSETS.ts";
 import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
 
 export type ReductionCaseExpectation = {
@@ -19012,7 +19177,6 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
-const GRID_W = 140;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
@@ -20328,6 +20492,7 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
 ## FILE: src/03/03/reduction_harness.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
@@ -20505,8 +20670,6 @@ export type ReductionHarnessArtifact = {
 };
 
 const REDUCTION_DIFF_ROOT = "src/03/03/verification/reduction_diffs";
-const GRID_W = 140;
-const GRID_H = 80;
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const cloneEffects = (): ShadowEffects => ({
@@ -22560,6 +22723,7 @@ export const AUDIT_ENGINE = {
 ## FILE: src/03/CONTROL_INTENT_QUEUE.ts
 
 ```typescript
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "@00";
 
 import { LOGGER } from "@00";
@@ -22744,8 +22908,6 @@ const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
 const FEDERATION_ADMISSION_POLICY = RUNTIME_POLICY.federation.admission;
 const FEDERATION_ADMISSION_HISTORY_LIMIT = 24;
-const GRID_W = 140;
-const GRID_H = 80;
 const GRID_CELL_BYTES = 8;
 const WORLD_W = GRID_W * 10;
 const WORLD_H = GRID_H * 10;
@@ -31314,6 +31476,7 @@ export const SEMANTIC_MEMBRANE = {
 ## FILE: src/05/SOVEREIGN_ORACLE.ts
 
 ```typescript
+
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
@@ -31324,6 +31487,7 @@ import { LOGGER } from "@00";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
 import { SEMANTIC_MEMBRANE } from "@05/SEMANTIC_MEMBRANE.ts";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -31373,8 +31537,6 @@ type OracleDrainStats = {
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
-const GRID_W = 140;
-const GRID_H = 80;
 const GRID_CELL_BYTES = 8;
 
 const toGridIndexNearRegent = (regentIndex: number): number | null => {
@@ -31552,8 +31714,8 @@ export const SOVEREIGN_ORACLE = {
             for (let dy = -1; dy <= 1; dy++) {
               const gx = rx + dx;
               const gy = ry + dy;
-              if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-                const gridIdx = (gy * 140 + gx) * 8;
+              if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+                const gridIdx = (gy * GRID_W + gx) * 8;
                 STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
                 STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
                 seededCells++;
@@ -31928,10 +32090,9 @@ export const SOVEREIGN_ORACLE = {
           return;
         }
 
-        // Drop the plasmid randomly near center
-        const cx = 70 + Math.floor(Math.random() * 20 - 10);
-        const cy = 40 + Math.floor(Math.random() * 20 - 10);
-        const gridIdx = (cy * 140 + cx) * 8;
+        const cx = Math.floor(GRID_W / 2) + Math.floor(Math.random() * 20 - 10);
+        const cy = Math.floor(GRID_H / 2) + Math.floor(Math.random() * 20 - 10);
+        const gridIdx = (cy * GRID_W + cx) * 8;
 
         SOVEREIGN_ORACLE.queueMutation({
           kind: "oracle_plasmid_injection",
@@ -31973,9 +32134,9 @@ export const SOVEREIGN_ORACLE = {
     const seed = (((currentTick * 2654435761) >>> 0) ^
       ((telemetry.matrixResonance | 0) >>> 0) ^
       ((neuralCoherence | 0) << 8)) >>> 0;
-    const gx = seed % 140;
-    const gy = Math.floor(seed / 140) % 80;
-    const gridIdx = (gy * 140 + gx) * 8;
+    const gx = seed % GRID_W;
+    const gy = Math.floor(seed / GRID_W) % GRID_H;
+    const gridIdx = (gy * GRID_W + gx) * 8;
 
     const charge = Math.min(0xFFFF, 800 + Math.max(0, neuralCoherence | 0));
     const meme = new Uint8Array([
@@ -32403,6 +32564,7 @@ if (import.meta.main) {
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { RISC, STATE_MATRIX } from "@00";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 import type { GlyphSnapshot } from "@01";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "@00";
@@ -33500,21 +33662,21 @@ const hashHex = async (input: string): Promise<string> => {
 
 const findRelicCandidate = (): RelicCandidate | null => {
   const grid = STATE_MATRIX.structureGrid;
-  const visited = new Uint8Array(140 * 80);
+  const visited = new Uint8Array(GRID_W * GRID_H);
   const active = STATE_MATRIX.getActiveIndices();
-  const occupied = new Uint8Array(140 * 80);
+  const occupied = new Uint8Array(GRID_W * GRID_H);
   for (const idx of active) {
     const x = STATE_MATRIX.getX(idx);
     const y = STATE_MATRIX.getY(idx);
     const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
     const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
-    occupied[gy * 140 + gx] = 1;
+    occupied[gy * GRID_W + gx] = 1;
   }
 
   let best: RelicCandidate | null = null;
-  const queue = new Int32Array(140 * 80);
+  const queue = new Int32Array(GRID_W * GRID_H);
 
-  for (let i = 0; i < 140 * 80; i++) {
+  for (let i = 0; i < GRID_W * GRID_H; i++) {
     const type = grid[i] & 0xFF;
     if (type === 0 || visited[i] === 1) continue;
 
@@ -33541,7 +33703,7 @@ const findRelicCandidate = (): RelicCandidate | null => {
 
       const nbs = [cur - 140, cur + 140, cur - 1, cur + 1];
       for (const n of nbs) {
-        if (n < 0 || n >= 140 * 80) continue;
+        if (n < 0 || n >= GRID_W * GRID_H) continue;
         const nx = n % 140;
         const ny = Math.floor(n / 140);
         if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
@@ -33585,7 +33747,7 @@ const recordRelic = async (tick: number): Promise<void> => {
   for (let y = y0; y <= y1; y++) {
     let row = "";
     for (let x = x0; x <= x1; x++) {
-      const idx = y * 140 + x;
+      const idx = y * GRID_W + x;
       row += typeSymbol(STATE_MATRIX.structureGrid[idx] & 0xFF);
     }
     rows.push(row);
@@ -38789,8 +38951,10 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ## FILE: src/06/TUI_DASHBOARD.ts
 
 ```typescript
+
 import { RISC, STATE_MATRIX, SYS } from "@00";
-import { PULSE } from "@02";
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { PULSE } from "../02/PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
 import { LOGGER } from "@00";
@@ -38856,7 +39020,7 @@ async function initSimulation() {
 }
 
 function renderGrid(tick: number) {
-  const grid = Array(80).fill(0).map(() => Array(140).fill(" "));
+  const grid = Array(GRID_H).fill(0).map(() => Array(GRID_W).fill(" "));
   let prods = 0, preys = 0, preds = 0;
   let totalEnergy = 0;
 
@@ -38868,7 +39032,7 @@ function renderGrid(tick: number) {
       const energy = STATE_MATRIX.getEnergy(i);
       totalEnergy += energy;
 
-      if (x >= 0 && x < 140 && y >= 0 && y < 80) {
+      if (x >= 0 && x < 140 && y >= 0 && y < GRID_H) {
         if (role === STATE_MATRIX.ROLE_PRODUCER) {
           grid[y][x] = "\x1b[32m*\x1b[0m"; // Green *
           prods++;
@@ -40818,6 +40982,9 @@ if (import.meta.main) {
 ```typescript
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
+import { GATE } from "@03";
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
@@ -40881,8 +41048,6 @@ const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
-const GRID_W = 140;
-const GRID_H = 80;
 const WORLD_W = GRID_W * 10;
 const WORLD_H = GRID_H * 10;
 const JSON_HEADERS = {
@@ -41279,7 +41444,7 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
 };
 
 const collectRuntimeMetrics = (): RuntimeMetrics => {
-  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+  const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
   const active = STATE_MATRIX.getActiveIndices();
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
@@ -42133,12 +42298,12 @@ setInterval(() => {
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     35200000 + 4096,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const memoryGrid = new Int32Array(
     STATE_MATRIX.buffer,
     36100000 + 4096,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   // Seed a strong signal in the center
   const center = 40 * 140 + 70;
@@ -42254,7 +42419,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
       }),
       {
@@ -42284,7 +42449,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         pressure_ring: {
           novelty_signed: pressure.noveltySigned,
           symbiosis_signed: pressure.symbiosisSigned,
@@ -42337,7 +42502,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const before = PULSE.getEvolutionPressureState();
       const source = envelope.reason ?? "daemon_phase_scheduler";
 
@@ -42592,7 +42757,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         homeostasis: {
           enabled: homeostasis.enabled,
           target_energy: homeostasis.targetEnergy,
@@ -42625,7 +42790,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/api/physiology" && req.method === "GET") {
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
     const geneticLedger = PULSE.getGeneticLedgerState();
@@ -42720,7 +42885,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const before = PULSE.getHomeostasisState();
       const source = "daemon_homeostasis_controller";
       const reason = envelope.reason ?? "daemon_homeostasis_controller";
@@ -42973,7 +43138,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         daemon_policy: serializeDaemonPolicyState(),
         latest_update: latestDaemonPolicyUpdate,
         history: daemonPolicyHistory,
@@ -43053,7 +43218,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const source = "daemon_policy_controller";
       const reason = envelope.reason ?? "daemon_policy_controller";
       const beforePheromone = currentDaemonMaxPheromoneIntensity();
@@ -43358,7 +43523,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
         setLatestDaemonAdmission({
-          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+          tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
           status: "rejected",
           requestedAction: "UNKNOWN",
           appliedAction: "BLOCKED",
@@ -43928,7 +44093,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       );
     } catch (err) {
       setLatestDaemonAdmission({
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         status: "rejected",
         requestedAction: "UNKNOWN",
         appliedAction: "BLOCKED",
@@ -44426,7 +44591,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     try {
       Deno.addSignalListener("SIGINT", async () => {
         LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
-        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
         await SNAPSHOT_ENGINE.exportSnapshot({
           tick,
           reason: "genesis_shutdown",
@@ -44538,7 +44703,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
     
     if (tick % 100 === 0) {
       LINEAGE_TRACKER.updateMetrics(tick);

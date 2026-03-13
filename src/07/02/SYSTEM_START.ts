@@ -1,5 +1,8 @@
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
+import { GATE } from "@03";
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
@@ -63,8 +66,6 @@ const UI_PATH = "./ui/index.html";
 const CONTROL_ENABLE = RUNTIME_POLICY.system.controlEnabled;
 const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
 const AVATAR_INGRESS_ENABLE = RUNTIME_POLICY.system.avatarIngressEnabled;
-const GRID_W = 140;
-const GRID_H = 80;
 const WORLD_W = GRID_W * 10;
 const WORLD_H = GRID_H * 10;
 const JSON_HEADERS = {
@@ -461,7 +462,7 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
 };
 
 const collectRuntimeMetrics = (): RuntimeMetrics => {
-  const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+  const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
   const active = STATE_MATRIX.getActiveIndices();
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
@@ -1315,12 +1316,12 @@ setInterval(() => {
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     35200000 + 4096,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const memoryGrid = new Int32Array(
     STATE_MATRIX.buffer,
     36100000 + 4096,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   // Seed a strong signal in the center
   const center = 40 * 140 + 70;
@@ -1436,7 +1437,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
       }),
       {
@@ -1466,7 +1467,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         pressure_ring: {
           novelty_signed: pressure.noveltySigned,
           symbiosis_signed: pressure.symbiosisSigned,
@@ -1519,7 +1520,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const before = PULSE.getEvolutionPressureState();
       const source = envelope.reason ?? "daemon_phase_scheduler";
 
@@ -1774,7 +1775,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         homeostasis: {
           enabled: homeostasis.enabled,
           target_energy: homeostasis.targetEnergy,
@@ -1807,7 +1808,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/api/physiology" && req.method === "GET") {
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
     const geneticLedger = PULSE.getGeneticLedgerState();
@@ -1902,7 +1903,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const before = PULSE.getHomeostasisState();
       const source = "daemon_homeostasis_controller";
       const reason = envelope.reason ?? "daemon_homeostasis_controller";
@@ -2155,7 +2156,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         daemon_policy: serializeDaemonPolicyState(),
         latest_update: latestDaemonPolicyUpdate,
         history: daemonPolicyHistory,
@@ -2235,7 +2236,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
       const source = "daemon_policy_controller";
       const reason = envelope.reason ?? "daemon_policy_controller";
       const beforePheromone = currentDaemonMaxPheromoneIntensity();
@@ -2540,7 +2541,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
         setLatestDaemonAdmission({
-          tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+          tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
           status: "rejected",
           requestedAction: "UNKNOWN",
           appliedAction: "BLOCKED",
@@ -3110,7 +3111,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       );
     } catch (err) {
       setLatestDaemonAdmission({
-        tick: Atomics.load(STATE_MATRIX.tickCounter, 0),
+        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
         status: "rejected",
         requestedAction: "UNKNOWN",
         appliedAction: "BLOCKED",
@@ -3608,7 +3609,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     try {
       Deno.addSignalListener("SIGINT", async () => {
         LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
-        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
         await SNAPSHOT_ENGINE.exportSnapshot({
           tick,
           reason: "genesis_shutdown",
@@ -3720,7 +3721,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
     
     if (tick % 100 === 0) {
       LINEAGE_TRACKER.updateMetrics(tick);

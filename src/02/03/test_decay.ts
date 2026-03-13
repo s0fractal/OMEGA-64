@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_decay.ts | Era 57: Synaptic Plasticity Decay Verification
 // Tests: passive decay, ISA.DECAY (auto/specific/all modes), SENSE type 0x0D, HEBB protection.
 
@@ -30,11 +31,11 @@ function baseState(
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(140 * 80 * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(140 * 80 * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,

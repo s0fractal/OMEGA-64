@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "./OFFSETS.ts";
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00/OFFSETS.ts";
 
@@ -67,18 +68,18 @@ export const hiveBalanceBuffer =
 export const hiveEnergyPoolBuffer =
   new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, 256).buffer;
 export const memoryGridBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, 140 * 80 * 8).buffer;
+  new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_W * GRID_H * 8).buffer;
 export const signalGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_W * GRID_H).buffer;
 export const structureGridBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_W * GRID_H).buffer;
 export const attentionFieldBuffer =
-  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, 140 * 80)
+  new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_W * GRID_H)
     .buffer;
 export const glyphHeaderBuffer =
-  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, 140 * 80).buffer;
+  new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_W * GRID_H).buffer;
 export const glyphPayloadBuffer =
-  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, 140 * 80 * 8)
+  new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_W * GRID_H * 8)
     .buffer;
 export const coherenceBuffer =
   new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
@@ -158,37 +159,37 @@ const hiveEnergyPool = new Int32Array(
 const spatialGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.SPATIAL_GRID_OFFSET,
-  140 * 80 * 32,
+  GRID_W * GRID_H * 32,
 );
 const structureGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.STRUCTURE_GRID_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const signalGrid = new Int32Array(
   sharedBuffer,
   OFFSETS.SIGNAL_GRID_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const memoryGrid = new Uint8Array(
   sharedBuffer,
   OFFSETS.MEMORY_GRID_OFFSET,
-  140 * 80 * 8,
+  GRID_W * GRID_H * 8,
 );
 const attentionField = new Float32Array(
   sharedBuffer,
   OFFSETS.ATTENTION_FIELD_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const glyphHeaders = new Int32Array(
   sharedBuffer,
   OFFSETS.GLYPH_HEADER_OFFSET,
-  140 * 80,
+  GRID_W * GRID_H,
 );
 const glyphPayload = new Uint8Array(
   sharedBuffer,
   OFFSETS.GLYPH_PAYLOAD_OFFSET,
-  140 * 80 * 8,
+  GRID_W * GRID_H * 8,
 );
 const ledgerHeadView = new Int32Array(
   sharedBuffer,
@@ -619,7 +620,7 @@ export const STATE_MATRIX = {
    * Format:
    * [Header: 4 bytes] 'OMGA'
    * [Tick: 4 bytes] Int32
-   * [GridSize: 4 bytes] Int32 (140 * 80 = 11200)
+   * [GridSize: 4 bytes] Int32 (GRID_W * GRID_H = 11200)
    * [GridData: 11200 bytes] Uint8Array (Structure | memory)
    * [AtomCount: 4 bytes] Int32
    * [AtomData: AtomCount * 24 bytes] (x(2), y(2), role(1), resonance(1), id(2), 4x bonds(4x4=16)) => 24 bytes per atom
@@ -627,7 +628,7 @@ export const STATE_MATRIX = {
   packPanopticonFrame: (): ArrayBuffer => {
     const active = STATE_MATRIX.getActiveIndices();
     const atomCount = active.length;
-    const gridCells = 140 * 80;
+    const gridCells = GRID_W * GRID_H;
     const bytesPerAtom = 24;
     
     // Header(4) + Tick(4) + GridSize(4) + GridData(11200) + AtomCount(4) + AtomData(atomCount * 24)
@@ -797,7 +798,7 @@ export const STATE_MATRIX = {
 
   getMatrixResonance: () => {
     let total = 0;
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       total += Atomics.load(signalGrid, i);
     }
     return total;
@@ -806,7 +807,7 @@ export const STATE_MATRIX = {
   getClusterSync: () => {
     // Heuristic: measure how many neighboring cells in the Matrix have similar high resonance
     let sync = 0;
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       const res = Atomics.load(signalGrid, i);
       if (res > 100) sync++;
     }
@@ -816,7 +817,7 @@ export const STATE_MATRIX = {
   getMemorySummary: () => {
     // Implementation for Era 67 memetic summaries
     const counts = new Map<number, number>();
-    for (let i = 0; i < 140 * 80; i++) {
+    for (let i = 0; i < GRID_W * GRID_H; i++) {
       const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
       if (energy > 0) {
         const sig = memoryGrid[i * 8 + 4]; // First byte of meme

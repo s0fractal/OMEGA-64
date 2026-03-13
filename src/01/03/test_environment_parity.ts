@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_environment_parity.ts
 // Verifies bit-identical parity for the unified environmental physics.
 
@@ -49,29 +50,29 @@ async function runTest() {
   const attentionField = new Float32Array(
     sharedBuffer,
     OFFSETS.ATTENTION_FIELD_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const structureGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const memoryGrid = new Uint8Array(
     sharedBuffer,
     OFFSETS.MEMORY_GRID_OFFSET,
-    140 * 80 * 8,
+    GRID_W * GRID_H * 8,
   );
   const signalGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80,
+    GRID_W * GRID_H,
   );
   const signalGridU8 = new Uint8Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80 * 9,
+    GRID_W * GRID_H * 9,
   ); // Wait, signalGrid is Int32Array but it's 9 bytes per cell?
-  // Signal grid in OFFSETS.ts is defined as (140 * 80 * 9) bytes or (140 * 80) Int32?
+  // Signal grid in OFFSETS.ts is defined as (GRID_W * GRID_H * 9) bytes or (GRID_W * GRID_H) Int32?
   // Let's check OFFSETS.ts
 
   // Seed some values
@@ -91,7 +92,7 @@ async function runTest() {
   const viralU8 = new Uint8Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    140 * 80 * 9,
+    GRID_W * GRID_H * 9,
   );
   for (let b = 0; b < 4; b++) viralU8[viralIdx + b] = b + 1;
   viralU8[viralIdx + 8] = 200;
@@ -119,9 +120,7 @@ async function runTest() {
 
   // A. Structural Logic (STRUCTURE_ENGINE.tick)
   // Since we want bit-perfection, we'll manually implement the loop here to ensure we work on the 'host' copies.
-  const GRID_W = 140;
-  const GRID_H = 80;
-
+    
   const tempCharges = new Int32Array(hostStructure.length);
   for (let i = 0; i < hostStructure.length; i++) {
     const type = hostStructure[i] & 0xFF;

@@ -1,9 +1,8 @@
+import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import * as OFFSETS from "@00";
 import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
 
-const GRID_W = 140;
-const GRID_H = 80;
 const GRID_SIZE = GRID_W * GRID_H;
 
 type WasmStructureExports = {
