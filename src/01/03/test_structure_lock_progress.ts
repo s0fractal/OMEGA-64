@@ -1,4 +1,4 @@
-import { GRID_W } from "../../00/OFFSETS.ts";
+import { GRID_H, GRID_W } from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import * as OFFSETS from "@00";
 
@@ -48,22 +48,22 @@ const testIntentClearing = async () => {
   const structureGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * 80,
+    GRID_W * GRID_H,
   );
   const ownerIntents = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-    GRID_W * 80,
+    GRID_W * GRID_H,
   );
   const valueIntents = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-    GRID_W * 80,
+    GRID_W * GRID_H,
   );
   const chargeIntents = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
-    GRID_W * 80,
+    GRID_W * GRID_H,
   );
 
   // Seed a stale lock + pending intents.

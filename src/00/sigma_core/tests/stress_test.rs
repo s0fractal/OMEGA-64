@@ -23,8 +23,8 @@ fn test_sovereign_500k_stress() {
         state.matrix.energy[i] = 100;
         state.matrix.resonance[i] = 50;
 
-        let lx = (i % 140) as i16;
-        let ly = ((i / 140) % 80) as i16;
+        let lx = (i % GRID_W) as i16;
+        let ly = ((i / GRID_W) % GRID_H) as i16;
         state.matrix.xs[i] = lx;
         state.matrix.ys[i] = ly;
 

@@ -79,7 +79,7 @@ function renderGrid(tick: number) {
       const energy = STATE_MATRIX.getEnergy(i);
       totalEnergy += energy;
 
-      if (x >= 0 && x < 140 && y >= 0 && y < GRID_H) {
+      if (x >= 0 && x < GRID_W && y >= 0 && y < GRID_H) {
         if (role === STATE_MATRIX.ROLE_PRODUCER) {
           grid[y][x] = "\x1b[32m*\x1b[0m"; // Green *
           prods++;

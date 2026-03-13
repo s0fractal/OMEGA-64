@@ -1,5 +1,6 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
 /// <reference lib="deno.worker" />
+import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00";
 import {

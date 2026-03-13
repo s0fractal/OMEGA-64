@@ -102,7 +102,7 @@ readResonance[2] = 0;
 readEnergy[2] = 100;
 
 // Build spatial grid manually for the test
-const gridIdx = (10 * 140) + 10; // (100/10, 100/10)
+const gridIdx = (10 * OFFSETS.GRID_W) + 10; // (100/10, 100/10)
 const gridOff = (OFFSETS.SPATIAL_GRID_OFFSET) + (gridIdx << 7);
 const view = new Int32Array(STATE_MATRIX.buffer);
 const gridViewIdx = gridOff >> 2;

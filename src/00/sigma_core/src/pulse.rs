@@ -1,4 +1,4 @@
-use crate::constants::MAX_ATOMS;
+use crate::constants::{MAX_ATOMS, GRID_W, GRID_H};
 use crate::{LambdaVM, SigmaState};
 
 pub struct PulseOrchestrator<'a> {
@@ -120,8 +120,8 @@ impl<'a> PulseOrchestrator<'a> {
                         let gx = cx / (crate::constants::SCALE as usize);
                         let gy = cy / (crate::constants::SCALE as usize);
                         
-                        if gx < 140 && gy < 80 {
-                            let cell_idx = gy * 140 + gx;
+                        if gx < (GRID_W as usize) && gy < (GRID_H as usize) {
+                            let cell_idx = gy * (GRID_W as usize) + gx;
                             let structure_val = state.matrix.structure_grid[cell_idx];
                             let structure_type = structure_val & 0xFF;
                             

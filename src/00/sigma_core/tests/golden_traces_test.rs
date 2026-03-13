@@ -298,7 +298,7 @@ fn test_gt17_build_competition() {
     vm.step(&mut state, 2);
     vm.step(&mut state, 3);
 
-    let cell_idx = (50 * 140) + 50;
+    let cell_idx = (50 * GRID_W) + 50;
 
     // ownerToken is atom_idx + 1 = 4
     assert_eq!(state.matrix.structure_build_owner[cell_idx], 4);
@@ -473,7 +473,7 @@ fn test_gt14_plug_charge_resolve() {
 
     // OP_PLUG (0xA4 / 0x18 in some mappings, but let's check isa.rs)
     // Actually, we don't need OP_PLUG, we can just write an intent manually based on coordinates.
-    // 55/10 = 5, 55/10 = 5. cell = 5 * 140 + 5 = 705
+    // 55/10 = 5, 55/10 = 5. cell = 5 * GRID_W + 5 = 705
     let cell_idx = 705;
 
     // Simulate OP_PLUG Intent
@@ -674,8 +674,8 @@ fn test_pure_substrate_emergence() {
     vm.step(&mut state, guardian_idx);
     vm.step(&mut state, parasite_idx);
 
-    // Verify cell 10 + 10 * 140 = 1410
-    // Verify cell 20 + 20 * 140 = 2820
+    // Verify cell 10 + 10 * GRID_W = 1410
+    // Verify cell 20 + 20 * GRID_W = 2820
 
     let guardian_header = state.matrix.glyph_header[1410];
     let parasite_header = state.matrix.glyph_header[2820];

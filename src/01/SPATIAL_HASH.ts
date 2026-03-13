@@ -107,8 +107,8 @@ export const SPATIAL_HASH = {
   },
 
   hash: (x: number, y: number) => {
-    const hx = Math.max(0, Math.min(139, Math.floor(x / 10)));
-    const hy = Math.max(0, Math.min(79, Math.floor(y / 10)));
-    return hy * 140 + hx;
+    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / 10)));
+    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / 10)));
+    return hy * GRID_W + hx;
   },
 };

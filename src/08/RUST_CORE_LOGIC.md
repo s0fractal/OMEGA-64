@@ -1,6 +1,6 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-13T02:32:02.071Z*
+*Generated: 2026-03-13T03:02:08.088Z*
 *Exported Files: 15*
 
 ---
@@ -1431,9 +1431,9 @@ pub struct SigmaMatrix {
     pub bond_requests: [i32; 1500000],
     pub spatial_grid: [i32; 358400],
     pub roles: [u8; 500000],
-    pub structure_grid: [i32; 11200],
-    pub signal_grid: [i32; 11200],
-    pub memory_grid: [[u8; 8]; 11200],
+    pub structure_grid: [i32; GRID_CELLS],
+    pub signal_grid: [i32; GRID_CELLS],
+    pub memory_grid: [[u8; 8]; GRID_CELLS],
     pub ascension_stats: [i32; 250000],
     pub _pad_to_bond_distances: [u8; 4000000],
     pub bond_distances: [u8; 2000000],
@@ -1451,15 +1451,15 @@ pub struct SigmaMatrix {
     pub physics_read_resonance: [i32; 500000],
     pub energy_delta: [i32; 500000],
     pub resonance_delta: [i32; 500000],
-    pub structure_build_owner: [i32; 11200],
-    pub structure_build_value: [i32; 11200],
-    pub structure_charge_intent: [i32; 11200],
-    pub attention_field: [f32; 11200],
+    pub structure_build_owner: [i32; GRID_CELLS],
+    pub structure_build_value: [i32; GRID_CELLS],
+    pub structure_charge_intent: [i32; GRID_CELLS],
+    pub attention_field: [f32; GRID_CELLS],
     pub hive_energy_pool: [i32; 256],
-    pub glyph_header: [i32; 11200],
-    pub glyph_payload: [[u8; 8]; 11200],
-    pub glyph_scratch_header: [i32; 11200],
-    pub glyph_scratch_payload: [[u8; 8]; 11200],
+    pub glyph_header: [i32; GRID_CELLS],
+    pub glyph_payload: [[u8; 8]; GRID_CELLS],
+    pub glyph_scratch_header: [i32; GRID_CELLS],
+    pub glyph_scratch_payload: [[u8; 8]; GRID_CELLS],
     pub hormones: [u16; 8],
     pub secretion_stats: [i32; 12],
     pub _pad_to_lineage: [u8; 4],
@@ -2066,7 +2066,7 @@ mod tests {
 ## FILE: src/00/sigma_core/src/pulse.rs
 
 ```rust
-use crate::constants::MAX_ATOMS;
+use crate::constants::{MAX_ATOMS, GRID_W, GRID_H};
 use crate::{LambdaVM, SigmaState};
 
 pub struct PulseOrchestrator<'a> {
@@ -2188,8 +2188,8 @@ impl<'a> PulseOrchestrator<'a> {
                         let gx = cx / (crate::constants::SCALE as usize);
                         let gy = cy / (crate::constants::SCALE as usize);
                         
-                        if gx < 140 && gy < 80 {
-                            let cell_idx = gy * 140 + gx;
+                        if gx < (GRID_W as usize) && gy < (GRID_H as usize) {
+                            let cell_idx = gy * (GRID_W as usize) + gx;
                             let structure_val = state.matrix.structure_grid[cell_idx];
                             let structure_type = structure_val & 0xFF;
                             
@@ -2906,6 +2906,7 @@ use crate::isa::{
 };
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::constants::{GRID_W, GRID_H};
 
 pub struct LambdaVM {}
 
@@ -3125,7 +3126,7 @@ impl LambdaVM {
                             let nx = grid_cx + dx;
                             let ny = grid_cy + dy;
 
-                            if nx >= 0 && nx < 140 && ny >= 0 && ny < 80 {
+                            if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
                                 let count = state.get_spatial_grid_count(nx, ny);
                                 for i in 0..count {
                                     if neighbor_count >= 32 {
@@ -3390,7 +3391,7 @@ impl LambdaVM {
                     let build_val = (state_val << 24) | (0xFF << 16) | type_val;
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     state.publish_build_intent(cell_idx, atom_idx, build_val);
                     pc += 3;
@@ -3405,7 +3406,7 @@ impl LambdaVM {
                     };
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     state.set_structure_charge_intent(cell_idx, charge_val);
                     pc += 2;
@@ -3416,7 +3417,7 @@ impl LambdaVM {
                     // Radius ignored for parity testing, directly sensing current cell
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     let val = state.read_structure_cell(cell_idx);
                     if dest_reg < 8 {
@@ -3438,7 +3439,7 @@ impl LambdaVM {
                     if energy >= 150_000 && offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
+                        let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
                         // Read 8 bytes from genome
                         let mut payload = [0u8; 8];
@@ -3472,7 +3473,7 @@ impl LambdaVM {
                     if offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
+                        let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
                         let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
                         let kind = (header & 0xFF) as u8;
@@ -3564,7 +3565,7 @@ impl LambdaVM {
 
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     // Re-implementing atomic_deposit_glyph_header locally for parity
                     // It mutates global arrays internally.
@@ -3661,7 +3662,7 @@ impl LambdaVM {
                         // Quorum PC Sync
                         let cx = state.matrix.xs[atom_idx] as i32 / 10;
                         let cy = state.matrix.ys[atom_idx] as i32 / 10;
-                        if cx >= 0 && cx < 140 && cy >= 0 && cy < 80 {
+                        if cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H {
                             let count = state.get_spatial_grid_count(cx, cy);
                             for i in 0..count {
                                 let peer = state.get_spatial_grid_atom(cx, cy, i) as usize;

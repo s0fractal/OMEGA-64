@@ -252,11 +252,11 @@ function writeBondRequest(initiator: i32, target: i32): void {
 }
 
 function getSpatialGridCount(gx: i32, gy: i32): i32 {
-  let cellIdx = gy * 140 + gx;
+  let cellIdx = gy * GRID_W + gx;
   return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7) as usize);
 }
 function getSpatialGridAtom(gx: i32, gy: i32, subIdx: i32): i32 {
-  let cellIdx = gy * 140 + gx;
+  let cellIdx = gy * GRID_W + gx;
   return load<i32>(
     SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2) as usize,
   );
@@ -395,13 +395,13 @@ export function drain_spawn_requests(tick: i32): i32 {
   return spawned;
 }
 function getAttentionCell(gx: i32, gy: i32): f32 {
-  if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
-  return load<f32>(ATTENTION_FIELD_OFF + ((gy * 140 + gx) << 2) as usize);
+  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
+  return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 }
 
 function getGlyphInfluence(gx: i32, gy: i32, role: u8): f32 {
-  if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return 0.0;
-  const cell = gy * 140 + gx;
+  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
+  const cell = gy * GRID_W + gx;
   const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
   const kind = header & 0xFF;
   const amplitude = ((header >>> 8) & 0x00FFFFFF) as f32;
@@ -608,7 +608,7 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
     for (let ox = -3; ox <= 3; ox++) {
       let cx = gx + ox;
       let cy = gy + oy;
-      if (cx >= 0 && cx < 140 && cy >= 0 && cy < 80) {
+      if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
         let count = getSpatialGridCount(cx, cy);
         for (let s = 0; s < count; s++) {
           let otherIdx = getSpatialGridAtom(cx, cy, s);
@@ -736,8 +736,8 @@ function calculateTrophism(idx: i32, x: i32, y: i32, role: u8): void {
       }
       let cx = gx + ox;
       let cy = gy + oy;
-      if (cx >= 0 && cx < 140 && cy >= 0 && cy < 80) {
-        let cell = readStructureCell(cy * 140 + cx);
+      if (cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H) {
+        let cell = readStructureCell(cy * GRID_W + cx);
         let density = (cell >> 8) & 0xFF;
         let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
         tx += ((ox as f32) / (2.0 as f32)) * force;
@@ -797,7 +797,7 @@ function atomicDepositGlyphHeader(
   payloadPtr: usize = 0,
 ): void {
   // 0 amplitude wave has no effect
-  if (amplitude == 0 || cell < 0 || cell >= 140 * 80) return;
+  if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
 
   const ptr = (baseOffset + (cell << 2)) as usize;
 
@@ -866,9 +866,9 @@ function secreteGlyph(
   if (intensity <= 0) return;
   const gx = x / 10;
   const gy = y / 10;
-  if (gx < 0 || gx >= 140 || gy < 0 || gy >= 80) return;
+  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return;
 
-  const cell = gy * 140 + gx;
+  const cell = gy * GRID_W + gx;
 
   // Telemetry: increment role-based atomic counter
   if (kind >= 1 && kind <= 2 && role <= 4) {
@@ -912,10 +912,10 @@ function secreteGlyph(
         atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 1, 1, spill);
       }
       if (gy > 0) {
-        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - 140, 1, spill);
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell - GRID_W, 1, spill);
       }
       if (gy < 79) {
-        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + 140, 1, spill);
+        atomicDepositGlyphHeader(GLYPH_HEADER_OFF, cell + GRID_W, 1, spill);
       }
     }
   }
@@ -923,12 +923,12 @@ function secreteGlyph(
 
 export function tickGlyphTransport(tick: i32): void {
   // Sampling grid for internal reflection (Stage 5.1/5.2)
-  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (140 * 80) << 2);
+  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (GRID_CELLS) << 2);
 
   const dx = [-1, 1, 0, 0];
   const dy = [0, 0, -1, 1];
 
-  for (let cell = 0; cell < 140 * 80; cell++) {
+  for (let cell = 0; cell < (GRID_CELLS as i32); cell++) {
     const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
     if (header == 0) continue;
 
@@ -959,14 +959,14 @@ export function tickGlyphTransport(tick: i32): void {
 
     const share = diffusionShareForKind(kind, amp);
     if (Math.abs(share) > 0) {
-      const gx = cell % 140;
-      const gy = cell / 140;
+      const gx = cell % GRID_W;
+      const gy = cell / GRID_W;
 
       for (let i = 0; i < 4; i++) {
         let nx = gx + dx[i];
         let ny = gy + dy[i];
-        if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
-          const nextCell = ny * 140 + nx;
+        if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+          const nextCell = ny * GRID_W + nx;
           atomicDepositGlyphHeader(
             GLYPH_SCRATCH_HEADER_OFF,
             nextCell,
@@ -985,7 +985,7 @@ export function tickGlyphTransport(tick: i32): void {
   }
 
   // 2. Seeding: Internal Reflection (Signal -> Pheromone)
-  for (let cell: i32 = 0; cell < 11200; cell++) {
+  for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
     const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
     const absSignal = signal < 0 ? -signal : signal;
     if (absSignal >= 1) {
@@ -1001,7 +1001,7 @@ export function tickGlyphTransport(tick: i32): void {
   }
 
   // 3. Seeding: Internal Reflection (Memory -> Plasmid)
-  for (let cell: i32 = 0; cell < 11200; cell++) {
+  for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
     const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
     const memoryLo = atomic.load<u32>(memOffset);
     const charge = memoryLo & 0xFFFFFF; // 24-bit charge
@@ -1024,8 +1024,8 @@ export function tickGlyphTransport(tick: i32): void {
     }
   }
 
-  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, 11200 << 3);
-  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, 11200 << 2);
+  memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GRID_CELLS << 3);
+  memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_CELLS << 2);
 }
 
 // --- PER-ROLE SECRETION PREDICATES ---
@@ -1175,7 +1175,7 @@ export function execute_atom(atomIndex: i32): void {
     let phase = getPhase(atomIndex);
     let res = getResonance(atomIndex);
     const tick = load<i32>(TICK_COUNTER_OFF);
-    const cell = (curY / 10) * 140 + (curX / 10);
+    const cell = (curY / 10) * GRID_W + (curX / 10);
 
     // DECENTRALIZED SECRETION
     if (
@@ -1338,15 +1338,15 @@ export function execute_atom(atomIndex: i32): void {
           let ry = getY(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-            val = readStructureCharge(gy * 140 + gx);
+          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+            val = readStructureCharge(gy * GRID_W + gx);
           }
         } else if (prop == PROP_QUORUM) {
           let rx = getX(atomIndex) as i32;
           let ry = getY(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
+          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
             val = getSpatialGridCount(gx, gy);
           }
         } else if (prop == PROP_NEURAL_COHERENCE) {
@@ -1356,8 +1356,8 @@ export function execute_atom(atomIndex: i32): void {
           let ry = getY(atomIndex) as i32;
           let gx = rx / 10;
           let gy = ry / 10;
-          if (gx >= 0 && gx < 140 && gy >= 0 && gy < 80) {
-            val = load<u8>(MEMORY_GRID_OFF + ((gy * 140 + gx) << 3)) as i32;
+          if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+            val = load<u8>(MEMORY_GRID_OFF + ((gy * GRID_W + gx) << 3)) as i32;
           }
         } else if (prop == PROP_CONSENSUS) {
           val = getHormone(6) as i32;
@@ -1489,7 +1489,7 @@ export function execute_atom(atomIndex: i32): void {
           for (let dy = -1; dy <= 1; dy++) {
             let nx = gx + dx;
             let ny = gy + dy;
-            if (nx >= 0 && nx < 140 && ny >= 0 && ny < 80) {
+            if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
               let count = getSpatialGridCount(nx, ny);
               for (let i = 0; i < count; i++) {
                 let neighborId = getSpatialGridAtom(nx, ny, i);
@@ -1751,7 +1751,7 @@ export function diffuseViralSemantics(pulseId: i32): void {
 export function tick_structure_grid(): void {
   // Use a temporary stack buffer for charges if possible, or just write-behind
   // Since this is usually called from one worker, we can afford a bit of drift or use a small scratchpad
-  // But for 11200 cells, we should probably just use a dedicated scratch area in shared memory if we want bit-perfection
+  // But for GRID_CELLS cells, we should probably just use a dedicated scratch area in shared memory if we want bit-perfection
   // However, the current JS structure engine uses a local array. We'll do same-buffer update for simplicity
   // but with a slight decay to prevent runaway feedback.
 
@@ -1831,7 +1831,7 @@ export function tick_structure_grid(): void {
 
       // AUTOPOIESIS: Resonance Shielding
       // Read average phase from spatial grid average slot (slot 31)
-      let spatialIdx = y * 140 + x;
+      let spatialIdx = y * GRID_W + x;
       let avgPhase = atomic.load<i32>(
         SPATIAL_GRID_OFFSET + (spatialIdx << 7) + (31 << 2),
       );
@@ -1984,7 +1984,7 @@ export function tick_structure_grid(): void {
  */
 export function tick_environment(tick: i32): void {
   // 1. Attention Field Decay (90% per tick)
-  for (let i = 0; i < 11200; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     const ptr = ATTENTION_FIELD_OFF + (i << 2);
     const val = load<f32>(ptr as usize);
     if (val > 0.0) {
@@ -2039,11 +2039,10 @@ export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
 
 // SOVEREIGN_ORACLE calls this every N ticks to measure global mind-field strength
 export function get_neural_coherence(): i32 {
-  const GRID_CELLS = 140 * 80;
   let totalAmplitude: i32 = 0;
   let oscillatorCount: i32 = 0;
 
-  for (let i = 0; i < GRID_CELLS; i++) {
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
     const cVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (i << 2));
     const cType = cVal & 0xFF;
     if (cType == CRYSTAL_OSCILLATOR) {
@@ -2143,7 +2142,7 @@ export function apply_metabolism_kernel(
       let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
       let gx = cx / 10;
       let gy = cy / 10;
-      let cellIdx = gy * 140 + gx;
+      let cellIdx = gy * GRID_W + gx;
 
       trace_atom(i, 0xDD, gx, gy, 0);
 

@@ -5,6 +5,7 @@ use crate::isa::{
 };
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::constants::{GRID_W, GRID_H};
 
 pub struct LambdaVM {}
 
@@ -224,7 +225,7 @@ impl LambdaVM {
                             let nx = grid_cx + dx;
                             let ny = grid_cy + dy;
 
-                            if nx >= 0 && nx < 140 && ny >= 0 && ny < 80 {
+                            if nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H {
                                 let count = state.get_spatial_grid_count(nx, ny);
                                 for i in 0..count {
                                     if neighbor_count >= 32 {
@@ -489,7 +490,7 @@ impl LambdaVM {
                     let build_val = (state_val << 24) | (0xFF << 16) | type_val;
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     state.publish_build_intent(cell_idx, atom_idx, build_val);
                     pc += 3;
@@ -504,7 +505,7 @@ impl LambdaVM {
                     };
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     state.set_structure_charge_intent(cell_idx, charge_val);
                     pc += 2;
@@ -515,7 +516,7 @@ impl LambdaVM {
                     // Radius ignored for parity testing, directly sensing current cell
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     let val = state.read_structure_cell(cell_idx);
                     if dest_reg < 8 {
@@ -537,7 +538,7 @@ impl LambdaVM {
                     if energy >= 150_000 && offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
+                        let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
                         // Read 8 bytes from genome
                         let mut payload = [0u8; 8];
@@ -571,7 +572,7 @@ impl LambdaVM {
                     if offset >= 0 && offset <= 56 {
                         let cx = state.matrix.xs[atom_idx] as usize;
                         let cy = state.matrix.ys[atom_idx] as usize;
-                        let cell_idx = (cy / 1000) * 140 + (cx / 1000);
+                        let cell_idx = (cy / 1000) * (GRID_W as usize) + (cx / 1000);
 
                         let header = state.glyph_header_atomic()[cell_idx].load(std::sync::atomic::Ordering::Relaxed);
                         let kind = (header & 0xFF) as u8;
@@ -663,7 +664,7 @@ impl LambdaVM {
 
                     let cx = state.matrix.xs[atom_idx] as usize;
                     let cy = state.matrix.ys[atom_idx] as usize;
-                    let cell_idx = (cy / 10) * 140 + (cx / 10);
+                    let cell_idx = (cy / 10) * (GRID_W as usize) + (cx / 10);
 
                     // Re-implementing atomic_deposit_glyph_header locally for parity
                     // It mutates global arrays internally.
@@ -760,7 +761,7 @@ impl LambdaVM {
                         // Quorum PC Sync
                         let cx = state.matrix.xs[atom_idx] as i32 / 10;
                         let cy = state.matrix.ys[atom_idx] as i32 / 10;
-                        if cx >= 0 && cx < 140 && cy >= 0 && cy < 80 {
+                        if cx >= 0 && cx < GRID_W && cy >= 0 && cy < GRID_H {
                             let count = state.get_spatial_grid_count(cx, cy);
                             for i in 0..count {
                                 let peer = state.get_spatial_grid_atom(cx, cy, i) as usize;

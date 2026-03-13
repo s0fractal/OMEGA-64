@@ -1123,8 +1123,8 @@ const findRelicCandidate = (): RelicCandidate | null => {
     queue[tail++] = i;
     visited[i] = 1;
     const cells: number[] = [];
-    let x0 = 139;
-    let y0 = 79;
+    let x0 = GRID_W - 1;
+    let y0 = GRID_H - 1;
     let x1 = 0;
     let y1 = 0;
     let hasOccupant = occupied[i] === 1;
@@ -1132,18 +1132,18 @@ const findRelicCandidate = (): RelicCandidate | null => {
     while (head < tail) {
       const cur = queue[head++];
       cells.push(cur);
-      const cx = cur % 140;
-      const cy = Math.floor(cur / 140);
+      const cx = cur % GRID_W;
+      const cy = Math.floor(cur / GRID_W);
       if (cx < x0) x0 = cx;
       if (cy < y0) y0 = cy;
       if (cx > x1) x1 = cx;
       if (cy > y1) y1 = cy;
 
-      const nbs = [cur - 140, cur + 140, cur - 1, cur + 1];
+      const nbs = [cur - GRID_W, cur + GRID_W, cur - 1, cur + 1];
       for (const n of nbs) {
         if (n < 0 || n >= GRID_W * GRID_H) continue;
-        const nx = n % 140;
-        const ny = Math.floor(n / 140);
+        const nx = n % GRID_W;
+        const ny = Math.floor(n / GRID_W);
         if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;
         if (visited[n] === 1) continue;
         if ((grid[n] & 0xFF) === 0) continue;
