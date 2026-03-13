@@ -1,1 +1,0 @@
-export const TAG_OF = (m: any) => m((t: any) => (_v: any) => t);

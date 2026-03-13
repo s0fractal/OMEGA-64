@@ -1,7 +1,0 @@
-vector: 30.28.0
-origin: i.L30.core.ATOM.ts
-symbol: ATOM
-relations:
-  attractor: VOID
-  use: []
-  used: []

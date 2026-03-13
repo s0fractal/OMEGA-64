@@ -1,1 +1,0 @@
-export const NETWORK = (f: any) => f;

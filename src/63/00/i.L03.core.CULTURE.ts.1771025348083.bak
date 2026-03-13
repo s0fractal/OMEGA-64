@@ -1,1 +1,0 @@
-export const CULTURE = (is: any) => is;

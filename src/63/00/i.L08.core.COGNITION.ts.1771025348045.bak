@@ -1,1 +1,0 @@
-export const COGNITION = (cluster: any) => cluster;
