@@ -1,10 +1,10 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 // test_matrix_engine.ts
 import { MATRIX_ENGINE } from "@01";
 
 
-const signalGrid = new Uint8Array(GRID_W * GRID_H);
-const structureGrid = new Int32Array(GRID_W * GRID_H);
+const signalGrid = new Uint8Array(GRID_CELLS);
+const structureGrid = new Int32Array(GRID_CELLS);
 
 // Helper to set structure
 function setStructure(x: number, y: number, type: number, density: number) {

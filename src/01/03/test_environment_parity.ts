@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_environment_parity.ts
 // Verifies bit-identical parity for the unified environmental physics.
 
@@ -50,29 +50,29 @@ async function runTest() {
   const attentionField = new Float32Array(
     sharedBuffer,
     OFFSETS.ATTENTION_FIELD_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const structureGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const memoryGrid = new Uint8Array(
     sharedBuffer,
     OFFSETS.MEMORY_GRID_OFFSET,
-    GRID_W * GRID_H * 8,
+    GRID_CELLS * 8,
   );
   const signalGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const signalGridU8 = new Uint8Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    GRID_W * GRID_H * 9,
+    GRID_CELLS * 9,
   ); // Wait, signalGrid is Int32Array but it's 9 bytes per cell?
-  // Signal grid in OFFSETS.ts is defined as (GRID_W * GRID_H * 9) bytes or (GRID_W * GRID_H) Int32?
+  // Signal grid in OFFSETS.ts is defined as (GRID_CELLS * 9) bytes or (GRID_CELLS) Int32?
   // Let's check OFFSETS.ts
 
   // Seed some values
@@ -92,7 +92,7 @@ async function runTest() {
   const viralU8 = new Uint8Array(
     sharedBuffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    GRID_W * GRID_H * 9,
+    GRID_CELLS * 9,
   );
   for (let b = 0; b < 4; b++) viralU8[viralIdx + b] = b + 1;
   viralU8[viralIdx + 8] = 200;

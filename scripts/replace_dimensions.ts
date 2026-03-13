@@ -13,9 +13,10 @@ const OFFSETS_FILE = resolve("./src/00/OFFSETS.ts");
 
 const replacements = [
   // 1. Array creations or direct products
-  { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
-  { regex: /\bGRID_W\s*\*\s*80\b/g, replacement: "GRID_W * GRID_H" },
-  { regex: /\b80\s*\*\s*GRID_W\b/g, replacement: "GRID_H * GRID_W" },
+  { regex: /\b140\s*\*\s*80\b/g, replacement: "GRID_CELLS" },
+  { regex: /\bGRID_W\s*\*\s*80\b/g, replacement: "GRID_CELLS" },
+  { regex: /\b80\s*\*\s*GRID_W\b/g, replacement: "GRID_CELLS" },
+  { regex: /\bGRID_W\s*\*\s*GRID_H\b/g, replacement: "GRID_CELLS" },
 
   // 2. Linear Indexing (y * width + x)
   { regex: /\b([a-zA-Z]*y|Y)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
@@ -116,8 +117,9 @@ async function processFile(filePath: string) {
         const importRegex = /import\s+\{.*\}\s+from\s+["'].*OFFSETS.*["'];?/;
         const missingW = newContent.includes("GRID_W") && !newContent.match(/import.*GRID_W.*OFFSETS/);
         const missingH = newContent.includes("GRID_H") && !newContent.match(/import.*GRID_H.*OFFSETS/);
+        const missingC = newContent.includes("GRID_CELLS") && !newContent.match(/import.*GRID_CELLS.*OFFSETS/);
 
-        if (missingW || missingH) {
+        if (missingW || missingH || missingC) {
             // Check if there is already an import from OFFSETS
             if (importRegex.test(newContent)) {
                  // Try to augment existing import
@@ -126,12 +128,14 @@ async function processFile(filePath: string) {
                      let inner = match[2];
                      if (missingW) inner += ", GRID_W";
                      if (missingH) inner += ", GRID_H";
+                     if (missingC) inner += ", GRID_CELLS";
                      newContent = newContent.replace(match[0], `${match[1]}${inner}${match[3]}`);
                  }
             } else {
-                let toImport = [];
+                const toImport = [];
                 if (missingW) toImport.push("GRID_W");
                 if (missingH) toImport.push("GRID_H");
+                if (missingC) toImport.push("GRID_CELLS");
                 
                 // Exclude the OFFSETS.ts file itself
                 if (filePath !== OFFSETS_FILE) {

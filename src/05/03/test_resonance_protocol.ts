@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PULSE } from "@02";
 import { SOVEREIGN_ORACLE } from "@05";
@@ -17,7 +17,7 @@ async function testResonance() {
   const structureGrid = new Int32Array(
     sharedBuffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const neuralCoherenceView = new Int32Array(
     sharedBuffer,
@@ -76,7 +76,7 @@ async function testResonance() {
   const memoryGrid = STATE_MATRIX.memoryGrid;
   const countSeededCells = () => {
     let count = 0;
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
+    for (let i = 0; i < GRID_CELLS; i++) {
       const base = i * 8;
       if (memoryGrid[base] !== 0 || memoryGrid[base + 1] !== 0) count++;
     }

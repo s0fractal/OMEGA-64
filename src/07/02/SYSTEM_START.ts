@@ -1,7 +1,7 @@
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
@@ -1316,12 +1316,12 @@ setInterval(() => {
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     35200000 + 4096,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const memoryGrid = new Int32Array(
     STATE_MATRIX.buffer,
     36100000 + 4096,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   // Seed a strong signal in the center
   const center = 40 * GRID_W + 70;

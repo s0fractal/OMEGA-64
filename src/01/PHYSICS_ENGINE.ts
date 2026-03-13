@@ -1,11 +1,11 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 import { PRNG } from "@00";
 import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
 import * as OFFSETS from "@00";
 
 
-const envBuffer = new SharedArrayBuffer(GRID_W * GRID_H * 4); // Int32
+const envBuffer = new SharedArrayBuffer(GRID_CELLS * 4); // Int32
 const NUTRIENTS = new Int32Array(envBuffer);
 
 const ATTENTION_PHEROMONES = STATE_MATRIX.attentionField;
@@ -18,10 +18,10 @@ export const PHYSICS_ENGINE = {
   ATTENTION_PHEROMONES,
   // Spatial Memory
   pheromones: {
-    "WORKER": new Float32Array(GRID_W * GRID_H),
-    "GUARDIAN": new Float32Array(GRID_W * GRID_H),
-    "NUCLEUS": new Float32Array(GRID_W * GRID_H),
-    "PARASITE": new Float32Array(GRID_W * GRID_H),
+    "WORKER": new Float32Array(GRID_CELLS),
+    "GUARDIAN": new Float32Array(GRID_CELLS),
+    "NUCLEUS": new Float32Array(GRID_CELLS),
+    "PARASITE": new Float32Array(GRID_CELLS),
   },
 
   getGridIdx: (x: number, y: number) => {
@@ -52,7 +52,7 @@ export const PHYSICS_ENGINE = {
 
     // --- ERA 50: Persistent Pheromone Decay ---
     if (pheroGrid) {
-      for (let i = 0; i < GRID_W * GRID_H; i++) {
+      for (let i = 0; i < GRID_CELLS; i++) {
         const cell = Atomics.load(pheroGrid, i);
         if (cell === 0) continue;
         const intensity = (cell >> 8) & 0xFFFFFF;
@@ -272,7 +272,7 @@ export const PHYSICS_ENGINE = {
     viralGrid: Uint8Array,
   ) => {
         
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
+    for (let i = 0; i < GRID_CELLS; i++) {
       const cell = Atomics.load(structureGrid, i);
       let density = (cell >> 8) & 0xFF;
       const type = cell & 0xFF;

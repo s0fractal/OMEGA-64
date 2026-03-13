@@ -1,5 +1,5 @@
 /// <reference lib="deno.worker" />
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "@00";
@@ -800,22 +800,22 @@ self.onmessage = async (e) => {
     structureGridView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_GRID_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     spatialGridView = new Int32Array(
       sb,
       OFFSETS.SPATIAL_GRID_OFFSET,
-      GRID_W * GRID_H * 32,
+      GRID_CELLS * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     buildValueView = new Int32Array(
       sb,
       OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
-      GRID_W * GRID_H,
+      GRID_CELLS,
     );
     spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(

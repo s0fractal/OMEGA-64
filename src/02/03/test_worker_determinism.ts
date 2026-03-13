@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 import { PULSE } from "@02";
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
@@ -134,12 +134,12 @@ const buildSnapshot = (indices: number[]): Snapshot => {
   const structureGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.STRUCTURE_GRID_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
   const signalGrid = new Int32Array(
     STATE_MATRIX.buffer,
     OFFSETS.SIGNAL_GRID_OFFSET,
-    GRID_W * GRID_H,
+    GRID_CELLS,
   );
 
   const slice = (grid: Int32Array): number[] => {

@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_temporal.ts | Era 54: Temporal Cognition Verification
 // Tests ISA.AGE, ISA.PHASE_LIFE lifecycle phases, SENSE type 0x0A, and apoptosis.
 
@@ -14,11 +14,11 @@ function baseState(age = 0, overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,

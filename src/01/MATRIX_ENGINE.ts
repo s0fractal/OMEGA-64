@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "@00";
 import * as OFFSETS from "@00";
 
-const TOTAL_CELLS = GRID_W * GRID_H;
+const TOTAL_CELLS = GRID_CELLS;
 
 // Crystal type constants for logic gates
 export const CRYSTAL_STANDARD = 1; // Default conducting crystal

@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_neural.ts | Era 52: Neural Substrate Verification
 // Tests Hebbian plasticity (ISA.HEBB), signal propagation (ISA.FIRE),
 // synaptic weight decay, and SENSE type 0x08 — directly via LAMBDA_VM.
@@ -26,11 +26,11 @@ function baseState(overrides: Record<string, unknown> = {}) {
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300, // > HEBB_THRESHOLD (200)

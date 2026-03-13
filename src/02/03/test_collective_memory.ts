@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_collective_memory.ts | Era 51: Collective Memory Verification
 // Direct unit tests for ISA.IMPRINT, ISA.RECALL, and ISA.SENSE type 0x07.
 // Tests exercise LAMBDA_VM directly and simulate PULSE_WORKER's imprintRequest path.
@@ -14,14 +14,14 @@ import {
 // ---------- Shared helpers ----------
 
 function makePhero(value = 0): Int32Array {
-  const buf = new SharedArrayBuffer(GRID_W * GRID_H * 4);
+  const buf = new SharedArrayBuffer(GRID_CELLS * 4);
   const arr = new Int32Array(buf);
   if (value !== 0) arr.fill(value);
   return arr;
 }
 
 function makeHiveMemory(): Uint8Array {
-  return new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 16));
+  return new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 16));
 }
 
 function baseState(
@@ -30,11 +30,11 @@ function baseState(
   return {
     x: 500,
     y: 400,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    viralGrid: new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9)),
     pheromoneGrid: makePhero(),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 50,

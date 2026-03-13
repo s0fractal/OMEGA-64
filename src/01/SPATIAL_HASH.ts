@@ -1,10 +1,10 @@
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 import { STATE_MATRIX } from "@00";
 
 const CELL_SIZE = 10; // Finer resolution for bonding
  // 1400 / 10
  // 800 / 10
-const TOTAL_CELLS = GRID_W * GRID_H;
+const TOTAL_CELLS = GRID_CELLS;
 
 export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
 const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory

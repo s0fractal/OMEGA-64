@@ -2,7 +2,7 @@
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { RISC, STATE_MATRIX } from "@00";
-import { GRID_W, GRID_H } from "../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../00/OFFSETS.ts";
 import type { GlyphSnapshot } from "@01";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "@00";
@@ -1100,9 +1100,9 @@ const hashHex = async (input: string): Promise<string> => {
 
 const findRelicCandidate = (): RelicCandidate | null => {
   const grid = STATE_MATRIX.structureGrid;
-  const visited = new Uint8Array(GRID_W * GRID_H);
+  const visited = new Uint8Array(GRID_CELLS);
   const active = STATE_MATRIX.getActiveIndices();
-  const occupied = new Uint8Array(GRID_W * GRID_H);
+  const occupied = new Uint8Array(GRID_CELLS);
   for (const idx of active) {
     const x = STATE_MATRIX.getX(idx);
     const y = STATE_MATRIX.getY(idx);
@@ -1112,9 +1112,9 @@ const findRelicCandidate = (): RelicCandidate | null => {
   }
 
   let best: RelicCandidate | null = null;
-  const queue = new Int32Array(GRID_W * GRID_H);
+  const queue = new Int32Array(GRID_CELLS);
 
-  for (let i = 0; i < GRID_W * GRID_H; i++) {
+  for (let i = 0; i < GRID_CELLS; i++) {
     const type = grid[i] & 0xFF;
     if (type === 0 || visited[i] === 1) continue;
 
@@ -1141,7 +1141,7 @@ const findRelicCandidate = (): RelicCandidate | null => {
 
       const nbs = [cur - GRID_W, cur + GRID_W, cur - 1, cur + 1];
       for (const n of nbs) {
-        if (n < 0 || n >= GRID_W * GRID_H) continue;
+        if (n < 0 || n >= GRID_CELLS) continue;
         const nx = n % GRID_W;
         const ny = Math.floor(n / GRID_W);
         if (Math.abs(nx - cx) + Math.abs(ny - cy) !== 1) continue;

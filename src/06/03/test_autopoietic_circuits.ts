@@ -1,11 +1,11 @@
-import { GRID_W, GRID_H } from "../../00/OFFSETS.ts";
+import { GRID_W, GRID_H , GRID_CELLS} from "../../00/OFFSETS.ts";
 import { STATE_MATRIX, STRUCTURE } from "@00";
 import { STRUCTURE_ENGINE } from "@01";
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 
 
 function clearGrid() {
-  for (let i = 0; i < GRID_W * GRID_H; i++) {
+  for (let i = 0; i < GRID_CELLS; i++) {
     STATE_MATRIX.setGridType(i, STRUCTURE.VOID);
     STATE_MATRIX.setGridCharge(i, 0);
     STATE_MATRIX.setGridState(i, 0);

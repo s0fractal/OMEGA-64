@@ -1,4 +1,4 @@
-import { GRID_W , GRID_H} from "../../00/OFFSETS.ts";
+import { GRID_W , GRID_H, GRID_CELLS} from "../../00/OFFSETS.ts";
 // OMEGA-64 | test_hgt.ts | Era 60: Horizontal Gene Transfer Verification
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
@@ -13,7 +13,7 @@ import { STATE_MATRIX } from "@00";
 
 
 function makeViralGrid(): Uint8Array {
-  return new Uint8Array(new SharedArrayBuffer(GRID_W * GRID_H * 9));
+  return new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9));
 }
 
 function baseState(
@@ -30,11 +30,11 @@ function baseState(
   return {
     x,
     y,
-    nutrients: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
+    nutrients: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    structureGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
     viralGrid,
-    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 4)),
-    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_W * GRID_H * 32 * 4)),
+    pheromoneGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 4)),
+    spatialGrid: new Int32Array(new SharedArrayBuffer(GRID_CELLS * 32 * 4)),
     marketPool: new Int32Array(new SharedArrayBuffer(8)),
     energy: 80,
     resonance: 300,

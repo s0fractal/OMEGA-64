@@ -1,3 +1,4 @@
+import { GRID_W, GRID_H, GRID_CELLS } from "../00/OFFSETS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
@@ -479,7 +480,7 @@ export const SEMANTIC_MEMBRANE = {
     const GRID_W = 70;
     const GRID_H = 40;
 
-    for (let i = 0; i < GRID_W * GRID_H; i++) {
+    for (let i = 0; i < GRID_CELLS; i++) {
       const cell = grid[i];
       const density = (cell >> 8) & 0xFF; // Pack: [Density (8 bits) | Type (8 bits)]
 
