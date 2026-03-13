@@ -28,6 +28,45 @@ pub const ATOM_GENOME_SIZE: usize = 8;
 pub const ATOM_INSTRUCTION_SIZE: usize = 64;
 pub const RESOURCE_MAX: i32 = 2000000000;
 
+pub const OP_NOP: u8 = 0;
+pub const OP_SET: u8 = 1;
+pub const OP_GET: u8 = 2;
+pub const OP_PUT: u8 = 3;
+pub const OP_ADD: u8 = 4;
+pub const OP_SUB: u8 = 5;
+pub const OP_JZ: u8 = 16;
+pub const OP_JNZ: u8 = 17;
+pub const OP_JMP: u8 = 18;
+pub const OP_SYSCALL: u8 = 96;
+pub const OP_REPLICATE: u8 = 128;
+pub const OP_SIGNAL: u8 = 129;
+pub const OP_BIND: u8 = 130;
+pub const OP_SHARE: u8 = 131;
+pub const OP_HEBB: u8 = 138;
+pub const OP_FIRE: u8 = 139;
+pub const OP_DECAY: u8 = 145;
+pub const OP_PLUG: u8 = 164;
+pub const OP_TENSEGRITY: u8 = 165;
+pub const OP_COLLECTIVE: u8 = 166;
+pub const OP_BUILD: u8 = 168;
+pub const OP_SPORE_DRIVE: u8 = 168;
+pub const OP_SENSE: u8 = 169;
+pub const OP_SENSE_AS: u8 = 178;
+pub const OP_SECRETE_PLASMID: u8 = 170;
+pub const OP_INCORPORATE_PLASMID: u8 = 171;
+pub const OP_RESOLVE: u8 = 176;
+pub const OP_RESONATE_KURAMOTO: u8 = 177;
+pub const PROP_ENERGY: u8 = 0;
+pub const PROP_RESONANCE: u8 = 1;
+pub const PROP_X: u8 = 2;
+pub const PROP_Y: u8 = 3;
+pub const PROP_PHASE: u8 = 4;
+pub const PROP_GRID_CHARGE: u8 = 7;
+pub const PROP_QUORUM: u8 = 8;
+pub const PROP_NEURAL_COHERENCE: u8 = 9;
+pub const PROP_MEMORY: u8 = 10;
+pub const PROP_CONSENSUS: u8 = 11;
+
 /// Strongly typed roles for LambdaVM Atoms
 #[repr(u8)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

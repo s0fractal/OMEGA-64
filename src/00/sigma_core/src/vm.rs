@@ -1,11 +1,11 @@
 //! LambdaVM Execution Engine
 
 use crate::isa::{
-    GlyphOp, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SYS_TRANSFER,
+    GlyphOp, SYS_TRANSFER,
 };
 use crate::math::{math_cos, math_sin};
 use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{GRID_W, GRID_H, SPATIAL_CELL_SIZE};
+use crate::constants::{GRID_W, GRID_H, SPATIAL_CELL_SIZE, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE};
 
 pub struct LambdaVM {}
 

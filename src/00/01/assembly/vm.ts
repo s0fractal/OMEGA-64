@@ -6,7 +6,15 @@ import {
   GRID_W,
   GRID_H,
   NEURAL_COHERENCE_OFF,
-  MEMORY_GRID_OFF
+  MEMORY_GRID_OFF,
+  CAUSALITY_OFF,
+  HIVE_MEMORY_OFF,
+  OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_SYSCALL, 
+  OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_HEBB, OP_FIRE, OP_DECAY, OP_PLUG, 
+  OP_TENSEGRITY, OP_COLLECTIVE, OP_BUILD, OP_SPORE_DRIVE, OP_SENSE, OP_SENSE_AS, 
+  OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO,
+  PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, 
+  PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS
 } from "./constants.assembly";
 
 import {
@@ -33,32 +41,7 @@ import { math_sin, math_cos } from "./math";
 // We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
 import { readStructureCharge } from "./pulse_orchestrator";
 
-// RISC-I Opcodes
-export const OP_NOP: u8 = 0x00;
-export const OP_SET: u8 = 0x01; // SET Reg, Imm8
-export const OP_GET: u8 = 0x02; // GET Reg, Prop
-export const OP_PUT: u8 = 0x03; // PUT Reg, Prop
-export const OP_ADD: u8 = 0x04; // ADD R1, R2
-export const OP_SUB: u8 = 0x05; // SUB R1, R2
-export const OP_JNZ: u8 = 0x11; // JNZ Reg, RelAddr
-export const OP_JMP: u8 = 0x12; // JMP RelAddr
-export const OP_SYSCALL: u8 = 0x60;
-export const OP_RESOLVE: u8 = 0xB0;
-export const OP_RESONATE_KURAMOTO: u8 = 0xB1;
-export const OP_SENSE: u8 = 0xB2;
-export const OP_SPORE_DRIVE: u8 = 0xA8;
-
-// Property IDs for GET/PUT
-export const PROP_ENERGY: u8 = 0;
-export const PROP_RESONANCE: u8 = 1;
-export const PROP_X: u8 = 2;
-export const PROP_Y: u8 = 3;
-export const PROP_PHASE: u8 = 4;
-export const PROP_GRID_CHARGE: u8 = 7;
-export const PROP_QUORUM: u8 = 8;
-export const PROP_NEURAL_COHERENCE: u8 = 9;
-export const PROP_MEMORY: u8 = 10;
-export const PROP_CONSENSUS: u8 = 11;
+// Opcodes and Properties are now auto-generated in constants.assembly.ts
 
 export function evaluate_opcodes(
   atomIndex: i32,
@@ -295,7 +278,7 @@ export function evaluate_opcodes(
         gasLimit = 0; // force yield to host
         break;
       }
-      case OP_SENSE: {
+      case OP_SENSE_AS: {
         setPendingSyscall(atomIndex, 21); // 21 = SYS_SENSE_PHASE
         pc += 1;
         gasUsed += 2;
