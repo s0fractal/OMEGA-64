@@ -8,15 +8,13 @@ use std::mem::ManuallyDrop;
 // By taking the 0-indexed memory pointer from WASM + 7,999,992 bytes,
 // we alias directly onto our Struct matching JS indices perfectly.
 
-// `SigmaMatrix` logically begins at address 8_000_000 natively matching the Deno SAB.
-
-const WASM_MEMORY_OFFSET: usize = 8_000_000;
+// `SigmaMatrix` logically begins at address SAFETY_BUFFER natively matching the Deno SAB.
 
 /// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = WASM_MEMORY_OFFSET as *mut crate::memory::SigmaMatrix;
+    let base_ptr = crate::constants::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
