@@ -12,9 +12,8 @@ vars:
   - BONDS_OFFSET
   - MAX_ATOMS
   - NEURAL_COHERENCE_OFF
-asImports:
-  - 'import { evaluate_opcodes } from "../../00/01/assembly/vm.ts";'
 deps:
+  - evaluate_opcodes
   - OMEGA_MEMORY_LAYOUT
   - GRID_METRICS
   - get_p_c

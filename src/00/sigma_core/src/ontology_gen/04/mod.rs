@@ -14,6 +14,12 @@ pub use secrete_glyph::*;
 #[path = "drain_spawn_requests.rs"]
 pub mod drain_spawn_requests;
 pub use drain_spawn_requests::*;
+#[path = "apply_metabolism_kernel.rs"]
+pub mod apply_metabolism_kernel;
+pub use apply_metabolism_kernel::*;
+#[path = "accumulate_metabolism_stats.rs"]
+pub mod accumulate_metabolism_stats;
+pub use accumulate_metabolism_stats::*;
 #[path = "glyph_transport.rs"]
 pub mod glyph_transport;
 pub use glyph_transport::*;

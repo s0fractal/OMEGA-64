@@ -189,6 +189,7 @@ for (const node of nodes.values()) {
 // if an ontology node changes causality level.
 emptyDirSync(GEN_DIR_TS);
 emptyDirSync(GEN_DIR_RS);
+emptyDirSync(GEN_DIR_AS);
 ensureDirSync(GEN_DIR_RS); // Need at least the root for Rust
 
 function formatLevel(lvl: number) {

@@ -1,52 +1,81 @@
-// deno-lint-ignore-file
-// @ts-nocheck
-import {
-  INSTRUCTIONS_OFFSET,
-  MAX_ATOMS,
-  GRID_W,
-  GRID_H,
-  NEURAL_COHERENCE_OFF,
-  MEMORY_GRID_OFF,
-  CAUSALITY_OFF,
-  HIVE_MEMORY_OFF,
-  OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_SYSCALL, 
-  OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_HEBB, OP_FIRE, OP_DECAY, OP_PLUG, 
-  OP_TENSEGRITY, OP_COLLECTIVE, OP_BUILD, OP_SPORE_DRIVE, OP_SENSE, OP_SENSE_AS, 
-  OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO,
-  PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, 
-  PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS
-} from "../../../_as/mod.ts";
-
-import {
-  get_reg,
-  set_reg,
-  get_p_c,
-  set_p_c,
-  set_pending_syscall,
-  get_x,
-  get_y,
-  get_phase,
-  set_phase,
-  get_spatial_grid_count,
-  get_spatial_grid_atom,
-  get_hormone,
-  set_energy,
-  set_resonance
-} from "../../../_as/mod.ts";
-
-import { WORLD_MAX_X, WORLD_MAX_Y, clamp_world_x, clamp_world_y, store_clamped_pos, dir4_x, dir4_y, dir8_x, dir8_y, in_grid } from "../../../_as/mod.ts";
-
-import { math_sin, math_cos, fast_abs, fast_max, fast_min } from "../../../_as/mod.ts";
-
-// We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
-import { read_structure_charge } from "../../../_as/mod.ts";
-
-export function evaluate_opcodes(
-  atomIndex: i32,
-  energy: i32,
-  resonance: i32,
+---
+id: evaluate_opcodes
+type: pure_fn
+dataType: i32
+returns: i32
+level: 1
+args:
+  atomIndex: i32
+  energy: i32
+  resonance: i32
   mass: i32
-): i32 {
+vars:
+  - INSTRUCTIONS_OFFSET
+  - MAX_ATOMS
+  - GRID_W
+  - NEURAL_COHERENCE_OFF
+  - MEMORY_GRID_OFF
+  - OP_NOP
+  - OP_SET
+  - OP_GET
+  - OP_PUT
+  - OP_ADD
+  - OP_SUB
+  - OP_JNZ
+  - OP_JMP
+  - OP_SYSCALL
+  - OP_RESOLVE
+  - OP_RESONATE_KURAMOTO
+  - OP_SPORE_DRIVE
+  - OP_SENSE_AS
+  - PROP_ENERGY
+  - PROP_RESONANCE
+  - PROP_X
+  - PROP_Y
+  - PROP_PHASE
+  - PROP_GRID_CHARGE
+  - PROP_QUORUM
+  - PROP_NEURAL_COHERENCE
+  - PROP_MEMORY
+  - PROP_CONSENSUS
+deps:
+  - OMEGA_MEMORY_LAYOUT
+  - GRID_METRICS
+  - VmOpcodes
+  - VmProps
+  - get_p_c
+  - set_p_c
+  - get_x
+  - get_y
+  - get_phase
+  - set_phase
+  - get_reg
+  - set_reg
+  - get_spatial_grid_count
+  - get_spatial_grid_atom
+  - get_hormone
+  - set_energy
+  - set_resonance
+  - set_pending_syscall
+  - in_grid
+  - read_structure_charge
+  - math_sin
+  - math_cos
+---
+
+---
+---
+
+```rust
+unimplemented!()
+```
+
+```typescript
+// unimplemented since user requested pure AssemblyScript isolation for VM evaluation
+return 0;
+```
+
+```assemblyscript
   let pc = get_p_c(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
@@ -98,7 +127,7 @@ export function evaluate_opcodes(
             val = get_spatial_grid_count(gx, gy);
           }
         } else if (prop == PROP_NEURAL_COHERENCE) {
-          val = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+          val = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
         } else if (prop == PROP_MEMORY) {
           let rx = get_x(atomIndex) as i32;
           let ry = get_y(atomIndex) as i32;
@@ -255,14 +284,14 @@ export function evaluate_opcodes(
           }
         }
 
-        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF);
+        let coh = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
         let K = 5 + (coh / 100);
         if (K > 128) K = 128;
 
         if (neighborCount > 0) {
           let d_theta = (K * sumSin) >> 15;
           let theta_next = (currentPhase + d_theta) & 255;
-          set_phase(atomIndex, theta_next);
+          set_phase(atomIndex, theta_next as u8);
         }
 
         pc += 1;
@@ -296,4 +325,4 @@ export function evaluate_opcodes(
   
   // We mutated resonance and energy inside OP_PUT, return them if we had multiple returns, but here we expect caller to just fetch them again. Yes! So we just return gasUsed!
   return gasUsed;
-}
+```
