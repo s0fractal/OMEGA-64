@@ -34,7 +34,8 @@ declare function trace_atom(
 ): void;
 
 
-import { math_sin, math_cos, fast_abs, fast_min, fast_max, fast_sign } from "./math";
+import { fast_abs, fast_min, fast_max, fast_sign } from "./math";
+import { math_sin, math_cos } from "../../../_/mod.ts";
 import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
 import {
   RESOURCE_MAX, clampResource, getEnergy, setEnergy, genomeKey16,

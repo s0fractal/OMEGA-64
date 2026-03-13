@@ -36,7 +36,7 @@ import {
 
 import { WORLD_MAX_X, WORLD_MAX_Y, clampWorldX, clampWorldY, storeClampedPos, dir4X, dir4Y, dir8X, dir8Y, inGrid } from "./spatial";
 
-import { math_sin, math_cos } from "./math";
+import { math_sin, math_cos } from "../../../_/mod.ts";
 
 // We import these two from index.ts to prevent duplicate complexity, circular imports are fine in AS for pure functions
 import { readStructureCharge } from "./pulse_orchestrator";
