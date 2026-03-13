@@ -65,6 +65,7 @@ let apply_metabolism_kernel_fn:
 let sharedBuffer: SharedArrayBuffer | null = null;
 let tickCounterView: Int32Array | null = null;
 let syncStateView: Int32Array | null = null;
+
 let idsView: BigUint64Array | null = null;
 let xsView: Int16Array | null = null;
 let ysView: Int16Array | null = null;
@@ -129,6 +130,7 @@ function handle_syscall(atomIdx: number) {
   LOGGER.debug(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
+
 
   let gasCost = 0;
   switch (sysId) {
@@ -789,6 +791,7 @@ self.onmessage = async (e) => {
     const sb = sharedBuffer as SharedArrayBuffer;
     tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
+
     idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
     xsView = new Int16Array(sb, OFFSETS.XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
     ysView = new Int16Array(sb, OFFSETS.YS_OFFSET, MAX_ATOMS);
@@ -855,7 +858,8 @@ self.onmessage = async (e) => {
       });
       return;
     }
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       const wasmRes = await fetch(
         WASM_PATH.href,
       );
@@ -942,7 +946,10 @@ self.onmessage = async (e) => {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
+    LOGGER.debug("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
+    let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
+      if (stuckCycles++ > 100) { LOGGER.warn("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
       Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
       if (Atomics.load(syncStateView, 0) === 2) {
         // If it's 2, we must wait for it to become 0 then 1
@@ -950,8 +957,11 @@ self.onmessage = async (e) => {
       }
     }
 
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       for (let i = startIdx; i < endIdx; i++) {
+        const startAtomMs = performance.now();
+        const startId = Atomics.load(idsView, i);
         const currentId = Atomics.load(idsView, i);
         if (currentId === 0n) continue;
 
@@ -966,6 +976,7 @@ self.onmessage = async (e) => {
         }
 
         handle_syscall(i); // Process any syscall intent pending from the atom
+        const deltaAtomMs = performance.now() - startAtomMs;
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
@@ -979,6 +990,7 @@ self.onmessage = async (e) => {
     }
 
     await maybeDelay();
+    LOGGER.debug("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
     self.postMessage({ type: "DONE", pulseId });
   }
 
@@ -1021,7 +1033,8 @@ self.onmessage = async (e) => {
   }
 
   if (type === "RESOLVE_BONDS") {
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       if (!resolve_bond_requests_fn) {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }

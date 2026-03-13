@@ -115,17 +115,19 @@ async function run() {
 
   let tick = 0;
 
-  // 100 ms loop = 10 TPS
-  setInterval(async () => {
+  // 100 ms loop = 10 TPS, but must not overlap
+  const loop = async () => {
     try {
       await PULSE.tick();
       tick++;
       renderGrid(tick);
+      setTimeout(loop, 100);
     } catch (e) {
       console.error(e);
       Deno.exit(1);
     }
-  }, 100);
+  };
+  loop();
 }
 
 if (import.meta.main) {

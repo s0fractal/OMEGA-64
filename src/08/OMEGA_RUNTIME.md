@@ -1,6 +1,6 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-12T23:41:43.930Z*
+*Generated: 2026-03-13T00:56:38.829Z*
 *Exported Files in Category: 145*
 *Total Exported Files: 145*
 *Runtime Roots: 10*
@@ -10,8 +10,8 @@
 *Experimental Code Files: 57*
 *Manifest SHA256: 355cbbc56271a500b428c314bb7283d002311c88d6bd36f391f6c8e1fe11e444*
 *Export Set SHA256: 0f7665e4ae55bd473874d4d20af49c3a381d95fd4d92b087ed4a81caf948095e*
-*Export Content SHA256: 9a7370e8d1349403a3be032004c720c5773089a1debb6d24f39381eab14230ee*
-*Git Commit: 4b949ae14ab9*
+*Export Content SHA256: 15e91c76b9969077ed9955b5ff85e30a126f414b0c54fde1b8e72a6f1deed9bc*
+*Git Commit: d64f5f5f1a8f*
 
 ---
 
@@ -11489,6 +11489,7 @@ let apply_metabolism_kernel_fn:
 let sharedBuffer: SharedArrayBuffer | null = null;
 let tickCounterView: Int32Array | null = null;
 let syncStateView: Int32Array | null = null;
+
 let idsView: BigUint64Array | null = null;
 let xsView: Int16Array | null = null;
 let ysView: Int16Array | null = null;
@@ -11553,6 +11554,7 @@ function handle_syscall(atomIdx: number) {
   LOGGER.debug(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
+
 
   let gasCost = 0;
   switch (sysId) {
@@ -12213,6 +12215,7 @@ self.onmessage = async (e) => {
     const sb = sharedBuffer as SharedArrayBuffer;
     tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
     syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
+
     idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
     xsView = new Int16Array(sb, OFFSETS.XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
     ysView = new Int16Array(sb, OFFSETS.YS_OFFSET, MAX_ATOMS);
@@ -12279,7 +12282,8 @@ self.onmessage = async (e) => {
       });
       return;
     }
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       const wasmRes = await fetch(
         WASM_PATH.href,
       );
@@ -12366,7 +12370,10 @@ self.onmessage = async (e) => {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
+    LOGGER.debug("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
+    let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
+      if (stuckCycles++ > 100) { LOGGER.warn("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
       Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
       if (Atomics.load(syncStateView, 0) === 2) {
         // If it's 2, we must wait for it to become 0 then 1
@@ -12374,8 +12381,11 @@ self.onmessage = async (e) => {
       }
     }
 
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       for (let i = startIdx; i < endIdx; i++) {
+        const startAtomMs = performance.now();
+        const startId = Atomics.load(idsView, i);
         const currentId = Atomics.load(idsView, i);
         if (currentId === 0n) continue;
 
@@ -12390,6 +12400,7 @@ self.onmessage = async (e) => {
         }
 
         handle_syscall(i); // Process any syscall intent pending from the atom
+        const deltaAtomMs = performance.now() - startAtomMs;
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
@@ -12403,6 +12414,7 @@ self.onmessage = async (e) => {
     }
 
     await maybeDelay();
+    LOGGER.debug("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
     self.postMessage({ type: "DONE", pulseId });
   }
 
@@ -12445,7 +12457,8 @@ self.onmessage = async (e) => {
   }
 
   if (type === "RESOLVE_BONDS") {
-    try {
+    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+try {
       if (!resolve_bond_requests_fn) {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
@@ -14047,6 +14060,7 @@ const waitForWorkerMessage = <T = any>(
     };
 
     const listener = (e: MessageEvent) => {
+      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data || data.type !== expectedType) return;
       if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) {
@@ -14099,6 +14113,7 @@ const waitForWorkerInit = (
     };
 
     const listener = (e: MessageEvent) => {
+      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data) return;
       if (data.type === "READY") {
@@ -14171,6 +14186,10 @@ const postAndWait = async <T = any>(
     return res.data;
   } catch (err) {
     if (err instanceof WorkerTimeoutError) {
+      const syncState = STATE_MATRIX.syncState;
+      if (syncState) {
+         LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+      }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
     }
@@ -14422,6 +14441,7 @@ export const drainEgressEvents = (): Uint8Array[] => {
   return events;
 };
 
+let isTicking = false;
 export const PULSE = {
   setOracleDelegate: (delegate: PulseOracleDelegate) => {
     oracleDelegate = delegate;
@@ -15179,7 +15199,12 @@ export const PULSE = {
     return applied;
   },
 
+
   tick: async () => {
+    if (isTicking) {
+      throw new Error("[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.");
+    }
+    isTicking = true;
     if (workers.length === 0) {
       await PULSE.initWorkers();
     }
@@ -15972,6 +15997,7 @@ export const PULSE = {
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
+      isTicking = false;
     }
   },
   getWorker: (idx: number): any => workers[idx],
@@ -38600,17 +38626,19 @@ async function run() {
 
   let tick = 0;
 
-  // 100 ms loop = 10 TPS
-  setInterval(async () => {
+  // 100 ms loop = 10 TPS, but must not overlap
+  const loop = async () => {
     try {
       await PULSE.tick();
       tick++;
       renderGrid(tick);
+      setTimeout(loop, 100);
     } catch (e) {
       console.error(e);
       Deno.exit(1);
     }
-  }, 100);
+  };
+  loop();
 }
 
 if (import.meta.main) {

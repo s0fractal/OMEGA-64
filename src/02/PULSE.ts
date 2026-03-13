@@ -1454,6 +1454,7 @@ const waitForWorkerMessage = <T = any>(
     };
 
     const listener = (e: MessageEvent) => {
+      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data || data.type !== expectedType) return;
       if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) {
@@ -1506,6 +1507,7 @@ const waitForWorkerInit = (
     };
 
     const listener = (e: MessageEvent) => {
+      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data) return;
       if (data.type === "READY") {
@@ -1578,6 +1580,10 @@ const postAndWait = async <T = any>(
     return res.data;
   } catch (err) {
     if (err instanceof WorkerTimeoutError) {
+      const syncState = STATE_MATRIX.syncState;
+      if (syncState) {
+         LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+      }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
     }
@@ -1829,6 +1835,7 @@ export const drainEgressEvents = (): Uint8Array[] => {
   return events;
 };
 
+let isTicking = false;
 export const PULSE = {
   setOracleDelegate: (delegate: PulseOracleDelegate) => {
     oracleDelegate = delegate;
@@ -2586,7 +2593,12 @@ export const PULSE = {
     return applied;
   },
 
+
   tick: async () => {
+    if (isTicking) {
+      throw new Error("[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.");
+    }
+    isTicking = true;
     if (workers.length === 0) {
       await PULSE.initWorkers();
     }
@@ -3379,6 +3391,7 @@ export const PULSE = {
     } finally {
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
+      isTicking = false;
     }
   },
   getWorker: (idx: number): any => workers[idx],
