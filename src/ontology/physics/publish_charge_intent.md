@@ -12,7 +12,7 @@ vars:
   - STRUCTURE_INTENT_SPIN_LIMIT
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - fast_max
 description: Auto-recovered publish_charge_intent
 ---

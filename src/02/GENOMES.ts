@@ -1,6 +1,6 @@
 
 
-import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_ADD, OP_SUB, SYS_TRANSFER, SYS_YIELD } from "../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_ADD, OP_SUB, SYS_TRANSFER, SYS_YIELD } from "../00/mod.ts";
 
 // Utility to assemble RISC script
 export function assembleScript(ops: number[]): Uint8Array {

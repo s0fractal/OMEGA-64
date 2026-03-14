@@ -25,7 +25,7 @@ vars:
   - MEMORY_GRID_OFF
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - dir8_x
   - dir8_y
   - dir4_x

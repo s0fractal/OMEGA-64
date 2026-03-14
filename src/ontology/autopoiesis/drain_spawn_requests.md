@@ -14,7 +14,7 @@ vars:
   - MAX_ATOMS
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - find_next_free_slot
   - seed_atom
 description: Auto-recovered drain_spawn_requests

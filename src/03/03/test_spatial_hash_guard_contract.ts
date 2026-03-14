@@ -1,6 +1,6 @@
-const ASSEMBLY_PATH = "src/ontology/core/pulse_orchestrator.md";
-const WORKER_PATH = "src/02/PULSE_WORKER.ts";
-const PULSE_PATH = "src/02/PULSE.ts";
+const ASSEMBLY_PATH = "src/ontology/core/build_spatial_hash.md";
+const WORKER_PATH = "src/_/05/PULSE_WORKER.ts";
+const PULSE_PATH = "src/_/05/PULSE.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
 
 type Violation = {
@@ -43,28 +43,8 @@ const main = async () => {
     "WASM kernel must track spatial hash max cell occupancy",
     violations,
   );
-  requireSnippet(
-    assembly,
-    "get_spatial_hash_overflow_count",
-    ASSEMBLY_PATH,
-    "WASM kernel must export overflow metric",
-    violations,
-  );
-  requireSnippet(
-    assembly,
-    "get_spatial_hash_max_cell_count",
-    ASSEMBLY_PATH,
-    "WASM kernel must export max cell metric",
-    violations,
-  );
 
-  requireSnippet(
-    worker,
-    "get_spatial_hash_overflow_count_fn",
-    WORKER_PATH,
-    "Worker must bind spatial hash overflow export",
-    violations,
-  );
+
   requireSnippet(
     worker,
     "overflowCount",

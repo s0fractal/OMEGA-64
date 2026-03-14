@@ -10,7 +10,7 @@ vars:
   - STRUCTURE_CHARGE_INTENT_OFF
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - read_structure_cell
 description: Auto-recovered read_structure_charge
 ---

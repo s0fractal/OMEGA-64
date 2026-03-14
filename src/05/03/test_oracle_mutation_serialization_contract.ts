@@ -3,7 +3,7 @@ type Violation = {
   reason: string;
 };
 
-const PULSE_PATH = "src/02/PULSE.ts";
+const PULSE_PATH = "src/_/05/PULSE.ts";
 const ORACLE_PATH = "src/05/SOVEREIGN_ORACLE.ts";
 
 const between = (source: string, start: string, end: string): string => {

@@ -27,7 +27,7 @@ vars:
   - CONTEXT_OFFSET
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
 description: Auto-recovered seed_atom
 ---
 

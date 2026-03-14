@@ -8,7 +8,7 @@ import { SOVEREIGNTY_ENGINE } from "@03";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
-import { SEMANTIC_MEMBRANE } from "@05/SEMANTIC_MEMBRANE.ts";
+import { SEMANTIC_MEMBRANE } from "../_/05/SEMANTIC_MEMBRANE.ts";
 import { GRID_W, GRID_H } from "../_/mod.ts";
 
 export interface SovereignOracleAkashaDelegate {

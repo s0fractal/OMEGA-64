@@ -8,7 +8,7 @@ args:
   idx: i32
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_logic_byte
 description: Auto-recovered get_genome_velocity_y
 ---

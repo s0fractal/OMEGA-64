@@ -691,11 +691,16 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
 }
 
 // Re-export core topological state that lives outside the pure DAG
-mainTsOut += `export * from "../00/STATE_MATRIX.ts";\n`;
+const resolveSysPath = (id: string) => {
+  const n = nodes.get(id);
+  return n ? `../_/${formatLevel(n.level)}/${id}.ts` : `../_/00/${id}.ts`;
+};
+
+mainTsOut += `export * from "${resolveSysPath('STATE_MATRIX')}";\n`;
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
-mainTsOut += `export * from "../00/STATE_SNAPSHOT.ts";\n`;
-mainTsOut += `export * from "../00/ENV_PARSE.ts";\n`;
+mainTsOut += `export * from "${resolveSysPath('STATE_SNAPSHOT')}";\n`;
+mainTsOut += `export * from "${resolveSysPath('ENV_PARSE')}";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
 mainTsOut += `export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);\n`;
 

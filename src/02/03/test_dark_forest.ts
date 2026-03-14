@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_PUT } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_PUT } from "../../_/mod.ts";
 
 Deno.test({
   name: "Stage 37: The Dark Forest Topology (Radar & Stealth)",

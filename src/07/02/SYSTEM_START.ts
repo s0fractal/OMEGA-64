@@ -34,7 +34,7 @@ import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
 import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
 import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
 import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import { GLYPH_TELEMETRY, type GlyphSnapshot } from "@06/GLYPH_TELEMETRY.ts";
+import { GLYPH_TELEMETRY, type GlyphSnapshot } from "../../_/06/GLYPH_TELEMETRY.ts";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
 import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";

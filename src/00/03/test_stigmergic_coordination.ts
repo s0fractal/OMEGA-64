@@ -4,7 +4,7 @@ const { OP_BUILD, OP_RESONATE } = RISC;
 import { QuorumAdvocate } from "@07/02/relics/QUORUM_ADVOCATE.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_RESONATE } from "../../00/STATE_MATRIX.ts";
+import { OP_RESONATE } from "../../_/mod.ts";
 
 async function runTest() {
   LOGGER.info("🧪 [TEST] Starting Stigmergic Coordination Verification...");

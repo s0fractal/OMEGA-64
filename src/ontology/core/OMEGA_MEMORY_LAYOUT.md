@@ -4,7 +4,7 @@ type: memory_layout
 description: "Isomorphic topological mapping of all generic WebAssembly shared arrays"
 deps: 
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
 vars:
   - MAX_ATOMS
   - SAFETY_BUFFER

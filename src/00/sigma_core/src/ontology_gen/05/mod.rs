@@ -2,9 +2,27 @@
 
 pub use super::L04::*;
 
-#[path = "evaluate_opcodes.rs"]
-pub mod evaluate_opcodes;
-pub use evaluate_opcodes::*;
-#[path = "tick_structure_grid.rs"]
-pub mod tick_structure_grid;
-pub use tick_structure_grid::*;
+#[path = "PULSE.rs"]
+pub mod PULSE;
+pub use PULSE::*;
+#[path = "PULSE_WORKER.rs"]
+pub mod PULSE_WORKER;
+pub use PULSE_WORKER::*;
+#[path = "execute_atom.rs"]
+pub mod execute_atom;
+pub use execute_atom::*;
+#[path = "SOVEREIGN_ORACLE.rs"]
+pub mod SOVEREIGN_ORACLE;
+pub use SOVEREIGN_ORACLE::*;
+#[path = "llm_soul.rs"]
+pub mod llm_soul;
+pub use llm_soul::*;
+#[path = "AVATAR_ENGINE.rs"]
+pub mod AVATAR_ENGINE;
+pub use AVATAR_ENGINE::*;
+#[path = "SEMANTIC_MEMBRANE.rs"]
+pub mod SEMANTIC_MEMBRANE;
+pub use SEMANTIC_MEMBRANE::*;
+#[path = "tick_environment.rs"]
+pub mod tick_environment;
+pub use tick_environment::*;

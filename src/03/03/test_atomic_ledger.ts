@@ -4,7 +4,7 @@ import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { ATOMIC_LEDGER } from "@03";
-import { OP_SET, SYS_EMIT, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_EMIT, OP_SYSCALL } from "../../_/mod.ts";
 
 Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   LOGGER.info("--- STAGE 33: ATOMIC LEDGER TEST ---");

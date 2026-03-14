@@ -10,7 +10,7 @@ args:
 vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - fast_abs
 description: Auto-recovered diffusion_share_for_kind
 ---

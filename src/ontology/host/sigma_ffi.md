@@ -4,7 +4,7 @@ type: substrate_module
 target: rust
 deps:
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - sigma_memory
 description: FFI bridging logic and memory alignment for WebAssembly workers
 ---

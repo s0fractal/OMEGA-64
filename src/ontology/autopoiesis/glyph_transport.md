@@ -24,7 +24,7 @@ deps:
   - unpack_glyph_amplitude
   - unpack_glyph_kind
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - fast_abs
   - fast_max
   - fast_min

@@ -3,7 +3,7 @@ id: clamp_world_x
 type: pure_fn
 description: "Constrain an X coordinate to the absolute global bounds"
 deps: 
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - math_clamp
 vars:
   - WORLD_MAX_X

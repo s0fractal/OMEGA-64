@@ -5,8 +5,8 @@ type Violation = {
 };
 
 const RUNTIME_HOT_PATH_FILES = [
-  "src/02/PULSE.ts",
-  "src/02/PULSE_WORKER.ts",
+  "src/_/05/PULSE.ts",
+  "src/_/05/PULSE_WORKER.ts",
   "src/00/STATE_MATRIX.ts",
   "src/06/SNAPSHOT_ENGINE.ts",
   "src/06/BREATH.ts",

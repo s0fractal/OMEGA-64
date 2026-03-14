@@ -6,7 +6,7 @@ import {
 import { PULSE } from "@02";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { CONTEXT_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "../../_/mod.ts";
 
 Deno.test({
   name: "Stage 44: Vector Cognitive - Math LUTs and Kuramoto Resonance",

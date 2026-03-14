@@ -1,7 +1,7 @@
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
-import { PULSE } from "../02/PULSE.ts";
+import { PULSE } from "../_/05/PULSE.ts";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";

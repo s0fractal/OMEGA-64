@@ -1,7 +1,7 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-14T16:23:08.871Z*
-*Exported Files: 148*
+*Generated: 2026-03-14T21:30:34.178Z*
+*Exported Files: 193*
 
 ---
 
@@ -10,12 +10,22 @@
 - src/00/sigma_core/src/lib.rs
 - src/00/sigma_core/src/ontology_gen/00/COS_LUT.rs
 - src/00/sigma_core/src/ontology_gen/00/C_LOG2_C_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/ENV_PARSE.rs
+- src/00/sigma_core/src/ontology_gen/00/GENESIS_PREDATOR_SCRIPT.rs
+- src/00/sigma_core/src/ontology_gen/00/GLYPH_ARITY_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/GLYPH_ENERGY_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/GLYPH_LEGACY_OPCODE_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/GLYPH_RGB_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/GLYPH_TYPES.rs
+- src/00/sigma_core/src/ontology_gen/00/OPCODE_ARITY_LUT.rs
 - src/00/sigma_core/src/ontology_gen/00/SIN_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/STATE_SNAPSHOT.rs
 - src/00/sigma_core/src/ontology_gen/00/SYSTEM_CONSTANTS.rs
 - src/00/sigma_core/src/ontology_gen/00/StructureTypes.rs
 - src/00/sigma_core/src/ontology_gen/00/VmOpcodes.rs
 - src/00/sigma_core/src/ontology_gen/00/VmProps.rs
 - src/00/sigma_core/src/ontology_gen/00/VmSys.rs
+- src/00/sigma_core/src/ontology_gen/00/checkpoint_chain.rs
 - src/00/sigma_core/src/ontology_gen/00/clamp01.rs
 - src/00/sigma_core/src/ontology_gen/00/dir4_x.rs
 - src/00/sigma_core/src/ontology_gen/00/dir4_y.rs
@@ -27,6 +37,7 @@
 - src/00/sigma_core/src/ontology_gen/00/fast_min.rs
 - src/00/sigma_core/src/ontology_gen/00/fast_sign.rs
 - src/00/sigma_core/src/ontology_gen/00/immune_check.rs
+- src/00/sigma_core/src/ontology_gen/00/ledger_chain.rs
 - src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
 - src/00/sigma_core/src/ontology_gen/00/mod.rs
 - src/00/sigma_core/src/ontology_gen/00/normalize_angle.rs
@@ -38,122 +49,156 @@
 - src/00/sigma_core/src/ontology_gen/00/trace_atom.rs
 - src/00/sigma_core/src/ontology_gen/00/unpack_glyph_amplitude.rs
 - src/00/sigma_core/src/ontology_gen/00/unpack_glyph_kind.rs
-- src/00/sigma_core/src/ontology_gen/01/GRID_METRICS.rs
+- src/00/sigma_core/src/ontology_gen/01/OMEGA_MEMORY_LAYOUT.rs
 - src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
 - src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
+- src/00/sigma_core/src/ontology_gen/01/clamp_world_x.rs
+- src/00/sigma_core/src/ontology_gen/01/clamp_world_y.rs
 - src/00/sigma_core/src/ontology_gen/01/in_grid.rs
 - src/00/sigma_core/src/ontology_gen/01/math_cos.rs
 - src/00/sigma_core/src/ontology_gen/01/math_sin.rs
 - src/00/sigma_core/src/ontology_gen/01/mod.rs
-- src/00/sigma_core/src/ontology_gen/02/OMEGA_MEMORY_LAYOUT.rs
-- src/00/sigma_core/src/ontology_gen/02/clamp_world_x.rs
-- src/00/sigma_core/src/ontology_gen/02/clamp_world_y.rs
+- src/00/sigma_core/src/ontology_gen/01/sigma_memory.rs
+- src/00/sigma_core/src/ontology_gen/02/add_energy_delta.rs
+- src/00/sigma_core/src/ontology_gen/02/add_hive_balance.rs
+- src/00/sigma_core/src/ontology_gen/02/add_resonance_delta.rs
+- src/00/sigma_core/src/ontology_gen/02/atomic_deposit_glyph_header.rs
+- src/00/sigma_core/src/ontology_gen/02/clear_metabolism_stats.rs
+- src/00/sigma_core/src/ontology_gen/02/clear_secretion_stats.rs
+- src/00/sigma_core/src/ontology_gen/02/decay_for_kind.rs
+- src/00/sigma_core/src/ontology_gen/02/diffuse_viral_semantics.rs
+- src/00/sigma_core/src/ontology_gen/02/diffusion_share_for_kind.rs
+- src/00/sigma_core/src/ontology_gen/02/find_next_free_slot.rs
+- src/00/sigma_core/src/ontology_gen/02/genome_key16.rs
+- src/00/sigma_core/src/ontology_gen/02/get_attention_cell.rs
+- src/00/sigma_core/src/ontology_gen/02/get_bond_stiffness.rs
+- src/00/sigma_core/src/ontology_gen/02/get_bond_target.rs
+- src/00/sigma_core/src/ontology_gen/02/get_energy.rs
+- src/00/sigma_core/src/ontology_gen/02/get_glyph_influence.rs
+- src/00/sigma_core/src/ontology_gen/02/get_hive_balance.rs
+- src/00/sigma_core/src/ontology_gen/02/get_hive_memory.rs
+- src/00/sigma_core/src/ontology_gen/02/get_hormone.rs
+- src/00/sigma_core/src/ontology_gen/02/get_lineage.rs
+- src/00/sigma_core/src/ontology_gen/02/get_logic_byte.rs
+- src/00/sigma_core/src/ontology_gen/02/get_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/02/get_p_c.rs
+- src/00/sigma_core/src/ontology_gen/02/get_pending_syscall.rs
+- src/00/sigma_core/src/ontology_gen/02/get_phase.rs
+- src/00/sigma_core/src/ontology_gen/02/get_read_energy.rs
+- src/00/sigma_core/src/ontology_gen/02/get_read_resonance.rs
+- src/00/sigma_core/src/ontology_gen/02/get_read_x.rs
+- src/00/sigma_core/src/ontology_gen/02/get_read_y.rs
+- src/00/sigma_core/src/ontology_gen/02/get_reg.rs
+- src/00/sigma_core/src/ontology_gen/02/get_resonance.rs
+- src/00/sigma_core/src/ontology_gen/02/get_role.rs
+- src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_atom.rs
+- src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_count.rs
+- src/00/sigma_core/src/ontology_gen/02/get_x.rs
+- src/00/sigma_core/src/ontology_gen/02/get_y.rs
+- src/00/sigma_core/src/ontology_gen/02/memory_views.rs
 - src/00/sigma_core/src/ontology_gen/02/mod.rs
-- src/00/sigma_core/src/ontology_gen/02/sigma_memory.rs
-- src/00/sigma_core/src/ontology_gen/03/add_energy_delta.rs
-- src/00/sigma_core/src/ontology_gen/03/add_hive_balance.rs
-- src/00/sigma_core/src/ontology_gen/03/add_resonance_delta.rs
-- src/00/sigma_core/src/ontology_gen/03/atomic_deposit_glyph_header.rs
-- src/00/sigma_core/src/ontology_gen/03/clear_metabolism_stats.rs
-- src/00/sigma_core/src/ontology_gen/03/clear_secretion_stats.rs
-- src/00/sigma_core/src/ontology_gen/03/decay_for_kind.rs
-- src/00/sigma_core/src/ontology_gen/03/diffuse_viral_semantics.rs
-- src/00/sigma_core/src/ontology_gen/03/diffusion_share_for_kind.rs
-- src/00/sigma_core/src/ontology_gen/03/find_next_free_slot.rs
-- src/00/sigma_core/src/ontology_gen/03/genome_key16.rs
-- src/00/sigma_core/src/ontology_gen/03/get_attention_cell.rs
-- src/00/sigma_core/src/ontology_gen/03/get_bond_stiffness.rs
-- src/00/sigma_core/src/ontology_gen/03/get_bond_target.rs
-- src/00/sigma_core/src/ontology_gen/03/get_energy.rs
-- src/00/sigma_core/src/ontology_gen/03/get_glyph_influence.rs
-- src/00/sigma_core/src/ontology_gen/03/get_hive_balance.rs
-- src/00/sigma_core/src/ontology_gen/03/get_hive_memory.rs
-- src/00/sigma_core/src/ontology_gen/03/get_hormone.rs
-- src/00/sigma_core/src/ontology_gen/03/get_lineage.rs
-- src/00/sigma_core/src/ontology_gen/03/get_logic_byte.rs
-- src/00/sigma_core/src/ontology_gen/03/get_neural_coherence.rs
-- src/00/sigma_core/src/ontology_gen/03/get_p_c.rs
-- src/00/sigma_core/src/ontology_gen/03/get_pending_syscall.rs
-- src/00/sigma_core/src/ontology_gen/03/get_phase.rs
-- src/00/sigma_core/src/ontology_gen/03/get_read_energy.rs
-- src/00/sigma_core/src/ontology_gen/03/get_read_resonance.rs
-- src/00/sigma_core/src/ontology_gen/03/get_read_x.rs
-- src/00/sigma_core/src/ontology_gen/03/get_read_y.rs
-- src/00/sigma_core/src/ontology_gen/03/get_reg.rs
-- src/00/sigma_core/src/ontology_gen/03/get_resonance.rs
-- src/00/sigma_core/src/ontology_gen/03/get_role.rs
-- src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_atom.rs
-- src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_count.rs
-- src/00/sigma_core/src/ontology_gen/03/get_x.rs
-- src/00/sigma_core/src/ontology_gen/03/get_y.rs
+- src/00/sigma_core/src/ontology_gen/02/publish_build_intent.rs
+- src/00/sigma_core/src/ontology_gen/02/publish_charge_intent.rs
+- src/00/sigma_core/src/ontology_gen/02/read_structure_cell.rs
+- src/00/sigma_core/src/ontology_gen/02/reduce_atom_deltas.rs
+- src/00/sigma_core/src/ontology_gen/02/reset_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/02/seed_atom.rs
+- src/00/sigma_core/src/ontology_gen/02/set_bond_dist.rs
+- src/00/sigma_core/src/ontology_gen/02/set_bond_stiffness.rs
+- src/00/sigma_core/src/ontology_gen/02/set_bond_target.rs
+- src/00/sigma_core/src/ontology_gen/02/set_damping.rs
+- src/00/sigma_core/src/ontology_gen/02/set_energy.rs
+- src/00/sigma_core/src/ontology_gen/02/set_hive_memory.rs
+- src/00/sigma_core/src/ontology_gen/02/set_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/02/set_p_c.rs
+- src/00/sigma_core/src/ontology_gen/02/set_pending_syscall.rs
+- src/00/sigma_core/src/ontology_gen/02/set_phase.rs
+- src/00/sigma_core/src/ontology_gen/02/set_reg.rs
+- src/00/sigma_core/src/ontology_gen/02/set_resonance.rs
+- src/00/sigma_core/src/ontology_gen/02/set_role.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_bonding.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_environment.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_ffi.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_glyph_transport.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_pulse.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_replication.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_shadow.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_spatial.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_structure.rs
+- src/00/sigma_core/src/ontology_gen/02/store_clamped_pos.rs
+- src/00/sigma_core/src/ontology_gen/03/ATOMIC_LEDGER.rs
+- src/00/sigma_core/src/ontology_gen/03/ATOM_ACCESS.rs
+- src/00/sigma_core/src/ontology_gen/03/GATE.rs
+- src/00/sigma_core/src/ontology_gen/03/GATE_LEDGER.rs
+- src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
+- src/00/sigma_core/src/ontology_gen/03/GATE_VALIDATOR.rs
+- src/00/sigma_core/src/ontology_gen/03/GENETIC_LEDGER.rs
+- src/00/sigma_core/src/ontology_gen/03/accumulate_metabolism_stats.rs
+- src/00/sigma_core/src/ontology_gen/03/add_resonance.rs
+- src/00/sigma_core/src/ontology_gen/03/apply_bond_springs.rs
+- src/00/sigma_core/src/ontology_gen/03/apply_metabolism_kernel.rs
+- src/00/sigma_core/src/ontology_gen/03/build_spatial_hash.rs
+- src/00/sigma_core/src/ontology_gen/03/calculate_trophism.rs
+- src/00/sigma_core/src/ontology_gen/03/drain_spawn_requests.rs
+- src/00/sigma_core/src/ontology_gen/03/fire_signal.rs
+- src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_x.rs
+- src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_y.rs
+- src/00/sigma_core/src/ontology_gen/03/glyph_transport.rs
 - src/00/sigma_core/src/ontology_gen/03/mod.rs
-- src/00/sigma_core/src/ontology_gen/03/publish_build_intent.rs
-- src/00/sigma_core/src/ontology_gen/03/publish_charge_intent.rs
-- src/00/sigma_core/src/ontology_gen/03/read_structure_cell.rs
-- src/00/sigma_core/src/ontology_gen/03/reduce_atom_deltas.rs
-- src/00/sigma_core/src/ontology_gen/03/reset_neural_coherence.rs
-- src/00/sigma_core/src/ontology_gen/03/seed_atom.rs
-- src/00/sigma_core/src/ontology_gen/03/set_bond_dist.rs
-- src/00/sigma_core/src/ontology_gen/03/set_bond_stiffness.rs
-- src/00/sigma_core/src/ontology_gen/03/set_bond_target.rs
-- src/00/sigma_core/src/ontology_gen/03/set_damping.rs
-- src/00/sigma_core/src/ontology_gen/03/set_energy.rs
-- src/00/sigma_core/src/ontology_gen/03/set_hive_memory.rs
-- src/00/sigma_core/src/ontology_gen/03/set_neural_coherence.rs
-- src/00/sigma_core/src/ontology_gen/03/set_p_c.rs
-- src/00/sigma_core/src/ontology_gen/03/set_pending_syscall.rs
-- src/00/sigma_core/src/ontology_gen/03/set_phase.rs
-- src/00/sigma_core/src/ontology_gen/03/set_reg.rs
-- src/00/sigma_core/src/ontology_gen/03/set_resonance.rs
-- src/00/sigma_core/src/ontology_gen/03/set_role.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_bonding.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_environment.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_ffi.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_glyph_transport.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_pulse.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_replication.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_shadow.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_spatial.rs
-- src/00/sigma_core/src/ontology_gen/03/sigma_structure.rs
-- src/00/sigma_core/src/ontology_gen/03/store_clamped_pos.rs
-- src/00/sigma_core/src/ontology_gen/04/accumulate_metabolism_stats.rs
-- src/00/sigma_core/src/ontology_gen/04/add_resonance.rs
-- src/00/sigma_core/src/ontology_gen/04/apply_bond_springs.rs
-- src/00/sigma_core/src/ontology_gen/04/apply_metabolism_kernel.rs
-- src/00/sigma_core/src/ontology_gen/04/build_spatial_hash.rs
-- src/00/sigma_core/src/ontology_gen/04/calculate_trophism.rs
-- src/00/sigma_core/src/ontology_gen/04/drain_spawn_requests.rs
-- src/00/sigma_core/src/ontology_gen/04/fire_signal.rs
-- src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_x.rs
-- src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_y.rs
-- src/00/sigma_core/src/ontology_gen/04/glyph_transport.rs
+- src/00/sigma_core/src/ontology_gen/03/read_structure_charge.rs
+- src/00/sigma_core/src/ontology_gen/03/resolve_bond_requests.rs
+- src/00/sigma_core/src/ontology_gen/03/run_phagocyte_pass.rs
+- src/00/sigma_core/src/ontology_gen/03/secrete_glyph.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_vm.rs
+- src/00/sigma_core/src/ontology_gen/03/tick_membrane_physics.rs
+- src/00/sigma_core/src/ontology_gen/04/P2P_CODEC.rs
+- src/00/sigma_core/src/ontology_gen/04/P2P_FEDERATION.rs
+- src/00/sigma_core/src/ontology_gen/04/STATE_MATRIX.rs
+- src/00/sigma_core/src/ontology_gen/04/SWARM_NEXUS.rs
+- src/00/sigma_core/src/ontology_gen/04/SWARM_NODE.rs
+- src/00/sigma_core/src/ontology_gen/04/evaluate_opcodes.rs
 - src/00/sigma_core/src/ontology_gen/04/mod.rs
-- src/00/sigma_core/src/ontology_gen/04/read_structure_charge.rs
-- src/00/sigma_core/src/ontology_gen/04/resolve_bond_requests.rs
-- src/00/sigma_core/src/ontology_gen/04/run_phagocyte_pass.rs
-- src/00/sigma_core/src/ontology_gen/04/secrete_glyph.rs
-- src/00/sigma_core/src/ontology_gen/04/sigma_vm.rs
-- src/00/sigma_core/src/ontology_gen/04/tick_membrane_physics.rs
-- src/00/sigma_core/src/ontology_gen/05/evaluate_opcodes.rs
+- src/00/sigma_core/src/ontology_gen/04/tick_structure_grid.rs
+- src/00/sigma_core/src/ontology_gen/05/AVATAR_ENGINE.rs
+- src/00/sigma_core/src/ontology_gen/05/PULSE.rs
+- src/00/sigma_core/src/ontology_gen/05/PULSE_WORKER.rs
+- src/00/sigma_core/src/ontology_gen/05/SEMANTIC_MEMBRANE.rs
+- src/00/sigma_core/src/ontology_gen/05/SOVEREIGN_ORACLE.rs
+- src/00/sigma_core/src/ontology_gen/05/execute_atom.rs
+- src/00/sigma_core/src/ontology_gen/05/llm_soul.rs
 - src/00/sigma_core/src/ontology_gen/05/mod.rs
-- src/00/sigma_core/src/ontology_gen/05/tick_structure_grid.rs
+- src/00/sigma_core/src/ontology_gen/05/tick_environment.rs
+- src/00/sigma_core/src/ontology_gen/06/BREATH.rs
+- src/00/sigma_core/src/ontology_gen/06/GLYPH_TELEMETRY.rs
 - src/00/sigma_core/src/ontology_gen/06/LOGGER.rs
+- src/00/sigma_core/src/ontology_gen/06/MUTATION_TELEMETRY.rs
+- src/00/sigma_core/src/ontology_gen/06/OMEGA_DAEMON.rs
+- src/00/sigma_core/src/ontology_gen/06/SERVE_DASHBOARD.rs
+- src/00/sigma_core/src/ontology_gen/06/TUI_DASHBOARD.rs
 - src/00/sigma_core/src/ontology_gen/06/base64_to_bytes.rs
 - src/00/sigma_core/src/ontology_gen/06/bytes_to_base64.rs
 - src/00/sigma_core/src/ontology_gen/06/bytes_to_hex.rs
-- src/00/sigma_core/src/ontology_gen/06/execute_atom.rs
 - src/00/sigma_core/src/ontology_gen/06/fnv1a32.rs
+- src/00/sigma_core/src/ontology_gen/06/get_glyph_arity.rs
+- src/00/sigma_core/src/ontology_gen/06/get_glyph_energy.rs
+- src/00/sigma_core/src/ontology_gen/06/get_glyph_kind.rs
+- src/00/sigma_core/src/ontology_gen/06/get_glyph_legacy_opcode.rs
 - src/00/sigma_core/src/ontology_gen/06/hex_to_bytes.rs
 - src/00/sigma_core/src/ontology_gen/06/make_xor_shift32.rs
 - src/00/sigma_core/src/ontology_gen/06/mod.rs
 - src/00/sigma_core/src/ontology_gen/06/normalize_hex64.rs
-- src/00/sigma_core/src/ontology_gen/06/pulse_orchestrator.rs
+- src/00/sigma_core/src/ontology_gen/06/pack_structure_intent.rs
 - src/00/sigma_core/src/ontology_gen/06/stable_stringify.rs
-- src/00/sigma_core/src/ontology_gen/06/tick_environment.rs
 - src/00/sigma_core/src/ontology_gen/06/to_int16_big_endian.rs
+- src/00/sigma_core/src/ontology_gen/06/unpack_structure_charge.rs
+- src/00/sigma_core/src/ontology_gen/07/assembler.rs
 - src/00/sigma_core/src/ontology_gen/07/crypto_keys.rs
+- src/00/sigma_core/src/ontology_gen/07/disassembler.rs
+- src/00/sigma_core/src/ontology_gen/07/glyph_ir_64.rs
 - src/00/sigma_core/src/ontology_gen/07/mod.rs
 - src/00/sigma_core/src/ontology_gen/07/sha256_hex.rs
+- src/00/sigma_core/src/ontology_gen/08/glyph_pretty.rs
+- src/00/sigma_core/src/ontology_gen/08/mod.rs
 - src/00/sigma_core/src/ontology_gen/mod.rs
 
 ---
@@ -200,12 +245,121 @@ pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/00/ENV_PARSE.rs
+
+```rust
+#![allow(unused_imports)]
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GENESIS_PREDATOR_SCRIPT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const GENESIS_PREDATOR_SCRIPT: [u8; 64] = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4, 1, 0, 1, 2, 0, 1, 3, 50, 1, 4, 0, 5, 3, 4, 1, 0, 10, 96, 1, 0, 1, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_ARITY_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const GLYPH_ARITY_LUT: [u8; 64] = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 3, 2, 2, 0, 0, 0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_ENERGY_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const GLYPH_ENERGY_LUT: [u8; 64] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 2, 20, 50, 10, 0, 1, 3, 4, 6, 2, 1, 1, 1, 1, 4, 2, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_LEGACY_OPCODE_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const GLYPH_LEGACY_OPCODE_LUT: [u8; 64] = [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_RGB_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const GLYPH_RGB_LUT: [u8; 192] = [255, 255, 255, 128, 128, 128, 0, 0, 0, 255, 0, 255, 255, 77, 77, 254, 87, 68, 251, 98, 60, 245, 109, 51, 238, 121, 42, 230, 132, 34, 220, 143, 27, 209, 153, 21, 199, 162, 15, 188, 170, 11, 179, 179, 7, 153, 170, 4, 131, 163, 2, 110, 157, 1, 93, 154, 0, 77, 153, 0, 62, 154, 0, 48, 157, 1, 34, 163, 2, 21, 170, 4, 7, 179, 7, 11, 188, 29, 15, 199, 52, 21, 209, 77, 27, 220, 104, 34, 230, 132, 42, 238, 160, 51, 245, 187, 60, 251, 212, 68, 254, 235, 77, 255, 255, 84, 237, 254, 91, 219, 251, 96, 201, 245, 100, 183, 238, 103, 166, 230, 105, 151, 220, 105, 136, 209, 104, 123, 199, 102, 111, 188, 100, 100, 179, 105, 98, 170, 109, 95, 163, 113, 93, 157, 117, 92, 154, 122, 92, 153, 129, 92, 154, 138, 93, 157, 149, 95, 163, 163, 98, 170, 179, 100, 179, 188, 102, 180, 199, 104, 180, 209, 105, 178, 220, 105, 174, 229, 103, 166, 238, 100, 156, 245, 96, 141, 251, 91, 123, 254, 84, 101];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_TYPES.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Enum: GLYPH_TYPES
+pub const KIND_CORE: u8 = 0;
+pub const KIND_CONTROL: u8 = 1;
+pub const KIND_TRANSPORT: u8 = 2;
+pub const KIND_STRUCTURAL: u8 = 3;
+pub const KIND_CATALYTIC: u8 = 4;
+pub const KIND_REGULATORY: u8 = 5;
+pub const KIND_MEMORY: u8 = 6;
+pub const KIND_RESERVE: u8 = 7;
+pub const STAB_HARD_INVARIANT: u8 = 0;
+pub const STAB_LEGACY_BRIDGE: u8 = 1;
+pub const STAB_BOUNDED_DYNAMIC: u8 = 2;
+pub const STAB_RESERVE: u8 = 3;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/OPCODE_ARITY_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const OPCODE_ARITY_LUT: [u8; 248] = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/00/SIN_LUT.rs
 
 ```rust
 #![allow(unused_imports)]
 
 pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 6393, 7179, 7962, 8739, 9512, 10278, 11039, 11793, 12539, 13279, 14010, 14732, 15446, 16151, 16846, 17530, 18204, 18868, 19519, 20159, 20787, 21403, 22005, 22594, 23170, 23731, 24279, 24811, 25329, 25832, 26319, 26790, 27245, 27683, 28105, 28510, 28898, 29268, 29621, 29956, 30273, 30571, 30852, 31113, 31356, 31580, 31785, 31971, 32137, 32285, 32412, 32521, 32609, 32678, 32728, 32757, 32767, 32757, 32728, 32678, 32609, 32521, 32412, 32285, 32137, 31971, 31785, 31580, 31356, 31113, 30852, 30571, 30273, 29956, 29621, 29268, 28898, 28510, 28105, 27683, 27245, 26790, 26319, 25832, 25329, 24811, 24279, 23731, 23170, 22594, 22005, 21403, 20787, 20159, 19519, 18868, 18204, 17530, 16846, 16151, 15446, 14732, 14010, 13279, 12539, 11793, 11039, 10278, 9512, 8739, 7962, 7179, 6393, 5602, 4808, 4011, 3212, 2410, 1608, 804, 0, -804, -1608, -2410, -3212, -4011, -4808, -5602, -6393, -7179, -7962, -8739, -9512, -10278, -11039, -11793, -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594, -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956, -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757, -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571, -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731, -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279, -12539, -11793, -11039, -10278, -9512, -8739, -7962, -7179, -6393, -5602, -4808, -4011, -3212, -2410, -1608, -804];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/STATE_SNAPSHOT.rs
+
+```rust
+#![allow(unused_imports)]
+
 
 ```
 
@@ -222,7 +376,10 @@ pub const LAYOUT_VERSION: u32 = 1;
 pub const SAFETY_BUFFER: usize = 8000000;
 pub const GRID_W: i32 = 140;
 pub const GRID_H: i32 = 80;
+pub const GRID_CELLS: usize = (GRID_W * GRID_H) as usize;
 pub const SPATIAL_CELL_SIZE: i32 = 10;
+pub const WORLD_MAX_X: i32 = ((GRID_W * SPATIAL_CELL_SIZE) - 1) as i32;
+pub const WORLD_MAX_Y: i32 = ((GRID_H * SPATIAL_CELL_SIZE) - 1) as i32;
 pub const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
 pub const PHEROMONE_COST_BASE: i32 = 10;
 pub const PLASMID_COST_BASE: i32 = 25;
@@ -310,7 +467,7 @@ pub const OP_PLUG: u8 = 164;
 pub const OP_TENSEGRITY: u8 = 165;
 pub const OP_COLLECTIVE: u8 = 166;
 pub const OP_BUILD: u8 = 168;
-pub const OP_SPORE_DRIVE: u8 = 168;
+pub const OP_SPORE_DRIVE: u8 = 167;
 pub const OP_SENSE: u8 = 169;
 pub const OP_SENSE_AS: u8 = 178;
 pub const OP_SECRETE_PLASMID: u8 = 170;
@@ -369,6 +526,16 @@ pub const SYS_ATTRACT: i32 = 17;
 pub const SYS_FOLD: i32 = 18;
 pub const SYS_SPORE_DRIVE: i32 = 20;
 pub const SYS_SENSE_PHASE: i32 = 21;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/checkpoint_chain.rs
+
+```rust
+#![allow(unused_imports)]
+
 
 ```
 
@@ -564,6 +731,16 @@ pub fn immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entro
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/00/ledger_chain.rs
+
+```rust
+#![allow(unused_imports)]
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
 
 ```rust
@@ -591,6 +768,9 @@ pub fn math_clamp(val: i32, min: i32, max: i32) -> i32 {
 #[path = "trace_atom.rs"]
 pub mod trace_atom;
 pub use trace_atom::*;
+#[path = "GLYPH_ARITY_LUT.rs"]
+pub mod GLYPH_ARITY_LUT;
+pub use GLYPH_ARITY_LUT::*;
 #[path = "StructureTypes.rs"]
 pub mod StructureTypes;
 pub use StructureTypes::*;
@@ -600,21 +780,42 @@ pub use VmProps::*;
 #[path = "VmSys.rs"]
 pub mod VmSys;
 pub use VmSys::*;
+#[path = "GLYPH_TYPES.rs"]
+pub mod GLYPH_TYPES;
+pub use GLYPH_TYPES::*;
+#[path = "OPCODE_ARITY_LUT.rs"]
+pub mod OPCODE_ARITY_LUT;
+pub use OPCODE_ARITY_LUT::*;
 #[path = "SYSTEM_CONSTANTS.rs"]
 pub mod SYSTEM_CONSTANTS;
 pub use SYSTEM_CONSTANTS::*;
 #[path = "VmOpcodes.rs"]
 pub mod VmOpcodes;
 pub use VmOpcodes::*;
+#[path = "GLYPH_LEGACY_OPCODE_LUT.rs"]
+pub mod GLYPH_LEGACY_OPCODE_LUT;
+pub use GLYPH_LEGACY_OPCODE_LUT::*;
+#[path = "GLYPH_ENERGY_LUT.rs"]
+pub mod GLYPH_ENERGY_LUT;
+pub use GLYPH_ENERGY_LUT::*;
+#[path = "GLYPH_RGB_LUT.rs"]
+pub mod GLYPH_RGB_LUT;
+pub use GLYPH_RGB_LUT::*;
 #[path = "sigma_isa.rs"]
 pub mod sigma_isa;
 pub use sigma_isa::*;
+#[path = "ENV_PARSE.rs"]
+pub mod ENV_PARSE;
+pub use ENV_PARSE::*;
 #[path = "sigma_math.rs"]
 pub mod sigma_math;
 pub use sigma_math::*;
 #[path = "sigma_atom_role.rs"]
 pub mod sigma_atom_role;
 pub use sigma_atom_role::*;
+#[path = "STATE_SNAPSHOT.rs"]
+pub mod STATE_SNAPSHOT;
+pub use STATE_SNAPSHOT::*;
 #[path = "pack_glyph_header.rs"]
 pub mod pack_glyph_header;
 pub use pack_glyph_header::*;
@@ -660,6 +861,15 @@ pub use fast_min::*;
 #[path = "C_LOG2_C_LUT.rs"]
 pub mod C_LOG2_C_LUT;
 pub use C_LOG2_C_LUT::*;
+#[path = "GENESIS_PREDATOR_SCRIPT.rs"]
+pub mod GENESIS_PREDATOR_SCRIPT;
+pub use GENESIS_PREDATOR_SCRIPT::*;
+#[path = "ledger_chain.rs"]
+pub mod ledger_chain;
+pub use ledger_chain::*;
+#[path = "checkpoint_chain.rs"]
+pub mod checkpoint_chain;
+pub use checkpoint_chain::*;
 #[path = "encode_force_tuple.rs"]
 pub mod encode_force_tuple;
 pub use encode_force_tuple::*;
@@ -895,191 +1105,11 @@ pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> ()
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/01/GRID_METRICS.rs
+## FILE: src/00/sigma_core/src/ontology_gen/01/OMEGA_MEMORY_LAYOUT.rs
 
 ```rust
 #![allow(unused_imports)]
 use super::super::L00::*;
-
-// Constants: GRID_METRICS
-pub const GRID_CELLS: usize = (GRID_W * GRID_H) as usize;
-pub const WORLD_MAX_X: i32 = ((GRID_W * SPATIAL_CELL_SIZE) - 1) as i32;
-pub const WORLD_MAX_Y: i32 = ((GRID_H * SPATIAL_CELL_SIZE) - 1) as i32;
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L00::*;
-
-pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
-    let mut counts = [0i32; 256];
-        for &b in data.iter() {
-            counts[b as usize] += 1;
-        }
-    
-        let mut sum_c_log_c = 0;
-        for &c in counts.iter() {
-            if c > 0 {
-                sum_c_log_c += C_LOG2_C_LUT[c as usize];
-            }
-        }
-    
-        let mut entropy = 6000 - (sum_c_log_c >> 6);
-        
-        if entropy < 0 {
-            entropy = 0;
-        } else if entropy > 6000 {
-            entropy = 6000;
-        }
-        
-        entropy
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L00::*;
-
-pub fn clamp_resource(value: i64) -> i32 {
-    if value < 0 {
-        0
-    } else if value > (RESOURCE_MAX as i64) {
-        RESOURCE_MAX as i32
-    } else {
-        value as i32
-    }
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/in_grid.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L00::*;
-
-pub fn in_grid(x: i32, y: i32) -> bool {
-    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/math_cos.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L00::*;
-
-pub fn math_cos(angle: i32, highRes: i32) -> i32 {
-    if highRes == 0 {
-        let idx = (angle & 255) as usize;
-        return COS_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if highRes == 1 {
-        let v0 = COS_LUT[idx] as i32;
-        let v1 = COS_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (s_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (c_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    c_base - term1 - term2
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/math_sin.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L00::*;
-
-pub fn math_sin(angle: i32, highRes: i32) -> i32 {
-    if highRes == 0 {
-        let idx = (angle & 255) as usize;
-        return SIN_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if highRes == 1 {
-        let v0 = SIN_LUT[idx] as i32;
-        let v1 = SIN_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    // TAYLOR2
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (c_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (s_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    s_base + term1 - term2
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/01/mod.rs
-
-```rust
-// AUTOGENERATED LEVEL FACADE
-
-pub use super::L00::*;
-
-#[path = "GRID_METRICS.rs"]
-pub mod GRID_METRICS;
-pub use GRID_METRICS::*;
-#[path = "calculate_shannon_entropy.rs"]
-pub mod calculate_shannon_entropy;
-pub use calculate_shannon_entropy::*;
-#[path = "clamp_resource.rs"]
-pub mod clamp_resource;
-pub use clamp_resource::*;
-#[path = "math_sin.rs"]
-pub mod math_sin;
-pub use math_sin::*;
-#[path = "math_cos.rs"]
-pub mod math_cos;
-pub use math_cos::*;
-#[path = "in_grid.rs"]
-pub mod in_grid;
-pub use in_grid::*;
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/02/OMEGA_MEMORY_LAYOUT.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L01::*;
 
 // Memory Layout: OMEGA_MEMORY_LAYOUT
 pub const TICK_COUNTER_OFFSET: usize = ((SAFETY_BUFFER - 8) + 4 - 1) & !(4 - 1);
@@ -1207,11 +1237,65 @@ pub const LATTICE_MEMORY_END: usize = METABOLISM_SCRATCH_OFFSET + ((65536 * 4) +
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/02/clamp_world_x.rs
+## FILE: src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L01::*;
+use super::super::L00::*;
+
+pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
+    let mut counts = [0i32; 256];
+        for &b in data.iter() {
+            counts[b as usize] += 1;
+        }
+    
+        let mut sum_c_log_c = 0;
+        for &c in counts.iter() {
+            if c > 0 {
+                sum_c_log_c += C_LOG2_C_LUT[c as usize];
+            }
+        }
+    
+        let mut entropy = 6000 - (sum_c_log_c >> 6);
+        
+        if entropy < 0 {
+            entropy = 0;
+        } else if entropy > 6000 {
+            entropy = 6000;
+        }
+        
+        entropy
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn clamp_resource(value: i64) -> i32 {
+    if value < 0 {
+        0
+    } else if value > (RESOURCE_MAX as i64) {
+        RESOURCE_MAX as i32
+    } else {
+        value as i32
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_world_x.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
 
 pub fn clamp_world_x(x: i32) -> i32 {
     math_clamp(x, 0, WORLD_MAX_X)
@@ -1221,11 +1305,11 @@ pub fn clamp_world_x(x: i32) -> i32 {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/02/clamp_world_y.rs
+## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_world_y.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L01::*;
+use super::super::L00::*;
 
 pub fn clamp_world_y(y: i32) -> i32 {
     math_clamp(y, 0, WORLD_MAX_Y)
@@ -1235,12 +1319,93 @@ pub fn clamp_world_y(y: i32) -> i32 {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/02/mod.rs
+## FILE: src/00/sigma_core/src/ontology_gen/01/in_grid.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn in_grid(x: i32, y: i32) -> bool {
+    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/math_cos.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn math_cos(angle: i32, highRes: i32) -> i32 {
+    if highRes == 0 {
+        let idx = (angle & 255) as usize;
+        return COS_LUT[idx] as i32;
+    }
+    let idx = ((angle >> 8) & 255) as usize;
+    let frac = angle & 255;
+    
+    if highRes == 1 {
+        let v0 = COS_LUT[idx] as i32;
+        let v1 = COS_LUT[(idx + 1) & 255] as i32;
+        return v0 + (((v1 - v0) * frac) >> 8);
+    }
+    
+    let s_base = SIN_LUT[idx] as i32;
+    let c_base = COS_LUT[idx] as i32;
+    let d1 = (s_base * 804) >> 15;
+    let term1 = (d1 * frac) >> 8;
+    let d2 = (c_base * 10) >> 15;
+    let term2 = (d2 * frac * frac) >> 16;
+    c_base - term1 - term2
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/math_sin.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn math_sin(angle: i32, highRes: i32) -> i32 {
+    if highRes == 0 {
+        let idx = (angle & 255) as usize;
+        return SIN_LUT[idx] as i32;
+    }
+    let idx = ((angle >> 8) & 255) as usize;
+    let frac = angle & 255;
+    
+    if highRes == 1 {
+        let v0 = SIN_LUT[idx] as i32;
+        let v1 = SIN_LUT[(idx + 1) & 255] as i32;
+        return v0 + (((v1 - v0) * frac) >> 8);
+    }
+    
+    // TAYLOR2
+    let s_base = SIN_LUT[idx] as i32;
+    let c_base = COS_LUT[idx] as i32;
+    let d1 = (c_base * 804) >> 15;
+    let term1 = (d1 * frac) >> 8;
+    let d2 = (s_base * 10) >> 15;
+    let term2 = (d2 * frac * frac) >> 16;
+    s_base + term1 - term2
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/mod.rs
 
 ```rust
 // AUTOGENERATED LEVEL FACADE
 
-pub use super::L01::*;
+pub use super::L00::*;
 
 #[path = "OMEGA_MEMORY_LAYOUT.rs"]
 pub mod OMEGA_MEMORY_LAYOUT;
@@ -1248,6 +1413,21 @@ pub use OMEGA_MEMORY_LAYOUT::*;
 #[path = "sigma_memory.rs"]
 pub mod sigma_memory;
 pub use sigma_memory::*;
+#[path = "calculate_shannon_entropy.rs"]
+pub mod calculate_shannon_entropy;
+pub use calculate_shannon_entropy::*;
+#[path = "clamp_resource.rs"]
+pub mod clamp_resource;
+pub use clamp_resource::*;
+#[path = "math_sin.rs"]
+pub mod math_sin;
+pub use math_sin::*;
+#[path = "math_cos.rs"]
+pub mod math_cos;
+pub use math_cos::*;
+#[path = "in_grid.rs"]
+pub mod in_grid;
+pub use in_grid::*;
 #[path = "clamp_world_y.rs"]
 pub mod clamp_world_y;
 pub use clamp_world_y::*;
@@ -1259,15 +1439,15 @@ pub use clamp_world_x::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_memory.rs
+## FILE: src/00/sigma_core/src/ontology_gen/01/sigma_memory.rs
 
 ```rust
 // Substrate Node: sigma_memory
-// Level: 2
+// Level: 1
 // The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
 
 #![allow(unused_imports)]
-use super::super::L01::*;
+use super::super::L00::*;
 
 // Sigma-Core Memory Layout
 // Byte-for-byte compatible with OMEGA-64 OFFSETS.ts
@@ -1944,11 +2124,11 @@ mod tests {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/add_energy_delta.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/add_energy_delta.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -1956,11 +2136,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/add_hive_balance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/add_hive_balance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -1968,11 +2148,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/add_resonance_delta.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/add_resonance_delta.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -1980,11 +2160,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/atomic_deposit_glyph_header.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/atomic_deposit_glyph_header.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -1992,11 +2172,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/clear_metabolism_stats.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/clear_metabolism_stats.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2004,11 +2184,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/clear_secretion_stats.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/clear_secretion_stats.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2016,11 +2196,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/decay_for_kind.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/decay_for_kind.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2028,11 +2208,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/diffuse_viral_semantics.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/diffuse_viral_semantics.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2040,11 +2220,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/diffusion_share_for_kind.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/diffusion_share_for_kind.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2052,11 +2232,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/find_next_free_slot.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/find_next_free_slot.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2064,11 +2244,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/genome_key16.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/genome_key16.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2076,11 +2256,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_attention_cell.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_attention_cell.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2088,11 +2268,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_bond_stiffness.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_bond_stiffness.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2100,11 +2280,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_bond_target.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_bond_target.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2112,11 +2292,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_energy.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_energy.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 pub fn get_energy(idx: i32) -> i32 {
     // Requires SharedArrayBuffer pointer mechanism in parent scope
@@ -2127,11 +2307,11 @@ pub fn get_energy(idx: i32) -> i32 {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_glyph_influence.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_glyph_influence.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2139,11 +2319,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_hive_balance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_hive_balance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2151,11 +2331,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_hive_memory.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_hive_memory.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2163,11 +2343,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_hormone.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_hormone.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2175,11 +2355,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_lineage.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_lineage.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2187,11 +2367,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_logic_byte.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_logic_byte.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2199,11 +2379,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_neural_coherence.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_neural_coherence.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2211,11 +2391,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_p_c.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_p_c.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2223,11 +2403,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_pending_syscall.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_pending_syscall.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2235,11 +2415,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_phase.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_phase.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2247,11 +2427,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_energy.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_energy.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2259,11 +2439,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_resonance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_resonance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2271,11 +2451,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_x.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_x.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2283,11 +2463,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_y.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_y.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2295,11 +2475,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_reg.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_reg.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2307,11 +2487,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_resonance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_resonance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2319,11 +2499,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_role.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_role.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2331,11 +2511,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_atom.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_atom.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2343,11 +2523,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_count.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_count.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2355,11 +2535,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_x.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_x.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2367,11 +2547,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/get_y.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/get_y.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2379,12 +2559,23 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/mod.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/memory_views.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L01::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/mod.rs
 
 ```rust
 // AUTOGENERATED LEVEL FACADE
 
-pub use super::L02::*;
+pub use super::L01::*;
 
 #[path = "sigma_structure.rs"]
 pub mod sigma_structure;
@@ -2443,6 +2634,9 @@ pub use genome_key16::*;
 #[path = "get_x.rs"]
 pub mod get_x;
 pub use get_x::*;
+#[path = "memory_views.rs"]
+pub mod memory_views;
+pub use memory_views::*;
 #[path = "set_resonance.rs"]
 pub mod set_resonance;
 pub use set_resonance::*;
@@ -2586,11 +2780,11 @@ pub use store_clamped_pos::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/publish_build_intent.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/publish_build_intent.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2598,11 +2792,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/publish_charge_intent.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/publish_charge_intent.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2610,11 +2804,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/read_structure_cell.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/read_structure_cell.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2622,11 +2816,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/reduce_atom_deltas.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/reduce_atom_deltas.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2634,11 +2828,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/reset_neural_coherence.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/reset_neural_coherence.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2646,11 +2840,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/seed_atom.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/seed_atom.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2658,11 +2852,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_dist.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_dist.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2670,11 +2864,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_stiffness.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_stiffness.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2682,11 +2876,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_target.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_target.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2694,11 +2888,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_damping.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_damping.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2706,11 +2900,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_energy.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_energy.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2718,11 +2912,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_hive_memory.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_hive_memory.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2730,11 +2924,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_neural_coherence.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_neural_coherence.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2742,11 +2936,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_p_c.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_p_c.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2754,11 +2948,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_pending_syscall.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_pending_syscall.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2766,11 +2960,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_phase.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_phase.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2778,11 +2972,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_reg.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_reg.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2790,11 +2984,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_resonance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_resonance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2802,11 +2996,11 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/set_role.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/set_role.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Omitted: manual substrate implementation
 
@@ -2814,15 +3008,15 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_bonding.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_bonding.rs
 
 ```rust
 // Substrate Node: sigma_bonding
-// Level: 3
+// Level: 2
 // Solves simultaneous structural bonding intents using spatial hashes
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Symbiotic Bonding Engine
 // Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
@@ -2919,15 +3113,15 @@ impl SigmaState {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_environment.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_environment.rs
 
 ```rust
 // Substrate Node: sigma_environment
-// Level: 3
+// Level: 2
 // Ticks environmental cellular automata, structural cells, and glyphi transport
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 use crate::{
     GRID_H, GRID_W, MAX_ATOMS, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, STR_NODE,
@@ -3486,15 +3680,15 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_ffi.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_ffi.rs
 
 ```rust
 // Substrate Node: sigma_ffi
-// Level: 3
+// Level: 2
 // FFI bridging logic and memory alignment for WebAssembly workers
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 #[allow(non_snake_case)]
 use std::mem::ManuallyDrop;
@@ -3830,15 +4024,15 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_glyph_transport.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_glyph_transport.rs
 
 ```rust
 // Substrate Node: sigma_glyph_transport
-// Level: 3
+// Level: 2
 // Handles wave interference physics and optical secretion
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 use crate::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
 use crate::SigmaState;
@@ -3905,15 +4099,15 @@ impl SigmaState {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_pulse.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_pulse.rs
 
 ```rust
 // Substrate Node: sigma_pulse
-// Level: 3
+// Level: 2
 // Multithreaded tick orchestrator and phase sequencer using Rayon
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 use crate::{GRID_H, GRID_W, MAX_ATOMS};
 use crate::{LambdaVM, SigmaState};
@@ -4199,15 +4393,15 @@ impl<'a> PulseOrchestrator<'a> {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_replication.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_replication.rs
 
 ```rust
 // Substrate Node: sigma_replication
-// Level: 3
+// Level: 2
 // Manages autopoietic mitosis processes and genome verification
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Replication Engine
 // Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
@@ -4400,15 +4594,15 @@ impl SigmaState {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_shadow.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_shadow.rs
 
 ```rust
 // Substrate Node: sigma_shadow
-// Level: 3
+// Level: 2
 // Implements the speculative execution engine for quantum divergence
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 use crate::SigmaState;
 use crate::PulseOrchestrator;
@@ -4535,15 +4729,15 @@ pub fn run_shadow_simulation(
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_spatial.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_spatial.rs
 
 ```rust
 // Substrate Node: sigma_spatial
-// Level: 3
+// Level: 2
 // Implements the 2D grid hashing algorithm enabling fast localized queries
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Spatial Fabric Topology & Cognition Grid
 
@@ -4659,15 +4853,15 @@ impl SigmaState {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_structure.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_structure.rs
 
 ```rust
 // Substrate Node: sigma_structure
-// Level: 3
+// Level: 2
 // Handles the cellular automaton lifecycle of the crystalline grid
 
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 // Architecture Intent Engine
 // Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
@@ -4782,11 +4976,11 @@ impl SigmaState {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/store_clamped_pos.rs
+## FILE: src/00/sigma_core/src/ontology_gen/02/store_clamped_pos.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L01::*;
 
 pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
     // Requires mutable pointer to the SharedArray lattice not naturally bound to pure_fns yet.
@@ -4798,11 +4992,88 @@ pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/accumulate_metabolism_stats.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/ATOMIC_LEDGER.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/ATOM_ACCESS.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/GATE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_LEDGER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_VALIDATOR.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/GENETIC_LEDGER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/accumulate_metabolism_stats.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4810,11 +5081,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/add_resonance.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/add_resonance.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4822,11 +5093,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/apply_bond_springs.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/apply_bond_springs.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4834,11 +5105,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/apply_metabolism_kernel.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/apply_metabolism_kernel.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4846,11 +5117,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/build_spatial_hash.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/build_spatial_hash.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4858,11 +5129,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/calculate_trophism.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/calculate_trophism.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4870,11 +5141,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/drain_spawn_requests.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/drain_spawn_requests.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4882,11 +5153,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/fire_signal.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/fire_signal.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4894,11 +5165,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_x.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_x.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4906,11 +5177,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_y.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_y.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4918,11 +5189,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/glyph_transport.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/glyph_transport.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -4930,12 +5201,12 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/mod.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/mod.rs
 
 ```rust
 // AUTOGENERATED LEVEL FACADE
 
-pub use super::L03::*;
+pub use super::L02::*;
 
 #[path = "build_spatial_hash.rs"]
 pub mod build_spatial_hash;
@@ -4946,6 +5217,9 @@ pub use sigma_vm::*;
 #[path = "add_resonance.rs"]
 pub mod add_resonance;
 pub use add_resonance::*;
+#[path = "ATOM_ACCESS.rs"]
+pub mod ATOM_ACCESS;
+pub use ATOM_ACCESS::*;
 #[path = "tick_membrane_physics.rs"]
 pub mod tick_membrane_physics;
 pub use tick_membrane_physics::*;
@@ -4967,6 +5241,24 @@ pub use accumulate_metabolism_stats::*;
 #[path = "glyph_transport.rs"]
 pub mod glyph_transport;
 pub use glyph_transport::*;
+#[path = "GATE.rs"]
+pub mod GATE;
+pub use GATE::*;
+#[path = "ATOMIC_LEDGER.rs"]
+pub mod ATOMIC_LEDGER;
+pub use ATOMIC_LEDGER::*;
+#[path = "GATE_LEDGER.rs"]
+pub mod GATE_LEDGER;
+pub use GATE_LEDGER::*;
+#[path = "GENETIC_LEDGER.rs"]
+pub mod GENETIC_LEDGER;
+pub use GENETIC_LEDGER::*;
+#[path = "GATE_VALIDATOR.rs"]
+pub mod GATE_VALIDATOR;
+pub use GATE_VALIDATOR::*;
+#[path = "GATE_MERGER.rs"]
+pub mod GATE_MERGER;
+pub use GATE_MERGER::*;
 #[path = "calculate_trophism.rs"]
 pub mod calculate_trophism;
 pub use calculate_trophism::*;
@@ -4993,11 +5285,11 @@ pub use resolve_bond_requests::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/read_structure_charge.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/read_structure_charge.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -5005,11 +5297,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/resolve_bond_requests.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/resolve_bond_requests.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -5017,11 +5309,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/run_phagocyte_pass.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/run_phagocyte_pass.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -5029,11 +5321,11 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/secrete_glyph.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/secrete_glyph.rs
 
 ```rust
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 // Omitted: manual substrate implementation
 
@@ -5041,15 +5333,15 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/sigma_vm.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_vm.rs
 
 ```rust
 // Substrate Node: sigma_vm
-// Level: 4
+// Level: 3
 // LambdaVM Execution Engine
 
 #![allow(unused_imports)]
-use super::super::L03::*;
+use super::super::L02::*;
 
 use crate::{
     GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
@@ -6209,13 +6501,24 @@ impl LambdaVM {
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/tick_membrane_physics.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/tick_membrane_physics.rs
 
 ```rust
 // Substrate Node: tick_membrane_physics
-// Level: 4
+// Level: 3
 // Membrane physics and tissue differentiation for Topography analysis
 
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/P2P_CODEC.rs
+
+```rust
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6224,13 +6527,180 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/05/evaluate_opcodes.rs
+## FILE: src/00/sigma_core/src/ontology_gen/04/P2P_FEDERATION.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/STATE_MATRIX.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/SWARM_NEXUS.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/SWARM_NODE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/evaluate_opcodes.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L03::*;
+
+#[path = "SWARM_NODE.rs"]
+pub mod SWARM_NODE;
+pub use SWARM_NODE::*;
+#[path = "P2P_CODEC.rs"]
+pub mod P2P_CODEC;
+pub use P2P_CODEC::*;
+#[path = "P2P_FEDERATION.rs"]
+pub mod P2P_FEDERATION;
+pub use P2P_FEDERATION::*;
+#[path = "SWARM_NEXUS.rs"]
+pub mod SWARM_NEXUS;
+pub use SWARM_NEXUS::*;
+#[path = "evaluate_opcodes.rs"]
+pub mod evaluate_opcodes;
+pub use evaluate_opcodes::*;
+#[path = "STATE_MATRIX.rs"]
+pub mod STATE_MATRIX;
+pub use STATE_MATRIX::*;
+#[path = "tick_structure_grid.rs"]
+pub mod tick_structure_grid;
+pub use tick_structure_grid::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/tick_structure_grid.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/AVATAR_ENGINE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/PULSE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/PULSE_WORKER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/SEMANTIC_MEMBRANE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/SOVEREIGN_ORACLE.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/execute_atom.rs
 
 ```rust
 #![allow(unused_imports)]
 use super::super::L04::*;
 
 // Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/llm_soul.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
 
 ```
 
@@ -6243,18 +6713,36 @@ use super::super::L04::*;
 
 pub use super::L04::*;
 
-#[path = "evaluate_opcodes.rs"]
-pub mod evaluate_opcodes;
-pub use evaluate_opcodes::*;
-#[path = "tick_structure_grid.rs"]
-pub mod tick_structure_grid;
-pub use tick_structure_grid::*;
+#[path = "PULSE.rs"]
+pub mod PULSE;
+pub use PULSE::*;
+#[path = "PULSE_WORKER.rs"]
+pub mod PULSE_WORKER;
+pub use PULSE_WORKER::*;
+#[path = "execute_atom.rs"]
+pub mod execute_atom;
+pub use execute_atom::*;
+#[path = "SOVEREIGN_ORACLE.rs"]
+pub mod SOVEREIGN_ORACLE;
+pub use SOVEREIGN_ORACLE::*;
+#[path = "llm_soul.rs"]
+pub mod llm_soul;
+pub use llm_soul::*;
+#[path = "AVATAR_ENGINE.rs"]
+pub mod AVATAR_ENGINE;
+pub use AVATAR_ENGINE::*;
+#[path = "SEMANTIC_MEMBRANE.rs"]
+pub mod SEMANTIC_MEMBRANE;
+pub use SEMANTIC_MEMBRANE::*;
+#[path = "tick_environment.rs"]
+pub mod tick_environment;
+pub use tick_environment::*;
 
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/05/tick_structure_grid.rs
+## FILE: src/00/sigma_core/src/ontology_gen/05/tick_environment.rs
 
 ```rust
 #![allow(unused_imports)]
@@ -6266,7 +6754,73 @@ use super::super::L04::*;
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/06/BREATH.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/GLYPH_TELEMETRY.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/06/LOGGER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/MUTATION_TELEMETRY.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/OMEGA_DAEMON.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/SERVE_DASHBOARD.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/TUI_DASHBOARD.rs
 
 ```rust
 #![allow(unused_imports)]
@@ -6310,24 +6864,74 @@ use super::super::L05::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/06/execute_atom.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L05::*;
-
-// Omitted: manual substrate implementation
-
-```
-
----
-
 ## FILE: src/00/sigma_core/src/ontology_gen/06/fnv1a32.rs
 
 ```rust
 #![allow(unused_imports)]
 use super::super::L05::*;
 
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_arity.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+pub fn get_glyph_arity(id: u8) -> u8 {
+    GLYPH_ARITY_LUT[(id & 63) as usize]
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_energy.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+pub fn get_glyph_energy(id: u8) -> u8 {
+    GLYPH_ENERGY_LUT[(id & 63) as usize]
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_kind.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+pub fn get_glyph_kind(id: u8) -> u8 {
+    if id <= 3 {
+      return KIND_CORE;
+    }
+    if id <= 15 {
+      return KIND_CONTROL;
+    }
+    return id >> 3;
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_legacy_opcode.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+pub fn get_glyph_legacy_opcode(id: u8) -> u8 {
+    GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
+}
 
 ```
 
@@ -6383,24 +6987,51 @@ pub use hex_to_bytes::*;
 #[path = "bytes_to_hex.rs"]
 pub mod bytes_to_hex;
 pub use bytes_to_hex::*;
-#[path = "pulse_orchestrator.rs"]
-pub mod pulse_orchestrator;
-pub use pulse_orchestrator::*;
-#[path = "execute_atom.rs"]
-pub mod execute_atom;
-pub use execute_atom::*;
+#[path = "get_glyph_legacy_opcode.rs"]
+pub mod get_glyph_legacy_opcode;
+pub use get_glyph_legacy_opcode::*;
+#[path = "get_glyph_kind.rs"]
+pub mod get_glyph_kind;
+pub use get_glyph_kind::*;
+#[path = "get_glyph_arity.rs"]
+pub mod get_glyph_arity;
+pub use get_glyph_arity::*;
+#[path = "BREATH.rs"]
+pub mod BREATH;
+pub use BREATH::*;
+#[path = "get_glyph_energy.rs"]
+pub mod get_glyph_energy;
+pub use get_glyph_energy::*;
+#[path = "OMEGA_DAEMON.rs"]
+pub mod OMEGA_DAEMON;
+pub use OMEGA_DAEMON::*;
 #[path = "LOGGER.rs"]
 pub mod LOGGER;
 pub use LOGGER::*;
+#[path = "pack_structure_intent.rs"]
+pub mod pack_structure_intent;
+pub use pack_structure_intent::*;
 #[path = "make_xor_shift32.rs"]
 pub mod make_xor_shift32;
 pub use make_xor_shift32::*;
+#[path = "unpack_structure_charge.rs"]
+pub mod unpack_structure_charge;
+pub use unpack_structure_charge::*;
 #[path = "to_int16_big_endian.rs"]
 pub mod to_int16_big_endian;
 pub use to_int16_big_endian::*;
-#[path = "tick_environment.rs"]
-pub mod tick_environment;
-pub use tick_environment::*;
+#[path = "TUI_DASHBOARD.rs"]
+pub mod TUI_DASHBOARD;
+pub use TUI_DASHBOARD::*;
+#[path = "MUTATION_TELEMETRY.rs"]
+pub mod MUTATION_TELEMETRY;
+pub use MUTATION_TELEMETRY::*;
+#[path = "GLYPH_TELEMETRY.rs"]
+pub mod GLYPH_TELEMETRY;
+pub use GLYPH_TELEMETRY::*;
+#[path = "SERVE_DASHBOARD.rs"]
+pub mod SERVE_DASHBOARD;
+pub use SERVE_DASHBOARD::*;
 
 ```
 
@@ -6417,12 +7048,19 @@ use super::super::L05::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/06/pulse_orchestrator.rs
+## FILE: src/00/sigma_core/src/ontology_gen/06/pack_structure_intent.rs
 
 ```rust
 #![allow(unused_imports)]
 use super::super::L05::*;
 
+pub fn pack_structure_intent(target_type: u32, target_value: u32, locked: bool) -> i32 {
+    let mut intent: u32 = target_type | (target_value << 24);
+    if locked {
+        intent |= 0x80000000;
+    }
+    intent as i32
+}
 
 ```
 
@@ -6439,18 +7077,6 @@ use super::super::L05::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/06/tick_environment.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L05::*;
-
-// Omitted: manual substrate implementation
-
-```
-
----
-
 ## FILE: src/00/sigma_core/src/ontology_gen/06/to_int16_big_endian.rs
 
 ```rust
@@ -6462,7 +7088,54 @@ use super::super::L05::*;
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/06/unpack_structure_charge.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+pub fn unpack_structure_charge(intent: i32) -> u32 {
+    ((intent as u32) & 0x7F000000) >> 24
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/assembler.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L06::*;
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/07/crypto_keys.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L06::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/disassembler.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L06::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/glyph_ir_64.rs
 
 ```rust
 #![allow(unused_imports)]
@@ -6486,6 +7159,15 @@ pub use crypto_keys::*;
 #[path = "sha256_hex.rs"]
 pub mod sha256_hex;
 pub use sha256_hex::*;
+#[path = "glyph_ir_64.rs"]
+pub mod glyph_ir_64;
+pub use glyph_ir_64::*;
+#[path = "assembler.rs"]
+pub mod assembler;
+pub use assembler::*;
+#[path = "disassembler.rs"]
+pub mod disassembler;
+pub use disassembler::*;
 
 ```
 
@@ -6497,6 +7179,32 @@ pub use sha256_hex::*;
 #![allow(unused_imports)]
 use super::super::L06::*;
 
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/08/glyph_pretty.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L07::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/08/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L07::*;
+
+#[path = "glyph_pretty.rs"]
+pub mod glyph_pretty;
+pub use glyph_pretty::*;
 
 ```
 
@@ -6525,6 +7233,8 @@ pub mod L05;
 pub mod L06;
 #[path = "07/mod.rs"]
 pub mod L07;
+#[path = "08/mod.rs"]
+pub mod L08;
 
 ```
 

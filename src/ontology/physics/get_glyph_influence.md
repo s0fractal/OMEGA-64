@@ -18,7 +18,7 @@ vars:
 description: Auto-recovered get_glyph_influence
 deps:
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
 ---
 

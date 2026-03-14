@@ -5,7 +5,7 @@ target: rust
 level: 3
 deps:
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - sigma_memory
   - sigma_isa
   - sigma_environment

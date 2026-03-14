@@ -20,7 +20,7 @@ vars:
   - PLASMID_COST_BASE
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_energy
   - set_energy
 description: Auto-recovered secrete_glyph

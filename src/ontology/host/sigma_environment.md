@@ -5,7 +5,7 @@ target: rust
 level: 2
 deps:
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - sigma_memory
 description: Ticks environmental cellular automata, structural cells, and glyphi transport
 ---

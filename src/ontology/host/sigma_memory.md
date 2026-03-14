@@ -4,7 +4,7 @@ type: substrate_module
 target: rust
 deps: 
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
 description: The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
 ---
 

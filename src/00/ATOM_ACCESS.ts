@@ -9,9 +9,9 @@ import {
 } from "../_/02/mod.ts";
 import {
   SYS_YIELD, OP_SYSCALL, OP_GET, PROP_NEURAL_COHERENCE, OP_SUB, OP_JNZ, OP_SIGNAL, SYS_SET_ROLE, OP_JMP, OP_BUILD, OP_SET
-} from "../_/00/mod.ts";
-export * from "../_/00/mod.ts";
-import * as views from "./memory_views.ts";
+} from "../_/mod.ts";
+export * from "../_/mod.ts";
+import * as views from "../_/00/memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;

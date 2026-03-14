@@ -1,5 +1,5 @@
 const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
-const PULSE_PATH = "src/02/PULSE.ts";
+const PULSE_PATH = "src/_/05/PULSE.ts";
 
 type Violation = {
   file: string;

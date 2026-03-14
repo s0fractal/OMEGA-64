@@ -9,7 +9,7 @@ type Violation = {
 };
 
 const TARGETS: FileExpectation[] = [
-  { file: "src/02/PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
+  { file: "src/_/05/PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
   { file: "src/07/02/SYSTEM_START.ts", requiresPolicyAccess: "RUNTIME_POLICY.system" },
   {
     file: "src/04/P2P_FEDERATION.ts",

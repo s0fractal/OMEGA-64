@@ -11,7 +11,7 @@ vars:
   - ATTENTION_FIELD_OFF
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - tick_structure_grid
   - diffuse_viral_semantics
   - glyph_transport

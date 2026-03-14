@@ -2,9 +2,12 @@
 
 pub use super::L00::*;
 
-#[path = "GRID_METRICS.rs"]
-pub mod GRID_METRICS;
-pub use GRID_METRICS::*;
+#[path = "OMEGA_MEMORY_LAYOUT.rs"]
+pub mod OMEGA_MEMORY_LAYOUT;
+pub use OMEGA_MEMORY_LAYOUT::*;
+#[path = "sigma_memory.rs"]
+pub mod sigma_memory;
+pub use sigma_memory::*;
 #[path = "calculate_shannon_entropy.rs"]
 pub mod calculate_shannon_entropy;
 pub use calculate_shannon_entropy::*;
@@ -20,3 +23,9 @@ pub use math_cos::*;
 #[path = "in_grid.rs"]
 pub mod in_grid;
 pub use in_grid::*;
+#[path = "clamp_world_y.rs"]
+pub mod clamp_world_y;
+pub use clamp_world_y::*;
+#[path = "clamp_world_x.rs"]
+pub mod clamp_world_x;
+pub use clamp_world_x::*;

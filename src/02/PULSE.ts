@@ -3,7 +3,7 @@ import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "/Us
 import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
-import { GATE } from "@03/GATE.ts";
+import { GATE } from "../_/03/GATE.ts";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
 import { CONTROL_INTENT_QUEUE } from "@03/CONTROL_INTENT_QUEUE.ts";
 
@@ -77,7 +77,7 @@ import {
   type HormoneId,
 } from "@02/HORMONE_BUFFER.ts";
 import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@03/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "@03/GENETIC_LEDGER.ts";
+import { type GeneticLedgerKey } from "../_/03/GENETIC_LEDGER.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
@@ -87,7 +87,7 @@ import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
 import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
-import { PROP_NEURAL_COHERENCE, OP_SET, OP_GET, OP_SUB, OP_JNZ, OP_JMP, OP_SIGNAL, OP_SECRETE_PLASMID, OP_BUILD, OP_SYSCALL, OP_NOP, SYS_YIELD, SYS_SET_ROLE, OP_JZ, OP_SPORE_DRIVE, PROP_ENERGY, PROP_RESONANCE, OP_ADD, OP_REPLICATE, OP_PUT } from "../00/STATE_MATRIX.ts";
+import { PROP_NEURAL_COHERENCE, OP_SET, OP_GET, OP_SUB, OP_JNZ, OP_JMP, OP_SIGNAL, OP_SECRETE_PLASMID, OP_BUILD, OP_SYSCALL, OP_NOP, SYS_YIELD, SYS_SET_ROLE, OP_JZ, OP_SPORE_DRIVE, PROP_ENERGY, PROP_RESONANCE, OP_ADD, OP_REPLICATE, OP_PUT } from "../_/mod.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;

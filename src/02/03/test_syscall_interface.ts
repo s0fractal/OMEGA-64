@@ -3,7 +3,7 @@ import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
 import { CONTEXT_OFFSET, STRUCTURE_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { energyBuffer, idBuffer, STATE_MATRIX, structureGridBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "../../_/mod.ts";
 
 Deno.test({
   name: "Universal Syscall - WRITE_MEM / READ_MEM execution correctness",

@@ -17,7 +17,7 @@ vars:
   - GLYPH_SCRATCH_PAYLOAD_OFF
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - unpack_glyph_kind
   - unpack_glyph_amplitude
   - fast_abs

@@ -21,7 +21,7 @@ vars:
 deps:
   - fast_min
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_read_energy
   - in_grid
   - get_spatial_grid_count

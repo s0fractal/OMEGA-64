@@ -6,7 +6,7 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST_FALLBACK", "1");
 Deno.env.set("OMEGA_STARTUP_SELFTEST_FORCE_BREACH", "1");
 Deno.env.set("OMEGA_STARTUP_SELFTEST_QUIET", "1");
 
-const { PULSE } = await import("@02/PULSE.ts");
+const { PULSE } = await import("../../_/05/PULSE.ts");
 const { STATE_MATRIX } = await import("@00");
 
 async function main() {

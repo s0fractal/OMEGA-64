@@ -11,3 +11,9 @@ pub use sha256_hex::*;
 #[path = "glyph_ir_64.rs"]
 pub mod glyph_ir_64;
 pub use glyph_ir_64::*;
+#[path = "assembler.rs"]
+pub mod assembler;
+pub use assembler::*;
+#[path = "disassembler.rs"]
+pub mod disassembler;
+pub use disassembler::*;

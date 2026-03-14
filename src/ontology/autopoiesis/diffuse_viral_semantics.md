@@ -12,7 +12,7 @@ vars:
   - SIGNAL_GRID_OFF
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - in_grid
   - prng_next
 ---

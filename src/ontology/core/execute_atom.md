@@ -15,7 +15,7 @@ vars:
 deps:
   - evaluate_opcodes
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_p_c
   - get_read_energy
   - get_read_resonance

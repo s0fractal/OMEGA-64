@@ -3,7 +3,7 @@ import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { NEXUS_DAEMON, PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET } from "../../00/STATE_MATRIX.ts";
+import { OP_SET } from "../../_/mod.ts";
 
 Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => {
   LOGGER.info("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");

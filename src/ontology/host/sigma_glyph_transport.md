@@ -5,7 +5,7 @@ target: rust
 level: 2
 deps:
   - SYSTEM_CONSTANTS
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - sigma_memory
 description: Handles wave interference physics and optical secretion
 ---

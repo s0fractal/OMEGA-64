@@ -19,9 +19,17 @@ values:
   GRID_H: 
     value: 80
     type: i32
-
+  GRID_CELLS:
+    expr: "GRID_W * GRID_H"
+    type: usize
   SPATIAL_CELL_SIZE: 
     value: 10
+    type: i32
+  WORLD_MAX_X: 
+    expr: "(GRID_W * SPATIAL_CELL_SIZE) - 1"
+    type: i32
+  WORLD_MAX_Y: 
+    expr: "(GRID_H * SPATIAL_CELL_SIZE) - 1"
     type: i32
   STRUCTURE_INTENT_SPIN_LIMIT:
     value: 128

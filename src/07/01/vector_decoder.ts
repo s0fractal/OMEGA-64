@@ -28,7 +28,7 @@ export function resolveVector(vector: string): string {
 
 /**
  * Перетворює реальний шлях на вектор (для лінтера).
- * extractVector("./02/PULSE.ts") -> "@02"
+ * extractVector("./05/PULSE.ts") -> "@02"
  */
 export function extractVector(realPath: string): string {
   // Витягуємо перші дві цифри папки

@@ -6,7 +6,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../_/mod.ts";
 import type { GlyphSnapshot } from "@06";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_BUILD, OP_SENSE, OP_SENSE_AS, OP_RESONATE_KURAMOTO } from "../00/STATE_MATRIX.ts";
+import { OP_BUILD, OP_SENSE, OP_SENSE_AS, OP_RESONATE_KURAMOTO } from "../_/mod.ts";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;

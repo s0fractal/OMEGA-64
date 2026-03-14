@@ -13,7 +13,7 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
   - trace_atom
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
 ---
 
 ---

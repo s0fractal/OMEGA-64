@@ -12,7 +12,7 @@ vars:
   - MAX_ATOMS
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - set_bond_target
   - set_bond_stiffness
   - get_bond_target

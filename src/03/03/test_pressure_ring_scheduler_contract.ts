@@ -1,5 +1,5 @@
 const DAEMON_PATH = "src/06/OMEGA_DAEMON.ts";
-const PULSE_PATH = "src/02/PULSE.ts";
+const PULSE_PATH = "src/_/05/PULSE.ts";
 const SYSTEM_START_PATH = "src/07/02/SYSTEM_START.ts";
 const AKASHA_SERVER_PATH = "src/06/AKASHA_SERVER.ts";
 

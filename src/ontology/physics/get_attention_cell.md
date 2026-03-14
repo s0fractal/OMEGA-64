@@ -13,7 +13,7 @@ vars:
   - ATTENTION_FIELD_OFF
 description: Auto-recovered get_attention_cell
 deps:
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
 ---
 

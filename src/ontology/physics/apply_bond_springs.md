@@ -14,7 +14,7 @@ vars:
   - BOND_DISTANCES_OFFSET
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_bond_target
   - get_bond_stiffness
   - get_read_x

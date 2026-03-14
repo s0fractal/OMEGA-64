@@ -172,15 +172,15 @@
     "era": "69",
     "runtime_root_files": [
       "src/07/02/SYSTEM_START.ts",
-      "src/02/PULSE.ts",
-      "src/02/PULSE_WORKER.ts",
+      "src/_/05/PULSE.ts",
+      "src/_/05/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
-      "src/06/OMEGA_DAEMON.ts",
+      "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
-      "src/06/MUTATION_TELEMETRY.ts",
-      "src/06/TUI_DASHBOARD.ts",
+      "src/_/06/MUTATION_TELEMETRY.ts",
+      "src/_/06/TUI_DASHBOARD.ts",
       "src/06/AGENT_PROXY.ts",
-      "src/05/llm_soul.ts"
+      "src/_/05/llm_soul.ts"
     ],
     "runtime_support_files": [
       "src/00/07/build_wasm.ts",
@@ -199,21 +199,21 @@
     ],
     "core_entry_files": [
       "src/07/02/SYSTEM_START.ts",
-      "src/02/PULSE.ts",
-      "src/02/PULSE_WORKER.ts",
+      "src/_/05/PULSE.ts",
+      "src/_/05/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
-      "src/06/OMEGA_DAEMON.ts",
+      "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
-      "src/06/MUTATION_TELEMETRY.ts",
-      "src/06/TUI_DASHBOARD.ts",
+      "src/_/06/MUTATION_TELEMETRY.ts",
+      "src/_/06/TUI_DASHBOARD.ts",
       "src/06/AGENT_PROXY.ts",
-      "src/05/llm_soul.ts"
+      "src/_/05/llm_soul.ts"
     ],
     "required_additional_files": [
       "src/03/DAEMON_INGRESS_POLICY.ts",
       "src/03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
       "src/03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
-      "src/06/GLYPH_TELEMETRY.ts",
+      "src/_/06/GLYPH_TELEMETRY.ts",
       "src/03/GENERIC_LEDGER_PERSISTENCE.ts",
       "src/03/GENERIC_LEDGER_SYSTEM.ts",
       "src/02/HORMONE_BUFFER_RUNTIME.ts",

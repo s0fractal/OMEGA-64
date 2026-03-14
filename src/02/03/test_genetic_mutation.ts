@@ -3,7 +3,7 @@ import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_YIELD, OP_SYSCALL, SYS_MUTATE, OP_NOP } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_YIELD, OP_SYSCALL, SYS_MUTATE, OP_NOP } from "../../_/mod.ts";
 
 Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   LOGGER.info("--- STAGE 34: GENETIC MUTATION TEST ---");

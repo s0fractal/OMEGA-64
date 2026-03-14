@@ -20,7 +20,6 @@ const REST_JSON_HEADERS = {
   "Access-Control-Allow-Origin": "*",
 } as const;
 
-RUNTIME_POLICY.logFingerprintOnce("akasha-server");
 
 let clients = new Set<WebSocket>();
 
@@ -727,6 +726,7 @@ const reqHandler = async (req: Request) => {
 };
 
 if (import.meta.main) {
+  RUNTIME_POLICY.logFingerprintOnce("akasha-server");
   Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
   console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 }

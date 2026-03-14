@@ -10,7 +10,7 @@ vars:
   - MAX_ATOMS
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - get_bond_target
   - get_bond_stiffness
   - add_resonance_delta

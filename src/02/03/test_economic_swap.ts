@@ -3,7 +3,7 @@ import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_TRANSFER, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
+import { OP_SET, SYS_TRANSFER, OP_SYSCALL } from "../../_/mod.ts";
 
 Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async () => {
   LOGGER.info("--- STAGE 31: ECONOMIC SWAP TEST ---");

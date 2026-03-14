@@ -40,7 +40,7 @@ vars:
   - PROP_CONSENSUS
 deps:
   - OMEGA_MEMORY_LAYOUT
-  - GRID_METRICS
+  - SYSTEM_CONSTANTS
   - VmOpcodes
   - VmProps
   - get_p_c
