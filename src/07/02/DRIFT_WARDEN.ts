@@ -1,5 +1,10 @@
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  COHERENCE_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { sharedBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -28,11 +33,11 @@ export class DriftWarden {
     customCoherenceView?: Int32Array,
   ) {
     this.energyView = customEnergyView ??
-      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+      new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
     this.idsView = customIdsView ??
-      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+      new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
     this.coherenceView = customCoherenceView ??
-      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+      new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
   }
 
   /**
@@ -43,7 +48,7 @@ export class DriftWarden {
     let totalEnergy = 0;
 
     // 1. Gather active population metrics
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (this.idsView[i] !== 0n) {
         activeIds.push(i);
         totalEnergy += this.energyView[i];

@@ -1,5 +1,7 @@
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -58,14 +60,14 @@ export class DollForkRunner {
       exports.build_spatial_hash();
 
       // 2. Execute Atoms (Physics + VM)
-      for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      for (let i = 0; i < MAX_ATOMS; i++) {
         if (this.fork.views.ids[i] !== 0n) {
           exports.execute_atom(i);
         }
       }
 
       // 3. Resolve Bonds & Spawns
-      exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
+      exports.resolve_bond_requests(0, MAX_ATOMS);
       exports.drain_spawn_requests(tickCount);
 
       // 4. Tick Environment (Glyph Transport, Decay)
@@ -75,7 +77,7 @@ export class DollForkRunner {
       // 5. Apply Metabolism
       exports.apply_metabolism_kernel(
         0,
-        OFFSETS.MAX_ATOMS,
+        MAX_ATOMS,
         0,
         0, // Novelty/Symbiosis
         10, // Base Tax

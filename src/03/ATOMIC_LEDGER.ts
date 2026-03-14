@@ -2,7 +2,11 @@
 // Binary Event Ring Buffer (Memory-Mapped)
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  MAX_LEDGER_EVENTS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type LedgerEvent = {
   tick: number;
@@ -24,7 +28,7 @@ export const ATOMIC_LEDGER = {
    * If the sequence number is too old (overwritten by MAX_EVENTS), this will return overwritten data.
    */
   getEvent(sequence: number): LedgerEvent {
-    const cursor = sequence % OFFSETS.MAX_LEDGER_EVENTS;
+    const cursor = sequence % MAX_LEDGER_EVENTS;
     const base = cursor * 4;
     return {
       tick: Atomics.load(STATE_MATRIX.ledgerDataView, base),
@@ -40,13 +44,13 @@ export const ATOMIC_LEDGER = {
    */
   exportBinary(): Uint8Array {
     // 4 bytes for head, plus MAX_EVENTS * 16 bytes for data
-    const size = 4 + (OFFSETS.MAX_LEDGER_EVENTS * 16);
+    const size = 4 + (MAX_LEDGER_EVENTS * 16);
     const dump = new Uint8Array(size);
 
     // Copy Head
     const headBytes = new Uint8Array(
       STATE_MATRIX.ledgerHeadView.buffer,
-      OFFSETS.LEDGER_HEAD_OFFSET,
+      LEDGER_HEAD_OFFSET,
       4,
     );
     dump.set(headBytes, 0);
@@ -54,8 +58,8 @@ export const ATOMIC_LEDGER = {
     // Copy Data
     const dataBytes = new Uint8Array(
       STATE_MATRIX.ledgerDataView.buffer,
-      OFFSETS.LEDGER_DATA_OFFSET,
-      OFFSETS.MAX_LEDGER_EVENTS * 16,
+      LEDGER_DATA_OFFSET,
+      MAX_LEDGER_EVENTS * 16,
     );
     dump.set(dataBytes, 4);
 
@@ -68,7 +72,7 @@ export const ATOMIC_LEDGER = {
   readRange(startSeq: number, endSeq: number): LedgerEvent[] {
     const events: LedgerEvent[] = [];
     // Ensure we don't try to read more than the buffer can hold
-    const safeStart = Math.max(startSeq, endSeq - OFFSETS.MAX_LEDGER_EVENTS);
+    const safeStart = Math.max(startSeq, endSeq - MAX_LEDGER_EVENTS);
     for (let i = safeStart; i < endSeq; i++) {
       events.push(this.getEvent(i));
     }

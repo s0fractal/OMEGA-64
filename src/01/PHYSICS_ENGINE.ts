@@ -1,7 +1,12 @@
 import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PRNG } from "../00/PRNG.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  ATTENTION_FIELD_OFFSET,
+  SPATIAL_CELL_SIZE,
+  WORLD_MAX_X,
+  WORLD_MAX_Y
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 
 const envBuffer = new SharedArrayBuffer(GRID_CELLS * 4); // Int32
@@ -13,7 +18,7 @@ export const PHYSICS_ENGINE = {
   envBuffer,
   NUTRIENTS,
   attentionBuffer: STATE_MATRIX.buffer,
-  attentionOffset: OFFSETS.ATTENTION_FIELD_OFFSET,
+  attentionOffset: ATTENTION_FIELD_OFFSET,
   ATTENTION_PHEROMONES,
   // Spatial Memory
   pheromones: {
@@ -24,8 +29,8 @@ export const PHYSICS_ENGINE = {
   },
 
   getGridIdx: (x: number, y: number) => {
-    const gx = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_X, x)) / OFFSETS.SPATIAL_CELL_SIZE);
-    const gy = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_Y, y)) / OFFSETS.SPATIAL_CELL_SIZE);
+    const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, x)) / SPATIAL_CELL_SIZE);
+    const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, y)) / SPATIAL_CELL_SIZE);
     return gy * GRID_W + gx;
   },
 

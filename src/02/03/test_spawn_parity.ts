@@ -1,12 +1,15 @@
 // OMEGA-64 | test_spawn_parity.ts | Spawn Resolution Verifier
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS,
+  SPAWN_REQUESTS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 
 async function testSpawnParity() {
   console.log("🧬 [TEST] Starting Spawn Resolution Parity Test...");
 
-  const MAX_ATOMS = OFFSETS.MAX_ATOMS;
+  const MAX_ATOMS = MAX_ATOMS;
   const { buffer: sharedBuffer } = STATE_MATRIX.STATE_MATRIX;
 
   // 1. Clear state
@@ -14,22 +17,22 @@ async function testSpawnParity() {
   // Clear spawn queue (header + data)
   new Uint8Array(sharedBuffer).fill(
     0,
-    OFFSETS.SPAWN_REQUESTS_OFFSET,
-    OFFSETS.SPAWN_REQUESTS_OFFSET + 8 + 1024 * 16,
+    SPAWN_REQUESTS_OFFSET,
+    SPAWN_REQUESTS_OFFSET + 8 + 1024 * 16,
   );
 
   console.log(`   [DEBUG] sharedBuffer.byteLength=${sharedBuffer.byteLength}`);
   console.log(
-    `   [DEBUG] SPAWN_REQUESTS_OFFSET=${OFFSETS.SPAWN_REQUESTS_OFFSET}`,
+    `   [DEBUG] SPAWN_REQUESTS_OFFSET=${SPAWN_REQUESTS_OFFSET}`,
   );
   const spawnHead = new Int32Array(
     sharedBuffer,
-    OFFSETS.SPAWN_REQUESTS_OFFSET,
+    SPAWN_REQUESTS_OFFSET,
     2,
   );
   const spawnData = new Uint8Array(
     sharedBuffer,
-    OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+    SPAWN_REQUESTS_OFFSET + 8,
     1024 * 16,
   );
   console.log(`   [DEBUG] spawnData.byteLength=${spawnData.byteLength}`);

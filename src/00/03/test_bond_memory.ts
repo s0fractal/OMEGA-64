@@ -1,4 +1,7 @@
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const memory = STATE_MATRIX.wasmMemory;
@@ -6,8 +9,8 @@ const buffer = memory.buffer;
 
 const bondsJS = new Int32Array(
   buffer,
-  OFFSETS.BONDS_OFFSET,
-  OFFSETS.MAX_ATOMS * 4,
+  BONDS_OFFSET,
+  MAX_ATOMS * 4,
 );
 
 STATE_MATRIX.set_bond_target(2, 0, 1);
@@ -17,5 +20,5 @@ console.log(
 );
 
 const dataView = new DataView(buffer);
-const rawValue = dataView.getInt32(OFFSETS.BONDS_OFFSET + (2 * 4 * 4), true); // little endian I32
+const rawValue = dataView.getInt32(BONDS_OFFSET + (2 * 4 * 4), true); // little endian I32
 console.log(`[JS] Bond for Atom 2, Slot 0 via DataView:`, rawValue);

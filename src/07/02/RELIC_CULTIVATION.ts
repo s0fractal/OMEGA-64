@@ -1,5 +1,7 @@
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { DollFork } from "../DOLL_FORK_MATRIX.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -30,7 +32,7 @@ export class RelicCultivator {
     const relics: Relic[] = [];
     const views = this.fork.views;
 
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       const energy = views.energies[i];
       const resonance = views.resonances[i];
       const atomId = views.ids[i];

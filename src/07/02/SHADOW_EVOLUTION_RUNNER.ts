@@ -10,7 +10,9 @@ import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "./DOLL_FORK_RUNNER.ts";
 import { DriftWarden } from "./DRIFT_WARDEN.ts";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type SemanticProposal = {
   id: string;
@@ -74,7 +76,7 @@ export async function runShadowValidation() {
     // 2. Inject proposed bytecode into 15 active atoms
     let infectedCount = 0;
     const proposed = new Uint8Array(proposal.proposedBytecode);
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (fork.views.ids[i] !== 0n) {
         fork.views.logic.set(proposed, i * 8);
         infectedCount++;

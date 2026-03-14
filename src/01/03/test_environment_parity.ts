@@ -3,7 +3,13 @@ import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 // Verifies bit-identical parity for the unified environmental physics.
 
 import { assertEquals } from "https://deno.land/std/assert/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  ATTENTION_FIELD_OFFSET,
+  MEMORY_GRID_OFFSET,
+  SIGNAL_GRID_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  ts
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PHYSICS_ENGINE } from "@01";
 import { STRUCTURE_ENGINE } from "@01/STRUCTURE_ENGINE.ts";
 import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
@@ -49,31 +55,31 @@ async function runTest() {
   // 1. Initialize Grids
   const attentionField = new Float32Array(
     sharedBuffer,
-    OFFSETS.ATTENTION_FIELD_OFFSET,
+    ATTENTION_FIELD_OFFSET,
     GRID_CELLS,
   );
   const structureGrid = new Int32Array(
     sharedBuffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
+    STRUCTURE_GRID_OFFSET,
     GRID_CELLS,
   );
   const memoryGrid = new Uint8Array(
     sharedBuffer,
-    OFFSETS.MEMORY_GRID_OFFSET,
+    MEMORY_GRID_OFFSET,
     GRID_CELLS * 8,
   );
   const signalGrid = new Int32Array(
     sharedBuffer,
-    OFFSETS.SIGNAL_GRID_OFFSET,
+    SIGNAL_GRID_OFFSET,
     GRID_CELLS,
   );
   const signalGridU8 = new Uint8Array(
     sharedBuffer,
-    OFFSETS.SIGNAL_GRID_OFFSET,
+    SIGNAL_GRID_OFFSET,
     GRID_CELLS * 9,
   ); // Wait, signalGrid is Int32Array but it's 9 bytes per cell?
-  // Signal grid in OFFSETS.ts is defined as (GRID_CELLS * 9) bytes or (GRID_CELLS) Int32?
-  // Let's check OFFSETS.ts
+  // Signal grid in ts is defined as (GRID_CELLS * 9) bytes or (GRID_CELLS) Int32?
+  // Let's check ts
 
   // Seed some values
   const tick = 42;
@@ -91,7 +97,7 @@ async function runTest() {
   const viralIdx = 300 * 9;
   const viralU8 = new Uint8Array(
     sharedBuffer,
-    OFFSETS.SIGNAL_GRID_OFFSET,
+    SIGNAL_GRID_OFFSET,
     GRID_CELLS * 9,
   );
   for (let b = 0; b < 4; b++) viralU8[viralIdx + b] = b + 1;

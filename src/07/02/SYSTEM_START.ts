@@ -24,7 +24,9 @@ import {
   P2P_CODEC,
 } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02/03/mod.ts";
-import * as OFFSETS from "@07/02/00/mod.ts";
+import {
+  BONDS_OFFSET
+} from "@07/02/00/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
@@ -3420,7 +3422,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/bonds" && req.method === "GET") {
-    const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
+    const BONDS_OFFSET = BONDS_OFFSET;
     const BONDS_SIZE = MAX_ATOMS * 4 * 4;
     const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
     const copy = new Uint8Array(view.byteLength);

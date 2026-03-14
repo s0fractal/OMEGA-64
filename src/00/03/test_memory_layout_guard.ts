@@ -1,7 +1,11 @@
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  LATTICE_MEMORY_END,
+  WASM_MEMORY_BYTES,
+  validateMemoryLayout
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const main = () => {
-  const report = OFFSETS.validateMemoryLayout(OFFSETS.WASM_MEMORY_BYTES);
+  const report = validateMemoryLayout(WASM_MEMORY_BYTES);
   if (!report.ok) {
     throw new Error(
       `[memory-layout-guard] layout validation failed:\n${
@@ -10,9 +14,9 @@ const main = () => {
     );
   }
 
-  if (report.latticeEnd !== OFFSETS.LATTICE_MEMORY_END) {
+  if (report.latticeEnd !== LATTICE_MEMORY_END) {
     throw new Error(
-      `[memory-layout-guard] lattice end mismatch: report=${report.latticeEnd} offsets=${OFFSETS.LATTICE_MEMORY_END}`,
+      `[memory-layout-guard] lattice end mismatch: report=${report.latticeEnd} offsets=${LATTICE_MEMORY_END}`,
     );
   }
 

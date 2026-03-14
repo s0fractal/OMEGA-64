@@ -1,6 +1,8 @@
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 import { sharedBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  LATTICE_MEMORY_END
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
@@ -27,7 +29,7 @@ export const SNAP_ENGINE = {
       // Although SharedArrayBuffer is shared, Deno.writeFile will read from it.
       // To be safe and non-blocking, we slice the relevant portion.
       const data = new Uint8Array(
-        sharedBuffer.slice(0, OFFSETS.LATTICE_MEMORY_END),
+        sharedBuffer.slice(0, LATTICE_MEMORY_END),
       );
 
       await Deno.writeFile(snapPath, data);

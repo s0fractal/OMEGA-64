@@ -1,6 +1,11 @@
 import { GRID_H, GRID_W , GRID_CELLS} from "../../_/mod.ts";
 import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_CHARGE_INTENT_OFFSET,
+  STRUCTURE_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const LOCK_BIT = -2147483648;
 
@@ -47,22 +52,22 @@ const testIntentClearing = async () => {
   const testCell = gridIndex(64, 24);
   const structureGrid = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
+    STRUCTURE_GRID_OFFSET,
     GRID_CELLS,
   );
   const ownerIntents = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+    STRUCTURE_BUILD_OWNER_OFFSET,
     GRID_CELLS,
   );
   const valueIntents = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+    STRUCTURE_BUILD_VALUE_OFFSET,
     GRID_CELLS,
   );
   const chargeIntents = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.STRUCTURE_CHARGE_INTENT_OFFSET,
+    STRUCTURE_CHARGE_INTENT_OFFSET,
     GRID_CELLS,
   );
 

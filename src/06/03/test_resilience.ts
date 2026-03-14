@@ -2,7 +2,9 @@
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { SNAPSHOT_ENGINE } from "@06";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  IDS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RIBOSOME } from "@02";
 
 async function runTest() {
@@ -44,7 +46,7 @@ async function runTest() {
     STATE_MATRIX.setX(i, 500);
     STATE_MATRIX.setY(i, 500);
     // Set ID to activate
-    new BigUint64Array(STATE_MATRIX.buffer, OFFSETS.IDS_OFFSET, 100)[i] =
+    new BigUint64Array(STATE_MATRIX.buffer, IDS_OFFSET, 100)[i] =
       BigInt(i + 1);
   }
 

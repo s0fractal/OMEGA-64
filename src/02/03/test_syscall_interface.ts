@@ -1,7 +1,10 @@
 import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  CONTEXT_OFFSET,
+  STRUCTURE_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { energyBuffer, idBuffer, RISC, STATE_MATRIX, structureGridBuffer, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 Deno.test({
@@ -66,7 +69,7 @@ Deno.test({
 
     const structureGrid = new Int32Array(
       STATE_MATRIX.buffer,
-      OFFSETS.STRUCTURE_GRID_OFFSET,
+      STRUCTURE_GRID_OFFSET,
       GRID_CELLS,
     );
     const targetIdx = 50 * GRID_W + 50;
@@ -79,7 +82,7 @@ Deno.test({
 
     const contextData = new Int32Array(
       STATE_MATRIX.buffer,
-      OFFSETS.CONTEXT_OFFSET,
+      CONTEXT_OFFSET,
       16 * 14000,
     );
     const r0 = contextData[atomIdx * 16 + 0];

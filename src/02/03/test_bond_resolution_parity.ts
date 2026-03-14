@@ -1,47 +1,52 @@
 // OMEGA-64 | test_bond_resolution_parity.ts | Bond Resolution Verifier
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  MAX_ATOMS,
+  STIFFNESS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 
 async function testBondParity() {
   console.log("🧬 [TEST] Starting Bond Resolution Parity Test...");
 
   // 1. Setup Bond Requests
-  const MAX_ATOMS = OFFSETS.MAX_ATOMS;
+  const MAX_ATOMS = MAX_ATOMS;
 
   // Clear buffers
   new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
     0,
-    OFFSETS.BONDS_OFFSET,
-    OFFSETS.BONDS_OFFSET + MAX_ATOMS * 4 * 4,
+    BONDS_OFFSET,
+    BONDS_OFFSET + MAX_ATOMS * 4 * 4,
   );
   new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
     0,
-    OFFSETS.STIFFNESS_OFFSET,
-    OFFSETS.STIFFNESS_OFFSET + MAX_ATOMS * 4 * 4,
+    STIFFNESS_OFFSET,
+    STIFFNESS_OFFSET + MAX_ATOMS * 4 * 4,
   );
   new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
     0,
-    OFFSETS.BOND_REQUESTS_OFFSET,
-    OFFSETS.BOND_REQUESTS_OFFSET + MAX_ATOMS * 3 * 4,
+    BOND_REQUESTS_OFFSET,
+    BOND_REQUESTS_OFFSET + MAX_ATOMS * 3 * 4,
   );
 
   console.log(
-    `   [OFFSETS] BONDS_OFFSET=${OFFSETS.BONDS_OFFSET} BOND_REQUESTS_OFFSET=${OFFSETS.BOND_REQUESTS_OFFSET} MAX_ATOMS=${MAX_ATOMS}`,
+    `   [OFFSETS] BONDS_OFFSET=${BONDS_OFFSET} BOND_REQUESTS_OFFSET=${BOND_REQUESTS_OFFSET} MAX_ATOMS=${MAX_ATOMS}`,
   );
   const bondRequests = new Int32Array(
     STATE_MATRIX.sharedBuffer,
-    OFFSETS.BOND_REQUESTS_OFFSET,
+    BOND_REQUESTS_OFFSET,
     MAX_ATOMS * 3,
   );
   const bonds = new Uint32Array(
     STATE_MATRIX.sharedBuffer,
-    OFFSETS.BONDS_OFFSET,
+    BONDS_OFFSET,
     MAX_ATOMS * 4,
   );
   const stiffness = new Float32Array(
     STATE_MATRIX.sharedBuffer,
-    OFFSETS.STIFFNESS_OFFSET,
+    STIFFNESS_OFFSET,
     MAX_ATOMS * 4,
   );
 

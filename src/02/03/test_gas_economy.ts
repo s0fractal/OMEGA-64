@@ -1,6 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  CONTEXT_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 Deno.test({
@@ -46,13 +48,13 @@ Deno.test({
 
     const contextData = new Int32Array(
       STATE_MATRIX.buffer,
-      OFFSETS.CONTEXT_OFFSET,
+      CONTEXT_OFFSET,
       16 * 14000,
     );
     const pc = Atomics.load(
       new Int32Array(
         STATE_MATRIX.buffer,
-        OFFSETS.CONTEXT_OFFSET + 32,
+        CONTEXT_OFFSET + 32,
         14000 * 16,
       ),
       atomIdx,

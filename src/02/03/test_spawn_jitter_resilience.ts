@@ -1,4 +1,6 @@
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  SPAWN_REQUESTS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { emitResilienceCapture } from "@02/03/worker_resilience_capture.ts";
 import {
   assertSeededSwarmWorldInvariants,
@@ -61,7 +63,7 @@ async function main() {
 
   const spawnHead = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.SPAWN_REQUESTS_OFFSET,
+    SPAWN_REQUESTS_OFFSET,
     2,
   );
 

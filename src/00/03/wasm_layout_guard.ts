@@ -1,4 +1,4 @@
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 
 export const assertWasmLayout = async (): Promise<void> => {
   // Bypass legacy string AST execution validation over variables since Deno generates these cleanly into strict AS layer structs natively.

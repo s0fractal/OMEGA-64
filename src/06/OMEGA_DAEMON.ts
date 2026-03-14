@@ -1,6 +1,9 @@
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
-import * as OFFSETS from "../_/mod.ts";
+import {
+  WORLD_MAX_X,
+  WORLD_MAX_Y
+} from "../_/mod.ts";
 
 
 type Telemetry = {
@@ -1391,12 +1394,12 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
       target_x: clamp(
         Math.round(asFiniteNumber(payloadSource.target_x, 700)),
         0,
-        OFFSETS.WORLD_MAX_X,
+        WORLD_MAX_X,
       ),
       target_y: clamp(
         Math.round(asFiniteNumber(payloadSource.target_y, 400)),
         0,
-        OFFSETS.WORLD_MAX_Y,
+        WORLD_MAX_Y,
       ),
       intensity: clamp(asFiniteNumber(payloadSource.intensity, 100), 1, 2000),
       hex_code: hexCode,

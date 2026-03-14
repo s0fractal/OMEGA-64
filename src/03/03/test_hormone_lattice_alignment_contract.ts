@@ -8,7 +8,10 @@
  * 3. All 6 hormones can be written/read from SharedArrayBuffer with atomic guarantees.
  */
 
-import * as OFFSETS from "@00";
+import {
+  HORMONE_OFFSET,
+  WASM_MEMORY_BYTES
+} from "@00";
 import { STATE_MATRIX } from "@00";
 import { syncHormonesToLattice } from "@02";
 import { HORMONE_BUFFER_CATALOG } from "@02";
@@ -38,17 +41,17 @@ const layoutResult = true;
 assert(layoutResult, "Memory layout checks are handled by test_memory_layout_guard.ts");
 
 assert(
-  OFFSETS.HORMONE_OFFSET !== undefined,
+  HORMONE_OFFSET !== undefined,
   "HORMONE_OFFSET is exported from mod.ts"
 );
 
 assert(
-  OFFSETS.HORMONE_OFFSET + 12 <= OFFSETS.WASM_MEMORY_BYTES,
-  `HORMONE_OFFSET (${OFFSETS.HORMONE_OFFSET}) + 12 bytes fits in WASM memory`,
+  HORMONE_OFFSET + 12 <= WASM_MEMORY_BYTES,
+  `HORMONE_OFFSET (${HORMONE_OFFSET}) + 12 bytes fits in WASM memory`,
 );
 
 assert(
-  OFFSETS.HORMONE_OFFSET % 2 === 0,
+  HORMONE_OFFSET % 2 === 0,
   `HORMONE_OFFSET is Uint16-aligned`,
 );
 

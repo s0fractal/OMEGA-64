@@ -1,17 +1,23 @@
 // OMEGA-64 | ATOM_ACCESS.ts
 import { GRID_W, GRID_H, GRID_CELLS } from "../_/01/mod.ts";
-import * as OFFSETS from "../_/02/mod.ts";
+import {
+  ATOM_CONTEXT_SIZE,
+  ATOM_INSTRUCTION_SIZE,
+  MAX_ATOMS,
+  RESOURCE_MAX,
+  SCALE
+} from "../_/02/mod.ts";
 import * as views from "./memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
   if (value <= 0) return 0;
-  if (value >= OFFSETS.RESOURCE_MAX) return OFFSETS.RESOURCE_MAX;
+  if (value >= RESOURCE_MAX) return RESOURCE_MAX;
   return Math.trunc(value);
 };
 
 export const toClampedEnergyRaw = (value: number): number =>
-  clampResourceRaw(Math.round(value * OFFSETS.SCALE));
+  clampResourceRaw(Math.round(value * SCALE));
 
 export const SYNC = {
   IDLE: 0,
@@ -99,10 +105,10 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
 export const ATOM_ACCESS = {
-  MAX_ATOMS: OFFSETS.MAX_ATOMS,
+  MAX_ATOMS: MAX_ATOMS,
   buffer: views.sharedBuffer,
   wasmMemory: views.wasmMemory,
-  SCALE: OFFSETS.SCALE,
+  SCALE: SCALE,
   syncState: views.syncState,
   tickCounter: views.tickCounter,
   SYNC,
@@ -163,10 +169,10 @@ export const ATOM_ACCESS = {
   getX: (i: number) => Atomics.load(views.xs, i),
   getY: (i: number) => Atomics.load(views.ys, i),
   getRole: (i: number) => Atomics.load(views.roles, i),
-  get_energy: (i: number) => Atomics.load(views.energies, i) / OFFSETS.SCALE,
+  get_energy: (i: number) => Atomics.load(views.energies, i) / SCALE,
   get_resonance: (i: number) => Atomics.load(views.resonances, i),
   get_phase: (i: number) => Atomics.load(views.phases, i),
-  getEnergy: (i: number) => Atomics.load(views.energies, i) / OFFSETS.SCALE,
+  getEnergy: (i: number) => Atomics.load(views.energies, i) / SCALE,
   getResonance: (i: number) => Atomics.load(views.resonances, i),
   getPhase: (i: number) => Atomics.load(views.phases, i),
   getEvolutionReserved: (i: number) => Atomics.load(views.evolutionReserved, i),
@@ -200,13 +206,13 @@ export const ATOM_ACCESS = {
   setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(views.hiveEnergyPool, slot & 255, val),
   addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(views.hiveEnergyPool, slot & 255, val),
 
-  getInstructions: (i: number) => views.instructions.subarray(i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE),
+  getInstructions: (i: number) => views.instructions.subarray(i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE),
   getCode: (i: number) => views.codeWords.subarray(i * 16, i * 16 + 16),
-  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
-  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
-  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
-  getPC: (i: number) => Atomics.load(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
-  getContext: (i: number) => views.contextByteView.subarray(i * (OFFSETS.ATOM_CONTEXT_SIZE * 4), i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + (OFFSETS.ATOM_CONTEXT_SIZE * 4)),
+  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) => views.contextByteView.subarray(i * (ATOM_CONTEXT_SIZE * 4), i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4)),
 
   setId: (i: number, val: bigint) => Atomics.store(views.ids, i, val),
   setX: (i: number, val: number) => Atomics.store(views.xs, i, Math.round(val)),
@@ -233,7 +239,7 @@ export const ATOM_ACCESS = {
   setMailboxMsgType: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2, val),
   setMailboxPayload: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2 + 1, val),
 
-  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * OFFSETS.ATOM_INSTRUCTION_SIZE),
+  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
   setCode: (i: number, val: Uint32Array | Uint8Array) => {
     const codeStart = i * 16;
     if (val instanceof Uint32Array) {
@@ -241,14 +247,14 @@ export const ATOM_ACCESS = {
       views.codeWords.set(val.subarray(0, 16), codeStart);
       return;
     }
-    const instStart = i * OFFSETS.ATOM_INSTRUCTION_SIZE;
-    views.instructions.fill(0, instStart, instStart + OFFSETS.ATOM_INSTRUCTION_SIZE);
-    views.instructions.set(val.subarray(0, OFFSETS.ATOM_INSTRUCTION_SIZE), instStart);
+    const instStart = i * ATOM_INSTRUCTION_SIZE;
+    views.instructions.fill(0, instStart, instStart + ATOM_INSTRUCTION_SIZE);
+    views.instructions.set(val.subarray(0, ATOM_INSTRUCTION_SIZE), instStart);
   },
-  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
-  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
-  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
-  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
+  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
 
   getBondRequest: (i: number) => {
     const base = i * 3;
@@ -268,8 +274,8 @@ export const ATOM_ACCESS = {
     views.bondDistances.fill(0, i * 4, i * 4 + 4);
     Atomics.store(views.damping, i, 0);
     Atomics.store(views.lineage, i, 0n);
-    views.instructions.fill(0, i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE);
-    views.contexts.fill(0, i * OFFSETS.ATOM_CONTEXT_SIZE, i * OFFSETS.ATOM_CONTEXT_SIZE + OFFSETS.ATOM_CONTEXT_SIZE);
+    views.instructions.fill(0, i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE);
+    views.contexts.fill(0, i * ATOM_CONTEXT_SIZE, i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE);
   },
 
   clear: () => {
@@ -278,17 +284,17 @@ export const ATOM_ACCESS = {
   },
   getActiveIndices: () => {
     const active: number[] = [];
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) !== 0n) active.push(i);
     }
     return active;
   },
   getTopResonantIndices: (count: number) => {
-    const limit = Math.max(0, Math.min(OFFSETS.MAX_ATOMS, Math.trunc(count)));
+    const limit = Math.max(0, Math.min(MAX_ATOMS, Math.trunc(count)));
     if (limit === 0) return [];
 
     const top: Array<{ idx: number; resonance: number }> = [];
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) continue;
       const resonance = Atomics.load(views.resonances, i);
       if (top.length < limit) {
@@ -309,13 +315,13 @@ export const ATOM_ACCESS = {
   },
 
   findFreeSlot: (): number => {
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) return i;
     }
     return -1;
   },
   findEmptySlot: (): number => {
-    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 1; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) return i;
     }
     return -1;
@@ -396,7 +402,7 @@ export const ATOM_ACCESS = {
     Atomics.store(views.ids, i, id);
     Atomics.store(views.xs, i, Math.round(x));
     Atomics.store(views.ys, i, Math.round(y));
-    Atomics.store(views.energies, i, Math.round(energy * OFFSETS.SCALE));
+    Atomics.store(views.energies, i, Math.round(energy * SCALE));
     Atomics.store(views.resonances, i, Math.trunc(resonance));
     Atomics.store(views.phases, i, 0);
     Atomics.store(views.roles, i, 0);
@@ -405,10 +411,10 @@ export const ATOM_ACCESS = {
     if (logicVal) views.logic.set(logicVal, i * 8);
 
     const boot = script || DEFAULT_BOOT_SCRIPT;
-    views.instructions.set(boot, i * OFFSETS.ATOM_INSTRUCTION_SIZE);
+    views.instructions.set(boot, i * ATOM_INSTRUCTION_SIZE);
 
-    for (let r = 0; r < OFFSETS.ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + r, 0);
-    Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, 0);
+    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + r, 0);
+    Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, 0);
   },
 
   seedGuardian: (
@@ -520,10 +526,10 @@ export const ATOM_ACCESS = {
 
   injectEnergy: (amount: number) => {
     let count = 0;
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) !== 0n) {
         const current = Atomics.load(views.energies, i);
-        Atomics.store(views.energies, i, current + Math.round(amount * OFFSETS.SCALE));
+        Atomics.store(views.energies, i, current + Math.round(amount * SCALE));
         count++;
       }
     }

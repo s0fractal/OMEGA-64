@@ -2,7 +2,10 @@ import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { SOVEREIGN_ORACLE } from "@05";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  NEURAL_COHERENCE_OFFSET,
+  STRUCTURE_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");
@@ -16,12 +19,12 @@ async function testResonance() {
   const sharedBuffer = STATE_MATRIX.buffer;
   const structureGrid = new Int32Array(
     sharedBuffer,
-    OFFSETS.STRUCTURE_GRID_OFFSET,
+    STRUCTURE_GRID_OFFSET,
     GRID_CELLS,
   );
   const neuralCoherenceView = new Int32Array(
     sharedBuffer,
-    OFFSETS.NEURAL_COHERENCE_OFFSET,
+    NEURAL_COHERENCE_OFFSET,
     1,
   );
 

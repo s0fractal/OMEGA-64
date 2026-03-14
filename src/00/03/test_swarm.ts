@@ -1,7 +1,11 @@
 import { GRID_W, GRID_H , GRID_CELLS} from "../mod.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
 import { STATE_MATRIX } from "../mod.ts";
-import * as OFFSETS from "../mod.ts";
+import {
+  CONTEXT_OFFSET,
+  HIVE_MEMORY_OFFSET,
+  SIGNAL_GRID_OFFSET
+} from "../mod.ts";
 
 async function runTest() {
   console.log("=== VECTOR 3: COLLECTIVE INTELLIGENCE & ROLES TEST ===");
@@ -100,7 +104,7 @@ async function runTest() {
   // Check Hive Memory
   const hiveView = new Uint8Array(
     sharedBuffer,
-    OFFSETS.HIVE_MEMORY_OFFSET,
+    HIVE_MEMORY_OFFSET,
     1024,
   );
   console.log("   Hive Memory [1]:", hiveView[1], "(Expected: 88)");
@@ -108,7 +112,7 @@ async function runTest() {
   // Check Atom 1 Register 0 (Loaded from Hive)
   // Context per atom is 64 bytes. R0 is at the start of that.
   // Atom 1 offset = 64.
-  const regsView = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET + 64, 8);
+  const regsView = new Int32Array(sharedBuffer, CONTEXT_OFFSET + 64, 8);
   console.log("   Atom 1 Reg 0:", regsView[0], "(Expected: 88)");
 
   // 4. Verify Pheromone Emission
@@ -127,7 +131,7 @@ async function runTest() {
   const pidx = gy * GRID_W + gx;
   const pheroGrid = new Int32Array(
     sharedBuffer,
-    OFFSETS.SIGNAL_GRID_OFFSET,
+    SIGNAL_GRID_OFFSET,
     GRID_CELLS,
   );
   const pValue = pheroGrid[pidx];

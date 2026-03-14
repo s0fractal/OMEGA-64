@@ -1,6 +1,8 @@
 import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
 import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
-import * as OFFSETS from "@00";
+import {
+  ENERGY_OFFSET
+} from "@00";
 
 /**
  * Stage 5.3: Secretion Energetics Audit
@@ -13,7 +15,7 @@ async function runAudit() {
   // 1. Snapshot initial state
   const energyView = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.ENERGY_OFFSET,
+    ENERGY_OFFSET,
     1000,
   );
   const initialEnergyCopy = new Int32Array(energyView);

@@ -3,7 +3,19 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  GRID_W,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_DELTA_OFFSET,
+  SPATIAL_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_PATH = "src/00/release.wasm";
 const wasmModule = await Deno.readFile(WASM_PATH);
@@ -68,23 +80,23 @@ STATE_MATRIX.set_resonance(1, 200);
 // Population of read buffers for spatial grid and proximity
 const readXs = new Int16Array(
   STATE_MATRIX.buffer,
-  OFFSETS.PHYSICS_READ_XS_OFFSET,
-  OFFSETS.MAX_ATOMS,
+  PHYSICS_READ_XS_OFFSET,
+  MAX_ATOMS,
 );
 const readYs = new Int16Array(
   STATE_MATRIX.buffer,
-  OFFSETS.PHYSICS_READ_YS_OFFSET,
-  OFFSETS.MAX_ATOMS,
+  PHYSICS_READ_YS_OFFSET,
+  MAX_ATOMS,
 );
 const readEnergy = new Int32Array(
   STATE_MATRIX.buffer,
-  OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-  OFFSETS.MAX_ATOMS,
+  PHYSICS_READ_ENERGY_OFFSET,
+  MAX_ATOMS,
 );
 const readResonance = new Int32Array(
   STATE_MATRIX.buffer,
-  OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-  OFFSETS.MAX_ATOMS,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  MAX_ATOMS,
 );
 
 readXs[1] = 100;
@@ -102,8 +114,8 @@ readResonance[2] = 0;
 readEnergy[2] = 100;
 
 // Build spatial grid manually for the test
-const gridIdx = (10 * OFFSETS.GRID_W) + 10; // (100/10, 100/10)
-const gridOff = (OFFSETS.SPATIAL_GRID_OFFSET) + (gridIdx << 7);
+const gridIdx = (10 * GRID_W) + 10; // (100/10, 100/10)
+const gridOff = (SPATIAL_GRID_OFFSET) + (gridIdx << 7);
 const view = new Int32Array(STATE_MATRIX.buffer);
 const gridViewIdx = gridOff >> 2;
 view[gridViewIdx] = 2; // Count
@@ -111,14 +123,14 @@ view[gridViewIdx + 1] = 1; // Atom 1
 view[gridViewIdx + 2] = 2; // Atom 2
 
 // Write instructions for Atom 1: OP_BIND (0x82)
-const instOff = OFFSETS.INSTRUCTIONS_OFFSET + (1 << 6);
+const instOff = INSTRUCTIONS_OFFSET + (1 << 6);
 const instView = new Uint8Array(STATE_MATRIX.buffer);
 instView[instOff] = 0x82; // OP_BIND
 
 kernel.execute_atom(1);
 
 // Check bond requests
-const reqOff = OFFSETS.BOND_REQUESTS_OFFSET + (1 * 12);
+const reqOff = BOND_REQUESTS_OFFSET + (1 * 12);
 const reqView = new Int32Array(STATE_MATRIX.buffer, reqOff, 3);
 console.log(
   `Bond Request: Initiator=${reqView[0]}, Target=${reqView[1]}, Status=${
@@ -137,7 +149,7 @@ setupTestState();
 
 // Setup physical bond: Atom 1 <-> Atom 2
 // Bonds are at BONDS_OFFSET: 16 bytes per atom (4 slots of i32)
-const bondsOff = OFFSETS.BONDS_OFFSET;
+const bondsOff = BONDS_OFFSET;
 const bondsView = new Int32Array(STATE_MATRIX.buffer);
 bondsView[(bondsOff + (1 * 16)) >> 2] = 2; // Atom 1 bond 0 -> Atom 2
 
@@ -158,7 +170,7 @@ readYs[2] = 105;
 kernel.execute_atom(1);
 
 // Check resonance delta for Atom 1
-const resDeltaOff = OFFSETS.RESONANCE_DELTA_OFFSET;
+const resDeltaOff = RESONANCE_DELTA_OFFSET;
 const resDeltaView = new Int32Array(STATE_MATRIX.buffer);
 const delta1 = resDeltaView[(resDeltaOff + (1 << 2)) >> 2];
 

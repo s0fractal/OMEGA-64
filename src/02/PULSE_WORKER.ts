@@ -1,7 +1,37 @@
 import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MAX_ATOMS,
+  MAX_LEDGER_EVENTS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   LOGGER,
   SCALE,
@@ -43,8 +73,6 @@ const resolveWithPhase = (
   // Return "intensity" = |z|
   return Math.floor(Math.sqrt(real * real + imag * imag));
 };
-const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: ((idx: number) => void) | null = null;
 let tick_environment_fn: ((tick: number) => void) | null = null;
@@ -275,7 +303,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_SET_ROLE: {
       const rolesView = new Uint8Array(
         sharedBuffer!,
-        OFFSETS.ROLES_OFFSET,
+        ROLES_OFFSET,
         MAX_ATOMS,
       );
       const newRole = r1;
@@ -380,7 +408,7 @@ function handle_syscall(atomIdx: number) {
                 const tx = Atomics.load(xsView, targetIdx);
                 const ty = Atomics.load(ysView, targetIdx);
 
-                const rolesView = new Uint8Array(sharedBuffer!, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+                const rolesView = new Uint8Array(sharedBuffer!, ROLES_OFFSET, MAX_ATOMS);
                 const myRole = Atomics.load(rolesView, atomIdx);
                 const tRole = Atomics.load(rolesView, targetIdx);
 
@@ -396,8 +424,8 @@ function handle_syscall(atomIdx: number) {
                   }
                 }
 
-                const dx = (tx - ox) / OFFSETS.SPATIAL_CELL_SIZE;
-                const dy = (ty - oy) / OFFSETS.SPATIAL_CELL_SIZE;
+                const dx = (tx - ox) / SPATIAL_CELL_SIZE;
+                const dy = (ty - oy) / SPATIAL_CELL_SIZE;
                 const distSq = dx * dx + dy * dy;
 
                 if (distSq <= 2.25) {
@@ -498,7 +526,7 @@ function handle_syscall(atomIdx: number) {
       if (ledgerHeadView && ledgerDataView) {
         // Atomic ring buffer increment
         const cursor = Atomics.add(ledgerHeadView, 0, 1) %
-          OFFSETS.MAX_LEDGER_EVENTS;
+          MAX_LEDGER_EVENTS;
         const base = cursor * 4; // 4 i32 per event
 
         const currentTick = tickCounterView
@@ -613,20 +641,20 @@ function handle_syscall(atomIdx: number) {
         const dyStr = intensity > 0 ? dySign : -dySign;
 
         if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * OFFSETS.SPATIAL_CELL_SIZE;
-          let ny = oy + dyStr * OFFSETS.SPATIAL_CELL_SIZE;
+          let nx = ox + dxStr * SPATIAL_CELL_SIZE;
+          let ny = oy + dyStr * SPATIAL_CELL_SIZE;
           LOGGER.debug(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
 
           if (nx < 0) nx = 0;
-          else if (nx > OFFSETS.WORLD_MAX_X) nx = OFFSETS.WORLD_MAX_X;
+          else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
           if (ny < 0) ny = 0;
-          else if (ny > OFFSETS.WORLD_MAX_Y) ny = OFFSETS.WORLD_MAX_Y;
+          else if (ny > WORLD_MAX_Y) ny = WORLD_MAX_Y;
 
-          const nGridX = Math.floor(nx / OFFSETS.SPATIAL_CELL_SIZE);
-          const nGridY = Math.floor(ny / OFFSETS.SPATIAL_CELL_SIZE);
+          const nGridX = Math.floor(nx / SPATIAL_CELL_SIZE);
+          const nGridY = Math.floor(ny / SPATIAL_CELL_SIZE);
           const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
@@ -789,62 +817,62 @@ const maybeDelay = async () => {
       betPoolInt = new Int32Array(marketBuffer, 4, 1);
     }
     const sb = sharedBuffer as SharedArrayBuffer;
-    tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
-    syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
+    tickCounterView = new Int32Array(sb, TICK_COUNTER_OFFSET, 1);
+    syncStateView = new Int32Array(sb, SYNC_STATE_OFFSET, 1);
 
-    idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-    xsView = new Int16Array(sb, OFFSETS.XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
-    ysView = new Int16Array(sb, OFFSETS.YS_OFFSET, MAX_ATOMS);
-    contextI32View = new Int32Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16);
-    contextU8View = new Uint8Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
+    idsView = new BigUint64Array(sb, IDS_OFFSET, MAX_ATOMS);
+    xsView = new Int16Array(sb, XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
+    ysView = new Int16Array(sb, YS_OFFSET, MAX_ATOMS);
+    contextI32View = new Int32Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 16);
+    contextU8View = new Uint8Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 64);
     structureGridView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_GRID_OFFSET,
+      STRUCTURE_GRID_OFFSET,
       GRID_CELLS,
     );
     spatialGridView = new Int32Array(
       sb,
-      OFFSETS.SPATIAL_GRID_OFFSET,
+      SPATIAL_GRID_OFFSET,
       GRID_CELLS * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+      STRUCTURE_BUILD_OWNER_OFFSET,
       GRID_CELLS,
     );
     buildValueView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+      STRUCTURE_BUILD_VALUE_OFFSET,
       GRID_CELLS,
     );
-    spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
+    spawnHeadView = new Int32Array(sb, SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(
       sb,
-      OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+      SPAWN_REQUESTS_OFFSET + 8,
       1024 * 24,
     );
-    lineageView = new BigUint64Array(sb, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
-    logicView = new BigUint64Array(sb, OFFSETS.LOGIC_OFFSET, MAX_ATOMS);
+    lineageView = new BigUint64Array(sb, LINEAGE_OFFSET, MAX_ATOMS);
+    logicView = new BigUint64Array(sb, LOGIC_OFFSET, MAX_ATOMS);
     bondRequestsView = new Int32Array(
       sb,
-      OFFSETS.BOND_REQUESTS_OFFSET,
+      BOND_REQUESTS_OFFSET,
       MAX_ATOMS * 3,
     );
-    energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-    resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-    phaseView = new Int32Array(sb, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-    evolutionReservedView = new Int32Array(sb, OFFSETS.EVOLUTION_OFFSET, MAX_ATOMS);
+    energiesView = new Int32Array(sb, ENERGY_OFFSET, MAX_ATOMS);
+    resonancesView = new Int32Array(sb, RESONANCE_OFFSET, MAX_ATOMS);
+    phaseView = new Int32Array(sb, PHASE_OFFSET, MAX_ATOMS);
+    evolutionReservedView = new Int32Array(sb, EVOLUTION_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(
       sb,
-      OFFSETS.INSTRUCTIONS_OFFSET,
+      INSTRUCTIONS_OFFSET,
       MAX_ATOMS * 64,
     );
-    mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
-    ledgerHeadView = new Int32Array(sb, OFFSETS.LEDGER_HEAD_OFFSET, 1);
+    mailboxView = new Int32Array(sb, MAILBOX_OFFSET, MAX_ATOMS * 2);
+    ledgerHeadView = new Int32Array(sb, LEDGER_HEAD_OFFSET, 1);
     ledgerDataView = new Int32Array(
       sb,
-      OFFSETS.LEDGER_DATA_OFFSET,
-      OFFSETS.MAX_LEDGER_EVENTS * 4,
+      LEDGER_DATA_OFFSET,
+      MAX_LEDGER_EVENTS * 4,
     );
 
     const idx = Number(workerIndex);
@@ -925,7 +953,7 @@ try {
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       (self as unknown as Worker).postMessage({ type: "READY" });
-      const bview = new Int32Array(sb, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+      const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
       setInterval(() => {
         // removed debug logging
       }, 5000);
@@ -1008,7 +1036,7 @@ try {
   if (type === "TICK_MATRIX") {
     const bH = new Int32Array(
       sharedBuffer!,
-      OFFSETS.BONDS_OFFSET,
+      BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
     // removed debug logging
@@ -1020,7 +1048,7 @@ try {
   if (type === "TICK_ENVIRONMENT") {
     const bH = new Int32Array(
       sharedBuffer!,
-      OFFSETS.BONDS_OFFSET,
+      BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
     LOGGER.debug(

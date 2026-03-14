@@ -6,7 +6,7 @@ import {
 import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 
 Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   LOGGER.info("--- STAGE 29: SEMANTIC MUTATION TEST ---");

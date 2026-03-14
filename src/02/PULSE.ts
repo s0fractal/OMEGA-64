@@ -8,7 +8,32 @@ import {
   AS_WASM_PATH,
   LOGGER,
 } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  GRID_H,
+  GRID_W,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LATTICE_MEMORY_END,
+  LOGIC_OFFSET,
+  MAX_EGRESS_EVENTS,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "@03/GATE.ts";
@@ -1033,80 +1058,80 @@ const getWorkerFaultStat = (workerIndex: number): WorkerFaultStat => {
   return workerFaultStats[workerIndex];
 };
 
-const idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-const xsView = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-const ysView = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+const idsView = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
+const xsView = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
+const ysView = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 const energiesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.ENERGY_OFFSET,
+  ENERGY_OFFSET,
   MAX_ATOMS,
 );
 const resonancesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.RESONANCE_OFFSET,
+  RESONANCE_OFFSET,
   MAX_ATOMS,
 );
 const causalityView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.CAUSALITY_OFFSET,
+  CAUSALITY_OFFSET,
   MAX_ATOMS,
 );
 export const phasesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHASE_OFFSET,
+  PHASE_OFFSET,
   MAX_ATOMS,
 );
 export const rolesView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.ROLES_OFFSET,
+  ROLES_OFFSET,
   MAX_ATOMS,
 );
 export const logicView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.LOGIC_OFFSET,
+  LOGIC_OFFSET,
   MAX_ATOMS * 8,
 );
 const instructionsView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.INSTRUCTIONS_OFFSET,
+  INSTRUCTIONS_OFFSET,
   MAX_ATOMS * 64,
 );
 const bondsView = new Uint32Array(
   sharedBuffer,
-  OFFSETS.BONDS_OFFSET,
+  BONDS_OFFSET,
   MAX_ATOMS * 4,
 );
 const readXsView = new Int16Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
   MAX_ATOMS,
 );
 const readYsView = new Int16Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_YS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
   MAX_ATOMS,
 );
 const readEnergiesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
   MAX_ATOMS,
 );
 const readResonancesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
   MAX_ATOMS,
 );
 const spawnHeadView = new Int32Array(
   sharedBuffer,
-  OFFSETS.SPAWN_REQUESTS_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
   2,
 );
 const spawnDataView = new DataView(
   sharedBuffer,
-  OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+  SPAWN_REQUESTS_OFFSET + 8,
   SPAWN_RING_CAPACITY * SPAWN_SLOT_BYTES,
 );
-const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+const coherenceView = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 // Helper for drift & trend monitoring
 class RollingHistory {
@@ -1805,7 +1830,7 @@ let lastEgressReadHead = 0;
 export const drainEgressEvents = (): Uint8Array[] => {
   const headView = new Int32Array(
     STATE_MATRIX.wasmMemory.buffer,
-    OFFSETS.EGRESS_HEAD_OFFSET,
+    EGRESS_HEAD_OFFSET,
     1,
   );
   const writeHead = Atomics.load(headView, 0);
@@ -1814,10 +1839,10 @@ export const drainEgressEvents = (): Uint8Array[] => {
   if (writeHead === readHead) return [];
 
   const events: Uint8Array[] = [];
-  const maxEvents = OFFSETS.MAX_EGRESS_EVENTS;
+  const maxEvents = MAX_EGRESS_EVENTS;
   const dataView = new Uint8Array(
     STATE_MATRIX.wasmMemory.buffer,
-    OFFSETS.EGRESS_DATA_OFFSET,
+    EGRESS_DATA_OFFSET,
     maxEvents * 256,
   );
 
@@ -1872,7 +1897,7 @@ export const PULSE = {
     if (!shadowWasmInstance || !generate_epoch_proof_ffi) {
       await initShadowWasm();
     }
-    const resultPtr = OFFSETS.LATTICE_MEMORY_END + 1024 + 128;
+    const resultPtr = LATTICE_MEMORY_END + 1024 + 128;
     generate_epoch_proof_ffi!(tick, resultPtr);
 
     const u8View = new Uint8Array(
@@ -1896,7 +1921,7 @@ export const PULSE = {
     // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
     // We will place this safely past the LATTICE_MEMORY_END to avoid collisions,
     // ensuring we fit inside the initial 163MB memory bounds without triggering out of bounds RangeErrors.
-    const scratchSpaceOffset = OFFSETS.LATTICE_MEMORY_END + 1024;
+    const scratchSpaceOffset = LATTICE_MEMORY_END + 1024;
     const resultPtr = scratchSpaceOffset + 64;
 
     // Write logic bytes
@@ -2655,8 +2680,8 @@ export const PULSE = {
       const dumpA11 = (lbl: string) => {
         const xs = new Int16Array(
           STATE_MATRIX.wasmMemory.buffer,
-          OFFSETS.XS_OFFSET,
-          OFFSETS.MAX_ATOMS,
+          XS_OFFSET,
+          MAX_ATOMS,
         );
         LOGGER.debug(
           `[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`,
@@ -2759,7 +2784,7 @@ export const PULSE = {
           type: "RESOLVE_BONDS",
           pulseId: bondPulseId,
           startIdx: 0,
-          endIdx: OFFSETS.MAX_ATOMS,
+          endIdx: MAX_ATOMS,
         },
         "RESOLVE_BONDS_DONE",
       );
@@ -2993,7 +3018,7 @@ export const PULSE = {
         // --- STAGE 22: ADAPTIVE INCEPTION ---
         // Find newly spawned atoms (those with IDs but empty instructions/role)
         // and inject evolved programs.
-        for (let idx = 0; idx < OFFSETS.MAX_ATOMS; idx++) {
+        for (let idx = 0; idx < MAX_ATOMS; idx++) {
           if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
             // This is likely a fresh spawn. Incept it.
             const prog = genesisInceptor.selectProgram();
@@ -3015,7 +3040,7 @@ export const PULSE = {
       await postAndWait(0, workers[0], {
         type: "METABOLISM_ACCUMULATE",
         startIdx: 0,
-        endIdx: OFFSETS.MAX_ATOMS,
+        endIdx: MAX_ATOMS,
         clear: true,
         pulseId: clearStatsPulseId,
       }, "METABOLISM_ACCUMULATE_DONE");
@@ -3048,12 +3073,12 @@ export const PULSE = {
       );
 
       const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(OFFSETS.MAX_ATOMS / runtimeWorkerCount);
+      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
       for (let i = 0; i < runtimeWorkerCount; i++) {
         const startIdx = i * chunkSize;
         const endIdx = i === runtimeWorkerCount - 1
-          ? OFFSETS.MAX_ATOMS
-          : Math.min(OFFSETS.MAX_ATOMS, (i + 1) * chunkSize);
+          ? MAX_ATOMS
+          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
 
         metabolismPromises.push(postAndWait(
           i,
@@ -3444,11 +3469,11 @@ export const PULSE = {
     let ny = view.getInt32(80, true);
 
     // Teleport to opposite edge
-    if (nx <= 0) nx = Math.floor(OFFSETS.GRID_W * 10 - 1);
-    else if (nx >= Math.floor(OFFSETS.GRID_W * 10 - 1)) nx = 0;
+    if (nx <= 0) nx = Math.floor(GRID_W * 10 - 1);
+    else if (nx >= Math.floor(GRID_W * 10 - 1)) nx = 0;
 
-    if (ny <= 0) ny = Math.floor(OFFSETS.GRID_H * 10 - 1);
-    else if (ny >= Math.floor(OFFSETS.GRID_H * 10 - 1)) ny = 0;
+    if (ny <= 0) ny = Math.floor(GRID_H * 10 - 1);
+    else if (ny >= Math.floor(GRID_H * 10 - 1)) ny = 0;
 
     const role = payload[148];
 
@@ -3465,13 +3490,13 @@ export const PULSE = {
 
       const xs = new Int16Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.XS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        XS_OFFSET,
+        MAX_ATOMS,
       );
       const ys = new Int16Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.YS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        YS_OFFSET,
+        MAX_ATOMS,
       );
       Atomics.store(xs, atomIdx, nx);
       Atomics.store(ys, atomIdx, ny);
@@ -3480,7 +3505,7 @@ export const PULSE = {
 
       const ctxView = new Int32Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.CONTEXT_OFFSET + atomIdx * 64,
+        CONTEXT_OFFSET + atomIdx * 64,
         16,
       );
       for (let i = 0; i < 16; i++) {

@@ -1,7 +1,9 @@
 import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MEMORY_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const TOTAL_CELLS = GRID_CELLS;
 
@@ -96,7 +98,7 @@ export const MATRIX_ENGINE = {
       // Write genome into memoryGrid (8 bytes = 1 i64 slot)
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
-        OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+        MEMORY_GRID_OFFSET + memeIdx * 8,
         1,
       );
       memView[0] = genomeBytes[0];
@@ -114,7 +116,7 @@ export const MATRIX_ENGINE = {
       const memeIdx = cy * GRID_W + cx;
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
-        OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+        MEMORY_GRID_OFFSET + memeIdx * 8,
         1,
       );
       return memView[0];

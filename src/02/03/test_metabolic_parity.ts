@@ -1,21 +1,25 @@
 // OMEGA-64 | test_metabolic_parity.ts | Metabolic Parity Verifier
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  ENERGY_OFFSET,
+  LOGIC_OFFSET,
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 
 async function testMetabolicParity() {
   console.log("🧬 [TEST] Starting Metabolic Parity Test...");
 
-  const MAX_ATOMS = OFFSETS.MAX_ATOMS;
+  const MAX_ATOMS = MAX_ATOMS;
   const sharedBuffer = STATE_MATRIX.sharedBuffer;
   const energiesView = new Int32Array(
     sharedBuffer,
-    OFFSETS.ENERGY_OFFSET,
+    ENERGY_OFFSET,
     MAX_ATOMS,
   );
   const logicView = new Uint8Array(
     sharedBuffer,
-    OFFSETS.LOGIC_OFFSET,
+    LOGIC_OFFSET,
     MAX_ATOMS * 8,
   );
 

@@ -1,5 +1,19 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_URL = new URL(
   "../../00/00/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
@@ -8,8 +22,8 @@ const WASM_URL = new URL(
 
 async function createMatrix() {
   const memory = new WebAssembly.Memory({
-    initial: OFFSETS.WASM_MEMORY_PAGES,
-    maximum: OFFSETS.WASM_MEMORY_PAGES,
+    initial: WASM_MEMORY_PAGES,
+    maximum: WASM_MEMORY_PAGES,
     shared: true,
   });
 
@@ -51,12 +65,12 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
   // Find empty slot natively
   const ids = new BigInt64Array(
     memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   let atomIdx = Number(ids[1] === 0n ? 1n : 0n);
   if (atomIdx === 0) {
-    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 1; i < MAX_ATOMS; i++) {
       if (ids[i] === 0n) {
         atomIdx = i;
         break;
@@ -67,33 +81,33 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
   if (atomIdx > 0) {
     const energies = new Int32Array(
       memory.buffer,
-      OFFSETS.ENERGY_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      ENERGY_OFFSET,
+      MAX_ATOMS,
     );
     const resonances = new Int32Array(
       memory.buffer,
-      OFFSETS.RESONANCE_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      RESONANCE_OFFSET,
+      MAX_ATOMS,
     );
     const phases = new Int32Array(
       memory.buffer,
-      OFFSETS.PHASE_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      PHASE_OFFSET,
+      MAX_ATOMS,
     );
     const roles = new Uint8Array(
       memory.buffer,
-      OFFSETS.ROLES_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      ROLES_OFFSET,
+      MAX_ATOMS,
     );
     const xs = new Int16Array(
       memory.buffer,
-      OFFSETS.XS_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      XS_OFFSET,
+      MAX_ATOMS,
     );
     const ys = new Int16Array(
       memory.buffer,
-      OFFSETS.YS_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      YS_OFFSET,
+      MAX_ATOMS,
     );
 
     energies[atomIdx] = energy;
@@ -106,7 +120,7 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
 
     const logic = new Uint8Array(
       memory.buffer,
-      OFFSETS.INSTRUCTIONS_OFFSET + atomIdx * 64,
+      INSTRUCTIONS_OFFSET + atomIdx * 64,
       64,
     );
     logic.set(genome);
@@ -114,7 +128,7 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
     // Context maps natively from 84..148 block representing 16 x i32 slots.
     const context = new Int32Array(
       memory.buffer,
-      OFFSETS.CONTEXT_OFFSET + atomIdx * 16 * 4,
+      CONTEXT_OFFSET + atomIdx * 16 * 4,
       16,
     );
     for (let c = 0; c < 16; c++) {
@@ -130,28 +144,28 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
   const idsA = new BigInt64Array(
     matrixA.memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   const xsA = new Int16Array(
     matrixA.memory.buffer,
-    OFFSETS.XS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    XS_OFFSET,
+    MAX_ATOMS,
   );
   const ysA = new Int16Array(
     matrixA.memory.buffer,
-    OFFSETS.YS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    YS_OFFSET,
+    MAX_ATOMS,
   );
   const energiesA = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    ENERGY_OFFSET,
+    MAX_ATOMS,
   );
   const logicA = new Uint8Array(
     matrixA.memory.buffer,
-    OFFSETS.INSTRUCTIONS_OFFSET,
-    OFFSETS.MAX_ATOMS * 64,
+    INSTRUCTIONS_OFFSET,
+    MAX_ATOMS * 64,
   );
 
   const atomIdxA = 1;
@@ -189,8 +203,8 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   const contextA = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.CONTEXT_OFFSET,
-    OFFSETS.MAX_ATOMS * 16,
+    CONTEXT_OFFSET,
+    MAX_ATOMS * 16,
   );
   console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
   console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
@@ -204,7 +218,7 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 3. Extract EgressEvent
   const headView = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.EGRESS_HEAD_OFFSET,
+    EGRESS_HEAD_OFFSET,
     1,
   );
   const writeHead = Atomics.load(headView, 0);
@@ -212,7 +226,7 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   const dataView = new Uint8Array(
     matrixA.memory.buffer,
-    OFFSETS.EGRESS_DATA_OFFSET,
+    EGRESS_DATA_OFFSET,
     256,
   );
   const payload = dataView.slice(0, 256);
@@ -223,23 +237,23 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
   const idsB = new BigInt64Array(
     matrixB.memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   const xsB = new Int16Array(
     matrixB.memory.buffer,
-    OFFSETS.XS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    XS_OFFSET,
+    MAX_ATOMS,
   );
   const energiesB = new Int32Array(
     matrixB.memory.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    ENERGY_OFFSET,
+    MAX_ATOMS,
   );
   const logicB = new Uint8Array(
     matrixB.memory.buffer,
-    OFFSETS.INSTRUCTIONS_OFFSET,
-    OFFSETS.MAX_ATOMS * 64,
+    INSTRUCTIONS_OFFSET,
+    MAX_ATOMS * 64,
   );
 
   // The first empty slot should be 1

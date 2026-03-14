@@ -1,10 +1,13 @@
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MIN_WASM_MEMORY_PAGES,
+  WASM_MEMORY_PAGES
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
 import { resolveFsVectorSync } from "@07/01/vector_decoder.ts";
 
-if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   console.error(
-    `[wasm:build] Refusing build: pages=${OFFSETS.WASM_MEMORY_PAGES} < required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+    `[wasm:build] Refusing build: pages=${WASM_MEMORY_PAGES} < required=${MIN_WASM_MEMORY_PAGES}`,
   );
   Deno.exit(1);
 }
@@ -28,9 +31,9 @@ const args = [
   "--importMemory",
   "--sharedMemory",
   "--initialMemory",
-  String(OFFSETS.MIN_WASM_MEMORY_PAGES),
+  String(MIN_WASM_MEMORY_PAGES),
   "--maximumMemory",
-  String(OFFSETS.WASM_MEMORY_PAGES),
+  String(WASM_MEMORY_PAGES),
   "--enable",
   "threads",
   "--runtime",
@@ -48,5 +51,5 @@ if (code !== 0) Deno.exit(code);
 
 const stat = await Deno.stat(wasmFile);
 console.log(
-  `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+  `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${WASM_MEMORY_PAGES}, required>=${MIN_WASM_MEMORY_PAGES}`,
 );
