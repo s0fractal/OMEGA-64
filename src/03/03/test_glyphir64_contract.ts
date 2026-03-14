@@ -4,7 +4,7 @@ import {
   GLYPH_SPECS,
   glyphSpecById,
   glyphSpecByLegacyOpcode,
-} from "@07/04/GlyphIR64.ts";
+} from "@07/04/mod.ts";
 import { OP_SET, OP_REPLICATE, OP_BUILD, OP_JZ, OP_BIND } from "../../00/STATE_MATRIX.ts";
 
 const expect = (condition: unknown, message: string): void => {

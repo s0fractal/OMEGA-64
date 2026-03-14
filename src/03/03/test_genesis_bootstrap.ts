@@ -3,7 +3,7 @@
  * Final verification for Stage 20: The Chromatic Genesis.
  */
 
-import { GLYPH_SPECS, glyphSpecById } from "@07/04/GlyphIR64.ts";
+import { GLYPH_SPECS, glyphSpecById } from "@07/04/mod.ts";
 import { GENESIS_PROGRAMS } from "@07/05/GENESIS_BOOT.ts";
 
 function testChromaticMapping() {

@@ -1,6 +1,6 @@
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
 import { MAX_ATOMS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { DollFork } from "../DOLL_FORK_MATRIX.ts";
+import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type Relic = {

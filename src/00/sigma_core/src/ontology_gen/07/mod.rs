@@ -8,3 +8,6 @@ pub use crypto_keys::*;
 #[path = "sha256_hex.rs"]
 pub mod sha256_hex;
 pub use sha256_hex::*;
+#[path = "glyph_ir_64.rs"]
+pub mod glyph_ir_64;
+pub use glyph_ir_64::*;

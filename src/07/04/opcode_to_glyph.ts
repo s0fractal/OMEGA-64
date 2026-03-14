@@ -1,5 +1,5 @@
 import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_TENSEGRITY, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_BUILD, OP_SENSE, OP_SPORE_DRIVE, OP_HEBB, OP_PLUG, OP_RESOLVE, OP_SYSCALL } from "@00/STATE_MATRIX.ts";
-import { glyphSpecByLegacyOpcode } from "@07/04/GlyphIR64.ts";
+import { glyphSpecByLegacyOpcode } from "@07/04/mod.ts";
 
 export type LegacyInstruction = {
   pc: number;

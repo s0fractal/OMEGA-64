@@ -1,13 +1,21 @@
-// OMEGA-64 | GlyphIR64.ts
-// Reconstructed purely over D.O. WASM Ontology LUTs.
+---
+id: glyph_ir_64
+type: module
+description: "Host UI types and caching maps for the 64-codon matrix."
+tags: ["host", "class"]
+deps: [GLYPH_TYPES, GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT, get_glyph_kind]
+min_level: 7
+---
 
+### TypeScript
+```typescript
 import {
   KIND_CORE, KIND_CONTROL, KIND_TRANSPORT, KIND_STRUCTURAL,
   KIND_CATALYTIC, KIND_REGULATORY, KIND_MEMORY, KIND_RESERVE,
   GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
-} from "../../_/00/mod.ts";
+} from "../00/mod.ts";
 
-import { get_glyph_kind } from "../../_/06/mod.ts";
+import { get_glyph_kind } from "../06/mod.ts";
 
 export type GlyphKind =
   | "core"
@@ -35,8 +43,8 @@ export type GlyphSpec = {
   reductionRuleRef: string;
   legacyOpcode?: number;
   notes?: string;
-  vertexIndex?: number; // C60 Vertex (0..59)
-  rgb?: [number, number, number]; // Chromatic Hash
+  vertexIndex?: number;
+  rgb?: [number, number, number];
 };
 
 const KIND_MAPPING: Record<number, GlyphKind> = {
@@ -50,7 +58,7 @@ const KIND_MAPPING: Record<number, GlyphKind> = {
   [KIND_RESERVE]: "reserve",
 };
 
-const defaultReductionRuleRef = (kind: GlyphKind): string => {
+export const defaultReductionRuleRef = (kind: GlyphKind): string => {
   if (kind === "core") return "reduction/core";
   if (kind === "control") return "bridge/control";
   if (kind === "transport") return "bridge/transport";
@@ -61,7 +69,7 @@ const defaultReductionRuleRef = (kind: GlyphKind): string => {
   return "reserve/unassigned";
 };
 
-const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
+export const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
   if (kind === "core") return "hard-invariant";
   if (kind === "reserve") return "reserve";
   if (kind === "regulatory" || kind === "memory") return "bounded-dynamic";
@@ -98,7 +106,7 @@ const UI_OVERRIDES = new Map<number, Partial<GlyphSpec>>([
   [35, { mnemonic: "BIND", reductionRuleRef: "bridge/catalytic/bind" }],
 ]);
 
-const buildGlyphSpecs = (): GlyphSpec[] => {
+export const buildGlyphSpecs = (): GlyphSpec[] => {
   const specs: GlyphSpec[] = [];
   for (let id = 0; id < 64; id++) {
     const rawKind = get_glyph_kind(id);
@@ -135,11 +143,11 @@ export const GLYPH_SPECS: readonly GlyphSpec[] = Object.freeze(
   buildGlyphSpecs().map((spec) => Object.freeze({ ...spec })),
 );
 
-const GLYPH_SPEC_BY_ID = new Map<number, GlyphSpec>(
+export const GLYPH_SPEC_BY_ID = new Map<number, GlyphSpec>(
   GLYPH_SPECS.map((spec) => [spec.id, spec]),
 );
 
-const GLYPH_SPEC_BY_OPCODE = new Map<number, GlyphSpec>(
+export const GLYPH_SPEC_BY_OPCODE = new Map<number, GlyphSpec>(
   GLYPH_SPECS
     .filter((spec) => typeof spec.legacyOpcode === "number")
     .map((spec) => [spec.legacyOpcode!, spec]),
@@ -165,3 +173,4 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
+```

@@ -1,5 +1,5 @@
 // OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
-import { Relic } from "./RELIC_CULTIVATION.ts";
+import { Relic } from "../02/RELIC_CULTIVATION.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 /**
