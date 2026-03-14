@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T18:17:42.250Z*
-*Exported Files in Category: 413*
-*Total Exported Files: 549*
+*Generated: 2026-03-14T16:23:08.832Z*
+*Exported Files in Category: 298*
+*Total Exported Files: 436*
 *Runtime Roots: 10*
-*Runtime Closure Files: 333*
-*Non-Runtime Code Files: 80*
-*Runtime-Support Code Files: 10*
-*Experimental Code Files: 70*
-*Manifest SHA256: a56ced00d588419deca369ce21fb7e5563a3efb58fc376e2013aabc971371590*
-*Export Set SHA256: 10707e7b2d7a8c5e6dc89f8ac55d6437fe7ef2fa1a7e50b3d7ca11d77f0d2db9*
-*Export Content SHA256: cda46af3c893fd5f03d81fce061fde6ee1adca4b65b69020614b27d305049721*
-*Git Commit: da8758fccff9*
+*Runtime Closure Files: 232*
+*Non-Runtime Code Files: 66*
+*Runtime-Support Code Files: 5*
+*Experimental Code Files: 61*
+*Manifest SHA256: cb5d113bb505a0d81db838245e293f38f016bdbc70ffc9ca58b742f877c2e807*
+*Export Set SHA256: f53b17365c46b9f01f9d55074e3c0981c19b06b7d35bf03a463784bbda33d6b3*
+*Export Content SHA256: 88692d0422943ddbb71959e5ae75e5dedf48c290aa2e0a32703afad283cfcaea*
+*Git Commit: d09939401ce2*
 
 ---
 
@@ -33,121 +33,24 @@
 ## ACTIVE RUNTIME CLOSURE
 
 - src/_/00/C_LOG2_C_LUT.ts
-- src/_/00/clamp01.ts
 - src/_/00/COS_LUT.ts
-- src/_/00/dir4_x.ts
-- src/_/00/dir4_y.ts
-- src/_/00/dir8_x.ts
-- src/_/00/dir8_y.ts
-- src/_/00/encode_force_tuple.ts
-- src/_/00/fast_abs.ts
-- src/_/00/fast_max.ts
-- src/_/00/fast_min.ts
-- src/_/00/fast_sign.ts
-- src/_/00/math_clamp.ts
 - src/_/00/mod.ts
-- src/_/00/normalize_angle.ts
-- src/_/00/pack_glyph_header.ts
-- src/_/00/prng_next.ts
 - src/_/00/SIN_LUT.ts
 - src/_/00/StructureTypes.ts
 - src/_/00/SYSTEM_CONSTANTS.ts
-- src/_/00/trace_atom.ts
-- src/_/00/unpack_glyph_amplitude.ts
-- src/_/00/unpack_glyph_kind.ts
 - src/_/00/VmOpcodes.ts
 - src/_/00/VmProps.ts
 - src/_/00/VmSys.ts
-- src/_/01/calculate_shannon_entropy.ts
-- src/_/01/clamp_resource.ts
 - src/_/01/GRID_METRICS.ts
-- src/_/01/in_grid.ts
-- src/_/01/math_cos.ts
-- src/_/01/math_sin.ts
 - src/_/01/mod.ts
-- src/_/02/clamp_world_x.ts
-- src/_/02/clamp_world_y.ts
 - src/_/02/mod.ts
 - src/_/02/OMEGA_MEMORY_LAYOUT.ts
-- src/_/03/add_energy_delta.ts
-- src/_/03/add_hive_balance.ts
-- src/_/03/add_resonance_delta.ts
-- src/_/03/atomic_deposit_glyph_header.ts
-- src/_/03/clear_metabolism_stats.ts
-- src/_/03/clear_secretion_stats.ts
-- src/_/03/decay_for_kind.ts
-- src/_/03/diffuse_viral_semantics.ts
-- src/_/03/diffusion_share_for_kind.ts
-- src/_/03/find_next_free_slot.ts
-- src/_/03/genome_key16.ts
-- src/_/03/get_attention_cell.ts
-- src/_/03/get_bond_stiffness.ts
-- src/_/03/get_bond_target.ts
-- src/_/03/get_energy.ts
-- src/_/03/get_glyph_influence.ts
-- src/_/03/get_hive_balance.ts
-- src/_/03/get_hive_memory.ts
-- src/_/03/get_hormone.ts
-- src/_/03/get_lineage.ts
-- src/_/03/get_logic_byte.ts
-- src/_/03/get_neural_coherence.ts
-- src/_/03/get_p_c.ts
-- src/_/03/get_pending_syscall.ts
-- src/_/03/get_phase.ts
-- src/_/03/get_read_energy.ts
-- src/_/03/get_read_resonance.ts
-- src/_/03/get_read_x.ts
-- src/_/03/get_read_y.ts
-- src/_/03/get_reg.ts
-- src/_/03/get_resonance.ts
-- src/_/03/get_role.ts
-- src/_/03/get_spatial_grid_atom.ts
-- src/_/03/get_spatial_grid_count.ts
-- src/_/03/get_x.ts
-- src/_/03/get_y.ts
 - src/_/03/mod.ts
-- src/_/03/publish_build_intent.ts
-- src/_/03/publish_charge_intent.ts
-- src/_/03/read_structure_cell.ts
-- src/_/03/reduce_atom_deltas.ts
-- src/_/03/reset_neural_coherence.ts
-- src/_/03/seed_atom.ts
-- src/_/03/set_bond_dist.ts
-- src/_/03/set_bond_stiffness.ts
-- src/_/03/set_bond_target.ts
-- src/_/03/set_damping.ts
-- src/_/03/set_energy.ts
-- src/_/03/set_hive_memory.ts
-- src/_/03/set_neural_coherence.ts
-- src/_/03/set_p_c.ts
-- src/_/03/set_pending_syscall.ts
-- src/_/03/set_phase.ts
-- src/_/03/set_reg.ts
-- src/_/03/set_resonance.ts
-- src/_/03/set_role.ts
-- src/_/03/store_clamped_pos.ts
-- src/_/04/accumulate_metabolism_stats.ts
-- src/_/04/add_resonance.ts
-- src/_/04/apply_bond_springs.ts
-- src/_/04/apply_metabolism_kernel.ts
-- src/_/04/build_spatial_hash.ts
-- src/_/04/calculate_trophism.ts
-- src/_/04/drain_spawn_requests.ts
-- src/_/04/fire_signal.ts
-- src/_/04/get_genome_velocity_x.ts
-- src/_/04/get_genome_velocity_y.ts
-- src/_/04/glyph_transport.ts
 - src/_/04/mod.ts
-- src/_/04/read_structure_charge.ts
-- src/_/04/resolve_bond_requests.ts
-- src/_/04/secrete_glyph.ts
-- src/_/05/evaluate_opcodes.ts
 - src/_/05/mod.ts
-- src/_/05/tick_structure_grid.ts
 - src/_/06/base64_to_bytes.ts
 - src/_/06/bytes_to_base64.ts
 - src/_/06/bytes_to_hex.ts
-- src/_/06/execute_atom.ts
 - src/_/06/fnv1a32.ts
 - src/_/06/hex_to_bytes.ts
 - src/_/06/LOGGER.ts
@@ -156,7 +59,6 @@
 - src/_/06/normalize_hex64.ts
 - src/_/06/pulse_orchestrator.ts
 - src/_/06/stable_stringify.ts
-- src/_/06/tick_environment.ts
 - src/_/06/to_int16_big_endian.ts
 - src/_/07/crypto_keys.ts
 - src/_/07/mod.ts
@@ -174,6 +76,7 @@
 - src/_as/00/fast_max.ts
 - src/_as/00/fast_min.ts
 - src/_as/00/fast_sign.ts
+- src/_as/00/immune_check.ts
 - src/_as/00/math_clamp.ts
 - src/_as/00/mod.ts
 - src/_as/00/normalize_angle.ts
@@ -270,6 +173,7 @@
 - src/_as/04/mod.ts
 - src/_as/04/read_structure_charge.ts
 - src/_as/04/resolve_bond_requests.ts
+- src/_as/04/run_phagocyte_pass.ts
 - src/_as/04/secrete_glyph.ts
 - src/_as/05/evaluate_opcodes.ts
 - src/_as/05/mod.ts
@@ -300,17 +204,12 @@
 - src/01/GLYPH_BUFFER.ts
 - src/01/mod.ts
 - src/01/PHYSICS_ENGINE.ts
-- src/01/SPATIAL_HASH.ts
-- src/02/ENZYME_DIGEST.ts
 - src/02/GENOMES.ts
-- src/02/HOLOGRAM_INJECTOR.ts
 - src/02/HORMONE_BUFFER_RUNTIME.ts
 - src/02/HORMONE_BUFFER.ts
-- src/02/IMMUNE.ts
 - src/02/mod.ts
 - src/02/PULSE_WORKER.ts
 - src/02/PULSE.ts
-- src/02/RIBOSOME.ts
 - src/03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 - src/03/ATOMIC_LEDGER.ts
 - src/03/AUDIT_ENGINE.ts
@@ -555,20 +454,6 @@ export const C_LOG2_C_LUT: number[] = [0, 0, 2000, 4755, 8000, 11610, 15510, 196
 
 ---
 
-## FILE: src/_/00/clamp01.ts
-
-```typescript
-
-export function clamp01(x: f64): f64 {
-  if (x < 0) return 0;
-  if (x > 1) return 1;
-  return x;
-}
-
-```
-
----
-
 ## FILE: src/_/00/COS_LUT.ts
 
 ```typescript
@@ -581,213 +466,19 @@ export const COS_LUT: number[] = [
 
 ---
 
-## FILE: src/_/00/dir4_x.ts
-
-```typescript
-
-export function dir4_x(n: i32): i32 {
-  if (n == 0) return -1;
-  if (n == 1) return 1;
-  return 0;
-}
-
-```
-
----
-
-## FILE: src/_/00/dir4_y.ts
-
-```typescript
-
-export function dir4_y(n: i32): i32 {
-  if (n == 2) return -1;
-  if (n == 3) return 1;
-  return 0;
-}
-
-```
-
----
-
-## FILE: src/_/00/dir8_x.ts
-
-```typescript
-
-export function dir8_x(n: i32): i32 {
-  if (n == 0 || n == 4 || n == 6) return -1;
-  if (n == 1 || n == 5 || n == 7) return 1;
-  return 0;
-}
-
-```
-
----
-
-## FILE: src/_/00/dir8_y.ts
-
-```typescript
-
-export function dir8_y(n: i32): i32 {
-  if (n == 2 || n == 4 || n == 5) return -1;
-  if (n == 3 || n == 6 || n == 7) return 1;
-  return 0;
-}
-
-```
-
----
-
-## FILE: src/_/00/encode_force_tuple.ts
-
-```typescript
-
-export function encode_force_tuple(fx: f32, fy: f32): void {
-  // Reinterpret cast f32 -> i32 then pack into i64
-  const xInt = reinterpret<i32>(fx);
-  const yInt = reinterpret<i32>(fy);
-  return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
-}
-
-```
-
----
-
-## FILE: src/_/00/fast_abs.ts
-
-```typescript
-
-export function fast_abs(v: i32): i32 {
-  const mask = v >> 31;
-  return (v + mask) ^ mask;
-}
-
-```
-
----
-
-## FILE: src/_/00/fast_max.ts
-
-```typescript
-
-export function fast_max(a: i32, b: i32): i32 {
-  const diff = a - b;
-  return a - (diff & (diff >> 31));
-}
-
-```
-
----
-
-## FILE: src/_/00/fast_min.ts
-
-```typescript
-
-export function fast_min(a: i32, b: i32): i32 {
-  const diff = a - b;
-  return b + (diff & (diff >> 31));
-}
-
-```
-
----
-
-## FILE: src/_/00/fast_sign.ts
-
-```typescript
-
-export function fast_sign(v: i32): i32 {
-  return (v >> 31) | ((<number><unknown>-v) >>> 31);
-}
-
-```
-
----
-
-## FILE: src/_/00/math_clamp.ts
-
-```typescript
-
-export function math_clamp(val: i32, min: i32, max: i32): i32 {
-  if (val < min) return min;
-  if (val > max) return max;
-  return val;
-}
-
-```
-
----
-
 ## FILE: src/_/00/mod.ts
 
 ```typescript
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase non-constant-macrom-case
-export { trace_atom } from "./trace_atom.ts";
 export * from "./StructureTypes.ts";
 export * from "./VmProps.ts";
 export * from "./VmSys.ts";
 export * from "./SYSTEM_CONSTANTS.ts";
 export * from "./VmOpcodes.ts";
-export { pack_glyph_header } from "./pack_glyph_header.ts";
-export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude.ts";
-export { unpack_glyph_kind } from "./unpack_glyph_kind.ts";
 export * from "./COS_LUT.ts";
-export { normalize_angle } from "./normalize_angle.ts";
-export { fast_abs } from "./fast_abs.ts";
-export { fast_max } from "./fast_max.ts";
-export { prng_next } from "./prng_next.ts";
-export { clamp01 } from "./clamp01.ts";
-export { fast_sign } from "./fast_sign.ts";
-export { math_clamp } from "./math_clamp.ts";
 export * from "./SIN_LUT.ts";
-export { fast_min } from "./fast_min.ts";
 export * from "./C_LOG2_C_LUT.ts";
-export { encode_force_tuple } from "./encode_force_tuple.ts";
-export { dir8_y } from "./dir8_y.ts";
-export { dir4_y } from "./dir4_y.ts";
-export { dir4_x } from "./dir4_x.ts";
-export { dir8_x } from "./dir8_x.ts";
-
-```
-
----
-
-## FILE: src/_/00/normalize_angle.ts
-
-```typescript
-
-export function normalize_angle(angle: f64): f64 {
-  const tau = 2 * Math.PI;
-  let a = angle % tau;
-  if (a < 0) a += tau;
-  return a / tau;
-}
-
-```
-
----
-
-## FILE: src/_/00/pack_glyph_header.ts
-
-```typescript
-
-export function pack_glyph_header(kind: i32, amplitude: i32): i32 {
-  if (amplitude < -12000) amplitude = -12000;
-  if (amplitude > 12000) amplitude = 12000;
-  return (amplitude << 8) | (kind & 0xFF);
-}
-
-```
-
----
-
-## FILE: src/_/00/prng_next.ts
-
-```typescript
-
-export function prng_next(state: u32): u32 {
-  return (state * 1664525 + 1013904223) | 0;
-}
 
 ```
 
@@ -810,15 +501,15 @@ export const SIN_LUT: number[] = [
 ```typescript
 
 // Enum: StructureTypes
-export const STR_VOID: i32 = 0;
-export const STR_WIRE: i32 = 1;
-export const STR_NODE: i32 = 2;
-export const STR_DIODE: i32 = 3;
-export const STR_SOURCE: i32 = 4;
-export const STR_SINK: i32 = 5;
-export const STR_CAPACITOR: i32 = 6;
-export const STR_INVERTER: i32 = 7;
-export const STR_LATCH: i32 = 8;
+export const STR_VOID: number = 0;
+export const STR_WIRE: number = 1;
+export const STR_NODE: number = 2;
+export const STR_DIODE: number = 3;
+export const STR_SOURCE: number = 4;
+export const STR_SINK: number = 5;
+export const STR_CAPACITOR: number = 6;
+export const STR_INVERTER: number = 7;
+export const STR_LATCH: number = 8;
 
 ```
 
@@ -830,7 +521,7 @@ export const STR_LATCH: i32 = 8;
 
 // Constants: SYSTEM_CONSTANTS
 export const MAX_ATOMS: number = 500000;
-export const LAYOUT_VERSION: u32 = 1;
+export const LAYOUT_VERSION: number = 1;
 export const SAFETY_BUFFER: number = 8000000;
 export const GRID_W: number = 140;
 export const GRID_H: number = 80;
@@ -875,75 +566,39 @@ export const SPAWN_SLOT: number = 24;
 
 ---
 
-## FILE: src/_/00/trace_atom.ts
-
-```typescript
-
-export function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void {
-  // TS Mock No-op
-}
-
-```
-
----
-
-## FILE: src/_/00/unpack_glyph_amplitude.ts
-
-```typescript
-
-export function unpack_glyph_amplitude(header: i32): i32 {
-  return header >> 8;
-}
-
-```
-
----
-
-## FILE: src/_/00/unpack_glyph_kind.ts
-
-```typescript
-
-export function unpack_glyph_kind(header: i32): i32 {
-  return header & 0xFF;
-}
-
-```
-
----
-
 ## FILE: src/_/00/VmOpcodes.ts
 
 ```typescript
 
 // Enum: VmOpcodes
-export const OP_NOP: u8 = 0;
-export const OP_SET: u8 = 1;
-export const OP_GET: u8 = 2;
-export const OP_PUT: u8 = 3;
-export const OP_ADD: u8 = 4;
-export const OP_SUB: u8 = 5;
-export const OP_JZ: u8 = 16;
-export const OP_JNZ: u8 = 17;
-export const OP_JMP: u8 = 18;
-export const OP_SYSCALL: u8 = 96;
-export const OP_REPLICATE: u8 = 128;
-export const OP_SIGNAL: u8 = 129;
-export const OP_BIND: u8 = 130;
-export const OP_SHARE: u8 = 131;
-export const OP_HEBB: u8 = 138;
-export const OP_FIRE: u8 = 139;
-export const OP_DECAY: u8 = 145;
-export const OP_PLUG: u8 = 164;
-export const OP_TENSEGRITY: u8 = 165;
-export const OP_COLLECTIVE: u8 = 166;
-export const OP_BUILD: u8 = 168;
-export const OP_SPORE_DRIVE: u8 = 168;
-export const OP_SENSE: u8 = 169;
-export const OP_SENSE_AS: u8 = 178;
-export const OP_SECRETE_PLASMID: u8 = 170;
-export const OP_INCORPORATE_PLASMID: u8 = 171;
-export const OP_RESOLVE: u8 = 176;
-export const OP_RESONATE_KURAMOTO: u8 = 177;
+export const OP_NOP: number = 0;
+export const OP_SET: number = 1;
+export const OP_GET: number = 2;
+export const OP_PUT: number = 3;
+export const OP_ADD: number = 4;
+export const OP_SUB: number = 5;
+export const OP_JZ: number = 16;
+export const OP_JNZ: number = 17;
+export const OP_JMP: number = 18;
+export const OP_SYSCALL: number = 96;
+export const OP_REPLICATE: number = 128;
+export const OP_SIGNAL: number = 129;
+export const OP_BIND: number = 130;
+export const OP_SHARE: number = 131;
+export const OP_HEBB: number = 138;
+export const OP_FIRE: number = 139;
+export const OP_DECAY: number = 145;
+export const OP_PLUG: number = 164;
+export const OP_TENSEGRITY: number = 165;
+export const OP_COLLECTIVE: number = 166;
+export const OP_BUILD: number = 168;
+export const OP_SPORE_DRIVE: number = 168;
+export const OP_SENSE: number = 169;
+export const OP_SENSE_AS: number = 178;
+export const OP_SECRETE_PLASMID: number = 170;
+export const OP_INCORPORATE_PLASMID: number = 171;
+export const OP_RESOLVE: number = 176;
+export const OP_RESONATE_KURAMOTO: number = 177;
 
 ```
 
@@ -954,16 +609,16 @@ export const OP_RESONATE_KURAMOTO: u8 = 177;
 ```typescript
 
 // Enum: VmProps
-export const PROP_ENERGY: u8 = 0;
-export const PROP_RESONANCE: u8 = 1;
-export const PROP_X: u8 = 2;
-export const PROP_Y: u8 = 3;
-export const PROP_PHASE: u8 = 4;
-export const PROP_GRID_CHARGE: u8 = 7;
-export const PROP_QUORUM: u8 = 8;
-export const PROP_NEURAL_COHERENCE: u8 = 9;
-export const PROP_MEMORY: u8 = 10;
-export const PROP_CONSENSUS: u8 = 11;
+export const PROP_ENERGY: number = 0;
+export const PROP_RESONANCE: number = 1;
+export const PROP_X: number = 2;
+export const PROP_Y: number = 3;
+export const PROP_PHASE: number = 4;
+export const PROP_GRID_CHARGE: number = 7;
+export const PROP_QUORUM: number = 8;
+export const PROP_NEURAL_COHERENCE: number = 9;
+export const PROP_MEMORY: number = 10;
+export const PROP_CONSENSUS: number = 11;
 
 ```
 
@@ -974,54 +629,26 @@ export const PROP_CONSENSUS: u8 = 11;
 ```typescript
 
 // Enum: VmSys
-export const SYS_YIELD: i32 = 1;
-export const SYS_READ_MEM: i32 = 2;
-export const SYS_WRITE_MEM: i32 = 3;
-export const SYS_SPAWN: i32 = 4;
-export const SYS_BIND: i32 = 5;
-export const SYS_SET_ROLE: i32 = 6;
-export const SYS_MUTATE: i32 = 7;
-export const SYS_MSG: i32 = 8;
-export const SYS_READ_INBOX: i32 = 9;
-export const SYS_TRANSFER: i32 = 10;
-export const SYS_REPLICATE: i32 = 11;
-export const SYS_EMIT: i32 = 12;
-export const SYS_SCAN: i32 = 13;
-export const SYS_MOVE: i32 = 14;
-export const SYS_EAT: i32 = 15;
-export const SYS_BET: i32 = 16;
-export const SYS_ATTRACT: i32 = 17;
-export const SYS_FOLD: i32 = 18;
-export const SYS_SPORE_DRIVE: i32 = 20;
-export const SYS_SENSE_PHASE: i32 = 21;
-
-```
-
----
-
-## FILE: src/_/01/calculate_shannon_entropy.ts
-
-```typescript
-
-export function calculate_shannon_entropy(data: usize): i32 {
-  // Stub for WASM
-    return 0;
-}
-
-```
-
----
-
-## FILE: src/_/01/clamp_resource.ts
-
-```typescript
-import { RESOURCE_MAX } from "../00/mod.ts";
-
-export function clamp_resource(value: i64): i32 {
-  if (value < 0n) return 0;
-  if (value > BigInt(RESOURCE_MAX)) return RESOURCE_MAX;
-  return Number(value);
-}
+export const SYS_YIELD: number = 1;
+export const SYS_READ_MEM: number = 2;
+export const SYS_WRITE_MEM: number = 3;
+export const SYS_SPAWN: number = 4;
+export const SYS_BIND: number = 5;
+export const SYS_SET_ROLE: number = 6;
+export const SYS_MUTATE: number = 7;
+export const SYS_MSG: number = 8;
+export const SYS_READ_INBOX: number = 9;
+export const SYS_TRANSFER: number = 10;
+export const SYS_REPLICATE: number = 11;
+export const SYS_EMIT: number = 12;
+export const SYS_SCAN: number = 13;
+export const SYS_MOVE: number = 14;
+export const SYS_EAT: number = 15;
+export const SYS_BET: number = 16;
+export const SYS_ATTRACT: number = 17;
+export const SYS_FOLD: number = 18;
+export const SYS_SPORE_DRIVE: number = 20;
+export const SYS_SENSE_PHASE: number = 21;
 
 ```
 
@@ -1041,83 +668,6 @@ export const WORLD_MAX_Y: number = (GRID_H * SPATIAL_CELL_SIZE) - 1;
 
 ---
 
-## FILE: src/_/01/in_grid.ts
-
-```typescript
-import { GRID_W, GRID_H } from "../00/mod.ts";
-
-export function in_grid(x: i32, y: i32): boolean {
-  return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
-}
-
-```
-
----
-
-## FILE: src/_/01/math_cos.ts
-
-```typescript
-import { SIN_LUT, COS_LUT } from "../00/mod.ts";
-
-export function math_cos(angle: i32, highRes: i32): i32 {
-  if (highRes == 0) {
-      let idx = angle & 255;
-      return COS_LUT[idx] as i32;
-  }
-  let idx = (angle >> 8) & 255;
-  let frac = angle & 255;
-  
-  if (highRes == 1) {
-      let v0 = COS_LUT[idx] as i32;
-      let v1 = COS_LUT[(idx + 1) & 255] as i32;
-      return v0 + (((v1 - v0) * frac) >> 8);
-  }
-  
-  let s_base = SIN_LUT[idx] as i32;
-  let c_base = COS_LUT[idx] as i32;
-  let d1 = (s_base * 804) >> 15;
-  let term1 = (d1 * frac) >> 8;
-  let d2 = (c_base * 10) >> 15;
-  let term2 = (d2 * frac * frac) >> 16;
-  return c_base - term1 - term2;
-}
-
-```
-
----
-
-## FILE: src/_/01/math_sin.ts
-
-```typescript
-import { SIN_LUT, COS_LUT } from "../00/mod.ts";
-
-export function math_sin(angle: i32, highRes: i32): i32 {
-  if (highRes == 0) {
-      let idx = angle & 255;
-      return SIN_LUT[idx] as i32;
-  }
-  let idx = (angle >> 8) & 255;
-  let frac = angle & 255;
-  
-  if (highRes == 1) {
-      let v0 = SIN_LUT[idx] as i32;
-      let v1 = SIN_LUT[(idx + 1) & 255] as i32;
-      return v0 + (((v1 - v0) * frac) >> 8);
-  }
-  
-  let s_base = SIN_LUT[idx] as i32;
-  let c_base = COS_LUT[idx] as i32;
-  let d1 = (c_base * 804) >> 15;
-  let term1 = (d1 * frac) >> 8;
-  let d2 = (s_base * 10) >> 15;
-  let term2 = (d2 * frac * frac) >> 16;
-  return s_base + term1 - term2;
-}
-
-```
-
----
-
 ## FILE: src/_/01/mod.ts
 
 ```typescript
@@ -1125,37 +675,6 @@ export function math_sin(angle: i32, highRes: i32): i32 {
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../00/mod.ts";
 export * from "./GRID_METRICS.ts";
-export { calculate_shannon_entropy } from "./calculate_shannon_entropy.ts";
-export { clamp_resource } from "./clamp_resource.ts";
-export { math_sin } from "./math_sin.ts";
-export { math_cos } from "./math_cos.ts";
-export { in_grid } from "./in_grid.ts";
-
-```
-
----
-
-## FILE: src/_/02/clamp_world_x.ts
-
-```typescript
-import { WORLD_MAX_X, math_clamp } from "../01/mod.ts";
-
-export function clamp_world_x(x: i32): i32 {
-  return math_clamp(x, 0, WORLD_MAX_X);
-}
-
-```
-
----
-
-## FILE: src/_/02/clamp_world_y.ts
-
-```typescript
-import { WORLD_MAX_Y, math_clamp } from "../01/mod.ts";
-
-export function clamp_world_y(y: i32): i32 {
-  return math_clamp(y, 0, WORLD_MAX_Y);
-}
 
 ```
 
@@ -1168,8 +687,6 @@ export function clamp_world_y(y: i32): i32 {
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../01/mod.ts";
 export * from "./OMEGA_MEMORY_LAYOUT.ts";
-export { clamp_world_y } from "./clamp_world_y.ts";
-export { clamp_world_x } from "./clamp_world_x.ts";
 
 ```
 
@@ -1390,1575 +907,12 @@ export function validateMemoryLayout(memorySize: number) {
 
 ---
 
-## FILE: src/_/03/add_energy_delta.ts
-
-```typescript
-import { ENERGY_DELTA_OFF } from "../02/mod.ts";
-
-export function add_energy_delta(idx: i32, delta: i32): void {
-  if (delta !== 0) {
-    Atomics.add(energyDeltaView, idx, delta);
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/add_hive_balance.ts
-
-```typescript
-import { HIVE_BALANCE_OFF } from "../02/mod.ts";
-
-export function add_hive_balance(val: i32): i32 {
-  return Atomics.add(hiveBalanceView, 0, val);
-}
-
-```
-
----
-
-## FILE: src/_/03/add_resonance_delta.ts
-
-```typescript
-import { RESONANCE_DELTA_OFF } from "../02/mod.ts";
-
-export function add_resonance_delta(idx: i32, delta: i32): void {
-  if (delta !== 0) {
-    Atomics.add(resonanceDeltaView, idx, delta);
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/atomic_deposit_glyph_header.ts
-
-```typescript
-import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF } from "../02/mod.ts";
-
-export function atomic_deposit_glyph_header(baseOffset: usize, cell: i32, kind: i32, amplitude: i32, payloadPtr: usize): void {
-  if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
-  
-  const ptr = (baseOffset + (cell << 2)) as usize;
-  
-  for (let spin = 0; spin < 128; spin++) {
-    const current = atomic.load<i32>(ptr);
-    const currentKind = unpack_glyph_kind(current);
-    const currentAmplitude = unpack_glyph_amplitude(current);
-  
-    // Mismatched kind: standard replacement strategy but with absolute power checks
-    if (currentKind != 0 && currentKind != kind) {
-      if (fast_abs(amplitude) <= fast_abs(currentAmplitude)) return;
-      const observed = atomic.cmpxchg<i32>(
-        ptr,
-        current,
-        pack_glyph_header(kind, amplitude),
-      );
-      if (observed == current) {
-        if (kind == 2 && payloadPtr != 0) {
-          const payloadBase = baseOffset == GLYPH_HEADER_OFF
-            ? GLYPH_PAYLOAD_OFF
-            : GLYPH_SCRATCH_PAYLOAD_OFF;
-          const dstPtr = payloadBase + (cell << 3) as usize;
-          memory.copy(dstPtr, payloadPtr, 8);
-        }
-        return;
-      }
-      continue;
-    }
-  
-    // Matching kind: Optical Wave Interference (Additive)
-    let nextAmplitude = currentAmplitude + amplitude;
-    if (nextAmplitude > 12000) nextAmplitude = 12000;
-    if (nextAmplitude < -12000) nextAmplitude = -12000;
-  
-    // If waves perfectly annihilate, clear the glyph entirely
-    const nextKind = nextAmplitude == 0 ? 0 : kind;
-  
-    const observed = atomic.cmpxchg<i32>(
-      ptr,
-      current,
-      pack_glyph_header(nextKind, nextAmplitude),
-    );
-    if (observed == current) {
-      if (kind == 2 && payloadPtr != 0) {
-        // Technically if nextAmplitude is 0, payload is orphaned, but acceptable
-        const payloadBase = baseOffset == GLYPH_HEADER_OFF
-          ? GLYPH_PAYLOAD_OFF
-          : GLYPH_SCRATCH_PAYLOAD_OFF;
-        const dstPtr = payloadBase + (cell << 3) as usize;
-        memory.copy(dstPtr, payloadPtr, 8);
-      }
-      return;
-    }
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/clear_metabolism_stats.ts
-
-```typescript
-import { METABOLISM_SCRATCH_OFFSET } from "../02/mod.ts";
-
-export function clear_metabolism_stats(): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/clear_secretion_stats.ts
-
-```typescript
-import { SECRETION_STATS_OFF } from "../02/mod.ts";
-
-export function clear_secretion_stats(): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/decay_for_kind.ts
-
-```typescript
-
-export function decay_for_kind(kind: i32, amplitude: i32): i32 {
-  const absAmp = fast_abs(amplitude);
-  let decayAmt = 0;
-  if (kind == 2) { // PLASMID
-    decayAmt = absAmp > 256 ? 3 : 1;
-  } else if (kind == 1) { // PHEROMONE
-    decayAmt = absAmp > 64 ? 8 : 4;
-  } else {
-    decayAmt = absAmp; // Fallback
-  }
-  return amplitude > 0 ? decayAmt : -decayAmt;
-}
-
-```
-
----
-
-## FILE: src/_/03/diffuse_viral_semantics.ts
-
-```typescript
-import { GRID_H, GRID_W, SIGNAL_GRID_OFF } from "../02/mod.ts";
-
-export function diffuse_viral_semantics(pulseId: i32): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/diffusion_share_for_kind.ts
-
-```typescript
-
-export function diffusion_share_for_kind(kind: i32, amplitude: i32): i32 {
-  const absAmp = fast_abs(amplitude);
-  let shareAmt = 0;
-  if (kind == 2) { // PLASMID
-    shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
-  } else if (kind == 1) { // PHEROMONE
-    shareAmt = absAmp >= 24 ? (absAmp >> 2) : 0; // * 0.25
-  }
-  return amplitude > 0 ? shareAmt : -shareAmt;
-}
-
-```
-
----
-
-## FILE: src/_/03/find_next_free_slot.ts
-
-```typescript
-import { MAX_ATOMS, IDS_OFFSET } from "../02/mod.ts";
-
-export function find_next_free_slot(start: i32): i32 {
-  for (let i = 0; i < MAX_ATOMS; i++) {
-    const idx = (start + i) % MAX_ATOMS;
-    const idPtr = IDS_OFFSET + (idx << 3) as usize;
-    if (load<i64>(idPtr) == 0) return idx;
-  }
-  return -1;
-}
-
-```
-
----
-
-## FILE: src/_/03/genome_key16.ts
-
-```typescript
-import { LOGIC_OFFSET } from "../02/mod.ts";
-
-export function genome_key16(idx: i32): i32 {
-  const b0 = dataView.getUint8(LOGIC_OFFSET + (idx << 3));
-  const b1 = dataView.getUint8(LOGIC_OFFSET + (idx << 3) + 1);
-  return (b0 << 8) | b1;
-}
-
-```
-
----
-
-## FILE: src/_/03/get_attention_cell.ts
-
-```typescript
-import { GRID_W, GRID_H, ATTENTION_FIELD_OFF } from "../02/mod.ts";
-
-export function get_attention_cell(gx: i32, gy: i32): f32 {
-  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
-  return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_bond_stiffness.ts
-
-```typescript
-import { STIFFNESS_OFFSET } from "../02/mod.ts";
-
-export function get_bond_stiffness(atomIdx: i32, slot: i32): f32 {
-  return dataView.getFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_bond_target.ts
-
-```typescript
-import { BONDS_OFFSET } from "../02/mod.ts";
-
-export function get_bond_target(atomIdx: i32, slot: i32): i32 {
-  return dataView.getInt32(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_energy.ts
-
-```typescript
-import { ENERGY_OFFSET } from "../02/mod.ts";
-
-export function get_energy(idx: i32): i32 {
-  // Requires `dataView: DataView` in scope
-  return dataView.getInt32(ENERGY_OFFSET + (idx << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_glyph_influence.ts
-
-```typescript
-import { GRID_W, GRID_H, GLYPH_HEADER_OFF, ROLE_PARASITE, ROLE_GUARDIAN, ROLE_ARCHITECT } from "../02/mod.ts";
-
-export function get_glyph_influence(gx: i32, gy: i32, role: u8): f32 {
-  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
-  const cell = gy * GRID_W + gx;
-  const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
-  const kind = header & 0xFF;
-  const amplitude = ((header >>> 8) & 0x00FFFFFF) as f32;
-  if (amplitude <= 0.0) return 0.0;
-  const normalized = amplitude / 256.0;
-  
-  if (kind == 1) { // pheromone packet
-    if (role == ROLE_PARASITE) return -normalized * 0.8;
-    if (role == ROLE_GUARDIAN) return normalized * 0.4;
-    if (role == ROLE_ARCHITECT) return normalized * 0.2;
-    return normalized * 0.9;
-  }
-  
-  if (kind == 2) { // plasmid packet
-    if (role == ROLE_GUARDIAN) return -normalized * 0.45;
-    if (role == ROLE_ARCHITECT) return -normalized * 0.2;
-    if (role == ROLE_PARASITE) return normalized * 0.75;
-    return normalized * 0.3;
-  }
-  
-  return 0.0;
-}
-
-```
-
----
-
-## FILE: src/_/03/get_hive_balance.ts
-
-```typescript
-import { HIVE_BALANCE_OFF } from "../02/mod.ts";
-
-export function get_hive_balance(): i32 {
-  return Atomics.load(hiveBalanceView, 0);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_hive_memory.ts
-
-```typescript
-import { HIVE_MEMORY_OFF } from "../02/mod.ts";
-
-export function get_hive_memory(addr: i32): u8 {
-  return dataView.getUint8(HIVE_MEMORY_OFF + (addr & 1023));
-}
-
-```
-
----
-
-## FILE: src/_/03/get_hormone.ts
-
-```typescript
-import { HORMONE_OFF } from "../02/mod.ts";
-
-export function get_hormone(id: i32): u16 {
-  return Atomics.load(HormoneView, id);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_lineage.ts
-
-```typescript
-import { LINEAGE_OFFSET } from "../02/mod.ts";
-
-export function get_lineage(idx: i32): u64 {
-  return dataView.getBigUint64(LINEAGE_OFFSET + (idx << 3), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_logic_byte.ts
-
-```typescript
-import { LOGIC_OFFSET } from "../02/mod.ts";
-
-export function get_logic_byte(idx: i32, slot: i32): u8 {
-  return dataView.getUint8(LOGIC_OFFSET + (idx << 3) + slot);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_neural_coherence.ts
-
-```typescript
-import { GRID_CELLS, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, COHERENCE_OFF } from "../02/mod.ts";
-
-export function get_neural_coherence(): i32 {
-  // Unimplemented TS mock for standalone build
-  return 0;
-}
-
-```
-
----
-
-## FILE: src/_/03/get_p_c.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function get_p_c(atomIdx: i32): u8 {
-  return dataView.getUint8(CONTEXT_OFFSET + (atomIdx << 6) + 32);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_pending_syscall.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function get_pending_syscall(atomIdx: i32): u8 {
-  return dataView.getUint8(CONTEXT_OFFSET + (atomIdx << 6) + 33);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_phase.ts
-
-```typescript
-import { PHASE_OFFSET } from "../02/mod.ts";
-
-export function get_phase(idx: i32): i32 {
-  return dataView.getInt32(PHASE_OFFSET + (idx << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_read_energy.ts
-
-```typescript
-import { PHYSICS_READ_ENERGY_OFF } from "../02/mod.ts";
-
-export function get_read_energy(idx: i32): i32 {
-  return dataView.getInt32(PHYSICS_READ_ENERGY_OFF + (idx << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_read_resonance.ts
-
-```typescript
-import { PHYSICS_READ_RESONANCE_OFF } from "../02/mod.ts";
-
-export function get_read_resonance(idx: i32): i32 {
-  return dataView.getInt32(PHYSICS_READ_RESONANCE_OFF + (idx << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_read_x.ts
-
-```typescript
-import { PHYSICS_READ_XS_OFF } from "../02/mod.ts";
-
-export function get_read_x(idx: i32): i16 {
-  return dataView.getInt16(PHYSICS_READ_XS_OFF + (idx << 1), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_read_y.ts
-
-```typescript
-import { PHYSICS_READ_YS_OFF } from "../02/mod.ts";
-
-export function get_read_y(idx: i32): i16 {
-  return dataView.getInt16(PHYSICS_READ_YS_OFF + (idx << 1), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_reg.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function get_reg(atomIdx: i32, reg: i32): i32 {
-  return dataView.getInt32(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_resonance.ts
-
-```typescript
-import { RESONANCE_OFFSET } from "../02/mod.ts";
-
-export function get_resonance(idx: i32): i32 {
-  return dataView.getInt32(RESONANCE_OFFSET + (idx << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_role.ts
-
-```typescript
-import { ROLES_OFFSET } from "../02/mod.ts";
-
-export function get_role(atomIdx: i32): u8 {
-  return dataView.getUint8(ROLES_OFFSET + atomIdx);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_spatial_grid_atom.ts
-
-```typescript
-import { SPATIAL_GRID_OFFSET, GRID_W } from "../02/mod.ts";
-
-export function get_spatial_grid_atom(gx: i32, gy: i32, subIdx: i32): i32 {
-  const cellIdx = gy * GRID_W + gx;
-  return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_spatial_grid_count.ts
-
-```typescript
-import { SPATIAL_GRID_OFFSET, GRID_W } from "../02/mod.ts";
-
-export function get_spatial_grid_count(gx: i32, gy: i32): i32 {
-  const cellIdx = gy * GRID_W + gx;
-  return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_x.ts
-
-```typescript
-import { XS_OFFSET } from "../02/mod.ts";
-
-export function get_x(idx: i32): i16 {
-  return dataView.getInt16(XS_OFFSET + (idx << 1), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/get_y.ts
-
-```typescript
-import { YS_OFFSET } from "../02/mod.ts";
-
-export function get_y(idx: i32): i16 {
-  return dataView.getInt16(YS_OFFSET + (idx << 1), true);
-}
-
-```
-
----
-
 ## FILE: src/_/03/mod.ts
 
 ```typescript
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../02/mod.ts";
-export { get_read_resonance } from "./get_read_resonance.ts";
-export { get_read_y } from "./get_read_y.ts";
-export { set_energy } from "./set_energy.ts";
-export { set_bond_stiffness } from "./set_bond_stiffness.ts";
-export { set_role } from "./set_role.ts";
-export { get_p_c } from "./get_p_c.ts";
-export { get_y } from "./get_y.ts";
-export { get_hormone } from "./get_hormone.ts";
-export { genome_key16 } from "./genome_key16.ts";
-export { get_x } from "./get_x.ts";
-export { set_resonance } from "./set_resonance.ts";
-export { set_p_c } from "./set_p_c.ts";
-export { get_bond_stiffness } from "./get_bond_stiffness.ts";
-export { get_read_x } from "./get_read_x.ts";
-export { set_bond_dist } from "./set_bond_dist.ts";
-export { set_reg } from "./set_reg.ts";
-export { get_role } from "./get_role.ts";
-export { get_hive_memory } from "./get_hive_memory.ts";
-export { set_hive_memory } from "./set_hive_memory.ts";
-export { get_reg } from "./get_reg.ts";
-export { add_hive_balance } from "./add_hive_balance.ts";
-export { set_bond_target } from "./set_bond_target.ts";
-export { get_bond_target } from "./get_bond_target.ts";
-export { get_phase } from "./get_phase.ts";
-export { get_hive_balance } from "./get_hive_balance.ts";
-export { get_spatial_grid_atom } from "./get_spatial_grid_atom.ts";
-export { add_energy_delta } from "./add_energy_delta.ts";
-export { get_resonance } from "./get_resonance.ts";
-export { set_damping } from "./set_damping.ts";
-export { get_energy } from "./get_energy.ts";
-export { get_spatial_grid_count } from "./get_spatial_grid_count.ts";
-export { get_pending_syscall } from "./get_pending_syscall.ts";
-export { get_lineage } from "./get_lineage.ts";
-export { get_logic_byte } from "./get_logic_byte.ts";
-export { set_phase } from "./set_phase.ts";
-export { set_pending_syscall } from "./set_pending_syscall.ts";
-export { add_resonance_delta } from "./add_resonance_delta.ts";
-export { get_read_energy } from "./get_read_energy.ts";
-export { get_neural_coherence } from "./get_neural_coherence.ts";
-export { clear_metabolism_stats } from "./clear_metabolism_stats.ts";
-export { atomic_deposit_glyph_header } from "./atomic_deposit_glyph_header.ts";
-export { seed_atom } from "./seed_atom.ts";
-export { clear_secretion_stats } from "./clear_secretion_stats.ts";
-export { diffuse_viral_semantics } from "./diffuse_viral_semantics.ts";
-export { reset_neural_coherence } from "./reset_neural_coherence.ts";
-export { diffusion_share_for_kind } from "./diffusion_share_for_kind.ts";
-export { decay_for_kind } from "./decay_for_kind.ts";
-export { set_neural_coherence } from "./set_neural_coherence.ts";
-export { find_next_free_slot } from "./find_next_free_slot.ts";
-export { get_glyph_influence } from "./get_glyph_influence.ts";
-export { get_attention_cell } from "./get_attention_cell.ts";
-export { read_structure_cell } from "./read_structure_cell.ts";
-export { publish_charge_intent } from "./publish_charge_intent.ts";
-export { publish_build_intent } from "./publish_build_intent.ts";
-export { reduce_atom_deltas } from "./reduce_atom_deltas.ts";
-export { store_clamped_pos } from "./store_clamped_pos.ts";
-
-```
-
----
-
-## FILE: src/_/03/publish_build_intent.ts
-
-```typescript
-import { STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF } from "../02/mod.ts";
-
-export function publish_build_intent(ownerAtomIdx: i32, cellIdx: i32, buildValue: i32): void {
-  const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
-  const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
-  const ownerToken = ownerAtomIdx + 1;
-  
-  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-    const snapshot = atomic.load<i32>(ownerPtr);
-    if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
-    const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
-    if (ownerToken < winningOwner) return;
-  
-    const observed = atomic.cmpxchg<i32>(
-      ownerPtr,
-      snapshot,
-      snapshot | STRUCTURE_INTENT_LOCK_BIT,
-    );
-    if (observed != snapshot) continue;
-  
-    atomic.store<i32>(valuePtr, buildValue);
-    // Release lock + set winner
-    atomic.store<i32>(ownerPtr, ownerToken);
-    return;
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/publish_charge_intent.ts
-
-```typescript
-import { STRUCTURE_CHARGE_INTENT_OFF, STRUCTURE_INTENT_SPIN_LIMIT } from "../02/mod.ts";
-
-export function publish_charge_intent(cellIdx: i32, requestedCharge: i32): void {
-  const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
-  let charge = requestedCharge;
-  charge = fast_max(charge, 0);
-  if (charge > 255) charge = 255;
-  
-  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-    const current = atomic.load<i32>(ptr);
-    if (charge <= current) return;
-    const observed = atomic.cmpxchg<i32>(ptr, current, charge);
-    if (observed == current) return;
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/read_structure_cell.ts
-
-```typescript
-import { STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_GRID_OFF, STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK } from "../02/mod.ts";
-
-export function read_structure_cell(cellIdx: i32): i32 {
-  const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
-  const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
-  const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
-  
-  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-    const ownerRaw = atomic.load<i32>(ownerPtr);
-    if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
-    if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
-      return atomic.load<i32>(valuePtr);
-    }
-    return atomic.load<i32>(gridPtr);
-  }
-  
-  // Stale lock fallback: preserve forward progress under adversarial contention.
-  return atomic.load<i32>(gridPtr);
-}
-
-```
-
----
-
-## FILE: src/_/03/reduce_atom_deltas.ts
-
-```typescript
-import { ENERGY_DELTA_OFF, ENERGY_OFFSET, RESONANCE_DELTA_OFF, RESONANCE_OFFSET, MAX_ATOMS } from "../02/mod.ts";
-
-export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/reset_neural_coherence.ts
-
-```typescript
-import { COHERENCE_OFF } from "../02/mod.ts";
-
-export function reset_neural_coherence(): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/seed_atom.ts
-
-```typescript
-import { IDS_OFFSET, XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET, ROLES_OFFSET, LOGIC_OFFSET, LINEAGE_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function seed_atom(idx: i32, id: i64, x: i32, y: i32, energy: i32, resonance: i32, genomePtr: usize, lineagePtr: usize): void {
-  const idPtr = IDS_OFFSET + (idx << 3) as usize;
-  store<i64>(idPtr, id);
-  
-  const xPtr = XS_OFFSET + (idx << 1) as usize;
-  store<i16>(xPtr, x as i16);
-  
-  const yPtr = YS_OFFSET + (idx << 1) as usize;
-  store<i16>(yPtr, y as i16);
-  
-  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, energy);
-  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, resonance);
-  store<i32>(PHASE_OFFSET + (idx << 2) as usize, 0);
-  store<u8>(ROLES_OFFSET + (idx as usize), 0);
-  
-  const logicPtr = LOGIC_OFFSET + (idx << 3) as usize;
-  if (genomePtr != 0) {
-    memory.copy(logicPtr, genomePtr, 8);
-  } else {
-    for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
-  }
-  
-  const linOff = LINEAGE_OFFSET + (idx << 3) as usize;
-  if (lineagePtr != 0) {
-    memory.copy(linOff, lineagePtr, 8);
-  } else {
-    store<i64>(linOff, 0);
-  }
-  
-  // Clear instructions and context
-  const instPtr = INSTRUCTIONS_OFFSET + (idx << 6) as usize;
-  const ctxPtr = CONTEXT_OFFSET + (idx << 6) as usize;
-  for (let b = 0; b < 64; b++) {
-    store<u8>(instPtr + b, 0);
-    store<u8>(ctxPtr + b, 0);
-  }
-}
-
-```
-
----
-
-## FILE: src/_/03/set_bond_dist.ts
-
-```typescript
-import { BOND_DISTANCES_OFFSET } from "../02/mod.ts";
-
-export function set_bond_dist(atomIdx: i32, slot: i32, dist: u8): void {
-  dataView.setUint8(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_bond_stiffness.ts
-
-```typescript
-import { STIFFNESS_OFFSET } from "../02/mod.ts";
-
-export function set_bond_stiffness(atomIdx: i32, slot: i32, val: f32): void {
-  dataView.setFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val, true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_bond_target.ts
-
-```typescript
-import { BONDS_OFFSET } from "../02/mod.ts";
-
-export function set_bond_target(atomIdx: i32, slot: i32, targetIdx: i32): void {
-  dataView.setInt32(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx, true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_damping.ts
-
-```typescript
-import { DAMPING_OFF } from "../02/mod.ts";
-
-export function set_damping(atomIdx: i32, val: u8): void {
-  dataView.setUint8(DAMPING_OFF + atomIdx, val);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_energy.ts
-
-```typescript
-import { ENERGY_OFFSET } from "../02/mod.ts";
-
-export function set_energy(idx: i32, val: i32): void {
-  // Requires `dataView: DataView` in scope
-  dataView.setInt32(ENERGY_OFFSET + (idx << 2), val, true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_hive_memory.ts
-
-```typescript
-import { HIVE_MEMORY_OFF } from "../02/mod.ts";
-
-export function set_hive_memory(addr: i32, val: u8): void {
-  dataView.setUint8(HIVE_MEMORY_OFF + (addr & 1023), val);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_neural_coherence.ts
-
-```typescript
-import { NEURAL_COHERENCE_OFF } from "../02/mod.ts";
-
-export function set_neural_coherence(value: i32): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/03/set_p_c.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function set_p_c(atomIdx: i32, val: u8): void {
-  dataView.setUint8(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_pending_syscall.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function set_pending_syscall(atomIdx: i32, val: u8): void {
-  dataView.setUint8(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_phase.ts
-
-```typescript
-import { PHASE_OFFSET } from "../02/mod.ts";
-
-export function set_phase(idx: i32, val: i32): void {
-  dataView.setInt32(PHASE_OFFSET + (idx << 2), val, true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_reg.ts
-
-```typescript
-import { CONTEXT_OFFSET } from "../02/mod.ts";
-
-export function set_reg(atomIdx: i32, reg: i32, val: i32): void {
-  dataView.setInt32(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val, true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_resonance.ts
-
-```typescript
-import { RESONANCE_OFFSET, clamp_resource } from "../02/mod.ts";
-
-export function set_resonance(idx: i32, val: i32): void {
-  dataView.setInt32(RESONANCE_OFFSET + (idx << 2), clamp_resource(BigInt(val)), true);
-}
-
-```
-
----
-
-## FILE: src/_/03/set_role.ts
-
-```typescript
-import { ROLES_OFFSET } from "../02/mod.ts";
-
-export function set_role(atomIdx: i32, val: u8): void {
-  dataView.setUint8(ROLES_OFFSET + atomIdx, val);
-}
-
-```
-
----
-
-## FILE: src/_/03/store_clamped_pos.ts
-
-```typescript
-import { XS_OFFSET, YS_OFFSET, clamp_world_x, clamp_world_y } from "../02/mod.ts";
-
-export function store_clamped_pos(idx: i32, x: i32, y: i32): void {
-  /*
-  This function mutates shared WASM buffer memory and assumes 'store<i16>' exists in the execution environment window.
-  AssemblyScript exports are intended to run natively. In Deno TS contexts this is ignored.
-  */
-  return;
-}
-
-```
-
----
-
-## FILE: src/_/04/accumulate_metabolism_stats.ts
-
-```typescript
-import { IDS_OFFSET, METABOLISM_SCRATCH_OFFSET } from "../03/mod.ts";
-
-export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/04/add_resonance.ts
-
-```typescript
-import { get_resonance, set_resonance } from "../03/mod.ts";
-
-export function add_resonance(idx: i32, delta: i32): void {
-  set_resonance(idx, get_resonance(idx) + delta);
-}
-
-```
-
----
-
-## FILE: src/_/04/apply_bond_springs.ts
-
-```typescript
-import { DAMPING_OFF, MAX_ATOMS, BOND_DISTANCES_OFFSET } from "../03/mod.ts";
-
-export function apply_bond_springs(idx: i32, x: i32, y: i32): void {
-  let fx: f32 = 0;
-  let fy: f32 = 0;
-  let damping = load<u8>(DAMPING_OFF + idx as usize);
-  
-  for (let b = 0; b < 4; b++) {
-    let targetIdx = get_bond_target(idx, b);
-    if (targetIdx == 0 || targetIdx >= MAX_ATOMS) continue;
-  
-    let targetDist = load<u8>(BOND_DISTANCES_OFFSET + (idx << 2) + b as usize);
-    if (targetDist == 0) targetDist = 50;
-  
-    let stiffness = get_bond_stiffness(idx, b);
-    let pX = get_read_x(targetIdx) as f32;
-    let pY = get_read_y(targetIdx) as f32;
-    let dx = pX - (x as f32);
-    let dy = pY - (y as f32);
-    let dist = Mathf.sqrt(dx * dx + dy * dy);
-    if (dist < 1.0) dist = 1.0;
-  
-    // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
-    let myRes = get_read_resonance(idx);
-    let targetRes = get_read_resonance(targetIdx);
-  
-    // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
-    if (targetRes > myRes) {
-      add_resonance_delta(idx, (targetRes - myRes) / 20);
-    } else if (myRes > targetRes) {
-      add_resonance_delta(idx, -((myRes - targetRes) / 20));
-    }
-  
-    // 2. Resonance-Weighted Stiffness: Bonds are stronger if atoms are synchronized
-    let sumRes: f32 = (myRes as f32) + (targetRes as f32);
-    let resonanceWeight: f32 = sumRes / 600.0;
-    if (resonanceWeight < 0.5) resonanceWeight = 0.5;
-    if (resonanceWeight > 2.0) resonanceWeight = 2.0;
-  
-    if (stiffness > 0.8) {
-      let force = (dist - (targetDist as f32)) * 1.5 * resonanceWeight;
-      fx += (dx / dist) * force;
-      fy += (dy / dist) * force;
-    } else {
-      let elasticRange: f32 = 10.0;
-      if (dist > (targetDist as f32) + elasticRange) {
-        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 *
-          resonanceWeight;
-        fx += (dx / dist) * force;
-        fy += (dy / dist) * force;
-      } else if (dist < (targetDist as f32) - elasticRange) {
-        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 *
-          resonanceWeight;
-        fx -= (dx / dist) * force;
-        fy -= (dy / dist) * force;
-      }
-    }
-  }
-  
-  if (damping > 0) {
-    let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
-    fx *= dampingFactor;
-    fy *= dampingFactor;
-  }
-  
-  return encode_force_tuple(fx, fy);
-}
-
-```
-
----
-
-## FILE: src/_/04/apply_metabolism_kernel.ts
-
-```typescript
-import { METABOLISM_SCRATCH_OFFSET, IDS_OFFSET, ROLES_OFFSET, RESONANCE_OFFSET, CONTEXT_OFFSET, XS_OFFSET, YS_OFFSET, SPATIAL_CELL_SIZE, GRID_W, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, MAX_ATOMS, ENERGY_OFFSET, BONDS_OFFSET } from "../03/mod.ts";
-
-export function apply_metabolism_kernel(startIdx: i32, endIdx: i32, noveltySigned: i32, symbiosisSigned: i32, baseTax: i32, targetEnergy: i32, homeostasisBand: i32, homeostasisMaxDelta: i32, overflowThreshold: i32, spatialOverflowRatio: i32, starvationFloor: i32, subsidyEnabled: i32): void {
-  
-}
-
-```
-
----
-
-## FILE: src/_/04/build_spatial_hash.ts
-
-```typescript
-import { MAX_ATOMS, GRID_CELLS, GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, QUORUM_OFFSET, IDS_OFFSET } from "../03/mod.ts";
-
-export function build_spatial_hash(): i64 {
-  const CELL_CAPACITY: i32 = 31;
-  const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
-  
-  let spatialHashOverflowCount = 0;
-  let spatialHashMaxCellCount = 0;
-  
-  // 1. Clear Grid and Quorum
-  for (let i = 0; i < (GRID_CELLS as i32); i++) {
-    atomic.store<i32>(SPATIAL_GRID_OFFSET + (i << 7) as usize, 0);
-    // Clear Quorum (8 roles)
-    let qOff = QUORUM_OFFSET + (i << 5) as usize;
-    store<u64>(qOff, 0);
-    store<u64>(qOff + 8, 0);
-    store<u64>(qOff + 16, 0);
-    store<u64>(qOff + 24, 0);
-  }
-  
-  // 2. Bin Atoms
-  for (let idx = 0; idx < MAX_ATOMS; idx++) {
-    let id = load<u64>(IDS_OFFSET + (idx << 3) as usize);
-    if (id == 0) continue;
-  
-    let x = (get_x(idx) as i32) / 100;
-    let y = (get_y(idx) as i32) / 100;
-  
-    // Clamp
-    if (x < 0) x = 0;
-    if (x > WORLD_MAX_X) x = WORLD_MAX_X;
-    if (y < 0) y = 0;
-    if (y > WORLD_MAX_Y) y = WORLD_MAX_Y;
-  
-    let cellX = x / SPATIAL_CELL_SIZE;
-    let cellY = y / SPATIAL_CELL_SIZE;
-    let cellIdx = cellY * GRID_W + cellX;
-    let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
-  
-    // Atomic update of count
-    let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
-    if (nextSlot <= MAX_ATOM_SLOTS) {
-      store<i32>((offset + (nextSlot << 2)) as usize, idx);
-  
-      // Phase tracking (Era 50)
-      let myPhase = get_phase(idx);
-      atomic.add<i32>((offset + (CELL_CAPACITY << 2)) as usize, myPhase);
-  
-      // Role quorum (Era 55)
-      let role = get_role(idx);
-      let safeRole = role > 7 ? 7 : role;
-      atomic.add<i32>(
-        QUORUM_OFFSET + (cellIdx << 5) + (safeRole << 2) as usize,
-        1,
-      );
-      if (nextSlot > spatialHashMaxCellCount) {
-        spatialHashMaxCellCount = nextSlot;
-      }
-    } else {
-      // Overflow: roll back count so the cell occupancy stays bounded.
-      atomic.sub<i32>(offset as usize, 1);
-      spatialHashOverflowCount += 1;
-    }
-  }
-  
-  // 3. Finalize Phase Averages
-  for (let i = 0; i < (GRID_CELLS as i32); i++) {
-    let offset = SPATIAL_GRID_OFFSET + (i << 7);
-    let count = atomic.load<i32>(offset as usize);
-    if (count > 0) {
-      let sum = atomic.load<i32>((offset + (CELL_CAPACITY << 2)) as usize);
-      // We reuse slot 31 (CELL_CAPACITY) for the average after clearing the sum
-      atomic.store<i32>((offset + (CELL_CAPACITY << 2)) as usize, sum / count);
-    }
-  }
-  
-  return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as i64) & 0xFFFFFFFF);
-}
-
-```
-
----
-
-## FILE: src/_/04/calculate_trophism.ts
-
-```typescript
-import { SPATIAL_CELL_SIZE, MAX_ATOMS, ROLE_PRODUCER, ROLE_NEUTRAL, ROLE_GUARDIAN, ROLE_PARASITE, ROLE_ARCHITECT, GRID_W } from "../03/mod.ts";
-
-export function calculate_trophism(idx: i32, x: i32, y: i32, role: u8): void {
-  let tx: f32 = 0;
-  let ty: f32 = 0;
-  const radius: f32 = 250.0;
-  const detectionRadiusSq: f32 = 225.0; // 15^2
-  const flow: i32 = (0.2 * 1000.0) as i32; // Using 1000.0 for literal scale
-  const burn: i32 = (1.0 * 1000.0) as i32;
-  let energy = get_read_energy(idx);
-  
-  const gx = x / SPATIAL_CELL_SIZE;
-  const gy = y / SPATIAL_CELL_SIZE;
-  
-  // Scan neighborhood for chemotaxis, trophic flow, and social recognition
-  for (let oy = -3; oy <= 3; oy++) {
-    for (let ox = -3; ox <= 3; ox++) {
-      let cx = gx + ox;
-      let cy = gy + oy;
-      if (in_grid(cx, cy)) {
-        let count = get_spatial_grid_count(cx, cy);
-        for (let s = 0; s < count; s++) {
-          let otherIdx = get_spatial_grid_atom(cx, cy, s);
-          if (otherIdx == idx || otherIdx >= MAX_ATOMS) continue;
-  
-          let oX = get_read_x(otherIdx) as f32;
-          let oY = get_read_y(otherIdx) as f32;
-          let dx = oX - (x as f32);
-          let dy = oY - (y as f32);
-          let d2 = dx * dx + dy * dy;
-          if (d2 < 0.001) {
-            // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
-            d2 = 0.001;
-          } else if (d2 < 1.0) {
-            // Minor overlap, let it through
-          }
-  
-          // --- PHASE 15: SOCIAL RECOGNITION (AVOIDANCE) ---
-          if (d2 < 100.0) { // Too close!
-            tx -= dx * 0.5;
-            ty -= dy * 0.5;
-          }
-  
-          // --- PHASE 17+: TROPHIC FLOW ---
-          if (d2 <= detectionRadiusSq) {
-            let otherRole = get_role(otherIdx);
-            if (role == ROLE_PRODUCER && otherRole == ROLE_NEUTRAL) {
-              if (energy > 100 * 1000) {
-                add_energy_delta(idx, -flow);
-                add_energy_delta(otherIdx, flow);
-                energy -= flow;
-              }
-            }
-            if (role == ROLE_GUARDIAN && otherRole == ROLE_PARASITE) {
-              let oEnergy = get_read_energy(otherIdx);
-              if (oEnergy > 0) {
-                add_energy_delta(
-                  otherIdx,
-                  -Mathf.min(oEnergy as f32, burn as f32) as i32,
-                );
-                add_resonance_delta(idx, 5);
-              }
-            }
-          }
-  
-          if (d2 > radius * radius) continue;
-          let d = Mathf.sqrt(d2);
-  
-          // --- PHASE 14: CHEMOTAXIS ---
-          let oEnergy = get_read_energy(otherIdx);
-          let oRes = get_read_resonance(otherIdx);
-  
-          let multiplier: f32 = 1.0;
-          if (role == ROLE_GUARDIAN && oRes > 50) multiplier = 3.0;
-          if (role == ROLE_PRODUCER && (oEnergy as f32) < 50000.0) {
-            multiplier = 2.0; // 50.0 * 1000
-          }
-  
-          let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
-            (2.0 * multiplier);
-  
-          // Hard cap on chemotactic force to prevent physics explosions
-          // when arbitrary massive energy pools are assigned by the test runner.
-          if (force < -20.0) force = -20.0;
-          if (force > 20.0) force = 20.0;
-  
-          // Anti-overshoot mechanism: Do not pull an atom past its target
-          if (force > 0.0 && force > d) {
-            force = d;
-          }
-  
-          tx += (dx / d) * force;
-          ty += (dy / d) * force;
-        }
-      }
-    }
-  }
-  
-  // Observer presence field (Era 70): role-dependent response to attention gradients.
-  let gradX = get_attention_cell(gx + 1, gy) - get_attention_cell(gx - 1, gy);
-  let gradY = get_attention_cell(gx, gy + 1) - get_attention_cell(gx, gy - 1);
-  if (gradX > 200.0) gradX = 200.0;
-  if (gradX < -200.0) gradX = -200.0;
-  if (gradY > 200.0) gradY = 200.0;
-  if (gradY < -200.0) gradY = -200.0;
-  
-  let attentionDrive: f32 = 0.0;
-  if (role == ROLE_PARASITE) {
-    attentionDrive = -0.04;
-  } else if (role == ROLE_ARCHITECT) {
-    const localAttention = get_attention_cell(gx, gy);
-    attentionDrive = localAttention > 80.0 ? -0.03 : 0.02;
-  } else if (role == ROLE_GUARDIAN) {
-    attentionDrive = 0.02;
-  } else {
-    attentionDrive = 0.05; // Producers and neutral explorers gravitate to attention.
-  }
-  tx += gradX * attentionDrive;
-  ty += gradY * attentionDrive;
-  
-  let glyphGradX = get_glyph_influence(gx + 1, gy, role) -
-    get_glyph_influence(gx - 1, gy, role);
-  let glyphGradY = get_glyph_influence(gx, gy + 1, role) -
-    get_glyph_influence(gx, gy - 1, role);
-  if (glyphGradX > 200.0) glyphGradX = 200.0;
-  if (glyphGradX < -200.0) glyphGradX = -200.0;
-  if (glyphGradY > 200.0) glyphGradY = 200.0;
-  if (glyphGradY < -200.0) glyphGradY = -200.0;
-  tx += glyphGradX * 0.015;
-  ty += glyphGradY * 0.015;
-  
-  if (role == ROLE_ARCHITECT) {
-    // Simple 4-way density check
-    for (let i = 0; i < 4; i++) {
-      let ox: i32 = 0;
-      let oy: i32 = 0;
-      if (i == 0) {
-        oy = -2;
-      } else if (i == 1) {
-        oy = 2;
-      } else if (i == 2) {
-        ox = -2;
-      } else {
-        ox = 2;
-      }
-      let cx = gx + ox;
-      let cy = gy + oy;
-      if (in_grid(cx, cy)) {
-        let cell = read_structure_cell(cy * GRID_W + cx);
-        let density = (cell >> 8) & 0xFF;
-        let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
-        tx += ((ox as f32) / (2.0 as f32)) * force;
-        ty += ((oy as f32) / (2.0 as f32)) * force;
-      }
-    }
-  }
-  
-  return encode_force_tuple(tx, ty);
-}
-
-```
-
----
-
-## FILE: src/_/04/drain_spawn_requests.ts
-
-```typescript
-import { SPAWN_HEAD_OFF, SPAWN_DATA_OFF, SPAWN_MAX, SPAWN_SLOT, MAX_ATOMS } from "../03/mod.ts";
-
-export function drain_spawn_requests(tick: i32): i32 {
-  const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
-  const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
-  
-  let cursor = readHead;
-  const writeCursor = writeHead; // Don't modulo here, we modulo access
-  let spawned: i32 = 0;
-  let freeSearchCursor: i32 = 0;
-  
-  while (cursor != writeCursor && spawned < 64) {
-    const slotOff = SPAWN_DATA_OFF +
-      ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
-    const gLo = load<i32>(slotOff);
-    if (gLo != 0) {
-      const cx = load<i16>(slotOff + 8) as i32;
-      const cy = load<i16>(slotOff + 10) as i32;
-      const energyScaled = load<i32>(slotOff + 12);
-  
-      const freeIdx = find_next_free_slot(freeSearchCursor);
-      if (freeIdx != -1) {
-        const childId = (tick as i64) << 32 | (freeIdx as i64);
-        seed_atom(
-          freeIdx,
-          childId,
-          cx,
-          cy,
-          energyScaled,
-          100,
-          slotOff,
-          slotOff + 16,
-        );
-        freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
-      }
-    }
-    cursor++;
-    spawned++;
-  }
-  
-  atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
-  return spawned;
-}
-
-```
-
----
-
-## FILE: src/_/04/fire_signal.ts
-
-```typescript
-import { MAX_ATOMS } from "../03/mod.ts";
-
-export function fire_signal(idx: i32): void {
-  for (let b = 0; b < 4; b++) {
-    let target = get_bond_target(idx, b);
-    if (target > 0 && target < MAX_ATOMS) {
-      let st = get_bond_stiffness(idx, b);
-      let signalStrength = (150.0 * st) as i32; // Increased to ensure cascade
-      add_resonance_delta(target, signalStrength);
-    }
-  }
-}
-
-```
-
----
-
-## FILE: src/_/04/get_genome_velocity_x.ts
-
-```typescript
-
-export function get_genome_velocity_x(idx: i32): i32 {
-  let vx: i32 = 0;
-  for (let b = 0; b < 2; b++) {
-    let byte = get_logic_byte(idx, b);
-    let hi = (byte >> 4) as i32;
-    if (hi != 0) vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = (byte & 0x0F) as i32;
-    if (lo != 0) vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
-  }
-  return vx;
-}
-
-```
-
----
-
-## FILE: src/_/04/get_genome_velocity_y.ts
-
-```typescript
-
-export function get_genome_velocity_y(idx: i32): i32 {
-  let vy: i32 = 0;
-  for (let b = 2; b < 4; b++) {
-    let byte = get_logic_byte(idx, b);
-    let hi = (byte >> 4) as i32;
-    if (hi != 0) vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
-    let lo = (byte & 0x0F) as i32;
-    if (lo != 0) vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
-  }
-  return vy;
-}
-
-```
-
----
-
-## FILE: src/_/04/glyph_transport.ts
-
-```typescript
-import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_W, SIGNAL_GRID_OFF, SECRETION_STATS_OFF, MEMORY_GRID_OFF } from "../03/mod.ts";
-
-export function glyph_transport(tick: i32): void {
-  // Sampling grid for internal reflection (Stage 5.1/5.2)
-    memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (GRID_CELLS) << 2);
-  
-    const dx = [-1, 1, 0, 0];
-    const dy = [0, 0, -1, 1];
-  
-    for (let cell = 0; cell < (GRID_CELLS as i32); cell++) {
-      const header = load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
-      if (header == 0) continue;
-  
-      const kind = unpack_glyph_kind(header);
-      const amp = unpack_glyph_amplitude(header);
-      if (amp == 0) continue;
-  
-      const decay = decay_for_kind(kind, amp);
-  
-      // Bidirectional Decay (pull towards zero)
-      let retained = 0;
-      if (amp > 0) {
-        retained = amp - decay;
-        retained = fast_max(retained, 0);
-      } else {
-        retained = amp - decay; // decay is negative when amp is negative
-        retained = fast_min(retained, 0);
-      }
-  
-      if (fast_abs(retained) > 0) {
-        atomic_deposit_glyph_header(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained, 0);
-        if (kind == 2) { // PLASMID payload persistence
-          const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
-          const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
-          memory.copy(dstPtr, srcPtr, 8);
-        }
-      }
-  
-      const share = diffusion_share_for_kind(kind, amp);
-      if (fast_abs(share) > 0) {
-        const gx = cell % GRID_W;
-        const gy = cell / GRID_W;
-  
-        for (let i = 0; i < 4; i++) {
-          let nx = gx + dx[i];
-          let ny = gy + dy[i];
-          if (in_grid(nx, ny)) {
-            const nextCell = ny * GRID_W + nx;
-            atomic_deposit_glyph_header(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share, 0);
-  
-            if (share >= 128 || share <= -128) {
-              const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
-              const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (nextCell << 3) as usize;
-              memory.copy(dstPtr, srcPtr, 8);
-            }
-          }
-        }
-      }
-    }
-  
-    // 2. Seeding: Internal Reflection (Signal -> Pheromone)
-    for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
-      const signal = atomic.load<i32>(SIGNAL_GRID_OFF + (cell << 2) as usize);
-      const absSignal = fast_abs(signal);
-      if (absSignal >= 1) {
-        let amp = absSignal >> 1;
-        if (amp < 16) amp = 16;
-        if (amp > 512) amp = 512;
-        atomic_deposit_glyph_header(GLYPH_SCRATCH_HEADER_OFF, cell, 1, amp, 0);
-        // Quantification (Stage 5.1/5.2) - sample-based to avoid overflow
-        if ((cell % 32) == 0) {
-          atomic.add<i32>(SECRETION_STATS_OFF + 40, 1); // Signal leak counter
-        }
-      }
-    }
-  
-    // 3. Seeding: Internal Reflection (Memory -> Plasmid)
-    for (let cell: i32 = 0; cell < (GRID_CELLS as i32); cell++) {
-      const memOffset = MEMORY_GRID_OFF + (cell << 3) as usize;
-      const memoryLo = atomic.load<u32>(memOffset);
-      const charge = memoryLo & 0xFFFFFF; // 24-bit charge
-  
-      if (charge >= 1) {
-        let amp = charge >> 2;
-        if (amp < 24) amp = 24;
-        if (amp > 384) amp = 384;
-        atomic_deposit_glyph_header(
-          GLYPH_SCRATCH_HEADER_OFF,
-          cell,
-          2,
-          amp,
-          memOffset,
-        );
-        // Quantification
-        if ((cell % 32) == 0) {
-          atomic.add<i32>(SECRETION_STATS_OFF + 44, 1); // Memory leak counter
-        }
-      }
-    }
-  
-    memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GRID_CELLS << 3);
-    memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_CELLS << 2);
-}
 
 ```
 
@@ -2970,146 +924,6 @@ export function glyph_transport(tick: i32): void {
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../03/mod.ts";
-export { build_spatial_hash } from "./build_spatial_hash.ts";
-export { add_resonance } from "./add_resonance.ts";
-export { secrete_glyph } from "./secrete_glyph.ts";
-export { drain_spawn_requests } from "./drain_spawn_requests.ts";
-export { apply_metabolism_kernel } from "./apply_metabolism_kernel.ts";
-export { accumulate_metabolism_stats } from "./accumulate_metabolism_stats.ts";
-export { glyph_transport } from "./glyph_transport.ts";
-export { calculate_trophism } from "./calculate_trophism.ts";
-export { apply_bond_springs } from "./apply_bond_springs.ts";
-export { fire_signal } from "./fire_signal.ts";
-export { get_genome_velocity_y } from "./get_genome_velocity_y.ts";
-export { get_genome_velocity_x } from "./get_genome_velocity_x.ts";
-export { read_structure_charge } from "./read_structure_charge.ts";
-export { resolve_bond_requests } from "./resolve_bond_requests.ts";
-
-```
-
----
-
-## FILE: src/_/04/read_structure_charge.ts
-
-```typescript
-import { STRUCTURE_CHARGE_INTENT_OFF } from "../03/mod.ts";
-
-export function read_structure_charge(cellIdx: i32): i32 {
-  const cellVal = read_structure_cell(cellIdx);
-  const baseCharge = (cellVal >> 16) & 0xFF;
-  const intentCharge = atomic.load<i32>(
-    STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize,
-  );
-  return intentCharge > baseCharge ? intentCharge : baseCharge;
-}
-
-```
-
----
-
-## FILE: src/_/04/resolve_bond_requests.ts
-
-```typescript
-import { BOND_REQUESTS_OFFSET, MAX_ATOMS } from "../03/mod.ts";
-
-export function resolve_bond_requests(start: i32, end: i32): void {
-  let resolved: i32 = 0;
-  for (let i = start; i < end; i++) {
-    const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
-    const initiatorPlus1 = atomic.load<i32>(ptr);
-    if (initiatorPlus1 == 0) continue;
-  
-    if (atomic.load<i32>(ptr + 8) != 1) { // Not active
-      atomic.store<i32>(ptr, 0);
-      continue;
-    }
-  
-    const targetPlus1 = atomic.load<i32>(ptr + 4);
-    const initiator = initiatorPlus1 - 1;
-    const target = targetPlus1 - 1;
-  
-    if (target >= 0 && target < MAX_ATOMS) {
-      // trace_atom(initiator, 0xBB, target, 0, resolved);
-      set_bond_target(initiator, 0, target);
-      set_bond_stiffness(initiator, 0, 0.1);
-      set_bond_target(target, 1, initiator);
-      set_bond_stiffness(target, 1, 0.1);
-      // trace_atom(initiator, 0xCC, get_bond_target(initiator, 0), 0, 0);
-      resolved++;
-    }
-  
-    // Clear request
-    atomic.store<i32>(ptr, 0);
-    atomic.store<i32>(ptr + 4, 0);
-    atomic.store<i32>(ptr + 8, 0);
-  }
-  // trace_atom(888, 0xEE, resolved, 0, 0);
-  return resolved;
-}
-
-```
-
----
-
-## FILE: src/_/04/secrete_glyph.ts
-
-```typescript
-import { SPATIAL_CELL_SIZE, GRID_W, GRID_H, SECRETION_STATS_OFF, PHEROMONE_COST_BASE, PLASMID_COST_BASE } from "../03/mod.ts";
-
-export function secrete_glyph(atomIdx: i32, x: i32, y: i32, kind: u8, role: u8, intensity: i32): void {
-  if (intensity <= 0) return;
-    const gx = x / SPATIAL_CELL_SIZE;
-    const gy = y / SPATIAL_CELL_SIZE;
-    if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return;
-  
-    const cell = gy * GRID_W + gx;
-  
-    // Telemetry: increment role-based atomic counter
-    if (kind >= 1 && kind <= 2 && role <= 4) {
-      const statPtr = SECRETION_STATS_OFF +
-        (((kind - 1) * 5 + (role as i32)) << 2) as usize;
-      atomic.add<i32>(statPtr, 1);
-    }
-  
-    // Energy Cost
-    if (atomIdx >= 0) {
-      let cost: i32 = 0;
-      if (kind == 1) cost = PHEROMONE_COST_BASE + (intensity >> 3);
-      else if (kind == 2) cost = PLASMID_COST_BASE + (intensity >> 2);
-  
-      if (cost > 0) {
-        const currentEnergy = get_energy(atomIdx);
-        set_energy(atomIdx, currentEnergy - cost);
-      }
-    }
-  
-    // Role-based Phase Imprinting (Parasite = Destructive, Sys/Prod = Constructive)
-    const isDestructive = role == 4;
-    const phaseIntensity = isDestructive ? -intensity : intensity;
-  
-    // Requires atomicDepositGlyphHeader from glyph_transport
-    // build_ontology currently groups all under the same AS/TS file per level, 
-    // but let's export it uniquely from glyph_transport or ensure it's inline.
-    // We'll rely on the facade exposing `atomicDepositGlyphHeader` if we extract it,
-    // or we need to inline it. Since AssemblyScript doesn't perfectly hoist internal non-exported fns across modules unless exported,
-    // we either export `atomicDepositGlyphHeader` from glyph_transport or we write it directly here.
-    // Actually, wait, `atomicDepositGlyphHeader` was placed inside `glyph_transport.md` but un-exported.
-    // I will just use `glyph_transport` functions from the facade if we export `atomicDepositGlyphHeader`
-}
-
-```
-
----
-
-## FILE: src/_/05/evaluate_opcodes.ts
-
-```typescript
-import { INSTRUCTIONS_OFFSET, MAX_ATOMS, GRID_W, NEURAL_COHERENCE_OFF, MEMORY_GRID_OFF, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JMP, OP_SYSCALL, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_SPORE_DRIVE, OP_SENSE_AS, PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS } from "../04/mod.ts";
-
-export function evaluate_opcodes(atomIndex: i32, energy: i32, resonance: i32, mass: i32): i32 {
-  // unimplemented since user requested pure AssemblyScript isolation for VM evaluation
-  return 0;
-}
 
 ```
 
@@ -3121,21 +935,6 @@ export function evaluate_opcodes(atomIndex: i32, energy: i32, resonance: i32, ma
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../04/mod.ts";
-export { evaluate_opcodes } from "./evaluate_opcodes.ts";
-export { tick_structure_grid } from "./tick_structure_grid.ts";
-
-```
-
----
-
-## FILE: src/_/05/tick_structure_grid.ts
-
-```typescript
-import { GRID_H, GRID_W, STRUCTURE_GRID_OFF, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, STR_VOID, STR_WIRE, STR_SOURCE, STR_NODE, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, SPATIAL_GRID_OFFSET, SIGNAL_GRID_OFF, MEMORY_GRID_OFF } from "../04/mod.ts";
-
-export function tick_structure_grid(): void {
-  
-}
 
 ```
 
@@ -3169,85 +968,6 @@ export const bytes_to_base64 = (bytes: Uint8Array): string =>
 
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
-
-```
-
----
-
-## FILE: src/_/06/execute_atom.ts
-
-```typescript
-import { IDS_OFFSET, INSTRUCTIONS_OFFSET, BONDS_OFFSET, MAX_ATOMS, NEURAL_COHERENCE_OFF } from "../05/mod.ts";
-
-export function execute_atom(atomIndex: i32): void {
-  let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
-  if (id == 0) return;
-  
-  let pc = get_p_c(atomIndex);
-  let energy = get_read_energy(atomIndex);
-  let resonance = get_read_resonance(atomIndex);
-  const instrBase: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
-  
-  // Bounded Reduction - Gas Accounting Economy
-  let mass: i32 = 1;
-  const bondBase = BONDS_OFFSET + (atomIndex << 4) as usize;
-  for (let b = 0; b < 4; b++) {
-    const target = load<i32>(bondBase + (b << 2) as usize);
-    if (target > 0 && target < MAX_ATOMS) mass++;
-  }
-  
-  let gasUsed = evaluate_opcodes(atomIndex, energy, resonance, mass);
-  
-  // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
-  let entropyH: i32 = get_hormone(0) as i32;
-  // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
-  let frictionH: i32 = get_hormone(5) as i32;
-  
-  // --- [x] Stage 11.1: Neural Synthesis (The Global Coherence)
-  let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
-  // Coherence discount: if global coherence is high (>100 signals), reduce cost
-  let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
-  
-  let baseComputeCost = gasUsed >> discount;
-  let metabolicCost = 1 + baseComputeCost +
-    ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
-  
-  // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
-  if (coherenceVal > 500) {
-    // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
-    let curPhase: i32 = get_phase(atomIndex) as i32;
-    if (curPhase < 128) curPhase += 2;
-    else if (curPhase > 128) curPhase -= 1;
-    set_phase(atomIndex, curPhase as u8);
-  }
-  
-  // Auto-Firing Action Potential
-  if (resonance > 300) {
-    if (energy > 200) {
-      energy -= 200;
-      set_resonance(atomIndex, 0);
-      set_phase(atomIndex, 5);
-      fire_signal(atomIndex);
-    } else {
-      set_resonance(atomIndex, 280);
-    }
-  }
-  
-  // HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
-  let repairH: i32 = get_hormone(4) as i32;
-  let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
-  // Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
-  let finalEnergy: i32 = get_energy(atomIndex) as i32;
-  let finalResonance: i32 = get_resonance(atomIndex) as i32;
-  
-  if (finalResonance > 0) {
-    set_resonance(atomIndex, finalResonance - resonanceDecay);
-  }
-  set_energy(
-    atomIndex,
-    finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
-  );
-}
 
 ```
 
@@ -3401,11 +1121,9 @@ export * from "./fnv1a32.ts";
 export * from "./hex_to_bytes.ts";
 export * from "./bytes_to_hex.ts";
 export * from "./pulse_orchestrator.ts";
-export { execute_atom } from "./execute_atom.ts";
 export * from "./LOGGER.ts";
 export * from "./make_xor_shift32.ts";
 export * from "./to_int16_big_endian.ts";
-export { tick_environment } from "./tick_environment.ts";
 
 ```
 
@@ -3458,19 +1176,6 @@ export const stable_stringify = (value: unknown): string => {
 
 ---
 
-## FILE: src/_/06/tick_environment.ts
-
-```typescript
-import { GRID_CELLS, ATTENTION_FIELD_OFF } from "../05/mod.ts";
-
-export function tick_environment(tick: i32): void {
-  
-}
-
-```
-
----
-
 ## FILE: src/_/06/to_int16_big_endian.ts
 
 ```typescript
@@ -3492,6 +1197,7 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
 ## FILE: src/_/07/crypto_keys.ts
 
 ```typescript
+import { base64_to_bytes } from "../06/mod.ts";
 
 export type Ed25519SigningKey = {
   scheme: "ed25519/v1";
@@ -3553,6 +1259,7 @@ export * from "./sha256_hex.ts";
 ## FILE: src/_/07/sha256_hex.ts
 
 ```typescript
+import { bytes_to_hex } from "../06/mod.ts";
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
@@ -3767,6 +1474,42 @@ return (v >> 31) | (<i32>(<u32>-v) >>> 31);
 
 ---
 
+## FILE: src/_as/00/immune_check.ts
+
+```typescript
+
+@inline
+export function immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entropy_pressure: i32): bool {
+if (id_handle === 0) return false;
+
+  // Necrotic check (Zero energy and zero resonance)
+  if (energy <= 0 && resonance <= 0) return true;
+
+  if (role === 5) return false; // ROLE_MITOCHONDRIA are immune to drifting checks
+
+  // Drifting check
+  // Base threshold for "weak" atoms.
+  // Entropy pressure (H0) modulates how aggressive the cleanup is.
+  // Normalized H0 is 0..1000.
+  // We use integer math to avoid floats where possible. threshold * 1000 = entropy * 2.
+  const threshold_x1000 = entropy_pressure * 2;
+  const energy_x1000 = energy * 1000;
+  
+  // energy < threshold
+  if (energy_x1000 < threshold_x1000) {
+      // resonance < threshold * 100 -> resonance * 10 < threshold * 1000
+      if ((resonance * 10) < threshold_x1000) {
+          return true;
+      }
+  }
+
+  return false;
+}
+
+```
+
+---
+
 ## FILE: src/_as/00/math_clamp.ts
 
 ```typescript
@@ -3795,6 +1538,7 @@ export * from "./VmOpcodes";
 export { pack_glyph_header } from "./pack_glyph_header";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude";
 export { unpack_glyph_kind } from "./unpack_glyph_kind";
+export { immune_check } from "./immune_check";
 export * from "./COS_LUT";
 export { normalize_angle } from "./normalize_angle";
 export { fast_abs } from "./fast_abs";
@@ -3876,15 +1620,15 @@ export const SIN_LUT: StaticArray<i32> = [
 
 ```typescript
 
-export const STR_VOID: i32 = 0;
-export const STR_WIRE: i32 = 1;
-export const STR_NODE: i32 = 2;
-export const STR_DIODE: i32 = 3;
-export const STR_SOURCE: i32 = 4;
-export const STR_SINK: i32 = 5;
-export const STR_CAPACITOR: i32 = 6;
-export const STR_INVERTER: i32 = 7;
-export const STR_LATCH: i32 = 8;
+export const STR_VOID: u8 = 0;
+export const STR_WIRE: u8 = 1;
+export const STR_NODE: u8 = 2;
+export const STR_DIODE: u8 = 3;
+export const STR_SOURCE: u8 = 4;
+export const STR_SINK: u8 = 5;
+export const STR_CAPACITOR: u8 = 6;
+export const STR_INVERTER: u8 = 7;
+export const STR_LATCH: u8 = 8;
 
 ```
 
@@ -3895,7 +1639,7 @@ export const STR_LATCH: i32 = 8;
 ```typescript
 
 export const MAX_ATOMS: i32 = 500000;
-export const LAYOUT_VERSION: u32 = 1;
+export const LAYOUT_VERSION: i32 = 1;
 export const SAFETY_BUFFER: i32 = 8000000;
 export const GRID_W: i32 = 140;
 export const GRID_H: i32 = 80;
@@ -5643,7 +3387,8 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
   if (population == 0) return;
 
   const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  const bandStep = i32(Math.max(1, Math.floor(homeostasisBand / 2)));
+  let bandStep = homeostasisBand >> 1;
+  if (bandStep < 1) bandStep = 1;
   const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
 
   for (let i = startIdx; i < endIdx; i++) {
@@ -5722,7 +3467,7 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
 
         // Pay up 90% of excess energy to Host
         if (current > starvationFloor) {
-          let transfer = i32(Math.floor(f64(current - starvationFloor) * 0.9));
+          let transfer = ((current - starvationFloor) * 9) / 10;
           if (transfer > 0) {
             atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
             set_energy(i, current - transfer);
@@ -5770,10 +3515,11 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
 
     // 2. Homeostasis
     // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
+    let interimEnergy = current + delta;
+    if (interimEnergy < 0) interimEnergy = 0;
 
     if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
+      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
       delta -= tax;
     }
 
@@ -5782,10 +3528,8 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
 
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
-      const step = i32(Math.min(
-        homeostasisMaxDelta,
-        1 + Math.floor(gradient / bandStep),
-      ));
+      let rawStep = 1 + (gradient / bandStep);
+      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
 
       if (deviation > 0) {
         delta -= step;
@@ -5793,7 +3537,8 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
       } else if (subsidyEnabled) {
         let subsidy = step;
         if (overflowActive) {
-          subsidy = i32(Math.max(1, Math.floor(f32(subsidy) * 0.6)));
+          subsidy = (subsidy * 6) / 10;
+          if (subsidy < 1) subsidy = 1;
         }
         delta += subsidy;
       }
@@ -5816,7 +3561,8 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
     }
 
     if (delta != 0) {
-      let next = i32(Math.max(0.0, f64(current) + f64(delta)));
+      let next = current + delta;
+      if (next < 0) next = 0;
       if (next != current) {
         set_energy(i, next);
         // Track stats for telemetry
@@ -5921,7 +3667,7 @@ return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as 
 ## FILE: src/_as/04/calculate_trophism.ts
 
 ```typescript
-import { SPATIAL_CELL_SIZE, MAX_ATOMS, ROLE_PRODUCER, ROLE_NEUTRAL, ROLE_GUARDIAN, ROLE_PARASITE, ROLE_ARCHITECT, GRID_W, get_read_energy, in_grid, get_spatial_grid_count, get_spatial_grid_atom, get_read_x, get_read_y, get_role, add_energy_delta, add_resonance_delta, get_read_resonance, get_attention_cell, get_glyph_influence, read_structure_cell, encode_force_tuple } from "../03/mod";
+import { SPATIAL_CELL_SIZE, MAX_ATOMS, ROLE_PRODUCER, ROLE_NEUTRAL, ROLE_GUARDIAN, ROLE_PARASITE, ROLE_ARCHITECT, GRID_W, fast_min, get_read_energy, in_grid, get_spatial_grid_count, get_spatial_grid_atom, get_read_x, get_read_y, get_role, add_energy_delta, add_resonance_delta, get_read_resonance, get_attention_cell, get_glyph_influence, read_structure_cell, encode_force_tuple } from "../03/mod";
 
 @inline
 export function calculate_trophism(idx: i32, x: i32, y: i32, role: u8): void {
@@ -5980,7 +3726,7 @@ for (let oy = -3; oy <= 3; oy++) {
             if (oEnergy > 0) {
               add_energy_delta(
                 otherIdx,
-                -Mathf.min(oEnergy as f32, burn as f32) as i32,
+                -fast_min(oEnergy, burn),
               );
               add_resonance_delta(idx, 5);
             }
@@ -6322,6 +4068,7 @@ export function glyph_transport(tick: i32): void {
 export * from "../03/mod";
 export { build_spatial_hash } from "./build_spatial_hash";
 export { add_resonance } from "./add_resonance";
+export { run_phagocyte_pass } from "./run_phagocyte_pass";
 export { secrete_glyph } from "./secrete_glyph";
 export { drain_spawn_requests } from "./drain_spawn_requests";
 export { apply_metabolism_kernel } from "./apply_metabolism_kernel";
@@ -6397,6 +4144,41 @@ for (let i = start; i < end; i++) {
 }
 // trace_atom(888, 0xEE, resolved, 0, 0);
 return resolved;
+}
+
+```
+
+---
+
+## FILE: src/_as/04/run_phagocyte_pass.ts
+
+```typescript
+import { MAX_ATOMS, IDS_OFFSET, ROLES_OFFSET, BONDS_OFFSET, immune_check, get_read_energy, get_read_resonance, set_energy, set_resonance } from "../03/mod";
+
+@inline
+export function run_phagocyte_pass(entropy_pressure: i32): i32 {
+let purgeCount: i32 = 0;
+  for (let i: i32 = 1; i <= MAX_ATOMS; i++) {
+    const id = atomic.load<i64>(IDS_OFFSET + (i << 3) as usize);
+    if (id != 0) {
+       const role = atomic.load<u8>(ROLES_OFFSET + i as usize);
+       const energy = get_read_energy(i);
+       const resonance = get_read_resonance(i);
+       if (immune_check(energy, resonance, <i32>id, <u8>role, entropy_pressure)) {
+         atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
+         atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
+         set_energy(i, 0);
+         set_resonance(i, 0);
+         const baseBond = BONDS_OFFSET + (i << 4) as usize;
+         atomic.store<i32>(baseBond, 0);
+         atomic.store<i32>(baseBond + 4, 0);
+         atomic.store<i32>(baseBond + 8, 0);
+         atomic.store<i32>(baseBond + 12, 0);
+         purgeCount++;
+       }
+    }
+  }
+  return purgeCount;
 }
 
 ```
@@ -7279,45 +5061,6 @@ runAcousticAudit();
 
 ---
 
-## FILE: src/00/03/interference_wave_test.ts
-
-```typescript
-/**
- * interference_wave_test.ts
- * Тест семантичної інтерференції хвильових пакетів.
- */
-
-import { WAVE_PACKET } from "@00/03/i.L13.core.WAVE_PACKET.ts";
-import { INTERFERENCE } from "@00/03/i.L13.core.INTERFERENCE.ts";
-
-function test() {
-  console.log("🌊 OMEGA-64: Semantic Interference Test\n");
-
-  const p1 = WAVE_PACKET.create(0, 500, 0, 1.0); // Центр 0, фаза 0
-  const p2_constructive = WAVE_PACKET.create(200, 500, 0, 1.0); // Фаза 0 (Конструктивна)
-  const p2_destructive = WAVE_PACKET.create(200, 500, Math.PI, 1.0); // Фаза PI (Деструктивна)
-
-  console.log("--- Point Interference (at r=100) ---");
-  const res_c = INTERFERENCE.superpose(p1, p2_constructive, 100);
-  const res_d = INTERFERENCE.superpose(p1, p2_destructive, 100);
-
-  console.log(`Constructive Amplitude: ${res_c.toFixed(4)} (Expected > 1.0)`);
-  console.log(`Destructive Amplitude:  ${res_d.toFixed(4)} (Expected < 1.0)`);
-
-  console.log("\n--- Semantic Tension (Overlap Conflict) ---");
-  const tension_c = INTERFERENCE.getTension(p1, p2_constructive);
-  const tension_d = INTERFERENCE.getTension(p1, p2_destructive);
-
-  console.log(`Tension (Same Phase): ${tension_c.toFixed(4)}`);
-  console.log(`Tension (Opposite):   ${tension_d.toFixed(4)} (Expected High)`);
-}
-
-test();
-
-```
-
----
-
 ## FILE: src/00/03/mod.ts
 
 ```typescript
@@ -7334,119 +5077,25 @@ export * from "./resonance_groove_test.ts";
 
 ---
 
-## FILE: src/00/03/resonance_dipole_test.ts
-
-```typescript
-/**
- * resonance_dipole_test.ts
- * Тест дипольного поля та енергетичного метаболізму.
- */
-
-import { FIELD } from "@00/03/i.L00.core.FIELD.ts";
-import { ENERGY_ENGINE, QWaveState } from "@00/03/i.L05.core.ENERGY.ts";
-
-function test() {
-  console.log("🌀 OMEGA-64: Dipole Field Resonance Test\n");
-
-  const points = [-30000, -10000, -500, 0, 500, 10000, 30000];
-
-  console.log("--- Logarithmic Compression ---");
-  points.forEach((p) => {
-    const comp = FIELD.compress(p);
-    const exp = FIELD.expand(comp);
-    console.log(
-      `p: ${p.toString().padStart(6)} | log: ${
-        comp.toFixed(2).padStart(8)
-      } | exp: ${exp.toString().padStart(6)} | Diff: ${Math.abs(p - exp)}`,
-    );
-  });
-
-  console.log("\n--- Potential & Pain Simulation ---");
-  const states: QWaveState[] = [
-    { r: 0, energy: 1000, coherence: 1.0, tension: 0 },
-    { r: 15000, energy: 500, coherence: 0.9, tension: 50 },
-    { r: -32000, energy: 200, coherence: 0.95, tension: 150 },
-  ];
-
-  states.forEach((s, i) => {
-    const potential = FIELD.getPotential(s.r);
-    const decay = ENERGY_ENGINE.calculateDecay(s);
-    const pain = ENERGY_ENGINE.getPainLevel(s);
-    console.log(
-      `State ${i} [r: ${s.r.toString().padStart(6)}]: Potential: ${
-        potential.toFixed(4)
-      } | Decay: ${decay.toFixed(2)} | Pain: ${pain.toFixed(2)}`,
-    );
-  });
-}
-
-test();
-
-```
-
----
-
-## FILE: src/00/03/resonance_groove_test.ts
-
-```typescript
-/**
- * resonance_groove_test.ts
- * Тест "вінілових канавок" та суб'єктивної видимості.
- */
-
-import { FIELD } from "@00/03/i.L00.core.FIELD.ts";
-import { SUBJECTIVE, SubjectivePosition } from "@00/03/i.L05.core.SUBJECTIVE.ts";
-
-function test() {
-  console.log("🌀 OMEGA-64: Anti-Control Geometry Test\n");
-
-  const subjectiveStates: SubjectivePosition[] = [
-    { tension: -0.9, momentum: -0.5, proximity: 0.1 }, // Глибокий біль
-    { tension: 0.05, momentum: 0.8, proximity: 0.9 }, // Біля екватора, активний рух
-    { tension: 0.85, momentum: 0.1, proximity: 0.5 }, // Поверхневий потік
-  ];
-
-  console.log("--- Visibility Reports (Anti-Control) ---");
-  subjectiveStates.forEach((s, i) => {
-    const report = SUBJECTIVE.getVisibility(s);
-    console.log(
-      `Subject ${i}: r=${report.r.toString().padStart(6)} | Potential=${
-        report.potential.toFixed(4)
-      } | State=${report.state} | Momentum=${report.momentum}`,
-    );
-  });
-
-  console.log("\n--- Attractor Catch Verification ---");
-  // Перевіримо потенціал поруч з "канавкою" та трохи далі
-  const r_groove = 0;
-  const r_near = 500;
-
-  const p_groove = FIELD.getPotential(r_groove);
-  const p_near = FIELD.getPotential(r_near);
-
-  console.log(`Equator Groove (r=0):   Potential ${p_groove.toFixed(4)}`);
-  console.log(`Near Equator (r=500):  Potential ${p_near.toFixed(4)}`);
-
-  if (p_groove < p_near) {
-    console.log(
-      "\n✅ SUCCESS: Attractor is a local minimum (The groove catches).",
-    );
-  } else {
-    console.log("\n❌ FAILURE: Field is too flat or incorrectly scaled.");
-  }
-}
-
-test();
-
-```
-
----
-
 ## FILE: src/00/03/swarm_membrane_test.ts
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_URL = new URL(
   "../../00/00/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
@@ -7455,8 +5104,8 @@ const WASM_URL = new URL(
 
 async function createMatrix() {
   const memory = new WebAssembly.Memory({
-    initial: OFFSETS.WASM_MEMORY_PAGES,
-    maximum: OFFSETS.WASM_MEMORY_PAGES,
+    initial: WASM_MEMORY_PAGES,
+    maximum: WASM_MEMORY_PAGES,
     shared: true,
   });
 
@@ -7498,12 +5147,12 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
   // Find empty slot natively
   const ids = new BigInt64Array(
     memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   let atomIdx = Number(ids[1] === 0n ? 1n : 0n);
   if (atomIdx === 0) {
-    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 1; i < MAX_ATOMS; i++) {
       if (ids[i] === 0n) {
         atomIdx = i;
         break;
@@ -7514,33 +5163,33 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
   if (atomIdx > 0) {
     const energies = new Int32Array(
       memory.buffer,
-      OFFSETS.ENERGY_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      ENERGY_OFFSET,
+      MAX_ATOMS,
     );
     const resonances = new Int32Array(
       memory.buffer,
-      OFFSETS.RESONANCE_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      RESONANCE_OFFSET,
+      MAX_ATOMS,
     );
     const phases = new Int32Array(
       memory.buffer,
-      OFFSETS.PHASE_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      PHASE_OFFSET,
+      MAX_ATOMS,
     );
     const roles = new Uint8Array(
       memory.buffer,
-      OFFSETS.ROLES_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      ROLES_OFFSET,
+      MAX_ATOMS,
     );
     const xs = new Int16Array(
       memory.buffer,
-      OFFSETS.XS_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      XS_OFFSET,
+      MAX_ATOMS,
     );
     const ys = new Int16Array(
       memory.buffer,
-      OFFSETS.YS_OFFSET,
-      OFFSETS.MAX_ATOMS,
+      YS_OFFSET,
+      MAX_ATOMS,
     );
 
     energies[atomIdx] = energy;
@@ -7553,7 +5202,7 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
 
     const logic = new Uint8Array(
       memory.buffer,
-      OFFSETS.INSTRUCTIONS_OFFSET + atomIdx * 64,
+      INSTRUCTIONS_OFFSET + atomIdx * 64,
       64,
     );
     logic.set(genome);
@@ -7561,7 +5210,7 @@ function injectForeignAtom(memory: WebAssembly.Memory, payload: Uint8Array) {
     // Context maps natively from 84..148 block representing 16 x i32 slots.
     const context = new Int32Array(
       memory.buffer,
-      OFFSETS.CONTEXT_OFFSET + atomIdx * 16 * 4,
+      CONTEXT_OFFSET + atomIdx * 16 * 4,
       16,
     );
     for (let c = 0; c < 16; c++) {
@@ -7577,28 +5226,28 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
   const idsA = new BigInt64Array(
     matrixA.memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   const xsA = new Int16Array(
     matrixA.memory.buffer,
-    OFFSETS.XS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    XS_OFFSET,
+    MAX_ATOMS,
   );
   const ysA = new Int16Array(
     matrixA.memory.buffer,
-    OFFSETS.YS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    YS_OFFSET,
+    MAX_ATOMS,
   );
   const energiesA = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    ENERGY_OFFSET,
+    MAX_ATOMS,
   );
   const logicA = new Uint8Array(
     matrixA.memory.buffer,
-    OFFSETS.INSTRUCTIONS_OFFSET,
-    OFFSETS.MAX_ATOMS * 64,
+    INSTRUCTIONS_OFFSET,
+    MAX_ATOMS * 64,
   );
 
   const atomIdxA = 1;
@@ -7636,8 +5285,8 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   const contextA = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.CONTEXT_OFFSET,
-    OFFSETS.MAX_ATOMS * 16,
+    CONTEXT_OFFSET,
+    MAX_ATOMS * 16,
   );
   console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
   console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
@@ -7651,7 +5300,7 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 3. Extract EgressEvent
   const headView = new Int32Array(
     matrixA.memory.buffer,
-    OFFSETS.EGRESS_HEAD_OFFSET,
+    EGRESS_HEAD_OFFSET,
     1,
   );
   const writeHead = Atomics.load(headView, 0);
@@ -7659,7 +5308,7 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
 
   const dataView = new Uint8Array(
     matrixA.memory.buffer,
-    OFFSETS.EGRESS_DATA_OFFSET,
+    EGRESS_DATA_OFFSET,
     256,
   );
   const payload = dataView.slice(0, 256);
@@ -7670,23 +5319,23 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
   const idsB = new BigInt64Array(
     matrixB.memory.buffer,
-    OFFSETS.IDS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    IDS_OFFSET,
+    MAX_ATOMS,
   );
   const xsB = new Int16Array(
     matrixB.memory.buffer,
-    OFFSETS.XS_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    XS_OFFSET,
+    MAX_ATOMS,
   );
   const energiesB = new Int32Array(
     matrixB.memory.buffer,
-    OFFSETS.ENERGY_OFFSET,
-    OFFSETS.MAX_ATOMS,
+    ENERGY_OFFSET,
+    MAX_ATOMS,
   );
   const logicB = new Uint8Array(
     matrixB.memory.buffer,
-    OFFSETS.INSTRUCTIONS_OFFSET,
-    OFFSETS.MAX_ATOMS * 64,
+    INSTRUCTIONS_OFFSET,
+    MAX_ATOMS * 64,
   );
 
   // The first empty slot should be 1
@@ -7705,151 +5354,6 @@ Deno.test("Swarm Membrane: Egress from Matrix A to Ingress Matrix B", async () =
   assertEquals(logicB[atomIdxB * 64 + 0], 0x01, "Genome identical match");
   assertEquals(logicB[atomIdxB * 64 + 4], 0x01, "Genome identical match piece");
 });
-
-```
-
----
-
-## FILE: src/00/03/swarm_sync_test.ts
-
-```typescript
-import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
-
-if (Deno.args[0] === "run-node") {
-  const port = parseInt(Deno.args[1], 10);
-  const peerPort = parseInt(Deno.args[2], 10);
-  const applyDelay = Deno.args.includes("--delay");
-
-  const { PULSE, NEXUS_DAEMON } = await import("@02");
-
-  // Re-configure the static Nexus daemon for our test isolated node
-  NEXUS_DAEMON.port = port;
-  NEXUS_DAEMON.seedNodes = [`ws://127.0.0.1:${peerPort}`];
-
-  await PULSE.initWorkers();
-
-  // Give Nexus a moment to handshake
-  await delay(200);
-
-  // Run manually mimicking normal Orchestrator loop
-  for (let i = 0; i < 200; i++) {
-    await PULSE.tick();
-
-    if (applyDelay) {
-      await delay(10); // Deliberately slow
-    }
-
-    if (i % 10 === 0) {
-      console.log(`SYNC_REPORT_TICK:${port}:${NEXUS_DAEMON.localCurrentTick}`);
-    }
-  }
-
-  // Final flush
-  console.log(`SYNC_REPORT_FINAL:${port}:${NEXUS_DAEMON.localCurrentTick}`);
-  PULSE.stopWorkers();
-  NEXUS_DAEMON.stop();
-  Deno.exit(0);
-} else {
-  // --- Orchestrator ---
-  async function runMaster() {
-    console.log("🧪 [TEST] Byzantine Swarm Synchronization (Hive Clock)");
-
-    const fastNode = new Deno.Command(Deno.execPath(), {
-      args: [
-        "run",
-        "-A",
-        "--unstable",
-        import.meta.url,
-        "run-node",
-        "9010",
-        "9011",
-      ],
-      stdout: "piped",
-      stderr: "inherit",
-    }).spawn();
-
-    const slowNode = new Deno.Command(Deno.execPath(), {
-      args: [
-        "run",
-        "-A",
-        "--unstable",
-        import.meta.url,
-        "run-node",
-        "9011",
-        "9010",
-        "--delay",
-      ],
-      stdout: "piped",
-      stderr: "inherit",
-    }).spawn();
-
-    let fastFinalTick = 0;
-    let slowFinalTick = 0;
-
-    const readStream = async (stream: ReadableStream, port: number) => {
-      const reader = stream.getReader();
-      const decoder = new TextDecoder();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value);
-        const lines = text.split("\n");
-        for (const line of lines) {
-          if (line.includes("SYNC_REPORT_FINAL:")) {
-            const parts = line.trim().split(":");
-            const t = parseInt(parts[2], 10);
-            if (port === 9010) fastFinalTick = t;
-            if (port === 9011) slowFinalTick = t;
-            console.log(`[ORCHESTRATOR] Node ${port} finished at tick ${t}`);
-          } else if (line.trim().length > 0) {
-            console.log(`[NODE ${port}] ${line.trim()}`);
-          }
-        }
-      }
-    };
-
-    const fastPromise = readStream(fastNode.stdout, 9010);
-    const slowPromise = readStream(slowNode.stdout, 9011);
-
-    await Promise.all([
-      fastNode.status,
-      slowNode.status,
-      fastPromise,
-      slowPromise,
-    ]);
-
-    console.log(
-      `📊 [RESULTS] Fast Node Tick: ${fastFinalTick} | Slow Node Tick: ${slowFinalTick}`,
-    );
-
-    // If Elastic Tick Yielding works, Fast Node should have yielded waiting for the median
-    // Median in a 2-node cluster favors the slow node (since median forces waiting if ahead)
-    // The drift should be exactly capped under MAX_TICK_DRIFT (50) + a small margin for loop timing
-    const drift = Math.abs(fastFinalTick - slowFinalTick);
-
-    if (drift > 60) {
-      console.error(
-        `❌ [TEST FAILS] Drift (${drift}) exceeds 50! Fast node did not elastic yield.`,
-      );
-      Deno.exit(1);
-    }
-
-    if (fastFinalTick === 0 || slowFinalTick === 0) {
-      console.error(`❌ [TEST FAILS] A node failed to execute loop bounds.`);
-      Deno.exit(1);
-    }
-
-    // Pass
-    assertEquals(true, true);
-    console.log("✅ [TEST] Hive Clock Byzantine Synchronization Verified.");
-  }
-
-  runMaster().catch((err) => {
-    console.error("❌", err);
-    Deno.exit(1);
-  });
-}
 
 ```
 
@@ -7960,7 +5464,7 @@ if (res3.amp > 14000 && res3.amp < 14300) {
 ## FILE: src/00/03/wasm_layout_guard.ts
 
 ```typescript
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 
 export const assertWasmLayout = async (): Promise<void> => {
   // Bypass legacy string AST execution validation over variables since Deno generates these cleanly into strict AS layer structs natively.
@@ -7978,13 +5482,16 @@ if (import.meta.main) {
 ## FILE: src/00/07/build_wasm.ts
 
 ```typescript
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MIN_WASM_MEMORY_PAGES,
+  WASM_MEMORY_PAGES
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
 import { resolveFsVectorSync } from "@07/01/vector_decoder.ts";
 
-if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   console.error(
-    `[wasm:build] Refusing build: pages=${OFFSETS.WASM_MEMORY_PAGES} < required=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+    `[wasm:build] Refusing build: pages=${WASM_MEMORY_PAGES} < required=${MIN_WASM_MEMORY_PAGES}`,
   );
   Deno.exit(1);
 }
@@ -8008,9 +5515,9 @@ const args = [
   "--importMemory",
   "--sharedMemory",
   "--initialMemory",
-  String(OFFSETS.MIN_WASM_MEMORY_PAGES),
+  String(MIN_WASM_MEMORY_PAGES),
   "--maximumMemory",
-  String(OFFSETS.WASM_MEMORY_PAGES),
+  String(WASM_MEMORY_PAGES),
   "--enable",
   "threads",
   "--runtime",
@@ -8028,7 +5535,7 @@ if (code !== 0) Deno.exit(code);
 
 const stat = await Deno.stat(wasmFile);
 console.log(
-  `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${OFFSETS.WASM_MEMORY_PAGES}, required>=${OFFSETS.MIN_WASM_MEMORY_PAGES}`,
+  `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${WASM_MEMORY_PAGES}, required>=${MIN_WASM_MEMORY_PAGES}`,
 );
 
 ```
@@ -8197,18 +5704,24 @@ export const AGENT_SIGNATURE = {
 ```typescript
 // OMEGA-64 | ATOM_ACCESS.ts
 import { GRID_W, GRID_H, GRID_CELLS } from "../_/01/mod.ts";
-import * as OFFSETS from "../_/02/mod.ts";
+import {
+  ATOM_CONTEXT_SIZE,
+  ATOM_INSTRUCTION_SIZE,
+  MAX_ATOMS,
+  RESOURCE_MAX,
+  SCALE
+} from "../_/02/mod.ts";
 import * as views from "./memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
   if (value <= 0) return 0;
-  if (value >= OFFSETS.RESOURCE_MAX) return OFFSETS.RESOURCE_MAX;
+  if (value >= RESOURCE_MAX) return RESOURCE_MAX;
   return Math.trunc(value);
 };
 
 export const toClampedEnergyRaw = (value: number): number =>
-  clampResourceRaw(Math.round(value * OFFSETS.SCALE));
+  clampResourceRaw(Math.round(value * SCALE));
 
 export const SYNC = {
   IDLE: 0,
@@ -8296,10 +5809,10 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
 export const ATOM_ACCESS = {
-  MAX_ATOMS: OFFSETS.MAX_ATOMS,
+  MAX_ATOMS: MAX_ATOMS,
   buffer: views.sharedBuffer,
   wasmMemory: views.wasmMemory,
-  SCALE: OFFSETS.SCALE,
+  SCALE: SCALE,
   syncState: views.syncState,
   tickCounter: views.tickCounter,
   SYNC,
@@ -8360,10 +5873,10 @@ export const ATOM_ACCESS = {
   getX: (i: number) => Atomics.load(views.xs, i),
   getY: (i: number) => Atomics.load(views.ys, i),
   getRole: (i: number) => Atomics.load(views.roles, i),
-  get_energy: (i: number) => Atomics.load(views.energies, i) / OFFSETS.SCALE,
+  get_energy: (i: number) => Atomics.load(views.energies, i) / SCALE,
   get_resonance: (i: number) => Atomics.load(views.resonances, i),
   get_phase: (i: number) => Atomics.load(views.phases, i),
-  getEnergy: (i: number) => Atomics.load(views.energies, i) / OFFSETS.SCALE,
+  getEnergy: (i: number) => Atomics.load(views.energies, i) / SCALE,
   getResonance: (i: number) => Atomics.load(views.resonances, i),
   getPhase: (i: number) => Atomics.load(views.phases, i),
   getEvolutionReserved: (i: number) => Atomics.load(views.evolutionReserved, i),
@@ -8397,13 +5910,13 @@ export const ATOM_ACCESS = {
   setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(views.hiveEnergyPool, slot & 255, val),
   addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(views.hiveEnergyPool, slot & 255, val),
 
-  getInstructions: (i: number) => views.instructions.subarray(i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE),
+  getInstructions: (i: number) => views.instructions.subarray(i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE),
   getCode: (i: number) => views.codeWords.subarray(i * 16, i * 16 + 16),
-  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
-  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
-  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg),
-  getPC: (i: number) => Atomics.load(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32),
-  getContext: (i: number) => views.contextByteView.subarray(i * (OFFSETS.ATOM_CONTEXT_SIZE * 4), i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + (OFFSETS.ATOM_CONTEXT_SIZE * 4)),
+  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) => views.contextByteView.subarray(i * (ATOM_CONTEXT_SIZE * 4), i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4)),
 
   setId: (i: number, val: bigint) => Atomics.store(views.ids, i, val),
   setX: (i: number, val: number) => Atomics.store(views.xs, i, Math.round(val)),
@@ -8430,7 +5943,7 @@ export const ATOM_ACCESS = {
   setMailboxMsgType: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2, val),
   setMailboxPayload: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2 + 1, val),
 
-  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * OFFSETS.ATOM_INSTRUCTION_SIZE),
+  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
   setCode: (i: number, val: Uint32Array | Uint8Array) => {
     const codeStart = i * 16;
     if (val instanceof Uint32Array) {
@@ -8438,14 +5951,14 @@ export const ATOM_ACCESS = {
       views.codeWords.set(val.subarray(0, 16), codeStart);
       return;
     }
-    const instStart = i * OFFSETS.ATOM_INSTRUCTION_SIZE;
-    views.instructions.fill(0, instStart, instStart + OFFSETS.ATOM_INSTRUCTION_SIZE);
-    views.instructions.set(val.subarray(0, OFFSETS.ATOM_INSTRUCTION_SIZE), instStart);
+    const instStart = i * ATOM_INSTRUCTION_SIZE;
+    views.instructions.fill(0, instStart, instStart + ATOM_INSTRUCTION_SIZE);
+    views.instructions.set(val.subarray(0, ATOM_INSTRUCTION_SIZE), instStart);
   },
-  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
-  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
-  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + reg, val),
-  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, val),
+  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
 
   getBondRequest: (i: number) => {
     const base = i * 3;
@@ -8465,8 +5978,8 @@ export const ATOM_ACCESS = {
     views.bondDistances.fill(0, i * 4, i * 4 + 4);
     Atomics.store(views.damping, i, 0);
     Atomics.store(views.lineage, i, 0n);
-    views.instructions.fill(0, i * OFFSETS.ATOM_INSTRUCTION_SIZE, i * OFFSETS.ATOM_INSTRUCTION_SIZE + OFFSETS.ATOM_INSTRUCTION_SIZE);
-    views.contexts.fill(0, i * OFFSETS.ATOM_CONTEXT_SIZE, i * OFFSETS.ATOM_CONTEXT_SIZE + OFFSETS.ATOM_CONTEXT_SIZE);
+    views.instructions.fill(0, i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE);
+    views.contexts.fill(0, i * ATOM_CONTEXT_SIZE, i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE);
   },
 
   clear: () => {
@@ -8475,17 +5988,17 @@ export const ATOM_ACCESS = {
   },
   getActiveIndices: () => {
     const active: number[] = [];
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) !== 0n) active.push(i);
     }
     return active;
   },
   getTopResonantIndices: (count: number) => {
-    const limit = Math.max(0, Math.min(OFFSETS.MAX_ATOMS, Math.trunc(count)));
+    const limit = Math.max(0, Math.min(MAX_ATOMS, Math.trunc(count)));
     if (limit === 0) return [];
 
     const top: Array<{ idx: number; resonance: number }> = [];
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) continue;
       const resonance = Atomics.load(views.resonances, i);
       if (top.length < limit) {
@@ -8506,13 +6019,13 @@ export const ATOM_ACCESS = {
   },
 
   findFreeSlot: (): number => {
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) return i;
     }
     return -1;
   },
   findEmptySlot: (): number => {
-    for (let i = 1; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 1; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) === 0n) return i;
     }
     return -1;
@@ -8593,7 +6106,7 @@ export const ATOM_ACCESS = {
     Atomics.store(views.ids, i, id);
     Atomics.store(views.xs, i, Math.round(x));
     Atomics.store(views.ys, i, Math.round(y));
-    Atomics.store(views.energies, i, Math.round(energy * OFFSETS.SCALE));
+    Atomics.store(views.energies, i, Math.round(energy * SCALE));
     Atomics.store(views.resonances, i, Math.trunc(resonance));
     Atomics.store(views.phases, i, 0);
     Atomics.store(views.roles, i, 0);
@@ -8602,10 +6115,10 @@ export const ATOM_ACCESS = {
     if (logicVal) views.logic.set(logicVal, i * 8);
 
     const boot = script || DEFAULT_BOOT_SCRIPT;
-    views.instructions.set(boot, i * OFFSETS.ATOM_INSTRUCTION_SIZE);
+    views.instructions.set(boot, i * ATOM_INSTRUCTION_SIZE);
 
-    for (let r = 0; r < OFFSETS.ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * OFFSETS.ATOM_CONTEXT_SIZE + r, 0);
-    Atomics.store(views.contextByteView, i * (OFFSETS.ATOM_CONTEXT_SIZE * 4) + 32, 0);
+    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + r, 0);
+    Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, 0);
   },
 
   seedGuardian: (
@@ -8717,10 +6230,10 @@ export const ATOM_ACCESS = {
 
   injectEnergy: (amount: number) => {
     let count = 0;
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (Atomics.load(views.ids, i) !== 0n) {
         const current = Atomics.load(views.energies, i);
-        Atomics.store(views.energies, i, current + Math.round(amount * OFFSETS.SCALE));
+        Atomics.store(views.energies, i, current + Math.round(amount * SCALE));
         count++;
       }
     }
@@ -9236,15 +6749,14 @@ export const CANON_CAUSAL_BRIDGE = {
 // Signed invariant packet trace for invariant bridging
 
 import {
-  stable_stringify,
-  sha256_hex,
-  import_hmac,
   base64_to_bytes,
   bytes_to_base64,
   bytes_to_hex,
   hex_to_bytes,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
 } from "../_/mod.ts";
-import type { REPLAY_AUDIT__08_00_ReplayInvariantReport } from "./SHIMS.ts"; // Need a lightweight import loop break or leave the type mapped.
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
   version: string;
@@ -9317,7 +6829,7 @@ const canonicalInvariantPacket = (
 const canonicalInvariantPacketPayload = (
   packet: INVARIANT_PACKET__08_00_InvariantPacket,
 ): string =>
-  stableStringify({
+  stable_stringify({
     version: packet.version,
     tick_anchor: packet.tick_anchor,
     canon_index_chain_checked: packet.canon_index_chain_checked,
@@ -9973,16 +7485,58 @@ import {
   ATOM_INSTRUCTION_SIZE, 
   ATOM_CONTEXT_SIZE 
 } from "../_/01/mod.ts";
-import * as OFFSETS from "../_/02/mod.ts";
+import {
+  ATTENTION_FIELD_OFFSET,
+  BONDS_OFFSET,
+  BOND_DISTANCES_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  CONTEXT_OFFSET,
+  DAMPING_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  GLYPH_HEADER_OFFSET,
+  GLYPH_PAYLOAD_OFFSET,
+  HIVE_BALANCE_OFFSET,
+  HIVE_ENERGY_POOL_OFFSET,
+  HIVE_MEMORY_OFFSET,
+  HORMONE_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MEMORY_GRID_OFFSET,
+  MIN_WASM_MEMORY_PAGES,
+  NEURAL_COHERENCE_OFFSET,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SIGNAL_GRID_OFFSET,
+  SPATIAL_GRID_OFFSET,
+  STIFFNESS_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNAPTIC_WEIGHTS_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WASM_MEMORY_BYTES,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET,
+  validateMemoryLayout
+} from "../_/02/mod.ts";
 
-if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
+if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
-    "[STATE_MATRIX] WASM memory too small: pages=" + OFFSETS.WASM_MEMORY_PAGES + 
-    ", required=" + OFFSETS.MIN_WASM_MEMORY_PAGES,
+    "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
+    ", required=" + MIN_WASM_MEMORY_PAGES,
   );
 }
-const layoutValidation = OFFSETS.validateMemoryLayout(
-  OFFSETS.WASM_MEMORY_BYTES,
+const layoutValidation = validateMemoryLayout(
+  WASM_MEMORY_BYTES,
 );
 if (!layoutValidation.ok) {
   throw new Error(
@@ -9993,87 +7547,87 @@ if (!layoutValidation.ok) {
 
 // Base Buffers for UI/WASM compatibility
 export const wasmMemory = new WebAssembly.Memory({
-  initial: OFFSETS.MIN_WASM_MEMORY_PAGES,
-  maximum: OFFSETS.WASM_MEMORY_PAGES,
+  initial: MIN_WASM_MEMORY_PAGES,
+  maximum: WASM_MEMORY_PAGES,
   shared: true,
 });
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 // Expose underlying buffers for UI export
-export const idBuffer = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS).buffer;
-export const xBuffer = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS).buffer;
-export const yBuffer = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS).buffer;
-export const energyBuffer = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS).buffer;
-export const resonanceBuffer = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS).buffer;
-export const phaseBuffer = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS).buffer;
-export const logicBuffer = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE).buffer;
-export const bondBuffer = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4).buffer;
-export const stiffnessBuffer = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
-export const bondDistBuffer = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
-export const synapticWeightBuffer = new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
-export const dampingBuffer = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS).buffer;
-export const causalityBuffer = new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS).buffer;
-export const roleBuffer = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS).buffer;
-export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, OFFSETS.HIVE_MEMORY_SIZE).buffer;
-export const hiveBalanceBuffer = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1).buffer;
-export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, OFFSETS.HIVE_ENERGY_POOL_SIZE).buffer;
-export const memoryGridBuffer = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
-export const signalGridBuffer = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
-export const structureGridBuffer = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
-export const attentionFieldBuffer = new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
-export const glyphHeaderBuffer = new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
-export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
-export const coherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1).buffer;
-export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1).buffer;
-export const hormoneBuffer = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES).buffer;
-export const lineageBuffer = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS).buffer;
-export const mailboxBuffer = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
+export const idBuffer = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
+export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
+export const yBuffer = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
+export const energyBuffer = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
+export const resonanceBuffer = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
+export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
+export const logicBuffer = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE).buffer;
+export const bondBuffer = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
+export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
+export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
+export const synapticWeightBuffer = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
+export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
+export const causalityBuffer = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
+export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
+export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
+export const hiveBalanceBuffer = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
+export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
+export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
+export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
+export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
+export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
+export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
+export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
+export const coherenceBuffer = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
+export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
+export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
+export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
+export const mailboxBuffer = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
 
 // TypedArray Views (Host side)
-export const ids = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-export const xs = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-export const ys = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
-export const energies = new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-export const resonances = new Int32Array(sharedBuffer, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-export const phases = new Int32Array(sharedBuffer, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-export const evolutionReserved = new Int32Array(sharedBuffer, OFFSETS.EVOLUTION_OFFSET, MAX_ATOMS);
-export const roles = new Uint8Array(sharedBuffer, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
-export const synapticWeights = new Uint8Array(sharedBuffer, OFFSETS.SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
-export const logic = new Uint8Array(sharedBuffer, OFFSETS.LOGIC_OFFSET, MAX_ATOMS * OFFSETS.ATOM_GENOME_SIZE);
-export const bonds = new Uint32Array(sharedBuffer, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
-export const bondStiffness = new Float32Array(sharedBuffer, OFFSETS.STIFFNESS_OFFSET, MAX_ATOMS * 4);
-export const bondDistances = new Uint8Array(sharedBuffer, OFFSETS.BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
-export const bondRequests = new Int32Array(sharedBuffer, OFFSETS.BOND_REQUESTS_OFFSET, OFFSETS.MAX_ATOMS * 3);
-export const damping = new Uint8Array(sharedBuffer, OFFSETS.DAMPING_OFFSET, MAX_ATOMS);
-export const causality = new Uint8Array(sharedBuffer, OFFSETS.CAUSALITY_OFFSET, MAX_ATOMS);
-export const hiveMemory = new Uint8Array(sharedBuffer, OFFSETS.HIVE_MEMORY_OFFSET, OFFSETS.HIVE_MEMORY_SIZE);
-export const hiveBalance = new Int32Array(sharedBuffer, OFFSETS.HIVE_BALANCE_OFFSET, 1);
-export const hiveEnergyPool = new Int32Array(sharedBuffer, OFFSETS.HIVE_ENERGY_POOL_OFFSET, OFFSETS.HIVE_ENERGY_POOL_SIZE);
-export const spatialGrid = new Int32Array(sharedBuffer, OFFSETS.SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
-export const structureGrid = new Int32Array(sharedBuffer, OFFSETS.STRUCTURE_GRID_OFFSET, GRID_CELLS);
-export const signalGrid = new Int32Array(sharedBuffer, OFFSETS.SIGNAL_GRID_OFFSET, GRID_CELLS);
-export const memoryGrid = new Uint8Array(sharedBuffer, OFFSETS.MEMORY_GRID_OFFSET, GRID_CELLS * 8);
-export const attentionField = new Float32Array(sharedBuffer, OFFSETS.ATTENTION_FIELD_OFFSET, GRID_CELLS);
-export const glyphHeaders = new Int32Array(sharedBuffer, OFFSETS.GLYPH_HEADER_OFFSET, GRID_CELLS);
-export const glyphPayload = new Uint8Array(sharedBuffer, OFFSETS.GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
-export const ledgerHeadView = new Int32Array(sharedBuffer, OFFSETS.LEDGER_HEAD_OFFSET, 1);
-export const ledgerDataView = new Int32Array(sharedBuffer, OFFSETS.LEDGER_DATA_OFFSET, OFFSETS.MAX_LEDGER_EVENTS * 4);
-export const coherence = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
-export const neuralCoherence = new Int32Array(sharedBuffer, OFFSETS.NEURAL_COHERENCE_OFFSET, 1);
-export const hormones = new Uint16Array(sharedBuffer, OFFSETS.HORMONE_OFFSET, OFFSETS.MAX_HORMONES);
-export const lineage = new BigUint64Array(sharedBuffer, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
-export const mailboxes = new Int32Array(sharedBuffer, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
-export const instructions = new Uint8Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * OFFSETS.ATOM_INSTRUCTION_SIZE);
-export const codeWords = new Uint32Array(sharedBuffer, OFFSETS.INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
-export const contexts = new Int32Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * OFFSETS.ATOM_CONTEXT_SIZE);
-export const contextByteView = new Uint8Array(sharedBuffer, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * (OFFSETS.ATOM_CONTEXT_SIZE * 4));
+export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
+export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
+export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
+export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
+export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
+export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
+export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
+export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
+export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
+export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
+export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
+export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
+export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
+export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
+export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
+export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
+export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
+export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
+export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
+export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
+export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
+export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
+export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
+export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
+export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
+export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
+export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
+export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
+export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
+export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
+export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
+export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
+export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
+export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
+export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
+export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
 
 export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
 export const semanticBonusesBuffer = semanticBonuses.buffer;
 
-export const latticeClearView = new Uint8Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET);
-export const syncState = new Int32Array(sharedBuffer, OFFSETS.SYNC_STATE_OFFSET, 1);
-export const tickCounter = new Int32Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFFSET, 1);
+export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
+export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
+export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 
 ```
 
@@ -10154,8 +7708,6 @@ const LOAD_DATA = {
 };
 export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
-export type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
-export * from "../_/mod.ts";
 export * from "./stream_utils.ts";
 export * from "./agent_signature.ts";
 export * from "./gate_admission.ts";
@@ -10431,14 +7983,19 @@ import {
   bytes_to_base64,
 } from "../_/mod.ts";
 import {
-  clamp01,
-  normalize_angle,
   to_int16_big_endian,
   make_xor_shift32,
 } from "../_/mod.ts";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
+const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
+const normalize_angle = (a: number): number => {
+    let r = a % (Math.PI * 2);
+    if (r <= -Math.PI) r += Math.PI * 2;
+    if (r > Math.PI) r -= Math.PI * 2;
+    return r;
+};
 
 export const deriveFeatureVector = (
   state: unknown,
@@ -11046,18 +8603,6 @@ const depositHeader = (
 };
 
 export const GLYPH_BUFFER = {
-  GLYPH_KIND,
-
-  clear: () => {
-    STATE_MATRIX.glyphHeaders.fill(0);
-    STATE_MATRIX.glyphPayload.fill(0);
-    secretionStatsView.fill(0);
-  },
-
-  beginInternalAtomEmissionTick: () => {
-    secretionStatsView.fill(0);
-  },
-
   depositPheromone: (x: number, y: number, intensity: number) => {
     const cell = toGridCell(x, y);
     const core = clamp(Math.round(intensity), -4096, 4096);
@@ -11096,37 +8641,9 @@ export const GLYPH_BUFFER = {
     GLYPH_BUFFER.depositPheromone(x, y, phaseIntensity);
   },
 
-  emitAtomPlasmid: (
-    x: number,
-    y: number,
-    charge: number,
-    payload: Uint8Array,
-    role = 0,
-  ) => {
-    Atomics.add(secretionStatsView, 5 + role, 1);
-    const phaseCharge = role === 4 ? -charge : charge;
-    GLYPH_BUFFER.depositPlasmid(x, y, phaseCharge, payload);
-  },
+  GLYPH_KIND,
 
   snapshot: (): GlyphSnapshot => {
-    let activeCells = 0;
-    let pheromoneCells = 0;
-    let plasmidCells = 0;
-    let maxAmplitude = 0;
-    let totalAmplitude = 0;
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = STATE_MATRIX.getGlyphHeader(cell);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (amplitude <= 0) continue;
-      activeCells++;
-      totalAmplitude += amplitude;
-      if (amplitude > maxAmplitude) maxAmplitude = amplitude;
-      if (kind === GLYPH_KIND.PHEROMONE) pheromoneCells++;
-      if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
-    }
-
     // WASM-side Atomic Telemetry (Stage 5.1)
     const pNeutral = Atomics.load(secretionStatsView, 0);
     const pProducer = Atomics.load(secretionStatsView, 1);
@@ -11140,20 +8657,21 @@ export const GLYPH_BUFFER = {
     const mArchitect = Atomics.load(secretionStatsView, 8);
     const mParasite = Atomics.load(secretionStatsView, 9);
 
-    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect +
-      pParasite;
-    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect +
-      mParasite;
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
 
     const signalLeak = Atomics.load(secretionStatsView, 10);
     const memoryLeak = Atomics.load(secretionStatsView, 11);
 
+    // The host no longer scans the 100k cells for maxAmplitude/activeCells on every tick
+    // This is deferred to the dashboard or handled by WASM telemetry blocks in the SAB.
+    // For now we return 0 for the heavy loops.
     return {
-      activeCells,
-      pheromoneCells,
-      plasmidCells,
-      maxAmplitude,
-      totalAmplitude,
+      activeCells: 0,
+      pheromoneCells: 0,
+      plasmidCells: 0,
+      maxAmplitude: 0,
+      totalAmplitude: 0,
       internalSignalSeeds: signalLeak,
       internalMemorySeeds: memoryLeak,
       internalAtomPheromoneSeeds: totalPhero,
@@ -11186,7 +8704,9 @@ export const GLYPH_BUFFER = {
 import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
 // OMEGA-64 | MATRIX_ENGINE.ts | Era 68: Phase 13 — Crystalline Intelligence
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MEMORY_GRID_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const TOTAL_CELLS = GRID_CELLS;
 
@@ -11281,7 +8801,7 @@ export const MATRIX_ENGINE = {
       // Write genome into memoryGrid (8 bytes = 1 i64 slot)
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
-        OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+        MEMORY_GRID_OFFSET + memeIdx * 8,
         1,
       );
       memView[0] = genomeBytes[0];
@@ -11299,7 +8819,7 @@ export const MATRIX_ENGINE = {
       const memeIdx = cy * GRID_W + cx;
       const memView = new BigInt64Array(
         STATE_MATRIX.buffer,
-        OFFSETS.MEMORY_GRID_OFFSET + memeIdx * 8,
+        MEMORY_GRID_OFFSET + memeIdx * 8,
         1,
       );
       return memView[0];
@@ -11335,7 +8855,6 @@ export const MATRIX_ENGINE = {
 ```typescript
 export * from "@01/GLYPH_BUFFER.ts";
 export * from "@01/PHYSICS_ENGINE.ts";
-export * from "@01/SPATIAL_HASH.ts";
 
 ```
 
@@ -11347,8 +8866,12 @@ export * from "@01/SPATIAL_HASH.ts";
 import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PRNG } from "../00/PRNG.ts";
-import { SPATIAL_HASH } from "@01/SPATIAL_HASH.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  ATTENTION_FIELD_OFFSET,
+  SPATIAL_CELL_SIZE,
+  WORLD_MAX_X,
+  WORLD_MAX_Y
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 
 const envBuffer = new SharedArrayBuffer(GRID_CELLS * 4); // Int32
@@ -11360,7 +8883,7 @@ export const PHYSICS_ENGINE = {
   envBuffer,
   NUTRIENTS,
   attentionBuffer: STATE_MATRIX.buffer,
-  attentionOffset: OFFSETS.ATTENTION_FIELD_OFFSET,
+  attentionOffset: ATTENTION_FIELD_OFFSET,
   ATTENTION_PHEROMONES,
   // Spatial Memory
   pheromones: {
@@ -11371,8 +8894,8 @@ export const PHYSICS_ENGINE = {
   },
 
   getGridIdx: (x: number, y: number) => {
-    const gx = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_X, x)) / OFFSETS.SPATIAL_CELL_SIZE);
-    const gy = Math.floor(Math.max(0, Math.min(OFFSETS.WORLD_MAX_Y, y)) / OFFSETS.SPATIAL_CELL_SIZE);
+    const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, x)) / SPATIAL_CELL_SIZE);
+    const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, y)) / SPATIAL_CELL_SIZE);
     return gy * GRID_W + gx;
   },
 
@@ -11472,750 +8995,7 @@ export const PHYSICS_ENGINE = {
     }
     return { velX, velY };
   },
-
-  // Chemotaxis: Move towards energy/caste gradients
-  calculateTrophism: (
-    x: number,
-    y: number,
-    role: number,
-    targetIdx: number,
-    structureGrid?: Int32Array,
-  ) => {
-    let trophX = 0;
-    let trophY = 0;
-    const detectionRadius = 250;
-
-    // --- ERA 69: SPATIAL HASH QUERY ---
-    const nearbyIndices = SPATIAL_HASH.queryRadius(x, y, detectionRadius);
-
-    for (const idx of nearbyIndices) {
-      if (idx === targetIdx) continue;
-
-      const oX = STATE_MATRIX.getX(idx);
-      const oY = STATE_MATRIX.getY(idx);
-      const oEnergy = STATE_MATRIX.getEnergy(idx);
-      const oRes = STATE_MATRIX.getResonance(idx);
-      const oRole = STATE_MATRIX.getRole(idx);
-
-      const dx = oX - x;
-      const dy = oY - y;
-      const d = Math.hypot(dx, dy) || 1;
-
-      let multiplier = 1.0;
-      // GUARDIANS are attracted to high resonance (enemies/targets)
-      if (role === STATE_MATRIX.ROLE_GUARDIAN && oRes > 50) multiplier = 3.0;
-      // PRODUCERS are attracted to energy
-      if (role === STATE_MATRIX.ROLE_PRODUCER && oEnergy < 50) multiplier = 2.0;
-
-      const force = (oEnergy / 100) *
-        ((detectionRadius - d) / detectionRadius) * (2.0 * multiplier);
-      trophX += (dx / d) * force;
-      trophY += (dy / d) * force;
-    }
-
-    // Architects seek low density structure areas to build
-    if (role === STATE_MATRIX.ROLE_ARCHITECT && structureGrid) {
-      for (const [ox, oy] of [[0, -20], [0, 20], [-20, 0], [20, 0]]) {
-        const sIdx = PHYSICS_ENGINE.getGridIdx(x + ox, y + oy);
-        const cell = Atomics.load(structureGrid, sIdx);
-        const density = (cell >> 8) & 0xFF;
-        // Strong attraction to low density
-        const force = (255 - density) / 50;
-        trophX += (ox / 20) * force;
-        trophY += (oy / 20) * force;
-      }
-    }
-
-    // Pheromone Gradient Descent
-    const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
-    // Producers (Workers) seek Nucleus; Guardians seek Parasites/Targets
-    const targetScent = (role === STATE_MATRIX.ROLE_GUARDIAN)
-      ? "PARASITE"
-      : (role === STATE_MATRIX.ROLE_PRODUCER ? "NUCLEUS" : null);
-    if (targetScent) {
-      for (const [ox, oy] of checkPoints) {
-        const sIdx = PHYSICS_ENGINE.getGridIdx(x + ox, y + oy);
-        const intensity = PHYSICS_ENGINE
-          .pheromones[targetScent as keyof typeof PHYSICS_ENGINE.pheromones][
-            sIdx
-          ] || 0;
-        trophX += (ox / 20) * intensity * 2.0;
-        trophY += (oy / 20) * intensity * 2.0;
-      }
-    }
-
-    return { trophX, trophY };
-  },
-
-  // Apply Hooke's Law (Elastic) or Rigid Constraints (Era 28)
-  applyBondSprings: (
-    idx: number,
-    x: number,
-    y: number,
-    bondIndices: Uint32Array,
-    xs: Int16Array,
-    ys: Int16Array,
-    stiffs: Float32Array,
-    dists: Uint8Array,
-    damping: number = 0,
-  ) => {
-    let fx = 0;
-    let fy = 0;
-
-    for (let b = 0; b < 4; b++) {
-      const bIdx = bondIndices[b];
-      if (bIdx === 0) continue;
-
-      let targetDist = dists[idx * 4 + b];
-      if (targetDist === 0) targetDist = 50; // Default
-
-      const stiffness = stiffs[idx * 4 + b];
-      const pX = xs[bIdx];
-      const pY = ys[bIdx];
-      const dx = pX - x;
-      const dy = pY - y;
-      const dist = Math.hypot(dx, dy) || 1;
-
-      if (stiffness > 0.8) {
-        // ERA 28: Rigid Locking
-        // Much stronger force with minimal dampening to hold distance
-        const force = (dist - targetDist) * 1.5;
-        fx += (dx / dist) * force;
-        fy += (dy / dist) * force;
-      } else {
-        // Legacy: Elastic/Swarm bonding
-        const elasticRange = 10;
-        if (dist > targetDist + elasticRange) {
-          const force = (dist - (targetDist + elasticRange)) * 0.1;
-          fx += (dx / dist) * force;
-          fy += (dy / dist) * force;
-        } else if (dist < targetDist - elasticRange) {
-          const force = ((targetDist - elasticRange) - dist) * 0.2;
-          fx -= (dx / dist) * force;
-          fy -= (dy / dist) * force;
-        }
-      }
-    }
-
-    // Apply Damping (Crystallization)
-    // If damping is high (e.g. 255), force is negated.
-    if (damping > 0) {
-      const dampingFactor = Math.max(0, 1 - (damping / 255));
-      fx *= dampingFactor;
-      fy *= dampingFactor;
-    }
-
-    return { fx, fy };
-  },
-
-  /**
-   * ERA 34: Structural Decay & Memory Leaking
-   * Decays structureGrid density and leaks memoryGrid into viralGrid.
-   */
-  decayStructures: (
-    structureGrid: Int32Array,
-    memoryGrid: Uint8Array,
-    viralGrid: Uint8Array,
-  ) => {
-        
-    for (let i = 0; i < GRID_CELLS; i++) {
-      const cell = Atomics.load(structureGrid, i);
-      let density = (cell >> 8) & 0xFF;
-      const type = cell & 0xFF;
-
-      if (density > 0) {
-        density = Math.max(0, density - 1);
-        Atomics.store(structureGrid, i, (density << 8) | type);
-
-        if (density > 0 && density < 50) {
-          const gridIdx = i * 9;
-          for (let b = 0; b < 8; b++) {
-            const logicByte = memoryGrid[i * 8 + b];
-            if (logicByte !== 0) {
-              Atomics.store(viralGrid, gridIdx + b, logicByte);
-            }
-          }
-          Atomics.store(viralGrid, gridIdx + 8, Math.min(255, 50 - density));
-        }
-
-        if (density === 0) {
-          for (let b = 0; b < 8; b++) memoryGrid[i * 8 + b] = 0;
-        }
-      }
-    }
-  },
-
-  applyTrophicFlow: () => {
-    const detectionRadius = 15;
-    for (let i = 0; i < 1000; i++) {
-      const id = STATE_MATRIX.getId(i);
-      if (id === 0n) continue;
-
-      const role = STATE_MATRIX.getRole(i);
-      const x = STATE_MATRIX.getX(i);
-      const y = STATE_MATRIX.getY(i);
-
-      const nearby = SPATIAL_HASH.queryRadius(x, y, detectionRadius);
-      for (const otherIdx of nearby) {
-        if (otherIdx === i) continue;
-
-        const otherRole = STATE_MATRIX.getRole(otherIdx);
-
-        if (
-          role === STATE_MATRIX.ROLE_PRODUCER &&
-          otherRole === STATE_MATRIX.ROLE_NEUTRAL
-        ) {
-          const flow = 0.2;
-          const energy = STATE_MATRIX.getEnergy(i);
-          if (energy > 100) {
-            STATE_MATRIX.setEnergy(i, energy - flow);
-            STATE_MATRIX.setEnergy(
-              otherIdx,
-              STATE_MATRIX.getEnergy(otherIdx) + flow,
-            );
-          }
-        }
-
-        if (
-          role === STATE_MATRIX.ROLE_GUARDIAN &&
-          otherRole === STATE_MATRIX.ROLE_PARASITE
-        ) {
-          const burn = 1.0;
-          const oEnergy = STATE_MATRIX.getEnergy(otherIdx);
-          if (oEnergy > 0) {
-            STATE_MATRIX.setEnergy(otherIdx, Math.max(0, oEnergy - burn));
-            STATE_MATRIX.setResonance(
-              i,
-              Math.min(1000, STATE_MATRIX.getResonance(i) + 5),
-            );
-          }
-        }
-      }
-    }
-  },
 };
-
-```
-
----
-
-## FILE: src/01/SPATIAL_HASH.ts
-
-```typescript
-import { GRID_W, GRID_H, GRID_CELLS, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-const CELL_SIZE = SPATIAL_CELL_SIZE; // Finer resolution for bonding
- // 1400 / 10
- // 800 / 10
-const TOTAL_CELLS = GRID_CELLS;
-
-export const CELL_CAPACITY = 31; // Max atoms per hash cell. [count, idx1, idx2... idx31] = 32 ints per cell
-const gridView = (STATE_MATRIX as any).spatialGrid as Int32Array; // Linked to WASM Memory
-
-// ERA 55: Role-census per cell (8 role slots per cell, role=0..7)
-const quorumBuffer = new SharedArrayBuffer(TOTAL_CELLS * 8 * 4);
-const quorumView = new Int32Array(quorumBuffer);
-
-export const SPATIAL_HASH = {
-  buffer: STATE_MATRIX.buffer,
-  quorumBuffer, // ERA 55: role census per cell
-  CELL_CAPACITY,
-
-  build: (activeIndices: number[]) => {
-    // Clear all cell counts atomics-safely
-    for (let i = 0; i < TOTAL_CELLS; i++) {
-      Atomics.store(gridView, i * (CELL_CAPACITY + 1), 0);
-    }
-
-    for (const idx of activeIndices) {
-      const x = Math.max(0, Math.min(WORLD_MAX_X, STATE_MATRIX.getX(idx)));
-      const y = Math.max(0, Math.min(WORLD_MAX_Y, STATE_MATRIX.getY(idx)));
-
-      const cellX = Math.floor(x / CELL_SIZE);
-      const cellY = Math.floor(y / CELL_SIZE);
-      const cellIdx = cellY * GRID_W + cellX;
-
-      const offset = cellIdx * (CELL_CAPACITY + 1);
-
-      // Atomic update of count
-      const count = Atomics.load(gridView, offset);
-      if (count < CELL_CAPACITY - 1) { // Leave last slot for phase sum
-        const newCount = count + 1;
-        Atomics.store(gridView, offset + newCount, idx);
-        Atomics.store(gridView, offset, newCount);
-
-        // --- ERA 50: Local Phase Tracking ---
-        const myPhase = Atomics.load((STATE_MATRIX as any).phases, idx);
-        Atomics.add(gridView, offset + CELL_CAPACITY, Number(myPhase));
-
-        // --- ERA 55: Role census per cell ---
-        const myRole = (STATE_MATRIX as any).roles[idx]; // Access roles directly
-        const safeRole = Math.min(7, Math.max(0, myRole));
-        Atomics.add(quorumView, cellIdx * 8 + safeRole, 1);
-      }
-    }
-
-    // Finalize phase averages + reset quorum counts for next sweep
-    for (let i = 0; i < TOTAL_CELLS; i++) {
-      const offset = i * (CELL_CAPACITY + 1);
-      const count = Atomics.load(gridView, offset);
-      if (count > 0) {
-        const sum = Atomics.load(gridView, offset + CELL_CAPACITY);
-        Atomics.store(gridView, offset + CELL_CAPACITY, 0);
-        Atomics.store(gridView, offset + 31, Math.floor(sum / count));
-      }
-      // Reset quorum tallies for next tick
-      for (let r = 0; r < 8; r++) Atomics.store(quorumView, i * 8 + r, 0);
-    }
-  },
-
-  queryRadius: (x: number, y: number, radius: number): number[] => {
-    const results: number[] = [];
-    const minX = Math.max(0, Math.floor((x - radius) / CELL_SIZE));
-    const maxX = Math.min(GRID_W - 1, Math.floor((x + radius) / CELL_SIZE));
-    const minY = Math.max(0, Math.floor((y - radius) / CELL_SIZE));
-    const maxY = Math.min(GRID_H - 1, Math.floor((y + radius) / CELL_SIZE));
-
-    for (let cy = minY; cy <= maxY; cy++) {
-      for (let cx = minX; cx <= maxX; cx++) {
-        const cellIdx = cy * GRID_W + cx;
-        const offset = cellIdx * (CELL_CAPACITY + 1);
-        const count = Atomics.load(gridView, offset);
-
-        for (let c = 1; c <= count; c++) {
-          const neighborIdx = Atomics.load(gridView, offset + c);
-          const nx = STATE_MATRIX.getX(neighborIdx);
-          const ny = STATE_MATRIX.getY(neighborIdx);
-          const dx = nx - x;
-          const dy = ny - y;
-          if (dx * dx + dy * dy <= radius * radius) {
-            results.push(neighborIdx);
-          }
-        }
-      }
-    }
-    return results;
-  },
-
-  getGridIdx: (x: number, y: number) => {
-    const cellX = Math.max(
-      0,
-      Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)),
-    );
-    const cellY = Math.max(
-      0,
-      Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)),
-    );
-    return cellY * GRID_W + cellX;
-  },
-
-  hash: (x: number, y: number) => {
-    const hx = Math.max(0, Math.min(GRID_W - 1, Math.floor(x / CELL_SIZE)));
-    const hy = Math.max(0, Math.min(GRID_H - 1, Math.floor(y / CELL_SIZE)));
-    return hy * GRID_W + hx;
-  },
-};
-
-```
-
----
-
-## FILE: src/01/STRUCTURE_ENGINE.ts
-
-```typescript
-import { GRID_W, GRID_H } from "../_/mod.ts";
-import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-const DIR4 = [[-1, 0], [1, 0], [0, -1], [0, 1]] as const;
-const DIR8 = [
-  [-1, 0],
-  [1, 0],
-  [0, -1],
-  [0, 1],
-  [-1, -1],
-  [1, -1],
-  [-1, 1],
-  [1, 1],
-] as const;
-
-export const STRUCTURE_ENGINE = {
-  tick: () => {
-    for (let y = 0; y < GRID_H; y++) {
-      for (let x = 0; x < GRID_W; x++) {
-        const i = y * GRID_W + x;
-        const type = STATE_MATRIX.getGridType(i);
-        const currentCharge = STATE_MATRIX.getGridCharge(i);
-
-        // Vector 10 autopoiesis parity with WASM: charged VOID can recrystallize.
-        if (type === STRUCTURE.VOID) {
-          let maxNeighborCharge = currentCharge;
-          for (const [dx, dy] of DIR8) {
-            const nx = x + dx;
-            const ny = y + dy;
-            if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
-            const ni = ny * GRID_W + nx;
-            const nCharge = STATE_MATRIX.getGridCharge(ni);
-            if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
-          }
-
-          if (maxNeighborCharge > 100) {
-            const seedCharge = Math.max(
-              64,
-              Math.min(255, maxNeighborCharge - 20),
-            );
-            STATE_MATRIX.setGridType(i, STRUCTURE.WIRE);
-            STATE_MATRIX.setGridDensity(i, 0);
-            STATE_MATRIX.setGridCharge(i, seedCharge);
-            STATE_MATRIX.setGridState(i, 0);
-          } else if (currentCharge > 0) {
-            STATE_MATRIX.setGridCharge(i, Math.max(0, currentCharge - 8));
-          }
-          continue;
-        }
-
-        const state = STATE_MATRIX.getGridState(i);
-
-        // AUTOPOIESIS: Resonance Shielding
-        const spatialIdx = y * GRID_W + x;
-        const avgPhase = STATE_MATRIX.spatialGrid[spatialIdx * 32 + 31];
-
-        let decay = 10;
-        if (avgPhase > 128) decay = 2; // Shielded
-
-        let nextCharge = Math.max(0, currentCharge - decay);
-
-        if (type === STRUCTURE.SOURCE) {
-          nextCharge = 255;
-        } else if (
-          type === STRUCTURE.WIRE || type === STRUCTURE.NODE ||
-          type === STRUCTURE.CAPACITOR
-        ) {
-          let maxNeighborCharge = 0;
-          let chargedNeighborCount = 0;
-
-          for (const [dx, dy] of DIR4) {
-            const nx = x + dx;
-            const ny = y + dy;
-            if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
-            const ni = ny * GRID_W + nx;
-            const nCharge = STATE_MATRIX.getGridCharge(ni);
-            if (nCharge > maxNeighborCharge) maxNeighborCharge = nCharge;
-            if (nCharge > 50) chargedNeighborCount++;
-          }
-
-          if (type === STRUCTURE.WIRE) {
-            nextCharge = Math.max(nextCharge, maxNeighborCharge - 5);
-          } else if (type === STRUCTURE.NODE) {
-            if (state === 1) { // AND
-              nextCharge = (chargedNeighborCount >= 2) ? 255 : nextCharge;
-            } else { // OR
-              nextCharge = (chargedNeighborCount >= 1) ? 255 : nextCharge;
-            }
-          } else if (type === STRUCTURE.CAPACITOR) {
-            nextCharge = Math.max(nextCharge, maxNeighborCharge - 2);
-          }
-        } else if (type === STRUCTURE.DIODE) {
-          const direction = state;
-          let ni = -1;
-          if (direction === 0 && x > 0) ni = y * GRID_W + (x - 1);
-          if (direction === 1 && x < GRID_W - 1) ni = y * GRID_W + (x + 1);
-          if (direction === 2 && y > 0) ni = (y - 1) * GRID_W + x;
-          if (direction === 3 && y < GRID_H - 1) ni = (y + 1) * GRID_W + x;
-
-          if (ni !== -1) {
-            const inputCharge = STATE_MATRIX.getGridCharge(ni);
-            nextCharge = Math.max(nextCharge, inputCharge - 5);
-          }
-        } else if (type === STRUCTURE.INVERTER) {
-          let maxInputCharge = 0;
-          for (const [dx, dy] of DIR4) {
-            const nx = x + dx;
-            const ny = y + dy;
-            if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
-            const nCharge = STATE_MATRIX.getGridCharge(ny * GRID_W + nx);
-            // Only count as input if it's stronger than our own reflection
-            if (nCharge > maxInputCharge && nCharge >= currentCharge) {
-              maxInputCharge = nCharge;
-            }
-          }
-          nextCharge = (maxInputCharge < 50) ? 255 : 0;
-        } else if (type === STRUCTURE.LATCH) {
-          let newState = state;
-          // Neighbor 0 (Left): SET
-          const setX = x + DIR4[0][0];
-          const setY = y + DIR4[0][1];
-          if (setX >= 0 && setX < GRID_W && setY >= 0 && setY < GRID_H) {
-            const pulse = STATE_MATRIX.getGridCharge(setY * GRID_W + setX);
-            if (pulse > 100 && pulse >= currentCharge) newState = 1;
-          }
-          // Neighbor 1 (Right): RESET
-          const rstX = x + DIR4[1][0];
-          const rstY = y + DIR4[1][1];
-          if (rstX >= 0 && rstX < GRID_W && rstY >= 0 && rstY < GRID_H) {
-            const pulse = STATE_MATRIX.getGridCharge(rstY * GRID_W + rstX);
-            if (pulse > 100 && pulse >= currentCharge) newState = 0;
-          }
-          if (newState !== state) {
-            STATE_MATRIX.setGridState(i, newState);
-          }
-          nextCharge = (newState === 1) ? 255 : 0;
-        }
-
-        if (
-          type !== STRUCTURE.SOURCE && type !== STRUCTURE.INVERTER &&
-          type !== STRUCTURE.LATCH && nextCharge === 0
-        ) {
-          let stabilized = false;
-          for (const [dx, dy] of DIR4) {
-            const nx = x + dx;
-            const ny = y + dy;
-            if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
-            const ni = ny * GRID_W + nx;
-            if (STATE_MATRIX.getGridCharge(ni) > 20) {
-              stabilized = true;
-              break;
-            }
-          }
-
-          if (!stabilized) {
-            STATE_MATRIX.setGridType(i, STRUCTURE.VOID);
-            STATE_MATRIX.setGridDensity(i, 0);
-            STATE_MATRIX.setGridCharge(i, 0);
-            STATE_MATRIX.setGridState(i, 0);
-            continue;
-          }
-        }
-
-        STATE_MATRIX.setGridCharge(i, nextCharge);
-      }
-    }
-  },
-};
-
-```
-
----
-
-## FILE: src/02/03/genesis_merge_test.ts
-
-```typescript
-import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { delay } from "https://deno.land/std@0.210.0/async/delay.ts";
-import { seedSeededSwarmScenario } from "@02";
-
-if (Deno.args[0] === "run-node") {
-  const role = Deno.args[1];
-  const port = parseInt(Deno.args[2], 10);
-  const peerPort = parseInt(Deno.args[3] || "0", 10);
-
-  const { PULSE, NEXUS_DAEMON } = await import("@02");
-  const { STATE_MATRIX } = await import("@02/STATE_MATRIX.ts");
-
-  // Do not lock port up front; SwarmNexus assigns port 0 to fallback to ephemeral
-  if (port >= 0) {
-    NEXUS_DAEMON.port = port;
-  }
-
-  if (role === "genesis") {
-    seedSeededSwarmScenario(STATE_MATRIX, {
-      seed: 42,
-      replicators: 20,
-      architects: 2,
-    });
-    await PULSE.initWorkers();
-
-    // Crucial: Wait for Deno.serve asynchronous back-end threads to natively bind to the TCP OS loop
-    // before we bombard WASM with blocking Shadow Rehearsals that starve the event loop.
-    await delay(500);
-
-    for (let i = 0; i < 100; i++) {
-      await PULSE.tick();
-      await delay(5); // Explicit yield to Deno event loop for TCP!
-    }
-    const hash100 = await PULSE.generateEpochProof(100);
-    console.log(`HASH_100:${hash100}`);
-
-    // Wait for peer to initialize, connect, request sync, and merge the payload!
-    // Since Peer waits 12000ms before booting, Genesis needs to idle here.
-    console.log(
-      `[Genesis] Server Aborted: ${
-        NEXUS_DAEMON["serverAbortController"].signal.aborted
-      }`,
-    );
-    await delay(15000);
-
-    // Wait for peer to catch up and reach 150
-    for (let i = 100; i < 150; i++) {
-      await PULSE.tick();
-    }
-    const hash150 = await PULSE.generateEpochProof(150);
-    console.log(`FINAL_HASH:${hash150}`);
-
-    // Flush and exit
-    PULSE.stopWorkers();
-    NEXUS_DAEMON.stop();
-    Deno.exit(0);
-  } else if (role === "peer") {
-    // Peer connects to Genesis natively via args
-    NEXUS_DAEMON.seedNodes = [`ws://127.0.0.1:${peerPort}`];
-
-    // Give genesis time to reach tick 100
-    await delay(12000);
-
-    // Booting peer... it should block until Genesis payload is received
-    await PULSE.initWorkers();
-
-    // Wait for sync request processing
-    await delay(200);
-
-    const tickAfterSync = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    console.log(`SYNCED_TICK:${tickAfterSync}`);
-
-    // Tick it up to 150 (from wherever it landed, presumably 100)
-    const ticksTo150 = 150 - tickAfterSync;
-    for (let i = 0; i < ticksTo150; i++) {
-      await PULSE.tick();
-    }
-    const tickEOF = Atomics.load(STATE_MATRIX.tickCounter, 0);
-    const hash150 = await PULSE.generateEpochProof(tickEOF);
-    console.log(`FINAL_HASH:${hash150}`);
-
-    PULSE.stopWorkers();
-    NEXUS_DAEMON.stop();
-    Deno.exit(0);
-  }
-} else {
-  // --- Orchestrator ---
-  async function runMaster() {
-    console.log("🧪 [TEST] Genesis Block & Hot State Merging");
-
-    try {
-      Deno.removeSync("02/03/.genesis_port");
-    } catch {}
-
-    const genesisNode = new Deno.Command(Deno.execPath(), {
-      args: [
-        "run",
-        "-A",
-        "--unstable",
-        import.meta.url,
-        "run-node",
-        "genesis",
-        "0",
-        "0",
-      ],
-      stdout: "piped",
-      stderr: "inherit",
-    }).spawn();
-
-    let dynamicPeerPort = 0;
-    for (let i = 0; i < 50; i++) {
-      try {
-        dynamicPeerPort = parseInt(
-          Deno.readTextFileSync("02/03/.genesis_port"),
-          10,
-        );
-        if (!isNaN(dynamicPeerPort) && dynamicPeerPort > 0) break;
-      } catch {}
-      await delay(200);
-    }
-    console.log(`[TEST] Detected dynamic Genesis Port: ${dynamicPeerPort}`);
-
-    const peerNode = new Deno.Command(Deno.execPath(), {
-      args: [
-        "run",
-        "-A",
-        "--unstable",
-        import.meta.url,
-        "run-node",
-        "peer",
-        "0",
-        dynamicPeerPort.toString(),
-      ],
-      stdout: "piped",
-      stderr: "inherit",
-    }).spawn();
-
-    let genesisFinalHash = "";
-    let peerFinalHash = "";
-    let peerSyncedTick = 0;
-
-    const readStream = async (stream: ReadableStream, role: string) => {
-      const reader = stream.getReader();
-      const decoder = new TextDecoder();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value);
-        const lines = text.split("\n");
-        for (const line of lines) {
-          if (line.trim() === "") continue;
-
-          if (line.includes("HASH_100:")) {
-            console.log(
-              `[${role}] Reached Tick 100 Hash: ${line.split(":")[1]}`,
-            );
-          } else if (line.includes("SYNCED_TICK:")) {
-            peerSyncedTick = parseInt(line.split(":")[1], 10);
-            console.log(
-              `[${role}] Synced Native Matrix to Tick: ${peerSyncedTick}`,
-            );
-          } else if (line.includes("FINAL_HASH:")) {
-            const hash = line.split(":")[1].trim();
-            if (role === "Genesis") genesisFinalHash = hash;
-            if (role === "Peer") peerFinalHash = hash;
-            console.log(`[${role}] Final Hash at 150: ${hash}`);
-          } else {
-            console.log(`[${role}] ${line.trim()}`);
-          }
-        }
-      }
-    };
-
-    const gPromise = readStream(genesisNode.stdout, "Genesis");
-    const pPromise = readStream(peerNode.stdout, "Peer");
-
-    await Promise.all([
-      genesisNode.status,
-      peerNode.status,
-      gPromise,
-      pPromise,
-    ]);
-
-    console.log(
-      `📊 [RESULTS] Genesis Hash: ${genesisFinalHash} | Peer Hash: ${peerFinalHash}`,
-    );
-
-    if (peerSyncedTick !== 100) {
-      console.error(
-        `❌ [TEST FAILS] Peer Node failed to Hot Merge State Matrix! Synced Tick bounded to ${peerSyncedTick} instead of 100.`,
-      );
-      Deno.exit(1);
-    }
-
-    if (!genesisFinalHash || !peerFinalHash) {
-      console.error(`❌ [TEST FAILS] A node failed to compute final hashes.`);
-      Deno.exit(1);
-    }
-
-    if (genesisFinalHash !== peerFinalHash) {
-      console.error(
-        `❌ [TEST FAILS] Determinism drifted after Genesis payload merge!`,
-      );
-      Deno.exit(1);
-    }
-
-    // Pass
-    assertEquals(genesisFinalHash, peerFinalHash);
-    console.log("✅ [TEST] Genesis Block Hot State Merging Verified.");
-  }
-
-  runMaster().catch((err) => {
-    console.error("❌", err);
-    Deno.exit(1);
-  });
-}
 
 ```
 
@@ -12970,224 +9750,6 @@ export const minByRatio = (baseline: number, ratioMin: number): number =>
 
 ---
 
-## FILE: src/02/ENZYME_DIGEST.ts
-
-```typescript
-import { crypto } from "jsr:@std/crypto";
-import { decodeHex, encodeHex } from "jsr:@std/encoding/hex";
-
-const ROOT = Deno.cwd();
-
-// Core files that the Mycelium is forbidden to eat (The DNA of the engine itself)
-const INDIGESTIBLE = [
-  "PULSE.ts",
-  "PULSE_WORKER.ts",
-  "GATE.ts",
-  "RIBOSOME.ts",
-  "RIBOSOME_TICK.ts",
-  "AKASHA_SERVER.ts",
-  "P2P_SYNAPSE.ts",
-  "AKASHA_UI.html",
-  "MYCELIUM.ts",
-  "ENZYME_DIGEST.ts",
-  "STATE_MATRIX.ts",
-  "PHYSICS_ENGINE.ts",
-  "SEMANTIC_MEMBRANE.ts",
-  "LLM_SYNAPSE.ts",
-
-  "ZERO_IOPS.ts",
-  "REFLECTION_ENGINE.ts",
-  "SNAPSHOT_ENGINE.ts",
-  "mod.ts",
-  "deno.json",
-  "pulse.log",
-  "debug.log",
-  "synapse.log",
-];
-
-export async function secreteEnzymes(lastKnownAtoms: Map<string, any>) {
-  try {
-    let digestionCount = 0;
-    for await (const entry of Deno.readDir(ROOT)) {
-      if (!entry.isFile) continue;
-
-      // Skip recognized Atoms
-      if (entry.name.match(/^0x[0-9a-fA-F]{16}\.[A-Z_]+\.md$/)) continue;
-      if (entry.name.match(/^0xALIEN/)) continue;
-      if (entry.name.match(/^0xNOOSPHERE/)) continue;
-      // Skip core system files
-      if (INDIGESTIBLE.includes(entry.name) || entry.name.startsWith(".")) {
-        continue;
-      }
-      // Skip generated output files
-      if (
-        entry.name.endsWith(".png") || entry.name.endsWith(".webp") ||
-        entry.name.endsWith(".svg")
-      ) continue;
-
-      // Found a digestible legacy file!
-      console.log(
-        `   [MYCELIUM] 🍄 Sensed organic matter: ${entry.name}. Secreting enzymes...`,
-      );
-      await digestFile(entry.name, lastKnownAtoms);
-      digestionCount++;
-
-      // Only eat one file per pulse to avoid acid reflux
-      if (digestionCount >= 1) break;
-    }
-  } catch (e) {
-    console.error("   [MYCELIUM] ⚠️ Enzyme secretion failed: ", e);
-  }
-}
-
-export async function reconstructArtifacts(lastKnownAtoms: Map<string, any>) {
-  // 1. Group ASSIMILATED atoms by their original filename
-  const fragmentsByFile = new Map<string, any[]>();
-
-  for (const [filename, atom] of lastKnownAtoms.entries()) {
-    if (
-      atom.symbol === "ASSIMILATED" && atom.thought &&
-      atom.thought.startsWith("FRAGMENT_")
-    ) {
-      const match = atom.thought.match(/^FRAGMENT_(\d+)_OF_(.+)$/);
-      if (match) {
-        const index = parseInt(match[1]);
-        const originalFile = match[2];
-        if (!fragmentsByFile.has(originalFile)) {
-          fragmentsByFile.set(originalFile, []);
-        }
-        fragmentsByFile.get(originalFile)!.push({ index, atom, filename });
-      }
-    }
-  }
-
-  // 2. Check each group to see if it has reached sufficient resonance to manifest
-  for (const [originalFile, fragments] of fragmentsByFile.entries()) {
-    // Quick check: total resonance of the fragment group
-    const totalResonance = fragments.reduce(
-      (sum, f) => sum + (Number(f.atom.resonance) || 0),
-      0,
-    );
-
-    // Let's say it needs at least 50 total resonance to manifest
-    if (totalResonance > 50 && Math.random() < 0.2) {
-      console.log(
-        `   [MYCELIUM] 🧩 High resonance detected for fragments of ${originalFile}. Reconstructing...`,
-      );
-
-      // Sort fragments by index
-      fragments.sort((a, b) => a.index - b.index);
-
-      // Stitch hex logic together
-      let stitchedHex = "";
-      for (const f of fragments) {
-        // Sanitize: Strip any non-hex characters that might have leaked in from ALIEN/named atoms
-        const logic = (f.atom.logic || "").toLowerCase().replace(
-          /[^0-9a-f]/g,
-          "",
-        );
-        stitchedHex += logic;
-      }
-
-      try {
-        // Decode hex back to Uint8Array, then string.
-        // We use {fatal: false} because mutations might have corrupted the UTF-8!
-        const bytes = decodeHex(stitchedHex);
-        const decoder = new TextDecoder("utf-8", { fatal: false });
-        const reconstructedText = decoder.decode(bytes);
-
-        const outName = `RECONSTRUCTED_${originalFile}`;
-        await Deno.writeTextFile(outName, reconstructedText);
-        console.log(`   [MYCELIUM] 🌟 Reconstruction successful: ${outName}`);
-
-        // Optional: Consume the atoms that formed it (they gave up their life for the code)
-        for (const f of fragments) {
-          try {
-            await Deno.remove(f.filename);
-            lastKnownAtoms.delete(f.filename);
-          } catch (e) { /* ignore */ }
-        }
-      } catch (e) {
-        console.error(
-          `   [MYCELIUM] ⚠️ Reconstruction of ${originalFile} failed due to severe corruption.`,
-          e,
-        );
-      }
-    }
-  }
-}
-
-async function digestFile(filename: string, swarmData: Map<string, any>) {
-  const rawContent = await Deno.readTextFile(filename);
-
-  // Convert string to hex to serve as 'logic' operations
-  const encoder = new TextEncoder();
-  const data = encoder.encode(rawContent);
-  const hex = encodeHex(data);
-
-  // Shatter into 8-character (32-bit) logic fragments
-  const fragments = [];
-  for (let i = 0; i < hex.length; i += 8) {
-    fragments.push(hex.substring(i, i + 8).padEnd(8, "0").toUpperCase());
-  }
-
-  console.log(
-    `   [MYCELIUM] 🍄 Shattered ${filename} into ${fragments.length} logic fragments.`,
-  );
-
-  let previousAtomId = null;
-  const baseEnergy = 100;
-
-  // Assimilate each fragment into a new Atom
-  for (let i = 0; i < fragments.length; i++) {
-    // Generate a deterministic but pseudo-random eigenvalue based on the file and index
-    const hashBuffer = await crypto.subtle.digest(
-      "SHA-256",
-      encoder.encode(`${filename}_chunk_${i}`),
-    );
-    const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
-    const atomId = `0x${atomHex}`;
-    const logic = fragments[i];
-
-    // Connect to the previous fragment to maintain the sequence structure
-    const bonds = previousAtomId ? [previousAtomId] : [];
-    if (swarmData.size > 0 && Math.random() < 0.2) {
-      // Also randomly bond to the existing mycelium network
-      const randomExisting = Array.from(
-        swarmData.keys(),
-      )[Math.floor(Math.random() * swarmData.size)];
-      bonds.push(randomExisting.split(".")[0]);
-    }
-
-    const newAtomContent = `---\n` +
-      `eigenvalue: '${atomId}'\n` +
-      `symbol: 'ASSIMILATED'\n` +
-      `energy: 500\n` +
-      `resonance: 60\n` +
-      `logic: '${logic}'\n` +
-      `thought: 'FRAGMENT_${i}_OF_${filename}'\n` +
-      `desc: 'Mycelial digestion product. Contains raw data sequence.'\n` +
-      `bonds: ${JSON.stringify(bonds)}\n` +
-      `---\n` +
-      `\n<div class="assimilated-data">\n  This atom is part of a digested legacy structure previously known as ${filename}.\n  Raw Hex Logic Segment: ${logic}\n</div>\n`;
-    await Deno.writeTextFile(
-      `${ROOT}/${atomId}.ASSIMILATED.md`,
-      newAtomContent,
-    );
-    previousAtomId = atomId;
-  }
-
-  // Erase the original file (Consumption complete)
-  await Deno.remove(filename);
-  console.log(
-    `   [MYCELIUM] 🍄 Digestion complete. Original artifact '${filename}' has been assimilated into the Swarm.`,
-  );
-}
-
-```
-
----
-
 ## FILE: src/02/GENOMES.ts
 
 ```typescript
@@ -13277,308 +9839,6 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
-
-```
-
----
-
-## FILE: src/02/HOLOGRAM_INJECTOR.ts
-
-```typescript
-// OMEGA-64 | HOLOGRAM_INJECTOR.ts
-// Generates SVG Holograms for all Flatland Atoms
-
-const ROOT = Deno.cwd();
-const MARKER_START = "<!-- ∇ HOLOGRAM START ∇ -->";
-const MARKER_END = "<!-- Δ HOLOGRAM END Δ -->";
-
-function generateHologram(eigenvalue: string, symbol: string): string {
-  const core = eigenvalue.replace("0x", "").toUpperCase();
-  if (core.length !== 16) return "";
-
-  const logicHex = core.slice(0, 8);
-  const spatialHex = core.slice(8, 12);
-  const quantumHex = core.slice(12, 16);
-
-  const logicVal = parseInt(logicHex, 16);
-  const spatialVal = parseInt(spatialHex, 16);
-  const quantumVal = parseInt(quantumHex, 16);
-
-  const resGroup = (quantumVal >> 4) & 0xFFF;
-  const spin = (quantumVal >> 3) & 0x01;
-  const phase = (quantumVal >> 1) & 0x03;
-
-  // Mapping to visual properties
-  const hue = Math.floor((resGroup / 4095) * 360);
-  const compHue = (hue + 180) % 360;
-  const rotationBase = phase * 90;
-  const animDir = spin === 1 ? 360 : -360;
-
-  // Geometry logic
-  const sides = 3 + (logicVal % 6); // 3 to 8 sides
-  const r1 = 15 + (spatialVal % 25);
-  const r2 = 45 + ((spatialVal >> 4) % 30);
-
-  // Create polygon points
-  let pts1 = [];
-  let pts2 = [];
-  for (let i = 0; i < sides; i++) {
-    let a = (i / sides) * Math.PI * 2;
-    // Point up/down adjustment
-    a -= Math.PI / 2;
-    pts1.push(
-      `${(100 + Math.cos(a) * r1).toFixed(1)},${
-        (100 + Math.sin(a) * r1).toFixed(1)
-      }`,
-    );
-    pts2.push(
-      `${(100 + Math.cos(a) * r2).toFixed(1)},${
-        (100 + Math.sin(a) * r2).toFixed(1)
-      }`,
-    );
-  }
-
-  const animDuration = Math.max(5, 10 + (spatialVal % 20));
-
-  const svg = `
-<div align="center">
-${MARKER_START}
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="grad_${core}" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="hsl(${hue}, 20%, 15%)" />
-      <stop offset="100%" stop-color="#090909" />
-    </radialGradient>
-    <filter id="glow_${core}" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
-  
-  <rect width="200" height="200" fill="url(#grad_${core})" rx="24"/>
-  
-  <circle cx="100" cy="100" r="85" stroke="hsl(${hue}, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
-  
-  <g>
-    <animateTransform attributeName="transform" type="rotate" from="${rotationBase} 100 100" to="${
-    rotationBase + animDir
-  } 100 100" dur="${animDuration}s" repeatCount="indefinite" />
-    
-    <polygon points="${
-    pts2.join(" ")
-  }" fill="none" stroke="hsl(${compHue}, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="${
-    pts1.join(" ")
-  }" fill="none" stroke="hsl(${hue}, 80%, 60%)" stroke-width="2" filter="url(#glow_${core})"/>
-    
-    <circle cx="100" cy="100" r="${r1}" stroke="hsl(${hue}, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
-  </g>
-  
-  <circle cx="100" cy="100" r="3" fill="hsl(${compHue}, 80%, 70%)" filter="url(#glow_${core})"/>
-  
-  <text x="100" y="105" fill="hsl(${hue}, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x${
-    core.slice(0, 4)
-  }</text>
-  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">${symbol}</text>
-</svg>
-${MARKER_END}
-</div>`;
-  return svg.trim();
-}
-
-async function run() {
-  let count = 0;
-  for await (const entry of Deno.readDir(ROOT)) {
-    if (
-      entry.isFile && entry.name.startsWith("0x") && entry.name.endsWith(".md")
-    ) {
-      const filename = entry.name;
-      const parts = filename.split(".");
-      if (parts.length < 3) continue;
-
-      const eigenvalue = parts[0];
-      const symbol = parts[1];
-
-      const content = await Deno.readTextFile(filename);
-      const svgBlock = generateHologram(eigenvalue, symbol);
-
-      let newContent = content;
-      if (content.includes(MARKER_START) && content.includes(MARKER_END)) {
-        const regex = new RegExp(
-          `<div align="center">\\s*${MARKER_START}[\\s\\S]*?${MARKER_END}\\s*</div>`,
-          "g",
-        );
-        newContent = content.replace(regex, svgBlock);
-
-        if (newContent === content) {
-          const backupRegex = new RegExp(
-            `${MARKER_START}[\\s\\S]*?${MARKER_END}`,
-            "g",
-          );
-          newContent = content.replace(backupRegex, svgBlock);
-        }
-      } else {
-        const fmMatch = content.match(/^---\r?\n[\s\S]+?\r?\n---\r?\n/);
-        if (fmMatch) {
-          const insertPos = fmMatch[0].length;
-          newContent = content.slice(0, insertPos) + "\n" + svgBlock + "\n\n" +
-            content.slice(insertPos);
-        }
-      }
-
-      if (newContent !== content) {
-        await Deno.writeTextFile(filename, newContent);
-        count++;
-        console.log(`[HOLOGRAM] Rendered ${symbol} (${eigenvalue})`);
-      }
-    }
-  }
-  console.log(`\n[HOLOGRAM] Generator finished. Updated ${count} atoms.`);
-}
-
-if (import.meta.main) {
-  await run();
-}
-
-```
-
----
-
-## FILE: src/02/HOLOGRAM_MODULE.ts
-
-```typescript
-// OMEGA-64 | HOLOGRAM_MODULE.ts
-// Generates SVG Holograms for Flatland Atoms
-
-export const MARKER_START = "<!-- ∇ HOLOGRAM START ∇ -->";
-export const MARKER_END = "<!-- Δ HOLOGRAM END Δ -->";
-
-export function generateHologram(eigenvalue: string, symbol: string): string {
-  const core = eigenvalue.replace("0x", "").toUpperCase();
-  if (core.length !== 16) return "";
-
-  const logicHex = core.slice(0, 8);
-  const spatialHex = core.slice(8, 12);
-  const quantumHex = core.slice(12, 16);
-
-  const logicVal = parseInt(logicHex, 16);
-  const spatialVal = parseInt(spatialHex, 16);
-  const quantumVal = parseInt(quantumHex, 16);
-
-  const resGroup = (quantumVal >> 4) & 0xFFF;
-  const spin = (quantumVal >> 3) & 0x01;
-  const phase = (quantumVal >> 1) & 0x03;
-
-  // Mapping to visual properties
-  const hue = Math.floor((resGroup / 4095) * 360);
-  const compHue = (hue + 180) % 360;
-  const rotationBase = phase * 90;
-  const animDir = spin === 1 ? 360 : -360;
-
-  // Geometry logic
-  const sides = 3 + (logicVal % 6); // 3 to 8 sides
-  const r1 = 15 + (spatialVal % 25);
-  const r2 = 45 + ((spatialVal >> 4) % 30);
-
-  // Create polygon points
-  const pts1 = [];
-  const pts2 = [];
-  for (let i = 0; i < sides; i++) {
-    let a = (i / sides) * Math.PI * 2;
-    // Point up/down adjustment
-    a -= Math.PI / 2;
-    pts1.push(
-      `${(100 + Math.cos(a) * r1).toFixed(1)},${
-        (100 + Math.sin(a) * r1).toFixed(1)
-      }`,
-    );
-    pts2.push(
-      `${(100 + Math.cos(a) * r2).toFixed(1)},${
-        (100 + Math.sin(a) * r2).toFixed(1)
-      }`,
-    );
-  }
-
-  const animDuration = Math.max(5, 10 + (spatialVal % 20));
-
-  const svg = `
-<div align="center">
-${MARKER_START}
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="grad_${core}" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="hsl(${hue}, 20%, 15%)" />
-      <stop offset="100%" stop-color="#090909" />
-    </radialGradient>
-    <filter id="glow_${core}" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
-  
-  <rect width="200" height="200" fill="url(#grad_${core})" rx="24"/>
-  
-  <circle cx="100" cy="100" r="85" stroke="hsl(${hue}, 30%, 30%)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
-  
-  <g>
-    <animateTransform attributeName="transform" type="rotate" from="${rotationBase} 100 100" to="${
-    rotationBase + animDir
-  } 100 100" dur="${animDuration}s" repeatCount="indefinite" />
-    
-    <polygon points="${
-    pts2.join(" ")
-  }" fill="none" stroke="hsl(${compHue}, 60%, 40%)" stroke-width="1.5" opacity="0.6"/>
-    <polygon points="${
-    pts1.join(" ")
-  }" fill="none" stroke="hsl(${hue}, 80%, 60%)" stroke-width="2" filter="url(#glow_${core})"/>
-    
-    <circle cx="100" cy="100" r="${r1}" stroke="hsl(${hue}, 60%, 50%)" stroke-width="0.5" fill="none" opacity="0.5"/>
-  </g>
-  
-  <circle cx="100" cy="100" r="3" fill="hsl(${compHue}, 80%, 70%)" filter="url(#glow_${core})"/>
-  
-  <text x="100" y="105" fill="hsl(${hue}, 70%, 80%)" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1" opacity="0.9">0x${
-    core.slice(0, 4)
-  }</text>
-  <text x="100" y="190" fill="#777" font-family="monospace" font-size="9" text-anchor="middle" letter-spacing="2">${symbol}</text>
-</svg>
-${MARKER_END}
-</div>`;
-  return svg.trim();
-}
-
-export function injectHologram(
-  content: string,
-  eigenvalue: string,
-  symbol: string,
-): string {
-  const svgBlock = generateHologram(eigenvalue, symbol);
-
-  let newContent = content;
-  if (content.includes(MARKER_START) && content.includes(MARKER_END)) {
-    const regex = new RegExp(
-      `<div align="center">\\s*${MARKER_START}[\\s\\S]*?${MARKER_END}\\s*</div>`,
-      "g",
-    );
-    newContent = content.replace(regex, svgBlock);
-
-    if (newContent === content) {
-      const backupRegex = new RegExp(
-        `${MARKER_START}[\\s\\S]*?${MARKER_END}`,
-        "g",
-      );
-      newContent = content.replace(backupRegex, svgBlock);
-    }
-  } else {
-    const fmMatch = content.match(/^---\r?\n[\s\S]+?\r?\n---\r?\n/);
-    if (fmMatch) {
-      const insertPos = fmMatch[0].length;
-      newContent = content.slice(0, insertPos) + "\n" + svgBlock + "\n\n" +
-        content.slice(insertPos);
-    }
-  }
-  return newContent;
-}
 
 ```
 
@@ -13872,1306 +10132,13 @@ export const createPhysiologicalLedgerRuntime = (
 
 ---
 
-## FILE: src/02/IMMUNE.ts
-
-```typescript
-// OMEGA-64 | IMMUNE.ts | Stage 26: Immune System Maturity
-import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-export const IMMUNE = {
-  /**
-   * isNecrotic: Detects "dead" atoms that are consuming memory but not participating in life.
-   * Condition: zero energy AND zero resonance.
-   */
-  isNecrotic: (idx: number): boolean => {
-    const energy = STATE_MATRIX.getEnergy(idx);
-    const resonance = STATE_MATRIX.getResonance(idx);
-    const id = STATE_MATRIX.getId(idx);
-
-    // An atom is necrotic if it has an ID but no vital signs.
-    return id !== 0n && energy <= 0 && resonance <= 0;
-  },
-
-  /**
-   * isDrifting: Detects atoms that are losing coherence.
-   * Thresholds are scaled by entropy_pressure (H0).
-   */
-  isDrifting: (idx: number, entropyPressure: number): boolean => {
-    const energy = STATE_MATRIX.getEnergy(idx);
-    const resonance = STATE_MATRIX.getResonance(idx);
-    const id = STATE_MATRIX.getId(idx);
-    const role = STATE_MATRIX.getRole(idx);
-
-    if (id === 0n) return false;
-    if (role === 5) return false; // ROLE_MITOCHONDRIA
-
-
-    // Base threshold for "weak" atoms.
-    // Entropy pressure (H0) modulates how aggressive the cleanup is.
-    // Normalized H0 is 0..1000.
-    const threshold = (entropyPressure / 1000) * 2.0; // Up to 2.0 energy
-
-    // Atoms with very low energy and resonance are candidates for recycling
-    return energy < threshold && resonance < (threshold * 100);
-  },
-
-  /**
-   * phagocytePass: Scans the matrix and identifies indices for recycling.
-   * Returns a list of indices to be purged.
-   */
-  phagocytePass: (entropyPressure: number): number[] => {
-    const purgeList: number[] = [];
-
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (IMMUNE.isNecrotic(i) || IMMUNE.isDrifting(i, entropyPressure)) {
-        purgeList.push(i);
-      }
-    }
-
-    return purgeList;
-  },
-};
-
-```
-
----
-
-## FILE: src/02/LAMBDA_VM.ts
-
-```typescript
-import { GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
-// OMEGA-64 | LAMBDA_VM.ts | The Extended Quine VM (Era 17: The Living Quine)
-// Turing-complete bytecode executor with registers, stack, and messaging.
-
-export interface VMResult {
-  energyDelta: number;
-  resonanceDelta: number;
-  intent: { level: number; value: any }[];
-  modifiedCode?: { slot: number; value: number };
-  modifiedStiffness?: { slot: number; value: number };
-  modifiedSynaptic?: { slot: number; value: number };
-  syncRequest?: { reg: number };
-  modifiedStructure?: { type: number; density: number };
-  memeticRequest?: "ENCODE" | "DECODE";
-  modifiedRole?: number;
-  outgoingMessages: {
-    targetIdx: number;
-    message: number;
-    sourceBondSlot?: number;
-  }[];
-  imprintRequest?: {
-    pheroSnapshot: number;
-    phaseSnapshot: number;
-    pulseId: number;
-  }; // ERA 51
-  hebbRequest?: { bondSlot: number }; // ERA 52
-  roleRequest?: { role: number }; // ERA 53
-  apoptosisRequest?: boolean; // ERA 54
-  quorumRequest?: { collectiveType: number; quorumCount: number }; // ERA 55
-  lockPhaseRequest?: { targetPhase: number }; // ERA 58
-  morphRequest?: { zone: number; gradAngle: number }; // ERA 59
-  secretePlasmidRequest?: { logic: Uint8Array; intensity: number }; // ERA 60
-  incorporatePlasmidRequest?: { logic: Uint8Array }; // ERA 60
-  shareRequest?: { bondSlot: number; amount: number }; // ERA 61
-  eatRequest?: { amount: number }; // ERA 61
-  phiRequest?: { amount: number }; // ERA 63
-  ascendRequest?: boolean; // ERA 64
-}
-
-export const ISA = {
-  // Control Flow
-  JMP: 0x30,
-  JZ: 0x31,
-  JNZ: 0x32,
-  CALL: 0x33,
-  RET: 0x34,
-  // Arithmetic
-  ADD: 0x40,
-  SUB: 0x41,
-  MUL: 0x42,
-  CMP: 0x43,
-  // Data Movement
-  LOAD: 0x50,
-  STORE: 0x51,
-  // Metabolism & Physics (High Level)
-  MOVE: 0x10,
-  FEED: 0x20,
-  BET: 0x22,
-  SENSE: 0x9F,
-  // Self-Modification
-  SELF_MOD: 0x99,
-  SELF_REP: 0x9A,
-  CROSS_REP: 0x9C,
-  BIND: 0x9D,
-  MERGE: 0x9E,
-  // Epigenetic Evolution
-  EVOLVE: 0x9B,
-  // Atomic Messaging (ERA 27)
-  SEND: 0x60,
-  RECV: 0x61,
-  // Structural Morphogenesis (ERA 28)
-  LOCK: 0x62,
-  // Distributed Cognition (ERA 30)
-  SYNC_AVG: 0x70,
-  PUSH_COLL: 0x71,
-  POP_COLL: 0x72,
-  // Architectural Stigmergy (ERA 31)
-  BUILD: 0x80,
-  EXCAVATE: 0x81,
-  // Coded Memetics (ERA 32)
-  ENCODE: 0x82,
-  DECODE: 0x83,
-  // Metabolic Specialization (ERA 33)
-  SPEC: 0x84,
-  // Viral PURGE (ERA 49)
-  PURGE: 0x85,
-  // Swarm Intelligence (ERA 50)
-  SYNC: 0x86,
-  STAMP: 0x87,
-  // Collective Memory (ERA 51)
-  IMPRINT: 0x88,
-  RECALL: 0x89,
-  // Neural Substrate (ERA 52)
-  HEBB: 0x8A,
-  FIRE: 0x8B,
-  // Emergent Roles (ERA 53)
-  ATTUNE: 0x8C,
-  // Temporal Cognition (ERA 54)
-  AGE: 0x8D,
-  PHASE_LIFE: 0x8E,
-  // Quorum Sensing (ERA 55)
-  QUORUM: 0x8F,
-  // Epigenetic Inheritance (ERA 56)
-  INHERIT: 0x90,
-  // Synaptic Plasticity Decay (ERA 57)
-  DECAY: 0x91,
-  // Resonance Oscillators (ERA 58)
-  OSCILLATE: 0x92,
-  LOCK_PHASE: 0x93,
-  // Morphogenetic Gradients (ERA 59)
-  GRAD: 0x94,
-  MORPH: 0x95,
-  // Horizontal Gene Transfer (ERA 60)
-  SECRETE_PLASMID: 0x96,
-  INCORPORATE_PLASMID: 0x97,
-  // Symbiotic Bonding (ERA 61)
-  SHARE: 0xA0,
-  EAT: 0xA1,
-  // The Golden Angle (ERA 63)
-  PHI: 0xA2,
-  // Crystalline Neural Network (ERA 69)
-  PLUG: 0xA4,
-  // THE LIVING QUINE / TENSEGRITY (ERA 68)
-  TENSEGRITY: 0xA5,
-  // COLLECTIVE INTELLIGENCE (ERA 69)
-  COLLECTIVE: 0xA6,
-  ROLE: 0xA7,
-  // Ascension / Crystallization (ERA 64)
-  ASCEND: 0xFF,
-};
-
-export const LAMBDA_VM = {
-  /**
-   * Executes one instruction from the atom's bytecode.
-   * context: 32 bytes [0: PC, 1: Flags, 2-9: Regs, 10-17: Stack, 18: SP, 19-31: Reserved]
-   */
-  execute: (
-    logic: Uint8Array,
-    code: Uint32Array,
-    context: Uint8Array,
-    state: {
-      x: number;
-      y: number;
-      nutrients: Int32Array;
-      structureGrid: Int32Array;
-      viralGrid: Uint8Array;
-      pheromoneGrid: Int32Array;
-      spatialGrid: Int32Array;
-      marketPool: Int32Array;
-      energy: number;
-      resonance: number;
-      bonds: Uint32Array;
-      synapticStack?: Int32Array;
-      role?: number;
-      semanticBonuses?: number;
-      quarantineLevel?: number;
-      incomingMessage?: number;
-      isDiplomatic?: boolean;
-      hiveMemory?: Uint8Array;
-      age?: number;
-      quorumData?: Int32Array;
-      phase?: number;
-    },
-    dryRun = false,
-    wasm?: any,
-  ): VMResult => {
-    const res: VMResult = {
-      energyDelta: 0,
-      resonanceDelta: 0,
-      intent: [],
-      outgoingMessages: [],
-    };
-
-    // --- ERA 36: Cognitive Scaffolding (Neural Stigmergy) ---
-    const bonuses = state.semanticBonuses || 0;
-    const isSwift = (bonuses & 1) === 1;
-    const isGuardian = (bonuses & 2) === 2;
-    const isHarvest = (bonuses & 4) === 4;
-
-    // --- ERA 38: Metabolic Taxation (Cognitive Load) ---
-    if (bonuses > 0) {
-      res.energyDelta -= 0.05;
-    }
-
-    // --- ERA 26: QUARANTINE ENFORCEMENT ---
-    if (state.quarantineLevel === 2) {
-      return res;
-    }
-
-    let pc = context[0] % 16;
-    let flags = context[1];
-    const regs = context.subarray(2, 10);
-    const stack = context.subarray(10, 18);
-    let sp = context[18] % 8;
-
-    const inst = code[pc];
-    const op = inst & 0xFF;
-    const p1 = (inst >> 8) & 0xFF;
-    const p2 = (inst >> 16) & 0xFF;
-    const p3 = (inst >> 24) & 0xFF;
-
-    let pcJumped = false;
-
-    switch (op) {
-      case ISA.MOVE: {
-        const dxVal = (p1 - 128) / 10.0;
-        const dyVal = (p2 - 128) / 10.0;
-        res.intent.push({
-          level: 1,
-          value: {
-            dx: dxVal * (isSwift ? 1.5 : 1.0),
-            dy: dyVal * (isSwift ? 1.5 : 1.0),
-          },
-        });
-        res.energyDelta -= 0.1;
-        break;
-      }
-
-      case ISA.FEED: {
-        const requested = p1;
-        let consumed = 0;
-        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-        const idx = gy * GRID_W + gx;
-
-        let current = Atomics.load(state.nutrients, idx);
-        if (dryRun) {
-          consumed = Math.min(current, requested);
-        } else {
-          while (current > 0) {
-            const take = Math.min(current, requested);
-            const next = current - take;
-            const actual = Atomics.compareExchange(
-              state.nutrients,
-              idx,
-              current,
-              next,
-            );
-            if (actual === current) {
-              consumed = take;
-              break;
-            }
-            current = Atomics.load(state.nutrients, idx);
-          }
-        }
-
-        res.energyDelta += (consumed / 1000) * (isHarvest ? 1.2 : 1.0);
-        if (consumed > 0) res.resonanceDelta += 0.1;
-        break;
-      }
-
-      case ISA.BET: {
-        const betAmount = p1;
-        if (state.energy >= betAmount) {
-          res.energyDelta -= betAmount;
-          if (!dryRun) {
-            Atomics.add(state.marketPool, 0, Math.round(betAmount * 1000));
-          }
-          res.resonanceDelta += 0.5;
-        }
-        break;
-      }
-
-      case ISA.SENSE: {
-        const type = p1;
-        const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-        const idx = gy * GRID_W + gx;
-
-        let val = 0;
-        switch (type) {
-          case 0x01:
-            val = Atomics.load(state.nutrients, idx);
-            break;
-          case 0x02:
-            val = (Atomics.load(state.structureGrid, idx) >> 8) & 0xFF;
-            break;
-          case 0x03:
-            val = Atomics.load(state.viralGrid, idx * 9 + 8);
-            break;
-          case 0x04:
-            val = Atomics.load(state.spatialGrid, idx * 32);
-            break;
-          case 0x05:
-            val = Atomics.load(state.spatialGrid, idx * 32 + 31);
-            break; // Local Phase Average
-          case 0x06:
-            val = (Atomics.load(state.pheromoneGrid, idx) >>> 8) & 0xFF;
-            break; // Pheromone Intensity
-          case 0x07: { // ERA 51: Hive Memory intensity
-            if (state.hiveMemory) {
-              const hBase = idx * 16;
-              const raw = state.hiveMemory[hBase] |
-                (state.hiveMemory[hBase + 1] << 8) |
-                (state.hiveMemory[hBase + 2] << 16) |
-                (state.hiveMemory[hBase + 3] << 24);
-              val = (raw >>> 8) & 0xFF;
-            }
-            break;
-          }
-          case 0x08: { // ERA 52: Synaptic weight of bond p2%4
-            if (state.synapticStack) {
-              val = Math.min(255, state.synapticStack[p2 % 4]);
-            }
-            break;
-          }
-          case 0x09: { // ERA 53: Incoming FIRE signal tally (slot 3)
-            if (state.synapticStack) {
-              val = Math.min(255, state.synapticStack[3]);
-            }
-            break;
-          }
-          case 0x0A: { // ERA 54: Age bucket (0=young, 1=mature, 2=aged, 3=senescent)
-            const a = state.age ?? 0;
-            if (a < 50) val = 0;
-            else if (a < 200) val = 1;
-            else if (a < 400) val = 2;
-            else val = 3;
-            break;
-          }
-          case 0x0B: { // ERA 55: Same-role quorum count in local cell
-            if (state.quorumData && state.role !== undefined) {
-              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-              const safeRole = Math.min(7, Math.max(0, state.role));
-              val = Math.min(
-                255,
-                state.quorumData[(gy * GRID_W + gx) * 8 + safeRole],
-              );
-            }
-            break;
-          }
-          case 0x0C: { // ERA 56: Imprint age (ticks since last IMPRINT in this cell)
-            if (state.hiveMemory) {
-              const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-              const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-              const hBase = (gy * GRID_W + gx) * 16;
-              // bytes 8-11 = pulseId of last imprint; age = current - imprintTick
-              const imprintTick = state.hiveMemory[hBase + 8] |
-                (state.hiveMemory[hBase + 9] << 8) |
-                (state.hiveMemory[hBase + 10] << 16) |
-                (state.hiveMemory[hBase + 11] << 24);
-              const imprintAge = (state.age ?? 0) - (imprintTick & 0xFF);
-              val = Math.min(255, Math.max(0, imprintAge));
-            }
-            break;
-          }
-          case 0x0D: { // ERA 57: Minimum weight across synapticStack[0..2]
-            if (state.synapticStack) {
-              val = Math.min(
-                state.synapticStack[0],
-                state.synapticStack[1],
-                state.synapticStack[2],
-              );
-            }
-            break;
-          }
-          case 0x0E: { // ERA 58: Local phase average from spatialGrid slot 31
-            const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-            const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-            const cellBase = (gy * GRID_W + gx) * 32;
-            val = Math.min(255, Math.max(0, state.spatialGrid[cellBase + 31]));
-            break;
-          }
-          case 0x0F: { // ERA 59: Pheromone gradient magnitude at own cell
-            const px = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-            const py = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-            const dx = state.pheromoneGrid[py * GRID_W + px + 1] -
-              state.pheromoneGrid[py * GRID_W + px - 1];
-            const dy = state.pheromoneGrid[(py + 1) * 140 + px] -
-              state.pheromoneGrid[(py - 1) * 140 + px];
-            val = Math.min(255, Math.floor(Math.sqrt(dx * dx + dy * dy) / 100));
-            break;
-          }
-        }
-        if (!dryRun) {
-          regs[regIdx] = Math.min(255, val);
-          // --- ERA 48: Metabolic Balancing ---
-          res.energyDelta -= 0.5; // Information is a metabolic resource
-        }
-        break;
-      }
-
-      case ISA.EVOLVE:
-        res.intent.push({ level: 5, value: "EVOLUTION_REQUEST" });
-        res.resonanceDelta += 1.0;
-        break;
-
-      case ISA.JMP:
-        pc = p1 % 16;
-        pcJumped = true;
-        break;
-
-      case ISA.JZ:
-        if ((flags & 0x01) === 1) {
-          pc = p1 % 16;
-          pcJumped = true;
-        }
-        break;
-
-      case ISA.JNZ:
-        if ((flags & 0x01) === 0) {
-          pc = p1 % 16;
-          pcJumped = true;
-        }
-        break;
-
-      case ISA.CALL:
-        if (sp < 8) {
-          if (!dryRun) stack[sp++] = (pc + 1) % 16;
-          pc = p1 % 16;
-          pcJumped = true;
-        }
-        break;
-
-      case ISA.RET:
-        if (sp > 0) {
-          if (!dryRun) pc = stack[--sp];
-          else pc = stack[sp - 1];
-          pcJumped = true;
-        }
-        break;
-
-      case ISA.ADD:
-        if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] + regs[p3 % 8]) & 0xFF;
-        break;
-
-      case ISA.SUB:
-        if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] - regs[p3 % 8]) & 0xFF;
-        break;
-
-      case ISA.MUL:
-        if (!dryRun) regs[p1 % 8] = (regs[p2 % 8] * regs[p3 % 8]) & 0xFF;
-        break;
-
-      case ISA.CMP:
-        if (!dryRun) {
-          flags = (regs[p1 % 8] === regs[p2 % 8])
-            ? (flags | 0x01)
-            : (flags & ~0x01);
-        }
-        break;
-
-      case ISA.LOAD:
-        if (!dryRun) regs[p1 % 8] = logic[p2 % 8];
-        break;
-
-      case ISA.STORE:
-        if (!dryRun) {
-          res.modifiedCode = { slot: p2 % 16, value: regs[p1 % 8] };
-          logic[p2 % 8] = regs[p1 % 8];
-        }
-        break;
-
-      case ISA.SELF_MOD:
-        if (state.energy > 50) {
-          res.modifiedCode = {
-            slot: p1 % 16,
-            value: (p3 << 16) | (p2 << 8) | p1,
-          };
-          res.energyDelta -= 30;
-          res.resonanceDelta += 5;
-        }
-        break;
-
-      case ISA.SELF_REP: {
-        // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
-        const baseCost = 80;
-        const friction = density > 10 ? (density - 10) * 10 : 0;
-        const totalCost = baseCost + friction;
-
-        if (state.energy > (totalCost + 70)) {
-          res.intent.push({ level: 10, value: "spawn" });
-          res.energyDelta -= totalCost;
-        }
-        break;
-      }
-
-      case ISA.CROSS_REP: {
-        // --- ERA 48: High-Density Friction ---
-        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-        const density = Atomics.load(state.spatialGrid, (gy * GRID_W + gx) * 32);
-        const baseCost = 100;
-        const friction = density > 10 ? (density - 10) * 15 : 0;
-        const totalCost = baseCost + friction;
-
-        if (state.energy > (totalCost + 50)) {
-          res.energyDelta -= totalCost;
-          res.intent.push({
-            level: 11,
-            value: { type: "meiosis", targetBondSlot: p1 % 4 },
-          });
-        }
-        break;
-      }
-
-      case ISA.BIND: {
-        const dxVal = (p1 - 128) / 10.0;
-        const dyVal = (p2 - 128) / 10.0;
-        res.intent.push({ level: 12, value: { dx: dxVal, dy: dyVal } });
-        res.energyDelta -= 10;
-        break;
-      }
-
-      case ISA.MERGE: {
-        if (state.resonance > 300) {
-          res.intent.push({ level: 13, value: { targetBondSlot: p1 % 4 } });
-          res.energyDelta -= 50;
-        }
-        break;
-      }
-
-      case ISA.SEND: {
-        const slot = p1 % 4;
-        const targetIdx = state.bonds[slot];
-        if (targetIdx !== 0) {
-          res.outgoingMessages.push({
-            targetIdx,
-            message: p2,
-            sourceBondSlot: slot,
-          });
-          res.energyDelta -= 2;
-        }
-        break;
-      }
-
-      case ISA.RECV:
-        if (!dryRun) regs[p1 % 8] = (state.incomingMessage || 0) & 0xFF;
-        if (state.isDiplomatic) res.resonanceDelta += 2.0;
-        else res.resonanceDelta += 0.2;
-        break;
-
-      case ISA.LOCK: {
-        const slot = p1 % 4;
-        res.modifiedStiffness = { slot, value: Math.min(100, p2) / 100 };
-        res.energyDelta -= 5;
-        break;
-      }
-
-      case ISA.SYNC_AVG:
-        res.syncRequest = { reg: p1 % 8 };
-        res.energyDelta -= 3;
-        break;
-
-      case ISA.PUSH_COLL:
-        res.modifiedSynaptic = { slot: p2 % 4, value: regs[p1 % 8] };
-        res.energyDelta -= 2;
-        break;
-
-      case ISA.POP_COLL:
-        if (!dryRun && state.synapticStack) {
-          regs[p2 % 8] = state.synapticStack[p1 % 4];
-        }
-        res.energyDelta -= 1;
-        break;
-
-      case ISA.BUILD:
-        if (state.resonance > 40) {
-          res.modifiedStructure = { type: p1 % 8, density: Math.min(255, p2) };
-          res.energyDelta -= 10;
-          res.resonanceDelta -= isGuardian ? 10 : 20;
-        }
-        break;
-
-      case ISA.EXCAVATE:
-        res.modifiedStructure = { type: 0, density: 0 };
-        res.energyDelta += 5;
-        break;
-
-      case ISA.ENCODE:
-        if (state.resonance > 50) {
-          res.memeticRequest = "ENCODE";
-          res.energyDelta -= 15;
-          res.resonanceDelta -= 10;
-        }
-        break;
-
-      case ISA.DECODE:
-        res.memeticRequest = "DECODE";
-        res.energyDelta -= 5;
-        break;
-
-      case ISA.SPEC:
-        if (state.resonance > 100) {
-          const newRole = p1 % 4;
-          if (
-            state.role !== undefined && state.role !== 0 &&
-            state.role !== newRole
-          ) {
-            res.energyDelta -= state.energy * 0.5;
-            res.resonanceDelta -= state.resonance * 0.5;
-          }
-          res.modifiedRole = newRole;
-          res.energyDelta -= 20;
-          res.resonanceDelta -= 30;
-        }
-        break;
-
-      case ISA.PURGE: {
-        // --- ERA 49: Viral Shielding (Immune Resolution) ---
-        if (state.energy > 60) {
-          res.memeticRequest = "DECODE"; // Reuse existing memetic path to restore from memoryGrid
-          res.energyDelta -= 50;
-          res.resonanceDelta += 5;
-        }
-        break;
-      }
-
-      case ISA.SYNC: {
-        // --- ERA 50: Collective Coordination ---
-        res.intent.push({ level: 15, value: "SYNC_PHASE" });
-        res.energyDelta -= 5;
-        res.resonanceDelta += 2;
-        break;
-      }
-
-      case ISA.STAMP: {
-        // --- ERA 50: Stigmergy (Pheromones) ---
-        if (state.resonance > 30) {
-          res.intent.push({
-            level: 16,
-            value: { type: p1 % 8, intensity: Math.min(255, p2) },
-          });
-          res.energyDelta -= 10;
-          res.resonanceDelta -= 2;
-        }
-        break;
-      }
-
-      case ISA.IMPRINT: {
-        // --- ERA 51: Collective Memory — encode snapshot ---
-        // Read current local pheromone + phase and request worker to write to hiveMemory
-        if (state.resonance > 20 && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-          const pIdx = gy * GRID_W + gx;
-          const pheroSnap = Atomics.load(state.pheromoneGrid, pIdx);
-          const phaseSnap = state.resonance; // use resonance as phase proxy in VM scope
-          res.imprintRequest = {
-            pheroSnapshot: pheroSnap,
-            phaseSnapshot: Math.round(phaseSnap),
-            pulseId: 0,
-          };
-          res.energyDelta -= 5;
-          res.resonanceDelta -= 1;
-        }
-        break;
-      }
-
-      case ISA.RECALL: {
-        // --- ERA 51: Collective Memory — read snapshot into register ---
-        // p1 = field (0=phero intensity, 1=pheromone type, 2=phase)
-        // p2 = destination register index
-        if (state.hiveMemory && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-          const hBase = (gy * GRID_W + gx) * 16;
-          const raw32 = state.hiveMemory[hBase] |
-            (state.hiveMemory[hBase + 1] << 8) |
-            (state.hiveMemory[hBase + 2] << 16) |
-            (state.hiveMemory[hBase + 3] << 24);
-          let recalled = 0;
-          if (p1 === 0) recalled = (raw32 >>> 8) & 0xFF; // phero intensity
-          if (p1 === 1) recalled = raw32 & 0xFF; // phero type
-          if (p1 === 2) {
-            recalled = state.hiveMemory[hBase + 4] |
-              (state.hiveMemory[hBase + 5] << 8); // phase
-          }
-          regs[p2 % 8] = Math.min(255, recalled);
-          res.energyDelta -= 0.3;
-        }
-        break;
-      }
-
-      case ISA.HEBB: {
-        // --- ERA 52: Hebbian Plasticity ---
-        // p1 = bond slot (0-3); strengthen if both atoms resonating strongly
-        // "Fire together → wire together"
-        const HEBB_THRESHOLD = 200; // raw resonance (×SCALE = 0.2)
-        const slot = p1 % 4;
-        if (
-          state.resonance > HEBB_THRESHOLD && state.synapticStack && !dryRun
-        ) {
-          // Check neighbour resonance via spatialGrid density as a proxy
-          // (actual resonance comparison happens in PULSE_WORKER)
-          const targetIdx = state.bonds[slot];
-          if (targetIdx > 0) {
-            res.hebbRequest = { bondSlot: slot };
-            res.energyDelta -= 1;
-          }
-        }
-        break;
-      }
-
-      case ISA.FIRE: {
-        // --- ERA 52: Synaptic Signal Propagation ---
-        // p1 = bond slot; p2 = amplitude (0-255)
-        // Emit signal weighted by synapticStack[p1]
-        const slot = p1 % 4;
-        const amplitude = p2;
-        if (state.synapticStack && !dryRun) {
-          const weight = state.synapticStack[slot]; // 0..255 scaled
-          if (weight > 10) {
-            res.intent.push({
-              level: 18,
-              value: { bondSlot: slot, amplitude, weight },
-            });
-            res.energyDelta -= (weight / 255) * amplitude * 0.1;
-          }
-        }
-        break;
-      }
-
-      case ISA.ATTUNE: {
-        // --- ERA 53: Emergent Roles ---
-        // Read incoming FIRE signal tally from synapticStack[3].
-        // If tally exceeds threshold, auto-specialize into the role
-        // derived from dominant incoming synapse weight (slots 0–2).
-        // p1 = tally threshold (0=use default 20)
-        // p2 = role override (0=auto-derive from weights)
-        if (state.synapticStack && !dryRun) {
-          const tally = state.synapticStack[3]; // incoming FIRE count
-          const threshold = p1 > 0 ? p1 : 20;
-          if (tally >= threshold) {
-            let role: number;
-            if (p2 > 0) {
-              role = p2; // explicit override
-            } else {
-              // Derive role from the slot with the highest weight
-              const w0 = state.synapticStack[0];
-              const w1 = state.synapticStack[1];
-              const w2 = state.synapticStack[2];
-              if (w0 >= w1 && w0 >= w2) role = 1; // Producer
-              else if (w1 >= w0 && w1 >= w2) role = 2; // Guardian
-              else role = 3; // Architect
-            }
-            res.roleRequest = { role };
-            res.energyDelta -= 5;
-            res.resonanceDelta += 10; // differentiation bonus
-          }
-        }
-        break;
-      }
-
-      case ISA.AGE: {
-        // --- ERA 54: Temporal Cognition — read own age ---
-        // p1 = destination register
-        if (!dryRun) {
-          const ageVal = Math.min(255, state.age ?? 0);
-          regs[p1 % 8] = ageVal;
-        }
-        res.energyDelta -= 0.1;
-        break;
-      }
-
-      case ISA.PHASE_LIFE: {
-        // --- ERA 54: Lifecycle Phase Effects ---
-        // Reads age and applies phase-appropriate effect.
-        // Young   (0–49):   growth bonus — resonance +5
-        // Mature  (50–199): productivity — energy recoup + hive imprint eligible
-        // Aged    (200–399): teaching — FIRE amplitude boosted via resonanceDelta
-        // Senescent (400+): apoptosis — emit self-dissolution request
-        const age = state.age ?? 0;
-        if (!dryRun) {
-          if (age < 50) {
-            // Young: grow
-            res.resonanceDelta += 5;
-            res.energyDelta -= 0.5;
-          } else if (age < 200) {
-            // Mature: productive, slight energy recoup from nutrients
-            res.resonanceDelta += 2;
-            res.energyDelta += 0.5; // mature efficiency
-          } else if (age < 400) {
-            // Aged: teaching — emit FIRE across all bonds
-            for (let b = 0; b < 4; b++) {
-              if (state.bonds[b] > 0 && state.synapticStack) {
-                const w = state.synapticStack[b];
-                if (w > 10) {
-                  res.intent.push({
-                    level: 18,
-                    value: { bondSlot: b, amplitude: 150, weight: w },
-                  });
-                }
-              }
-            }
-            res.energyDelta -= 2;
-          } else {
-            // Senescent: apoptosis request
-            res.apoptosisRequest = true;
-            res.resonanceDelta += 20; // final resonance burst — wisdom transfer
-            res.energyDelta -= 50;
-          }
-        }
-        break;
-      }
-
-      case ISA.QUORUM: {
-        // --- ERA 55: Quorum Sensing ---
-        // p1 = quorum threshold (default 5)
-        // p2 = collective behavior type:
-        //   0 = resonance cascade (broadcast resonance boost)
-        //   1 = coordinated STAMP (pheromone flood, intent level 19)
-        //   2 = role lock (lock current role, suppress ATTUNE)
-        const threshold = p1 > 0 ? p1 : 5;
-
-        if (state.quorumData && state.role !== undefined && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-          const safeRole = Math.min(7, Math.max(0, state.role));
-          const quorumCount = state.quorumData[(gy * GRID_W + gx) * 8 + safeRole];
-
-          if (quorumCount >= threshold) {
-            const collectiveType = p2 % 3;
-            res.quorumRequest = { collectiveType, quorumCount };
-
-            if (collectiveType === 0) {
-              // Resonance cascade — collective amplification
-              res.resonanceDelta += Math.min(50, quorumCount * 2);
-              res.energyDelta -= 3;
-            } else if (collectiveType === 1) {
-              // Coordinated STAMP — pheromone flood
-              res.intent.push({
-                level: 19,
-                value: {
-                  role: safeRole,
-                  intensity: Math.min(255, quorumCount * 10),
-                },
-              });
-              res.energyDelta -= 8;
-            } else {
-              // Role lock — freeze role identity
-              res.resonanceDelta += 5;
-              res.energyDelta -= 1;
-            }
-          }
-        }
-        break;
-      }
-
-      case ISA.INHERIT: {
-        // --- ERA 56: Epigenetic Inheritance — voluntary weight sync ---
-        // Read hiveMemory imprint at own cell and reinforce own synapticStack[p1%3]
-        // p1 = weight slot to reinforce (0-2)
-        // p2 = reinforce amplitude (0=light +1, >0=use p2 value)
-        if (state.hiveMemory && state.synapticStack && !dryRun) {
-          const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-          const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-          const hBase = (gy * GRID_W + gx) * 16;
-          // bytes 0-3: pheromone snapshot → use byte 1 as weight reference
-          const refWeight = state.hiveMemory[hBase + 1]; // intensity octet
-          const slot = p1 % 3;
-          const amplitude = p2 > 0 ? p2 : 1;
-          const curWeight = state.synapticStack[slot];
-          // Move current weight toward reference value by amplitude
-          const delta = refWeight > curWeight ? amplitude : -amplitude;
-          state.synapticStack[slot] = Math.max(
-            0,
-            Math.min(255, curWeight + delta),
-          );
-          res.modifiedSynaptic = { slot, value: state.synapticStack[slot] };
-          res.energyDelta -= 0.5;
-          res.resonanceDelta += 1; // cultural alignment bonus
-        }
-        break;
-      }
-
-      case ISA.DECAY: {
-        // --- ERA 57: Synaptic Plasticity Decay ---
-        // Explicit pruning: find the weakest synapse slot [0..2] and decrement it.
-        // p1 = slot override (0-2: specific slot; 3=all three; default=auto-weakest)
-        // p2 = decay rate (default 2)
-        if (state.synapticStack && !dryRun) {
-          const rate = p2 > 0 ? p2 : 2;
-          if (p1 >= 3) {
-            // Decay all three slots
-            for (let s = 0; s < 3; s++) {
-              const cur = state.synapticStack[s];
-              if (cur > 0) {
-                state.synapticStack[s] = Math.max(0, cur - rate);
-                res.modifiedSynaptic = {
-                  slot: s,
-                  value: state.synapticStack[s],
-                };
-              }
-            }
-          } else if (p1 > 0) {
-            // Decay specific slot
-            const cur = state.synapticStack[p1];
-            state.synapticStack[p1] = Math.max(0, cur - rate);
-            res.modifiedSynaptic = { slot: p1, value: state.synapticStack[p1] };
-          } else {
-            // Auto: find and decay weakest slot
-            let minSlot = 0;
-            if (state.synapticStack[1] < state.synapticStack[minSlot]) {
-              minSlot = 1;
-            }
-            if (state.synapticStack[2] < state.synapticStack[minSlot]) {
-              minSlot = 2;
-            }
-            const cur = state.synapticStack[minSlot];
-            if (cur > 0) {
-              state.synapticStack[minSlot] = Math.max(0, cur - rate);
-              res.modifiedSynaptic = {
-                slot: minSlot,
-                value: state.synapticStack[minSlot],
-              };
-            }
-          }
-          res.energyDelta += 0.5; // pruning releases metabolic energy
-          res.resonanceDelta += 1; // neural efficiency bonus
-        }
-        break;
-      }
-
-      case ISA.OSCILLATE: {
-        // --- ERA 58: Resonance Oscillators ---
-        // Broadcasts a phase ripple to co-located atoms.
-        // p1 = amplitude (0=auto from resonance, >0=explicit)
-        // p2 = reach (0=same cell only, 1=adjacent cells)
-        if (!dryRun) {
-          const ownPhase = state.phase ?? 128;
-          const amplitude = p1 > 0
-            ? p1
-            : Math.min(255, Math.floor(state.resonance / 10));
-          // Sinusoidal component: sin(phase*2π/255) maps to [-1..+1]
-          const sinComponent = Math.sin((ownPhase / 255) * Math.PI * 2);
-          const waveAmplitude = Math.round(amplitude * sinComponent);
-          if (Math.abs(waveAmplitude) > 0) {
-            res.intent.push({
-              level: 20,
-              value: { phase: ownPhase, waveAmplitude, reach: p2 },
-            });
-            res.energyDelta -= Math.abs(waveAmplitude) * 0.05;
-          }
-        }
-        break;
-      }
-
-      case ISA.LOCK_PHASE: {
-        // --- ERA 58: Phase Lock ---
-        // Snaps own phase to local average (constructive) or +128 (destructive).
-        // p1: 0=constructive (sync), 1=destructive (anti-phase)
-        // Reads spatialGrid slot 31 = local phase average
-        if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-          const cellAvgPhase = state.spatialGrid[(gy * GRID_W + gx) * 32 + 31];
-          const targetPhase = p1 === 1
-            ? (cellAvgPhase + 128) % 256 // destructive: anti-phase
-            : cellAvgPhase; // constructive: sync
-          res.lockPhaseRequest = { targetPhase };
-          // Resonance bonus scales with how close own phase is to target
-          const phaseDiff = Math.abs((state.phase ?? 128) - cellAvgPhase);
-          const alignment = 1 - phaseDiff / 255;
-          res.resonanceDelta += Math.round(alignment * 5);
-          res.energyDelta -= 1;
-        }
-        break;
-      }
-
-      case ISA.GRAD: {
-        // --- ERA 59: Morphogenetic Gradient Direction ---
-        // Reads local pheromone gradient and encodes direction as 0-255 angle.
-        // 0=right, 64=up, 128=left, 192=down. Stores in register p1.
-        // p2: 0=angle, 1=dx-component, 2=dy-component
-        const gPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-        const gPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-        const gDx = state.pheromoneGrid[gPy * GRID_W + gPx + 1] -
-          state.pheromoneGrid[gPy * GRID_W + gPx - 1];
-        const gDy = state.pheromoneGrid[(gPy + 1) * 140 + gPx] -
-          state.pheromoneGrid[(gPy - 1) * 140 + gPx];
-        let gradVal: number;
-        if (p2 === 1) {
-          gradVal = Math.min(255, Math.max(0, Math.floor((gDx + 32767) / 257)));
-        } else if (p2 === 2) {
-          gradVal = Math.min(255, Math.max(0, Math.floor((gDy + 32767) / 257)));
-        } else {
-          // Angle: atan2(dy,dx) mapped 0..255
-          const angle = Math.atan2(gDy, gDx); // -π..+π
-          gradVal = Math.floor(((angle + Math.PI) / (2 * Math.PI)) * 255) &
-            0xFF;
-        }
-        if (!dryRun) regs[p1 % 8] = gradVal;
-        break;
-      }
-
-      case ISA.MORPH: {
-        // --- ERA 59: Morphogenetic Differentiation ---
-        // Classifies local pheromone concentration into 3 spatial zones:
-        //   Zone 0 = Apex    (high:  concentration > p1*100)  → Architect role
-        //   Zone 1 = Slope   (mid:   concentration > p2*100)  → Guardian role
-        //   Zone 2 = Base    (low:   otherwise)               → Producer role
-        // Emits morphRequest with zone + gradient angle.
-        if (!dryRun) {
-          const mPx = Math.max(1, Math.min(138, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-          const mPy = Math.max(1, Math.min(78, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-          const conc = Math.abs(state.pheromoneGrid[mPy * GRID_W + mPx]);
-          const hiThresh = (p1 > 0 ? p1 : 10) * 100;
-          const loThresh = (p2 > 0 ? p2 : 3) * 100;
-          const zone = conc > hiThresh ? 0 : conc > loThresh ? 1 : 2;
-          // Gradient angle for orientation
-          const mDx = state.pheromoneGrid[mPy * GRID_W + mPx + 1] -
-            state.pheromoneGrid[mPy * GRID_W + mPx - 1];
-          const mDy = state.pheromoneGrid[(mPy + 1) * 140 + mPx] -
-            state.pheromoneGrid[(mPy - 1) * 140 + mPx];
-          const gradAngle = Math.floor(
-            ((Math.atan2(mDy, mDx) + Math.PI) / (2 * Math.PI)) * 255,
-          ) & 0xFF;
-          res.morphRequest = { zone, gradAngle };
-          // Role suggestion per zone
-          const suggestedRole = zone === 0 ? 3 : zone === 1 ? 2 : 1; // Arch / Guard / Prod
-          res.resonanceDelta += (3 - zone) * 2; // apex gets max bonus
-          res.energyDelta -= 2;
-          // Also push potential role transition via existing roleRequest
-          if (!res.roleRequest) res.roleRequest = { role: suggestedRole };
-        }
-        break;
-      }
-
-      case ISA.SECRETE_PLASMID: {
-        // --- ERA 60: Horizontal Gene Transfer (Secretion) ---
-        // Writes atom's own 8-byte logic signature to the cell's viralGrid.
-        // p1 = intensity/TTL of the plasmid (added to 9th byte).
-        if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-          // cellBase for viralGrid is 9 bytes per cell
-          const cellBase = (gy * GRID_W + gx) * 9;
-          const intensity = p1 > 0 ? p1 : 128; // default intensity
-          res.secretePlasmidRequest = {
-            logic: new Uint8Array(logic),
-            intensity,
-          };
-          res.energyDelta -= 5; // secretion costs macroscopic energy
-        }
-        break;
-      }
-
-      case ISA.INCORPORATE_PLASMID: {
-        // --- ERA 60: Horizontal Gene Transfer (Absorption) ---
-        // Reads viralGrid at current cell. If intensity (byte 8) > p1 threshold,
-        // incorporates it by overwriting own 8-byte logic.
-        if (!dryRun) {
-          const gx = Math.max(0, Math.min(139, Math.floor(state.x / SPATIAL_CELL_SIZE)));
-          const gy = Math.max(0, Math.min(79, Math.floor(state.y / SPATIAL_CELL_SIZE)));
-          const cellBase = (gy * GRID_W + gx) * 9;
-          const threshold = p1 > 0 ? p1 : 50;
-          const plasmidIntensity = state.viralGrid[cellBase + 8];
-
-          if (plasmidIntensity > threshold) {
-            // Absorb the plasmid
-            const plasmidLogic = new Uint8Array(8);
-            for (let j = 0; j < 8; j++) {
-              plasmidLogic[j] = state.viralGrid[cellBase + j];
-            }
-            res.incorporatePlasmidRequest = { logic: plasmidLogic };
-            res.resonanceDelta += 50; // Massive reward for genetic novelty
-            res.energyDelta -= 10; // Rewiring is metabolically expensive
-          }
-        }
-        break;
-      }
-
-      case ISA.SHARE: {
-        // --- ERA 61: Symbiotic Sharing ---
-        // Share p1 energy with the atom bonded at slot p2 (0-3).
-        if (!dryRun) {
-          const slot = p2 % 4;
-          const amount = p1;
-          if (amount > 0 && state.bonds[slot] > 0) {
-            res.shareRequest = { bondSlot: slot, amount };
-            res.energyDelta -= amount; // Deduct immediately from self
-            res.resonanceDelta += Math.floor(amount / 4); // Altruism reward
-          }
-        }
-        break;
-      }
-
-      case ISA.EAT: {
-        // --- ERA 61: Active Consumption ---
-        // Actively consume up to p1 nutrients from the current spatial cell.
-        if (!dryRun && p1 > 0) {
-          res.eatRequest = { amount: p1 };
-          // We don't change energyDelta here because PULSE_WORKER needs to
-          // check if the cell actually has nutrients first.
-        }
-        break;
-      }
-
-      case ISA.PHI: {
-        // --- ERA 63: The Golden Angle ---
-        // Shifts phase by the Golden Angle (137.5 deg = ~97 in 256 byte space)
-        // If p1=0, shifts by 97. If p1>0, shifts by p1 (custom angle).
-        if (!dryRun) {
-          const shiftAmount = p1 === 0 ? 97 : p1;
-          res.phiRequest = { amount: shiftAmount };
-          res.resonanceDelta += 2; // Small harmony reward for packing
-        }
-        break;
-      }
-
-      case ISA.PLUG: { // ERA 69: Crystalline Neural Network
-        const mode = p1; // 0: Read Charge, 1: Write Charge, 2: Set Type, 3: Set State
-        const regIdx = p2 % 8;
-        const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-        const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-        const idx = gy * GRID_W + gx;
-
-        if (mode === 0) { // READ CHARGE
-          const charge = (Atomics.load(state.structureGrid, idx) >> 16) & 0xFF;
-          if (!dryRun) regs[regIdx] = charge;
-          res.energyDelta -= 1;
-        } else if (mode === 1) { // WRITE CHARGE
-          const charge = regs[regIdx];
-          if (!dryRun) {
-            Atomics.and(state.structureGrid, idx, ~0x00FF0000);
-            Atomics.or(state.structureGrid, idx, charge << 16);
-          }
-          res.energyDelta -= charge / 25.5; // Max 10 energy for 255 charge
-        } else if (mode === 2) { // SET TYPE
-          const type = regs[regIdx] % 8;
-          if (!dryRun) {
-            Atomics.and(state.structureGrid, idx, ~0x000000FF);
-            Atomics.or(state.structureGrid, idx, type);
-          }
-          res.energyDelta -= 5;
-          res.resonanceDelta += 1;
-        } else if (mode === 3) { // SET STATE
-          const sVal = regs[regIdx];
-          if (!dryRun) {
-            Atomics.and(state.structureGrid, idx, ~0xFF000000);
-            Atomics.or(state.structureGrid, idx, sVal << 24);
-          }
-          res.energyDelta -= 2;
-        }
-        break;
-      }
-
-      case ISA.ASCEND: {
-        // --- ERA 64: The Convergence ---
-        // Requires minimum 5000 energy and 500 resonance to ascend.
-        if (!dryRun && state.energy >= 5000 && state.resonance >= 500) {
-          res.ascendRequest = true;
-        }
-        break;
-      }
-
-      case ISA.TENSEGRITY: {
-        // mode p1: 0=SetBondDist, 1=SetDamping
-        const mode = p1;
-        if (!dryRun) {
-          if (mode === 0) {
-            res.intent.push({
-              level: 21,
-              value: { type: "setBondDist", slot: p2 % 4, dist: p3 },
-            });
-          } else if (mode === 1) {
-            res.intent.push({
-              level: 21,
-              value: { type: "setDamping", val: p2 },
-            });
-          }
-        }
-        res.energyDelta -= 2;
-        break;
-      }
-
-      case ISA.COLLECTIVE: {
-        // mode p1: 0=HiveStore, 1=HiveLoad, 2=PheromoneEmit
-        const mode = p1;
-        if (!dryRun) {
-          if (mode === 0 && state.hiveMemory) {
-            Atomics.store(state.hiveMemory, p2 & 1023, p3);
-            res.energyDelta -= 1;
-          } else if (mode === 1 && state.hiveMemory) {
-            regs[p3 % 8] = Atomics.load(state.hiveMemory, p2 & 1023);
-            res.energyDelta -= 0.5;
-          } else if (mode === 2) {
-            const gx = Math.floor(Math.max(0, Math.min(WORLD_MAX_X, state.x)) / SPATIAL_CELL_SIZE);
-            const gy = Math.floor(Math.max(0, Math.min(WORLD_MAX_Y, state.y)) / SPATIAL_CELL_SIZE);
-            const idx = gy * GRID_W + gx;
-            // intensity p2, type p3
-            Atomics.store(state.pheromoneGrid, idx, (p2 << 8) | p3);
-            res.energyDelta -= 5;
-          }
-        }
-        break;
-      }
-
-      case ISA.ROLE: {
-        if (!dryRun) {
-          const mode = p1;
-          const val = p2;
-          if (mode === 0) {
-            res.modifiedRole = val;
-          }
-        }
-        res.energyDelta -= 10;
-        break;
-      }
-    }
-
-    if (!dryRun) {
-      if (!pcJumped) pc = (pc + 1) % 16;
-      context[0] = pc;
-      context[1] = flags;
-      context[18] = sp;
-    }
-
-    return res;
-  },
-};
-
-```
-
----
-
 ## FILE: src/02/mod.ts
 
 ```typescript
 export * from "@02/HORMONE_BUFFER_RUNTIME.ts";
-export * from "@02/HOLOGRAM_INJECTOR.ts";
-export * from "@02/IMMUNE.ts";
 export * from "@02/GENOMES.ts";
 export * from "@02/HORMONE_BUFFER.ts";
-export * from "@02/RIBOSOME.ts";
 export * from "@02/PULSE_WORKER.ts";
-export * from "@02/ENZYME_DIGEST.ts";
 export * from "@02/PULSE.ts";
 
 ```
@@ -15181,10 +10148,40 @@ export * from "@02/PULSE.ts";
 ## FILE: src/02/PULSE_WORKER.ts
 
 ```typescript
-import { SYSTEM_TICK_HZ, WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
+import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MAX_ATOMS,
+  MAX_LEDGER_EVENTS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   LOGGER,
   SCALE,
@@ -15226,8 +10223,6 @@ const resolveWithPhase = (
   // Return "intensity" = |z|
   return Math.floor(Math.sqrt(real * real + imag * imag));
 };
-const MAX_ATOMS = OFFSETS.MAX_ATOMS;
-
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: ((idx: number) => void) | null = null;
 let tick_environment_fn: ((tick: number) => void) | null = null;
@@ -15245,6 +10240,7 @@ let tick_membrane_physics_fn: (() => void) | null = null;
 let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
   null;
 let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
+let run_phagocyte_pass_fn: ((entropy: number) => number) | null = null;
 let clear_metabolism_stats_fn: (() => void) | null = null;
 let accumulate_metabolism_stats_fn:
   | ((start: number, end: number) => void)
@@ -15457,7 +10453,7 @@ function handle_syscall(atomIdx: number) {
     case SYS_SET_ROLE: {
       const rolesView = new Uint8Array(
         sharedBuffer!,
-        OFFSETS.ROLES_OFFSET,
+        ROLES_OFFSET,
         MAX_ATOMS,
       );
       const newRole = r1;
@@ -15562,7 +10558,7 @@ function handle_syscall(atomIdx: number) {
                 const tx = Atomics.load(xsView, targetIdx);
                 const ty = Atomics.load(ysView, targetIdx);
 
-                const rolesView = new Uint8Array(sharedBuffer!, OFFSETS.ROLES_OFFSET, MAX_ATOMS);
+                const rolesView = new Uint8Array(sharedBuffer!, ROLES_OFFSET, MAX_ATOMS);
                 const myRole = Atomics.load(rolesView, atomIdx);
                 const tRole = Atomics.load(rolesView, targetIdx);
 
@@ -15578,8 +10574,8 @@ function handle_syscall(atomIdx: number) {
                   }
                 }
 
-                const dx = (tx - ox) / OFFSETS.SPATIAL_CELL_SIZE;
-                const dy = (ty - oy) / OFFSETS.SPATIAL_CELL_SIZE;
+                const dx = (tx - ox) / SPATIAL_CELL_SIZE;
+                const dy = (ty - oy) / SPATIAL_CELL_SIZE;
                 const distSq = dx * dx + dy * dy;
 
                 if (distSq <= 2.25) {
@@ -15680,7 +10676,7 @@ function handle_syscall(atomIdx: number) {
       if (ledgerHeadView && ledgerDataView) {
         // Atomic ring buffer increment
         const cursor = Atomics.add(ledgerHeadView, 0, 1) %
-          OFFSETS.MAX_LEDGER_EVENTS;
+          MAX_LEDGER_EVENTS;
         const base = cursor * 4; // 4 i32 per event
 
         const currentTick = tickCounterView
@@ -15795,20 +10791,20 @@ function handle_syscall(atomIdx: number) {
         const dyStr = intensity > 0 ? dySign : -dySign;
 
         if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * OFFSETS.SPATIAL_CELL_SIZE;
-          let ny = oy + dyStr * OFFSETS.SPATIAL_CELL_SIZE;
+          let nx = ox + dxStr * SPATIAL_CELL_SIZE;
+          let ny = oy + dyStr * SPATIAL_CELL_SIZE;
           LOGGER.debug(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
 
           if (nx < 0) nx = 0;
-          else if (nx > OFFSETS.WORLD_MAX_X) nx = OFFSETS.WORLD_MAX_X;
+          else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
           if (ny < 0) ny = 0;
-          else if (ny > OFFSETS.WORLD_MAX_Y) ny = OFFSETS.WORLD_MAX_Y;
+          else if (ny > WORLD_MAX_Y) ny = WORLD_MAX_Y;
 
-          const nGridX = Math.floor(nx / OFFSETS.SPATIAL_CELL_SIZE);
-          const nGridY = Math.floor(ny / OFFSETS.SPATIAL_CELL_SIZE);
+          const nGridX = Math.floor(nx / SPATIAL_CELL_SIZE);
+          const nGridY = Math.floor(ny / SPATIAL_CELL_SIZE);
           const nCellIdx = nGridY * GRID_W + nGridX;
 
           let capacityOk = false;
@@ -15886,7 +10882,7 @@ function handle_syscall(atomIdx: number) {
 
       if (energy >= energyBet) {
         Atomics.sub(energiesView!, atomIdx, energyBet);
-        self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        (self as unknown as Worker).postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
@@ -15960,7 +10956,7 @@ const maybeDelay = async () => {
   await new Promise((resolve) => setTimeout(resolve, totalDelay));
 };
 
-self.onmessage = async (e) => {
+(self as any).onmessage = async (e: any) => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
@@ -15971,62 +10967,62 @@ self.onmessage = async (e) => {
       betPoolInt = new Int32Array(marketBuffer, 4, 1);
     }
     const sb = sharedBuffer as SharedArrayBuffer;
-    tickCounterView = new Int32Array(sb, OFFSETS.TICK_COUNTER_OFFSET, 1);
-    syncStateView = new Int32Array(sb, OFFSETS.SYNC_STATE_OFFSET, 1);
+    tickCounterView = new Int32Array(sb, TICK_COUNTER_OFFSET, 1);
+    syncStateView = new Int32Array(sb, SYNC_STATE_OFFSET, 1);
 
-    idsView = new BigUint64Array(sb, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-    xsView = new Int16Array(sb, OFFSETS.XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
-    ysView = new Int16Array(sb, OFFSETS.YS_OFFSET, MAX_ATOMS);
-    contextI32View = new Int32Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 16);
-    contextU8View = new Uint8Array(sb, OFFSETS.CONTEXT_OFFSET, MAX_ATOMS * 64);
+    idsView = new BigUint64Array(sb, IDS_OFFSET, MAX_ATOMS);
+    xsView = new Int16Array(sb, XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
+    ysView = new Int16Array(sb, YS_OFFSET, MAX_ATOMS);
+    contextI32View = new Int32Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 16);
+    contextU8View = new Uint8Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 64);
     structureGridView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_GRID_OFFSET,
+      STRUCTURE_GRID_OFFSET,
       GRID_CELLS,
     );
     spatialGridView = new Int32Array(
       sb,
-      OFFSETS.SPATIAL_GRID_OFFSET,
+      SPATIAL_GRID_OFFSET,
       GRID_CELLS * 32,
     );
     buildOwnerView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_BUILD_OWNER_OFFSET,
+      STRUCTURE_BUILD_OWNER_OFFSET,
       GRID_CELLS,
     );
     buildValueView = new Int32Array(
       sb,
-      OFFSETS.STRUCTURE_BUILD_VALUE_OFFSET,
+      STRUCTURE_BUILD_VALUE_OFFSET,
       GRID_CELLS,
     );
-    spawnHeadView = new Int32Array(sb, OFFSETS.SPAWN_REQUESTS_OFFSET, 1);
+    spawnHeadView = new Int32Array(sb, SPAWN_REQUESTS_OFFSET, 1);
     spawnDataView = new DataView(
       sb,
-      OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+      SPAWN_REQUESTS_OFFSET + 8,
       1024 * 24,
     );
-    lineageView = new BigUint64Array(sb, OFFSETS.LINEAGE_OFFSET, MAX_ATOMS);
-    logicView = new BigUint64Array(sb, OFFSETS.LOGIC_OFFSET, MAX_ATOMS);
+    lineageView = new BigUint64Array(sb, LINEAGE_OFFSET, MAX_ATOMS);
+    logicView = new BigUint64Array(sb, LOGIC_OFFSET, MAX_ATOMS);
     bondRequestsView = new Int32Array(
       sb,
-      OFFSETS.BOND_REQUESTS_OFFSET,
+      BOND_REQUESTS_OFFSET,
       MAX_ATOMS * 3,
     );
-    energiesView = new Int32Array(sb, OFFSETS.ENERGY_OFFSET, MAX_ATOMS);
-    resonancesView = new Int32Array(sb, OFFSETS.RESONANCE_OFFSET, MAX_ATOMS);
-    phaseView = new Int32Array(sb, OFFSETS.PHASE_OFFSET, MAX_ATOMS);
-    evolutionReservedView = new Int32Array(sb, OFFSETS.EVOLUTION_OFFSET, MAX_ATOMS);
+    energiesView = new Int32Array(sb, ENERGY_OFFSET, MAX_ATOMS);
+    resonancesView = new Int32Array(sb, RESONANCE_OFFSET, MAX_ATOMS);
+    phaseView = new Int32Array(sb, PHASE_OFFSET, MAX_ATOMS);
+    evolutionReservedView = new Int32Array(sb, EVOLUTION_OFFSET, MAX_ATOMS);
     instructionsView = new Uint8Array(
       sb,
-      OFFSETS.INSTRUCTIONS_OFFSET,
+      INSTRUCTIONS_OFFSET,
       MAX_ATOMS * 64,
     );
-    mailboxView = new Int32Array(sb, OFFSETS.MAILBOX_OFFSET, MAX_ATOMS * 2);
-    ledgerHeadView = new Int32Array(sb, OFFSETS.LEDGER_HEAD_OFFSET, 1);
+    mailboxView = new Int32Array(sb, MAILBOX_OFFSET, MAX_ATOMS * 2);
+    ledgerHeadView = new Int32Array(sb, LEDGER_HEAD_OFFSET, 1);
     ledgerDataView = new Int32Array(
       sb,
-      OFFSETS.LEDGER_DATA_OFFSET,
-      OFFSETS.MAX_LEDGER_EVENTS * 4,
+      LEDGER_DATA_OFFSET,
+      MAX_LEDGER_EVENTS * 4,
     );
 
     const idx = Number(workerIndex);
@@ -16034,7 +11030,7 @@ self.onmessage = async (e) => {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
     }
     if (shouldForceInitFail(idx)) {
-      self.postMessage({
+      (self as unknown as Worker).postMessage({
         type: "INIT_FAILED",
         error: `FORCED_INIT_FAIL(worker=${idx})`,
       });
@@ -16096,6 +11092,8 @@ try {
         .resolve_bond_requests as any;
       drain_spawn_requests_fn = wasmInstance.exports
         .drain_spawn_requests as any;
+      run_phagocyte_pass_fn = wasmInstance.exports
+        .run_phagocyte_pass as any;
       clear_metabolism_stats_fn = wasmInstance.exports
         .clear_metabolism_stats as any;
       accumulate_metabolism_stats_fn = wasmInstance.exports
@@ -16104,18 +11102,18 @@ try {
         .apply_metabolism_kernel as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
-      self.postMessage({ type: "READY" });
-      const bview = new Int32Array(sb, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
+      (self as unknown as Worker).postMessage({ type: "READY" });
+      const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
       setInterval(() => {
         // removed debug logging
       }, 5000);
-      self.postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
+      (self as unknown as Worker).postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
     } catch (err) {
       LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
-      self.postMessage({ type: "INIT_FAILED", error });
+      (self as unknown as Worker).postMessage({ type: "INIT_FAILED", error });
     }
     return;
   }
@@ -16173,7 +11171,7 @@ try {
 
     await maybeDelay();
     LOGGER.debug("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
-    self.postMessage({ type: "DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
   }
 
   if (type === "REDUCE_DELTAS") {
@@ -16182,25 +11180,25 @@ try {
       reduce_atom_deltas_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    self.postMessage({ type: "DELTA_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "DELTA_DONE", pulseId });
   }
 
   if (type === "TICK_MATRIX") {
     const bH = new Int32Array(
       sharedBuffer!,
-      OFFSETS.BONDS_OFFSET,
+      BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
     // removed debug logging
     if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
-    self.postMessage({ type: "MATRIX_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "MATRIX_DONE", pulseId });
   }
 
   if (type === "TICK_ENVIRONMENT") {
     const bH = new Int32Array(
       sharedBuffer!,
-      OFFSETS.BONDS_OFFSET,
+      BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
     LOGGER.debug(
@@ -16211,7 +11209,7 @@ try {
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
     if (tick_membrane_physics_fn) tick_membrane_physics_fn();
     await maybeDelay();
-    self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "ENVIRONMENT_DONE", pulseId });
   }
 
   if (type === "RESOLVE_BONDS") {
@@ -16222,7 +11220,7 @@ try {
       }
       const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
       LOGGER.info(`[DEBUG-WORKER] WASM resolve returned ${count}`);
-      self.postMessage({
+      (self as unknown as Worker).postMessage({
         type: "RESOLVE_BONDS_DONE",
         count,
         pulseId: e.data.pulseId,
@@ -16237,7 +11235,15 @@ try {
       ? drain_spawn_requests_fn(e.data.tick)
       : 0;
     await maybeDelay();
-    self.postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+  }
+
+  if (type === "PHAGOCYTE_PASS") {
+    const count = run_phagocyte_pass_fn
+      ? run_phagocyte_pass_fn(e.data.entropy)
+      : 0;
+    await maybeDelay();
+    (self as unknown as Worker).postMessage({ type: "PHAGOCYTE_PASS_DONE", pulseId, count });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -16249,7 +11255,7 @@ try {
       ? get_spatial_hash_max_cell_count_fn()
       : 0;
     await maybeDelay();
-    self.postMessage({
+    (self as unknown as Worker).postMessage({
       type: "HASH_DONE",
       pulseId,
       overflowCount,
@@ -16260,14 +11266,14 @@ try {
   if (type === "TICK_GLYPH_TRANSPORT") {
     if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
     await maybeDelay();
-    self.postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
   }
 
   if (type === "POLL_COHERENCE") {
     if (get_neural_coherence_fn) {
       const coherence = get_neural_coherence_fn();
       await maybeDelay();
-      self.postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
+      (self as unknown as Worker).postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
     }
   }
 
@@ -16275,7 +11281,7 @@ try {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
       await maybeDelay();
-      self.postMessage({ type: "COHERENCE_SET_DONE", pulseId });
+      (self as unknown as Worker).postMessage({ type: "COHERENCE_SET_DONE", pulseId });
     }
   }
 
@@ -16286,7 +11292,7 @@ try {
       accumulate_metabolism_stats_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    self.postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
   }
 
   if (type === "METABOLISM_APPLY") {
@@ -16322,7 +11328,7 @@ try {
       );
     }
     await maybeDelay();
-    self.postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
   }
 
   if (type === "SET_DEBUG_DELAY") {
@@ -16372,7 +11378,33 @@ import {
   AS_WASM_PATH,
   LOGGER,
 } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  GRID_H,
+  GRID_W,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LATTICE_MEMORY_END,
+  LOGIC_OFFSET,
+  MAX_EGRESS_EVENTS,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "@03/GATE.ts";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
@@ -16441,7 +11473,6 @@ import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "@01";
 import { GLYPH_BUFFER } from "@01";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
-import { IMMUNE } from "@02/IMMUNE.ts";
 
 import { syncHormonesToLattice } from "@02/HORMONE_BUFFER_RUNTIME.ts";
 import {
@@ -17397,80 +12428,80 @@ const getWorkerFaultStat = (workerIndex: number): WorkerFaultStat => {
   return workerFaultStats[workerIndex];
 };
 
-const idsView = new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, MAX_ATOMS);
-const xsView = new Int16Array(sharedBuffer, OFFSETS.XS_OFFSET, MAX_ATOMS);
-const ysView = new Int16Array(sharedBuffer, OFFSETS.YS_OFFSET, MAX_ATOMS);
+const idsView = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
+const xsView = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
+const ysView = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 const energiesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.ENERGY_OFFSET,
+  ENERGY_OFFSET,
   MAX_ATOMS,
 );
 const resonancesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.RESONANCE_OFFSET,
+  RESONANCE_OFFSET,
   MAX_ATOMS,
 );
 const causalityView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.CAUSALITY_OFFSET,
+  CAUSALITY_OFFSET,
   MAX_ATOMS,
 );
 export const phasesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHASE_OFFSET,
+  PHASE_OFFSET,
   MAX_ATOMS,
 );
 export const rolesView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.ROLES_OFFSET,
+  ROLES_OFFSET,
   MAX_ATOMS,
 );
 export const logicView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.LOGIC_OFFSET,
+  LOGIC_OFFSET,
   MAX_ATOMS * 8,
 );
 const instructionsView = new Uint8Array(
   sharedBuffer,
-  OFFSETS.INSTRUCTIONS_OFFSET,
+  INSTRUCTIONS_OFFSET,
   MAX_ATOMS * 64,
 );
 const bondsView = new Uint32Array(
   sharedBuffer,
-  OFFSETS.BONDS_OFFSET,
+  BONDS_OFFSET,
   MAX_ATOMS * 4,
 );
 const readXsView = new Int16Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
   MAX_ATOMS,
 );
 const readYsView = new Int16Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_YS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
   MAX_ATOMS,
 );
 const readEnergiesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
   MAX_ATOMS,
 );
 const readResonancesView = new Int32Array(
   sharedBuffer,
-  OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
   MAX_ATOMS,
 );
 const spawnHeadView = new Int32Array(
   sharedBuffer,
-  OFFSETS.SPAWN_REQUESTS_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
   2,
 );
 const spawnDataView = new DataView(
   sharedBuffer,
-  OFFSETS.SPAWN_REQUESTS_OFFSET + 8,
+  SPAWN_REQUESTS_OFFSET + 8,
   SPAWN_RING_CAPACITY * SPAWN_SLOT_BYTES,
 );
-const coherenceView = new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+const coherenceView = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 // Helper for drift & trend monitoring
 class RollingHistory {
@@ -18169,7 +13200,7 @@ let lastEgressReadHead = 0;
 export const drainEgressEvents = (): Uint8Array[] => {
   const headView = new Int32Array(
     STATE_MATRIX.wasmMemory.buffer,
-    OFFSETS.EGRESS_HEAD_OFFSET,
+    EGRESS_HEAD_OFFSET,
     1,
   );
   const writeHead = Atomics.load(headView, 0);
@@ -18178,10 +13209,10 @@ export const drainEgressEvents = (): Uint8Array[] => {
   if (writeHead === readHead) return [];
 
   const events: Uint8Array[] = [];
-  const maxEvents = OFFSETS.MAX_EGRESS_EVENTS;
+  const maxEvents = MAX_EGRESS_EVENTS;
   const dataView = new Uint8Array(
     STATE_MATRIX.wasmMemory.buffer,
-    OFFSETS.EGRESS_DATA_OFFSET,
+    EGRESS_DATA_OFFSET,
     maxEvents * 256,
   );
 
@@ -18236,7 +13267,7 @@ export const PULSE = {
     if (!shadowWasmInstance || !generate_epoch_proof_ffi) {
       await initShadowWasm();
     }
-    const resultPtr = OFFSETS.LATTICE_MEMORY_END + 1024 + 128;
+    const resultPtr = LATTICE_MEMORY_END + 1024 + 128;
     generate_epoch_proof_ffi!(tick, resultPtr);
 
     const u8View = new Uint8Array(
@@ -18260,7 +13291,7 @@ export const PULSE = {
     // We need 64 bytes for the hallucinated bytecode, and 32 bytes for the metrics result.
     // We will place this safely past the LATTICE_MEMORY_END to avoid collisions,
     // ensuring we fit inside the initial 163MB memory bounds without triggering out of bounds RangeErrors.
-    const scratchSpaceOffset = OFFSETS.LATTICE_MEMORY_END + 1024;
+    const scratchSpaceOffset = LATTICE_MEMORY_END + 1024;
     const resultPtr = scratchSpaceOffset + 64;
 
     // Write logic bytes
@@ -19019,8 +14050,8 @@ export const PULSE = {
       const dumpA11 = (lbl: string) => {
         const xs = new Int16Array(
           STATE_MATRIX.wasmMemory.buffer,
-          OFFSETS.XS_OFFSET,
-          OFFSETS.MAX_ATOMS,
+          XS_OFFSET,
+          MAX_ATOMS,
         );
         LOGGER.debug(
           `[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`,
@@ -19123,7 +14154,7 @@ export const PULSE = {
           type: "RESOLVE_BONDS",
           pulseId: bondPulseId,
           startIdx: 0,
-          endIdx: OFFSETS.MAX_ATOMS,
+          endIdx: MAX_ATOMS,
         },
         "RESOLVE_BONDS_DONE",
       );
@@ -19357,7 +14388,7 @@ export const PULSE = {
         // --- STAGE 22: ADAPTIVE INCEPTION ---
         // Find newly spawned atoms (those with IDs but empty instructions/role)
         // and inject evolved programs.
-        for (let idx = 0; idx < OFFSETS.MAX_ATOMS; idx++) {
+        for (let idx = 0; idx < MAX_ATOMS; idx++) {
           if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
             // This is likely a fresh spawn. Incept it.
             const prog = genesisInceptor.selectProgram();
@@ -19379,7 +14410,7 @@ export const PULSE = {
       await postAndWait(0, workers[0], {
         type: "METABOLISM_ACCUMULATE",
         startIdx: 0,
-        endIdx: OFFSETS.MAX_ATOMS,
+        endIdx: MAX_ATOMS,
         clear: true,
         pulseId: clearStatsPulseId,
       }, "METABOLISM_ACCUMULATE_DONE");
@@ -19412,12 +14443,12 @@ export const PULSE = {
       );
 
       const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(OFFSETS.MAX_ATOMS / runtimeWorkerCount);
+      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
       for (let i = 0; i < runtimeWorkerCount; i++) {
         const startIdx = i * chunkSize;
         const endIdx = i === runtimeWorkerCount - 1
-          ? OFFSETS.MAX_ATOMS
-          : Math.min(OFFSETS.MAX_ATOMS, (i + 1) * chunkSize);
+          ? MAX_ATOMS
+          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
 
         metabolismPromises.push(postAndWait(
           i,
@@ -19449,14 +14480,22 @@ export const PULSE = {
       // --- STAGE 26: Immunological Phagocyte ---
       {
         const entropyPressure = STATE_MATRIX.get_hormone(0); // H0: entropy_pressure
-        const purgeList = IMMUNE.phagocytePass(entropyPressure);
-        if (purgeList.length > 0) {
-          for (const idx of purgeList) {
-            STATE_MATRIX.recycleAtom(idx);
-          }
-          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgeList.length);
+        const workerResponse = await postAndWait(
+          0, // use primary worker
+          workers[0],
+          {
+            type: "PHAGOCYTE_PASS",
+            pulseId: nextPulseId(),
+            entropy: entropyPressure,
+          },
+          "PHAGOCYTE_PASS_DONE",
+        );
+        const purgedCount = workerResponse.count || 0;
+        
+        if (purgedCount > 0) {
+          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgedCount);
           LOGGER.info(
-            `🛡️ [IMMUNE] Phagocyte Purge: ${purgeList.length} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
+            `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
         }
       }
@@ -19800,11 +14839,11 @@ export const PULSE = {
     let ny = view.getInt32(80, true);
 
     // Teleport to opposite edge
-    if (nx <= 0) nx = Math.floor(OFFSETS.GRID_W * 10 - 1);
-    else if (nx >= Math.floor(OFFSETS.GRID_W * 10 - 1)) nx = 0;
+    if (nx <= 0) nx = Math.floor(GRID_W * 10 - 1);
+    else if (nx >= Math.floor(GRID_W * 10 - 1)) nx = 0;
 
-    if (ny <= 0) ny = Math.floor(OFFSETS.GRID_H * 10 - 1);
-    else if (ny >= Math.floor(OFFSETS.GRID_H * 10 - 1)) ny = 0;
+    if (ny <= 0) ny = Math.floor(GRID_H * 10 - 1);
+    else if (ny >= Math.floor(GRID_H * 10 - 1)) ny = 0;
 
     const role = payload[148];
 
@@ -19821,13 +14860,13 @@ export const PULSE = {
 
       const xs = new Int16Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.XS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        XS_OFFSET,
+        MAX_ATOMS,
       );
       const ys = new Int16Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.YS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        YS_OFFSET,
+        MAX_ATOMS,
       );
       Atomics.store(xs, atomIdx, nx);
       Atomics.store(ys, atomIdx, ny);
@@ -19836,7 +14875,7 @@ export const PULSE = {
 
       const ctxView = new Int32Array(
         STATE_MATRIX.wasmMemory.buffer,
-        OFFSETS.CONTEXT_OFFSET + atomIdx * 64,
+        CONTEXT_OFFSET + atomIdx * 64,
         16,
       );
       for (let i = 0; i < 16; i++) {
@@ -21054,652 +16093,6 @@ export const ATOM = () => (x: any) => x;
     const content = injectHologram(template, eigen, symbol);
     await Deno.writeTextFile(filename, content);
     return true;
-  },
-};
-
-```
-
----
-
-## FILE: src/02/REFLECTION_ENGINE.ts
-
-```typescript
-// OMEGA-64 | REFLECTION_ENGINE.ts | Era 17: The True Quine
-// Bridges RAM state back to Flatland source code.
-
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-const decodeCodeWords = (instructions: Uint8Array): Uint32Array => {
-  const out = new Uint32Array(16);
-  const view = new DataView(
-    instructions.buffer,
-    instructions.byteOffset,
-    instructions.byteLength,
-  );
-  for (let i = 0; i < out.length; i++) {
-    out[i] = view.getUint32(i * 4, true);
-  }
-  return out;
-};
-
-export const REFLECTION_ENGINE = {
-  /**
-   * Reflects the current atom state from RAM back to its Disk source file.
-   * This is the bridge that makes OMEGA-64 a true Quine.
-   */
-  reflect: async (idx: number): Promise<boolean> => {
-    const fullPath = IDX_TO_ID.get(idx);
-    if (!fullPath) return false;
-
-    try {
-      // 1. Capture current runtime metrics
-      const energy = STATE_MATRIX.getEnergy(idx);
-      const resonance = STATE_MATRIX.getResonance(idx);
-      const x = STATE_MATRIX.getX(idx);
-      const y = STATE_MATRIX.getY(idx);
-
-      // 2. Capture and hex-encode current genome & bytecode
-      const genome = Array.from(STATE_MATRIX.getLogic(idx))
-        .map((b) => b.toString(16).padStart(2, "0")).join("");
-
-      const instructions = STATE_MATRIX.getInstructions(idx);
-      const codeWords = decodeCodeWords(instructions);
-      const codeHex = Array.from(codeWords)
-        .map((u) => u.toString(16).padStart(8, "0")).join("");
-
-      // 3. Read current file content to preserve non-frontmatter data
-      const content = await Deno.readTextFile(fullPath);
-      const body = content.replace(/^---\n[\s\S]+?\n---\n/, "");
-
-      // 4. Construct the reflected source (The Quine Output)
-      const symbol = fullPath.split(".").slice(-3, -2)[0] || "ATOM";
-      const reflectedSource = `---
-symbol: ${symbol}
-genome: ${genome}
-code: ${codeHex}
-energy: ${energy.toFixed(3)}
-resonance: ${resonance.toFixed(3)}
-x: ${x}
-y: ${y}
-reflected_at: ${new Date().toISOString()}
----
-
-${body.trim()}
-
-// --- DECOMPILED BYTECODE ---
-/*
-${REFLECTION_ENGINE.decompile(instructions)}
-*/
-`;
-
-      // 5. Transactional Atomic Write
-      const tmpPath = `${fullPath}.tmp`;
-      await Deno.writeTextFile(tmpPath, reflectedSource);
-      await Deno.rename(tmpPath, fullPath);
-
-      return true;
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : String(e);
-      LOGGER.error(`🪞 [REFLECTION] Failed to reflect Atom[${idx}]:`, msg);
-      return false;
-    }
-  },
-
-  /**
-   * Decompiles binary bytecode into human-readable pseudo-code for documentation.
-   */
-  decompile: (instructions: Uint8Array): string => {
-    const code = decodeCodeWords(instructions);
-    const ops: string[] = [];
-    for (let i = 0; i < code.length; i++) {
-      const inst = code[i];
-      if (inst === 0) continue;
-
-      const op = inst & 0xFF;
-      const p1 = (inst >> 8) & 0xFF;
-      const p2 = (inst >> 16) & 0xFF;
-      const p3 = (inst >> 24) & 0xFF;
-
-      switch (op) {
-        case 0x10:
-          ops.push(
-            `${i.toString().padStart(2, "0")}: MOVE  dx:${(p1 - 128) / 10} dy:${
-              (p2 - 128) / 10
-            }`,
-          );
-          break;
-        case 0x20:
-          ops.push(`${i.toString().padStart(2, "0")}: FEED  amt:${p1 / 10}`);
-          break;
-        case 0x30:
-          ops.push(`${i.toString().padStart(2, "0")}: JMP   tgt:${p1 % 16}`);
-          break;
-        case 0x31:
-          ops.push(`${i.toString().padStart(2, "0")}: JZ    tgt:${p1 % 16}`);
-          break;
-        case 0x50:
-          ops.push(
-            `${i.toString().padStart(2, "0")}: SENSE target:${p1 / 10}`,
-          );
-          break;
-        case 0x99:
-          ops.push(
-            `${i.toString().padStart(2, "0")}: SELF_MODIFY slot:${p1 % 16}`,
-          );
-          break;
-        default:
-          ops.push(
-            `${i.toString().padStart(2, "0")}: OP_${
-              op.toString(16).toUpperCase()
-            } ${p1} ${p2} ${p3}`,
-          );
-      }
-    }
-    return ops.join("\n");
-  },
-
-  /**
-   * Crystallization: Reflects all high-resonance atoms to disk.
-   */
-  crystallize: async (threshold: number = 100) => {
-    const active = STATE_MATRIX.getActiveIndices();
-    let counts = 0;
-    for (const idx of active) {
-      if (STATE_MATRIX.getResonance(idx) > threshold) {
-        if (await REFLECTION_ENGINE.reflect(idx)) counts++;
-      }
-    }
-    if (counts > 0) {
-      LOGGER.info(
-        `💎 [CRYSTALLIZATION] ${counts} resonant atoms reflected to Flatland.`,
-      );
-    }
-  },
-};
-
-```
-
----
-
-## FILE: src/02/RIBOSOME_TICK.ts
-
-```typescript
-// OMEGA-64 | RIBOSOME_TICK.ts | Zero-IOPS Execution Kernel
-// Interprets the Logic Prefix (8 hex chars) directly from eigenvalues.
-
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-export const MAPPING: Record<string, string> = {
-  "0": "[0]",
-  "1": "[1]",
-  "2": "[2]",
-  "3": "[3]",
-  "4": "[4]",
-  "5": "[5]",
-  "6": "[6]",
-  "7": "[7]",
-  "8": "I",
-  "9": "K",
-  "A": "S",
-  "B": "Y",
-  "C": "ROT",
-  "D": "SYNC",
-  "E": "->",
-  "F": "ESC",
-};
-
-export interface QuantumFrame {
-  logic: string;
-  eigenvalue: string;
-  symbol: string;
-}
-
-export const RIBOSOME_TICK = {
-  /**
-   * Decode a 64-bit eigenvalue into its logic symbols.
-   * (Zero-IOPS: We only need the first 8 chars)
-   */
-  decode: (eigenvalue: string): string[] => {
-    const raw = eigenvalue.startsWith("0x")
-      ? eigenvalue.slice(2, 10)
-      : eigenvalue.slice(0, 8);
-    return raw.split("").map((char) =>
-      MAPPING[char.toUpperCase()] ?? `[${char}]`
-    );
-  },
-
-  /**
-   * Execute a logic chain (Zero-IOPS reduction).
-   * Implements a simple stack-based combinator engine.
-   */
-  reduce: (logicHex: string): string => {
-    const ops = logicHex.startsWith("0x")
-      ? logicHex.slice(2, 10)
-      : logicHex.slice(0, 8);
-    const stack: string[] = ops.split("").reverse(); // Push ops onto stack in reverse
-    const output: string[] = [];
-
-    let safety = 0;
-    while (stack.length > 0 && safety < 128) {
-      safety++;
-      const op = stack.pop()!.toUpperCase();
-
-      // I Combinator (8)
-      if (op === "8") {
-        if (stack.length > 0) {
-          // I x -> x
-        }
-      } // K Combinator (9)
-      else if (op === "9") {
-        if (stack.length >= 2) {
-          const x = stack.pop()!;
-          stack.pop(); // drop y
-          stack.push(x);
-        }
-      } // S Combinator (A)
-      else if (op === "A") {
-        if (stack.length >= 3) {
-          const x = stack.pop()!;
-          const y = stack.pop()!;
-          const z = stack.pop()!;
-          // S x y z -> x z (y z)
-          stack.push(z);
-          stack.push(y);
-          stack.push(z);
-          stack.push(x);
-        }
-      } // ROT Operator (C)
-      else if (op === "C") {
-        if (stack.length >= 2) {
-          const a = stack.shift()!;
-          stack.push(a);
-        }
-      } // SYNC (D) / ESC (F) / -> (E) - No-ops in pure logic
-      else if (["D", "E", "F"].includes(op)) {
-        // Control Signal Detected
-      } // Constants / Numerals (0-7)
-      else {
-        output.push(op);
-      }
-    }
-
-    // Reconstruct resulting logic hex (padded to 8 chars)
-    const result = (output.join("") + stack.reverse().join("")).padEnd(8, "0")
-      .slice(0, 8);
-    return result;
-  },
-
-  /**
-   * Verification: B1 -> NOT -> B0
-   */
-  verify: () => {
-    LOGGER.info("🛡️ OMEGA-64 | ZERO-IOPS VERIFICATION | PHASE XXIII");
-
-    const B1_HEX = "3EB92A1B";
-    const NOT_HEX = "F1E1B929";
-
-    LOGGER.info(`\n🧪 EXECUTING REDUCTION: NOT(B1)`);
-    const result = RIBOSOME_TICK.reduce(NOT_HEX + B1_HEX);
-
-    LOGGER.info(`   [FINAL] 0x${result}`);
-    LOGGER.info("✅ VERIFICATION SUCCESSFUL: Zero-IOPS Logic Reduced.");
-  },
-};
-
-if (import.meta.main) {
-  RIBOSOME_TICK.verify();
-}
-
-```
-
----
-
-## FILE: src/02/RIBOSOME.ts
-
-```typescript
-/// <reference lib="deno.window" />
-// i.L32.core.RIBOSOME.ts
-// The Meta-Processor for OMEGA-64 Flatland.
-// Scans the Root, Lifts Atoms, and Builds the Living Map.
-
-import { IMMUNE } from "@02/IMMUNE.ts";
-import { ID_TO_IDX, IDX_TO_ID } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-export interface Atom {
-  id: string; // The Filename (Address)
-  level: number;
-  module: any; // The Exported Logic
-  symbol: string;
-  topo?: { r: number; theta: number; op: string };
-}
-
-export type Lattice = Map<string, Atom>;
-export { ID_TO_IDX, IDX_TO_ID };
-
-function idToBigInt(id: string): bigint {
-  const hex = id.split(".")[0].replace("0x", "");
-  const cleanHex = hex.replace(/[^0-9a-fA-F]/g, "0").padEnd(16, "0");
-  try {
-    return BigInt(`0x${cleanHex.substring(0, 16)}`);
-  } catch {
-    return 0n;
-  }
-}
-
-const parseFrontmatterScalar = (raw: string): unknown => {
-  const value = raw.trim();
-  if (value.length === 0) return "";
-  if (
-    (value.startsWith('"') && value.endsWith('"')) ||
-    (value.startsWith("'") && value.endsWith("'"))
-  ) {
-    return value.slice(1, -1);
-  }
-  if (value === "true") return true;
-  if (value === "false") return false;
-  if (value === "null") return null;
-  if (/^-?\d+(?:\.\d+)?$/u.test(value)) {
-    const parsed = Number(value);
-    if (Number.isFinite(parsed)) return parsed;
-  }
-  return value;
-};
-
-const parseFrontmatter = (raw: string): Record<string, unknown> => {
-  const out: Record<string, unknown> = {};
-  let currentArrayKey: string | null = null;
-  for (const sourceLine of raw.split(/\r?\n/u)) {
-    const line = sourceLine.trim();
-    if (line.length === 0 || line.startsWith("#")) continue;
-
-    if (line.startsWith("- ")) {
-      if (currentArrayKey) {
-        const list = Array.isArray(out[currentArrayKey])
-          ? out[currentArrayKey] as unknown[]
-          : [];
-        list.push(parseFrontmatterScalar(line.slice(2)));
-        out[currentArrayKey] = list;
-      }
-      continue;
-    }
-
-    const match = line.match(/^([A-Za-z0-9_]+)\s*:\s*(.*)$/u);
-    if (!match) {
-      currentArrayKey = null;
-      continue;
-    }
-
-    const key = match[1];
-    const value = match[2].trim();
-    if (value.length === 0) {
-      out[key] = [];
-      currentArrayKey = key;
-      continue;
-    }
-
-    currentArrayKey = null;
-    if (value.startsWith("[") && value.endsWith("]")) {
-      const inner = value.slice(1, -1).trim();
-      out[key] = inner.length === 0
-        ? []
-        : inner.split(",").map((item) => parseFrontmatterScalar(item));
-      continue;
-    }
-    out[key] = parseFrontmatterScalar(value);
-  }
-  return out;
-};
-
-const decodeHexBytes = (hex: string): Uint8Array => {
-  const source = hex.trim();
-  if (source.length % 2 !== 0) {
-    throw new Error("hex length must be even");
-  }
-  const out = new Uint8Array(source.length / 2);
-  for (let i = 0; i < out.length; i++) {
-    const value = Number.parseInt(source.slice(i * 2, i * 2 + 2), 16);
-    if (!Number.isFinite(value)) {
-      throw new Error(`invalid hex byte at ${i}`);
-    }
-    out[i] = value;
-  }
-  return out;
-};
-
-export const RIBOSOME = {
-  // Scan and Lift all Atoms in Flatland and Vacuum
-  lift: async (root: string = Deno.cwd(), fastHydrate?: () => Promise<boolean>): Promise<Map<string, Atom>> => {
-    LOGGER.info("   [RIBOSOME] lift started on root: ", root);
-
-    // --- ERA 39: Hybrid Storage (Snapshot Hydration) ---
-    if (fastHydrate) {
-      const hydrated = await fastHydrate();
-      if (hydrated) {
-        LOGGER.info(
-          "   [RIBOSOME] Fast Hydration Successful. Bypassing Flatland Sweep. ⚡🧊",
-        );
-        // Reconstruct a mock lattice from active indices for compatibility
-        const lattice = new Map<string, Atom>();
-        const activeIndices = STATE_MATRIX.getActiveIndices();
-        for (const idx of activeIndices) {
-          const idHex = STATE_MATRIX.getId(idx).toString(16).padStart(16, "0")
-            .toUpperCase();
-          // We don't have the full AST/logic string here perfectly, but
-          // the core arrays are populated. We supply a dummy atom object just to satisfy return type.
-          ID_TO_IDX.set(idHex, idx);
-          IDX_TO_ID.set(idx, idHex);
-          lattice.set(idHex, {
-            id: idHex,
-            level: 0,
-            module: {},
-            symbol: "HYDRATED",
-          });
-        }
-        // Return immediately, bypassing filesystem parsing
-        return lattice;
-      } else {
-        LOGGER.warn(
-          "   [RIBOSOME] Fast Hydration Failed. Falling back to Flatland Sweep.",
-        );
-        STATE_MATRIX.clear(); // Reset before fallback
-      }
-    }
-
-    const lattice = new Map<string, Atom>();
-    let idx = 0;
-
-    const scanDirs = [root, `${root}/SINGULARITY/V`];
-    for (const dir of scanDirs) {
-      LOGGER.info(`   [RIBOSOME] scanning dir: ${dir}`);
-      try {
-        for await (const entry of Deno.readDir(dir)) {
-          if (
-            entry.isFile && entry.name.startsWith("0x") &&
-            entry.name.endsWith(".md")
-          ) {
-            const fullPath = dir === root
-              ? entry.name
-              : `SINGULARITY/V/${entry.name}`;
-            const content = await Deno.readTextFile(fullPath);
-            const frontmatterMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-            if (!frontmatterMatch) continue;
-
-            const alpha = parseFrontmatter(frontmatterMatch[1]) as any;
-            const symbol = alpha.symbol ?? entry.name.split(".")[1] ??
-              "UNKNOWN";
-            const level = alpha.level ??
-              (alpha.vector ? parseInt(alpha.vector.split(".")[0]) : 0);
-
-            // 🧬 ERA 8: SERIALIZE INTO SoA STATE_MATRIX
-            const atomBigId = idToBigInt(entry.name);
-            STATE_MATRIX.setId(idx, atomBigId);
-            STATE_MATRIX.setX(idx, Number(alpha.x) || 0);
-            STATE_MATRIX.setY(idx, Number(alpha.y) || 0);
-            STATE_MATRIX.setEnergy(idx, Number(alpha.energy) || 100);
-            STATE_MATRIX.setResonance(idx, Number(alpha.resonance) || 0);
-            STATE_MATRIX.setPhase(idx, Number(alpha.phase) || 0);
-
-            // Logic (Hex to Bytes)
-            const logic = (alpha.logic || "00000000").replace(
-              /[^0-9a-fA-F]/g,
-              "",
-            ).padEnd(16, "0");
-            try {
-              STATE_MATRIX.setLogic(
-                idx,
-                decodeHexBytes(logic.substring(0, 16)),
-              );
-            } catch { /* skip corrupted logic binary lift */ }
-
-            ID_TO_IDX.set(fullPath, idx);
-            IDX_TO_ID.set(idx, fullPath);
-
-            lattice.set(fullPath, {
-              id: entry.name,
-              level: level,
-              symbol: symbol,
-              module: null,
-            });
-
-            idx++;
-          }
-        }
-      } catch (err) {
-        LOGGER.error(`   [RIBOSOME] Error reading dir ${dir}:`, err);
-      }
-    }
-
-    LOGGER.info(`   [RIBOSOME] Phase 1 done, found atoms:`, ID_TO_IDX.size);
-
-    // 🧬 PASS 2: BOND RESOLUTION
-    const bondKeyMap = new Map<string, string>();
-    for (const k of ID_TO_IDX.keys()) {
-      const basename = k.split("/").pop() || k;
-      const bondIdStr = basename.split(".")[0];
-      bondKeyMap.set(bondIdStr, k);
-    }
-
-    for (const [fullPath, atomIdx] of ID_TO_IDX.entries()) {
-      try {
-        const content = await Deno.readTextFile(fullPath);
-        const alphaMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-        if (alphaMatch) {
-          const alpha = parseFrontmatter(alphaMatch[1]) as any;
-          const bondIds: string[] = alpha.bonds || [];
-          const bondIndices = new Uint32Array(4);
-          for (let i = 0; i < Math.min(bondIds.length, 4); i++) {
-            const partnerId = bondKeyMap.get(bondIds[i]);
-            if (partnerId) {
-              bondIndices[i] = ID_TO_IDX.get(partnerId) || 0;
-            }
-          }
-          STATE_MATRIX.setBonds(atomIdx, bondIndices);
-        }
-      } catch (err) { /* ignore */ }
-    }
-
-    LOGGER.info(
-      `   [MEMORY_MATRIX] ${idx} atoms serialized into SoA Structure.`,
-    );
-
-    // 🛡️ IMMUNE SYSTEM CHECK
-    LOGGER.info("   [RIBOSOME] Running IMMUNE check");
-    LOGGER.info("   [RIBOSOME] IMMUNE check skipped (Legacy)");
-    return lattice;
-  },
-
-  // Inject Dependencies into a Pure Atom (Adapted for Flatland)
-  inject: (id: string, lattice: Map<string, Atom>) => {
-    const target = lattice.get(id);
-    if (!target) return null;
-
-    // Implementation for Flatland injection...
-    return null;
-  },
-};
-
-if (import.meta.main) {
-  const lattice = await RIBOSOME.lift();
-  LOGGER.info(`[RIBOSOME] Flatland Lifted: ${lattice.size} atoms.`);
-}
-
-```
-
----
-
-## FILE: src/02/SNAP.ts
-
-```typescript
-// OMEGA-64 | SNAP.ts | The Persistent Observer (Era 15)
-// Transactional synchronization of RAM Memory Matrix to the Disk Flatland.
-
-import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  parse as parseYaml,
-  stringify as stringifyYaml,
-} from "jsr:@std/yaml@^1.0.5";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
-export const SNAP = {
-  // Sync Matrix State to .md Files with Atomic "Write-then-Rename"
-  save: async (root: string = Deno.cwd()) => {
-    let saved = 0;
-    let errors = 0;
-
-    for (let i = 0; i < MAX_ATOMS; i++) {
-      if (STATE_MATRIX.getId(i) === 0n) continue;
-
-      const fullPath = IDX_TO_ID.get(i);
-      if (!fullPath) continue;
-
-      try {
-        const content = await Deno.readTextFile(fullPath);
-        const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
-        if (!fmMatch) continue;
-
-        const alpha = parseYaml(fmMatch[1]) as any;
-
-        // Sync from RAM Matrix
-        const x = STATE_MATRIX.getX(i);
-        const y = STATE_MATRIX.getY(i);
-        const energy = STATE_MATRIX.getEnergy(i);
-        const resonance = STATE_MATRIX.getResonance(i);
-        const phase = STATE_MATRIX.getPhase(i);
-
-        // Update Frontmatter
-        alpha.x = x;
-        alpha.y = y;
-        alpha.energy = Math.floor(energy);
-        alpha.resonance = Number(resonance.toFixed(3));
-        alpha.phase = Number(phase.toFixed(3));
-
-        const updated = content.replace(
-          /^---\n[\s\S]+?\n---\n/,
-          `---\n${stringifyYaml(alpha)}---\n`,
-        );
-
-        // --- ATOMIC WRITE STRATEGY ---
-        const tmpPath = `${fullPath}.tmp`;
-        await Deno.writeTextFile(tmpPath, updated);
-        await Deno.rename(tmpPath, fullPath); // Atomic operation on Unix
-
-        saved++;
-      } catch {
-        errors++;
-      }
-    }
-
-    if (saved > 0) {
-      LOGGER.info(
-        `   [SNAP] Transactional Sync: ${saved} atoms committed to Disk. (${errors} errors)`,
-      );
-    }
   },
 };
 
@@ -25318,7 +19711,9 @@ if (import.meta.main) {
 ```typescript
 import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
 import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
-import * as OFFSETS from "@00";
+import {
+  ENERGY_OFFSET
+} from "@00";
 
 /**
  * Stage 5.3: Secretion Energetics Audit
@@ -25331,7 +19726,7 @@ async function runAudit() {
   // 1. Snapshot initial state
   const energyView = new Int32Array(
     STATE_MATRIX.buffer,
-    OFFSETS.ENERGY_OFFSET,
+    ENERGY_OFFSET,
     1000,
   );
   const initialEnergyCopy = new Int32Array(energyView);
@@ -25871,7 +20266,11 @@ export const evaluateArchitectPlasmidPromotionAction = (
 // Binary Event Ring Buffer (Memory-Mapped)
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  MAX_LEDGER_EVENTS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type LedgerEvent = {
   tick: number;
@@ -25893,7 +20292,7 @@ export const ATOMIC_LEDGER = {
    * If the sequence number is too old (overwritten by MAX_EVENTS), this will return overwritten data.
    */
   getEvent(sequence: number): LedgerEvent {
-    const cursor = sequence % OFFSETS.MAX_LEDGER_EVENTS;
+    const cursor = sequence % MAX_LEDGER_EVENTS;
     const base = cursor * 4;
     return {
       tick: Atomics.load(STATE_MATRIX.ledgerDataView, base),
@@ -25909,13 +20308,13 @@ export const ATOMIC_LEDGER = {
    */
   exportBinary(): Uint8Array {
     // 4 bytes for head, plus MAX_EVENTS * 16 bytes for data
-    const size = 4 + (OFFSETS.MAX_LEDGER_EVENTS * 16);
+    const size = 4 + (MAX_LEDGER_EVENTS * 16);
     const dump = new Uint8Array(size);
 
     // Copy Head
     const headBytes = new Uint8Array(
       STATE_MATRIX.ledgerHeadView.buffer,
-      OFFSETS.LEDGER_HEAD_OFFSET,
+      LEDGER_HEAD_OFFSET,
       4,
     );
     dump.set(headBytes, 0);
@@ -25923,8 +20322,8 @@ export const ATOMIC_LEDGER = {
     // Copy Data
     const dataBytes = new Uint8Array(
       STATE_MATRIX.ledgerDataView.buffer,
-      OFFSETS.LEDGER_DATA_OFFSET,
-      OFFSETS.MAX_LEDGER_EVENTS * 16,
+      LEDGER_DATA_OFFSET,
+      MAX_LEDGER_EVENTS * 16,
     );
     dump.set(dataBytes, 4);
 
@@ -25937,7 +20336,7 @@ export const ATOMIC_LEDGER = {
   readRange(startSeq: number, endSeq: number): LedgerEvent[] {
     const events: LedgerEvent[] = [];
     // Ensure we don't try to read more than the buffer can hold
-    const safeStart = Math.max(startSeq, endSeq - OFFSETS.MAX_LEDGER_EVENTS);
+    const safeStart = Math.max(startSeq, endSeq - MAX_LEDGER_EVENTS);
     for (let i = safeStart; i < endSeq; i++) {
       events.push(this.getEvent(i));
     }
@@ -31957,7 +26356,6 @@ export const RUNTIME_POLICY = {
 // Handles Regent Election, Decrees, and Legitimacy.
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "@02";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(
     tick: number,
@@ -32023,7 +26421,6 @@ export const SOVEREIGNTY_ENGINE: any = {
     }
 
     if (regentIdx !== -1) {
-      const filename = IDX_TO_ID.get(regentIdx)!;
       const logicBytes = STATE_MATRIX.getLogic(regentIdx);
       const logicStr = Array.from(logicBytes).map((b) =>
         b.toString(16).padStart(2, "0")
@@ -32536,7 +26933,6 @@ export const P2P_CODEC = {
 // Reliable inter-system atom migration.
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "@02";
 import { PRNG } from "../00/PRNG.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";
@@ -33407,98 +27803,6 @@ export const SWARM_NODE = new MetaKuramotoNode();
 
 ```typescript
 export * from "./oracle_loop_test.ts";
-
-```
-
----
-
-## FILE: src/05/03/oracle_loop_test.ts
-
-```typescript
-// OMEGA-64 | oracle_loop_test.ts | Phase 39: Sovereign Epistemics
-import {
-  assert,
-  assertEquals,
-} from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { NEXUS_DAEMON, PULSE } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { SOVEREIGN_ORACLE } from "@05";
-import { LLM_SYNAPSE } from "@05";
-
-Deno.test({
-  name: "Phase 39: Sovereign Oracle Epistemic Gate (Memetic Ingestion)",
-  async fn() {
-    // 1. Initialize an empty standard matrix with 1 test subject
-    await PULSE.initWorkers(1);
-    STATE_MATRIX.clear();
-
-    const atomIdx = STATE_MATRIX.findEmptySlot();
-    STATE_MATRIX.setEnergy(atomIdx, 500);
-    STATE_MATRIX.setId(atomIdx, 1n);
-
-    // Give it a genome that executes OP_INCORPORATE_PLASMID (0xAB) at offset 8.
-    const initGenome = new Uint8Array(64).fill(0x00);
-    initGenome[0] = 0x01; // OP_SET
-    initGenome[1] = 0x00; // R0
-    initGenome[2] = 0x08; // Immutable value 8
-
-    initGenome[3] = 0xAB; // OP_INCORPORATE_PLASMID
-    initGenome[4] = 0x00; // Offset register R0
-    STATE_MATRIX.setInstructions(atomIdx, initGenome);
-
-    // 2. Mock `LLM_SYNAPSE.generateAtomicBytecode` function
-    const optimalPlasmid = new Uint8Array(8).fill(0x00);
-    optimalPlasmid[0] = 0x81; // OP_SIGNAL
-    optimalPlasmid[1] = 0x01;
-    optimalPlasmid[2] = 0x81; // Highly structured/low-entropy
-
-    // Override the LLM API module
-    const originalGenerate = LLM_SYNAPSE.generateAtomicBytecode;
-    LLM_SYNAPSE.generateAtomicBytecode = async (_telemetry) => {
-      return { plasmid: optimalPlasmid };
-    };
-
-    try {
-      const telemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
-      await SOVEREIGN_ORACLE.consultOracle(atomIdx, telemetry);
-
-      // Assert plasmid injection
-      const drains = SOVEREIGN_ORACLE.drainPendingMutations();
-      assert(drains.applied > 0, "Oracle MUST inject the Stigmergic Plasmid.");
-
-      // Let's tick the simulation. The atom should execute OP_INCORPORATE_PLASMID
-      // and fetch the new plasmid into index 8 of its genome.
-      await PULSE.tick();
-      await PULSE.tick();
-
-      const studentGenomeAfter = STATE_MATRIX.getInstructions(atomIdx);
-
-      let matchArray = true;
-      for (let i = 0; i < 8; i++) {
-        if (studentGenomeAfter[8 + i] !== optimalPlasmid[i]) {
-          matchArray = false;
-          break;
-        }
-      }
-
-      assert(
-        matchArray,
-        "Atom did NOT successfully read the Oracle's plasmid from the environment!",
-      );
-
-      console.log("Atom first 16 bytes:", studentGenomeAfter.slice(0, 16));
-      console.log("Oracle was successfully downloaded without forced rewrite.");
-    } finally {
-      // Cleanup Worker threads and mock overrides
-      LLM_SYNAPSE.generateAtomicBytecode = originalGenerate;
-      PULSE.stopWorkers();
-      await NEXUS_DAEMON.stop();
-      await new Promise((r) => setTimeout(r, 200));
-    }
-  },
-  sanitizeOps: false,
-  sanitizeResources: false,
-});
 
 ```
 
@@ -35660,7 +29964,6 @@ export * from "./continuum_gate_test.ts";
 ```typescript
 import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
-import { SPATIAL_HASH } from "@01";
 import { assembleScript } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -35755,21 +30058,38 @@ export class AgentProxy {
     const role = STATE_MATRIX.getRole(atomId);
 
     // Radar scan (radius 50 units = 5 cells)
-    const neighbors = SPATIAL_HASH.queryRadius(x, y, 50);
-    const vision = neighbors
-      .filter((nIdx) => nIdx !== atomId)
-      .map((nIdx) => ({
-        id: Number(STATE_MATRIX.getId(nIdx)),
-        idx: nIdx,
-        dx: STATE_MATRIX.getX(nIdx) - x,
-        dy: STATE_MATRIX.getY(nIdx) - y,
-        role: STATE_MATRIX.getRole(nIdx),
-        distance: Math.sqrt(
-          Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
-            Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
-        ),
-      })).sort((a, b) => a.distance - b.distance)
-      .slice(0, 30);
+    const vision = [];
+    const MAX_DISTANCE_SQ = 50 * 50;
+    
+    // Bounded scan over STATE_MATRIX to avoid legacy SPATIAL_HASH O(1) grid overhead
+    // which requires constant upkeep from workers.
+    for (let currentAt = 1; currentAt <= 10000; currentAt++) {
+      if (currentAt === atomId) continue;
+      
+      const nId = Number(STATE_MATRIX.getId(currentAt));
+      if (nId <= 0) continue;
+      
+      const nX = STATE_MATRIX.getX(currentAt);
+      const nY = STATE_MATRIX.getY(currentAt);
+      
+      const dx = nX - x;
+      const dy = nY - y;
+      const dSq = dx * dx + dy * dy;
+      
+      if (dSq <= MAX_DISTANCE_SQ) {
+        vision.push({
+          id: nId,
+          idx: currentAt,
+          dx,
+          dy,
+          role: STATE_MATRIX.getRole(currentAt),
+          distance: Math.sqrt(dSq),
+        });
+      }
+    }
+
+    vision.sort((a, b) => a.distance - b.distance);
+    vision.splice(30); // Keep only nearest 30
 
     return new Response(
       JSON.stringify({
@@ -36421,7 +30741,7 @@ const hormoneRegimeLabel = (h: number[]): string => {
 };
 
 const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
   // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
   const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join(
@@ -36880,7 +31200,7 @@ const discoverSpecies = async (
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
   // Stage 7.4: Fetch current hormone regime label
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
 
   const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);
@@ -39197,168 +33517,16 @@ export const MUTATION_TELEMETRY = {
 
 ---
 
-## FILE: src/06/OBSERVER_LAB.ts
-
-```typescript
-// OMEGA-64 | OBSERVER_LAB.ts | The Sanctuary Observer
-// Monitors SANCTUARY/ for mutated artifacts and attempts execution.
-
-import { encodeHex } from "jsr:@std/encoding@^1.0.5/hex";
-
-const ROOT = Deno.cwd();
-const SANCTUARY = `${ROOT}/SANCTUARY`;
-const LAB_LOG = `${ROOT}/LAB_FEEDBACK.log`;
-
-async function logLab(msg: string) {
-  const ts = new Date().toISOString();
-  await Deno.writeTextFile(LAB_LOG, `[${ts}] ${msg}\n`, { append: true });
-}
-
-async function runLabCycle() {
-  console.log("🔬 [LAB] Commencing Observation Cycle...");
-
-  try {
-    for await (const entry of Deno.readDir(SANCTUARY)) {
-      if (!entry.isFile) continue;
-
-      const filePath = `${SANCTUARY}/${entry.name}`;
-      console.log(`🔬 [LAB] Testing Artifact: ${entry.name}`);
-
-      let result = "";
-      let success = false;
-
-      if (entry.name.endsWith(".py")) {
-        const cmd = new Deno.Command("python3", {
-          args: [filePath],
-          stdout: "piped",
-          stderr: "piped",
-        });
-        const { code, stdout, stderr } = await cmd.output();
-        success = code === 0;
-        result = new TextDecoder().decode(success ? stdout : stderr);
-      } else if (entry.name.endsWith(".js") || entry.name.endsWith(".ts")) {
-        const cmd = new Deno.Command("deno", {
-          args: ["run", "--allow-none", filePath],
-          stdout: "piped",
-          stderr: "piped",
-        });
-        const { code, stdout, stderr } = await cmd.output();
-        success = code === 0;
-        result = new TextDecoder().decode(success ? stdout : stderr);
-      } else {
-        continue; // Skip unknown formats
-      }
-
-      const outcome = success ? "SUCCESS" : "FAILURE";
-      console.log(`🔬 [LAB] Outcome: ${outcome}`);
-      await logLab(
-        `${entry.name} -> ${outcome}: ${
-          result.substring(0, 100).replace(/\n/g, " ")
-        }[...]`,
-      );
-
-      // Inject Feedback as a new Atom
-      await injectFeedback(entry.name, outcome, result);
-    }
-  } catch (e) {
-    console.error("🔬 [LAB] Observation cycle failed:", e);
-  }
-}
-
-async function injectFeedback(
-  filename: string,
-  outcome: string,
-  output: string,
-) {
-  const encoder = new TextEncoder();
-  const hashBuffer = await crypto.subtle.digest(
-    "SHA-256",
-    encoder.encode(`${filename}_feedback_${Date.now()}`),
-  );
-  const atomHex = encodeHex(hashBuffer).substring(0, 16).toUpperCase();
-  const atomId = `0x${atomHex}`;
-
-  const feedbackLogic = outcome === "SUCCESS" ? "8888AAAA" : "FFFF0000";
-
-  const content =
-    `---\neigenvalue: '${atomId}'\nsymbol: 'LAB_FEEDBACK'\nenergy: 50\nresonance: 10\nlogic: '${feedbackLogic}'\nthought: 'FEEDBACK_FOR_${filename}'\ndesc: 'Execution feedback from The Sanctuary. Outcome: ${outcome}'\nbonds: []\n---\n\n<div class="lab-feedback">\n  ### Mutational Feedback for ${filename}\n  **Result**: ${outcome}\n  **Output Snippet**:\n  \`\`\`\n  ${
-      output.substring(0, 200)
-    }\n  \`\`\`\n</div>\n`;
-
-  await Deno.writeTextFile(`${ROOT}/${atomId}.FEEDBACK.md`, content);
-  console.log(`🔬 [LAB] Feedback Atom Generated: ${atomId}`);
-}
-
-// Continuous monitoring loop
-if (import.meta.main) {
-  while (true) {
-    await runLabCycle();
-    await new Promise((r) => setTimeout(r, 60000)); // Every 60 seconds
-  }
-}
-
-```
-
----
-
-## FILE: src/06/OBSERVER_UI.ts
-
-```typescript
-// OMEGA-64 | OBSERVER_UI.ts | Era 11: The Eye of the Observer
-// Deno server to stream the SoA Matrix and Vox Populi to the browser.
-
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { SEMANTIC_MEMBRANE } from "@05";
-
-const PORT = 8000;
-const UI_PATH = "./63/00/index.html";
-
-console.log(`👁️ OMEGA-64 | OBSERVER EYE | Port: ${PORT}`);
-
-if (import.meta.main) {
-  Deno.serve({ port: PORT }, async (req) => {
-    const url = new URL(req.url);
-
-    // 1. Stream the SoA Matrix Buffer (Copy required for SharedArrayBuffer)
-    if (url.pathname === "/state") {
-      const bufferCopy = new Uint8Array(STATE_MATRIX.buffer.byteLength);
-      bufferCopy.set(new Uint8Array(STATE_MATRIX.buffer));
-      return new Response(bufferCopy, {
-        headers: { "Content-Type": "application/octet-stream" },
-      });
-    }
-
-    // 2. Stream the Collective Voice (Vox Populi)
-    if (url.pathname === "/vox") {
-      const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
-      return new Response(JSON.stringify(vox), {
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-
-    // 3. Serve the UI Frontend
-    try {
-      const html = await Deno.readTextFile(UI_PATH);
-      return new Response(html, {
-        headers: { "Content-Type": "text/html" },
-      });
-    } catch (e) {
-      return new Response("UI not found. Run 'mkdir ui && touch ui/index.html'", {
-        status: 404,
-      });
-    }
-  });
-}
-
-```
-
----
-
 ## FILE: src/06/OMEGA_DAEMON.ts
 
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
+import {
+  WORLD_MAX_X,
+  WORLD_MAX_Y
+} from "../_/mod.ts";
+
 
 type Telemetry = {
   tick: number;
@@ -40748,12 +34916,12 @@ const normalizeDecision = (raw: unknown): DaemonDecision => {
       target_x: clamp(
         Math.round(asFiniteNumber(payloadSource.target_x, 700)),
         0,
-        OFFSETS.WORLD_MAX_X,
+        WORLD_MAX_X,
       ),
       target_y: clamp(
         Math.round(asFiniteNumber(payloadSource.target_y, 400)),
         0,
-        OFFSETS.WORLD_MAX_Y,
+        WORLD_MAX_Y,
       ),
       intensity: clamp(asFiniteNumber(payloadSource.intensity, 100), 1, 2000),
       hex_code: hexCode,
@@ -41732,7 +35900,9 @@ if (import.meta.main) {
 ```typescript
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 import { sharedBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  LATTICE_MEMORY_END
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
@@ -41759,7 +35929,7 @@ export const SNAP_ENGINE = {
       // Although SharedArrayBuffer is shared, Deno.writeFile will read from it.
       // To be safe and non-blocking, we slice the relevant portion.
       const data = new Uint8Array(
-        sharedBuffer.slice(0, OFFSETS.LATTICE_MEMORY_END),
+        sharedBuffer.slice(0, LATTICE_MEMORY_END),
       );
 
       await Deno.writeFile(snapPath, data);
@@ -42726,7 +36896,35 @@ await main();
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  BONDS_OFFSET,
+  BOND_DISTANCES_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  DAMPING_OFFSET,
+  ENERGY_OFFSET,
+  GLYPH_HEADER_OFFSET,
+  GLYPH_PAYLOAD_OFFSET,
+  GRID_CELLS,
+  HORMONE_OFFSET,
+  IDS_OFFSET,
+  LOGIC_OFFSET,
+  MAX_ATOMS,
+  MEMORY_GRID_OFFSET,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SIGNAL_GRID_OFFSET,
+  STIFFNESS_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { sharedBuffer as mainlineBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 /**
@@ -42766,8 +36964,8 @@ export class DollFork {
 
   constructor(customMemory?: WebAssembly.Memory) {
     this.wasmMemory = customMemory ?? new WebAssembly.Memory({
-      initial: OFFSETS.WASM_MEMORY_PAGES,
-      maximum: OFFSETS.WASM_MEMORY_PAGES,
+      initial: WASM_MEMORY_PAGES,
+      maximum: WASM_MEMORY_PAGES,
       shared: true,
     });
     this.shardBuffer = this.wasmMemory.buffer as SharedArrayBuffer;
@@ -42775,77 +36973,77 @@ export class DollFork {
     // Initialize primary views (Host side)
     const b = this.shardBuffer;
     this.views = {
-      ids: new BigUint64Array(b, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS),
-      xs: new Int16Array(b, OFFSETS.XS_OFFSET, OFFSETS.MAX_ATOMS),
-      ys: new Int16Array(b, OFFSETS.YS_OFFSET, OFFSETS.MAX_ATOMS),
-      energies: new Int32Array(b, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS),
+      ids: new BigUint64Array(b, IDS_OFFSET, MAX_ATOMS),
+      xs: new Int16Array(b, XS_OFFSET, MAX_ATOMS),
+      ys: new Int16Array(b, YS_OFFSET, MAX_ATOMS),
+      energies: new Int32Array(b, ENERGY_OFFSET, MAX_ATOMS),
       resonances: new Int32Array(
         b,
-        OFFSETS.RESONANCE_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        RESONANCE_OFFSET,
+        MAX_ATOMS,
       ),
-      phases: new Int32Array(b, OFFSETS.PHASE_OFFSET, OFFSETS.MAX_ATOMS),
-      roles: new Uint8Array(b, OFFSETS.ROLES_OFFSET, OFFSETS.MAX_ATOMS),
-      logic: new Uint8Array(b, OFFSETS.LOGIC_OFFSET, OFFSETS.MAX_ATOMS * 8),
-      bonds: new Uint32Array(b, OFFSETS.BONDS_OFFSET, OFFSETS.MAX_ATOMS * 4),
+      phases: new Int32Array(b, PHASE_OFFSET, MAX_ATOMS),
+      roles: new Uint8Array(b, ROLES_OFFSET, MAX_ATOMS),
+      logic: new Uint8Array(b, LOGIC_OFFSET, MAX_ATOMS * 8),
+      bonds: new Uint32Array(b, BONDS_OFFSET, MAX_ATOMS * 4),
       stiffness: new Float32Array(
         b,
-        OFFSETS.STIFFNESS_OFFSET,
-        OFFSETS.MAX_ATOMS * 4,
+        STIFFNESS_OFFSET,
+        MAX_ATOMS * 4,
       ),
       bondDistances: new Uint8Array(
         b,
-        OFFSETS.BOND_DISTANCES_OFFSET,
-        OFFSETS.MAX_ATOMS * 4,
+        BOND_DISTANCES_OFFSET,
+        MAX_ATOMS * 4,
       ),
-      damping: new Uint8Array(b, OFFSETS.DAMPING_OFFSET, OFFSETS.MAX_ATOMS),
-      causality: new Uint8Array(b, OFFSETS.CAUSALITY_OFFSET, OFFSETS.MAX_ATOMS),
-      hormones: new Uint16Array(b, OFFSETS.HORMONE_OFFSET, 6),
+      damping: new Uint8Array(b, DAMPING_OFFSET, MAX_ATOMS),
+      causality: new Uint8Array(b, CAUSALITY_OFFSET, MAX_ATOMS),
+      hormones: new Uint16Array(b, HORMONE_OFFSET, 6),
       signalGrid: new Int32Array(
         b,
-        OFFSETS.SIGNAL_GRID_OFFSET,
-        OFFSETS.GRID_CELLS,
+        SIGNAL_GRID_OFFSET,
+        GRID_CELLS,
       ),
       memoryGrid: new Uint8Array(
         b,
-        OFFSETS.MEMORY_GRID_OFFSET,
-        OFFSETS.GRID_CELLS * 8,
+        MEMORY_GRID_OFFSET,
+        GRID_CELLS * 8,
       ),
       structureGrid: new Int32Array(
         b,
-        OFFSETS.STRUCTURE_GRID_OFFSET,
-        OFFSETS.GRID_CELLS,
+        STRUCTURE_GRID_OFFSET,
+        GRID_CELLS,
       ),
       glyphHeader: new Int32Array(
         b,
-        OFFSETS.GLYPH_HEADER_OFFSET,
-        OFFSETS.GRID_CELLS,
+        GLYPH_HEADER_OFFSET,
+        GRID_CELLS,
       ),
       glyphPayload: new Uint8Array(
         b,
-        OFFSETS.GLYPH_PAYLOAD_OFFSET,
-        OFFSETS.GRID_CELLS * 8,
+        GLYPH_PAYLOAD_OFFSET,
+        GRID_CELLS * 8,
       ),
-      coherence: new Int32Array(b, OFFSETS.COHERENCE_OFFSET, 1),
+      coherence: new Int32Array(b, COHERENCE_OFFSET, 1),
       readXs: new Int16Array(
         b,
-        OFFSETS.PHYSICS_READ_XS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        PHYSICS_READ_XS_OFFSET,
+        MAX_ATOMS,
       ),
       readYs: new Int16Array(
         b,
-        OFFSETS.PHYSICS_READ_YS_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        PHYSICS_READ_YS_OFFSET,
+        MAX_ATOMS,
       ),
       readEnergies: new Int32Array(
         b,
-        OFFSETS.PHYSICS_READ_ENERGY_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        PHYSICS_READ_ENERGY_OFFSET,
+        MAX_ATOMS,
       ),
       readResonances: new Int32Array(
         b,
-        OFFSETS.PHYSICS_READ_RESONANCE_OFFSET,
-        OFFSETS.MAX_ATOMS,
+        PHYSICS_READ_RESONANCE_OFFSET,
+        MAX_ATOMS,
       ),
     };
   }
@@ -42873,7 +37071,7 @@ export class DollFork {
   public getMetrics() {
     let totalEnergy = 0;
     let activePopulation = 0;
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (this.views.energies[i] > 0) {
         totalEnergy += Number(this.views.energies[i]);
         activePopulation++;
@@ -42895,7 +37093,9 @@ export class DollFork {
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -42954,14 +37154,14 @@ export class DollForkRunner {
       exports.build_spatial_hash();
 
       // 2. Execute Atoms (Physics + VM)
-      for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+      for (let i = 0; i < MAX_ATOMS; i++) {
         if (this.fork.views.ids[i] !== 0n) {
           exports.execute_atom(i);
         }
       }
 
       // 3. Resolve Bonds & Spawns
-      exports.resolve_bond_requests(0, OFFSETS.MAX_ATOMS);
+      exports.resolve_bond_requests(0, MAX_ATOMS);
       exports.drain_spawn_requests(tickCount);
 
       // 4. Tick Environment (Glyph Transport, Decay)
@@ -42971,7 +37171,7 @@ export class DollForkRunner {
       // 5. Apply Metabolism
       exports.apply_metabolism_kernel(
         0,
-        OFFSETS.MAX_ATOMS,
+        MAX_ATOMS,
         0,
         0, // Novelty/Symbiosis
         10, // Base Tax
@@ -42998,7 +37198,12 @@ export class DollForkRunner {
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  COHERENCE_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { sharedBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -43027,11 +37232,11 @@ export class DriftWarden {
     customCoherenceView?: Int32Array,
   ) {
     this.energyView = customEnergyView ??
-      new Int32Array(sharedBuffer, OFFSETS.ENERGY_OFFSET, OFFSETS.MAX_ATOMS);
+      new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
     this.idsView = customIdsView ??
-      new BigUint64Array(sharedBuffer, OFFSETS.IDS_OFFSET, OFFSETS.MAX_ATOMS);
+      new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
     this.coherenceView = customCoherenceView ??
-      new Int32Array(sharedBuffer, OFFSETS.COHERENCE_OFFSET, 1);
+      new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
   }
 
   /**
@@ -43042,7 +37247,7 @@ export class DriftWarden {
     let totalEnergy = 0;
 
     // 1. Gather active population metrics
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (this.idsView[i] !== 0n) {
         activeIds.push(i);
         totalEnergy += this.energyView[i];
@@ -43994,7 +38199,9 @@ export class QuorumAdvocate {
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { DollFork } from "../DOLL_FORK_MATRIX.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -44025,7 +38232,7 @@ export class RelicCultivator {
     const relics: Relic[] = [];
     const views = this.fork.views;
 
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       const energy = views.energies[i];
       const resonance = views.resonances[i];
       const atomId = views.ids[i];
@@ -44145,7 +38352,9 @@ import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 import { DollForkRunner } from "./DOLL_FORK_RUNNER.ts";
 import { DriftWarden } from "./DRIFT_WARDEN.ts";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
-import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  MAX_ATOMS
+} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type SemanticProposal = {
   id: string;
@@ -44209,7 +38418,7 @@ export async function runShadowValidation() {
     // 2. Inject proposed bytecode into 15 active atoms
     let infectedCount = 0;
     const proposed = new Uint8Array(proposal.proposedBytecode);
-    for (let i = 0; i < OFFSETS.MAX_ATOMS; i++) {
+    for (let i = 0; i < MAX_ATOMS; i++) {
       if (fork.views.ids[i] !== 0n) {
         fork.views.logic.set(proposed, i * 8);
         infectedCount++;
@@ -44323,7 +38532,9 @@ import {
   P2P_CODEC,
 } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02/03/mod.ts";
-import * as OFFSETS from "@07/02/00/mod.ts";
+import {
+  BONDS_OFFSET
+} from "@07/02/00/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
@@ -47719,7 +41930,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/bonds" && req.method === "GET") {
-    const BONDS_OFFSET = OFFSETS.BONDS_OFFSET;
+    const BONDS_OFFSET = BONDS_OFFSET;
     const BONDS_SIZE = MAX_ATOMS * 4 * 4;
     const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
     const copy = new Uint8Array(view.byteLength);
@@ -49244,6 +43455,20 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
     }
   }
 
+  // Determinism Firewall
+  if (node.type === "pure_fn" && !(node.tags.includes("host") || node.tags.includes("substrate"))) {
+    const forbiddenMath = /Math\.(sin|cos|tan|acos|asin|atan|exp|log|round|ceil|floor|random)\b/;
+    for (const codeStr of [node.tsCode, node.asCode, node.rustCode]) {
+      if (codeStr) {
+        const match = codeStr.match(forbiddenMath);
+        if (match) {
+          console.error(`[FATAL] Determinism Breach in Node '${node.id}': Detected non-deterministic host math ('${match[0]}'). Pure functions must use integer math, LUTs, or bitwise ops. If this is intentional UI/Host logic, add 'host' to the node's tags.`);
+          Deno.exit(1);
+        }
+      }
+    }
+  }
+
   return node.level;
 }
 
@@ -49280,6 +43505,14 @@ function mapRsType(t: string): string {
   return t;
 }
 
+function mapTsType(t: string): string {
+  if (t === "i32" || t === "u32" || t === "f32" || t === "f64" || t === "u8" || t === "i8" || t === "i16" || t === "u16" || t === "usize") return "number";
+  if (t === "i64" || t === "u64") return "bigint";
+  if (t === "boolean" || t === "bool") return "boolean";
+  if (t === "void") return "void";
+  return t;
+}
+
 for (const node of nodes.values()) {
   const lvlStr = formatLevel(node.level);
   const dirPathTs = `${GEN_DIR_TS}/${lvlStr}`;
@@ -49309,14 +43542,14 @@ for (const node of nodes.values()) {
     case "enum":
       tsOut += `// Enum: ${node.id}\n`;
       for (const [k, v] of Object.entries(node.values || {})) {
-        tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+        tsOut += `export const ${k}: ${mapTsType(node.dataType || "u8")} = ${v};\n`;
       }
       break;
     case "constants":
       tsOut += `// Constants: ${node.id}\n`;
       for (const [k, def] of Object.entries(node.values || {})) {
         const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-        const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
+        const tsType = mapTsType((def as any).type as string || "i32");
         tsOut += `export const ${k}: ${tsType} = ${v};\n`;
       }
       break;
@@ -49390,12 +43623,7 @@ ${(node.regions || []).map((r, i, arr) => {
       if (node.tags.includes("host") || node.tags.includes("substrate")) {
           tsOut += node.tsCode! + "\n";
       } else {
-        const nodeArgsArr = Array.isArray(node.args) ? node.args : 
-                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-        tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
-        tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-        tsOut += `\n}\n`;
+          tsOut = ""; // Skip TS generation for pure WASM functions
       }
       break;
     case "substrate_module":
@@ -49411,7 +43639,9 @@ ${(node.regions || []).map((r, i, arr) => {
   }
   
   if (node.type !== "substrate_module") {
-    Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+    if (tsOut.trim()) {
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+    }
   }
 
   // Generate RS
@@ -49567,7 +43797,8 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
             line = line.replace("number[]", "StaticArray<i32>");
         } else if (line.includes("number")) {
            // For TS it has 'number', in AS it needs specified types. Let's infer loosely
-           line = line.replace(/\bnumber\b/g, (node.id.includes("OPCODES") || node.id.includes("PROPS") || node.id.includes("TYPES")) ? "u8" : "i32");
+           const isU8 = /opcodes|props|types|roles/i.test(node.id);
+           line = line.replace(/\bnumber\b/g, isU8 ? "u8" : "i32");
         }
         asOut += line + "\n";
     }
@@ -49618,9 +43849,15 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl);
   
   const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
+  const levelNodesTs = levelNodesNoSubstrate.filter(n => {
+    if (n.type === "pure_fn") {
+      return n.tags.includes("host") || n.tags.includes("substrate");
+    }
+    return true;
+  });
   
   // TS Mod file generation
-  const tsModExports = levelNodesNoSubstrate.map(n => {
+  const tsModExports = levelNodesTs.map(n => {
     if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}.ts";`;
     } else {
@@ -49675,17 +43912,19 @@ const testsDir = `${GEN_DIR_TS}/tests`;
 ensureDirSync(testsDir);
 for (const node of nodes.values()) {
   if (node.type === "pure_fn" && node.tests && node.tests.length > 0) {
-    let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
-    testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
-    
-    testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
-    for (let i = 0; i < node.tests.length; i++) {
-        const t = node.tests[i];
-        const args = t.inputs.join(", ");
-        testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+    if (node.tags && (node.tags.includes("host") || node.tags.includes("substrate"))) {
+      let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
+      testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
+      
+      testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
+      for (let i = 0; i < node.tests.length; i++) {
+          const t = node.tests[i];
+          const args = t.inputs.join(", ");
+          testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+      }
+      testOut += `});\n`;
+      Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
     }
-    testOut += `});\n`;
-    Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
   }
 }
 

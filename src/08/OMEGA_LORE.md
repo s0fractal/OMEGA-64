@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T18:17:42.252Z*
-*Exported Files in Category: 136*
-*Total Exported Files: 549*
+*Generated: 2026-03-14T16:23:08.832Z*
+*Exported Files in Category: 138*
+*Total Exported Files: 436*
 *Runtime Roots: 10*
-*Runtime Closure Files: 333*
-*Non-Runtime Code Files: 80*
-*Runtime-Support Code Files: 10*
-*Experimental Code Files: 70*
-*Manifest SHA256: a56ced00d588419deca369ce21fb7e5563a3efb58fc376e2013aabc971371590*
-*Export Set SHA256: 10707e7b2d7a8c5e6dc89f8ac55d6437fe7ef2fa1a7e50b3d7ca11d77f0d2db9*
-*Export Content SHA256: cda46af3c893fd5f03d81fce061fde6ee1adca4b65b69020614b27d305049721*
-*Git Commit: da8758fccff9*
+*Runtime Closure Files: 232*
+*Non-Runtime Code Files: 66*
+*Runtime-Support Code Files: 5*
+*Experimental Code Files: 61*
+*Manifest SHA256: cb5d113bb505a0d81db838245e293f38f016bdbc70ffc9ca58b742f877c2e807*
+*Export Set SHA256: f53b17365c46b9f01f9d55074e3c0981c19b06b7d35bf03a463784bbda33d6b3*
+*Export Content SHA256: 88692d0422943ddbb71959e5ae75e5dedf48c290aa2e0a32703afad283cfcaea*
+*Git Commit: d09939401ce2*
 
 ---
 
@@ -122,7 +122,8 @@ unimplemented!()
   if (population == 0) return;
 
   const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  const bandStep = i32(Math.max(1, Math.floor(homeostasisBand / 2)));
+  let bandStep = homeostasisBand >> 1;
+  if (bandStep < 1) bandStep = 1;
   const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
 
   for (let i = startIdx; i < endIdx; i++) {
@@ -201,7 +202,7 @@ unimplemented!()
 
         // Pay up 90% of excess energy to Host
         if (current > starvationFloor) {
-          let transfer = i32(Math.floor(f64(current - starvationFloor) * 0.9));
+          let transfer = ((current - starvationFloor) * 9) / 10;
           if (transfer > 0) {
             atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
             set_energy(i, current - transfer);
@@ -249,10 +250,11 @@ unimplemented!()
 
     // 2. Homeostasis
     // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
+    let interimEnergy = current + delta;
+    if (interimEnergy < 0) interimEnergy = 0;
 
     if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
+      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
       delta -= tax;
     }
 
@@ -261,10 +263,8 @@ unimplemented!()
 
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
-      const step = i32(Math.min(
-        homeostasisMaxDelta,
-        1 + Math.floor(gradient / bandStep),
-      ));
+      let rawStep = 1 + (gradient / bandStep);
+      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
 
       if (deviation > 0) {
         delta -= step;
@@ -272,7 +272,8 @@ unimplemented!()
       } else if (subsidyEnabled) {
         let subsidy = step;
         if (overflowActive) {
-          subsidy = i32(Math.max(1, Math.floor(f32(subsidy) * 0.6)));
+          subsidy = (subsidy * 6) / 10;
+          if (subsidy < 1) subsidy = 1;
         }
         delta += subsidy;
       }
@@ -295,7 +296,8 @@ unimplemented!()
     }
 
     if (delta != 0) {
-      let next = i32(Math.max(0.0, f64(current) + f64(delta)));
+      let next = current + delta;
+      if (next < 0) next = 0;
       if (next != current) {
         set_energy(i, next);
         // Track stats for telemetry
@@ -1222,6 +1224,75 @@ unimplemented!()
 
 ---
 
+## FILE: src/ontology/autopoiesis/immune_check.md
+
+```markdown
+---
+id: immune_check
+type: pure_fn
+description: "Determines if an atom is necrotic or drifting and should be marked for recycling by the phagocytes"
+tags: ["physics", "autopoiesis"]
+deps: []
+args:
+  energy: i32
+  resonance: i32
+  id_handle: i32
+  role: u8
+  entropy_pressure: i32
+returns: bool
+optimization: inline
+---
+
+```typescript
+  if (id_handle === 0) return false;
+
+  // Necrotic check (Zero energy and zero resonance)
+  if (energy <= 0 && resonance <= 0) return true;
+
+  if (role === 5) return false; // ROLE_MITOCHONDRIA are immune to drifting checks
+
+  // Drifting check
+  // Base threshold for "weak" atoms.
+  // Entropy pressure (H0) modulates how aggressive the cleanup is.
+  // Normalized H0 is 0..1000.
+  // We use integer math to avoid floats where possible. threshold * 1000 = entropy * 2.
+  const threshold_x1000 = entropy_pressure * 2;
+  const energy_x1000 = energy * 1000;
+  
+  // energy < threshold
+  if (energy_x1000 < threshold_x1000) {
+      // resonance < threshold * 100 -> resonance * 10 < threshold * 1000
+      if ((resonance * 10) < threshold_x1000) {
+          return true;
+      }
+  }
+
+  return false;
+```
+
+```rust
+    if id_handle == 0 { return false; }
+
+    if energy <= 0 && resonance <= 0 { return true; }
+
+    if role == 5 { return false; } // ROLE_MITOCHONDRIA
+
+    let threshold_x1000 = entropy_pressure * 2;
+    let energy_x1000 = energy * 1000;
+
+    if energy_x1000 < threshold_x1000 {
+        if (resonance * 10) < threshold_x1000 {
+            return true;
+        }
+    }
+
+    false
+```
+
+```
+
+---
+
 ## FILE: src/ontology/autopoiesis/pack_glyph_header.md
 
 ```markdown
@@ -1288,6 +1359,59 @@ unimplemented!()
 
 ```assemblyscript
   atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
+```
+
+```
+
+---
+
+## FILE: src/ontology/autopoiesis/run_phagocyte_pass.md
+
+```markdown
+---
+id: run_phagocyte_pass
+type: pure_fn
+description: "Iterates over the atom lattice and recycles any necrotic or drifting atoms in a single WASM call."
+tags: ["physics", "autopoiesis"]
+deps: ["immune_check", "get_read_energy", "get_read_resonance", "set_energy", "set_resonance"]
+vars: ["MAX_ATOMS", "IDS_OFFSET", "ROLES_OFFSET", "BONDS_OFFSET"]
+args:
+  entropy_pressure: i32
+returns: i32
+optimization: hot
+---
+```typescript
+  // unimplemented for JS host since this is an AS WASM function
+  return 0;
+```
+
+```assemblyscript
+  let purgeCount: i32 = 0;
+  for (let i: i32 = 1; i <= MAX_ATOMS; i++) {
+    const id = atomic.load<i64>(IDS_OFFSET + (i << 3) as usize);
+    if (id != 0) {
+       const role = atomic.load<u8>(ROLES_OFFSET + i as usize);
+       const energy = get_read_energy(i);
+       const resonance = get_read_resonance(i);
+       if (immune_check(energy, resonance, <i32>id, <u8>role, entropy_pressure)) {
+         atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
+         atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
+         set_energy(i, 0);
+         set_resonance(i, 0);
+         const baseBond = BONDS_OFFSET + (i << 4) as usize;
+         atomic.store<i32>(baseBond, 0);
+         atomic.store<i32>(baseBond + 4, 0);
+         atomic.store<i32>(baseBond + 8, 0);
+         atomic.store<i32>(baseBond + 12, 0);
+         purgeCount++;
+       }
+    }
+  }
+  return purgeCount;
+```
+
+```rust
+  unimplemented!()
 ```
 
 ```
@@ -2562,73 +2686,7 @@ unimplemented!()
 ```
 
 ```typescript
-let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
-if (id == 0) return;
-
-let pc = get_p_c(atomIndex);
-let energy = get_read_energy(atomIndex);
-let resonance = get_read_resonance(atomIndex);
-const instrBase: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
-
-// Bounded Reduction - Gas Accounting Economy
-let mass: i32 = 1;
-const bondBase = BONDS_OFFSET + (atomIndex << 4) as usize;
-for (let b = 0; b < 4; b++) {
-  const target = load<i32>(bondBase + (b << 2) as usize);
-  if (target > 0 && target < MAX_ATOMS) mass++;
-}
-
-let gasUsed = evaluate_opcodes(atomIndex, energy, resonance, mass);
-
-// HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
-let entropyH: i32 = get_hormone(0) as i32;
-// HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
-let frictionH: i32 = get_hormone(5) as i32;
-
-// --- [x] Stage 11.1: Neural Synthesis (The Global Coherence)
-let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
-// Coherence discount: if global coherence is high (>100 signals), reduce cost
-let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
-
-let baseComputeCost = gasUsed >> discount;
-let metabolicCost = 1 + baseComputeCost +
-  ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
-
-// --- STAGE 11.1: PHASE SYNCHRONIZATION ---
-if (coherenceVal > 500) {
-  // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
-  let curPhase: i32 = get_phase(atomIndex) as i32;
-  if (curPhase < 128) curPhase += 2;
-  else if (curPhase > 128) curPhase -= 1;
-  set_phase(atomIndex, curPhase as u8);
-}
-
-// Auto-Firing Action Potential
-if (resonance > 300) {
-  if (energy > 200) {
-    energy -= 200;
-    set_resonance(atomIndex, 0);
-    set_phase(atomIndex, 5);
-    fire_signal(atomIndex);
-  } else {
-    set_resonance(atomIndex, 280);
-  }
-}
-
-// HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
-let repairH: i32 = get_hormone(4) as i32;
-let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
-// Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
-let finalEnergy: i32 = get_energy(atomIndex) as i32;
-let finalResonance: i32 = get_resonance(atomIndex) as i32;
-
-if (finalResonance > 0) {
-  set_resonance(atomIndex, finalResonance - resonanceDecay);
-}
-set_energy(
-  atomIndex,
-  finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
-);
+  // unimplemented: physics evaluates in WASM
 ```
 
 ```assemblyscript
@@ -3387,7 +3445,8 @@ min_level: 6
 tags:
   - host
 args: {}
-vars: []
+vars:
+  - base64_to_bytes
 deps:
   - base64_to_bytes
 description: WebCrypto key management interfaces and import wrappers.
@@ -3550,7 +3609,8 @@ min_level: 6
 tags:
   - host
 args: {}
-vars: []
+vars:
+  - bytes_to_hex
 deps:
   - bytes_to_hex
 description: Async SHA-256 hashing to hex strings for both text and raw bytes.
@@ -5133,6 +5193,15 @@ impl SigmaState {
         }
     }
 
+    pub fn hormones_atomic(&self) -> &[std::sync::atomic::AtomicU16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.hormones.as_ptr() as *const std::sync::atomic::AtomicU16,
+                MAX_HORMONES,
+            )
+        }
+    }
+
     pub fn ids_atomic(&self) -> &[std::sync::atomic::AtomicU64] {
         unsafe {
             std::slice::from_raw_parts(
@@ -5477,10 +5546,10 @@ mod tests {
             "spawn_requests"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
-            crate::MEIOSIS_OFFSET,
-            "meiosis_reserved"
-        );
+        SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
+        crate::MEIOSIS_RESERVED_OFFSET,
+        "meiosis_reserved"
+    );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
             crate::BOND_REQUESTS_OFFSET,
@@ -5638,7 +5707,7 @@ mod tests {
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            crate::HORMONE_OFFSET,
+            crate::HORMONES_OFFSET,
             "hormones"
         );
         assert_eq!(
@@ -9998,7 +10067,8 @@ for (let b = 0; b < 4; b++) {
 }
 
 if (damping > 0) {
-  let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
+  let dampingFactor: f32 = 1.0 - ((damping as f32) / 255.0);
+  if (dampingFactor < 0.0) dampingFactor = 0.0;
   fx *= dampingFactor;
   fy *= dampingFactor;
 }
@@ -10100,6 +10170,7 @@ vars:
   - ROLE_ARCHITECT
   - GRID_W
 deps:
+  - fast_min
   - OMEGA_MEMORY_LAYOUT
   - GRID_METRICS
   - get_read_energy
@@ -10182,7 +10253,7 @@ for (let oy = -3; oy <= 3; oy++) {
             if (oEnergy > 0) {
               add_energy_delta(
                 otherIdx,
-                -Mathf.min(oEnergy as f32, burn as f32) as i32,
+                -fast_min(oEnergy, burn),
               );
               add_resonance_delta(idx, 5);
             }
@@ -10340,7 +10411,7 @@ for (let oy = -3; oy <= 3; oy++) {
             if (oEnergy > 0) {
               add_energy_delta(
                 otherIdx,
-                -Mathf.min(oEnergy as f32, burn as f32) as i32,
+                -fast_min(oEnergy, burn),
               );
               add_resonance_delta(idx, 5);
             }
@@ -11247,6 +11318,7 @@ unimplemented!()
 ```
 
 ```typescript
+// unimplemented
 ```
 
 ```assemblyscript

@@ -1,8 +1,7 @@
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { SYSTEM_CONSTANTS } from "../../_/mod.ts";
-const { GRID_W, GRID_H, GRID_CELLS } = SYSTEM_CONSTANTS;
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
@@ -12,7 +11,6 @@ import { BREATH } from "@06";
 import { MAX_ATOMS, STATE_MATRIX } from "@07/02/00/mod.ts";
 import { SEMANTIC_MEMBRANE } from "@07/02/05/mod.ts";
 import { P2P_FEDERATION } from "@07/02/04/mod.ts";
-import { PHYSICS_ENGINE } from "@07/02/01/mod.ts";
 import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
 import {
@@ -1358,8 +1356,8 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/grid") {
-    const env = new Int32Array(PHYSICS_ENGINE.envBuffer);
-    const attention = PHYSICS_ENGINE.ATTENTION_PHEROMONES;
+    const attention = STATE_MATRIX.attentionField;
+    const env = new Int32Array(attention.buffer, attention.byteOffset, attention.byteLength / 4);
 
     const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
     const outEnv = new Int32Array(buffer, 0, env.length);

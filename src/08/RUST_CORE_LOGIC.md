@@ -1,37 +1,2833 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-13T09:33:50.503Z*
-*Exported Files: 15*
+*Generated: 2026-03-14T16:23:08.871Z*
+*Exported Files: 148*
 
 ---
 
 ## FILE INDEX
 
-- src/00/sigma_core/src/bonding.rs
-- src/00/sigma_core/src/constants.rs
-- src/00/sigma_core/src/environment.rs
-- src/00/sigma_core/src/ffi.rs
-- src/00/sigma_core/src/glyph_transport.rs
-- src/00/sigma_core/src/isa.rs
 - src/00/sigma_core/src/lib.rs
-- src/00/sigma_core/src/math.rs
-- src/00/sigma_core/src/memory.rs
-- src/00/sigma_core/src/pulse.rs
-- src/00/sigma_core/src/replication.rs
-- src/00/sigma_core/src/shadow.rs
-- src/00/sigma_core/src/spatial.rs
-- src/00/sigma_core/src/structure.rs
-- src/00/sigma_core/src/vm.rs
+- src/00/sigma_core/src/ontology_gen/00/COS_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/C_LOG2_C_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/SIN_LUT.rs
+- src/00/sigma_core/src/ontology_gen/00/SYSTEM_CONSTANTS.rs
+- src/00/sigma_core/src/ontology_gen/00/StructureTypes.rs
+- src/00/sigma_core/src/ontology_gen/00/VmOpcodes.rs
+- src/00/sigma_core/src/ontology_gen/00/VmProps.rs
+- src/00/sigma_core/src/ontology_gen/00/VmSys.rs
+- src/00/sigma_core/src/ontology_gen/00/clamp01.rs
+- src/00/sigma_core/src/ontology_gen/00/dir4_x.rs
+- src/00/sigma_core/src/ontology_gen/00/dir4_y.rs
+- src/00/sigma_core/src/ontology_gen/00/dir8_x.rs
+- src/00/sigma_core/src/ontology_gen/00/dir8_y.rs
+- src/00/sigma_core/src/ontology_gen/00/encode_force_tuple.rs
+- src/00/sigma_core/src/ontology_gen/00/fast_abs.rs
+- src/00/sigma_core/src/ontology_gen/00/fast_max.rs
+- src/00/sigma_core/src/ontology_gen/00/fast_min.rs
+- src/00/sigma_core/src/ontology_gen/00/fast_sign.rs
+- src/00/sigma_core/src/ontology_gen/00/immune_check.rs
+- src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
+- src/00/sigma_core/src/ontology_gen/00/mod.rs
+- src/00/sigma_core/src/ontology_gen/00/normalize_angle.rs
+- src/00/sigma_core/src/ontology_gen/00/pack_glyph_header.rs
+- src/00/sigma_core/src/ontology_gen/00/prng_next.rs
+- src/00/sigma_core/src/ontology_gen/00/sigma_atom_role.rs
+- src/00/sigma_core/src/ontology_gen/00/sigma_isa.rs
+- src/00/sigma_core/src/ontology_gen/00/sigma_math.rs
+- src/00/sigma_core/src/ontology_gen/00/trace_atom.rs
+- src/00/sigma_core/src/ontology_gen/00/unpack_glyph_amplitude.rs
+- src/00/sigma_core/src/ontology_gen/00/unpack_glyph_kind.rs
+- src/00/sigma_core/src/ontology_gen/01/GRID_METRICS.rs
+- src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
+- src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
+- src/00/sigma_core/src/ontology_gen/01/in_grid.rs
+- src/00/sigma_core/src/ontology_gen/01/math_cos.rs
+- src/00/sigma_core/src/ontology_gen/01/math_sin.rs
+- src/00/sigma_core/src/ontology_gen/01/mod.rs
+- src/00/sigma_core/src/ontology_gen/02/OMEGA_MEMORY_LAYOUT.rs
+- src/00/sigma_core/src/ontology_gen/02/clamp_world_x.rs
+- src/00/sigma_core/src/ontology_gen/02/clamp_world_y.rs
+- src/00/sigma_core/src/ontology_gen/02/mod.rs
+- src/00/sigma_core/src/ontology_gen/02/sigma_memory.rs
+- src/00/sigma_core/src/ontology_gen/03/add_energy_delta.rs
+- src/00/sigma_core/src/ontology_gen/03/add_hive_balance.rs
+- src/00/sigma_core/src/ontology_gen/03/add_resonance_delta.rs
+- src/00/sigma_core/src/ontology_gen/03/atomic_deposit_glyph_header.rs
+- src/00/sigma_core/src/ontology_gen/03/clear_metabolism_stats.rs
+- src/00/sigma_core/src/ontology_gen/03/clear_secretion_stats.rs
+- src/00/sigma_core/src/ontology_gen/03/decay_for_kind.rs
+- src/00/sigma_core/src/ontology_gen/03/diffuse_viral_semantics.rs
+- src/00/sigma_core/src/ontology_gen/03/diffusion_share_for_kind.rs
+- src/00/sigma_core/src/ontology_gen/03/find_next_free_slot.rs
+- src/00/sigma_core/src/ontology_gen/03/genome_key16.rs
+- src/00/sigma_core/src/ontology_gen/03/get_attention_cell.rs
+- src/00/sigma_core/src/ontology_gen/03/get_bond_stiffness.rs
+- src/00/sigma_core/src/ontology_gen/03/get_bond_target.rs
+- src/00/sigma_core/src/ontology_gen/03/get_energy.rs
+- src/00/sigma_core/src/ontology_gen/03/get_glyph_influence.rs
+- src/00/sigma_core/src/ontology_gen/03/get_hive_balance.rs
+- src/00/sigma_core/src/ontology_gen/03/get_hive_memory.rs
+- src/00/sigma_core/src/ontology_gen/03/get_hormone.rs
+- src/00/sigma_core/src/ontology_gen/03/get_lineage.rs
+- src/00/sigma_core/src/ontology_gen/03/get_logic_byte.rs
+- src/00/sigma_core/src/ontology_gen/03/get_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/03/get_p_c.rs
+- src/00/sigma_core/src/ontology_gen/03/get_pending_syscall.rs
+- src/00/sigma_core/src/ontology_gen/03/get_phase.rs
+- src/00/sigma_core/src/ontology_gen/03/get_read_energy.rs
+- src/00/sigma_core/src/ontology_gen/03/get_read_resonance.rs
+- src/00/sigma_core/src/ontology_gen/03/get_read_x.rs
+- src/00/sigma_core/src/ontology_gen/03/get_read_y.rs
+- src/00/sigma_core/src/ontology_gen/03/get_reg.rs
+- src/00/sigma_core/src/ontology_gen/03/get_resonance.rs
+- src/00/sigma_core/src/ontology_gen/03/get_role.rs
+- src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_atom.rs
+- src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_count.rs
+- src/00/sigma_core/src/ontology_gen/03/get_x.rs
+- src/00/sigma_core/src/ontology_gen/03/get_y.rs
+- src/00/sigma_core/src/ontology_gen/03/mod.rs
+- src/00/sigma_core/src/ontology_gen/03/publish_build_intent.rs
+- src/00/sigma_core/src/ontology_gen/03/publish_charge_intent.rs
+- src/00/sigma_core/src/ontology_gen/03/read_structure_cell.rs
+- src/00/sigma_core/src/ontology_gen/03/reduce_atom_deltas.rs
+- src/00/sigma_core/src/ontology_gen/03/reset_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/03/seed_atom.rs
+- src/00/sigma_core/src/ontology_gen/03/set_bond_dist.rs
+- src/00/sigma_core/src/ontology_gen/03/set_bond_stiffness.rs
+- src/00/sigma_core/src/ontology_gen/03/set_bond_target.rs
+- src/00/sigma_core/src/ontology_gen/03/set_damping.rs
+- src/00/sigma_core/src/ontology_gen/03/set_energy.rs
+- src/00/sigma_core/src/ontology_gen/03/set_hive_memory.rs
+- src/00/sigma_core/src/ontology_gen/03/set_neural_coherence.rs
+- src/00/sigma_core/src/ontology_gen/03/set_p_c.rs
+- src/00/sigma_core/src/ontology_gen/03/set_pending_syscall.rs
+- src/00/sigma_core/src/ontology_gen/03/set_phase.rs
+- src/00/sigma_core/src/ontology_gen/03/set_reg.rs
+- src/00/sigma_core/src/ontology_gen/03/set_resonance.rs
+- src/00/sigma_core/src/ontology_gen/03/set_role.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_bonding.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_environment.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_ffi.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_glyph_transport.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_pulse.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_replication.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_shadow.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_spatial.rs
+- src/00/sigma_core/src/ontology_gen/03/sigma_structure.rs
+- src/00/sigma_core/src/ontology_gen/03/store_clamped_pos.rs
+- src/00/sigma_core/src/ontology_gen/04/accumulate_metabolism_stats.rs
+- src/00/sigma_core/src/ontology_gen/04/add_resonance.rs
+- src/00/sigma_core/src/ontology_gen/04/apply_bond_springs.rs
+- src/00/sigma_core/src/ontology_gen/04/apply_metabolism_kernel.rs
+- src/00/sigma_core/src/ontology_gen/04/build_spatial_hash.rs
+- src/00/sigma_core/src/ontology_gen/04/calculate_trophism.rs
+- src/00/sigma_core/src/ontology_gen/04/drain_spawn_requests.rs
+- src/00/sigma_core/src/ontology_gen/04/fire_signal.rs
+- src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_x.rs
+- src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_y.rs
+- src/00/sigma_core/src/ontology_gen/04/glyph_transport.rs
+- src/00/sigma_core/src/ontology_gen/04/mod.rs
+- src/00/sigma_core/src/ontology_gen/04/read_structure_charge.rs
+- src/00/sigma_core/src/ontology_gen/04/resolve_bond_requests.rs
+- src/00/sigma_core/src/ontology_gen/04/run_phagocyte_pass.rs
+- src/00/sigma_core/src/ontology_gen/04/secrete_glyph.rs
+- src/00/sigma_core/src/ontology_gen/04/sigma_vm.rs
+- src/00/sigma_core/src/ontology_gen/04/tick_membrane_physics.rs
+- src/00/sigma_core/src/ontology_gen/05/evaluate_opcodes.rs
+- src/00/sigma_core/src/ontology_gen/05/mod.rs
+- src/00/sigma_core/src/ontology_gen/05/tick_structure_grid.rs
+- src/00/sigma_core/src/ontology_gen/06/LOGGER.rs
+- src/00/sigma_core/src/ontology_gen/06/base64_to_bytes.rs
+- src/00/sigma_core/src/ontology_gen/06/bytes_to_base64.rs
+- src/00/sigma_core/src/ontology_gen/06/bytes_to_hex.rs
+- src/00/sigma_core/src/ontology_gen/06/execute_atom.rs
+- src/00/sigma_core/src/ontology_gen/06/fnv1a32.rs
+- src/00/sigma_core/src/ontology_gen/06/hex_to_bytes.rs
+- src/00/sigma_core/src/ontology_gen/06/make_xor_shift32.rs
+- src/00/sigma_core/src/ontology_gen/06/mod.rs
+- src/00/sigma_core/src/ontology_gen/06/normalize_hex64.rs
+- src/00/sigma_core/src/ontology_gen/06/pulse_orchestrator.rs
+- src/00/sigma_core/src/ontology_gen/06/stable_stringify.rs
+- src/00/sigma_core/src/ontology_gen/06/tick_environment.rs
+- src/00/sigma_core/src/ontology_gen/06/to_int16_big_endian.rs
+- src/00/sigma_core/src/ontology_gen/07/crypto_keys.rs
+- src/00/sigma_core/src/ontology_gen/07/mod.rs
+- src/00/sigma_core/src/ontology_gen/07/sha256_hex.rs
+- src/00/sigma_core/src/ontology_gen/mod.rs
 
 ---
 
-## FILE: src/00/sigma_core/src/bonding.rs
+## FILE: src/00/sigma_core/src/lib.rs
 
 ```rust
-//! Symbiotic Bonding Engine
-//! Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
+pub mod ontology_gen;
 
-use crate::memory::{SigmaState, MAX_ATOMS};
+pub use ontology_gen::L00::*;
+pub use ontology_gen::L01::*;
+pub use ontology_gen::L02::*;
+pub use ontology_gen::L03::*;
+pub use ontology_gen::L04::*;
+pub use ontology_gen::L05::*;
+pub use ontology_gen::L06::*;
+
+// Note: PulseOrchestrator and LambdaVM have been ported into the ontology. 
+// They are exposed automatically through the above L0X glob imports.
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/COS_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const COS_LUT: [i16; 256] = [32767, 32757, 32728, 32678, 32609, 32521, 32412, 32285, 32137, 31971, 31785, 31580, 31356, 31113, 30852, 30571, 30273, 29956, 29621, 29268, 28898, 28510, 28105, 27683, 27245, 26790, 26319, 25832, 25329, 24811, 24279, 23731, 23170, 22594, 22005, 21403, 20787, 20159, 19519, 18868, 18204, 17530, 16846, 16151, 15446, 14732, 14010, 13279, 12539, 11793, 11039, 10278, 9512, 8739, 7962, 7179, 6393, 5602, 4808, 4011, 3212, 2410, 1608, 804, 0, -804, -1608, -2410, -3212, -4011, -4808, -5602, -6393, -7179, -7962, -8739, -9512, -10278, -11039, -11793, -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594, -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956, -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757, -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571, -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731, -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279, -12539, -11793, -11039, -10278, -9512, -8739, -7962, -7179, -6393, -5602, -4808, -4011, -3212, -2410, -1608, -804, 0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 6393, 7179, 7962, 8739, 9512, 10278, 11039, 11793, 12539, 13279, 14010, 14732, 15446, 16151, 16846, 17530, 18204, 18868, 19519, 20159, 20787, 21403, 22005, 22594, 23170, 23731, 24279, 24811, 25329, 25832, 26319, 26790, 27245, 27683, 28105, 28510, 28898, 29268, 29621, 29956, 30273, 30571, 30852, 31113, 31356, 31580, 31785, 31971, 32137, 32285, 32412, 32521, 32609, 32678, 32728, 32757];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/C_LOG2_C_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/SIN_LUT.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 6393, 7179, 7962, 8739, 9512, 10278, 11039, 11793, 12539, 13279, 14010, 14732, 15446, 16151, 16846, 17530, 18204, 18868, 19519, 20159, 20787, 21403, 22005, 22594, 23170, 23731, 24279, 24811, 25329, 25832, 26319, 26790, 27245, 27683, 28105, 28510, 28898, 29268, 29621, 29956, 30273, 30571, 30852, 31113, 31356, 31580, 31785, 31971, 32137, 32285, 32412, 32521, 32609, 32678, 32728, 32757, 32767, 32757, 32728, 32678, 32609, 32521, 32412, 32285, 32137, 31971, 31785, 31580, 31356, 31113, 30852, 30571, 30273, 29956, 29621, 29268, 28898, 28510, 28105, 27683, 27245, 26790, 26319, 25832, 25329, 24811, 24279, 23731, 23170, 22594, 22005, 21403, 20787, 20159, 19519, 18868, 18204, 17530, 16846, 16151, 15446, 14732, 14010, 13279, 12539, 11793, 11039, 10278, 9512, 8739, 7962, 7179, 6393, 5602, 4808, 4011, 3212, 2410, 1608, 804, 0, -804, -1608, -2410, -3212, -4011, -4808, -5602, -6393, -7179, -7962, -8739, -9512, -10278, -11039, -11793, -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594, -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956, -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757, -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571, -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731, -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279, -12539, -11793, -11039, -10278, -9512, -8739, -7962, -7179, -6393, -5602, -4808, -4011, -3212, -2410, -1608, -804];
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/SYSTEM_CONSTANTS.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Constants: SYSTEM_CONSTANTS
+pub const MAX_ATOMS: usize = 500000;
+pub const LAYOUT_VERSION: u32 = 1;
+pub const SAFETY_BUFFER: usize = 8000000;
+pub const GRID_W: i32 = 140;
+pub const GRID_H: i32 = 80;
+pub const SPATIAL_CELL_SIZE: i32 = 10;
+pub const STRUCTURE_INTENT_SPIN_LIMIT: i32 = 128;
+pub const PHEROMONE_COST_BASE: i32 = 10;
+pub const PLASMID_COST_BASE: i32 = 25;
+pub const ROLE_NEUTRAL: u8 = 0;
+pub const ROLE_PRODUCER: u8 = 1;
+pub const ROLE_GUARDIAN: u8 = 2;
+pub const ROLE_ARCHITECT: u8 = 3;
+pub const ROLE_PARASITE: u8 = 4;
+pub const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648;
+pub const STRUCTURE_INTENT_OWNER_MASK: i32 = 2147483647;
+pub const SCALE: i32 = 1000;
+pub const CELL_CAPACITY: usize = 32;
+pub const MAX_PC: u8 = 64;
+pub const MAX_EXECUTION_STEPS: usize = 64;
+pub const ATOM_LOGIC_SIZE: usize = 64;
+pub const MAX_LEDGER_EVENTS: usize = 65536;
+pub const MAX_EGRESS_EVENTS: usize = 8192;
+pub const WASM_PAGE_BYTES: usize = 65536;
+pub const WASM_MEMORY_PAGES: usize = 7630;
+pub const HIVE_MEMORY_SIZE: usize = 1024;
+pub const HIVE_ENERGY_POOL_SIZE: usize = 256;
+pub const MAX_HORMONES: usize = 8;
+pub const SECRETION_STATS_SIZE: usize = 12;
+pub const MAX_SPAWN_REQUESTS: usize = 1024;
+pub const MAX_MEIOSIS_EVENTS: usize = 75000;
+pub const MAX_ASCENSION_STATS: usize = 62500;
+pub const MAX_ASCENSION_STATS_RESERVED: usize = 1250000;
+pub const ATOM_CONTEXT_SIZE: usize = 16;
+pub const ATOM_GENOME_SIZE: usize = 8;
+pub const ATOM_INSTRUCTION_SIZE: usize = 64;
+pub const RESOURCE_MAX: i32 = 2000000000;
+pub const MAX_GLYPH_AMP: i32 = 8388607;
+pub const MIN_GLYPH_AMP: i32 = -8388608;
+pub const SPAWN_MAX: i32 = 1024;
+pub const SPAWN_SLOT: i32 = 24;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/StructureTypes.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Enum: StructureTypes
+pub const STR_VOID: i32 = 0;
+pub const STR_WIRE: i32 = 1;
+pub const STR_NODE: i32 = 2;
+pub const STR_DIODE: i32 = 3;
+pub const STR_SOURCE: i32 = 4;
+pub const STR_SINK: i32 = 5;
+pub const STR_CAPACITOR: i32 = 6;
+pub const STR_INVERTER: i32 = 7;
+pub const STR_LATCH: i32 = 8;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/VmOpcodes.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Enum: VmOpcodes
+pub const OP_NOP: u8 = 0;
+pub const OP_SET: u8 = 1;
+pub const OP_GET: u8 = 2;
+pub const OP_PUT: u8 = 3;
+pub const OP_ADD: u8 = 4;
+pub const OP_SUB: u8 = 5;
+pub const OP_JZ: u8 = 16;
+pub const OP_JNZ: u8 = 17;
+pub const OP_JMP: u8 = 18;
+pub const OP_SYSCALL: u8 = 96;
+pub const OP_REPLICATE: u8 = 128;
+pub const OP_SIGNAL: u8 = 129;
+pub const OP_BIND: u8 = 130;
+pub const OP_SHARE: u8 = 131;
+pub const OP_HEBB: u8 = 138;
+pub const OP_FIRE: u8 = 139;
+pub const OP_DECAY: u8 = 145;
+pub const OP_PLUG: u8 = 164;
+pub const OP_TENSEGRITY: u8 = 165;
+pub const OP_COLLECTIVE: u8 = 166;
+pub const OP_BUILD: u8 = 168;
+pub const OP_SPORE_DRIVE: u8 = 168;
+pub const OP_SENSE: u8 = 169;
+pub const OP_SENSE_AS: u8 = 178;
+pub const OP_SECRETE_PLASMID: u8 = 170;
+pub const OP_INCORPORATE_PLASMID: u8 = 171;
+pub const OP_RESOLVE: u8 = 176;
+pub const OP_RESONATE_KURAMOTO: u8 = 177;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/VmProps.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Enum: VmProps
+pub const PROP_ENERGY: u8 = 0;
+pub const PROP_RESONANCE: u8 = 1;
+pub const PROP_X: u8 = 2;
+pub const PROP_Y: u8 = 3;
+pub const PROP_PHASE: u8 = 4;
+pub const PROP_GRID_CHARGE: u8 = 7;
+pub const PROP_QUORUM: u8 = 8;
+pub const PROP_NEURAL_COHERENCE: u8 = 9;
+pub const PROP_MEMORY: u8 = 10;
+pub const PROP_CONSENSUS: u8 = 11;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/VmSys.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Enum: VmSys
+pub const SYS_YIELD: i32 = 1;
+pub const SYS_READ_MEM: i32 = 2;
+pub const SYS_WRITE_MEM: i32 = 3;
+pub const SYS_SPAWN: i32 = 4;
+pub const SYS_BIND: i32 = 5;
+pub const SYS_SET_ROLE: i32 = 6;
+pub const SYS_MUTATE: i32 = 7;
+pub const SYS_MSG: i32 = 8;
+pub const SYS_READ_INBOX: i32 = 9;
+pub const SYS_TRANSFER: i32 = 10;
+pub const SYS_REPLICATE: i32 = 11;
+pub const SYS_EMIT: i32 = 12;
+pub const SYS_SCAN: i32 = 13;
+pub const SYS_MOVE: i32 = 14;
+pub const SYS_EAT: i32 = 15;
+pub const SYS_BET: i32 = 16;
+pub const SYS_ATTRACT: i32 = 17;
+pub const SYS_FOLD: i32 = 18;
+pub const SYS_SPORE_DRIVE: i32 = 20;
+pub const SYS_SENSE_PHASE: i32 = 21;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/clamp01.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn clamp01(x: f64) -> f64 {
+    if x < 0.0 {
+        0.0
+    } else if x > 1.0 {
+        1.0
+    } else {
+        x
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/dir4_x.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn dir4_x(n: i32) -> i32 {
+    if n == 0 {
+        -1
+    } else if n == 1 {
+        1
+    } else {
+        0
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/dir4_y.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn dir4_y(n: i32) -> i32 {
+    if n == 2 {
+        -1
+    } else if n == 3 {
+        1
+    } else {
+        0
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/dir8_x.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn dir8_x(n: i32) -> i32 {
+    if n == 0 || n == 4 || n == 6 {
+        -1
+    } else if n == 1 || n == 5 || n == 7 {
+        1
+    } else {
+        0
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/dir8_y.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn dir8_y(n: i32) -> i32 {
+    if n == 2 || n == 4 || n == 5 {
+        -1
+    } else if n == 3 || n == 6 || n == 7 {
+        1
+    } else {
+        0
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/encode_force_tuple.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/fast_abs.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn fast_abs(v: i32) -> i32 {
+    let mask = v >> 31;
+    (v + mask) ^ mask
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/fast_max.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn fast_max(a: i32, b: i32) -> i32 {
+    let diff = a - b;
+    a - (diff & (diff >> 31))
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/fast_min.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn fast_min(a: i32, b: i32) -> i32 {
+    let diff = a - b;
+    b + (diff & (diff >> 31))
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/fast_sign.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn fast_sign(v: i32) -> i32 {
+    (v >> 31) | ((-v as u32) >> 31) as i32
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/immune_check.rs
+
+```rust
+#![allow(unused_imports)]
+
+#[inline(always)]
+pub fn immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entropy_pressure: i32) -> bool {
+    if id_handle == 0 { return false; }
+    
+        if energy <= 0 && resonance <= 0 { return true; }
+    
+        if role == 5 { return false; } // ROLE_MITOCHONDRIA
+    
+        let threshold_x1000 = entropy_pressure * 2;
+        let energy_x1000 = energy * 1000;
+    
+        if energy_x1000 < threshold_x1000 {
+            if (resonance * 10) < threshold_x1000 {
+                return true;
+            }
+        }
+    
+        false
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn math_clamp(val: i32, min: i32, max: i32) -> i32 {
+    if val < min {
+        min
+    } else if val > max {
+        max
+    } else {
+        val
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+#[path = "trace_atom.rs"]
+pub mod trace_atom;
+pub use trace_atom::*;
+#[path = "StructureTypes.rs"]
+pub mod StructureTypes;
+pub use StructureTypes::*;
+#[path = "VmProps.rs"]
+pub mod VmProps;
+pub use VmProps::*;
+#[path = "VmSys.rs"]
+pub mod VmSys;
+pub use VmSys::*;
+#[path = "SYSTEM_CONSTANTS.rs"]
+pub mod SYSTEM_CONSTANTS;
+pub use SYSTEM_CONSTANTS::*;
+#[path = "VmOpcodes.rs"]
+pub mod VmOpcodes;
+pub use VmOpcodes::*;
+#[path = "sigma_isa.rs"]
+pub mod sigma_isa;
+pub use sigma_isa::*;
+#[path = "sigma_math.rs"]
+pub mod sigma_math;
+pub use sigma_math::*;
+#[path = "sigma_atom_role.rs"]
+pub mod sigma_atom_role;
+pub use sigma_atom_role::*;
+#[path = "pack_glyph_header.rs"]
+pub mod pack_glyph_header;
+pub use pack_glyph_header::*;
+#[path = "unpack_glyph_amplitude.rs"]
+pub mod unpack_glyph_amplitude;
+pub use unpack_glyph_amplitude::*;
+#[path = "unpack_glyph_kind.rs"]
+pub mod unpack_glyph_kind;
+pub use unpack_glyph_kind::*;
+#[path = "immune_check.rs"]
+pub mod immune_check;
+pub use immune_check::*;
+#[path = "COS_LUT.rs"]
+pub mod COS_LUT;
+pub use COS_LUT::*;
+#[path = "normalize_angle.rs"]
+pub mod normalize_angle;
+pub use normalize_angle::*;
+#[path = "fast_abs.rs"]
+pub mod fast_abs;
+pub use fast_abs::*;
+#[path = "fast_max.rs"]
+pub mod fast_max;
+pub use fast_max::*;
+#[path = "prng_next.rs"]
+pub mod prng_next;
+pub use prng_next::*;
+#[path = "clamp01.rs"]
+pub mod clamp01;
+pub use clamp01::*;
+#[path = "fast_sign.rs"]
+pub mod fast_sign;
+pub use fast_sign::*;
+#[path = "math_clamp.rs"]
+pub mod math_clamp;
+pub use math_clamp::*;
+#[path = "SIN_LUT.rs"]
+pub mod SIN_LUT;
+pub use SIN_LUT::*;
+#[path = "fast_min.rs"]
+pub mod fast_min;
+pub use fast_min::*;
+#[path = "C_LOG2_C_LUT.rs"]
+pub mod C_LOG2_C_LUT;
+pub use C_LOG2_C_LUT::*;
+#[path = "encode_force_tuple.rs"]
+pub mod encode_force_tuple;
+pub use encode_force_tuple::*;
+#[path = "dir8_y.rs"]
+pub mod dir8_y;
+pub use dir8_y::*;
+#[path = "dir4_y.rs"]
+pub mod dir4_y;
+pub use dir4_y::*;
+#[path = "dir4_x.rs"]
+pub mod dir4_x;
+pub use dir4_x::*;
+#[path = "dir8_x.rs"]
+pub mod dir8_x;
+pub use dir8_x::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/normalize_angle.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn normalize_angle(angle: f64) -> f64 {
+    let tau = 2.0 * std::f64::consts::PI;
+    let mut a = angle % tau;
+    if a < 0.0 {
+        a += tau;
+    }
+    a / tau
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/pack_glyph_header.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/prng_next.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn prng_next(state: u32) -> u32 {
+    state.wrapping_mul(1664525).wrapping_add(1013904223)
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_atom_role.rs
+
+```rust
+// Substrate Node: sigma_atom_role
+// Level: 0
+// Defines the role enumerations for OMEGA atoms
+
+#![allow(unused_imports)]
+
+pub const U64_BYTES: usize = 8;
+pub const I32_BYTES: usize = 4;
+pub const I16_BYTES: usize = 2;
+pub const F32_BYTES: usize = 4;
+
+#[repr(u8)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AtomRole {
+    None = 0,
+    Guardian = 1,
+    Architect = 2,
+    Artisan = 3,
+    Parasite = 4,
+    Mitochondria = 5,
+    MetazoanFlag = 0x80,
+}
+
+impl AtomRole {
+    pub fn from_u8(val: u8) -> Self {
+        match val {
+            1 => Self::Guardian,
+            2 => Self::Architect,
+            3 => Self::Artisan,
+            4 => Self::Parasite,
+            5 => Self::Mitochondria,
+            0x80 => Self::MetazoanFlag,
+            _ => Self::None,
+        }
+    }
+}
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_isa.rs
+
+```rust
+// Substrate Node: sigma_isa
+// Level: 0
+// Defines the Instruction Set Architecture values for the interpreter.
+
+#![allow(unused_imports)]
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[repr(u8)]
+pub enum GlyphOp {
+    Nop = 0x00,
+    Set = 0x01,
+    Get = 0x02,
+    Put = 0x03,
+    Add = 0x04,
+    Sub = 0x05,
+    Jz = 0x10,
+    Jnz = 0x11,
+    Jmp = 0x12,
+    // Future syscalls
+    Syscall = 0x60,
+    Replicate = 0x80,
+    Signal = 0x81,
+    Bind = 0x82,
+    Share = 0x83,
+    Hebb = 0x8A,
+    Fire = 0x8B,
+    Decay = 0x91,
+    Plug = 0xA4,
+    Tensegrity = 0xA5,
+    Collective = 0xA6,
+    Build = 0xA8,
+    Sense = 0xA9,
+    SecretePlasmid = 0xAA,
+    IncorporatePlasmid = 0xAB,
+    Resolve = 0xB0,
+    ResonateKuramoto = 0xB1,
+    Unknown = 0xFF,
+}
+
+impl From<u8> for GlyphOp {
+    fn from(val: u8) -> Self {
+        match val {
+            0x00 => GlyphOp::Nop,
+            0x01 => GlyphOp::Set,
+            0x02 => GlyphOp::Get,
+            0x03 => GlyphOp::Put,
+            0x04 => GlyphOp::Add,
+            0x05 => GlyphOp::Sub,
+            0x10 => GlyphOp::Jz,
+            0x11 => GlyphOp::Jnz,
+            0x12 => GlyphOp::Jmp,
+            0x60 => GlyphOp::Syscall,
+            0x80 => GlyphOp::Replicate,
+            0x81 => GlyphOp::Signal,
+            0x82 => GlyphOp::Bind,
+            0x83 => GlyphOp::Share,
+            0x8A => GlyphOp::Hebb,
+            0x8B => GlyphOp::Fire,
+            0x91 => GlyphOp::Decay,
+            0xA4 => GlyphOp::Plug,
+            0xA5 => GlyphOp::Tensegrity,
+            0xA6 => GlyphOp::Collective,
+            0xA8 => GlyphOp::Build,
+            0xA9 => GlyphOp::Sense, // Structure Sense
+            0xAA => GlyphOp::SecretePlasmid,
+            0xAB => GlyphOp::IncorporatePlasmid,
+            0xB0 => GlyphOp::Resolve,
+            0xB1 => GlyphOp::ResonateKuramoto,
+            _ => GlyphOp::Unknown,
+        }
+    }
+}
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_math.rs
+
+```rust
+// Substrate Node: sigma_math
+// Level: 0
+// Mathematical Coprocessor (Deterministic LUT Trigonometry)
+
+#![allow(unused_imports)]
+
+// Flatten the levels backwards into the math namespace so external code can just use `crate::math_sin`
+pub use crate::ontology_gen::L01::*;
+pub use crate::ontology_gen::L00::*;
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/trace_atom.rs
+
+```rust
+#![allow(unused_imports)]
+
+pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> () {
+    // Externally defined in the host or FFI boundary for Sigma
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/unpack_glyph_amplitude.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/unpack_glyph_kind.rs
+
+```rust
+#![allow(unused_imports)]
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/GRID_METRICS.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+// Constants: GRID_METRICS
+pub const GRID_CELLS: usize = (GRID_W * GRID_H) as usize;
+pub const WORLD_MAX_X: i32 = ((GRID_W * SPATIAL_CELL_SIZE) - 1) as i32;
+pub const WORLD_MAX_Y: i32 = ((GRID_H * SPATIAL_CELL_SIZE) - 1) as i32;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
+    let mut counts = [0i32; 256];
+        for &b in data.iter() {
+            counts[b as usize] += 1;
+        }
+    
+        let mut sum_c_log_c = 0;
+        for &c in counts.iter() {
+            if c > 0 {
+                sum_c_log_c += C_LOG2_C_LUT[c as usize];
+            }
+        }
+    
+        let mut entropy = 6000 - (sum_c_log_c >> 6);
+        
+        if entropy < 0 {
+            entropy = 0;
+        } else if entropy > 6000 {
+            entropy = 6000;
+        }
+        
+        entropy
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn clamp_resource(value: i64) -> i32 {
+    if value < 0 {
+        0
+    } else if value > (RESOURCE_MAX as i64) {
+        RESOURCE_MAX as i32
+    } else {
+        value as i32
+    }
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/in_grid.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn in_grid(x: i32, y: i32) -> bool {
+    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/math_cos.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn math_cos(angle: i32, highRes: i32) -> i32 {
+    if highRes == 0 {
+        let idx = (angle & 255) as usize;
+        return COS_LUT[idx] as i32;
+    }
+    let idx = ((angle >> 8) & 255) as usize;
+    let frac = angle & 255;
+    
+    if highRes == 1 {
+        let v0 = COS_LUT[idx] as i32;
+        let v1 = COS_LUT[(idx + 1) & 255] as i32;
+        return v0 + (((v1 - v0) * frac) >> 8);
+    }
+    
+    let s_base = SIN_LUT[idx] as i32;
+    let c_base = COS_LUT[idx] as i32;
+    let d1 = (s_base * 804) >> 15;
+    let term1 = (d1 * frac) >> 8;
+    let d2 = (c_base * 10) >> 15;
+    let term2 = (d2 * frac * frac) >> 16;
+    c_base - term1 - term2
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/math_sin.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+pub fn math_sin(angle: i32, highRes: i32) -> i32 {
+    if highRes == 0 {
+        let idx = (angle & 255) as usize;
+        return SIN_LUT[idx] as i32;
+    }
+    let idx = ((angle >> 8) & 255) as usize;
+    let frac = angle & 255;
+    
+    if highRes == 1 {
+        let v0 = SIN_LUT[idx] as i32;
+        let v1 = SIN_LUT[(idx + 1) & 255] as i32;
+        return v0 + (((v1 - v0) * frac) >> 8);
+    }
+    
+    // TAYLOR2
+    let s_base = SIN_LUT[idx] as i32;
+    let c_base = COS_LUT[idx] as i32;
+    let d1 = (c_base * 804) >> 15;
+    let term1 = (d1 * frac) >> 8;
+    let d2 = (s_base * 10) >> 15;
+    let term2 = (d2 * frac * frac) >> 16;
+    s_base + term1 - term2
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/01/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L00::*;
+
+#[path = "GRID_METRICS.rs"]
+pub mod GRID_METRICS;
+pub use GRID_METRICS::*;
+#[path = "calculate_shannon_entropy.rs"]
+pub mod calculate_shannon_entropy;
+pub use calculate_shannon_entropy::*;
+#[path = "clamp_resource.rs"]
+pub mod clamp_resource;
+pub use clamp_resource::*;
+#[path = "math_sin.rs"]
+pub mod math_sin;
+pub use math_sin::*;
+#[path = "math_cos.rs"]
+pub mod math_cos;
+pub use math_cos::*;
+#[path = "in_grid.rs"]
+pub mod in_grid;
+pub use in_grid::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/OMEGA_MEMORY_LAYOUT.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L01::*;
+
+// Memory Layout: OMEGA_MEMORY_LAYOUT
+pub const TICK_COUNTER_OFFSET: usize = ((SAFETY_BUFFER - 8) + 4 - 1) & !(4 - 1);
+pub const TICK_COUNTER_OFF: usize = TICK_COUNTER_OFFSET;
+pub const SYNC_STATE_OFFSET: usize = ((TICK_COUNTER_OFFSET + (4)) + 4 - 1) & !(4 - 1);
+pub const SYNC_STATE_OFF: usize = SYNC_STATE_OFFSET;
+pub const IDS_OFFSET: usize = ((SYNC_STATE_OFFSET + (4)) + 8 - 1) & !(8 - 1);
+pub const IDS_OFF: usize = IDS_OFFSET;
+pub const XS_OFFSET: usize = ((IDS_OFFSET + (MAX_ATOMS * 8)) + 2 - 1) & !(2 - 1);
+pub const XS_OFF: usize = XS_OFFSET;
+pub const YS_OFFSET: usize = ((XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & !(2 - 1);
+pub const YS_OFF: usize = YS_OFFSET;
+pub const ENERGY_OFFSET: usize = ((YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & !(4 - 1);
+pub const ENERGY_OFF: usize = ENERGY_OFFSET;
+pub const RESONANCE_OFFSET: usize = ((ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const RESONANCE_OFF: usize = RESONANCE_OFFSET;
+pub const PHASE_OFFSET: usize = ((RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const PHASE_OFF: usize = PHASE_OFFSET;
+pub const LOGIC_OFFSET: usize = PHASE_OFFSET + (MAX_ATOMS * 4);
+pub const LOGIC_OFF: usize = LOGIC_OFFSET;
+pub const BONDS_OFFSET: usize = ((LOGIC_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & !(4 - 1);
+pub const BONDS_OFF: usize = BONDS_OFFSET;
+pub const STIFFNESS_OFFSET: usize = ((BONDS_OFFSET + (MAX_ATOMS * 4 * 4)) + 4 - 1) & !(4 - 1);
+pub const STIFFNESS_OFF: usize = STIFFNESS_OFFSET;
+pub const INSTRUCTIONS_OFFSET: usize = STIFFNESS_OFFSET + (MAX_ATOMS * 4 * 4);
+pub const INSTRUCTIONS_OFF: usize = INSTRUCTIONS_OFFSET;
+pub const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
+pub const CONTEXT_OFFSET: usize = ((INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64)) + 4 - 1) & !(4 - 1);
+pub const CONTEXT_OFF: usize = CONTEXT_OFFSET;
+pub const EVOLUTION_OFFSET: usize = ((CONTEXT_OFFSET + (MAX_ATOMS * 16 * 4)) + 4 - 1) & !(4 - 1);
+pub const EVOLUTION_OFF: usize = EVOLUTION_OFFSET;
+pub const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
+pub const SPAWN_REQUESTS_OFFSET: usize = ((EVOLUTION_OFFSET + (MAX_ATOMS * 4)) + 8 - 1) & !(8 - 1);
+pub const SPAWN_REQUESTS_OFF: usize = SPAWN_REQUESTS_OFFSET;
+pub const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFFSET;
+pub const SPAWN_HEAD_OFF: usize = SPAWN_REQUESTS_OFFSET;
+pub const SPAWN_DATA_OFF: usize = SPAWN_REQUESTS_OFFSET + 8;
+pub const MEIOSIS_RESERVED_OFFSET: usize = ((SPAWN_REQUESTS_OFFSET + (8 + (1024 * 24))) + 4 - 1) & !(4 - 1);
+pub const MEIOSIS_RESERVED_OFF: usize = MEIOSIS_RESERVED_OFFSET;
+pub const BOND_REQUESTS_OFFSET: usize = ((MEIOSIS_RESERVED_OFFSET + (75000 * 80)) + 4 - 1) & !(4 - 1);
+pub const BOND_REQUESTS_OFF: usize = BOND_REQUESTS_OFFSET;
+pub const SPATIAL_GRID_OFFSET: usize = ((BOND_REQUESTS_OFFSET + (MAX_ATOMS * 3 * 4)) + 4 - 1) & !(4 - 1);
+pub const SPATIAL_GRID_OFF: usize = SPATIAL_GRID_OFFSET;
+pub const ROLES_OFFSET: usize = SPATIAL_GRID_OFFSET + (GRID_CELLS * 32 * 4);
+pub const ROLES_OFF: usize = ROLES_OFFSET;
+pub const STRUCTURE_GRID_OFFSET: usize = ((ROLES_OFFSET + (MAX_ATOMS)) + 4 - 1) & !(4 - 1);
+pub const STRUCTURE_GRID_OFF: usize = STRUCTURE_GRID_OFFSET;
+pub const SIGNAL_GRID_OFFSET: usize = ((STRUCTURE_GRID_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & !(4 - 1);
+pub const SIGNAL_GRID_OFF: usize = SIGNAL_GRID_OFFSET;
+pub const MEMORY_GRID_OFFSET: usize = SIGNAL_GRID_OFFSET + (GRID_CELLS * 4);
+pub const MEMORY_GRID_OFF: usize = MEMORY_GRID_OFFSET;
+pub const ASCENSION_STATS_RESERVED_OFFSET: usize = ((MEMORY_GRID_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & !(4 - 1);
+pub const ASCENSION_STATS_RESERVED_OFF: usize = ASCENSION_STATS_RESERVED_OFFSET;
+pub const ASCENSION_STATS_OFFSET: usize = ASCENSION_STATS_RESERVED_OFFSET;
+pub const ASCENSION_STATS_OFF: usize = ASCENSION_STATS_RESERVED_OFFSET;
+pub const BOND_DISTANCES_OFFSET: usize = ASCENSION_STATS_RESERVED_OFFSET + (1250000 * 4);
+pub const BOND_DISTANCES_OFF: usize = BOND_DISTANCES_OFFSET;
+pub const SYNAPTIC_WEIGHTS_OFFSET: usize = BOND_DISTANCES_OFFSET + (MAX_ATOMS * 4);
+pub const SYNAPTIC_WEIGHTS_OFF: usize = SYNAPTIC_WEIGHTS_OFFSET;
+pub const DAMPING_OFFSET: usize = SYNAPTIC_WEIGHTS_OFFSET + (MAX_ATOMS * 4);
+pub const DAMPING_OFF: usize = DAMPING_OFFSET;
+pub const CAUSALITY_OFFSET: usize = DAMPING_OFFSET + (MAX_ATOMS);
+pub const CAUSALITY_OFF: usize = CAUSALITY_OFFSET;
+pub const HIVE_MEMORY_OFFSET: usize = CAUSALITY_OFFSET + (MAX_ATOMS);
+pub const HIVE_MEMORY_OFF: usize = HIVE_MEMORY_OFFSET;
+pub const HIVE_BALANCE_OFFSET: usize = ((HIVE_MEMORY_OFFSET + (1024)) + 4 - 1) & !(4 - 1);
+pub const HIVE_BALANCE_OFF: usize = HIVE_BALANCE_OFFSET;
+pub const QUORUM_OFFSET: usize = ((HIVE_BALANCE_OFFSET + (4)) + 4 - 1) & !(4 - 1);
+pub const QUORUM_OFF: usize = QUORUM_OFFSET;
+pub const COHERENCE_OFFSET: usize = ((QUORUM_OFFSET + (GRID_CELLS * 8 * 4)) + 4 - 1) & !(4 - 1);
+pub const COHERENCE_OFF: usize = COHERENCE_OFFSET;
+pub const NEURAL_COHERENCE_OFFSET: usize = ((COHERENCE_OFFSET + (4)) + 4 - 1) & !(4 - 1);
+pub const NEURAL_COHERENCE_OFF: usize = NEURAL_COHERENCE_OFFSET;
+pub const PHYSICS_READ_XS_OFFSET: usize = ((NEURAL_COHERENCE_OFFSET + (4)) + 2 - 1) & !(2 - 1);
+pub const PHYSICS_READ_XS_OFF: usize = PHYSICS_READ_XS_OFFSET;
+pub const PHYSICS_READ_YS_OFFSET: usize = ((PHYSICS_READ_XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & !(2 - 1);
+pub const PHYSICS_READ_YS_OFF: usize = PHYSICS_READ_YS_OFFSET;
+pub const PHYSICS_READ_ENERGY_OFFSET: usize = ((PHYSICS_READ_YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & !(4 - 1);
+pub const PHYSICS_READ_ENERGY_OFF: usize = PHYSICS_READ_ENERGY_OFFSET;
+pub const PHYSICS_READ_RESONANCE_OFFSET: usize = ((PHYSICS_READ_ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const PHYSICS_READ_RESONANCE_OFF: usize = PHYSICS_READ_RESONANCE_OFFSET;
+pub const ENERGY_DELTA_OFFSET: usize = ((PHYSICS_READ_RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const ENERGY_DELTA_OFF: usize = ENERGY_DELTA_OFFSET;
+pub const RESONANCE_DELTA_OFFSET: usize = ((ENERGY_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const RESONANCE_DELTA_OFF: usize = RESONANCE_DELTA_OFFSET;
+pub const STRUCTURE_BUILD_OWNER_OFFSET: usize = ((RESONANCE_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & !(4 - 1);
+pub const STRUCTURE_BUILD_OWNER_OFF: usize = STRUCTURE_BUILD_OWNER_OFFSET;
+pub const STRUCTURE_BUILD_VALUE_OFFSET: usize = ((STRUCTURE_BUILD_OWNER_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & !(4 - 1);
+pub const STRUCTURE_BUILD_VALUE_OFF: usize = STRUCTURE_BUILD_VALUE_OFFSET;
+pub const STRUCTURE_CHARGE_INTENT_OFFSET: usize = ((STRUCTURE_BUILD_VALUE_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & !(4 - 1);
+pub const STRUCTURE_CHARGE_INTENT_OFF: usize = STRUCTURE_CHARGE_INTENT_OFFSET;
+pub const ATTENTION_FIELD_OFFSET: usize = ((STRUCTURE_CHARGE_INTENT_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & !(4 - 1);
+pub const ATTENTION_FIELD_OFF: usize = ATTENTION_FIELD_OFFSET;
+pub const HIVE_ENERGY_POOL_OFFSET: usize = ((ATTENTION_FIELD_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & !(4 - 1);
+pub const HIVE_ENERGY_POOL_OFF: usize = HIVE_ENERGY_POOL_OFFSET;
+pub const GLYPH_HEADER_OFFSET: usize = ((HIVE_ENERGY_POOL_OFFSET + (256 * 4)) + 4 - 1) & !(4 - 1);
+pub const GLYPH_HEADER_OFF: usize = GLYPH_HEADER_OFFSET;
+pub const GLYPH_PAYLOAD_OFFSET: usize = GLYPH_HEADER_OFFSET + (GRID_CELLS * 4);
+pub const GLYPH_PAYLOAD_OFF: usize = GLYPH_PAYLOAD_OFFSET;
+pub const GLYPH_SCRATCH_HEADER_OFFSET: usize = ((GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & !(4 - 1);
+pub const GLYPH_SCRATCH_HEADER_OFF: usize = GLYPH_SCRATCH_HEADER_OFFSET;
+pub const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = GLYPH_SCRATCH_HEADER_OFFSET + (GRID_CELLS * 4);
+pub const GLYPH_SCRATCH_PAYLOAD_OFF: usize = GLYPH_SCRATCH_PAYLOAD_OFFSET;
+pub const HORMONES_OFFSET: usize = ((GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 2 - 1) & !(2 - 1);
+pub const HORMONES_OFF: usize = HORMONES_OFFSET;
+pub const SECRETION_STATS_OFFSET: usize = ((HORMONES_OFFSET + (8 * 2)) + 4 - 1) & !(4 - 1);
+pub const SECRETION_STATS_OFF: usize = SECRETION_STATS_OFFSET;
+pub const LINEAGE_OFFSET: usize = ((SECRETION_STATS_OFFSET + (12 * 4)) + 8 - 1) & !(8 - 1);
+pub const LINEAGE_OFF: usize = LINEAGE_OFFSET;
+pub const MAILBOX_OFFSET: usize = ((LINEAGE_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & !(4 - 1);
+pub const MAILBOX_OFF: usize = MAILBOX_OFFSET;
+pub const LEDGER_HEAD_OFFSET: usize = ((MAILBOX_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & !(4 - 1);
+pub const LEDGER_HEAD_OFF: usize = LEDGER_HEAD_OFFSET;
+pub const LEDGER_DATA_OFFSET: usize = ((LEDGER_HEAD_OFFSET + (4)) + 4 - 1) & !(4 - 1);
+pub const LEDGER_DATA_OFF: usize = LEDGER_DATA_OFFSET;
+pub const EGRESS_HEAD_OFFSET: usize = ((LEDGER_DATA_OFFSET + (65536 * 16)) + 4 - 1) & !(4 - 1);
+pub const EGRESS_HEAD_OFF: usize = EGRESS_HEAD_OFFSET;
+pub const EGRESS_DATA_OFFSET: usize = ((EGRESS_HEAD_OFFSET + (4)) + 4 - 1) & !(4 - 1);
+pub const EGRESS_DATA_OFF: usize = EGRESS_DATA_OFFSET;
+pub const METABOLISM_SCRATCH_OFFSET: usize = ((EGRESS_DATA_OFFSET + (8192 * 128)) + 4 - 1) & !(4 - 1);
+pub const METABOLISM_SCRATCH_OFF: usize = METABOLISM_SCRATCH_OFFSET;
+pub const LATTICE_MEMORY_END: usize = METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128);
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/clamp_world_x.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L01::*;
+
+pub fn clamp_world_x(x: i32) -> i32 {
+    math_clamp(x, 0, WORLD_MAX_X)
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/clamp_world_y.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L01::*;
+
+pub fn clamp_world_y(y: i32) -> i32 {
+    math_clamp(y, 0, WORLD_MAX_Y)
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L01::*;
+
+#[path = "OMEGA_MEMORY_LAYOUT.rs"]
+pub mod OMEGA_MEMORY_LAYOUT;
+pub use OMEGA_MEMORY_LAYOUT::*;
+#[path = "sigma_memory.rs"]
+pub mod sigma_memory;
+pub use sigma_memory::*;
+#[path = "clamp_world_y.rs"]
+pub mod clamp_world_y;
+pub use clamp_world_y::*;
+#[path = "clamp_world_x.rs"]
+pub mod clamp_world_x;
+pub use clamp_world_x::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_memory.rs
+
+```rust
+// Substrate Node: sigma_memory
+// Level: 2
+// The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
+
+#![allow(unused_imports)]
+use super::super::L01::*;
+
+// Sigma-Core Memory Layout
+// Byte-for-byte compatible with OMEGA-64 OFFSETS.ts
+
+/// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
+#[repr(C)]
+pub struct SigmaMatrix {
+    pub ids: [u64; MAX_ATOMS],
+    pub xs: [i16; MAX_ATOMS],
+    pub ys: [i16; MAX_ATOMS],
+    pub energy: [i32; MAX_ATOMS],
+    pub resonance: [i32; MAX_ATOMS],
+    pub phase: [i32; MAX_ATOMS],
+    pub logic: [[u8; ATOM_GENOME_SIZE]; MAX_ATOMS],
+    pub bonds: [i32; MAX_ATOMS * 4],
+    pub stiffness: [f32; MAX_ATOMS * 4],
+    pub instructions: [[u8; ATOM_INSTRUCTION_SIZE]; MAX_ATOMS],
+    pub context: [[i32; ATOM_CONTEXT_SIZE]; MAX_ATOMS],
+    pub evolution_reserved: [i32; MAX_ATOMS],
+    pub spawn_requests: [u8; 8 + (MAX_SPAWN_REQUESTS * 24)],
+    pub meiosis_reserved: [i32; MAX_MEIOSIS_EVENTS], // Size 300,000 bytes
+    pub _pad_to_bond_requests: [u8; 112024584 - (106024584 + (MAX_MEIOSIS_EVENTS * 4))], // 112024584 - 106324584 = 5700000 bytes
+    pub bond_requests: [i32; MAX_ATOMS * 3],
+    pub spatial_grid: [i32; GRID_CELLS * 32],
+    pub roles: [u8; MAX_ATOMS],
+    pub structure_grid: [i32; GRID_CELLS],
+    pub signal_grid: [i32; GRID_CELLS],
+    pub memory_grid: [[u8; 8]; GRID_CELLS],
+    pub ascension_stats_reserved: [i32; MAX_ASCENSION_STATS_RESERVED],
+    pub bond_distances: [u8; MAX_ATOMS * 4],
+    pub synaptic_weights: [u8; MAX_ATOMS * 4],
+    pub damping: [u8; MAX_ATOMS],
+    pub causality: [u8; MAX_ATOMS],
+    pub hive_memory: [u8; HIVE_MEMORY_SIZE],
+    pub hive_balance: i32,
+    pub quorum: [i32; GRID_CELLS * 8],
+    pub coherence: i32,
+    pub neural_coherence: i32,
+    pub physics_read_xs: [i16; MAX_ATOMS],
+    pub physics_read_ys: [i16; MAX_ATOMS],
+    pub physics_read_energy: [i32; MAX_ATOMS],
+    pub physics_read_resonance: [i32; MAX_ATOMS],
+    pub energy_delta: [i32; MAX_ATOMS],
+    pub resonance_delta: [i32; MAX_ATOMS],
+    pub structure_build_owner: [i32; GRID_CELLS],
+    pub structure_build_value: [i32; GRID_CELLS],
+    pub structure_charge_intent: [i32; GRID_CELLS],
+    pub attention_field: [f32; GRID_CELLS],
+    pub hive_energy_pool: [i32; HIVE_ENERGY_POOL_SIZE],
+    pub glyph_header: [i32; GRID_CELLS],
+    pub glyph_payload: [[u8; 8]; GRID_CELLS],
+    pub glyph_scratch_header: [i32; GRID_CELLS],
+    pub glyph_scratch_payload: [[u8; 8]; GRID_CELLS],
+    pub hormones: [u16; MAX_HORMONES],
+    pub secretion_stats: [i32; SECRETION_STATS_SIZE],
+    pub _pad_to_lineage: [u8; 4],
+    pub lineage: [u64; MAX_ATOMS],
+    pub mailbox: [[i32; 2]; MAX_ATOMS],
+    pub ledger_head: i32,
+    pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
+    pub egress_head: i32,
+    pub egress_data: [[u8; 256]; MAX_EGRESS_EVENTS],
+}
+
+pub struct SigmaState {
+    pub matrix: Box<SigmaMatrix>,
+    pub free_search_cursor: usize,
+}
+
+impl SigmaState {
+    pub fn new() -> Self {
+        Self {
+            // Unsafe required because initializing an 54MB struct on the stack would overflow.
+            // Using zeroed allocation directly onto the heap.
+            matrix: unsafe {
+                let layout = std::alloc::Layout::new::<SigmaMatrix>();
+                let ptr = std::alloc::alloc_zeroed(layout) as *mut SigmaMatrix;
+                Box::from_raw(ptr)
+            },
+            free_search_cursor: 1,
+        }
+    }
+
+    /// SAFETY: ptr must be valid, aligned, and writeable (typically mapped to a JS SharedArrayBuffer)
+    pub unsafe fn from_raw(ptr: *mut SigmaMatrix) -> Self {
+        Self {
+            matrix: unsafe { Box::from_raw(ptr) },
+            free_search_cursor: 1,
+        }
+    }
+}
+impl Clone for SigmaState {
+    fn clone(&self) -> Self {
+        let mut new_state = Self::new();
+        unsafe {
+            std::ptr::copy_nonoverlapping(
+                self.matrix.as_ref() as *const SigmaMatrix,
+                new_state.matrix.as_mut() as *mut SigmaMatrix,
+                1,
+            );
+        }
+        new_state
+    }
+}
+
+impl SigmaState {
+    /// Returns a slice of AtomicI32 mapping directly to the `spatial_grid` array
+    /// Safe because `AtomicI32` has the exact same memory layout as `i32` (`repr(C)` transparent).
+    #[inline]
+    pub fn phase_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.phase.as_ptr() as *const std::sync::atomic::AtomicI32,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn hormones_atomic(&self) -> &[std::sync::atomic::AtomicU16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.hormones.as_ptr() as *const std::sync::atomic::AtomicU16,
+                MAX_HORMONES,
+            )
+        }
+    }
+
+    pub fn ids_atomic(&self) -> &[std::sync::atomic::AtomicU64] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.ids.as_ptr() as *const std::sync::atomic::AtomicU64,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn context_atomic(&self, atom_idx: usize) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.context[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
+                ATOM_CONTEXT_SIZE,
+            )
+        }
+    }
+
+    pub fn xs_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.xs.as_ptr() as *const std::sync::atomic::AtomicI16,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn roles_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.roles.as_ptr() as *const std::sync::atomic::AtomicU8,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn ys_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.ys.as_ptr() as *const std::sync::atomic::AtomicI16,
+                MAX_ATOMS,
+            )
+        }
+    }
+
+    pub fn hive_memory_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.hive_memory.as_ptr() as *const std::sync::atomic::AtomicU8,
+                HIVE_MEMORY_SIZE,
+            )
+        }
+    }
+
+    pub fn glyph_header_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.glyph_header.as_ptr() as *const std::sync::atomic::AtomicU32,
+                GRID_CELLS,
+            )
+        }
+    }
+
+    pub fn glyph_payload_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.glyph_payload.as_ptr() as *const std::sync::atomic::AtomicU8,
+                GRID_CELLS * 8,
+            )
+        }
+    }
+
+    pub fn stiffness_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.stiffness.as_ptr() as *const std::sync::atomic::AtomicU32,
+                MAX_ATOMS * 4,
+            )
+        }
+    }
+
+    pub fn synaptic_weights_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.synaptic_weights.as_ptr() as *const std::sync::atomic::AtomicU8,
+                MAX_ATOMS * 4,
+            )
+        }
+    }
+
+    pub fn spatial_grid_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.spatial_grid.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.spatial_grid.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `structure_charge_intent` array
+    #[inline]
+    pub fn structure_charge_intent_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.structure_charge_intent.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.structure_charge_intent.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `structure_build_owner` array
+    #[inline]
+    pub fn structure_build_owner_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.structure_build_owner.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.structure_build_owner.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `bond_requests` array
+    #[inline]
+    pub fn bond_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.bond_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.bond_requests.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping to the `spawn_requests` head pointers.
+    /// The first 8 bytes of `spawn_requests` are the write and read heads (i32 each).
+    #[inline]
+    pub fn spawn_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.spawn_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
+                2, // We only need the first two AtomicI32s (write_head and read_head)
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `quorum` array
+    #[inline]
+    pub fn quorum_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.quorum.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.quorum.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `energy` array
+    #[inline]
+    pub fn energy_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.energy.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.energy.len(),
+            )
+        }
+    }
+
+    /// Returns a slice of AtomicI32 mapping directly to the `resonance` array
+    #[inline]
+    pub fn resonance_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.resonance.as_ptr() as *const std::sync::atomic::AtomicI32,
+                self.matrix.resonance.len(),
+            )
+        }
+    }
+
+    /// Returns a mutable reference to the atomic `hive_balance`
+    #[inline]
+    pub fn hive_balance_atomic(&self) -> &std::sync::atomic::AtomicI32 {
+        unsafe {
+            &*(&self.matrix.hive_balance as *const i32 as *const std::sync::atomic::AtomicI32)
+        }
+    }
+
+    pub fn allocate(&mut self) -> Option<usize> {
+        for i in 1..MAX_ATOMS {
+            if self.matrix.ids[i] == 0 {
+                return Some(i);
+            }
+        }
+        None
+    }
+
+    pub fn recycle_atom(&mut self, idx: usize) {
+        self.matrix.ids[idx] = 0;
+        self.matrix.energy[idx] = 0;
+        self.matrix.resonance[idx] = 0;
+        self.matrix.xs[idx] = 0;
+        self.matrix.ys[idx] = 0;
+        self.matrix.phase[idx] = 0;
+        self.matrix.logic[idx].fill(0);
+        self.matrix.instructions[idx].fill(0);
+        self.matrix.context[idx].fill(0);
+        for i in 0..4 {
+            let b = (idx * 4) + i;
+            self.matrix.bonds[b] = 0;
+            self.matrix.stiffness[b] = 0.0;
+            self.matrix.bond_distances[b] = 0;
+            self.matrix.synaptic_weights[b] = 0;
+        }
+        self.matrix.roles[idx] = 0;
+    }
+
+    pub fn set_energy(&mut self, index: usize, energy: i32) {
+        if index < MAX_ATOMS {
+            self.matrix.energy[index] = energy;
+        }
+    }
+
+    pub fn read_genome(&self, index: usize) -> Option<&[u8]> {
+        if index < MAX_ATOMS {
+            Some(&self.matrix.logic[index])
+        } else {
+            None
+        }
+    }
+
+    pub fn egress_head_atomic(&self) -> &std::sync::atomic::AtomicI32 {
+        unsafe { &*(&self.matrix.egress_head as *const i32 as *const std::sync::atomic::AtomicI32) }
+    }
+
+    pub fn dispatch_egress(&self, atom_idx: usize, nx: i32, ny: i32, current_energy: i32) {
+        let max_events = 8192;
+        let head = self
+            .egress_head_atomic()
+            .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        let idx = (head as usize) % max_events;
+
+        let mut payload = [0u8; 256];
+        payload[0..ATOM_INSTRUCTION_SIZE].copy_from_slice(&self.matrix.instructions[atom_idx]);
+        payload[64..68].copy_from_slice(&current_energy.to_le_bytes());
+        payload[68..72].copy_from_slice(&self.matrix.phase[atom_idx].to_le_bytes());
+        payload[72..76].copy_from_slice(&self.matrix.resonance[atom_idx].to_le_bytes());
+        payload[76..80].copy_from_slice(&nx.to_le_bytes());
+        payload[80..84].copy_from_slice(&ny.to_le_bytes());
+
+        for i in 0..ATOM_CONTEXT_SIZE {
+            let offset = 84 + (i * 4);
+            payload[offset..offset + 4]
+                .copy_from_slice(&self.matrix.context[atom_idx][i].to_le_bytes());
+        }
+
+        payload[148] = self.matrix.roles[atom_idx];
+
+        unsafe {
+            let egress_ptr = self.matrix.egress_data.as_ptr() as *mut u8;
+            let slot_ptr = egress_ptr.add(idx * 256);
+            std::ptr::copy_nonoverlapping(payload.as_ptr(), slot_ptr, 256);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Type Checks & Padding Validations
+// -----------------------------------------------------------------------------
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::mem::offset_of;
+    // The Deno `SharedArrayBuffer` expects these exact byte offsets mapping to `OFFSETS.ts`:
+    // export const MAX_ATOMS = 500000;
+    // export const SAFETY_BUFFER = 8000000;
+    // export const IDS_OFFSET = 8000000;
+    // export const XS_OFFSET = 12000000;
+    #[test]
+    fn verify_memory_offsets() {
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ids),
+            SAFETY_BUFFER + (8000000 - 8000000),
+            "ids"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, xs),
+            SAFETY_BUFFER + (12000000 - 8000000),
+            "xs"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ys),
+            SAFETY_BUFFER + (13000000 - 8000000),
+            "ys"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
+            crate::ENERGY_OFFSET,
+            "energy"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance),
+            crate::RESONANCE_OFFSET,
+            "resonance"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, phase),
+            crate::PHASE_OFFSET,
+            "phase"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, logic),
+            crate::LOGIC_OFFSET,
+            "logic"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, bonds),
+            crate::BONDS_OFFSET,
+            "bonds"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, stiffness),
+            crate::STIFFNESS_OFFSET,
+            "stiffness"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, instructions),
+            crate::INSTRUCTIONS_OFFSET,
+            "instructions"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, context),
+            crate::CONTEXT_OFFSET,
+            "context"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, evolution_reserved),
+            crate::EVOLUTION_OFFSET,
+            "evolution_reserved"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, spawn_requests),
+            crate::SPAWN_REQUESTS_OFFSET,
+            "spawn_requests"
+        );
+        assert_eq!(
+        SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
+        crate::MEIOSIS_RESERVED_OFFSET,
+        "meiosis_reserved"
+    );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
+            crate::BOND_REQUESTS_OFFSET,
+            "bond_requests"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, spatial_grid),
+            crate::SPATIAL_GRID_OFFSET,
+            "spatial_grid"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, roles),
+            crate::ROLES_OFFSET,
+            "roles"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_grid),
+            crate::STRUCTURE_GRID_OFFSET,
+            "structure_grid"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, signal_grid),
+            crate::SIGNAL_GRID_OFFSET,
+            "signal_grid"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, memory_grid),
+            crate::MEMORY_GRID_OFFSET,
+            "memory_grid"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats_reserved),
+            crate::ASCENSION_STATS_OFFSET,
+            "ascension_stats_reserved"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_distances),
+            crate::BOND_DISTANCES_OFFSET,
+            "bond_distances"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, synaptic_weights),
+            crate::SYNAPTIC_WEIGHTS_OFFSET,
+            "synaptic_weights"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, damping),
+            crate::DAMPING_OFFSET,
+            "damping"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, causality),
+            crate::CAUSALITY_OFFSET,
+            "causality"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_memory),
+            crate::HIVE_MEMORY_OFFSET,
+            "hive_memory"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_balance),
+            crate::HIVE_BALANCE_OFFSET,
+            "hive_balance"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, quorum),
+            crate::QUORUM_OFFSET,
+            "quorum"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, coherence),
+            crate::COHERENCE_OFFSET,
+            "coherence"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, neural_coherence),
+            crate::NEURAL_COHERENCE_OFFSET,
+            "neural_coherence"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_xs),
+            crate::PHYSICS_READ_XS_OFFSET,
+            "physics_read_xs"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_ys),
+            crate::PHYSICS_READ_YS_OFFSET,
+            "physics_read_ys"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_energy),
+            crate::PHYSICS_READ_ENERGY_OFFSET,
+            "physics_read_energy"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_resonance),
+            crate::PHYSICS_READ_RESONANCE_OFFSET,
+            "physics_read_resonance"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, energy_delta),
+            crate::ENERGY_DELTA_OFFSET,
+            "energy_delta"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance_delta),
+            crate::RESONANCE_DELTA_OFFSET,
+            "resonance_delta"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_owner),
+            crate::STRUCTURE_BUILD_OWNER_OFFSET,
+            "structure_build_owner"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_value),
+            crate::STRUCTURE_BUILD_VALUE_OFFSET,
+            "structure_build_value"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_charge_intent),
+            crate::STRUCTURE_CHARGE_INTENT_OFFSET,
+            "structure_charge_intent"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, attention_field),
+            crate::ATTENTION_FIELD_OFFSET,
+            "attention_field"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_energy_pool),
+            crate::HIVE_ENERGY_POOL_OFFSET,
+            "hive_energy_pool"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_header),
+            crate::GLYPH_HEADER_OFFSET,
+            "glyph_header"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_payload),
+            crate::GLYPH_PAYLOAD_OFFSET,
+            "glyph_payload"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_header),
+            crate::GLYPH_SCRATCH_HEADER_OFFSET,
+            "glyph_scratch_header"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_payload),
+            crate::GLYPH_SCRATCH_PAYLOAD_OFFSET,
+            "glyph_scratch_payload"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
+            crate::HORMONES_OFFSET,
+            "hormones"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, secretion_stats),
+            crate::SECRETION_STATS_OFFSET,
+            "secretion_stats"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, lineage),
+            crate::LINEAGE_OFFSET,
+            "lineage"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, mailbox),
+            crate::MAILBOX_OFFSET,
+            "mailbox"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_head),
+            crate::LEDGER_HEAD_OFFSET,
+            "ledger_head"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_data),
+            crate::LEDGER_DATA_OFFSET,
+            "ledger_data"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_head),
+            crate::EGRESS_HEAD_OFFSET,
+            "egress_head"
+        );
+        assert_eq!(
+            SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_data),
+            crate::EGRESS_DATA_OFFSET,
+            "egress_data"
+        );
+    }
+}
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/add_energy_delta.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/add_hive_balance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/add_resonance_delta.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/atomic_deposit_glyph_header.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/clear_metabolism_stats.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/clear_secretion_stats.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/decay_for_kind.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/diffuse_viral_semantics.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/diffusion_share_for_kind.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/find_next_free_slot.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/genome_key16.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_attention_cell.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_bond_stiffness.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_bond_target.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_energy.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+pub fn get_energy(idx: i32) -> i32 {
+    // Requires SharedArrayBuffer pointer mechanism in parent scope
+    unimplemented!("Memory accessors are host/WASM specific");
+}
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_glyph_influence.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_hive_balance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_hive_memory.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_hormone.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_lineage.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_logic_byte.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_neural_coherence.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_p_c.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_pending_syscall.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_phase.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_energy.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_resonance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_x.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_read_y.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_reg.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_resonance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_role.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_atom.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_spatial_grid_count.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_x.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/get_y.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L02::*;
+
+#[path = "sigma_structure.rs"]
+pub mod sigma_structure;
+pub use sigma_structure::*;
+#[path = "sigma_pulse.rs"]
+pub mod sigma_pulse;
+pub use sigma_pulse::*;
+#[path = "sigma_glyph_transport.rs"]
+pub mod sigma_glyph_transport;
+pub use sigma_glyph_transport::*;
+#[path = "sigma_spatial.rs"]
+pub mod sigma_spatial;
+pub use sigma_spatial::*;
+#[path = "sigma_bonding.rs"]
+pub mod sigma_bonding;
+pub use sigma_bonding::*;
+#[path = "sigma_ffi.rs"]
+pub mod sigma_ffi;
+pub use sigma_ffi::*;
+#[path = "sigma_shadow.rs"]
+pub mod sigma_shadow;
+pub use sigma_shadow::*;
+#[path = "sigma_environment.rs"]
+pub mod sigma_environment;
+pub use sigma_environment::*;
+#[path = "sigma_replication.rs"]
+pub mod sigma_replication;
+pub use sigma_replication::*;
+#[path = "get_read_resonance.rs"]
+pub mod get_read_resonance;
+pub use get_read_resonance::*;
+#[path = "get_read_y.rs"]
+pub mod get_read_y;
+pub use get_read_y::*;
+#[path = "set_energy.rs"]
+pub mod set_energy;
+pub use set_energy::*;
+#[path = "set_bond_stiffness.rs"]
+pub mod set_bond_stiffness;
+pub use set_bond_stiffness::*;
+#[path = "set_role.rs"]
+pub mod set_role;
+pub use set_role::*;
+#[path = "get_p_c.rs"]
+pub mod get_p_c;
+pub use get_p_c::*;
+#[path = "get_y.rs"]
+pub mod get_y;
+pub use get_y::*;
+#[path = "get_hormone.rs"]
+pub mod get_hormone;
+pub use get_hormone::*;
+#[path = "genome_key16.rs"]
+pub mod genome_key16;
+pub use genome_key16::*;
+#[path = "get_x.rs"]
+pub mod get_x;
+pub use get_x::*;
+#[path = "set_resonance.rs"]
+pub mod set_resonance;
+pub use set_resonance::*;
+#[path = "set_p_c.rs"]
+pub mod set_p_c;
+pub use set_p_c::*;
+#[path = "get_bond_stiffness.rs"]
+pub mod get_bond_stiffness;
+pub use get_bond_stiffness::*;
+#[path = "get_read_x.rs"]
+pub mod get_read_x;
+pub use get_read_x::*;
+#[path = "set_bond_dist.rs"]
+pub mod set_bond_dist;
+pub use set_bond_dist::*;
+#[path = "set_reg.rs"]
+pub mod set_reg;
+pub use set_reg::*;
+#[path = "get_role.rs"]
+pub mod get_role;
+pub use get_role::*;
+#[path = "get_hive_memory.rs"]
+pub mod get_hive_memory;
+pub use get_hive_memory::*;
+#[path = "set_hive_memory.rs"]
+pub mod set_hive_memory;
+pub use set_hive_memory::*;
+#[path = "get_reg.rs"]
+pub mod get_reg;
+pub use get_reg::*;
+#[path = "add_hive_balance.rs"]
+pub mod add_hive_balance;
+pub use add_hive_balance::*;
+#[path = "set_bond_target.rs"]
+pub mod set_bond_target;
+pub use set_bond_target::*;
+#[path = "get_bond_target.rs"]
+pub mod get_bond_target;
+pub use get_bond_target::*;
+#[path = "get_phase.rs"]
+pub mod get_phase;
+pub use get_phase::*;
+#[path = "get_hive_balance.rs"]
+pub mod get_hive_balance;
+pub use get_hive_balance::*;
+#[path = "get_spatial_grid_atom.rs"]
+pub mod get_spatial_grid_atom;
+pub use get_spatial_grid_atom::*;
+#[path = "add_energy_delta.rs"]
+pub mod add_energy_delta;
+pub use add_energy_delta::*;
+#[path = "get_resonance.rs"]
+pub mod get_resonance;
+pub use get_resonance::*;
+#[path = "set_damping.rs"]
+pub mod set_damping;
+pub use set_damping::*;
+#[path = "get_energy.rs"]
+pub mod get_energy;
+pub use get_energy::*;
+#[path = "get_spatial_grid_count.rs"]
+pub mod get_spatial_grid_count;
+pub use get_spatial_grid_count::*;
+#[path = "get_pending_syscall.rs"]
+pub mod get_pending_syscall;
+pub use get_pending_syscall::*;
+#[path = "get_lineage.rs"]
+pub mod get_lineage;
+pub use get_lineage::*;
+#[path = "get_logic_byte.rs"]
+pub mod get_logic_byte;
+pub use get_logic_byte::*;
+#[path = "set_phase.rs"]
+pub mod set_phase;
+pub use set_phase::*;
+#[path = "set_pending_syscall.rs"]
+pub mod set_pending_syscall;
+pub use set_pending_syscall::*;
+#[path = "add_resonance_delta.rs"]
+pub mod add_resonance_delta;
+pub use add_resonance_delta::*;
+#[path = "get_read_energy.rs"]
+pub mod get_read_energy;
+pub use get_read_energy::*;
+#[path = "get_neural_coherence.rs"]
+pub mod get_neural_coherence;
+pub use get_neural_coherence::*;
+#[path = "clear_metabolism_stats.rs"]
+pub mod clear_metabolism_stats;
+pub use clear_metabolism_stats::*;
+#[path = "atomic_deposit_glyph_header.rs"]
+pub mod atomic_deposit_glyph_header;
+pub use atomic_deposit_glyph_header::*;
+#[path = "seed_atom.rs"]
+pub mod seed_atom;
+pub use seed_atom::*;
+#[path = "clear_secretion_stats.rs"]
+pub mod clear_secretion_stats;
+pub use clear_secretion_stats::*;
+#[path = "diffuse_viral_semantics.rs"]
+pub mod diffuse_viral_semantics;
+pub use diffuse_viral_semantics::*;
+#[path = "reset_neural_coherence.rs"]
+pub mod reset_neural_coherence;
+pub use reset_neural_coherence::*;
+#[path = "diffusion_share_for_kind.rs"]
+pub mod diffusion_share_for_kind;
+pub use diffusion_share_for_kind::*;
+#[path = "decay_for_kind.rs"]
+pub mod decay_for_kind;
+pub use decay_for_kind::*;
+#[path = "set_neural_coherence.rs"]
+pub mod set_neural_coherence;
+pub use set_neural_coherence::*;
+#[path = "find_next_free_slot.rs"]
+pub mod find_next_free_slot;
+pub use find_next_free_slot::*;
+#[path = "get_glyph_influence.rs"]
+pub mod get_glyph_influence;
+pub use get_glyph_influence::*;
+#[path = "get_attention_cell.rs"]
+pub mod get_attention_cell;
+pub use get_attention_cell::*;
+#[path = "read_structure_cell.rs"]
+pub mod read_structure_cell;
+pub use read_structure_cell::*;
+#[path = "publish_charge_intent.rs"]
+pub mod publish_charge_intent;
+pub use publish_charge_intent::*;
+#[path = "publish_build_intent.rs"]
+pub mod publish_build_intent;
+pub use publish_build_intent::*;
+#[path = "reduce_atom_deltas.rs"]
+pub mod reduce_atom_deltas;
+pub use reduce_atom_deltas::*;
+#[path = "store_clamped_pos.rs"]
+pub mod store_clamped_pos;
+pub use store_clamped_pos::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/publish_build_intent.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/publish_charge_intent.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/read_structure_cell.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/reduce_atom_deltas.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/reset_neural_coherence.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/seed_atom.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_dist.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_stiffness.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_bond_target.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_damping.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_energy.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_hive_memory.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_neural_coherence.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_p_c.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_pending_syscall.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_phase.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_reg.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_resonance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/set_role.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_bonding.rs
+
+```rust
+// Substrate Node: sigma_bonding
+// Level: 3
+// Solves simultaneous structural bonding intents using spatial hashes
+
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Symbiotic Bonding Engine
+// Manages Tensegrity networks through queued `bond_requests` arrays resolved per-tick.
+
+use crate::{SigmaState, MAX_ATOMS};
 
 impl SigmaState {
     /// Attempts to establish a bond by pushing a request to the `bond_requests` array.
@@ -119,287 +2915,26 @@ impl SigmaState {
         resolved
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/constants.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_environment.rs
 
 ```rust
-// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-//! Defines system-wide physical constants and enumerations for the OMEGA-64 Sigma Core.
-//! These values are isomorphically synchronized with the TypeScript layer.
-pub const MAX_ATOMS: usize = 500000;
-pub const SAFETY_BUFFER: usize = 8000000;
-pub const GRID_W: i32 = 140;
-pub const GRID_H: i32 = 80;
-pub const GRID_CELLS: usize = 11200;
-pub const SPATIAL_CELL_SIZE: i32 = 10;
-pub const WORLD_MAX_X: i32 = 1399;
-pub const WORLD_MAX_Y: i32 = 799;
-pub const SCALE: i32 = 1000;
-pub const CELL_CAPACITY: usize = 32;
-pub const MAX_PC: u8 = 64;
-pub const MAX_EXECUTION_STEPS: usize = 64;
-pub const ATOM_LOGIC_SIZE: usize = 64;
-pub const MAX_LEDGER_EVENTS: usize = 65536;
-pub const MAX_EGRESS_EVENTS: usize = 8192;
-pub const WASM_PAGE_BYTES: usize = 65536;
-pub const WASM_MEMORY_PAGES: usize = 7630;
-pub const HIVE_MEMORY_SIZE: usize = 1024;
-pub const HIVE_ENERGY_POOL_SIZE: usize = 256;
-pub const MAX_HORMONES: usize = 8;
-pub const SECRETION_STATS_SIZE: usize = 12;
-pub const MAX_SPAWN_REQUESTS: usize = 1024;
-pub const MAX_MEIOSIS_EVENTS: usize = 75000;
-pub const MAX_ASCENSION_STATS: usize = 62500;
-pub const MAX_ASCENSION_STATS_RESERVED: usize = 1250000;
-pub const ATOM_CONTEXT_SIZE: usize = 16;
-pub const ATOM_GENOME_SIZE: usize = 8;
-pub const ATOM_INSTRUCTION_SIZE: usize = 64;
-pub const RESOURCE_MAX: i32 = 2000000000;
-pub const MAX_GLYPH_AMP: i32 = 8388607;
-pub const MIN_GLYPH_AMP: i32 = -8388608;
-pub const SPAWN_MAX: i32 = 1024;
-pub const SPAWN_SLOT: i32 = 24;
-pub const OP_NOP: u8 = 0;
-pub const OP_SET: u8 = 1;
-pub const OP_GET: u8 = 2;
-pub const OP_PUT: u8 = 3;
-pub const OP_ADD: u8 = 4;
-pub const OP_SUB: u8 = 5;
-pub const OP_JZ: u8 = 16;
-pub const OP_JNZ: u8 = 17;
-pub const OP_JMP: u8 = 18;
-pub const OP_SYSCALL: u8 = 96;
-pub const OP_REPLICATE: u8 = 128;
-pub const OP_SIGNAL: u8 = 129;
-pub const OP_BIND: u8 = 130;
-pub const OP_SHARE: u8 = 131;
-pub const OP_HEBB: u8 = 138;
-pub const OP_FIRE: u8 = 139;
-pub const OP_DECAY: u8 = 145;
-pub const OP_PLUG: u8 = 164;
-pub const OP_TENSEGRITY: u8 = 165;
-pub const OP_COLLECTIVE: u8 = 166;
-pub const OP_BUILD: u8 = 168;
-pub const OP_SPORE_DRIVE: u8 = 168;
-pub const OP_SENSE: u8 = 169;
-pub const OP_SENSE_AS: u8 = 178;
-pub const OP_SECRETE_PLASMID: u8 = 170;
-pub const OP_INCORPORATE_PLASMID: u8 = 171;
-pub const OP_RESOLVE: u8 = 176;
-pub const OP_RESONATE_KURAMOTO: u8 = 177;
-pub const PROP_ENERGY: u8 = 0;
-pub const PROP_RESONANCE: u8 = 1;
-pub const PROP_X: u8 = 2;
-pub const PROP_Y: u8 = 3;
-pub const PROP_PHASE: u8 = 4;
-pub const PROP_GRID_CHARGE: u8 = 7;
-pub const PROP_QUORUM: u8 = 8;
-pub const PROP_NEURAL_COHERENCE: u8 = 9;
-pub const PROP_MEMORY: u8 = 10;
-pub const PROP_CONSENSUS: u8 = 11;
-// Sycall Indices
-pub const SYS_YIELD: i32 = 1;
-pub const SYS_READ_MEM: i32 = 2;
-pub const SYS_WRITE_MEM: i32 = 3;
-pub const SYS_SPAWN: i32 = 4;
-pub const SYS_BIND: i32 = 5;
-pub const SYS_SET_ROLE: i32 = 6;
-pub const SYS_MUTATE: i32 = 7;
-pub const SYS_MSG: i32 = 8;
-pub const SYS_READ_INBOX: i32 = 9;
-pub const SYS_TRANSFER: i32 = 10;
-pub const SYS_REPLICATE: i32 = 11;
-pub const SYS_EMIT: i32 = 12;
-pub const SYS_SCAN: i32 = 13;
-pub const SYS_MOVE: i32 = 14;
-pub const SYS_EAT: i32 = 15;
-pub const SYS_BET: i32 = 16;
-pub const SYS_ATTRACT: i32 = 17;
-pub const SYS_FOLD: i32 = 18;
-pub const SYS_SPORE_DRIVE: i32 = 20;
-pub const SYS_SENSE_PHASE: i32 = 21;
-// Structure Types
-pub const STR_VOID: i32 = 0;
-pub const STR_WIRE: i32 = 1;
-pub const STR_NODE: i32 = 2;
-pub const STR_DIODE: i32 = 3;
-pub const STR_SOURCE: i32 = 4;
-pub const STR_SINK: i32 = 5;
-pub const STR_CAPACITOR: i32 = 6;
-pub const STR_INVERTER: i32 = 7;
-pub const STR_LATCH: i32 = 8;
-pub const U64_BYTES: usize = 8;
-pub const I32_BYTES: usize = 4;
-pub const I16_BYTES: usize = 2;
-pub const F32_BYTES: usize = 4;
-pub const TICK_COUNTER_OFFSET: usize = 7999992;
-pub const TICK_COUNTER_OFF: usize = 7999992;
-pub const SYNC_STATE_OFFSET: usize = 7999996;
-pub const SYNC_STATE_OFF: usize = 7999996;
-pub const IDS_OFFSET: usize = 8000000;
-pub const IDS_OFF: usize = 8000000;
-pub const XS_OFFSET: usize = 12000000;
-pub const XS_OFF: usize = 12000000;
-pub const YS_OFFSET: usize = 13000000;
-pub const YS_OFF: usize = 13000000;
-pub const ENERGY_OFFSET: usize = 14000000;
-pub const ENERGY_OFF: usize = 14000000;
-pub const RESONANCE_OFFSET: usize = 16000000;
-pub const RESONANCE_OFF: usize = 16000000;
-pub const PHASE_OFFSET: usize = 18000000;
-pub const PHASE_OFF: usize = 18000000;
-pub const LOGIC_OFFSET: usize = 20000000;
-pub const LOGIC_OFF: usize = 20000000;
-pub const BONDS_OFFSET: usize = 24000000;
-pub const BONDS_OFF: usize = 24000000;
-pub const STIFFNESS_OFFSET: usize = 32000000;
-pub const STIFFNESS_OFF: usize = 32000000;
-pub const INSTRUCTIONS_OFFSET: usize = 40000000;
-pub const INSTRUCTIONS_OFF: usize = 40000000;
-pub const GENOMES_OFFSET: usize = 40000000;
-pub const CONTEXT_OFFSET: usize = 72000000;
-pub const CONTEXT_OFF: usize = 72000000;
-pub const EVOLUTION_OFFSET: usize = 104000000;
-pub const EVOLUTION_OFF: usize = 104000000;
-pub const INTENT_OFFSET: usize = 104000000;
-pub const SPAWN_REQUESTS_OFFSET: usize = 106000000;
-pub const SPAWN_REQUESTS_OFF: usize = 106000000;
-pub const SPAWN_GRID_OFF: usize = 106000000;
-pub const SPAWN_HEAD_OFF: usize = 106000000;
-pub const SPAWN_DATA_OFF: usize = 106000008;
-pub const MEIOSIS_RESERVED_OFFSET: usize = 106024584;
-pub const MEIOSIS_RESERVED_OFF: usize = 106024584;
-pub const METABOLISM_SCRATCH_OFF: usize = 106024584;
-pub const MEIOSIS_OFFSET: usize = 106024584;
-pub const BOND_REQUESTS_OFFSET: usize = 112024584;
-pub const BOND_REQUESTS_OFF: usize = 112024584;
-pub const SPATIAL_GRID_OFFSET: usize = 118024584;
-pub const SPATIAL_GRID_OFF: usize = 118024584;
-pub const ROLES_OFFSET: usize = 119458184;
-pub const ROLES_OFF: usize = 119458184;
-pub const STRUCTURE_GRID_OFFSET: usize = 119958184;
-pub const STRUCTURE_GRID_OFF: usize = 119958184;
-pub const SIGNAL_GRID_OFFSET: usize = 120002984;
-pub const SIGNAL_GRID_OFF: usize = 120002984;
-pub const MEMORY_GRID_OFFSET: usize = 120047784;
-pub const MEMORY_GRID_OFF: usize = 120047784;
-pub const ASCENSION_STATS_RESERVED_OFFSET: usize = 120137384;
-pub const ASCENSION_STATS_RESERVED_OFF: usize = 120137384;
-pub const ASCENSION_STATS_OFFSET: usize = 120137384;
-pub const ASCENSION_STATS_OFF: usize = 120137384;
-pub const BOND_DISTANCES_OFFSET: usize = 125137384;
-pub const BOND_DISTANCES_OFF: usize = 125137384;
-pub const BOND_DIST_OFF: usize = 125137384;
-pub const SYNAPTIC_WEIGHTS_OFFSET: usize = 127137384;
-pub const SYNAPTIC_WEIGHTS_OFF: usize = 127137384;
-pub const DAMPING_OFFSET: usize = 129137384;
-pub const DAMPING_OFF: usize = 129137384;
-pub const CAUSALITY_OFFSET: usize = 129637384;
-pub const CAUSALITY_OFF: usize = 129637384;
-pub const HIVE_MEMORY_OFFSET: usize = 130137384;
-pub const HIVE_MEMORY_OFF: usize = 130137384;
-pub const HIVE_BALANCE_OFFSET: usize = 130138408;
-pub const HIVE_BALANCE_OFF: usize = 130138408;
-pub const QUORUM_OFFSET: usize = 130138412;
-pub const QUORUM_OFF: usize = 130138412;
-pub const COHERENCE_OFFSET: usize = 130496812;
-pub const COHERENCE_OFF: usize = 130496812;
-pub const NEURAL_COHERENCE_OFFSET: usize = 130496816;
-pub const NEURAL_COHERENCE_OFF: usize = 130496816;
-pub const PHYSICS_READ_XS_OFFSET: usize = 130496820;
-pub const PHYSICS_READ_XS_OFF: usize = 130496820;
-pub const PHYSICS_READ_YS_OFFSET: usize = 131496820;
-pub const PHYSICS_READ_YS_OFF: usize = 131496820;
-pub const PHYSICS_READ_ENERGY_OFFSET: usize = 132496820;
-pub const PHYSICS_READ_ENERGY_OFF: usize = 132496820;
-pub const PHYSICS_READ_RESONANCE_OFFSET: usize = 134496820;
-pub const PHYSICS_READ_RESONANCE_OFF: usize = 134496820;
-pub const ENERGY_DELTA_OFFSET: usize = 136496820;
-pub const ENERGY_DELTA_OFF: usize = 136496820;
-pub const RESONANCE_DELTA_OFFSET: usize = 138496820;
-pub const RESONANCE_DELTA_OFF: usize = 138496820;
-pub const STRUCTURE_BUILD_OWNER_OFFSET: usize = 140496820;
-pub const STRUCTURE_BUILD_OWNER_OFF: usize = 140496820;
-pub const STRUCTURE_BUILD_VALUE_OFFSET: usize = 140541620;
-pub const STRUCTURE_BUILD_VALUE_OFF: usize = 140541620;
-pub const STRUCTURE_CHARGE_INTENT_OFFSET: usize = 140586420;
-pub const STRUCTURE_CHARGE_INTENT_OFF: usize = 140586420;
-pub const ATTENTION_FIELD_OFFSET: usize = 140631220;
-pub const ATTENTION_FIELD_OFF: usize = 140631220;
-pub const HIVE_ENERGY_POOL_OFFSET: usize = 140676020;
-pub const HIVE_ENERGY_POOL_OFF: usize = 140676020;
-pub const GLYPH_HEADER_OFFSET: usize = 140677044;
-pub const GLYPH_HEADER_OFF: usize = 140677044;
-pub const GLYPH_PAYLOAD_OFFSET: usize = 140721844;
-pub const GLYPH_PAYLOAD_OFF: usize = 140721844;
-pub const GLYPH_SCRATCH_HEADER_OFFSET: usize = 140811444;
-pub const GLYPH_SCRATCH_HEADER_OFF: usize = 140811444;
-pub const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = 140856244;
-pub const GLYPH_SCRATCH_PAYLOAD_OFF: usize = 140856244;
-pub const HORMONES_OFFSET: usize = 140945844;
-pub const HORMONES_OFF: usize = 140945844;
-pub const HORMONE_OFFSET: usize = 140945844;
-pub const HORMONE_OFF: usize = 140945844;
-pub const SECRETION_STATS_OFFSET: usize = 140945860;
-pub const SECRETION_STATS_OFF: usize = 140945860;
-pub const LINEAGE_OFFSET: usize = 140945912;
-pub const LINEAGE_OFF: usize = 140945912;
-pub const MAILBOX_OFFSET: usize = 144945912;
-pub const MAILBOX_OFF: usize = 144945912;
-pub const LEDGER_HEAD_OFFSET: usize = 148945912;
-pub const LEDGER_HEAD_OFF: usize = 148945912;
-pub const LEDGER_DATA_OFFSET: usize = 148945916;
-pub const LEDGER_DATA_OFF: usize = 148945916;
-pub const EGRESS_HEAD_OFFSET: usize = 149994492;
-pub const EGRESS_HEAD_OFF: usize = 149994492;
-pub const EGRESS_DATA_OFFSET: usize = 149994496;
-pub const EGRESS_DATA_OFF: usize = 149994496;
-pub const LATTICE_MEMORY_END: usize = 151043072;
-/// Strongly typed roles for LambdaVM Atoms
-#[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum AtomRole {
-    None = 0,
-    Guardian = 1,
-    Architect = 2,
-    Artisan = 3,
-    Parasite = 4,
-    Mitochondria = 5,
-    MetazoanFlag = 0x80,
-}
-impl AtomRole {
-    pub fn from_u8(val: u8) -> Self {
-        match val {
-            1 => Self::Guardian,
-            2 => Self::Architect,
-            3 => Self::Artisan,
-            4 => Self::Parasite,
-            5 => Self::Mitochondria,
-            0x80 => Self::MetazoanFlag,
-            _ => Self::None,
-        }
-    }
-}
-```
+// Substrate Node: sigma_environment
+// Level: 3
+// Ticks environmental cellular automata, structural cells, and glyphi transport
 
----
+#![allow(unused_imports)]
+use super::super::L02::*;
 
-## FILE: src/00/sigma_core/src/environment.rs
-
-```rust
-use crate::constants::{
+use crate::{
     GRID_H, GRID_W, MAX_ATOMS, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, STR_NODE,
     STR_SOURCE, STR_VOID, STR_WIRE, MAX_GLYPH_AMP, MIN_GLYPH_AMP
 };
 use crate::SigmaState;
 
-pub fn in_grid(x: i32, y: i32) -> bool {
-    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
-}
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
@@ -896,7 +3431,7 @@ fn update_charge_inverter(state: &SigmaState, x: i32, y: i32) -> i32 {
             let ni = (ny * GRID_W + nx) as usize;
             let n_charge = (state.matrix.structure_grid[ni] >> 16) & 0xFF;
             if n_charge > max_neighbor_charge {
-                max_neighbor_charge = n_charge;
+                max_neighbor_charge = n_charge; // Inverter passes zero when charged neighbors exist
             }
         }
     }
@@ -947,16 +3482,21 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
         }
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/ffi.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_ffi.rs
 
 ```rust
-#![allow(non_snake_case)]
-use crate::memory::SigmaState;
+// Substrate Node: sigma_ffi
+// Level: 3
+// FFI bridging logic and memory alignment for WebAssembly workers
+
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+#[allow(non_snake_case)]
 use std::mem::ManuallyDrop;
 
 // The Deno `SharedArrayBuffer` uses real pointers but from JS the offset starts at 0.
@@ -971,7 +3511,7 @@ use std::mem::ManuallyDrop;
 /// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
     // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = crate::constants::SAFETY_BUFFER as *mut crate::memory::SigmaMatrix;
+    let base_ptr = crate::SAFETY_BUFFER as *mut crate::SigmaMatrix;
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -991,14 +3531,15 @@ pub extern "C" fn debug_get_xs(idx: usize) -> i32 {
 #[unsafe(no_mangle)]
 pub extern "C" fn execute_atom(idx: usize) {
     let mut state = unsafe { get_ffi_state() };
-    let mut vm = crate::vm::LambdaVM::new();
+    let mut vm = crate::LambdaVM::new();
     vm.step(&mut state, idx);
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tick_environment(tick: u32) {
+#[export_name = "tick_environment"]
+pub extern "C" fn ffi_tick_environment(tick: u32) {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_environment(&mut state, tick as i32);
+    crate::tick_environment(&mut state, tick as i32);
 }
 
 #[unsafe(no_mangle)]
@@ -1010,15 +3551,16 @@ pub extern "C" fn tick_matrix() {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tick_structure_grid() {
+#[export_name = "tick_structure_grid"]
+pub extern "C" fn ffi_tick_structure_grid() {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_structure_grid(&mut state);
+    crate::tick_structure_grid(&mut state);
 }
 
 use std::cell::RefCell;
 
 thread_local! {
-    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::constants::MAX_ATOMS));
+    static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::MAX_ATOMS));
 }
 
 #[unsafe(no_mangle)]
@@ -1028,18 +3570,18 @@ pub extern "C" fn tick_membrane_physics() {
     VISITED_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
-        visited.resize(crate::constants::MAX_ATOMS, 0);
+        visited.resize(crate::MAX_ATOMS, 0);
 
-        for i in 1..crate::constants::MAX_ATOMS {
+        for i in 1..crate::MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
-                state.matrix.roles[i] &= !(crate::constants::AtomRole::MetazoanFlag as u8);
+                state.matrix.roles[i] &= !(crate::AtomRole::MetazoanFlag as u8);
                 state.matrix.evolution_reserved[i] = 0;
             }
         }
 
         let mut rings: Vec<Vec<usize>> = Vec::new();
 
-        for start_node in 1..crate::constants::MAX_ATOMS {
+        for start_node in 1..crate::MAX_ATOMS {
             if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
                 continue;
             }
@@ -1052,7 +3594,7 @@ pub extern "C" fn tick_membrane_physics() {
                 start: usize,
                 depth: usize,
                 path: &mut Vec<usize>,
-                state: &crate::memory::SigmaState,
+                state: &crate::SigmaState,
             ) -> bool {
                 if depth >= 8 {
                     return false;
@@ -1061,7 +3603,7 @@ pub extern "C" fn tick_membrane_physics() {
                 for b_slot in 0..4 {
                     let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
                     if target > 0
-                        && target < crate::constants::MAX_ATOMS
+                        && target < crate::MAX_ATOMS
                         && state.matrix.ids[target] != 0
                     {
                         if target == start && depth >= 2 {
@@ -1098,7 +3640,7 @@ pub extern "C" fn tick_membrane_physics() {
             for &node in ring {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+                state.matrix.roles[node] |= crate::AtomRole::MetazoanFlag as u8;
             }
 
             let avg_energy = (sum_energy / count as i64) as i32;
@@ -1156,9 +3698,10 @@ pub extern "C" fn set_neural_coherence(val: i32) {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn tickGlyphTransport(_tick: u32) {
+#[export_name = "tickGlyphTransport"]
+pub extern "C" fn ffi_tick_glyph_transport(_tick: u32) {
     let mut state = unsafe { get_ffi_state() };
-    crate::environment::tick_glyph_transport(&mut state);
+    crate::tick_glyph_transport(&mut state);
 }
 
 #[unsafe(no_mangle)]
@@ -1223,7 +3766,7 @@ pub extern "C" fn run_shadow_simulation_ffi(
     let tick_ptr = 7_999_992 as *const i32;
     let start_tick = unsafe { *tick_ptr as u32 };
 
-    let metrics = crate::shadow::run_shadow_simulation(
+    let metrics = crate::run_shadow_simulation(
         &state,
         atom_id as u64,
         hallucination_bytes,
@@ -1255,7 +3798,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 
     hasher.update(tick.to_le_bytes());
 
-    for i in 1..crate::constants::MAX_ATOMS {
+    for i in 1..crate::MAX_ATOMS {
         let id = state.matrix.ids[i];
         if id != 0 {
             hasher.update(id.to_le_bytes());
@@ -1268,7 +3811,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         }
     }
 
-    for i in 0..crate::constants::GRID_CELLS {
+    for i in 0..crate::GRID_CELLS {
         let owner = state.matrix.structure_build_owner[i];
         if owner > 0 {
             hasher.update((i as u32).to_le_bytes());
@@ -1283,19 +3826,22 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
         unsafe { std::slice::from_raw_parts_mut(result_ptr as usize as *mut u8, 32) };
     result_slice.copy_from_slice(&result);
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/glyph_transport.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_glyph_transport.rs
 
 ```rust
-//! Glyph Transport Engine
-//! Handles wave interference physics and optical secretion
+// Substrate Node: sigma_glyph_transport
+// Level: 3
+// Handles wave interference physics and optical secretion
 
-use crate::constants::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
-use crate::memory::SigmaState;
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+use crate::{MAX_GLYPH_AMP, MIN_GLYPH_AMP};
+use crate::SigmaState;
 
 pub fn unpack_glyph_kind(header: i32) -> u8 {
     (header & 0xFF) as u8
@@ -1319,7 +3865,7 @@ pub fn pack_glyph_header(kind: u8, amplitude: i32) -> i32 {
 impl SigmaState {
     /// Models optical wave interference on a flat 2D grid cell.
     pub fn atomic_deposit_glyph_header(&self, cell: usize, kind: u8, amplitude: i32) {
-        if amplitude == 0 || cell >= crate::constants::GRID_CELLS {
+        if amplitude == 0 || cell >= crate::GRID_CELLS {
             return;
         }
 
@@ -1355,934 +3901,23 @@ impl SigmaState {
         }
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/isa.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_pulse.rs
 
 ```rust
-//! Instruction Set Architecture for Sigma-Core
+// Substrate Node: sigma_pulse
+// Level: 3
+// Multithreaded tick orchestrator and phase sequencer using Rayon
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-#[repr(u8)]
-pub enum GlyphOp {
-    Nop = 0x00,
-    Set = 0x01,
-    Get = 0x02,
-    Put = 0x03,
-    Add = 0x04,
-    Sub = 0x05,
-    Jz = 0x10,
-    Jnz = 0x11,
-    Jmp = 0x12,
-    // Future syscalls
-    Syscall = 0x60,
-    Replicate = 0x80,
-    Signal = 0x81,
-    Bind = 0x82,
-    Share = 0x83,
-    Hebb = 0x8A,
-    Fire = 0x8B,
-    Decay = 0x91,
-    Plug = 0xA4,
-    Tensegrity = 0xA5,
-    Collective = 0xA6,
-    Build = 0xA8,
-    Sense = 0xA9,
-    SecretePlasmid = 0xAA,
-    IncorporatePlasmid = 0xAB,
-    Resolve = 0xB0,
-    ResonateKuramoto = 0xB1,
-    Unknown = 0xFF,
-}
+#![allow(unused_imports)]
+use super::super::L02::*;
 
-impl From<u8> for GlyphOp {
-    fn from(val: u8) -> Self {
-        match val {
-            0x00 => GlyphOp::Nop,
-            0x01 => GlyphOp::Set,
-            0x02 => GlyphOp::Get,
-            0x03 => GlyphOp::Put,
-            0x04 => GlyphOp::Add,
-            0x05 => GlyphOp::Sub,
-            0x10 => GlyphOp::Jz,
-            0x11 => GlyphOp::Jnz,
-            0x12 => GlyphOp::Jmp,
-            0x60 => GlyphOp::Syscall,
-            0x80 => GlyphOp::Replicate,
-            0x81 => GlyphOp::Signal,
-            0x82 => GlyphOp::Bind,
-            0x83 => GlyphOp::Share,
-            0x8A => GlyphOp::Hebb,
-            0x8B => GlyphOp::Fire,
-            0x91 => GlyphOp::Decay,
-            0xA4 => GlyphOp::Plug,
-            0xA5 => GlyphOp::Tensegrity,
-            0xA6 => GlyphOp::Collective,
-            0xA8 => GlyphOp::Build,
-            0xA9 => GlyphOp::Sense, // Structure Sense
-            0xAA => GlyphOp::SecretePlasmid,
-            0xAB => GlyphOp::IncorporatePlasmid,
-            0xB0 => GlyphOp::Resolve,
-            0xB1 => GlyphOp::ResonateKuramoto,
-            _ => GlyphOp::Unknown,
-        }
-    }
-}
-
-// PROP_* constants have been moved to constants.rs by generator
-
-// SYS_ constants have been moved to constants.rs by generator
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/lib.rs
-
-```rust
-pub mod bonding;
-pub mod environment;
-pub mod ffi;
-pub mod glyph_transport;
-pub mod isa;
-pub mod constants;
-pub mod math;
-pub mod memory;
-pub mod pulse;
-pub mod replication;
-pub mod shadow;
-pub mod spatial;
-pub mod structure;
-pub mod vm;
-
-pub use isa::GlyphOp;
-pub use memory::{SigmaMatrix, SigmaState};
-pub use pulse::PulseOrchestrator;
-pub use shadow::run_shadow_simulation;
-pub use vm::LambdaVM;
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/math.rs
-
-```rust
-// AUTOGENERATED - DO NOT EDIT DIRECTLY (See generate.ts)
-//! Mathematical Coprocessor (Deterministic LUT Trigonometry)
-
-pub const SIN_LUT: [i16; 256] = [
-
-    
-     0,
-    804,   1608,   2410,   3212,   4011,   4808,   5602,   6393,   7179,   7962,   8739,   9512,  10278,  11039,  11793,
-      12539,  13279,  14010,  14732,  15446,  16151,  16846,  17530,  18204,  18868,  19519,  20159,  20787,  21403,  22005,  22594,
-      23170,  23731,  24279,  24811,  25329,  25832,  26319,  26790,  27245,  27683,  28105,  28510,  28898,  29268,  29621,  29956,
-      30273,  30571,  30852,  31113,  31356,  31580,  31785,  31971,  32137,  32285,  32412,  32521,  32609,  32678,  32728,  32757,
-      32767,  32757,  32728,  32678,  32609,  32521,  32412,  32285,  32137,  31971,  31785,  31580,  31356,  31113,  30852,  30571,
-      30273,  29956,  29621,  29268,  28898,  28510,  28105,  27683,  27245,  26790,  26319,  25832,  25329,  24811,  24279,  23731,
-      23170,  22594,  22005,  21403,  20787,  20159,  19519,  18868,  18204,  17530,  16846,  16151,  15446,  14732,  14010,  13279,
-      12539,  11793,  11039,  10278,   9512,   8739,   7962,   7179,   6393,   5602,   4808,   4011,   3212,   2410,   1608,
-    804,
-    
-      0,   -804,  -1608,  -2410,  -3212,  -4011,  -4808,  -5602,  -6393,  -7179,  -7962,  -8739,  -9512, -10278, -11039, -11793,
-     -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594,
-     -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956,
-     -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757,
-     -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571,
-     -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731,
-     -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279,
-     -12539, -11793, -11039, -10278,  -9512,  -8739,  -7962,  -7179,  -6393,  -5602,  -4808,  -4011,  -3212,  -2410,  -1608,   -804,
-];
-
-pub const COS_LUT: [i16; 256] = [
-
-     32767,  32757,  32728,  32678,  32609,  32521,  32412,  32285,  32137,  31971,  31785,  31580,  31356,  31113,  30852,  30571,
-      30273,  29956,  29621,  29268,  28898,  28510,  28105,  27683,  27245,  26790,  26319,  25832,  25329,  24811,  24279,  23731,
-      23170,  22594,  22005,  21403,  20787,  20159,  19519,  18868,  18204,  17530,  16846,  16151,  15446,  14732,  14010,  13279,
-      12539,  11793,  11039,  10278,   9512,   8739,   7962,   7179,   6393,   5602,   4808,   4011,   3212,   2410,   1608,
-    804,
-    
-      0,   -804,  -1608,  -2410,  -3212,  -4011,  -4808,  -5602,  -6393,  -7179,  -7962,  -8739,  -9512, -10278, -11039, -11793,
-     -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594,
-     -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956,
-     -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757,
-     -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571,
-     -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731,
-     -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279,
-     -12539, -11793, -11039, -10278,  -9512,  -8739,  -7962,  -7179,  -6393,  -5602,  -4808,  -4011,  -3212,  -2410,  -1608,   -804,
-    
-      0,
-    804,   1608,   2410,   3212,   4011,   4808,   5602,   6393,   7179,   7962,   8739,   9512,  10278,  11039,  11793,
-      12539,  13279,  14010,  14732,  15446,  16151,  16846,  17530,  18204,  18868,  19519,  20159,  20787,  21403,  22005,  22594,
-      23170,  23731,  24279,  24811,  25329,  25832,  26319,  26790,  27245,  27683,  28105,  28510,  28898,  29268,  29621,  29956,
-      30273,  30571,  30852,  31113,  31356,  31580,  31785,  31971,  32137,  32285,  32412,  32521,  32609,  32678,  32728,  32757,
-];
-
-pub const C_LOG2_C_LUT: [i32; 65] = [
-0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000
-];
-
-pub fn math_sin(angle: i32, high_res: i32) -> i32 {
-    if high_res == 0 {
-        let idx = (angle & 255) as usize;
-        return SIN_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if high_res == 1 {
-        let v0 = SIN_LUT[idx] as i32;
-        let v1 = SIN_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    // TAYLOR2
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (c_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (s_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    s_base + term1 - term2
-}
-
-pub fn math_cos(angle: i32, high_res: i32) -> i32 {
-    if high_res == 0 {
-        let idx = (angle & 255) as usize;
-        return COS_LUT[idx] as i32;
-    }
-    let idx = ((angle >> 8) & 255) as usize;
-    let frac = angle & 255;
-    
-    if high_res == 1 {
-        let v0 = COS_LUT[idx] as i32;
-        let v1 = COS_LUT[(idx + 1) & 255] as i32;
-        return v0 + (((v1 - v0) * frac) >> 8);
-    }
-    
-    let s_base = SIN_LUT[idx] as i32;
-    let c_base = COS_LUT[idx] as i32;
-    let d1 = (s_base * 804) >> 15;
-    let term1 = (d1 * frac) >> 8;
-    let d2 = (c_base * 10) >> 15;
-    let term2 = (d2 * frac * frac) >> 16;
-    c_base - term1 - term2
-}
-
-pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
-    let mut counts = [0i32; 256];
-    for &b in data.iter() {
-        counts[b as usize] += 1;
-    }
-
-    let mut sum_c_log_c = 0;
-    for &c in counts.iter() {
-        if c > 0 {
-            sum_c_log_c += C_LOG2_C_LUT[c as usize];
-        }
-    }
-
-    let mut entropy = 6000 - (sum_c_log_c >> 6);
-    
-    if entropy < 0 {
-        entropy = 0;
-    } else if entropy > 6000 {
-        entropy = 6000;
-    }
-    
-    entropy
-}
-```
-
----
-
-## FILE: src/00/sigma_core/src/memory.rs
-
-```rust
-//! Sigma-Core Memory Layout
-//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
-//! Byre-for-byte compatible with OMEGA-64 OFFSETS.ts
-
-pub use crate::constants::{
-    ATOM_CONTEXT_SIZE, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_W,
-    HIVE_ENERGY_POOL_SIZE, HIVE_MEMORY_SIZE, MAX_ATOMS, MAX_HORMONES, SAFETY_BUFFER,
-    SECRETION_STATS_SIZE, MAX_ASCENSION_STATS_RESERVED, MAX_EGRESS_EVENTS, MAX_LEDGER_EVENTS,
-    MAX_ASCENSION_STATS, MAX_MEIOSIS_EVENTS, MAX_SPAWN_REQUESTS,
-};
-
-/// The central Data-Oriented memory matrix that perfectly aligns with Deno's `SharedArrayBuffer`
-#[repr(C)]
-pub struct SigmaMatrix {
-    pub ids: [u64; MAX_ATOMS],
-    pub xs: [i16; MAX_ATOMS],
-    pub ys: [i16; MAX_ATOMS],
-    pub energy: [i32; MAX_ATOMS],
-    pub resonance: [i32; MAX_ATOMS],
-    pub phase: [i32; MAX_ATOMS],
-    pub logic: [[u8; ATOM_GENOME_SIZE]; MAX_ATOMS],
-    pub bonds: [i32; MAX_ATOMS * 4],
-    pub stiffness: [f32; MAX_ATOMS * 4],
-    pub instructions: [[u8; ATOM_INSTRUCTION_SIZE]; MAX_ATOMS],
-    pub context: [[i32; ATOM_CONTEXT_SIZE]; MAX_ATOMS],
-    pub evolution_reserved: [i32; MAX_ATOMS],
-    pub spawn_requests: [u8; 8 + (MAX_SPAWN_REQUESTS * 24)],
-    pub meiosis_reserved: [i32; MAX_MEIOSIS_EVENTS], // Size 300,000 bytes
-    pub _pad_to_bond_requests: [u8; 112024584 - (106024584 + (MAX_MEIOSIS_EVENTS * 4))], // 112024584 - 106324584 = 5700000 bytes
-    pub bond_requests: [i32; MAX_ATOMS * 3],
-    pub spatial_grid: [i32; GRID_CELLS * 32],
-    pub roles: [u8; MAX_ATOMS],
-    pub structure_grid: [i32; GRID_CELLS],
-    pub signal_grid: [i32; GRID_CELLS],
-    pub memory_grid: [[u8; 8]; GRID_CELLS],
-    pub ascension_stats_reserved: [i32; MAX_ASCENSION_STATS_RESERVED],
-    pub bond_distances: [u8; MAX_ATOMS * 4],
-    pub synaptic_weights: [u8; MAX_ATOMS * 4],
-    pub damping: [u8; MAX_ATOMS],
-    pub causality: [u8; MAX_ATOMS],
-    pub hive_memory: [u8; HIVE_MEMORY_SIZE],
-    pub hive_balance: i32,
-    pub quorum: [i32; GRID_CELLS * 8],
-    pub coherence: i32,
-    pub neural_coherence: i32,
-    pub physics_read_xs: [i16; MAX_ATOMS],
-    pub physics_read_ys: [i16; MAX_ATOMS],
-    pub physics_read_energy: [i32; MAX_ATOMS],
-    pub physics_read_resonance: [i32; MAX_ATOMS],
-    pub energy_delta: [i32; MAX_ATOMS],
-    pub resonance_delta: [i32; MAX_ATOMS],
-    pub structure_build_owner: [i32; GRID_CELLS],
-    pub structure_build_value: [i32; GRID_CELLS],
-    pub structure_charge_intent: [i32; GRID_CELLS],
-    pub attention_field: [f32; GRID_CELLS],
-    pub hive_energy_pool: [i32; HIVE_ENERGY_POOL_SIZE],
-    pub glyph_header: [i32; GRID_CELLS],
-    pub glyph_payload: [[u8; 8]; GRID_CELLS],
-    pub glyph_scratch_header: [i32; GRID_CELLS],
-    pub glyph_scratch_payload: [[u8; 8]; GRID_CELLS],
-    pub hormones: [u16; MAX_HORMONES],
-    pub secretion_stats: [i32; SECRETION_STATS_SIZE],
-    pub _pad_to_lineage: [u8; 4],
-    pub lineage: [u64; MAX_ATOMS],
-    pub mailbox: [[i32; 2]; MAX_ATOMS],
-    pub ledger_head: i32,
-    pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
-    pub egress_head: i32,
-    pub egress_data: [[u8; 256]; MAX_EGRESS_EVENTS],
-}
-
-pub struct SigmaState {
-    pub matrix: Box<SigmaMatrix>,
-    pub free_search_cursor: usize,
-}
-
-impl SigmaState {
-    pub fn new() -> Self {
-        Self {
-            // Unsafe required because initializing an 54MB struct on the stack would overflow.
-            // Using zeroed allocation directly onto the heap.
-            matrix: unsafe {
-                let layout = std::alloc::Layout::new::<SigmaMatrix>();
-                let ptr = std::alloc::alloc_zeroed(layout) as *mut SigmaMatrix;
-                Box::from_raw(ptr)
-            },
-            free_search_cursor: 1,
-        }
-    }
-
-    /// SAFETY: ptr must be valid, aligned, and writeable (typically mapped to a JS SharedArrayBuffer)
-    pub unsafe fn from_raw(ptr: *mut SigmaMatrix) -> Self {
-        Self {
-            matrix: unsafe { Box::from_raw(ptr) },
-            free_search_cursor: 1,
-        }
-    }
-}
-impl Clone for SigmaState {
-    fn clone(&self) -> Self {
-        let mut new_state = Self::new();
-        unsafe {
-            std::ptr::copy_nonoverlapping(
-                self.matrix.as_ref() as *const SigmaMatrix,
-                new_state.matrix.as_mut() as *mut SigmaMatrix,
-                1,
-            );
-        }
-        new_state
-    }
-}
-
-impl SigmaState {
-    /// Returns a slice of AtomicI32 mapping directly to the `spatial_grid` array
-    /// Safe because `AtomicI32` has the exact same memory layout as `i32` (`repr(C)` transparent).
-    #[inline]
-    pub fn phase_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.phase.as_ptr() as *const std::sync::atomic::AtomicI32,
-                MAX_ATOMS,
-            )
-        }
-    }
-
-    pub fn ids_atomic(&self) -> &[std::sync::atomic::AtomicU64] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.ids.as_ptr() as *const std::sync::atomic::AtomicU64,
-                MAX_ATOMS,
-            )
-        }
-    }
-
-    pub fn context_atomic(&self, atom_idx: usize) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.context[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
-                ATOM_CONTEXT_SIZE,
-            )
-        }
-    }
-
-    pub fn xs_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.xs.as_ptr() as *const std::sync::atomic::AtomicI16,
-                MAX_ATOMS,
-            )
-        }
-    }
-
-    pub fn roles_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.roles.as_ptr() as *const std::sync::atomic::AtomicU8,
-                MAX_ATOMS,
-            )
-        }
-    }
-
-    pub fn ys_atomic(&self) -> &[std::sync::atomic::AtomicI16] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.ys.as_ptr() as *const std::sync::atomic::AtomicI16,
-                MAX_ATOMS,
-            )
-        }
-    }
-
-    pub fn hive_memory_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.hive_memory.as_ptr() as *const std::sync::atomic::AtomicU8,
-                HIVE_MEMORY_SIZE,
-            )
-        }
-    }
-
-    pub fn glyph_header_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.glyph_header.as_ptr() as *const std::sync::atomic::AtomicU32,
-                GRID_CELLS,
-            )
-        }
-    }
-
-    pub fn glyph_payload_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.glyph_payload.as_ptr() as *const std::sync::atomic::AtomicU8,
-                GRID_CELLS * 8,
-            )
-        }
-    }
-
-    pub fn stiffness_atomic(&self) -> &[std::sync::atomic::AtomicU32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.stiffness.as_ptr() as *const std::sync::atomic::AtomicU32,
-                MAX_ATOMS * 4,
-            )
-        }
-    }
-
-    pub fn synaptic_weights_atomic(&self) -> &[std::sync::atomic::AtomicU8] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.synaptic_weights.as_ptr() as *const std::sync::atomic::AtomicU8,
-                MAX_ATOMS * 4,
-            )
-        }
-    }
-
-    pub fn spatial_grid_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.spatial_grid.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.spatial_grid.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `structure_charge_intent` array
-    #[inline]
-    pub fn structure_charge_intent_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.structure_charge_intent.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.structure_charge_intent.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `structure_build_owner` array
-    #[inline]
-    pub fn structure_build_owner_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.structure_build_owner.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.structure_build_owner.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `bond_requests` array
-    #[inline]
-    pub fn bond_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.bond_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.bond_requests.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping to the `spawn_requests` head pointers.
-    /// The first 8 bytes of `spawn_requests` are the write and read heads (i32 each).
-    #[inline]
-    pub fn spawn_requests_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.spawn_requests.as_ptr() as *const std::sync::atomic::AtomicI32,
-                2, // We only need the first two AtomicI32s (write_head and read_head)
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `quorum` array
-    #[inline]
-    pub fn quorum_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.quorum.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.quorum.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `energy` array
-    #[inline]
-    pub fn energy_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.energy.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.energy.len(),
-            )
-        }
-    }
-
-    /// Returns a slice of AtomicI32 mapping directly to the `resonance` array
-    #[inline]
-    pub fn resonance_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
-        unsafe {
-            std::slice::from_raw_parts(
-                self.matrix.resonance.as_ptr() as *const std::sync::atomic::AtomicI32,
-                self.matrix.resonance.len(),
-            )
-        }
-    }
-
-    /// Returns a mutable reference to the atomic `hive_balance`
-    #[inline]
-    pub fn hive_balance_atomic(&self) -> &std::sync::atomic::AtomicI32 {
-        unsafe {
-            &*(&self.matrix.hive_balance as *const i32 as *const std::sync::atomic::AtomicI32)
-        }
-    }
-
-    pub fn allocate(&mut self) -> Option<usize> {
-        for i in 1..MAX_ATOMS {
-            if self.matrix.ids[i] == 0 {
-                return Some(i);
-            }
-        }
-        None
-    }
-
-    pub fn recycle_atom(&mut self, idx: usize) {
-        self.matrix.ids[idx] = 0;
-        self.matrix.energy[idx] = 0;
-        self.matrix.resonance[idx] = 0;
-        self.matrix.xs[idx] = 0;
-        self.matrix.ys[idx] = 0;
-        self.matrix.phase[idx] = 0;
-        self.matrix.logic[idx].fill(0);
-        self.matrix.instructions[idx].fill(0);
-        self.matrix.context[idx].fill(0);
-        for i in 0..4 {
-            let b = (idx * 4) + i;
-            self.matrix.bonds[b] = 0;
-            self.matrix.stiffness[b] = 0.0;
-            self.matrix.bond_distances[b] = 0;
-            self.matrix.synaptic_weights[b] = 0;
-        }
-        self.matrix.roles[idx] = 0;
-    }
-
-    pub fn set_energy(&mut self, index: usize, energy: i32) {
-        if index < MAX_ATOMS {
-            self.matrix.energy[index] = energy;
-        }
-    }
-
-    pub fn read_genome(&self, index: usize) -> Option<&[u8]> {
-        if index < MAX_ATOMS {
-            Some(&self.matrix.logic[index])
-        } else {
-            None
-        }
-    }
-
-    pub fn egress_head_atomic(&self) -> &std::sync::atomic::AtomicI32 {
-        unsafe { &*(&self.matrix.egress_head as *const i32 as *const std::sync::atomic::AtomicI32) }
-    }
-
-    pub fn dispatch_egress(&self, atom_idx: usize, nx: i32, ny: i32, current_energy: i32) {
-        let max_events = 8192;
-        let head = self
-            .egress_head_atomic()
-            .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-        let idx = (head as usize) % max_events;
-
-        let mut payload = [0u8; 256];
-        payload[0..ATOM_INSTRUCTION_SIZE].copy_from_slice(&self.matrix.instructions[atom_idx]);
-        payload[64..68].copy_from_slice(&current_energy.to_le_bytes());
-        payload[68..72].copy_from_slice(&self.matrix.phase[atom_idx].to_le_bytes());
-        payload[72..76].copy_from_slice(&self.matrix.resonance[atom_idx].to_le_bytes());
-        payload[76..80].copy_from_slice(&nx.to_le_bytes());
-        payload[80..84].copy_from_slice(&ny.to_le_bytes());
-
-        for i in 0..ATOM_CONTEXT_SIZE {
-            let offset = 84 + (i * 4);
-            payload[offset..offset + 4]
-                .copy_from_slice(&self.matrix.context[atom_idx][i].to_le_bytes());
-        }
-
-        payload[148] = self.matrix.roles[atom_idx];
-
-        unsafe {
-            let egress_ptr = self.matrix.egress_data.as_ptr() as *mut u8;
-            let slot_ptr = egress_ptr.add(idx * 256);
-            std::ptr::copy_nonoverlapping(payload.as_ptr(), slot_ptr, 256);
-        }
-    }
-}
-
-// -----------------------------------------------------------------------------
-// Type Checks & Padding Validations
-// -----------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use std::mem::offset_of;
-    // The Deno `SharedArrayBuffer` expects these exact byte offsets mapping to `OFFSETS.ts`:
-    // export const MAX_ATOMS = 500000;
-    // export const SAFETY_BUFFER = 8000000;
-    // export const IDS_OFFSET = 8000000;
-    // export const XS_OFFSET = 12000000;
-    #[test]
-    fn verify_memory_offsets() {
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ids),
-            SAFETY_BUFFER + (8000000 - 8000000),
-            "ids"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, xs),
-            SAFETY_BUFFER + (12000000 - 8000000),
-            "xs"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ys),
-            SAFETY_BUFFER + (13000000 - 8000000),
-            "ys"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, energy),
-            crate::constants::ENERGY_OFFSET,
-            "energy"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance),
-            crate::constants::RESONANCE_OFFSET,
-            "resonance"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, phase),
-            crate::constants::PHASE_OFFSET,
-            "phase"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, logic),
-            crate::constants::LOGIC_OFFSET,
-            "logic"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, bonds),
-            crate::constants::BONDS_OFFSET,
-            "bonds"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, stiffness),
-            crate::constants::STIFFNESS_OFFSET,
-            "stiffness"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, instructions),
-            crate::constants::INSTRUCTIONS_OFFSET,
-            "instructions"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, context),
-            crate::constants::CONTEXT_OFFSET,
-            "context"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, evolution_reserved),
-            crate::constants::EVOLUTION_OFFSET,
-            "evolution_reserved"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, spawn_requests),
-            crate::constants::SPAWN_REQUESTS_OFFSET,
-            "spawn_requests"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
-            crate::constants::MEIOSIS_OFFSET,
-            "meiosis_reserved"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
-            crate::constants::BOND_REQUESTS_OFFSET,
-            "bond_requests"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, spatial_grid),
-            crate::constants::SPATIAL_GRID_OFFSET,
-            "spatial_grid"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, roles),
-            crate::constants::ROLES_OFFSET,
-            "roles"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_grid),
-            crate::constants::STRUCTURE_GRID_OFFSET,
-            "structure_grid"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, signal_grid),
-            crate::constants::SIGNAL_GRID_OFFSET,
-            "signal_grid"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, memory_grid),
-            crate::constants::MEMORY_GRID_OFFSET,
-            "memory_grid"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ascension_stats_reserved),
-            crate::constants::ASCENSION_STATS_OFFSET,
-            "ascension_stats_reserved"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_distances),
-            crate::constants::BOND_DISTANCES_OFFSET,
-            "bond_distances"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, synaptic_weights),
-            crate::constants::SYNAPTIC_WEIGHTS_OFFSET,
-            "synaptic_weights"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, damping),
-            crate::constants::DAMPING_OFFSET,
-            "damping"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, causality),
-            crate::constants::CAUSALITY_OFFSET,
-            "causality"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_memory),
-            crate::constants::HIVE_MEMORY_OFFSET,
-            "hive_memory"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_balance),
-            crate::constants::HIVE_BALANCE_OFFSET,
-            "hive_balance"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, quorum),
-            crate::constants::QUORUM_OFFSET,
-            "quorum"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, coherence),
-            crate::constants::COHERENCE_OFFSET,
-            "coherence"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, neural_coherence),
-            crate::constants::NEURAL_COHERENCE_OFFSET,
-            "neural_coherence"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_xs),
-            crate::constants::PHYSICS_READ_XS_OFFSET,
-            "physics_read_xs"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_ys),
-            crate::constants::PHYSICS_READ_YS_OFFSET,
-            "physics_read_ys"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_energy),
-            crate::constants::PHYSICS_READ_ENERGY_OFFSET,
-            "physics_read_energy"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, physics_read_resonance),
-            crate::constants::PHYSICS_READ_RESONANCE_OFFSET,
-            "physics_read_resonance"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, energy_delta),
-            crate::constants::ENERGY_DELTA_OFFSET,
-            "energy_delta"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, resonance_delta),
-            crate::constants::RESONANCE_DELTA_OFFSET,
-            "resonance_delta"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_owner),
-            crate::constants::STRUCTURE_BUILD_OWNER_OFFSET,
-            "structure_build_owner"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_build_value),
-            crate::constants::STRUCTURE_BUILD_VALUE_OFFSET,
-            "structure_build_value"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, structure_charge_intent),
-            crate::constants::STRUCTURE_CHARGE_INTENT_OFFSET,
-            "structure_charge_intent"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, attention_field),
-            crate::constants::ATTENTION_FIELD_OFFSET,
-            "attention_field"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, hive_energy_pool),
-            crate::constants::HIVE_ENERGY_POOL_OFFSET,
-            "hive_energy_pool"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_header),
-            crate::constants::GLYPH_HEADER_OFFSET,
-            "glyph_header"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_payload),
-            crate::constants::GLYPH_PAYLOAD_OFFSET,
-            "glyph_payload"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_header),
-            crate::constants::GLYPH_SCRATCH_HEADER_OFFSET,
-            "glyph_scratch_header"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, glyph_scratch_payload),
-            crate::constants::GLYPH_SCRATCH_PAYLOAD_OFFSET,
-            "glyph_scratch_payload"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            crate::constants::HORMONE_OFFSET,
-            "hormones"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, secretion_stats),
-            crate::constants::SECRETION_STATS_OFFSET,
-            "secretion_stats"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, lineage),
-            crate::constants::LINEAGE_OFFSET,
-            "lineage"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, mailbox),
-            crate::constants::MAILBOX_OFFSET,
-            "mailbox"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_head),
-            crate::constants::LEDGER_HEAD_OFFSET,
-            "ledger_head"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, ledger_data),
-            crate::constants::LEDGER_DATA_OFFSET,
-            "ledger_data"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_head),
-            crate::constants::EGRESS_HEAD_OFFSET,
-            "egress_head"
-        );
-        assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, egress_data),
-            crate::constants::EGRESS_DATA_OFFSET,
-            "egress_data"
-        );
-    }
-}
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/pulse.rs
-
-```rust
-use crate::constants::{GRID_H, GRID_W, MAX_ATOMS};
+use crate::{GRID_H, GRID_W, MAX_ATOMS};
 use crate::{LambdaVM, SigmaState};
+use rayon::prelude::*;
 
 pub struct PulseOrchestrator<'a> {
     pub visited: &'a mut [u8],
@@ -2342,8 +3977,8 @@ impl<'a> PulseOrchestrator<'a> {
         let _ = state.drain_spawn_requests(tick_number as i32);
 
         // 5. Environment Phase
-        crate::environment::tick_glyph_transport(state);
-        crate::environment::tick_structure_grid(state);
+        crate::tick_glyph_transport(state);
+        crate::tick_structure_grid(state);
 
         // 6. Metabolism Phase & 7. Immune Phase (GC)
         let base_entropy_tax = 10;
@@ -2364,8 +3999,8 @@ impl<'a> PulseOrchestrator<'a> {
                         state.matrix.ys[i] = state.matrix.ys[host_idx];
 
                         // Pay up 90% of current energy
-                        if e > crate::constants::SCALE {
-                            let transfer = ((e - crate::constants::SCALE) as f64 * 0.9) as i32;
+                        if e > crate::SCALE {
+                            let transfer = ((e - crate::SCALE) as f64 * 0.9) as i32;
                             if transfer > 0 {
                                 state.matrix.energy[host_idx] += transfer;
                                 e -= transfer;
@@ -2408,8 +4043,8 @@ impl<'a> PulseOrchestrator<'a> {
                     if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
                         let cx = state.matrix.xs[i] as usize;
                         let cy = state.matrix.ys[i] as usize;
-                        let gx = cx / (crate::constants::SCALE as usize);
-                        let gy = cy / (crate::constants::SCALE as usize);
+                        let gx = cx / (crate::SCALE as usize);
+                        let gy = cy / (crate::SCALE as usize);
 
                         if gx < (GRID_W as usize) && gy < (GRID_H as usize) {
                             let cell_idx = gy * (GRID_W as usize) + gx;
@@ -2544,7 +4179,7 @@ impl<'a> PulseOrchestrator<'a> {
             for &node in ring {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= crate::constants::AtomRole::MetazoanFlag as u8;
+                state.matrix.roles[node] |= crate::AtomRole::MetazoanFlag as u8;
                 // Metazoan flag
             }
 
@@ -2560,19 +4195,25 @@ impl<'a> PulseOrchestrator<'a> {
         }
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/replication.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_replication.rs
 
 ```rust
-//! Replication Engine
-//! Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
+// Substrate Node: sigma_replication
+// Level: 3
+// Manages autopoietic mitosis processes and genome verification
 
-use crate::memory::{SigmaState, MAX_ATOMS};
-use crate::constants::{SPAWN_MAX, SPAWN_SLOT};
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Replication Engine
+// Handles the queued spawn requests and materializes new atoms into the Matrix at the end of each tick.
+
+use crate::{SigmaState, MAX_ATOMS};
+use crate::{SPAWN_MAX, SPAWN_SLOT};
 
 impl SigmaState {
     /// Pushes a spawn request into the ring-buffer at the current write head.
@@ -2755,16 +4396,22 @@ impl SigmaState {
         spawned
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/shadow.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_shadow.rs
 
 ```rust
-use crate::memory::SigmaState;
-use crate::pulse::PulseOrchestrator;
+// Substrate Node: sigma_shadow
+// Level: 3
+// Implements the speculative execution engine for quantum divergence
+
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+use crate::SigmaState;
+use crate::PulseOrchestrator;
 
 /// Drift metrics reporting back to the TypeScript orchestrator.
 #[repr(C)]
@@ -2783,7 +4430,7 @@ pub struct DriftMetrics {
 use std::cell::RefCell;
 
 thread_local! {
-    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::constants::MAX_ATOMS));
+    static SHADOW_POOL: RefCell<Vec<u8>> = RefCell::new(Vec::with_capacity(crate::MAX_ATOMS));
 }
 
 /// Clones the entire `SigmaState`, overrides the target `atom_id` logic bytes,
@@ -2830,7 +4477,7 @@ pub fn run_shadow_simulation(
     SHADOW_POOL.with(|pool| {
         let mut visited = pool.borrow_mut();
         visited.clear();
-        visited.resize(crate::constants::MAX_ATOMS, 0);
+        visited.resize(crate::MAX_ATOMS, 0);
         let mut orchestrator = PulseOrchestrator::new(&mut visited);
 
         for i in 0..ticks {
@@ -2884,18 +4531,25 @@ pub fn run_shadow_simulation(
         }
     })
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/spatial.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_spatial.rs
 
 ```rust
-//! Spatial Fabric Topology & Cognition Grid
+// Substrate Node: sigma_spatial
+// Level: 3
+// Implements the 2D grid hashing algorithm enabling fast localized queries
 
-use crate::constants::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
-use crate::memory::{SigmaState, MAX_ATOMS};
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Spatial Fabric Topology & Cognition Grid
+
+use crate::{GRID_CELLS, GRID_W, SPATIAL_CELL_SIZE, WORLD_MAX_X, WORLD_MAX_Y};
+use crate::{SigmaState, MAX_ATOMS};
+use std::sync::atomic::Ordering;
 
 impl SigmaState {
     /// Rebuilds the 140x80 spatial hash grid for collision detection and neighbor awareness.
@@ -3001,18 +4655,24 @@ impl SigmaState {
         self.matrix.spatial_grid[cell_idx * 32 + ((sub_idx + 1) as usize)]
     }
 }
-
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/structure.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_structure.rs
 
 ```rust
-//! Architecture Intent Engine
-//! Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
+// Substrate Node: sigma_structure
+// Level: 3
+// Handles the cellular automaton lifecycle of the crystalline grid
 
-use crate::memory::SigmaState;
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+// Architecture Intent Engine
+// Handles the arbitration and locking mechanisms for `OP_BUILD`, `OP_PLUG`, and `OP_SENSE`.
+
+use crate::SigmaState;
 
 pub const STRUCTURE_INTENT_LOCK_BIT: i32 = -2147483648; // 0x80000000
 
@@ -3021,7 +4681,7 @@ impl SigmaState {
     /// Attempts to publish a build intent to the specified cell.
     /// Arbitration happens via the `ownerToken` mechanism to resolve racing logic during a tick.
     pub fn publish_build_intent(&self, cell_idx: usize, owner_atom_idx: usize, build_value: i32) {
-        if cell_idx >= crate::constants::GRID_CELLS {
+        if cell_idx >= crate::GRID_CELLS {
             return;
         }
 
@@ -3073,7 +4733,7 @@ impl SigmaState {
     /// Reads the state of a structure cell, viewing the immediate intent if present,
     /// otherwise returning the finalized grid value.
     pub fn read_structure_cell(&self, cell_idx: usize) -> i32 {
-        if cell_idx >= crate::constants::GRID_CELLS {
+        if cell_idx >= crate::GRID_CELLS {
             return 0;
         }
 
@@ -3096,7 +4756,7 @@ impl SigmaState {
 
     /// Mutates the charge intent for OP_PLUG.
     pub fn set_structure_charge_intent(&self, cell_idx: usize, charge: i32) {
-        if cell_idx < crate::constants::GRID_CELLS {
+        if cell_idx < crate::GRID_CELLS {
             let intent_atomic = self.structure_charge_intent_atomic();
             let mut current = intent_atomic[cell_idx].load(std::sync::atomic::Ordering::Acquire);
             loop {
@@ -3118,24 +4778,287 @@ impl SigmaState {
         }
     }
 }
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/store_clamped_pos.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
+    // Requires mutable pointer to the SharedArray lattice not naturally bound to pure_fns yet.
+    // TODO: Extend DAG to inject &mut [i8] for memory mutating commands.
+    ()
+}
 
 ```
 
 ---
 
-## FILE: src/00/sigma_core/src/vm.rs
+## FILE: src/00/sigma_core/src/ontology_gen/04/accumulate_metabolism_stats.rs
 
 ```rust
-//! LambdaVM Execution Engine
+#![allow(unused_imports)]
+use super::super::L03::*;
 
-use crate::constants::{
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/add_resonance.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/apply_bond_springs.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/apply_metabolism_kernel.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/build_spatial_hash.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/calculate_trophism.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/drain_spawn_requests.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/fire_signal.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_x.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/get_genome_velocity_y.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/glyph_transport.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L03::*;
+
+#[path = "build_spatial_hash.rs"]
+pub mod build_spatial_hash;
+pub use build_spatial_hash::*;
+#[path = "sigma_vm.rs"]
+pub mod sigma_vm;
+pub use sigma_vm::*;
+#[path = "add_resonance.rs"]
+pub mod add_resonance;
+pub use add_resonance::*;
+#[path = "tick_membrane_physics.rs"]
+pub mod tick_membrane_physics;
+pub use tick_membrane_physics::*;
+#[path = "run_phagocyte_pass.rs"]
+pub mod run_phagocyte_pass;
+pub use run_phagocyte_pass::*;
+#[path = "secrete_glyph.rs"]
+pub mod secrete_glyph;
+pub use secrete_glyph::*;
+#[path = "drain_spawn_requests.rs"]
+pub mod drain_spawn_requests;
+pub use drain_spawn_requests::*;
+#[path = "apply_metabolism_kernel.rs"]
+pub mod apply_metabolism_kernel;
+pub use apply_metabolism_kernel::*;
+#[path = "accumulate_metabolism_stats.rs"]
+pub mod accumulate_metabolism_stats;
+pub use accumulate_metabolism_stats::*;
+#[path = "glyph_transport.rs"]
+pub mod glyph_transport;
+pub use glyph_transport::*;
+#[path = "calculate_trophism.rs"]
+pub mod calculate_trophism;
+pub use calculate_trophism::*;
+#[path = "apply_bond_springs.rs"]
+pub mod apply_bond_springs;
+pub use apply_bond_springs::*;
+#[path = "fire_signal.rs"]
+pub mod fire_signal;
+pub use fire_signal::*;
+#[path = "get_genome_velocity_y.rs"]
+pub mod get_genome_velocity_y;
+pub use get_genome_velocity_y::*;
+#[path = "get_genome_velocity_x.rs"]
+pub mod get_genome_velocity_x;
+pub use get_genome_velocity_x::*;
+#[path = "read_structure_charge.rs"]
+pub mod read_structure_charge;
+pub use read_structure_charge::*;
+#[path = "resolve_bond_requests.rs"]
+pub mod resolve_bond_requests;
+pub use resolve_bond_requests::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/read_structure_charge.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/resolve_bond_requests.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/run_phagocyte_pass.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/secrete_glyph.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/sigma_vm.rs
+
+```rust
+// Substrate Node: sigma_vm
+// Level: 4
+// LambdaVM Execution Engine
+
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+use crate::{
     GRID_W, PROP_ENERGY, PROP_PHASE, PROP_RESONANCE, SPATIAL_CELL_SIZE,
 };
-use crate::environment::in_grid;
-use crate::isa::GlyphOp;
-use crate::constants::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
-use crate::math::{math_cos, math_sin};
-use crate::memory::{SigmaState, MAX_ATOMS};
+use crate::in_grid;
+use crate::GlyphOp;
+use crate::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
+use crate::{math_cos, math_sin};
+use crate::{SigmaState, MAX_ATOMS};
 
 pub struct LambdaVM {}
 
@@ -3167,7 +5090,7 @@ impl LambdaVM {
     /// +1 base computation energy cost, scaled exponentially based on `hormone` friction/entropy
     /// equations simulating thermodynamics across the Tensegrity lattice.
     pub fn step(&mut self, state: &SigmaState, atom_idx: usize) {
-        if atom_idx >= crate::memory::MAX_ATOMS {
+        if atom_idx >= crate::MAX_ATOMS {
             return;
         }
 
@@ -3420,7 +5343,7 @@ impl LambdaVM {
                         }
 
                         let sender_energy = state.matrix.energy[atom_idx];
-                        let scaled_amount = amount * crate::constants::SCALE;
+                        let scaled_amount = amount * crate::SCALE;
 
                         if sender_energy >= scaled_amount {
                             state.energy_atomic()[atom_idx]
@@ -3441,7 +5364,7 @@ impl LambdaVM {
                     let e_thresh = 50 - (aggression >> 3);
                     let r_thresh = 10 - (aggression >> 5);
 
-                    if energy > e_thresh * crate::constants::SCALE
+                    if energy > e_thresh * crate::SCALE
                         && state.matrix.resonance[atom_idx] > r_thresh
                     {
                         let cx = state.matrix.xs[atom_idx] as i32;
@@ -3772,8 +5695,8 @@ impl LambdaVM {
                                 mock_new[offset as usize..(offset as usize + 8)]
                                     .copy_from_slice(&new_bytes);
 
-                                let entropy_old = crate::math::calculate_shannon_entropy(&mock_old);
-                                let entropy_new = crate::math::calculate_shannon_entropy(&mock_new);
+                                let entropy_old = crate::calculate_shannon_entropy(&mock_old);
+                                let entropy_new = crate::calculate_shannon_entropy(&mock_new);
 
                                 let is_desperate = energy < (100_000_000 / 10);
 
@@ -3852,14 +5775,14 @@ impl LambdaVM {
                     } else if mode == 3 {
                         // Hive Deposit
                         let val = (p2 & 0xFF) as i32;
-                        if energy >= val * crate::constants::SCALE {
+                        if energy >= val * crate::SCALE {
                             let hive_bal_atomic = state.hive_balance_atomic();
                             hive_bal_atomic.fetch_add(val, std::sync::atomic::Ordering::Relaxed);
                             state.energy_atomic()[atom_idx].fetch_sub(
-                                val * crate::constants::SCALE,
+                                val * crate::SCALE,
                                 std::sync::atomic::Ordering::Relaxed,
                             );
-                            energy -= val * crate::constants::SCALE;
+                            energy -= val * crate::SCALE;
                         }
                         gas_used += 15;
                     } else if mode == 4 {
@@ -3883,10 +5806,10 @@ impl LambdaVM {
                             ) {
                                 Ok(_) => {
                                     state.energy_atomic()[atom_idx].fetch_add(
-                                        curr_amt * crate::constants::SCALE,
+                                        curr_amt * crate::SCALE,
                                         std::sync::atomic::Ordering::Relaxed,
                                     );
-                                    energy += curr_amt * crate::constants::SCALE;
+                                    energy += curr_amt * crate::SCALE;
                                     amount = curr_amt;
                                     break;
                                 }
@@ -4192,7 +6115,7 @@ impl LambdaVM {
         let mut cached_entropy_plus_one = state.matrix.context[atom_idx][15];
         if cached_entropy_plus_one == 0 {
             let entropy =
-                crate::math::calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
+                calculate_shannon_entropy(&state.matrix.instructions[atom_idx]);
             cached_entropy_plus_one = entropy + 1;
             state.context_atomic(atom_idx)[15].store(
                 cached_entropy_plus_one,
@@ -4282,6 +6205,326 @@ impl LambdaVM {
         }
     }
 }
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/tick_membrane_physics.rs
+
+```rust
+// Substrate Node: tick_membrane_physics
+// Level: 4
+// Membrane physics and tissue differentiation for Topography analysis
+
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/evaluate_opcodes.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L04::*;
+
+#[path = "evaluate_opcodes.rs"]
+pub mod evaluate_opcodes;
+pub use evaluate_opcodes::*;
+#[path = "tick_structure_grid.rs"]
+pub mod tick_structure_grid;
+pub use tick_structure_grid::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/05/tick_structure_grid.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L04::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/LOGGER.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/base64_to_bytes.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/bytes_to_base64.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/bytes_to_hex.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/execute_atom.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/fnv1a32.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/hex_to_bytes.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/make_xor_shift32.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L05::*;
+
+#[path = "normalize_hex64.rs"]
+pub mod normalize_hex64;
+pub use normalize_hex64::*;
+#[path = "bytes_to_base64.rs"]
+pub mod bytes_to_base64;
+pub use bytes_to_base64::*;
+#[path = "stable_stringify.rs"]
+pub mod stable_stringify;
+pub use stable_stringify::*;
+#[path = "base64_to_bytes.rs"]
+pub mod base64_to_bytes;
+pub use base64_to_bytes::*;
+#[path = "fnv1a32.rs"]
+pub mod fnv1a32;
+pub use fnv1a32::*;
+#[path = "hex_to_bytes.rs"]
+pub mod hex_to_bytes;
+pub use hex_to_bytes::*;
+#[path = "bytes_to_hex.rs"]
+pub mod bytes_to_hex;
+pub use bytes_to_hex::*;
+#[path = "pulse_orchestrator.rs"]
+pub mod pulse_orchestrator;
+pub use pulse_orchestrator::*;
+#[path = "execute_atom.rs"]
+pub mod execute_atom;
+pub use execute_atom::*;
+#[path = "LOGGER.rs"]
+pub mod LOGGER;
+pub use LOGGER::*;
+#[path = "make_xor_shift32.rs"]
+pub mod make_xor_shift32;
+pub use make_xor_shift32::*;
+#[path = "to_int16_big_endian.rs"]
+pub mod to_int16_big_endian;
+pub use to_int16_big_endian::*;
+#[path = "tick_environment.rs"]
+pub mod tick_environment;
+pub use tick_environment::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/normalize_hex64.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/pulse_orchestrator.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/stable_stringify.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/tick_environment.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+// Omitted: manual substrate implementation
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/06/to_int16_big_endian.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L05::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/crypto_keys.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L06::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/mod.rs
+
+```rust
+// AUTOGENERATED LEVEL FACADE
+
+pub use super::L06::*;
+
+#[path = "crypto_keys.rs"]
+pub mod crypto_keys;
+pub use crypto_keys::*;
+#[path = "sha256_hex.rs"]
+pub mod sha256_hex;
+pub use sha256_hex::*;
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/07/sha256_hex.rs
+
+```rust
+#![allow(unused_imports)]
+use super::super::L06::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/mod.rs
+
+```rust
+// AUTOGENERATED FACADE
+#[allow(non_snake_case)]
+#[allow(non_camel_case_types)]
+
+#[path = "00/mod.rs"]
+pub mod L00;
+#[path = "01/mod.rs"]
+pub mod L01;
+#[path = "02/mod.rs"]
+pub mod L02;
+#[path = "03/mod.rs"]
+pub mod L03;
+#[path = "04/mod.rs"]
+pub mod L04;
+#[path = "05/mod.rs"]
+pub mod L05;
+#[path = "06/mod.rs"]
+pub mod L06;
+#[path = "07/mod.rs"]
+pub mod L07;
 
 ```
 

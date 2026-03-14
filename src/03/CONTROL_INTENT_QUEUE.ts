@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../_/mod.ts";
+import { GRID_W, GRID_H, SCALE } from "../_/mod.ts";
 import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
@@ -7,7 +7,7 @@ import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
 import { PRNG } from "../00/PRNG.ts";
 
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
-import { GLYPH_BUFFER, PHYSICS_ENGINE } from "@01";
+import { GLYPH_BUFFER } from "@01";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
@@ -186,6 +186,13 @@ const FEDERATION_ADMISSION_HISTORY_LIMIT = 24;
 const GRID_CELL_BYTES = 8;
 const WORLD_W = GRID_W * 10;
 const WORLD_H = GRID_H * 10;
+
+const getGridIdx = (x: number, y: number) => {
+  const gx = Math.floor(x / SCALE);
+  const gy = Math.floor(y / SCALE);
+  if (gx < 0 || gx >= GRID_W || gy < 0) return 0;
+  return gx + gy * GRID_W;
+};
 const FEDERATION_LOCAL_NOVELTY_SIGNED = RUNTIME_POLICY.pulse
   .noveltyPressureSigned;
 const FEDERATION_LOCAL_SYMBIOSIS_SIGNED = RUNTIME_POLICY.pulse
@@ -1126,21 +1133,21 @@ const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
 
 const applyAvatarIntent = (intent: AvatarIntent): boolean => {
   GLYPH_BUFFER.depositPheromone(intent.x, intent.y, intent.intensity);
-  const idx = PHYSICS_ENGINE.getGridIdx(intent.x, intent.y);
+  const idx = getGridIdx(intent.x, intent.y);
   const coreDelta = Math.max(1, Math.min(1000, intent.intensity));
   const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
 
-  const current = PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx];
+  const current = STATE_MATRIX.attentionField[idx];
   if (current < 1000) {
-    PHYSICS_ENGINE.ATTENTION_PHEROMONES[idx] += coreDelta;
+    STATE_MATRIX.attentionField[idx] += coreDelta;
   }
 
   const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
   for (const [ox, oy] of checkPoints) {
-    const sIdx = PHYSICS_ENGINE.getGridIdx(intent.x + ox, intent.y + oy);
-    const sCurrent = PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx];
+    const sIdx = getGridIdx(intent.x + ox, intent.y + oy);
+    const sCurrent = STATE_MATRIX.attentionField[sIdx];
     if (sCurrent < 1000) {
-      PHYSICS_ENGINE.ATTENTION_PHEROMONES[sIdx] += haloDelta;
+      STATE_MATRIX.attentionField[sIdx] += haloDelta;
     }
   }
 
