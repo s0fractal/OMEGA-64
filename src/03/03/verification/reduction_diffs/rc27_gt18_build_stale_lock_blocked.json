@@ -4,10 +4,10 @@
   "baseline_runtime_mode": "worker-runtime-structure-build-stale-lock-capture",
   "parity_ok": true,
   "parity_reasons": [],
-  "legacy_digest": "4f9cab5981de251e8cf282ad8cee82443fd67208711f01def0742f427b5d9571",
-  "reduction_digest": "a182e20bd3c889f483a9f9015cfd8552431a8cfa886ce90321ec9d9761dd619e",
-  "executed_digest_legacy": "eac975cd6fe05e624b9c6bed51f106abe32f89363874faef9717b39a7d4a0c60",
-  "executed_digest_reduction": "40e63e22b9675ec72c6cddaf8f3c5cdcca9a7452e7d5d98922e5c45bfe26ef3c",
+  "legacy_digest": "6f10abe6ea317a0da740aecd704fd23f480b08dfec4e3ab044b87440e252733e",
+  "reduction_digest": "a1f9993f59a7cf726fdbba90d82a592f32fc42dcc086b78ca98633fe2e8c8b48",
+  "executed_digest_legacy": "ee5f3d89b01c5b688b86eb264d47d59810fbcbde6d6adb3ac0daeaa611483b8a",
+  "executed_digest_reduction": "c0621a5efcb959704474e1301d07e6324f1d50b639e2ccd920eab64dd3b04d16",
   "diff": {
     "final_pc_match": true,
     "registers_match": true,
@@ -35,7 +35,7 @@
     "energy_spent_delta": 8
   },
   "expectation_summary": {
-    "finalPc": 6,
+    "finalPc": 10,
     "signalCount": 0,
     "buildCount": 1,
     "finalRole": 3,

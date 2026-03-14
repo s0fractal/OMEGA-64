@@ -229,7 +229,7 @@ const OPCODE_NAMES: Record<number, string> = {
   0xA7: "ROLE",
   [RISC.OP_BUILD]: "BUILD",
   [RISC.OP_SENSE]: "SENSE",
-  [RISC.OP_WISDOM]: "WISDOM",
+  [RISC.OP_SENSE_AS]: "SENSE_AS",
   [RISC.OP_RESONATE_KURAMOTO]: "RESONATE",
 };
 

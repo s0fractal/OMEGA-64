@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H } from "../../_/mod.ts";
+import { GRID_H, GRID_W } from "../../_/mod.ts";
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
@@ -922,7 +922,9 @@ const runReductionShadow = (
 
   while (stepsExecuted < definition.maxSteps) {
     const token = tokenByPc.get(state.pc);
-    if (!token || token.opcode === RISC.OP_NOP || token.glyphId === 2) break;
+    if (!token || token.opcode === RISC.OP_NOP || token.glyphId === 2) {
+      break;
+    }
     if (token.glyphId === null) {
       throw new Error(
         `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,

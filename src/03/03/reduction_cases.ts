@@ -1,6 +1,5 @@
 import { GRID_W } from "../../_/mod.ts";
-import { RISC, STATE_MATRIX, STRUCTURE } from "@00/STATE_MATRIX.ts";
-
+import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 export type ReductionCaseExpectation = {
   finalPc: number;
   replicateCount?: number;
@@ -69,13 +68,18 @@ const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
   script[pc++] = 1;
   script[pc++] = RISC.OP_JNZ;
   script[pc++] = 0;
-  script[pc++] = 15;
+  script[pc++] = 15; // Jump to the ROLE_ARCHITECT sequence
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
-  script[pc++] = RISC.OP_ROLE;
+  // ROLE_ARCHITECT sys_set_role sequence
+  script[pc++] = RISC.OP_SET; // pc 15
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = 1;
   script[pc++] = 1;
@@ -98,9 +102,13 @@ const makeReplicatorLoopScript = (): Uint8Array => {
 const makeArchitectLoopScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = 1;
   script[pc++] = 1;
@@ -127,13 +135,18 @@ const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
   script[pc++] = RISC.PROP_RESONANCE;
   script[pc++] = RISC.OP_JZ;
   script[pc++] = 1;
-  script[pc++] = 15;
+  script[pc++] = 15; // Jump to the ROLE_ARCHITECT sequence
   script[pc++] = RISC.OP_SIGNAL;
   script[pc++] = RISC.OP_JMP;
   script[pc++] = 0;
-  script[pc++] = RISC.OP_ROLE;
+  // ROLE_ARCHITECT sys_set_role sequence
+  script[pc++] = RISC.OP_SET; // pc 15
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = 1;
   script[pc++] = 1;
@@ -170,9 +183,13 @@ const makeBuildOnlyScript = (
 ): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = buildType & 0xFF;
 
@@ -234,9 +251,13 @@ const makePlugChargeCompetitionScript = (
 const makeBuildSourceScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = STRUCTURE.SOURCE;
   script[pc++] = 0;
@@ -246,9 +267,13 @@ const makeBuildSourceScript = (): Uint8Array => {
 const makeBuildSourceWithStateScript = (state: number): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
+  script[pc++] = RISC.OP_SET;
   script[pc++] = 0;
+  script[pc++] = SYS.SET_ROLE;
+  script[pc++] = RISC.OP_SET;
+  script[pc++] = 1;
   script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
+  script[pc++] = RISC.OP_SYSCALL;
   script[pc++] = RISC.OP_BUILD;
   script[pc++] = STRUCTURE.SOURCE;
   script[pc++] = state & 0xFF;
@@ -457,9 +482,9 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       id: "rc02_gt01_architect_loop",
       baselineTraceId: "gt01_coldstart_seeded_swarm",
       description:
-        "Seeded-swarm architect loop shadowed through ROLE -> BUILD -> SIGNAL -> JMP bridge subset.",
+        "An architect script spinning in an infinite build-signal loop should emit 2 full cycles before reduction stops it.",
       script: makeArchitectLoopScript(),
-      maxSteps: 8,
+      maxSteps: 12,
       initialProps: {},
       expected: {
         finalPc: 0,
@@ -532,7 +557,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
       script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
-      maxSteps: 8,
+      maxSteps: 10,
       initialProps: {
         [RISC.PROP_ENERGY]: 1200,
       },
@@ -541,7 +566,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         signalCount: 1,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-        registers: [960, 240, 0, 0, 0, 0, 0, 0],
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
         branchTaken: true,
       },
     },
@@ -573,7 +598,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
       script: makePlasmidPropWriteScript(0),
-      maxSteps: 8,
+      maxSteps: 10,
       initialProps: {
         [RISC.PROP_RESONANCE]: 255,
       },
@@ -582,7 +607,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         signalCount: 1,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
-        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
         finalProps: {
           [RISC.PROP_RESONANCE]: 0,
         },
@@ -977,7 +1002,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "A bounded BUILD bridge should materialize an architect-published SOURCE through postStructureTick, including canonical SOURCE charge semantics.",
       script: makeBuildSourceScript(),
-      maxSteps: 2,
+      maxSteps: 4,
       postStructureTick: true,
       initialProps: {
         [RISC.PROP_X]: 35,
@@ -985,7 +1010,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         [RISC.PROP_RESONANCE]: 1,
       },
       expected: {
-        finalPc: 6,
+        finalPc: 10,
         signalCount: 0,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
@@ -1003,7 +1028,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "A bounded BUILD bridge should let a higher owner token overwrite a preseeded lower owner SOURCE intent on the same cell.",
       script: makeBuildSourceWithStateScript(91),
-      maxSteps: 2,
+      maxSteps: 4,
       ownerAtomIdx: 3,
       postStructureTick: true,
       initialProps: {
@@ -1020,7 +1045,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
           (17 << 24),
       },
       expected: {
-        finalPc: 6,
+        finalPc: 10,
         signalCount: 0,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
@@ -1038,7 +1063,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "The same bounded BUILD bridge should fail closed when a lower owner token attempts to overwrite a preseeded higher owner SOURCE intent.",
       script: makeBuildSourceWithStateScript(17),
-      maxSteps: 2,
+      maxSteps: 4,
       ownerAtomIdx: 2,
       postStructureTick: true,
       initialProps: {
@@ -1055,7 +1080,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
           (91 << 24),
       },
       expected: {
-        finalPc: 6,
+        finalPc: 10,
         signalCount: 0,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
@@ -1073,7 +1098,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description:
         "A bounded BUILD bridge should fail closed on a stale locked intent and let postStructureTick materialize the locked SOURCE value instead of the attempted overwrite.",
       script: makeBuildSourceWithStateScript(99),
-      maxSteps: 2,
+      maxSteps: 4,
       ownerAtomIdx: 2,
       postStructureTick: true,
       initialProps: {
@@ -1090,7 +1115,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
           STRUCTURE.SOURCE | (55 << 24),
       },
       expected: {
-        finalPc: 6,
+        finalPc: 10,
         signalCount: 0,
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
