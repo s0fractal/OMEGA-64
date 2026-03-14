@@ -1,4 +1,4 @@
-import { SYSTEM_TICK_HZ, WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
+import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
@@ -62,6 +62,7 @@ let tick_membrane_physics_fn: (() => void) | null = null;
 let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
   null;
 let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
+let run_phagocyte_pass_fn: ((entropy: number) => number) | null = null;
 let clear_metabolism_stats_fn: (() => void) | null = null;
 let accumulate_metabolism_stats_fn:
   | ((start: number, end: number) => void)
@@ -703,7 +704,7 @@ function handle_syscall(atomIdx: number) {
 
       if (energy >= energyBet) {
         Atomics.sub(energiesView!, atomIdx, energyBet);
-        self.postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        (self as unknown as Worker).postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
         LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
@@ -777,7 +778,7 @@ const maybeDelay = async () => {
   await new Promise((resolve) => setTimeout(resolve, totalDelay));
 };
 
-self.onmessage = async (e) => {
+(self as any).onmessage = async (e: any) => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
@@ -851,7 +852,7 @@ self.onmessage = async (e) => {
       debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
     }
     if (shouldForceInitFail(idx)) {
-      self.postMessage({
+      (self as unknown as Worker).postMessage({
         type: "INIT_FAILED",
         error: `FORCED_INIT_FAIL(worker=${idx})`,
       });
@@ -913,6 +914,8 @@ try {
         .resolve_bond_requests as any;
       drain_spawn_requests_fn = wasmInstance.exports
         .drain_spawn_requests as any;
+      run_phagocyte_pass_fn = wasmInstance.exports
+        .run_phagocyte_pass as any;
       clear_metabolism_stats_fn = wasmInstance.exports
         .clear_metabolism_stats as any;
       accumulate_metabolism_stats_fn = wasmInstance.exports
@@ -921,18 +924,18 @@ try {
         .apply_metabolism_kernel as any;
       LOGGER.info("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
-      self.postMessage({ type: "READY" });
+      (self as unknown as Worker).postMessage({ type: "READY" });
       const bview = new Int32Array(sb, OFFSETS.BONDS_OFFSET, MAX_ATOMS * 4);
       setInterval(() => {
         // removed debug logging
       }, 5000);
-      self.postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
+      (self as unknown as Worker).postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
     } catch (err) {
       LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
-      self.postMessage({ type: "INIT_FAILED", error });
+      (self as unknown as Worker).postMessage({ type: "INIT_FAILED", error });
     }
     return;
   }
@@ -990,7 +993,7 @@ try {
 
     await maybeDelay();
     LOGGER.debug("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
-    self.postMessage({ type: "DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
   }
 
   if (type === "REDUCE_DELTAS") {
@@ -999,7 +1002,7 @@ try {
       reduce_atom_deltas_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    self.postMessage({ type: "DELTA_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "DELTA_DONE", pulseId });
   }
 
   if (type === "TICK_MATRIX") {
@@ -1011,7 +1014,7 @@ try {
     // removed debug logging
     if (tick_matrix_fn) tick_matrix_fn();
     await maybeDelay();
-    self.postMessage({ type: "MATRIX_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "MATRIX_DONE", pulseId });
   }
 
   if (type === "TICK_ENVIRONMENT") {
@@ -1028,7 +1031,7 @@ try {
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
     if (tick_membrane_physics_fn) tick_membrane_physics_fn();
     await maybeDelay();
-    self.postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "ENVIRONMENT_DONE", pulseId });
   }
 
   if (type === "RESOLVE_BONDS") {
@@ -1039,7 +1042,7 @@ try {
       }
       const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
       LOGGER.info(`[DEBUG-WORKER] WASM resolve returned ${count}`);
-      self.postMessage({
+      (self as unknown as Worker).postMessage({
         type: "RESOLVE_BONDS_DONE",
         count,
         pulseId: e.data.pulseId,
@@ -1054,7 +1057,15 @@ try {
       ? drain_spawn_requests_fn(e.data.tick)
       : 0;
     await maybeDelay();
-    self.postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+  }
+
+  if (type === "PHAGOCYTE_PASS") {
+    const count = run_phagocyte_pass_fn
+      ? run_phagocyte_pass_fn(e.data.entropy)
+      : 0;
+    await maybeDelay();
+    (self as unknown as Worker).postMessage({ type: "PHAGOCYTE_PASS_DONE", pulseId, count });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -1066,7 +1077,7 @@ try {
       ? get_spatial_hash_max_cell_count_fn()
       : 0;
     await maybeDelay();
-    self.postMessage({
+    (self as unknown as Worker).postMessage({
       type: "HASH_DONE",
       pulseId,
       overflowCount,
@@ -1077,14 +1088,14 @@ try {
   if (type === "TICK_GLYPH_TRANSPORT") {
     if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
     await maybeDelay();
-    self.postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
   }
 
   if (type === "POLL_COHERENCE") {
     if (get_neural_coherence_fn) {
       const coherence = get_neural_coherence_fn();
       await maybeDelay();
-      self.postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
+      (self as unknown as Worker).postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
     }
   }
 
@@ -1092,7 +1103,7 @@ try {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
       await maybeDelay();
-      self.postMessage({ type: "COHERENCE_SET_DONE", pulseId });
+      (self as unknown as Worker).postMessage({ type: "COHERENCE_SET_DONE", pulseId });
     }
   }
 
@@ -1103,7 +1114,7 @@ try {
       accumulate_metabolism_stats_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    self.postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
   }
 
   if (type === "METABOLISM_APPLY") {
@@ -1139,7 +1150,7 @@ try {
       );
     }
     await maybeDelay();
-    self.postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    (self as unknown as Worker).postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
   }
 
   if (type === "SET_DEBUG_DELAY") {

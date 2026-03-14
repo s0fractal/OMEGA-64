@@ -8,7 +8,8 @@ min_level: 6
 tags:
   - host
 args: {}
-vars: []
+vars:
+  - base64_to_bytes
 deps:
   - base64_to_bytes
 description: WebCrypto key management interfaces and import wrappers.

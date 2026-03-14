@@ -14,6 +14,9 @@ pub use add_resonance::*;
 #[path = "tick_membrane_physics.rs"]
 pub mod tick_membrane_physics;
 pub use tick_membrane_physics::*;
+#[path = "run_phagocyte_pass.rs"]
+pub mod run_phagocyte_pass;
+pub use run_phagocyte_pass::*;
 #[path = "secrete_glyph.rs"]
 pub mod secrete_glyph;
 pub use secrete_glyph::*;

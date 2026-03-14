@@ -268,6 +268,14 @@ function mapRsType(t: string): string {
   return t;
 }
 
+function mapTsType(t: string): string {
+  if (t === "i32" || t === "u32" || t === "f32" || t === "f64" || t === "u8" || t === "i8" || t === "i16" || t === "u16" || t === "usize") return "number";
+  if (t === "i64" || t === "u64") return "bigint";
+  if (t === "boolean" || t === "bool") return "boolean";
+  if (t === "void") return "void";
+  return t;
+}
+
 for (const node of nodes.values()) {
   const lvlStr = formatLevel(node.level);
   const dirPathTs = `${GEN_DIR_TS}/${lvlStr}`;
@@ -297,14 +305,14 @@ for (const node of nodes.values()) {
     case "enum":
       tsOut += `// Enum: ${node.id}\n`;
       for (const [k, v] of Object.entries(node.values || {})) {
-        tsOut += `export const ${k}: ${node.dataType || "u8"} = ${v};\n`;
+        tsOut += `export const ${k}: ${mapTsType(node.dataType || "u8")} = ${v};\n`;
       }
       break;
     case "constants":
       tsOut += `// Constants: ${node.id}\n`;
       for (const [k, def] of Object.entries(node.values || {})) {
         const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
-        const tsType = ((def as any).type === "usize" || (def as any).type === "i32" || (def as any).type === "u8") ? "number" : (def as any).type;
+        const tsType = mapTsType((def as any).type as string || "i32");
         tsOut += `export const ${k}: ${tsType} = ${v};\n`;
       }
       break;
@@ -380,10 +388,10 @@ ${(node.regions || []).map((r, i, arr) => {
       } else {
         const nodeArgsArr = Array.isArray(node.args) ? node.args : 
                    (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-        tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
-        tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-        tsOut += `\n}\n`;
+        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${mapTsType(a.type)}`).join(", ");
+        tsOut += `export function ${node.id}(${nodeArgStr}): ${mapTsType((node.returns as string))} {\n`;
+        tsOut += `  throw new Error("unimplemented in host (runs in WASM)");\n`;
+        tsOut += `}\n`;
       }
       break;
     case "substrate_module":
@@ -555,7 +563,8 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
             line = line.replace("number[]", "StaticArray<i32>");
         } else if (line.includes("number")) {
            // For TS it has 'number', in AS it needs specified types. Let's infer loosely
-           line = line.replace(/\bnumber\b/g, (node.id.includes("OPCODES") || node.id.includes("PROPS") || node.id.includes("TYPES")) ? "u8" : "i32");
+           const isU8 = /opcodes|props|types|roles/i.test(node.id);
+           line = line.replace(/\bnumber\b/g, isU8 ? "u8" : "i32");
         }
         asOut += line + "\n";
     }

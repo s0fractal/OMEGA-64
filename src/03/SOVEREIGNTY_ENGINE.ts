@@ -2,7 +2,6 @@
 // Handles Regent Election, Decrees, and Legitimacy.
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "@02";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(
     tick: number,
@@ -68,7 +67,6 @@ export const SOVEREIGNTY_ENGINE: any = {
     }
 
     if (regentIdx !== -1) {
-      const filename = IDX_TO_ID.get(regentIdx)!;
       const logicBytes = STATE_MATRIX.getLogic(regentIdx);
       const logicStr = Array.from(logicBytes).map((b) =>
         b.toString(16).padStart(2, "0")

@@ -542,7 +542,7 @@ const hormoneRegimeLabel = (h: number[]): string => {
 };
 
 const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
   // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
   const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join(
@@ -1001,7 +1001,7 @@ const discoverSpecies = async (
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
   // Stage 7.4: Fetch current hormone regime label
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
 
   const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);

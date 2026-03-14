@@ -1,6 +1,5 @@
 import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
-import { SPATIAL_HASH } from "@01";
 import { assembleScript } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -95,21 +94,38 @@ export class AgentProxy {
     const role = STATE_MATRIX.getRole(atomId);
 
     // Radar scan (radius 50 units = 5 cells)
-    const neighbors = SPATIAL_HASH.queryRadius(x, y, 50);
-    const vision = neighbors
-      .filter((nIdx) => nIdx !== atomId)
-      .map((nIdx) => ({
-        id: Number(STATE_MATRIX.getId(nIdx)),
-        idx: nIdx,
-        dx: STATE_MATRIX.getX(nIdx) - x,
-        dy: STATE_MATRIX.getY(nIdx) - y,
-        role: STATE_MATRIX.getRole(nIdx),
-        distance: Math.sqrt(
-          Math.pow(STATE_MATRIX.getX(nIdx) - x, 2) +
-            Math.pow(STATE_MATRIX.getY(nIdx) - y, 2),
-        ),
-      })).sort((a, b) => a.distance - b.distance)
-      .slice(0, 30);
+    const vision = [];
+    const MAX_DISTANCE_SQ = 50 * 50;
+    
+    // Bounded scan over STATE_MATRIX to avoid legacy SPATIAL_HASH O(1) grid overhead
+    // which requires constant upkeep from workers.
+    for (let currentAt = 1; currentAt <= 10000; currentAt++) {
+      if (currentAt === atomId) continue;
+      
+      const nId = Number(STATE_MATRIX.getId(currentAt));
+      if (nId <= 0) continue;
+      
+      const nX = STATE_MATRIX.getX(currentAt);
+      const nY = STATE_MATRIX.getY(currentAt);
+      
+      const dx = nX - x;
+      const dy = nY - y;
+      const dSq = dx * dx + dy * dy;
+      
+      if (dSq <= MAX_DISTANCE_SQ) {
+        vision.push({
+          id: nId,
+          idx: currentAt,
+          dx,
+          dy,
+          role: STATE_MATRIX.getRole(currentAt),
+          distance: Math.sqrt(dSq),
+        });
+      }
+    }
+
+    vision.sort((a, b) => a.distance - b.distance);
+    vision.splice(30); // Keep only nearest 30
 
     return new Response(
       JSON.stringify({

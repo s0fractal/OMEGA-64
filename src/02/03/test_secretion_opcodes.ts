@@ -21,7 +21,7 @@ async function runSecretionOpcodeTests() {
   ) => void;
 
   STATE_MATRIX.clear();
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
   // 2. Setup Architect Atom
   const atomIdx = 20; // Skip trace threshold
@@ -80,7 +80,7 @@ async function runSecretionOpcodeTests() {
   const tick_glyph_transport = instantiated.instance.exports
     .glyph_transport as (tick: number) => void;
 
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
   // Set high signal in a cell (use multiple of 32 due to WASM sampling)
   const cellIdx = 512;

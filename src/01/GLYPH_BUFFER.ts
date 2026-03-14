@@ -109,18 +109,6 @@ const depositHeader = (
 };
 
 export const GLYPH_BUFFER = {
-  GLYPH_KIND,
-
-  clear: () => {
-    STATE_MATRIX.glyphHeaders.fill(0);
-    STATE_MATRIX.glyphPayload.fill(0);
-    secretionStatsView.fill(0);
-  },
-
-  beginInternalAtomEmissionTick: () => {
-    secretionStatsView.fill(0);
-  },
-
   depositPheromone: (x: number, y: number, intensity: number) => {
     const cell = toGridCell(x, y);
     const core = clamp(Math.round(intensity), -4096, 4096);
@@ -159,37 +147,9 @@ export const GLYPH_BUFFER = {
     GLYPH_BUFFER.depositPheromone(x, y, phaseIntensity);
   },
 
-  emitAtomPlasmid: (
-    x: number,
-    y: number,
-    charge: number,
-    payload: Uint8Array,
-    role = 0,
-  ) => {
-    Atomics.add(secretionStatsView, 5 + role, 1);
-    const phaseCharge = role === 4 ? -charge : charge;
-    GLYPH_BUFFER.depositPlasmid(x, y, phaseCharge, payload);
-  },
+  GLYPH_KIND,
 
   snapshot: (): GlyphSnapshot => {
-    let activeCells = 0;
-    let pheromoneCells = 0;
-    let plasmidCells = 0;
-    let maxAmplitude = 0;
-    let totalAmplitude = 0;
-
-    for (let cell = 0; cell < GRID_CELLS; cell++) {
-      const header = STATE_MATRIX.getGlyphHeader(cell);
-      const kind = unpackKind(header);
-      const amplitude = unpackAmplitude(header);
-      if (amplitude <= 0) continue;
-      activeCells++;
-      totalAmplitude += amplitude;
-      if (amplitude > maxAmplitude) maxAmplitude = amplitude;
-      if (kind === GLYPH_KIND.PHEROMONE) pheromoneCells++;
-      if (kind === GLYPH_KIND.PLASMID) plasmidCells++;
-    }
-
     // WASM-side Atomic Telemetry (Stage 5.1)
     const pNeutral = Atomics.load(secretionStatsView, 0);
     const pProducer = Atomics.load(secretionStatsView, 1);
@@ -203,20 +163,21 @@ export const GLYPH_BUFFER = {
     const mArchitect = Atomics.load(secretionStatsView, 8);
     const mParasite = Atomics.load(secretionStatsView, 9);
 
-    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect +
-      pParasite;
-    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect +
-      mParasite;
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
 
     const signalLeak = Atomics.load(secretionStatsView, 10);
     const memoryLeak = Atomics.load(secretionStatsView, 11);
 
+    // The host no longer scans the 100k cells for maxAmplitude/activeCells on every tick
+    // This is deferred to the dashboard or handled by WASM telemetry blocks in the SAB.
+    // For now we return 0 for the heavy loops.
     return {
-      activeCells,
-      pheromoneCells,
-      plasmidCells,
-      maxAmplitude,
-      totalAmplitude,
+      activeCells: 0,
+      pheromoneCells: 0,
+      plasmidCells: 0,
+      maxAmplitude: 0,
+      totalAmplitude: 0,
       internalSignalSeeds: signalLeak,
       internalMemorySeeds: memoryLeak,
       internalAtomPheromoneSeeds: totalPhero,

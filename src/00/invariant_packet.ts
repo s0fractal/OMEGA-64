@@ -83,7 +83,7 @@ const canonicalInvariantPacket = (
 const canonicalInvariantPacketPayload = (
   packet: INVARIANT_PACKET__08_00_InvariantPacket,
 ): string =>
-  stableStringify({
+  stable_stringify({
     version: packet.version,
     tick_anchor: packet.tick_anchor,
     canon_index_chain_checked: packet.canon_index_chain_checked,

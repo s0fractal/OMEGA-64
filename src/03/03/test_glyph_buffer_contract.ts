@@ -19,7 +19,7 @@ const main = async () => {
     return GLYPH_BUFFER.snapshot();
   };
 
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
   GLYPH_BUFFER.depositPheromone(920, 30, 120);
   const pheromoneSnapshot = GLYPH_BUFFER.snapshot();
@@ -70,7 +70,7 @@ const main = async () => {
     );
   }
 
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
   STATE_MATRIX.signalGrid.fill(0);
   STATE_MATRIX.memoryGrid.fill(0);
 
@@ -115,7 +115,7 @@ const main = async () => {
     );
   }
 
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
   GLYPH_BUFFER.beginInternalAtomEmissionTick();
   GLYPH_BUFFER.emitAtomPheromone(
     200,

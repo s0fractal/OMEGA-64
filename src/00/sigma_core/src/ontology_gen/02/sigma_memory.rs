@@ -122,6 +122,15 @@ impl SigmaState {
         }
     }
 
+    pub fn hormones_atomic(&self) -> &[std::sync::atomic::AtomicU16] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.hormones.as_ptr() as *const std::sync::atomic::AtomicU16,
+                MAX_HORMONES,
+            )
+        }
+    }
+
     pub fn ids_atomic(&self) -> &[std::sync::atomic::AtomicU64] {
         unsafe {
             std::slice::from_raw_parts(
@@ -466,10 +475,10 @@ mod tests {
             "spawn_requests"
         );
         assert_eq!(
-            SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
-            crate::MEIOSIS_OFFSET,
-            "meiosis_reserved"
-        );
+        SAFETY_BUFFER + offset_of!(SigmaMatrix, meiosis_reserved),
+        crate::MEIOSIS_RESERVED_OFFSET,
+        "meiosis_reserved"
+    );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, bond_requests),
             crate::BOND_REQUESTS_OFFSET,
@@ -627,7 +636,7 @@ mod tests {
         );
         assert_eq!(
             SAFETY_BUFFER + offset_of!(SigmaMatrix, hormones),
-            crate::HORMONE_OFFSET,
+            crate::HORMONES_OFFSET,
             "hormones"
         );
         assert_eq!(

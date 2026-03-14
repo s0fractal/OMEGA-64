@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T16:11:25.503Z*
-*Exported Files in Category: 121*
-*Total Exported Files: 507*
+*Generated: 2026-03-13T18:17:42.252Z*
+*Exported Files in Category: 136*
+*Total Exported Files: 549*
 *Runtime Roots: 10*
-*Runtime Closure Files: 318*
-*Non-Runtime Code Files: 68*
+*Runtime Closure Files: 333*
+*Non-Runtime Code Files: 80*
 *Runtime-Support Code Files: 10*
-*Experimental Code Files: 58*
-*Manifest SHA256: 39b9ee6963a688da2ecdc24e66b2f51b41a8b035978a4bc3a418688653156c74*
-*Export Set SHA256: 1195bde2bb124a617253afa4d3ade8414b7ad212de57c355b4230e24d39b455f*
-*Export Content SHA256: d75805c79199c3a49982aa369a90dd377470acad6b557fde50a1aa45cf66ce3c*
-*Git Commit: 0d8f56b190d5*
+*Experimental Code Files: 70*
+*Manifest SHA256: a56ced00d588419deca369ce21fb7e5563a3efb58fc376e2013aabc971371590*
+*Export Set SHA256: 10707e7b2d7a8c5e6dc89f8ac55d6437fe7ef2fa1a7e50b3d7ca11d77f0d2db9*
+*Export Content SHA256: cda46af3c893fd5f03d81fce061fde6ee1adca4b65b69020614b27d305049721*
+*Git Commit: da8758fccff9*
 
 ---
 
@@ -1600,7 +1600,7 @@ description: Membrane physics and tissue differentiation for Topography analysis
 ---
 
 ```rust
-unimplemented!()
+
 ```
 
 ```typescript
@@ -2932,6 +2932,54 @@ regions:
 
 ---
 
+## FILE: src/ontology/core/pulse_orchestrator.md
+
+```markdown
+---
+id: pulse_orchestrator
+type: module
+description: "High-level event driver and matrix interaction hub"
+tags: ["wasm"]
+deps: ["build_spatial_hash", "diffuse_viral_semantics", "tick_structure_grid"]
+returns: void
+---
+
+### AssemblyScript
+```assemblyscript
+// deno-lint-ignore-file
+// @ts-nocheck
+// OMEGA-64 | pulse_orchestrator.ts | Zero-Allocation WASM VM Core
+
+import { build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../05/mod";
+
+let spatialHashOverflowCount: i32 = 0;
+let spatialHashMaxCellCount: i32 = 0;
+
+export function get_spatial_hash_overflow_count(): i32 {
+  return spatialHashOverflowCount;
+}
+
+export function get_spatial_hash_max_cell_count(): i32 {
+  return spatialHashMaxCellCount;
+}
+
+export function build_spatial_hash(): void {
+  const result: i64 = core_build_spatial_hash();
+  spatialHashMaxCellCount = (result >> 32) as i32;
+  spatialHashOverflowCount = (result & 0xFFFFFFFF) as i32;
+}
+
+export { diffuse_viral_semantics as diffuseViralSemantics };
+
+export function tick_matrix(): void {
+  tick_structure_grid();
+}
+```
+
+```
+
+---
+
 ## FILE: src/ontology/core/StructureTypes.md
 
 ```markdown
@@ -2969,6 +3017,9 @@ values:
   MAX_ATOMS: 
     value: 500000
     type: usize
+  LAYOUT_VERSION:
+    value: 1
+    type: u32
   SAFETY_BUFFER: 
     value: 8000000
     type: usize
@@ -3242,6 +3293,422 @@ values:
 
 ---
 
+## FILE: src/ontology/crypto/base64_to_bytes.md
+
+```markdown
+---
+id: base64_to_bytes
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Converts a base64 string to a Uint8Array.
+---
+
+```typescript
+export const base64_to_bytes = (b64: string): Uint8Array =>
+  Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/bytes_to_base64.md
+
+```markdown
+---
+id: bytes_to_base64
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Converts a Uint8Array to a base64 string.
+---
+
+```typescript
+export const bytes_to_base64 = (bytes: Uint8Array): string =>
+  btoa(String.fromCharCode(...bytes));
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/bytes_to_hex.md
+
+```markdown
+---
+id: bytes_to_hex
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Converts a Uint8Array to a hex string.
+---
+
+```typescript
+export const bytes_to_hex = (bytes: Uint8Array): string =>
+  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/crypto_keys.md
+
+```markdown
+---
+id: crypto_keys
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps:
+  - base64_to_bytes
+description: WebCrypto key management interfaces and import wrappers.
+---
+
+```typescript
+export type Ed25519SigningKey = {
+  scheme: "ed25519/v1";
+  private_key_pkcs8_b64: string;
+};
+export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
+export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+const crypto = globalThis.crypto;
+const encoder = new TextEncoder();
+
+export const import_hmac = async (
+  secret: string,
+  usages: KeyUsage[],
+): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    usages,
+  );
+
+export const import_ed25519_private = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "pkcs8",
+    base64_to_bytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
+
+export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "spki",
+    base64_to_bytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/fnv1a32.md
+
+```markdown
+---
+id: fnv1a32
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Host implementation of the FNV-1a 32-bit hash.
+---
+
+```typescript
+export const fnv1a32 = (input: string): number => {
+  let hash = 0x811C9DC5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/hex_to_bytes.md
+
+```markdown
+---
+id: hex_to_bytes
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Converts a hex string to a Uint8Array, returning null if invalid.
+---
+
+```typescript
+export const hex_to_bytes = (hex: string): Uint8Array | null => {
+  if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const byte = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+    if (!Number.isFinite(byte)) return null;
+    out[i] = byte;
+  }
+  return out;
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/normalize_hex64.md
+
+```markdown
+---
+id: normalize_hex64
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Validates and normalizes 64-character hex strings (sha256 format).
+---
+
+```typescript
+export const normalize_hex64 = (value: unknown): string | null => {
+  if (typeof value !== "string") return null;
+  const t = value.trim().toLowerCase();
+  return /^[a-f0-9]{64}$/u.test(t) ? t : null;
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/sha256_hex.md
+
+```markdown
+---
+id: sha256_hex
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps:
+  - bytes_to_hex
+description: Async SHA-256 hashing to hex strings for both text and raw bytes.
+---
+
+```typescript
+const crypto = globalThis.crypto;
+const encoder = new TextEncoder();
+
+export const sha256_hex = async (input: string): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(input));
+  return bytes_to_hex(new Uint8Array(digest));
+};
+
+export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    bytes as unknown as BufferSource,
+  );
+  return bytes_to_hex(new Uint8Array(digest));
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/crypto/stable_stringify.md
+
+```markdown
+---
+id: stable_stringify
+type: module
+dataType: null
+returns: void
+level: 0
+min_level: 6
+tags:
+  - host
+args: {}
+vars: []
+deps: []
+description: Deterministically stringifies JSON objects for signing.
+---
+
+```typescript
+export const stable_stringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return "[" + value.map((v) => stable_stringify(v)).join(",") + "]";
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    return "{" +
+      entries.map(([k, v]) => JSON.stringify(k) + ":" + stable_stringify(v))
+        .join(",") +
+      "}";
+  }
+  return JSON.stringify(value);
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/host/LOGGER.md
+
+```markdown
+---
+id: LOGGER
+type: module
+description: "Cross-platform Host Logger"
+tags: ["host", "console"]
+min_level: 6
+deps: []
+returns: void
+---
+
+### TypeScript
+```typescript
+export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+const LEVEL_WEIGHT: Record<LogLevel, number> = {
+  debug: 10,
+  info: 20,
+  warn: 30,
+  error: 40,
+  silent: 50,
+};
+
+const readEnv = (key: string): string | undefined => {
+  try {
+    const deno = (globalThis as {
+      Deno?: { env?: { get?: (k: string) => string | undefined } };
+    }).Deno;
+    return deno?.env?.get?.(key);
+  } catch {
+    return undefined;
+  }
+};
+
+const normalizeLevel = (raw: string | undefined): LogLevel => {
+  const value = raw?.trim().toLowerCase();
+  if (value === "debug") return "debug";
+  if (value === "info") return "info";
+  if (value === "warn" || value === "warning") return "warn";
+  if (value === "error") return "error";
+  if (value === "silent" || value === "off" || value === "none") {
+    return "silent";
+  }
+  return "warn";
+};
+
+let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+
+const shouldLog = (level: LogLevel): boolean => {
+  if (currentLevel === "silent") return false;
+  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
+};
+
+const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
+  const sink =
+    (console as unknown as Record<string, (...xs: unknown[]) => void>)[
+      method
+    ] ??
+      console.log;
+  sink(...args);
+};
+
+export const LOGGER = {
+  getLevel: (): LogLevel => currentLevel,
+  setLevel: (level: LogLevel): void => {
+    currentLevel = level;
+  },
+  refreshLevelFromEnv: (): LogLevel => {
+    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+    return currentLevel;
+  },
+  debug: (...args: unknown[]) => {
+    if (shouldLog("debug")) emit("debug", args);
+  },
+  info: (...args: unknown[]) => {
+    if (shouldLog("info")) emit("info", args);
+  },
+  warn: (...args: unknown[]) => {
+    if (shouldLog("warn")) emit("warn", args);
+  },
+  error: (...args: unknown[]) => {
+    if (shouldLog("error")) emit("error", args);
+  },
+};
+```
+
+```
+
+---
+
 ## FILE: src/ontology/host/sigma_atom_role.md
 
 ```markdown
@@ -3431,9 +3898,6 @@ use crate::{
 };
 use crate::SigmaState;
 
-pub fn in_grid(x: i32, y: i32) -> bool {
-    x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
-}
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
@@ -7439,6 +7903,55 @@ return value as i32;
 
 ---
 
+## FILE: src/ontology/math/clamp01.md
+
+```markdown
+---
+id: clamp01
+type: pure_fn
+description: "Constrains a floating point number between 0.0 and 1.0 (inclusive)"
+tags: []
+deps: []
+args:
+  x: f64
+returns: f64
+tests:
+  - [0.5, 0.5]
+  - [-1.0, 0.0]
+  - [2.5, 1.0]
+  - [1.0, 1.0]
+  - [0.0, 0.0]
+---
+
+### Rust
+```rust
+if x < 0.0 {
+    0.0
+} else if x > 1.0 {
+    1.0
+} else {
+    x
+}
+```
+
+### TypeScript
+```typescript
+if (x < 0) return 0;
+if (x > 1) return 1;
+return x;
+```
+
+### AssemblyScript
+```assemblyscript
+if (x < 0.0) return 0.0;
+if (x > 1.0) return 1.0;
+return x;
+```
+
+```
+
+---
+
 ## FILE: src/ontology/math/COS_LUT.md
 
 ```markdown
@@ -7605,6 +8118,36 @@ return (v >> 31) | ((<number><unknown>-v) >>> 31);
 ### AssemblyScript
 ```assemblyscript
 return (v >> 31) | (<i32>(<u32>-v) >>> 31);
+```
+
+```
+
+---
+
+## FILE: src/ontology/math/make_xor_shift32.md
+
+```markdown
+---
+id: make_xor_shift32
+type: module
+description: "Higher-order functional generator spinning up a PRNG XorShift32 state closure."
+tags: ["host"]
+min_level: 6
+deps: []
+returns: void
+---
+
+### TypeScript
+```typescript
+export const make_xor_shift32 = (seed: number): () => number => {
+  let state = (seed >>> 0) || 1;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+};
 ```
 
 ```
@@ -7811,6 +8354,55 @@ return s_base + term1 - term2;
 
 ---
 
+## FILE: src/ontology/math/normalize_angle.md
+
+```markdown
+---
+id: normalize_angle
+type: pure_fn
+description: "Normalizes an angle to a uniform [0.0, 1.0) range derived from Tau (2 * PI)."
+tags: []
+deps: []
+args:
+  angle: f64
+returns: f64
+tests:
+  - [0.0, 0.0]
+  - [6.283185307179586, 0.0]
+  - [3.141592653589793, 0.5]
+  - [-3.141592653589793, 0.5]
+---
+
+### Rust
+```rust
+let tau = 2.0 * std::f64::consts::PI;
+let mut a = angle % tau;
+if a < 0.0 {
+    a += tau;
+}
+a / tau
+```
+
+### TypeScript
+```typescript
+const tau = 2 * Math.PI;
+let a = angle % tau;
+if (a < 0) a += tau;
+return a / tau;
+```
+
+### AssemblyScript
+```assemblyscript
+const tau: f64 = 2.0 * Math.PI;
+let a: f64 = angle % tau;
+if (a < 0.0) a += tau;
+return a / tau;
+```
+
+```
+
+---
+
 ## FILE: src/ontology/math/prng_next.md
 
 ```markdown
@@ -7857,6 +8449,36 @@ dataType: i16
 ---
 
 ## payload: [0,804,1608,2410,3212,4011,4808,5602,6393,7179,7962,8739,9512,10278,11039,11793,12539,13279,14010,14732,15446,16151,16846,17530,18204,18868,19519,20159,20787,21403,22005,22594,23170,23731,24279,24811,25329,25832,26319,26790,27245,27683,28105,28510,28898,29268,29621,29956,30273,30571,30852,31113,31356,31580,31785,31971,32137,32285,32412,32521,32609,32678,32728,32757,32767,32757,32728,32678,32609,32521,32412,32285,32137,31971,31785,31580,31356,31113,30852,30571,30273,29956,29621,29268,28898,28510,28105,27683,27245,26790,26319,25832,25329,24811,24279,23731,23170,22594,22005,21403,20787,20159,19519,18868,18204,17530,16846,16151,15446,14732,14010,13279,12539,11793,11039,10278,9512,8739,7962,7179,6393,5602,4808,4011,3212,2410,1608,804,0,-804,-1608,-2410,-3212,-4011,-4808,-5602,-6393,-7179,-7962,-8739,-9512,-10278,-11039,-11793,-12539,-13279,-14010,-14732,-15446,-16151,-16846,-17530,-18204,-18868,-19519,-20159,-20787,-21403,-22005,-22594,-23170,-23731,-24279,-24811,-25329,-25832,-26319,-26790,-27245,-27683,-28105,-28510,-28898,-29268,-29621,-29956,-30273,-30571,-30852,-31113,-31356,-31580,-31785,-31971,-32137,-32285,-32412,-32521,-32609,-32678,-32728,-32757,-32767,-32757,-32728,-32678,-32609,-32521,-32412,-32285,-32137,-31971,-31785,-31580,-31356,-31113,-30852,-30571,-30273,-29956,-29621,-29268,-28898,-28510,-28105,-27683,-27245,-26790,-26319,-25832,-25329,-24811,-24279,-23731,-23170,-22594,-22005,-21403,-20787,-20159,-19519,-18868,-18204,-17530,-16846,-16151,-15446,-14732,-14010,-13279,-12539,-11793,-11039,-10278,-9512,-8739,-7962,-7179,-6393,-5602,-4808,-4011,-3212,-2410,-1608,-804]
+
+```
+
+---
+
+## FILE: src/ontology/math/to_int16_big_endian.md
+
+```markdown
+---
+id: to_int16_big_endian
+type: module
+description: "Converts an Int16Array wrapper into correctly encoded Uint8Array bytes via Big Endian orientation."
+tags: ["host"]
+min_level: 6
+deps: []
+returns: void
+---
+
+### TypeScript
+```typescript
+export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
+  const out = new Uint8Array(values.length * 2);
+  for (let i = 0; i < values.length; i++) {
+    const v = values[i] < 0 ? values[i] + 0x1_0000 : values[i];
+    out[i * 2] = (v >>> 8) & 0xFF;
+    out[i * 2 + 1] = v & 0xFF;
+  }
+  return out;
+};
+```
 
 ```
 

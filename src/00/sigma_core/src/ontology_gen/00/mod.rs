@@ -36,6 +36,9 @@ pub use unpack_glyph_amplitude::*;
 #[path = "unpack_glyph_kind.rs"]
 pub mod unpack_glyph_kind;
 pub use unpack_glyph_kind::*;
+#[path = "immune_check.rs"]
+pub mod immune_check;
+pub use immune_check::*;
 #[path = "COS_LUT.rs"]
 pub mod COS_LUT;
 pub use COS_LUT::*;

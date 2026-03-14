@@ -7,7 +7,7 @@ const expect = (condition: unknown, message: string): void => {
 
 const main = () => {
   STATE_MATRIX.clear();
-  GLYPH_BUFFER.clear();
+  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
   // 1. Constructive Interference (+100 and +50 = +150)
   GLYPH_BUFFER.depositPheromone(50, 50, 100);

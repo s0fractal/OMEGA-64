@@ -1,23 +1,23 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-13T16:11:25.502Z*
-*Exported Files in Category: 386*
-*Total Exported Files: 507*
+*Generated: 2026-03-13T18:17:42.250Z*
+*Exported Files in Category: 413*
+*Total Exported Files: 549*
 *Runtime Roots: 10*
-*Runtime Closure Files: 318*
-*Non-Runtime Code Files: 68*
+*Runtime Closure Files: 333*
+*Non-Runtime Code Files: 80*
 *Runtime-Support Code Files: 10*
-*Experimental Code Files: 58*
-*Manifest SHA256: 39b9ee6963a688da2ecdc24e66b2f51b41a8b035978a4bc3a418688653156c74*
-*Export Set SHA256: 1195bde2bb124a617253afa4d3ade8414b7ad212de57c355b4230e24d39b455f*
-*Export Content SHA256: d75805c79199c3a49982aa369a90dd377470acad6b557fde50a1aa45cf66ce3c*
-*Git Commit: 0d8f56b190d5*
+*Experimental Code Files: 70*
+*Manifest SHA256: a56ced00d588419deca369ce21fb7e5563a3efb58fc376e2013aabc971371590*
+*Export Set SHA256: 10707e7b2d7a8c5e6dc89f8ac55d6437fe7ef2fa1a7e50b3d7ca11d77f0d2db9*
+*Export Content SHA256: cda46af3c893fd5f03d81fce061fde6ee1adca4b65b69020614b27d305049721*
+*Git Commit: da8758fccff9*
 
 ---
 
 ## ACTIVE RUNTIME ROOTS
 
-- src/00/01/assembly/index.ts
+- src/_as/mod.ts
 - src/02/PULSE_WORKER.ts
 - src/02/PULSE.ts
 - src/05/llm_soul.ts
@@ -33,6 +33,7 @@
 ## ACTIVE RUNTIME CLOSURE
 
 - src/_/00/C_LOG2_C_LUT.ts
+- src/_/00/clamp01.ts
 - src/_/00/COS_LUT.ts
 - src/_/00/dir4_x.ts
 - src/_/00/dir4_y.ts
@@ -45,6 +46,7 @@
 - src/_/00/fast_sign.ts
 - src/_/00/math_clamp.ts
 - src/_/00/mod.ts
+- src/_/00/normalize_angle.ts
 - src/_/00/pack_glyph_header.ts
 - src/_/00/prng_next.ts
 - src/_/00/SIN_LUT.ts
@@ -142,11 +144,26 @@
 - src/_/05/evaluate_opcodes.ts
 - src/_/05/mod.ts
 - src/_/05/tick_structure_grid.ts
+- src/_/06/base64_to_bytes.ts
+- src/_/06/bytes_to_base64.ts
+- src/_/06/bytes_to_hex.ts
 - src/_/06/execute_atom.ts
+- src/_/06/fnv1a32.ts
+- src/_/06/hex_to_bytes.ts
+- src/_/06/LOGGER.ts
+- src/_/06/make_xor_shift32.ts
 - src/_/06/mod.ts
+- src/_/06/normalize_hex64.ts
+- src/_/06/pulse_orchestrator.ts
+- src/_/06/stable_stringify.ts
 - src/_/06/tick_environment.ts
+- src/_/06/to_int16_big_endian.ts
+- src/_/07/crypto_keys.ts
+- src/_/07/mod.ts
+- src/_/07/sha256_hex.ts
 - src/_/mod.ts
 - src/_as/00/C_LOG2_C_LUT.ts
+- src/_as/00/clamp01.ts
 - src/_as/00/COS_LUT.ts
 - src/_as/00/dir4_x.ts
 - src/_as/00/dir4_y.ts
@@ -159,6 +176,7 @@
 - src/_as/00/fast_sign.ts
 - src/_as/00/math_clamp.ts
 - src/_as/00/mod.ts
+- src/_as/00/normalize_angle.ts
 - src/_as/00/pack_glyph_header.ts
 - src/_as/00/prng_next.ts
 - src/_as/00/SIN_LUT.ts
@@ -258,22 +276,19 @@
 - src/_as/05/tick_structure_grid.ts
 - src/_as/06/execute_atom.ts
 - src/_as/06/mod.ts
+- src/_as/06/pulse_orchestrator.ts
 - src/_as/06/tick_environment.ts
+- src/_as/07/mod.ts
 - src/_as/mod.ts
-- src/00/01/assembly/index.ts
-- src/00/01/assembly/pulse_orchestrator.ts
 - src/00/agent_signature.ts
 - src/00/ATOM_ACCESS.ts
 - src/00/ATOM_INDEX.ts
 - src/00/checkpoint_chain.ts
-- src/00/crypto_shim.ts
 - src/00/crystallization.ts
 - src/00/ENV_PARSE.ts
 - src/00/gate_admission.ts
 - src/00/invariant_packet.ts
 - src/00/ledger_chain.ts
-- src/00/LOGGER.ts
-- src/00/math_utils.ts
 - src/00/memory_views.ts
 - src/00/mod.ts
 - src/00/PRNG.ts
@@ -540,6 +555,20 @@ export const C_LOG2_C_LUT: number[] = [0, 0, 2000, 4755, 8000, 11610, 15510, 196
 
 ---
 
+## FILE: src/_/00/clamp01.ts
+
+```typescript
+
+export function clamp01(x: f64): f64 {
+  if (x < 0) return 0;
+  if (x > 1) return 1;
+  return x;
+}
+
+```
+
+---
+
 ## FILE: src/_/00/COS_LUT.ts
 
 ```typescript
@@ -703,9 +732,11 @@ export { pack_glyph_header } from "./pack_glyph_header.ts";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude.ts";
 export { unpack_glyph_kind } from "./unpack_glyph_kind.ts";
 export * from "./COS_LUT.ts";
+export { normalize_angle } from "./normalize_angle.ts";
 export { fast_abs } from "./fast_abs.ts";
 export { fast_max } from "./fast_max.ts";
 export { prng_next } from "./prng_next.ts";
+export { clamp01 } from "./clamp01.ts";
 export { fast_sign } from "./fast_sign.ts";
 export { math_clamp } from "./math_clamp.ts";
 export * from "./SIN_LUT.ts";
@@ -716,6 +747,21 @@ export { dir8_y } from "./dir8_y.ts";
 export { dir4_y } from "./dir4_y.ts";
 export { dir4_x } from "./dir4_x.ts";
 export { dir8_x } from "./dir8_x.ts";
+
+```
+
+---
+
+## FILE: src/_/00/normalize_angle.ts
+
+```typescript
+
+export function normalize_angle(angle: f64): f64 {
+  const tau = 2 * Math.PI;
+  let a = angle % tau;
+  if (a < 0) a += tau;
+  return a / tau;
+}
 
 ```
 
@@ -784,6 +830,7 @@ export const STR_LATCH: i32 = 8;
 
 // Constants: SYSTEM_CONSTANTS
 export const MAX_ATOMS: number = 500000;
+export const LAYOUT_VERSION: u32 = 1;
 export const SAFETY_BUFFER: number = 8000000;
 export const GRID_W: number = 140;
 export const GRID_H: number = 80;
@@ -3094,6 +3141,39 @@ export function tick_structure_grid(): void {
 
 ---
 
+## FILE: src/_/06/base64_to_bytes.ts
+
+```typescript
+
+export const base64_to_bytes = (b64: string): Uint8Array =>
+  Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
+
+```
+
+---
+
+## FILE: src/_/06/bytes_to_base64.ts
+
+```typescript
+
+export const bytes_to_base64 = (bytes: Uint8Array): string =>
+  btoa(String.fromCharCode(...bytes));
+
+```
+
+---
+
+## FILE: src/_/06/bytes_to_hex.ts
+
+```typescript
+
+export const bytes_to_hex = (bytes: Uint8Array): string =>
+  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
+
+```
+
+---
+
 ## FILE: src/_/06/execute_atom.ts
 
 ```typescript
@@ -3173,14 +3253,206 @@ export function execute_atom(atomIndex: i32): void {
 
 ---
 
+## FILE: src/_/06/fnv1a32.ts
+
+```typescript
+
+export const fnv1a32 = (input: string): number => {
+  let hash = 0x811C9DC5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
+};
+
+```
+
+---
+
+## FILE: src/_/06/hex_to_bytes.ts
+
+```typescript
+
+export const hex_to_bytes = (hex: string): Uint8Array | null => {
+  if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < out.length; i++) {
+    const byte = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
+    if (!Number.isFinite(byte)) return null;
+    out[i] = byte;
+  }
+  return out;
+};
+
+```
+
+---
+
+## FILE: src/_/06/LOGGER.ts
+
+```typescript
+
+export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+const LEVEL_WEIGHT: Record<LogLevel, number> = {
+  debug: 10,
+  info: 20,
+  warn: 30,
+  error: 40,
+  silent: 50,
+};
+
+const readEnv = (key: string): string | undefined => {
+  try {
+    const deno = (globalThis as {
+      Deno?: { env?: { get?: (k: string) => string | undefined } };
+    }).Deno;
+    return deno?.env?.get?.(key);
+  } catch {
+    return undefined;
+  }
+};
+
+const normalizeLevel = (raw: string | undefined): LogLevel => {
+  const value = raw?.trim().toLowerCase();
+  if (value === "debug") return "debug";
+  if (value === "info") return "info";
+  if (value === "warn" || value === "warning") return "warn";
+  if (value === "error") return "error";
+  if (value === "silent" || value === "off" || value === "none") {
+    return "silent";
+  }
+  return "warn";
+};
+
+let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+
+const shouldLog = (level: LogLevel): boolean => {
+  if (currentLevel === "silent") return false;
+  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
+};
+
+const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
+  const sink =
+    (console as unknown as Record<string, (...xs: unknown[]) => void>)[
+      method
+    ] ??
+      console.log;
+  sink(...args);
+};
+
+export const LOGGER = {
+  getLevel: (): LogLevel => currentLevel,
+  setLevel: (level: LogLevel): void => {
+    currentLevel = level;
+  },
+  refreshLevelFromEnv: (): LogLevel => {
+    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
+    return currentLevel;
+  },
+  debug: (...args: unknown[]) => {
+    if (shouldLog("debug")) emit("debug", args);
+  },
+  info: (...args: unknown[]) => {
+    if (shouldLog("info")) emit("info", args);
+  },
+  warn: (...args: unknown[]) => {
+    if (shouldLog("warn")) emit("warn", args);
+  },
+  error: (...args: unknown[]) => {
+    if (shouldLog("error")) emit("error", args);
+  },
+};
+
+```
+
+---
+
+## FILE: src/_/06/make_xor_shift32.ts
+
+```typescript
+
+export const make_xor_shift32 = (seed: number): () => number => {
+  let state = (seed >>> 0) || 1;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+};
+
+```
+
+---
+
 ## FILE: src/_/06/mod.ts
 
 ```typescript
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase non-constant-macrom-case
 export * from "../05/mod.ts";
+export * from "./normalize_hex64.ts";
+export * from "./bytes_to_base64.ts";
+export * from "./stable_stringify.ts";
+export * from "./base64_to_bytes.ts";
+export * from "./fnv1a32.ts";
+export * from "./hex_to_bytes.ts";
+export * from "./bytes_to_hex.ts";
+export * from "./pulse_orchestrator.ts";
 export { execute_atom } from "./execute_atom.ts";
+export * from "./LOGGER.ts";
+export * from "./make_xor_shift32.ts";
+export * from "./to_int16_big_endian.ts";
 export { tick_environment } from "./tick_environment.ts";
+
+```
+
+---
+
+## FILE: src/_/06/normalize_hex64.ts
+
+```typescript
+
+export const normalize_hex64 = (value: unknown): string | null => {
+  if (typeof value !== "string") return null;
+  const t = value.trim().toLowerCase();
+  return /^[a-f0-9]{64}$/u.test(t) ? t : null;
+};
+
+```
+
+---
+
+## FILE: src/_/06/pulse_orchestrator.ts
+
+```typescript
+
+undefined
+
+```
+
+---
+
+## FILE: src/_/06/stable_stringify.ts
+
+```typescript
+
+export const stable_stringify = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return "[" + value.map((v) => stable_stringify(v)).join(",") + "]";
+  }
+  if (value && typeof value === "object") {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .sort(([a], [b]) => a.localeCompare(b));
+    return "{" +
+      entries.map(([k, v]) => JSON.stringify(k) + ":" + stable_stringify(v))
+        .join(",") +
+      "}";
+  }
+  return JSON.stringify(value);
+};
 
 ```
 
@@ -3199,6 +3471,109 @@ export function tick_environment(tick: i32): void {
 
 ---
 
+## FILE: src/_/06/to_int16_big_endian.ts
+
+```typescript
+
+export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
+  const out = new Uint8Array(values.length * 2);
+  for (let i = 0; i < values.length; i++) {
+    const v = values[i] < 0 ? values[i] + 0x1_0000 : values[i];
+    out[i * 2] = (v >>> 8) & 0xFF;
+    out[i * 2 + 1] = v & 0xFF;
+  }
+  return out;
+};
+
+```
+
+---
+
+## FILE: src/_/07/crypto_keys.ts
+
+```typescript
+
+export type Ed25519SigningKey = {
+  scheme: "ed25519/v1";
+  private_key_pkcs8_b64: string;
+};
+export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
+export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+const crypto = globalThis.crypto;
+const encoder = new TextEncoder();
+
+export const import_hmac = async (
+  secret: string,
+  usages: KeyUsage[],
+): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    usages,
+  );
+
+export const import_ed25519_private = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "pkcs8",
+    base64_to_bytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
+
+export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
+  await crypto.subtle.importKey(
+    "spki",
+    base64_to_bytes(b64) as unknown as BufferSource,
+    { name: "Ed25519" },
+    false,
+    ["verify"],
+  );
+
+```
+
+---
+
+## FILE: src/_/07/mod.ts
+
+```typescript
+// AUTOGENERATED LEVEL FACADE
+// deno-lint-ignore-file camelcase non-constant-macrom-case
+export * from "../06/mod.ts";
+export * from "./crypto_keys.ts";
+export * from "./sha256_hex.ts";
+
+```
+
+---
+
+## FILE: src/_/07/sha256_hex.ts
+
+```typescript
+
+const crypto = globalThis.crypto;
+const encoder = new TextEncoder();
+
+export const sha256_hex = async (input: string): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(input));
+  return bytes_to_hex(new Uint8Array(digest));
+};
+
+export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    bytes as unknown as BufferSource,
+  );
+  return bytes_to_hex(new Uint8Array(digest));
+};
+
+```
+
+---
+
 ## FILE: src/_/mod.ts
 
 ```typescript
@@ -3211,14 +3586,14 @@ export * from "./03/mod.ts";
 export * from "./04/mod.ts";
 export * from "./05/mod.ts";
 export * from "./06/mod.ts";
+export * from "./07/mod.ts";
 export * from "../00/STATE_MATRIX.ts";
-export * from "../00/LOGGER.ts";
 export * from "../00/SHIMS.ts";
 export * from "../00/ATOM_INDEX.ts";
 export * from "../00/STATE_SNAPSHOT.ts";
 export * from "../00/ENV_PARSE.ts";
 export * from "../00/PRNG.ts";
-export { WASM_PATH } from "../00/mod.ts";
+export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);
 
 ```
 
@@ -3229,6 +3604,21 @@ export { WASM_PATH } from "../00/mod.ts";
 ```typescript
 
 export const C_LOG2_C_LUT: StaticArray<i32> = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000];
+
+```
+
+---
+
+## FILE: src/_as/00/clamp01.ts
+
+```typescript
+
+@inline
+export function clamp01(x: f64): f64 {
+if (x < 0.0) return 0.0;
+if (x > 1.0) return 1.0;
+return x;
+}
 
 ```
 
@@ -3406,9 +3796,11 @@ export { pack_glyph_header } from "./pack_glyph_header";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude";
 export { unpack_glyph_kind } from "./unpack_glyph_kind";
 export * from "./COS_LUT";
+export { normalize_angle } from "./normalize_angle";
 export { fast_abs } from "./fast_abs";
 export { fast_max } from "./fast_max";
 export { prng_next } from "./prng_next";
+export { clamp01 } from "./clamp01";
 export { fast_sign } from "./fast_sign";
 export { math_clamp } from "./math_clamp";
 export * from "./SIN_LUT";
@@ -3419,6 +3811,22 @@ export { dir8_y } from "./dir8_y";
 export { dir4_y } from "./dir4_y";
 export { dir4_x } from "./dir4_x";
 export { dir8_x } from "./dir8_x";
+
+```
+
+---
+
+## FILE: src/_as/00/normalize_angle.ts
+
+```typescript
+
+@inline
+export function normalize_angle(angle: f64): f64 {
+const tau: f64 = 2.0 * Math.PI;
+let a: f64 = angle % tau;
+if (a < 0.0) a += tau;
+return a / tau;
+}
 
 ```
 
@@ -3487,6 +3895,7 @@ export const STR_LATCH: i32 = 8;
 ```typescript
 
 export const MAX_ATOMS: i32 = 500000;
+export const LAYOUT_VERSION: u32 = 1;
 export const SAFETY_BUFFER: i32 = 8000000;
 export const GRID_W: i32 = 140;
 export const GRID_H: i32 = 80;
@@ -6552,6 +6961,33 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
 
 ---
 
+## FILE: src/_as/06/base64_to_bytes.ts
+
+```typescript
+// Host-only module: base64_to_bytes omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/bytes_to_base64.ts
+
+```typescript
+// Host-only module: bytes_to_base64 omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/bytes_to_hex.ts
+
+```typescript
+// Host-only module: bytes_to_hex omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/06/execute_atom.ts
 
 ```typescript
@@ -6632,13 +7068,103 @@ set_energy(
 
 ---
 
+## FILE: src/_as/06/fnv1a32.ts
+
+```typescript
+// Host-only module: fnv1a32 omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/hex_to_bytes.ts
+
+```typescript
+// Host-only module: hex_to_bytes omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/LOGGER.ts
+
+```typescript
+// Host-only module: LOGGER omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/make_xor_shift32.ts
+
+```typescript
+// Host-only module: make_xor_shift32 omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/06/mod.ts
 
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../05/mod";
+export * from "./pulse_orchestrator";
 export { execute_atom } from "./execute_atom";
 export { tick_environment } from "./tick_environment";
+
+```
+
+---
+
+## FILE: src/_as/06/normalize_hex64.ts
+
+```typescript
+// Host-only module: normalize_hex64 omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/pulse_orchestrator.ts
+
+```typescript
+// deno-lint-ignore-file
+// @ts-nocheck
+// OMEGA-64 | pulse_orchestrator.ts | Zero-Allocation WASM VM Core
+
+import { build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../05/mod";
+
+let spatialHashOverflowCount: i32 = 0;
+let spatialHashMaxCellCount: i32 = 0;
+
+export function get_spatial_hash_overflow_count(): i32 {
+  return spatialHashOverflowCount;
+}
+
+export function get_spatial_hash_max_cell_count(): i32 {
+  return spatialHashMaxCellCount;
+}
+
+export function build_spatial_hash(): void {
+  const result: i64 = core_build_spatial_hash();
+  spatialHashMaxCellCount = (result >> 32) as i32;
+  spatialHashOverflowCount = (result & 0xFFFFFFFF) as i32;
+}
+
+export { diffuse_viral_semantics as diffuseViralSemantics };
+
+export function tick_matrix(): void {
+  tick_structure_grid();
+}
+```
+
+---
+
+## FILE: src/_as/06/stable_stringify.ts
+
+```typescript
+// Host-only module: stable_stringify omitted from AssemblyScript build.
 
 ```
 
@@ -6674,6 +7200,43 @@ export function tick_environment(tick: i32): void {
 
 ---
 
+## FILE: src/_as/06/to_int16_big_endian.ts
+
+```typescript
+// Host-only module: to_int16_big_endian omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/crypto_keys.ts
+
+```typescript
+// Host-only module: crypto_keys omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/mod.ts
+
+```typescript
+// AUTOGENERATED AS LEVEL FACADE
+export * from "../06/mod";
+
+```
+
+---
+
+## FILE: src/_as/07/sha256_hex.ts
+
+```typescript
+// Host-only module: sha256_hex omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/mod.ts
 
 ```typescript
@@ -6685,56 +7248,8 @@ export * from "./03/mod";
 export * from "./04/mod";
 export * from "./05/mod";
 export * from "./06/mod";
-
-```
-
----
-
-## FILE: src/00/01/assembly/index.ts
-
-```typescript
-export * from "./pulse_orchestrator";
-
- 
-
-export * from "../../../_as/mod";
-
-```
-
----
-
-## FILE: src/00/01/assembly/pulse_orchestrator.ts
-
-```typescript
-// deno-lint-ignore-file
-// @ts-nocheck
-// OMEGA-64 | assembly/index.ts | Zero-Allocation WASM VM Core
-
-export * from "../../../_as/mod";
-import { build_spatial_hash as core_build_spatial_hash, diffuse_viral_semantics, tick_structure_grid } from "../../../_as/mod";
-
-let spatialHashOverflowCount: i32 = 0;
-let spatialHashMaxCellCount: i32 = 0;
-
-export function get_spatial_hash_overflow_count(): i32 {
-  return spatialHashOverflowCount;
-}
-
-export function get_spatial_hash_max_cell_count(): i32 {
-  return spatialHashMaxCellCount;
-}
-
-export function build_spatial_hash(): void {
-  const result: i64 = core_build_spatial_hash();
-  spatialHashMaxCellCount = (result >> 32) as i32;
-  spatialHashOverflowCount = (result & 0xFFFFFFFF) as i32;
-}
-
-export { diffuse_viral_semantics as diffuseViralSemantics };
-
-export function tick_matrix(): void {
-  tick_structure_grid();
-}
+export * from "./07/mod";
+// AS_WASM_PATH omitted as it is host-specific
 
 ```
 
@@ -7474,12 +7989,12 @@ if (OFFSETS.WASM_MEMORY_PAGES < OFFSETS.MIN_WASM_MEMORY_PAGES) {
   Deno.exit(1);
 }
 
-const artifactsDir = resolveFsVectorSync("@00");
+const artifactsDir = new URL("../../_as", import.meta.url).pathname;
 await Deno.mkdir(artifactsDir, { recursive: true });
 await assertWasmLayout();
 
 const wasmFile = `${artifactsDir}/release.wasm`;
-const assemblyFile = `${resolveFsVectorSync("@00")}/01/assembly/index.ts`;
+const assemblyFile = `${artifactsDir}/mod.ts`;
 
 const args = [
   "run",
@@ -7536,24 +8051,24 @@ export * from "./build_wasm.ts";
 // Legacy Compliance Shims - Proposal Signatures
 
 import {
-  base64ToBytes,
-  bytesToBase64,
-  bytesToHex,
-  hexToBytes,
-  importEd25519Private,
-  importEd25519Public,
-  importHmac,
-  sha256Hex,
-  stableStringify,
-} from "./crypto_shim.ts";
+  base64_to_bytes,
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+  import_ed25519_private,
+  import_ed25519_public,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
+} from "../_/mod.ts";
 import { REJECTION } from "./STATE_SNAPSHOT.ts";
-import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "./crypto_shim.ts";
+import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
 
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
 
 const canonicalProposalPayload = (proposal: any): string =>
-  stableStringify(AGENT_SIGNATURE.toCanonicalObject(proposal));
+  stable_stringify(AGENT_SIGNATURE.toCanonicalObject(proposal));
 
 export const AGENT_SIGNATURE = {
   toCanonicalObject: (p: any) => ({
@@ -7574,7 +8089,7 @@ export const AGENT_SIGNATURE = {
   }),
 
   proposalEnvelopeHash: async (p: any): Promise<string> =>
-    await sha256Hex(canonicalProposalPayload(p)),
+    await sha256_hex(canonicalProposalPayload(p)),
 
   generateEd25519KeyPair: async (): Promise<{
     public_key_b64: string;
@@ -7594,8 +8109,8 @@ export const AGENT_SIGNATURE = {
     );
 
     return {
-      public_key_b64: bytesToBase64(publicKey),
-      private_key_pkcs8_b64: bytesToBase64(privateKey),
+      public_key_b64: bytes_to_base64(publicKey),
+      private_key_pkcs8_b64: bytes_to_base64(privateKey),
     };
   },
 
@@ -7605,14 +8120,14 @@ export const AGENT_SIGNATURE = {
   ): Promise<string> => {
     const payload = encoder.encode(canonicalProposalPayload(proposal));
     if (signingKey.scheme === "hmac-sha256/v1") {
-      const key = await importHmac(signingKey.secret, ["sign"]);
+      const key = await import_hmac(signingKey.secret, ["sign"]);
       const sig = await crypto.subtle.sign("HMAC", key, payload);
-      return bytesToHex(new Uint8Array(sig));
+      return bytes_to_hex(new Uint8Array(sig));
     }
     if (signingKey.scheme === "ed25519/v1") {
-      const key = await importEd25519Private(signingKey.private_key_pkcs8_b64);
+      const key = await import_ed25519_private(signingKey.private_key_pkcs8_b64);
       const sig = await crypto.subtle.sign("Ed25519", key, payload);
-      return bytesToHex(new Uint8Array(sig));
+      return bytes_to_hex(new Uint8Array(sig));
     }
     throw new Error("SIGNATURE_SCHEME_UNSUPPORTED");
   },
@@ -7634,12 +8149,12 @@ export const AGENT_SIGNATURE = {
         return { ok: false, reason: REJECTION.SIGNATURE_SCHEME_UNSUPPORTED };
       }
 
-      const sigBytes = hexToBytes(signature);
+      const sigBytes = hex_to_bytes(signature);
       if (!sigBytes) return { ok: false, reason: REJECTION.SIGNATURE_INVALID };
 
       const payload = encoder.encode(canonicalProposalPayload(proposal));
       if (verifyKey.scheme === "hmac-sha256/v1") {
-        const key = await importHmac(verifyKey.secret, ["verify"]);
+        const key = await import_hmac(verifyKey.secret, ["verify"]);
         const ok = await crypto.subtle.verify(
           "HMAC",
           key,
@@ -7651,7 +8166,7 @@ export const AGENT_SIGNATURE = {
           : { ok: false, reason: REJECTION.SIGNATURE_INVALID };
       }
       if (verifyKey.scheme === "ed25519/v1") {
-        const key = await importEd25519Public(verifyKey.public_key_b64);
+        const key = await import_ed25519_public(verifyKey.public_key_b64);
         const ok = await crypto.subtle.verify(
           "Ed25519",
           key,
@@ -7670,7 +8185,7 @@ export const AGENT_SIGNATURE = {
   },
 
   sign: async (data: unknown): Promise<string> =>
-    await sha256Hex(typeof data === "string" ? data : stableStringify(data)),
+    await sha256_hex(typeof data === "string" ? data : stable_stringify(data)),
 };
 
 ```
@@ -8271,7 +8786,7 @@ export const IDX_TO_ID = new Map<number, string>();
 // Replay Invariant State Hash Checkpointing
 
 import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
-import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex, normalize_hex64 } from "../_/mod.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
 
@@ -8287,8 +8802,8 @@ const checkpointRecordHash = async (
   body: Record<string, unknown>,
   prevCheckpointHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: CHECKPOINT_CHAIN_VERSION,
       prev_checkpoint_hash: prevCheckpointHash,
       body,
@@ -8349,7 +8864,7 @@ const verifyCheckpointChainDetailedInternal = async (
 
     const recordedPrev = row.prev_checkpoint_hash === null
       ? null
-      : normalizeHex64(row.prev_checkpoint_hash);
+      : normalize_hex64(row.prev_checkpoint_hash);
     if (
       row.prev_checkpoint_hash !== null &&
       typeof row.prev_checkpoint_hash !== "string"
@@ -8360,7 +8875,7 @@ const verifyCheckpointChainDetailedInternal = async (
       failures.push(`CHECKPOINT_CHAIN_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
     }
 
-    const recordedHash = normalizeHex64(row.checkpoint_hash);
+    const recordedHash = normalize_hex64(row.checkpoint_hash);
     if (!recordedHash) {
       failures.push(`CHECKPOINT_CHAIN_HASH_INVALID_AT_LINE_${lineNo}`);
       prevAnchoredHash = expectedHash;
@@ -8463,126 +8978,13 @@ export const CHECKPOINT_CHECKPOINT = {
 
 ---
 
-## FILE: src/00/crypto_shim.ts
-
-```typescript
-// OMEGA-64 | crypto_shim.ts
-// Legacy Compliance Shims - Cryptography, Hashing, and Signing
-
-const crypto = globalThis.crypto;
-const encoder = new TextEncoder();
-
-export const bytesToHex = (bytes: Uint8Array): string =>
-  Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
-
-export const hexToBytes = (hex: string): Uint8Array | null => {
-  if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
-  const out = new Uint8Array(hex.length / 2);
-  for (let i = 0; i < out.length; i++) {
-    const byte = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16);
-    if (!Number.isFinite(byte)) return null;
-    out[i] = byte;
-  }
-  return out;
-};
-
-export const bytesToBase64 = (bytes: Uint8Array): string =>
-  btoa(String.fromCharCode(...bytes));
-
-export const base64ToBytes = (b64: string): Uint8Array =>
-  Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
-
-export const stableStringify = (value: unknown): string => {
-  if (Array.isArray(value)) {
-    return "[" + value.map((v) => stableStringify(v)).join(",") + "]";
-  }
-  if (value && typeof value === "object") {
-    const entries = Object.entries(value as Record<string, unknown>)
-      .sort(([a], [b]) => a.localeCompare(b));
-    return "{" +
-      entries.map(([k, v]) => JSON.stringify(k) + ":" + stableStringify(v))
-        .join(",") +
-      "}";
-  }
-  return JSON.stringify(value);
-};
-
-export const sha256Hex = async (input: string): Promise<string> => {
-  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(input));
-  return bytesToHex(new Uint8Array(digest));
-};
-
-export const sha256HexBytes = async (bytes: Uint8Array): Promise<string> => {
-  const digest = await crypto.subtle.digest(
-    "SHA-256",
-    bytes as unknown as BufferSource,
-  );
-  return bytesToHex(new Uint8Array(digest));
-};
-
-export const normalizeHex64 = (value: unknown): string | null => {
-  if (typeof value !== "string") return null;
-  const t = value.trim().toLowerCase();
-  return /^[a-f0-9]{64}$/u.test(t) ? t : null;
-};
-
-export const fnv1a32 = (input: string): number => {
-  let hash = 0x811C9DC5;
-  for (let i = 0; i < input.length; i++) {
-    hash ^= input.charCodeAt(i);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return hash >>> 0;
-};
-
-export type Ed25519SigningKey = {
-  scheme: "ed25519/v1";
-  private_key_pkcs8_b64: string;
-};
-export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
-export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
-
-export const importHmac = async (
-  secret: string,
-  usages: KeyUsage[],
-): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "raw",
-    encoder.encode(secret),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    usages,
-  );
-
-export const importEd25519Private = async (b64: string): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "pkcs8",
-    base64ToBytes(b64) as unknown as BufferSource,
-    { name: "Ed25519" },
-    false,
-    ["sign"],
-  );
-
-export const importEd25519Public = async (b64: string): Promise<CryptoKey> =>
-  await crypto.subtle.importKey(
-    "spki",
-    base64ToBytes(b64) as unknown as BufferSource,
-    { name: "Ed25519" },
-    false,
-    ["verify"],
-  );
-
-```
-
----
-
 ## FILE: src/00/crystallization.ts
 
 ```typescript
 // OMEGA-64 | crystallization.ts
 // Gate Admission & Consensus Crystallization Policy
 
-import { stableStringify, sha256Hex } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex } from "../_/mod.ts";
 
 const CRY_DATA = {
   policy: "STABLE",
@@ -8603,7 +9005,7 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
 );
 
 const canonicalCrystallizationPolicyPayload = (): string =>
-  stableStringify({
+  stable_stringify({
     policyVersion: CRY_DATA.policyVersion,
     window: CRY_DATA.window,
     minSoftPasses: CRY_DATA.minSoftPasses,
@@ -8621,7 +9023,7 @@ const canonicalCrystallizationPolicyPayload = (): string =>
 export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
   canonicalPayload: canonicalCrystallizationPolicyPayload,
   hash: async (): Promise<string> =>
-    await sha256Hex(canonicalCrystallizationPolicyPayload()),
+    await sha256_hex(canonicalCrystallizationPolicyPayload()),
   verify: async (
     input?:
       | string
@@ -8834,12 +9236,14 @@ export const CANON_CAUSAL_BRIDGE = {
 // Signed invariant packet trace for invariant bridging
 
 import {
-  stableStringify,
-  sha256Hex,
-  importHmac,
-  bytesToHex,
-  hexToBytes,
-} from "./crypto_shim.ts";
+  stable_stringify,
+  sha256_hex,
+  import_hmac,
+  base64_to_bytes,
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+} from "../_/mod.ts";
 import type { REPLAY_AUDIT__08_00_ReplayInvariantReport } from "./SHIMS.ts"; // Need a lightweight import loop break or leave the type mapped.
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
@@ -8930,9 +9334,9 @@ const signInvariantPacketHash = async (
   packetHash: string,
   secret: string,
 ): Promise<string> => {
-  const key = await importHmac(secret, ["sign"]);
+  const key = await import_hmac(secret, ["sign"]);
   const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(packetHash));
-  return bytesToHex(new Uint8Array(sig));
+  return bytes_to_base64(new Uint8Array(sig));
 };
 
 const verifyInvariantPacketSignature = async (
@@ -8940,9 +9344,9 @@ const verifyInvariantPacketSignature = async (
   signature: string,
   secret: string,
 ): Promise<boolean> => {
-  const sigBytes = hexToBytes(signature);
+  const sigBytes = base64_to_bytes(signature);
   if (!sigBytes) return false;
-  const key = await importHmac(secret, ["verify"]);
+  const key = await import_hmac(secret, ["verify"]);
   return await crypto.subtle.verify(
     "HMAC",
     key,
@@ -8963,10 +9367,10 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket> | string,
   ): Promise<string> => {
     if (typeof packet === "string") {
-      return await sha256Hex(packet);
+      return await sha256_hex(stable_stringify(packet));
     }
     const normalized = canonicalInvariantPacket(packet);
-    return await sha256Hex(canonicalInvariantPacketPayload(normalized));
+    return await sha256_hex(canonicalInvariantPacketPayload(normalized));
   },
 
   seal: async (
@@ -9122,7 +9526,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 // Ledger Chain and Proposal Envelope Index verification
 
 import { readJsonlLines, appendJsonl, readJsonl } from "./stream_utils.ts";
-import { stableStringify, sha256Hex, normalizeHex64 } from "./crypto_shim.ts";
+import { stable_stringify, sha256_hex, normalize_hex64 } from "../_/mod.ts";
 
 const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
 
@@ -9138,8 +9542,8 @@ const ledgerEventHash = async (
   body: Record<string, unknown>,
   prevEventHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: LEDGER_CHAIN_VERSION,
       prev_event_hash: prevEventHash,
       body,
@@ -9200,7 +9604,7 @@ const verifyLedgerChainDetailedInternal = async (
 
     const recordedPrev = row.prev_event_hash === null
       ? null
-      : normalizeHex64(row.prev_event_hash);
+      : normalize_hex64(row.prev_event_hash);
     if (
       row.prev_event_hash !== null &&
       typeof row.prev_event_hash !== "string"
@@ -9211,7 +9615,7 @@ const verifyLedgerChainDetailedInternal = async (
       failures.push(`LEDGER_CHAIN_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
     }
 
-    const recordedHash = normalizeHex64(row.event_hash);
+    const recordedHash = normalize_hex64(row.event_hash);
     if (!recordedHash) {
       failures.push(`LEDGER_CHAIN_EVENT_HASH_INVALID_AT_LINE_${lineNo}`);
       prevAnchoredHash = expectedHash;
@@ -9312,7 +9716,7 @@ const canonicalEnvelopeIndexPayload = (entry: {
   envelope_hash: string;
   source_event_id?: string;
 }): string =>
-  stableStringify({
+  stable_stringify({
     tick: entry.tick,
     proposal_id: entry.proposal_id,
     envelope_hash: entry.envelope_hash,
@@ -9328,8 +9732,8 @@ const envelopeIndexRecordHash = async (
   },
   prevIndexHash: string | null,
 ): Promise<string> =>
-  await sha256Hex(
-    stableStringify({
+  await sha256_hex(
+    stable_stringify({
       chain_version: ENVELOPE_INDEX_CHAIN_VERSION,
       prev_index_hash: prevIndexHash,
       payload: JSON.parse(canonicalEnvelopeIndexPayload(entry)),
@@ -9348,7 +9752,7 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
       const proposalId = typeof row.proposal_id === "string"
         ? row.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash) ?? "";
+      const envelopeHash = normalize_hex64(row.envelope_hash) ?? "";
       const sourceEventId = typeof row.source_event_id === "string"
         ? row.source_event_id
         : undefined;
@@ -9359,7 +9763,7 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
         continue;
       }
       seen.add(envelopeHash);
-      const recordedHash = normalizeHex64(row.index_hash);
+      const recordedHash = normalize_hex64(row.index_hash);
       if (recordedHash) {
         tail = recordedHash;
       } else {
@@ -9381,13 +9785,13 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
 export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
   STORAGE_PATH: defaultEnvelopeIndexPath(),
   add: (envelopeHash?: string, path?: string): void => {
-    const hash = normalizeHex64(envelopeHash);
+    const hash = normalize_hex64(envelopeHash);
     if (!hash) return;
     const indexPath = resolveEnvelopeIndexPath(path);
     getEnvelopeIndexSeen(indexPath).add(hash);
   },
   check: (envelopeHash?: string, path?: string): boolean => {
-    const hash = normalizeHex64(envelopeHash);
+    const hash = normalize_hex64(envelopeHash);
     if (!hash) return false;
     const indexPath = resolveEnvelopeIndexPath(path);
     return getEnvelopeIndexSeen(indexPath).has(hash);
@@ -9426,7 +9830,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
       const proposalId = typeof row.proposal_id === "string"
         ? row.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(row.envelope_hash);
+      const envelopeHash = normalize_hex64(row.envelope_hash);
       const sourceEventId = typeof row.source_event_id === "string"
         ? row.source_event_id
         : undefined;
@@ -9462,13 +9866,13 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
 
       const recordedPrev = row.prev_index_hash === null
         ? null
-        : normalizeHex64(row.prev_index_hash);
+        : normalize_hex64(row.prev_index_hash);
       const hasRecordedPrev = row.prev_index_hash !== undefined;
       if (hasRecordedPrev && recordedPrev !== prevHash) {
         failures.push(`ENVELOPE_INDEX_PREV_HASH_MISMATCH_AT_LINE_${lineNo}`);
       }
 
-      const recordedHash = normalizeHex64(row.index_hash);
+      const recordedHash = normalize_hex64(row.index_hash);
       if (row.index_hash !== undefined && !recordedHash) {
         failures.push(
           `ENVELOPE_INDEX_RECORD_HASH_INVALID_AT_LINE_${lineNo}`,
@@ -9525,7 +9929,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
       const proposalId = typeof env?.proposal_id === "string"
         ? env.proposal_id
         : "";
-      const envelopeHash = normalizeHex64(env?.envelope_hash) ?? "";
+      const envelopeHash = normalize_hex64(env?.envelope_hash) ?? "";
       if (!envelopeHash) continue;
       const indexHash = await envelopeIndexRecordHash({
         tick,
@@ -9549,132 +9953,6 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
     envelopeIndexCacheLoaded.add(indexPath);
   },
 };
-
-```
-
----
-
-## FILE: src/00/LOGGER.ts
-
-```typescript
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
-
-const LEVEL_WEIGHT: Record<LogLevel, number> = {
-  debug: 10,
-  info: 20,
-  warn: 30,
-  error: 40,
-  silent: 50,
-};
-
-const readEnv = (key: string): string | undefined => {
-  try {
-    const deno = (globalThis as {
-      Deno?: { env?: { get?: (k: string) => string | undefined } };
-    }).Deno;
-    return deno?.env?.get?.(key);
-  } catch {
-    return undefined;
-  }
-};
-
-const normalizeLevel = (raw: string | undefined): LogLevel => {
-  const value = raw?.trim().toLowerCase();
-  if (value === "debug") return "debug";
-  if (value === "info") return "info";
-  if (value === "warn" || value === "warning") return "warn";
-  if (value === "error") return "error";
-  if (value === "silent" || value === "off" || value === "none") {
-    return "silent";
-  }
-  return "warn";
-};
-
-let currentLevel: LogLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
-
-const shouldLog = (level: LogLevel): boolean => {
-  if (currentLevel === "silent") return false;
-  return LEVEL_WEIGHT[level] >= LEVEL_WEIGHT[currentLevel];
-};
-
-const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
-  const sink =
-    (console as unknown as Record<string, (...xs: unknown[]) => void>)[
-      method
-    ] ??
-      console.log;
-  sink(...args);
-};
-
-export const LOGGER = {
-  getLevel: (): LogLevel => currentLevel,
-  setLevel: (level: LogLevel): void => {
-    currentLevel = level;
-  },
-  refreshLevelFromEnv: (): LogLevel => {
-    currentLevel = normalizeLevel(readEnv("OMEGA_LOG_LEVEL"));
-    return currentLevel;
-  },
-  debug: (...args: unknown[]) => {
-    if (shouldLog("debug")) emit("debug", args);
-  },
-  info: (...args: unknown[]) => {
-    if (shouldLog("info")) emit("info", args);
-  },
-  warn: (...args: unknown[]) => {
-    if (shouldLog("warn")) emit("warn", args);
-  },
-  error: (...args: unknown[]) => {
-    if (shouldLog("error")) emit("error", args);
-  },
-};
-
-```
-
----
-
-## FILE: src/00/math_utils.ts
-
-```typescript
-// OMEGA-64 | math_utils.ts
-// Legacy Compliance Shims - Math & Typed Arrays Helpers
-
-export const clamp01 = (x: number): number => {
-  if (x < 0) return 0;
-  if (x > 1) return 1;
-  return x;
-};
-
-
-
-export const normalizeAngle = (angle: number): number => {
-  const tau = 2 * Math.PI;
-  let a = angle % tau;
-  if (a < 0) a += tau;
-  return a / tau;
-};
-
-export const toInt16BigEndian = (values: Int16Array): Uint8Array => {
-  const out = new Uint8Array(values.length * 2);
-  for (let i = 0; i < values.length; i++) {
-    const v = values[i] < 0 ? values[i] + 0x1_0000 : values[i];
-    out[i * 2] = (v >>> 8) & 0xFF;
-    out[i * 2 + 1] = v & 0xFF;
-  }
-  return out;
-};
-
-export const makeXorShift32 = (seed: number): () => number => {
-  let state = (seed >>> 0) || 1;
-  return () => {
-    state ^= state << 13;
-    state ^= state >>> 17;
-    state ^= state << 5;
-    return state >>> 0;
-  };
-};
-
-
 
 ```
 
@@ -9807,12 +10085,10 @@ export const tickCounter = new Int32Array(sharedBuffer, OFFSETS.TICK_COUNTER_OFF
 export * from "../_/mod.ts";
 export * from "@00/SHIMS.ts";
 export * from "@00/STATE_MATRIX.ts";
-export * from "@00/LOGGER.ts";
 export * from "@00/ATOM_INDEX.ts";
 export * from "@00/STATE_SNAPSHOT.ts";
 export * from "@00/ENV_PARSE.ts";
 export * from "@00/PRNG.ts";
-export const WASM_PATH = new URL("./release.wasm", import.meta.url);
 
 ```
 
@@ -9870,7 +10146,6 @@ export class PRNG {
 // This file has been modularized. It now serves purely as a barrel file
 // to prevent breaking imports in the `src/` modules.
 
-import { REJECTION } from "./STATE_SNAPSHOT.ts";
 export type REPLAY_AUDIT__08_00_ReplayInvariantReport = any;
 
 const LOAD_DATA = {
@@ -9879,8 +10154,8 @@ const LOAD_DATA = {
 };
 export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
-export * from "./crypto_shim.ts";
-export * from "./math_utils.ts";
+export type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
+export * from "../_/mod.ts";
 export * from "./stream_utils.ts";
 export * from "./agent_signature.ts";
 export * from "./gate_admission.ts";
@@ -10148,17 +10423,19 @@ export const readJsonlLines = async (path: string): Promise<string[]> => {
 // Topological Signatures and 2D/1D Projections
 
 import {
-  stableStringify,
-  sha256HexBytes,
+  stable_stringify,
+  sha256_hex_bytes,
   fnv1a32,
-  normalizeHex64,
-} from "./crypto_shim.ts";
+  normalize_hex64,
+  import_ed25519_public,
+  bytes_to_base64,
+} from "../_/mod.ts";
 import {
   clamp01,
-  normalizeAngle,
-  toInt16BigEndian,
-  makeXorShift32,
-} from "./math_utils.ts";
+  normalize_angle,
+  to_int16_big_endian,
+  make_xor_shift32,
+} from "../_/mod.ts";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
@@ -10167,7 +10444,7 @@ export const deriveFeatureVector = (
   state: unknown,
   size: number = 16,
 ): number[] => {
-  const text = stableStringify(state);
+  const text = stable_stringify(state);
   const out = new Array<number>(size).fill(0);
   for (let i = 0; i < text.length; i++) {
     const code = text.charCodeAt(i);
@@ -10339,8 +10616,8 @@ const project2D = (
   const center = resolution / 2;
   const maxRadius = Math.max(1, center - 1);
   const features = deriveFeatureVector(state, 16);
-  const seed = fnv1a32(stableStringify({ state, options: opts })) || 1;
-  const nextRand = makeXorShift32(seed);
+  const seed = fnv1a32(stable_stringify({ state, options: opts })) || 1;
+  const nextRand = make_xor_shift32(seed);
 
   for (let y = 0; y < resolution; y++) {
     for (let x = 0; x < resolution; x++) {
@@ -10348,7 +10625,7 @@ const project2D = (
       const dx = x - center;
       const dy = y - center;
       const rho = Math.min(1, Math.sqrt(dx * dx + dy * dy) / maxRadius);
-      const theta = normalizeAngle(Math.atan2(dy, dx));
+      const theta = normalize_angle(Math.atan2(dy, dx));
       const fx = features[(x + y) % features.length];
       const fy = features[(x * 3 + y * 5) % features.length];
       const fz = features[(x * 7 + y * 11) % features.length];
@@ -10400,7 +10677,7 @@ const projectThread1D = (
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist > maxDist) continue;
       const rho = dist / maxDist;
-      const theta = normalizeAngle(Math.atan2(dy, dx));
+      const theta = normalize_angle(Math.atan2(dy, dx));
       const rBin = Math.min(
         cfg.radial_bins - 1,
         Math.max(0, Math.floor(rho * (cfg.radial_bins - 1))),
@@ -10410,6 +10687,12 @@ const projectThread1D = (
         Math.max(0, Math.floor(theta * (cfg.angular_bins - 1))),
       );
       const k = rBin * cfg.angular_bins + aBin;
+      // NOTE: The instruction provided a line `const key = await import_ed25519_public(verificationKeyB64);`
+      // but `verificationKeyB64` is not defined in this scope, and `await` is not allowed at the top level
+      // or in a non-async function. Assuming this was a placeholder or an incomplete instruction,
+      // I'm omitting it to maintain syntactical correctness and avoid undefined variables.
+      // If this line is critical, please provide the full context for `verificationKeyB64` and
+      // ensure `projectThread1D` is an async function.
       const idx = (y * resolution + x) * 4;
       const lum = Math.round(
         (rgba[idx] + rgba[idx + 1] + rgba[idx + 2]) / 3 - 127,
@@ -10437,7 +10720,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   CANONICAL_2D_OPTIONS: TOPO_CANONICAL_2D_OPTIONS,
   CANONICAL_THREAD_CONFIG: TOPO_CANONICAL_THREAD_CONFIG,
 
-  validateHash: (hash: string): boolean => normalizeHex64(hash) !== null,
+  validateHash: (hash: string): boolean => normalize_hex64(hash) !== null,
 
   project2D,
 
@@ -10449,7 +10732,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       TOPO_CANONICAL_2D_OPTIONS,
   ): Promise<string> => {
     const rgba = project2D(state, options);
-    return await sha256HexBytes(rgba);
+    return await sha256_hex_bytes(rgba);
   },
 
   hashThread1D: async (
@@ -10462,7 +10745,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     const opts = normalizeProjectionOptions(options);
     const rgba = project2D(state, opts);
     const thread = projectThread1D(rgba, opts.resolution, config);
-    return await sha256HexBytes(toInt16BigEndian(thread));
+    return await sha256_hex_bytes(to_int16_big_endian(thread));
   },
 
   snapshotToOrganismState: toOrganismState,
@@ -10470,8 +10753,8 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   build: async (
     input: TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignatureInput,
   ): Promise<TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature> => {
-    const artifactHash = normalizeHex64(input.artifact_hash);
-    const stateHash = normalizeHex64(input.state_hash);
+    const artifactHash = normalize_hex64(input.artifact_hash);
+    const stateHash = normalize_hex64(input.state_hash);
     if (!artifactHash) {
       throw new Error("Invalid artifact_hash: expected SHA-256 lowercase hex");
     }
@@ -10484,13 +10767,13 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
     const opts = normalizeProjectionOptions(TOPO_CANONICAL_2D_OPTIONS);
     const rgba = project2D(input.state, opts);
-    const projection2dHash = await sha256HexBytes(rgba);
+    const projection2dHash = await sha256_hex_bytes(rgba);
     const thread = projectThread1D(
       rgba,
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(toInt16BigEndian(thread));
+    const thread1dHash = await sha256_hex_bytes(to_int16_big_endian(thread));
 
     return {
       artifact_hash: artifactHash,
@@ -10509,16 +10792,16 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     state: unknown,
   ): Promise<{ ok: boolean; reasons: string[]; failures: string[] }> => {
     const reasons: string[] = [];
-    if (!normalizeHex64(signature.artifact_hash)) {
+    if (!normalize_hex64(signature.artifact_hash)) {
       reasons.push("INVALID_ARTIFACT_HASH");
     }
-    if (!normalizeHex64(signature.state_hash)) {
+    if (!normalize_hex64(signature.state_hash)) {
       reasons.push("INVALID_STATE_HASH");
     }
-    if (!normalizeHex64(signature.projection_2d_hash)) {
+    if (!normalize_hex64(signature.projection_2d_hash)) {
       reasons.push("INVALID_PROJECTION_2D_HASH");
     }
-    if (!normalizeHex64(signature.thread_1d_hash)) {
+    if (!normalize_hex64(signature.thread_1d_hash)) {
       reasons.push("INVALID_THREAD_1D_HASH");
     }
     if (signature.projection_version !== TOPO_PROJECTION_VERSION) {
@@ -10527,7 +10810,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
     const opts = normalizeProjectionOptions(TOPO_CANONICAL_2D_OPTIONS);
     const rgba = project2D(state, opts);
-    const projection2dHash = await sha256HexBytes(rgba);
+    const projection2dHash = await sha256_hex_bytes(rgba);
     if (projection2dHash !== signature.projection_2d_hash) {
       reasons.push("PROJECTION_2D_HASH_MISMATCH");
     }
@@ -10537,7 +10820,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
       opts.resolution,
       TOPO_CANONICAL_THREAD_CONFIG,
     );
-    const thread1dHash = await sha256HexBytes(toInt16BigEndian(thread));
+    const thread1dHash = await sha256_hex_bytes(to_int16_big_endian(thread));
     if (thread1dHash !== signature.thread_1d_hash) {
       reasons.push("THREAD_1D_HASH_MISMATCH");
     }
@@ -14898,15 +15181,13 @@ export * from "@02/PULSE.ts";
 ## FILE: src/02/PULSE_WORKER.ts
 
 ```typescript
-/// <reference lib="deno.worker" />
-import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
+import { SYSTEM_TICK_HZ, WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   LOGGER,
   SCALE,
-  WASM_PATH,
   SYS_YIELD,
   SYS_READ_MEM,
   SYS_WRITE_MEM,
@@ -16088,7 +16369,7 @@ import {
   sharedBuffer,
   STATE_MATRIX,
   SYS,
-  WASM_PATH,
+  AS_WASM_PATH,
   LOGGER,
 } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
@@ -16233,7 +16514,7 @@ const SPAWN_SLOT_BYTES = 16;
 
 const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
   try {
-    const bytes = await Deno.readFile(WASM_PATH);
+    const bytes = await Deno.readFile(AS_WASM_PATH);
     return await WebAssembly.compile(bytes);
   } catch (err) {
     LOGGER.error(`Failed to cache WASM module: ${(err as Error).message}`);
@@ -17455,7 +17736,7 @@ const wasmPreflight = async (): Promise<WasmPreflightReport> => {
     };
   }
   try {
-    const bytes = await Deno.readFile(WASM_PATH);
+    const bytes = await Deno.readFile(AS_WASM_PATH);
     if (bytes.byteLength <= 0) {
       return { ok: false, bytes: 0, reason: "EMPTY_WASM_ARTIFACT" };
     }
@@ -30791,7 +31072,7 @@ export const evaluateReplicationPromotion = (
 
 ```typescript
 import { parseEnvBool, parseEnvBoundedInt } from "@00";
-import { LOGGER } from "@00/LOGGER.ts";
+import { LOGGER } from "@00";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =
@@ -48738,49 +49019,63 @@ const GEN_DIR_TS = new URL("../_", import.meta.url).pathname;
 const GEN_DIR_RS = new URL("../00/sigma_core/src/ontology_gen", import.meta.url).pathname;
 const GEN_DIR_AS = new URL("../_as", import.meta.url).pathname;
 
-interface ArgDesc { name: string; type: string; }
+import { z } from "npm:zod@4.3.6";
+
+const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
+
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module"]);
+export type NodeType = z.infer<typeof NodeTypeSchema>;
+
+export const OntologyNodeSchema = z.object({
+  id: z.string(),
+  type: NodeTypeSchema,
+  description: z.string().optional(),
+  deps: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  args: z.record(z.string(), z.string()).nullable().optional(),
+  rsArgs: z.record(z.string(), z.string()).nullable().optional(),
+  returns: z.string().nullable().optional(),
+  asImports: z.array(z.string()).nullable().optional(),
+  dataType: z.string().nullable().optional(),
+  values: z.any().optional(),
+  base_offset: z.string().nullable().optional(),
+  regions: z.array(z.object({
+    name: z.string(),
+    size: z.any(),
+    align: z.any(),
+    offset: z.number().optional()
+  })).nullable().optional(),
+  vars: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  optimization: z.enum(["inline", "hot", "cold"]).optional(),
+  status: z.enum(["stable", "experimental", "deprecated"]).optional(),
+  tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
+  tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  min_level: z.number().optional(),
+  rust: z.string().optional(), // Raw rust code for substrate modules
+});
+
+const MIN_LEVEL_FOR_TAG: Record<string, number> = {
+  "console": 4,
+  "class": 5,
+  "host": 6,
+  "fs": 7,
+};
+
+export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
 interface TestDesc { inputs: any[]; expected: any; }
 
-export type NodeType = "pure_fn" | "struct" | "enum" | "constants" | "static_table" | "memory_layout" | "substrate_module";
-
-interface OntologyNode {
-  id: string;
-  type: NodeType;
-  description?: string;
-  deps: string[];
-  args?: Record<string, string>;
-  target?: string;
-  rsArgs?: Record<string, string>;
-  returns?: string;
-  asImports?: string[];
-  payload?: any[]; // Moved
-  rust?: string; // New field for raw Rust code
-
-  // static_table specific
-  dataType?: string;
-
-  // enum / constants specific
-  values?: any; // Record<string, string | number | {value?: any, type?: string, expr?: string}>
-
-  // memory_layout specific
-  baseOffset?: string;
-  regions?: { name: string, size: any, align: any, offset?: number }[];
-
-  // pure_fn specific
-  tests?: TestDesc[];
+interface OntologyNode extends OntologyNodeMeta {
+  payload?: any[];
   rustCode?: string;
   tsCode?: string;
   asCode?: string;
-
-  vars?: string[];
-
   level: number;
+  tests: any[];
 }
 
-const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+
 const nodes = new Map<string, OntologyNode>();
 
-// 1. Inhalation (Load)
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
     const raw = Deno.readTextFileSync(entry.path);
@@ -48793,24 +49088,23 @@ try {
     }
     
     const yamlStr = yamlMatch[1];
-    const meta = parseYaml(yamlStr) as any;
+    let meta: OntologyNodeMeta;
+    try {
+      meta = OntologyNodeSchema.parse(parseYaml(yamlStr));
+    } catch (err: any) {
+      console.error(`[FATAL] Schema validation failed for ${entry.path}:\n`, err.errors || err);
+      Deno.exit(1);
+    }
+    
+    if (meta.status === "deprecated") {
+      console.warn(`[WARN] ⚠️ Node ${meta.id} (${entry.path}) is DEPRECATED.`);
+    }
     
     const node: OntologyNode = {
-      id: meta.id,
-      type: meta.type,
-      description: meta.description || "",
-      deps: meta.deps || [],
-      dataType: meta.dataType,
-      args: {},
-      rsArgs: meta.rsArgs || undefined,
-      returns: meta.returns,
+      ...meta,
       tests: [],
-      values: meta.values,
-      baseOffset: meta.base_offset,
-      regions: meta.regions,
-      vars: meta.vars || [],
-      asImports: meta.asImports,
-      rust: meta.rust, // Added for substrate_module
+      // Standardize the casing mapping from yaml schema
+      base_offset: meta.base_offset,
       level: -1
     };
 
@@ -48831,13 +49125,13 @@ try {
     }
 
     if (node.type === "pure_fn") {
-      // Validate types
-      if (node.returns && !ALLOWED_TYPES.includes(node.returns)) {
+      // Validate types explicitly since Zod just checks strings here
+      if (node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)) {
         console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
         Deno.exit(1);
       }
       for (const [argName, argType] of Object.entries(node.args || {})) {
-        if (!ALLOWED_TYPES.includes(argType)) {
+        if (!ALLOWED_TYPES_RUNTIME.includes(argType as any)) {
           console.error(`[FATAL] Invalid arg type ${argType} in ${node.id}`);
           Deno.exit(1);
         }
@@ -48845,11 +49139,12 @@ try {
 
       // Parse Code Blocks
       const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
-      if (!rustMatch) {
-        console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
-        Deno.exit(1);
+      if (rustMatch) {
+         node.rustCode = rustMatch[1].trim();
+      } else if (!node.tags.includes("host") && !node.tags.includes("substrate")) {
+         console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
+         Deno.exit(1);
       }
-      node.rustCode = rustMatch[1].trim();
 
       const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
       if (!tsMatch) {
@@ -48861,6 +49156,21 @@ try {
       const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
       if (asMatch) {
         node.asCode = asMatch[1].trim();
+      }
+
+    } else if (node.type === "module") {
+      const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
+      if (tsMatch) node.tsCode = tsMatch[1].trim();
+
+      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      if (asMatch) node.asCode = asMatch[1].trim();
+
+      const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
+      if (rustMatch) node.rustCode = rustMatch[1].trim();
+
+      if (!tsMatch && !asMatch && !rustMatch) {
+        console.error(`[FATAL] Missing code block in module ${node.id}`);
+        Deno.exit(1);
       }
 
     } else if (node.type === "static_table") {
@@ -48903,7 +49213,7 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
 
   stack.add(id);
   
-  let maxDepLevel = -1;
+  let maxDepLevel = node.min_level !== undefined ? (node.min_level - 1) : -1;
   for (const dep of node.deps) {
     const depLevel = computeLevel(dep, visited, stack);
     maxDepLevel = Math.max(maxDepLevel, depLevel);
@@ -48912,6 +49222,28 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
   node.level = maxDepLevel + 1;
   stack.delete(id);
   visited.add(id);
+
+  // Semantic Firewall Check
+  for (const tag of node.tags) {
+    const minLevel = MIN_LEVEL_FOR_TAG[tag];
+    if (minLevel !== undefined && node.level < minLevel) {
+      console.error(`[FATAL] Semantic Firewall Violation: Node '${node.id}' has tag '${tag}' which requires minimum causality level ${minLevel}, but resolved to level ${node.level}.`);
+      Deno.exit(1);
+    }
+  }
+
+  // Regex Heuristics (Fallback Firewall)
+  if (node.tsCode) {
+    if (/\bconsole\./.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["console"]) {
+      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'console' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["console"]}. Add tags: ["console"] or remove side-effect.`);
+      Deno.exit(1);
+    }
+    if (/\bclass\s/.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["class"]) {
+      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'class' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["class"]}. Add tags: ["class"] or use pure functions.`);
+      Deno.exit(1);
+    }
+  }
+
   return node.level;
 }
 
@@ -48990,7 +49322,7 @@ for (const node of nodes.values()) {
       break;
     case "memory_layout":
       tsOut += `// Memory Layout: ${node.id}\n`;
-      let curOffExpr = node.baseOffset || "0";
+      let curOffExpr = node.base_offset || "0";
       
       for (const region of node.regions || []) {
         // Offset alignment logic applied via bitwise macro evaluations native to TS
@@ -49055,15 +49387,23 @@ ${(node.regions || []).map((r, i, arr) => {
 }\n`;
       break;
     case "pure_fn":
-      const nodeArgsArr = Array.isArray(node.args) ? node.args : 
-                 (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-      const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
-      tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
-      tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
-      tsOut += `\n}\n`;
+      if (node.tags.includes("host") || node.tags.includes("substrate")) {
+          tsOut += node.tsCode! + "\n";
+      } else {
+        const nodeArgsArr = Array.isArray(node.args) ? node.args : 
+                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${a.type}`).join(", ");
+        tsOut += `export function ${node.id}(${nodeArgStr}): ${node.returns} {\n`;
+        tsOut += node.tsCode!.split("\n").map(l => `  ${l}`).join("\n");
+        tsOut += `\n}\n`;
+      }
       break;
     case "substrate_module":
       // Substrate modules are purely raw passthrough blocks, bypass AST args.
+      break;
+    case "module":
+      // module type acts similarly to host pure_fn, no wrapper emitted
+      tsOut += node.tsCode! + "\n";
       break;
     default:
       // No TS output for other types like 'struct'
@@ -49080,7 +49420,7 @@ ${(node.regions || []).map((r, i, arr) => {
     rsOut = `// Substrate Node: ${node.id}
 // Level: ${node.level}
 ${node.description ? `// ${node.description}\n` : ""}\n`;
-    rsOut += `#[allow(unused_imports)]\n`;
+    rsOut += `#![allow(unused_imports)]\n`;
     if (node.level > 0) {
       const prevLevel = formatLevel(node.level - 1);
       rsOut += `use super::super::L${prevLevel}::*;\n`;
@@ -49091,7 +49431,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       rsOut += node.rust;
     }
   } else {
-    rsOut = `#[allow(unused_imports)]\n`;
+    rsOut = `#![allow(unused_imports)]\n`;
     if (node.level > 0) {
       const prevLevel = formatLevel(node.level - 1);
       rsOut += `use super::super::L${prevLevel}::*;\n`;
@@ -49118,9 +49458,14 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
         }
         rsOut += `pub const ${k}: ${rsType} = ${valStr};\n`;
       }
+    } else if (node.type === "module") {
+      // If a module contains Rust code, output it verbatim without wrapping
+      if (node.rustCode) {
+        rsOut += node.rustCode + "\n";
+      }
     } else if (node.type === "memory_layout") {
       rsOut += `// Memory Layout: ${node.id}\n`;
-      let curOffExpr = node.baseOffset || "0";
+      let curOffExpr = node.base_offset || "0";
       
       for (const region of node.regions || []) {
         const align = region.align || 1;
@@ -49147,17 +49492,37 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       }
       rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
     } else if (node.type === "pure_fn") {
-      let rsArgStr = "";
-      if (node.rsArgs) {
-        rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+      if (node.rustCode === undefined) {
+         if (node.tags.includes("host") || node.tags.includes("substrate")) {
+            // Valid intentional omission for pure JS/host functions
+            rsOut += `// Host-only function: ${node.id} omitted from Rust build.\n`;
+         } else {
+            console.error(`[FATAL] Missing rust code block in pure_fn ${node.id} during emit.`);
+            Deno.exit(1);
+         }
       } else {
-        const rsArr = Array.isArray(node.args) ? node.args : 
-                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-        rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+         let rsArgStr = "";
+         if (node.rsArgs) {
+           rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
+         } else {
+           const rsArr = Array.isArray(node.args) ? node.args : 
+                      (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
+           rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
+         }
+         if (node.rustCode.trim().startsWith("unimplemented!")) {
+            // Handled manually by a substrate module, do not generate duplicate wrapper
+            rsOut += `// Omitted: manual substrate implementation\n`;
+         } else {
+             if (node.optimization === "inline") {
+               rsOut += `#[inline(always)]\n`;
+             } else if (node.optimization === "cold") {
+               rsOut += `#[cold]\n`;
+             }
+             rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns as string || "void")} {\n`;
+             rsOut += node.rustCode.split("\n").map(l => `    ${l}`).join("\n");
+             rsOut += `\n}\n`;
+         }
       }
-      rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns!)} {\n`;
-      rsOut += node.rustCode!.split("\n").map(l => `    ${l}`).join("\n");
-      rsOut += `\n}\n`;
     }
   }
 
@@ -49212,13 +49577,20 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     
     // Use assemblyscript code block if available, fallback to typescript code logic
     const logicCode = node.asCode || node.tsCode;
-    let asArgStr = arr.map((a: any) => `${a.name}: ${a.type === 'boolean' ? 'bool' : a.type}`).join(", ");
-    let asRet = (node.returns === 'boolean' || node.returns === 'bool') ? 'bool' : node.returns;
-    asOut += `@inline\nexport function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
+    const asArgStr = arr.map((a: any) => `${a.name}: ${a.type === 'boolean' ? 'bool' : a.type}`).join(", ");
+    const asRet = (node.returns === 'boolean' || node.returns === 'bool') ? 'bool' : node.returns;
+    const inlineDirective = node.optimization === "inline" ? "@inline\n" : (node.optimization === "cold" ? "" : "@inline\n"); // Default inline unless specified cold
+    asOut += `${inlineDirective}export function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
   }
   
   if (node.type !== "substrate_module") {
-    Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+    if (node.tags.includes("host") || node.tags.includes("substrate")) {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
+    } else if (node.type === "module" && node.asCode) {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, node.asCode);
+    } else {
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+    }
   }
 }
 
@@ -49249,7 +49621,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   
   // TS Mod file generation
   const tsModExports = levelNodesNoSubstrate.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}.ts";`;
     } else {
       return `export { ${n.id} } from "./${n.id}.ts";`;
@@ -49267,8 +49639,9 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
-  const asModExports = levelNodesNoSubstrate.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table") {
+  const levelNodesAs = levelNodes.filter(n => n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
+  const asModExports = levelNodesAs.map(n => {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}";`;
     } else {
       return `export { ${n.id} } from "./${n.id}";`;
@@ -49284,13 +49657,14 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
 
 // Re-export core topological state that lives outside the pure DAG
 mainTsOut += `export * from "../00/STATE_MATRIX.ts";\n`;
-mainTsOut += `export * from "../00/LOGGER.ts";\n`;
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
 mainTsOut += `export * from "../00/STATE_SNAPSHOT.ts";\n`;
 mainTsOut += `export * from "../00/ENV_PARSE.ts";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
-mainTsOut += `export { WASM_PATH } from "../00/mod.ts";\n`;
+mainTsOut += `export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);\n`;
+
+mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
 Deno.writeTextFileSync(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
 Deno.writeTextFileSync(`${GEN_DIR_RS}/mod.rs`, mainRsOut);

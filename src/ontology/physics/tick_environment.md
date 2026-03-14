@@ -25,6 +25,7 @@ unimplemented!()
 ```
 
 ```typescript
+// unimplemented
 ```
 
 ```assemblyscript

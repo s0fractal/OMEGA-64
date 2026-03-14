@@ -8,7 +8,8 @@ min_level: 6
 tags:
   - host
 args: {}
-vars: []
+vars:
+  - bytes_to_hex
 deps:
   - bytes_to_hex
 description: Async SHA-256 hashing to hex strings for both text and raw bytes.

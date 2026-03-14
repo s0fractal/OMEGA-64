@@ -2,7 +2,6 @@
 // Reliable inter-system atom migration.
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { IDX_TO_ID } from "@02";
 import { PRNG } from "../00/PRNG.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RUNTIME_POLICY } from "@03";

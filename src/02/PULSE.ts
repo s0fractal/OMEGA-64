@@ -9,6 +9,7 @@ import {
   LOGGER,
 } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import * as OFFSETS from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "@03/GATE.ts";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
@@ -77,7 +78,6 @@ import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
 import { PHYSICS_ENGINE } from "@01";
 import { GLYPH_BUFFER } from "@01";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
-import { IMMUNE } from "@02/IMMUNE.ts";
 
 import { syncHormonesToLattice } from "@02/HORMONE_BUFFER_RUNTIME.ts";
 import {
@@ -3085,14 +3085,22 @@ export const PULSE = {
       // --- STAGE 26: Immunological Phagocyte ---
       {
         const entropyPressure = STATE_MATRIX.get_hormone(0); // H0: entropy_pressure
-        const purgeList = IMMUNE.phagocytePass(entropyPressure);
-        if (purgeList.length > 0) {
-          for (const idx of purgeList) {
-            STATE_MATRIX.recycleAtom(idx);
-          }
-          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgeList.length);
+        const workerResponse = await postAndWait(
+          0, // use primary worker
+          workers[0],
+          {
+            type: "PHAGOCYTE_PASS",
+            pulseId: nextPulseId(),
+            entropy: entropyPressure,
+          },
+          "PHAGOCYTE_PASS_DONE",
+        );
+        const purgedCount = workerResponse.count || 0;
+        
+        if (purgedCount > 0) {
+          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgedCount);
           LOGGER.info(
-            `🛡️ [IMMUNE] Phagocyte Purge: ${purgeList.length} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
+            `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
         }
       }

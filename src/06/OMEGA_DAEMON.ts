@@ -1,5 +1,7 @@
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
+import * as OFFSETS from "../_/mod.ts";
+
 
 type Telemetry = {
   tick: number;
