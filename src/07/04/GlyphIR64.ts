@@ -275,7 +275,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "transport",
     arity: 0,
     energyCost: 10,
-    legacyOpcode: RISC.OP_ENTANGLE,
+    legacyOpcode: RISC.ENTANGLE,
     reductionRuleRef: "bridge/transport/entangle",
   }],
   [22, {
@@ -332,7 +332,7 @@ const overrides = new Map<number, Partial<GlyphSpec>>([
     kind: "catalytic",
     arity: 2,
     energyCost: 2,
-    legacyOpcode: RISC.OP_ROLE,
+    legacyOpcode: RISC.ROLE,
     reductionRuleRef: "bridge/catalytic/role",
   }],
   [34, {

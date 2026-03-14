@@ -32,9 +32,15 @@ pub use execute_atom::*;
 #[path = "LOGGER.rs"]
 pub mod LOGGER;
 pub use LOGGER::*;
+#[path = "pack_structure_intent.rs"]
+pub mod pack_structure_intent;
+pub use pack_structure_intent::*;
 #[path = "make_xor_shift32.rs"]
 pub mod make_xor_shift32;
 pub use make_xor_shift32::*;
+#[path = "unpack_structure_charge.rs"]
+pub mod unpack_structure_charge;
+pub use unpack_structure_charge::*;
 #[path = "to_int16_big_endian.rs"]
 pub mod to_int16_big_endian;
 pub use to_int16_big_endian::*;

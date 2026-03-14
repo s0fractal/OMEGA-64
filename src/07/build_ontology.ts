@@ -321,6 +321,19 @@ for (const node of nodes.values()) {
       for (const [k, v] of Object.entries(node.values || {})) {
         tsOut += `export const ${k}: ${mapTsType(node.dataType || "u8")} = ${v};\n`;
       }
+      tsOut += `export const ${node.id} = {\n`;
+      for (const [k, v] of Object.entries(node.values || {})) {
+        let shortKey = k;
+        if (node.id === "VmSys" && k.startsWith("SYS_")) shortKey = k.slice(4);
+        if (node.id === "StructureTypes" && k.startsWith("STR_")) shortKey = k.slice(4);
+        tsOut += `  ${shortKey}: ${v},\n`;
+      }
+      // Add legacy mapped keys to preserve coherence directly in the emitted objects
+      if (node.id === "VmOpcodes") {
+        tsOut += `  ENTANGLE: ${node.values!["OP_HEBB"] || 138},\n`;
+        tsOut += `  ROLE: ${node.values!["OP_SECRETE_PLASMID"] || 170},\n`;
+      }
+      tsOut += `} as const;\n`;
       break;
     case "constants":
       tsOut += `// Constants: ${node.id}\n`;
@@ -328,6 +341,14 @@ for (const node of nodes.values()) {
         const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
         const tsType = mapTsType((def as any).type as string || "i32");
         tsOut += `export const ${k}: ${tsType} = ${v};\n`;
+      }
+      if (node.id === "VmProps") {
+        tsOut += `export const ${node.id} = {\n`;
+        for (const [k, def] of Object.entries(node.values || {})) {
+          const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+          tsOut += `  ${k}: ${v},\n`;
+        }
+        tsOut += `} as const;\n`;
       }
       break;
     case "memory_layout":
@@ -556,7 +577,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   asOut += `\n`;
 
   if (node.type === "enum" || node.type === "constants" || node.type === "memory_layout" || node.type === "static_table") {
-    const lines = tsOut.split("\n").filter(l => l.startsWith("export const"));
+    const lines = tsOut.split("\n").filter(l => l.startsWith("export const") && !l.includes("{"));
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
         if (line.includes("MAX_ATOMS") && !line.includes("OFFSET")) {

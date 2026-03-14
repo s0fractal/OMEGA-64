@@ -1,4 +1,5 @@
-import { GRID_W } from "../../_/mod.ts";
+import { GRID_W, pack_structure_intent } from "../../_/mod.ts";
+import { assemble } from "./assembler.ts";
 import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
 export type ReductionCaseExpectation = {
   finalPc: number;
@@ -45,414 +46,213 @@ export type ReductionCaseDefinition = {
   initialStructureGrid?: Partial<Record<number, number>>;
   initialStructureIntentOwner?: Partial<Record<number, number>>;
   initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialStructureChargeIntent?: Partial<Record<number, number>>;
+  initialHiveMemory?: Partial<Record<number, number>>;
   initialHormones?: number[];
   initialHiveEnergyPool?: Partial<Record<number, number>>;
   nativeProgram?: string; // Key in GENESIS_PROGRAMS
   expected: ReductionCaseExpectation;
 };
 
-const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
-const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_GET;
-  script[pc++] = 0;
-  script[pc++] = RISC.PROP_ENERGY;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = targetEnergy & 0xFF;
-  script[pc++] = RISC.OP_SUB;
-  script[pc++] = 0;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_JNZ;
-  script[pc++] = 0;
-  script[pc++] = 15; // Jump to the ROLE_ARCHITECT sequence
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  // ROLE_ARCHITECT sys_set_role sequence
-  script[pc++] = RISC.OP_SET; // pc 15
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
+  RISC.OP_GET, 0, RISC.PROP_ENERGY,
+  RISC.OP_SET, 1, targetEnergy,
+  RISC.OP_SUB, 0, 1,
+  RISC.OP_JNZ, 0, "ROLE",
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0,
+  "ROLE",
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, 1, 1,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeReplicatorLoopScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_REPLICATE;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeReplicatorLoopScript = (): Uint8Array => assemble([
+  RISC.OP_REPLICATE,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeArchitectLoopScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeArchitectLoopScript = (): Uint8Array => assemble([
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, 1, 1,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
 const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
-const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = resonanceValue & 0xFF;
-  script[pc++] = RISC.OP_PUT;
-  script[pc++] = 0;
-  script[pc++] = RISC.PROP_RESONANCE;
-  script[pc++] = RISC.OP_GET;
-  script[pc++] = 1;
-  script[pc++] = RISC.PROP_RESONANCE;
-  script[pc++] = RISC.OP_JZ;
-  script[pc++] = 1;
-  script[pc++] = 15; // Jump to the ROLE_ARCHITECT sequence
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  // ROLE_ARCHITECT sys_set_role sequence
-  script[pc++] = RISC.OP_SET; // pc 15
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = 1;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
+  RISC.OP_SET, 0, resonanceValue,
+  RISC.OP_PUT, 0, RISC.PROP_RESONANCE,
+  RISC.OP_GET, 1, RISC.PROP_RESONANCE,
+  RISC.OP_JZ, 1, "ROLE",
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0,
+  "ROLE",
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, 1, 1,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeSenseIntentScript = (
   buildType: number,
   targetType: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_ROLE;
-  script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = buildType & 0xFF;
-  script[pc++] = 1;
-  script[pc++] = RISC.OP_SENSE;
-  script[pc++] = 1;
-  script[pc++] = targetType & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.ROLE, 0, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_BUILD, buildType, 1,
+  RISC.OP_SENSE, 1, targetType,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeBuildOnlyScript = (
   buildType: number,
   buildState: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = buildType & 0xFF;
-
-  script[pc++] = buildState & 0xFF;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, buildType, buildState
+]);
 
 const makeTensegrityScript = (
   slot: number,
   dist: number,
   damping: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_TENSEGRITY;
-  script[pc++] = 0;
-  script[pc++] = slot & 0xFF;
-  script[pc++] = dist & 0xFF;
-  script[pc++] = RISC.OP_TENSEGRITY;
-  script[pc++] = 1;
-  script[pc++] = damping & 0xFF;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_TENSEGRITY, 0, slot, dist,
+  RISC.OP_TENSEGRITY, 1, damping, 0
+]);
 
-const makePlugChargeScript = (charge: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = charge & 0xFF;
-  script[pc++] = RISC.OP_PLUG;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
+const makePlugChargeScript = (charge: number): Uint8Array => assemble([
+  RISC.OP_SET, 0, charge,
+  RISC.OP_PLUG, 1, 0
+]);
 
 const makePlugChargeCompetitionScript = (
   firstCharge: number,
   secondCharge: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = firstCharge & 0xFF;
-  script[pc++] = RISC.OP_PLUG;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = secondCharge & 0xFF;
-  script[pc++] = RISC.OP_PLUG;
-  script[pc++] = 1;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_SET, 0, firstCharge,
+  RISC.OP_PLUG, 1, 0,
+  RISC.OP_SET, 0, secondCharge,
+  RISC.OP_PLUG, 1, 0
+]);
 
-const makeBuildSourceScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = STRUCTURE.SOURCE;
-  script[pc++] = 0;
-  return script;
-};
+const makeBuildSourceScript = (): Uint8Array => assemble([
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, STRUCTURE.SOURCE, 0
+]);
 
-const makeBuildSourceWithStateScript = (state: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = SYS.SET_ROLE;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 1;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = RISC.OP_SYSCALL;
-  script[pc++] = RISC.OP_BUILD;
-  script[pc++] = STRUCTURE.SOURCE;
-  script[pc++] = state & 0xFF;
-  return script;
-};
+const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
+  RISC.OP_SET, 0, SYS.SET_ROLE,
+  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  RISC.OP_SYSCALL,
+  RISC.OP_BUILD, STRUCTURE.SOURCE, state
+]);
 
-const makeSenseScript = (targetType: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SENSE;
-  script[pc++] = 1;
-  script[pc++] = targetType & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeSenseScript = (targetType: number): Uint8Array => assemble([
+  RISC.OP_SENSE, 1, targetType,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SET;
-  script[pc++] = 0;
-  script[pc++] = role & 0xFF;
-  script[pc++] = RISC.OP_RESOLVE;
-  script[pc++] = 0; // Mode: Role
-  script[pc++] = threshold & 0xFF;
-  return script;
-};
+const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => assemble([
+  RISC.OP_SET, 0, role,
+  RISC.OP_RESOLVE, 0, threshold
+]);
 
-const makeResolveBankScript = (amount: number): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_RESOLVE;
-  script[pc++] = 1; // Mode: Bank
-  script[pc++] = amount & 0xFF;
-  return script;
-};
+const makeResolveBankScript = (amount: number): Uint8Array => assemble([
+  RISC.OP_RESOLVE, 1, amount // Mode: Bank
+]);
 
 const makeCollectiveHiveScript = (
   addr: number,
   value: number,
   reg: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 0;
-  script[pc++] = addr & 0xFF;
-  script[pc++] = value & 0xFF;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 1;
-  script[pc++] = addr & 0xFF;
-  script[pc++] = reg & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 0, addr, value,
+  RISC.OP_COLLECTIVE, 1, addr, reg,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeCollectivePheromoneScript = (
   intensity: number,
   type: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 2;
-  script[pc++] = intensity & 0xFF;
-  script[pc++] = type & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 2, intensity, type,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeCollectiveBankDepositScript = (
   amount: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 3;
-  script[pc++] = amount & 0xFF;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 3, amount, 0,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeCollectiveBankWithdrawScript = (
   reg: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 4;
-  script[pc++] = reg & 0xFF;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 4, reg, 0,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeCollectivePhaseLockScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 5;
-  script[pc++] = 0;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeCollectivePhaseLockScript = (): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 5, 0, 0,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeCollectivePcSyncQuorumScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_COLLECTIVE;
-  script[pc++] = 6;
-  script[pc++] = 0;
-  script[pc++] = 0;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeCollectivePcSyncQuorumScript = (): Uint8Array => assemble([
+  RISC.OP_COLLECTIVE, 6, 0, 0,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const makeShareScript = (
   slot: number,
   percentage: number,
-): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SHARE;
-  script[pc++] = slot & 0xFF;
-  script[pc++] = percentage & 0xFF;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+): Uint8Array => assemble([
+  RISC.OP_SHARE, slot, percentage,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeBindScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_BIND;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeBindScript = (): Uint8Array => assemble([
+  RISC.OP_BIND,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeSporeDriveScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_SPORE_DRIVE;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeSporeDriveScript = (): Uint8Array => assemble([
+  RISC.OP_SPORE_DRIVE,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
-const makeEntangleScript = (): Uint8Array => {
-  const script = new Uint8Array(64);
-  let pc = 0;
-  script[pc++] = RISC.OP_GET;
-  script[pc++] = 0;
-  script[pc++] = RISC.PROP_ENERGY;
-  script[pc++] = RISC.OP_ENTANGLE;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
-  script[pc++] = 0;
-  return script;
-};
+const makeEntangleScript = (): Uint8Array => assemble([
+  RISC.OP_GET, 0, RISC.PROP_ENERGY,
+  RISC.ENTANGLE,
+  RISC.OP_SIGNAL,
+  RISC.OP_JMP, 0
+]);
 
 const structureNeighborCell = (centerX: number, centerY: number): number => {
   const gx = Math.floor(centerX / 10);
@@ -873,7 +673,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
       },
       initialStructureIntentOwner: {
-        [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
       },
       expected: {
         finalPc: 0,
@@ -899,7 +699,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
       },
       initialStructureIntentOwner: {
-        [structureNeighborCell(705, 405)]: STRUCTURE_INTENT_LOCK_BIT,
+        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
       },
       expected: {
         finalPc: 0,
@@ -1041,8 +841,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          STRUCTURE.SOURCE |
-          (17 << 24),
+          pack_structure_intent(STRUCTURE.SOURCE, 17, false),
       },
       expected: {
         finalPc: 10,
@@ -1076,8 +875,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          STRUCTURE.SOURCE |
-          (91 << 24),
+          pack_structure_intent(STRUCTURE.SOURCE, 91, false),
       },
       expected: {
         finalPc: 10,
@@ -1108,11 +906,11 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       },
       initialStructureIntentOwner: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          STRUCTURE_INTENT_LOCK_BIT | 3,
+          pack_structure_intent(3, 0, true),
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          STRUCTURE.SOURCE | (55 << 24),
+          pack_structure_intent(STRUCTURE.SOURCE, 55, false),
       },
       expected: {
         finalPc: 10,

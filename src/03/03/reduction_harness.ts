@@ -12,6 +12,10 @@ import {
   reductionCaseById,
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
+import {
+  pack_structure_intent,
+  unpack_structure_charge,
+} from "../../_/mod.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
 import { GENESIS_PROGRAMS } from "@07/05/GENESIS_BOOT.ts";
 
@@ -402,7 +406,7 @@ const snapshotReduction = (
 
 const readStructureCell = (state: ShadowState, cellIdx: number): number => {
   const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
-  if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) !== 0) {
+  if (ownerRaw < 0) {
     return state.structureGrid[cellIdx] ?? 0;
   }
   if ((ownerRaw & 0x7FFFFFFF) !== 0) {
@@ -419,7 +423,7 @@ const publishBuildIntent = (
 ): void => {
   const ownerToken = ownerAtomIdx + 1;
   const current = state.structureIntentOwner[cellIdx] ?? 0;
-  if ((current & STRUCTURE_INTENT_LOCK_BIT) !== 0) return;
+  if (current < 0) return;
   const winningOwner = current & 0x7FFFFFFF;
   if (ownerToken < winningOwner) return;
   state.structureIntentValue[cellIdx] = buildValue;
@@ -643,7 +647,7 @@ const applyShadowOpcode = (
       state.pc += 4;
       return;
     }
-    case RISC.OP_ROLE: {
+    case RISC.ROLE: {
       const mode = args[0] ?? 0;
       const role = args[1] ?? 0;
       if (mode === 0) {
@@ -667,7 +671,7 @@ const applyShadowOpcode = (
         const ty = Math.floor(ry / 10) + dy;
         if (tx >= 0 && tx < GRID_W && ty >= 0 && ty < GRID_H) {
           const cellIdx = ty * GRID_W + tx;
-          const newVal = ((buildState & 0xFF) << 24) | (type & 0xFF);
+          const newVal = pack_structure_intent(type, buildState, false);
           publishBuildIntent(state, cellIdx, state.atomIndex, newVal);
         }
       }
@@ -819,7 +823,7 @@ const applyShadowOpcode = (
       state.pc += 1;
       return;
     }
-    case RISC.OP_ENTANGLE: {
+    case RISC.ENTANGLE: {
       state.effects.entangleCount += 1;
       const energy = state.props[RISC.PROP_ENERGY] ?? 0;
       // slot is derived from genomePoolSlot which needs logic bytes.
@@ -983,311 +987,129 @@ const loadBaselineAnchor = async (
   };
 };
 
+const PARITY_IGNORE_KEYS = new Set([
+  "mode",
+  "executed",
+  "stepsExecuted",
+  "energySpent",
+  "glyphTape",
+  "prettyTape",
+]);
+
+function deepCompareState(obj1: any, obj2: any, path: string = ""): string[] {
+  const reasons: string[] = [];
+  if (obj1 === obj2) return reasons;
+  if (!path && obj1 && obj2) {
+    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
+    for (const key of keys) {
+      if (PARITY_IGNORE_KEYS.has(key)) continue;
+      reasons.push(...deepCompareState(obj1[key], obj2[key], key));
+    }
+    return reasons;
+  }
+
+  if (typeof obj1 !== typeof obj2) {
+    reasons.push(`${path} type mismatch: ${typeof obj1} vs ${typeof obj2}`);
+    return reasons;
+  }
+  if (typeof obj1 !== "object" || obj1 === null || obj2 === null) {
+    reasons.push(`${path} mismatch legacy=${obj1} reduction=${obj2}`);
+    return reasons;
+  }
+  if (Array.isArray(obj1) && Array.isArray(obj2)) {
+    if (obj1.length !== obj2.length) {
+      reasons.push(
+        `${path} length mismatch: legacy=${obj1.length} reduction=${obj2.length}`,
+      );
+    }
+    for (let i = 0; i < Math.max(obj1.length, obj2.length); i++) {
+        const p = `${path}[${i}]`;
+        if (obj1[i] !== obj2[i]) reasons.push(`${p} mismatch legacy=${obj1[i]} reduction=${obj2[i]}`);
+    }
+    return reasons;
+  }
+
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  const allKeys = new Set([...keys1, ...keys2]);
+  for (const key of allKeys) {
+    const val1 = obj1[key];
+    const val2 = obj2[key];
+    const currentPath = `${path}.${key}`;
+    if (!(key in obj1)) {
+       reasons.push(`${currentPath} missing in legacy`);
+    } else if (!(key in obj2)) {
+       reasons.push(`${currentPath} missing in reduction`);
+    } else if (typeof val1 === "object" && val1 !== null) {
+       reasons.push(...deepCompareState(val1, val2, currentPath));
+    } else if (val1 !== val2) {
+       reasons.push(`${currentPath} mismatch legacy=${val1} reduction=${val2}`);
+    }
+  }
+  return reasons;
+}
+
+const EXPECTATION_MAPPING: Record<string, (legacy: LegacyShadowResult) => any> = {
+  finalPc: l => l.finalPc,
+  replicateCount: l => l.effects.replicateCount,
+  signalCount: l => l.effects.signalCount,
+  buildCount: l => l.effects.buildCount,
+  finalRole: l => l.role,
+  registers: l => l.regs,
+  finalProps: l => l.props,
+  finalHiveMemory: l => l.hiveMemory,
+  finalHiveBalance: l => l.hiveBalance,
+  finalSignalGrid: l => l.signalGrid,
+  finalPeerEnergy: l => l.peerEnergy,
+  finalPeerPc: l => l.peerPc,
+  finalBondDistances: l => l.bondDistances,
+  finalDamping: l => l.damping,
+  finalStructureGrid: l => l.structureGrid,
+  finalStructureIntentOwner: l => l.structureIntentOwner,
+  finalStructureIntentValue: l => l.structureIntentValue,
+  finalStructureChargeIntent: l => l.structureChargeIntent,
+  branchTaken: l => l.effects.branchTaken,
+  finalBondRequests: l => l.bondRequests,
+  finalHiveEnergyPool: l => l.hiveEnergyPool,
+  finalHormones: l => l.hormones,
+};
+
 const compareResults = (
   definition: ReductionCaseDefinition,
   legacy: LegacyShadowResult,
   reduction: ReductionShadowResult,
 ): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = [];
+  const reasons: string[] = deepCompareState(legacy, reduction);
 
-  if (legacy.finalPc !== reduction.finalPc) {
-    reasons.push(
-      `finalPc mismatch legacy=${legacy.finalPc} reduction=${reduction.finalPc}`,
-    );
-  }
-  if (!equalNumberArray(legacy.regs, reduction.regs)) {
-    reasons.push("register vector mismatch");
-  }
-  if (legacy.role !== reduction.role) {
-    reasons.push(
-      `role mismatch legacy=${legacy.role} reduction=${reduction.role}`,
-    );
-  }
-  if (!equalHarnessProps(legacy.props, reduction.props)) {
-    reasons.push("props mismatch");
-  }
-  if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
-    reasons.push("bondTargets mismatch");
-  }
-  if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
-    reasons.push("bondTargets mismatch");
-  }
-  if (!equalHarnessProps(legacy.bondDistances, reduction.bondDistances)) {
-    reasons.push("bondDistances mismatch");
-  }
-  if (legacy.damping !== reduction.damping) {
-    reasons.push(
-      `damping mismatch legacy=${legacy.damping} reduction=${reduction.damping}`,
-    );
-  }
-  if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
-    reasons.push("peerEnergy mismatch");
-  }
-  if (!equalHarnessProps(legacy.peerPc, reduction.peerPc)) {
-    reasons.push("peerPc mismatch");
-  }
-  if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
-    reasons.push("hiveMemory mismatch");
-  }
-  if (legacy.hiveBalance !== reduction.hiveBalance) {
-    reasons.push("hiveBalance mismatch");
-  }
-  if (!equalHarnessProps(legacy.signalGrid, reduction.signalGrid)) {
-    reasons.push("signalGrid mismatch");
-  }
-  if (!equalHarnessProps(legacy.structureGrid, reduction.structureGrid)) {
-    reasons.push("structureGrid mismatch");
-  }
-  if (
-    !equalHarnessProps(
-      legacy.structureIntentOwner,
-      reduction.structureIntentOwner,
-    )
-  ) {
-    reasons.push("structureIntentOwner mismatch");
-  }
-  if (
-    !equalHarnessProps(
-      legacy.structureIntentValue,
-      reduction.structureIntentValue,
-    )
-  ) {
-    reasons.push("structureIntentValue mismatch");
-  }
-  if (
-    !equalHarnessProps(
-      legacy.structureChargeIntent,
-      reduction.structureChargeIntent,
-    )
-  ) {
-    reasons.push("structureChargeIntent mismatch");
-  }
-  if (!equalHarnessProps(legacy.bondRequests, reduction.bondRequests)) {
-    reasons.push("bondRequests mismatch");
-  }
-  if (!equalHarnessProps(legacy.hiveEnergyPool, reduction.hiveEnergyPool)) {
-    reasons.push("hiveEnergyPool mismatch");
-  }
-  if (!equalNumberArray(legacy.hormones, reduction.hormones)) {
-    reasons.push("hormones mismatch");
-  }
-  if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
-    reasons.push("replicateCount mismatch");
-  }
-  if (legacy.effects.signalCount !== reduction.effects.signalCount) {
-    reasons.push("signalCount mismatch");
-  }
-  if (legacy.effects.buildCount !== reduction.effects.buildCount) {
-    reasons.push("buildCount mismatch");
-  }
-  if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
-    reasons.push("branchTaken mismatch");
-  }
-  if (legacy.effects.bondRequestCount !== reduction.effects.bondRequestCount) {
-    reasons.push("bondRequestCount mismatch");
-  }
-  if (legacy.effects.sporeDriveCount !== reduction.effects.sporeDriveCount) {
-    reasons.push("sporeDriveCount mismatch");
-  }
-  if (legacy.effects.entangleCount !== reduction.effects.entangleCount) {
-    reasons.push("entangleCount mismatch");
-  }
-  if (
-    !equalNumberArray(legacy.effects.roleWrites, reduction.effects.roleWrites)
-  ) {
-    reasons.push("roleWrites mismatch");
-  }
+  for (const [key, expectedVal] of Object.entries(definition.expected)) {
+    if (expectedVal === undefined) continue;
+    const mappingFn = EXPECTATION_MAPPING[key];
+    if (!mappingFn) {
+      reasons.push(`Unknown expectation key: ${key}`);
+      continue;
+    }
+    const actualVal = mappingFn(legacy);
 
-  const expected = definition.expected;
-  if (
-    typeof expected.finalPc === "number" && legacy.finalPc !== expected.finalPc
-  ) {
-    reasons.push(`expected finalPc=${expected.finalPc} got=${legacy.finalPc}`);
-  }
-  if (
-    typeof expected.replicateCount === "number" &&
-    legacy.effects.replicateCount !== expected.replicateCount
-  ) {
-    reasons.push(
-      `expected replicateCount=${expected.replicateCount} got=${legacy.effects.replicateCount}`,
-    );
-  }
-  if (
-    typeof expected.signalCount === "number" &&
-    legacy.effects.signalCount !== expected.signalCount
-  ) {
-    reasons.push(
-      `expected signalCount=${expected.signalCount} got=${legacy.effects.signalCount}`,
-    );
-  }
-  if (
-    typeof expected.buildCount === "number" &&
-    legacy.effects.buildCount !== expected.buildCount
-  ) {
-    reasons.push(
-      `expected buildCount=${expected.buildCount} got=${legacy.effects.buildCount}`,
-    );
-  }
-  if (
-    typeof expected.finalRole === "number" &&
-    legacy.role !== expected.finalRole
-  ) {
-    reasons.push(`expected finalRole=${expected.finalRole} got=${legacy.role}`);
-  }
-  if (Array.isArray(expected.registers)) {
-    for (let i = 0; i < expected.registers.length; i++) {
-      if (legacy.regs[i] !== expected.registers[i]) {
-        reasons.push(
-          `expected registers mismatch at index ${i}: legacy=${
-            legacy.regs[i]
-          } pos=${i} vs expected=${expected.registers[i]}`,
-        );
+    if (typeof expectedVal === "object" && expectedVal !== null && !Array.isArray(expectedVal)) {
+      for (const [k, v] of Object.entries(expectedVal)) {
+        const actualSubVal = actualVal[k as keyof typeof actualVal] ?? 0;
+        if (actualSubVal !== v) {
+          reasons.push(`expected ${key}[${k}]=${v} got=${actualSubVal}`);
+        }
       }
-    }
-  }
-  if (!equalNumberArray(legacy.regs, reduction.regs)) {
-    reasons.push(
-      `register vector mismatch: legacy=[${
-        legacy.regs.slice(0, 4)
-      }] reduction=[${reduction.regs.slice(0, 4)}]`,
-    );
-  }
-  if (expected.finalProps) {
-    for (const [key, value] of Object.entries(expected.finalProps)) {
-      const prop = Number(key);
-      if ((legacy.props[prop] ?? 0) !== value) {
-        reasons.push(
-          `expected prop[${prop}]=${value} got=${legacy.props[prop] ?? 0}`,
-        );
+    } else if (Array.isArray(expectedVal)) {
+      for (let i = 0; i < expectedVal.length; i++) {
+        if (actualVal[i] !== expectedVal[i]) {
+          reasons.push(`expected ${key} mismatch at index ${i}: got=${actualVal[i]} vs expected=${expectedVal[i]}`);
+        }
       }
-    }
-  }
-  if (expected.finalHiveMemory) {
-    for (const [key, value] of Object.entries(expected.finalHiveMemory)) {
-      const addr = Number(key);
-      if ((legacy.hiveMemory[addr] ?? 0) !== value) {
-        reasons.push(
-          `expected hiveMemory[${addr}]=${value} got=${
-            legacy.hiveMemory[addr] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-  if (
-    typeof expected.finalHiveBalance === "number" &&
-    legacy.hiveBalance !== expected.finalHiveBalance
-  ) {
-    reasons.push(
-      `expected hiveBalance=${expected.finalHiveBalance} got=${legacy.hiveBalance}`,
-    );
-  }
-  if (expected.finalSignalGrid) {
-    for (const [key, value] of Object.entries(expected.finalSignalGrid)) {
-      const cell = Number(key);
-      if ((legacy.signalGrid[cell] ?? 0) !== value) {
-        reasons.push(
-          `expected signalGrid[${cell}]=${value} got=${
-            legacy.signalGrid[cell] ?? 0
-          }`,
-        );
+    } else {
+      if (actualVal !== expectedVal) {
+        reasons.push(`expected ${key}=${expectedVal} got=${actualVal}`);
       }
     }
   }
 
-  if (expected.finalBondDistances) {
-    for (const [key, value] of Object.entries(expected.finalBondDistances)) {
-      const slot = Number(key);
-      if ((legacy.bondDistances[slot] ?? 0) !== value) {
-        reasons.push(
-          `expected bondDistances[${slot}]=${value} got=${
-            legacy.bondDistances[slot] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-  if (
-    typeof expected.finalDamping === "number" &&
-    legacy.damping !== expected.finalDamping
-  ) {
-    reasons.push(
-      `expected finalDamping=${expected.finalDamping} got=${legacy.damping}`,
-    );
-  }
-  if (expected.finalPeerEnergy) {
-    for (const [key, value] of Object.entries(expected.finalPeerEnergy)) {
-      const peer = Number(key);
-      if ((legacy.peerEnergy[peer] ?? 0) !== value) {
-        reasons.push(
-          `expected peerEnergy[${peer}]=${value} got=${
-            legacy.peerEnergy[peer] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-  if (expected.finalPeerPc) {
-    for (const [key, value] of Object.entries(expected.finalPeerPc)) {
-      const peer = Number(key);
-      if ((legacy.peerPc[peer] ?? 0) !== value) {
-        reasons.push(
-          `expected peerPc[${peer}]=${value} got=${legacy.peerPc[peer] ?? 0}`,
-        );
-      }
-    }
-  }
-  if (expected.finalStructureGrid) {
-    for (const [key, value] of Object.entries(expected.finalStructureGrid)) {
-      const cell = Number(key);
-      if ((legacy.structureGrid[cell] ?? 0) !== value) {
-        reasons.push(
-          `expected structureGrid[${cell}]=${value} got=${
-            legacy.structureGrid[cell] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-  if (
-    typeof expected.branchTaken === "boolean" &&
-    legacy.effects.branchTaken !== expected.branchTaken
-  ) {
-    reasons.push(
-      `expected branchTaken=${expected.branchTaken} got=${legacy.effects.branchTaken}`,
-    );
-  }
-  if (expected.finalBondRequests) {
-    for (const [key, value] of Object.entries(expected.finalBondRequests)) {
-      const idx = Number(key);
-      if ((legacy.bondRequests[idx] ?? 0) !== value) {
-        reasons.push(
-          `expected bondRequests[${idx}]=${value} got=${
-            legacy.bondRequests[idx] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-  if (expected.finalHiveEnergyPool) {
-    for (const [key, value] of Object.entries(expected.finalHiveEnergyPool)) {
-      const slot = Number(key);
-      if ((legacy.hiveEnergyPool[slot] ?? 0) !== value) {
-        reasons.push(
-          `expected hiveEnergyPool[${slot}]=${value} got=${
-            legacy.hiveEnergyPool[slot] ?? 0
-          }`,
-        );
-      }
-    }
-  }
-
-  if (
-    expected.finalHormones &&
-    !equalNumberArray(legacy.hormones, expected.finalHormones)
-  ) {
-    reasons.push("expected finalHormones mismatch");
-  }
   return { ok: reasons.length === 0, reasons };
 };
 
