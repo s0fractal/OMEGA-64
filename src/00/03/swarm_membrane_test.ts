@@ -1,19 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import {
-  CONTEXT_OFFSET,
-  EGRESS_DATA_OFFSET,
-  EGRESS_HEAD_OFFSET,
-  ENERGY_OFFSET,
-  IDS_OFFSET,
-  INSTRUCTIONS_OFFSET,
-  MAX_ATOMS,
-  PHASE_OFFSET,
-  RESONANCE_OFFSET,
-  ROLES_OFFSET,
-  WASM_MEMORY_PAGES,
-  XS_OFFSET,
-  YS_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, MAX_ATOMS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, WASM_MEMORY_PAGES, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_URL = new URL(
   "../../00/00/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",

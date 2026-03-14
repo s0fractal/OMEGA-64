@@ -1,7 +1,4 @@
-import {
-  BONDS_OFFSET,
-  MAX_ATOMS
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { BONDS_OFFSET, MAX_ATOMS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const memory = STATE_MATRIX.wasmMemory;

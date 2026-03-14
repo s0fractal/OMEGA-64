@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 // OMEGA-64 | test_neural.ts | Era 52: Neural Substrate Verification
 // Tests Hebbian plasticity (ISA.HEBB), signal propagation (ISA.FIRE),
 // synaptic weight decay, and SENSE type 0x08 — directly via LAMBDA_VM.

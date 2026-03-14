@@ -6,16 +6,13 @@ import {
   scriptToGlyphTape,
 } from "@07/04/opcode_to_glyph.ts";
 import { glyphSpecById } from "@07/04/GlyphIR64.ts";
-import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
+import { STATE_MATRIX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@00/STATE_MATRIX.ts";
 import {
   REDUCTION_CASES,
   reductionCaseById,
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
-import {
-  pack_structure_intent,
-  unpack_structure_charge,
-} from "../../_/mod.ts";
+import { pack_structure_intent, unpack_structure_charge } from "../../_/mod.ts";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
 import { GENESIS_PROGRAMS } from "@07/05/GENESIS_BOOT.ts";
 
@@ -459,12 +456,12 @@ const flushStructureTick = (state: ShadowState): void => {
     }
     const type = cellVal & 0xFF;
     const currentCharge = (cellVal >> 16) & 0xFF;
-    if (type === STRUCTURE.SOURCE) {
+    if (type === STR_SOURCE) {
       cellVal = (cellVal & ~0x00FF0000) | (255 << 16);
       state.structureGrid[cellIdx] = cellVal;
     } else if (
-      (type === STRUCTURE.WIRE || type === STRUCTURE.NODE ||
-        type === STRUCTURE.CAPACITOR) &&
+      (type === STR_WIRE || type === STR_NODE ||
+        type === STR_CAPACITOR) &&
       currentCharge > 0
     ) {
       const nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
@@ -483,20 +480,20 @@ const applyShadowOpcode = (
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
-    case RISC.OP_NOP: {
-      if (opcode === RISC.OP_NOP) {
+    case OP_NOP: {
+      if (opcode === OP_NOP) {
         state.pc += 1;
         return;
       }
     }
     /* falls through */
-    case RISC.OP_SET: {
+    case OP_SET: {
       const reg = args[0] ?? 0;
       state.regs[reg] = args[1] ?? 0;
       state.pc += 3;
       return;
     }
-    case RISC.OP_GET: {
+    case OP_GET: {
       if (isNative) {
         state.pc += 1; // Native 'I' is 1 byte/token
         return;
@@ -507,28 +504,28 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
-    case RISC.OP_PUT: {
+    case OP_PUT: {
       const reg = args[0] ?? 0;
       const prop = args[1] ?? 0;
       state.props[prop] = state.regs[reg] ?? 0;
       state.pc += 3;
       return;
     }
-    case RISC.OP_ADD: {
+    case OP_ADD: {
       const dst = args[0] ?? 0;
       const src = args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
       state.pc += 3;
       return;
     }
-    case RISC.OP_SUB: {
+    case OP_SUB: {
       const dst = args[0] ?? 0;
       const src = args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
       state.pc += 3;
       return;
     }
-    case RISC.OP_JNZ: {
+    case OP_JNZ: {
       const reg = args[0] ?? 0;
       const target = args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
@@ -540,7 +537,7 @@ const applyShadowOpcode = (
       }
       return;
     }
-    case RISC.OP_JZ: {
+    case OP_JZ: {
       const reg = args[0] ?? 0;
       const target = args[1] ?? 0;
       if ((state.regs[reg] ?? 0) === 0) {
@@ -552,22 +549,22 @@ const applyShadowOpcode = (
       }
       return;
     }
-    case RISC.OP_JMP: {
+    case OP_JMP: {
       state.effects.jumpCount += 1;
       state.pc = args[0] ?? 0;
       return;
     }
-    case RISC.OP_REPLICATE: {
+    case OP_REPLICATE: {
       state.effects.replicateCount += 1;
       state.pc += 1;
       return;
     }
-    case RISC.OP_SIGNAL: {
+    case OP_SIGNAL: {
       state.effects.signalCount += 1;
       state.pc += 1;
       return;
     }
-    case RISC.OP_SHARE: {
+    case OP_SHARE: {
       const slot = (args[0] ?? 0) & 3;
       let percentage = args[1] ?? 0;
       // HORMONE 2: aggression scales the share percentage
@@ -578,10 +575,10 @@ const applyShadowOpcode = (
 
       const targetIdx = state.bondTargets[slot] ?? 0;
       if (targetIdx > 0) {
-        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        const energy = state.props[PROP_ENERGY] ?? 0;
         const amount = Math.trunc((energy * percentage) / 100);
         if (energy >= amount) {
-          state.props[RISC.PROP_ENERGY] = energy - amount;
+          state.props[PROP_ENERGY] = energy - amount;
           state.peerEnergy[targetIdx] = (state.peerEnergy[targetIdx] ?? 0) +
             amount;
         }
@@ -589,7 +586,7 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
-    case RISC.OP_COLLECTIVE: {
+    case OP_COLLECTIVE: {
       const mode = args[0] ?? 0;
       const p2 = args[1] ?? 0;
       const p3 = args[2] ?? 0;
@@ -598,8 +595,8 @@ const applyShadowOpcode = (
       } else if (mode === 1) {
         state.regs[p3 & 7] = state.hiveMemory[p2 & 1023] ?? 0;
       } else if (mode === 2) {
-        const rx = state.props[RISC.PROP_X] ?? 0;
-        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
         const gx = Math.floor(rx / 10);
         const gy = Math.floor(ry / 10);
         if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
@@ -607,10 +604,10 @@ const applyShadowOpcode = (
         }
       } else if (mode === 3) {
         const val = p2 & 0xFF;
-        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        const energy = state.props[PROP_ENERGY] ?? 0;
         if (energy >= val) {
           state.hiveBalance += val;
-          state.props[RISC.PROP_ENERGY] = energy - val;
+          state.props[PROP_ENERGY] = energy - val;
         }
       } else if (mode === 4) {
         const reg = p2 & 7;
@@ -618,7 +615,7 @@ const applyShadowOpcode = (
         const amount = balance > 100 ? 100 : balance;
         if (amount > 0) {
           state.hiveBalance -= amount;
-          state.props[RISC.PROP_ENERGY] = (state.props[RISC.PROP_ENERGY] ?? 0) +
+          state.props[PROP_ENERGY] = (state.props[PROP_ENERGY] ?? 0) +
             amount;
         }
         state.regs[reg] = amount;
@@ -636,8 +633,8 @@ const applyShadowOpcode = (
           }
         }
       } else if (mode === 7) { // PLASMID_EMIT
-        const rx = state.props[RISC.PROP_X] ?? 0;
-        const ry = state.props[RISC.PROP_Y] ?? 0;
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
         const gx = Math.floor(rx / 10);
         const gy = Math.floor(ry / 10);
         if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
@@ -647,7 +644,7 @@ const applyShadowOpcode = (
       state.pc += 4;
       return;
     }
-    case RISC.ROLE: {
+    case OP_SECRETE_PLASMID: {
       const mode = args[0] ?? 0;
       const role = args[1] ?? 0;
       if (mode === 0) {
@@ -657,14 +654,14 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
-    case RISC.OP_BUILD: {
+    case OP_BUILD: {
       state.effects.buildCount += 1;
       if (state.role === STATE_MATRIX.ROLE_ARCHITECT) {
         const type = args[0] ?? 0;
         const buildState = args[1] ?? 0;
-        const rx = state.props[RISC.PROP_X] ?? 0;
-        const ry = state.props[RISC.PROP_Y] ?? 0;
-        const resonance = state.props[RISC.PROP_RESONANCE] ?? 0;
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
+        const resonance = state.props[PROP_RESONANCE] ?? 0;
         const dx = (resonance % 3) - 1;
         const dy = ((resonance * 7) % 3) - 1;
         const tx = Math.floor(rx / 10) + dx;
@@ -679,7 +676,7 @@ const applyShadowOpcode = (
       return;
     }
 
-    case RISC.OP_TENSEGRITY: {
+    case OP_TENSEGRITY: {
       const mode = args[0] ?? 0;
       const p2 = args[1] ?? 0;
       const p3 = args[2] ?? 0;
@@ -691,12 +688,12 @@ const applyShadowOpcode = (
       state.pc += 4;
       return;
     }
-    case RISC.OP_PLUG: {
+    case OP_PLUG: {
       const targetType = args[0] ?? 0;
       const energyAmt = args[1] ?? 0;
       const r0 = state.regs[0] ?? 0;
-      const rx = state.props[RISC.PROP_X] ?? 0;
-      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
       const gx = Math.floor(rx / 10);
       const gy = Math.floor(ry / 10);
       if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
@@ -709,13 +706,13 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
-    case RISC.OP_RESOLVE: {
+    case OP_RESOLVE: {
       const mode = args[0] ?? 0;
       const value = args[1] ?? 0;
 
       // Neighborhood Quorum Check (r=1)
-      const rx = state.props[RISC.PROP_X] ?? 0;
-      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
       const gx = Math.floor(rx / 10);
       const gy = Math.floor(ry / 10);
       let count = 0;
@@ -738,31 +735,31 @@ const applyShadowOpcode = (
         if (count >= value) {
           const desiredRole = state.regs[0] ?? 0;
           state.role = desiredRole;
-          state.props[RISC.PROP_RESONANCE] =
-            (state.props[RISC.PROP_RESONANCE] ?? 0) + 20;
+          state.props[PROP_RESONANCE] =
+            (state.props[PROP_RESONANCE] ?? 0) + 20;
         }
       } else if (mode === 1) { // ENERGY BANKING
-        const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+        const energy = state.props[PROP_ENERGY] ?? 0;
         if (count >= 3 && energy >= value) {
           // Deposit to hive energy pool
           const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
           const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
-          state.props[RISC.PROP_ENERGY] = energy - value;
+          state.props[PROP_ENERGY] = energy - value;
           state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
             value;
-          state.props[RISC.PROP_RESONANCE] =
-            (state.props[RISC.PROP_RESONANCE] ?? 0) + 10;
+          state.props[PROP_RESONANCE] =
+            (state.props[PROP_RESONANCE] ?? 0) + 10;
         }
       }
 
       state.pc += 3;
       return;
     }
-    case RISC.OP_SENSE: {
+    case OP_SENSE: {
       const reg = args[0] ?? 0;
       const targetType = args[1] ?? 0;
-      const rx = state.props[RISC.PROP_X] ?? 0;
-      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
       const gx = Math.floor(rx / 10);
       const gy = Math.floor(ry / 10);
       let found = 0;
@@ -781,10 +778,10 @@ const applyShadowOpcode = (
       state.pc += 3;
       return;
     }
-    case RISC.OP_BIND: {
+    case OP_BIND: {
       state.effects.bondRequestCount += 1;
-      const rx = state.props[RISC.PROP_X] ?? 0;
-      const ry = state.props[RISC.PROP_Y] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
       // Shadow-model nearest neighbor logic (simplistic for harness)
       // In ground truth, this uses the spatial grid.
       // For harness testing, we assume definition.initialCellPeers contains candidates.
@@ -810,28 +807,28 @@ const applyShadowOpcode = (
       state.pc += 1;
       return;
     }
-    case RISC.OP_SPORE_DRIVE: {
+    case OP_SPORE_DRIVE: {
       state.effects.sporeDriveCount += 1;
-      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      const energy = state.props[PROP_ENERGY] ?? 0;
       if (energy >= 500) {
-        state.props[RISC.PROP_ENERGY] = energy - 500;
+        state.props[PROP_ENERGY] = energy - 500;
         // Pseudo-random jump for shadow model parity
         // In real WASM it uses LCG. Here we just mark as "moved".
-        state.props[RISC.PROP_X] = (state.props[RISC.PROP_X] ?? 0) + 7;
-        state.props[RISC.PROP_Y] = (state.props[RISC.PROP_Y] ?? 0) + 7;
+        state.props[PROP_X] = (state.props[PROP_X] ?? 0) + 7;
+        state.props[PROP_Y] = (state.props[PROP_Y] ?? 0) + 7;
       }
       state.pc += 1;
       return;
     }
-    case RISC.ENTANGLE: {
+    case OP_HEBB: {
       state.effects.entangleCount += 1;
-      const energy = state.props[RISC.PROP_ENERGY] ?? 0;
+      const energy = state.props[PROP_ENERGY] ?? 0;
       // slot is derived from genomePoolSlot which needs logic bytes.
       // for harness, we'll use a simplified mapping or just slot 0.
       const slot = 0;
       if (energy > 500) {
         const deposit = Math.floor(energy / 10);
-        state.props[RISC.PROP_ENERGY] = energy - deposit;
+        state.props[PROP_ENERGY] = energy - deposit;
         state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
           deposit;
       } else {
@@ -840,14 +837,14 @@ const applyShadowOpcode = (
         const pool = state.hiveEnergyPool[slot] ?? 0;
         const take = Math.min(pool, draw);
         state.hiveEnergyPool[slot] = pool - take;
-        state.props[RISC.PROP_ENERGY] = energy + take;
+        state.props[PROP_ENERGY] = energy + take;
       }
       state.pc += 1;
       return;
     }
-    case RISC.OP_SYSCALL: {
+    case OP_SYSCALL: {
       const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS.SET_ROLE) {
+      if (sysId === SYS_SET_ROLE) {
         const role = state.regs[1] ?? 0;
         state.role = role;
         state.effects.roleWrites.push(role);
@@ -871,7 +868,7 @@ const runLegacyShadow = (
   let stepsExecuted = 0;
   while (stepsExecuted < definition.maxSteps) {
     const decoded = decodeLegacyInstruction(definition.script, state.pc);
-    if (!decoded || decoded.opcode === RISC.OP_NOP) break;
+    if (!decoded || decoded.opcode === OP_NOP) break;
     state.executed.push(
       `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
         decoded.args.join(",")
@@ -926,7 +923,7 @@ const runReductionShadow = (
 
   while (stepsExecuted < definition.maxSteps) {
     const token = tokenByPc.get(state.pc);
-    if (!token || token.opcode === RISC.OP_NOP || token.glyphId === 2) {
+    if (!token || token.opcode === OP_NOP || token.glyphId === 2) {
       break;
     }
     if (token.glyphId === null) {

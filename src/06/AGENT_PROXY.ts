@@ -1,7 +1,8 @@
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { assembleScript } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "../00/STATE_MATRIX.ts";
 
 export class AgentProxy {
   port: number;
@@ -160,16 +161,16 @@ export class AgentProxy {
             : 1;
 
           ops = [
-            RISC.OP_SET,
+            OP_SET,
             1,
             targetIdx,
-            RISC.OP_SET,
+            OP_SET,
             2,
             intensity,
-            RISC.OP_SET,
+            OP_SET,
             0,
-            SYS.ATTRACT,
-            RISC.OP_SYSCALL,
+            SYS_ATTRACT,
+            OP_SYSCALL,
           ];
           break;
         }
@@ -183,19 +184,19 @@ export class AgentProxy {
           const amount = typeof body.amount === "number" ? body.amount : 0;
 
           ops = [
-            RISC.OP_SET,
+            OP_SET,
             1,
             targetIdx,
-            RISC.OP_SET,
+            OP_SET,
             2,
             resourceType,
-            RISC.OP_SET,
+            OP_SET,
             3,
             amount & 0xFF, // Negative fits in 8 bits nicely if < 127 steals
-            RISC.OP_SET,
+            OP_SET,
             0,
-            SYS.TRANSFER,
-            RISC.OP_SYSCALL,
+            SYS_TRANSFER,
+            OP_SYSCALL,
           ];
           break;
         }

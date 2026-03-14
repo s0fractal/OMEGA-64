@@ -1,7 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { betPoolInt, marketState, PREDICTION_MARKET } from "@03";
+import { OP_SET, SYS_BET, OP_SYSCALL, SYS_YIELD } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   STATE_MATRIX.clear();
@@ -19,21 +20,21 @@ Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   // R1 = 5
   // OP_SYSCALL with R0 = SYS_BET
   const betScript = new Uint8Array(64);
-  betScript[0] = RISC.OP_SET;
+  betScript[0] = OP_SET;
   betScript[1] = 1;
   betScript[2] = 5;
 
-  betScript[3] = RISC.OP_SET;
+  betScript[3] = OP_SET;
   betScript[4] = 0;
-  betScript[5] = SYS.BET;
+  betScript[5] = SYS_BET;
 
-  betScript[6] = RISC.OP_SYSCALL;
+  betScript[6] = OP_SYSCALL;
 
   // Followed by yield
-  betScript[7] = RISC.OP_SET;
+  betScript[7] = OP_SET;
   betScript[8] = 0;
-  betScript[9] = SYS.YIELD;
-  betScript[10] = RISC.OP_SYSCALL;
+  betScript[9] = SYS_YIELD;
+  betScript[10] = OP_SYSCALL;
 
   STATE_MATRIX.setInstructions(idx, betScript);
 

@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 // OMEGA-64 | test_immune_learning.ts | Era 62: Immune Learning Verification
 // Tests GATE.ts tracking average resonance of novel plasmids and promoting them cleanly.
 

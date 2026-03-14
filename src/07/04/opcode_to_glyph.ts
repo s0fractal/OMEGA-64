@@ -1,4 +1,4 @@
-import { RISC } from "@00/STATE_MATRIX.ts";
+import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_TENSEGRITY, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_BUILD, OP_SENSE, OP_SPORE_DRIVE, OP_HEBB, OP_PLUG, OP_RESOLVE, OP_SYSCALL } from "@00/STATE_MATRIX.ts";
 import { glyphSpecByLegacyOpcode } from "@07/04/GlyphIR64.ts";
 
 export type LegacyInstruction = {
@@ -16,55 +16,55 @@ export type GlyphTapeToken = LegacyInstruction & {
 };
 
 const OPCODE_NAMES = new Map<number, string>([
-  [RISC.OP_NOP, "NOP"],
-  [RISC.OP_SET, "SET"],
-  [RISC.OP_GET, "GET"],
-  [RISC.OP_PUT, "PUT"],
-  [RISC.OP_ADD, "ADD"],
-  [RISC.OP_SUB, "SUB"],
-  [RISC.OP_JZ, "JZ"],
-  [RISC.OP_JNZ, "JNZ"],
-  [RISC.OP_JMP, "JMP"],
-  [RISC.OP_REPLICATE, "REPLICATE"],
-  [RISC.OP_SIGNAL, "SIGNAL"],
-  [RISC.OP_BIND, "BIND"],
-  [RISC.OP_SHARE, "SHARE"],
-  [RISC.OP_TENSEGRITY, "TENSEGRITY"],
-  [RISC.OP_COLLECTIVE, "COLLECTIVE"],
-  [RISC.ROLE, "ROLE"],
-  [RISC.OP_BUILD, "BUILD"],
-  [RISC.OP_SENSE, "SENSE"],
-  [RISC.OP_SPORE_DRIVE, "SPORE_DRIVE"],
-  [RISC.ENTANGLE, "ENTANGLE"],
-  [RISC.OP_PLUG, "PLUG"],
-  [RISC.OP_RESOLVE, "RESOLVE"],
-  [RISC.OP_SYSCALL, "SYSCALL"],
+  [OP_NOP, "NOP"],
+  [OP_SET, "SET"],
+  [OP_GET, "GET"],
+  [OP_PUT, "PUT"],
+  [OP_ADD, "ADD"],
+  [OP_SUB, "SUB"],
+  [OP_JZ, "JZ"],
+  [OP_JNZ, "JNZ"],
+  [OP_JMP, "JMP"],
+  [OP_REPLICATE, "REPLICATE"],
+  [OP_SIGNAL, "SIGNAL"],
+  [OP_BIND, "BIND"],
+  [OP_SHARE, "SHARE"],
+  [OP_TENSEGRITY, "TENSEGRITY"],
+  [OP_COLLECTIVE, "COLLECTIVE"],
+  [OP_SECRETE_PLASMID, "ROLE"],
+  [OP_BUILD, "BUILD"],
+  [OP_SENSE, "SENSE"],
+  [OP_SPORE_DRIVE, "SPORE_DRIVE"],
+  [OP_HEBB, "ENTANGLE"],
+  [OP_PLUG, "PLUG"],
+  [OP_RESOLVE, "RESOLVE"],
+  [OP_SYSCALL, "SYSCALL"],
 ]);
 
 const OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_NOP, 1],
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_PUT, 3],
-  [RISC.OP_ADD, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_REPLICATE, 1],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_BIND, 1],
-  [RISC.OP_SHARE, 3],
-  [RISC.OP_PLUG, 3],
-  [RISC.OP_TENSEGRITY, 4],
-  [RISC.OP_COLLECTIVE, 4],
-  [RISC.ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_SENSE, 3],
-  [RISC.OP_SPORE_DRIVE, 1],
-  [RISC.ENTANGLE, 1],
-  [RISC.OP_RESOLVE, 3],
-  [RISC.OP_SYSCALL, 1],
+  [OP_NOP, 1],
+  [OP_SET, 3],
+  [OP_GET, 3],
+  [OP_PUT, 3],
+  [OP_ADD, 3],
+  [OP_SUB, 3],
+  [OP_JZ, 3],
+  [OP_JNZ, 3],
+  [OP_JMP, 2],
+  [OP_REPLICATE, 1],
+  [OP_SIGNAL, 1],
+  [OP_BIND, 1],
+  [OP_SHARE, 3],
+  [OP_PLUG, 3],
+  [OP_TENSEGRITY, 4],
+  [OP_COLLECTIVE, 4],
+  [OP_SECRETE_PLASMID, 3],
+  [OP_BUILD, 3],
+  [OP_SENSE, 3],
+  [OP_SPORE_DRIVE, 1],
+  [OP_HEBB, 1],
+  [OP_RESOLVE, 3],
+  [OP_SYSCALL, 1],
 ]);
 
 const opcodeName = (opcode: number): string =>
@@ -78,7 +78,7 @@ export const decodeLegacyInstruction = (
   pc: number,
 ): LegacyInstruction | null => {
   if (pc < 0 || pc >= script.length) return null;
-  const opcode = script[pc] ?? RISC.OP_NOP;
+  const opcode = script[pc] ?? OP_NOP;
   const length = legacyOpcodeLength(opcode);
   const args = Array.from(script.slice(pc + 1, pc + length));
   return {
@@ -108,7 +108,7 @@ export const scriptToGlyphTape = (
   while (pc >= 0 && pc < script.length && steps < maxSteps) {
     const decoded = decodeLegacyInstruction(script, pc);
     if (!decoded) break;
-    if (decoded.opcode === RISC.OP_NOP) break;
+    if (decoded.opcode === OP_NOP) break;
 
     const spec = glyphSpecByLegacyOpcode(decoded.opcode);
     if (!spec && !allowUnmapped) {

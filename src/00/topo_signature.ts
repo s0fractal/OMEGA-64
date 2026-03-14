@@ -1,18 +1,8 @@
 // OMEGA-64 | topo_signature.ts
 // Topological Signatures and 2D/1D Projections
 
-import {
-  stable_stringify,
-  sha256_hex_bytes,
-  fnv1a32,
-  normalize_hex64,
-  import_ed25519_public,
-  bytes_to_base64,
-} from "../_/mod.ts";
-import {
-  to_int16_big_endian,
-  make_xor_shift32,
-} from "../_/mod.ts";
+import { stable_stringify, sha256_hex_bytes, fnv1a32, normalize_hex64, import_ed25519_public, bytes_to_base64 } from "../_/mod.ts";
+import { to_int16_big_endian, make_xor_shift32 } from "../_/mod.ts";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));

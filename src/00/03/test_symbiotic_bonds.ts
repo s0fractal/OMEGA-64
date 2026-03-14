@@ -3,19 +3,7 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  BONDS_OFFSET,
-  BOND_REQUESTS_OFFSET,
-  GRID_W,
-  INSTRUCTIONS_OFFSET,
-  MAX_ATOMS,
-  PHYSICS_READ_ENERGY_OFFSET,
-  PHYSICS_READ_RESONANCE_OFFSET,
-  PHYSICS_READ_XS_OFFSET,
-  PHYSICS_READ_YS_OFFSET,
-  RESONANCE_DELTA_OFFSET,
-  SPATIAL_GRID_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, GRID_W, INSTRUCTIONS_OFFSET, MAX_ATOMS, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_DELTA_OFFSET, SPATIAL_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const WASM_PATH = "src/00/release.wasm";
 const wasmModule = await Deno.readFile(WASM_PATH);

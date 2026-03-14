@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-
+import { OP_SET, SYS_MUTATE, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   LOGGER.info("--- STAGE 29: SEMANTIC MUTATION TEST ---");
@@ -30,20 +30,20 @@ Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
 
   const script = new Uint8Array(64);
   // Setup registers
-  script[0] = RISC.OP_SET;
+  script[0] = OP_SET;
   script[1] = 0; // r0
-  script[2] = SYS.MUTATE; // syscall id
+  script[2] = SYS_MUTATE; // syscall id
 
-  script[3] = RISC.OP_SET;
+  script[3] = OP_SET;
   script[4] = 1; // r1
   script[5] = 2; // offset = 2
 
-  script[6] = RISC.OP_SET;
+  script[6] = OP_SET;
   script[7] = 2; // r2
   script[8] = 0; // new value (OP_HALT)
 
   // Call SYS_MUTATE
-  script[9] = RISC.OP_SYSCALL;
+  script[9] = OP_SYSCALL;
   script[10] = 0; // dummy, OP_SYSCALL doesn't take reg args in RISC-I directly since R0-R3 are hardcoded for syscall context
 
   STATE_MATRIX.setInstructions(atomIdx, script);
@@ -52,7 +52,7 @@ Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   let currentInst = STATE_MATRIX.getInstructions(atomIdx);
   assertEquals(
     currentInst[2],
-    SYS.MUTATE,
+    SYS_MUTATE,
     "Initial instruction at offset 2 should be SYS.MUTATE (7)",
   );
 

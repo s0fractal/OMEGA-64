@@ -1,7 +1,4 @@
-import {
-  MIN_WASM_MEMORY_PAGES,
-  WASM_MEMORY_PAGES
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
 import { resolveFsVectorSync } from "@07/01/vector_decoder.ts";
 

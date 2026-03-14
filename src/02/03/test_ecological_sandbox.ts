@@ -1,8 +1,9 @@
 // OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { NEXUS_DAEMON, PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () => {
   LOGGER.info("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");
@@ -31,16 +32,16 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
 
   // Script: Predator moves +10 in X towards Prey
   const scriptMoveX = new Uint8Array(64);
-  scriptMoveX[0] = RISC.OP_SET;
+  scriptMoveX[0] = OP_SET;
   scriptMoveX[1] = 0;
-  scriptMoveX[2] = SYS.ATTRACT;
-  scriptMoveX[3] = RISC.OP_SET;
+  scriptMoveX[2] = SYS_ATTRACT;
+  scriptMoveX[3] = OP_SET;
   scriptMoveX[4] = 1;
   scriptMoveX[5] = preyB; // targetIdx = 11
-  scriptMoveX[6] = RISC.OP_SET;
+  scriptMoveX[6] = OP_SET;
   scriptMoveX[7] = 2;
   scriptMoveX[8] = 1; // intensity = 1 (Attract)
-  scriptMoveX[9] = RISC.OP_SYSCALL;
+  scriptMoveX[9] = OP_SYSCALL;
 
   STATE_MATRIX.setInstructions(predatorA, scriptMoveX);
 
@@ -60,19 +61,19 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
 
   // Script: Predator steals from Prey
   const scriptEat = new Uint8Array(64);
-  scriptEat[0] = RISC.OP_SET;
+  scriptEat[0] = OP_SET;
   scriptEat[1] = 0;
-  scriptEat[2] = SYS.TRANSFER;
-  scriptEat[3] = RISC.OP_SET; // Add missing OP_SET
+  scriptEat[2] = SYS_TRANSFER;
+  scriptEat[3] = OP_SET; // Add missing OP_SET
   scriptEat[4] = 1;
   scriptEat[5] = preyB; // Target Idx 11
-  scriptEat[6] = RISC.OP_SET;
+  scriptEat[6] = OP_SET;
   scriptEat[7] = 2;
   scriptEat[8] = 0; // Resource = 0 (Energy)
-  scriptEat[9] = RISC.OP_SET;
+  scriptEat[9] = OP_SET;
   scriptEat[10] = 3;
   scriptEat[11] = 251; // Amount = -5
-  scriptEat[12] = RISC.OP_SYSCALL;
+  scriptEat[12] = OP_SYSCALL;
 
   STATE_MATRIX.setInstructions(predatorA, scriptEat);
   STATE_MATRIX.setPC(predatorA, 0);

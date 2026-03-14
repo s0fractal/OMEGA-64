@@ -8,11 +8,9 @@ import {
   SCALE
 } from "../_/02/mod.ts";
 import {
-  VmOpcodes,
-  VmSys as SYS,
-  VmProps,
-  StructureTypes as STRUCTURE,
+  SYS_YIELD, OP_SYSCALL, OP_GET, PROP_NEURAL_COHERENCE, OP_SUB, OP_JNZ, OP_SIGNAL, SYS_SET_ROLE, OP_JMP, OP_BUILD, OP_SET
 } from "../_/00/mod.ts";
+export * from "../_/00/mod.ts";
 import * as views from "./memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
@@ -31,19 +29,12 @@ export const SYNC = {
   HOST_LOCK: 2,
 };
 
-export const RISC = {
-  ...VmOpcodes,
-  ...VmProps,
-};
-
-export { SYS, STRUCTURE };
-
 const DEFAULT_BOOT_SCRIPT = (() => {
   const boot = new Uint8Array(64);
-  boot[0] = RISC.OP_SET;
+  boot[0] = OP_SET;
   boot[1] = 0;
-  boot[2] = SYS.YIELD;
-  boot[3] = RISC.OP_SYSCALL;
+  boot[2] = SYS_YIELD;
+  boot[3] = OP_SYSCALL;
   return boot;
 })();
 
@@ -77,8 +68,6 @@ export const ATOM_ACCESS = {
   ledgerDataView: views.ledgerDataView,
   contexts: views.contexts,
   semanticBonuses: views.semanticBonuses,
-  RISC,
-
   memoryGridBuffer: views.memoryGridBuffer,
   signalGridBuffer: views.signalGridBuffer,
   structureGridBuffer: views.structureGridBuffer,
@@ -380,41 +369,41 @@ export const ATOM_ACCESS = {
     const script = new Uint8Array(64);
     let pc = 0;
 
-    script[pc++] = RISC.OP_GET;
+    script[pc++] = OP_GET;
     script[pc++] = 0;
-    script[pc++] = RISC.PROP_NEURAL_COHERENCE;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = PROP_NEURAL_COHERENCE;
+    script[pc++] = OP_SET;
     script[pc++] = 1;
     script[pc++] = GUARDIAN_COHERENCE_THRESHOLD;
-    script[pc++] = RISC.OP_SUB;
+    script[pc++] = OP_SUB;
     script[pc++] = 1;
     script[pc++] = 0;
-    script[pc++] = RISC.OP_JNZ;
+    script[pc++] = OP_JNZ;
     script[pc++] = 1;
     script[pc++] = 22;
 
-    script[pc++] = RISC.OP_SIGNAL;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = OP_SIGNAL;
+    script[pc++] = OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = SYS_SET_ROLE;
+    script[pc++] = OP_SET;
     script[pc++] = 1;
     script[pc++] = 2;
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_JMP;
+    script[pc++] = OP_SYSCALL;
+    script[pc++] = OP_JMP;
     script[pc++] = 0;
 
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = SYS_SET_ROLE;
+    script[pc++] = OP_SET;
     script[pc++] = 1;
     script[pc++] = 3;
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = OP_SYSCALL;
+    script[pc++] = OP_BUILD;
     script[pc++] = 0;
     script[pc++] = 0;
-    script[pc++] = RISC.OP_JMP;
+    script[pc++] = OP_JMP;
     script[pc++] = 0;
 
     return script;
@@ -424,17 +413,17 @@ export const ATOM_ACCESS = {
     const script = new Uint8Array(64);
     let pc = 0;
 
-    script[pc++] = RISC.OP_BUILD;
+    script[pc++] = OP_BUILD;
     script[pc++] = 0;
     script[pc++] = 0;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = OP_SET;
     script[pc++] = 0;
-    script[pc++] = SYS.SET_ROLE;
-    script[pc++] = RISC.OP_SET;
+    script[pc++] = SYS_SET_ROLE;
+    script[pc++] = OP_SET;
     script[pc++] = 1;
     script[pc++] = 3;
-    script[pc++] = RISC.OP_SYSCALL;
-    script[pc++] = RISC.OP_JMP;
+    script[pc++] = OP_SYSCALL;
+    script[pc++] = OP_JMP;
     script[pc++] = 0;
 
     return script;

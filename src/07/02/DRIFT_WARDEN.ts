@@ -1,10 +1,5 @@
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import {
-  COHERENCE_OFFSET,
-  ENERGY_OFFSET,
-  IDS_OFFSET,
-  MAX_ATOMS
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { sharedBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 

@@ -1,5 +1,6 @@
 // OMEGA-64 | test_risc.ts | VM Verification Suite
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "../../00/STATE_MATRIX.ts";
 
 async function runTest() {
   console.log("🚀 Initializing RISC VM Test...");
@@ -42,18 +43,18 @@ async function runTest() {
 
   const script = new Uint8Array(64);
   let p = 0;
-  script[p++] = RISC.OP_GET;
+  script[p++] = OP_GET;
   script[p++] = 0;
-  script[p++] = RISC.PROP_ENERGY;
-  script[p++] = RISC.OP_SET;
+  script[p++] = PROP_ENERGY;
+  script[p++] = OP_SET;
   script[p++] = 1;
   script[p++] = 50;
-  script[p++] = RISC.OP_ADD;
+  script[p++] = OP_ADD;
   script[p++] = 0;
   script[p++] = 1;
-  script[p++] = RISC.OP_PUT;
+  script[p++] = OP_PUT;
   script[p++] = 0;
-  script[p++] = RISC.PROP_ENERGY;
+  script[p++] = PROP_ENERGY;
 
   STATE_MATRIX.setInstructions(atomIdx, script);
   STATE_MATRIX.set_p_c(atomIdx, 0);
@@ -78,17 +79,17 @@ async function runTest() {
 
   const script2 = new Uint8Array(64);
   p = 0;
-  script2[p++] = RISC.OP_SET;
+  script2[p++] = OP_SET;
   script2[p++] = 0;
   script2[p++] = 3; // offset 0
   // Loop start at offset 3
-  script2[p++] = RISC.OP_SET;
+  script2[p++] = OP_SET;
   script2[p++] = 1;
   script2[p++] = 1; // offset 3
-  script2[p++] = RISC.OP_SUB;
+  script2[p++] = OP_SUB;
   script2[p++] = 0;
   script2[p++] = 1; // offset 6
-  script2[p++] = RISC.OP_JNZ;
+  script2[p++] = OP_JNZ;
   script2[p++] = 0;
   script2[p++] = 3; // offset 9
 

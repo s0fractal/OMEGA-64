@@ -1,17 +1,7 @@
 // OMEGA-64 | agent_signature.ts
 // Legacy Compliance Shims - Proposal Signatures
 
-import {
-  base64_to_bytes,
-  bytes_to_base64,
-  bytes_to_hex,
-  hex_to_bytes,
-  import_ed25519_private,
-  import_ed25519_public,
-  import_hmac,
-  sha256_hex,
-  stable_stringify,
-} from "../_/mod.ts";
+import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_ed25519_private, import_ed25519_public, import_hmac, sha256_hex, stable_stringify } from "../_/mod.ts";
 import { REJECTION } from "./STATE_SNAPSHOT.ts";
 import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
 

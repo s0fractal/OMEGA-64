@@ -1,6 +1,7 @@
-import { RISC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 import { glyphTapeToPrettyText } from "@07/04/glyph_pretty.ts";
 import { scriptToGlyphTape } from "@07/04/opcode_to_glyph.ts";
+import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "../../00/STATE_MATRIX.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
@@ -9,11 +10,11 @@ const expect = (condition: unknown, message: string): void => {
 const main = () => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = RISC.OP_GET;
+  script[pc++] = OP_GET;
   script[pc++] = 0;
-  script[pc++] = RISC.PROP_ENERGY;
-  script[pc++] = RISC.OP_SIGNAL;
-  script[pc++] = RISC.OP_JMP;
+  script[pc++] = PROP_ENERGY;
+  script[pc++] = OP_SIGNAL;
+  script[pc++] = OP_JMP;
   script[pc++] = 0;
 
   const tape = scriptToGlyphTape(script);
@@ -45,7 +46,7 @@ const main = () => {
     "[opcode_to_glyph] pretty output must mention SIGNAL glyph",
   );
   expect(
-    scriptToGlyphTape(new Uint8Array([RISC.OP_JZ, 0, 0]))[0]?.glyphMnemonic ===
+    scriptToGlyphTape(new Uint8Array([OP_JZ, 0, 0]))[0]?.glyphMnemonic ===
       "JZ",
     "[opcode_to_glyph] OP_JZ must now map into the control glyph band",
   );

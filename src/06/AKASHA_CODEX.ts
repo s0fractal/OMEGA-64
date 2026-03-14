@@ -1,11 +1,12 @@
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../_/mod.ts";
 import type { GlyphSnapshot } from "@06";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_BUILD, OP_SENSE, OP_SENSE_AS, OP_RESONATE_KURAMOTO } from "../00/STATE_MATRIX.ts";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
@@ -227,10 +228,10 @@ const OPCODE_NAMES: Record<number, string> = {
   0xA5: "TENSEGRITY",
   0xA6: "COLLECTIVE",
   0xA7: "ROLE",
-  [RISC.OP_BUILD]: "BUILD",
-  [RISC.OP_SENSE]: "SENSE",
-  [RISC.OP_SENSE_AS]: "SENSE_AS",
-  [RISC.OP_RESONATE_KURAMOTO]: "RESONATE",
+  [OP_BUILD]: "BUILD",
+  [OP_SENSE]: "SENSE",
+  [OP_SENSE_AS]: "SENSE_AS",
+  [OP_RESONATE_KURAMOTO]: "RESONATE",
 };
 
 const fallbackState = (): CodexState => ({

@@ -1,9 +1,10 @@
 // OMEGA-64 | test_stigmergic_coordination.ts | Stage 24: Stigmergic Synthesis
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 const { OP_BUILD, OP_RESONATE } = RISC;
 import { QuorumAdvocate } from "@07/02/relics/QUORUM_ADVOCATE.ts";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_RESONATE } from "../../00/STATE_MATRIX.ts";
 
 async function runTest() {
   LOGGER.info("🧪 [TEST] Starting Stigmergic Coordination Verification...");
@@ -41,7 +42,7 @@ async function runTest() {
   // Since we can't easily run the full thread pool here without bootstrapping,
   // we'll verify the constants and the logic in the WASM source (already done).
 
-  LOGGER.info(`RISC OP_RESONATE: 0x${RISC.OP_RESONATE.toString(16)}`);
+  LOGGER.info(`RISC OP_RESONATE: 0x${OP_RESONATE(16)}`);
   LOGGER.info(`Individual OP_RESONATE: 0x${OP_RESONATE.toString(16)}`);
 
   if (OP_RESONATE === 0xAE) {

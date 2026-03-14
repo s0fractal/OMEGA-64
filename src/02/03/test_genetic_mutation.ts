@@ -1,8 +1,9 @@
 // OMEGA-64 | test_genetic_mutation.ts | Stage 34 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_YIELD, OP_SYSCALL, SYS_MUTATE, OP_NOP } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   LOGGER.info("--- STAGE 34: GENETIC MUTATION TEST ---");
@@ -23,35 +24,35 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
 
   // Atom B starts with a benign script: SET R0 = SYS.YIELD (0x01), SYSCALL
   const scriptB = new Uint8Array(64);
-  scriptB[0] = RISC.OP_SET;
+  scriptB[0] = OP_SET;
   scriptB[1] = 0;
-  scriptB[2] = SYS.YIELD;
-  scriptB[3] = RISC.OP_SYSCALL;
+  scriptB[2] = SYS_YIELD;
+  scriptB[3] = OP_SYSCALL;
   scriptB[4] = 0;
   STATE_MATRIX.setInstructions(atomB, scriptB);
 
   // Atom A will mutate Atom B: Replace the first instruction with OP_NOP (0x00)
   const scriptA = new Uint8Array(64);
-  scriptA[0] = RISC.OP_SET;
+  scriptA[0] = OP_SET;
   scriptA[1] = 0;
-  scriptA[2] = SYS.MUTATE; // R0 = SysId
-  scriptA[3] = RISC.OP_SET;
+  scriptA[2] = SYS_MUTATE; // R0 = SysId
+  scriptA[3] = OP_SET;
   scriptA[4] = 1;
   scriptA[5] = atomB; // R1 = targetIdx
-  scriptA[6] = RISC.OP_SET;
+  scriptA[6] = OP_SET;
   scriptA[7] = 2;
   scriptA[8] = 0; // R2 = offset
-  scriptA[9] = RISC.OP_SET;
+  scriptA[9] = OP_SET;
   scriptA[10] = 3;
-  scriptA[11] = RISC.OP_NOP; // R3 = newValue (0)
-  scriptA[12] = RISC.OP_SYSCALL;
+  scriptA[11] = OP_NOP; // R3 = newValue (0)
+  scriptA[12] = OP_SYSCALL;
   scriptA[13] = 0;
   STATE_MATRIX.setInstructions(atomA, scriptA);
 
   // Verify before state
   assertEquals(
     STATE_MATRIX.getInstructions(atomB)[0],
-    RISC.OP_SET,
+    OP_SET,
     "Atom B should start with OP_SET",
   );
 
@@ -62,12 +63,12 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   const mutatedScriptB = STATE_MATRIX.getInstructions(atomB);
   assertEquals(
     mutatedScriptB[0],
-    RISC.OP_NOP,
+    OP_NOP,
     "Atom B's first instruction should be mutated to OP_NOP",
   );
   assertEquals(
     mutatedScriptB[2],
-    SYS.YIELD,
+    SYS_YIELD,
     "Atom B's third instruction should be untouched",
   );
 

@@ -1,39 +1,6 @@
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import {
-  MAX_ATOMS,
-  RISC,
-  sharedBuffer,
-  STATE_MATRIX,
-  SYS,
-  AS_WASM_PATH,
-  LOGGER,
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  BONDS_OFFSET,
-  CAUSALITY_OFFSET,
-  COHERENCE_OFFSET,
-  CONTEXT_OFFSET,
-  EGRESS_DATA_OFFSET,
-  EGRESS_HEAD_OFFSET,
-  ENERGY_OFFSET,
-  GRID_H,
-  GRID_W,
-  IDS_OFFSET,
-  INSTRUCTIONS_OFFSET,
-  LATTICE_MEMORY_END,
-  LOGIC_OFFSET,
-  MAX_EGRESS_EVENTS,
-  PHASE_OFFSET,
-  PHYSICS_READ_ENERGY_OFFSET,
-  PHYSICS_READ_RESONANCE_OFFSET,
-  PHYSICS_READ_XS_OFFSET,
-  PHYSICS_READ_YS_OFFSET,
-  RESONANCE_OFFSET,
-  ROLES_OFFSET,
-  SPAWN_REQUESTS_OFFSET,
-  XS_OFFSET,
-  YS_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "@03/GATE.ts";
@@ -100,7 +67,6 @@ let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
-import { PHYSICS_ENGINE } from "@06";
 import { GLYPH_TELEMETRY } from "@06";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
 
@@ -121,6 +87,7 @@ import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
 import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
+import { PROP_NEURAL_COHERENCE, OP_SET, OP_GET, OP_SUB, OP_JNZ, OP_JMP, OP_SIGNAL, OP_SECRETE_PLASMID, OP_BUILD, OP_SYSCALL, OP_NOP, SYS_YIELD, SYS_SET_ROLE, OP_JZ, OP_SPORE_DRIVE, PROP_ENERGY, PROP_RESONANCE, OP_ADD, OP_REPLICATE, OP_PUT } from "../00/STATE_MATRIX.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -3578,18 +3545,18 @@ type ArchitectToken = {
 
 const DEFAULT_ARCHITECT_MAX_STEPS = 8;
 const SUPPORTED_ARCHITECT_PROPS = {
-  [RISC.PROP_NEURAL_COHERENCE]: true,
+  [PROP_NEURAL_COHERENCE]: true,
 } as const;
 const SUPPORTED_ARCHITECT_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_SYSCALL, 1],
+  [OP_SET, 3],
+  [OP_GET, 3],
+  [OP_SUB, 3],
+  [OP_JNZ, 3],
+  [OP_JMP, 2],
+  [OP_SIGNAL, 1],
+  [OP_SECRETE_PLASMID, 3],
+  [OP_BUILD, 3],
+  [OP_SYSCALL, 1],
 ]);
 
 export const normalizeArchitectPlasmidExecutionMode = (
@@ -3625,8 +3592,8 @@ const decodeArchitectTape = (
   let pc = 0;
   let steps = 0;
   while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
+    const opcode = script[pc] ?? OP_NOP;
+    if (opcode === OP_NOP) break;
     const length = SUPPORTED_ARCHITECT_OPCODE_LENGTHS.get(opcode);
     if (!length) {
       throw new Error(`unsupported_architect_opcode_0x${opcode.toString(16)}`);
@@ -3663,7 +3630,7 @@ const applyArchitectOpcode = (
   token: ArchitectToken,
 ): void => {
   switch (token.opcode) {
-    case RISC.OP_GET: {
+    case OP_GET: {
       const reg = token.args[0] ?? 0;
       const prop = token.args[1] ?? 0;
       if (!(prop in SUPPORTED_ARCHITECT_PROPS)) {
@@ -3673,20 +3640,20 @@ const applyArchitectOpcode = (
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SET: {
+    case OP_SET: {
       const reg = token.args[0] ?? 0;
       state.regs[reg] = token.args[1] ?? 0;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SUB: {
+    case OP_SUB: {
       const dst = token.args[0] ?? 0;
       const src = token.args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
       state.pc += token.length;
       return;
     }
-    case RISC.OP_JNZ: {
+    case OP_JNZ: {
       const reg = token.args[0] ?? 0;
       const target = token.args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
@@ -3697,32 +3664,32 @@ const applyArchitectOpcode = (
       }
       return;
     }
-    case RISC.OP_JMP: {
+    case OP_JMP: {
       state.pc = token.args[0] ?? 0;
       return;
     }
-    case RISC.OP_ROLE: {
+    case OP_SECRETE_PLASMID: {
       const mode = token.args[0] ?? 0;
       const role = token.args[1] ?? 0;
       if (mode === 0) state.role = role;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SIGNAL: {
+    case OP_SIGNAL: {
       state.signalCount++;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_BUILD: {
+    case OP_BUILD: {
       state.buildCount++;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SYSCALL: {
+    case OP_SYSCALL: {
       const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS.YIELD) {
+      if (sysId === SYS_YIELD) {
         // no-op
-      } else if (sysId === SYS.SET_ROLE) {
+      } else if (sysId === SYS_SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
         throw new Error(
@@ -3951,20 +3918,20 @@ type GuardianToken = {
 
 const DEFAULT_GUARDIAN_MAX_STEPS = 8;
 const GUARDIAN_PROP_MAP = {
-  [RISC.PROP_NEURAL_COHERENCE]: true,
+  [PROP_NEURAL_COHERENCE]: true,
 } as const;
 const SUPPORTED_GUARDIAN_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_SIGNAL, 1],
-  [RISC.OP_ROLE, 3],
-  [RISC.OP_BUILD, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_SPORE_DRIVE, 1],
-  [RISC.OP_SYSCALL, 1],
+  [OP_SET, 3],
+  [OP_GET, 3],
+  [OP_SUB, 3],
+  [OP_JNZ, 3],
+  [OP_JMP, 2],
+  [OP_SIGNAL, 1],
+  [OP_SECRETE_PLASMID, 3],
+  [OP_BUILD, 3],
+  [OP_JZ, 3],
+  [OP_SPORE_DRIVE, 1],
+  [OP_SYSCALL, 1],
 ]);
 
 export const normalizeGuardianSignalExecutionMode = (
@@ -4000,8 +3967,8 @@ const decodeGuardianTape = (
   let pc = 0;
   let steps = 0;
   while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
+    const opcode = script[pc] ?? OP_NOP;
+    if (opcode === OP_NOP) break;
     const length = SUPPORTED_GUARDIAN_OPCODE_LENGTHS.get(opcode);
     if (!length) {
       throw new Error(`unsupported_guardian_opcode_0x${opcode.toString(16)}`);
@@ -4043,7 +4010,7 @@ const applyGuardianOpcode = (
   token: GuardianToken,
 ): void => {
   switch (token.opcode) {
-    case RISC.OP_GET: {
+    case OP_GET: {
       const reg = token.args[0] ?? 0;
       const prop = token.args[1] ?? 0;
       if (!(prop in GUARDIAN_PROP_MAP)) {
@@ -4053,20 +4020,20 @@ const applyGuardianOpcode = (
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SET: {
+    case OP_SET: {
       const reg = token.args[0] ?? 0;
       state.regs[reg] = token.args[1] ?? 0;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SUB: {
+    case OP_SUB: {
       const dst = token.args[0] ?? 0;
       const src = token.args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
       state.pc += token.length;
       return;
     }
-    case RISC.OP_JNZ: {
+    case OP_JNZ: {
       const reg = token.args[0] ?? 0;
       const target = token.args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
@@ -4077,7 +4044,7 @@ const applyGuardianOpcode = (
       }
       return;
     }
-    case RISC.OP_JZ: {
+    case OP_JZ: {
       const reg = token.args[0] ?? 0;
       const target = token.args[1] ?? 0;
       if ((state.regs[reg] ?? 0) === 0) {
@@ -4088,37 +4055,37 @@ const applyGuardianOpcode = (
       }
       return;
     }
-    case RISC.OP_JMP: {
+    case OP_JMP: {
       state.pc = token.args[0] ?? 0;
       return;
     }
-    case RISC.OP_ROLE: {
+    case OP_SECRETE_PLASMID: {
       const mode = token.args[0] ?? 0;
       const role = token.args[1] ?? 0;
       if (mode === 0) state.role = role;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SIGNAL: {
+    case OP_SIGNAL: {
       state.signalCount++;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_BUILD: {
+    case OP_BUILD: {
       state.buildCount++;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SPORE_DRIVE: {
+    case OP_SPORE_DRIVE: {
       // Movement is no-op in bridge reduction
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SYSCALL: {
+    case OP_SYSCALL: {
       const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS.YIELD) {
+      if (sysId === SYS_YIELD) {
         // no-op
-      } else if (sysId === SYS.SET_ROLE) {
+      } else if (sysId === SYS_SET_ROLE) {
         state.role = state.regs[1] ?? 0;
       } else {
         throw new Error(
@@ -4379,20 +4346,20 @@ type ReplicationToken = {
 
 const DEFAULT_REPLICATION_MAX_STEPS = 16;
 const REPLICATION_PROP_MAP = {
-  [RISC.PROP_ENERGY]: true,
-  [RISC.PROP_RESONANCE]: true,
+  [PROP_ENERGY]: true,
+  [PROP_RESONANCE]: true,
 } as const;
 
 const SUPPORTED_REPLICATION_OPCODE_LENGTHS = new Map<number, number>([
-  [RISC.OP_SET, 3],
-  [RISC.OP_GET, 3],
-  [RISC.OP_SUB, 3],
-  [RISC.OP_ADD, 3],
-  [RISC.OP_JNZ, 3],
-  [RISC.OP_JZ, 3],
-  [RISC.OP_JMP, 2],
-  [RISC.OP_REPLICATE, 1],
-  [RISC.OP_PUT, 3],
+  [OP_SET, 3],
+  [OP_GET, 3],
+  [OP_SUB, 3],
+  [OP_ADD, 3],
+  [OP_JNZ, 3],
+  [OP_JZ, 3],
+  [OP_JMP, 2],
+  [OP_REPLICATE, 1],
+  [OP_PUT, 3],
 ]);
 
 export const normalizeReplicationExecutionMode = (
@@ -4429,8 +4396,8 @@ const decodeReplicationTape = (
   let pc = 0;
   let steps = 0;
   while (pc >= 0 && pc < script.length && steps < maxTokens) {
-    const opcode = script[pc] ?? RISC.OP_NOP;
-    if (opcode === RISC.OP_NOP) break;
+    const opcode = script[pc] ?? OP_NOP;
+    if (opcode === OP_NOP) break;
     const length = SUPPORTED_REPLICATION_OPCODE_LENGTHS.get(opcode);
     if (!length) {
       throw new Error(
@@ -4454,11 +4421,11 @@ const applyReplicationOpcode = (
   token: ReplicationToken,
 ): void => {
   switch (token.opcode) {
-    case RISC.OP_GET: {
+    case OP_GET: {
       const reg = token.args[0] ?? 0;
       const prop = token.args[1] ?? 0;
-      if (prop === RISC.PROP_ENERGY) state.regs[reg] = state.energy;
-      else if (prop === RISC.PROP_RESONANCE) state.regs[reg] = state.resonance;
+      if (prop === PROP_ENERGY) state.regs[reg] = state.energy;
+      else if (prop === PROP_RESONANCE) state.regs[reg] = state.resonance;
       else if (!(prop in REPLICATION_PROP_MAP)) {
         // We only allow energy and resonance in this slit for now
         throw new Error(`unsupported GET prop=${prop}`);
@@ -4466,36 +4433,36 @@ const applyReplicationOpcode = (
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SET: {
+    case OP_SET: {
       const reg = token.args[0] ?? 0;
       state.regs[reg] = token.args[1] ?? 0;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_SUB: {
+    case OP_SUB: {
       const dst = token.args[0] ?? 0;
       const src = token.args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
       state.pc += token.length;
       return;
     }
-    case RISC.OP_ADD: {
+    case OP_ADD: {
       const dst = token.args[0] ?? 0;
       const src = token.args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
       state.pc += token.length;
       return;
     }
-    case RISC.OP_PUT: {
+    case OP_PUT: {
       const reg = token.args[0] ?? 0;
       const prop = token.args[1] ?? 0;
       const val = state.regs[reg] ?? 0;
-      if (prop === RISC.PROP_ENERGY) state.energy = val;
-      else if (prop === RISC.PROP_RESONANCE) state.resonance = val;
+      if (prop === PROP_ENERGY) state.energy = val;
+      else if (prop === PROP_RESONANCE) state.resonance = val;
       state.pc += token.length;
       return;
     }
-    case RISC.OP_JNZ: {
+    case OP_JNZ: {
       const reg = token.args[0] ?? 0;
       const target = token.args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
@@ -4505,7 +4472,7 @@ const applyReplicationOpcode = (
       }
       return;
     }
-    case RISC.OP_JZ: {
+    case OP_JZ: {
       const reg = token.args[0] ?? 0;
       const target = token.args[1] ?? 0;
       if ((state.regs[reg] ?? 0) === 0) {
@@ -4515,11 +4482,11 @@ const applyReplicationOpcode = (
       }
       return;
     }
-    case RISC.OP_JMP: {
+    case OP_JMP: {
       state.pc = token.args[0] ?? 0;
       return;
     }
-    case RISC.OP_REPLICATE: {
+    case OP_REPLICATE: {
       const aggrH = state.aggression;
       const eThresh = 50 - (aggrH >> 3);
       const rThresh = 10 - (aggrH >> 5);

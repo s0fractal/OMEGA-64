@@ -1,4 +1,4 @@
-import { GRID_W , GRID_H, GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 // OMEGA-64 | test_hgt.ts | Era 60: Horizontal Gene Transfer Verification
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).

@@ -1,11 +1,9 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import {
-  CONTEXT_OFFSET,
-  STRUCTURE_GRID_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { energyBuffer, idBuffer, RISC, STATE_MATRIX, structureGridBuffer, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { CONTEXT_OFFSET, STRUCTURE_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { energyBuffer, idBuffer, STATE_MATRIX, structureGridBuffer } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Universal Syscall - WRITE_MEM / READ_MEM execution correctness",
@@ -22,32 +20,32 @@ Deno.test({
     const code = new Uint8Array(64);
     let c = 0;
     // Syscall 1: SYS_WRITE_MEM to target location
-    code[c++] = RISC.OP_SET;
+    code[c++] = OP_SET;
     code[c++] = 0;
-    code[c++] = SYS.WRITE_MEM;
-    code[c++] = RISC.OP_SET;
+    code[c++] = SYS_WRITE_MEM;
+    code[c++] = OP_SET;
     code[c++] = 1;
     code[c++] = 50;
-    code[c++] = RISC.OP_SET;
+    code[c++] = OP_SET;
     code[c++] = 2;
     code[c++] = 50;
-    code[c++] = RISC.OP_SET;
+    code[c++] = OP_SET;
     code[c++] = 3;
     code[c++] = 4; // 4 = STR_SOURCE, immune to decay
-    code[c++] = RISC.OP_SYSCALL;
+    code[c++] = OP_SYSCALL;
 
     // Syscall 2: SYS_READ_MEM from the target location into R0
-    code[c++] = RISC.OP_SET;
+    code[c++] = OP_SET;
     code[c++] = 0;
-    code[c++] = SYS.READ_MEM;
-    code[c++] = RISC.OP_SET;
+    code[c++] = SYS_READ_MEM;
+    code[c++] = OP_SET;
     code[c++] = 1;
     code[c++] = 50;
-    code[c++] = RISC.OP_SET;
+    code[c++] = OP_SET;
     code[c++] = 2;
     code[c++] = 50;
     // we do not need R3 for READ_MEM
-    code[c++] = RISC.OP_SYSCALL;
+    code[c++] = OP_SYSCALL;
 
     STATE_MATRIX.seedAtom(
       atomIdx,

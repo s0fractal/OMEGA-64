@@ -1,8 +1,9 @@
 // OMEGA-64 | test_memetic_contagion.ts | Stage 38 Verification
 import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { NEXUS_DAEMON, PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => {
   LOGGER.info("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");
@@ -25,7 +26,7 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   // Teacher (Low Entropy)
   // Genome: SET R0 = 0 (offset), SECRETE_PLASMID (0xAA)
   const scriptTeacher = new Uint8Array(64);
-  scriptTeacher[0] = RISC.OP_SET;
+  scriptTeacher[0] = OP_SET;
   scriptTeacher[1] = 0; // R0
   scriptTeacher[2] = 0; // Value 0 (Offset 0)
   scriptTeacher[3] = 0xAA; // OP_SECRETE_PLASMID
@@ -37,7 +38,7 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   // Genome: SET R0 = 0 (offset), INCORPORATE_PLASMID (0xAB) inside of a highly chaotic payload
   const scriptStudent = new Uint8Array(64);
   crypto.getRandomValues(scriptStudent); // High entropy!
-  scriptStudent[0] = RISC.OP_SET;
+  scriptStudent[0] = OP_SET;
   scriptStudent[1] = 0;
   scriptStudent[2] = 0;
   scriptStudent[3] = 0xAB; // OP_INCORPORATE_PLASMID

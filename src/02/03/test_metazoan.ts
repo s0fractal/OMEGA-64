@@ -1,6 +1,7 @@
 import { assertEquals, assertGreater } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_TRANSFER, OP_SUB, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Phase 40: Metazoan Emergence (Membrane Defense)",
@@ -27,26 +28,26 @@ Deno.test({
       // Predator script: Steal energy from ATOM_B
       // Syscall Transfer: targetIdx=B, resource_type=0 (energy), amount=-1000 (steal)
       const predScript = new Uint8Array(64);
-      predScript[0] = RISC.OP_SET;
+      predScript[0] = OP_SET;
       predScript[1] = 0; // R0
-      predScript[2] = SYS.TRANSFER; // 10
+      predScript[2] = SYS_TRANSFER; // 10
       
-      predScript[3] = RISC.OP_SET;
+      predScript[3] = OP_SET;
       predScript[4] = 1; // R1
       predScript[5] = ATOM_B; // Target: 2
       
-      predScript[6] = RISC.OP_SET;
+      predScript[6] = OP_SET;
       predScript[7] = 2; // R2
       predScript[8] = 0; // Resource: 0 (Energy)
       
-      predScript[9] = RISC.OP_SET;
+      predScript[9] = OP_SET;
       predScript[10] = 3; // R3
       predScript[11] = 0;
       
       predScript.set([
-         RISC.OP_SET, 4, 100,  // R4 = 100
-         RISC.OP_SUB, 3, 4,    // R3 = R3 - R4 = -100
-         RISC.OP_SYSCALL, 0
+         OP_SET, 4, 100,  // R4 = 100
+         OP_SUB, 3, 4,    // R3 = R3 - R4 = -100
+         OP_SYSCALL, 0
       ], 12);
 
       STATE_MATRIX.setInstructions(PREDATOR, predScript);

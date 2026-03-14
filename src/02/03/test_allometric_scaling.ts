@@ -1,6 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, OP_ADD } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Allometric Scaling - Chronoflux Verification",
@@ -49,11 +50,11 @@ Deno.test({
     // NOP repeat for padding
 
     const program = new Uint8Array(64);
-    program[0] = RISC.OP_SET;
+    program[0] = OP_SET;
     program[1] = 0; // R0
     program[2] = 1; // imm 1
 
-    program[3] = RISC.OP_ADD;
+    program[3] = OP_ADD;
     program[4] = 1; // R1 += R0
     program[5] = 0; // R0
 

@@ -1,5 +1,6 @@
-import { STATE_MATRIX, STRUCTURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
+import { STR_SOURCE, STR_WIRE } from "../../00/STATE_MATRIX.ts";
 
 async function testCrystallineNetwork() {
   console.log("💎 [TEST] Starting Crystalline Neural Network Verification...");
@@ -13,13 +14,13 @@ async function testCrystallineNetwork() {
 
   // Set SOURCE at (5, 5)
   let idx = startY * 140 + startX;
-  STATE_MATRIX.setGridType(idx, STRUCTURE.SOURCE);
+  STATE_MATRIX.setGridType(idx, STR_SOURCE);
   STATE_MATRIX.setGridCharge(idx, 255);
 
   // Set WIREs from (6, 5) to (10, 5)
   for (let x = 6; x <= endX; x++) {
     idx = startY * 140 + x;
-    STATE_MATRIX.setGridType(idx, STRUCTURE.WIRE);
+    STATE_MATRIX.setGridType(idx, STR_WIRE);
     STATE_MATRIX.setGridCharge(idx, 0);
   }
 

@@ -1,10 +1,11 @@
-import { RISC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+
 import {
   BRIDGE_GLYPH_IDS,
   GLYPH_SPECS,
   glyphSpecById,
   glyphSpecByLegacyOpcode,
 } from "@07/04/GlyphIR64.ts";
+import { OP_SET, OP_REPLICATE, OP_BUILD, OP_JZ, OP_BIND } from "../../00/STATE_MATRIX.ts";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);
@@ -27,23 +28,23 @@ const main = () => {
   );
 
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_SET)?.id === 8,
+    glyphSpecByLegacyOpcode(OP_SET)?.id === 8,
     "[glyphir64] OP_SET must map to glyph 8",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_REPLICATE)?.mnemonic === "REPLICATE",
+    glyphSpecByLegacyOpcode(OP_REPLICATE)?.mnemonic === "REPLICATE",
     "[glyphir64] OP_REPLICATE must map",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_BUILD)?.mnemonic === "BUILD",
+    glyphSpecByLegacyOpcode(OP_BUILD)?.mnemonic === "BUILD",
     "[glyphir64] OP_BUILD must map",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_JZ)?.id === 15,
+    glyphSpecByLegacyOpcode(OP_JZ)?.id === 15,
     "[glyphir64] OP_JZ must map to glyph 15",
   );
   expect(
-    glyphSpecByLegacyOpcode(RISC.OP_BIND)?.mnemonic === "BIND",
+    glyphSpecByLegacyOpcode(OP_BIND)?.mnemonic === "BIND",
     "[glyphir64] OP_BIND must map",
   );
 

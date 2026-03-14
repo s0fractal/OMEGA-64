@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 // OMEGA-64 | test_consciousness.ts | Phase 19: Planetary Consciousness
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";

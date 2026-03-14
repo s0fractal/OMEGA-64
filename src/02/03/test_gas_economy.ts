@@ -1,9 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import {
-  CONTEXT_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { CONTEXT_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_ADD, OP_JMP } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Bounded Compute - Gas Economy halts VM execution",
@@ -25,10 +24,10 @@ Deno.test({
     // 3: JMP 0       (Cost: 2 gas, PC: 3 -> 0)
     // Total cost per iteration: 3 Gas
 
-    code[0] = RISC.OP_ADD;
+    code[0] = OP_ADD;
     code[1] = 1;
     code[2] = 1;
-    code[3] = RISC.OP_JMP;
+    code[3] = OP_JMP;
     code[4] = 0;
 
     STATE_MATRIX.seedAtom(

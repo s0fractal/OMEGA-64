@@ -3,9 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_MSG, OP_SYSCALL, SYS_READ_INBOX } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   LOGGER.info("--- STAGE 30: NETWORKED COGNITION TEST ---");
@@ -31,34 +32,34 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   // R2 = msgType (99)
   // R3 = payload (42)
   const senderScript = new Uint8Array(64);
-  senderScript[0] = RISC.OP_SET;
+  senderScript[0] = OP_SET;
   senderScript[1] = 0; // r0
-  senderScript[2] = SYS.MSG;
+  senderScript[2] = SYS_MSG;
 
-  senderScript[3] = RISC.OP_SET;
+  senderScript[3] = OP_SET;
   senderScript[4] = 1; // r1
   senderScript[5] = receiverIdx; // target
 
-  senderScript[6] = RISC.OP_SET;
+  senderScript[6] = OP_SET;
   senderScript[7] = 2; // r2
   senderScript[8] = 99; // msgType
 
-  senderScript[9] = RISC.OP_SET;
+  senderScript[9] = OP_SET;
   senderScript[10] = 3; // r3
   senderScript[11] = 42; // payload
 
-  senderScript[12] = RISC.OP_SYSCALL;
+  senderScript[12] = OP_SYSCALL;
   senderScript[13] = 0;
   STATE_MATRIX.setInstructions(senderIdx, senderScript);
 
   // 4. Receiver Script (SYS.READ_INBOX)
   // R0 = SYS.READ_INBOX (9)
   const receiverScript = new Uint8Array(64);
-  receiverScript[0] = RISC.OP_SET;
+  receiverScript[0] = OP_SET;
   receiverScript[1] = 0; // r0
-  receiverScript[2] = SYS.READ_INBOX;
+  receiverScript[2] = SYS_READ_INBOX;
 
-  receiverScript[3] = RISC.OP_SYSCALL;
+  receiverScript[3] = OP_SYSCALL;
   receiverScript[4] = 0;
   STATE_MATRIX.setInstructions(receiverIdx, receiverScript);
 

@@ -1,6 +1,6 @@
 import { GRID_W, pack_structure_intent } from "../../_/mod.ts";
 import { assemble } from "./assembler.ts";
-import { RISC, STATE_MATRIX, STRUCTURE, SYS } from "@00/STATE_MATRIX.ts";
+import { STATE_MATRIX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "@00/STATE_MATRIX.ts";
 export type ReductionCaseExpectation = {
   finalPc: number;
   replicateCount?: number;
@@ -55,74 +55,74 @@ export type ReductionCaseDefinition = {
 
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
-  RISC.OP_GET, 0, RISC.PROP_ENERGY,
-  RISC.OP_SET, 1, targetEnergy,
-  RISC.OP_SUB, 0, 1,
-  RISC.OP_JNZ, 0, "ROLE",
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0,
+  OP_GET, 0, PROP_ENERGY,
+  OP_SET, 1, targetEnergy,
+  OP_SUB, 0, 1,
+  OP_JNZ, 0, "ROLE",
+  OP_SIGNAL,
+  OP_JMP, 0,
   "ROLE",
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, 1, 1,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeReplicatorLoopScript = (): Uint8Array => assemble([
-  RISC.OP_REPLICATE,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_REPLICATE,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeArchitectLoopScript = (): Uint8Array => assemble([
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, 1, 1,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
 const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
 const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
-  RISC.OP_SET, 0, resonanceValue,
-  RISC.OP_PUT, 0, RISC.PROP_RESONANCE,
-  RISC.OP_GET, 1, RISC.PROP_RESONANCE,
-  RISC.OP_JZ, 1, "ROLE",
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0,
+  OP_SET, 0, resonanceValue,
+  OP_PUT, 0, PROP_RESONANCE,
+  OP_GET, 1, PROP_RESONANCE,
+  OP_JZ, 1, "ROLE",
+  OP_SIGNAL,
+  OP_JMP, 0,
   "ROLE",
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, 1, 1,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeSenseIntentScript = (
   buildType: number,
   targetType: number,
 ): Uint8Array => assemble([
-  RISC.ROLE, 0, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_BUILD, buildType, 1,
-  RISC.OP_SENSE, 1, targetType,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SECRETE_PLASMID, 0, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_BUILD, buildType, 1,
+  OP_SENSE, 1, targetType,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeBuildOnlyScript = (
   buildType: number,
   buildState: number,
 ): Uint8Array => assemble([
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, buildType, buildState
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, buildType, buildState
 ]);
 
 const makeTensegrityScript = (
@@ -130,52 +130,52 @@ const makeTensegrityScript = (
   dist: number,
   damping: number,
 ): Uint8Array => assemble([
-  RISC.OP_TENSEGRITY, 0, slot, dist,
-  RISC.OP_TENSEGRITY, 1, damping, 0
+  OP_TENSEGRITY, 0, slot, dist,
+  OP_TENSEGRITY, 1, damping, 0
 ]);
 
 const makePlugChargeScript = (charge: number): Uint8Array => assemble([
-  RISC.OP_SET, 0, charge,
-  RISC.OP_PLUG, 1, 0
+  OP_SET, 0, charge,
+  OP_PLUG, 1, 0
 ]);
 
 const makePlugChargeCompetitionScript = (
   firstCharge: number,
   secondCharge: number,
 ): Uint8Array => assemble([
-  RISC.OP_SET, 0, firstCharge,
-  RISC.OP_PLUG, 1, 0,
-  RISC.OP_SET, 0, secondCharge,
-  RISC.OP_PLUG, 1, 0
+  OP_SET, 0, firstCharge,
+  OP_PLUG, 1, 0,
+  OP_SET, 0, secondCharge,
+  OP_PLUG, 1, 0
 ]);
 
 const makeBuildSourceScript = (): Uint8Array => assemble([
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, STRUCTURE.SOURCE, 0
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, STR_SOURCE, 0
 ]);
 
 const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
-  RISC.OP_SET, 0, SYS.SET_ROLE,
-  RISC.OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  RISC.OP_SYSCALL,
-  RISC.OP_BUILD, STRUCTURE.SOURCE, state
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, STR_SOURCE, state
 ]);
 
 const makeSenseScript = (targetType: number): Uint8Array => assemble([
-  RISC.OP_SENSE, 1, targetType,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SENSE, 1, targetType,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => assemble([
-  RISC.OP_SET, 0, role,
-  RISC.OP_RESOLVE, 0, threshold
+  OP_SET, 0, role,
+  OP_RESOLVE, 0, threshold
 ]);
 
 const makeResolveBankScript = (amount: number): Uint8Array => assemble([
-  RISC.OP_RESOLVE, 1, amount // Mode: Bank
+  OP_RESOLVE, 1, amount // Mode: Bank
 ]);
 
 const makeCollectiveHiveScript = (
@@ -183,75 +183,75 @@ const makeCollectiveHiveScript = (
   value: number,
   reg: number,
 ): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 0, addr, value,
-  RISC.OP_COLLECTIVE, 1, addr, reg,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 0, addr, value,
+  OP_COLLECTIVE, 1, addr, reg,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeCollectivePheromoneScript = (
   intensity: number,
   type: number,
 ): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 2, intensity, type,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 2, intensity, type,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeCollectiveBankDepositScript = (
   amount: number,
 ): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 3, amount, 0,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 3, amount, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeCollectiveBankWithdrawScript = (
   reg: number,
 ): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 4, reg, 0,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 4, reg, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeCollectivePhaseLockScript = (): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 5, 0, 0,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 5, 0, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeCollectivePcSyncQuorumScript = (): Uint8Array => assemble([
-  RISC.OP_COLLECTIVE, 6, 0, 0,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_COLLECTIVE, 6, 0, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeShareScript = (
   slot: number,
   percentage: number,
 ): Uint8Array => assemble([
-  RISC.OP_SHARE, slot, percentage,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SHARE, slot, percentage,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeBindScript = (): Uint8Array => assemble([
-  RISC.OP_BIND,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_BIND,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeSporeDriveScript = (): Uint8Array => assemble([
-  RISC.OP_SPORE_DRIVE,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_SPORE_DRIVE,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const makeEntangleScript = (): Uint8Array => assemble([
-  RISC.OP_GET, 0, RISC.PROP_ENERGY,
-  RISC.ENTANGLE,
-  RISC.OP_SIGNAL,
-  RISC.OP_JMP, 0
+  OP_GET, 0, PROP_ENERGY,
+  OP_HEBB,
+  OP_SIGNAL,
+  OP_JMP, 0
 ]);
 
 const structureNeighborCell = (centerX: number, centerY: number): number => {
@@ -302,7 +302,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: GUARDIAN_SCRIPT,
       maxSteps: 9,
       initialProps: {
-        [RISC.PROP_NEURAL_COHERENCE]: 200,
+        [PROP_NEURAL_COHERENCE]: 200,
       },
       expected: {
         finalPc: 0,
@@ -321,7 +321,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: GUARDIAN_SCRIPT,
       maxSteps: 9,
       initialProps: {
-        [RISC.PROP_NEURAL_COHERENCE]: 0,
+        [PROP_NEURAL_COHERENCE]: 0,
       },
       expected: {
         finalPc: 0,
@@ -340,7 +340,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
       maxSteps: 6,
       initialProps: {
-        [RISC.PROP_ENERGY]: 240,
+        [PROP_ENERGY]: 240,
       },
       expected: {
         finalPc: 0,
@@ -359,7 +359,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
       maxSteps: 10,
       initialProps: {
-        [RISC.PROP_ENERGY]: 1200,
+        [PROP_ENERGY]: 1200,
       },
       expected: {
         finalPc: 0,
@@ -378,7 +378,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makePlasmidPropWriteScript(5),
       maxSteps: 6,
       initialProps: {
-        [RISC.PROP_RESONANCE]: 0,
+        [PROP_RESONANCE]: 0,
       },
       expected: {
         finalPc: 0,
@@ -387,7 +387,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: 0,
         registers: [5, 5, 0, 0, 0, 0, 0, 0],
         finalProps: {
-          [RISC.PROP_RESONANCE]: 5,
+          [PROP_RESONANCE]: 5,
         },
         branchTaken: false,
       },
@@ -400,7 +400,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makePlasmidPropWriteScript(0),
       maxSteps: 10,
       initialProps: {
-        [RISC.PROP_RESONANCE]: 255,
+        [PROP_RESONANCE]: 255,
       },
       expected: {
         finalPc: 0,
@@ -409,7 +409,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         registers: [6, 3, 0, 0, 0, 0, 0, 0],
         finalProps: {
-          [RISC.PROP_RESONANCE]: 0,
+          [PROP_RESONANCE]: 0,
         },
         branchTaken: true,
       },
@@ -419,12 +419,12 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt08_structure_intent_visibility",
       description:
         "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
-      script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.NODE),
+      script: makeSenseIntentScript(STR_NODE, STR_NODE),
       maxSteps: 5,
       initialProps: {
-        [RISC.PROP_X]: 705,
-        [RISC.PROP_Y]: 405,
-        [RISC.PROP_RESONANCE]: 2,
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+        [PROP_RESONANCE]: 2,
       },
       expected: {
         finalPc: 0,
@@ -440,12 +440,12 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt08_structure_intent_visibility",
       description:
         "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
-      script: makeSenseIntentScript(STRUCTURE.NODE, STRUCTURE.WIRE),
+      script: makeSenseIntentScript(STR_NODE, STR_WIRE),
       maxSteps: 5,
       initialProps: {
-        [RISC.PROP_X]: 705,
-        [RISC.PROP_Y]: 405,
-        [RISC.PROP_RESONANCE]: 2,
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+        [PROP_RESONANCE]: 2,
       },
       expected: {
         finalPc: 0,
@@ -484,8 +484,8 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeCollectivePheromoneScript(200, 5),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_X]: 105,
-        [RISC.PROP_Y]: 105,
+        [PROP_X]: 105,
+        [PROP_Y]: 105,
       },
       expected: {
         finalPc: 0,
@@ -506,7 +506,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeShareScript(0, 50),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_ENERGY]: 1000,
+        [PROP_ENERGY]: 1000,
       },
       initialBondTargets: {
         0: 2,
@@ -520,7 +520,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 0,
         finalRole: 0,
         finalProps: {
-          [RISC.PROP_ENERGY]: 500,
+          [PROP_ENERGY]: 500,
         },
         finalPeerEnergy: {
           2: 600,
@@ -536,7 +536,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeShareScript(0, 50),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_ENERGY]: 1000,
+        [PROP_ENERGY]: 1000,
       },
       initialPeerEnergy: {
         2: 100,
@@ -547,7 +547,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 0,
         finalRole: 0,
         finalProps: {
-          [RISC.PROP_ENERGY]: 1000,
+          [PROP_ENERGY]: 1000,
         },
         finalPeerEnergy: {
           2: 100,
@@ -563,7 +563,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeCollectiveBankDepositScript(80),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_ENERGY]: 5000,
+        [PROP_ENERGY]: 5000,
       },
       initialHiveBalance: 250,
       expected: {
@@ -572,7 +572,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 0,
         finalRole: 0,
         finalProps: {
-          [RISC.PROP_ENERGY]: 4920,
+          [PROP_ENERGY]: 4920,
         },
         finalHiveBalance: 330,
         branchTaken: false,
@@ -586,7 +586,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeCollectiveBankWithdrawScript(0),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_ENERGY]: 5000,
+        [PROP_ENERGY]: 5000,
       },
       initialHiveBalance: 250,
       expected: {
@@ -596,7 +596,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: 0,
         registers: [100, 0, 0, 0, 0, 0, 0, 0],
         finalProps: {
-          [RISC.PROP_ENERGY]: 5100,
+          [PROP_ENERGY]: 5100,
         },
         finalHiveBalance: 150,
         branchTaken: false,
@@ -638,8 +638,8 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeCollectivePcSyncQuorumScript(),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_X]: 205,
-        [RISC.PROP_Y]: 105,
+        [PROP_X]: 205,
+        [PROP_Y]: 105,
       },
       initialPeerPc: {
         1: 7,
@@ -663,14 +663,14 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt13_structure_lock_progress",
       description:
         "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
-      script: makeSenseScript(STRUCTURE.WIRE),
+      script: makeSenseScript(STR_WIRE),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_X]: 705,
-        [RISC.PROP_Y]: 405,
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
       },
       initialStructureGrid: {
-        [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+        [structureNeighborCell(705, 405)]: STR_WIRE,
       },
       initialStructureIntentOwner: {
         [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
@@ -689,14 +689,14 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt13_structure_lock_progress",
       description:
         "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
-      script: makeSenseScript(STRUCTURE.NODE),
+      script: makeSenseScript(STR_NODE),
       maxSteps: 3,
       initialProps: {
-        [RISC.PROP_X]: 705,
-        [RISC.PROP_Y]: 405,
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
       },
       initialStructureGrid: {
-        [structureNeighborCell(705, 405)]: STRUCTURE.WIRE,
+        [structureNeighborCell(705, 405)]: STR_WIRE,
       },
       initialStructureIntentOwner: {
         [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
@@ -719,11 +719,11 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       maxSteps: 2,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
       },
       initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
       },
       expected: {
         finalPc: 6,
@@ -732,7 +732,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: 0,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.WIRE |
+            STR_WIRE |
             (170 << 16),
         },
         branchTaken: false,
@@ -747,11 +747,11 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       maxSteps: 4,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
       },
       initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
       },
       expected: {
         finalPc: 12,
@@ -761,7 +761,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         registers: [220, 0, 0, 0, 0, 0, 0, 0],
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.WIRE |
+            STR_WIRE |
             (210 << 16),
         },
         branchTaken: false,
@@ -776,11 +776,11 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       maxSteps: 4,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
       },
       initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STRUCTURE.WIRE,
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
       },
       expected: {
         finalPc: 12,
@@ -790,7 +790,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         registers: [120, 0, 0, 0, 0, 0, 0, 0],
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.WIRE |
+            STR_WIRE |
             (210 << 16),
         },
         branchTaken: false,
@@ -805,9 +805,9 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       maxSteps: 4,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
-        [RISC.PROP_RESONANCE]: 1,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+        [PROP_RESONANCE]: 1,
       },
       expected: {
         finalPc: 10,
@@ -816,7 +816,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.SOURCE |
+            STR_SOURCE |
             (255 << 16),
         },
         branchTaken: false,
@@ -832,16 +832,16 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       ownerAtomIdx: 3,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
-        [RISC.PROP_RESONANCE]: 1,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+        [PROP_RESONANCE]: 1,
       },
       initialStructureIntentOwner: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 3,
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STRUCTURE.SOURCE, 17, false),
+          pack_structure_intent(STR_SOURCE, 17, false),
       },
       expected: {
         finalPc: 10,
@@ -850,7 +850,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.SOURCE |
+            STR_SOURCE |
             (255 << 16) | (91 << 24),
         },
         branchTaken: false,
@@ -866,16 +866,16 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       ownerAtomIdx: 2,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
-        [RISC.PROP_RESONANCE]: 1,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+        [PROP_RESONANCE]: 1,
       },
       initialStructureIntentOwner: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 4,
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STRUCTURE.SOURCE, 91, false),
+          pack_structure_intent(STR_SOURCE, 91, false),
       },
       expected: {
         finalPc: 10,
@@ -884,7 +884,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.SOURCE |
+            STR_SOURCE |
             (255 << 16) | (91 << 24),
         },
         branchTaken: false,
@@ -900,9 +900,9 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       ownerAtomIdx: 2,
       postStructureTick: true,
       initialProps: {
-        [RISC.PROP_X]: 35,
-        [RISC.PROP_Y]: 35,
-        [RISC.PROP_RESONANCE]: 1,
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+        [PROP_RESONANCE]: 1,
       },
       initialStructureIntentOwner: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
@@ -910,7 +910,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       },
       initialStructureIntentValue: {
         [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STRUCTURE.SOURCE, 55, false),
+          pack_structure_intent(STR_SOURCE, 55, false),
       },
       expected: {
         finalPc: 10,
@@ -919,7 +919,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STRUCTURE.SOURCE |
+            STR_SOURCE |
             (255 << 16) | (55 << 24),
         },
         branchTaken: false,
@@ -958,8 +958,8 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       maxSteps: 1,
       ownerAtomIdx: 1,
       initialProps: {
-        [RISC.PROP_X]: 100,
-        [RISC.PROP_Y]: 100,
+        [PROP_X]: 100,
+        [PROP_Y]: 100,
       },
       initialCellPeers: [2],
       initialPeerEnergy: {
@@ -982,16 +982,16 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeSporeDriveScript(),
       maxSteps: 1,
       initialProps: {
-        [RISC.PROP_ENERGY]: 1000,
-        [RISC.PROP_X]: 100,
-        [RISC.PROP_Y]: 100,
+        [PROP_ENERGY]: 1000,
+        [PROP_X]: 100,
+        [PROP_Y]: 100,
       },
       expected: {
         finalPc: 1,
         finalProps: {
-          [RISC.PROP_ENERGY]: 500,
-          [RISC.PROP_X]: 107,
-          [RISC.PROP_Y]: 107,
+          [PROP_ENERGY]: 500,
+          [PROP_X]: 107,
+          [PROP_Y]: 107,
         },
       },
     },
@@ -1002,12 +1002,12 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeEntangleScript(),
       maxSteps: 2,
       initialProps: {
-        [RISC.PROP_ENERGY]: 5000,
+        [PROP_ENERGY]: 5000,
       },
       expected: {
         finalPc: 4,
         finalProps: {
-          [RISC.PROP_ENERGY]: 4500,
+          [PROP_ENERGY]: 4500,
         },
         finalHiveEnergyPool: {
           0: 500,
@@ -1043,7 +1043,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeShareScript(0, 50),
       maxSteps: 1,
       initialProps: {
-        [RISC.PROP_ENERGY]: 1000,
+        [PROP_ENERGY]: 1000,
       },
       initialBondTargets: {
         0: 2,
@@ -1055,7 +1055,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       expected: {
         finalPc: 3,
         finalProps: {
-          [RISC.PROP_ENERGY]: 400, // 50% + 10% bonus = 60%. 1000 - 600 = 400.
+          [PROP_ENERGY]: 400, // 50% + 10% bonus = 60%. 1000 - 600 = 400.
         },
         finalPeerEnergy: {
           2: 600,
@@ -1070,9 +1070,9 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeResolveRoleScript(STATE_MATRIX.ROLE_GUARDIAN, 2),
       maxSteps: 2,
       initialProps: {
-        [RISC.PROP_X]: 50,
-        [RISC.PROP_Y]: 50,
-        [RISC.PROP_RESONANCE]: 100,
+        [PROP_X]: 50,
+        [PROP_Y]: 50,
+        [PROP_RESONANCE]: 100,
       },
       initialStructureGrid: {
         // gx=5, gy=5. Neighbors: (4,5), (6,5)
@@ -1083,7 +1083,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 6,
         finalRole: STATE_MATRIX.ROLE_GUARDIAN,
         finalProps: {
-          [RISC.PROP_RESONANCE]: 120,
+          [PROP_RESONANCE]: 120,
         },
       },
     },
@@ -1095,10 +1095,10 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       script: makeResolveBankScript(100),
       maxSteps: 1,
       initialProps: {
-        [RISC.PROP_X]: 50,
-        [RISC.PROP_Y]: 50,
-        [RISC.PROP_ENERGY]: 500,
-        [RISC.PROP_RESONANCE]: 100,
+        [PROP_X]: 50,
+        [PROP_Y]: 50,
+        [PROP_ENERGY]: 500,
+        [PROP_RESONANCE]: 100,
       },
       initialStructureGrid: {
         [5 * GRID_W + 4]: 1,
@@ -1110,8 +1110,8 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       expected: {
         finalPc: 3,
         finalProps: {
-          [RISC.PROP_ENERGY]: 400,
-          [RISC.PROP_RESONANCE]: 110,
+          [PROP_ENERGY]: 400,
+          [PROP_RESONANCE]: 110,
         },
         finalHiveEnergyPool: {
           2: 100, // 0x12 % 4 = 2. No, slot logic in harness: gene0 % 4. regs[8] is gene0.
@@ -1124,18 +1124,18 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Guardian signaling behavior",
       nativeProgram: "guardian_base",
       script: new Uint8Array([
-        RISC.OP_SET,
+        OP_SET,
         0,
         100,
-        RISC.OP_SET,
+        OP_SET,
         1,
         1,
-        RISC.OP_SIGNAL,
-        RISC.OP_NOP,
+        OP_SIGNAL,
+        OP_NOP,
       ]),
       maxSteps: 3, // SET, SET, SIGNAL
       initialProps: {
-        [RISC.PROP_ENERGY]: 1000,
+        [PROP_ENERGY]: 1000,
       },
       expected: {
         finalPc: 7,
@@ -1149,22 +1149,22 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       description: "Native Genesis Architect collective emission behavior",
       nativeProgram: "architect_base",
       script: new Uint8Array([
-        RISC.OP_SET,
+        OP_SET,
         0,
         100,
-        RISC.OP_SET,
+        OP_SET,
         1,
         0,
-        RISC.OP_PLUG,
+        OP_PLUG,
         0,
         0,
-        RISC.OP_SIGNAL,
-        RISC.OP_NOP,
+        OP_SIGNAL,
+        OP_NOP,
       ]),
       maxSteps: 4,
       initialProps: {
-        [RISC.PROP_X]: 50,
-        [RISC.PROP_Y]: 50,
+        [PROP_X]: 50,
+        [PROP_Y]: 50,
       },
       expected: {
         finalPc: 10,

@@ -1,10 +1,7 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 import { PULSE } from "@02";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  SIGNAL_GRID_OFFSET,
-  STRUCTURE_GRID_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { SIGNAL_GRID_OFFSET, STRUCTURE_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import {
   type DeterminismAtomState,
   type DeterminismCapturePayload,

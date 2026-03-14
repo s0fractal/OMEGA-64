@@ -2,11 +2,7 @@
 // Binary Event Ring Buffer (Memory-Mapped)
 
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  LEDGER_DATA_OFFSET,
-  LEDGER_HEAD_OFFSET,
-  MAX_LEDGER_EVENTS
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 export type LedgerEvent = {
   tick: number;

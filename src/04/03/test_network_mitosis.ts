@@ -3,9 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_REPLICATE, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   LOGGER.info("--- STAGE 32: NETWORK MITOSIS TEST ---");
@@ -30,15 +31,15 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   // R0 = SYS.REPLICATE (11)
   // R1 = targetIdx (2)
   const parentScript = new Uint8Array(64);
-  parentScript[0] = RISC.OP_SET;
+  parentScript[0] = OP_SET;
   parentScript[1] = 0; // r0
-  parentScript[2] = SYS.REPLICATE;
+  parentScript[2] = SYS_REPLICATE;
 
-  parentScript[3] = RISC.OP_SET;
+  parentScript[3] = OP_SET;
   parentScript[4] = 1; // r1
   parentScript[5] = childIdx; // target
 
-  parentScript[6] = RISC.OP_SYSCALL;
+  parentScript[6] = OP_SYSCALL;
   parentScript[7] = 0;
   STATE_MATRIX.setInstructions(parentIdx, parentScript);
 
@@ -61,7 +62,7 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   // 1. Child genome matches Parent (byte 2 should be SYS.REPLICATE = 11)
   assertEquals(
     childGenome[2],
-    SYS.REPLICATE,
+    SYS_REPLICATE,
     "Child genome must match Parent genome",
   );
 

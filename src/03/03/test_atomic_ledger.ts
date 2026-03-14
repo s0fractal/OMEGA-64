@@ -1,9 +1,10 @@
 // OMEGA-64 | test_atomic_ledger.ts | Stage 33 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { ATOMIC_LEDGER } from "@03";
+import { OP_SET, SYS_EMIT, OP_SYSCALL } from "../../00/STATE_MATRIX.ts";
 
 Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   LOGGER.info("--- STAGE 33: ATOMIC LEDGER TEST ---");
@@ -24,31 +25,31 @@ Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
 
   // Atom A emits [9, 120]
   const scriptA = new Uint8Array(64);
-  scriptA[0] = RISC.OP_SET;
+  scriptA[0] = OP_SET;
   scriptA[1] = 0;
-  scriptA[2] = SYS.EMIT;
-  scriptA[3] = RISC.OP_SET;
+  scriptA[2] = SYS_EMIT;
+  scriptA[3] = OP_SET;
   scriptA[4] = 1;
   scriptA[5] = 9; // R1
-  scriptA[6] = RISC.OP_SET;
+  scriptA[6] = OP_SET;
   scriptA[7] = 2;
   scriptA[8] = 120; // R2
-  scriptA[9] = RISC.OP_SYSCALL;
+  scriptA[9] = OP_SYSCALL;
   scriptA[10] = 0;
   STATE_MATRIX.setInstructions(atomA, scriptA);
 
   // Atom B emits [123, 200]
   const scriptB = new Uint8Array(64);
-  scriptB[0] = RISC.OP_SET;
+  scriptB[0] = OP_SET;
   scriptB[1] = 0;
-  scriptB[2] = SYS.EMIT;
-  scriptB[3] = RISC.OP_SET;
+  scriptB[2] = SYS_EMIT;
+  scriptB[3] = OP_SET;
   scriptB[4] = 1;
   scriptB[5] = 123; // R1
-  scriptB[6] = RISC.OP_SET;
+  scriptB[6] = OP_SET;
   scriptB[7] = 2;
   scriptB[8] = 200; // R2
-  scriptB[9] = RISC.OP_SYSCALL;
+  scriptB[9] = OP_SYSCALL;
   scriptB[10] = 0;
   STATE_MATRIX.setInstructions(atomB, scriptB);
 

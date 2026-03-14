@@ -1,6 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_PUT } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Stage 37: The Dark Forest Topology (Radar & Stealth)",
@@ -33,13 +34,13 @@ Deno.test({
 
       // ----- PREDATOR SCRIPT (SYS_SCAN) -----
       const predScript = new Uint8Array(64);
-      predScript[0] = RISC.OP_SET;
+      predScript[0] = OP_SET;
       predScript[1] = 0; // R0
-      predScript[2] = SYS.SCAN;
-      predScript[3] = RISC.OP_SET;
+      predScript[2] = SYS_SCAN;
+      predScript[3] = OP_SET;
       predScript[4] = 1; // R1
       predScript[5] = 50; // SCAN radius 50
-      predScript[6] = RISC.OP_SYSCALL;
+      predScript[6] = OP_SYSCALL;
       predScript[7] = 0; // Trigger SCAN
       STATE_MATRIX.setInstructions(PREDATOR, predScript);
     };
@@ -88,17 +89,17 @@ Deno.test({
 
     const scriptC = new Uint8Array(64);
     // instruction 1: PUT 0 to PROP_RESONANCE (Stealth Drop)
-    scriptC[0] = RISC.OP_SET;
+    scriptC[0] = OP_SET;
     scriptC[1] = 0; // R0
     scriptC[2] = 0; // val 0
-    scriptC[3] = RISC.OP_PUT;
+    scriptC[3] = OP_PUT;
     scriptC[4] = 0; // Target R0 (0)
     scriptC[5] = 1; // PROP_RESONANCE
     // instruction 2: PUT 50 to PROP_RESONANCE (Costs 50 Energy)
-    scriptC[6] = RISC.OP_SET;
+    scriptC[6] = OP_SET;
     scriptC[7] = 1; // R1
     scriptC[8] = 50; // val 50
-    scriptC[9] = RISC.OP_PUT;
+    scriptC[9] = OP_PUT;
     scriptC[10] = 1; // Target R1 (50)
     scriptC[11] = 1; // PROP_RESONANCE
 

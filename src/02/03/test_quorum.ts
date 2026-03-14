@@ -1,4 +1,4 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 // OMEGA-64 | test_quorum.ts | Era 55: Quorum Sensing Verification
 // Tests ISA.QUORUM collective behaviors, quorumBuffer census, and SENSE type 0x0B.
 

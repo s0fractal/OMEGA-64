@@ -4,10 +4,9 @@ import {
   assertLess,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { RISC, STATE_MATRIX, SYS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import {
-  CONTEXT_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { CONTEXT_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "../../00/STATE_MATRIX.ts";
 
 Deno.test({
   name: "Stage 44: Vector Cognitive - Math LUTs and Kuramoto Resonance",
@@ -21,13 +20,13 @@ Deno.test({
     // Atom 100: tests OP_RESOLVE (Sin Fast - Mode 0)
     let c = 0;
     const code1 = new Uint8Array(64);
-    code1[c++] = RISC.OP_SET;
+    code1[c++] = OP_SET;
     code1[c++] = 1;
     code1[c++] = 64; // angle in R1
-    code1[c++] = RISC.OP_SET;
+    code1[c++] = OP_SET;
     code1[c++] = 2;
     code1[c++] = 0; // mode in R2 (0: Sin Direct)
-    code1[c++] = RISC.OP_RESOLVE;
+    code1[c++] = OP_RESOLVE;
     code1[c++] = 0;
     code1[c++] = 1;
     code1[c++] = 2; // R0 = resolve(R1, R2)
@@ -48,13 +47,13 @@ Deno.test({
     c = 0;
     const code2 = new Uint8Array(64);
     // 64 passed as Q8.8 means index 0, fraction 64/256 (0.25). Sin(0.25 index) ≈ 201
-    code2[c++] = RISC.OP_SET;
+    code2[c++] = OP_SET;
     code2[c++] = 1;
     code2[c++] = 64; // angle in R1
-    code2[c++] = RISC.OP_SET;
+    code2[c++] = OP_SET;
     code2[c++] = 2;
     code2[c++] = 1; // mode in R2 (1: Sin LERP)
-    code2[c++] = RISC.OP_RESOLVE;
+    code2[c++] = OP_RESOLVE;
     code2[c++] = 0;
     code2[c++] = 1;
     code2[c++] = 2; // R0 = resolve(R1, R2)
@@ -75,8 +74,8 @@ Deno.test({
     // Atom 200 and 201 are put at the same location to form a quorum
     c = 0;
     const codeRes = new Uint8Array(64);
-    codeRes[c++] = RISC.OP_RESONATE_KURAMOTO;
-    codeRes[c++] = RISC.OP_JMP;
+    codeRes[c++] = OP_RESONATE_KURAMOTO;
+    codeRes[c++] = OP_JMP;
     codeRes[c++] = 0; // loop
 
     // Atom 200: phase 10

@@ -1,11 +1,8 @@
-import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { PULSE } from "@02";
 import { SOVEREIGN_ORACLE } from "@05";
-import {
-  NEURAL_COHERENCE_OFFSET,
-  STRUCTURE_GRID_OFFSET
-} from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { NEURAL_COHERENCE_OFFSET, STRUCTURE_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");
