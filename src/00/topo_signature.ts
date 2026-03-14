@@ -10,14 +10,19 @@ import {
   bytes_to_base64,
 } from "../_/mod.ts";
 import {
-  clamp01,
-  normalize_angle,
   to_int16_big_endian,
   make_xor_shift32,
 } from "../_/mod.ts";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
+const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
+const normalize_angle = (a: number): number => {
+    let r = a % (Math.PI * 2);
+    if (r <= -Math.PI) r += Math.PI * 2;
+    if (r > Math.PI) r -= Math.PI * 2;
+    return r;
+};
 
 export const deriveFeatureVector = (
   state: unknown,

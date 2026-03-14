@@ -386,12 +386,7 @@ ${(node.regions || []).map((r, i, arr) => {
       if (node.tags.includes("host") || node.tags.includes("substrate")) {
           tsOut += node.tsCode! + "\n";
       } else {
-        const nodeArgsArr = Array.isArray(node.args) ? node.args : 
-                   (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-        const nodeArgStr = nodeArgsArr.map((a: any) => `${a.name}: ${mapTsType(a.type)}`).join(", ");
-        tsOut += `export function ${node.id}(${nodeArgStr}): ${mapTsType((node.returns as string))} {\n`;
-        tsOut += `  throw new Error("unimplemented in host (runs in WASM)");\n`;
-        tsOut += `}\n`;
+          tsOut = ""; // Skip TS generation for pure WASM functions
       }
       break;
     case "substrate_module":
@@ -407,7 +402,9 @@ ${(node.regions || []).map((r, i, arr) => {
   }
   
   if (node.type !== "substrate_module") {
-    Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+    if (tsOut.trim()) {
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+    }
   }
 
   // Generate RS
@@ -615,9 +612,15 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl);
   
   const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
+  const levelNodesTs = levelNodesNoSubstrate.filter(n => {
+    if (n.type === "pure_fn") {
+      return n.tags.includes("host") || n.tags.includes("substrate");
+    }
+    return true;
+  });
   
   // TS Mod file generation
-  const tsModExports = levelNodesNoSubstrate.map(n => {
+  const tsModExports = levelNodesTs.map(n => {
     if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}.ts";`;
     } else {
@@ -672,17 +675,19 @@ const testsDir = `${GEN_DIR_TS}/tests`;
 ensureDirSync(testsDir);
 for (const node of nodes.values()) {
   if (node.type === "pure_fn" && node.tests && node.tests.length > 0) {
-    let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
-    testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
-    
-    testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
-    for (let i = 0; i < node.tests.length; i++) {
-        const t = node.tests[i];
-        const args = t.inputs.join(", ");
-        testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+    if (node.tags && (node.tags.includes("host") || node.tags.includes("substrate"))) {
+      let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
+      testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
+      
+      testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
+      for (let i = 0; i < node.tests.length; i++) {
+          const t = node.tests[i];
+          const args = t.inputs.join(", ");
+          testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+      }
+      testOut += `});\n`;
+      Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
     }
-    testOut += `});\n`;
-    Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
   }
 }
 
