@@ -1,5 +1,13 @@
+// OMEGA-64 | GlyphIR64.ts
+// Reconstructed purely over D.O. WASM Ontology LUTs.
 
-import { OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JMP, OP_JZ, OP_REPLICATE, OP_SIGNAL, OP_SHARE, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, OP_PLUG, OP_TENSEGRITY, OP_BUILD, OP_SENSE, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_RESOLVE, OP_BIND } from "../../00/STATE_MATRIX.ts";
+import {
+  KIND_CORE, KIND_CONTROL, KIND_TRANSPORT, KIND_STRUCTURAL,
+  KIND_CATALYTIC, KIND_REGULATORY, KIND_MEMORY, KIND_RESERVE,
+  GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
+} from "../../_/00/mod.ts";
+
+import { get_glyph_kind } from "../../_/06/mod.ts";
 
 export type GlyphKind =
   | "core"
@@ -31,66 +39,15 @@ export type GlyphSpec = {
   rgb?: [number, number, number]; // Chromatic Hash
 };
 
-/**
- * Calculates a deterministic RGB color for a given vertex index (0..59).
- * Uses a basic spherical projection into the RGB cube.
- */
-const calculateChromaticHash = (index: number): [number, number, number] => {
-  const phi = (Math.sqrt(5) + 1) / 2;
-  const t = index / 60;
-
-  // Golden angle distribution for hue, with saturation/value variation
-  const h = (t * 360) % 360;
-  const s = 0.7 + 0.3 * Math.sin(t * Math.PI * 2);
-  const v = 0.8 + 0.2 * Math.cos(t * Math.PI * 4);
-
-  const c = v * s;
-  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  const m = v - c;
-
-  let r = 0, g = 0, b = 0;
-  if (h < 60) {
-    r = c;
-    g = x;
-    b = 0;
-  } else if (h < 120) {
-    r = x;
-    g = c;
-    b = 0;
-  } else if (h < 180) {
-    r = 0;
-    g = c;
-    b = x;
-  } else if (h < 240) {
-    r = 0;
-    g = x;
-    b = c;
-  } else if (h < 300) {
-    r = x;
-    g = 0;
-    b = c;
-  } else {
-    r = c;
-    g = 0;
-    b = x;
-  }
-
-  return [
-    Math.round((r + m) * 255),
-    Math.round((g + m) * 255),
-    Math.round((b + m) * 255),
-  ];
-};
-
-const glyphKindForId = (id: number): GlyphKind => {
-  if (id <= 3) return "core";
-  if (id <= 15) return "control";
-  if (id <= 23) return "transport";
-  if (id <= 31) return "structural";
-  if (id <= 39) return "catalytic";
-  if (id <= 47) return "regulatory";
-  if (id <= 55) return "memory";
-  return "reserve";
+const KIND_MAPPING: Record<number, GlyphKind> = {
+  [KIND_CORE]: "core",
+  [KIND_CONTROL]: "control",
+  [KIND_TRANSPORT]: "transport",
+  [KIND_STRUCTURAL]: "structural",
+  [KIND_CATALYTIC]: "catalytic",
+  [KIND_REGULATORY]: "regulatory",
+  [KIND_MEMORY]: "memory",
+  [KIND_RESERVE]: "reserve",
 };
 
 const defaultReductionRuleRef = (kind: GlyphKind): string => {
@@ -111,256 +68,64 @@ const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
   return "legacy-bridge";
 };
 
-const defaultGlyphSpec = (id: number): GlyphSpec => {
-  const kind = glyphKindForId(id);
-  const stabilityClass = defaultStabilityClass(kind);
-  return {
-    id,
-    mnemonic: `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
-    kind,
-    arity: 0,
-    energyCost: kind === "core" ? 0 : 1,
-    stabilityClass,
-    reductionRuleRef: defaultReductionRuleRef(kind),
-    notes: stabilityClass === "reserve"
-      ? "Reserved for sandboxed semantic evolution only."
-      : "Unassigned placeholder within the fixed 64-glyph lattice.",
-    ...(id >= 4
-      ? {
-        vertexIndex: id - 4,
-        rgb: calculateChromaticHash(id - 4),
-      }
-      : {
-        // Core Glyphs (0..3) are the stabilizers, mapped to grayscale/secondary colors
-        rgb: id === 0
-          ? [255, 255, 255] // S (White)
-          : id === 1
-          ? [128, 128, 128] // K (Gray)
-          : id === 2
-          ? [0, 0, 0] // I (Black)
-          : [255, 0, 255], // Y (Magenta)
-      }),
-  };
-};
-
-const overrides = new Map<number, Partial<GlyphSpec>>([
-  [0, {
-    mnemonic: "S",
-    kind: "core",
-    energyCost: 0,
-    stabilityClass: "hard-invariant",
-    reductionRuleRef: "reduction/core/S",
-    notes: "Hard invariant combinator.",
-  }],
-  [1, {
-    mnemonic: "K",
-    kind: "core",
-    energyCost: 0,
-    stabilityClass: "hard-invariant",
-    reductionRuleRef: "reduction/core/K",
-    notes: "Hard invariant combinator.",
-  }],
-  [2, {
-    mnemonic: "I",
-    kind: "core",
-    energyCost: 0,
-    stabilityClass: "hard-invariant",
-    reductionRuleRef: "reduction/core/I",
-    notes: "Hard invariant combinator.",
-  }],
-  [3, {
-    mnemonic: "Y",
-    kind: "core",
-    energyCost: 1,
-    stabilityClass: "hard-invariant",
-    reductionRuleRef: "reduction/core/Y",
-    notes: "Bounded recursion anchor under fuel budget.",
-  }],
-  [8, {
-    mnemonic: "SET",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_SET,
-    reductionRuleRef: "bridge/control/set",
-  }],
-  [9, {
-    mnemonic: "GET",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_GET,
-    reductionRuleRef: "bridge/control/get",
-  }],
-  [10, {
-    mnemonic: "PUT",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_PUT,
-    reductionRuleRef: "bridge/control/put",
-  }],
-  [11, {
-    mnemonic: "ADD",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_ADD,
-    reductionRuleRef: "bridge/control/add",
-  }],
-  [12, {
-    mnemonic: "SUB",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_SUB,
-    reductionRuleRef: "bridge/control/sub",
-  }],
-  [13, {
-    mnemonic: "JNZ",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_JNZ,
-    reductionRuleRef: "bridge/control/jnz",
-  }],
-  [14, {
-    mnemonic: "JMP",
-    arity: 1,
-    energyCost: 1,
-    legacyOpcode: OP_JMP,
-    reductionRuleRef: "bridge/control/jmp",
-  }],
-  [15, {
-    mnemonic: "JZ",
-    arity: 2,
-    energyCost: 1,
-    legacyOpcode: OP_JZ,
-    reductionRuleRef: "bridge/control/jz",
-  }],
-  [16, {
-    mnemonic: "REPLICATE",
-    kind: "transport",
-    arity: 0,
-    energyCost: 6,
-    legacyOpcode: OP_REPLICATE,
-    reductionRuleRef: "bridge/transport/replicate",
-  }],
-  [17, {
-    mnemonic: "SIGNAL",
-    kind: "transport",
-    arity: 0,
-    energyCost: 3,
-    legacyOpcode: OP_SIGNAL,
-    reductionRuleRef: "bridge/transport/signal",
-  }],
-  [18, {
-    mnemonic: "SHARE",
-    kind: "transport",
-    arity: 2,
-    energyCost: 2,
-    legacyOpcode: OP_SHARE,
-    reductionRuleRef: "bridge/transport/share",
-  }],
-  [19, {
-    mnemonic: "BIND",
-    kind: "transport",
-    arity: 0,
-    energyCost: 20,
-    reductionRuleRef: "bridge/transport/bind",
-  }],
-  [20, {
-    mnemonic: "SPORE_DRIVE",
-    kind: "transport",
-    arity: 0,
-    energyCost: 50,
-    legacyOpcode: OP_SPORE_DRIVE,
-    reductionRuleRef: "bridge/transport/spore_drive",
-  }],
-  [21, {
-    mnemonic: "ENTANGLE",
-    kind: "transport",
-    arity: 0,
-    energyCost: 10,
-    legacyOpcode: OP_HEBB,
-    reductionRuleRef: "bridge/transport/entangle",
-  }],
-  [22, {
-    mnemonic: "SYSCALL",
-    kind: "transport",
-    arity: 0,
-    energyCost: 0, // Managed dynamically by Gas Accounting
-    legacyOpcode: OP_SYSCALL,
-    reductionRuleRef: "bridge/transport/syscall",
-    notes: "Universal Host Interface.",
-  }],
-  [24, {
-    mnemonic: "PLUG",
-    kind: "structural",
-    arity: 2,
-    energyCost: 3,
-    legacyOpcode: OP_PLUG,
-    reductionRuleRef: "bridge/structural/plug",
-  }],
-  [25, {
-    mnemonic: "TENSEGRITY",
-    kind: "structural",
-    arity: 3,
-    energyCost: 4,
-    legacyOpcode: OP_TENSEGRITY,
-    reductionRuleRef: "bridge/structural/tensegrity",
-  }],
-  [26, {
-    mnemonic: "BUILD",
-    kind: "structural",
-    arity: 2,
-    energyCost: 6,
-    legacyOpcode: OP_BUILD,
-    reductionRuleRef: "bridge/structural/build",
-  }],
-  [27, {
-    mnemonic: "SENSE",
-    kind: "structural",
-    arity: 2,
-    energyCost: 2,
-    legacyOpcode: OP_SENSE,
-    reductionRuleRef: "bridge/structural/sense",
-  }],
-  [32, {
-    mnemonic: "COLLECTIVE",
-    kind: "catalytic",
-    arity: 3,
-    energyCost: 4,
-    legacyOpcode: OP_COLLECTIVE,
-    reductionRuleRef: "bridge/catalytic/collective",
-  }],
-  [33, {
-    mnemonic: "ROLE",
-    kind: "catalytic",
-    arity: 2,
-    energyCost: 2,
-    legacyOpcode: OP_SECRETE_PLASMID,
-    reductionRuleRef: "bridge/catalytic/role",
-  }],
-  [34, {
-    mnemonic: "RESOLVE",
-    kind: "catalytic",
-    arity: 2,
-    energyCost: 5,
-    legacyOpcode: OP_RESOLVE,
-    reductionRuleRef: "bridge/catalytic/resolve",
-  }],
-  [35, {
-    mnemonic: "BIND",
-    kind: "catalytic",
-    arity: 2,
-    energyCost: 5,
-    legacyOpcode: OP_BIND,
-    reductionRuleRef: "bridge/catalytic/bind",
-  }],
+const UI_OVERRIDES = new Map<number, Partial<GlyphSpec>>([
+  [0, { mnemonic: "S", reductionRuleRef: "reduction/core/S", notes: "Hard invariant combinator." }],
+  [1, { mnemonic: "K", reductionRuleRef: "reduction/core/K", notes: "Hard invariant combinator." }],
+  [2, { mnemonic: "I", reductionRuleRef: "reduction/core/I", notes: "Hard invariant combinator." }],
+  [3, { mnemonic: "Y", reductionRuleRef: "reduction/core/Y", notes: "Bounded recursion anchor under fuel budget." }],
+  [8, { mnemonic: "SET", reductionRuleRef: "bridge/control/set" }],
+  [9, { mnemonic: "GET", reductionRuleRef: "bridge/control/get" }],
+  [10, { mnemonic: "PUT", reductionRuleRef: "bridge/control/put" }],
+  [11, { mnemonic: "ADD", reductionRuleRef: "bridge/control/add" }],
+  [12, { mnemonic: "SUB", reductionRuleRef: "bridge/control/sub" }],
+  [13, { mnemonic: "JNZ", reductionRuleRef: "bridge/control/jnz" }],
+  [14, { mnemonic: "JMP", reductionRuleRef: "bridge/control/jmp" }],
+  [15, { mnemonic: "JZ", reductionRuleRef: "bridge/control/jz" }],
+  [16, { mnemonic: "REPLICATE", reductionRuleRef: "bridge/transport/replicate" }],
+  [17, { mnemonic: "SIGNAL", reductionRuleRef: "bridge/transport/signal" }],
+  [18, { mnemonic: "SHARE", reductionRuleRef: "bridge/transport/share" }],
+  [19, { mnemonic: "BIND", reductionRuleRef: "bridge/transport/bind" }],
+  [20, { mnemonic: "SPORE_DRIVE", reductionRuleRef: "bridge/transport/spore_drive" }],
+  [21, { mnemonic: "ENTANGLE", reductionRuleRef: "bridge/transport/entangle" }],
+  [22, { mnemonic: "SYSCALL", reductionRuleRef: "bridge/transport/syscall", notes: "Universal Host Interface." }],
+  [24, { mnemonic: "PLUG", reductionRuleRef: "bridge/structural/plug" }],
+  [25, { mnemonic: "TENSEGRITY", reductionRuleRef: "bridge/structural/tensegrity" }],
+  [26, { mnemonic: "BUILD", reductionRuleRef: "bridge/structural/build" }],
+  [27, { mnemonic: "SENSE", reductionRuleRef: "bridge/structural/sense" }],
+  [32, { mnemonic: "COLLECTIVE", reductionRuleRef: "bridge/catalytic/collective" }],
+  [33, { mnemonic: "ROLE", reductionRuleRef: "bridge/catalytic/role" }],
+  [34, { mnemonic: "RESOLVE", reductionRuleRef: "bridge/catalytic/resolve" }],
+  [35, { mnemonic: "BIND", reductionRuleRef: "bridge/catalytic/bind" }],
 ]);
 
 const buildGlyphSpecs = (): GlyphSpec[] => {
   const specs: GlyphSpec[] = [];
   for (let id = 0; id < 64; id++) {
+    const rawKind = get_glyph_kind(id);
+    const kind = KIND_MAPPING[rawKind];
+    const arity = GLYPH_ARITY_LUT[id];
+    const energyCost = GLYPH_ENERGY_LUT[id];
+    const rawLegacyOpcode = GLYPH_LEGACY_OPCODE_LUT[id];
+    
+    const ui = UI_OVERRIDES.get(id) ?? {};
+    const stabilityClass = defaultStabilityClass(kind);
+
     specs.push({
-      ...defaultGlyphSpec(id),
-      ...(overrides.get(id) ?? {}),
       id,
+      mnemonic: ui.mnemonic ?? `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
+      kind,
+      arity,
+      energyCost,
+      stabilityClass,
+      reductionRuleRef: ui.reductionRuleRef ?? defaultReductionRuleRef(kind),
+      legacyOpcode: rawLegacyOpcode !== 255 ? rawLegacyOpcode : undefined,
+      notes: ui.notes ?? (stabilityClass === "reserve" ? "Reserved for sandboxed semantic evolution only." : "Unassigned placeholder within the fixed 64-glyph lattice."),
+      vertexIndex: id >= 4 ? id - 4 : undefined,
+      rgb: [
+        GLYPH_RGB_LUT[id * 3],
+        GLYPH_RGB_LUT[id * 3 + 1],
+        GLYPH_RGB_LUT[id * 3 + 2]
+      ]
     });
   }
   return specs;
