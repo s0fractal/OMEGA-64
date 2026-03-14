@@ -90,7 +90,8 @@ for (let b = 0; b < 4; b++) {
 }
 
 if (damping > 0) {
-  let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
+  let dampingFactor: f32 = 1.0 - ((damping as f32) / 255.0);
+  if (dampingFactor < 0.0) dampingFactor = 0.0;
   fx *= dampingFactor;
   fy *= dampingFactor;
 }

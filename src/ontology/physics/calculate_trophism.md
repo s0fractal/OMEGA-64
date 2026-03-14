@@ -19,6 +19,7 @@ vars:
   - ROLE_ARCHITECT
   - GRID_W
 deps:
+  - fast_min
   - OMEGA_MEMORY_LAYOUT
   - GRID_METRICS
   - get_read_energy
@@ -101,7 +102,7 @@ for (let oy = -3; oy <= 3; oy++) {
             if (oEnergy > 0) {
               add_energy_delta(
                 otherIdx,
-                -Mathf.min(oEnergy as f32, burn as f32) as i32,
+                -fast_min(oEnergy, burn),
               );
               add_resonance_delta(idx, 5);
             }
@@ -259,7 +260,7 @@ for (let oy = -3; oy <= 3; oy++) {
             if (oEnergy > 0) {
               add_energy_delta(
                 otherIdx,
-                -Mathf.min(oEnergy as f32, burn as f32) as i32,
+                -fast_min(oEnergy, burn),
               );
               add_resonance_delta(idx, 5);
             }
