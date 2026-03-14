@@ -55,7 +55,8 @@ unimplemented!()
   if (population == 0) return;
 
   const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  const bandStep = i32(Math.max(1, Math.floor(homeostasisBand / 2)));
+  let bandStep = homeostasisBand >> 1;
+  if (bandStep < 1) bandStep = 1;
   const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
 
   for (let i = startIdx; i < endIdx; i++) {
@@ -134,7 +135,7 @@ unimplemented!()
 
         // Pay up 90% of excess energy to Host
         if (current > starvationFloor) {
-          let transfer = i32(Math.floor(f64(current - starvationFloor) * 0.9));
+          let transfer = ((current - starvationFloor) * 9) / 10;
           if (transfer > 0) {
             atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
             set_energy(i, current - transfer);
@@ -182,10 +183,11 @@ unimplemented!()
 
     // 2. Homeostasis
     // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    const interimEnergy = i32(Math.max(0.0, f64(current) + f64(delta)));
+    let interimEnergy = current + delta;
+    if (interimEnergy < 0) interimEnergy = 0;
 
     if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = Math.min(baseTax as f64, interimEnergy as f64) as i32;
+      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
       delta -= tax;
     }
 
@@ -194,10 +196,8 @@ unimplemented!()
 
     if (absDeviation > homeostasisBand) {
       const gradient = absDeviation - homeostasisBand;
-      const step = i32(Math.min(
-        homeostasisMaxDelta,
-        1 + Math.floor(gradient / bandStep),
-      ));
+      let rawStep = 1 + (gradient / bandStep);
+      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
 
       if (deviation > 0) {
         delta -= step;
@@ -205,7 +205,8 @@ unimplemented!()
       } else if (subsidyEnabled) {
         let subsidy = step;
         if (overflowActive) {
-          subsidy = i32(Math.max(1, Math.floor(f32(subsidy) * 0.6)));
+          subsidy = (subsidy * 6) / 10;
+          if (subsidy < 1) subsidy = 1;
         }
         delta += subsidy;
       }
@@ -228,7 +229,8 @@ unimplemented!()
     }
 
     if (delta != 0) {
-      let next = i32(Math.max(0.0, f64(current) + f64(delta)));
+      let next = current + delta;
+      if (next < 0) next = 0;
       if (next != current) {
         set_energy(i, next);
         // Track stats for telemetry

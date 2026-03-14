@@ -232,6 +232,20 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
     }
   }
 
+  // Determinism Firewall
+  if (node.type === "pure_fn" && !(node.tags.includes("host") || node.tags.includes("substrate"))) {
+    const forbiddenMath = /Math\.(sin|cos|tan|acos|asin|atan|exp|log|round|ceil|floor|random)\b/;
+    for (const codeStr of [node.tsCode, node.asCode, node.rustCode]) {
+      if (codeStr) {
+        const match = codeStr.match(forbiddenMath);
+        if (match) {
+          console.error(`[FATAL] Determinism Breach in Node '${node.id}': Detected non-deterministic host math ('${match[0]}'). Pure functions must use integer math, LUTs, or bitwise ops. If this is intentional UI/Host logic, add 'host' to the node's tags.`);
+          Deno.exit(1);
+        }
+      }
+    }
+  }
+
   return node.level;
 }
 

@@ -2,15 +2,14 @@
 // Signed invariant packet trace for invariant bridging
 
 import {
-  stable_stringify,
-  sha256_hex,
-  import_hmac,
   base64_to_bytes,
   bytes_to_base64,
   bytes_to_hex,
   hex_to_bytes,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
 } from "../_/mod.ts";
-import type { REPLAY_AUDIT__08_00_ReplayInvariantReport } from "./SHIMS.ts"; // Need a lightweight import loop break or leave the type mapped.
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
   version: string;
