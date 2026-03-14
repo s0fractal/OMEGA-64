@@ -3,7 +3,7 @@
 
 import { RISC, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { GRID_W, GRID_H , GRID_CELLS} from "../_/mod.ts";
-import type { GlyphSnapshot } from "@01";
+import type { GlyphSnapshot } from "@06";
 import { LLM_SYNAPSE } from "@05";
 import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 

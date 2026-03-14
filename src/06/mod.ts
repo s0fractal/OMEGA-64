@@ -14,3 +14,4 @@ export * from "@06/SERVE_DASHBOARD.ts";
 export * from "@06/OMEGA_DAEMON.ts";
 export * from "@06/AKASHA_SIGNALING.ts";
 export * from "@06/MUTATION_TELEMETRY.ts";
+export * from "@06/GLYPH_TELEMETRY.ts";

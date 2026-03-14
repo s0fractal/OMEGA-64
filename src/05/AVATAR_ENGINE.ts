@@ -1,7 +1,7 @@
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_BUFFER } from "@01";
+import { GLYPH_TELEMETRY } from "@06";
 import { STATE_MATRIX } from "@00";
 import { GRID_W, SCALE } from "../_/mod.ts";
 
@@ -18,7 +18,7 @@ export const AVATAR_ENGINE = {
    * Atoms will naturally react to this scent based on their genetic logic.
    */
   dropPheromone: (x: number, y: number, intensity: number = 100) => {
-    GLYPH_BUFFER.depositPheromone(x, y, intensity);
+    GLYPH_TELEMETRY.depositPheromone(x, y, intensity);
     const idx = getGridIdx(x, y);
     const coreDelta = Math.max(1, Math.min(1000, intensity));
     const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));

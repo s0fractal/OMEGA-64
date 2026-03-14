@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@00/STATE_MATRIX.ts";
-import { GLYPH_BUFFER } from "../GLYPH_BUFFER.ts";
+import { GLYPH_TELEMETRY } from "../GLYPH_TELEMETRY.ts";
 import {
   ENERGY_OFFSET
 } from "@00";
@@ -25,7 +25,7 @@ async function runAudit() {
   // 2. Wait for a few ticks to allow secretions to occur
   for (let i = 0; i < 30; i++) {
     await new Promise((r) => setTimeout(r, 200));
-    const snap = GLYPH_BUFFER.snapshot();
+    const snap = GLYPH_TELEMETRY.snapshot();
     console.log(
       `Tick ${i}: PheroSeeds=${snap.internalAtomPheromoneSeeds}, PlasmidSeeds=${snap.internalAtomPlasmidSeeds}, SignalLeaks=${snap.internalSignalSeeds}, MemoryLeaks=${snap.internalMemorySeeds}`,
     );
@@ -65,7 +65,7 @@ async function runAudit() {
   }
 
   // 4. Check Internal Reflection Leaks
-  const snap = GLYPH_BUFFER.snapshot();
+  const snap = GLYPH_TELEMETRY.snapshot();
   console.log(
     `📊 Reflection Leaks: Signal=${snap.internalSignalSeeds}, Memory=${snap.internalMemorySeeds}`,
   );

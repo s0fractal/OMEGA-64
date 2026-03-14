@@ -7,7 +7,7 @@ import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
 import { PRNG } from "../00/PRNG.ts";
 
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
-import { GLYPH_BUFFER } from "@01";
+import { GLYPH_TELEMETRY } from "@06";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
@@ -1100,7 +1100,7 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
 const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
   const { gx, cell } = toGridCell(intent.x, intent.y);
   const gridIdx = cell * GRID_CELL_BYTES;
-  GLYPH_BUFFER.depositPlasmid(
+  GLYPH_TELEMETRY.depositPlasmid(
     intent.x,
     intent.y,
     intent.charge,
@@ -1132,7 +1132,7 @@ const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
 };
 
 const applyAvatarIntent = (intent: AvatarIntent): boolean => {
-  GLYPH_BUFFER.depositPheromone(intent.x, intent.y, intent.intensity);
+  GLYPH_TELEMETRY.depositPheromone(intent.x, intent.y, intent.intensity);
   const idx = getGridIdx(intent.x, intent.y);
   const coreDelta = Math.max(1, Math.min(1000, intent.intensity));
   const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));

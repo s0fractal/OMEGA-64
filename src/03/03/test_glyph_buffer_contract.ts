@@ -1,4 +1,4 @@
-import { GLYPH_BUFFER } from "@01";
+import { GLYPH_TELEMETRY } from "@06";
 import { GRID_W } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
@@ -16,13 +16,13 @@ const main = async () => {
 
   const tick = (t: number) => {
     glyph_transport(t);
-    return GLYPH_BUFFER.snapshot();
+    return GLYPH_TELEMETRY.snapshot();
   };
 
   STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
-  GLYPH_BUFFER.depositPheromone(920, 30, 120);
-  const pheromoneSnapshot = GLYPH_BUFFER.snapshot();
+  GLYPH_TELEMETRY.depositPheromone(920, 30, 120);
+  const pheromoneSnapshot = GLYPH_TELEMETRY.snapshot();
   if (
     pheromoneSnapshot.activeCells <= 0 || pheromoneSnapshot.pheromoneCells <= 0
   ) {
@@ -33,13 +33,13 @@ const main = async () => {
 
   const centerCell = 512;
   const header = STATE_MATRIX.getGlyphHeader(centerCell);
-  if ((header & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PHEROMONE) {
+  if ((header & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PHEROMONE) {
     throw new Error("[glyph-buffer] center cell is not tagged as pheromone");
   }
 
   const payload = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-  GLYPH_BUFFER.depositPlasmid(1240, 30, 512, payload);
-  const plasmidSnapshot = GLYPH_BUFFER.snapshot();
+  GLYPH_TELEMETRY.depositPlasmid(1240, 30, 512, payload);
+  const plasmidSnapshot = GLYPH_TELEMETRY.snapshot();
   if (plasmidSnapshot.plasmidCells <= 0) {
     throw new Error(
       "[glyph-buffer] plasmid deposit did not create plasmid cells",
@@ -48,7 +48,7 @@ const main = async () => {
 
   const plasmidCell = 544;
   const plasmidHeader = STATE_MATRIX.getGlyphHeader(plasmidCell);
-  if ((plasmidHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PLASMID) {
+  if ((plasmidHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PLASMID) {
     throw new Error("[glyph-buffer] plasmid cell is not tagged as plasmid");
   }
   const storedPayload = STATE_MATRIX.getGlyphPayload(plasmidCell);
@@ -101,11 +101,11 @@ const main = async () => {
   }
 
   const signalHeader = STATE_MATRIX.getGlyphHeader(centerCell);
-  if ((signalHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PHEROMONE) {
+  if ((signalHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PHEROMONE) {
     throw new Error("[glyph-buffer] signal leak did not emit pheromone glyph");
   }
   const leakedMemoryHeader = STATE_MATRIX.getGlyphHeader(memoryCell);
-  if ((leakedMemoryHeader & 0xFF) !== GLYPH_BUFFER.GLYPH_KIND.PLASMID) {
+  if ((leakedMemoryHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PLASMID) {
     throw new Error("[glyph-buffer] memory leak did not emit plasmid glyph");
   }
   const leakedPayload = STATE_MATRIX.getGlyphPayload(memoryCell);
@@ -116,14 +116,14 @@ const main = async () => {
   }
 
   STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
-  GLYPH_BUFFER.beginInternalAtomEmissionTick();
-  GLYPH_BUFFER.emitAtomPheromone(
+  GLYPH_TELEMETRY.beginInternalAtomEmissionTick();
+  GLYPH_TELEMETRY.emitAtomPheromone(
     200,
     200,
     96,
     STATE_MATRIX.ROLE_GUARDIAN,
   );
-  GLYPH_BUFFER.emitAtomPlasmid(
+  GLYPH_TELEMETRY.emitAtomPlasmid(
     220,
     220,
     144,

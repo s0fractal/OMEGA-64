@@ -34,7 +34,7 @@ import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
 import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
 import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
 import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import { GLYPH_BUFFER, type GlyphSnapshot } from "@07/02/01/mod.ts";
+import { GLYPH_TELEMETRY, type GlyphSnapshot } from "@06/GLYPH_TELEMETRY.ts";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
 import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
@@ -494,7 +494,7 @@ const collectRuntimeMetrics = (): RuntimeMetrics => {
     replicationPromotion: evaluateReplicationPromotion(
       replicationHybrid as ReplicationHybridSnapshot,
     ),
-    glyphTransport: GLYPH_BUFFER.snapshot(),
+    glyphTransport: GLYPH_TELEMETRY.snapshot(),
   };
 };
 
@@ -860,7 +860,7 @@ const buildTelemetry = async () => {
       STATE_MATRIX.getHormone(4),
       STATE_MATRIX.getHormone(5),
     ],
-    glyph_buffer: GLYPH_BUFFER.snapshot(),
+    glyph_buffer: GLYPH_TELEMETRY.snapshot(),
   };
 };
 
@@ -1840,7 +1840,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         guardian_signal_promotion: evaluateGuardianSignalPromotion(
           guardianSignalHybrid,
         ),
-        glyph_transport: GLYPH_BUFFER.snapshot(),
+        glyph_transport: GLYPH_TELEMETRY.snapshot(),
         ledger_base_tax: geneticLedger.homeostasisBaseTax,
         ledger_base_tax_persistence:
           geneticLedger.homeostasisBaseTaxPersistence,
@@ -3736,7 +3736,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     ) {
       const metrics = collectRuntimeMetrics();
       const safeMode = isDaemonSafeMode(metrics);
-      const glyphSnap = GLYPH_BUFFER.snapshot();
+      const glyphSnap = GLYPH_TELEMETRY.snapshot();
 
       TELEMETRY_STREAM.emit({
         tick: metrics.tick,

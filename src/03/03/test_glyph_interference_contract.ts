@@ -1,4 +1,4 @@
-import { GLYPH_BUFFER, GLYPH_KIND } from "@01";
+import { GLYPH_TELEMETRY, GLYPH_KIND } from "@06";
 import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 
 const expect = (condition: unknown, message: string): void => {
@@ -10,8 +10,8 @@ const main = () => {
   STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
 
   // 1. Constructive Interference (+100 and +50 = +150)
-  GLYPH_BUFFER.depositPheromone(50, 50, 100);
-  GLYPH_BUFFER.depositPheromone(50, 50, 50);
+  GLYPH_TELEMETRY.depositPheromone(50, 50, 100);
+  GLYPH_TELEMETRY.depositPheromone(50, 50, 50);
 
   // Need to calculate cell correctly for the assertion
   const cell = Math.floor(50 / 10) * 140 + Math.floor(50 / 10);
@@ -23,7 +23,7 @@ const main = () => {
   );
 
   // 2. Destructive Interference (+150 and -200 = -50)
-  GLYPH_BUFFER.depositPheromone(50, 50, -200);
+  GLYPH_TELEMETRY.depositPheromone(50, 50, -200);
   header = STATE_MATRIX.getGlyphHeader(cell);
   amp = header >> 8;
   expect(
@@ -32,7 +32,7 @@ const main = () => {
   );
 
   // 3. Perfect Annihilation (-50 and +50 = 0 -> NONE)
-  GLYPH_BUFFER.depositPheromone(50, 50, 50);
+  GLYPH_TELEMETRY.depositPheromone(50, 50, 50);
   header = STATE_MATRIX.getGlyphHeader(cell);
   amp = header >> 8;
   const kind = header & 0xFF;

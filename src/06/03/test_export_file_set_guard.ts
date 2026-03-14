@@ -31,7 +31,7 @@ const REQUIRED_RUNTIME_SURFACE = [
   "src/00/ENV_PARSE.ts",
   "src/03/RUNTIME_POLICY.ts",
   "src/03/DAEMON_INGRESS_POLICY.ts",
-  "src/01/GLYPH_BUFFER.ts",
+  "src/01/GLYPH_TELEMETRY.ts",
   "src/03/GATE.ts",
   "src/06/AKASHA_CODEX.ts",
   "src/03/GATE_VALIDATOR.ts",

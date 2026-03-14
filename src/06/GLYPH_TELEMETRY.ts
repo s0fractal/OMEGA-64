@@ -14,7 +14,7 @@ export const GLYPH_KIND = {
 } as const;
 
 console.log(
-  `[GLYPH_BUFFER] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`,
+  `[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=${SECRETION_STATS_OFFSET}`,
 );
 const secretionStatsView = new Int32Array(
   STATE_MATRIX.buffer,
@@ -108,7 +108,7 @@ const depositHeader = (
   }
 };
 
-export const GLYPH_BUFFER = {
+export const GLYPH_TELEMETRY = {
   depositPheromone: (x: number, y: number, intensity: number) => {
     const cell = toGridCell(x, y);
     const core = clamp(Math.round(intensity), -4096, 4096);
@@ -144,7 +144,7 @@ export const GLYPH_BUFFER = {
   emitAtomPheromone: (x: number, y: number, intensity: number, role = 0) => {
     Atomics.add(secretionStatsView, role, 1);
     const phaseIntensity = role === 4 ? -intensity : intensity;
-    GLYPH_BUFFER.depositPheromone(x, y, phaseIntensity);
+    GLYPH_TELEMETRY.depositPheromone(x, y, phaseIntensity);
   },
 
   GLYPH_KIND,

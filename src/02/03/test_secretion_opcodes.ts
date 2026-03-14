@@ -1,7 +1,7 @@
 import { GRID_W, GRID_H , GRID_CELLS} from "../../_/mod.ts";
 import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
 import { RIBOSOME } from "@02";
-import { GLYPH_BUFFER } from "@01";
+import { GLYPH_TELEMETRY } from "@06";
 
 async function runSecretionOpcodeTests() {
   console.log("🕸️ [TEST] Booting WASM native secretion opcode diagnostics...");
@@ -41,7 +41,7 @@ async function runSecretionOpcodeTests() {
   console.log("--- Executing OP_COLLECTIVE mode 7 (PLASMID_EMIT) ---");
   execute_atom(atomIdx);
 
-  let snapshot = GLYPH_BUFFER.snapshot();
+  let snapshot = GLYPH_TELEMETRY.snapshot();
   console.log(`Plasmid Architect Stat: ${snapshot.atomRolePlasmid.architect}`);
   if (snapshot.atomRolePlasmid.architect !== 1) {
     console.error(
@@ -64,7 +64,7 @@ async function runSecretionOpcodeTests() {
 
   execute_atom(atomIdx);
 
-  snapshot = GLYPH_BUFFER.snapshot();
+  snapshot = GLYPH_TELEMETRY.snapshot();
   console.log(
     `Pheromone Architect Stat: ${snapshot.atomRolePheromone.architect}`,
   );
@@ -102,7 +102,7 @@ async function runSecretionOpcodeTests() {
 
   tick_glyph_transport(1);
 
-  snapshot = GLYPH_BUFFER.snapshot();
+  snapshot = GLYPH_TELEMETRY.snapshot();
   console.log(`Signal Leak Stat: ${snapshot.internalSignalSeeds}`);
   console.log(`Memory Leak Stat: ${snapshot.internalMemorySeeds}`);
 

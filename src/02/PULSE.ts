@@ -100,8 +100,8 @@ let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
-import { PHYSICS_ENGINE } from "@01";
-import { GLYPH_BUFFER } from "@01";
+import { PHYSICS_ENGINE } from "@06";
+import { GLYPH_TELEMETRY } from "@06";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "@03/DAEMON_INGRESS_POLICY.ts";
 
 import { syncHormonesToLattice } from "@02/HORMONE_BUFFER_RUNTIME.ts";
@@ -3382,7 +3382,7 @@ export const PULSE = {
       }
 
       akashaDelegate?.flushMutationTelemetry(currentTick);
-      const glyphSnapshot = GLYPH_BUFFER.snapshot();
+      const glyphSnapshot = GLYPH_TELEMETRY.snapshot();
       lineageTracker.syncLineages(activeIdx);
 
       // --- STAGE 6: Codex evidence record ---
