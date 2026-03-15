@@ -925,7 +925,7 @@ const maybeDelay = async () => {
         target: number,
       ) => {
         if (op === 0xDD) {
-          const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+          const tick = Number(Atomics.load(MX.tickCounter, 0));
           const epoch = Math.floor(tick / 10000);
           _noop(
             `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,

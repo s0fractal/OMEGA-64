@@ -1,6 +1,6 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_consciousness.ts | Phase 19: Planetary Consciousness
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { MATRIX_ENGINE } from "@generated";
 import { SOVEREIGN_ORACLE } from "@generated";
@@ -25,24 +25,24 @@ async function runTest() {
       cy * GRID_W + (cx + 1),
     ];
     for (const c of cells) {
-      Atomics.store(STATE_MATRIX.structureGrid, c, CRYSTAL_STANDARD);
+      Atomics.store(MX.structureGrid, c, CRYSTAL_STANDARD);
     }
     // Arms get high signal → convergence into center
-    Atomics.store(STATE_MATRIX.signalGrid, (cy - 1) * 140 + cx, 900);
-    Atomics.store(STATE_MATRIX.signalGrid, (cy + 1) * 140 + cx, 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + (cx - 1), 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + (cx + 1), 900);
-    Atomics.store(STATE_MATRIX.signalGrid, cy * GRID_W + cx, 50);
+    Atomics.store(MX.signalGrid, (cy - 1) * 140 + cx, 900);
+    Atomics.store(MX.signalGrid, (cy + 1) * 140 + cx, 900);
+    Atomics.store(MX.signalGrid, cy * GRID_W + (cx - 1), 900);
+    Atomics.store(MX.signalGrid, cy * GRID_W + (cx + 1), 900);
+    Atomics.store(MX.signalGrid, cy * GRID_W + cx, 50);
   }
 
   // ── TEST 1: Oscillators form, coherence accumulates ───────────────────
   console.log("📡 Running 10 ticks to build oscillator network...");
   for (let t = 0; t < 10; t++) await PULSE.tick();
 
-  // Manually call get_neural_coherence via WASM (through STATE_MATRIX shared memory check)
+  // Manually call get_neural_coherence via WASM (through MX shared memory check)
   let oscillatorCount = 0;
   for (let i = 0; i < GRID_CELLS; i++) {
-    if (Atomics.load(STATE_MATRIX.structureGrid, i) === CRYSTAL_OSCILLATOR) {
+    if (Atomics.load(MX.structureGrid, i) === CRYSTAL_OSCILLATOR) {
       oscillatorCount++;
     }
   }
@@ -54,7 +54,7 @@ async function runTest() {
   for (const [cx, cy] of junctions) {
     const cellIdx = cy * GRID_W + cx;
     const ampView = new Uint32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       MEMORY_BASE + cellIdx * 8,
       1,
     );
@@ -75,7 +75,7 @@ async function runTest() {
   // Write coherence to shared register (simulate Oracle polling)
   const NEURAL_COHERENCE_ADDR = 1000000 + 36000000; // SAFETY_BUFFER + 36MB
   const coherenceView = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     NEURAL_COHERENCE_ADDR,
     1,
   );
@@ -83,21 +83,21 @@ async function runTest() {
 
   // Plant ISA_SENSE atoms nearby
   for (let i = 30; i < 35; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, 500);
-    STATE_MATRIX.setY(i, 300);
-    STATE_MATRIX.setEnergy(i, 2000);
-    STATE_MATRIX.setResonance(i, 0);
-    STATE_MATRIX.setPhase(i, 0);
-    STATE_MATRIX.setLogic(
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, 500);
+    MX.setY(i, 300);
+    MX.setEnergy(i, 2000);
+    MX.setResonance(i, 0);
+    MX.setPhase(i, 0);
+    MX.setLogic(
       i,
       new Uint8Array([0x49, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]),
     );
   }
 
-  const resonanceBefore = STATE_MATRIX.getResonance(30);
+  const resonanceBefore = MX.getResonance(30);
   for (let t = 0; t < 3; t++) await PULSE.tick();
-  const resonanceAfter = STATE_MATRIX.getResonance(30);
+  const resonanceAfter = MX.getResonance(30);
 
   if (resonanceAfter > resonanceBefore) {
     console.log(

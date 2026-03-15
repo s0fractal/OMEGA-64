@@ -1,5 +1,5 @@
 // OMEGA-64 | test_autopoietic_gate_feedback.ts | Stage 25: Sovereign Feedback Verification
-import { STATE_MATRIX, LOGGER, Li, Le } from "@generated";
+import { MX, LOGGER, Li, Le } from "@generated";
 import {
   QuorumAdvocate
 } from "@generated";
@@ -46,7 +46,7 @@ async function runTest() {
     globalSyntropy: syntropy, // New field
   });
 
-  const value = STATE_MATRIX.getHormone(6);
+  const value = MX.getHormone(6);
   Li(`📡 Hormone 6 (global_consensus) value: ${value}`);
   if (value > 800) {
     Li("✅ Syntropy successfully synced to hormone lattice.");
@@ -94,7 +94,7 @@ async function runTest() {
   };
 
   // Set atom resonance
-  STATE_MATRIX.setResonance(42, 20000); // 200.0 resonance (high)
+  MX.setResonance(42, 20000); // 200.0 resonance (high)
 
   const { acceptedProposalMetrics } = mergeGateProposals(
     mockState,

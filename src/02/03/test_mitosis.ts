@@ -1,16 +1,16 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { ISA, LAMBDA_VM } from "@generated";
 
 console.log("🧬 [TEST] Initializing Mitosis Verification...");
 
 // 1. Setup Parent Atom (Index 1)
-STATE_MATRIX.clear();
+MX.clear();
 const parentId = 0x1234567812345678n;
-STATE_MATRIX.setId(1, parentId);
-STATE_MATRIX.setEnergy(1, 200); // 200 Energy (> 150 required)
-STATE_MATRIX.setResonance(1, 100);
-STATE_MATRIX.roles[1] = 2; // Constructor
-STATE_MATRIX.semanticBonuses[1] = 5; // Cognitive Bonus
+MX.setId(1, parentId);
+MX.setEnergy(1, 200); // 200 Energy (> 150 required)
+MX.setResonance(1, 100);
+MX.roles[1] = 2; // Constructor
+MX.semanticBonuses[1] = 5; // Cognitive Bonus
 
 const parentLogic = new Uint8Array([
   0x11,
@@ -22,12 +22,12 @@ const parentLogic = new Uint8Array([
   0x77,
   0x88,
 ]);
-STATE_MATRIX.setLogic(1, parentLogic);
+MX.setLogic(1, parentLogic);
 
 const parentInstructions = new Uint32Array(16);
 parentInstructions[0] = ISA.SELF_REP | (0xDE << 8) | (0xAD << 16) |
   (0xBE << 24); // SELF_REP + Epigenetic payload
-STATE_MATRIX.setCode(1, parentInstructions);
+MX.setCode(1, parentInstructions);
 
 const context = new Uint8Array(32);
 
@@ -60,39 +60,39 @@ if (!spawnIntent) {
 console.log("✅ [TEST] VM successfully emitted 'spawn' intent.");
 
 // 4. Simulate PULSE_WORKER translating intent to spawn request
-STATE_MATRIX.requestSpawn(1);
+MX.requestSpawn(1);
 
 // 5. Simulate PULSE main thread handling mitosis
 const activeIndices = [1];
 let newIdxGenerated = -1;
 
 for (const idx of activeIndices) {
-  if (STATE_MATRIX.hasSpawnRequest(idx)) {
-    STATE_MATRIX.clearSpawn(idx);
-    const newIdx = STATE_MATRIX.findEmptySlot();
+  if (MX.hasSpawnRequest(idx)) {
+    MX.clearSpawn(idx);
+    const newIdx = MX.findEmptySlot();
     if (newIdx !== -1) {
       newIdxGenerated = newIdx;
 
       // Division of Capital
-      const childEnergy = STATE_MATRIX.getEnergy(idx) / 2;
-      const childResonance = STATE_MATRIX.getResonance(idx) / 2;
+      const childEnergy = MX.getEnergy(idx) / 2;
+      const childResonance = MX.getResonance(idx) / 2;
 
-      STATE_MATRIX.setEnergy(idx, childEnergy);
-      STATE_MATRIX.setResonance(idx, childResonance);
-      STATE_MATRIX.setEnergy(newIdx, childEnergy);
-      STATE_MATRIX.setResonance(newIdx, childResonance);
+      MX.setEnergy(idx, childEnergy);
+      MX.setResonance(idx, childResonance);
+      MX.setEnergy(newIdx, childEnergy);
+      MX.setResonance(newIdx, childResonance);
 
       // Epigenetic Heredity
-      STATE_MATRIX.setLogic(newIdx, STATE_MATRIX.getLogic(idx));
-      STATE_MATRIX.setCode(newIdx, STATE_MATRIX.getCode(idx));
+      MX.setLogic(newIdx, MX.getLogic(idx));
+      MX.setCode(newIdx, MX.getCode(idx));
 
-      STATE_MATRIX.roles[newIdx] = STATE_MATRIX.roles[idx];
-      STATE_MATRIX.semanticBonuses[newIdx] = STATE_MATRIX.semanticBonuses[idx];
+      MX.roles[newIdx] = MX.roles[idx];
+      MX.semanticBonuses[newIdx] = MX.semanticBonuses[idx];
 
       const childId = BigInt(
-        `0x${STATE_MATRIX.getId(idx).toString(16).substring(0, 8)}00000001`,
+        `0x${MX.getId(idx).toString(16).substring(0, 8)}00000001`,
       );
-      STATE_MATRIX.setId(newIdx, childId);
+      MX.setId(newIdx, childId);
     }
   }
 }
@@ -103,18 +103,18 @@ if (newIdxGenerated === -1) {
   Deno.exit(1);
 }
 
-const childLogic = STATE_MATRIX.getLogic(newIdxGenerated);
-const childCode = STATE_MATRIX.getCode(newIdxGenerated);
+const childLogic = MX.getLogic(newIdxGenerated);
+const childCode = MX.getCode(newIdxGenerated);
 
 if (
-  STATE_MATRIX.getEnergy(1) !== 100 ||
-  STATE_MATRIX.getEnergy(newIdxGenerated) !== 100
+  MX.getEnergy(1) !== 100 ||
+  MX.getEnergy(newIdxGenerated) !== 100
 ) {
   console.error(
     "❌ [TEST] Energy not split evenly: Parent=",
-    STATE_MATRIX.getEnergy(1),
+    MX.getEnergy(1),
     "Child=",
-    STATE_MATRIX.getEnergy(newIdxGenerated),
+    MX.getEnergy(newIdxGenerated),
   );
   Deno.exit(1);
 }
@@ -129,8 +129,8 @@ if (childLogic[0] !== 0x11 || (childCode[0] & 0xFF) !== ISA.SELF_REP) {
 }
 
 if (
-  STATE_MATRIX.roles[newIdxGenerated] !== 2 ||
-  STATE_MATRIX.semanticBonuses[newIdxGenerated] !== 5
+  MX.roles[newIdxGenerated] !== 2 ||
+  MX.semanticBonuses[newIdxGenerated] !== 5
 ) {
   console.error("❌ [TEST] Epigenetic traits failed to inherit.");
   Deno.exit(1);

@@ -1,12 +1,12 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
-import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "@generated";
+import { INTENT_OFFSET, MX, wasmMemory } from "@generated";
 
 async function testIntentBuffer() {
   console.log("🧪 Testing Zero-Allocation WASM Intent Buffer");
 
   // 1. Initialize Atom 0 with high energy
-  STATE_MATRIX.setId(0, 1n);
-  STATE_MATRIX.set_energy(0, 100000); // 100 * SCALE
+  MX.setId(0, 1n);
+  MX.set_energy(0, 100000); // 100 * SCALE
 
   // 2. Load WASM
   const wasmCode = await Deno.readFile(AS_WASM_PATH);
@@ -28,7 +28,7 @@ async function testIntentBuffer() {
   const rawIntent = intents[0];
   const opcode = rawIntent & 0xFF;
 
-  console.log(`[ATOM 0] Energy after tick: ${STATE_MATRIX.get_energy(0)}`);
+  console.log(`[ATOM 0] Energy after tick: ${MX.get_energy(0)}`);
   console.log(
     `[ATOM 0] Intent Buffer Hex: 0x${rawIntent.toString(16).padStart(8, "0")}`,
   );

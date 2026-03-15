@@ -1,7 +1,7 @@
 import { BONDS_OFFSET, MAX_ATOMS } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
-const memory = STATE_MATRIX.wasmMemory;
+const memory = MX.wasmMemory;
 const buffer = memory.buffer;
 
 const bondsJS = new Int32Array(
@@ -10,7 +10,7 @@ const bondsJS = new Int32Array(
   MAX_ATOMS * 4,
 );
 
-STATE_MATRIX.set_bond_target(2, 0, 1);
+MX.set_bond_target(2, 0, 1);
 console.log(
   `[JS] Bond for Atom 2, Slot 0 written. Internal Array View:`,
   bondsJS[(2 * 4) + 0],

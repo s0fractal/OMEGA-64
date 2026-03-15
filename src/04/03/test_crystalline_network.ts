@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { STR_SOURCE, STR_WIRE } from "@generated";
 
@@ -14,14 +14,14 @@ async function testCrystallineNetwork() {
 
   // Set SOURCE at (5, 5)
   let idx = startY * 140 + startX;
-  STATE_MATRIX.setGridType(idx, STR_SOURCE);
-  STATE_MATRIX.setGridCharge(idx, 255);
+  MX.setGridType(idx, STR_SOURCE);
+  MX.setGridCharge(idx, 255);
 
   // Set WIREs from (6, 5) to (10, 5)
   for (let x = 6; x <= endX; x++) {
     idx = startY * 140 + x;
-    STATE_MATRIX.setGridType(idx, STR_WIRE);
-    STATE_MATRIX.setGridCharge(idx, 0);
+    MX.setGridType(idx, STR_WIRE);
+    MX.setGridCharge(idx, 0);
   }
 
   console.log("   [TEST] Lattice: SOURCE at (5,5), WIREs to (10,5).");
@@ -30,11 +30,11 @@ async function testCrystallineNetwork() {
   for (let t = 0; t < 10; t++) {
     await PULSE.tick();
     const lastIdx = startY * 140 + endX;
-    const lastCharge = STATE_MATRIX.getGridCharge(lastIdx);
+    const lastCharge = MX.getGridCharge(lastIdx);
     console.log(`   [TICK ${t}] Charge at (10,5): ${lastCharge}`);
   }
 
-  const finalCharge = STATE_MATRIX.getGridCharge(startY * 140 + endX);
+  const finalCharge = MX.getGridCharge(startY * 140 + endX);
   if (finalCharge > 200) {
     console.log("✅ [TEST] Signal propagated successfully through the wire!");
   } else {
@@ -46,7 +46,7 @@ async function testCrystallineNetwork() {
 
   // 4. Test OP_PLUG with an Atom
   console.log("   [TEST] Testing OP_PLUG (Read Charge)...");
-  const testIdx = STATE_MATRIX.findFreeSlot();
+  const testIdx = MX.findFreeSlot();
   const genome = new Uint8Array(8);
 
   // RISC Code:
@@ -59,7 +59,7 @@ async function testCrystallineNetwork() {
   riscCode[2] = 1; // reg: 1
 
   // We use ID 1n to ensure we satisfy the trace_atom condition in PULSE_WORKER (currentId <= 10n)
-  STATE_MATRIX.seedAtom(
+  MX.seedAtom(
     testIdx,
     1n,
     (endX * 10) + 5,
@@ -75,16 +75,16 @@ async function testCrystallineNetwork() {
   await PULSE.tick();
 
   // Check atom register/context through canonical matrix accessors
-  const reg1Value = STATE_MATRIX.getReg(testIdx, 1);
-  const pcValue = STATE_MATRIX.getPC(testIdx);
-  const energyValue = STATE_MATRIX.getEnergy(testIdx);
+  const reg1Value = MX.getReg(testIdx, 1);
+  const pcValue = MX.getPC(testIdx);
+  const energyValue = MX.getEnergy(testIdx);
 
   console.log(
     `   [TEST] Atom status: PC=${pcValue}, Energy=${energyValue}, Reg1=${reg1Value}`,
   );
 
   // Check instructions at testIdx to be sure
-  const instrCheck = STATE_MATRIX.getInstructions(testIdx).subarray(0, 8);
+  const instrCheck = MX.getInstructions(testIdx).subarray(0, 8);
   console.log(`   [TEST] Bytecode at index 0: [${instrCheck.join(", ")}]`);
 
   if (reg1Value > 200) {

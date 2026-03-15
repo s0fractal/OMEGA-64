@@ -6,7 +6,7 @@ import {
   scriptToGlyphTape,
 } from "@generated";
 import { glyphSpecById } from "@generated";
-import { STATE_MATRIX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
+import { MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -656,7 +656,7 @@ const applyShadowOpcode = (
     }
     case OP_BUILD: {
       state.effects.buildCount += 1;
-      if (state.role === STATE_MATRIX.ROLE_ARCHITECT) {
+      if (state.role === MX.ROLE_ARCHITECT) {
         const type = args[0] ?? 0;
         const buildState = args[1] ?? 0;
         const rx = state.props[PROP_X] ?? 0;

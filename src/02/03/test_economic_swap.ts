@@ -1,6 +1,6 @@
 // OMEGA-64 | test_economic_swap.ts | Stage 31 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   PULSE
 } from "@generated";
@@ -14,21 +14,21 @@ import {
 Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async () => {
   Li("--- STAGE 31: ECONOMIC SWAP TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 1);
   await PULSE.initWorkers(1);
 
   const senderIdx = 1;
   const receiverIdx = 2;
 
-  STATE_MATRIX.setId(senderIdx, 1n);
-  STATE_MATRIX.setEnergy(senderIdx, 1000);
-  STATE_MATRIX.setResonance(senderIdx, 50);
+  MX.setId(senderIdx, 1n);
+  MX.setEnergy(senderIdx, 1000);
+  MX.setResonance(senderIdx, 50);
 
-  STATE_MATRIX.setId(receiverIdx, 2n);
-  STATE_MATRIX.setEnergy(receiverIdx, 100);
-  STATE_MATRIX.setResonance(receiverIdx, 10);
+  MX.setId(receiverIdx, 2n);
+  MX.setEnergy(receiverIdx, 100);
+  MX.setResonance(receiverIdx, 10);
 
   // Sender Script: Transfer 500 Energy to Receiver
   // R0 = SYS.TRANSFER (10)
@@ -58,15 +58,15 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
 
   senderScript[12] = OP_SYSCALL;
   senderScript[13] = 0;
-  STATE_MATRIX.setInstructions(senderIdx, senderScript);
+  MX.setInstructions(senderIdx, senderScript);
 
   // Receiver does nothing this tick.
 
   Li("Executing Economic Transfer Pulse...");
   await PULSE.tick();
 
-  const senderEnergy = STATE_MATRIX.getEnergy(senderIdx);
-  const receiverEnergy = STATE_MATRIX.getEnergy(receiverIdx);
+  const senderEnergy = MX.getEnergy(senderIdx);
+  const receiverEnergy = MX.getEnergy(receiverIdx);
 
   // Sender started at 1000.
   // Sent 200. Gas fee ~10. Metabolic tick takes ~1-3. expected remaining ~785-790.
@@ -100,14 +100,14 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
   senderScript[11] = 25; // Send 25 Resonance
   senderScript[12] = OP_SYSCALL;
   senderScript[13] = 0;
-  STATE_MATRIX.setInstructions(senderIdx, senderScript);
-  STATE_MATRIX.setPC(senderIdx, 0); // Need to reset PC for new script to run!
+  MX.setInstructions(senderIdx, senderScript);
+  MX.setPC(senderIdx, 0); // Need to reset PC for new script to run!
 
   Li("Executing Resonance Transfer Pulse...");
   await PULSE.tick();
 
-  const senderResonance = STATE_MATRIX.getResonance(senderIdx);
-  const receiverResonance = STATE_MATRIX.getResonance(receiverIdx);
+  const senderResonance = MX.getResonance(senderIdx);
+  const receiverResonance = MX.getResonance(receiverIdx);
 
   Li(`Sender Resonance remaining: ${senderResonance}`);
   Li(`Receiver Resonance remaining: ${receiverResonance}`);

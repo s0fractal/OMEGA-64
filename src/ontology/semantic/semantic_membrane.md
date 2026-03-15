@@ -12,7 +12,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 import { LLM_SYNAPSE } from "@g12";
 
 const PROJECTION_SIZE = 64;
@@ -140,7 +140,7 @@ export const SEMANTIC_MEMBRANE = {
       return behaviorFrameCache;
     }
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const localSampleLimit = Number.isFinite(sampleLimit)
       ? Math.max(64, Math.floor(sampleLimit))
       : BEHAVIOR_FRAME_MAX_ATOMS;
@@ -161,7 +161,7 @@ export const SEMANTIC_MEMBRANE = {
     for (let i = 0; i < active.length; i += stride) {
       const idx = active[i];
       const fingerprint = deriveBehaviorFingerprint(
-        STATE_MATRIX.getInstructions(idx),
+        MX.getInstructions(idx),
       );
       const signature = behaviorSignature(fingerprint);
       let bucket = aggregates.get(signature);
@@ -181,10 +181,10 @@ export const SEMANTIC_MEMBRANE = {
       bucket.replicateTotal += fingerprint.replicateRatio;
       bucket.signalTotal += fingerprint.signalRatio;
       bucket.buildTotal += fingerprint.buildRatio;
-      const role = Math.min(7, Math.max(0, STATE_MATRIX.getRole(idx)));
+      const role = Math.min(7, Math.max(0, MX.getRole(idx)));
       bucket.roleCounts[role] += 1;
 
-      const genome = toGenomeHex(STATE_MATRIX.getLogic(idx));
+      const genome = toGenomeHex(MX.getLogic(idx));
       if (
         bucket.genomeSamples.length < 6 &&
         !bucket.genomeSamples.includes(genome)
@@ -337,12 +337,12 @@ export const SEMANTIC_MEMBRANE = {
 
   project: async (text: string, idx: number) => {
     const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
-    STATE_MATRIX.setLogic(idx, hash);
+    MX.setLogic(idx, hash);
   },
 
   injectThought: async (text: string, weight: number) => {
     const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
-    const idx = STATE_MATRIX.findEmptySlot();
+    const idx = MX.findEmptySlot();
 
     if (idx !== -1) {
       // ID generation logic (Pseudo-random 64-bit BigInt)
@@ -351,23 +351,23 @@ export const SEMANTIC_MEMBRANE = {
       let id = 0n;
       for (let i = 0; i < 8; i++) id = (id << 8n) | BigInt(idBytes[i]);
 
-      STATE_MATRIX.setId(idx, id);
+      MX.setId(idx, id);
 
       // Genomic Traits derived directly from the semantic hash (LSH)
       // logic[1] determines Caste. >128 Parasite, <128 Builder.
-      STATE_MATRIX.setLogic(idx, hash);
+      MX.setLogic(idx, hash);
 
       // Energy derived from weight + the first modulus byte of hash
       const baseEnergy = weight + (hash[0] % 50);
-      STATE_MATRIX.setEnergy(idx, baseEnergy);
+      MX.setEnergy(idx, baseEnergy);
 
       // Resonance based on aggressiveness (logic[1])
       const isAggressive = hash[1] > 128;
-      STATE_MATRIX.setResonance(idx, isAggressive ? 100 : 500);
+      MX.setResonance(idx, isAggressive ? 100 : 500);
 
       // Spawn near center
-      STATE_MATRIX.setX(idx, 700 + (Math.random() - 0.5) * 50);
-      STATE_MATRIX.setY(idx, 400 + (Math.random() - 0.5) * 50);
+      MX.setX(idx, 700 + (Math.random() - 0.5) * 50);
+      MX.setY(idx, 400 + (Math.random() - 0.5) * 50);
 
       // Akashic Archival: Map the Genome Hex to the original English text
       const hexHash = Array.from(hash).map((b) =>
@@ -405,7 +405,7 @@ export const SEMANTIC_MEMBRANE = {
   },
 
   updateSemanticBonuses: (idx: number) => {
-    const logic = STATE_MATRIX.getLogic(idx);
+    const logic = MX.getLogic(idx);
     const hexHash = Array.from(logic).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
@@ -413,7 +413,7 @@ export const SEMANTIC_MEMBRANE = {
     if (thought) {
       const bonuses = SEMANTIC_MEMBRANE.getBonuses(thought);
       // @ts-ignore: semanticBonuses is a custom buffer added in Era 36
-      Atomics.store(STATE_MATRIX.semanticBonuses, idx, bonuses);
+      Atomics.store(MX.semanticBonuses, idx, bonuses);
     }
   },
 
@@ -425,12 +425,12 @@ export const SEMANTIC_MEMBRANE = {
     let builderCount = 0;
     let totalEnergy = 0;
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     for (const i of active) {
-      const logic = STATE_MATRIX.getLogic(i);
+      const logic = MX.getLogic(i);
       if (logic[1] > 128) parasiteCount++;
       else builderCount++;
-      totalEnergy += STATE_MATRIX.getEnergy(i);
+      totalEnergy += MX.getEnergy(i);
     }
 
     const avgEnergy = active.length > 0 ? (totalEnergy / active.length) : 0;
@@ -467,10 +467,10 @@ export const SEMANTIC_MEMBRANE = {
    * Returns the English thoughts of the most resonant atoms.
    */
   readOracleQueue: (count: number): string[] => {
-    const topIndices = STATE_MATRIX.getTopResonantIndices(count);
+    const topIndices = MX.getTopResonantIndices(count);
     const thoughts: string[] = [];
     for (const idx of topIndices) {
-      const logic = STATE_MATRIX.getLogic(idx);
+      const logic = MX.getLogic(idx);
       const hexHash = Array.from(logic).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
@@ -482,10 +482,10 @@ export const SEMANTIC_MEMBRANE = {
 
   scanDigitalRuins: (): string[] => {
     const ruins: string[] = [];
-    // @ts-ignore: structureGrid exists in STATE_MATRIX
-    const grid = STATE_MATRIX.structureGrid;
-    // @ts-ignore: memoryGrid exists in STATE_MATRIX
-    const memory = STATE_MATRIX.memoryGrid;
+    // @ts-ignore: structureGrid exists in MX
+    const grid = MX.structureGrid;
+    // @ts-ignore: memoryGrid exists in MX
+    const memory = MX.memoryGrid;
 
     const GRID_W = 70;
     const GRID_H = 40;

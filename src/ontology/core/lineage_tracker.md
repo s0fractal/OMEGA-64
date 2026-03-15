@@ -13,7 +13,7 @@ vars:
   - AKASHA_CODEX
   - LOGGER
   - Ld
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - LineageTracker
 ---

@@ -1,5 +1,5 @@
 // OMEGA-64 | test_snap_rehydration.ts | Era 71: The Quantum Snap
-import { sharedBuffer, STATE_MATRIX, LOGGER, Li, Le } from "@generated";
+import { sharedBuffer, MX, LOGGER, Li, Le } from "@generated";
 import { SNAP_ENGINE } from "@06";
 import { seedSeededSwarmScenario } from "@02";
 
@@ -20,13 +20,13 @@ async function main() {
   // 1. Setup & Seed
   const replicators = 10;
   const architects = 5;
-  seedSeededSwarmScenario(STATE_MATRIX as any, {
+  seedSeededSwarmScenario(MX as any, {
     seed: 424242,
     replicators,
     architects,
   });
 
-  const originalActiveCount = STATE_MATRIX.getActiveIndices().length;
+  const originalActiveCount = MX.getActiveIndices().length;
   Li(`   - Seeded ${originalActiveCount} atoms.`);
 
   // 2. Capture Original State Hash
@@ -39,8 +39,8 @@ async function main() {
 
   // 4. Sabotage/Clear Matrix
   Li("   - Clearing matrix...");
-  STATE_MATRIX.clear();
-  const clearedActiveCount = STATE_MATRIX.getActiveIndices().length;
+  MX.clear();
+  const clearedActiveCount = MX.getActiveIndices().length;
   assertEquals(clearedActiveCount, 0, "Matrix should be empty after clear");
 
   const hashB = await computeBufferHash(sharedBuffer);
@@ -56,7 +56,7 @@ async function main() {
   const hashC = await computeBufferHash(sharedBuffer);
   Li(`   - Re-hydrated Hash: ${hashC}`);
 
-  const finalActiveCount = STATE_MATRIX.getActiveIndices().length;
+  const finalActiveCount = MX.getActiveIndices().length;
   assertEquals(
     finalActiveCount,
     originalActiveCount,

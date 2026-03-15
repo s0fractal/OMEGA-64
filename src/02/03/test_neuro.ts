@@ -1,5 +1,5 @@
 // OMEGA-64 | test_neuro.ts | Sovereign Neurogenesis Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { SPATIAL_HASH } from "@generated";
 
@@ -11,7 +11,7 @@ async function runTest() {
   console.log("🧠 Starting Phase 9: Sovereign Neurogenesis Verification...");
 
   await PULSE.initWorkers();
-  STATE_MATRIX.clear();
+  MX.clear();
 
   const idxA = 1;
   const idxB = 2;
@@ -21,24 +21,24 @@ async function runTest() {
   const atoms = [idxA, idxB, idxC];
   for (let i = 0; i < atoms.length; i++) {
     const idx = atoms[i];
-    STATE_MATRIX.setId(idx, BigInt(idx));
-    STATE_MATRIX.setX(idx, 500 + i * 5); // Close together but distinct
-    STATE_MATRIX.setY(idx, 500);
-    STATE_MATRIX.setEnergy(idx, 20);
-    STATE_MATRIX.setLogic(idx, new Uint8Array(8).fill(0));
+    MX.setId(idx, BigInt(idx));
+    MX.setX(idx, 500 + i * 5); // Close together but distinct
+    MX.setY(idx, 500);
+    MX.setEnergy(idx, 20);
+    MX.setLogic(idx, new Uint8Array(8).fill(0));
   }
 
   console.log("🕸️ Priming Bonds (A-B, B-C)...");
   // Manually establish bonds for the test
-  STATE_MATRIX.setBondTarget(idxA, 0, idxB);
-  STATE_MATRIX.setBondStiffness(idxA, 0, 1.0); // Strong synapse
-  STATE_MATRIX.setBondTarget(idxB, 0, idxA);
-  STATE_MATRIX.setBondStiffness(idxB, 0, 1.0);
+  MX.setBondTarget(idxA, 0, idxB);
+  MX.setBondStiffness(idxA, 0, 1.0); // Strong synapse
+  MX.setBondTarget(idxB, 0, idxA);
+  MX.setBondStiffness(idxB, 0, 1.0);
 
-  STATE_MATRIX.setBondTarget(idxB, 1, idxC);
-  STATE_MATRIX.setBondStiffness(idxB, 1, 1.0);
-  STATE_MATRIX.setBondTarget(idxC, 0, idxB);
-  STATE_MATRIX.setBondStiffness(idxC, 0, 1.0);
+  MX.setBondTarget(idxB, 1, idxC);
+  MX.setBondStiffness(idxB, 1, 1.0);
+  MX.setBondTarget(idxC, 0, idxB);
+  MX.setBondStiffness(idxC, 0, 1.0);
 
   SPATIAL_HASH.build(atoms);
 
@@ -46,17 +46,17 @@ async function runTest() {
   console.log("\n🌀 TICK 1: Atom A (1) triggers ISA_SIGNAL...");
   const logicA = new Uint8Array(8);
   logicA[0] = ISA_SIGNAL;
-  STATE_MATRIX.setLogic(idxA, logicA);
+  MX.setLogic(idxA, logicA);
 
   await PULSE.tick();
 
   console.log(
-    `📊 A Phase: ${STATE_MATRIX.getPhase(idxA)} | B Resonance: ${
-      STATE_MATRIX.getResonance(idxB)
+    `📊 A Phase: ${MX.getPhase(idxA)} | B Resonance: ${
+      MX.getResonance(idxB)
     }`,
   );
 
-  if (STATE_MATRIX.getResonance(idxB) > 0) {
+  if (MX.getResonance(idxB) > 0) {
     console.log("✅ Signal received by B");
   } else {
     console.log("❌ Signal propagation FAIL");
@@ -70,11 +70,11 @@ async function runTest() {
   console.log("\n🌀 TICK 2-5: Accumulating resonance in B...");
   for (let i = 0; i < 4; i++) {
     // A is in refractory, we need to wait or reset it for the test
-    STATE_MATRIX.setPhase(idxA, 0);
+    MX.setPhase(idxA, 0);
     await PULSE.tick();
   }
 
-  console.log(`📊 B Resonance: ${STATE_MATRIX.getResonance(idxB)}`);
+  console.log(`📊 B Resonance: ${MX.getResonance(idxB)}`);
 
   console.log(
     "\n🌀 TICK 6: B threshold reached -> Surge & Propagation to C...",
@@ -82,15 +82,15 @@ async function runTest() {
   await PULSE.tick();
 
   console.log(
-    `📊 B Energy: ${STATE_MATRIX.getEnergy(idxB).toFixed(1)} | C Resonance: ${
-      STATE_MATRIX.getResonance(idxC)
+    `📊 B Energy: ${MX.getEnergy(idxB).toFixed(1)} | C Resonance: ${
+      MX.getResonance(idxC)
     }`,
   );
 
-  if (STATE_MATRIX.getEnergy(idxB) > 20) {
+  if (MX.getEnergy(idxB) > 20) {
     console.log("✅ B Metabolic Surge SUCCESS");
   }
-  if (STATE_MATRIX.getResonance(idxC) > 0) {
+  if (MX.getResonance(idxC) > 0) {
     console.log("✅ Signal propagated to C SUCCESS");
   }
 

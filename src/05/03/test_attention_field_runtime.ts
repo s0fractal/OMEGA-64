@@ -1,5 +1,5 @@
 import { AVATAR_ENGINE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { GRID_W, SCALE } from "@generated";
 
 const getGridIdx = (x: number, y: number) => {
@@ -16,18 +16,18 @@ const assert = (cond: boolean, reason: string): void => {
 };
 
 const main = () => {
-  STATE_MATRIX.clear();
+  MX.clear();
 
   const center = getGridIdx(700, 400);
   const east = getGridIdx(720, 400);
 
-  const beforeCenter = STATE_MATRIX.attentionField[center];
-  const beforeEast = STATE_MATRIX.attentionField[east];
+  const beforeCenter = MX.attentionField[center];
+  const beforeEast = MX.attentionField[east];
 
   AVATAR_ENGINE.dropPheromone(700, 400);
 
-  const afterCenter = STATE_MATRIX.attentionField[center];
-  const afterEast = STATE_MATRIX.attentionField[east];
+  const afterCenter = MX.attentionField[center];
+  const afterEast = MX.attentionField[east];
   assert(afterCenter > beforeCenter, "center attention should increase");
   assert(afterEast > beforeEast, "neighbor attention should receive gradient");
 

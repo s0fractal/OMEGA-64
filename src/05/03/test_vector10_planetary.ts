@@ -1,6 +1,6 @@
 import { GRID_W } from "@generated";
 // OMEGA-64 | test_vector10_planetary.ts | Vector 10 Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { SOVEREIGN_ORACLE } from "@generated";
 import {
@@ -13,7 +13,7 @@ async function runTest() {
 
   // 0. BYPASS STARTUP SELF-TEST
   // The self-test clears the matrix if no atoms are present.
-  STATE_MATRIX.seedAtom(99999, 1n, 0, 0, 0, 0);
+  MX.seedAtom(99999, 1n, 0, 0, 0, 0);
 
   // 1. RECRYSTALLIZATION TEST (VOID -> WIRE)
   console.log("\n--- [1] Recrystallization Test ---");
@@ -22,16 +22,16 @@ async function runTest() {
   const sourceIdx = ty * GRID_W + (tx - 1);
 
   // Set source next to VOID
-  STATE_MATRIX.setGridType(sourceIdx, 4); // STR_SOURCE
-  STATE_MATRIX.setGridCharge(sourceIdx, 255);
+  MX.setGridType(sourceIdx, 4); // STR_SOURCE
+  MX.setGridCharge(sourceIdx, 255);
   // Ensure target is VOID
-  Atomics.store(STATE_MATRIX.structureGrid, targetIdx, 0);
+  Atomics.store(MX.structureGrid, targetIdx, 0);
   console.log(`Target ${targetIdx} initialized to STR_VOID.`);
 
   // Run a few ticks
   for (let i = 0; i < 10; i++) {
     await PULSE.tick();
-    const rawVal = Atomics.load(STATE_MATRIX.structureGrid, targetIdx);
+    const rawVal = Atomics.load(MX.structureGrid, targetIdx);
     const type = rawVal & 0xFF;
     const charge = (rawVal >> 16) & 0xFF;
     console.log(
@@ -42,7 +42,7 @@ async function runTest() {
     if (type === 1) break; // Captured early
   }
 
-  const resultType = STATE_MATRIX.getGridType(targetIdx);
+  const resultType = MX.getGridType(targetIdx);
   console.log(`Resulting Type at (${tx},${ty}): ${resultType}`);
   if (resultType === 1) {
     console.log("✅ Recrystallization Successful: VOID became WIRE.");
@@ -58,7 +58,7 @@ async function runTest() {
 
   for (let i = 0; i < 20; i++) {
     // i, id, x, y, energy, resonance, logicVal, script
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       i,
       BigInt(i + 1),
       700 + i,
@@ -87,7 +87,7 @@ async function runTest() {
   // 3. WHISPER CHANNEL TEST (High Coherence -> Memetic Seeding)
   console.log("\n--- [3] Whisper Channel Test ---");
   // Force high coherence via direct memory write for testing
-  Atomics.store(STATE_MATRIX.coherence, 0, 1000);
+  Atomics.store(MX.coherence, 0, 1000);
 
   // High coherence + tick should trigger broadcastWhisper
   const initialMutationCount =

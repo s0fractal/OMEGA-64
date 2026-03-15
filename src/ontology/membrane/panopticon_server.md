@@ -15,7 +15,7 @@ vars:
   - LOGGER
   - Li
   - Lw
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - PANOPTICON_SERVER
 ---
@@ -93,8 +93,8 @@ export const PANOPTICON_SERVER = {
     setInterval(() => {
       if (clients.size === 0) return;
 
-      const activeAtoms = STATE_MATRIX.getActiveIndices().length;
-      const energy = STATE_MATRIX.getMatrixResonance();
+      const activeAtoms = MX.getActiveIndices().length;
+      const energy = MX.getMatrixResonance();
       
       const latestCommentary = AKASHA_CODEX._getChronicleIndex()
         .filter((entry: any) => entry.type === "observer_commentary")

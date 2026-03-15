@@ -1,5 +1,5 @@
 import { PULSE } from "@07/02/02/mod.ts";
-import { STATE_MATRIX } from "@07/02/00/mod.ts";
+import { MX } from "@07/02/00/mod.ts";
 import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";

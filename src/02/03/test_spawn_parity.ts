@@ -1,5 +1,5 @@
 // OMEGA-64 | test_spawn_parity.ts | Spawn Resolution Verifier
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { MAX_ATOMS, SPAWN_REQUESTS_OFFSET } from "@generated";
 import { PULSE } from "@generated";
 
@@ -7,10 +7,10 @@ async function testSpawnParity() {
   console.log("🧬 [TEST] Starting Spawn Resolution Parity Test...");
 
   const MAX_ATOMS = MAX_ATOMS;
-  const { buffer: sharedBuffer } = STATE_MATRIX.STATE_MATRIX;
+  const { buffer: sharedBuffer } = MX.MX;
 
   // 1. Clear state
-  STATE_MATRIX.STATE_MATRIX.clear();
+  MX.MX.clear();
   // Clear spawn queue (header + data)
   new Uint8Array(sharedBuffer).fill(
     0,
@@ -38,7 +38,7 @@ async function testSpawnParity() {
   // We'll occupy some slots to test findFreeSlot
   for (let i = 0; i < 100; i++) {
     if (i % 3 === 0) {
-      STATE_MATRIX.STATE_MATRIX.setId(i, BigInt(i + 1));
+      MX.MX.setId(i, BigInt(i + 1));
     }
   }
 
@@ -65,7 +65,7 @@ async function testSpawnParity() {
   // Clone ids for host reference
   const refIds = new BigUint64Array(MAX_ATOMS);
   for (let i = 0; i < MAX_ATOMS; i++) {
-    refIds[i] = STATE_MATRIX.STATE_MATRIX.getId(i);
+    refIds[i] = MX.MX.getId(i);
   }
 
   // --- RUN HOST LOGIC ---
@@ -127,7 +127,7 @@ async function testSpawnParity() {
   // --- COMPARISON ---
   let errors = 0;
   for (let i = 0; i < MAX_ATOMS; i++) {
-    const wasmId = STATE_MATRIX.STATE_MATRIX.getId(i);
+    const wasmId = MX.MX.getId(i);
     const hostId = refIds[i];
     if (wasmId !== hostId) {
       if (errors < 10) {

@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
 import { ENERGY_OFFSET } from "@generated";
 
@@ -12,7 +12,7 @@ async function runAudit() {
 
   // 1. Snapshot initial state
   const energyView = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     ENERGY_OFFSET,
     1000,
   );

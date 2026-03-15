@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests: passive decay, ISA.DECAY (auto/specific/all modes), SENSE type 0x0D, HEBB protection.
 
 import { ISA, LAMBDA_VM } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import {
   assert,
   assertEquals,
@@ -115,44 +115,44 @@ Deno.test("Era 57: ISA.DECAY clamps weight at 0", () => {
 
 // ---------- Test 5: Passive decay in PULSE_WORKER (simulated) ----------
 Deno.test("Era 57: Passive decay decrements weights by 1 every 10 ticks", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 777n);
-  STATE_MATRIX.setSynapticValue(idx, 0, 50);
-  STATE_MATRIX.setSynapticValue(idx, 1, 100);
-  STATE_MATRIX.setSynapticValue(idx, 2, 20);
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 777n);
+  MX.setSynapticValue(idx, 0, 50);
+  MX.setSynapticValue(idx, 1, 100);
+  MX.setSynapticValue(idx, 2, 20);
 
   // Simulate passive decay (no HEBB fired, pulseId % 10 === 0)
   const didHebb = false;
   const pulseId = 10; // divisible by 10
   if (!didHebb && pulseId % 10 === 0) {
     for (let s = 0; s < 3; s++) {
-      const cur = STATE_MATRIX.getSynapticValue(idx, s);
-      if (cur > 0) STATE_MATRIX.setSynapticValue(idx, s, cur - 1);
+      const cur = MX.getSynapticValue(idx, s);
+      if (cur > 0) MX.setSynapticValue(idx, s, cur - 1);
     }
   }
 
-  assertEquals(STATE_MATRIX.getSynapticValue(idx, 0), 49, "w0 decayed 50→49");
-  assertEquals(STATE_MATRIX.getSynapticValue(idx, 1), 99, "w1 decayed 100→99");
-  assertEquals(STATE_MATRIX.getSynapticValue(idx, 2), 19, "w2 decayed 20→19");
+  assertEquals(MX.getSynapticValue(idx, 0), 49, "w0 decayed 50→49");
+  assertEquals(MX.getSynapticValue(idx, 1), 99, "w1 decayed 100→99");
+  assertEquals(MX.getSynapticValue(idx, 2), 19, "w2 decayed 20→19");
 
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
 });
 
 // ---------- Test 6: Passive decay skipped on non-decay tick ----------
 Deno.test("Era 57: Passive decay skipped when pulseId % 10 !== 0", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 778n);
-  STATE_MATRIX.setSynapticValue(idx, 0, 50);
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 778n);
+  MX.setSynapticValue(idx, 0, 50);
 
   const pulseId = 11; // NOT divisible by 10
-  if (11 % 10 === 0) STATE_MATRIX.setSynapticValue(idx, 0, 49);
+  if (11 % 10 === 0) MX.setSynapticValue(idx, 0, 49);
 
   assertEquals(
-    STATE_MATRIX.getSynapticValue(idx, 0),
+    MX.getSynapticValue(idx, 0),
     50,
     "Weight unchanged on non-decay tick",
   );
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
 });
 
 // ---------- Test 7: SENSE type 0x0D reads minimum weight ----------
@@ -171,21 +171,21 @@ Deno.test("Era 57: ISA.SENSE type 0x0D reads minimum weight into register", () =
 
 // ---------- Test 8: HEBB+DECAY interaction: HEBB wins, passive skipped ----------
 Deno.test("Era 57: If HEBB fired this tick, passive decay skipped (simulated)", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 779n);
-  STATE_MATRIX.setSynapticValue(idx, 0, 50);
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 779n);
+  MX.setSynapticValue(idx, 0, 50);
 
   // Simulate: HEBB fired → didHebb=true → passive decay skipped
   const didHebb = true;
   const pulseId = 10;
   if (!didHebb && pulseId % 10 === 0) {
-    STATE_MATRIX.setSynapticValue(idx, 0, 49); // should NOT happen
+    MX.setSynapticValue(idx, 0, 49); // should NOT happen
   }
 
   assertEquals(
-    STATE_MATRIX.getSynapticValue(idx, 0),
+    MX.getSynapticValue(idx, 0),
     50,
     "Weight stays 50 when HEBB protected",
   );
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
 });

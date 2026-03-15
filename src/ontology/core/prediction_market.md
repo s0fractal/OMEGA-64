@@ -4,9 +4,9 @@ type: module
 tags:
   - substrate
 deps:
-  - STATE_MATRIX
+  - MX
 vars:
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - PREDICTION_MARKET
   - PredictionMarketAkashaDelegate
@@ -84,7 +84,7 @@ export const PREDICTION_MARKET = {
     const proposalHex = Array.from(proposedInstructions).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
 
     if (finalBet >= CRISIS_THRESHOLD) {
       const winnersHex = proposalHex;
@@ -99,14 +99,14 @@ export const PREDICTION_MARKET = {
         0;
       PREDICTION_MARKET.successfulGenomes.set(winnersHex, currentWins + 1);
 
-      // Apply the mutation to all active atoms in the single STATE_MATRIX
-      const active = STATE_MATRIX.getActiveIndices();
+      // Apply the mutation to all active atoms in the single MX
+      const active = MX.getActiveIndices();
       for (const idx of active) {
-        STATE_MATRIX.setInstructions(idx, proposedInstructions);
+        MX.setInstructions(idx, proposedInstructions);
 
         // Minor energy penalty for adopting the mutation (adaptability toll)
-        const currentEnergy = STATE_MATRIX.getEnergy(idx);
-        STATE_MATRIX.setEnergy(idx, Math.max(0, currentEnergy - 10));
+        const currentEnergy = MX.getEnergy(idx);
+        MX.setEnergy(idx, Math.max(0, currentEnergy - 10));
       }
       delegate?.recordMarketResolution(tick, true, finalBet, winnersHex);
     } else {
@@ -144,9 +144,9 @@ export const PREDICTION_MARKET = {
       return; // Concurrency guard
     }
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const winners = active.filter((idx) => {
-      const instr = STATE_MATRIX.getInstructions(idx);
+      const instr = MX.getInstructions(idx);
       const hex = Array.from(instr).map((b) => b.toString(16).padStart(2, "0"))
         .join("").toUpperCase();
       return PREDICTION_MARKET.successfulGenomes.has(hex);
@@ -157,7 +157,7 @@ export const PREDICTION_MARKET = {
     // Weight distribution by the number of historical wins
     let totalWinWeight = 0;
     const weights = winners.map((idx) => {
-      const hex = Array.from(STATE_MATRIX.getInstructions(idx)).map((b) =>
+      const hex = Array.from(MX.getInstructions(idx)).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
       const w = PREDICTION_MARKET.successfulGenomes.get(hex) || 1;
@@ -174,8 +174,8 @@ export const PREDICTION_MARKET = {
     for (let i = 0; i < winners.length; i++) {
       const idx = winners[i];
       const share = (weights[i] / totalWinWeight) * dividend;
-      const currentEnergy = STATE_MATRIX.getEnergy(idx);
-      STATE_MATRIX.setEnergy(idx, currentEnergy + share);
+      const currentEnergy = MX.getEnergy(idx);
+      MX.setEnergy(idx, currentEnergy + share);
     }
   },
 };

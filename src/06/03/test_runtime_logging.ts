@@ -9,7 +9,7 @@ type Violation = {
 const RUNTIME_HOT_PATH_FILES = [
   "PULSE.ts",
   "PULSE_WORKER.ts",
-  "STATE_MATRIX.ts",
+  "MX.ts",
   "SNAPSHOT_ENGINE.ts",
   "BREATH.ts",
 ] as const;

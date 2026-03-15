@@ -1,6 +1,6 @@
 // OMEGA-64 | test_genetic_mutation.ts | Stage 34 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   PULSE
 } from "@generated";
@@ -16,19 +16,19 @@ import {
 Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   Li("--- STAGE 34: GENETIC MUTATION TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 100);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 100);
   await PULSE.initWorkers(1);
 
   const atomA = 50; // Mutator
   const atomB = 51; // Target
 
-  STATE_MATRIX.setId(atomA, 50n);
-  STATE_MATRIX.setEnergy(atomA, 5000); // Plenty of energy to afford 50 gas
+  MX.setId(atomA, 50n);
+  MX.setEnergy(atomA, 5000); // Plenty of energy to afford 50 gas
 
-  STATE_MATRIX.setId(atomB, 51n);
-  STATE_MATRIX.setEnergy(atomB, 1000);
+  MX.setId(atomB, 51n);
+  MX.setEnergy(atomB, 1000);
 
   // Atom B starts with a benign script: SET R0 = SYS.YIELD (0x01), SYSCALL
   const scriptB = new Uint8Array(64);
@@ -37,7 +37,7 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   scriptB[2] = SYS_YIELD;
   scriptB[3] = OP_SYSCALL;
   scriptB[4] = 0;
-  STATE_MATRIX.setInstructions(atomB, scriptB);
+  MX.setInstructions(atomB, scriptB);
 
   // Atom A will mutate Atom B: Replace the first instruction with OP_NOP (0x00)
   const scriptA = new Uint8Array(64);
@@ -55,11 +55,11 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   scriptA[11] = OP_NOP; // R3 = newValue (0)
   scriptA[12] = OP_SYSCALL;
   scriptA[13] = 0;
-  STATE_MATRIX.setInstructions(atomA, scriptA);
+  MX.setInstructions(atomA, scriptA);
 
   // Verify before state
   assertEquals(
-    STATE_MATRIX.getInstructions(atomB)[0],
+    MX.getInstructions(atomB)[0],
     OP_SET,
     "Atom B should start with OP_SET",
   );
@@ -68,7 +68,7 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   await PULSE.tick();
 
   // Verify after state
-  const mutatedScriptB = STATE_MATRIX.getInstructions(atomB);
+  const mutatedScriptB = MX.getInstructions(atomB);
   assertEquals(
     mutatedScriptB[0],
     OP_NOP,
@@ -81,7 +81,7 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   );
 
   // Verify cost deduction
-  const energyA = STATE_MATRIX.getEnergy(atomA);
+  const energyA = MX.getEnergy(atomA);
   // Initial 5000. Mutate costs 50 gas -> 50,000 scaled. Wait, 50 gas * 1000 = 50000 scaled.
   // Initial energy was 5000 unscaled (5,000,000 scaled).
   // Cost is 50 * 1000 = 50,000. Base tax is 100.

@@ -13,7 +13,7 @@ entry: true
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX, LOGGER, Li } from "@g12";
+import { MX, LOGGER, Li } from "@g12";
 import {
   SEMANTIC_MEMBRANE
 } from "@g12";
@@ -77,7 +77,7 @@ export const BREATH = {
       await SEMANTIC_MEMBRANE.injectThought(thought, weight);
 
       // Phase 23: Entropy Flux (Negative Entropy Injection)
-      const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
+      const energyInjected = MX.injectEnergy(weight * 2);
       Li(
         `   [BREATH] Negentropy Flux: +${
           (weight * 2).toFixed(1)

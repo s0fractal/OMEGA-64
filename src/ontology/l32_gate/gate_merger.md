@@ -14,7 +14,7 @@ import {
   GATE_BUDGET
 } from "@g12";
 import {
-  STATE_MATRIX
+  MX
 } from "@g12";
 
 type I16Limits = {
@@ -90,7 +90,7 @@ export const mergeGateProposals = (
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
       );
     } else if (p.origin_atom_idx !== undefined) {
-      const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
+      const resonance = MX.getResonance(p.origin_atom_idx);
       Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
@@ -110,7 +110,7 @@ export const mergeGateProposals = (
 
     const atomResonance = p.resonance ??
       (p.origin_atom_idx !== undefined
-        ? STATE_MATRIX.getResonance(p.origin_atom_idx)
+        ? MX.getResonance(p.origin_atom_idx)
         : 0);
     const globalSyntropy = config.global_syntropy || 0;
     const localQuorum = p.quorum_strength || 0;

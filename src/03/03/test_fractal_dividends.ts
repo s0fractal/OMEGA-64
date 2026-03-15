@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { betPoolInt, PREDICTION_MARKET } from "@generated";
 
 console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
@@ -7,9 +7,9 @@ console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
 const winnerIdx = 1;
 const loserIdx = 2;
 // @ts-ignore
-STATE_MATRIX.setId(winnerIdx, 101n);
+MX.setId(winnerIdx, 101n);
 // @ts-ignore
-STATE_MATRIX.setId(loserIdx, 102n);
+MX.setId(loserIdx, 102n);
 
 const winningLogic = new Uint8Array([
   0xDE,
@@ -32,11 +32,11 @@ const losingLogic = new Uint8Array([
   0x00,
 ]);
 
-STATE_MATRIX.setLogic(winnerIdx, winningLogic);
-STATE_MATRIX.setLogic(loserIdx, losingLogic);
+MX.setLogic(winnerIdx, winningLogic);
+MX.setLogic(loserIdx, losingLogic);
 
-STATE_MATRIX.setEnergy(winnerIdx, 100);
-STATE_MATRIX.setEnergy(loserIdx, 100);
+MX.setEnergy(winnerIdx, 100);
+MX.setEnergy(loserIdx, 100);
 
 // 2. Setup Market Success
 const winningHex = Array.from(winningLogic).map((b) =>
@@ -57,8 +57,8 @@ console.log(
 PREDICTION_MARKET.distributeDividends();
 
 // 5. Verify
-const newWinnerEnergy = STATE_MATRIX.getEnergy(winnerIdx);
-const newLoserEnergy = STATE_MATRIX.getEnergy(loserIdx);
+const newWinnerEnergy = MX.getEnergy(winnerIdx);
+const newLoserEnergy = MX.getEnergy(loserIdx);
 const newPool = Atomics.load(betPoolInt, 0) / SCALE;
 
 console.log(

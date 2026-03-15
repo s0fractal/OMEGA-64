@@ -1,5 +1,5 @@
 // OMEGA-64 | test_stigmergic_coordination.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX, LOGGER, Li, Lw, Le } from "@generated";
+import { MX, LOGGER, Li, Lw, Le } from "@generated";
 const { OP_BUILD, OP_RESONATE } = RISC;
 import {
   QuorumAdvocate
@@ -21,15 +21,15 @@ async function runTest() {
   const atomA = 0;
   const atomB = 1;
 
-  STATE_MATRIX.setX(atomA, 100);
-  STATE_MATRIX.setY(atomA, 100);
-  STATE_MATRIX.set_resonance(atomA, 50);
-  STATE_MATRIX.set_phase(atomA, 1000);
+  MX.setX(atomA, 100);
+  MX.setY(atomA, 100);
+  MX.set_resonance(atomA, 50);
+  MX.set_phase(atomA, 1000);
 
-  STATE_MATRIX.setX(atomB, 101); // Close to atomA
-  STATE_MATRIX.setY(atomB, 101);
-  STATE_MATRIX.set_resonance(atomB, 50);
-  STATE_MATRIX.set_phase(atomB, 2000); // Different phase
+  MX.setX(atomB, 101); // Close to atomA
+  MX.setY(atomB, 101);
+  MX.set_resonance(atomB, 50);
+  MX.set_phase(atomB, 2000); // Different phase
 
   // 2. Test QuorumAdvocate evaluation
   const activeIdx = [atomA, atomB];
@@ -60,7 +60,7 @@ async function runTest() {
   // 4. Test OP_BUILD cost logic simulation
   // Historical context (Lineage)
   const lineageHash = 0x12345678n;
-  STATE_MATRIX.setLineage(atomA, lineageHash);
+  MX.setLineage(atomA, lineageHash);
   // In a real run, wisdom would reward high-resonance lineages.
 
   Li("✅ Stigmergic Coordination Verification Script Completed.");

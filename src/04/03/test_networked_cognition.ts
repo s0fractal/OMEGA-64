@@ -3,7 +3,7 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   PULSE
 } from "@generated";
@@ -19,19 +19,19 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   Li("--- STAGE 30: NETWORKED COGNITION TEST ---");
 
   // 1. Initialize world
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0); // Ensure IDLE (0)
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1); // Skip Gate audit
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0); // Ensure IDLE (0)
+  Atomics.store(MX.tickCounter, 0, 1); // Skip Gate audit
   await PULSE.initWorkers(1);
 
   // 2. Spawn two test atoms
   const senderIdx = 1;
   const receiverIdx = 2;
-  STATE_MATRIX.setId(senderIdx, 1n);
-  STATE_MATRIX.setEnergy(senderIdx, 1000);
+  MX.setId(senderIdx, 1n);
+  MX.setEnergy(senderIdx, 1000);
 
-  STATE_MATRIX.setId(receiverIdx, 2n);
-  STATE_MATRIX.setEnergy(receiverIdx, 1000);
+  MX.setId(receiverIdx, 2n);
+  MX.setEnergy(receiverIdx, 1000);
 
   // 3. Sender Script (SYS.MSG)
   // R0 = SYS.MSG (8)
@@ -57,7 +57,7 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
 
   senderScript[12] = OP_SYSCALL;
   senderScript[13] = 0;
-  STATE_MATRIX.setInstructions(senderIdx, senderScript);
+  MX.setInstructions(senderIdx, senderScript);
 
   // 4. Receiver Script (SYS.READ_INBOX)
   // R0 = SYS.READ_INBOX (9)
@@ -68,19 +68,19 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
 
   receiverScript[3] = OP_SYSCALL;
   receiverScript[4] = 0;
-  STATE_MATRIX.setInstructions(receiverIdx, receiverScript);
+  MX.setInstructions(receiverIdx, receiverScript);
 
   // Verify mailboxes are empty
-  assertEquals(STATE_MATRIX.getMailboxMsgType(receiverIdx), 0);
-  assertEquals(STATE_MATRIX.getMailboxPayload(receiverIdx), 0);
+  assertEquals(MX.getMailboxMsgType(receiverIdx), 0);
+  assertEquals(MX.getMailboxPayload(receiverIdx), 0);
 
   // 5. Tick: Sender sends message, Receiver reads it (in the same parallel pulse)
   Li("Tick 1: Executing PULSE...");
   await PULSE.tick();
 
   // 6. Verify message was read and cleared
-  const msgTypeAfterRead = STATE_MATRIX.getMailboxMsgType(receiverIdx);
-  const payloadAfterRead = STATE_MATRIX.getMailboxPayload(receiverIdx);
+  const msgTypeAfterRead = MX.getMailboxMsgType(receiverIdx);
+  const payloadAfterRead = MX.getMailboxPayload(receiverIdx);
   assertEquals(
     msgTypeAfterRead,
     0,
@@ -93,14 +93,14 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   );
 
   // Verify R0 and R1 of Receiver contain the read values
-  const r0 = STATE_MATRIX.getReg(receiverIdx, 0);
-  const r1 = STATE_MATRIX.getReg(receiverIdx, 1);
+  const r0 = MX.getReg(receiverIdx, 0);
+  const r1 = MX.getReg(receiverIdx, 1);
   assertEquals(r0, 99, "Receiver R0 should contain msgType 99");
   assertEquals(r1, 42, "Receiver R1 should contain payload 42");
 
   // Verify Sender Gas deduction (OP_SET*4 + SYS_MSG)
   // Cost = 20 for SYS_MSG + 4 for SETs = ~ 24 + metabolic tick
-  const senderEnergy = STATE_MATRIX.getEnergy(senderIdx);
+  const senderEnergy = MX.getEnergy(senderIdx);
   assertEquals(
     senderEnergy < 980,
     true,

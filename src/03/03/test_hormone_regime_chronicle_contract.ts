@@ -10,7 +10,7 @@
  * 5. AkashaServiceState.hormoneRegime is a string (type sanity at import).
  */
 
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 let passed = 0;
 let failed = 0;
@@ -122,9 +122,9 @@ console.log("\n── Section 4: SharedArrayBuffer Roundtrip (all 6 channels) �
 
 const testVals = [1234, 512, 2048, 0, 1600, 777];
 for (let i = 0; i < 6; i++) {
-  STATE_MATRIX.setHormone(i, testVals[i]);
+  MX.setHormone(i, testVals[i]);
 }
-const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.getHormone(id));
+const h = [0, 1, 2, 3, 4, 5].map((id) => MX.getHormone(id));
 for (let i = 0; i < 6; i++) {
   assert(
     h[i] === testVals[i],

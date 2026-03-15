@@ -1,6 +1,6 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { SIGNAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
 
 const CAPTURE_MARKER = "__OMEGA_SPAWN_CAPTURE__";
@@ -65,9 +65,9 @@ const hashHex = async (payload: string): Promise<string> => {
 const makeReplicatorScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = STATE_MATRIX.RISC.OP_REPLICATE;
-  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
-  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+  script[pc++] = MX.RISC.OP_REPLICATE;
+  script[pc++] = MX.RISC.OP_SIGNAL;
+  script[pc++] = MX.RISC.OP_JMP;
   script[pc++] = 0;
   return script;
 };
@@ -75,14 +75,14 @@ const makeReplicatorScript = (): Uint8Array => {
 const makeArchitectScript = (): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
-  script[pc++] = STATE_MATRIX.RISC.OP_ROLE;
+  script[pc++] = MX.RISC.OP_ROLE;
   script[pc++] = 0;
-  script[pc++] = STATE_MATRIX.ROLE_ARCHITECT;
-  script[pc++] = STATE_MATRIX.RISC.OP_BUILD;
+  script[pc++] = MX.ROLE_ARCHITECT;
+  script[pc++] = MX.RISC.OP_BUILD;
   script[pc++] = 1; // STRUCTURE.WIRE
   script[pc++] = 1; // state=1
-  script[pc++] = STATE_MATRIX.RISC.OP_SIGNAL;
-  script[pc++] = STATE_MATRIX.RISC.OP_JMP;
+  script[pc++] = MX.RISC.OP_SIGNAL;
+  script[pc++] = MX.RISC.OP_JMP;
   script[pc++] = 0;
   return script;
 };
@@ -92,9 +92,9 @@ const seedScenario = (
   replicators: number,
   architects: number,
 ): void => {
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, STATE_MATRIX.SYNC.IDLE);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, MX.SYNC.IDLE);
+  Atomics.store(MX.tickCounter, 0, 1);
 
   const repScript = makeReplicatorScript();
   const archScript = makeArchitectScript();
@@ -109,7 +109,7 @@ const seedScenario = (
     genome[1] = (seed >>> 8) & 0xff;
     genome[2] = 0xAA;
     genome[3] = i & 0xff;
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       idx,
       id,
       x,
@@ -119,7 +119,7 @@ const seedScenario = (
       genome,
       repScript,
     );
-    STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PRODUCER);
+    MX.setRole(idx, MX.ROLE_PRODUCER);
   }
 
   for (let i = 0; i < architects; i++) {
@@ -132,7 +132,7 @@ const seedScenario = (
     genome[1] = (seed + i * 13) & 0xff;
     genome[2] = 0x0D;
     genome[3] = 0x42;
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       idx,
       id,
       x,
@@ -142,7 +142,7 @@ const seedScenario = (
       genome,
       archScript,
     );
-    STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_ARCHITECT);
+    MX.setRole(idx, MX.ROLE_ARCHITECT);
   }
 };
 
@@ -163,39 +163,39 @@ const gridProbe = (
 };
 
 const buildSnapshot = (): Snapshot => {
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const sampleIdx = active.slice(0, 192);
 
   const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     STRUCTURE_GRID_OFFSET,
     GRID_CELLS,
   );
   const signalGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     SIGNAL_GRID_OFFSET,
     GRID_CELLS,
   );
   const spawnHead = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     SPAWN_REQUESTS_OFFSET,
     2,
   );
 
   const sample: AtomSample[] = sampleIdx.map((idx) => ({
     idx,
-    id: STATE_MATRIX.getId(idx).toString(),
-    role: STATE_MATRIX.getRole(idx),
-    x: STATE_MATRIX.getX(idx),
-    y: STATE_MATRIX.getY(idx),
-    energy: Number(STATE_MATRIX.getEnergy(idx).toFixed(3)),
-    resonance: STATE_MATRIX.getResonance(idx),
-    pc: STATE_MATRIX.getPC(idx),
+    id: MX.getId(idx).toString(),
+    role: MX.getRole(idx),
+    x: MX.getX(idx),
+    y: MX.getY(idx),
+    energy: Number(MX.getEnergy(idx).toFixed(3)),
+    resonance: MX.getResonance(idx),
+    pc: MX.getPC(idx),
   }));
 
   return {
     activeCount: active.length,
-    tickCounter: Atomics.load(STATE_MATRIX.tickCounter, 0),
+    tickCounter: Atomics.load(MX.tickCounter, 0),
     spawnHeadWrite: Atomics.load(spawnHead, 0),
     spawnHeadRead: Atomics.load(spawnHead, 1),
     structureProbe: gridProbe(structureGrid, 30, 20, 20, 12),

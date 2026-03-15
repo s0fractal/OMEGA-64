@@ -9,7 +9,7 @@ import {
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 function makeViralGrid(): Uint8Array {
   return new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9));
@@ -145,17 +145,17 @@ Deno.test("Era 60: ISA.INCORPORATE_PLASMID ignores plasmid if intensity <= p1", 
   );
 });
 
-// ---------- Test 5: PULSE_WORKER applies incorporatePlasmidRequest to STATE_MATRIX ----------
+// ---------- Test 5: PULSE_WORKER applies incorporatePlasmidRequest to MX ----------
 Deno.test("Era 60: PULSE_WORKER applying incorporatePlasmidRequest overwrites logic and reduces intensity", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 888n);
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 888n);
   // Set old logic
-  const oldLogicBytes = STATE_MATRIX.getLogic(idx);
+  const oldLogicBytes = MX.getLogic(idx);
   for (let i = 0; i < 8; i++) oldLogicBytes[i] = 1;
-  STATE_MATRIX.setLogic(idx, oldLogicBytes);
+  MX.setLogic(idx, oldLogicBytes);
 
   // Give it a role
-  const rolesArray = (STATE_MATRIX as any).roles as Uint8Array;
+  const rolesArray = (MX as any).roles as Uint8Array;
   if (rolesArray) Atomics.store(rolesArray, idx, 3); // Role 3
 
   const vGrid = makeViralGrid();
@@ -167,7 +167,7 @@ Deno.test("Era 60: PULSE_WORKER applying incorporatePlasmidRequest overwrites lo
 
   // Simulate updating logicBytes for VM and logic grid for State
   const logicBytes = new Uint8Array(8);
-  const globalLogicArray = (STATE_MATRIX as any).logic as Uint8Array; // Unsafe internal access for test
+  const globalLogicArray = (MX as any).logic as Uint8Array; // Unsafe internal access for test
   for (let j = 0; j < 8; j++) {
     logicBytes[j] = req.logic[j];
     if (globalLogicArray) {
@@ -199,5 +199,5 @@ Deno.test("Era 60: PULSE_WORKER applying incorporatePlasmidRequest overwrites lo
     assertEquals(rolesArray[idx], 0, "Atom role reset after identity mutation");
   }
 
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
 });

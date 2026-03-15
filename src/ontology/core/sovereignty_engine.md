@@ -10,7 +10,7 @@ tags:
   - host
 min_level: 6
 vars:
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - DECREES
   - SOVEREIGNTY_ENGINE
@@ -71,7 +71,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     let regentIdx = -1;
 
     for (const idx of activeIndices) {
-      const res = STATE_MATRIX.getResonance(idx);
+      const res = MX.getResonance(idx);
       // --- ERA 8: QUADRATIC VOTING ---
       const power = Math.sqrt(res);
 
@@ -82,7 +82,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     }
 
     if (regentIdx !== -1) {
-      const logicBytes = STATE_MATRIX.getLogic(regentIdx);
+      const logicBytes = MX.getLogic(regentIdx);
       const logicStr = Array.from(logicBytes).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("");
@@ -97,7 +97,7 @@ export const SOVEREIGNTY_ENGINE: any = {
 
       SOVEREIGNTY_ENGINE.currentRegent = {
         idx: regentIdx,
-        energy: STATE_MATRIX.getEnergy(regentIdx),
+        energy: MX.getEnergy(regentIdx),
         genome: logicStr,
         legitimacy: bestPower * bestPower, // Return raw resonance for display
         activeDecree,
@@ -105,7 +105,7 @@ export const SOVEREIGNTY_ENGINE: any = {
       };
       if (activeDecree !== lastAnnouncedDecree) {
         lastAnnouncedDecree = activeDecree;
-        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        const tick = Atomics.load(MX.tickCounter, 0);
         delegate?.recordDecreeShift(
           tick,
           activeDecree,
@@ -126,7 +126,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
     if (lastAnnouncedDecree !== "NONE") {
       lastAnnouncedDecree = "NONE";
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Atomics.load(MX.tickCounter, 0);
       delegate?.recordDecreeShift(tick, "NONE", "NONE", 0);
     }
     return SOVEREIGNTY_ENGINE.currentRegent;
@@ -144,7 +144,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     // Collect counts by genome prefix
     const genomeCounts = new Map<number, number[]>(); // prefix → [indices]
     for (const idx of activeIndices) {
-      const logicBytes = STATE_MATRIX.getLogic(idx);
+      const logicBytes = MX.getLogic(idx);
       const view = new DataView(logicBytes.buffer, logicBytes.byteOffset);
       const prefix = view.getUint32(0, true);
       if (!genomeCounts.has(prefix)) genomeCounts.set(prefix, []);
@@ -173,14 +173,14 @@ export const SOVEREIGNTY_ENGINE: any = {
     let bestEnergy = 0;
     let regentIdx = dominantMembers[0];
     for (const idx of dominantMembers) {
-      const e = STATE_MATRIX.getEnergy(idx);
+      const e = MX.getEnergy(idx);
       if (e > bestEnergy) {
         bestEnergy = e;
         regentIdx = idx;
       }
     }
 
-    const logicBytes = STATE_MATRIX.getLogic(regentIdx);
+    const logicBytes = MX.getLogic(regentIdx);
     const colonyGenome = Array.from(logicBytes).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("");
@@ -201,7 +201,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
     if (activeDecree !== lastAnnouncedDecree) {
       lastAnnouncedDecree = activeDecree;
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Atomics.load(MX.tickCounter, 0);
       delegate?.recordDecreeShift(
         tick,
         activeDecree,

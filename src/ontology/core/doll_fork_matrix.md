@@ -45,7 +45,7 @@ extra_symbols:
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
 
 /**
- * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
+ * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline MX.
  * It allows for risk-free simulation, mutation, and relic cultivation without affecting global causality.
  */
 export class DollFork {

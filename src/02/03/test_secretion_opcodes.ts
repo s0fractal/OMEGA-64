@@ -1,6 +1,6 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GRID_CELLS } from "@generated";
-import { STATE_MATRIX, wasmMemory } from "@generated";
+import { MX, wasmMemory } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
 
 async function runSecretionOpcodeTests() {
@@ -20,24 +20,24 @@ async function runSecretionOpcodeTests() {
     idx: number,
   ) => void;
 
-  STATE_MATRIX.clear();
-  STATE_MATRIX.glyphHeaders.fill(0);
-  STATE_MATRIX.glyphPayload.fill(0);
+  MX.clear();
+  MX.glyphHeaders.fill(0);
+  MX.glyphPayload.fill(0);
 
   // 2. Setup Architect Atom
   const atomIdx = 20; // Skip trace threshold
-  STATE_MATRIX.setId(atomIdx, 100n);
-  STATE_MATRIX.setEnergy(atomIdx, 1000);
-  STATE_MATRIX.setRole(atomIdx, 3); // ROLE_ARCHITECT = 3
-  STATE_MATRIX.setX(atomIdx, 100);
-  STATE_MATRIX.setY(atomIdx, 100);
+  MX.setId(atomIdx, 100n);
+  MX.setEnergy(atomIdx, 1000);
+  MX.setRole(atomIdx, 3); // ROLE_ARCHITECT = 3
+  MX.setX(atomIdx, 100);
+  MX.setY(atomIdx, 100);
 
   // 3. Program: OP_COLLECTIVE mode 7 (Plasmid Emit)
   // Format: [0xA6][0x07][intensity][unused]
   const code = new Uint32Array(16);
   code[0] = 0xA6 | (7 << 8) | (128 << 16);
-  STATE_MATRIX.setCode(atomIdx, code);
-  STATE_MATRIX.setPC(atomIdx, 0);
+  MX.setCode(atomIdx, code);
+  MX.setPC(atomIdx, 0);
 
   console.log("--- Executing OP_COLLECTIVE mode 7 (PLASMID_EMIT) ---");
   execute_atom(atomIdx);
@@ -60,8 +60,8 @@ async function runSecretionOpcodeTests() {
   console.log("--- Executing OP_SIGNAL ---");
   const codeSignal = new Uint32Array(16);
   codeSignal[0] = 0x81; // OP_SIGNAL (1-byte opcode)
-  STATE_MATRIX.setCode(atomIdx, codeSignal);
-  STATE_MATRIX.setPC(atomIdx, 0);
+  MX.setCode(atomIdx, codeSignal);
+  MX.setPC(atomIdx, 0);
 
   execute_atom(atomIdx);
 
@@ -81,13 +81,13 @@ async function runSecretionOpcodeTests() {
   const tick_glyph_transport = instantiated.instance.exports
     .glyph_transport as (tick: number) => void;
 
-  STATE_MATRIX.glyphHeaders.fill(0);
-  STATE_MATRIX.glyphPayload.fill(0);
+  MX.glyphHeaders.fill(0);
+  MX.glyphPayload.fill(0);
 
   // Set high signal in a cell (use multiple of 32 due to WASM sampling)
   const cellIdx = 512;
   Atomics.store(
-    new Int32Array(STATE_MATRIX.buffer, 35200000 + 8000000, GRID_CELLS),
+    new Int32Array(MX.buffer, 35200000 + 8000000, GRID_CELLS),
     cellIdx,
     1000,
   ); // SIGNAL_GRID_OFF
@@ -95,7 +95,7 @@ async function runSecretionOpcodeTests() {
   // Set high memory in a cell
   const memoryBase = cellIdx * 8;
   const memoryGrid = new Uint8Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     36200000 + 8000000,
     GRID_CELLS * 8,
   );

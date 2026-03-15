@@ -17,7 +17,7 @@ vars:
   - PREDICTION_MARKET
   - RUNTIME_POLICY
   - SCALE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - CONTROL_INTENT_QUEUE
   - ControlIntentQueueDelegate
@@ -1072,11 +1072,11 @@ const writeMemoryCell = (
   payload: Uint8Array,
 ): void => {
   const q = clamp(Math.round(charge), 0, 0xFFFF);
-  STATE_MATRIX.memoryGrid[gridIdx] = q & 0xFF;
-  STATE_MATRIX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
-  STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
-  STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
-  STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
+  MX.memoryGrid[gridIdx] = q & 0xFF;
+  MX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
+  MX.memoryGrid[gridIdx + 2] = 0;
+  MX.memoryGrid[gridIdx + 3] = 0;
+  MX.memoryGrid.set(payload, gridIdx + 4);
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
@@ -1089,7 +1089,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
     return false;
   }
 
-  const idStr = STATE_MATRIX.getId(idx).toString();
+  const idStr = MX.getId(idx).toString();
   Li(
     `🛸 [FEDERATION] Applied queued binary migration from ${intent.sourceNode}: ${idStr}`,
   );
@@ -1100,12 +1100,12 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
   const r2 = intent.radius * intent.radius;
   let affected = 0;
   for (let i = 0; i < MAX_ATOMS; i++) {
-    if (STATE_MATRIX.getId(i) === 0n) continue;
-    const dx = STATE_MATRIX.getX(i) - intent.x;
-    const dy = STATE_MATRIX.getY(i) - intent.y;
+    if (MX.getId(i) === 0n) continue;
+    const dx = MX.getX(i) - intent.x;
+    const dy = MX.getY(i) - intent.y;
     if (dx * dx + dy * dy >= r2) continue;
-    const current = STATE_MATRIX.getEnergy(i);
-    STATE_MATRIX.setEnergy(i, Math.max(0, current + intent.deltaEnergy));
+    const current = MX.getEnergy(i);
+    MX.setEnergy(i, Math.max(0, current + intent.deltaEnergy));
     affected++;
   }
   delegate?.recordTelemetry({
@@ -1130,7 +1130,7 @@ const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
 
   if (gx < GRID_W - 1) {
     const nextGridIdx = gridIdx + GRID_CELL_BYTES;
-    if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+    if (nextGridIdx + 7 < MX.memoryGrid.length) {
       writeMemoryCell(
         nextGridIdx,
         intent.charge - 128,
@@ -1156,17 +1156,17 @@ const applyAvatarIntent = (intent: AvatarIntent): boolean => {
   const coreDelta = Math.max(1, Math.min(1000, intent.intensity));
   const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
 
-  const current = STATE_MATRIX.attentionField[idx];
+  const current = MX.attentionField[idx];
   if (current < 1000) {
-    STATE_MATRIX.attentionField[idx] += coreDelta;
+    MX.attentionField[idx] += coreDelta;
   }
 
   const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
   for (const [ox, oy] of checkPoints) {
     const sIdx = getGridIdx(intent.x + ox, intent.y + oy);
-    const sCurrent = STATE_MATRIX.attentionField[sIdx];
+    const sCurrent = MX.attentionField[sIdx];
     if (sCurrent < 1000) {
-      STATE_MATRIX.attentionField[sIdx] += haloDelta;
+      MX.attentionField[sIdx] += haloDelta;
     }
   }
 

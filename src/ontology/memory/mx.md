@@ -1,7 +1,7 @@
 ---
-id: STATE_MATRIX
+id: MX
 type: module
-description: Implementation of STATE_MATRIX
+description: Implementation of MX
 tags: []
 min_level: 0
 deps:
@@ -88,7 +88,7 @@ vars:
   - SYS_SET_ROLE
   - SYS_YIELD
 extra_symbols:
-  - STATE_MATRIX
+  - MX
   - SYNC
   - clampResourceRaw
   - toClampedEnergyRaw
@@ -96,7 +96,7 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
-// OMEGA-64 | STATE_MATRIX.ts
+// OMEGA-64 | MX.ts
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
@@ -125,7 +125,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
-export const STATE_MATRIX = {
+export const MX = {
   MAX_ATOMS,
   buffer: sharedBuffer,
   wasmMemory,
@@ -347,7 +347,7 @@ export const STATE_MATRIX = {
   },
 
   packRenderFrame: (): Float32Array => {
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const len = active.length;
     const packet = new Float32Array(len * 4);
 
@@ -363,7 +363,7 @@ export const STATE_MATRIX = {
   },
 
   packPanopticonFrame: (): ArrayBuffer => {
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const atomCount = active.length;
     const gridCells = GRID_CELLS;
     const bytesPerAtom = 24;
@@ -383,7 +383,7 @@ export const STATE_MATRIX = {
     offset += 4;
     
     for(let i=0; i < gridCells; i++) {
-        const type = STATE_MATRIX.getGridType(i);
+        const type = MX.getGridType(i);
         const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
         u8[offset++] = type | hasPlasmid;
     }
@@ -445,9 +445,9 @@ export const STATE_MATRIX = {
     resonance: number = 100,
   ) => {
     const genome = new Uint8Array(8);
-    const script = STATE_MATRIX.getGuardianScript();
-    STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
-    STATE_MATRIX.set_role(i, STATE_MATRIX.ROLE_GUARDIAN);
+    const script = MX.getGuardianScript();
+    MX.seedAtom(i, id, x, y, energy, resonance, genome, script);
+    MX.set_role(i, MX.ROLE_GUARDIAN);
   },
 
   getGuardianScript: () => {

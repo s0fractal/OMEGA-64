@@ -20,7 +20,7 @@ vars:
   - RUNTIME_POLICY
   - SEMANTIC_MEMBRANE
   - SOVEREIGNTY_ENGINE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - SOVEREIGN_ORACLE
   - SovereignOracleAkashaDelegate
@@ -88,13 +88,13 @@ const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
 const GRID_CELL_BYTES = 8;
 
 const toGridIndexNearRegent = (regentIndex: number): number | null => {
-  if (STATE_MATRIX.getId(regentIndex) === 0n) return null;
+  if (MX.getId(regentIndex) === 0n) return null;
   const gx = Math.max(
     0,
     Math.min(
       GRID_W - 1,
       Math.floor(
-        STATE_MATRIX.getX(regentIndex) / 10,
+        MX.getX(regentIndex) / 10,
       ),
     ),
   );
@@ -103,7 +103,7 @@ const toGridIndexNearRegent = (regentIndex: number): number | null => {
     Math.min(
       GRID_H - 1,
       Math.floor(
-        STATE_MATRIX.getY(regentIndex) / 10,
+        MX.getY(regentIndex) / 10,
       ),
     ),
   );
@@ -129,7 +129,7 @@ export const SOVEREIGN_ORACLE = {
     const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
     Li(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
     
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     await delegate?.appendObserverCommentary(
       tick,
       Math.floor(tick / 10000), 
@@ -138,11 +138,11 @@ export const SOVEREIGN_ORACLE = {
   },
 
   gatherEpochTelemetry: () => {
-    const matrixRes = STATE_MATRIX.getMatrixResonance();
-    const clusterSync = STATE_MATRIX.getClusterSync();
+    const matrixRes = MX.getMatrixResonance();
+    const clusterSync = MX.getClusterSync();
 
     // Calculate global Matrix statistics
-    const activeIndices = STATE_MATRIX.getActiveIndices();
+    const activeIndices = MX.getActiveIndices();
     const population = activeIndices.length;
 
     let totalEnergy = 0;
@@ -152,18 +152,18 @@ export const SOVEREIGN_ORACLE = {
     const genomeCounts = new Map<string, number>();
 
     for (const idx of activeIndices) {
-      totalEnergy += STATE_MATRIX.getEnergy(idx);
+      totalEnergy += MX.getEnergy(idx);
 
       // Count active learned synapses
       // (Assuming each atom has 8 semantic weight channels in Phase 25)
       for (let s = 0; s < 8; s++) {
-        if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
+        if (MX.getSynapticWeight(idx, s) > 0) {
           successfulSynapses++;
           break; // just count if the atom has ANY active synapses
         }
       }
 
-      const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
+      const genomeBase = MX.getInstructions(idx).subarray(0, 8);
       const hex = Array.from(genomeBase).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
@@ -230,16 +230,16 @@ export const SOVEREIGN_ORACLE = {
 
       switch (mutation.kind) {
         case "oracle_head_mutation": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          const currentInstructions = STATE_MATRIX.getInstructions(
+          const currentInstructions = MX.getInstructions(
             mutation.regentIndex,
           );
           const headMutation = new Uint8Array(currentInstructions);
           headMutation.set(mutation.headBytes, 0);
-          STATE_MATRIX.setInstructions(mutation.regentIndex, headMutation);
+          MX.setInstructions(mutation.regentIndex, headMutation);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_head_mutation",
@@ -250,12 +250,12 @@ export const SOVEREIGN_ORACLE = {
           break;
         }
         case "oracle_memetic_injection": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          const rx = Math.floor(STATE_MATRIX.getX(mutation.regentIndex) / 10);
-          const ry = Math.floor(STATE_MATRIX.getY(mutation.regentIndex) / 10);
+          const rx = Math.floor(MX.getX(mutation.regentIndex) / 10);
+          const ry = Math.floor(MX.getY(mutation.regentIndex) / 10);
           let seededCells = 0;
 
           for (let dx = -1; dx <= 1; dx++) {
@@ -264,8 +264,8 @@ export const SOVEREIGN_ORACLE = {
               const gy = ry + dy;
               if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
                 const gridIdx = (gy * GRID_W + gx) * 8;
-                STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
-                STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
+                MX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
+                MX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
                 seededCells++;
               }
             }
@@ -281,11 +281,11 @@ export const SOVEREIGN_ORACLE = {
           break;
         }
         case "oracle_cache_fallback": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          STATE_MATRIX.setLogic(mutation.regentIndex, mutation.logicBytes);
+          MX.setLogic(mutation.regentIndex, mutation.logicBytes);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_cache_fallback",
@@ -300,17 +300,17 @@ export const SOVEREIGN_ORACLE = {
         case "oracle_whisper_broadcast": {
           if (
             mutation.gridIdx < 0 ||
-            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+            mutation.gridIdx + 7 >= MX.memoryGrid.length
           ) {
             skipped++;
             break;
           }
-          STATE_MATRIX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 1] =
+          MX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
+          MX.memoryGrid[mutation.gridIdx + 1] =
             (mutation.charge >> 8) & 0xFF;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 2] = 0;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 3] = 0;
-          STATE_MATRIX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
+          MX.memoryGrid[mutation.gridIdx + 2] = 0;
+          MX.memoryGrid[mutation.gridIdx + 3] = 0;
+          MX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_whisper_broadcast",
@@ -322,7 +322,7 @@ export const SOVEREIGN_ORACLE = {
         case "oracle_plasmid_injection": {
           if (
             mutation.gridIdx < 0 ||
-            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+            mutation.gridIdx + 7 >= MX.memoryGrid.length
           ) {
             skipped++;
             break;
@@ -346,8 +346,8 @@ export const SOVEREIGN_ORACLE = {
             if (amp < MIN_GLYPH_AMP) amp = MIN_GLYPH_AMP;
             const packedHeader = (amp << 8) | (kind & 0xFF);
 
-            STATE_MATRIX.glyphHeaders[trueCellIdx] = packedHeader;
-            STATE_MATRIX.glyphPayload.set(payload, trueCellIdx * 8);
+            MX.glyphHeaders[trueCellIdx] = packedHeader;
+            MX.glyphPayload.set(payload, trueCellIdx * 8);
           };
 
           let seededCells = 0;
@@ -358,7 +358,7 @@ export const SOVEREIGN_ORACLE = {
           const col = cell % GRID_W;
           if (col < GRID_W - 1) {
             const nextGridIdx = mutation.gridIdx + GRID_CELL_BYTES;
-            if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+            if (nextGridIdx + 7 < MX.memoryGrid.length) {
               writeCell(
                 nextGridIdx,
                 Math.max(64, seedCharge - 128),
@@ -400,10 +400,10 @@ export const SOVEREIGN_ORACLE = {
         `👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`,
       );
 
-      const memSummary = STATE_MATRIX.getMemorySummary();
+      const memSummary = MX.getMemorySummary();
       const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({
         ...telemetry,
-        energy: STATE_MATRIX.getEnergy(regentIndex),
+        energy: MX.getEnergy(regentIndex),
         stigmergicSummary: memSummary,
       });
 
@@ -441,7 +441,7 @@ export const SOVEREIGN_ORACLE = {
         Li(
           `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
-        if (STATE_MATRIX.getId(regentIndex) === 0n) {
+        if (MX.getId(regentIndex) === 0n) {
           Ld(
             `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
           );
@@ -453,7 +453,7 @@ export const SOVEREIGN_ORACLE = {
         ) {
           // Fallback legacy behavior: overwrite beginning of instructions
           const fullGenome = new Uint8Array(
-            STATE_MATRIX.getInstructions(regentIndex),
+            MX.getInstructions(regentIndex),
           );
           fullGenome.set(newPlasmid, 0); // Put the 8 bytes at the start
 
@@ -581,7 +581,7 @@ export const SOVEREIGN_ORACLE = {
           bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
         }
 
-        if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+        if (MX.getId(regentIndex) !== 0n) {
           if (ORACLE_MUTATION_MODE === "direct") {
             SOVEREIGN_ORACLE.queueMutation({
               kind: "oracle_cache_fallback",
@@ -654,7 +654,7 @@ export const SOVEREIGN_ORACLE = {
 
         if (oracleResult.narrativeMood) {
           Li(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
-          const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+          const tick = Atomics.load(MX.tickCounter, 0);
           await delegate?.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
         }
       }

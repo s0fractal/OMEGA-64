@@ -4,7 +4,7 @@ import {
   assertLess,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { CONTEXT_OFFSET } from "@generated";
 import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "@generated";
 
@@ -14,7 +14,7 @@ Deno.test({
   sanitizeResources: false,
   fn: async () => {
     // Boilerplate setup
-    STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
+    MX.seedAtom(13999, 1n, 0, 0, 0, 0); // bypass bootstrap
     await PULSE.initWorkers(1);
 
     // Atom 100: tests OP_RESOLVE (Sin Fast - Mode 0)
@@ -31,7 +31,7 @@ Deno.test({
     code1[c++] = 1;
     code1[c++] = 2; // R0 = resolve(R1, R2)
 
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       100,
       10n,
       10,
@@ -41,7 +41,7 @@ Deno.test({
       new Uint8Array(8),
       code1,
     );
-    STATE_MATRIX.setPC(100, 0);
+    MX.setPC(100, 0);
 
     // Atom 101: tests OP_RESOLVE (Sin Precise - Mode 1)
     c = 0;
@@ -58,7 +58,7 @@ Deno.test({
     code2[c++] = 1;
     code2[c++] = 2; // R0 = resolve(R1, R2)
 
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       101,
       10n,
       20,
@@ -68,7 +68,7 @@ Deno.test({
       new Uint8Array(8),
       code2,
     );
-    STATE_MATRIX.setPC(101, 0);
+    MX.setPC(101, 0);
 
     // Test OP_RESONATE_KURAMOTO
     // Atom 200 and 201 are put at the same location to form a quorum
@@ -79,7 +79,7 @@ Deno.test({
     codeRes[c++] = 0; // loop
 
     // Atom 200: phase 10
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       200,
       10n,
       10000,
@@ -89,10 +89,10 @@ Deno.test({
       new Uint8Array(8),
       codeRes,
     );
-    STATE_MATRIX.setPC(200, 0);
-    STATE_MATRIX.setPhase(200, 10);
+    MX.setPC(200, 0);
+    MX.setPhase(200, 10);
     // Atom 201: phase 50
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       201,
       10n,
       10000,
@@ -102,36 +102,36 @@ Deno.test({
       new Uint8Array(8),
       codeRes,
     );
-    STATE_MATRIX.setPC(201, 0);
-    STATE_MATRIX.setPhase(201, 50);
+    MX.setPC(201, 0);
+    MX.setPhase(201, 50);
 
     console.log(
       "Tick 0",
-      STATE_MATRIX.getPhase(200),
-      STATE_MATRIX.getPhase(201),
+      MX.getPhase(200),
+      MX.getPhase(201),
     );
     await PULSE.tick();
     console.log(
       "Tick 1",
-      STATE_MATRIX.getPhase(200),
-      STATE_MATRIX.getPhase(201),
+      MX.getPhase(200),
+      MX.getPhase(201),
     );
     await PULSE.tick();
     console.log(
       "Tick 2",
-      STATE_MATRIX.getPhase(200),
-      STATE_MATRIX.getPhase(201),
+      MX.getPhase(200),
+      MX.getPhase(201),
     );
     await PULSE.tick();
     console.log(
       "Tick 3",
-      STATE_MATRIX.getPhase(200),
-      STATE_MATRIX.getPhase(201),
+      MX.getPhase(200),
+      MX.getPhase(201),
     );
 
     // Verify Gas Cost differentials
-    const e1 = STATE_MATRIX.getEnergy(100);
-    const e2 = STATE_MATRIX.getEnergy(101);
+    const e1 = MX.getEnergy(100);
+    const e2 = MX.getEnergy(101);
 
     // Fast math costs 1 gas (1000 scaled), precise costs 10 gas (10000 scaled).
     assertGreater(
@@ -141,7 +141,7 @@ Deno.test({
     );
 
     const contextData = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       CONTEXT_OFFSET,
       16 * 14000,
     );
@@ -153,8 +153,8 @@ Deno.test({
     assertEquals(r0_2, 201, "Precise math sin(0.25 index) should be 201");
 
     // Verify Kuramoto Resonator Convergence
-    const p1 = STATE_MATRIX.getPhase(200);
-    const p2 = STATE_MATRIX.getPhase(201);
+    const p1 = MX.getPhase(200);
+    const p2 = MX.getPhase(201);
 
     console.log(`Phase 1: 10 -> ${p1}, Phase 2: 50 -> ${p2}`);
     // They should move towards each other

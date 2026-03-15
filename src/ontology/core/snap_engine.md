@@ -28,7 +28,7 @@ import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 const SNAP_DIR = ".omega/snap";
 
 /**
- * SNAP_ENGINE handles the binary persistence of the STATE_MATRIX.
+ * SNAP_ENGINE handles the binary persistence of the MX.
  * It fulfills the 'SNAP' phase of the autopoietic heartbeat.
  */
 export const SNAP_ENGINE = {

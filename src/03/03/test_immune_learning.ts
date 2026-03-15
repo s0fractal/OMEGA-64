@@ -8,10 +8,10 @@ import {
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 // Helper to construct a mock state matrix interface for GATE testing
-function mockStateMatrix(
+function mockMx(
   atoms: Array<
     {
       logic: number[];
@@ -81,7 +81,7 @@ Deno.test("Era 62: GATE penalizes variants with resonance lower than baseline", 
     },
   ];
 
-  const matrix = mockStateMatrix(atoms);
+  const matrix = mockMx(atoms);
 
   // Evaluate multiple times
   GATE.detectAntigens(matrix);
@@ -117,7 +117,7 @@ Deno.test("Era 62: GATE promotes high-resonance variants to trustedSignatures", 
     { logic: plasmidLogic, resonance: 25000, x: 0, y: 0, active: true },
   ];
 
-  const matrix = mockStateMatrix(atoms);
+  const matrix = mockMx(atoms);
 
   // Run until threshold > 100 is reached (11 times)
   for (let i = 0; i < 11; i++) {
@@ -147,7 +147,7 @@ Deno.test("Era 62: Trusted signatures ignore antigen checks", () => {
     },
   ];
 
-  const matrix = mockStateMatrix(atoms);
+  const matrix = mockMx(atoms);
 
   GATE.detectAntigens(matrix);
 

@@ -1,6 +1,6 @@
 import { GRID_W, pack_structure_intent } from "@generated";
 import { assemble } from "@generated";
-import { STATE_MATRIX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "@generated";
+import { MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "@generated";
 export type ReductionCaseExpectation = {
   finalPc: number;
   replicateCount?: number;
@@ -62,7 +62,7 @@ const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble
   OP_JMP, 0,
   "ROLE",
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, 1, 1,
   OP_SIGNAL,
@@ -77,14 +77,14 @@ const makeReplicatorLoopScript = (): Uint8Array => assemble([
 
 const makeArchitectLoopScript = (): Uint8Array => assemble([
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, 1, 1,
   OP_SIGNAL,
   OP_JMP, 0
 ]);
 
-const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
+const GUARDIAN_SCRIPT = MX.getGuardianScript();
 const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
 const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
@@ -96,7 +96,7 @@ const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assem
   OP_JMP, 0,
   "ROLE",
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, 1, 1,
   OP_SIGNAL,
@@ -107,7 +107,7 @@ const makeSenseIntentScript = (
   buildType: number,
   targetType: number,
 ): Uint8Array => assemble([
-  OP_SECRETE_PLASMID, 0, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SECRETE_PLASMID, 0, MX.ROLE_ARCHITECT,
   OP_BUILD, buildType, 1,
   OP_SENSE, 1, targetType,
   OP_SIGNAL,
@@ -119,7 +119,7 @@ const makeBuildOnlyScript = (
   buildState: number,
 ): Uint8Array => assemble([
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, buildType, buildState
 ]);
@@ -150,14 +150,14 @@ const makePlugChargeCompetitionScript = (
 
 const makeBuildSourceScript = (): Uint8Array => assemble([
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, STR_SOURCE, 0
 ]);
 
 const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
   OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
   OP_SYSCALL,
   OP_BUILD, STR_SOURCE, state
 ]);
@@ -289,7 +289,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         buildCount: 2,
         signalCount: 2,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         branchTaken: false,
       },
     },
@@ -307,7 +307,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 1,
         buildCount: 0,
-        finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+        finalRole: MX.ROLE_GUARDIAN,
         registers: [6, 2, 0, 0, 0, 0, 0, 0],
         branchTaken: false,
       },
@@ -326,7 +326,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 0,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         registers: [6, 3, 0, 0, 0, 0, 0, 0],
         branchTaken: true,
       },
@@ -364,7 +364,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 1,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         registers: [6, 3, 0, 0, 0, 0, 0, 0],
         branchTaken: true,
       },
@@ -405,7 +405,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 1,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         registers: [6, 3, 0, 0, 0, 0, 0, 0],
         finalProps: {
           [PROP_RESONANCE]: 0,
@@ -429,7 +429,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 1,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         registers: [0, 1, 0, 0, 0, 0, 0, 0],
         branchTaken: false,
       },
@@ -450,7 +450,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 0,
         signalCount: 1,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         registers: [0, 0, 0, 0, 0, 0, 0, 0],
         branchTaken: false,
       },
@@ -812,7 +812,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 10,
         signalCount: 0,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
             STR_SOURCE |
@@ -846,7 +846,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 10,
         signalCount: 0,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
             STR_SOURCE |
@@ -880,7 +880,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 10,
         signalCount: 0,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
             STR_SOURCE |
@@ -915,7 +915,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalPc: 10,
         signalCount: 0,
         buildCount: 1,
-        finalRole: STATE_MATRIX.ROLE_ARCHITECT,
+        finalRole: MX.ROLE_ARCHITECT,
         finalStructureGrid: {
           [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
             STR_SOURCE |
@@ -1066,7 +1066,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       baselineTraceId: "gt22_intent_resolution",
       description:
         "Verify OP_RESOLVE mode 0 updates role if neighborhood quorum is met.",
-      script: makeResolveRoleScript(STATE_MATRIX.ROLE_GUARDIAN, 2),
+      script: makeResolveRoleScript(MX.ROLE_GUARDIAN, 2),
       maxSteps: 2,
       initialProps: {
         [PROP_X]: 50,
@@ -1080,7 +1080,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
       },
       expected: {
         finalPc: 6,
-        finalRole: STATE_MATRIX.ROLE_GUARDIAN,
+        finalRole: MX.ROLE_GUARDIAN,
         finalProps: {
           [PROP_RESONANCE]: 120,
         },

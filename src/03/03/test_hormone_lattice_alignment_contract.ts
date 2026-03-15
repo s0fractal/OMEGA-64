@@ -4,7 +4,7 @@
  *
  * Verifies that:
  * 1. HORMONE_OFFSET is within WASM memory bounds.
- * 2. Host-side syncHormonesToLattice() writes values are bit-exact readable via STATE_MATRIX.getHormone().
+ * 2. Host-side syncHormonesToLattice() writes values are bit-exact readable via MX.getHormone().
  * 3. All 6 hormones can be written/read from SharedArrayBuffer with atomic guarantees.
  */
 
@@ -12,7 +12,7 @@ import {
   HORMONE_OFFSET,
   WASM_MEMORY_BYTES
 } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { syncHormonesToLattice } from "@generated";
 import { HORMONE_BUFFER_CATALOG } from "@generated";
 import { RUNTIME_POLICY } from "@generated";
@@ -80,9 +80,9 @@ const expectedEntropy = Math.round(
   Math.max(0, Math.min(2048, (64 / Math.max(1, policy.maxDelta)) * 1024)),
 );
 assert(
-  STATE_MATRIX.getHormone(0) === expectedEntropy,
+  MX.getHormone(0) === expectedEntropy,
   `entropy_pressure (index 0) should be ${expectedEntropy}, got ${
-    STATE_MATRIX.getHormone(0)
+    MX.getHormone(0)
   }`,
 );
 
@@ -91,18 +91,18 @@ const expectedViscosity = Math.round(
   Math.max(0, Math.min(2048, (16 / 32) * 2048)),
 );
 assert(
-  STATE_MATRIX.getHormone(1) === expectedViscosity,
+  MX.getHormone(1) === expectedViscosity,
   `time_viscosity (index 1) should be ${expectedViscosity}, got ${
-    STATE_MATRIX.getHormone(1)
+    MX.getHormone(1)
   }`,
 );
 
 // aggression: clamp(150, 0, 2048) = 150
 const expectedAggression = Math.round(Math.max(0, Math.min(2048, 100 + 50)));
 assert(
-  STATE_MATRIX.getHormone(2) === expectedAggression,
+  MX.getHormone(2) === expectedAggression,
   `aggression (index 2) should be ${expectedAggression}, got ${
-    STATE_MATRIX.getHormone(2)
+    MX.getHormone(2)
   }`,
 );
 
@@ -117,9 +117,9 @@ const expectedReplication = Math.round(
   ),
 );
 assert(
-  STATE_MATRIX.getHormone(3) === expectedReplication,
+  MX.getHormone(3) === expectedReplication,
   `replication_bias (index 3) should be ${expectedReplication}, got ${
-    STATE_MATRIX.getHormone(3)
+    MX.getHormone(3)
   }`,
 );
 
@@ -135,9 +135,9 @@ const expectedRepair = Math.round(
   ),
 );
 assert(
-  STATE_MATRIX.getHormone(4) === expectedRepair,
+  MX.getHormone(4) === expectedRepair,
   `repair_drive (index 4) should be ${expectedRepair}, got ${
-    STATE_MATRIX.getHormone(4)
+    MX.getHormone(4)
   }`,
 );
 
@@ -156,8 +156,8 @@ const testValues: [number, number][] = [
 ];
 
 for (const [idx, val] of testValues) {
-  STATE_MATRIX.setHormone(idx, val);
-  const readBack = STATE_MATRIX.getHormone(idx);
+  MX.setHormone(idx, val);
+  const readBack = MX.getHormone(idx);
   assert(
     readBack === val,
     `Hormone[${idx}] set=${val} readBack=${readBack}`,

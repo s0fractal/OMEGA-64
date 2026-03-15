@@ -135,7 +135,7 @@
 - src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_VALIDATOR.rs
 - src/00/sigma_core/src/ontology_gen/03/GENETIC_LEDGER.rs
-- src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
+- src/00/sigma_core/src/ontology_gen/03/MX.rs
 - src/00/sigma_core/src/ontology_gen/03/accumulate_metabolism_stats.rs
 - src/00/sigma_core/src/ontology_gen/03/add_resonance.rs
 - src/00/sigma_core/src/ontology_gen/03/apply_bond_springs.rs
@@ -5210,7 +5210,7 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/MX.rs
 
 ```rust
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
@@ -5377,9 +5377,9 @@ pub use build_spatial_hash::*;
 #[path = "sigma_vm.rs"]
 pub mod sigma_vm;
 pub use sigma_vm::*;
-#[path = "STATE_MATRIX.rs"]
-pub mod STATE_MATRIX;
-pub use STATE_MATRIX::*;
+#[path = "MX.rs"]
+pub mod MX;
+pub use MX::*;
 #[path = "add_resonance.rs"]
 pub mod add_resonance;
 pub use add_resonance::*;

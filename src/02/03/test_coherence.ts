@@ -1,5 +1,5 @@
 // OMEGA-64 | test_coherence.ts | Phase 21: Synchronization Barrier 🛡️💎
-import { STATE_MATRIX, SYNC } from "@generated";
+import { MX, SYNC } from "@generated";
 import { PULSE } from "@generated";
 
 async function runTest() {
@@ -20,11 +20,11 @@ async function runTest() {
 
   const ATOM_COUNT = 100;
   for (let i = 0; i < ATOM_COUNT; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, Math.random() * 1400);
-    STATE_MATRIX.setY(i, Math.random() * 800);
-    STATE_MATRIX.setEnergy(i, 2000);
-    STATE_MATRIX.setLogic(i, MAGIC_PATTERNS[i % MAGIC_PATTERNS.length]);
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, Math.random() * 1400);
+    MX.setY(i, Math.random() * 800);
+    MX.setEnergy(i, 2000);
+    MX.setLogic(i, MAGIC_PATTERNS[i % MAGIC_PATTERNS.length]);
   }
 
   let tornCount = 0;
@@ -34,14 +34,14 @@ async function runTest() {
   // 2. Background Read Thread (Simulating Host/UI/Snapshot)
   // This thread will attempt to read genomes as fast as possible.
   const reader = (async () => {
-    const syncState = STATE_MATRIX.syncState;
+    const syncState = MX.syncState;
     while (!stopTest) {
       // ONLY read when SYNC_STATE is HOST_LOCK (2) or IDLE (0)
       // If the barrier works, we should NEVER see a torn genome.
       const s = Atomics.load(syncState, 0);
       if (s === SYNC.IDLE || s === SYNC.HOST_LOCK) {
         for (let i = 0; i < ATOM_COUNT; i++) {
-          const logic = STATE_MATRIX.getLogic(i);
+          const logic = MX.getLogic(i);
           totalReads++;
 
           // Verify if the 8 bytes belong to one of our MAGIC_PATTERNS

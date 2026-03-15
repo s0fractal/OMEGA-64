@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PHYSICS_ENGINE } from "@generated";
 import { AUDIT_ENGINE } from "@generated";
 
@@ -8,11 +8,11 @@ console.log("🏺 [TEST] Verifying Era 34: Digital Archaeology...");
 console.log("   [TEST] Case 1: Memory Leaking from structural ruins");
 const gridIdx = 100; // Sample grid cell
 // @ts-ignore
-const structureGrid = STATE_MATRIX.structureGrid;
+const structureGrid = MX.structureGrid;
 // @ts-ignore
-const memoryGrid = STATE_MATRIX.memoryGrid;
+const memoryGrid = MX.memoryGrid;
 // @ts-ignore
-const viralGrid = STATE_MATRIX.viralGrid;
+const viralGrid = MX.viralGrid;
 
 // Setup a decaying structure with density 30 (Ruins) and some bytecode
 const testLogic = new Uint8Array([

@@ -1,5 +1,5 @@
 // OMEGA-64 | test_immune_maturity.ts | Stage 26: Immune System Maturity Verification
-import { MAX_ATOMS, SCALE, STATE_MATRIX, LOGGER, Li, Le } from "@generated";
+import { MAX_ATOMS, SCALE, MX, LOGGER, Li, Le } from "@generated";
 import {
   IMMUNE
 } from "@generated";
@@ -15,27 +15,27 @@ async function runTest() {
   );
 
   // Clear matrix first
-  STATE_MATRIX.clear();
+  MX.clear();
 
   // 1. Healthy Atom (Index 10)
-  STATE_MATRIX.setId(10, 100n);
-  STATE_MATRIX.setEnergy(10, 50.0);
-  STATE_MATRIX.setResonance(10, 10000); // 100.0 resonance
+  MX.setId(10, 100n);
+  MX.setEnergy(10, 50.0);
+  MX.setResonance(10, 10000); // 100.0 resonance
 
   // 2. Necrotic Atom (Index 20) - Energy = 0, Resonance = 0
-  STATE_MATRIX.setId(20, 200n);
-  STATE_MATRIX.setEnergy(20, 0);
-  STATE_MATRIX.setResonance(20, 0);
+  MX.setId(20, 200n);
+  MX.setEnergy(20, 0);
+  MX.setResonance(20, 0);
 
   // 3. Drifting Atom (Index 30) - Low energy, low resonance
-  STATE_MATRIX.setId(30, 300n);
-  STATE_MATRIX.setEnergy(30, 1.5);
-  STATE_MATRIX.setResonance(30, 50); // Raw resonance 50 (very low)
+  MX.setId(30, 300n);
+  MX.setEnergy(30, 1.5);
+  MX.setResonance(30, 50); // Raw resonance 50 (very low)
 
   // 4. Stable but Weak Atom (Index 40)
-  STATE_MATRIX.setId(40, 400n);
-  STATE_MATRIX.setEnergy(40, 3.0);
-  STATE_MATRIX.setResonance(40, 2000); // Raw resonance 2000
+  MX.setId(40, 400n);
+  MX.setEnergy(40, 3.0);
+  MX.setResonance(40, 2000); // Raw resonance 2000
 
   // --- 2. Test isNecrotic ---
   Li("Step 2: Testing isNecrotic detection...");
@@ -81,8 +81,8 @@ async function runTest() {
 
   // --- 5. Test recycleAtom ---
   Li("Step 5: Testing recycleAtom execution...");
-  STATE_MATRIX.recycleAtom(30);
-  if (STATE_MATRIX.getId(30) === 0n && STATE_MATRIX.getEnergy(30) === 0) {
+  MX.recycleAtom(30);
+  if (MX.getId(30) === 0n && MX.getEnergy(30) === 0) {
     Li("✅ recycleAtom successfully cleared atom data.");
   } else {
     Le("❌ recycleAtom failed to clear atom data.");

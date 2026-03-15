@@ -1,6 +1,6 @@
 import { assert, assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { LINEAGE_TRACKER } from "@06";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 Deno.test("Psychohistorian's Archive - Epoch Resolution", () => {
     // Clean state
@@ -19,23 +19,23 @@ Deno.test("Psychohistorian's Archive - Epoch Resolution", () => {
     const aggroHex = LINEAGE_TRACKER.toHex(aggroMeme.subarray(0, 8));
 
     // Clear matrix explicitly in case dirty state exists
-    for(let i=0; i<10; i++) STATE_MATRIX.setId(i, 0n);
+    for(let i=0; i<10; i++) MX.setId(i, 0n);
 
     // 2 Cooperative atoms, high energy (simulating a structurally sound membrane)
-    STATE_MATRIX.setId(0, 100n); STATE_MATRIX.setInstructions(0, coopMeme); STATE_MATRIX.setEnergy(0, 5000);
-    STATE_MATRIX.setId(1, 101n); STATE_MATRIX.setInstructions(1, coopMeme); STATE_MATRIX.setEnergy(1, 5500);
+    MX.setId(0, 100n); MX.setInstructions(0, coopMeme); MX.setEnergy(0, 5000);
+    MX.setId(1, 101n); MX.setInstructions(1, coopMeme); MX.setEnergy(1, 5500);
 
     // 6 Aggressive atoms, low energy (simulating rapid but unsustainable replication)
     for(let i=2; i<8; i++) {
-        STATE_MATRIX.setId(i, BigInt(100+i)); 
-        STATE_MATRIX.setInstructions(i, aggroMeme); 
-        STATE_MATRIX.setEnergy(i, 100);
+        MX.setId(i, BigInt(100+i)); 
+        MX.setInstructions(i, aggroMeme); 
+        MX.setEnergy(i, 100);
     }
 
     LINEAGE_TRACKER.updateMetrics(100);
 
     // Fast-forward to tick 200, one aggro died
-    STATE_MATRIX.setId(7, 0n);
+    MX.setId(7, 0n);
     LINEAGE_TRACKER.updateMetrics(200);
 
     const coopStats = LINEAGE_TRACKER.registry.get(coopHex);

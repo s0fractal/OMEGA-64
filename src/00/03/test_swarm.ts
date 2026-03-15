@@ -1,7 +1,7 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GRID_CELLS, GRID_W } from "../mod.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
-import { STATE_MATRIX } from "../mod.ts";
+import { MX } from "../mod.ts";
 import {
   CONTEXT_OFFSET,
   HIVE_MEMORY_OFFSET,
@@ -12,9 +12,9 @@ async function runTest() {
   console.log("=== VECTOR 3: COLLECTIVE INTELLIGENCE & ROLES TEST ===");
 
   // 1. Initialize State
-  STATE_MATRIX.clear();
-  const sharedBuffer = STATE_MATRIX.buffer;
-  const wasmMemory = STATE_MATRIX.wasmMemory;
+  MX.clear();
+  const sharedBuffer = MX.buffer;
+  const wasmMemory = MX.wasmMemory;
 
   // Load WASM
   const wasmRes = await fetch(
@@ -75,15 +75,15 @@ async function runTest() {
   scriptB[5] = 1;
   scriptB[6] = 0; // HIVE LOAD [1] -> R0
 
-  STATE_MATRIX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, scriptA);
-  STATE_MATRIX.seedAtom(1, 2n, 110, 100, 5000, 100, undefined, scriptB);
+  MX.seedAtom(0, 1n, 100, 100, 5000, 100, undefined, scriptA);
+  MX.seedAtom(1, 2n, 110, 100, 5000, 100, undefined, scriptB);
 
   // Initial check
   console.log(
     "-> Roles assigned: Atom0=",
-    STATE_MATRIX.get_role(0),
+    MX.get_role(0),
     "Atom1=",
-    STATE_MATRIX.get_role(1),
+    MX.get_role(1),
   );
 
   // 3. Setup Environment
@@ -99,8 +99,8 @@ async function runTest() {
   execute_atom(1); // Atom 1 sets role and loads from hive
 
   console.log("-> Verification:");
-  console.log("   Atom 0 Role:", STATE_MATRIX.get_role(0), "(Expected: 1)");
-  console.log("   Atom 1 Role:", STATE_MATRIX.get_role(1), "(Expected: 2)");
+  console.log("   Atom 0 Role:", MX.get_role(0), "(Expected: 1)");
+  console.log("   Atom 1 Role:", MX.get_role(1), "(Expected: 2)");
 
   // Check Hive Memory
   const hiveView = new Uint8Array(
@@ -123,8 +123,8 @@ async function runTest() {
   scriptC[1] = 2;
   scriptC[2] = 200;
   scriptC[3] = 5;
-  STATE_MATRIX.setInstructions(0, scriptC);
-  STATE_MATRIX.set_p_c(0, 0);
+  MX.setInstructions(0, scriptC);
+  MX.set_p_c(0, 0);
   execute_atom(0);
 
   const gx = Math.floor(100 / 10);
@@ -143,7 +143,7 @@ async function runTest() {
   ); // 200 << 8 | 5 = 0xC805
 
   if (
-    STATE_MATRIX.get_role(0) === 1 && hiveView[1] === 88 &&
+    MX.get_role(0) === 1 && hiveView[1] === 88 &&
     regsView[0] === 88 &&
     (pValue & 0xFFFF) === 0xc805
   ) {

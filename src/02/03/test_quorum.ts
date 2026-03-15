@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests ISA.QUORUM collective behaviors, quorumBuffer census, and SENSE type 0x0B.
 
 import { ISA, LAMBDA_VM } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import {
   assert,
   assertEquals,
@@ -199,21 +199,21 @@ Deno.test("Era 55: ISA.SENSE type 0x0B reads quorum count into register", () => 
 });
 
 // ---------- Test 8: quorumBuffer census — getRole round-trip ----------
-Deno.test("Era 55: STATE_MATRIX.getRole reads correctly set role", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 999n);
+Deno.test("Era 55: MX.getRole reads correctly set role", () => {
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 999n);
 
   // Use setRole if available, otherwise use roleRegistryBuffer directly
-  const rolesBuf = STATE_MATRIX.roleRegistryBuffer;
+  const rolesBuf = MX.roleRegistryBuffer;
   const rolesArr = new Uint8Array(rolesBuf);
   rolesArr[idx] = 5; // set role 5 directly
 
   assertEquals(
-    STATE_MATRIX.getRole(idx),
+    MX.getRole(idx),
     5,
     "getRole should return the set role 5",
   );
 
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
   rolesArr[idx] = 0;
 });

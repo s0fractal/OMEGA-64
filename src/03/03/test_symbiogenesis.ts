@@ -1,11 +1,11 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { GATE } from "@generated";
 
 console.log("🛡️ [TEST] Verifying Era 35: Symbiogenesis...");
 
 const idx = 0;
-// @ts-ignore: Internal STATE_MATRIX method access for testing
-STATE_MATRIX.setId(idx, 1n);
+// @ts-ignore: Internal MX method access for testing
+MX.setId(idx, 1n);
 
 // 1. Verify Immune Learning
 // Seed a "parasite" logic: Many FEED (0x20) ops
@@ -19,12 +19,12 @@ const parasiteLogic = new Uint8Array([
   0x00,
   0x00,
 ]);
-STATE_MATRIX.setLogic(idx, parasiteLogic);
+MX.setLogic(idx, parasiteLogic);
 
 console.log("   [TEST] Step 1: Running Gate on raw parasite...");
-GATE.detectAntigens(STATE_MATRIX);
-// @ts-ignore: Internal STATE_MATRIX property access for testing
-let q = STATE_MATRIX.getQuarantine(idx);
+GATE.detectAntigens(MX);
+// @ts-ignore: Internal MX property access for testing
+let q = MX.getQuarantine(idx);
 console.log(
   `   [TEST] Quarantine state: ${
     q === 1 ? "FLAGGED" : q === 2 ? "SUPPRESSED" : "CLEAN"
@@ -34,12 +34,12 @@ console.log(
 console.log(
   "   [TEST] Step 2: Boosting resonance and energy (Proving worth)...",
 );
-STATE_MATRIX.setEnergy(idx, 250);
-STATE_MATRIX.setResonance(idx, 200);
+MX.setEnergy(idx, 250);
+MX.setResonance(idx, 200);
 
-GATE.detectAntigens(STATE_MATRIX);
-// @ts-ignore: Internal STATE_MATRIX property access for testing
-q = STATE_MATRIX.getQuarantine(idx);
+GATE.detectAntigens(MX);
+// @ts-ignore: Internal MX property access for testing
+q = MX.getQuarantine(idx);
 console.log(
   `   [TEST] Quarantine state after success: ${
     q === 0 ? "CLEAN (Learned)" : "STILL FLAGGED"
@@ -62,7 +62,7 @@ if (q === 0 && GATE.trustedSignatures.has(logicStr)) {
 const gx = 10, gy = 10;
 const structIdx = gy * 70 + gx;
 // @ts-ignore: Internal structureGrid access for testing
-STATE_MATRIX.structureGrid[structIdx] = (100 << 8) | 1; // Density 100
+MX.structureGrid[structIdx] = (100 << 8) | 1; // Density 100
 console.log(
   "   [TEST] Step 3: Verified structureGrid is populated for Shelter.",
 );

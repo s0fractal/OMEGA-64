@@ -1,6 +1,6 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
 // OMEGA-64 | test_risc.ts | VM Verification Suite
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "@generated";
 
 async function runTest() {
@@ -22,7 +22,7 @@ async function runTest() {
     },
     env: {
       trace_atom,
-      memory: STATE_MATRIX.wasmMemory,
+      memory: MX.wasmMemory,
       abort: () => console.error("WASM Aborted"),
     },
   });
@@ -33,8 +33,8 @@ async function runTest() {
   // --- TEST 1: SET & GET Property ---
   console.log("\n--- TEST 1: SET & GET Property ---");
   const atomIdx = 0;
-  STATE_MATRIX.setId(atomIdx, 1n);
-  STATE_MATRIX.set_energy(atomIdx, 100);
+  MX.setId(atomIdx, 1n);
+  MX.set_energy(atomIdx, 100);
 
   // Script:
   // R0 = Energy (GET R0, Energy) -> R0 = 100,000
@@ -57,12 +57,12 @@ async function runTest() {
   script[p++] = 0;
   script[p++] = PROP_ENERGY;
 
-  STATE_MATRIX.setInstructions(atomIdx, script);
-  STATE_MATRIX.set_p_c(atomIdx, 0);
+  MX.setInstructions(atomIdx, script);
+  MX.set_p_c(atomIdx, 0);
 
   execute_atom(atomIdx);
 
-  const finalEnergy = STATE_MATRIX.get_energy(atomIdx);
+  const finalEnergy = MX.get_energy(atomIdx);
   console.log(`Final Energy: ${finalEnergy} (Expected: 100.05)`);
   if (Math.abs(finalEnergy - 100.05) < 0.001) {
     console.log("✅ TEST 1 PASSED");
@@ -94,14 +94,14 @@ async function runTest() {
   script2[p++] = 0;
   script2[p++] = 3; // offset 9
 
-  STATE_MATRIX.setInstructions(atomIdx, script2);
-  STATE_MATRIX.set_p_c(atomIdx, 0);
-  STATE_MATRIX.set_reg(atomIdx, 0, 0);
-  STATE_MATRIX.set_reg(atomIdx, 1, 0);
+  MX.setInstructions(atomIdx, script2);
+  MX.set_p_c(atomIdx, 0);
+  MX.set_reg(atomIdx, 0, 0);
+  MX.set_reg(atomIdx, 1, 0);
 
   execute_atom(atomIdx);
 
-  const r0 = STATE_MATRIX.get_reg(atomIdx, 0);
+  const r0 = MX.get_reg(atomIdx, 0);
   console.log(`R0 after loop: ${r0} (Expected: 0)`);
   if (r0 === 0) {
     console.log("✅ TEST 2 PASSED");

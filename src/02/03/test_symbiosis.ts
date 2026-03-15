@@ -8,7 +8,7 @@ import {
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 const SCALE = 100;
 
@@ -75,10 +75,10 @@ Deno.test("Era 61: ISA.SHARE fails if bonding slot is empty", () => {
 
 // ---------- Test 3: PULSE_WORKER applies shareRequest to target atom ----------
 Deno.test("Era 61: PULSE_WORKER application of shareRequest transfers energy", () => {
-  const targetIdx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(targetIdx, 777n);
+  const targetIdx = MX.findEmptySlot();
+  MX.setId(targetIdx, 777n);
   const initialEnergy = 50;
-  STATE_MATRIX.setEnergy(targetIdx, initialEnergy);
+  MX.setEnergy(targetIdx, initialEnergy);
 
   // Simulate PULSE_WORKER
   const req = { bondSlot: 1, amount: 20 };
@@ -89,18 +89,18 @@ Deno.test("Era 61: PULSE_WORKER application of shareRequest transfers energy", (
 
   const actualAmount = Math.min(req.amount, Math.floor(energy));
   if (actualAmount > 0) {
-    const currentTargetEnergy = STATE_MATRIX.getEnergy(targetIdx);
-    STATE_MATRIX.setEnergy(targetIdx, currentTargetEnergy + actualAmount);
+    const currentTargetEnergy = MX.getEnergy(targetIdx);
+    MX.setEnergy(targetIdx, currentTargetEnergy + actualAmount);
   }
 
-  const finalEnergy = STATE_MATRIX.getEnergy(targetIdx);
+  const finalEnergy = MX.getEnergy(targetIdx);
   assertEquals(
     finalEnergy,
     initialEnergy + 20,
     "Target atom received 20 energy",
   );
 
-  STATE_MATRIX.setId(targetIdx, 0n); // cleanup
+  MX.setId(targetIdx, 0n); // cleanup
 });
 
 // ---------- Test 4: ISA.EAT emits eatRequest ----------

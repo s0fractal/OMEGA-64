@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { GATE } from "@generated";
 import { LAMBDA_VM } from "@generated";
 

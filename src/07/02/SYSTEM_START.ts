@@ -30,7 +30,7 @@ import {
 import { BREATH } from "@06";
 import {
   MAX_ATOMS,
-  STATE_MATRIX
+  MX
 } from "@generated";
 import {
   SEMANTIC_MEMBRANE
@@ -505,7 +505,7 @@ const logicToHex = (logic: Uint8Array): string =>
 const dominantGenomes = (active: number[], limit = 3): string[] => {
   const counts = new Map<string, number>();
   for (const idx of active) {
-    const hex = logicToHex(STATE_MATRIX.getLogic(idx));
+    const hex = logicToHex(MX.getLogic(idx));
     counts.set(hex, (counts.get(hex) ?? 0) + 1);
   }
   return Array.from(counts.entries())
@@ -515,16 +515,16 @@ const dominantGenomes = (active: number[], limit = 3): string[] => {
 };
 
 const collectRuntimeMetrics = (): RuntimeMetrics => {
-  const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
-  const active = STATE_MATRIX.getActiveIndices();
+  const tick = Number(Atomics.load(MX.tickCounter, 0));
+  const active = MX.getActiveIndices();
   const spatialHash = PULSE.getSpatialHashState();
   const guardianSignalHybrid = PULSE.getGuardianSignalHybridState();
   const architectPlasmidHybrid = PULSE.getArchitectPlasmidHybridState();
   const replicationHybrid = PULSE.getReplicationHybridState();
   let totalEnergy = 0;
-  for (const idx of active) totalEnergy += STATE_MATRIX.getEnergy(idx);
+  for (const idx of active) totalEnergy += MX.getEnergy(idx);
   const avgEnergy = active.length > 0 ? totalEnergy / active.length : 0;
-  const rawCoherence = (STATE_MATRIX.getClusterSync?.() ??
+  const rawCoherence = (MX.getClusterSync?.() ??
     0) as number;
   return {
     tick,
@@ -680,7 +680,7 @@ const flushDaemonAuditEffects = async (currentTick: number): Promise<void> => {
       },
     });
     const currentDominantGenome =
-      dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0] ?? "";
+      dominantGenomes(MX.getActiveIndices(), 1)[0] ?? "";
     AKASHA_CODEX.recordDaemonEffect(
       currentTick,
       pending.auditId,
@@ -765,7 +765,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
 
 const buildTelemetry = async () => {
   const metrics = collectRuntimeMetrics();
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const pressure = PULSE.getEvolutionPressureState();
   const homeostasis = PULSE.getHomeostasisState();
   const geneticLedger = PULSE.getGeneticLedgerState();
@@ -904,12 +904,12 @@ const buildTelemetry = async () => {
       policy: federationAdmissionState.policy,
     },
     hormones: [
-      STATE_MATRIX.get_hormone(0),
-      STATE_MATRIX.get_hormone(1),
-      STATE_MATRIX.get_hormone(2),
-      STATE_MATRIX.get_hormone(3),
-      STATE_MATRIX.get_hormone(4),
-      STATE_MATRIX.get_hormone(5),
+      MX.get_hormone(0),
+      MX.get_hormone(1),
+      MX.get_hormone(2),
+      MX.get_hormone(3),
+      MX.get_hormone(4),
+      MX.get_hormone(5),
     ],
     glyph_buffer: GLYPH_TELEMETRY.snapshot(),
   };
@@ -939,7 +939,7 @@ const buildFederateLocalContext = (
     }
     : { invariant: "none", dominantRole: -1, memberCount: 0 };
   const localDominantGenome =
-    dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)[0];
+    dominantGenomes(MX.getActiveIndices(), 1)[0];
   const fallbackGenome = typeof packet?.logic === "string"
     ? packet.logic
     : "0000000000000000";
@@ -1366,12 +1366,12 @@ await AKASHA_CODEX.start();
 // STAGE 5.3 VERIFICATION: Forced Reflection Seed
 setInterval(() => {
   const signalGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     35200000 + 4096,
     GRID_CELLS,
   );
   const memoryGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     36100000 + 4096,
     GRID_CELLS,
   );
@@ -1397,7 +1397,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/state") {
-    const buffer = STATE_MATRIX.buffer;
+    const buffer = MX.buffer;
 
     const bufferCopy = new Uint8Array(buffer.byteLength);
     bufferCopy.set(new Uint8Array(buffer));
@@ -1407,7 +1407,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/grid") {
-    const attention = STATE_MATRIX.attentionField;
+    const attention = MX.attentionField;
     const env = new Int32Array(
       attention.buffer,
       attention.byteOffset,
@@ -1493,7 +1493,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+        tick: Number(Atomics.load(MX.tickCounter, 0)),
         mutation_telemetry: MUTATION_TELEMETRY.snapshot(),
       }),
       {
@@ -1523,7 +1523,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+        tick: Number(Atomics.load(MX.tickCounter, 0)),
         pressure_ring: {
           novelty_signed: pressure.noveltySigned,
           symbiosis_signed: pressure.symbiosisSigned,
@@ -1576,7 +1576,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+      const tick = Number(Atomics.load(MX.tickCounter, 0));
       const before = PULSE.getEvolutionPressureState();
       const source = envelope.reason ?? "daemon_phase_scheduler";
 
@@ -1831,7 +1831,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+        tick: Number(Atomics.load(MX.tickCounter, 0)),
         homeostasis: {
           enabled: homeostasis.enabled,
           target_energy: homeostasis.targetEnergy,
@@ -1864,7 +1864,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/api/physiology" && req.method === "GET") {
-    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+    const tick = Number(Atomics.load(MX.tickCounter, 0));
     const hormones = PULSE.getPhysiologicalLedgerState();
     const generic = PULSE.getGenericLedgerSnapshots();
     const geneticLedger = PULSE.getGeneticLedgerState();
@@ -1959,7 +1959,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+      const tick = Number(Atomics.load(MX.tickCounter, 0));
       const before = PULSE.getHomeostasisState();
       const source = "daemon_homeostasis_controller";
       const reason = envelope.reason ?? "daemon_homeostasis_controller";
@@ -2212,7 +2212,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     return new Response(
       JSON.stringify({
         ok: true,
-        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+        tick: Number(Atomics.load(MX.tickCounter, 0)),
         daemon_policy: serializeDaemonPolicyState(),
         latest_update: latestDaemonPolicyUpdate,
         history: daemonPolicyHistory,
@@ -2292,7 +2292,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+      const tick = Number(Atomics.load(MX.tickCounter, 0));
       const source = "daemon_policy_controller";
       const reason = envelope.reason ?? "daemon_policy_controller";
       const beforePheromone = currentDaemonMaxPheromoneIntensity();
@@ -2597,7 +2597,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       const envelope = parseDaemonInjectEnvelope(body);
       if (!envelope) {
         setLatestDaemonAdmission({
-          tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+          tick: Number(Atomics.load(MX.tickCounter, 0)),
           status: "rejected",
           requestedAction: "UNKNOWN",
           appliedAction: "BLOCKED",
@@ -2899,7 +2899,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         );
       }
 
-      const dominantGenome = dominantGenomes(STATE_MATRIX.getActiveIndices(), 1)
+      const dominantGenome = dominantGenomes(MX.getActiveIndices(), 1)
         .at(0) ?? "";
       const narrativeContext = normalizeDaemonNarrativeContext(
         await AKASHA_CODEX.getNarrative(3),
@@ -3167,7 +3167,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
       );
     } catch (err) {
       setLatestDaemonAdmission({
-        tick: Number(Atomics.load(STATE_MATRIX.tickCounter, 0)),
+        tick: Number(Atomics.load(MX.tickCounter, 0)),
         status: "rejected",
         requestedAction: "UNKNOWN",
         appliedAction: "BLOCKED",
@@ -3362,7 +3362,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/viral" && req.method === "GET") {
     // @ts-ignore: viralGridBuffer is dynamically exposed
-    return new Response(STATE_MATRIX.viralGridBuffer, {
+    return new Response(MX.viralGridBuffer, {
       headers: {
         "Content-Type": "application/octet-stream",
         "Access-Control-Allow-Origin": "*",
@@ -3371,7 +3371,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/immunity" && req.method === "GET") {
-    const buffer = STATE_MATRIX.immuneBuffer;
+    const buffer = MX.immuneBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3383,7 +3383,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/signals" && req.method === "GET") {
-    const buffer = STATE_MATRIX.currentReadBuffer;
+    const buffer = MX.currentReadBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3395,7 +3395,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/stiffness" && req.method === "GET") {
-    const buffer = STATE_MATRIX.bondStiffnessBuffer;
+    const buffer = MX.bondStiffnessBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3408,7 +3408,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/bonds" && req.method === "GET") {
     const BONDS_SIZE = MAX_ATOMS * 4 * 4;
-    const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
+    const view = new Uint8Array(MX.buffer, BONDS_OFFSET, BONDS_SIZE);
     const copy = new Uint8Array(view.byteLength);
     copy.set(view);
     return new Response(copy, {
@@ -3420,7 +3420,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/synapses" && req.method === "GET") {
-    const buffer = STATE_MATRIX.synapticStackBuffer;
+    const buffer = MX.synapticStackBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3432,7 +3432,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/architecture" && req.method === "GET") {
-    const buffer = STATE_MATRIX.structureGridBuffer;
+    const buffer = MX.structureGridBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3444,7 +3444,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/memory" && req.method === "GET") {
-    const buffer = STATE_MATRIX.memoryGridBuffer;
+    const buffer = MX.memoryGridBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3456,7 +3456,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/roles" && req.method === "GET") {
-    const buffer = STATE_MATRIX.roleRegistryBuffer;
+    const buffer = MX.roleRegistryBuffer;
     const copy = new Uint8Array(buffer.byteLength);
     copy.set(new Uint8Array(buffer));
     return new Response(copy, {
@@ -3601,7 +3601,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         Li(
           "🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...",
         );
-        const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+        const tick = Number(Atomics.load(MX.tickCounter, 0));
         await SNAPSHOT_ENGINE.exportSnapshot({
           tick,
           reason: "genesis_shutdown",
@@ -3746,7 +3746,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   while (true) {
     await PULSE.tick();
-    const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+    const tick = Number(Atomics.load(MX.tickCounter, 0));
 
     if (tick % 100 === 0) {
       LINEAGE_TRACKER.updateMetrics(tick);
@@ -3784,7 +3784,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         population: metrics.population,
         avgEnergy: metrics.avgEnergy,
         neuralCoherence: metrics.neuralCoherence,
-        entropyPressure: STATE_MATRIX.get_hormone(0),
+        entropyPressure: MX.get_hormone(0),
         dominantMeme,
         destructiveMeme,
       };
@@ -3815,7 +3815,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       if (eschatonReason) {
         await SOVEREIGN_ORACLE.declareEschaton(eschatonReason);
-        STATE_MATRIX.clear();
+        MX.clear();
         mutateUniversalConstants();
         stagnantTicks = 0;
         lastOracleTick = tick;

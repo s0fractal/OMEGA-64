@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests ISA.ATTUNE, signal tally accumulation, role derivation, and SENSE type 0x09.
 // All tests exercise LAMBDA_VM directly.
 
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
@@ -148,32 +148,32 @@ Deno.test("Era 53: ATTUNE uses custom threshold from p1", () => {
 
 // ---------- Test 7: PULSE_WORKER FIRE increments signal tally on target ----------
 Deno.test("Era 53: FIRE signal increments target synapticStack[3] tally", () => {
-  const idxA = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idxA, 700n);
-  STATE_MATRIX.setSynapticValue(idxA, 3, 0); // tally starts at 0
+  const idxA = MX.findEmptySlot();
+  MX.setId(idxA, 700n);
+  MX.setSynapticValue(idxA, 3, 0); // tally starts at 0
 
   // Simulate PULSE_WORKER FIRE intent handler
-  const curTally = STATE_MATRIX.getSynapticValue(idxA, 3);
-  if (curTally < 255) STATE_MATRIX.setSynapticValue(idxA, 3, curTally + 1);
+  const curTally = MX.getSynapticValue(idxA, 3);
+  if (curTally < 255) MX.setSynapticValue(idxA, 3, curTally + 1);
 
   assertEquals(
-    STATE_MATRIX.getSynapticValue(idxA, 3),
+    MX.getSynapticValue(idxA, 3),
     1,
     "Signal tally should be 1 after one FIRE hit",
   );
 
   // Simulate 20 more FIRE hits
   for (let n = 0; n < 20; n++) {
-    const t = STATE_MATRIX.getSynapticValue(idxA, 3);
-    if (t < 255) STATE_MATRIX.setSynapticValue(idxA, 3, t + 1);
+    const t = MX.getSynapticValue(idxA, 3);
+    if (t < 255) MX.setSynapticValue(idxA, 3, t + 1);
   }
   assertEquals(
-    STATE_MATRIX.getSynapticValue(idxA, 3),
+    MX.getSynapticValue(idxA, 3),
     21,
     "After 21 FIREs, tally should be 21",
   );
 
-  STATE_MATRIX.setId(idxA, 0n);
+  MX.setId(idxA, 0n);
 });
 
 // ---------- Test 8: SENSE type 0x09 reads signal tally ----------

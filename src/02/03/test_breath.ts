@@ -1,5 +1,5 @@
 // OMEGA-64 | test_breath.ts | Phase 23: Entropy Flux (Breath) Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 
 async function runTest() {
@@ -9,14 +9,14 @@ async function runTest() {
   await PULSE.initWorkers(1);
 
   // 2. Seed an atom with 0 energy
-  const atomIdx = STATE_MATRIX.findFreeSlot();
+  const atomIdx = MX.findFreeSlot();
   const id = 0xBEEFBEEFn;
 
-  STATE_MATRIX.seedAtom(atomIdx, id, 70, 40, 0, 100);
+  MX.seedAtom(atomIdx, id, 70, 40, 0, 100);
 
   console.log(`   [TEST] Atom ${atomIdx} seeded with 0 energy.`);
 
-  const energyBefore = STATE_MATRIX.getEnergy(atomIdx);
+  const energyBefore = MX.getEnergy(atomIdx);
   if (energyBefore !== 0) {
     console.error(
       `❌ TEST FAILED: Initial energy is ${energyBefore}, expected 0.`,
@@ -26,13 +26,13 @@ async function runTest() {
 
   // 3. Inject Negentropy (External Breath)
   const injectionAmount = 500;
-  const affectedCount = STATE_MATRIX.injectEnergy(injectionAmount);
+  const affectedCount = MX.injectEnergy(injectionAmount);
 
   console.log(
     `   [TEST] Injected ${injectionAmount} energy into ${affectedCount} atoms.`,
   );
 
-  const energyAfter = STATE_MATRIX.getEnergy(atomIdx);
+  const energyAfter = MX.getEnergy(atomIdx);
 
   console.log(`   [TEST] Energy After Breath: ${energyAfter.toFixed(2)}`);
 

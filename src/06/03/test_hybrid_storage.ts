@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { SNAPSHOT_ENGINE } from "@06";
 import { RIBOSOME } from "@02";
 
@@ -7,9 +7,9 @@ console.log("📦 [TEST] Verifying Era 39: Hybrid Storage...");
 async function runTest() {
   // 1. Setup mock state
   console.log("   [TEST] Seeding mock state...");
-  STATE_MATRIX.clear();
-  STATE_MATRIX.setId(0, 123456789n);
-  STATE_MATRIX.setEnergy(0, 999.0);
+  MX.clear();
+  MX.setId(0, 123456789n);
+  MX.setEnergy(0, 999.0);
 
   // 2. Export snapshot
   console.log("   [TEST] Exporting snapshot...");
@@ -20,8 +20,8 @@ async function runTest() {
   }
 
   // 3. Clear state completely
-  STATE_MATRIX.clear();
-  if (STATE_MATRIX.getId(0) === 123456789n) {
+  MX.clear();
+  if (MX.getId(0) === 123456789n) {
     console.log("❌ [TEST] Failed to clear state.");
     Deno.exit(1);
   }
@@ -41,8 +41,8 @@ async function runTest() {
   const end = performance.now();
 
   // 5. Verify results
-  const loadedId = STATE_MATRIX.getId(0);
-  const loadedEnergy = STATE_MATRIX.getEnergy(0);
+  const loadedId = MX.getId(0);
+  const loadedEnergy = MX.getEnergy(0);
 
   console.log(`   [TEST] Lift took ${(end - start).toFixed(2)}ms`);
   console.log(`   [TEST] Restored ID: ${loadedId} (Target: 123456789)`);

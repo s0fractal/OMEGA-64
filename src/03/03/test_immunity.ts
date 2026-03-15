@@ -1,5 +1,5 @@
 import { GRID_W } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { ISA } from "@generated";
 import { GATE } from "@generated";
@@ -11,14 +11,14 @@ import {
 
 Deno.test("Era 49: Viral Infection & PURGE", async () => {
   PULSE.initWorkers();
-  STATE_MATRIX.clear();
+  MX.clear();
 
   const idx = 100;
-  STATE_MATRIX.setId(idx, 1000n);
-  STATE_MATRIX.setX(idx, 100);
-  STATE_MATRIX.setY(idx, 100);
-  STATE_MATRIX.setEnergy(idx, 500);
-  STATE_MATRIX.setResonance(idx, 100);
+  MX.setId(idx, 1000n);
+  MX.setX(idx, 100);
+  MX.setY(idx, 100);
+  MX.setEnergy(idx, 500);
+  MX.setResonance(idx, 100);
 
   const neutralLogic = new Uint8Array([
     0x77,
@@ -30,15 +30,15 @@ Deno.test("Era 49: Viral Infection & PURGE", async () => {
     0x77,
     0x88,
   ]);
-  STATE_MATRIX.setLogic(idx, neutralLogic);
+  MX.setLogic(idx, neutralLogic);
 
-  const memoryGrid = (STATE_MATRIX as any).memoryGrid;
+  const memoryGrid = (MX as any).memoryGrid;
   const gx = 10;
   const gy = 10;
   const mIdx = (gy * GRID_W + gx) * 8;
   for (let i = 0; i < 8; i++) memoryGrid[mIdx + i] = neutralLogic[i];
 
-  const viralGrid = (STATE_MATRIX as any).viralGrid;
+  const viralGrid = (MX as any).viralGrid;
   const vIdx = (gy * GRID_W + gx) * 9;
   for (let i = 0; i < 8; i++) Atomics.store(viralGrid, vIdx + i, 0xFF);
   Atomics.store(viralGrid, vIdx + 8, 250);
@@ -48,7 +48,7 @@ Deno.test("Era 49: Viral Infection & PURGE", async () => {
   prog[0] = 0x00000000;
   prog[1] = 0x00000000;
   prog[2] = 0x00000085; // PURGE at Tick 3
-  STATE_MATRIX.setCode(idx, prog);
+  MX.setCode(idx, prog);
 
   // Tick 1: Infection happens
   await PULSE.tick();
@@ -61,7 +61,7 @@ Deno.test("Era 49: Viral Infection & PURGE", async () => {
 
   // Tick 3: PURGE executes
   await PULSE.tick();
-  const finalLogic = STATE_MATRIX.getLogic(idx);
+  const finalLogic = MX.getLogic(idx);
 
   console.log(`   [TEST] Final Logic:`, finalLogic);
 

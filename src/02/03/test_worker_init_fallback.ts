@@ -5,13 +5,13 @@ Deno.env.set("OMEGA_WORKER_INIT_FALLBACK", "1");
 Deno.env.set("OMEGA_FORCE_WORKER_INIT_FAIL", "nonzero");
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log("🧪 [TEST] Worker init fallback (forced init failure)");
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
 
     const status = PULSE.getStartupSelfTestStatus();

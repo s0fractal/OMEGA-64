@@ -8,7 +8,7 @@
  * 3. discoverSpecies enqueues chronicles mentioning the hormone regime.
  */
 
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { AKASHA_CODEX } from "@06";
 import { LLM_SYNAPSE } from "@generated";
 
@@ -49,8 +49,8 @@ try {
   console.log("── Section 1: LLM Input Context ──");
 
   // Set hormone to aggressive_bloom
-  STATE_MATRIX.setHormone(2, 2000); // agression
-  STATE_MATRIX.setHormone(0, 0); // reset entropy
+  MX.setHormone(2, 2000); // agression
+  MX.setHormone(0, 0); // reset entropy
 
   // We need to trigger discoverSpecies. We'll pass a dummy GenomeStats.
   const dummyStat = {
@@ -100,8 +100,8 @@ try {
   );
 
   // Set hormone to repair_surge
-  STATE_MATRIX.setHormone(2, 0); // reset aggression
-  STATE_MATRIX.setHormone(4, 2000); // repair_drive
+  MX.setHormone(2, 0); // reset aggression
+  MX.setHormone(4, 2000); // repair_drive
 
   const repairGenome = "BB" + Date.now().toString(16).padStart(30, "0");
   const repairStat = { ...dummyStat, genome: repairGenome };

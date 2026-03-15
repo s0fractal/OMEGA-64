@@ -21,7 +21,7 @@ vars:
   - OP_RESONATE_KURAMOTO
   - OP_SENSE
   - OP_SENSE_AS
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - AKASHA_CODEX
   - CodexLineageProfile
@@ -364,7 +364,7 @@ const opcodeLength = (op: number): number => {
 const summarizeInstructions = (sampleIndices: number[]): string[] => {
   const counts = new Map<string, number>();
   for (const idx of sampleIndices) {
-    const script = STATE_MATRIX.getInstructions(idx);
+    const script = MX.getInstructions(idx);
     let pc = 0;
     let steps = 0;
     while (pc >= 0 && pc < 64 && steps < 16) {
@@ -573,7 +573,7 @@ const hormoneRegimeLabel = (h: number[]): string => {
 };
 
 const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => MX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
   // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
   const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join(
@@ -952,7 +952,7 @@ const collectGenomeStats = (): {
   population: number;
   dominant: GenomeStats[];
 } => {
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const population = active.length;
   if (population === 0) return { population, dominant: [] };
 
@@ -961,7 +961,7 @@ const collectGenomeStats = (): {
     { count: number; sampleIndices: number[] }
   >();
   for (const idx of active) {
-    const genome = toHex(STATE_MATRIX.getLogic(idx));
+    const genome = toHex(MX.getLogic(idx));
     const slot = statsMap.get(genome) ?? { count: 0, sampleIndices: [] };
     slot.count++;
     if (slot.sampleIndices.length < 16) slot.sampleIndices.push(idx);
@@ -1032,7 +1032,7 @@ const discoverSpecies = async (
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
   // Stage 7.4: Fetch current hormone regime label
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => MX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
 
   const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);
@@ -1130,13 +1130,13 @@ const hashHex = async (input: string): Promise<string> => {
 };
 
 const findRelicCandidate = (): RelicCandidate | null => {
-  const grid = STATE_MATRIX.structureGrid;
+  const grid = MX.structureGrid;
   const visited = new Uint8Array(GRID_CELLS);
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const occupied = new Uint8Array(GRID_CELLS);
   for (const idx of active) {
-    const x = STATE_MATRIX.getX(idx);
-    const y = STATE_MATRIX.getY(idx);
+    const x = MX.getX(idx);
+    const y = MX.getY(idx);
     const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
     const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
     occupied[gy * GRID_W + gx] = 1;
@@ -1217,7 +1217,7 @@ const recordRelic = async (tick: number): Promise<void> => {
     let row = "";
     for (let x = x0; x <= x1; x++) {
       const idx = y * GRID_W + x;
-      row += typeSymbol(STATE_MATRIX.structureGrid[idx] & 0xFF);
+      row += typeSymbol(MX.structureGrid[idx] & 0xFF);
     }
     rows.push(row);
   }
@@ -1687,7 +1687,7 @@ export const AKASHA_CODEX = {
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();
     await syncDaemonInvariants();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     const epoch = Math.floor(tick / EPOCH_TICKS);
     const take = Math.max(1, Math.min(12, Math.floor(limit)));
     const mood = inferNarrativeMood();
@@ -1728,12 +1728,12 @@ export const AKASHA_CODEX = {
 
     let hippocampusRecall: CodexNarrative["hippocampusRecall"];
     const currentHormones = [
-      Atomics.load(STATE_MATRIX.hormones, 0),
-      Atomics.load(STATE_MATRIX.hormones, 1),
-      Atomics.load(STATE_MATRIX.hormones, 2),
-      Atomics.load(STATE_MATRIX.hormones, 3),
-      Atomics.load(STATE_MATRIX.hormones, 4),
-      Atomics.load(STATE_MATRIX.hormones, 5),
+      Atomics.load(MX.hormones, 0),
+      Atomics.load(MX.hormones, 1),
+      Atomics.load(MX.hormones, 2),
+      Atomics.load(MX.hormones, 3),
+      Atomics.load(MX.hormones, 4),
+      Atomics.load(MX.hormones, 5),
     ];
     let bestDistance = Number.MAX_VALUE;
     let bestEntry: InvariantEntry | null = null;
@@ -1808,7 +1808,7 @@ export const AKASHA_CODEX = {
   },
   recordImmunologicalPurge: async (count: number) => {
     await ensureStorage();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     state.lastImmunePurgeTick = tick;
     state.lastImmunePurgeCount = count;
 

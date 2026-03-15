@@ -16,7 +16,7 @@ vars:
   - Li
   - OP_SET
   - OP_SYSCALL
-  - STATE_MATRIX
+  - MX
   - SYS_ATTRACT
   - SYS_TRANSFER
   - assemble
@@ -85,11 +85,11 @@ export class AgentProxy {
   handleMatrixInfo(req: Request): Response {
     let pop = 0;
     let totalEnergy = 0;
-    const tick = Atomics.load((STATE_MATRIX as any).tickCounter, 0);
+    const tick = Atomics.load((MX as any).tickCounter, 0);
     // Simple population scan
     for (let i = 1; i <= 10000; i++) { // Bounding scan for performance
-      const id = Number(STATE_MATRIX.getId(i));
-      const energy = STATE_MATRIX.getEnergy(i);
+      const id = Number(MX.getId(i));
+      const energy = MX.getEnergy(i);
       if (id > 0 && energy > 0) {
         pop++;
         totalEnergy += energy;
@@ -107,32 +107,32 @@ export class AgentProxy {
   }
 
   handleAtomSense(atomId: number): Response {
-    const id = Number(STATE_MATRIX.getId(atomId));
+    const id = Number(MX.getId(atomId));
     if (id <= 0) {
       return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
         status: 404,
       });
     }
 
-    const x = STATE_MATRIX.getX(atomId);
-    const y = STATE_MATRIX.getY(atomId);
-    const energy = STATE_MATRIX.getEnergy(atomId);
-    const role = STATE_MATRIX.getRole(atomId);
+    const x = MX.getX(atomId);
+    const y = MX.getY(atomId);
+    const energy = MX.getEnergy(atomId);
+    const role = MX.getRole(atomId);
 
     // Radar scan (radius 50 units = 5 cells)
     const vision = [];
     const MAX_DISTANCE_SQ = 50 * 50;
 
-    // Bounded scan over STATE_MATRIX to avoid legacy SPATIAL_HASH O(1) grid overhead
+    // Bounded scan over MX to avoid legacy SPATIAL_HASH O(1) grid overhead
     // which requires constant upkeep from workers.
     for (let currentAt = 1; currentAt <= 10000; currentAt++) {
       if (currentAt === atomId) continue;
 
-      const nId = Number(STATE_MATRIX.getId(currentAt));
+      const nId = Number(MX.getId(currentAt));
       if (nId <= 0) continue;
 
-      const nX = STATE_MATRIX.getX(currentAt);
-      const nY = STATE_MATRIX.getY(currentAt);
+      const nX = MX.getX(currentAt);
+      const nY = MX.getY(currentAt);
 
       const dx = nX - x;
       const dy = nY - y;
@@ -144,7 +144,7 @@ export class AgentProxy {
           idx: currentAt,
           dx,
           dy,
-          role: STATE_MATRIX.getRole(currentAt),
+          role: MX.getRole(currentAt),
           distance: Math.sqrt(dSq),
         });
       }
@@ -163,7 +163,7 @@ export class AgentProxy {
   }
 
   async handleAtomAct(req: Request, atomId: number): Promise<Response> {
-    const id = Number(STATE_MATRIX.getId(atomId));
+    const id = Number(MX.getId(atomId));
     if (id <= 0) {
       return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
         status: 404,
@@ -232,7 +232,7 @@ export class AgentProxy {
       }
 
       const compiledScript = assemble(ops);
-      STATE_MATRIX.setInstructions(atomId, compiledScript);
+      MX.setInstructions(atomId, compiledScript);
 
       return new Response(
         JSON.stringify({ success: true, compiled_bytes: ops.length }),

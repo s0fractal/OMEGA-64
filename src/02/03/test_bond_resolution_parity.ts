@@ -1,5 +1,5 @@
 // OMEGA-64 | test_bond_resolution_parity.ts | Bond Resolution Verifier
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import {
   BOND_REQUESTS_OFFSET,
   BONDS_OFFSET,
@@ -12,17 +12,17 @@ async function testBondParity() {
   console.log("🧬 [TEST] Starting Bond Resolution Parity Test...");
 
   // Clear buffers
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+  new Uint8Array(MX.sharedBuffer).fill(
     0,
     BONDS_OFFSET,
     BONDS_OFFSET + MAX_ATOMS * 4 * 4,
   );
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+  new Uint8Array(MX.sharedBuffer).fill(
     0,
     STIFFNESS_OFFSET,
     STIFFNESS_OFFSET + MAX_ATOMS * 4 * 4,
   );
-  new Uint8Array(STATE_MATRIX.sharedBuffer).fill(
+  new Uint8Array(MX.sharedBuffer).fill(
     0,
     BOND_REQUESTS_OFFSET,
     BOND_REQUESTS_OFFSET + MAX_ATOMS * 3 * 4,
@@ -32,17 +32,17 @@ async function testBondParity() {
     `   [OFFSETS] BONDS_OFFSET=${BONDS_OFFSET} BOND_REQUESTS_OFFSET=${BOND_REQUESTS_OFFSET} MAX_ATOMS=${MAX_ATOMS}`,
   );
   const bondRequests = new Int32Array(
-    STATE_MATRIX.sharedBuffer,
+    MX.sharedBuffer,
     BOND_REQUESTS_OFFSET,
     MAX_ATOMS * 3,
   );
   const bonds = new Uint32Array(
-    STATE_MATRIX.sharedBuffer,
+    MX.sharedBuffer,
     BONDS_OFFSET,
     MAX_ATOMS * 4,
   );
   const stiffness = new Float32Array(
-    STATE_MATRIX.sharedBuffer,
+    MX.sharedBuffer,
     STIFFNESS_OFFSET,
     MAX_ATOMS * 4,
   );

@@ -6,13 +6,13 @@ Deno.env.set("OMEGA_WASM_BOOT_POLICY", "safe-noop");
 Deno.env.set("OMEGA_FORCE_WORKER_INIT_FAIL", "all");
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log("🧪 [TEST] Worker init total-fail (safe-noop policy)");
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
 
     const status = PULSE.getStartupSelfTestStatus();
@@ -45,8 +45,8 @@ async function main() {
 
     await PULSE.tick();
     if (
-      STATE_MATRIX.getActiveIndices().length !== 0 ||
-      STATE_MATRIX.getId(0) !== 0n
+      MX.getActiveIndices().length !== 0 ||
+      MX.getId(0) !== 0n
     ) {
       throw new Error("[TEST] matrix must remain empty in safe-noop mode.");
     }

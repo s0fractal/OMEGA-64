@@ -12,7 +12,7 @@ type Violation = {
 
 const MANIFEST_PATH = "deno.jsonc";
 const LEGACY_API_PATTERN =
-  /\bSTATE_MATRIX\.(getCode|getContext|setCode|setContext)\b/u;
+  /\bMX\.(getCode|getContext|setCode|setContext)\b/u;
 
 const collectCoreEntryFiles = async (): Promise<string[]> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
@@ -57,7 +57,7 @@ const main = async () => {
   }
 
   if (violations.length > 0) {
-    console.error("[runtime-api] legacy STATE_MATRIX API usage detected.");
+    console.error("[runtime-api] legacy MX API usage detected.");
     for (const v of violations) {
       console.error(` - ${v.file}:${v.line}`);
       console.error(`   ${v.excerpt}`);

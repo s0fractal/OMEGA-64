@@ -1869,10 +1869,10 @@ export function tick_membrane_physics(): void {
         // Apply topological epigenetics
         if (internalBonds >= 3) {
           // Core / Architect (Protected Processor)
-          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
+          role = role | 3; // ROLE_ARCHITECT is 3 in MX.ts
         } else {
           // Surface / Guardian (Radar & Armor)
-          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
+          role = role | 2; // ROLE_GUARDIAN is 2 in MX.ts
         }
         
         // Ensure Metazoan flag exists
@@ -2029,10 +2029,10 @@ export function tick_membrane_physics(): void {
         // Apply topological epigenetics
         if (internalBonds >= 3) {
           // Core / Architect (Protected Processor)
-          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
+          role = role | 3; // ROLE_ARCHITECT is 3 in MX.ts
         } else {
           // Surface / Guardian (Radar & Armor)
-          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
+          role = role | 2; // ROLE_GUARDIAN is 2 in MX.ts
         }
         
         // Ensure Metazoan flag exists
@@ -2504,7 +2504,7 @@ min_level: 6
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX, LOGGER, Li } from "@g12";
+import { MX, LOGGER, Li } from "@g12";
 import {
   SEMANTIC_MEMBRANE
 } from "@g12";
@@ -2568,7 +2568,7 @@ export const BREATH = {
       await SEMANTIC_MEMBRANE.injectThought(thought, weight);
 
       // Phase 23: Entropy Flux (Negative Entropy Injection)
-      const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
+      const energyInjected = MX.injectEnergy(weight * 2);
       Li(
         `   [BREATH] Negentropy Flux: +${
           (weight * 2).toFixed(1)
@@ -2990,7 +2990,7 @@ vars:
   - PREDICTION_MARKET
   - RUNTIME_POLICY
   - SCALE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - CONTROL_INTENT_QUEUE
   - ControlIntentQueueDelegate
@@ -4045,11 +4045,11 @@ const writeMemoryCell = (
   payload: Uint8Array,
 ): void => {
   const q = clamp(Math.round(charge), 0, 0xFFFF);
-  STATE_MATRIX.memoryGrid[gridIdx] = q & 0xFF;
-  STATE_MATRIX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
-  STATE_MATRIX.memoryGrid[gridIdx + 2] = 0;
-  STATE_MATRIX.memoryGrid[gridIdx + 3] = 0;
-  STATE_MATRIX.memoryGrid.set(payload, gridIdx + 4);
+  MX.memoryGrid[gridIdx] = q & 0xFF;
+  MX.memoryGrid[gridIdx + 1] = (q >> 8) & 0xFF;
+  MX.memoryGrid[gridIdx + 2] = 0;
+  MX.memoryGrid[gridIdx + 3] = 0;
+  MX.memoryGrid.set(payload, gridIdx + 4);
 };
 
 const applyFederateIntent = (intent: FederateIntent): boolean => {
@@ -4062,7 +4062,7 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
     return false;
   }
 
-  const idStr = STATE_MATRIX.getId(idx).toString();
+  const idStr = MX.getId(idx).toString();
   Li(
     `🛸 [FEDERATION] Applied queued binary migration from ${intent.sourceNode}: ${idStr}`,
   );
@@ -4073,12 +4073,12 @@ const applyMutateIntent = (intent: MutateIntent): boolean => {
   const r2 = intent.radius * intent.radius;
   let affected = 0;
   for (let i = 0; i < MAX_ATOMS; i++) {
-    if (STATE_MATRIX.getId(i) === 0n) continue;
-    const dx = STATE_MATRIX.getX(i) - intent.x;
-    const dy = STATE_MATRIX.getY(i) - intent.y;
+    if (MX.getId(i) === 0n) continue;
+    const dx = MX.getX(i) - intent.x;
+    const dy = MX.getY(i) - intent.y;
     if (dx * dx + dy * dy >= r2) continue;
-    const current = STATE_MATRIX.getEnergy(i);
-    STATE_MATRIX.setEnergy(i, Math.max(0, current + intent.deltaEnergy));
+    const current = MX.getEnergy(i);
+    MX.setEnergy(i, Math.max(0, current + intent.deltaEnergy));
     affected++;
   }
   delegate?.recordTelemetry({
@@ -4103,7 +4103,7 @@ const applyPlasmidIntent = (intent: PlasmidIntent): boolean => {
 
   if (gx < GRID_W - 1) {
     const nextGridIdx = gridIdx + GRID_CELL_BYTES;
-    if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+    if (nextGridIdx + 7 < MX.memoryGrid.length) {
       writeMemoryCell(
         nextGridIdx,
         intent.charge - 128,
@@ -4129,17 +4129,17 @@ const applyAvatarIntent = (intent: AvatarIntent): boolean => {
   const coreDelta = Math.max(1, Math.min(1000, intent.intensity));
   const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
 
-  const current = STATE_MATRIX.attentionField[idx];
+  const current = MX.attentionField[idx];
   if (current < 1000) {
-    STATE_MATRIX.attentionField[idx] += coreDelta;
+    MX.attentionField[idx] += coreDelta;
   }
 
   const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
   for (const [ox, oy] of checkPoints) {
     const sIdx = getGridIdx(intent.x + ox, intent.y + oy);
-    const sCurrent = STATE_MATRIX.attentionField[sIdx];
+    const sCurrent = MX.attentionField[sIdx];
     if (sCurrent < 1000) {
-      STATE_MATRIX.attentionField[sIdx] += haloDelta;
+      MX.attentionField[sIdx] += haloDelta;
     }
   }
 
@@ -5104,7 +5104,7 @@ extra_symbols:
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
 
 /**
- * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline STATE_MATRIX.
+ * DollFork provides an isolated memory space (Shadow Matrix) that mirrors the mainline MX.
  * It allows for risk-free simulation, mutation, and relic cultivation without affecting global causality.
  */
 export class DollFork {
@@ -8752,7 +8752,7 @@ vars:
   - AKASHA_CODEX
   - LOGGER
   - Ld
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - LineageTracker
 ---
@@ -8823,7 +8823,7 @@ tags: ["core", "physics", "llm_context", "meta"]
 | `pure_fn` | **`OP_RESOLVE`** (або `OP_ADD`/`OP_SUB`) | Чисте математичне обчислення. Трансформація без побічних ефектів. Бере аргументи (`regs`), повертає результат. |
 | `module` | **`OP_SYSCALL`** / **`OP_BUILD`** | Взаємодія з Хостом (I/O, логування) або створення сайд-ефектів у системі. Це Атоми-Архітектори (`ROLE_ARCHITECT`). Вони будують складні структури (цикли, асинхронність). |
 | `static_table` | **`STR_CAPACITOR`** / **`OP_GET`** | Конденсатор інформації. Пасивний масив даних (як `SIN_LUT`), з якого інші атоми постійно "тягнуть" енергію/знання через читання. |
-| `constants` / `enum` | **`OP_SET`** / **`STR_SOURCE`** | Абсолютні істини та константи (`STATE_MATRIX`). Джерело ідентифікаторів, які незмінно випромінюють свій стан у простір. |
+| `constants` / `enum` | **`OP_SET`** / **`STR_SOURCE`** | Абсолютні істини та константи (`MX`). Джерело ідентифікаторів, які незмінно випромінюють свій стан у простір. |
 | `memory_layout` | **`OP_TENSEGRITY`** | Визначає топологію та натяг простору. Як пам'ять нарізана на `SharedArrayBuffer` і як шари пов'язані між собою. |
 | `substrate_module` | **`OP_SYSCALL`** (Core Kernel) | Низькорівневі закони фізики (Rust FFI, Rayon). Те, що зашито на рівні самої "квантової піни" процесора. |
 | `lore` / `docs` / `documentation` | **`OP_NOP`** | Пасивне спостереження, семантичне налаштування. Код не генерується, не має матеріального прояву в VM. |
@@ -11118,9 +11118,9 @@ type: module
 tags:
   - substrate
 deps:
-  - STATE_MATRIX
+  - MX
 vars:
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - PREDICTION_MARKET
   - PredictionMarketAkashaDelegate
@@ -11198,7 +11198,7 @@ export const PREDICTION_MARKET = {
     const proposalHex = Array.from(proposedInstructions).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
 
     if (finalBet >= CRISIS_THRESHOLD) {
       const winnersHex = proposalHex;
@@ -11213,14 +11213,14 @@ export const PREDICTION_MARKET = {
         0;
       PREDICTION_MARKET.successfulGenomes.set(winnersHex, currentWins + 1);
 
-      // Apply the mutation to all active atoms in the single STATE_MATRIX
-      const active = STATE_MATRIX.getActiveIndices();
+      // Apply the mutation to all active atoms in the single MX
+      const active = MX.getActiveIndices();
       for (const idx of active) {
-        STATE_MATRIX.setInstructions(idx, proposedInstructions);
+        MX.setInstructions(idx, proposedInstructions);
 
         // Minor energy penalty for adopting the mutation (adaptability toll)
-        const currentEnergy = STATE_MATRIX.getEnergy(idx);
-        STATE_MATRIX.setEnergy(idx, Math.max(0, currentEnergy - 10));
+        const currentEnergy = MX.getEnergy(idx);
+        MX.setEnergy(idx, Math.max(0, currentEnergy - 10));
       }
       delegate?.recordMarketResolution(tick, true, finalBet, winnersHex);
     } else {
@@ -11258,9 +11258,9 @@ export const PREDICTION_MARKET = {
       return; // Concurrency guard
     }
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const winners = active.filter((idx) => {
-      const instr = STATE_MATRIX.getInstructions(idx);
+      const instr = MX.getInstructions(idx);
       const hex = Array.from(instr).map((b) => b.toString(16).padStart(2, "0"))
         .join("").toUpperCase();
       return PREDICTION_MARKET.successfulGenomes.has(hex);
@@ -11271,7 +11271,7 @@ export const PREDICTION_MARKET = {
     // Weight distribution by the number of historical wins
     let totalWinWeight = 0;
     const weights = winners.map((idx) => {
-      const hex = Array.from(STATE_MATRIX.getInstructions(idx)).map((b) =>
+      const hex = Array.from(MX.getInstructions(idx)).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
       const w = PREDICTION_MARKET.successfulGenomes.get(hex) || 1;
@@ -11288,8 +11288,8 @@ export const PREDICTION_MARKET = {
     for (let i = 0; i < winners.length; i++) {
       const idx = winners[i];
       const share = (weights[i] / totalWinWeight) * dividend;
-      const currentEnergy = STATE_MATRIX.getEnergy(idx);
-      STATE_MATRIX.setEnergy(idx, currentEnergy + share);
+      const currentEnergy = MX.getEnergy(idx);
+      MX.setEnergy(idx, currentEnergy + share);
     }
   },
 };
@@ -11397,7 +11397,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, sharedBuffer } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer } from "../mod.ts";
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
@@ -12988,7 +12988,7 @@ const postAndWait = async <T = any>(
     return res.data;
   } catch (err) {
     if (isWorkerTimeoutError(err)) {
-      const syncState = STATE_MATRIX.syncState;
+      const syncState = MX.syncState;
       if (syncState) {
         Le(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
@@ -13059,7 +13059,7 @@ const startWorkers = async (count: number): Promise<void> => {
       const data = e.data;
       if (data && data.type === "SPORE_DRIVE_REQUEST") {
         const idx = data.atomIdx;
-        const atomIdAtStart = STATE_MATRIX.getId(idx);
+        const atomIdAtStart = MX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
           const packedAtom = noosphereDelegate
@@ -13070,7 +13070,7 @@ const startWorkers = async (count: number): Promise<void> => {
             Ld(
               `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
             );
-            STATE_MATRIX.recycleAtom(idx);
+            MX.recycleAtom(idx);
           } else {
             Le(
               `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
@@ -13087,8 +13087,8 @@ const startWorkers = async (count: number): Promise<void> => {
     worker.postMessage({
       type: "INIT",
       wasmPath: AS_WASM_PATH.href,
-      wasmMemory: STATE_MATRIX.wasmMemory,
-      buffer: STATE_MATRIX.buffer,
+      wasmMemory: MX.wasmMemory,
+      buffer: MX.buffer,
       marketBuffer: PREDICTION_MARKET.buffer,
       workerIndex: i,
     });
@@ -13156,7 +13156,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
 };
 const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
-  return STATE_MATRIX.getActiveIndices().length !== 0;
+  return MX.getActiveIndices().length !== 0;
 };
 
 export interface DriftMetrics {
@@ -13198,7 +13198,7 @@ async function initShadowWasm(): Promise<void> {
 
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     env: {
-      memory: STATE_MATRIX.wasmMemory,
+      memory: MX.wasmMemory,
       abort: (msg: any) => Le("   [SHADOW WASM ABORT]:", msg),
       // Dummy trace_atom for shadow
       trace_atom: () => {},
@@ -13217,7 +13217,7 @@ let lastEgressReadHead = 0;
 
 export const drainEgressEvents = (): Uint8Array[] => {
   const headView = new Int32Array(
-    STATE_MATRIX.wasmMemory.buffer,
+    MX.wasmMemory.buffer,
     EGRESS_HEAD_OFFSET,
     1,
   );
@@ -13229,7 +13229,7 @@ export const drainEgressEvents = (): Uint8Array[] => {
   const events: Uint8Array[] = [];
   const maxEvents = MAX_EGRESS_EVENTS;
   const dataView = new Uint8Array(
-    STATE_MATRIX.wasmMemory.buffer,
+    MX.wasmMemory.buffer,
     EGRESS_DATA_OFFSET,
     maxEvents * 256,
   );
@@ -13289,7 +13289,7 @@ export const PULSE = {
     generate_epoch_proof_ffi!(tick, resultPtr);
 
     const u8View = new Uint8Array(
-      STATE_MATRIX.wasmMemory.buffer,
+      MX.wasmMemory.buffer,
       resultPtr,
       32,
     );
@@ -13313,19 +13313,19 @@ export const PULSE = {
     const resultPtr = scratchSpaceOffset + 64;
 
     // Write logic bytes
-    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer);
+    const u8View = new Uint8Array(MX.wasmMemory.buffer);
     u8View.fill(0, scratchSpaceOffset, scratchSpaceOffset + 64);
     u8View.set(bytecode, scratchSpaceOffset);
 
     // Clear result space
     const i32View = new Int32Array(
-      STATE_MATRIX.wasmMemory.buffer,
+      MX.wasmMemory.buffer,
       resultPtr,
       8,
     );
     i32View.fill(0);
 
-    const atomId = Number(STATE_MATRIX.getId(targetIdx));
+    const atomId = Number(MX.getId(targetIdx));
 
     // Call Rust side
     const success = run_shadow_simulation_ffi!(
@@ -13465,7 +13465,7 @@ export const PULSE = {
     const nexusStatus = noosphereDelegate?.getNexusStatus() ||
       { seedNodesLength: 0, mainnetEnabled: false };
     if (
-      STATE_MATRIX.getActiveIndices().length === 0 &&
+      MX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
     ) {
       Li(
@@ -13492,13 +13492,13 @@ export const PULSE = {
       startupSelfTestDone = true;
       return;
     }
-    if (STATE_MATRIX.getActiveIndices().length !== 0) {
+    if (MX.getActiveIndices().length !== 0) {
       // Do not mutate populated worlds; this gate is for cold-start only.
       startupSelfTestDone = true;
       return;
     }
 
-    const { tickCounter, syncState, SYNC } = STATE_MATRIX;
+    const { tickCounter, syncState, SYNC } = MX;
     const originalTick = Atomics.load(tickCounter, 0);
     const baseLevel = LOGGER.getLevel();
     startupSelfTestInProgress = true;
@@ -13548,7 +13548,7 @@ export const PULSE = {
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
-      STATE_MATRIX.clear();
+      MX.clear();
       Atomics.store(tickCounter, 0, 0);
       for (let t = 0; t < STARTUP_SELFTEST_TICKS; t++) {
         await PULSE.tick();
@@ -13562,7 +13562,7 @@ export const PULSE = {
       startupSelfTestDone = true;
     } finally {
       LOGGER.setLevel(baseLevel);
-      STATE_MATRIX.clear();
+      MX.clear();
       Atomics.store(tickCounter, 0, originalTick);
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
@@ -13974,7 +13974,7 @@ export const PULSE = {
     homeostasisLastUpdateReason = reason.length > 0 ? reason : "manual_update";
     homeostasisLastUpdateTick = update.tick !== undefined
       ? Math.max(0, Math.floor(update.tick))
-      : Atomics.load(STATE_MATRIX.tickCounter, 0);
+      : Atomics.load(MX.tickCounter, 0);
 
     return snapshotHomeostasisState();
   },
@@ -14030,7 +14030,7 @@ export const PULSE = {
       );
     }
 
-    const { syncState, tickCounter, SYNC } = STATE_MATRIX;
+    const { syncState, tickCounter, SYNC } = MX;
     // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
     const computedHormones = syncHormonesToLattice({
       baseTax: homeostasisBaseTaxRuntime,
@@ -14062,7 +14062,7 @@ export const PULSE = {
         reason: "physiological_sync",
       });
       physiologicalLedgers[spec.id] = res.state;
-      STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+      MX.setHormone(spec.index, res.state.currentValue);
     }
 
     try {
@@ -14071,7 +14071,7 @@ export const PULSE = {
       PULSE.currentPulseId = currentTick;
       const dumpA11 = (lbl: string) => {
         const xs = new Int16Array(
-          STATE_MATRIX.wasmMemory.buffer,
+          MX.wasmMemory.buffer,
           XS_OFFSET,
           MAX_ATOMS,
         );
@@ -14081,7 +14081,7 @@ export const PULSE = {
       };
 
       dumpA11("Before Quorum");
-      const activeIdx = STATE_MATRIX.getActiveIndices();
+      const activeIdx = MX.getActiveIndices();
 
       // Stage 25: Sovereign Feedback - Syntropy-modulated tax
       // Move evaluation earlier so it can affect metabolism and gate
@@ -14105,8 +14105,8 @@ export const PULSE = {
       dumpA11("Before Hormones");
 
       // Reset global neural coherence aggregation field for the NEXT tick.
-      Atomics.store(STATE_MATRIX.coherence, 0, 0); // Accumulator (Vector 10)
-      Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0); // Broadcast
+      Atomics.store(MX.coherence, 0, 0); // Accumulator (Vector 10)
+      Atomics.store(MX.neuralCoherence, 0, 0); // Broadcast
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
@@ -14148,7 +14148,7 @@ export const PULSE = {
           reason: "physiological_sync",
         });
         physiologicalLedgers[spec.id] = res.state;
-        STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+        MX.setHormone(spec.index, res.state.currentValue);
       }
 
       if (coherence > 1000) {
@@ -14271,7 +14271,7 @@ export const PULSE = {
       // --- PHASE 50: TRANSACTIONAL PANOPTICON TELEMETRY ---
       const nowMs = performance.now();
       if (nowMs - lastPanopticonBroadcastTime >= 50) { // ~20fps
-        const frame = STATE_MATRIX.packPanopticonFrame();
+        const frame = MX.packPanopticonFrame();
         akashaDelegate?.broadcastPanopticonFrame(frame);
         lastPanopticonBroadcastTime = nowMs;
       }
@@ -14302,7 +14302,7 @@ export const PULSE = {
         const epochHash = await PULSE.generateEpochProof(currentTick);
         if (akashaDelegate) {
           await akashaDelegate.saveEpoch(
-            STATE_MATRIX.wasmMemory,
+            MX.wasmMemory,
             currentTick,
             autoEpochId,
             pCount,
@@ -14319,7 +14319,7 @@ export const PULSE = {
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let totalPhase = 0;
         for (const idx of activeIdx) {
-          totalPhase += Math.abs(STATE_MATRIX.get_phase(idx));
+          totalPhase += Math.abs(MX.get_phase(idx));
         }
         const avgPhase = activeIdx.length > 0
           ? totalPhase / activeIdx.length
@@ -14421,8 +14421,8 @@ export const PULSE = {
             const prog = genesisInceptor.selectProgram();
             const lineageHash = prog.metadata?.ancestorHash ?? 0n;
 
-            STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
-            STATE_MATRIX.setLineage(idx, lineageHash);
+            MX.setInstructions(idx, new Uint8Array(prog.bytecode));
+            MX.setLineage(idx, lineageHash);
 
             // Mark its role if the program is for a specific one (e.g. role hint)
             // For now, we'll let the role be assigned by the first op if needed,
@@ -14506,7 +14506,7 @@ export const PULSE = {
 
       // --- STAGE 26: Immunological Phagocyte ---
       {
-        const entropyPressure = STATE_MATRIX.get_hormone(0); // H0: entropy_pressure
+        const entropyPressure = MX.get_hormone(0); // H0: entropy_pressure
         const workerResponse = await postAndWait(
           0, // use primary worker
           workers[0],
@@ -14539,7 +14539,7 @@ export const PULSE = {
 
         for (const idx of activeIdx) {
           const role = rolesView[idx];
-          if (role === STATE_MATRIX.ROLE_GUARDIAN) {
+          if (role === MX.ROLE_GUARDIAN) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateGuardianSignalExecution({
               mode: gMode,
@@ -14585,7 +14585,7 @@ export const PULSE = {
             const allowed = decision.allowed &&
               guardianPheromoneAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
-          } else if (role === STATE_MATRIX.ROLE_ARCHITECT) {
+          } else if (role === MX.ROLE_ARCHITECT) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateArchitectPlasmidExecution({
               mode: aMode,
@@ -14643,7 +14643,7 @@ export const PULSE = {
             script: instructionsView.slice(idx * 64, idx * 64 + 64),
             energy: energiesView[idx],
             resonance: resonancesView[idx],
-            aggression: STATE_MATRIX.get_hormone(2),
+            aggression: MX.get_hormone(2),
             legacyAllowed: true,
           });
 
@@ -14701,7 +14701,7 @@ export const PULSE = {
           kind: "audit_matrix_cycle",
           count: 1,
         });
-        GATE.auditMatrix(STATE_MATRIX);
+        GATE.auditMatrix(MX);
       }
 
       // --- RESONANCE PROTOCOL: Global Coherence Calculation ---
@@ -14730,19 +14730,19 @@ export const PULSE = {
             PREDICTION_MARKET.resolveCrisis();
             PREDICTION_MARKET.distributeDividends();
 
-            const active = STATE_MATRIX.getActiveIndices();
+            const active = MX.getActiveIndices();
             if (active.length > 0) {
               let eliteIdx = active[0];
               let maxEnergy = 0;
               for (const idx of active) {
-                const energy = STATE_MATRIX.get_energy(idx);
+                const energy = MX.get_energy(idx);
                 if (energy > maxEnergy) {
                   maxEnergy = energy;
                   eliteIdx = idx;
                 }
               }
               if (maxEnergy > 50000) {
-                const eliteGenome = STATE_MATRIX.getInstructions(eliteIdx);
+                const eliteGenome = MX.getInstructions(eliteIdx);
                 PREDICTION_MARKET.startCrisis(eliteGenome);
               }
             }
@@ -14813,10 +14813,10 @@ export const PULSE = {
 
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let hashSum = 0n;
-        for (let i = 1; i < STATE_MATRIX.MAX_ATOMS; i++) {
-          if (STATE_MATRIX.get_energy(i) > 0) {
-            hashSum += BigInt(STATE_MATRIX.get_energy(i)) +
-              BigInt(STATE_MATRIX.get_phase(i));
+        for (let i = 1; i < MX.MAX_ATOMS; i++) {
+          if (MX.get_energy(i) > 0) {
+            hashSum += BigInt(MX.get_energy(i)) +
+              BigInt(MX.get_phase(i));
           }
         }
         noosphereDelegate?.broadcastEpochConsensus(currentTick, hashSum);
@@ -14833,7 +14833,7 @@ export const PULSE = {
   onRemoteAtomTransit: (payload: Uint8Array) => {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
-      const id = STATE_MATRIX.getId(newIdx!);
+      const id = MX.getId(newIdx!);
       Li(
         `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
       );
@@ -14853,7 +14853,7 @@ export const PULSE = {
       `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
     );
     const payload = akashaDelegate
-      ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory)
+      ? await akashaDelegate.compressMemory(MX.wasmMemory)
       : new Uint8Array(0);
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
@@ -14863,7 +14863,7 @@ export const PULSE = {
     );
     if (akashaDelegate) {
       await akashaDelegate.decompressMemoryToLattice(
-        STATE_MATRIX.wasmMemory,
+        MX.wasmMemory,
         payload,
       );
     }
@@ -14894,34 +14894,34 @@ export const PULSE = {
 
     const role = payload[148];
 
-    const atomIdx = STATE_MATRIX.findEmptySlot();
+    const atomIdx = MX.findEmptySlot();
     if (atomIdx > 0) {
-      STATE_MATRIX.setEnergy(atomIdx, energy);
-      STATE_MATRIX.setResonance(atomIdx, resonance);
-      STATE_MATRIX.setPhase(atomIdx, phase);
-      STATE_MATRIX.setId(
+      MX.setEnergy(atomIdx, energy);
+      MX.setResonance(atomIdx, resonance);
+      MX.setPhase(atomIdx, phase);
+      MX.setId(
         atomIdx,
         BigInt(PULSE.currentPulseId) << 16n | BigInt(atomIdx),
       );
-      STATE_MATRIX.setRole(atomIdx, role);
+      MX.setRole(atomIdx, role);
 
       const xs = new Int16Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         XS_OFFSET,
         MAX_ATOMS,
       );
       const ys = new Int16Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         YS_OFFSET,
         MAX_ATOMS,
       );
       Atomics.store(xs, atomIdx, nx);
       Atomics.store(ys, atomIdx, ny);
 
-      STATE_MATRIX.setInstructions(atomIdx, genome);
+      MX.setInstructions(atomIdx, genome);
 
       const ctxView = new Int32Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         CONTEXT_OFFSET + atomIdx * 64,
         16,
       );
@@ -15065,7 +15065,7 @@ const classifyArchitectBranch = (
 ): ArchitectPlasmidBranch => {
   if (
     state.buildCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_ARCHITECT
+    state.role === MX.ROLE_ARCHITECT
   ) {
     return "emit";
   }
@@ -15440,14 +15440,14 @@ const classifyGuardianBranch = (
 ): GuardianSignalBranch => {
   if (
     state.buildCount > 0 ||
-    state.role === STATE_MATRIX.ROLE_ARCHITECT ||
+    state.role === MX.ROLE_ARCHITECT ||
     state.branchTaken
   ) {
     return "repair";
   }
   if (
     state.signalCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_GUARDIAN &&
+    state.role === MX.ROLE_GUARDIAN &&
     !state.branchTaken
   ) {
     return "stable";
@@ -17034,7 +17034,7 @@ const maybeDelay = async () => {
         target: number,
       ) => {
         if (op === 0xDD) {
-          const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+          const tick = Number(Atomics.load(MX.tickCounter, 0));
           const epoch = Math.floor(tick / 10000);
           _noop(
             `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
@@ -17415,7 +17415,7 @@ deps:
 min_level: 7
 vars:
   - LOGGER
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - QuorumAdvocate
 ---
@@ -17443,7 +17443,7 @@ export class QuorumAdvocate {
     let totalWisdom = 0;
 
     for (const idx of indices) {
-      totalResonace += STATE_MATRIX.getResonance(idx);
+      totalResonace += MX.getResonance(idx);
       // Wisdom will eventually be pulled from LINEAGE_TRACKER
       totalWisdom += 100;
     }
@@ -19037,7 +19037,7 @@ import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 const SNAP_DIR = ".omega/snap";
 
 /**
- * SNAP_ENGINE handles the binary persistence of the STATE_MATRIX.
+ * SNAP_ENGINE handles the binary persistence of the MX.
  * It fulfills the 'SNAP' phase of the autopoietic heartbeat.
  */
 export const SNAP_ENGINE = {
@@ -19150,7 +19150,7 @@ vars:
   - Li
   - Lw
   - SEMANTIC_MEMBRANE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - SNAPSHOT_ENGINE
 ---
@@ -19159,7 +19159,7 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
-// Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
+// Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
 
 
 const SNAPSHOT_DIR = ".omega/snapshots";
@@ -19197,16 +19197,16 @@ export const SNAPSHOT_ENGINE = {
     const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
     try {
       // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
-      const matrixData = new Uint8Array(STATE_MATRIX.buffer);
+      const matrixData = new Uint8Array(MX.buffer);
       await Deno.writeFile(matrixPath, matrixData);
 
       // 2. Binary dump of the Thermodynamics Grid (Nutrients)
       await Deno.writeFile(
         physicsPath,
         new Uint8Array(
-          STATE_MATRIX.attentionField.buffer,
-          STATE_MATRIX.attentionField.byteOffset,
-          STATE_MATRIX.attentionField.byteLength,
+          MX.attentionField.buffer,
+          MX.attentionField.byteOffset,
+          MX.attentionField.byteLength,
         ),
       );
 
@@ -19260,8 +19260,8 @@ export const SNAPSHOT_ENGINE = {
     try {
       // 1. Restore Matrix Memory Buffer
       const matrixData = await Deno.readFile(matrixPath);
-      if (matrixData.length === STATE_MATRIX.buffer.byteLength) {
-        new Uint8Array(STATE_MATRIX.buffer).set(matrixData);
+      if (matrixData.length === MX.buffer.byteLength) {
+        new Uint8Array(MX.buffer).set(matrixData);
       } else {
         throw new Error("Matrix Payload Size Mismatch");
       }
@@ -19270,9 +19270,9 @@ export const SNAPSHOT_ENGINE = {
       try {
         const physicsData = await Deno.readFile(physicsPath);
         new Uint8Array(
-          STATE_MATRIX.attentionField.buffer,
-          STATE_MATRIX.attentionField.byteOffset,
-          STATE_MATRIX.attentionField.byteLength,
+          MX.attentionField.buffer,
+          MX.attentionField.byteOffset,
+          MX.attentionField.byteLength,
         ).set(physicsData);
       } catch {
         Lw(
@@ -19394,7 +19394,7 @@ tags:
   - host
 min_level: 6
 vars:
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - DECREES
   - SOVEREIGNTY_ENGINE
@@ -19455,7 +19455,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     let regentIdx = -1;
 
     for (const idx of activeIndices) {
-      const res = STATE_MATRIX.getResonance(idx);
+      const res = MX.getResonance(idx);
       // --- ERA 8: QUADRATIC VOTING ---
       const power = Math.sqrt(res);
 
@@ -19466,7 +19466,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     }
 
     if (regentIdx !== -1) {
-      const logicBytes = STATE_MATRIX.getLogic(regentIdx);
+      const logicBytes = MX.getLogic(regentIdx);
       const logicStr = Array.from(logicBytes).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("");
@@ -19481,7 +19481,7 @@ export const SOVEREIGNTY_ENGINE: any = {
 
       SOVEREIGNTY_ENGINE.currentRegent = {
         idx: regentIdx,
-        energy: STATE_MATRIX.getEnergy(regentIdx),
+        energy: MX.getEnergy(regentIdx),
         genome: logicStr,
         legitimacy: bestPower * bestPower, // Return raw resonance for display
         activeDecree,
@@ -19489,7 +19489,7 @@ export const SOVEREIGNTY_ENGINE: any = {
       };
       if (activeDecree !== lastAnnouncedDecree) {
         lastAnnouncedDecree = activeDecree;
-        const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+        const tick = Atomics.load(MX.tickCounter, 0);
         delegate?.recordDecreeShift(
           tick,
           activeDecree,
@@ -19510,7 +19510,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
     if (lastAnnouncedDecree !== "NONE") {
       lastAnnouncedDecree = "NONE";
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Atomics.load(MX.tickCounter, 0);
       delegate?.recordDecreeShift(tick, "NONE", "NONE", 0);
     }
     return SOVEREIGNTY_ENGINE.currentRegent;
@@ -19528,7 +19528,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     // Collect counts by genome prefix
     const genomeCounts = new Map<number, number[]>(); // prefix → [indices]
     for (const idx of activeIndices) {
-      const logicBytes = STATE_MATRIX.getLogic(idx);
+      const logicBytes = MX.getLogic(idx);
       const view = new DataView(logicBytes.buffer, logicBytes.byteOffset);
       const prefix = view.getUint32(0, true);
       if (!genomeCounts.has(prefix)) genomeCounts.set(prefix, []);
@@ -19557,14 +19557,14 @@ export const SOVEREIGNTY_ENGINE: any = {
     let bestEnergy = 0;
     let regentIdx = dominantMembers[0];
     for (const idx of dominantMembers) {
-      const e = STATE_MATRIX.getEnergy(idx);
+      const e = MX.getEnergy(idx);
       if (e > bestEnergy) {
         bestEnergy = e;
         regentIdx = idx;
       }
     }
 
-    const logicBytes = STATE_MATRIX.getLogic(regentIdx);
+    const logicBytes = MX.getLogic(regentIdx);
     const colonyGenome = Array.from(logicBytes).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("");
@@ -19585,7 +19585,7 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
     if (activeDecree !== lastAnnouncedDecree) {
       lastAnnouncedDecree = activeDecree;
-      const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+      const tick = Atomics.load(MX.tickCounter, 0);
       delegate?.recordDecreeShift(
         tick,
         activeDecree,
@@ -25925,12 +25925,12 @@ vars:
   - LEDGER_DATA_OFFSET
   - LEDGER_HEAD_OFFSET
   - MAX_LEDGER_EVENTS
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - ATOMIC_LEDGER
   - AtomicLedgerEvent
 deps:
-  - STATE_MATRIX
+  - MX
 ---
 
 ### TypeScript
@@ -25951,7 +25951,7 @@ export const ATOMIC_LEDGER = {
    * Retrieves the current write cursor (how many total events have been emitted).
    */
   getHead(): number {
-    return Atomics.load(STATE_MATRIX.ledgerHeadView, 0);
+    return Atomics.load(MX.ledgerHeadView, 0);
   },
 
   /**
@@ -25962,10 +25962,10 @@ export const ATOMIC_LEDGER = {
     const cursor = sequence % MAX_LEDGER_EVENTS;
     const base = cursor * 4;
     return {
-      tick: Atomics.load(STATE_MATRIX.ledgerDataView, base),
-      atomIdx: Atomics.load(STATE_MATRIX.ledgerDataView, base + 1),
-      r1: Atomics.load(STATE_MATRIX.ledgerDataView, base + 2),
-      r2: Atomics.load(STATE_MATRIX.ledgerDataView, base + 3),
+      tick: Atomics.load(MX.ledgerDataView, base),
+      atomIdx: Atomics.load(MX.ledgerDataView, base + 1),
+      r1: Atomics.load(MX.ledgerDataView, base + 2),
+      r2: Atomics.load(MX.ledgerDataView, base + 3),
     };
   },
 
@@ -25980,7 +25980,7 @@ export const ATOMIC_LEDGER = {
 
     // Copy Head
     const headBytes = new Uint8Array(
-      STATE_MATRIX.ledgerHeadView.buffer,
+      MX.ledgerHeadView.buffer,
       LEDGER_HEAD_OFFSET,
       4,
     );
@@ -25988,7 +25988,7 @@ export const ATOMIC_LEDGER = {
 
     // Copy Data
     const dataBytes = new Uint8Array(
-      STATE_MATRIX.ledgerDataView.buffer,
+      MX.ledgerDataView.buffer,
       LEDGER_DATA_OFFSET,
       MAX_LEDGER_EVENTS * 16,
     );
@@ -26568,7 +26568,7 @@ import {
   GATE_BUDGET
 } from "@g12";
 import {
-  STATE_MATRIX
+  MX
 } from "@g12";
 
 type I16Limits = {
@@ -26644,7 +26644,7 @@ export const mergeGateProposals = (
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
       );
     } else if (p.origin_atom_idx !== undefined) {
-      const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
+      const resonance = MX.getResonance(p.origin_atom_idx);
       Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
@@ -26664,7 +26664,7 @@ export const mergeGateProposals = (
 
     const atomResonance = p.resonance ??
       (p.origin_atom_idx !== undefined
-        ? STATE_MATRIX.getResonance(p.origin_atom_idx)
+        ? MX.getResonance(p.origin_atom_idx)
         : 0);
     const globalSyntropy = config.global_syntropy || 0;
     const localQuorum = p.quorum_strength || 0;
@@ -28984,7 +28984,7 @@ vars:
   - Li
   - OP_SET
   - OP_SYSCALL
-  - STATE_MATRIX
+  - MX
   - SYS_ATTRACT
   - SYS_TRANSFER
   - assemble
@@ -29053,11 +29053,11 @@ export class AgentProxy {
   handleMatrixInfo(req: Request): Response {
     let pop = 0;
     let totalEnergy = 0;
-    const tick = Atomics.load((STATE_MATRIX as any).tickCounter, 0);
+    const tick = Atomics.load((MX as any).tickCounter, 0);
     // Simple population scan
     for (let i = 1; i <= 10000; i++) { // Bounding scan for performance
-      const id = Number(STATE_MATRIX.getId(i));
-      const energy = STATE_MATRIX.getEnergy(i);
+      const id = Number(MX.getId(i));
+      const energy = MX.getEnergy(i);
       if (id > 0 && energy > 0) {
         pop++;
         totalEnergy += energy;
@@ -29075,32 +29075,32 @@ export class AgentProxy {
   }
 
   handleAtomSense(atomId: number): Response {
-    const id = Number(STATE_MATRIX.getId(atomId));
+    const id = Number(MX.getId(atomId));
     if (id <= 0) {
       return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
         status: 404,
       });
     }
 
-    const x = STATE_MATRIX.getX(atomId);
-    const y = STATE_MATRIX.getY(atomId);
-    const energy = STATE_MATRIX.getEnergy(atomId);
-    const role = STATE_MATRIX.getRole(atomId);
+    const x = MX.getX(atomId);
+    const y = MX.getY(atomId);
+    const energy = MX.getEnergy(atomId);
+    const role = MX.getRole(atomId);
 
     // Radar scan (radius 50 units = 5 cells)
     const vision = [];
     const MAX_DISTANCE_SQ = 50 * 50;
 
-    // Bounded scan over STATE_MATRIX to avoid legacy SPATIAL_HASH O(1) grid overhead
+    // Bounded scan over MX to avoid legacy SPATIAL_HASH O(1) grid overhead
     // which requires constant upkeep from workers.
     for (let currentAt = 1; currentAt <= 10000; currentAt++) {
       if (currentAt === atomId) continue;
 
-      const nId = Number(STATE_MATRIX.getId(currentAt));
+      const nId = Number(MX.getId(currentAt));
       if (nId <= 0) continue;
 
-      const nX = STATE_MATRIX.getX(currentAt);
-      const nY = STATE_MATRIX.getY(currentAt);
+      const nX = MX.getX(currentAt);
+      const nY = MX.getY(currentAt);
 
       const dx = nX - x;
       const dy = nY - y;
@@ -29112,7 +29112,7 @@ export class AgentProxy {
           idx: currentAt,
           dx,
           dy,
-          role: STATE_MATRIX.getRole(currentAt),
+          role: MX.getRole(currentAt),
           distance: Math.sqrt(dSq),
         });
       }
@@ -29131,7 +29131,7 @@ export class AgentProxy {
   }
 
   async handleAtomAct(req: Request, atomId: number): Promise<Response> {
-    const id = Number(STATE_MATRIX.getId(atomId));
+    const id = Number(MX.getId(atomId));
     if (id <= 0) {
       return new Response(JSON.stringify({ error: "Atom not found or dead" }), {
         status: 404,
@@ -29200,7 +29200,7 @@ export class AgentProxy {
       }
 
       const compiledScript = assemble(ops);
-      STATE_MATRIX.setInstructions(atomId, compiledScript);
+      MX.setInstructions(atomId, compiledScript);
 
       return new Response(
         JSON.stringify({ success: true, compiled_bytes: ops.length }),
@@ -30331,7 +30331,7 @@ vars:
   - LOGGER
   - Li
   - Lw
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - PANOPTICON_SERVER
 ---
@@ -30409,8 +30409,8 @@ export const PANOPTICON_SERVER = {
     setInterval(() => {
       if (clients.size === 0) return;
 
-      const activeAtoms = STATE_MATRIX.getActiveIndices().length;
-      const energy = STATE_MATRIX.getMatrixResonance();
+      const activeAtoms = MX.getActiveIndices().length;
+      const energy = MX.getMatrixResonance();
       
       const latestCommentary = AKASHA_CODEX._getChronicleIndex()
         .filter((entry: any) => entry.type === "observer_commentary")
@@ -32705,7 +32705,7 @@ extra_symbols:
 ```typescript
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
-    "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
+    "[MX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
     ", required=" + MIN_WASM_MEMORY_PAGES,
   );
 }
@@ -32714,7 +32714,7 @@ const layoutValidation = validateMemoryLayout(
 );
 if (!layoutValidation.ok) {
   throw new Error(
-    "[STATE_MATRIX] Invalid OFFSETS memory layout:\n" +
+    "[MX] Invalid OFFSETS memory layout:\n" +
       layoutValidation.errors.map((entry: any) => "- " + entry).join("\n")
   );
 }
@@ -33522,9 +33522,9 @@ export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRI
 
 ```markdown
 ---
-id: STATE_MATRIX
+id: MX
 type: module
-description: Implementation of STATE_MATRIX
+description: Implementation of MX
 tags: []
 min_level: 0
 deps:
@@ -33611,7 +33611,7 @@ vars:
   - SYS_SET_ROLE
   - SYS_YIELD
 extra_symbols:
-  - STATE_MATRIX
+  - MX
   - SYNC
   - clampResourceRaw
   - toClampedEnergyRaw
@@ -33619,7 +33619,7 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
-// OMEGA-64 | STATE_MATRIX.ts
+// OMEGA-64 | MX.ts
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
@@ -33648,7 +33648,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
-export const STATE_MATRIX = {
+export const MX = {
   MAX_ATOMS,
   buffer: sharedBuffer,
   wasmMemory,
@@ -33870,7 +33870,7 @@ export const STATE_MATRIX = {
   },
 
   packRenderFrame: (): Float32Array => {
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const len = active.length;
     const packet = new Float32Array(len * 4);
 
@@ -33886,7 +33886,7 @@ export const STATE_MATRIX = {
   },
 
   packPanopticonFrame: (): ArrayBuffer => {
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const atomCount = active.length;
     const gridCells = GRID_CELLS;
     const bytesPerAtom = 24;
@@ -33906,7 +33906,7 @@ export const STATE_MATRIX = {
     offset += 4;
     
     for(let i=0; i < gridCells; i++) {
-        const type = STATE_MATRIX.getGridType(i);
+        const type = MX.getGridType(i);
         const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
         u8[offset++] = type | hasPlasmid;
     }
@@ -33968,9 +33968,9 @@ export const STATE_MATRIX = {
     resonance: number = 100,
   ) => {
     const genome = new Uint8Array(8);
-    const script = STATE_MATRIX.getGuardianScript();
-    STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
-    STATE_MATRIX.set_role(i, STATE_MATRIX.ROLE_GUARDIAN);
+    const script = MX.getGuardianScript();
+    MX.seedAtom(i, id, x, y, energy, resonance, genome, script);
+    MX.set_role(i, MX.ROLE_GUARDIAN);
   },
 
   getGuardianScript: () => {
@@ -36304,7 +36304,7 @@ vars:
   - OP_RESONATE_KURAMOTO
   - OP_SENSE
   - OP_SENSE_AS
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - AKASHA_CODEX
   - CodexLineageProfile
@@ -36647,7 +36647,7 @@ const opcodeLength = (op: number): number => {
 const summarizeInstructions = (sampleIndices: number[]): string[] => {
   const counts = new Map<string, number>();
   for (const idx of sampleIndices) {
-    const script = STATE_MATRIX.getInstructions(idx);
+    const script = MX.getInstructions(idx);
     let pc = 0;
     let steps = 0;
     while (pc >= 0 && pc < 64 && steps < 16) {
@@ -36856,7 +36856,7 @@ const hormoneRegimeLabel = (h: number[]): string => {
 };
 
 const buildHormoneRegimeEvidence = (tick: number): HormoneRegimeEvidence => {
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => MX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
   // Coarse 4-band signature per hormone: A=0-511 B=512-1023 C=1024-1535 D=1536-2048
   const sig = h.map((v) => String.fromCharCode(65 + Math.min(3, v >> 9))).join(
@@ -37235,7 +37235,7 @@ const collectGenomeStats = (): {
   population: number;
   dominant: GenomeStats[];
 } => {
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const population = active.length;
   if (population === 0) return { population, dominant: [] };
 
@@ -37244,7 +37244,7 @@ const collectGenomeStats = (): {
     { count: number; sampleIndices: number[] }
   >();
   for (const idx of active) {
-    const genome = toHex(STATE_MATRIX.getLogic(idx));
+    const genome = toHex(MX.getLogic(idx));
     const slot = statsMap.get(genome) ?? { count: 0, sampleIndices: [] };
     slot.count++;
     if (slot.sampleIndices.length < 16) slot.sampleIndices.push(idx);
@@ -37315,7 +37315,7 @@ const discoverSpecies = async (
 
   const dominantInstructions = summarizeInstructions(stat.sampleIndices);
   // Stage 7.4: Fetch current hormone regime label
-  const h = [0, 1, 2, 3, 4, 5].map((id) => STATE_MATRIX.get_hormone(id));
+  const h = [0, 1, 2, 3, 4, 5].map((id) => MX.get_hormone(id));
   const regime = hormoneRegimeLabel(h);
 
   const fallback = fallbackTaxonomy(stat.genome, dominantInstructions, regime);
@@ -37413,13 +37413,13 @@ const hashHex = async (input: string): Promise<string> => {
 };
 
 const findRelicCandidate = (): RelicCandidate | null => {
-  const grid = STATE_MATRIX.structureGrid;
+  const grid = MX.structureGrid;
   const visited = new Uint8Array(GRID_CELLS);
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const occupied = new Uint8Array(GRID_CELLS);
   for (const idx of active) {
-    const x = STATE_MATRIX.getX(idx);
-    const y = STATE_MATRIX.getY(idx);
+    const x = MX.getX(idx);
+    const y = MX.getY(idx);
     const gx = Math.floor(Math.max(0, Math.min(1399, x)) / 10);
     const gy = Math.floor(Math.max(0, Math.min(799, y)) / 10);
     occupied[gy * GRID_W + gx] = 1;
@@ -37500,7 +37500,7 @@ const recordRelic = async (tick: number): Promise<void> => {
     let row = "";
     for (let x = x0; x <= x1; x++) {
       const idx = y * GRID_W + x;
-      row += typeSymbol(STATE_MATRIX.structureGrid[idx] & 0xFF);
+      row += typeSymbol(MX.structureGrid[idx] & 0xFF);
     }
     rows.push(row);
   }
@@ -37970,7 +37970,7 @@ export const AKASHA_CODEX = {
   getNarrative: async (limit: number = 5): Promise<CodexNarrative> => {
     await ensureStorage();
     await syncDaemonInvariants();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     const epoch = Math.floor(tick / EPOCH_TICKS);
     const take = Math.max(1, Math.min(12, Math.floor(limit)));
     const mood = inferNarrativeMood();
@@ -38011,12 +38011,12 @@ export const AKASHA_CODEX = {
 
     let hippocampusRecall: CodexNarrative["hippocampusRecall"];
     const currentHormones = [
-      Atomics.load(STATE_MATRIX.hormones, 0),
-      Atomics.load(STATE_MATRIX.hormones, 1),
-      Atomics.load(STATE_MATRIX.hormones, 2),
-      Atomics.load(STATE_MATRIX.hormones, 3),
-      Atomics.load(STATE_MATRIX.hormones, 4),
-      Atomics.load(STATE_MATRIX.hormones, 5),
+      Atomics.load(MX.hormones, 0),
+      Atomics.load(MX.hormones, 1),
+      Atomics.load(MX.hormones, 2),
+      Atomics.load(MX.hormones, 3),
+      Atomics.load(MX.hormones, 4),
+      Atomics.load(MX.hormones, 5),
     ];
     let bestDistance = Number.MAX_VALUE;
     let bestEntry: InvariantEntry | null = null;
@@ -38091,7 +38091,7 @@ export const AKASHA_CODEX = {
   },
   recordImmunologicalPurge: async (count: number) => {
     await ensureStorage();
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     state.lastImmunePurgeTick = tick;
     state.lastImmunePurgeCount = count;
 
@@ -38238,7 +38238,7 @@ min_level: 5
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
 import { GLYPH_TELEMETRY } from "@g12";
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
 
 const getGridIdx = (x: number, y: number) => {
@@ -38261,18 +38261,18 @@ export const AVATAR_ENGINE = {
 
     // Spill a highly concentrated dose of attention at the cursor
     // Capped to prevent float overflow or infinite pooling
-    const current = STATE_MATRIX.attentionField[idx];
+    const current = MX.attentionField[idx];
     if (current < 1000) {
-      STATE_MATRIX.attentionField[idx] += coreDelta;
+      MX.attentionField[idx] += coreDelta;
     }
 
     // Also spill slightly into immediate neighbors to create a gradient
     const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
     for (const [ox, oy] of checkPoints) {
       const sIdx = getGridIdx(x + ox, y + oy);
-      const sCurrent = STATE_MATRIX.attentionField[sIdx];
+      const sCurrent = MX.attentionField[sIdx];
       if (sCurrent < 1000) {
-        STATE_MATRIX.attentionField[sIdx] += haloDelta;
+        MX.attentionField[sIdx] += haloDelta;
       }
     }
   },
@@ -39413,7 +39413,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 import { LLM_SYNAPSE } from "@g12";
 
 const PROJECTION_SIZE = 64;
@@ -39541,7 +39541,7 @@ export const SEMANTIC_MEMBRANE = {
       return behaviorFrameCache;
     }
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     const localSampleLimit = Number.isFinite(sampleLimit)
       ? Math.max(64, Math.floor(sampleLimit))
       : BEHAVIOR_FRAME_MAX_ATOMS;
@@ -39562,7 +39562,7 @@ export const SEMANTIC_MEMBRANE = {
     for (let i = 0; i < active.length; i += stride) {
       const idx = active[i];
       const fingerprint = deriveBehaviorFingerprint(
-        STATE_MATRIX.getInstructions(idx),
+        MX.getInstructions(idx),
       );
       const signature = behaviorSignature(fingerprint);
       let bucket = aggregates.get(signature);
@@ -39582,10 +39582,10 @@ export const SEMANTIC_MEMBRANE = {
       bucket.replicateTotal += fingerprint.replicateRatio;
       bucket.signalTotal += fingerprint.signalRatio;
       bucket.buildTotal += fingerprint.buildRatio;
-      const role = Math.min(7, Math.max(0, STATE_MATRIX.getRole(idx)));
+      const role = Math.min(7, Math.max(0, MX.getRole(idx)));
       bucket.roleCounts[role] += 1;
 
-      const genome = toGenomeHex(STATE_MATRIX.getLogic(idx));
+      const genome = toGenomeHex(MX.getLogic(idx));
       if (
         bucket.genomeSamples.length < 6 &&
         !bucket.genomeSamples.includes(genome)
@@ -39738,12 +39738,12 @@ export const SEMANTIC_MEMBRANE = {
 
   project: async (text: string, idx: number) => {
     const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
-    STATE_MATRIX.setLogic(idx, hash);
+    MX.setLogic(idx, hash);
   },
 
   injectThought: async (text: string, weight: number) => {
     const hash = await SEMANTIC_MEMBRANE.quantizeThought(text);
-    const idx = STATE_MATRIX.findEmptySlot();
+    const idx = MX.findEmptySlot();
 
     if (idx !== -1) {
       // ID generation logic (Pseudo-random 64-bit BigInt)
@@ -39752,23 +39752,23 @@ export const SEMANTIC_MEMBRANE = {
       let id = 0n;
       for (let i = 0; i < 8; i++) id = (id << 8n) | BigInt(idBytes[i]);
 
-      STATE_MATRIX.setId(idx, id);
+      MX.setId(idx, id);
 
       // Genomic Traits derived directly from the semantic hash (LSH)
       // logic[1] determines Caste. >128 Parasite, <128 Builder.
-      STATE_MATRIX.setLogic(idx, hash);
+      MX.setLogic(idx, hash);
 
       // Energy derived from weight + the first modulus byte of hash
       const baseEnergy = weight + (hash[0] % 50);
-      STATE_MATRIX.setEnergy(idx, baseEnergy);
+      MX.setEnergy(idx, baseEnergy);
 
       // Resonance based on aggressiveness (logic[1])
       const isAggressive = hash[1] > 128;
-      STATE_MATRIX.setResonance(idx, isAggressive ? 100 : 500);
+      MX.setResonance(idx, isAggressive ? 100 : 500);
 
       // Spawn near center
-      STATE_MATRIX.setX(idx, 700 + (Math.random() - 0.5) * 50);
-      STATE_MATRIX.setY(idx, 400 + (Math.random() - 0.5) * 50);
+      MX.setX(idx, 700 + (Math.random() - 0.5) * 50);
+      MX.setY(idx, 400 + (Math.random() - 0.5) * 50);
 
       // Akashic Archival: Map the Genome Hex to the original English text
       const hexHash = Array.from(hash).map((b) =>
@@ -39806,7 +39806,7 @@ export const SEMANTIC_MEMBRANE = {
   },
 
   updateSemanticBonuses: (idx: number) => {
-    const logic = STATE_MATRIX.getLogic(idx);
+    const logic = MX.getLogic(idx);
     const hexHash = Array.from(logic).map((b) =>
       b.toString(16).padStart(2, "0")
     ).join("").toUpperCase();
@@ -39814,7 +39814,7 @@ export const SEMANTIC_MEMBRANE = {
     if (thought) {
       const bonuses = SEMANTIC_MEMBRANE.getBonuses(thought);
       // @ts-ignore: semanticBonuses is a custom buffer added in Era 36
-      Atomics.store(STATE_MATRIX.semanticBonuses, idx, bonuses);
+      Atomics.store(MX.semanticBonuses, idx, bonuses);
     }
   },
 
@@ -39826,12 +39826,12 @@ export const SEMANTIC_MEMBRANE = {
     let builderCount = 0;
     let totalEnergy = 0;
 
-    const active = STATE_MATRIX.getActiveIndices();
+    const active = MX.getActiveIndices();
     for (const i of active) {
-      const logic = STATE_MATRIX.getLogic(i);
+      const logic = MX.getLogic(i);
       if (logic[1] > 128) parasiteCount++;
       else builderCount++;
-      totalEnergy += STATE_MATRIX.getEnergy(i);
+      totalEnergy += MX.getEnergy(i);
     }
 
     const avgEnergy = active.length > 0 ? (totalEnergy / active.length) : 0;
@@ -39868,10 +39868,10 @@ export const SEMANTIC_MEMBRANE = {
    * Returns the English thoughts of the most resonant atoms.
    */
   readOracleQueue: (count: number): string[] => {
-    const topIndices = STATE_MATRIX.getTopResonantIndices(count);
+    const topIndices = MX.getTopResonantIndices(count);
     const thoughts: string[] = [];
     for (const idx of topIndices) {
-      const logic = STATE_MATRIX.getLogic(idx);
+      const logic = MX.getLogic(idx);
       const hexHash = Array.from(logic).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
@@ -39883,10 +39883,10 @@ export const SEMANTIC_MEMBRANE = {
 
   scanDigitalRuins: (): string[] => {
     const ruins: string[] = [];
-    // @ts-ignore: structureGrid exists in STATE_MATRIX
-    const grid = STATE_MATRIX.structureGrid;
-    // @ts-ignore: memoryGrid exists in STATE_MATRIX
-    const memory = STATE_MATRIX.memoryGrid;
+    // @ts-ignore: structureGrid exists in MX
+    const grid = MX.structureGrid;
+    // @ts-ignore: memoryGrid exists in MX
+    const memory = MX.memoryGrid;
 
     const GRID_W = 70;
     const GRID_H = 40;
@@ -39956,7 +39956,7 @@ vars:
   - RUNTIME_POLICY
   - SEMANTIC_MEMBRANE
   - SOVEREIGNTY_ENGINE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - SOVEREIGN_ORACLE
   - SovereignOracleAkashaDelegate
@@ -40024,13 +40024,13 @@ const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
 const GRID_CELL_BYTES = 8;
 
 const toGridIndexNearRegent = (regentIndex: number): number | null => {
-  if (STATE_MATRIX.getId(regentIndex) === 0n) return null;
+  if (MX.getId(regentIndex) === 0n) return null;
   const gx = Math.max(
     0,
     Math.min(
       GRID_W - 1,
       Math.floor(
-        STATE_MATRIX.getX(regentIndex) / 10,
+        MX.getX(regentIndex) / 10,
       ),
     ),
   );
@@ -40039,7 +40039,7 @@ const toGridIndexNearRegent = (regentIndex: number): number | null => {
     Math.min(
       GRID_H - 1,
       Math.floor(
-        STATE_MATRIX.getY(regentIndex) / 10,
+        MX.getY(regentIndex) / 10,
       ),
     ),
   );
@@ -40065,7 +40065,7 @@ export const SOVEREIGN_ORACLE = {
     const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
     Li(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
     
-    const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+    const tick = Atomics.load(MX.tickCounter, 0);
     await delegate?.appendObserverCommentary(
       tick,
       Math.floor(tick / 10000), 
@@ -40074,11 +40074,11 @@ export const SOVEREIGN_ORACLE = {
   },
 
   gatherEpochTelemetry: () => {
-    const matrixRes = STATE_MATRIX.getMatrixResonance();
-    const clusterSync = STATE_MATRIX.getClusterSync();
+    const matrixRes = MX.getMatrixResonance();
+    const clusterSync = MX.getClusterSync();
 
     // Calculate global Matrix statistics
-    const activeIndices = STATE_MATRIX.getActiveIndices();
+    const activeIndices = MX.getActiveIndices();
     const population = activeIndices.length;
 
     let totalEnergy = 0;
@@ -40088,18 +40088,18 @@ export const SOVEREIGN_ORACLE = {
     const genomeCounts = new Map<string, number>();
 
     for (const idx of activeIndices) {
-      totalEnergy += STATE_MATRIX.getEnergy(idx);
+      totalEnergy += MX.getEnergy(idx);
 
       // Count active learned synapses
       // (Assuming each atom has 8 semantic weight channels in Phase 25)
       for (let s = 0; s < 8; s++) {
-        if (STATE_MATRIX.getSynapticWeight(idx, s) > 0) {
+        if (MX.getSynapticWeight(idx, s) > 0) {
           successfulSynapses++;
           break; // just count if the atom has ANY active synapses
         }
       }
 
-      const genomeBase = STATE_MATRIX.getInstructions(idx).subarray(0, 8);
+      const genomeBase = MX.getInstructions(idx).subarray(0, 8);
       const hex = Array.from(genomeBase).map((b) =>
         b.toString(16).padStart(2, "0")
       ).join("").toUpperCase();
@@ -40166,16 +40166,16 @@ export const SOVEREIGN_ORACLE = {
 
       switch (mutation.kind) {
         case "oracle_head_mutation": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          const currentInstructions = STATE_MATRIX.getInstructions(
+          const currentInstructions = MX.getInstructions(
             mutation.regentIndex,
           );
           const headMutation = new Uint8Array(currentInstructions);
           headMutation.set(mutation.headBytes, 0);
-          STATE_MATRIX.setInstructions(mutation.regentIndex, headMutation);
+          MX.setInstructions(mutation.regentIndex, headMutation);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_head_mutation",
@@ -40186,12 +40186,12 @@ export const SOVEREIGN_ORACLE = {
           break;
         }
         case "oracle_memetic_injection": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          const rx = Math.floor(STATE_MATRIX.getX(mutation.regentIndex) / 10);
-          const ry = Math.floor(STATE_MATRIX.getY(mutation.regentIndex) / 10);
+          const rx = Math.floor(MX.getX(mutation.regentIndex) / 10);
+          const ry = Math.floor(MX.getY(mutation.regentIndex) / 10);
           let seededCells = 0;
 
           for (let dx = -1; dx <= 1; dx++) {
@@ -40200,8 +40200,8 @@ export const SOVEREIGN_ORACLE = {
               const gy = ry + dy;
               if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
                 const gridIdx = (gy * GRID_W + gx) * 8;
-                STATE_MATRIX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
-                STATE_MATRIX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
+                MX.memoryGrid.set([0xE8, 0x03, 0x00, 0x00], gridIdx);
+                MX.memoryGrid.set(mutation.memeBytes, gridIdx + 4);
                 seededCells++;
               }
             }
@@ -40217,11 +40217,11 @@ export const SOVEREIGN_ORACLE = {
           break;
         }
         case "oracle_cache_fallback": {
-          if (STATE_MATRIX.getId(mutation.regentIndex) === 0n) {
+          if (MX.getId(mutation.regentIndex) === 0n) {
             skipped++;
             break;
           }
-          STATE_MATRIX.setLogic(mutation.regentIndex, mutation.logicBytes);
+          MX.setLogic(mutation.regentIndex, mutation.logicBytes);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_cache_fallback",
@@ -40236,17 +40236,17 @@ export const SOVEREIGN_ORACLE = {
         case "oracle_whisper_broadcast": {
           if (
             mutation.gridIdx < 0 ||
-            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+            mutation.gridIdx + 7 >= MX.memoryGrid.length
           ) {
             skipped++;
             break;
           }
-          STATE_MATRIX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 1] =
+          MX.memoryGrid[mutation.gridIdx] = mutation.charge & 0xFF;
+          MX.memoryGrid[mutation.gridIdx + 1] =
             (mutation.charge >> 8) & 0xFF;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 2] = 0;
-          STATE_MATRIX.memoryGrid[mutation.gridIdx + 3] = 0;
-          STATE_MATRIX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
+          MX.memoryGrid[mutation.gridIdx + 2] = 0;
+          MX.memoryGrid[mutation.gridIdx + 3] = 0;
+          MX.memoryGrid.set(mutation.memeBytes, mutation.gridIdx + 4);
           delegate?.recordTelemetry({
             lane: "internal_oracle",
             kind: "oracle_whisper_broadcast",
@@ -40258,7 +40258,7 @@ export const SOVEREIGN_ORACLE = {
         case "oracle_plasmid_injection": {
           if (
             mutation.gridIdx < 0 ||
-            mutation.gridIdx + 7 >= STATE_MATRIX.memoryGrid.length
+            mutation.gridIdx + 7 >= MX.memoryGrid.length
           ) {
             skipped++;
             break;
@@ -40282,8 +40282,8 @@ export const SOVEREIGN_ORACLE = {
             if (amp < MIN_GLYPH_AMP) amp = MIN_GLYPH_AMP;
             const packedHeader = (amp << 8) | (kind & 0xFF);
 
-            STATE_MATRIX.glyphHeaders[trueCellIdx] = packedHeader;
-            STATE_MATRIX.glyphPayload.set(payload, trueCellIdx * 8);
+            MX.glyphHeaders[trueCellIdx] = packedHeader;
+            MX.glyphPayload.set(payload, trueCellIdx * 8);
           };
 
           let seededCells = 0;
@@ -40294,7 +40294,7 @@ export const SOVEREIGN_ORACLE = {
           const col = cell % GRID_W;
           if (col < GRID_W - 1) {
             const nextGridIdx = mutation.gridIdx + GRID_CELL_BYTES;
-            if (nextGridIdx + 7 < STATE_MATRIX.memoryGrid.length) {
+            if (nextGridIdx + 7 < MX.memoryGrid.length) {
               writeCell(
                 nextGridIdx,
                 Math.max(64, seedCharge - 128),
@@ -40336,10 +40336,10 @@ export const SOVEREIGN_ORACLE = {
         `👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`,
       );
 
-      const memSummary = STATE_MATRIX.getMemorySummary();
+      const memSummary = MX.getMemorySummary();
       const oracleResult = await LLM_SYNAPSE.generateAtomicBytecode({
         ...telemetry,
-        energy: STATE_MATRIX.getEnergy(regentIndex),
+        energy: MX.getEnergy(regentIndex),
         stigmergicSummary: memSummary,
       });
 
@@ -40377,7 +40377,7 @@ export const SOVEREIGN_ORACLE = {
         Li(
           `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
-        if (STATE_MATRIX.getId(regentIndex) === 0n) {
+        if (MX.getId(regentIndex) === 0n) {
           Ld(
             `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
           );
@@ -40389,7 +40389,7 @@ export const SOVEREIGN_ORACLE = {
         ) {
           // Fallback legacy behavior: overwrite beginning of instructions
           const fullGenome = new Uint8Array(
-            STATE_MATRIX.getInstructions(regentIndex),
+            MX.getInstructions(regentIndex),
           );
           fullGenome.set(newPlasmid, 0); // Put the 8 bytes at the start
 
@@ -40517,7 +40517,7 @@ export const SOVEREIGN_ORACLE = {
           bytes[i] = parseInt(cachedHex.substring(i * 2, i * 2 + 2), 16);
         }
 
-        if (STATE_MATRIX.getId(regentIndex) !== 0n) {
+        if (MX.getId(regentIndex) !== 0n) {
           if (ORACLE_MUTATION_MODE === "direct") {
             SOVEREIGN_ORACLE.queueMutation({
               kind: "oracle_cache_fallback",
@@ -40590,7 +40590,7 @@ export const SOVEREIGN_ORACLE = {
 
         if (oracleResult.narrativeMood) {
           Li(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
-          const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
+          const tick = Atomics.load(MX.tickCounter, 0);
           await delegate?.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
         }
       }
@@ -41351,7 +41351,7 @@ description: "Implementation of P2P_FEDERATION"
 tags: []
 min_level: 4
 deps:
-  - STATE_MATRIX
+  - MX
   - prng_seed_from
   - prng_next
   - LOGGER
@@ -41495,7 +41495,7 @@ export const P2P_FEDERATION = {
   localRuleGenome: LOCAL_RULE_GENOME,
 
   serialize: (idx: number, pulseId: number = 0): Uint8Array | null => {
-    const id = STATE_MATRIX.getId(idx);
+    const id = MX.getId(idx);
     if (!id) return null;
     return P2P_CODEC.packAtom(idx);
   },
@@ -41528,7 +41528,7 @@ export const P2P_FEDERATION = {
     // isProcessingMigration = true;
 
     const idx = migrationQueue.shift()!;
-    const atomIdAtStart = STATE_MATRIX.getId(idx);
+    const atomIdAtStart = MX.getId(idx);
     const packet = P2P_FEDERATION.serialize(idx, pulseId);
 
     if (packet && atomIdAtStart !== 0n) {
@@ -41540,7 +41540,7 @@ export const P2P_FEDERATION = {
       }
       const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
 
-      const lineage = STATE_MATRIX.getLineage(idx);
+      const lineage = MX.getLineage(idx);
       const behaviorProfile = delegate?.captureBehaviorFrame(idx) || null;
       // @ts-ignore: Legacy type bypass
       const codexProfile = delegate?.lookupLineageProfile(
@@ -41567,8 +41567,8 @@ export const P2P_FEDERATION = {
         });
 
         if (res.ok) {
-          if (STATE_MATRIX.getId(idx) === atomIdAtStart) {
-            STATE_MATRIX.setId(idx, 0n);
+          if (MX.getId(idx) === atomIdAtStart) {
+            MX.setId(idx, 0n);
             delegate?.recordTelemetry({
               lane: "external_ingress",
               kind: "federation_migration_clear",
@@ -41605,13 +41605,13 @@ min_level: 4
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
 
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
 export const P2P_CODEC = {
   /**
-   * Serializes an atom from STATE_MATRIX into a strict Uint8Array binary format.
+   * Serializes an atom from MX into a strict Uint8Array binary format.
    * Format:
    * 0-7:   ID (BigUint64)
    * 8-9:   X (Int16)
@@ -41633,41 +41633,41 @@ export const P2P_CODEC = {
     const view = new DataView(buffer);
     const u8 = new Uint8Array(buffer);
 
-    view.setBigUint64(0, STATE_MATRIX.getId(idx), true);
-    view.setInt16(8, STATE_MATRIX.getX(idx), true);
-    view.setInt16(10, STATE_MATRIX.getY(idx), true);
-    view.setFloat32(12, STATE_MATRIX.getEnergy(idx), true);
-    view.setInt32(16, STATE_MATRIX.getResonance(idx), true);
-    view.setInt32(20, STATE_MATRIX.getPhase(idx), true);
+    view.setBigUint64(0, MX.getId(idx), true);
+    view.setInt16(8, MX.getX(idx), true);
+    view.setInt16(10, MX.getY(idx), true);
+    view.setFloat32(12, MX.getEnergy(idx), true);
+    view.setInt32(16, MX.getResonance(idx), true);
+    view.setInt32(20, MX.getPhase(idx), true);
 
-    const logic = STATE_MATRIX.getLogic(idx);
+    const logic = MX.getLogic(idx);
     u8.set(logic, 24);
 
-    view.setUint8(32, STATE_MATRIX.getRole(idx));
-    view.setUint8(33, STATE_MATRIX.getDamping(idx));
+    view.setUint8(32, MX.getRole(idx));
+    view.setUint8(33, MX.getDamping(idx));
     // 34-35 reserved padding
-    view.setBigUint64(36, STATE_MATRIX.getLineage(idx), true);
+    view.setBigUint64(36, MX.getLineage(idx), true);
 
-    const context = STATE_MATRIX.getContext(idx);
+    const context = MX.getContext(idx);
     u8.set(
       new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
       44,
     );
 
-    const instructions = STATE_MATRIX.getInstructions(idx);
+    const instructions = MX.getInstructions(idx);
     u8.set(instructions, 108);
 
     return u8;
   },
 
   /**
-   * Unpacks a binary Uint8Array into a free STATE_MATRIX atom slot.
+   * Unpacks a binary Uint8Array into a free MX atom slot.
    * Returns the new index `idx` if successful, or -1 if the matrix is full.
    */
   unpackAtom: (buffer: Uint8Array): number => {
     if (buffer.length < PACKET_SIZE) return -1; // Invalid packet size
 
-    const idx = STATE_MATRIX.findEmptySlot();
+    const idx = MX.findEmptySlot();
     if (idx === -1) return -1; // Lattice full
 
     const view = new DataView(
@@ -41689,7 +41689,7 @@ export const P2P_CODEC = {
     const lineage = view.getBigUint64(36, true);
 
     // Seed core fields
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       idx,
       id,
       x,
@@ -41698,23 +41698,23 @@ export const P2P_CODEC = {
       Math.max(0, resonance),
       logic,
     );
-    STATE_MATRIX.setPhase(idx, phase);
-    STATE_MATRIX.setRole(idx, role);
-    STATE_MATRIX.setDamping(idx, damping);
-    STATE_MATRIX.setLineage(idx, lineage);
+    MX.setPhase(idx, phase);
+    MX.setRole(idx, role);
+    MX.setDamping(idx, damping);
+    MX.setLineage(idx, lineage);
 
     // Restore execution context (registers and PC)
     const contextSrc = buffer.subarray(44, 108);
     const contextDst = new Uint8Array(
-      STATE_MATRIX.getContext(idx).buffer,
-      STATE_MATRIX.getContext(idx).byteOffset,
+      MX.getContext(idx).buffer,
+      MX.getContext(idx).byteOffset,
       64,
     );
     contextDst.set(contextSrc);
 
     // Restore instructions
     const instSrc = buffer.subarray(108, 172);
-    STATE_MATRIX.setInstructions(idx, instSrc);
+    MX.setInstructions(idx, instSrc);
 
     return idx;
   },
@@ -42460,7 +42460,7 @@ min_level: 6
 ### TypeScript
 ```typescript
 import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g12";
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -42481,7 +42481,7 @@ let _secretionStatsView: Int32Array | null = null;
 const getSecretionStatsView = (): Int32Array => {
   if (!_secretionStatsView) {
     _secretionStatsView = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       SECRETION_STATS_OFFSET,
       12,
     );
@@ -42549,7 +42549,7 @@ const depositHeader = (
   if (nextAmplitude < MIN_GLYPH_AMP) nextAmplitude = MIN_GLYPH_AMP;
   if (nextAmplitude > MAX_GLYPH_AMP) nextAmplitude = MAX_GLYPH_AMP;
 
-  const current = STATE_MATRIX.getGlyphHeader(cell);
+  const current = MX.getGlyphHeader(cell);
   const currentKind = unpackKind(current);
   const currentAmplitude = unpackAmplitude(current);
 
@@ -42569,9 +42569,9 @@ const depositHeader = (
     }
   }
 
-  STATE_MATRIX.setGlyphHeader(cell, packHeader(finalKind, mergedAmplitude));
+  MX.setGlyphHeader(cell, packHeader(finalKind, mergedAmplitude));
   if (payload && payload.length > 0) {
-    STATE_MATRIX.setGlyphPayload(cell, payload);
+    MX.setGlyphPayload(cell, payload);
   }
 };
 
@@ -43162,7 +43162,7 @@ vars:
   - LOGGER
   - PULSE
   - SPATIAL_CELL_SIZE
-  - STATE_MATRIX
+  - MX
   - WORLD_MAX_X
   - WORLD_MAX_Y
 extra_symbols:
@@ -43185,9 +43185,9 @@ async function initSimulation() {
   // Turn off logger output to avoid making the TUI messy
   LOGGER.setLevel("error");
   
-  STATE_MATRIX.clear();
-  Atomics.store((STATE_MATRIX as any).syncState, 0, 0);
-  // Optional: We can read tick via tracking our own var or reading `(STATE_MATRIX as any).tickCounter`
+  MX.clear();
+  Atomics.store((MX as any).syncState, 0, 0);
+  // Optional: We can read tick via tracking our own var or reading `(MX as any).tickCounter`
 
   await PULSE.initWorkers(2); // Two workers for faster physics processing
 
@@ -43195,43 +43195,43 @@ async function initSimulation() {
 
   // Seed Producers
   for (let i = 0; i < STARTING_PRODUCERS; i++) {
-    STATE_MATRIX.setId(idx, BigInt(idx));
-    STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PRODUCER);
-    STATE_MATRIX.setEnergy(idx, 20000); // 20k energy base
-    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
-    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
+    MX.setId(idx, BigInt(idx));
+    MX.setRole(idx, MX.ROLE_PRODUCER);
+    MX.setEnergy(idx, 20000); // 20k energy base
+    MX.setX(idx, Math.random() * WORLD_MAX_X);
+    MX.setY(idx, Math.random() * WORLD_MAX_Y);
     idx++;
   }
 
   // Seed Prey
   for (let i = 0; i < STARTING_PREY; i++) {
-    STATE_MATRIX.setId(idx, BigInt(idx));
-    STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_NEUTRAL);
-    STATE_MATRIX.setEnergy(idx, 50000);
-    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
-    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
+    MX.setId(idx, BigInt(idx));
+    MX.setRole(idx, MX.ROLE_NEUTRAL);
+    MX.setEnergy(idx, 50000);
+    MX.setX(idx, Math.random() * WORLD_MAX_X);
+    MX.setY(idx, Math.random() * WORLD_MAX_Y);
     // Give Prey an empty script (just YIELD)
     idx++;
   }
 
   // Seed Predators
   for (let i = 0; i < STARTING_PREDATORS; i++) {
-    STATE_MATRIX.setId(idx, BigInt(idx));
-    STATE_MATRIX.setRole(idx, STATE_MATRIX.ROLE_PARASITE); // Predator is PARASITE role=4
-    STATE_MATRIX.setEnergy(idx, 100000); // Higher energy capacity
-    STATE_MATRIX.setX(idx, Math.random() * WORLD_MAX_X);
-    STATE_MATRIX.setY(idx, Math.random() * WORLD_MAX_Y);
-    STATE_MATRIX.setInstructions(idx, new Uint8Array(GENESIS_PREDATOR_SCRIPT));
+    MX.setId(idx, BigInt(idx));
+    MX.setRole(idx, MX.ROLE_PARASITE); // Predator is PARASITE role=4
+    MX.setEnergy(idx, 100000); // Higher energy capacity
+    MX.setX(idx, Math.random() * WORLD_MAX_X);
+    MX.setY(idx, Math.random() * WORLD_MAX_Y);
+    MX.setInstructions(idx, new Uint8Array(GENESIS_PREDATOR_SCRIPT));
     idx++;
   }
 
   // Seed LLM Avatar Atom
   const AVATAR_ID = 9999;
-  STATE_MATRIX.setId(AVATAR_ID, BigInt(AVATAR_ID));
-  STATE_MATRIX.setRole(AVATAR_ID, STATE_MATRIX.ROLE_GUARDIAN); // Avatar = Guardian
-  STATE_MATRIX.setEnergy(AVATAR_ID, 5000000); // 5 million energy buffer
-  STATE_MATRIX.setX(AVATAR_ID, 700); // Center
-  STATE_MATRIX.setY(AVATAR_ID, 400);
+  MX.setId(AVATAR_ID, BigInt(AVATAR_ID));
+  MX.setRole(AVATAR_ID, MX.ROLE_GUARDIAN); // Avatar = Guardian
+  MX.setEnergy(AVATAR_ID, 5000000); // 5 million energy buffer
+  MX.setX(AVATAR_ID, 700); // Center
+  MX.setY(AVATAR_ID, 400);
 
   console.log(`[TUI] Spawned ${idx - 1} atoms. Press Ctrl+C to stop.`);
 }
@@ -43242,21 +43242,21 @@ function renderGrid(tick: number) {
   let totalEnergy = 0;
 
   for (let i = 1; i <= TOTAL_STARTING; i++) { // For an actual dynamic system, we'd check MAX_ATOMS
-    if (STATE_MATRIX.getId(i) > 0n && STATE_MATRIX.getEnergy(i) > 0) {
-      const x = Math.floor(STATE_MATRIX.getX(i) / SPATIAL_CELL_SIZE);
-      const y = Math.floor(STATE_MATRIX.getY(i) / SPATIAL_CELL_SIZE);
-      const role = STATE_MATRIX.getRole(i);
-      const energy = STATE_MATRIX.getEnergy(i);
+    if (MX.getId(i) > 0n && MX.getEnergy(i) > 0) {
+      const x = Math.floor(MX.getX(i) / SPATIAL_CELL_SIZE);
+      const y = Math.floor(MX.getY(i) / SPATIAL_CELL_SIZE);
+      const role = MX.getRole(i);
+      const energy = MX.getEnergy(i);
       totalEnergy += energy;
 
       if (x >= 0 && x < GRID_W && y >= 0 && y < GRID_H) {
-        if (role === STATE_MATRIX.ROLE_PRODUCER) {
+        if (role === MX.ROLE_PRODUCER) {
           grid[y][x] = "\x1b[32m*\x1b[0m"; // Green *
           prods++;
-        } else if (role === STATE_MATRIX.ROLE_PARASITE) {
+        } else if (role === MX.ROLE_PARASITE) {
           grid[y][x] = "\x1b[31mP\x1b[0m"; // Red P
           preds++;
-        } else if (role === STATE_MATRIX.ROLE_NEUTRAL) {
+        } else if (role === MX.ROLE_NEUTRAL) {
           grid[y][x] = "\x1b[36mo\x1b[0m"; // Cyan o
           preys++;
         }

@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 
 const parseTickCount = (): number => {
@@ -33,17 +33,17 @@ async function main() {
       `🧪 [TEST] WASM worker coherence baseline (OMEGA_PULSE_WORKERS=${requestedWorkers}, ticks=${ticks}, logEvery=${logEvery})`,
     );
 
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
 
-    if (STATE_MATRIX.getActiveIndices().length !== 0) {
+    if (MX.getActiveIndices().length !== 0) {
       throw new Error("[TEST] Matrix not empty after clear/init.");
     }
 
     for (let t = 0; t < ticks; t++) {
       await PULSE.tick();
-      const active = STATE_MATRIX.getActiveIndices().length;
-      const id0 = STATE_MATRIX.getId(0);
+      const active = MX.getActiveIndices().length;
+      const id0 = MX.getId(0);
       const shouldLog = t === 0 || t === ticks - 1 ||
         ((t + 1) % logEvery === 0);
       if (shouldLog) {

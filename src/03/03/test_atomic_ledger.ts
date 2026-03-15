@@ -1,6 +1,6 @@
 // OMEGA-64 | test_atomic_ledger.ts | Stage 33 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   PULSE
 } from "@generated";
@@ -17,19 +17,19 @@ import {
 Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   Li("--- STAGE 33: ATOMIC LEDGER TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 42);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 42);
   await PULSE.initWorkers(1);
 
   const atomA = 10;
   const atomB = 11;
 
-  STATE_MATRIX.setId(atomA, 10n);
-  STATE_MATRIX.setEnergy(atomA, 1000);
+  MX.setId(atomA, 10n);
+  MX.setEnergy(atomA, 1000);
 
-  STATE_MATRIX.setId(atomB, 11n);
-  STATE_MATRIX.setEnergy(atomB, 1000);
+  MX.setId(atomB, 11n);
+  MX.setEnergy(atomB, 1000);
 
   // Atom A emits [9, 120]
   const scriptA = new Uint8Array(64);
@@ -44,7 +44,7 @@ Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   scriptA[8] = 120; // R2
   scriptA[9] = OP_SYSCALL;
   scriptA[10] = 0;
-  STATE_MATRIX.setInstructions(atomA, scriptA);
+  MX.setInstructions(atomA, scriptA);
 
   // Atom B emits [123, 200]
   const scriptB = new Uint8Array(64);
@@ -59,7 +59,7 @@ Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   scriptB[8] = 200; // R2
   scriptB[9] = OP_SYSCALL;
   scriptB[10] = 0;
-  STATE_MATRIX.setInstructions(atomB, scriptB);
+  MX.setInstructions(atomB, scriptB);
 
   // Ensure Ledger is empty at the start
   assertEquals(ATOMIC_LEDGER.getHead(), 0, "Ledger should start empty");

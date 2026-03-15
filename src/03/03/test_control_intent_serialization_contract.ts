@@ -74,7 +74,7 @@ const main = async () => {
   );
   requireSnippet(
     queue,
-    "STATE_MATRIX.setEnergy(",
+    "MX.setEnergy(",
     QUEUE_PATH,
     "Queue apply path must own mutate state writes",
     violations,
@@ -114,10 +114,10 @@ const main = async () => {
     'if (url.pathname === "/mutate" && req.method === "POST") {',
     'if (url.pathname === "/avatar" && req.method === "POST") {',
   );
-  if (mutateBlock.includes("STATE_MATRIX.setEnergy(")) {
+  if (mutateBlock.includes("MX.setEnergy(")) {
     violations.push({
       file: SYSTEM_PATH,
-      reason: "/mutate endpoint must not write STATE_MATRIX directly",
+      reason: "/mutate endpoint must not write MX directly",
     });
   }
 

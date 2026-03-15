@@ -15,7 +15,7 @@ vars:
   - Li
   - Lw
   - SEMANTIC_MEMBRANE
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - SNAPSHOT_ENGINE
 ---
@@ -24,7 +24,7 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
-// Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
+// Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
 
 
 const SNAPSHOT_DIR = ".omega/snapshots";
@@ -62,16 +62,16 @@ export const SNAPSHOT_ENGINE = {
     const physicsPath = `${SNAPSHOT_DIR}/physics_${timestamp}.bin`;
     try {
       // 1. Binary dump of ALL Agent States (ID, Pos, Logic, Code, Memory)
-      const matrixData = new Uint8Array(STATE_MATRIX.buffer);
+      const matrixData = new Uint8Array(MX.buffer);
       await Deno.writeFile(matrixPath, matrixData);
 
       // 2. Binary dump of the Thermodynamics Grid (Nutrients)
       await Deno.writeFile(
         physicsPath,
         new Uint8Array(
-          STATE_MATRIX.attentionField.buffer,
-          STATE_MATRIX.attentionField.byteOffset,
-          STATE_MATRIX.attentionField.byteLength,
+          MX.attentionField.buffer,
+          MX.attentionField.byteOffset,
+          MX.attentionField.byteLength,
         ),
       );
 
@@ -125,8 +125,8 @@ export const SNAPSHOT_ENGINE = {
     try {
       // 1. Restore Matrix Memory Buffer
       const matrixData = await Deno.readFile(matrixPath);
-      if (matrixData.length === STATE_MATRIX.buffer.byteLength) {
-        new Uint8Array(STATE_MATRIX.buffer).set(matrixData);
+      if (matrixData.length === MX.buffer.byteLength) {
+        new Uint8Array(MX.buffer).set(matrixData);
       } else {
         throw new Error("Matrix Payload Size Mismatch");
       }
@@ -135,9 +135,9 @@ export const SNAPSHOT_ENGINE = {
       try {
         const physicsData = await Deno.readFile(physicsPath);
         new Uint8Array(
-          STATE_MATRIX.attentionField.buffer,
-          STATE_MATRIX.attentionField.byteOffset,
-          STATE_MATRIX.attentionField.byteLength,
+          MX.attentionField.buffer,
+          MX.attentionField.byteOffset,
+          MX.attentionField.byteLength,
         ).set(physicsData);
       } catch {
         Lw(

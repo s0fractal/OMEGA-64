@@ -7,13 +7,13 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST_FORCE_BREACH", "1");
 Deno.env.set("OMEGA_STARTUP_SELFTEST_QUIET", "1");
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log("🧪 [TEST] Startup self-test fallback to single worker");
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
 
     const status = PULSE.getStartupSelfTestStatus();
@@ -44,8 +44,8 @@ async function main() {
       );
     }
     if (
-      STATE_MATRIX.getActiveIndices().length !== 0 ||
-      STATE_MATRIX.getId(0) !== 0n
+      MX.getActiveIndices().length !== 0 ||
+      MX.getId(0) !== 0n
     ) {
       throw new Error(
         "[TEST] Matrix must remain empty after startup self-test.",

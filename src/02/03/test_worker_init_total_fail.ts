@@ -6,13 +6,13 @@ Deno.env.set("OMEGA_WASM_BOOT_POLICY", "fail-fast");
 Deno.env.set("OMEGA_FORCE_WORKER_INIT_FAIL", "all");
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log("🧪 [TEST] Worker init total-fail (fail-fast policy)");
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     let thrown = false;
     let failMsg = "";
 

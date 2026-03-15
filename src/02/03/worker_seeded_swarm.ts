@@ -2,7 +2,7 @@ export const SPAWN_RING_CAPACITY = 1024;
 const WORLD_MAX_X = 1399;
 const WORLD_MAX_Y = 799;
 
-type StateMatrixLike = {
+type MxLike = {
   RISC: {
     OP_REPLICATE: number;
     OP_SIGNAL: number;
@@ -43,7 +43,7 @@ type SeededSwarmConfig = {
   architects: number;
 };
 
-const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
+const makeReplicatorScript = (stateMatrix: MxLike): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
   // R0 = 4 (SYS_SPAWN)
@@ -58,7 +58,7 @@ const makeReplicatorScript = (stateMatrix: StateMatrixLike): Uint8Array => {
   return script;
 };
 
-const makeArchitectScript = (stateMatrix: StateMatrixLike): Uint8Array => {
+const makeArchitectScript = (stateMatrix: MxLike): Uint8Array => {
   const script = new Uint8Array(64);
   let pc = 0;
   script[pc++] = stateMatrix.RISC.OP_ROLE;
@@ -74,7 +74,7 @@ const makeArchitectScript = (stateMatrix: StateMatrixLike): Uint8Array => {
 };
 
 export const seedSeededSwarmScenario = (
-  stateMatrix: StateMatrixLike,
+  stateMatrix: MxLike,
   config: SeededSwarmConfig,
 ): number => {
   const { seed, replicators, architects } = config;
@@ -136,7 +136,7 @@ export const seedSeededSwarmScenario = (
 };
 
 export const assertSeededSwarmWorldInvariants = (
-  stateMatrix: StateMatrixLike,
+  stateMatrix: MxLike,
   errorPrefix: string,
 ): number => {
   const active = stateMatrix.getActiveIndices();

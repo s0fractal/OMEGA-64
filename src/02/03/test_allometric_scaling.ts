@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { OP_SET, OP_ADD } from "@generated";
 
 Deno.test({
@@ -9,39 +9,39 @@ Deno.test({
   sanitizeResources: false,
   fn: async () => {
     // Initialize minimal state
-    STATE_MATRIX.clear();
-    Atomics.store(STATE_MATRIX.tickCounter, 0, 0);
+    MX.clear();
+    Atomics.store(MX.tickCounter, 0, 0);
 
     // Set hormones to neutral
     for (let i = 0; i < 8; i++) {
-      STATE_MATRIX.setHormone(i, i === 0 ? 500 : 0); // moderate entropy, 0 friction
+      MX.setHormone(i, i === 0 ? 500 : 0); // moderate entropy, 0 friction
     }
 
     // Atom 1: Free Atom, Mass 1
     const freeAtom = 1;
-    STATE_MATRIX.setId(freeAtom, 101n);
-    STATE_MATRIX.setX(freeAtom, 100);
-    STATE_MATRIX.setY(freeAtom, 100);
-    STATE_MATRIX.setEnergy(freeAtom, 100000); // Massive energy to not die
-    STATE_MATRIX.setRole(freeAtom, 1);
+    MX.setId(freeAtom, 101n);
+    MX.setX(freeAtom, 100);
+    MX.setY(freeAtom, 100);
+    MX.setEnergy(freeAtom, 100000); // Massive energy to not die
+    MX.setRole(freeAtom, 1);
 
     // Atom 2: Bonded Atom, Mass 5 (4 structural bonds)
     const bondedAtom = 2;
-    STATE_MATRIX.setId(bondedAtom, 102n);
-    STATE_MATRIX.setX(bondedAtom, 200);
-    STATE_MATRIX.setY(bondedAtom, 200);
-    STATE_MATRIX.setEnergy(bondedAtom, 100000);
-    STATE_MATRIX.setRole(bondedAtom, 1);
+    MX.setId(bondedAtom, 102n);
+    MX.setX(bondedAtom, 200);
+    MX.setY(bondedAtom, 200);
+    MX.setEnergy(bondedAtom, 100000);
+    MX.setRole(bondedAtom, 1);
 
     // Fake 4 bonds to simulate structural density
     for (let i = 0; i < 4; i++) {
       // Bond to atom 10+i, which we will mark as active
       const targetId = 10 + i;
-      STATE_MATRIX.setId(targetId, BigInt(200 + i));
-      STATE_MATRIX.setX(targetId, 200);
-      STATE_MATRIX.setY(targetId, 200);
-      STATE_MATRIX.setRole(targetId, 1);
-      STATE_MATRIX.setBondTarget(bondedAtom, i, targetId);
+      MX.setId(targetId, BigInt(200 + i));
+      MX.setX(targetId, 200);
+      MX.setY(targetId, 200);
+      MX.setRole(targetId, 1);
+      MX.setBondTarget(bondedAtom, i, targetId);
     }
 
     // The test program:
@@ -62,10 +62,10 @@ Deno.test({
     program[6] = 0x12; // OP_JMP (value 0x12 from assembly/index.ts)
     program[7] = 3; // Absolute address within program memory
     // Initialize R0 = 1 manually
-    STATE_MATRIX.setReg(freeAtom, 0, 1);
-    STATE_MATRIX.setReg(bondedAtom, 0, 1);
-    STATE_MATRIX.setInstructions(freeAtom, program);
-    STATE_MATRIX.setInstructions(bondedAtom, program);
+    MX.setReg(freeAtom, 0, 1);
+    MX.setReg(bondedAtom, 0, 1);
+    MX.setInstructions(freeAtom, program);
+    MX.setInstructions(bondedAtom, program);
 
     // Start engine
     await PULSE.initWorkers(1);
@@ -80,11 +80,11 @@ Deno.test({
 
     PULSE.stopWorkers();
 
-    const freeR1 = STATE_MATRIX.getReg(freeAtom, 1);
-    const bondedR1 = STATE_MATRIX.getReg(bondedAtom, 1);
+    const freeR1 = MX.getReg(freeAtom, 1);
+    const bondedR1 = MX.getReg(bondedAtom, 1);
 
-    const freeCost = 100000 - STATE_MATRIX.getEnergy(freeAtom);
-    const bondedCost = 100000 - STATE_MATRIX.getEnergy(bondedAtom);
+    const freeCost = 100000 - MX.getEnergy(freeAtom);
+    const bondedCost = 100000 - MX.getEnergy(bondedAtom);
 
     console.log(`Free Atom Executions: ${freeR1}, Energy Cost: ${freeCost}`);
     console.log(

@@ -1,6 +1,6 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GLYPH_TELEMETRY } from "@generated";
-import { STATE_MATRIX, wasmMemory } from "@generated";
+import { MX, wasmMemory } from "@generated";
 
 const main = async () => {
   const wasmBytes = await Deno.readFile(AS_WASM_PATH);
@@ -19,8 +19,8 @@ const main = async () => {
     return GLYPH_TELEMETRY.snapshot();
   };
 
-  STATE_MATRIX.glyphHeaders.fill(0);
-  STATE_MATRIX.glyphPayload.fill(0);
+  MX.glyphHeaders.fill(0);
+  MX.glyphPayload.fill(0);
 
   GLYPH_TELEMETRY.depositPheromone(920, 30, 120);
   const pheromoneSnapshot = GLYPH_TELEMETRY.snapshot();
@@ -33,7 +33,7 @@ const main = async () => {
   }
 
   const centerCell = 512;
-  const header = STATE_MATRIX.getGlyphHeader(centerCell);
+  const header = MX.getGlyphHeader(centerCell);
   if ((header & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PHEROMONE) {
     throw new Error("[glyph-buffer] center cell is not tagged as pheromone");
   }
@@ -48,11 +48,11 @@ const main = async () => {
   }
 
   const plasmidCell = 544;
-  const plasmidHeader = STATE_MATRIX.getGlyphHeader(plasmidCell);
+  const plasmidHeader = MX.getGlyphHeader(plasmidCell);
   if ((plasmidHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PLASMID) {
     throw new Error("[glyph-buffer] plasmid cell is not tagged as plasmid");
   }
-  const storedPayload = STATE_MATRIX.getGlyphPayload(plasmidCell);
+  const storedPayload = MX.getGlyphPayload(plasmidCell);
   for (let i = 0; i < payload.length; i++) {
     if (storedPayload[i] !== payload[i]) {
       throw new Error("[glyph-buffer] plasmid payload was not persisted");
@@ -71,17 +71,17 @@ const main = async () => {
     );
   }
 
-  STATE_MATRIX.glyphHeaders.fill(0);
-  STATE_MATRIX.glyphPayload.fill(0);
-  STATE_MATRIX.signalGrid.fill(0);
-  STATE_MATRIX.memoryGrid.fill(0);
+  MX.glyphHeaders.fill(0);
+  MX.glyphPayload.fill(0);
+  MX.signalGrid.fill(0);
+  MX.memoryGrid.fill(0);
 
-  Atomics.store(STATE_MATRIX.signalGrid, centerCell, 512);
+  Atomics.store(MX.signalGrid, centerCell, 512);
   const memoryCell = 544;
   const memoryOffset = memoryCell * 8;
-  STATE_MATRIX.memoryGrid[memoryOffset] = 128;
-  STATE_MATRIX.memoryGrid[memoryOffset + 4] = 9;
-  STATE_MATRIX.memoryGrid[memoryOffset + 5] = 7;
+  MX.memoryGrid[memoryOffset] = 128;
+  MX.memoryGrid[memoryOffset + 4] = 9;
+  MX.memoryGrid[memoryOffset + 5] = 7;
 
   const internalTick = tick(32);
 
@@ -102,36 +102,36 @@ const main = async () => {
     );
   }
 
-  const signalHeader = STATE_MATRIX.getGlyphHeader(centerCell);
+  const signalHeader = MX.getGlyphHeader(centerCell);
   if ((signalHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PHEROMONE) {
     throw new Error("[glyph-buffer] signal leak did not emit pheromone glyph");
   }
-  const leakedMemoryHeader = STATE_MATRIX.getGlyphHeader(memoryCell);
+  const leakedMemoryHeader = MX.getGlyphHeader(memoryCell);
   if ((leakedMemoryHeader & 0xFF) !== GLYPH_TELEMETRY.GLYPH_KIND.PLASMID) {
     throw new Error("[glyph-buffer] memory leak did not emit plasmid glyph");
   }
-  const leakedPayload = STATE_MATRIX.getGlyphPayload(memoryCell);
+  const leakedPayload = MX.getGlyphPayload(memoryCell);
   if (leakedPayload[4] !== 9 || leakedPayload[5] !== 7) {
     throw new Error(
       "[glyph-buffer] memory leak did not preserve plasmid residue bytes",
     );
   }
 
-  STATE_MATRIX.glyphHeaders.fill(0);
-  STATE_MATRIX.glyphPayload.fill(0);
+  MX.glyphHeaders.fill(0);
+  MX.glyphPayload.fill(0);
   GLYPH_TELEMETRY.beginInternalAtomEmissionTick();
   GLYPH_TELEMETRY.emitAtomPheromone(
     200,
     200,
     96,
-    STATE_MATRIX.ROLE_GUARDIAN,
+    MX.ROLE_GUARDIAN,
   );
   GLYPH_TELEMETRY.emitAtomPlasmid(
     220,
     220,
     144,
     new Uint8Array([9, 8, 7, 6, 5, 4, 3, 2]),
-    STATE_MATRIX.ROLE_ARCHITECT,
+    MX.ROLE_ARCHITECT,
   );
   const atomTick = tick(32);
   if (atomTick.internalAtomPheromoneSeeds <= 0) {

@@ -10,7 +10,7 @@ deps:
 min_level: 7
 vars:
   - LOGGER
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - QuorumAdvocate
 ---
@@ -38,7 +38,7 @@ export class QuorumAdvocate {
     let totalWisdom = 0;
 
     for (const idx of indices) {
-      totalResonace += STATE_MATRIX.getResonance(idx);
+      totalResonace += MX.getResonance(idx);
       // Wisdom will eventually be pulled from LINEAGE_TRACKER
       totalWisdom += 100;
     }

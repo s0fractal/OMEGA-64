@@ -1,25 +1,25 @@
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 
 async function main() {
   console.log("🧪 [TEST] Kuramoto Singularity (Infinite Loop Hotfix)");
-  STATE_MATRIX.clear();
+  MX.clear();
 
   // Create 1000 atoms at exact same coordinate (100, 100)
   for (let i = 0; i < 1000; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, 10000); // 100 * 100
-    STATE_MATRIX.setY(i, 10000);
-    STATE_MATRIX.setEnergy(i, 200000); // lots of energy to avoid immediate death
-    STATE_MATRIX.setResonance(i, 255);
-    STATE_MATRIX.setPhase(i, i % 256);
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, 10000); // 100 * 100
+    MX.setY(i, 10000);
+    MX.setEnergy(i, 200000); // lots of energy to avoid immediate death
+    MX.setResonance(i, 255);
+    MX.setPhase(i, i % 256);
 
     // Bytecode: OP_RESONATE_KURAMOTO (0xB1) -> Jmp to 0
-    const inst = STATE_MATRIX.getInstructions(i);
+    const inst = MX.getInstructions(i);
     inst.set([0xB1, 0x12, 0x00]);
     // pc is context[8] -> 0
-    const ctx = STATE_MATRIX.getContext(i);
+    const ctx = MX.getContext(i);
     ctx[8] = 0;
   }
 

@@ -93,7 +93,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, sharedBuffer } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer } from "../mod.ts";
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
@@ -1684,7 +1684,7 @@ const postAndWait = async <T = any>(
     return res.data;
   } catch (err) {
     if (isWorkerTimeoutError(err)) {
-      const syncState = STATE_MATRIX.syncState;
+      const syncState = MX.syncState;
       if (syncState) {
         Le(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
@@ -1755,7 +1755,7 @@ const startWorkers = async (count: number): Promise<void> => {
       const data = e.data;
       if (data && data.type === "SPORE_DRIVE_REQUEST") {
         const idx = data.atomIdx;
-        const atomIdAtStart = STATE_MATRIX.getId(idx);
+        const atomIdAtStart = MX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
           const packedAtom = noosphereDelegate
@@ -1766,7 +1766,7 @@ const startWorkers = async (count: number): Promise<void> => {
             Ld(
               `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
             );
-            STATE_MATRIX.recycleAtom(idx);
+            MX.recycleAtom(idx);
           } else {
             Le(
               `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
@@ -1783,8 +1783,8 @@ const startWorkers = async (count: number): Promise<void> => {
     worker.postMessage({
       type: "INIT",
       wasmPath: AS_WASM_PATH.href,
-      wasmMemory: STATE_MATRIX.wasmMemory,
-      buffer: STATE_MATRIX.buffer,
+      wasmMemory: MX.wasmMemory,
+      buffer: MX.buffer,
       marketBuffer: PREDICTION_MARKET.buffer,
       workerIndex: i,
     });
@@ -1852,7 +1852,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
 };
 const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
-  return STATE_MATRIX.getActiveIndices().length !== 0;
+  return MX.getActiveIndices().length !== 0;
 };
 
 export interface DriftMetrics {
@@ -1894,7 +1894,7 @@ async function initShadowWasm(): Promise<void> {
 
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     env: {
-      memory: STATE_MATRIX.wasmMemory,
+      memory: MX.wasmMemory,
       abort: (msg: any) => Le("   [SHADOW WASM ABORT]:", msg),
       // Dummy trace_atom for shadow
       trace_atom: () => {},
@@ -1913,7 +1913,7 @@ let lastEgressReadHead = 0;
 
 export const drainEgressEvents = (): Uint8Array[] => {
   const headView = new Int32Array(
-    STATE_MATRIX.wasmMemory.buffer,
+    MX.wasmMemory.buffer,
     EGRESS_HEAD_OFFSET,
     1,
   );
@@ -1925,7 +1925,7 @@ export const drainEgressEvents = (): Uint8Array[] => {
   const events: Uint8Array[] = [];
   const maxEvents = MAX_EGRESS_EVENTS;
   const dataView = new Uint8Array(
-    STATE_MATRIX.wasmMemory.buffer,
+    MX.wasmMemory.buffer,
     EGRESS_DATA_OFFSET,
     maxEvents * 256,
   );
@@ -1985,7 +1985,7 @@ export const PULSE = {
     generate_epoch_proof_ffi!(tick, resultPtr);
 
     const u8View = new Uint8Array(
-      STATE_MATRIX.wasmMemory.buffer,
+      MX.wasmMemory.buffer,
       resultPtr,
       32,
     );
@@ -2009,19 +2009,19 @@ export const PULSE = {
     const resultPtr = scratchSpaceOffset + 64;
 
     // Write logic bytes
-    const u8View = new Uint8Array(STATE_MATRIX.wasmMemory.buffer);
+    const u8View = new Uint8Array(MX.wasmMemory.buffer);
     u8View.fill(0, scratchSpaceOffset, scratchSpaceOffset + 64);
     u8View.set(bytecode, scratchSpaceOffset);
 
     // Clear result space
     const i32View = new Int32Array(
-      STATE_MATRIX.wasmMemory.buffer,
+      MX.wasmMemory.buffer,
       resultPtr,
       8,
     );
     i32View.fill(0);
 
-    const atomId = Number(STATE_MATRIX.getId(targetIdx));
+    const atomId = Number(MX.getId(targetIdx));
 
     // Call Rust side
     const success = run_shadow_simulation_ffi!(
@@ -2161,7 +2161,7 @@ export const PULSE = {
     const nexusStatus = noosphereDelegate?.getNexusStatus() ||
       { seedNodesLength: 0, mainnetEnabled: false };
     if (
-      STATE_MATRIX.getActiveIndices().length === 0 &&
+      MX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
     ) {
       Li(
@@ -2188,13 +2188,13 @@ export const PULSE = {
       startupSelfTestDone = true;
       return;
     }
-    if (STATE_MATRIX.getActiveIndices().length !== 0) {
+    if (MX.getActiveIndices().length !== 0) {
       // Do not mutate populated worlds; this gate is for cold-start only.
       startupSelfTestDone = true;
       return;
     }
 
-    const { tickCounter, syncState, SYNC } = STATE_MATRIX;
+    const { tickCounter, syncState, SYNC } = MX;
     const originalTick = Atomics.load(tickCounter, 0);
     const baseLevel = LOGGER.getLevel();
     startupSelfTestInProgress = true;
@@ -2244,7 +2244,7 @@ export const PULSE = {
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
-      STATE_MATRIX.clear();
+      MX.clear();
       Atomics.store(tickCounter, 0, 0);
       for (let t = 0; t < STARTUP_SELFTEST_TICKS; t++) {
         await PULSE.tick();
@@ -2258,7 +2258,7 @@ export const PULSE = {
       startupSelfTestDone = true;
     } finally {
       LOGGER.setLevel(baseLevel);
-      STATE_MATRIX.clear();
+      MX.clear();
       Atomics.store(tickCounter, 0, originalTick);
       Atomics.store(syncState, 0, SYNC.IDLE);
       Atomics.notify(syncState, 0);
@@ -2670,7 +2670,7 @@ export const PULSE = {
     homeostasisLastUpdateReason = reason.length > 0 ? reason : "manual_update";
     homeostasisLastUpdateTick = update.tick !== undefined
       ? Math.max(0, Math.floor(update.tick))
-      : Atomics.load(STATE_MATRIX.tickCounter, 0);
+      : Atomics.load(MX.tickCounter, 0);
 
     return snapshotHomeostasisState();
   },
@@ -2726,7 +2726,7 @@ export const PULSE = {
       );
     }
 
-    const { syncState, tickCounter, SYNC } = STATE_MATRIX;
+    const { syncState, tickCounter, SYNC } = MX;
     // Sync physiological hormones into shared memory lattice so WASM λ-VM can read them.
     const computedHormones = syncHormonesToLattice({
       baseTax: homeostasisBaseTaxRuntime,
@@ -2758,7 +2758,7 @@ export const PULSE = {
         reason: "physiological_sync",
       });
       physiologicalLedgers[spec.id] = res.state;
-      STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+      MX.setHormone(spec.index, res.state.currentValue);
     }
 
     try {
@@ -2767,7 +2767,7 @@ export const PULSE = {
       PULSE.currentPulseId = currentTick;
       const dumpA11 = (lbl: string) => {
         const xs = new Int16Array(
-          STATE_MATRIX.wasmMemory.buffer,
+          MX.wasmMemory.buffer,
           XS_OFFSET,
           MAX_ATOMS,
         );
@@ -2777,7 +2777,7 @@ export const PULSE = {
       };
 
       dumpA11("Before Quorum");
-      const activeIdx = STATE_MATRIX.getActiveIndices();
+      const activeIdx = MX.getActiveIndices();
 
       // Stage 25: Sovereign Feedback - Syntropy-modulated tax
       // Move evaluation earlier so it can affect metabolism and gate
@@ -2801,8 +2801,8 @@ export const PULSE = {
       dumpA11("Before Hormones");
 
       // Reset global neural coherence aggregation field for the NEXT tick.
-      Atomics.store(STATE_MATRIX.coherence, 0, 0); // Accumulator (Vector 10)
-      Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0); // Broadcast
+      Atomics.store(MX.coherence, 0, 0); // Accumulator (Vector 10)
+      Atomics.store(MX.neuralCoherence, 0, 0); // Broadcast
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
@@ -2844,7 +2844,7 @@ export const PULSE = {
           reason: "physiological_sync",
         });
         physiologicalLedgers[spec.id] = res.state;
-        STATE_MATRIX.setHormone(spec.index, res.state.currentValue);
+        MX.setHormone(spec.index, res.state.currentValue);
       }
 
       if (coherence > 1000) {
@@ -2967,7 +2967,7 @@ export const PULSE = {
       // --- PHASE 50: TRANSACTIONAL PANOPTICON TELEMETRY ---
       const nowMs = performance.now();
       if (nowMs - lastPanopticonBroadcastTime >= 50) { // ~20fps
-        const frame = STATE_MATRIX.packPanopticonFrame();
+        const frame = MX.packPanopticonFrame();
         akashaDelegate?.broadcastPanopticonFrame(frame);
         lastPanopticonBroadcastTime = nowMs;
       }
@@ -2998,7 +2998,7 @@ export const PULSE = {
         const epochHash = await PULSE.generateEpochProof(currentTick);
         if (akashaDelegate) {
           await akashaDelegate.saveEpoch(
-            STATE_MATRIX.wasmMemory,
+            MX.wasmMemory,
             currentTick,
             autoEpochId,
             pCount,
@@ -3015,7 +3015,7 @@ export const PULSE = {
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let totalPhase = 0;
         for (const idx of activeIdx) {
-          totalPhase += Math.abs(STATE_MATRIX.get_phase(idx));
+          totalPhase += Math.abs(MX.get_phase(idx));
         }
         const avgPhase = activeIdx.length > 0
           ? totalPhase / activeIdx.length
@@ -3117,8 +3117,8 @@ export const PULSE = {
             const prog = genesisInceptor.selectProgram();
             const lineageHash = prog.metadata?.ancestorHash ?? 0n;
 
-            STATE_MATRIX.setInstructions(idx, new Uint8Array(prog.bytecode));
-            STATE_MATRIX.setLineage(idx, lineageHash);
+            MX.setInstructions(idx, new Uint8Array(prog.bytecode));
+            MX.setLineage(idx, lineageHash);
 
             // Mark its role if the program is for a specific one (e.g. role hint)
             // For now, we'll let the role be assigned by the first op if needed,
@@ -3202,7 +3202,7 @@ export const PULSE = {
 
       // --- STAGE 26: Immunological Phagocyte ---
       {
-        const entropyPressure = STATE_MATRIX.get_hormone(0); // H0: entropy_pressure
+        const entropyPressure = MX.get_hormone(0); // H0: entropy_pressure
         const workerResponse = await postAndWait(
           0, // use primary worker
           workers[0],
@@ -3235,7 +3235,7 @@ export const PULSE = {
 
         for (const idx of activeIdx) {
           const role = rolesView[idx];
-          if (role === STATE_MATRIX.ROLE_GUARDIAN) {
+          if (role === MX.ROLE_GUARDIAN) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateGuardianSignalExecution({
               mode: gMode,
@@ -3281,7 +3281,7 @@ export const PULSE = {
             const allowed = decision.allowed &&
               guardianPheromoneAllowedByExecutionMode(idx);
             Atomics.store(causalityView, idx, allowed ? 1 : 0);
-          } else if (role === STATE_MATRIX.ROLE_ARCHITECT) {
+          } else if (role === MX.ROLE_ARCHITECT) {
             const script = instructionsView.slice(idx * 64, idx * 64 + 64);
             const decision = evaluateArchitectPlasmidExecution({
               mode: aMode,
@@ -3339,7 +3339,7 @@ export const PULSE = {
             script: instructionsView.slice(idx * 64, idx * 64 + 64),
             energy: energiesView[idx],
             resonance: resonancesView[idx],
-            aggression: STATE_MATRIX.get_hormone(2),
+            aggression: MX.get_hormone(2),
             legacyAllowed: true,
           });
 
@@ -3397,7 +3397,7 @@ export const PULSE = {
           kind: "audit_matrix_cycle",
           count: 1,
         });
-        GATE.auditMatrix(STATE_MATRIX);
+        GATE.auditMatrix(MX);
       }
 
       // --- RESONANCE PROTOCOL: Global Coherence Calculation ---
@@ -3426,19 +3426,19 @@ export const PULSE = {
             PREDICTION_MARKET.resolveCrisis();
             PREDICTION_MARKET.distributeDividends();
 
-            const active = STATE_MATRIX.getActiveIndices();
+            const active = MX.getActiveIndices();
             if (active.length > 0) {
               let eliteIdx = active[0];
               let maxEnergy = 0;
               for (const idx of active) {
-                const energy = STATE_MATRIX.get_energy(idx);
+                const energy = MX.get_energy(idx);
                 if (energy > maxEnergy) {
                   maxEnergy = energy;
                   eliteIdx = idx;
                 }
               }
               if (maxEnergy > 50000) {
-                const eliteGenome = STATE_MATRIX.getInstructions(eliteIdx);
+                const eliteGenome = MX.getInstructions(eliteIdx);
                 PREDICTION_MARKET.startCrisis(eliteGenome);
               }
             }
@@ -3509,10 +3509,10 @@ export const PULSE = {
 
       if (currentTick > 0 && currentTick % 10000 === 0) {
         let hashSum = 0n;
-        for (let i = 1; i < STATE_MATRIX.MAX_ATOMS; i++) {
-          if (STATE_MATRIX.get_energy(i) > 0) {
-            hashSum += BigInt(STATE_MATRIX.get_energy(i)) +
-              BigInt(STATE_MATRIX.get_phase(i));
+        for (let i = 1; i < MX.MAX_ATOMS; i++) {
+          if (MX.get_energy(i) > 0) {
+            hashSum += BigInt(MX.get_energy(i)) +
+              BigInt(MX.get_phase(i));
           }
         }
         noosphereDelegate?.broadcastEpochConsensus(currentTick, hashSum);
@@ -3529,7 +3529,7 @@ export const PULSE = {
   onRemoteAtomTransit: (payload: Uint8Array) => {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
-      const id = STATE_MATRIX.getId(newIdx!);
+      const id = MX.getId(newIdx!);
       Li(
         `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
       );
@@ -3549,7 +3549,7 @@ export const PULSE = {
       `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
     );
     const payload = akashaDelegate
-      ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory)
+      ? await akashaDelegate.compressMemory(MX.wasmMemory)
       : new Uint8Array(0);
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
@@ -3559,7 +3559,7 @@ export const PULSE = {
     );
     if (akashaDelegate) {
       await akashaDelegate.decompressMemoryToLattice(
-        STATE_MATRIX.wasmMemory,
+        MX.wasmMemory,
         payload,
       );
     }
@@ -3590,34 +3590,34 @@ export const PULSE = {
 
     const role = payload[148];
 
-    const atomIdx = STATE_MATRIX.findEmptySlot();
+    const atomIdx = MX.findEmptySlot();
     if (atomIdx > 0) {
-      STATE_MATRIX.setEnergy(atomIdx, energy);
-      STATE_MATRIX.setResonance(atomIdx, resonance);
-      STATE_MATRIX.setPhase(atomIdx, phase);
-      STATE_MATRIX.setId(
+      MX.setEnergy(atomIdx, energy);
+      MX.setResonance(atomIdx, resonance);
+      MX.setPhase(atomIdx, phase);
+      MX.setId(
         atomIdx,
         BigInt(PULSE.currentPulseId) << 16n | BigInt(atomIdx),
       );
-      STATE_MATRIX.setRole(atomIdx, role);
+      MX.setRole(atomIdx, role);
 
       const xs = new Int16Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         XS_OFFSET,
         MAX_ATOMS,
       );
       const ys = new Int16Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         YS_OFFSET,
         MAX_ATOMS,
       );
       Atomics.store(xs, atomIdx, nx);
       Atomics.store(ys, atomIdx, ny);
 
-      STATE_MATRIX.setInstructions(atomIdx, genome);
+      MX.setInstructions(atomIdx, genome);
 
       const ctxView = new Int32Array(
-        STATE_MATRIX.wasmMemory.buffer,
+        MX.wasmMemory.buffer,
         CONTEXT_OFFSET + atomIdx * 64,
         16,
       );
@@ -3761,7 +3761,7 @@ const classifyArchitectBranch = (
 ): ArchitectPlasmidBranch => {
   if (
     state.buildCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_ARCHITECT
+    state.role === MX.ROLE_ARCHITECT
   ) {
     return "emit";
   }
@@ -4136,14 +4136,14 @@ const classifyGuardianBranch = (
 ): GuardianSignalBranch => {
   if (
     state.buildCount > 0 ||
-    state.role === STATE_MATRIX.ROLE_ARCHITECT ||
+    state.role === MX.ROLE_ARCHITECT ||
     state.branchTaken
   ) {
     return "repair";
   }
   if (
     state.signalCount > 0 &&
-    state.role === STATE_MATRIX.ROLE_GUARDIAN &&
+    state.role === MX.ROLE_GUARDIAN &&
     !state.branchTaken
   ) {
     return "stable";

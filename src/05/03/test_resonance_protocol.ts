@@ -1,5 +1,5 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { SOVEREIGN_ORACLE } from "@generated";
 import { NEURAL_COHERENCE_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
@@ -8,12 +8,12 @@ async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");
 
   // 1. Setup
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0); // Ensure IDLE (0)
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1); // Skip Gate audit on first probe tick
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0); // Ensure IDLE (0)
+  Atomics.store(MX.tickCounter, 0, 1); // Skip Gate audit on first probe tick
   await PULSE.initWorkers();
 
-  const sharedBuffer = STATE_MATRIX.buffer;
+  const sharedBuffer = MX.buffer;
   const structureGrid = new Int32Array(
     sharedBuffer,
     STRUCTURE_GRID_OFFSET,
@@ -27,7 +27,7 @@ async function testResonance() {
 
   // 2. Seed Guardian
   const guardianIdx = 0;
-  STATE_MATRIX.seedGuardian(guardianIdx, 1n, 505, 505, 10, 100);
+  MX.seedGuardian(guardianIdx, 1n, 505, 505, 10, 100);
 
   // 3. Force Low Coherence
   Atomics.store(neuralCoherenceView, 0, 50);
@@ -38,7 +38,7 @@ async function testResonance() {
   // 4. Run Pulse
   await PULSE.tick();
 
-  const role = STATE_MATRIX.getRole(guardianIdx);
+  const role = MX.getRole(guardianIdx);
   console.log(`   [RESULT 1] Guardian Role: ${role} (Expected 3: ARCHITECT)`);
   if (role !== 3) {
     throw new Error(`Guardian did not switch to ARCHITECT. got=${role}`);
@@ -73,7 +73,7 @@ async function testResonance() {
   console.log(
     "   [STAGE 3] Testing Oracle Whisper injection into MEMORY_GRID.",
   );
-  const memoryGrid = STATE_MATRIX.memoryGrid;
+  const memoryGrid = MX.memoryGrid;
   const countSeededCells = () => {
     let count = 0;
     for (let i = 0; i < GRID_CELLS; i++) {

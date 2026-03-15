@@ -10,7 +10,7 @@ Era 69 completely abandons the file-based "Flatland" of older eras in favor of
 the **Coherent Crystal** — a high-performance, concurrent, Shared-Memory physics
 engine driven by WebAssembly (WASM).
 
-### 1. `STATE_MATRIX` (The Shared RAM)
+### 1. `MX` (The Shared RAM)
 
 A unified `SharedArrayBuffer` spanning exactly `680MB`. It holds `1,000,000`
 atoms, their 64-byte RISC genes, and their dynamic states (Energy, X, Y,

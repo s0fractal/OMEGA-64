@@ -9,7 +9,7 @@ min_level: 6
 ### TypeScript
 ```typescript
 import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g12";
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -30,7 +30,7 @@ let _secretionStatsView: Int32Array | null = null;
 const getSecretionStatsView = (): Int32Array => {
   if (!_secretionStatsView) {
     _secretionStatsView = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       SECRETION_STATS_OFFSET,
       12,
     );
@@ -98,7 +98,7 @@ const depositHeader = (
   if (nextAmplitude < MIN_GLYPH_AMP) nextAmplitude = MIN_GLYPH_AMP;
   if (nextAmplitude > MAX_GLYPH_AMP) nextAmplitude = MAX_GLYPH_AMP;
 
-  const current = STATE_MATRIX.getGlyphHeader(cell);
+  const current = MX.getGlyphHeader(cell);
   const currentKind = unpackKind(current);
   const currentAmplitude = unpackAmplitude(current);
 
@@ -118,9 +118,9 @@ const depositHeader = (
     }
   }
 
-  STATE_MATRIX.setGlyphHeader(cell, packHeader(finalKind, mergedAmplitude));
+  MX.setGlyphHeader(cell, packHeader(finalKind, mergedAmplitude));
   if (payload && payload.length > 0) {
-    STATE_MATRIX.setGlyphPayload(cell, payload);
+    MX.setGlyphPayload(cell, payload);
   }
 };
 

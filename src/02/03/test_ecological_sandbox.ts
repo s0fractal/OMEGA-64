@@ -1,6 +1,6 @@
 // OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   NEXUS_DAEMON,
   PULSE
@@ -16,24 +16,24 @@ import {
 Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () => {
   Li("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 100); // Wait, tickCounter starts at 100! DriftWarden triggers at 100/100 = 1.0 drift...
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 100); // Wait, tickCounter starts at 100! DriftWarden triggers at 100/100 = 1.0 drift...
   await PULSE.initWorkers(1);
 
   const predatorA = 8;
   const preyB = 11;
 
-  STATE_MATRIX.setId(predatorA, 10n);
-  STATE_MATRIX.setEnergy(predatorA, 50000);
-  STATE_MATRIX.setResonance(predatorA, 299); // Need high resonance to overcome prey's shields
-  STATE_MATRIX.setX(predatorA, 20);
-  STATE_MATRIX.setY(predatorA, 20);
+  MX.setId(predatorA, 10n);
+  MX.setEnergy(predatorA, 50000);
+  MX.setResonance(predatorA, 299); // Need high resonance to overcome prey's shields
+  MX.setX(predatorA, 20);
+  MX.setY(predatorA, 20);
 
-  STATE_MATRIX.setId(preyB, 11n);
-  STATE_MATRIX.setEnergy(preyB, 10000);
-  STATE_MATRIX.setX(preyB, 30); // dx=10 -> 1 cell away (10 sub-units)
-  STATE_MATRIX.setY(preyB, 20);
+  MX.setId(preyB, 11n);
+  MX.setEnergy(preyB, 10000);
+  MX.setX(preyB, 30); // dx=10 -> 1 cell away (10 sub-units)
+  MX.setY(preyB, 20);
 
   // Tick 1: Rebuild spatial hash
   await PULSE.tick();
@@ -51,16 +51,16 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
   scriptMoveX[8] = 1; // intensity = 1 (Attract)
   scriptMoveX[9] = OP_SYSCALL;
 
-  STATE_MATRIX.setInstructions(predatorA, scriptMoveX);
+  MX.setInstructions(predatorA, scriptMoveX);
 
   Li("Executing ATTRACT pulse...");
   await PULSE.tick(); // Tick 2: Predator moves
-  const newPx = STATE_MATRIX.getX(predatorA);
+  const newPx = MX.getX(predatorA);
   Li(`Predator X is now: ${newPx}`);
 
   assertEquals(
     newPx,
-    STATE_MATRIX.getX(preyB),
+    MX.getX(preyB),
     "SYS_ATTRACT should update predator X coordinate to match prey",
   );
 
@@ -83,14 +83,14 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
   scriptEat[11] = 251; // Amount = -5
   scriptEat[12] = OP_SYSCALL;
 
-  STATE_MATRIX.setInstructions(predatorA, scriptEat);
-  STATE_MATRIX.setPC(predatorA, 0);
+  MX.setInstructions(predatorA, scriptEat);
+  MX.setPC(predatorA, 0);
 
-  const initialPreyEnergy = STATE_MATRIX.getEnergy(preyB);
+  const initialPreyEnergy = MX.getEnergy(preyB);
   Li("Executing TRANSFER (Theft) pulse...");
   await PULSE.tick(); // Tick 4: Predator eats
 
-  const finalPreyEnergy = STATE_MATRIX.getEnergy(preyB);
+  const finalPreyEnergy = MX.getEnergy(preyB);
 
   // The prey naturally burns a tiny amount of gas/entropy, so we check for the drop of ~5.
   const drop = initialPreyEnergy - finalPreyEnergy;
@@ -100,7 +100,7 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
     "SYS_TRANSFER (stealing) should have deducted 5 energy from the prey",
   );
 
-  const predatorEnergy = STATE_MATRIX.getEnergy(predatorA);
+  const predatorEnergy = MX.getEnergy(predatorA);
   // Actually, gas cost for EAT is 30 -> 30,000 internal energy -> 30 external energy
   // He ate 5. So he lost energy overall. But that's fine, the transfer mechanism worked.
 

@@ -1,14 +1,14 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "@generated";
+import { MX, idBuffer, energyBuffer, neuralCoherenceBuffer } from "@generated";
 import { RUNTIME_POLICY } from "@generated";
 import { mutateUniversalConstants } from "@generated";
 import { SOVEREIGN_ORACLE } from "@generated";
 
 Deno.test("Phase 48: Eschaton Big Crunch execution (Unit Level)", async () => {
   // 1. Setup Stagnation conditions
-  STATE_MATRIX.clear();
+  MX.clear();
   // Simulate some atoms to represent a singularity of order
-  const id1 = STATE_MATRIX.findFreeSlot();
+  const id1 = MX.findFreeSlot();
   const ids = new BigUint64Array(idBuffer);
   const energies = new Int32Array(energyBuffer);
   ids[id1] = 1n;
@@ -30,12 +30,12 @@ Deno.test("Phase 48: Eschaton Big Crunch execution (Unit Level)", async () => {
   // 3. Trigger Big Crunch logic
   const reason = "Absolute Order (Singularity of Coherence)";
   await SOVEREIGN_ORACLE.declareEschaton(reason);
-  STATE_MATRIX.clear();
+  MX.clear();
   mutateUniversalConstants();
 
   // 4. Assert State cleared and constants mutated
   assertEquals(eschatonDeclared, true, "Eschaton should have been declared.");
-  assertEquals(STATE_MATRIX.getActiveIndices().length, 0, "Matrix should be barren after Big Crunch.");
+  assertEquals(MX.getActiveIndices().length, 0, "Matrix should be barren after Big Crunch.");
   
   // They should be mutated (not necessarily equal to initial, but probabilistically different)
   // Because Math.random is used, we just assert they are numbers and didn't crash.

@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@generated";
 import { CONTEXT_OFFSET } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { OP_ADD, OP_JMP } from "@generated";
 
 Deno.test({
@@ -10,7 +10,7 @@ Deno.test({
   sanitizeResources: false,
   fn: async () => {
     // 0. BYPASS STARTUP SELF-TEST
-    STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0);
+    MX.seedAtom(13999, 1n, 0, 0, 0, 0);
 
     await PULSE.initWorkers(1);
 
@@ -30,7 +30,7 @@ Deno.test({
     code[3] = OP_JMP;
     code[4] = 0;
 
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       atomIdx,
       100n,
       100,
@@ -40,26 +40,26 @@ Deno.test({
       new Uint8Array(8),
       code,
     );
-    STATE_MATRIX.setPC(atomIdx, 0);
+    MX.setPC(atomIdx, 0);
 
     // Pulse to execute VM. It should consume ~100 gas.
     await PULSE.tick();
 
     const contextData = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       CONTEXT_OFFSET,
       16 * 14000,
     );
     const pc = Atomics.load(
       new Int32Array(
-        STATE_MATRIX.buffer,
+        MX.buffer,
         CONTEXT_OFFSET + 32,
         14000 * 16,
       ),
       atomIdx,
     );
 
-    const energyAfter1Tick = STATE_MATRIX.getEnergy(atomIdx);
+    const energyAfter1Tick = MX.getEnergy(atomIdx);
     console.log(`[TEST] Energy after 1 tick: ${energyAfter1Tick}`);
     assertEquals(
       energyAfter1Tick < initialEnergy,
@@ -72,9 +72,9 @@ Deno.test({
       await PULSE.tick();
     }
 
-    const finalEnergy = STATE_MATRIX.getEnergy(atomIdx);
+    const finalEnergy = MX.getEnergy(atomIdx);
     console.log(
-      `[TEST] PC: ${STATE_MATRIX.getPC(atomIdx)}, Final Energy: ${finalEnergy}`,
+      `[TEST] PC: ${MX.getPC(atomIdx)}, Final Energy: ${finalEnergy}`,
     );
 
     assertEquals(

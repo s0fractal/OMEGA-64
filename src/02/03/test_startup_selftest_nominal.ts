@@ -7,7 +7,7 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST_QUIET", "1");
 Deno.env.delete("OMEGA_STARTUP_SELFTEST_FORCE_BREACH");
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 function assertNominalStartup(expectedWorkers: number): void {
   const status = PULSE.getStartupSelfTestStatus();
@@ -45,7 +45,7 @@ function assertNominalStartup(expectedWorkers: number): void {
     );
   }
   if (
-    STATE_MATRIX.getActiveIndices().length !== 0 || STATE_MATRIX.getId(0) !== 0n
+    MX.getActiveIndices().length !== 0 || MX.getId(0) !== 0n
   ) {
     throw new Error("[TEST] Matrix must remain empty after startup self-test.");
   }
@@ -55,14 +55,14 @@ async function main() {
   console.log("🧪 [TEST] Startup self-test nominal path (no fallback)");
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
     assertNominalStartup(4);
 
     await PULSE.tick();
     if (
-      STATE_MATRIX.getActiveIndices().length !== 0 ||
-      STATE_MATRIX.getId(0) !== 0n
+      MX.getActiveIndices().length !== 0 ||
+      MX.getId(0) !== 0n
     ) {
       throw new Error(
         "[TEST] Matrix must stay empty after first nominal tick.",

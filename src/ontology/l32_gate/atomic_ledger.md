@@ -8,12 +8,12 @@ vars:
   - LEDGER_DATA_OFFSET
   - LEDGER_HEAD_OFFSET
   - MAX_LEDGER_EVENTS
-  - STATE_MATRIX
+  - MX
 extra_symbols:
   - ATOMIC_LEDGER
   - AtomicLedgerEvent
 deps:
-  - STATE_MATRIX
+  - MX
 ---
 
 ### TypeScript
@@ -34,7 +34,7 @@ export const ATOMIC_LEDGER = {
    * Retrieves the current write cursor (how many total events have been emitted).
    */
   getHead(): number {
-    return Atomics.load(STATE_MATRIX.ledgerHeadView, 0);
+    return Atomics.load(MX.ledgerHeadView, 0);
   },
 
   /**
@@ -45,10 +45,10 @@ export const ATOMIC_LEDGER = {
     const cursor = sequence % MAX_LEDGER_EVENTS;
     const base = cursor * 4;
     return {
-      tick: Atomics.load(STATE_MATRIX.ledgerDataView, base),
-      atomIdx: Atomics.load(STATE_MATRIX.ledgerDataView, base + 1),
-      r1: Atomics.load(STATE_MATRIX.ledgerDataView, base + 2),
-      r2: Atomics.load(STATE_MATRIX.ledgerDataView, base + 3),
+      tick: Atomics.load(MX.ledgerDataView, base),
+      atomIdx: Atomics.load(MX.ledgerDataView, base + 1),
+      r1: Atomics.load(MX.ledgerDataView, base + 2),
+      r2: Atomics.load(MX.ledgerDataView, base + 3),
     };
   },
 
@@ -63,7 +63,7 @@ export const ATOMIC_LEDGER = {
 
     // Copy Head
     const headBytes = new Uint8Array(
-      STATE_MATRIX.ledgerHeadView.buffer,
+      MX.ledgerHeadView.buffer,
       LEDGER_HEAD_OFFSET,
       4,
     );
@@ -71,7 +71,7 @@ export const ATOMIC_LEDGER = {
 
     // Copy Data
     const dataBytes = new Uint8Array(
-      STATE_MATRIX.ledgerDataView.buffer,
+      MX.ledgerDataView.buffer,
       LEDGER_DATA_OFFSET,
       MAX_LEDGER_EVENTS * 16,
     );

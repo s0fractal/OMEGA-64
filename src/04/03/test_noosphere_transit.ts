@@ -3,7 +3,7 @@
 // an atom triggering a SPORE_DRIVE payload.
 
 import { SwarmNexus } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { P2P_CODEC } from "@generated";
 import { PULSE } from "@generated";
 
@@ -28,7 +28,7 @@ Deno.test("Noosphere Spore Drive Transit", async () => {
   });
 
   // 2. Start Nexus A and Nexus B
-  STATE_MATRIX.clear();
+  MX.clear();
 
   const NodeA = new SwarmNexus({
     instanceId: 1000,
@@ -49,7 +49,7 @@ Deno.test("Noosphere Spore Drive Transit", async () => {
   NodeB.onAtomTransit = (payload: Uint8Array) => {
       const newIdx = P2P_CODEC.unpackAtom(payload);
       if (newIdx !== -1) {
-          console.log(`🛸 [Node B] Atom ${STATE_MATRIX.getId(newIdx)} materialized successfully.`);
+          console.log(`🛸 [Node B] Atom ${MX.getId(newIdx)} materialized successfully.`);
           materializedB = true;
       }
   };
@@ -63,13 +63,13 @@ Deno.test("Noosphere Spore Drive Transit", async () => {
   // 3. Inject Spore Drive Atom on Node A
   const idxA = 0;
   const ATOM_ID = 9999n;
-  STATE_MATRIX.seedAtom(idxA, ATOM_ID, 500, 500, 100000, 500, new Uint8Array(8));
+  MX.seedAtom(idxA, ATOM_ID, 500, 500, 100000, 500, new Uint8Array(8));
   
   console.log(`🛸 [Node A] Atom seeded. Dispatching to Nexus...`);
   
   // Pack and Route (Simulating PULSE.ts worker intercept)
   const packet = P2P_CODEC.packAtom(idxA);
-  STATE_MATRIX.recycleAtom(idxA); // simulate removing locally
+  MX.recycleAtom(idxA); // simulate removing locally
   
   if (packet) {
       NodeA.routeAtom(packet);
@@ -79,7 +79,7 @@ Deno.test("Noosphere Spore Drive Transit", async () => {
   await new Promise(r => setTimeout(r, 1000));
 
   // 4. Verify
-  const idB = STATE_MATRIX.getId(idxA);
+  const idB = MX.getId(idxA);
   
   console.log(`[RESULT] Materialization on Node B: ${materializedB}`);
   console.log(`[RESULT] Atom ID in Slot 0: ${idB}`);

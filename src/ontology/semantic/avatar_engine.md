@@ -14,7 +14,7 @@ vars:
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
 import { GLYPH_TELEMETRY } from "@g12";
-import { STATE_MATRIX } from "@g12";
+import { MX } from "@g12";
 import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
 
 const getGridIdx = (x: number, y: number) => {
@@ -37,18 +37,18 @@ export const AVATAR_ENGINE = {
 
     // Spill a highly concentrated dose of attention at the cursor
     // Capped to prevent float overflow or infinite pooling
-    const current = STATE_MATRIX.attentionField[idx];
+    const current = MX.attentionField[idx];
     if (current < 1000) {
-      STATE_MATRIX.attentionField[idx] += coreDelta;
+      MX.attentionField[idx] += coreDelta;
     }
 
     // Also spill slightly into immediate neighbors to create a gradient
     const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
     for (const [ox, oy] of checkPoints) {
       const sIdx = getGridIdx(x + ox, y + oy);
-      const sCurrent = STATE_MATRIX.attentionField[sIdx];
+      const sCurrent = MX.attentionField[sIdx];
       if (sCurrent < 1000) {
-        STATE_MATRIX.attentionField[sIdx] += haloDelta;
+        MX.attentionField[sIdx] += haloDelta;
       }
     }
   },

@@ -164,10 +164,10 @@ export function tick_membrane_physics(): void {
         // Apply topological epigenetics
         if (internalBonds >= 3) {
           // Core / Architect (Protected Processor)
-          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
+          role = role | 3; // ROLE_ARCHITECT is 3 in MX.ts
         } else {
           // Surface / Guardian (Radar & Armor)
-          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
+          role = role | 2; // ROLE_GUARDIAN is 2 in MX.ts
         }
         
         // Ensure Metazoan flag exists
@@ -324,10 +324,10 @@ export function tick_membrane_physics(): void {
         // Apply topological epigenetics
         if (internalBonds >= 3) {
           // Core / Architect (Protected Processor)
-          role = role | 3; // ROLE_ARCHITECT is 3 in STATE_MATRIX.ts
+          role = role | 3; // ROLE_ARCHITECT is 3 in MX.ts
         } else {
           // Surface / Guardian (Radar & Armor)
-          role = role | 2; // ROLE_GUARDIAN is 2 in STATE_MATRIX.ts
+          role = role | 2; // ROLE_GUARDIAN is 2 in MX.ts
         }
         
         // Ensure Metazoan flag exists

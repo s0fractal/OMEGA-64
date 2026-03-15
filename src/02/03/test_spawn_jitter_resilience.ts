@@ -52,7 +52,7 @@ Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log(
@@ -60,13 +60,13 @@ async function main() {
   );
 
   const spawnHead = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     SPAWN_REQUESTS_OFFSET,
     2,
   );
 
   try {
-    const initialActive = seedSeededSwarmScenario(STATE_MATRIX, {
+    const initialActive = seedSeededSwarmScenario(MX, {
       seed,
       replicators,
       architects,
@@ -81,7 +81,7 @@ async function main() {
     for (let t = 0; t < ticks; t++) {
       await PULSE.tick();
 
-      const active = assertSeededSwarmWorldInvariants(STATE_MATRIX, "[TEST]");
+      const active = assertSeededSwarmWorldInvariants(MX, "[TEST]");
       peakActive = Math.max(peakActive, active);
       finalActive = active;
 

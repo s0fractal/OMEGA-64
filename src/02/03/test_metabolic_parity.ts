@@ -1,5 +1,5 @@
 // OMEGA-64 | test_metabolic_parity.ts | Metabolic Parity Verifier
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { ENERGY_OFFSET, LOGIC_OFFSET, MAX_ATOMS } from "@generated";
 import { PULSE } from "@generated";
 
@@ -7,7 +7,7 @@ async function testMetabolicParity() {
   console.log("🧬 [TEST] Starting Metabolic Parity Test...");
 
   const MAX_ATOMS = MAX_ATOMS;
-  const sharedBuffer = STATE_MATRIX.sharedBuffer;
+  const sharedBuffer = MX.sharedBuffer;
   const energiesView = new Int32Array(
     sharedBuffer,
     ENERGY_OFFSET,
@@ -20,13 +20,13 @@ async function testMetabolicParity() {
   );
 
   // 1. Setup Deterministic State
-  STATE_MATRIX.STATE_MATRIX.clear();
+  MX.MX.clear();
 
   // Create atoms with diverse genomes and energies
   const activeIdx: number[] = [];
   for (let i = 0; i < 500; i++) {
     const idx = i * 2; // Spread them out
-    STATE_MATRIX.STATE_MATRIX.setId(idx, BigInt(idx + 1));
+    MX.MX.setId(idx, BigInt(idx + 1));
 
     // Set some diverse genomes in the first 2 bytes of Logic area
     const genomeKey = i % 5;

@@ -80,20 +80,20 @@ const main = async () => {
   );
 
   const consultBlock = between(oracle, "consultOracle:", "broadcastWhisper:");
-  if (consultBlock.includes("STATE_MATRIX.setInstructions(")) {
+  if (consultBlock.includes("MX.setInstructions(")) {
     violations.push({
       file: ORACLE_PATH,
       reason:
         "consultOracle must not apply setInstructions directly (queue instead)",
     });
   }
-  if (consultBlock.includes("STATE_MATRIX.setLogic(")) {
+  if (consultBlock.includes("MX.setLogic(")) {
     violations.push({
       file: ORACLE_PATH,
       reason: "consultOracle must not apply setLogic directly (queue instead)",
     });
   }
-  if (consultBlock.includes("STATE_MATRIX.memoryGrid")) {
+  if (consultBlock.includes("MX.memoryGrid")) {
     violations.push({
       file: ORACLE_PATH,
       reason:
@@ -106,7 +106,7 @@ const main = async () => {
     "broadcastWhisper:",
     "pollNeuralCoherence:",
   );
-  if (whisperBlock.includes("STATE_MATRIX.memoryGrid")) {
+  if (whisperBlock.includes("MX.memoryGrid")) {
     violations.push({
       file: ORACLE_PATH,
       reason:
@@ -120,8 +120,8 @@ const main = async () => {
     "consultOracle:",
   );
   if (
-    !drainBlock.includes("STATE_MATRIX.setInstructions(") ||
-    !drainBlock.includes("STATE_MATRIX.memoryGrid")
+    !drainBlock.includes("MX.setInstructions(") ||
+    !drainBlock.includes("MX.memoryGrid")
   ) {
     violations.push({
       file: ORACLE_PATH,

@@ -13,7 +13,7 @@
  *   5. Asserts the metric has changed in the expected direction.
  */
 
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 
 let passed = 0;
 let failed = 0;
@@ -28,8 +28,8 @@ function assert(condition: boolean, label: string): void {
   }
 }
 
-// Uses the live STATE_MATRIX SharedArrayBuffer (same buffer WASM reads from).
-const sharedBuf = STATE_MATRIX.sharedBuffer;
+// Uses the live MX SharedArrayBuffer (same buffer WASM reads from).
+const sharedBuf = MX.sharedBuffer;
 
 // Views over shared memory
 const energyView = new Int32Array(sharedBuf, 8000000 + 1200000, 100000);
@@ -38,7 +38,7 @@ const hormoneView = new Uint16Array(sharedBuf, 8000000 + 42849024, 6);
 
 // Helper to reset hormones
 function clearHormones(): void {
-  for (let i = 0; i < 6; i++) STATE_MATRIX.setHormone(i, 0);
+  for (let i = 0; i < 6; i++) MX.setHormone(i, 0);
 }
 
 // Seed atom 5 with baseline state
@@ -70,10 +70,10 @@ seedAtom(5, 500, 100);
 const baselineEnergy = getEnergy(5);
 // (execute_atom in real runtime is called from WASM side, but here we verify
 // the hormone buffer is accessible and contains the expected values)
-assert(STATE_MATRIX.getHormone(0) === 0, "entropy_pressure=0 at baseline");
-assert(STATE_MATRIX.getHormone(1) === 0, "time_viscosity=0 at baseline");
-assert(STATE_MATRIX.getHormone(2) === 0, "aggression=0 at baseline");
-assert(STATE_MATRIX.getHormone(4) === 0, "repair_drive=0 at baseline");
+assert(MX.getHormone(0) === 0, "entropy_pressure=0 at baseline");
+assert(MX.getHormone(1) === 0, "time_viscosity=0 at baseline");
+assert(MX.getHormone(2) === 0, "aggression=0 at baseline");
+assert(MX.getHormone(4) === 0, "repair_drive=0 at baseline");
 
 // ---
 // Section 2: Hormone influence on metabolicCost via entropy_pressure
@@ -178,13 +178,13 @@ assert(dampHigh < dampBase, "time_viscosity reduces effective dampingFactor");
 // Section 6: Roundtrip — hormones written by syncHormonesToLattice are visible
 // ---
 console.log("\n── Section 6: SharedArrayBuffer Roundtrip Visibility ──");
-STATE_MATRIX.setHormone(0, 1234);
-STATE_MATRIX.setHormone(2, 512);
-assert(STATE_MATRIX.getHormone(0) === 1234, "entropy_pressure roundtrip 1234");
-assert(STATE_MATRIX.getHormone(2) === 512, "aggression roundtrip 512");
+MX.setHormone(0, 1234);
+MX.setHormone(2, 512);
+assert(MX.getHormone(0) === 1234, "entropy_pressure roundtrip 1234");
+assert(MX.getHormone(2) === 512, "aggression roundtrip 512");
 clearHormones();
-assert(STATE_MATRIX.getHormone(0) === 0, "hormones cleared");
-assert(STATE_MATRIX.getHormone(2) === 0, "hormones cleared");
+assert(MX.getHormone(0) === 0, "hormones cleared");
+assert(MX.getHormone(2) === 0, "hormones cleared");
 
 // ---
 // Summary

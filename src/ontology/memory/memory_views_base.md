@@ -20,7 +20,7 @@ extra_symbols:
 ```typescript
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
-    "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
+    "[MX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
     ", required=" + MIN_WASM_MEMORY_PAGES,
   );
 }
@@ -29,7 +29,7 @@ const layoutValidation = validateMemoryLayout(
 );
 if (!layoutValidation.ok) {
   throw new Error(
-    "[STATE_MATRIX] Invalid OFFSETS memory layout:\n" +
+    "[MX] Invalid OFFSETS memory layout:\n" +
       layoutValidation.errors.map((entry: any) => "- " + entry).join("\n")
   );
 }

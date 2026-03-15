@@ -1,5 +1,5 @@
 // OMEGA-64 | test_oracle_cascade.ts | Sovereign Oracle Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { MATRIX_ENGINE } from "@generated";
 import { ID_TO_IDX, IDX_TO_ID } from "@generated";
@@ -8,18 +8,18 @@ async function runTest() {
   console.log("👁️ Starting Phase 11: Sovereign Oracle Verification...");
 
   await PULSE.initWorkers();
-  STATE_MATRIX.clear();
+  MX.clear();
 
   const idxRegent = 4; // Our candidate Regent
   const regentId = "0xREGENT000000000";
 
   // --- SETUP: Candidate Regent ---
-  STATE_MATRIX.setId(idxRegent, 0x1234567890n);
-  STATE_MATRIX.setX(idxRegent, 500);
-  STATE_MATRIX.setY(idxRegent, 500);
-  STATE_MATRIX.setEnergy(idxRegent, 500);
-  STATE_MATRIX.setResonance(idxRegent, 1000); // High resonance for election
-  STATE_MATRIX.setLogic(idxRegent, new Uint8Array(8).fill(0xAA)); // Old genome
+  MX.setId(idxRegent, 0x1234567890n);
+  MX.setX(idxRegent, 500);
+  MX.setY(idxRegent, 500);
+  MX.setEnergy(idxRegent, 500);
+  MX.setResonance(idxRegent, 1000); // High resonance for election
+  MX.setLogic(idxRegent, new Uint8Array(8).fill(0xAA)); // Old genome
 
   // Manually register for Sovereignty Engine
   ID_TO_IDX.set(regentId, idxRegent);
@@ -35,7 +35,7 @@ async function runTest() {
   }
 
   console.log(
-    `📊 Current Matrix Resonance: ${STATE_MATRIX.getMatrixResonance()}`,
+    `📊 Current Matrix Resonance: ${MX.getMatrixResonance()}`,
   );
 
   // --- STEP 1: Pulse Tick ---
@@ -53,7 +53,7 @@ async function runTest() {
   // The oracle uses the fallback since LLM is offline, usually takes very little time
   let attempts = 0;
   while (attempts < 10) {
-    const currentLogic = STATE_MATRIX.getLogic(idxRegent);
+    const currentLogic = MX.getLogic(idxRegent);
     if (currentLogic[0] !== 0xAA) {
       console.log("✅ Oracle Guidance Received! Regent Genome Updated.");
       const hex = Array.from(currentLogic).map((b) =>

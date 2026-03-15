@@ -1,6 +1,6 @@
 import { GRID_W } from "@generated";
 // OMEGA-64 | test_colony.ts | Phase 15: Emergent Colonies Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { MATRIX_ENGINE } from "@generated";
 import { SOVEREIGNTY_ENGINE } from "@generated";
@@ -26,19 +26,19 @@ async function runTest() {
   ]); // ISA_BROADCAST + shared data
 
   for (let i = 0; i < 8; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, 500);
-    STATE_MATRIX.setY(i, 500);
-    STATE_MATRIX.setEnergy(i, 2000 + i * 100);
-    STATE_MATRIX.setResonance(i, 50);
-    STATE_MATRIX.setPhase(i, 0);
-    STATE_MATRIX.setLogic(i, SHARED_GENOME.slice());
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, 500);
+    MX.setY(i, 500);
+    MX.setEnergy(i, 2000 + i * 100);
+    MX.setResonance(i, 50);
+    MX.setPhase(i, 0);
+    MX.setLogic(i, SHARED_GENOME.slice());
   }
 
   // 3 ticks — each BROADCAST tick accumulates the count, 5+ triggers CRYSTAL_COLONY
   for (let t = 0; t < 3; t++) await PULSE.tick();
 
-  const colonyType = Atomics.load(STATE_MATRIX.structureGrid, 50 * GRID_W + 50);
+  const colonyType = Atomics.load(MX.structureGrid, 50 * GRID_W + 50);
   if (colonyType === 3) {
     console.log(`✅ CRYSTAL_COLONY formed! Type at (50,50): ${colonyType}`);
     const colonySignal = MATRIX_ENGINE.read(500, 500);
@@ -56,23 +56,23 @@ async function runTest() {
   // Colony A: 6 atoms with genome prefix 0xAAAAAAAA
   // Colony B: 3 atoms with genome prefix 0xBBBBBBBB
   for (let i = 10; i < 16; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, 300 + i * 5);
-    STATE_MATRIX.setY(i, 300);
-    STATE_MATRIX.setEnergy(i, 1000 + i * 50);
-    STATE_MATRIX.setResonance(i, 30);
-    STATE_MATRIX.setLogic(
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, 300 + i * 5);
+    MX.setY(i, 300);
+    MX.setEnergy(i, 1000 + i * 50);
+    MX.setResonance(i, 30);
+    MX.setLogic(
       i,
       new Uint8Array([0xAA, 0xAA, 0xAA, 0xAA, 0x01, 0x02, 0x03, 0x04]),
     );
   }
   for (let i = 20; i < 23; i++) {
-    STATE_MATRIX.setId(i, BigInt(i + 1));
-    STATE_MATRIX.setX(i, 400 + i * 5);
-    STATE_MATRIX.setY(i, 300);
-    STATE_MATRIX.setEnergy(i, 5000); // High energy but small colony
-    STATE_MATRIX.setResonance(i, 200);
-    STATE_MATRIX.setLogic(
+    MX.setId(i, BigInt(i + 1));
+    MX.setX(i, 400 + i * 5);
+    MX.setY(i, 300);
+    MX.setEnergy(i, 5000); // High energy but small colony
+    MX.setResonance(i, 200);
+    MX.setLogic(
       i,
       new Uint8Array([0xBB, 0xBB, 0xBB, 0xBB, 0x05, 0x06, 0x07, 0x08]),
     );

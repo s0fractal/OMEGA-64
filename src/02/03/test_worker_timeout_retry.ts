@@ -25,7 +25,7 @@ Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
 const { PULSE } = await import("@generated");
-const { STATE_MATRIX } = await import("@00");
+const { MX } = await import("@00");
 
 async function main() {
   console.log(
@@ -33,7 +33,7 @@ async function main() {
   );
 
   try {
-    STATE_MATRIX.clear();
+    MX.clear();
     await PULSE.initWorkers();
     await PULSE.setWorkerDebugDelay(debugDelayMs);
 

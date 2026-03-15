@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests Hebbian plasticity (ISA.HEBB), signal propagation (ISA.FIRE),
 // synaptic weight decay, and SENSE type 0x08 — directly via LAMBDA_VM.
 
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
@@ -104,32 +104,32 @@ Deno.test("Era 52: ISA.HEBB suppressed when bond slot is empty (targetIdx=0)", (
 
 // ---------- Test 4: PULSE_WORKER hebbRequest increments synapticStack ----------
 Deno.test("Era 52: PULSE_WORKER hebbRequest increments synapticStack weight when neighbour resonance > 200", () => {
-  const idxA = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idxA, 555n);
-  STATE_MATRIX.setResonance(idxA, 300);
+  const idxA = MX.findEmptySlot();
+  MX.setId(idxA, 555n);
+  MX.setResonance(idxA, 300);
 
-  const idxB = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idxB, 556n);
-  STATE_MATRIX.setResonance(idxB, 300); // both high resonance
+  const idxB = MX.findEmptySlot();
+  MX.setId(idxB, 556n);
+  MX.setResonance(idxB, 300); // both high resonance
 
-  // Set initial synaptic weight via STATE_MATRIX API
+  // Set initial synaptic weight via MX API
   const slot = 0;
-  STATE_MATRIX.setSynapticValue(idxA, slot, 10);
+  MX.setSynapticValue(idxA, slot, 10);
 
   // Simulate PULSE_WORKER hebbRequest handler
-  const neighbourResonance = STATE_MATRIX.getResonance(idxB);
+  const neighbourResonance = MX.getResonance(idxB);
   if (neighbourResonance > 200) {
-    const curWeight = STATE_MATRIX.getSynapticValue(idxA, slot);
+    const curWeight = MX.getSynapticValue(idxA, slot);
     if (curWeight < 255) {
-      STATE_MATRIX.setSynapticValue(idxA, slot, curWeight + 1);
+      MX.setSynapticValue(idxA, slot, curWeight + 1);
     }
   }
 
-  const newWeight = STATE_MATRIX.getSynapticValue(idxA, slot);
+  const newWeight = MX.getSynapticValue(idxA, slot);
   assertEquals(newWeight, 11, "Synaptic weight should increment from 10 to 11");
 
-  STATE_MATRIX.setId(idxA, 0n);
-  STATE_MATRIX.setId(idxB, 0n);
+  MX.setId(idxA, 0n);
+  MX.setId(idxB, 0n);
 });
 
 // ---------- Test 5: ISA.FIRE emits FIRE intent with correct weight scaling ----------

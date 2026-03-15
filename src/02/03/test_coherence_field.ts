@@ -1,5 +1,5 @@
 // OMEGA-64 | test_coherence_field.ts | Stage 11.1 Dedicated Verification
-import { MAX_ATOMS, STATE_MATRIX } from "@generated";
+import { MAX_ATOMS, MX } from "@generated";
 import { PULSE } from "@generated";
 
 async function test_coherence_field() {
@@ -27,11 +27,11 @@ async function test_coherence_field() {
   signalGenome[8] = 1; // target: 1 (to reset resonance)
 
   // Reset neural coherence view
-  Atomics.store(STATE_MATRIX.neuralCoherence, 0, 0);
+  Atomics.store(MX.neuralCoherence, 0, 0);
 
   // Seed 100 atoms to ensure we cross some thresholds easily
   for (let i = 1; i <= 100; i++) {
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       i,
       BigInt(i),
       50,
@@ -46,7 +46,7 @@ async function test_coherence_field() {
   // Run tick
   await PULSE.tick();
 
-  const coherence = Atomics.load(STATE_MATRIX.neuralCoherence, 0);
+  const coherence = Atomics.load(MX.neuralCoherence, 0);
   console.log(
     `   [TEST] Global Coherence after 100 atoms signaled: ${coherence}`,
   );
@@ -67,7 +67,7 @@ async function test_coherence_field() {
 
   // Seed 600 atoms to cross the 500 threshold
   for (let i = 1; i <= 600; i++) {
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       i,
       BigInt(i),
       50,
@@ -80,7 +80,7 @@ async function test_coherence_field() {
   }
 
   const syncAtomIdx = 700;
-  STATE_MATRIX.seedAtom(
+  MX.seedAtom(
     syncAtomIdx,
     700n,
     60,
@@ -90,13 +90,13 @@ async function test_coherence_field() {
     undefined,
     new Uint8Array(64),
   );
-  STATE_MATRIX.setPhase(syncAtomIdx, 10);
+  MX.setPhase(syncAtomIdx, 10);
 
   // Run tick. 600 atoms will fire -> coherence > 500 -> sync logic runs for atom 700
   await PULSE.tick();
 
-  const phaseAfter = STATE_MATRIX.getPhase(syncAtomIdx);
-  const globalCoherenceFinal = Atomics.load(STATE_MATRIX.neuralCoherence, 0);
+  const phaseAfter = MX.getPhase(syncAtomIdx);
+  const globalCoherenceFinal = Atomics.load(MX.neuralCoherence, 0);
   console.log(`   [TEST] Final Coherence: ${globalCoherenceFinal}`);
   console.log(
     `   [TEST] Atom Phase after sync tick: ${phaseAfter} (Expected: >10)`,

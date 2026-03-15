@@ -1,5 +1,5 @@
 // OMEGA-64 | test_entropy.ts | Phase 23: Entropy Flux Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 
 async function runTest() {
@@ -9,16 +9,16 @@ async function runTest() {
   await PULSE.initWorkers(1);
 
   // 2. Seed an atom with a self-looping script (infinite metabolic cost)
-  const atomIdx = STATE_MATRIX.findFreeSlot();
+  const atomIdx = MX.findFreeSlot();
   const id = 0xDEADBEEFn;
 
   // Script: JMP to 0 (Infinite NOP loop + metabolic cost)
   const script = new Uint8Array(64);
-  script[0] = STATE_MATRIX.RISC.OP_JMP;
+  script[0] = MX.RISC.OP_JMP;
   script[1] = 0;
 
   const initialEnergy = 1000;
-  STATE_MATRIX.seedAtom(
+  MX.seedAtom(
     atomIdx,
     id,
     70,
@@ -39,7 +39,7 @@ async function runTest() {
   // 3. Run pulses and monitor energy
   for (let i = 0; i < 20; i++) {
     await PULSE.tick();
-    const currentEnergy = STATE_MATRIX.getEnergy(atomIdx);
+    const currentEnergy = MX.getEnergy(atomIdx);
 
     console.log(
       `   Pulse ${i + 1}: Energy = ${currentEnergy.toFixed(2)} (Delta: ${

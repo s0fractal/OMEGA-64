@@ -1,5 +1,5 @@
 // OMEGA-64 | test_resilience.ts | Era 68: Resilience Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@02";
 import { SNAPSHOT_ENGINE } from "@06";
 import { IDS_OFFSET } from "@generated";
@@ -10,10 +10,10 @@ async function runTest() {
 
   // 1. SNAPSHOT INTEGRITY TEST
   console.log("\n🛡️ Testing Snapshot Integrity...");
-  STATE_MATRIX.clear();
+  MX.clear();
   await PULSE.initWorkers();
   // Set some dummy data
-  STATE_MATRIX.setEnergy(1, 999);
+  MX.setEnergy(1, 999);
   const snap = await SNAPSHOT_ENGINE.exportSnapshot();
   if (!snap.success) throw new Error("Export failed");
 
@@ -34,24 +34,24 @@ async function runTest() {
   // 2. ASCENSION THROTTLING TEST
   console.log("\n⚖️ Testing Ascension Throttling...");
   // Reset matrix
-  STATE_MATRIX.clear();
+  MX.clear();
 
   // Place 100 atoms with ASCEND opcode (0xFF) and high energy
   console.log("🧬 Spawning 100 Ascension candidates...");
   for (let i = 0; i < 100; i++) {
-    STATE_MATRIX.setLogic(i, new Uint8Array([0xFF, 0, 0, 0, 0, 0, 0, 0]));
-    STATE_MATRIX.setEnergy(i, 1000);
-    STATE_MATRIX.setX(i, 500);
-    STATE_MATRIX.setY(i, 500);
+    MX.setLogic(i, new Uint8Array([0xFF, 0, 0, 0, 0, 0, 0, 0]));
+    MX.setEnergy(i, 1000);
+    MX.setX(i, 500);
+    MX.setY(i, 500);
     // Set ID to activate
-    new BigUint64Array(STATE_MATRIX.buffer, IDS_OFFSET, 100)[i] =
+    new BigUint64Array(MX.buffer, IDS_OFFSET, 100)[i] =
       BigInt(i + 1);
   }
 
   console.log("🌀 Triggering Pulse Tick...");
   await PULSE.tick();
 
-  const activeIndices = STATE_MATRIX.getActiveIndices();
+  const activeIndices = MX.getActiveIndices();
   const ascendedCount = 100 - activeIndices.length;
 
   console.log(

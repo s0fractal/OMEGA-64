@@ -1,6 +1,6 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { SIGNAL_GRID_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
 import {
   type DeterminismAtomState,
@@ -49,10 +49,10 @@ const randInt = (next: () => number, min: number, max: number): number => {
 
 const roleAt = (ord: number, next: () => number): number => {
   const roles = [
-    STATE_MATRIX.ROLE_PRODUCER,
-    STATE_MATRIX.ROLE_NEUTRAL,
-    STATE_MATRIX.ROLE_GUARDIAN,
-    STATE_MATRIX.ROLE_PARASITE,
+    MX.ROLE_PRODUCER,
+    MX.ROLE_NEUTRAL,
+    MX.ROLE_GUARDIAN,
+    MX.ROLE_PARASITE,
   ];
   return roles[(ord + (next() & 3)) & 3];
 };
@@ -78,9 +78,9 @@ const hashHex = async (payload: string): Promise<string> => {
 };
 
 const seedScenario = (seed: number, atomCount: number): number[] => {
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, STATE_MATRIX.SYNC.IDLE);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, MX.SYNC.IDLE);
+  Atomics.store(MX.tickCounter, 0, 1);
 
   const next = makePrng(seed);
   const indices = buildAtomIndices(atomCount);
@@ -90,10 +90,10 @@ const seedScenario = (seed: number, atomCount: number): number[] => {
     const role = roleAt(ord, next);
     const x = randInt(next, 280, 1120);
     const y = randInt(next, 140, 680);
-    const resonance = role === STATE_MATRIX.ROLE_GUARDIAN
+    const resonance = role === MX.ROLE_GUARDIAN
       ? randInt(next, 80, 220)
       : randInt(next, 10, 120);
-    const energy = role === STATE_MATRIX.ROLE_PRODUCER
+    const energy = role === MX.ROLE_PRODUCER
       ? randInt(next, 900, 1600)
       : randInt(next, 250, 900);
     const id = (BigInt(seed >>> 0) << 32n) ^ BigInt(idx + 1);
@@ -103,9 +103,9 @@ const seedScenario = (seed: number, atomCount: number): number[] => {
       logic[b] = randInt(next, 0, 255);
     }
 
-    STATE_MATRIX.seedAtom(idx, id, x, y, energy, resonance, logic);
-    STATE_MATRIX.setRole(idx, role);
-    STATE_MATRIX.setDamping(idx, randInt(next, 0, 30));
+    MX.seedAtom(idx, id, x, y, energy, resonance, logic);
+    MX.setRole(idx, role);
+    MX.setDamping(idx, randInt(next, 0, 30));
   }
 
   // Deterministic but seed-variant bond topology with cross-band links.
@@ -118,13 +118,13 @@ const seedScenario = (seed: number, atomCount: number): number[] => {
     const stiffness = 0.65 + ((next() % 25) / 100);
     const dist = randInt(next, 45, 95);
 
-    STATE_MATRIX.setBondTarget(a, slotA, b);
-    STATE_MATRIX.setBondStiffness(a, slotA, stiffness);
-    STATE_MATRIX.setBondDistance(a, slotA, dist);
+    MX.setBondTarget(a, slotA, b);
+    MX.setBondStiffness(a, slotA, stiffness);
+    MX.setBondDistance(a, slotA, dist);
 
-    STATE_MATRIX.setBondTarget(b, slotB, a);
-    STATE_MATRIX.setBondStiffness(b, slotB, stiffness);
-    STATE_MATRIX.setBondDistance(b, slotB, dist);
+    MX.setBondTarget(b, slotB, a);
+    MX.setBondStiffness(b, slotB, stiffness);
+    MX.setBondDistance(b, slotB, dist);
   }
 
   return indices;
@@ -132,12 +132,12 @@ const seedScenario = (seed: number, atomCount: number): number[] => {
 
 const buildSnapshot = (indices: number[]): Snapshot => {
   const structureGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     STRUCTURE_GRID_OFFSET,
     GRID_CELLS,
   );
   const signalGrid = new Int32Array(
-    STATE_MATRIX.buffer,
+    MX.buffer,
     SIGNAL_GRID_OFFSET,
     GRID_CELLS,
   );
@@ -154,25 +154,25 @@ const buildSnapshot = (indices: number[]): Snapshot => {
 
   const atoms: AtomState[] = indices.map((idx) => ({
     idx,
-    id: STATE_MATRIX.getId(idx).toString(),
-    role: STATE_MATRIX.getRole(idx),
-    x: STATE_MATRIX.getX(idx),
-    y: STATE_MATRIX.getY(idx),
-    energy: Number(STATE_MATRIX.getEnergy(idx).toFixed(3)),
-    resonance: STATE_MATRIX.getResonance(idx),
-    phase: STATE_MATRIX.getPhase(idx),
-    pc: STATE_MATRIX.getPC(idx),
-    logic: Array.from(STATE_MATRIX.getLogic(idx)),
-    bonds: Array.from(STATE_MATRIX.getBonds(idx)),
+    id: MX.getId(idx).toString(),
+    role: MX.getRole(idx),
+    x: MX.getX(idx),
+    y: MX.getY(idx),
+    energy: Number(MX.getEnergy(idx).toFixed(3)),
+    resonance: MX.getResonance(idx),
+    phase: MX.getPhase(idx),
+    pc: MX.getPC(idx),
+    logic: Array.from(MX.getLogic(idx)),
+    bonds: Array.from(MX.getBonds(idx)),
     bondDistances: [0, 1, 2, 3].map((slot) =>
-      STATE_MATRIX.getBondDistance(idx, slot)
+      MX.getBondDistance(idx, slot)
     ),
-    damping: STATE_MATRIX.getDamping(idx),
+    damping: MX.getDamping(idx),
   }));
 
   return {
-    activeCount: STATE_MATRIX.getActiveIndices().length,
-    tickCounter: Atomics.load(STATE_MATRIX.tickCounter, 0),
+    activeCount: MX.getActiveIndices().length,
+    tickCounter: Atomics.load(MX.tickCounter, 0),
     atoms,
     structureSlice: slice(structureGrid),
     signalSlice: slice(signalGrid),

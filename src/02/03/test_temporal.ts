@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests ISA.AGE, ISA.PHASE_LIFE lifecycle phases, SENSE type 0x0A, and apoptosis.
 
 import { ISA, LAMBDA_VM } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import {
   assert,
   assertEquals,
@@ -146,10 +146,10 @@ Deno.test("Era 54: ISA.SENSE type 0x0A reads age bucket into register", () => {
 
 // ---------- Test 8: birthTick is stored and age computes correctly ----------
 Deno.test("Era 54: birthTicks stores spawn tick; age = current - birth", () => {
-  const idx = STATE_MATRIX.findEmptySlot();
-  STATE_MATRIX.setId(idx, 888n);
+  const idx = MX.findEmptySlot();
+  MX.setId(idx, 888n);
 
-  const birthTicks = STATE_MATRIX.birthTicks as Int32Array;
+  const birthTicks = MX.birthTicks as Int32Array;
   const spawnTick = 100;
   const currentTick = 250;
   Atomics.store(birthTicks, idx, spawnTick);
@@ -157,6 +157,6 @@ Deno.test("Era 54: birthTicks stores spawn tick; age = current - birth", () => {
   const age = currentTick - Atomics.load(birthTicks, idx);
   assertEquals(age, 150, "Age should be 250 - 100 = 150 (Mature)");
 
-  STATE_MATRIX.setId(idx, 0n);
+  MX.setId(idx, 0n);
   Atomics.store(birthTicks, idx, 0);
 });

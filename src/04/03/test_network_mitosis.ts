@@ -3,7 +3,7 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   PULSE
 } from "@generated";
@@ -17,20 +17,20 @@ import {
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   Li("--- STAGE 32: NETWORK MITOSIS TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 1);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 1);
   await PULSE.initWorkers(1);
 
   const parentIdx = 1;
   const childIdx = 2;
 
-  STATE_MATRIX.setId(parentIdx, 1n);
-  STATE_MATRIX.setEnergy(parentIdx, 1000);
+  MX.setId(parentIdx, 1n);
+  MX.setEnergy(parentIdx, 1000);
 
   // Initialize Child with absolutely zero state
-  STATE_MATRIX.setId(childIdx, 0n);
-  STATE_MATRIX.setEnergy(childIdx, 0);
+  MX.setId(childIdx, 0n);
+  MX.setEnergy(childIdx, 0);
 
   // Parent Script:
   // Wait 1 pulse, then SYS.REPLICATE into childIdx
@@ -47,16 +47,16 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
 
   parentScript[6] = OP_SYSCALL;
   parentScript[7] = 0;
-  STATE_MATRIX.setInstructions(parentIdx, parentScript);
+  MX.setInstructions(parentIdx, parentScript);
 
   Li("Executing Mitosis Pulse...");
   await PULSE.tick();
 
-  const parentEnergy = STATE_MATRIX.getEnergy(parentIdx);
-  const childEnergy = STATE_MATRIX.getEnergy(childIdx);
-  const childGenome = STATE_MATRIX.getInstructions(childIdx);
-  const childId = STATE_MATRIX.getId(childIdx);
-  const childPc = STATE_MATRIX.getPC(childIdx);
+  const parentEnergy = MX.getEnergy(parentIdx);
+  const childEnergy = MX.getEnergy(childIdx);
+  const childGenome = MX.getInstructions(childIdx);
+  const childId = MX.getId(childIdx);
+  const childPc = MX.getPC(childIdx);
 
   Li(`Parent Energy remaining: ${parentEnergy}`);
   Li(`Child Energy remaining: ${childEnergy}`);
@@ -95,7 +95,7 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   // Let's assert based on logical ranges.
 
   // Child energy must be exactly 50 from the spark! Wait, scaled!
-  // No, Atomics.sub used '50 * 1000', but STATE_MATRIX.getEnergy() divides by 1000. So child will be 50.
+  // No, Atomics.sub used '50 * 1000', but MX.getEnergy() divides by 1000. So child will be 50.
   // Wait, the new Child also metabolizes this tick! But it might not be awake?
   // Let's just assert childEnergy > 10.
   assertEquals(

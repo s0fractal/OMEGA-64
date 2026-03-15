@@ -2,7 +2,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@generated";
 import { CONTEXT_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
-import { energyBuffer, idBuffer, STATE_MATRIX, structureGridBuffer } from "@generated";
+import { energyBuffer, idBuffer, MX, structureGridBuffer } from "@generated";
 import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "@generated";
 
 Deno.test({
@@ -11,7 +11,7 @@ Deno.test({
   sanitizeResources: false,
   fn: async () => {
     // 0. BYPASS STARTUP SELF-TEST
-    STATE_MATRIX.seedAtom(13999, 1n, 0, 0, 0, 0);
+    MX.seedAtom(13999, 1n, 0, 0, 0, 0);
 
     await PULSE.initWorkers(1); // 1 worker is enough for test
 
@@ -47,7 +47,7 @@ Deno.test({
     // we do not need R3 for READ_MEM
     code[c++] = OP_SYSCALL;
 
-    STATE_MATRIX.seedAtom(
+    MX.seedAtom(
       atomIdx,
       100n,
       100,
@@ -57,7 +57,7 @@ Deno.test({
       new Uint8Array(8),
       code,
     );
-    STATE_MATRIX.setPC(atomIdx, 0);
+    MX.setPC(atomIdx, 0);
 
     // Pulse to execute VM and Syscall Intent
     await PULSE.tick();
@@ -66,7 +66,7 @@ Deno.test({
     await PULSE.tick();
 
     const structureGrid = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       STRUCTURE_GRID_OFFSET,
       GRID_CELLS,
     );
@@ -79,7 +79,7 @@ Deno.test({
     );
 
     const contextData = new Int32Array(
-      STATE_MATRIX.buffer,
+      MX.buffer,
       CONTEXT_OFFSET,
       16 * 14000,
     );

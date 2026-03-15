@@ -1,14 +1,14 @@
 // OMEGA-64 | test_agent_proxy.ts | Stage 38 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import { PULSE } from "@02";
 import { AgentProxy } from "../../_/06/AGENT_PROXY.ts";
 
 Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
   Li("--- STAGE 38: AGENT PROXY TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store((STATE_MATRIX as any).syncState, 0, 0);
+  MX.clear();
+  Atomics.store((MX as any).syncState, 0, 0);
   await PULSE.initWorkers(1);
 
   // 1. Spawn the proxy on a test-specific port
@@ -17,11 +17,11 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
 
   // 2. Spawn a test atom
   const atomA = 100;
-  STATE_MATRIX.setId(atomA, 100n);
-  STATE_MATRIX.setRole(atomA, STATE_MATRIX.ROLE_NEUTRAL);
-  STATE_MATRIX.setEnergy(atomA, 50000);
-  STATE_MATRIX.setX(atomA, 50);
-  STATE_MATRIX.setY(atomA, 50);
+  MX.setId(atomA, 100n);
+  MX.setRole(atomA, MX.ROLE_NEUTRAL);
+  MX.setEnergy(atomA, 50000);
+  MX.setX(atomA, 50);
+  MX.setY(atomA, 50);
 
   // Let PULSE build the spatial grid
   await PULSE.tick();
@@ -44,13 +44,13 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
 
     // 4.5. Spawn a target Atom for ATTRACT
     const atomB = 101;
-    STATE_MATRIX.setId(atomB, 101n);
-    STATE_MATRIX.setX(atomB, 60); // +10 X relative to atomA
-    STATE_MATRIX.setY(atomB, 40); // -10 Y relative to atomA
+    MX.setId(atomB, 101n);
+    MX.setX(atomB, 60); // +10 X relative to atomA
+    MX.setY(atomB, 40); // -10 Y relative to atomA
 
     // 5. Test POST Motor Intent (ATTRACT)
-    const initX = STATE_MATRIX.getX(atomA);
-    const initY = STATE_MATRIX.getY(atomA);
+    const initX = MX.getX(atomA);
+    const initY = MX.getY(atomA);
 
     const r3 = await fetch(`http://localhost:8081/api/atom/${atomA}/act`, {
       method: "POST",
@@ -68,8 +68,8 @@ Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {
     await PULSE.tick();
 
     // 6. Verify Physical Reaction
-    const newX = STATE_MATRIX.getX(atomA);
-    const newY = STATE_MATRIX.getY(atomA);
+    const newX = MX.getX(atomA);
+    const newY = MX.getY(atomA);
 
     // dx=10 because SYS_ATTRACT speed is hardcoded to 10 pixels
     assertEquals(

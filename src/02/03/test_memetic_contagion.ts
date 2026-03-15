@@ -1,6 +1,6 @@
 // OMEGA-64 | test_memetic_contagion.ts | Stage 38 Verification
 import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@generated";
 import {
   NEXUS_DAEMON,
   PULSE
@@ -13,20 +13,20 @@ import {
 Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => {
   Li("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");
 
-  STATE_MATRIX.clear();
-  Atomics.store(STATE_MATRIX.syncState, 0, 0);
-  Atomics.store(STATE_MATRIX.tickCounter, 0, 100);
+  MX.clear();
+  Atomics.store(MX.syncState, 0, 0);
+  Atomics.store(MX.tickCounter, 0, 100);
   await PULSE.initWorkers(1);
 
   // Both atoms drop into cell (0,0)
   const atomTeacher = 200;
   const atomStudent = 201;
 
-  STATE_MATRIX.setId(atomTeacher, 200n);
-  STATE_MATRIX.setEnergy(atomTeacher, 500000); // Plenty of energy to afford 150_000 tax
+  MX.setId(atomTeacher, 200n);
+  MX.setEnergy(atomTeacher, 500000); // Plenty of energy to afford 150_000 tax
 
-  STATE_MATRIX.setId(atomStudent, 201n);
-  STATE_MATRIX.setEnergy(atomStudent, 500000);
+  MX.setId(atomStudent, 201n);
+  MX.setEnergy(atomStudent, 500000);
 
   // Teacher (Low Entropy)
   // Genome: SET R0 = 0 (offset), SECRETE_PLASMID (0xAA)
@@ -37,7 +37,7 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   scriptTeacher[3] = 0xAA; // OP_SECRETE_PLASMID
   scriptTeacher[4] = 0; // Param R0
   // Next 8 bytes at offset 0 are: [0x01, 0x00, 0x00, 0xAA, 0x00, 0x00, 0x00, 0x00]
-  STATE_MATRIX.setInstructions(atomTeacher, scriptTeacher);
+  MX.setInstructions(atomTeacher, scriptTeacher);
 
   // Student (High Entropy)
   // Genome: SET R0 = 0 (offset), INCORPORATE_PLASMID (0xAB) inside of a highly chaotic payload
@@ -50,11 +50,11 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   scriptStudent[4] = 0;
 
   // We expect reading the first 8 random bytes to be replaced by the Teacher's low-entropy 8 bytes.
-  STATE_MATRIX.setInstructions(atomStudent, scriptStudent);
+  MX.setInstructions(atomStudent, scriptStudent);
 
   // Measure initial entropy
   const entropyBefore = Atomics.load(
-    STATE_MATRIX.contexts,
+    MX.contexts,
     atomStudent * 16 + 15,
   );
   Li(`Student Pre-Entropy Cache (Uninitialized): ${entropyBefore}`);
@@ -65,15 +65,15 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   }
 
   const entropyAfter = Atomics.load(
-    STATE_MATRIX.contexts,
+    MX.contexts,
     atomStudent * 16 + 15,
   );
   Li(
     `Student Post-Entropy Cache (Evicted or Recomputed): ${entropyAfter}`,
   );
 
-  const teacherGenomeAfter = STATE_MATRIX.getInstructions(atomTeacher);
-  const studentGenomeAfter = STATE_MATRIX.getInstructions(atomStudent);
+  const teacherGenomeAfter = MX.getInstructions(atomTeacher);
+  const studentGenomeAfter = MX.getInstructions(atomStudent);
 
   let matchArray = true;
   for (let i = 0; i < 8; i++) {
@@ -88,8 +88,8 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
   console.log("Teacher first 8 bytes:", teacherGenomeAfter.slice(0, 8));
   console.log("Student first 8 bytes:", studentGenomeAfter.slice(0, 8));
 
-  console.log("Teacher Final Energy: ", STATE_MATRIX.getEnergy(atomTeacher));
-  console.log("Student Final Energy: ", STATE_MATRIX.getEnergy(atomStudent));
+  console.log("Teacher Final Energy: ", MX.getEnergy(atomTeacher));
+  console.log("Student Final Energy: ", MX.getEnergy(atomStudent));
 
   await PULSE.stopWorkers();
   await NEXUS_DAEMON.stop();

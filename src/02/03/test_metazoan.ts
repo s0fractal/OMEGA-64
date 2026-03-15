@@ -1,6 +1,6 @@
 import { assertEquals, assertGreater } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { OP_SET, SYS_TRANSFER, OP_SUB, OP_SYSCALL } from "@generated";
 
 Deno.test({
@@ -8,8 +8,8 @@ Deno.test({
   sanitizeOps: false,
   sanitizeResources: false,
   fn: async () => {
-    STATE_MATRIX.clear();
-    Atomics.store(STATE_MATRIX.tickCounter, 0, 0);
+    MX.clear();
+    Atomics.store(MX.tickCounter, 0, 0);
 
     const PREDATOR = 5;
     const ATOM_A = 1;
@@ -18,12 +18,12 @@ Deno.test({
 
     // Helper to setup predator attacking B
     const setupPredator = () => {
-      STATE_MATRIX.setId(PREDATOR, 999n);
-      STATE_MATRIX.setX(PREDATOR, 100);
-      STATE_MATRIX.setY(PREDATOR, 100);
-      STATE_MATRIX.setEnergy(PREDATOR, 50000);
-      STATE_MATRIX.setResonance(PREDATOR, 260); // Must be > 250 for steal syscall locally, and larger than target resonance
-      STATE_MATRIX.setRole(PREDATOR, STATE_MATRIX.ROLE_PARASITE);
+      MX.setId(PREDATOR, 999n);
+      MX.setX(PREDATOR, 100);
+      MX.setY(PREDATOR, 100);
+      MX.setEnergy(PREDATOR, 50000);
+      MX.setResonance(PREDATOR, 260); // Must be > 250 for steal syscall locally, and larger than target resonance
+      MX.setRole(PREDATOR, MX.ROLE_PARASITE);
 
       // Predator script: Steal energy from ATOM_B
       // Syscall Transfer: targetIdx=B, resource_type=0 (energy), amount=-1000 (steal)
@@ -50,38 +50,38 @@ Deno.test({
          OP_SYSCALL, 0
       ], 12);
 
-      STATE_MATRIX.setInstructions(PREDATOR, predScript);
+      MX.setInstructions(PREDATOR, predScript);
     };
 
     const setupPrey = (cyclic: boolean) => {
       // Create A, B, C clustered together
-      STATE_MATRIX.setId(ATOM_A, 111n);
-      STATE_MATRIX.setX(ATOM_A, 100);
-      STATE_MATRIX.setY(ATOM_A, 110);
-      STATE_MATRIX.setEnergy(ATOM_A, 10000);
-      STATE_MATRIX.setResonance(ATOM_A, 50);
+      MX.setId(ATOM_A, 111n);
+      MX.setX(ATOM_A, 100);
+      MX.setY(ATOM_A, 110);
+      MX.setEnergy(ATOM_A, 10000);
+      MX.setResonance(ATOM_A, 50);
 
-      STATE_MATRIX.setId(ATOM_B, 222n);
+      MX.setId(ATOM_B, 222n);
       // B must be close to predator to be stolen from (< 1.5 distance sq. 10 units = 1.0)
-      STATE_MATRIX.setX(ATOM_B, 105);
-      STATE_MATRIX.setY(ATOM_B, 105);
-      STATE_MATRIX.setEnergy(ATOM_B, 10000);
-      STATE_MATRIX.setResonance(ATOM_B, 50); // Predator (260) > Target (50) -> Steal succeeds
+      MX.setX(ATOM_B, 105);
+      MX.setY(ATOM_B, 105);
+      MX.setEnergy(ATOM_B, 10000);
+      MX.setResonance(ATOM_B, 50); // Predator (260) > Target (50) -> Steal succeeds
 
-      STATE_MATRIX.setId(ATOM_C, 333n);
-      STATE_MATRIX.setX(ATOM_C, 110);
-      STATE_MATRIX.setY(ATOM_C, 100);
-      STATE_MATRIX.setEnergy(ATOM_C, 10000);
-      STATE_MATRIX.setResonance(ATOM_C, 50);
+      MX.setId(ATOM_C, 333n);
+      MX.setX(ATOM_C, 110);
+      MX.setY(ATOM_C, 100);
+      MX.setEnergy(ATOM_C, 10000);
+      MX.setResonance(ATOM_C, 50);
 
       // Bond A -> B -> C
-      const bondsA = STATE_MATRIX.getBonds(ATOM_A);
+      const bondsA = MX.getBonds(ATOM_A);
       Atomics.store(bondsA, 0, ATOM_B);
 
-      const bondsB = STATE_MATRIX.getBonds(ATOM_B);
+      const bondsB = MX.getBonds(ATOM_B);
       Atomics.store(bondsB, 0, ATOM_C);
 
-      const bondsC = STATE_MATRIX.getBonds(ATOM_C);
+      const bondsC = MX.getBonds(ATOM_C);
       if (cyclic) {
         // C -> A forms a Membrane Ring
         Atomics.store(bondsC, 0, ATOM_A);
@@ -96,21 +96,21 @@ Deno.test({
     // SCENARIO A: Linear Chain (No Membrane Protection)
     // ==========================================
     console.log("--- SCENARIO A: Linear Chain ---");
-    STATE_MATRIX.clear();
+    MX.clear();
     setupPrey(false);
     setupPredator();
 
-    let initialEnergyB = STATE_MATRIX.getEnergy(ATOM_B);
-    let initialPredatorEnergy = STATE_MATRIX.getEnergy(PREDATOR);
+    let initialEnergyB = MX.getEnergy(ATOM_B);
+    let initialPredatorEnergy = MX.getEnergy(PREDATOR);
 
     await PULSE.tick(); // Apply physics + compute
     
     // Shield should be 0 because it's not a ring
-    assertEquals(STATE_MATRIX.getEvolutionReserved(ATOM_B), 0, "No shield should exist for linear chain");
+    assertEquals(MX.getEvolutionReserved(ATOM_B), 0, "No shield should exist for linear chain");
     
     // Should have stolen energy
-    const finalEnergyB = STATE_MATRIX.getEnergy(ATOM_B);
-    const finalPredatorEnergy = STATE_MATRIX.getEnergy(PREDATOR);
+    const finalEnergyB = MX.getEnergy(ATOM_B);
+    const finalPredatorEnergy = MX.getEnergy(PREDATOR);
 
     console.log(`Initial B: ${initialEnergyB}, Final B: ${finalEnergyB}`);
     console.log(`Initial Pred: ${initialPredatorEnergy}, Final Pred: ${finalPredatorEnergy}`);
@@ -123,24 +123,24 @@ Deno.test({
     // SCENARIO B: Cyclic Ring (Membrane Protection)
     // ==========================================
     console.log("--- SCENARIO B: Membrane Ring ---");
-    STATE_MATRIX.clear();
+    MX.clear();
     setupPrey(true);
     setupPredator();
 
-    initialEnergyB = STATE_MATRIX.getEnergy(ATOM_B);
-    initialPredatorEnergy = STATE_MATRIX.getEnergy(PREDATOR);
+    initialEnergyB = MX.getEnergy(ATOM_B);
+    initialPredatorEnergy = MX.getEnergy(PREDATOR);
 
     // Run a tick. The Membrane topological sort happens at the end of the tick.
     await PULSE.tick();
 
     // Verify Membrane characteristics
-    let shieldB = STATE_MATRIX.getEvolutionReserved(ATOM_B);
+    let shieldB = MX.getEvolutionReserved(ATOM_B);
     
     // Total resonance should be sum of 3 atoms ~ 150 (minus metabolic decay ~ 144)
     assertGreater(shieldB, 130, "Membrane Ring should have aggregated Defense Shield");
 
-    let finalEnergyB_cycle = STATE_MATRIX.getEnergy(ATOM_B);
-    let finalPredatorEnergy_cycle = STATE_MATRIX.getEnergy(PREDATOR);
+    let finalEnergyB_cycle = MX.getEnergy(ATOM_B);
+    let finalPredatorEnergy_cycle = MX.getEnergy(PREDATOR);
 
     // Wait, the steal happens BEFORE the membrane is formed?
     // In pulse.rs: VM tick -> Syscall execution -> Membrane Physics.
@@ -149,24 +149,24 @@ Deno.test({
 
     // Resetting for proper sequential timeline:
     console.log("--- SCENARIO B (Recalibrated for Formative Tick) ---");
-    STATE_MATRIX.clear();
+    MX.clear();
     setupPrey(true);
     
     // Tick 1: Autopoietic Metazoan Formation
     await PULSE.tick();
 
-    shieldB = STATE_MATRIX.getEvolutionReserved(ATOM_B);
+    shieldB = MX.getEvolutionReserved(ATOM_B);
     assertGreater(shieldB, 130, "Membrane Ring should be fully active after Tick 1");
 
     // Tick 2: Attack
     setupPredator();
-    initialEnergyB = STATE_MATRIX.getEnergy(ATOM_B);
-    initialPredatorEnergy = STATE_MATRIX.getEnergy(PREDATOR);
+    initialEnergyB = MX.getEnergy(ATOM_B);
+    initialPredatorEnergy = MX.getEnergy(PREDATOR);
     
     await PULSE.tick();
 
-    finalEnergyB_cycle = STATE_MATRIX.getEnergy(ATOM_B);
-    finalPredatorEnergy_cycle = STATE_MATRIX.getEnergy(PREDATOR);
+    finalEnergyB_cycle = MX.getEnergy(ATOM_B);
+    finalPredatorEnergy_cycle = MX.getEnergy(PREDATOR);
 
     // Energy should NOT drop by 100k, only by minor ~10 basal metabolism
     assertEquals(finalEnergyB_cycle > initialEnergyB - 100, true, "Ring Armor should strictly block Predator theft");

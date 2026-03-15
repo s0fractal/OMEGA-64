@@ -1,5 +1,5 @@
 // OMEGA-64 | test_automaton.ts | Phase 24: Pure Automaton Verification
-import { STATE_MATRIX } from "@generated";
+import { MX } from "@generated";
 import { PULSE } from "@generated";
 import { GATE } from "@generated";
 
@@ -10,11 +10,11 @@ async function runTest() {
   await PULSE.initWorkers();
 
   // 1. Check for Avatar (Divine Entity)
-  const active = STATE_MATRIX.getActiveIndices();
+  const active = MX.getActiveIndices();
   const avatarId = 0x00000000AAAAAAAAn;
   let foundAvatar = false;
   for (const idx of active) {
-    if (STATE_MATRIX.getId(idx) === avatarId) {
+    if (MX.getId(idx) === avatarId) {
       foundAvatar = true;
       break;
     }
@@ -32,14 +32,14 @@ async function runTest() {
   }
 
   // 2. Inject a "Corrupted" (Zombie) Atom
-  const zIdx = STATE_MATRIX.findFreeSlot();
+  const zIdx = MX.findFreeSlot();
   if (zIdx !== -1) {
     console.log(
       `⚖️ Injecting Malignant Zombie Atom at index ${zIdx} (Excessive FEED OP-codes)...`,
     );
-    STATE_MATRIX.setId(zIdx, 0xDEADC0DEn);
-    STATE_MATRIX.setEnergy(zIdx, 100); // Give it some energy so it's not recycled by health check
-    STATE_MATRIX.setLogic(
+    MX.setId(zIdx, 0xDEADC0DEn);
+    MX.setEnergy(zIdx, 100); // Give it some energy so it's not recycled by health check
+    MX.setLogic(
       zIdx,
       new Uint8Array([0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00]),
     ); // 5 FEED ops
@@ -52,7 +52,7 @@ async function runTest() {
   }
 
   // 4. Verify Zombie Removal
-  if (STATE_MATRIX.getId(zIdx) === 0n) {
+  if (MX.getId(zIdx) === 0n) {
     console.log("✅ SUCCESS: Zombie atom was recycled by the Autonomous Gate.");
   } else {
     console.error(
