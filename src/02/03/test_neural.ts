@@ -4,7 +4,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // synaptic weight decay, and SENSE type 0x08 — directly via LAMBDA_VM.
 
 import { STATE_MATRIX } from "@generated";
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
   assertEquals,

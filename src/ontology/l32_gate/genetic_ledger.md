@@ -190,4 +190,9 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
 
+export const GENETIC_LEDGER = {
+  geneticLedgerEntryByKey,
+  geneticLedgerBaseline
+};
+
 ```

@@ -1,4 +1,15 @@
-import { type HormoneId } from "@02/HORMONE_BUFFER.ts";
+---
+id: HORMONE_BUFFER_RUNTIME
+type: module
+description: "Hormone Buffer Runtime Sync Logic"
+deps: [HORMONE_BUFFER]
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
+import { type HormoneId } from "@generated";
 
 export type HormoneSyncInput = {
   baseTax: number;
@@ -74,3 +85,6 @@ export const syncHormonesToLattice = (
     global_consensus: Math.round(clamp(input.globalSyntropy * 1024, 0, 2048)),
   };
 };
+
+export const HORMONE_BUFFER_RUNTIME = { syncHormonesToLattice };
+```

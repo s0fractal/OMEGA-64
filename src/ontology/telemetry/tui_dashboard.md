@@ -146,4 +146,6 @@ if (import.meta.main) {
   run();
 }
 
+export const TUI_DASHBOARD = {};
+
 ```

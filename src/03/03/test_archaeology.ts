@@ -1,6 +1,6 @@
 import { STATE_MATRIX } from "@generated";
-import { PHYSICS_ENGINE } from "@06";
-import { AUDIT_ENGINE } from "@03";
+import { PHYSICS_ENGINE } from "@generated";
+import { AUDIT_ENGINE } from "@generated";
 
 console.log("🏺 [TEST] Verifying Era 34: Digital Archaeology...");
 

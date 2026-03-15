@@ -1,5 +1,14 @@
+---
+id: REPLICATION_PROMOTION_ACTION
+type: pure_fn
+description: "Determines the necessary action (promote/stay/rollback) based on Replication promotion evaluation."
+tags: ["core", "control", "host"]
+min_level: 6
+
+---
+```typescript
 import type { ReplicationExecutionMode } from "@generated";
-import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
+import type { ReplicationPromotionDecision } from "@generated";
 
 export type ReplicationPromotionActionInput = {
   currentMode: ReplicationExecutionMode;
@@ -52,3 +61,9 @@ export const evaluateReplicationPromotionAction = (
     reasons: ["unknown_current_mode"],
   };
 };
+
+export const REPLICATION_PROMOTION_ACTION = {
+  evaluateReplicationPromotionAction
+};
+
+```

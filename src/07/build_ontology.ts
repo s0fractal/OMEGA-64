@@ -22,7 +22,7 @@ import { z } from "npm:zod@4.3.6";
 
 const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation"]);
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
@@ -271,6 +271,69 @@ for (const node of nodes.values()) {
   maxLevel = Math.max(maxLevel, node.level);
 }
 
+// 2.5: Causality and Symbol Validation Pass
+const symbolToNodeId = new Map<string, string>();
+for (const node of nodes.values()) {
+  symbolToNodeId.set(node.id, node.id); // The node's ID is always an exported symbol
+  
+  if (node.type === "enum" || node.type === "constants") {
+    for (const key of Object.keys(node.values || {})) {
+      symbolToNodeId.set(key, node.id);
+    }
+  } else if (node.type === "memory_layout") {
+    for (const region of node.regions || []) {
+      symbolToNodeId.set(`${region.name}_OFFSET`, node.id);
+      symbolToNodeId.set(`${region.name}_OFF`, node.id);
+      
+      // Legacy Aliases
+      if (region.name === "EVOLUTION") symbolToNodeId.set("INTENT_OFFSET", node.id);
+      if (region.name === "INSTRUCTIONS") symbolToNodeId.set("GENOMES_OFFSET", node.id);
+      if (region.name === "ASCENSION_STATS_RESERVED") {
+          symbolToNodeId.set("ASCENSION_STATS_OFFSET", node.id);
+          symbolToNodeId.set("ASCENSION_STATS_OFF", node.id);
+      }
+      if (region.name === "HORMONES") {
+          symbolToNodeId.set("HORMONE_OFFSET", node.id);
+          symbolToNodeId.set("HORMONE_OFF", node.id);
+      }
+      if (region.name === "SPAWN_REQUESTS") {
+          symbolToNodeId.set("SPAWN_GRID_OFF", node.id);
+          symbolToNodeId.set("SPAWN_HEAD_OFF", node.id);
+          symbolToNodeId.set("SPAWN_DATA_OFF", node.id);
+      }
+    }
+    symbolToNodeId.set("LATTICE_MEMORY_END", node.id);
+    symbolToNodeId.set("MIN_WASM_MEMORY_PAGES", node.id);
+    symbolToNodeId.set("WASM_MEMORY_BYTES", node.id);
+  }
+}
+
+// Validate that every imported var exists and is causally valid
+for (const node of nodes.values()) {
+  if (!node.vars || node.vars.length === 0) continue;
+  
+  for (const v of node.vars) {
+    const sourceNodeId = symbolToNodeId.get(v);
+    if (!sourceNodeId) {
+       console.error(`[FATAL] Missing Symbol Registration: Node '${node.id}' attempts to import '${v}' via 'vars', but no node exports this symbol. Verify spelling or add the missing node.`);
+       Deno.exit(1);
+    }
+    
+    const sourceNode = nodes.get(sourceNodeId);
+    if (!sourceNode) continue; // Should be impossible but satisfy types
+
+    // Causality validation: The node providing the symbol MUST belong to a strictly lower level.
+    // If it is at the SAME level, TS output will generate an invalid import path (e.g., pulling from the same level's mod.ts before it's formed, or circular dependency).
+    if (sourceNode.level >= node.level) {
+       console.error(`[FATAL] Causality Violation in '${node.id}': Found import of '${v}' which is provided by '${sourceNode.id}' at causality level ${sourceNode.level}.`);
+       console.error(`  -> '${node.id}' is currently resolved to level ${node.level}.`);
+       console.error(`  -> FIX: '${node.id}' must be at a higher level than '${sourceNode.id}'. Add '${sourceNode.id}' to the 'deps' array of '${node.id}', or manually set a higher 'min_level'.`);
+       Deno.exit(1);
+    }
+  }
+}
+
+
 // 3. Constant Evaluation Pre-Pass Removed (Native Compile-time Math)
 
 // 4. File Emission
@@ -313,7 +376,7 @@ for (const node of nodes.values()) {
 
   
   // Skip code generation entirely for documentation nodes
-  if (node.type === "documentation") {
+  if (node.type === "documentation" || node.type === "docs" || node.type === "lore") {
     continue;
   }
 
@@ -662,7 +725,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }
 
-  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl && n.type !== "documentation");
+  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl && n.type !== "documentation" && n.type !== "docs" && n.type !== "lore");
   
   const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
   const levelNodesTs = levelNodesNoSubstrate.filter(n => {

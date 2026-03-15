@@ -11,6 +11,7 @@ returns: u8
 ---
 
 ### Rust
+
 ```rust
 if id <= 3 {
   return KIND_CORE;
@@ -22,6 +23,7 @@ return id >> 3;
 ```
 
 ### TypeScript
+
 ```typescript
 import { KIND_CORE, KIND_CONTROL } from "../00/mod.ts";
 

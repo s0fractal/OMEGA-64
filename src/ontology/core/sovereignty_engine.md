@@ -1,6 +1,12 @@
-// OMEGA-64 | SOVEREIGNTY_ENGINE.ts | The Governance Layer
-// Handles Regent Election, Decrees, and Legitimacy.
+---
+id: SOVEREIGNTY_ENGINE
+type: module
+description: "The Governance Layer Operations. Handles Regent Election, Decrees, and Legitimacy based on the Quadratic Voting algorithm."
+tags: ["core", "governance", "host"]
+min_level: 6
 
+---
+```typescript
 import { STATE_MATRIX } from "@generated";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(
@@ -202,3 +208,4 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
   },
 };
+```

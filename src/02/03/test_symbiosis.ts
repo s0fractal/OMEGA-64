@@ -2,7 +2,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_symbiosis.ts | Era 61: Symbiotic Bonding Verification
 // Tests ISA.SHARE (energy transfer to bonded neighbor) and ISA.EAT (nutrient consumption).
 
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
   assertEquals,

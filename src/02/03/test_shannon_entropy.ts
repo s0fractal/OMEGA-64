@@ -4,7 +4,7 @@ import {
   assertEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { LOGGER } from "@generated";
 
 Deno.test("Stage 37: Information Thermodynamics (Noise Tax)", async () => {

@@ -4,7 +4,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // All tests exercise LAMBDA_VM directly.
 
 import { STATE_MATRIX } from "@generated";
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
   assertEquals,

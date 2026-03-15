@@ -1,3 +1,11 @@
+---
+id: GENERIC_LEDGER_PERSISTENCE
+type: module
+tags: ["core", "db", "host", "fs"]
+min_level: 7
+
+---
+```typescript
 import {
   applyLedgerUpdate,
   createGeneticLedgerRuntime,
@@ -7,7 +15,7 @@ import {
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
-} from "@03/GENERIC_LEDGER_SYSTEM.ts";
+} from "@generated";
 import { type GeneticLedgerKey } from "@generated";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
@@ -423,3 +431,16 @@ export const appendLedgerRecordAndMaybeCompact = async <
   await appendLedgerRecord(record);
   return await compactLedgerPersistence(key, options);
 };
+
+export const GENERIC_LEDGER_PERSISTENCE = {
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  appendLedgerRecord,
+  recordFromApply,
+  recordFromRollback,
+  compactLedgerPersistence,
+  appendLedgerRecordAndMaybeCompact
+};
+
+```

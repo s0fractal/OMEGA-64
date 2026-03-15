@@ -1,4 +1,13 @@
-import type { ReplicationExecutionMode } from "@02";
+---
+id: REPLICATION_PROMOTION
+type: pure_fn
+description: "Evaluates the overall hybrid snapshot for Replication loops, returning promotion readiness."
+tags: ["core", "control", "host"]
+min_level: 6
+
+---
+```typescript
+import type { ReplicationExecutionMode } from "@generated";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;
@@ -212,3 +221,8 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
+
+export const REPLICATION_PROMOTION = {
+  evaluateReplicationPromotion
+};
+```

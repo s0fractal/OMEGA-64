@@ -1,3 +1,11 @@
+---
+id: CONTROL_INTENT_QUEUE
+type: module
+tags: ["core", "control", "host"]
+min_level: 6
+
+---
+```typescript
 import { GRID_H, GRID_W, SCALE } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
@@ -1399,3 +1407,4 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
+```

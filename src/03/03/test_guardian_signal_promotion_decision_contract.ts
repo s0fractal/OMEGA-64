@@ -1,4 +1,5 @@
-import { evaluateGuardianSignalPromotionDecision } from "@03";
+import { GUARDIAN_SIGNAL_PROMOTION_DECISION } from "@generated";
+const { evaluateGuardianSignalPromotionDecision } = GUARDIAN_SIGNAL_PROMOTION_DECISION;
 
 type Failure = {
   name: string;

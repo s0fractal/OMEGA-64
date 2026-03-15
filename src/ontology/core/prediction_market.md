@@ -5,13 +5,6 @@ tags:
   - substrate
 deps:
   - STATE_MATRIX
-vars:
-  - PredictionMarketAkashaDelegate
-  - marketBuffer
-  - marketState
-  - betPoolInt
-  - proposedInstructions
-  - PREDICTION_MARKET
 ---
 
 // OMEGA-64 | PREDICTION_MARKET.ts | Era 18: Deterministic Monad

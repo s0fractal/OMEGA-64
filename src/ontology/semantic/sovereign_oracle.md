@@ -14,10 +14,10 @@ min_level: 5
 
 import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
 import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { SOVEREIGNTY_ENGINE } from "@03";
+import { SOVEREIGNTY_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
-import { PULSE } from "@02";
+import { RUNTIME_POLICY } from "@generated";
+import { PULSE } from "@generated";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
 import { GRID_W, GRID_H } from "../mod.ts";
 

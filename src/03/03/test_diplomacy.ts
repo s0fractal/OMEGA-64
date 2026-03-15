@@ -1,6 +1,6 @@
 import { STATE_MATRIX } from "@generated";
-import { GATE } from "@03";
-import { LAMBDA_VM } from "@02";
+import { GATE } from "@generated";
+import { LAMBDA_VM } from "@generated";
 
 console.log("🤝 [TEST] Verifying Era 38: Diplomacy & Taxation...");
 

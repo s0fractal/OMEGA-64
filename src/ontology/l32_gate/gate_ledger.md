@@ -49,4 +49,8 @@ export const persistGateLedgerArtifacts = async (
   }
 };
 
+export const GATE_LEDGER = {
+  persistGateLedgerArtifacts
+};
+
 ```

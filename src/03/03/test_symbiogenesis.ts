@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { GATE } from "@03";
+import { GATE } from "@generated";
 
 console.log("🛡️ [TEST] Verifying Era 35: Symbiogenesis...");
 

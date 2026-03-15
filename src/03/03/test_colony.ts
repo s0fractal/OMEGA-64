@@ -1,9 +1,9 @@
 import { GRID_W } from "@generated";
 // OMEGA-64 | test_colony.ts | Phase 15: Emergent Colonies Verification
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
-import { MATRIX_ENGINE } from "@06";
-import { SOVEREIGNTY_ENGINE } from "@03";
+import { PULSE } from "@generated";
+import { MATRIX_ENGINE } from "@generated";
+import { SOVEREIGNTY_ENGINE } from "@generated";
 
 async function runTest() {
   console.log("🐝 Phase 15: Emergent Colonies Verification\n");

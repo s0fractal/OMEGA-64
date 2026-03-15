@@ -7,16 +7,17 @@ min_level: 6
 ---
 
 ### TypeScript
+
 ```typescript
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
 import { STATE_MATRIX } from "@generated";
-import { SEMANTIC_MEMBRANE } from "@05";
-import { LLM_SYNAPSE } from "@05";
-import { AUDIT_ENGINE } from "@03";
+import { SEMANTIC_MEMBRANE } from "@generated";
+import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
+import { AUDIT_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@06";
+import { AKASHA_CODEX } from "../../06/AKASHA_CODEX.ts";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 

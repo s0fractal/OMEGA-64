@@ -3,7 +3,7 @@ import {
   assertGreater,
   assertLess,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import { CONTEXT_OFFSET } from "@generated";
 import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "@generated";

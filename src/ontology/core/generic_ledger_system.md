@@ -1,3 +1,22 @@
+---
+type: module
+id: GENERIC_LEDGER_SYSTEM
+description: >
+  Core definitions and state transitions for the Generic Ledger System.
+  Provides types and functions for managing `LedgerRuntimeEvent`, `LedgerRuntimeState`,
+  and applying/rolling back ledger updates.
+tags:
+  - substrate
+  - ledger
+deps:
+  - GENETIC_LEDGER
+---
+
+# `GENERIC_LEDGER_SYSTEM`
+
+This module provides the core types and functions for the Generic Ledger System.
+
+```typescript
 import {
   geneticLedgerEntryByKey,
   type GeneticLedgerKey,
@@ -302,3 +321,13 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
     historyLimit,
   );
 };
+
+export const GENERIC_LEDGER_SYSTEM = {
+  createLedgerRuntime,
+  applyLedgerUpdate,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  createGeneticLedgerRuntime
+};
+
+```

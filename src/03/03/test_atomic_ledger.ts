@@ -1,9 +1,9 @@
 // OMEGA-64 | test_atomic_ledger.ts | Stage 33 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { LOGGER } from "@generated";
-import { ATOMIC_LEDGER } from "@03";
+import { ATOMIC_LEDGER } from "@generated";
 import { OP_SET, SYS_EMIT, OP_SYSCALL } from "@generated";
 
 Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {

@@ -3,7 +3,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
 
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import {
   assert,
   assertEquals,

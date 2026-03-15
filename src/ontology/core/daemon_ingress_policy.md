@@ -5,32 +5,6 @@ tags:
   - substrate
 deps:
   - RUNTIME_POLICY
-vars:
-  - DAEMON_INGRESS_POLICY_LIMITS
-  - DAEMON_INGRESS_POLICY_LIMITS
-  - snapshotDaemonIngressPolicyLimits
-  - syncDaemonIngressMaxPheromoneIntensity
-  - resetDaemonIngressMaxPheromoneIntensity
-  - syncDaemonIngressMaxPlasmidCharge
-  - resetDaemonIngressMaxPlasmidCharge
-  - evaluatePlasmidPolicy
-  - evaluatePlasmidRisk
-  - normalizeDaemonNarrativeContext
-  - evaluateInvariantAdmission
-  - planInvariantIngress
-  - DaemonAction
-  - DaemonInjectEnvelope
-  - DaemonNarrativeContext
-  - DaemonInvariantAdmission
-  - PlasmidRiskProfile
-  - DaemonIngressPlan
-  - DaemonIngressMetrics
-  - resetDaemonIngressMaxPlasmidCharge
-  - evaluatePlasmidPolicy
-  - evaluatePlasmidRisk
-  - normalizeDaemonNarrativeContext
-  - evaluateInvariantAdmission
-  - planInvariantIngress
 ---
 
 ```typescript
@@ -632,4 +606,19 @@ export const planInvariantIngress = (
     admission,
   };
 };
+
+export const DAEMON_INGRESS_POLICY = {
+  DAEMON_INGRESS_POLICY_LIMITS,
+  snapshotDaemonIngressPolicyLimits,
+  syncDaemonIngressMaxPheromoneIntensity,
+  resetDaemonIngressMaxPheromoneIntensity,
+  syncDaemonIngressMaxPlasmidCharge,
+  resetDaemonIngressMaxPlasmidCharge,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  evaluateInvariantAdmission,
+  planInvariantIngress
+};
+
 ```

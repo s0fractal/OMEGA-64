@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import { OP_SET, OP_ADD } from "@generated";
 

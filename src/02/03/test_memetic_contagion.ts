@@ -1,7 +1,7 @@
 // OMEGA-64 | test_memetic_contagion.ts | Stage 38 Verification
 import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { NEXUS_DAEMON, PULSE } from "@02";
+import { NEXUS_DAEMON, PULSE } from "@generated";
 import { LOGGER } from "@generated";
 import { OP_SET } from "@generated";
 

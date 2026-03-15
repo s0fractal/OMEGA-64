@@ -9,7 +9,7 @@ min_level: 6
 ### TypeScript
 ```typescript
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 type MutationLane =
   | "internal_oracle"

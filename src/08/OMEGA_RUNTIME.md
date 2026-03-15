@@ -1,17 +1,14 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-15T04:12:16.050Z*
-*Exported Files in Category: 355*
-*Total Exported Files: 540*
-*Runtime Roots: 10*
-*Runtime Closure Files: 288*
-*Non-Runtime Code Files: 67*
-*Runtime-Support Code Files: 4*
-*Experimental Code Files: 63*
-*Manifest SHA256: be93bb2d8f057c840affc0e82aa378c112595a719df165aba1891bbc5ffd527c*
-*Export Set SHA256: 436a0961e29e20a5779ca9d969d659f27e73899a2abb2f60e96b5ecadd15ce9c*
-*Export Content SHA256: 4e3f8afcdbafdb4403cc33d5cf1e2a8c8907209d5c2bcbc8c2ce1bb7abaed06a*
-*Git Commit: e4e51a8c6f1e*
+_Generated: 2026-03-15T04:12:16.050Z_ _Exported Files in Category: 355_ _Total
+Exported Files: 540_ _Runtime Roots: 10_ _Runtime Closure Files: 288_
+_Non-Runtime Code Files: 67_ _Runtime-Support Code Files: 4_ _Experimental Code
+Files: 63_ _Manifest SHA256:
+be93bb2d8f057c840affc0e82aa378c112595a719df165aba1891bbc5ffd527c_ _Export Set
+SHA256: 436a0961e29e20a5779ca9d969d659f27e73899a2abb2f60e96b5ecadd15ce9c_
+_Export Content SHA256:
+4e3f8afcdbafdb4403cc33d5cf1e2a8c8907209d5c2bcbc8c2ce1bb7abaed06a_ _Git Commit:
+e4e51a8c6f1e_
 
 ---
 
@@ -287,7 +284,7 @@
 - src/03/daemon_ingress_policy.md
 - src/03/gate_budget.md
 - src/03/GENERIC_LEDGER_PERSISTENCE.ts
-- src/03/GENERIC_LEDGER_SYSTEM.ts
+- src/ontology/core/generic_ledger_system.md
 - src/03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
 - src/03/mod.ts
 - src/03/PREDICTION_MARKET.ts
@@ -327,7 +324,12 @@
 
 ```typescript
 import { walk } from "https://deno.land/std@0.210.0/fs/walk.ts";
-import { join, dirname, relative, resolve } from "https://deno.land/std@0.210.0/path/mod.ts";
+import {
+  dirname,
+  join,
+  relative,
+  resolve,
+} from "https://deno.land/std@0.210.0/path/mod.ts";
 
 const SRC_DIR = resolve("./src");
 const OFFSETS_FILE = resolve("./src/00/OFFSETS.ts");
@@ -348,7 +350,10 @@ const replacements = [
 
   // 2. Linear Indexing (y * width + x)
   { regex: /\b([a-zA-Z]*y|Y)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
-  { regex: /\b\(\s*([a-zA-Z]*y|Y)\s*(\+|\-)\s*\d+\s*\)\s*\*\s*140\b/g, replacement: "($1 $2 1) * GRID_W" },
+  {
+    regex: /\b\(\s*([a-zA-Z]*y|Y)\s*(\+|\-)\s*\d+\s*\)\s*\*\s*140\b/g,
+    replacement: "($1 $2 1) * GRID_W",
+  },
   { regex: /\b(\d+)\s*\*\s*140\b/g, replacement: "$1 * GRID_W" },
   { regex: /\b140\s*\*\s*(\d+)\b/g, replacement: "GRID_W * $1" },
 
@@ -361,9 +366,11 @@ const replacements = [
   { regex: /\b80\s*>\s*([a-zA-Z]*y|Y)\b/g, replacement: "GRID_H > $1" },
 
   // 4. Modulo/Div math
-  { regex: /\bMath\.floor\(\s*([a-zA-Z]*Cell)\s*\/\s*140\s*\)/g, replacement: "Math.floor($1 / GRID_W)" },
+  {
+    regex: /\bMath\.floor\(\s*([a-zA-Z]*Cell)\s*\/\s*140\s*\)/g,
+    replacement: "Math.floor($1 / GRID_W)",
+  },
   { regex: /\b([a-zA-Z]*Cell)\s*%\s*140\b/g, replacement: "$1 % GRID_W" },
-
   // 5. Specific test hardcodes (Array instantiations like Array(140))
   // We'll let the second pass of replacing `Array(80)` to `Array(GRID_H)` handle this safely.
 ];
@@ -382,12 +389,12 @@ function getRelativeImportPath(fromFile: string, toFile: string): string {
 
 async function processFile(filePath: string) {
   const content = await Deno.readTextFile(filePath);
-  
+
   // Skip generation files and AS files for now, dealing only with core TS logically.
   if (filePath.includes("generate.ts") || filePath.includes("assembly/")) {
-      return;
+    return;
   }
-  
+
   // Deno explicit rule: don't format string literals that happen to look like dimensions like `width="140%"`
   // Our regexes are mostly bounded to prevent this.
 
@@ -400,7 +407,7 @@ async function processFile(filePath: string) {
     /const GRID_ROWS = 80;\n?/g,
     /const GRID_W = 140;\n?/g,
     /const GRID_H = 80;\n?/g,
-    /const GRID_ROWS = 80; \/\/ 800 \/ 10\n?/g
+    /const GRID_ROWS = 80; \/\/ 800 \/ 10\n?/g,
   ];
 
   for (const regex of redundantDecls) {
@@ -412,9 +419,9 @@ async function processFile(filePath: string) {
 
   // Also replace `GRID_ROWS` and `GRID_COLS` with `GRID_H` and `GRID_W` everywhere in the rest of the text
   if (newContent.includes("GRID_COLS") || newContent.includes("GRID_ROWS")) {
-      newContent = newContent.replace(/\bGRID_COLS\b/g, "GRID_W");
-      newContent = newContent.replace(/\bGRID_ROWS\b/g, "GRID_H");
-      modified = true;
+    newContent = newContent.replace(/\bGRID_COLS\b/g, "GRID_W");
+    newContent = newContent.replace(/\bGRID_ROWS\b/g, "GRID_H");
+    modified = true;
   }
 
   // 2. Apply rules
@@ -424,11 +431,11 @@ async function processFile(filePath: string) {
       modified = true;
     }
   }
-  
+
   // Fallbacks for arrays initialized like `Array(80)`
   const arrayMatches = [
-      { regex: /\bArray\(80\)/g, replacement: "Array(GRID_H)" },
-      { regex: /\bArray\(140\)/g, replacement: "Array(GRID_W)" }
+    { regex: /\bArray\(80\)/g, replacement: "Array(GRID_H)" },
+    { regex: /\bArray\(140\)/g, replacement: "Array(GRID_W)" },
   ];
   for (const { regex, replacement } of arrayMatches) {
     if (regex.test(newContent)) {
@@ -440,45 +447,55 @@ async function processFile(filePath: string) {
   if (modified) {
     // 3. Inject standard import if missing
     if (!newContent.includes("GRID_W") && !newContent.includes("GRID_H")) {
-       // if we accidentally replaced everything back to normals, skip
+      // if we accidentally replaced everything back to normals, skip
     } else {
-        const importRegex = /import\s+\{.*\}\s+from\s+["'].*OFFSETS.*["'];?/;
-        const missingW = newContent.includes("GRID_W") && !newContent.match(/import.*GRID_W.*OFFSETS/);
-        const missingH = newContent.includes("GRID_H") && !newContent.match(/import.*GRID_H.*OFFSETS/);
-        const missingC = newContent.includes("GRID_CELLS") && !newContent.match(/import.*GRID_CELLS.*OFFSETS/);
+      const importRegex = /import\s+\{.*\}\s+from\s+["'].*OFFSETS.*["'];?/;
+      const missingW = newContent.includes("GRID_W") &&
+        !newContent.match(/import.*GRID_W.*OFFSETS/);
+      const missingH = newContent.includes("GRID_H") &&
+        !newContent.match(/import.*GRID_H.*OFFSETS/);
+      const missingC = newContent.includes("GRID_CELLS") &&
+        !newContent.match(/import.*GRID_CELLS.*OFFSETS/);
 
-        if (missingW || missingH || missingC) {
-            // Check if there is already an import from OFFSETS
-            if (importRegex.test(newContent)) {
-                 // Try to augment existing import
-                 const match = newContent.match(/(import\s+\{)(.*)(\}\s+from\s+["'].*OFFSETS.*["'];?)/);
-                 if (match) {
-                     let inner = match[2];
-                     if (missingW) inner += ", GRID_W";
-                     if (missingH) inner += ", GRID_H";
-                     if (missingC) inner += ", GRID_CELLS";
-                     newContent = newContent.replace(match[0], `${match[1]}${inner}${match[3]}`);
-                 }
+      if (missingW || missingH || missingC) {
+        // Check if there is already an import from OFFSETS
+        if (importRegex.test(newContent)) {
+          // Try to augment existing import
+          const match = newContent.match(
+            /(import\s+\{)(.*)(\}\s+from\s+["'].*OFFSETS.*["'];?)/,
+          );
+          if (match) {
+            let inner = match[2];
+            if (missingW) inner += ", GRID_W";
+            if (missingH) inner += ", GRID_H";
+            if (missingC) inner += ", GRID_CELLS";
+            newContent = newContent.replace(
+              match[0],
+              `${match[1]}${inner}${match[3]}`,
+            );
+          }
+        } else {
+          const toImport = [];
+          if (missingW) toImport.push("GRID_W");
+          if (missingH) toImport.push("GRID_H");
+          if (missingC) toImport.push("GRID_CELLS");
+
+          // Exclude the OFFSETS.ts file itself
+          if (filePath !== OFFSETS_FILE) {
+            const importPath = getRelativeImportPath(filePath, OFFSETS_FILE);
+            const importStatement = `import { ${
+              toImport.join(", ")
+            } } from "${importPath}";\n`;
+            // Prepend after the first docstring or shebang if it exists, otherwise line 1
+            if (newContent.startsWith("//") || newContent.startsWith("/*")) {
+              // simple naive insert for now
+              newContent = importStatement + newContent;
             } else {
-                const toImport = [];
-                if (missingW) toImport.push("GRID_W");
-                if (missingH) toImport.push("GRID_H");
-                if (missingC) toImport.push("GRID_CELLS");
-                
-                // Exclude the OFFSETS.ts file itself
-                if (filePath !== OFFSETS_FILE) {
-                    const importPath = getRelativeImportPath(filePath, OFFSETS_FILE);
-                    const importStatement = `import { ${toImport.join(", ")} } from "${importPath}";\n`;
-                    // Prepend after the first docstring or shebang if it exists, otherwise line 1
-                    if (newContent.startsWith("//") || newContent.startsWith("/*")) {
-                         // simple naive insert for now
-                         newContent = importStatement + newContent;
-                    } else {
-                         newContent = importStatement + newContent;
-                    }
-                }
+              newContent = importStatement + newContent;
             }
+          }
         }
+      }
     }
 
     await Deno.writeTextFile(filePath, newContent);
@@ -495,7 +512,6 @@ async function main() {
 }
 
 main();
-
 ```
 
 ---
@@ -514,7 +530,6 @@ export const append_jsonl = async (
     create: true,
   });
 };
-
 ```
 
 ---
@@ -524,8 +539,73 @@ export const append_jsonl = async (
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/C_LOG2_C_LUT.md
 
-export const C_LOG2_C_LUT: number[] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000];
-
+export const C_LOG2_C_LUT: number[] = [
+  0,
+  0,
+  2000,
+  4755,
+  8000,
+  11610,
+  15510,
+  19651,
+  24000,
+  28529,
+  33219,
+  38054,
+  43020,
+  48106,
+  53303,
+  58603,
+  64000,
+  69487,
+  75059,
+  80711,
+  86439,
+  92239,
+  98107,
+  104042,
+  110039,
+  116096,
+  122211,
+  128382,
+  134606,
+  140881,
+  147207,
+  153580,
+  160000,
+  166465,
+  172974,
+  179525,
+  186117,
+  192750,
+  199421,
+  206131,
+  212877,
+  219660,
+  226477,
+  233329,
+  240215,
+  247133,
+  254084,
+  261066,
+  268078,
+  275121,
+  282193,
+  289294,
+  296423,
+  303580,
+  310764,
+  317975,
+  325212,
+  332475,
+  339763,
+  347076,
+  354413,
+  361775,
+  369160,
+  376569,
+  384000,
+];
 ```
 
 ---
@@ -538,7 +618,6 @@ export const C_LOG2_C_LUT: number[] = [0, 0, 2000, 4755, 8000, 11610, 15510, 196
 export const COS_LUT: number[] = [
   /* [TRUNCATED LUT ARRAY] */
 ];
-
 ```
 
 ---
@@ -574,7 +653,6 @@ export const parseEnvBoundedInt = (
   if (!Number.isFinite(n)) return fallback;
   return Math.max(min, Math.min(max, n));
 };
-
 ```
 
 ---
@@ -584,8 +662,72 @@ export const parseEnvBoundedInt = (
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/genomes/GENESIS_PREDATOR_SCRIPT.md
 
-export const GENESIS_PREDATOR_SCRIPT: number[] = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4, 1, 0, 1, 2, 0, 1, 3, 50, 1, 4, 0, 5, 3, 4, 1, 0, 10, 96, 1, 0, 1, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const GENESIS_PREDATOR_SCRIPT: number[] = [
+  1,
+  1,
+  3,
+  1,
+  0,
+  13,
+  96,
+  1,
+  1,
+  0,
+  4,
+  1,
+  0,
+  1,
+  2,
+  0,
+  1,
+  3,
+  50,
+  1,
+  4,
+  0,
+  5,
+  3,
+  4,
+  1,
+  0,
+  10,
+  96,
+  1,
+  0,
+  1,
+  96,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -595,8 +737,72 @@ export const GENESIS_PREDATOR_SCRIPT: number[] = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ARITY_LUT.md
 
-export const GLYPH_ARITY_LUT: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 3, 2, 2, 0, 0, 0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const GLYPH_ARITY_LUT: number[] = [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  1,
+  2,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  3,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  3,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -606,8 +812,72 @@ export const GLYPH_ARITY_LUT: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2,
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ENERGY_LUT.md
 
-export const GLYPH_ENERGY_LUT: number[] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 2, 20, 50, 10, 0, 1, 3, 4, 6, 2, 1, 1, 1, 1, 4, 2, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
+export const GLYPH_ENERGY_LUT: number[] = [
+  0,
+  0,
+  0,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  6,
+  3,
+  2,
+  20,
+  50,
+  10,
+  0,
+  1,
+  3,
+  4,
+  6,
+  2,
+  1,
+  1,
+  1,
+  1,
+  4,
+  2,
+  5,
+  5,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+];
 ```
 
 ---
@@ -617,8 +887,72 @@ export const GLYPH_ENERGY_LUT: number[] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
 
-export const GLYPH_LEGACY_OPCODE_LUT: number[] = [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
-
+export const GLYPH_LEGACY_OPCODE_LUT: number[] = [
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  1,
+  2,
+  3,
+  4,
+  5,
+  17,
+  18,
+  16,
+  128,
+  129,
+  131,
+  255,
+  167,
+  138,
+  96,
+  255,
+  164,
+  165,
+  168,
+  169,
+  255,
+  255,
+  255,
+  255,
+  166,
+  170,
+  176,
+  130,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+];
 ```
 
 ---
@@ -628,8 +962,200 @@ export const GLYPH_LEGACY_OPCODE_LUT: number[] = [255, 255, 255, 255, 255, 255, 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_RGB_LUT.md
 
-export const GLYPH_RGB_LUT: number[] = [255, 255, 255, 128, 128, 128, 0, 0, 0, 255, 0, 255, 255, 77, 77, 254, 87, 68, 251, 98, 60, 245, 109, 51, 238, 121, 42, 230, 132, 34, 220, 143, 27, 209, 153, 21, 199, 162, 15, 188, 170, 11, 179, 179, 7, 153, 170, 4, 131, 163, 2, 110, 157, 1, 93, 154, 0, 77, 153, 0, 62, 154, 0, 48, 157, 1, 34, 163, 2, 21, 170, 4, 7, 179, 7, 11, 188, 29, 15, 199, 52, 21, 209, 77, 27, 220, 104, 34, 230, 132, 42, 238, 160, 51, 245, 187, 60, 251, 212, 68, 254, 235, 77, 255, 255, 84, 237, 254, 91, 219, 251, 96, 201, 245, 100, 183, 238, 103, 166, 230, 105, 151, 220, 105, 136, 209, 104, 123, 199, 102, 111, 188, 100, 100, 179, 105, 98, 170, 109, 95, 163, 113, 93, 157, 117, 92, 154, 122, 92, 153, 129, 92, 154, 138, 93, 157, 149, 95, 163, 163, 98, 170, 179, 100, 179, 188, 102, 180, 199, 104, 180, 209, 105, 178, 220, 105, 174, 229, 103, 166, 238, 100, 156, 245, 96, 141, 251, 91, 123, 254, 84, 101];
-
+export const GLYPH_RGB_LUT: number[] = [
+  255,
+  255,
+  255,
+  128,
+  128,
+  128,
+  0,
+  0,
+  0,
+  255,
+  0,
+  255,
+  255,
+  77,
+  77,
+  254,
+  87,
+  68,
+  251,
+  98,
+  60,
+  245,
+  109,
+  51,
+  238,
+  121,
+  42,
+  230,
+  132,
+  34,
+  220,
+  143,
+  27,
+  209,
+  153,
+  21,
+  199,
+  162,
+  15,
+  188,
+  170,
+  11,
+  179,
+  179,
+  7,
+  153,
+  170,
+  4,
+  131,
+  163,
+  2,
+  110,
+  157,
+  1,
+  93,
+  154,
+  0,
+  77,
+  153,
+  0,
+  62,
+  154,
+  0,
+  48,
+  157,
+  1,
+  34,
+  163,
+  2,
+  21,
+  170,
+  4,
+  7,
+  179,
+  7,
+  11,
+  188,
+  29,
+  15,
+  199,
+  52,
+  21,
+  209,
+  77,
+  27,
+  220,
+  104,
+  34,
+  230,
+  132,
+  42,
+  238,
+  160,
+  51,
+  245,
+  187,
+  60,
+  251,
+  212,
+  68,
+  254,
+  235,
+  77,
+  255,
+  255,
+  84,
+  237,
+  254,
+  91,
+  219,
+  251,
+  96,
+  201,
+  245,
+  100,
+  183,
+  238,
+  103,
+  166,
+  230,
+  105,
+  151,
+  220,
+  105,
+  136,
+  209,
+  104,
+  123,
+  199,
+  102,
+  111,
+  188,
+  100,
+  100,
+  179,
+  105,
+  98,
+  170,
+  109,
+  95,
+  163,
+  113,
+  93,
+  157,
+  117,
+  92,
+  154,
+  122,
+  92,
+  153,
+  129,
+  92,
+  154,
+  138,
+  93,
+  157,
+  149,
+  95,
+  163,
+  163,
+  98,
+  170,
+  179,
+  100,
+  179,
+  188,
+  102,
+  180,
+  199,
+  104,
+  180,
+  209,
+  105,
+  178,
+  220,
+  105,
+  174,
+  229,
+  103,
+  166,
+  238,
+  100,
+  156,
+  245,
+  96,
+  141,
+  251,
+  91,
+  123,
+  254,
+  84,
+  101,
+];
 ```
 
 ---
@@ -666,7 +1192,6 @@ export const GLYPH_TYPES = {
   STAB_BOUNDED_DYNAMIC: 2,
   STAB_RESERVE: 3,
 } as const;
-
 ```
 
 ---
@@ -696,7 +1221,6 @@ export * from "./COS_LUT.ts";
 export * from "./SIN_LUT.ts";
 export * from "./C_LOG2_C_LUT.ts";
 export * from "./GENESIS_PREDATOR_SCRIPT.ts";
-
 ```
 
 ---
@@ -706,8 +1230,256 @@ export * from "./GENESIS_PREDATOR_SCRIPT.ts";
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OPCODE_ARITY_LUT.md
 
-export const OPCODE_ARITY_LUT: number[] = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const OPCODE_ARITY_LUT: number[] = [
+  0,
+  2,
+  2,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  2,
+  1,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  3,
+  3,
+  0,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  1,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -725,7 +1497,6 @@ export const read_jsonl_lines = async (path: string): Promise<string[]> => {
     return [];
   }
 };
-
 ```
 
 ---
@@ -751,7 +1522,6 @@ export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
     // no file => empty stream
   }
 };
-
 ```
 
 ---
@@ -764,7 +1534,6 @@ export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
 export const SIN_LUT: number[] = [
   /* [TRUNCATED LUT ARRAY] */
 ];
-
 ```
 
 ---
@@ -952,7 +1721,6 @@ export const REJECTION = {
   PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
   REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
 };
-
 ```
 
 ---
@@ -983,7 +1751,6 @@ export const StructureTypes = {
   INVERTER: 7,
   LATCH: 8,
 } as const;
-
 ```
 
 ---
@@ -1038,7 +1805,6 @@ export const MAX_GLYPH_AMP: number = 8388607;
 export const MIN_GLYPH_AMP: number = -8388608;
 export const SPAWN_MAX: number = 1024;
 export const SPAWN_SLOT: number = 24;
-
 ```
 
 ---
@@ -1109,7 +1875,6 @@ export const VmOpcodes = {
   ENTANGLE: 138,
   ROLE: 170,
 } as const;
-
 ```
 
 ---
@@ -1142,7 +1907,6 @@ export const VmProps = {
   PROP_MEMORY: 10,
   PROP_CONSENSUS: 11,
 } as const;
-
 ```
 
 ---
@@ -1195,7 +1959,6 @@ export const VmSys = {
   SPORE_DRIVE: 20,
   SENSE_PHASE: 21,
 } as const;
-
 ```
 
 ---
@@ -1397,7 +2160,6 @@ export const CHECKPOINT_CHECKPOINT = {
     };
   },
 };
-
 ```
 
 ---
@@ -1839,7 +2601,6 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
     envelopeIndexCacheLoaded.add(indexPath);
   },
 };
-
 ```
 
 ---
@@ -1853,7 +2614,6 @@ export * from "../00/mod.ts";
 export * from "./OMEGA_MEMORY_LAYOUT.ts";
 export * from "./ledger_chain.ts";
 export * from "./checkpoint_chain.ts";
-
 ```
 
 ---
@@ -1862,214 +2622,504 @@ export * from "./checkpoint_chain.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OMEGA_MEMORY_LAYOUT.md
-import { MAX_ATOMS, SAFETY_BUFFER, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, ATOM_CONTEXT_SIZE, MAX_SPAWN_REQUESTS, MAX_MEIOSIS_EVENTS, GRID_CELLS, MAX_ASCENSION_STATS_RESERVED, HIVE_MEMORY_SIZE, HIVE_ENERGY_POOL_SIZE, MAX_HORMONES, SECRETION_STATS_SIZE, MAX_LEDGER_EVENTS, MAX_EGRESS_EVENTS } from "../00/mod.ts";
+import {
+  ATOM_CONTEXT_SIZE,
+  ATOM_GENOME_SIZE,
+  ATOM_INSTRUCTION_SIZE,
+  GRID_CELLS,
+  HIVE_ENERGY_POOL_SIZE,
+  HIVE_MEMORY_SIZE,
+  MAX_ASCENSION_STATS_RESERVED,
+  MAX_ATOMS,
+  MAX_EGRESS_EVENTS,
+  MAX_HORMONES,
+  MAX_LEDGER_EVENTS,
+  MAX_MEIOSIS_EVENTS,
+  MAX_SPAWN_REQUESTS,
+  SAFETY_BUFFER,
+  SECRETION_STATS_SIZE,
+} from "../00/mod.ts";
 
 // Memory Layout: OMEGA_MEMORY_LAYOUT
-export const TICK_COUNTER_OFFSET: number = ((SAFETY_BUFFER - 8) + 4 - 1) & ~(4 - 1);
+export const TICK_COUNTER_OFFSET: number = ((SAFETY_BUFFER - 8) + 4 - 1) &
+  ~(4 - 1);
 export const TICK_COUNTER_OFF: number = TICK_COUNTER_OFFSET;
-export const SYNC_STATE_OFFSET: number = ((TICK_COUNTER_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const SYNC_STATE_OFFSET: number = ((TICK_COUNTER_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const SYNC_STATE_OFF: number = SYNC_STATE_OFFSET;
-export const IDS_OFFSET: number = ((SYNC_STATE_OFFSET + (4)) + 8 - 1) & ~(8 - 1);
+export const IDS_OFFSET: number = ((SYNC_STATE_OFFSET + (4)) + 8 - 1) &
+  ~(8 - 1);
 export const IDS_OFF: number = IDS_OFFSET;
-export const XS_OFFSET: number = ((IDS_OFFSET + (MAX_ATOMS * 8)) + 2 - 1) & ~(2 - 1);
+export const XS_OFFSET: number = ((IDS_OFFSET + (MAX_ATOMS * 8)) + 2 - 1) &
+  ~(2 - 1);
 export const XS_OFF: number = XS_OFFSET;
-export const YS_OFFSET: number = ((XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
+export const YS_OFFSET: number = ((XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) &
+  ~(2 - 1);
 export const YS_OFF: number = YS_OFFSET;
-export const ENERGY_OFFSET: number = ((YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
+export const ENERGY_OFFSET: number = ((YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) &
+  ~(4 - 1);
 export const ENERGY_OFF: number = ENERGY_OFFSET;
-export const RESONANCE_OFFSET: number = ((ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const RESONANCE_OFFSET: number =
+  ((ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const RESONANCE_OFF: number = RESONANCE_OFFSET;
-export const PHASE_OFFSET: number = ((RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const PHASE_OFFSET: number =
+  ((RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const PHASE_OFF: number = PHASE_OFFSET;
 export const LOGIC_OFFSET: number = PHASE_OFFSET + (MAX_ATOMS * 4);
 export const LOGIC_OFF: number = LOGIC_OFFSET;
-export const BONDS_OFFSET: number = ((LOGIC_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const BONDS_OFFSET: number = ((LOGIC_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) &
+  ~(4 - 1);
 export const BONDS_OFF: number = BONDS_OFFSET;
-export const STIFFNESS_OFFSET: number = ((BONDS_OFFSET + (MAX_ATOMS * 4 * 4)) + 4 - 1) & ~(4 - 1);
+export const STIFFNESS_OFFSET: number =
+  ((BONDS_OFFSET + (MAX_ATOMS * 4 * 4)) + 4 - 1) & ~(4 - 1);
 export const STIFFNESS_OFF: number = STIFFNESS_OFFSET;
-export const INSTRUCTIONS_OFFSET: number = STIFFNESS_OFFSET + (MAX_ATOMS * 4 * 4);
+export const INSTRUCTIONS_OFFSET: number = STIFFNESS_OFFSET +
+  (MAX_ATOMS * 4 * 4);
 export const INSTRUCTIONS_OFF: number = INSTRUCTIONS_OFFSET;
 export const GENOMES_OFFSET: number = INSTRUCTIONS_OFFSET;
-export const CONTEXT_OFFSET: number = ((INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64)) + 4 - 1) & ~(4 - 1);
+export const CONTEXT_OFFSET: number =
+  ((INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64)) + 4 - 1) & ~(4 - 1);
 export const CONTEXT_OFF: number = CONTEXT_OFFSET;
-export const EVOLUTION_OFFSET: number = ((CONTEXT_OFFSET + (MAX_ATOMS * 16 * 4)) + 4 - 1) & ~(4 - 1);
+export const EVOLUTION_OFFSET: number =
+  ((CONTEXT_OFFSET + (MAX_ATOMS * 16 * 4)) + 4 - 1) & ~(4 - 1);
 export const EVOLUTION_OFF: number = EVOLUTION_OFFSET;
 export const INTENT_OFFSET: number = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET: number = ((EVOLUTION_OFFSET + (MAX_ATOMS * 4)) + 8 - 1) & ~(8 - 1);
+export const SPAWN_REQUESTS_OFFSET: number =
+  ((EVOLUTION_OFFSET + (MAX_ATOMS * 4)) + 8 - 1) & ~(8 - 1);
 export const SPAWN_REQUESTS_OFF: number = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_GRID_OFF: number = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_HEAD_OFF: number = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_DATA_OFF: number = SPAWN_REQUESTS_OFFSET + 8;
-export const MEIOSIS_RESERVED_OFFSET: number = ((SPAWN_REQUESTS_OFFSET + (8 + (1024 * 24))) + 4 - 1) & ~(4 - 1);
+export const MEIOSIS_RESERVED_OFFSET: number =
+  ((SPAWN_REQUESTS_OFFSET + (8 + (1024 * 24))) + 4 - 1) & ~(4 - 1);
 export const MEIOSIS_RESERVED_OFF: number = MEIOSIS_RESERVED_OFFSET;
-export const BOND_REQUESTS_OFFSET: number = ((MEIOSIS_RESERVED_OFFSET + (75000 * 80)) + 4 - 1) & ~(4 - 1);
+export const BOND_REQUESTS_OFFSET: number =
+  ((MEIOSIS_RESERVED_OFFSET + (75000 * 80)) + 4 - 1) & ~(4 - 1);
 export const BOND_REQUESTS_OFF: number = BOND_REQUESTS_OFFSET;
-export const SPATIAL_GRID_OFFSET: number = ((BOND_REQUESTS_OFFSET + (MAX_ATOMS * 3 * 4)) + 4 - 1) & ~(4 - 1);
+export const SPATIAL_GRID_OFFSET: number =
+  ((BOND_REQUESTS_OFFSET + (MAX_ATOMS * 3 * 4)) + 4 - 1) & ~(4 - 1);
 export const SPATIAL_GRID_OFF: number = SPATIAL_GRID_OFFSET;
 export const ROLES_OFFSET: number = SPATIAL_GRID_OFFSET + (GRID_CELLS * 32 * 4);
 export const ROLES_OFF: number = ROLES_OFFSET;
-export const STRUCTURE_GRID_OFFSET: number = ((ROLES_OFFSET + (MAX_ATOMS)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_GRID_OFFSET: number =
+  ((ROLES_OFFSET + MAX_ATOMS) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_GRID_OFF: number = STRUCTURE_GRID_OFFSET;
-export const SIGNAL_GRID_OFFSET: number = ((STRUCTURE_GRID_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const SIGNAL_GRID_OFFSET: number =
+  ((STRUCTURE_GRID_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const SIGNAL_GRID_OFF: number = SIGNAL_GRID_OFFSET;
 export const MEMORY_GRID_OFFSET: number = SIGNAL_GRID_OFFSET + (GRID_CELLS * 4);
 export const MEMORY_GRID_OFF: number = MEMORY_GRID_OFFSET;
-export const ASCENSION_STATS_RESERVED_OFFSET: number = ((MEMORY_GRID_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
-export const ASCENSION_STATS_RESERVED_OFF: number = ASCENSION_STATS_RESERVED_OFFSET;
+export const ASCENSION_STATS_RESERVED_OFFSET: number =
+  ((MEMORY_GRID_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
+export const ASCENSION_STATS_RESERVED_OFF: number =
+  ASCENSION_STATS_RESERVED_OFFSET;
 export const ASCENSION_STATS_OFFSET: number = ASCENSION_STATS_RESERVED_OFFSET;
 export const ASCENSION_STATS_OFF: number = ASCENSION_STATS_RESERVED_OFFSET;
-export const BOND_DISTANCES_OFFSET: number = ASCENSION_STATS_RESERVED_OFFSET + (1250000 * 4);
+export const BOND_DISTANCES_OFFSET: number = ASCENSION_STATS_RESERVED_OFFSET +
+  (1250000 * 4);
 export const BOND_DISTANCES_OFF: number = BOND_DISTANCES_OFFSET;
-export const SYNAPTIC_WEIGHTS_OFFSET: number = BOND_DISTANCES_OFFSET + (MAX_ATOMS * 4);
+export const SYNAPTIC_WEIGHTS_OFFSET: number = BOND_DISTANCES_OFFSET +
+  (MAX_ATOMS * 4);
 export const SYNAPTIC_WEIGHTS_OFF: number = SYNAPTIC_WEIGHTS_OFFSET;
 export const DAMPING_OFFSET: number = SYNAPTIC_WEIGHTS_OFFSET + (MAX_ATOMS * 4);
 export const DAMPING_OFF: number = DAMPING_OFFSET;
-export const CAUSALITY_OFFSET: number = DAMPING_OFFSET + (MAX_ATOMS);
+export const CAUSALITY_OFFSET: number = DAMPING_OFFSET + MAX_ATOMS;
 export const CAUSALITY_OFF: number = CAUSALITY_OFFSET;
-export const HIVE_MEMORY_OFFSET: number = CAUSALITY_OFFSET + (MAX_ATOMS);
+export const HIVE_MEMORY_OFFSET: number = CAUSALITY_OFFSET + MAX_ATOMS;
 export const HIVE_MEMORY_OFF: number = HIVE_MEMORY_OFFSET;
-export const HIVE_BALANCE_OFFSET: number = ((HIVE_MEMORY_OFFSET + (1024)) + 4 - 1) & ~(4 - 1);
+export const HIVE_BALANCE_OFFSET: number =
+  ((HIVE_MEMORY_OFFSET + (1024)) + 4 - 1) & ~(4 - 1);
 export const HIVE_BALANCE_OFF: number = HIVE_BALANCE_OFFSET;
-export const QUORUM_OFFSET: number = ((HIVE_BALANCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const QUORUM_OFFSET: number = ((HIVE_BALANCE_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const QUORUM_OFF: number = QUORUM_OFFSET;
-export const COHERENCE_OFFSET: number = ((QUORUM_OFFSET + (GRID_CELLS * 8 * 4)) + 4 - 1) & ~(4 - 1);
+export const COHERENCE_OFFSET: number =
+  ((QUORUM_OFFSET + (GRID_CELLS * 8 * 4)) + 4 - 1) & ~(4 - 1);
 export const COHERENCE_OFF: number = COHERENCE_OFFSET;
-export const NEURAL_COHERENCE_OFFSET: number = ((COHERENCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const NEURAL_COHERENCE_OFFSET: number =
+  ((COHERENCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
 export const NEURAL_COHERENCE_OFF: number = NEURAL_COHERENCE_OFFSET;
-export const PHYSICS_READ_XS_OFFSET: number = ((NEURAL_COHERENCE_OFFSET + (4)) + 2 - 1) & ~(2 - 1);
+export const PHYSICS_READ_XS_OFFSET: number =
+  ((NEURAL_COHERENCE_OFFSET + (4)) + 2 - 1) & ~(2 - 1);
 export const PHYSICS_READ_XS_OFF: number = PHYSICS_READ_XS_OFFSET;
-export const PHYSICS_READ_YS_OFFSET: number = ((PHYSICS_READ_XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
+export const PHYSICS_READ_YS_OFFSET: number =
+  ((PHYSICS_READ_XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
 export const PHYSICS_READ_YS_OFF: number = PHYSICS_READ_YS_OFFSET;
-export const PHYSICS_READ_ENERGY_OFFSET: number = ((PHYSICS_READ_YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
+export const PHYSICS_READ_ENERGY_OFFSET: number =
+  ((PHYSICS_READ_YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
 export const PHYSICS_READ_ENERGY_OFF: number = PHYSICS_READ_ENERGY_OFFSET;
-export const PHYSICS_READ_RESONANCE_OFFSET: number = ((PHYSICS_READ_ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const PHYSICS_READ_RESONANCE_OFFSET: number =
+  ((PHYSICS_READ_ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const PHYSICS_READ_RESONANCE_OFF: number = PHYSICS_READ_RESONANCE_OFFSET;
-export const ENERGY_DELTA_OFFSET: number = ((PHYSICS_READ_RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const ENERGY_DELTA_OFFSET: number =
+  ((PHYSICS_READ_RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const ENERGY_DELTA_OFF: number = ENERGY_DELTA_OFFSET;
-export const RESONANCE_DELTA_OFFSET: number = ((ENERGY_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const RESONANCE_DELTA_OFFSET: number =
+  ((ENERGY_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const RESONANCE_DELTA_OFF: number = RESONANCE_DELTA_OFFSET;
-export const STRUCTURE_BUILD_OWNER_OFFSET: number = ((RESONANCE_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_BUILD_OWNER_OFFSET: number =
+  ((RESONANCE_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_BUILD_OWNER_OFF: number = STRUCTURE_BUILD_OWNER_OFFSET;
-export const STRUCTURE_BUILD_VALUE_OFFSET: number = ((STRUCTURE_BUILD_OWNER_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_BUILD_VALUE_OFFSET: number =
+  ((STRUCTURE_BUILD_OWNER_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_BUILD_VALUE_OFF: number = STRUCTURE_BUILD_VALUE_OFFSET;
-export const STRUCTURE_CHARGE_INTENT_OFFSET: number = ((STRUCTURE_BUILD_VALUE_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
-export const STRUCTURE_CHARGE_INTENT_OFF: number = STRUCTURE_CHARGE_INTENT_OFFSET;
-export const ATTENTION_FIELD_OFFSET: number = ((STRUCTURE_CHARGE_INTENT_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_CHARGE_INTENT_OFFSET: number =
+  ((STRUCTURE_BUILD_VALUE_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_CHARGE_INTENT_OFF: number =
+  STRUCTURE_CHARGE_INTENT_OFFSET;
+export const ATTENTION_FIELD_OFFSET: number =
+  ((STRUCTURE_CHARGE_INTENT_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const ATTENTION_FIELD_OFF: number = ATTENTION_FIELD_OFFSET;
-export const HIVE_ENERGY_POOL_OFFSET: number = ((ATTENTION_FIELD_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const HIVE_ENERGY_POOL_OFFSET: number =
+  ((ATTENTION_FIELD_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const HIVE_ENERGY_POOL_OFF: number = HIVE_ENERGY_POOL_OFFSET;
-export const GLYPH_HEADER_OFFSET: number = ((HIVE_ENERGY_POOL_OFFSET + (256 * 4)) + 4 - 1) & ~(4 - 1);
+export const GLYPH_HEADER_OFFSET: number =
+  ((HIVE_ENERGY_POOL_OFFSET + (256 * 4)) + 4 - 1) & ~(4 - 1);
 export const GLYPH_HEADER_OFF: number = GLYPH_HEADER_OFFSET;
-export const GLYPH_PAYLOAD_OFFSET: number = GLYPH_HEADER_OFFSET + (GRID_CELLS * 4);
+export const GLYPH_PAYLOAD_OFFSET: number = GLYPH_HEADER_OFFSET +
+  (GRID_CELLS * 4);
 export const GLYPH_PAYLOAD_OFF: number = GLYPH_PAYLOAD_OFFSET;
-export const GLYPH_SCRATCH_HEADER_OFFSET: number = ((GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
+export const GLYPH_SCRATCH_HEADER_OFFSET: number =
+  ((GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
 export const GLYPH_SCRATCH_HEADER_OFF: number = GLYPH_SCRATCH_HEADER_OFFSET;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET: number = GLYPH_SCRATCH_HEADER_OFFSET + (GRID_CELLS * 4);
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET: number =
+  GLYPH_SCRATCH_HEADER_OFFSET + (GRID_CELLS * 4);
 export const GLYPH_SCRATCH_PAYLOAD_OFF: number = GLYPH_SCRATCH_PAYLOAD_OFFSET;
-export const HORMONES_OFFSET: number = ((GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 2 - 1) & ~(2 - 1);
+export const HORMONES_OFFSET: number =
+  ((GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 2 - 1) & ~(2 - 1);
 export const HORMONES_OFF: number = HORMONES_OFFSET;
 export const HORMONE_OFFSET: number = HORMONES_OFFSET;
 export const HORMONE_OFF: number = HORMONES_OFFSET;
-export const SECRETION_STATS_OFFSET: number = ((HORMONES_OFFSET + (8 * 2)) + 4 - 1) & ~(4 - 1);
+export const SECRETION_STATS_OFFSET: number =
+  ((HORMONES_OFFSET + (8 * 2)) + 4 - 1) & ~(4 - 1);
 export const SECRETION_STATS_OFF: number = SECRETION_STATS_OFFSET;
-export const LINEAGE_OFFSET: number = ((SECRETION_STATS_OFFSET + (12 * 4)) + 8 - 1) & ~(8 - 1);
+export const LINEAGE_OFFSET: number =
+  ((SECRETION_STATS_OFFSET + (12 * 4)) + 8 - 1) & ~(8 - 1);
 export const LINEAGE_OFF: number = LINEAGE_OFFSET;
-export const MAILBOX_OFFSET: number = ((LINEAGE_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const MAILBOX_OFFSET: number =
+  ((LINEAGE_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
 export const MAILBOX_OFF: number = MAILBOX_OFFSET;
-export const LEDGER_HEAD_OFFSET: number = ((MAILBOX_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const LEDGER_HEAD_OFFSET: number =
+  ((MAILBOX_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
 export const LEDGER_HEAD_OFF: number = LEDGER_HEAD_OFFSET;
-export const LEDGER_DATA_OFFSET: number = ((LEDGER_HEAD_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const LEDGER_DATA_OFFSET: number = ((LEDGER_HEAD_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const LEDGER_DATA_OFF: number = LEDGER_DATA_OFFSET;
-export const EGRESS_HEAD_OFFSET: number = ((LEDGER_DATA_OFFSET + (65536 * 16)) + 4 - 1) & ~(4 - 1);
+export const EGRESS_HEAD_OFFSET: number =
+  ((LEDGER_DATA_OFFSET + (65536 * 16)) + 4 - 1) & ~(4 - 1);
 export const EGRESS_HEAD_OFF: number = EGRESS_HEAD_OFFSET;
-export const EGRESS_DATA_OFFSET: number = ((EGRESS_HEAD_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const EGRESS_DATA_OFFSET: number = ((EGRESS_HEAD_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const EGRESS_DATA_OFF: number = EGRESS_DATA_OFFSET;
-export const METABOLISM_SCRATCH_OFFSET: number = ((EGRESS_DATA_OFFSET + (8192 * 128)) + 4 - 1) & ~(4 - 1);
+export const METABOLISM_SCRATCH_OFFSET: number =
+  ((EGRESS_DATA_OFFSET + (8192 * 128)) + 4 - 1) & ~(4 - 1);
 export const METABOLISM_SCRATCH_OFF: number = METABOLISM_SCRATCH_OFFSET;
-export const LATTICE_MEMORY_END: number = METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128);
-export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128)) / (64 * 1024)));
+export const LATTICE_MEMORY_END: number = METABOLISM_SCRATCH_OFFSET +
+  ((65536 * 4) + 128);
+export const MIN_WASM_MEMORY_PAGES: number = Math.max(
+  2600,
+  Math.ceil((METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128)) / (64 * 1024)),
+);
 export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);
 
 export function validateMemoryLayout(memorySize: number) {
   const regions = [
-    { name: "TICK_COUNTER", offset: TICK_COUNTER_OFFSET, expectedSize: SYNC_STATE_OFFSET - TICK_COUNTER_OFFSET },
-    { name: "SYNC_STATE", offset: SYNC_STATE_OFFSET, expectedSize: IDS_OFFSET - SYNC_STATE_OFFSET },
+    {
+      name: "TICK_COUNTER",
+      offset: TICK_COUNTER_OFFSET,
+      expectedSize: SYNC_STATE_OFFSET - TICK_COUNTER_OFFSET,
+    },
+    {
+      name: "SYNC_STATE",
+      offset: SYNC_STATE_OFFSET,
+      expectedSize: IDS_OFFSET - SYNC_STATE_OFFSET,
+    },
     { name: "IDS", offset: IDS_OFFSET, expectedSize: XS_OFFSET - IDS_OFFSET },
     { name: "XS", offset: XS_OFFSET, expectedSize: YS_OFFSET - XS_OFFSET },
     { name: "YS", offset: YS_OFFSET, expectedSize: ENERGY_OFFSET - YS_OFFSET },
-    { name: "ENERGY", offset: ENERGY_OFFSET, expectedSize: RESONANCE_OFFSET - ENERGY_OFFSET },
-    { name: "RESONANCE", offset: RESONANCE_OFFSET, expectedSize: PHASE_OFFSET - RESONANCE_OFFSET },
-    { name: "PHASE", offset: PHASE_OFFSET, expectedSize: LOGIC_OFFSET - PHASE_OFFSET },
-    { name: "LOGIC", offset: LOGIC_OFFSET, expectedSize: BONDS_OFFSET - LOGIC_OFFSET },
-    { name: "BONDS", offset: BONDS_OFFSET, expectedSize: STIFFNESS_OFFSET - BONDS_OFFSET },
-    { name: "STIFFNESS", offset: STIFFNESS_OFFSET, expectedSize: INSTRUCTIONS_OFFSET - STIFFNESS_OFFSET },
-    { name: "INSTRUCTIONS", offset: INSTRUCTIONS_OFFSET, expectedSize: CONTEXT_OFFSET - INSTRUCTIONS_OFFSET },
-    { name: "CONTEXT", offset: CONTEXT_OFFSET, expectedSize: EVOLUTION_OFFSET - CONTEXT_OFFSET },
-    { name: "EVOLUTION", offset: EVOLUTION_OFFSET, expectedSize: SPAWN_REQUESTS_OFFSET - EVOLUTION_OFFSET },
-    { name: "SPAWN_REQUESTS", offset: SPAWN_REQUESTS_OFFSET, expectedSize: MEIOSIS_RESERVED_OFFSET - SPAWN_REQUESTS_OFFSET },
-    { name: "MEIOSIS_RESERVED", offset: MEIOSIS_RESERVED_OFFSET, expectedSize: BOND_REQUESTS_OFFSET - MEIOSIS_RESERVED_OFFSET },
-    { name: "BOND_REQUESTS", offset: BOND_REQUESTS_OFFSET, expectedSize: SPATIAL_GRID_OFFSET - BOND_REQUESTS_OFFSET },
-    { name: "SPATIAL_GRID", offset: SPATIAL_GRID_OFFSET, expectedSize: ROLES_OFFSET - SPATIAL_GRID_OFFSET },
-    { name: "ROLES", offset: ROLES_OFFSET, expectedSize: STRUCTURE_GRID_OFFSET - ROLES_OFFSET },
-    { name: "STRUCTURE_GRID", offset: STRUCTURE_GRID_OFFSET, expectedSize: SIGNAL_GRID_OFFSET - STRUCTURE_GRID_OFFSET },
-    { name: "SIGNAL_GRID", offset: SIGNAL_GRID_OFFSET, expectedSize: MEMORY_GRID_OFFSET - SIGNAL_GRID_OFFSET },
-    { name: "MEMORY_GRID", offset: MEMORY_GRID_OFFSET, expectedSize: ASCENSION_STATS_RESERVED_OFFSET - MEMORY_GRID_OFFSET },
-    { name: "ASCENSION_STATS_RESERVED", offset: ASCENSION_STATS_RESERVED_OFFSET, expectedSize: BOND_DISTANCES_OFFSET - ASCENSION_STATS_RESERVED_OFFSET },
-    { name: "BOND_DISTANCES", offset: BOND_DISTANCES_OFFSET, expectedSize: SYNAPTIC_WEIGHTS_OFFSET - BOND_DISTANCES_OFFSET },
-    { name: "SYNAPTIC_WEIGHTS", offset: SYNAPTIC_WEIGHTS_OFFSET, expectedSize: DAMPING_OFFSET - SYNAPTIC_WEIGHTS_OFFSET },
-    { name: "DAMPING", offset: DAMPING_OFFSET, expectedSize: CAUSALITY_OFFSET - DAMPING_OFFSET },
-    { name: "CAUSALITY", offset: CAUSALITY_OFFSET, expectedSize: HIVE_MEMORY_OFFSET - CAUSALITY_OFFSET },
-    { name: "HIVE_MEMORY", offset: HIVE_MEMORY_OFFSET, expectedSize: HIVE_BALANCE_OFFSET - HIVE_MEMORY_OFFSET },
-    { name: "HIVE_BALANCE", offset: HIVE_BALANCE_OFFSET, expectedSize: QUORUM_OFFSET - HIVE_BALANCE_OFFSET },
-    { name: "QUORUM", offset: QUORUM_OFFSET, expectedSize: COHERENCE_OFFSET - QUORUM_OFFSET },
-    { name: "COHERENCE", offset: COHERENCE_OFFSET, expectedSize: NEURAL_COHERENCE_OFFSET - COHERENCE_OFFSET },
-    { name: "NEURAL_COHERENCE", offset: NEURAL_COHERENCE_OFFSET, expectedSize: PHYSICS_READ_XS_OFFSET - NEURAL_COHERENCE_OFFSET },
-    { name: "PHYSICS_READ_XS", offset: PHYSICS_READ_XS_OFFSET, expectedSize: PHYSICS_READ_YS_OFFSET - PHYSICS_READ_XS_OFFSET },
-    { name: "PHYSICS_READ_YS", offset: PHYSICS_READ_YS_OFFSET, expectedSize: PHYSICS_READ_ENERGY_OFFSET - PHYSICS_READ_YS_OFFSET },
-    { name: "PHYSICS_READ_ENERGY", offset: PHYSICS_READ_ENERGY_OFFSET, expectedSize: PHYSICS_READ_RESONANCE_OFFSET - PHYSICS_READ_ENERGY_OFFSET },
-    { name: "PHYSICS_READ_RESONANCE", offset: PHYSICS_READ_RESONANCE_OFFSET, expectedSize: ENERGY_DELTA_OFFSET - PHYSICS_READ_RESONANCE_OFFSET },
-    { name: "ENERGY_DELTA", offset: ENERGY_DELTA_OFFSET, expectedSize: RESONANCE_DELTA_OFFSET - ENERGY_DELTA_OFFSET },
-    { name: "RESONANCE_DELTA", offset: RESONANCE_DELTA_OFFSET, expectedSize: STRUCTURE_BUILD_OWNER_OFFSET - RESONANCE_DELTA_OFFSET },
-    { name: "STRUCTURE_BUILD_OWNER", offset: STRUCTURE_BUILD_OWNER_OFFSET, expectedSize: STRUCTURE_BUILD_VALUE_OFFSET - STRUCTURE_BUILD_OWNER_OFFSET },
-    { name: "STRUCTURE_BUILD_VALUE", offset: STRUCTURE_BUILD_VALUE_OFFSET, expectedSize: STRUCTURE_CHARGE_INTENT_OFFSET - STRUCTURE_BUILD_VALUE_OFFSET },
-    { name: "STRUCTURE_CHARGE_INTENT", offset: STRUCTURE_CHARGE_INTENT_OFFSET, expectedSize: ATTENTION_FIELD_OFFSET - STRUCTURE_CHARGE_INTENT_OFFSET },
-    { name: "ATTENTION_FIELD", offset: ATTENTION_FIELD_OFFSET, expectedSize: HIVE_ENERGY_POOL_OFFSET - ATTENTION_FIELD_OFFSET },
-    { name: "HIVE_ENERGY_POOL", offset: HIVE_ENERGY_POOL_OFFSET, expectedSize: GLYPH_HEADER_OFFSET - HIVE_ENERGY_POOL_OFFSET },
-    { name: "GLYPH_HEADER", offset: GLYPH_HEADER_OFFSET, expectedSize: GLYPH_PAYLOAD_OFFSET - GLYPH_HEADER_OFFSET },
-    { name: "GLYPH_PAYLOAD", offset: GLYPH_PAYLOAD_OFFSET, expectedSize: GLYPH_SCRATCH_HEADER_OFFSET - GLYPH_PAYLOAD_OFFSET },
-    { name: "GLYPH_SCRATCH_HEADER", offset: GLYPH_SCRATCH_HEADER_OFFSET, expectedSize: GLYPH_SCRATCH_PAYLOAD_OFFSET - GLYPH_SCRATCH_HEADER_OFFSET },
-    { name: "GLYPH_SCRATCH_PAYLOAD", offset: GLYPH_SCRATCH_PAYLOAD_OFFSET, expectedSize: HORMONES_OFFSET - GLYPH_SCRATCH_PAYLOAD_OFFSET },
-    { name: "HORMONES", offset: HORMONES_OFFSET, expectedSize: SECRETION_STATS_OFFSET - HORMONES_OFFSET },
-    { name: "SECRETION_STATS", offset: SECRETION_STATS_OFFSET, expectedSize: LINEAGE_OFFSET - SECRETION_STATS_OFFSET },
-    { name: "LINEAGE", offset: LINEAGE_OFFSET, expectedSize: MAILBOX_OFFSET - LINEAGE_OFFSET },
-    { name: "MAILBOX", offset: MAILBOX_OFFSET, expectedSize: LEDGER_HEAD_OFFSET - MAILBOX_OFFSET },
-    { name: "LEDGER_HEAD", offset: LEDGER_HEAD_OFFSET, expectedSize: LEDGER_DATA_OFFSET - LEDGER_HEAD_OFFSET },
-    { name: "LEDGER_DATA", offset: LEDGER_DATA_OFFSET, expectedSize: EGRESS_HEAD_OFFSET - LEDGER_DATA_OFFSET },
-    { name: "EGRESS_HEAD", offset: EGRESS_HEAD_OFFSET, expectedSize: EGRESS_DATA_OFFSET - EGRESS_HEAD_OFFSET },
-    { name: "EGRESS_DATA", offset: EGRESS_DATA_OFFSET, expectedSize: METABOLISM_SCRATCH_OFFSET - EGRESS_DATA_OFFSET },
-    { name: "METABOLISM_SCRATCH", offset: METABOLISM_SCRATCH_OFFSET, expectedSize: LATTICE_MEMORY_END - METABOLISM_SCRATCH_OFFSET }
+    {
+      name: "ENERGY",
+      offset: ENERGY_OFFSET,
+      expectedSize: RESONANCE_OFFSET - ENERGY_OFFSET,
+    },
+    {
+      name: "RESONANCE",
+      offset: RESONANCE_OFFSET,
+      expectedSize: PHASE_OFFSET - RESONANCE_OFFSET,
+    },
+    {
+      name: "PHASE",
+      offset: PHASE_OFFSET,
+      expectedSize: LOGIC_OFFSET - PHASE_OFFSET,
+    },
+    {
+      name: "LOGIC",
+      offset: LOGIC_OFFSET,
+      expectedSize: BONDS_OFFSET - LOGIC_OFFSET,
+    },
+    {
+      name: "BONDS",
+      offset: BONDS_OFFSET,
+      expectedSize: STIFFNESS_OFFSET - BONDS_OFFSET,
+    },
+    {
+      name: "STIFFNESS",
+      offset: STIFFNESS_OFFSET,
+      expectedSize: INSTRUCTIONS_OFFSET - STIFFNESS_OFFSET,
+    },
+    {
+      name: "INSTRUCTIONS",
+      offset: INSTRUCTIONS_OFFSET,
+      expectedSize: CONTEXT_OFFSET - INSTRUCTIONS_OFFSET,
+    },
+    {
+      name: "CONTEXT",
+      offset: CONTEXT_OFFSET,
+      expectedSize: EVOLUTION_OFFSET - CONTEXT_OFFSET,
+    },
+    {
+      name: "EVOLUTION",
+      offset: EVOLUTION_OFFSET,
+      expectedSize: SPAWN_REQUESTS_OFFSET - EVOLUTION_OFFSET,
+    },
+    {
+      name: "SPAWN_REQUESTS",
+      offset: SPAWN_REQUESTS_OFFSET,
+      expectedSize: MEIOSIS_RESERVED_OFFSET - SPAWN_REQUESTS_OFFSET,
+    },
+    {
+      name: "MEIOSIS_RESERVED",
+      offset: MEIOSIS_RESERVED_OFFSET,
+      expectedSize: BOND_REQUESTS_OFFSET - MEIOSIS_RESERVED_OFFSET,
+    },
+    {
+      name: "BOND_REQUESTS",
+      offset: BOND_REQUESTS_OFFSET,
+      expectedSize: SPATIAL_GRID_OFFSET - BOND_REQUESTS_OFFSET,
+    },
+    {
+      name: "SPATIAL_GRID",
+      offset: SPATIAL_GRID_OFFSET,
+      expectedSize: ROLES_OFFSET - SPATIAL_GRID_OFFSET,
+    },
+    {
+      name: "ROLES",
+      offset: ROLES_OFFSET,
+      expectedSize: STRUCTURE_GRID_OFFSET - ROLES_OFFSET,
+    },
+    {
+      name: "STRUCTURE_GRID",
+      offset: STRUCTURE_GRID_OFFSET,
+      expectedSize: SIGNAL_GRID_OFFSET - STRUCTURE_GRID_OFFSET,
+    },
+    {
+      name: "SIGNAL_GRID",
+      offset: SIGNAL_GRID_OFFSET,
+      expectedSize: MEMORY_GRID_OFFSET - SIGNAL_GRID_OFFSET,
+    },
+    {
+      name: "MEMORY_GRID",
+      offset: MEMORY_GRID_OFFSET,
+      expectedSize: ASCENSION_STATS_RESERVED_OFFSET - MEMORY_GRID_OFFSET,
+    },
+    {
+      name: "ASCENSION_STATS_RESERVED",
+      offset: ASCENSION_STATS_RESERVED_OFFSET,
+      expectedSize: BOND_DISTANCES_OFFSET - ASCENSION_STATS_RESERVED_OFFSET,
+    },
+    {
+      name: "BOND_DISTANCES",
+      offset: BOND_DISTANCES_OFFSET,
+      expectedSize: SYNAPTIC_WEIGHTS_OFFSET - BOND_DISTANCES_OFFSET,
+    },
+    {
+      name: "SYNAPTIC_WEIGHTS",
+      offset: SYNAPTIC_WEIGHTS_OFFSET,
+      expectedSize: DAMPING_OFFSET - SYNAPTIC_WEIGHTS_OFFSET,
+    },
+    {
+      name: "DAMPING",
+      offset: DAMPING_OFFSET,
+      expectedSize: CAUSALITY_OFFSET - DAMPING_OFFSET,
+    },
+    {
+      name: "CAUSALITY",
+      offset: CAUSALITY_OFFSET,
+      expectedSize: HIVE_MEMORY_OFFSET - CAUSALITY_OFFSET,
+    },
+    {
+      name: "HIVE_MEMORY",
+      offset: HIVE_MEMORY_OFFSET,
+      expectedSize: HIVE_BALANCE_OFFSET - HIVE_MEMORY_OFFSET,
+    },
+    {
+      name: "HIVE_BALANCE",
+      offset: HIVE_BALANCE_OFFSET,
+      expectedSize: QUORUM_OFFSET - HIVE_BALANCE_OFFSET,
+    },
+    {
+      name: "QUORUM",
+      offset: QUORUM_OFFSET,
+      expectedSize: COHERENCE_OFFSET - QUORUM_OFFSET,
+    },
+    {
+      name: "COHERENCE",
+      offset: COHERENCE_OFFSET,
+      expectedSize: NEURAL_COHERENCE_OFFSET - COHERENCE_OFFSET,
+    },
+    {
+      name: "NEURAL_COHERENCE",
+      offset: NEURAL_COHERENCE_OFFSET,
+      expectedSize: PHYSICS_READ_XS_OFFSET - NEURAL_COHERENCE_OFFSET,
+    },
+    {
+      name: "PHYSICS_READ_XS",
+      offset: PHYSICS_READ_XS_OFFSET,
+      expectedSize: PHYSICS_READ_YS_OFFSET - PHYSICS_READ_XS_OFFSET,
+    },
+    {
+      name: "PHYSICS_READ_YS",
+      offset: PHYSICS_READ_YS_OFFSET,
+      expectedSize: PHYSICS_READ_ENERGY_OFFSET - PHYSICS_READ_YS_OFFSET,
+    },
+    {
+      name: "PHYSICS_READ_ENERGY",
+      offset: PHYSICS_READ_ENERGY_OFFSET,
+      expectedSize: PHYSICS_READ_RESONANCE_OFFSET - PHYSICS_READ_ENERGY_OFFSET,
+    },
+    {
+      name: "PHYSICS_READ_RESONANCE",
+      offset: PHYSICS_READ_RESONANCE_OFFSET,
+      expectedSize: ENERGY_DELTA_OFFSET - PHYSICS_READ_RESONANCE_OFFSET,
+    },
+    {
+      name: "ENERGY_DELTA",
+      offset: ENERGY_DELTA_OFFSET,
+      expectedSize: RESONANCE_DELTA_OFFSET - ENERGY_DELTA_OFFSET,
+    },
+    {
+      name: "RESONANCE_DELTA",
+      offset: RESONANCE_DELTA_OFFSET,
+      expectedSize: STRUCTURE_BUILD_OWNER_OFFSET - RESONANCE_DELTA_OFFSET,
+    },
+    {
+      name: "STRUCTURE_BUILD_OWNER",
+      offset: STRUCTURE_BUILD_OWNER_OFFSET,
+      expectedSize: STRUCTURE_BUILD_VALUE_OFFSET - STRUCTURE_BUILD_OWNER_OFFSET,
+    },
+    {
+      name: "STRUCTURE_BUILD_VALUE",
+      offset: STRUCTURE_BUILD_VALUE_OFFSET,
+      expectedSize: STRUCTURE_CHARGE_INTENT_OFFSET -
+        STRUCTURE_BUILD_VALUE_OFFSET,
+    },
+    {
+      name: "STRUCTURE_CHARGE_INTENT",
+      offset: STRUCTURE_CHARGE_INTENT_OFFSET,
+      expectedSize: ATTENTION_FIELD_OFFSET - STRUCTURE_CHARGE_INTENT_OFFSET,
+    },
+    {
+      name: "ATTENTION_FIELD",
+      offset: ATTENTION_FIELD_OFFSET,
+      expectedSize: HIVE_ENERGY_POOL_OFFSET - ATTENTION_FIELD_OFFSET,
+    },
+    {
+      name: "HIVE_ENERGY_POOL",
+      offset: HIVE_ENERGY_POOL_OFFSET,
+      expectedSize: GLYPH_HEADER_OFFSET - HIVE_ENERGY_POOL_OFFSET,
+    },
+    {
+      name: "GLYPH_HEADER",
+      offset: GLYPH_HEADER_OFFSET,
+      expectedSize: GLYPH_PAYLOAD_OFFSET - GLYPH_HEADER_OFFSET,
+    },
+    {
+      name: "GLYPH_PAYLOAD",
+      offset: GLYPH_PAYLOAD_OFFSET,
+      expectedSize: GLYPH_SCRATCH_HEADER_OFFSET - GLYPH_PAYLOAD_OFFSET,
+    },
+    {
+      name: "GLYPH_SCRATCH_HEADER",
+      offset: GLYPH_SCRATCH_HEADER_OFFSET,
+      expectedSize: GLYPH_SCRATCH_PAYLOAD_OFFSET - GLYPH_SCRATCH_HEADER_OFFSET,
+    },
+    {
+      name: "GLYPH_SCRATCH_PAYLOAD",
+      offset: GLYPH_SCRATCH_PAYLOAD_OFFSET,
+      expectedSize: HORMONES_OFFSET - GLYPH_SCRATCH_PAYLOAD_OFFSET,
+    },
+    {
+      name: "HORMONES",
+      offset: HORMONES_OFFSET,
+      expectedSize: SECRETION_STATS_OFFSET - HORMONES_OFFSET,
+    },
+    {
+      name: "SECRETION_STATS",
+      offset: SECRETION_STATS_OFFSET,
+      expectedSize: LINEAGE_OFFSET - SECRETION_STATS_OFFSET,
+    },
+    {
+      name: "LINEAGE",
+      offset: LINEAGE_OFFSET,
+      expectedSize: MAILBOX_OFFSET - LINEAGE_OFFSET,
+    },
+    {
+      name: "MAILBOX",
+      offset: MAILBOX_OFFSET,
+      expectedSize: LEDGER_HEAD_OFFSET - MAILBOX_OFFSET,
+    },
+    {
+      name: "LEDGER_HEAD",
+      offset: LEDGER_HEAD_OFFSET,
+      expectedSize: LEDGER_DATA_OFFSET - LEDGER_HEAD_OFFSET,
+    },
+    {
+      name: "LEDGER_DATA",
+      offset: LEDGER_DATA_OFFSET,
+      expectedSize: EGRESS_HEAD_OFFSET - LEDGER_DATA_OFFSET,
+    },
+    {
+      name: "EGRESS_HEAD",
+      offset: EGRESS_HEAD_OFFSET,
+      expectedSize: EGRESS_DATA_OFFSET - EGRESS_HEAD_OFFSET,
+    },
+    {
+      name: "EGRESS_DATA",
+      offset: EGRESS_DATA_OFFSET,
+      expectedSize: METABOLISM_SCRATCH_OFFSET - EGRESS_DATA_OFFSET,
+    },
+    {
+      name: "METABOLISM_SCRATCH",
+      offset: METABOLISM_SCRATCH_OFFSET,
+      expectedSize: LATTICE_MEMORY_END - METABOLISM_SCRATCH_OFFSET,
+    },
   ];
   let ok = true;
   const errors: string[] = [];
-  
+
   for (let i = 0; i < regions.length; i++) {
     const region = regions[i];
     if (i < regions.length - 1) {
-      if (region.offset + region.expectedSize !== regions[i+1].offset) {
+      if (region.offset + region.expectedSize !== regions[i + 1].offset) {
         ok = false;
-        errors.push(`Gap or overlap after ${region.name}. offset=${region.offset} size=${region.expectedSize} next=${regions[i+1].offset}`);
+        errors.push(
+          `Gap or overlap after ${region.name}. offset=${region.offset} size=${region.expectedSize} next=${
+            regions[i + 1].offset
+          }`,
+        );
       }
     }
   }
-  
+
   if (LATTICE_MEMORY_END > memorySize) {
     ok = false;
-    errors.push(`Memory size (${memorySize}) is too small for lattice (${LATTICE_MEMORY_END})`);
+    errors.push(
+      `Memory size (${memorySize}) is too small for lattice (${LATTICE_MEMORY_END})`,
+    );
   }
 
   return { ok, errors, regions, latticeEnd: LATTICE_MEMORY_END };
 }
-
 ```
 
 ---
@@ -2079,24 +3129,24 @@ export function validateMemoryLayout(memorySize: number) {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memory_views.md
 
-import { 
-  MAX_ATOMS, 
-  SCALE, 
-  GRID_CELLS, 
-  MAX_LEDGER_EVENTS, 
-  HIVE_ENERGY_POOL_SIZE, 
-  HIVE_MEMORY_SIZE, 
-  MAX_HORMONES, 
-  ATOM_GENOME_SIZE, 
-  ATOM_INSTRUCTION_SIZE, 
+import {
   ATOM_CONTEXT_SIZE,
-  WASM_MEMORY_PAGES
+  ATOM_GENOME_SIZE,
+  ATOM_INSTRUCTION_SIZE,
+  GRID_CELLS,
+  HIVE_ENERGY_POOL_SIZE,
+  HIVE_MEMORY_SIZE,
+  MAX_ATOMS,
+  MAX_HORMONES,
+  MAX_LEDGER_EVENTS,
+  SCALE,
+  WASM_MEMORY_PAGES,
 } from "../00/SYSTEM_CONSTANTS.ts";
 import {
   ATTENTION_FIELD_OFFSET,
-  BONDS_OFFSET,
   BOND_DISTANCES_OFFSET,
   BOND_REQUESTS_OFFSET,
+  BONDS_OFFSET,
   CAUSALITY_OFFSET,
   COHERENCE_OFFSET,
   CONTEXT_OFFSET,
@@ -2129,16 +3179,16 @@ import {
   SYNAPTIC_WEIGHTS_OFFSET,
   SYNC_STATE_OFFSET,
   TICK_COUNTER_OFFSET,
+  validateMemoryLayout,
   WASM_MEMORY_BYTES,
   XS_OFFSET,
   YS_OFFSET,
-  validateMemoryLayout
 } from "../01/OMEGA_MEMORY_LAYOUT.ts";
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
-    "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
-    ", required=" + MIN_WASM_MEMORY_PAGES,
+    "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES +
+      ", required=" + MIN_WASM_MEMORY_PAGES,
   );
 }
 const layoutValidation = validateMemoryLayout(
@@ -2147,7 +3197,7 @@ const layoutValidation = validateMemoryLayout(
 if (!layoutValidation.ok) {
   throw new Error(
     "[STATE_MATRIX] Invalid OFFSETS memory layout:\\n" +
-      layoutValidation.errors.map((entry) => "- " + entry).join("\\n")
+      layoutValidation.errors.map((entry) => "- " + entry).join("\\n"),
   );
 }
 
@@ -2160,81 +3210,223 @@ export const wasmMemory = new WebAssembly.Memory({
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 // Expose underlying buffers for UI export
-export const idBuffer = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
-export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
-export const yBuffer = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
-export const energyBuffer = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
-export const resonanceBuffer = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
-export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
-export const logicBuffer = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE).buffer;
-export const bondBuffer = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
-export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
-export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
-export const synapticWeightBuffer = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
-export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
-export const causalityBuffer = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
-export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
-export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
-export const hiveBalanceBuffer = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
-export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
-export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
-export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
-export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
-export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
-export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
-export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
-export const coherenceBuffer = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
-export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
-export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
-export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
-export const mailboxBuffer = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
+export const idBuffer =
+  new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
+export const xBuffer =
+  new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
+export const yBuffer =
+  new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
+export const energyBuffer =
+  new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
+export const resonanceBuffer =
+  new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
+export const phaseBuffer =
+  new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
+export const logicBuffer =
+  new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE)
+    .buffer;
+export const bondBuffer =
+  new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
+export const stiffnessBuffer =
+  new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
+export const bondDistBuffer =
+  new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
+export const synapticWeightBuffer =
+  new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
+export const dampingBuffer =
+  new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
+export const causalityBuffer =
+  new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
+export const roleBuffer =
+  new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
+export const hiveMemoryBuffer =
+  new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
+export const hiveBalanceBuffer =
+  new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
+export const hiveEnergyPoolBuffer =
+  new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE)
+    .buffer;
+export const memoryGridBuffer =
+  new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
+export const signalGridBuffer =
+  new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
+export const structureGridBuffer =
+  new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
+export const attentionFieldBuffer =
+  new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
+export const glyphHeaderBuffer =
+  new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
+export const glyphPayloadBuffer =
+  new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
+export const coherenceBuffer =
+  new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
+export const neuralCoherenceBuffer =
+  new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
+export const hormoneBuffer =
+  new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
+export const lineageBuffer =
+  new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
+export const mailboxBuffer =
+  new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
 
 // TypedArray Views (Host side)
 export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
-export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
+export const resonances = new Int32Array(
+  sharedBuffer,
+  RESONANCE_OFFSET,
+  MAX_ATOMS,
+);
 export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
-export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
+export const evolutionReserved = new Int32Array(
+  sharedBuffer,
+  EVOLUTION_OFFSET,
+  MAX_ATOMS,
+);
 export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
-export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
-export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
+export const synapticWeights = new Uint8Array(
+  sharedBuffer,
+  SYNAPTIC_WEIGHTS_OFFSET,
+  MAX_ATOMS * 4,
+);
+export const logic = new Uint8Array(
+  sharedBuffer,
+  LOGIC_OFFSET,
+  MAX_ATOMS * ATOM_GENOME_SIZE,
+);
 export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
-export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
-export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
-export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
+export const bondStiffness = new Float32Array(
+  sharedBuffer,
+  STIFFNESS_OFFSET,
+  MAX_ATOMS * 4,
+);
+export const bondDistances = new Uint8Array(
+  sharedBuffer,
+  BOND_DISTANCES_OFFSET,
+  MAX_ATOMS * 4,
+);
+export const bondRequests = new Int32Array(
+  sharedBuffer,
+  BOND_REQUESTS_OFFSET,
+  MAX_ATOMS * 3,
+);
 export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
-export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
-export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
+export const causality = new Uint8Array(
+  sharedBuffer,
+  CAUSALITY_OFFSET,
+  MAX_ATOMS,
+);
+export const hiveMemory = new Uint8Array(
+  sharedBuffer,
+  HIVE_MEMORY_OFFSET,
+  HIVE_MEMORY_SIZE,
+);
 export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
-export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
-export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
-export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
-export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
-export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
-export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
-export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
-export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
-export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
-export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
+export const hiveEnergyPool = new Int32Array(
+  sharedBuffer,
+  HIVE_ENERGY_POOL_OFFSET,
+  HIVE_ENERGY_POOL_SIZE,
+);
+export const spatialGrid = new Int32Array(
+  sharedBuffer,
+  SPATIAL_GRID_OFFSET,
+  GRID_CELLS * 32,
+);
+export const structureGrid = new Int32Array(
+  sharedBuffer,
+  STRUCTURE_GRID_OFFSET,
+  GRID_CELLS,
+);
+export const signalGrid = new Int32Array(
+  sharedBuffer,
+  SIGNAL_GRID_OFFSET,
+  GRID_CELLS,
+);
+export const memoryGrid = new Uint8Array(
+  sharedBuffer,
+  MEMORY_GRID_OFFSET,
+  GRID_CELLS * 8,
+);
+export const attentionField = new Float32Array(
+  sharedBuffer,
+  ATTENTION_FIELD_OFFSET,
+  GRID_CELLS,
+);
+export const glyphHeaders = new Int32Array(
+  sharedBuffer,
+  GLYPH_HEADER_OFFSET,
+  GRID_CELLS,
+);
+export const glyphPayload = new Uint8Array(
+  sharedBuffer,
+  GLYPH_PAYLOAD_OFFSET,
+  GRID_CELLS * 8,
+);
+export const ledgerHeadView = new Int32Array(
+  sharedBuffer,
+  LEDGER_HEAD_OFFSET,
+  1,
+);
+export const ledgerDataView = new Int32Array(
+  sharedBuffer,
+  LEDGER_DATA_OFFSET,
+  MAX_LEDGER_EVENTS * 4,
+);
 export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
-export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
-export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
-export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
-export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
-export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
-export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
-export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
-export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
+export const neuralCoherence = new Int32Array(
+  sharedBuffer,
+  NEURAL_COHERENCE_OFFSET,
+  1,
+);
+export const hormones = new Uint16Array(
+  sharedBuffer,
+  HORMONE_OFFSET,
+  MAX_HORMONES,
+);
+export const lineage = new BigUint64Array(
+  sharedBuffer,
+  LINEAGE_OFFSET,
+  MAX_ATOMS,
+);
+export const mailboxes = new Int32Array(
+  sharedBuffer,
+  MAILBOX_OFFSET,
+  MAX_ATOMS * 2,
+);
+export const instructions = new Uint8Array(
+  sharedBuffer,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS * ATOM_INSTRUCTION_SIZE,
+);
+export const codeWords = new Uint32Array(
+  sharedBuffer,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS * 16,
+);
+export const contexts = new Int32Array(
+  sharedBuffer,
+  CONTEXT_OFFSET,
+  MAX_ATOMS * ATOM_CONTEXT_SIZE,
+);
+export const contextByteView = new Uint8Array(
+  sharedBuffer,
+  CONTEXT_OFFSET,
+  MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4),
+);
 
-export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
+export const semanticBonuses = new Int32Array(
+  new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT),
+);
 export const semanticBonusesBuffer = semanticBonuses.buffer;
 
-export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
+export const latticeClearView = new Uint8Array(
+  sharedBuffer,
+  TICK_COUNTER_OFFSET,
+);
 export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
-
 ```
 
 ---
@@ -2246,7 +3438,6 @@ export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 // deno-lint-ignore-file camelcase
 export * from "../01/mod.ts";
 export * from "./memory_views.ts";
-
 ```
 
 ---
@@ -2260,7 +3451,11 @@ export * from "./memory_views.ts";
 // Binary Event Ring Buffer (Memory-Mapped)
 
 import { STATE_MATRIX } from "@generated";
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
+import {
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  MAX_LEDGER_EVENTS,
+} from "@generated";
 
 export type AtomicLedgerEvent = {
   tick: number;
@@ -2333,7 +3528,6 @@ export const ATOMIC_LEDGER = {
     return events;
   },
 };
-
 ```
 
 ---
@@ -2345,8 +3539,12 @@ export const ATOMIC_LEDGER = {
 
 import { type BridgeModeEvent, type GateConfig } from "@generated";
 import { type LedgerEvent } from "@generated";
-import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+import {
+  CHECKPOINT_CHECKPOINT as CHECKPOINT,
+  LEDGER__08_00_LEDGER as LEDGER,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX,
+} from "@generated";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -2383,7 +3581,6 @@ export const persistGateLedgerArtifacts = async (
     }
   }
 };
-
 ```
 
 ---
@@ -2393,7 +3590,13 @@ export const persistGateLedgerArtifacts = async (
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot,
+} from "@generated";
 import { LOAD_LOAD as LOAD } from "@generated";
 import { LOGGER } from "@generated";
 import { GATE_BUDGET } from "../../03/gate_budget.md";
@@ -2604,7 +3807,6 @@ export const mergeGateProposals = (
     maxTotalCost,
   };
 };
-
 ```
 
 ---
@@ -2614,9 +3816,19 @@ export const mergeGateProposals = (
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
-import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot,
+} from "@generated";
+import {
+  AGENT_SIGNATURE,
+  CANON_CAUSAL_BRIDGE,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX,
+} from "@generated";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
@@ -2823,7 +4035,6 @@ export const validateGateProposals = async (
     blockedCanonProposals,
   };
 };
-
 ```
 
 ---
@@ -3295,7 +4506,6 @@ export const GATE = {
     );
   },
 };
-
 ```
 
 ---
@@ -3486,7 +4696,6 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
   Object.fromEntries(
     GENETIC_LEDGER_CATALOG.map((entry) => [entry.key, entry.defaultValue]),
   ) as Record<GeneticLedgerKey, number>;
-
 ```
 
 ---
@@ -3504,7 +4713,6 @@ export * from "./GATE_LEDGER.ts";
 export * from "./GENETIC_LEDGER.ts";
 export * from "./GATE_VALIDATOR.ts";
 export * from "./GATE_MERGER.ts";
-
 ```
 
 ---
@@ -3518,18 +4726,25 @@ export * from "./GATE_MERGER.ts";
 import {
   ATOM_CONTEXT_SIZE,
   ATOM_INSTRUCTION_SIZE,
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
   MAX_ATOMS,
   RESOURCE_MAX,
   SCALE,
-  GRID_W,
-  GRID_H,
-  GRID_CELLS
 } from "../00/SYSTEM_CONSTANTS.ts";
 import { PROP_NEURAL_COHERENCE } from "../00/VmProps.ts";
 import {
-  OP_SYSCALL, OP_GET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, OP_BUILD, OP_SET
+  OP_BUILD,
+  OP_GET,
+  OP_JMP,
+  OP_JNZ,
+  OP_SET,
+  OP_SIGNAL,
+  OP_SUB,
+  OP_SYSCALL,
 } from "../00/VmOpcodes.ts";
-import { SYS_YIELD, SYS_SET_ROLE } from "../00/VmSys.ts";
+import { SYS_SET_ROLE, SYS_YIELD } from "../00/VmSys.ts";
 import * as views from "../02/memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
@@ -3632,67 +4847,114 @@ export const STATE_MATRIX = {
   getLogic: (i: number) => views.logic.subarray(i * 8, i * 8 + 8),
   getBonds: (i: number) => views.bonds.subarray(i * 4, i * 4 + 4),
   setBonds: (i: number, val: Uint32Array) => views.bonds.set(val, i * 4),
-  get_bond_target: (i: number, slot: number) => Atomics.load(views.bonds, i * 4 + slot),
-  get_bond_stiffness: (i: number, slot: number) => views.bondStiffness[i * 4 + slot],
-  getBondTarget: (i: number, slot: number) => Atomics.load(views.bonds, i * 4 + slot),
-  getBondStiffness: (i: number, slot: number) => views.bondStiffness[i * 4 + slot],
-  getBondDistance: (i: number, slot: number) => Atomics.load(views.bondDistances, i * 4 + slot),
+  get_bond_target: (i: number, slot: number) =>
+    Atomics.load(views.bonds, i * 4 + slot),
+  get_bond_stiffness: (i: number, slot: number) =>
+    views.bondStiffness[i * 4 + slot],
+  getBondTarget: (i: number, slot: number) =>
+    Atomics.load(views.bonds, i * 4 + slot),
+  getBondStiffness: (i: number, slot: number) =>
+    views.bondStiffness[i * 4 + slot],
+  getBondDistance: (i: number, slot: number) =>
+    Atomics.load(views.bondDistances, i * 4 + slot),
   hasBondRequest: (i: number) => Atomics.load(views.bondRequests, i * 3) !== 0,
-  getBondRequestInitiator: (i: number) => Atomics.load(views.bondRequests, i * 3),
-  getBondRequestTarget: (i: number) => Atomics.load(views.bondRequests, i * 3 + 1),
-  getBondRequestDistance: (i: number) => Atomics.load(views.bondRequests, i * 3 + 2),
+  getBondRequestInitiator: (i: number) =>
+    Atomics.load(views.bondRequests, i * 3),
+  getBondRequestTarget: (i: number) =>
+    Atomics.load(views.bondRequests, i * 3 + 1),
+  getBondRequestDistance: (i: number) =>
+    Atomics.load(views.bondRequests, i * 3 + 2),
   getDamping: (i: number) => Atomics.load(views.damping, i),
   get_lineage: (i: number) => Atomics.load(views.lineage, i),
   getLineage: (i: number) => Atomics.load(views.lineage, i),
   getMailboxMsgType: (i: number) => Atomics.load(views.mailboxes, i * 2),
   getMailboxPayload: (i: number) => Atomics.load(views.mailboxes, i * 2 + 1),
-  get_hive_memory: (addr: number) => Atomics.load(views.hiveMemory, addr & 1023),
-  set_hive_memory: (addr: number, val: number) => { Atomics.store(views.hiveMemory, addr & 1023, val); },
+  get_hive_memory: (addr: number) =>
+    Atomics.load(views.hiveMemory, addr & 1023),
+  set_hive_memory: (addr: number, val: number) => {
+    Atomics.store(views.hiveMemory, addr & 1023, val);
+  },
   get_hive_balance: () => Atomics.load(views.hiveBalance, 0),
   getHiveMemory: (addr: number) => Atomics.load(views.hiveMemory, addr & 1023),
-  setHiveMemory: (addr: number, val: number) => { Atomics.store(views.hiveMemory, addr & 1023, val); },
+  setHiveMemory: (addr: number, val: number) => {
+    Atomics.store(views.hiveMemory, addr & 1023, val);
+  },
   getHiveBalance: () => Atomics.load(views.hiveBalance, 0),
-  setHiveBalance: (val: number) => { Atomics.store(views.hiveBalance, 0, val); },
+  setHiveBalance: (val: number) => {
+    Atomics.store(views.hiveBalance, 0, val);
+  },
   add_hive_balance: (val: number) => Atomics.add(views.hiveBalance, 0, val),
   addHiveBalance: (val: number) => Atomics.add(views.hiveBalance, 0, val),
-  getHiveEnergyPoolSlot: (slot: number) => Atomics.load(views.hiveEnergyPool, slot & 255),
-  setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(views.hiveEnergyPool, slot & 255, val),
-  addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(views.hiveEnergyPool, slot & 255, val),
+  getHiveEnergyPoolSlot: (slot: number) =>
+    Atomics.load(views.hiveEnergyPool, slot & 255),
+  setHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.store(views.hiveEnergyPool, slot & 255, val),
+  addHiveEnergyPoolSlot: (slot: number, val: number) =>
+    Atomics.add(views.hiveEnergyPool, slot & 255, val),
 
-  getInstructions: (i: number) => views.instructions.subarray(i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE),
+  getInstructions: (i: number) =>
+    views.instructions.subarray(
+      i * ATOM_INSTRUCTION_SIZE,
+      i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE,
+    ),
   getCode: (i: number) => views.codeWords.subarray(i * 16, i * 16 + 16),
-  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
-  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
-  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
-  getPC: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
-  getContext: (i: number) => views.contextByteView.subarray(i * (ATOM_CONTEXT_SIZE * 4), i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4)),
+  get_reg: (i: number, reg: number) =>
+    Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  get_p_c: (i: number) =>
+    Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getReg: (i: number, reg: number) =>
+    Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) =>
+    Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) =>
+    views.contextByteView.subarray(
+      i * (ATOM_CONTEXT_SIZE * 4),
+      i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4),
+    ),
 
   setId: (i: number, val: bigint) => Atomics.store(views.ids, i, val),
   setX: (i: number, val: number) => Atomics.store(views.xs, i, Math.round(val)),
   setY: (i: number, val: number) => Atomics.store(views.ys, i, Math.round(val)),
-  getSynapticWeight: (index: number, slot: number): number => views.synapticWeights[index * 4 + slot],
-  setSynapticWeight: (index: number, slot: number, weight: number) => { views.synapticWeights[index * 4 + slot] = weight; },
+  getSynapticWeight: (index: number, slot: number): number =>
+    views.synapticWeights[index * 4 + slot],
+  setSynapticWeight: (index: number, slot: number, weight: number) => {
+    views.synapticWeights[index * 4 + slot] = weight;
+  },
   set_role: (i: number, val: number) => Atomics.store(views.roles, i, val),
-  set_energy: (i: number, val: number) => Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
-  set_resonance: (i: number, val: number) => Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
+  set_energy: (i: number, val: number) =>
+    Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
+  set_resonance: (i: number, val: number) =>
+    Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
   set_phase: (i: number, val: number) => Atomics.store(views.phases, i, val),
   setRole: (i: number, val: number) => Atomics.store(views.roles, i, val),
-  setEnergy: (i: number, val: number) => Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
-  setResonance: (i: number, val: number) => Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
+  setEnergy: (i: number, val: number) =>
+    Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
+  setResonance: (i: number, val: number) =>
+    Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
   setPhase: (i: number, val: number) => Atomics.store(views.phases, i, val),
   setLogic: (i: number, val: Uint8Array) => views.logic.set(val, i * 8),
-  set_bond_target: (i: number, slot: number, target: number) => Atomics.store(views.bonds, i * 4 + slot, target),
-  set_bond_stiffness: (i: number, slot: number, val: number) => { views.bondStiffness[i * 4 + slot] = val; },
-  setBondTarget: (i: number, slot: number, target: number) => Atomics.store(views.bonds, i * 4 + slot, target),
-  setBondStiffness: (i: number, slot: number, val: number) => { views.bondStiffness[i * 4 + slot] = val; },
-  setBondDistance: (i: number, slot: number, val: number) => Atomics.store(views.bondDistances, i * 4 + slot, val),
+  set_bond_target: (i: number, slot: number, target: number) =>
+    Atomics.store(views.bonds, i * 4 + slot, target),
+  set_bond_stiffness: (i: number, slot: number, val: number) => {
+    views.bondStiffness[i * 4 + slot] = val;
+  },
+  setBondTarget: (i: number, slot: number, target: number) =>
+    Atomics.store(views.bonds, i * 4 + slot, target),
+  setBondStiffness: (i: number, slot: number, val: number) => {
+    views.bondStiffness[i * 4 + slot] = val;
+  },
+  setBondDistance: (i: number, slot: number, val: number) =>
+    Atomics.store(views.bondDistances, i * 4 + slot, val),
   set_damping: (i: number, val: number) => Atomics.store(views.damping, i, val),
   setDamping: (i: number, val: number) => Atomics.store(views.damping, i, val),
   setLineage: (i: number, val: bigint) => Atomics.store(views.lineage, i, val),
-  setMailboxMsgType: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2, val),
-  setMailboxPayload: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2 + 1, val),
+  setMailboxMsgType: (i: number, val: number) =>
+    Atomics.store(views.mailboxes, i * 2, val),
+  setMailboxPayload: (i: number, val: number) =>
+    Atomics.store(views.mailboxes, i * 2 + 1, val),
 
-  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
+  setInstructions: (i: number, val: Uint8Array) =>
+    views.instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
   setCode: (i: number, val: Uint32Array | Uint8Array) => {
     const codeStart = i * 16;
     if (val instanceof Uint32Array) {
@@ -3704,10 +4966,14 @@ export const STATE_MATRIX = {
     views.instructions.fill(0, instStart, instStart + ATOM_INSTRUCTION_SIZE);
     views.instructions.set(val.subarray(0, ATOM_INSTRUCTION_SIZE), instStart);
   },
-  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
-  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
-  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
-  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  set_reg: (i: number, reg: number, val: number) =>
+    Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  set_p_c: (i: number, val: number) =>
+    Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  setReg: (i: number, reg: number, val: number) =>
+    Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  setPC: (i: number, val: number) =>
+    Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
 
   getBondRequest: (i: number) => {
     const base = i * 3;
@@ -3727,8 +4993,16 @@ export const STATE_MATRIX = {
     views.bondDistances.fill(0, i * 4, i * 4 + 4);
     Atomics.store(views.damping, i, 0);
     Atomics.store(views.lineage, i, 0n);
-    views.instructions.fill(0, i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE);
-    views.contexts.fill(0, i * ATOM_CONTEXT_SIZE, i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE);
+    views.instructions.fill(
+      0,
+      i * ATOM_INSTRUCTION_SIZE,
+      i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE,
+    );
+    views.contexts.fill(
+      0,
+      i * ATOM_CONTEXT_SIZE,
+      i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE,
+    );
   },
 
   clear: () => {
@@ -3801,44 +5075,57 @@ export const STATE_MATRIX = {
     const atomCount = active.length;
     const gridCells = GRID_CELLS;
     const bytesPerAtom = 24;
-    
+
     const totalBytes = 16 + gridCells + (atomCount * bytesPerAtom);
     const buffer = new ArrayBuffer(totalBytes);
     const cv = new DataView(buffer);
     const u8 = new Uint8Array(buffer);
-    
-    u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
+
+    u8[0] = 79;
+    u8[1] = 77;
+    u8[2] = 71;
+    u8[3] = 65;
     let offset = 4;
-    
+
     cv.setInt32(offset, Atomics.load(views.tickCounter, 0), true);
     offset += 4;
-    
+
     cv.setInt32(offset, gridCells, true);
     offset += 4;
-    
-    for(let i=0; i < gridCells; i++) {
-        const type = STATE_MATRIX.getGridType(i);
-        const hasPlasmid = views.memoryGrid[i*8] > 0 ? 0x80 : 0;
-        u8[offset++] = type | hasPlasmid;
+
+    for (let i = 0; i < gridCells; i++) {
+      const type = STATE_MATRIX.getGridType(i);
+      const hasPlasmid = views.memoryGrid[i * 8] > 0 ? 0x80 : 0;
+      u8[offset++] = type | hasPlasmid;
     }
-    
+
     cv.setInt32(offset, atomCount, true);
     offset += 4;
-    
-    for(let j=0; j < atomCount; j++) {
-        const idx = active[j];
-        cv.setInt16(offset, Atomics.load(views.xs, idx), true); offset += 2;
-        cv.setInt16(offset, Atomics.load(views.ys, idx), true); offset += 2;
-        u8[offset++] = Atomics.load(views.roles, idx);
-        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(views.resonances, idx)));
-        cv.setUint16(offset, idx, true); offset += 2;
-        
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 1), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 2), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 3), true); offset+=4;
+
+    for (let j = 0; j < atomCount; j++) {
+      const idx = active[j];
+      cv.setInt16(offset, Atomics.load(views.xs, idx), true);
+      offset += 2;
+      cv.setInt16(offset, Atomics.load(views.ys, idx), true);
+      offset += 2;
+      u8[offset++] = Atomics.load(views.roles, idx);
+      u8[offset++] = Math.min(
+        255,
+        Math.max(0, Atomics.load(views.resonances, idx)),
+      );
+      cv.setUint16(offset, idx, true);
+      offset += 2;
+
+      cv.setUint32(offset, Atomics.load(views.bonds, idx * 4), true);
+      offset += 4;
+      cv.setUint32(offset, Atomics.load(views.bonds, idx * 4 + 1), true);
+      offset += 4;
+      cv.setUint32(offset, Atomics.load(views.bonds, idx * 4 + 2), true);
+      offset += 4;
+      cv.setUint32(offset, Atomics.load(views.bonds, idx * 4 + 3), true);
+      offset += 4;
     }
-    
+
     return buffer;
   },
 
@@ -3866,7 +5153,9 @@ export const STATE_MATRIX = {
     const boot = script || DEFAULT_BOOT_SCRIPT;
     views.instructions.set(boot, i * ATOM_INSTRUCTION_SIZE);
 
-    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + r, 0);
+    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) {
+      Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + r, 0);
+    }
     Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, 0);
   },
 
@@ -3968,7 +5257,8 @@ export const STATE_MATRIX = {
   getMemorySummary: () => {
     const counts = new Map<number, number>();
     for (let i = 0; i < GRID_CELLS; i++) {
-      const energy = views.memoryGrid[i * 8] + (views.memoryGrid[i * 8 + 1] << 8);
+      const energy = views.memoryGrid[i * 8] +
+        (views.memoryGrid[i * 8 + 1] << 8);
       if (energy > 0) {
         const sig = views.memoryGrid[i * 8 + 4];
         counts.set(sig, (counts.get(sig) || 0) + 1);
@@ -3990,12 +5280,16 @@ export const STATE_MATRIX = {
   },
 
   getGridType: (i: number) => Atomics.load(views.structureGrid, i) & 0xFF,
-  getGridDensity: (i: number) => (Atomics.load(views.structureGrid, i) >> 8) & 0xFF,
-  getGridCharge: (i: number) => (Atomics.load(views.structureGrid, i) >> 16) & 0xFF,
-  getGridState: (i: number) => (Atomics.load(views.structureGrid, i) >> 24) & 0xFF,
+  getGridDensity: (i: number) =>
+    (Atomics.load(views.structureGrid, i) >> 8) & 0xFF,
+  getGridCharge: (i: number) =>
+    (Atomics.load(views.structureGrid, i) >> 16) & 0xFF,
+  getGridState: (i: number) =>
+    (Atomics.load(views.structureGrid, i) >> 24) & 0xFF,
   getGlyphHeader: (i: number) => Atomics.load(views.glyphHeaders, i),
   getGlyphPayload: (i: number) => views.glyphPayload.subarray(i * 8, i * 8 + 8),
-  setGlyphHeader: (i: number, val: number) => Atomics.store(views.glyphHeaders, i, val),
+  setGlyphHeader: (i: number, val: number) =>
+    Atomics.store(views.glyphHeaders, i, val),
   setGlyphPayload: (i: number, val: Uint8Array) => {
     views.glyphPayload.fill(0, i * 8, i * 8 + 8);
     views.glyphPayload.set(val.subarray(0, 8), i * 8);
@@ -4018,12 +5312,13 @@ export const STATE_MATRIX = {
     Atomics.or(views.structureGrid, i, (val & 0xFF) << 24);
   },
   getCausality: (idx: number) => Atomics.load(views.causality, idx),
-  setCausality: (idx: number, val: number) => Atomics.store(views.causality, idx, val),
+  setCausality: (idx: number, val: number) =>
+    Atomics.store(views.causality, idx, val),
   clearDamping: () => views.damping.fill(0),
   get_hormone: (id: number) => Atomics.load(views.hormones, id),
-  setHormone: (id: number, val: number) => Atomics.store(views.hormones, id, val),
+  setHormone: (id: number, val: number) =>
+    Atomics.store(views.hormones, id, val),
 };
-
 ```
 
 ---
@@ -4040,7 +5335,6 @@ export * from "./P2P_FEDERATION.ts";
 export * from "./SWARM_NEXUS.ts";
 export * from "./PULSE.ts";
 export * from "./PULSE_WORKER.ts";
-
 ```
 
 ---
@@ -4167,7 +5461,6 @@ export const P2P_CODEC = {
     return idx;
   },
 };
-
 ```
 
 ---
@@ -4183,7 +5476,7 @@ export const P2P_CODEC = {
 import { STATE_MATRIX } from "@generated";
 import { PRNG } from "../../00/PRNG.ts";
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -4403,7 +5696,6 @@ export const P2P_FEDERATION = {
     }
   },
 };
-
 ```
 
 ---
@@ -4413,11 +5705,70 @@ export const P2P_FEDERATION = {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_worker.md
 
-import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import {
+  AS_WASM_PATH,
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
+  WASM_MEMORY_BYTES,
+} from "@generated";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, TICK_COUNTER_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "@generated";
-import { LOGGER, SCALE, SYS_YIELD, SYS_READ_MEM, SYS_WRITE_MEM, SYS_SPAWN, SYS_BIND, SYS_SET_ROLE, SYS_MUTATE, SYS_MSG, SYS_READ_INBOX, SYS_TRANSFER, SYS_REPLICATE, SYS_EMIT, SYS_SCAN, SYS_MOVE, SYS_EAT, SYS_BET, SYS_ATTRACT, SYS_FOLD, SYS_SPORE_DRIVE, SYS_SENSE_PHASE } from "@generated";
+import {
+  BOND_REQUESTS_OFFSET,
+  BONDS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MAX_ATOMS,
+  MAX_LEDGER_EVENTS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
+import {
+  LOGGER,
+  SCALE,
+  SYS_ATTRACT,
+  SYS_BET,
+  SYS_BIND,
+  SYS_EAT,
+  SYS_EMIT,
+  SYS_FOLD,
+  SYS_MOVE,
+  SYS_MSG,
+  SYS_MUTATE,
+  SYS_READ_INBOX,
+  SYS_READ_MEM,
+  SYS_REPLICATE,
+  SYS_SCAN,
+  SYS_SENSE_PHASE,
+  SYS_SET_ROLE,
+  SYS_SPAWN,
+  SYS_SPORE_DRIVE,
+  SYS_TRANSFER,
+  SYS_WRITE_MEM,
+  SYS_YIELD,
+} from "@generated";
 import { STATE_MATRIX } from "@generated";
 const resolveWithPhase = (
   baseValue: number,
@@ -4505,8 +5856,6 @@ let ledgerDataView: Int32Array | null = null;
 let marketState: Int32Array | null = null;
 let betPoolInt: Int32Array | null = null;
 
-
-
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
   const flagIdx = (atomIdx << 6) + 33;
@@ -4522,7 +5871,6 @@ function handle_syscall(atomIdx: number) {
   LOGGER.debug(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
-
 
   let gasCost = 0;
   switch (sysId) {
@@ -4609,7 +5957,9 @@ function handle_syscall(atomIdx: number) {
     case SYS_READ_MEM: {
       const gx = r1, gy = r2;
       let val = 0;
-      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView) {
+      if (
+        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView
+      ) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
@@ -4758,7 +6108,7 @@ function handle_syscall(atomIdx: number) {
             if (resonancesView && xsView && ysView) {
               const myRes = Atomics.load(resonancesView, atomIdx);
               let tRes = Atomics.load(resonancesView, targetIdx);
-              
+
               if (evolutionReservedView) {
                 const shield = Atomics.load(evolutionReservedView, targetIdx);
                 if (shield > 0) tRes = shield;
@@ -4770,7 +6120,11 @@ function handle_syscall(atomIdx: number) {
                 const tx = Atomics.load(xsView, targetIdx);
                 const ty = Atomics.load(ysView, targetIdx);
 
-                const rolesView = new Uint8Array(sharedBuffer!, ROLES_OFFSET, MAX_ATOMS);
+                const rolesView = new Uint8Array(
+                  sharedBuffer!,
+                  ROLES_OFFSET,
+                  MAX_ATOMS,
+                );
                 const myRole = Atomics.load(rolesView, atomIdx);
                 const tRole = Atomics.load(rolesView, targetIdx);
 
@@ -4779,9 +6133,15 @@ function handle_syscall(atomIdx: number) {
                   if (tEnergy > 20000) { // Enough base generation
                     Atomics.store(rolesView, targetIdx, 5); // ROLE_MITOCHONDRIA = 5
                     if (contextI32View) {
-                      Atomics.store(contextI32View, targetIdx * 16 + 12, atomIdx); // Store host atomIdx in Context Reg 12
+                      Atomics.store(
+                        contextI32View,
+                        targetIdx * 16 + 12,
+                        atomIdx,
+                      ); // Store host atomIdx in Context Reg 12
                     }
-                    LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`);
+                    LOGGER.debug(
+                      `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
+                    );
                     break;
                   }
                 }
@@ -4927,7 +6287,7 @@ function handle_syscall(atomIdx: number) {
           const cy = ysView[atomIdx] / 100;
 
           const CELL_SIZE = 10;
-                    
+
           const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
           const endX = Math.min(
             GRID_W - 1,
@@ -5009,7 +6369,6 @@ function handle_syscall(atomIdx: number) {
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
-
           if (nx < 0) nx = 0;
           else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
           if (ny < 0) ny = 0;
@@ -5035,7 +6394,6 @@ function handle_syscall(atomIdx: number) {
           LOGGER.debug(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
-
 
           if (capacityOk) {
             Atomics.store(xsView, atomIdx, nx);
@@ -5094,7 +6452,10 @@ function handle_syscall(atomIdx: number) {
 
       if (energy >= energyBet) {
         Atomics.sub(energiesView!, atomIdx, energyBet);
-        (self as unknown as Worker).postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        (self as unknown as Worker).postMessage({
+          type: "SPORE_DRIVE_REQUEST",
+          atomIdx,
+        });
         // Syscall intercept verification
         LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
@@ -5248,8 +6609,10 @@ const maybeDelay = async () => {
       });
       return;
     }
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       const wasmRes = await fetch(
         AS_WASM_PATH.href,
       );
@@ -5262,10 +6625,12 @@ try {
         target: number,
       ) => {
         if (op === 0xDD) {
-           const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
-           const epoch = Math.floor(tick / 10000);
-           LOGGER.info(`💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`);
-           return;
+          const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+          const epoch = Math.floor(tick / 10000);
+          LOGGER.info(
+            `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
+          );
+          return;
         }
         LOGGER.debug(
           `   [WASM_TRACE] Atom ${idx} executed ${
@@ -5299,7 +6664,8 @@ try {
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.glyph_transport as any;
-      tick_membrane_physics_fn = wasmInstance.exports.tick_membrane_physics as any;
+      tick_membrane_physics_fn = wasmInstance.exports
+        .tick_membrane_physics as any;
       resolve_bond_requests_fn = wasmInstance.exports
         .resolve_bond_requests as any;
       drain_spawn_requests_fn = wasmInstance.exports
@@ -5319,7 +6685,10 @@ try {
       setInterval(() => {
         // removed debug logging
       }, 5000);
-      (self as unknown as Worker).postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
+      (self as unknown as Worker).postMessage({
+        type: "INIT_OK",
+        workerIndex: Number(workerIndex),
+      });
     } catch (err) {
       LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
@@ -5338,10 +6707,20 @@ try {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
-    LOGGER.debug("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
+    LOGGER.debug(
+      "[WORKER " + currentPulseId +
+        "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
+      Atomics.load(syncStateView, 0),
+    );
     let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
-      if (stuckCycles++ > 100) { LOGGER.warn("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
+      if (stuckCycles++ > 100) {
+        LOGGER.warn(
+          "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
+          Atomics.load(syncStateView, 0),
+        );
+        stuckCycles = 0;
+      }
       Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
       if (Atomics.load(syncStateView, 0) === 2) {
         // If it's 2, we must wait for it to become 0 then 1
@@ -5349,8 +6728,10 @@ try {
       }
     }
 
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       for (let i = startIdx; i < endIdx; i++) {
         const startAtomMs = performance.now();
         const startId = Atomics.load(idsView, i);
@@ -5421,12 +6802,17 @@ try {
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
     if (tick_membrane_physics_fn) tick_membrane_physics_fn();
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "ENVIRONMENT_DONE",
+      pulseId,
+    });
   }
 
   if (type === "RESOLVE_BONDS") {
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       if (!resolve_bond_requests_fn) {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
@@ -5447,7 +6833,11 @@ try {
       ? drain_spawn_requests_fn(e.data.tick)
       : 0;
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({
+      type: "DRAIN_SPAWN_DONE",
+      pulseId,
+      count,
+    });
   }
 
   if (type === "PHAGOCYTE_PASS") {
@@ -5455,7 +6845,11 @@ try {
       ? run_phagocyte_pass_fn(e.data.entropy)
       : 0;
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "PHAGOCYTE_PASS_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({
+      type: "PHAGOCYTE_PASS_DONE",
+      pulseId,
+      count,
+    });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -5478,14 +6872,21 @@ try {
   if (type === "TICK_GLYPH_TRANSPORT") {
     if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "GLYPH_TRANSPORT_DONE",
+      pulseId,
+    });
   }
 
   if (type === "POLL_COHERENCE") {
     if (get_neural_coherence_fn) {
       const coherence = get_neural_coherence_fn();
       await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
+      (self as unknown as Worker).postMessage({
+        type: "COHERENCE_VAL",
+        coherence,
+        pulseId,
+      });
     }
   }
 
@@ -5493,7 +6894,10 @@ try {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
       await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "COHERENCE_SET_DONE", pulseId });
+      (self as unknown as Worker).postMessage({
+        type: "COHERENCE_SET_DONE",
+        pulseId,
+      });
     }
   }
 
@@ -5504,7 +6908,10 @@ try {
       accumulate_metabolism_stats_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "METABOLISM_ACCUMULATE_DONE",
+      pulseId,
+    });
   }
 
   if (type === "METABOLISM_APPLY") {
@@ -5540,7 +6947,10 @@ try {
       );
     }
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "METABOLISM_APPLY_DONE",
+      pulseId,
+    });
   }
 
   if (type === "SET_DEBUG_DELAY") {
@@ -5572,7 +6982,6 @@ try {
     });
   }
 };
-
 ```
 
 ---
@@ -5583,14 +6992,44 @@ try {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
 
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "@generated";
-import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "@generated";
+import {
+  AS_WASM_PATH,
+  LOGGER,
+  MAX_ATOMS,
+  sharedBuffer,
+  STATE_MATRIX,
+} from "@generated";
+import {
+  BONDS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  GRID_H,
+  GRID_W,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LATTICE_MEMORY_END,
+  LOGIC_OFFSET,
+  MAX_EGRESS_EVENTS,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
 
 import { SOVEREIGNTY_ENGINE } from "../../03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "../03/GATE.ts";
 import { PREDICTION_MARKET } from "../../03/PREDICTION_MARKET.ts";
 import { CONTROL_INTENT_QUEUE } from "../../03/CONTROL_INTENT_QUEUE.ts";
-
 
 export interface PulseOracleDelegate {
   setNeuralCoherence(coherence: number): void;
@@ -5603,11 +7042,23 @@ export interface PulseOracleDelegate {
 let oracleDelegate: PulseOracleDelegate | null = null;
 
 export interface PulseAkashaDelegate {
-  recordMutationTelemetry(event: { lane: string; kind: string; count: number }): void;
+  recordMutationTelemetry(
+    event: { lane: string; kind: string; count: number },
+  ): void;
   flushMutationTelemetry(tick: number): void;
   compressMemory(wasmMemory: WebAssembly.Memory): Promise<Uint8Array>;
-  decompressMemoryToLattice(wasmMemory: WebAssembly.Memory, payload: Uint8Array): Promise<void>;
-  saveEpoch(memory: WebAssembly.Memory, tick: number, label: string, count1: number, count2: number, hash: string): Promise<void>;
+  decompressMemoryToLattice(
+    wasmMemory: WebAssembly.Memory,
+    payload: Uint8Array,
+  ): Promise<void>;
+  saveEpoch(
+    memory: WebAssembly.Memory,
+    tick: number,
+    label: string,
+    count1: number,
+    count2: number,
+    hash: string,
+  ): Promise<void>;
   broadcastPanopticonFrame(frame: ArrayBuffer): void;
   recordImmunologicalPurge(count: number): Promise<void>;
   observePulseCodex(tick: number, pop: number, glyphs: any, syn: number): void;
@@ -5619,7 +7070,12 @@ let akashaDelegate: PulseAkashaDelegate | null = null;
 export interface PulseNoosphereDelegate {
   unpackAtom(payload: Uint8Array): number;
   packAtom(idx: number): Uint8Array;
-  evaluateHeartbeat(tick: number, epochHash: string, avgPhase: number, egressCount: number): void;
+  evaluateHeartbeat(
+    tick: number,
+    epochHash: string,
+    avgPhase: number,
+    egressCount: number,
+  ): void;
   sendEpochPayload(peerId: string, payload: Uint8Array): void;
   routeAtom(payload: Uint8Array): void;
   startNexus(): void;
@@ -5642,8 +7098,6 @@ export interface PulseNoosphereDelegate {
 }
 let noosphereDelegate: PulseNoosphereDelegate | null = null;
 
-
-
 const MAX_TICK_DRIFT = 50;
 let lastTickTime = performance.now();
 let lastPanopticonBroadcastTime = 0;
@@ -5651,7 +7105,7 @@ let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
 import { RUNTIME_POLICY } from "@generated";
-import { GLYPH_TELEMETRY } from "@06";
+import { GLYPH_TELEMETRY } from "@generated";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/daemon_ingress_policy.md";
 
 import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
@@ -5660,9 +7114,25 @@ import {
   HORMONE_BUFFER_CATALOG,
   type HormoneId,
 } from "../../02/HORMONE_BUFFER.ts";
-import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "../../03/GENERIC_LEDGER_SYSTEM.ts";
+import {
+  applyLedgerUpdate,
+  createGeneticLedgerRuntime,
+  createLedgerRuntime,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+} from "@generated";
 import { type GeneticLedgerKey } from "../03/GENETIC_LEDGER.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "../../03/GENERIC_LEDGER_PERSISTENCE.ts";
+import {
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
+} from "../../03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
 import { DollFork } from "@07/02/DOLL_FORK_MATRIX.ts";
@@ -5671,7 +7141,28 @@ import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
 import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
-import { PROP_NEURAL_COHERENCE, OP_SET, OP_GET, OP_SUB, OP_JNZ, OP_JMP, OP_SIGNAL, OP_SECRETE_PLASMID, OP_BUILD, OP_SYSCALL, OP_NOP, SYS_YIELD, SYS_SET_ROLE, OP_JZ, OP_SPORE_DRIVE, PROP_ENERGY, PROP_RESONANCE, OP_ADD, OP_REPLICATE, OP_PUT } from "../00/mod.ts";
+import {
+  OP_ADD,
+  OP_BUILD,
+  OP_GET,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_SECRETE_PLASMID,
+  OP_SET,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  PROP_ENERGY,
+  PROP_NEURAL_COHERENCE,
+  PROP_RESONANCE,
+  SYS_SET_ROLE,
+  SYS_YIELD,
+} from "../00/mod.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -7031,7 +8522,11 @@ const waitForWorkerMessage = <T = any>(
         }
         cleanup();
         reject(
-          createWorkerTimeoutError(expectedType, expectedPulseId, timeoutWindows),
+          createWorkerTimeoutError(
+            expectedType,
+            expectedPulseId,
+            timeoutWindows,
+          ),
         );
       }, ms);
     };
@@ -7165,7 +8660,7 @@ const postAndWait = async <T = any>(
     if (isWorkerTimeoutError(err)) {
       const syncState = STATE_MATRIX.syncState;
       if (syncState) {
-         LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+        LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
@@ -7237,7 +8732,9 @@ const startWorkers = async (count: number): Promise<void> => {
         const atomIdAtStart = STATE_MATRIX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
-          const packedAtom = (noosphereDelegate ? noosphereDelegate.packAtom(idx) : new Uint8Array(0));
+          const packedAtom = noosphereDelegate
+            ? noosphereDelegate.packAtom(idx)
+            : new Uint8Array(0);
           if (packedAtom) {
             noosphereDelegate?.routeAtom(packedAtom);
             LOGGER.debug(
@@ -7245,7 +8742,9 @@ const startWorkers = async (count: number): Promise<void> => {
             );
             STATE_MATRIX.recycleAtom(idx);
           } else {
-            LOGGER.error(`[PULSE] Failed to pack atom ${atomIdAtStart} for transit`);
+            LOGGER.error(
+              `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
+            );
           }
         }
       }
@@ -7625,12 +9124,15 @@ export const PULSE = {
     // Always start the network layer before bootstrapping bounds
     noosphereDelegate?.setNexusStatus({
       mainnetEnabled: RUNTIME_POLICY.p2p.mainnetEnabled,
-      bootstrapHubUrl: RUNTIME_POLICY.p2p.bootstrapHubUrl
+      bootstrapHubUrl: RUNTIME_POLICY.p2p.bootstrapHubUrl,
     });
-    await (noosphereDelegate ? noosphereDelegate.startNexus() : Promise.resolve());
+    await (noosphereDelegate
+      ? noosphereDelegate.startNexus()
+      : Promise.resolve());
 
     // Phase 30 / Phase 36: Bootstrapping Node Payload
-    const nexusStatus = noosphereDelegate?.getNexusStatus() || { seedNodesLength: 0, mainnetEnabled: false };
+    const nexusStatus = noosphereDelegate?.getNexusStatus() ||
+      { seedNodesLength: 0, mainnetEnabled: false };
     if (
       STATE_MATRIX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
@@ -8176,10 +9678,11 @@ export const PULSE = {
     return applied;
   },
 
-
   tick: async () => {
     if (isTicking) {
-      throw new Error("[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.");
+      throw new Error(
+        "[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.",
+      );
     }
     isTicking = true;
     if (workers.length === 0) {
@@ -8323,7 +9826,8 @@ export const PULSE = {
         );
       }
 
-      const telemetry = oracleDelegate?.gatherEpochTelemetry() || { matrixResonance: 0 };
+      const telemetry = oracleDelegate?.gatherEpochTelemetry() ||
+        { matrixResonance: 0 };
       oracleDelegate?.broadcastWhisper(currentTick, telemetry, coherence);
       // Trigger Oracle on either Matrix Resonance spike or High Coherence
       if (telemetry.matrixResonance > 5000 || coherence > 500) {
@@ -8450,9 +9954,11 @@ export const PULSE = {
       ) {
         // We trigger save but don't await it to avoid blocking the heartbeat.
         // It will complete in the background.
-        if (akashaDelegate) akashaDelegate.saveSnap(currentTick).then(() => {
-          akashaDelegate?.cleanupSnap(RUNTIME_POLICY.snapshot.retention);
-        });
+        if (akashaDelegate) {
+          akashaDelegate.saveSnap(currentTick).then(() => {
+            akashaDelegate?.cleanupSnap(RUNTIME_POLICY.snapshot.retention);
+          });
+        }
       }
 
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
@@ -8463,14 +9969,16 @@ export const PULSE = {
         const pCount = activeIdx.length;
         const autoEpochId = `auto_tick_${currentTick}`;
         const epochHash = await PULSE.generateEpochProof(currentTick);
-        if (akashaDelegate) await akashaDelegate.saveEpoch(
-          STATE_MATRIX.wasmMemory,
-          currentTick,
-          autoEpochId,
-          pCount,
-          0,
-          epochHash,
-        );
+        if (akashaDelegate) {
+          await akashaDelegate.saveEpoch(
+            STATE_MATRIX.wasmMemory,
+            currentTick,
+            autoEpochId,
+            pCount,
+            0,
+            epochHash,
+          );
+        }
         LOGGER.info(
           `[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`,
         );
@@ -8679,9 +10187,11 @@ export const PULSE = {
           "PHAGOCYTE_PASS_DONE",
         );
         const purgedCount = workerResponse.count || 0;
-        
+
         if (purgedCount > 0) {
-          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgedCount);
+          if (akashaDelegate) {
+            await akashaDelegate.recordImmunologicalPurge(purgedCount);
+          }
           LOGGER.info(
             `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
@@ -8957,12 +10467,15 @@ export const PULSE = {
       const now = performance.now();
       const dt = now - lastTickTime;
       if (dt > 1000) {
-        noosphereDelegate?.setNexusStatus({ localTps: (currentTick - tickCountLog) / (dt / 1000) });
+        noosphereDelegate?.setNexusStatus({
+          localTps: (currentTick - tickCountLog) / (dt / 1000),
+        });
         lastTickTime = now;
         tickCountLog = currentTick;
       }
 
-      const medianTick = noosphereDelegate?.getMedianSwarmTick(currentTick) ?? 0;
+      const medianTick = noosphereDelegate?.getMedianSwarmTick(currentTick) ??
+        0;
       if (currentTick > medianTick + MAX_TICK_DRIFT) {
         await new Promise((r) => setTimeout(r, 10)); // Elastic yield bounds
       }
@@ -8990,24 +10503,39 @@ export const PULSE = {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
       const id = STATE_MATRIX.getId(newIdx!);
-      LOGGER.info(`🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`);
+      LOGGER.info(
+        `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
+      );
       akashaDelegate?.recordMutationTelemetry({
         lane: "external_ingress",
         kind: "federation_migration_clear",
         count: 1,
       });
     } else {
-      LOGGER.warn(`🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`);
+      LOGGER.warn(
+        `🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`,
+      );
     }
   },
   onRemoteSyncRequest: async (peerId: string) => {
-    LOGGER.info(`[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`);
-    const payload = (akashaDelegate ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory) : new Uint8Array(0));
+    LOGGER.info(
+      `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
+    );
+    const payload = akashaDelegate
+      ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory)
+      : new Uint8Array(0);
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
   onRemoteEpochPayload: async (payload: Uint8Array) => {
-    LOGGER.info(`[PULSE] Hot State Merging payload received. Unpacking into Lattice...`);
-    if (akashaDelegate) await akashaDelegate.decompressMemoryToLattice(STATE_MATRIX.wasmMemory, payload);
+    LOGGER.info(
+      `[PULSE] Hot State Merging payload received. Unpacking into Lattice...`,
+    );
+    if (akashaDelegate) {
+      await akashaDelegate.decompressMemoryToLattice(
+        STATE_MATRIX.wasmMemory,
+        payload,
+      );
+    }
     if (genesisPromiseResolver) {
       genesisPromiseResolver();
       genesisPromiseResolver = null;
@@ -10240,7 +11768,6 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
-
 ```
 
 ---
@@ -10299,7 +11826,10 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     mainnetEnabled: config.mainnetEnabled ?? false,
     bootstrapHubUrl: config.bootstrapHubUrl ?? "",
     connectedPeers: new Map<string, WebSocket>(),
-    peerHeartbeats: new Map<string, { tick: number; tps: number; lastSeen: number }>(),
+    peerHeartbeats: new Map<
+      string,
+      { tick: number; tps: number; lastSeen: number }
+    >(),
     localCurrentTick: 0,
     localTps: 0,
     onAtomTransit: undefined,
@@ -10309,11 +11839,6 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
   const serverAbortController = new AbortController();
   let heartbeatInterval: number | undefined;
-
-
-
-
-
 
   self.start = () => {
     console.error(
@@ -10371,7 +11896,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     heartbeatInterval = setInterval(() => {
       broadcastHeartbeat();
     }, 100);
-  }
+  };
 
   self.stop = () => {
     LOGGER.info(`[NEXUS] Shutting down Node ${self.nodeId}`);
@@ -10385,7 +11910,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     }
     self.connectedPeers.clear();
     self.peerHeartbeats.clear();
-  }
+  };
 
   const connectToPeer = (url: string) => {
     try {
@@ -10395,7 +11920,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     } catch (e) {
       LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
     }
-  }
+  };
 
   const connectToHub = () => {
     try {
@@ -10437,9 +11962,12 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     } catch (e) {
       LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
     }
-  }
+  };
 
-  const handleConnection = (socket: WebSocket, direction: "INBOUND" | "OUTBOUND") => {
+  const handleConnection = (
+    socket: WebSocket,
+    direction: "INBOUND" | "OUTBOUND",
+  ) => {
     socket.binaryType = "arraybuffer";
     let remoteNodeId: string | null = null;
 
@@ -10497,7 +12025,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         e,
       );
     };
-  }
+  };
 
   const sendHandshake = (socket: WebSocket) => {
     // Handshake Payload:
@@ -10518,7 +12046,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(payload.buffer);
     }
-  }
+  };
 
   const handleHandshake = (socket: WebSocket, payload: Uint8Array): string => {
     const decoder = new TextDecoder();
@@ -10527,7 +12055,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
     self.connectedPeers.set(remoteId, socket);
     return remoteId;
-  }
+  };
 
   self.routeAtom = (egressEvent: Uint8Array) => {
     // Egress Event is exactly 192 bytes from P2P_CODEC.
@@ -10556,7 +12084,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
     sendDataChannel(targetPeer, payload.buffer);
     LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
-  }
+  };
 
   const sendDataChannel = (socket: WebSocket, payload: ArrayBufferLike) => {
     // Graceful fallback abstraction for RTCDataChannel constraints
@@ -10570,7 +12098,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     } else {
       LOGGER.warn(`[NEXUS] Target peer not OPEN. Payload lost.`);
     }
-  }
+  };
 
   const handleAtomTransit = (payload: Uint8Array) => {
     if (payload.length !== 193) {
@@ -10590,7 +12118,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         `[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`,
       );
     }
-  }
+  };
 
   const broadcastHeartbeat = () => {
     if (self.connectedPeers.size === 0) return;
@@ -10607,7 +12135,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         peer.send(payload.buffer);
       }
     }
-  }
+  };
 
   const handleHeartbeat = (remoteId: string, payload: Uint8Array) => {
     if (payload.length !== 17) return;
@@ -10620,7 +12148,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
       tps,
       lastSeen: performance.now(),
     });
-  }
+  };
 
   self.getMedianSwarmTick = (localTickFallback: number): number => {
     const now = performance.now();
@@ -10644,7 +12172,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
       return (ticks[mid - 1] + ticks[mid]) / 2;
     }
     return ticks[mid];
-  }
+  };
 
   self.broadcastEpochConsensus = (epochTick: number, hash: bigint) => {
     if (self.connectedPeers.size === 0) return;
@@ -10661,7 +12189,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         peer.send(payload.buffer);
       }
     }
-  }
+  };
 
   const handleEpochConsensus = (remoteId: string, payload: Uint8Array) => {
     if (payload.length !== 17) return;
@@ -10675,7 +12203,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     LOGGER.warn(
       `[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`,
     );
-  }
+  };
 
   // --- Phase 30: Bootstrapping ---
 
@@ -10691,7 +12219,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         peer.send(payload.buffer);
       }
     }
-  }
+  };
 
   const handleSyncRequest = (remoteId: string) => {
     LOGGER.info(
@@ -10700,7 +12228,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     if (self.onSyncRequest) {
       self.onSyncRequest(remoteId);
     }
-  }
+  };
 
   self.sendEpochPayload = (targetNodeId: string, epochData: Uint8Array) => {
     const peer = self.connectedPeers.get(targetNodeId);
@@ -10719,7 +12247,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
       `[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`,
     );
     peer.send(payload.buffer);
-  }
+  };
 
   const handleEpochPayload = (payload: Uint8Array) => {
     LOGGER.info(
@@ -10729,10 +12257,9 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     if (self.onEpochPayload) {
       self.onEpochPayload(epochData);
     }
-  }
+  };
   return self;
 };
-
 ```
 
 ---
@@ -10793,7 +12320,6 @@ export const createMetaKuramotoNode = (
 };
 
 export const SWARM_NODE = createMetaKuramotoNode();
-
 ```
 
 ---
@@ -10806,14 +12332,14 @@ export const SWARM_NODE = createMetaKuramotoNode();
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@06";
-import { STATE_MATRIX } from "@00";
+import { GLYPH_TELEMETRY } from "@generated";
+import { STATE_MATRIX } from "@generated";
 import { GRID_W, SCALE } from "../mod.ts";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);
   const gy = Math.floor(y / SCALE);
-  if (gx < 0 || gx >= GRID_W || gy < 0) return 0; // Simple boundary check 
+  if (gx < 0 || gx >= GRID_W || gy < 0) return 0; // Simple boundary check
   return gx + gy * GRID_W;
 };
 
@@ -10846,7 +12372,6 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -11032,7 +12557,6 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-
 ```
 
 ---
@@ -11047,7 +12571,6 @@ export * from "./SOVEREIGN_ORACLE.ts";
 export * from "./llm_soul.ts";
 export * from "./AVATAR_ENGINE.ts";
 export * from "./SEMANTIC_MEMBRANE.ts";
-
 ```
 
 ---
@@ -11057,7 +12580,7 @@ export * from "./SEMANTIC_MEMBRANE.ts";
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
 
-import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
+import { GRID_CELLS, GRID_H, GRID_W } from "../mod.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
@@ -11572,7 +13095,6 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```
 
 ---
@@ -11586,17 +13108,21 @@ export const SEMANTIC_MEMBRANE = {
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
 import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
-import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { SOVEREIGNTY_ENGINE } from "@03";
+import { MAX_GLYPH_AMP, MIN_GLYPH_AMP, STATE_MATRIX } from "@generated";
+import { SOVEREIGNTY_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
-import { PULSE } from "@02";
+import { RUNTIME_POLICY } from "@generated";
+import { PULSE } from "@generated";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
-import { GRID_W, GRID_H } from "../mod.ts";
+import { GRID_H, GRID_W } from "../mod.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  appendObserverCommentary(tick: number, epoch: number, message: string): Promise<void>;
+  appendObserverCommentary(
+    tick: number,
+    epoch: number,
+    message: string,
+  ): Promise<void>;
 }
 
 let delegate: SovereignOracleAkashaDelegate | null = null;
@@ -11685,12 +13211,12 @@ export const SOVEREIGN_ORACLE = {
     LOGGER.info(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
     const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
     LOGGER.info(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
-    
+
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     await delegate?.appendObserverCommentary(
       tick,
-      Math.floor(tick / 10000), 
-      `[END OF KALPA] ${reason} - ${epitaph}`
+      Math.floor(tick / 10000),
+      `[END OF KALPA] ${reason} - ${epitaph}`,
     );
   },
 
@@ -11971,9 +13497,13 @@ export const SOVEREIGN_ORACLE = {
 
         try {
           // --- ERA 69: PHASE 49 Semantic Bridge (LSH Quantization) ---
-          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(
+            oracleResult.intent,
+          );
           if (newPlasmid.length !== 8) {
-            throw new Error(`LSH Projection structure breach. Expected 8 byte payload, received ${newPlasmid.length}`);
+            throw new Error(
+              `LSH Projection structure breach. Expected 8 byte payload, received ${newPlasmid.length}`,
+            );
           }
 
           hex = Array.from(newPlasmid).map((b) =>
@@ -11983,7 +13513,9 @@ export const SOVEREIGN_ORACLE = {
           // Save the exact intent into the archive for UI/Telemetry
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
+          LOGGER.warn(
+            `🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`,
+          );
           return;
         }
 
@@ -12178,20 +13710,30 @@ export const SOVEREIGN_ORACLE = {
     SOVEREIGN_ORACLE.isConsulting = true;
 
     try {
-      LOGGER.info(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
+      LOGGER.info(
+        `👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`,
+      );
 
-      const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
+      const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(
+        telemetry,
+      );
 
       if (oracleResult && oracleResult.intent) {
         let newPlasmid: Uint8Array;
         let hex: string;
 
         try {
-          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(oracleResult.intent);
-          hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+          newPlasmid = await SEMANTIC_MEMBRANE.quantizeThought(
+            oracleResult.intent,
+          );
+          hex = Array.from(newPlasmid).map((b) =>
+            b.toString(16).padStart(2, "0")
+          ).join("").toUpperCase();
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
+          LOGGER.warn(
+            `🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`,
+          );
           return;
         }
 
@@ -12207,12 +13749,20 @@ export const SOVEREIGN_ORACLE = {
           source: "oracle_guidance",
         });
 
-        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
+        LOGGER.info(
+          `🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`,
+        );
 
         if (oracleResult.narrativeMood) {
-          LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
+          LOGGER.info(
+            `📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`,
+          );
           const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
-          await delegate?.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
+          await delegate?.appendObserverCommentary(
+            tick,
+            telemetry.epoch,
+            oracleResult.narrativeMood,
+          );
         }
       }
     } catch (err) {
@@ -12291,7 +13841,6 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```
 
 ---
@@ -12303,7 +13852,6 @@ export const SOVEREIGN_ORACLE = {
 
 export const base64_to_bytes = (b64: string): Uint8Array =>
   Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
-
 ```
 
 ---
@@ -12317,11 +13865,11 @@ export const base64_to_bytes = (b64: string): Uint8Array =>
 // Periodically samples the Matrix and injects new conceptual spores.
 
 import { STATE_MATRIX } from "@generated";
-import { SEMANTIC_MEMBRANE } from "@05";
-import { LLM_SYNAPSE } from "@05";
-import { AUDIT_ENGINE } from "@03";
+import { SEMANTIC_MEMBRANE } from "@generated";
+import { LLM_SYNAPSE } from "@generated";
+import { AUDIT_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@06";
+import { AKASHA_CODEX } from "@generated";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -12405,7 +13953,6 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```
 
 ---
@@ -12417,7 +13964,6 @@ if (import.meta.main) {
 
 export const bytes_to_base64 = (bytes: Uint8Array): string =>
   btoa(String.fromCharCode(...bytes));
-
 ```
 
 ---
@@ -12429,7 +13975,6 @@ export const bytes_to_base64 = (bytes: Uint8Array): string =>
 
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
-
 ```
 
 ---
@@ -12447,7 +13992,6 @@ export const fnv1a32 = (input: string): number => {
   }
   return hash >>> 0;
 };
-
 ```
 
 ---
@@ -12462,7 +14006,6 @@ import { GLYPH_ARITY_LUT } from "../00/mod.ts";
 export function get_glyph_arity(id: number): number {
   return GLYPH_ARITY_LUT[id & 63];
 }
-
 ```
 
 ---
@@ -12477,7 +14020,6 @@ import { GLYPH_ENERGY_LUT } from "../00/mod.ts";
 export function get_glyph_energy(id: number): number {
   return GLYPH_ENERGY_LUT[id & 63];
 }
-
 ```
 
 ---
@@ -12487,14 +14029,13 @@ export function get_glyph_energy(id: number): number {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_kind.md
 
-import { KIND_CORE, KIND_CONTROL } from "../00/mod.ts";
+import { KIND_CONTROL, KIND_CORE } from "../00/mod.ts";
 
 export function get_glyph_kind(id: number): number {
   if (id <= 3) return KIND_CORE;
   if (id <= 15) return KIND_CONTROL;
   return id >> 3;
 }
-
 ```
 
 ---
@@ -12509,7 +14050,6 @@ import { GLYPH_LEGACY_OPCODE_LUT } from "../00/mod.ts";
 export function get_glyph_legacy_opcode(id: number): number {
   return GLYPH_LEGACY_OPCODE_LUT[id & 63];
 }
-
 ```
 
 ---
@@ -12519,7 +14059,14 @@ export function get_glyph_legacy_opcode(id: number): number {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
 
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
+import {
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
+  MAX_GLYPH_AMP,
+  MIN_GLYPH_AMP,
+  SECRETION_STATS_OFFSET,
+} from "@generated";
 import { STATE_MATRIX } from "@generated";
 
 const GLYPH_KIND_MASK = 0xFF;
@@ -12691,8 +14238,10 @@ export const GLYPH_TELEMETRY = {
     const mArchitect = Atomics.load(view, 8);
     const mParasite = Atomics.load(view, 9);
 
-    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect + pParasite;
-    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect + mParasite;
+    const totalPhero = pNeutral + pProducer + pGuardian + pArchitect +
+      pParasite;
+    const totalPlasmid = mNeutral + mProducer + mGuardian + mArchitect +
+      mParasite;
 
     const signalLeak = Atomics.load(view, 10);
     const memoryLeak = Atomics.load(view, 11);
@@ -12727,7 +14276,6 @@ export const GLYPH_TELEMETRY = {
     };
   },
 };
-
 ```
 
 ---
@@ -12747,7 +14295,6 @@ export const hex_to_bytes = (hex: string): Uint8Array | null => {
   }
   return out;
 };
-
 ```
 
 ---
@@ -12828,7 +14375,6 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
-
 ```
 
 ---
@@ -12847,7 +14393,6 @@ export const make_xor_shift32 = (seed: number): () => number => {
     return state >>> 0;
   };
 };
-
 ```
 
 ---
@@ -12880,7 +14425,6 @@ export * from "./TUI_DASHBOARD.ts";
 export * from "./MUTATION_TELEMETRY.ts";
 export * from "./GLYPH_TELEMETRY.ts";
 export * from "./SERVE_DASHBOARD.ts";
-
 ```
 
 ---
@@ -12891,7 +14435,7 @@ export * from "./SERVE_DASHBOARD.ts";
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
 
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 type MutationLane =
   | "internal_oracle"
@@ -12976,7 +14520,6 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```
 
 ---
@@ -12991,7 +14534,6 @@ export const normalize_hex64 = (value: unknown): string | null => {
   const t = value.trim().toLowerCase();
   return /^[a-f0-9]{64}$/u.test(t) ? t : null;
 };
-
 ```
 
 ---
@@ -13004,7 +14546,6 @@ export const normalize_hex64 = (value: unknown): string | null => {
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
 import { WORLD_MAX_X, WORLD_MAX_Y } from "../mod.ts";
-
 
 type Telemetry = {
   tick: number;
@@ -14833,7 +16374,6 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
-
 ```
 
 ---
@@ -14843,14 +16383,17 @@ if (import.meta.main) {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/pack_structure_intent.md
 
-export function pack_structure_intent(target_type: number, target_value: number, locked: boolean): number {
-    let intent = target_type | (target_value << 24);
-    if (locked) {
-        intent |= 0x80000000;
-    }
-    return intent | 0;
+export function pack_structure_intent(
+  target_type: number,
+  target_value: number,
+  locked: boolean,
+): number {
+  let intent = target_type | (target_value << 24);
+  if (locked) {
+    intent |= 0x80000000;
+  }
+  return intent | 0;
 }
-
 ```
 
 ---
@@ -15080,7 +16623,7 @@ async function handler(req: Request): Promise<Response> {
         args: [
           "eval",
           `
-                    import { injectHologram } from "@02";
+                    import { injectHologram } from "@generated";
                     import { stringify } from "jsr:@std/yaml@^1.0.5";
                     const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
                     let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
@@ -15194,7 +16737,6 @@ if (import.meta.main) {
   );
   serve(handler, { port: 8000 });
 }
-
 ```
 
 ---
@@ -15218,7 +16760,6 @@ export const stable_stringify = (value: unknown): string => {
   }
   return JSON.stringify(value);
 };
-
 ```
 
 ---
@@ -15237,7 +16778,6 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
   }
   return out;
 };
-
 ```
 
 ---
@@ -15248,7 +16788,13 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/tui_dashboard.md
 
 import { STATE_MATRIX } from "@generated";
-import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";
+import {
+  GRID_H,
+  GRID_W,
+  SPATIAL_CELL_SIZE,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+} from "../mod.ts";
 import { PULSE } from "../04/PULSE.ts";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
 import { AgentProxy } from "../../06/AGENT_PROXY.ts";
@@ -15262,7 +16808,7 @@ const TOTAL_STARTING = STARTING_PREY + STARTING_PREDATORS + STARTING_PRODUCERS;
 async function initSimulation() {
   // Turn off logger output to avoid making the TUI messy
   LOGGER.setLevel("error");
-  
+
   STATE_MATRIX.clear();
   Atomics.store((STATE_MATRIX as any).syncState, 0, 0);
   // Optional: We can read tick via tracking our own var or reading `(STATE_MATRIX as any).tickCounter`
@@ -15383,7 +16929,6 @@ async function run() {
 if (import.meta.main) {
   run();
 }
-
 ```
 
 ---
@@ -15394,9 +16939,8 @@ if (import.meta.main) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/unpack_structure_charge.md
 
 export function unpack_structure_charge(intent: number): number {
-    return ((intent >>> 0) & 0x7F000000) >>> 24;
+  return ((intent >>> 0) & 0x7F000000) >>> 24;
 }
-
 ```
 
 ---
@@ -15416,7 +16960,7 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 
   // Pass 1: Resolve Labels
   let pc = 0;
-  for (let i = 0; i < instructions.length; ) {
+  for (let i = 0; i < instructions.length;) {
     const item = instructions[i];
     if (typeof item === "string") {
       labels[item] = pc;
@@ -15430,7 +16974,7 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 
   // Pass 2: Emit bytes
   pc = 0;
-  for (let i = 0; i < instructions.length; ) {
+  for (let i = 0; i < instructions.length;) {
     const item = instructions[i];
     if (typeof item === "string") {
       i++;
@@ -15441,7 +16985,7 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
         const arg = instructions[i + 1 + j];
         if (typeof arg === "string") {
           if (labels[arg] === undefined) {
-             throw new Error(`Assembler Error: Unresolved label '${arg}'`);
+            throw new Error(`Assembler Error: Unresolved label '${arg}'`);
           }
           binary[pc++] = labels[arg];
         } else {
@@ -15454,7 +16998,6 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 
   return binary;
 };
-
 ```
 
 ---
@@ -15504,7 +17047,6 @@ export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
     false,
     ["verify"],
   );
-
 ```
 
 ---
@@ -15515,7 +17057,34 @@ export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/disassembler.md
 
 import { OPCODE_ARITY_LUT } from "../00/mod.ts";
-import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_SYSCALL, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_HEBB, OP_PLUG, OP_TENSEGRITY, OP_COLLECTIVE, OP_BUILD, OP_SPORE_DRIVE, OP_SENSE, OP_SENSE_AS, OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO } from "../00/mod.ts";
+import {
+  OP_ADD,
+  OP_BIND,
+  OP_BUILD,
+  OP_COLLECTIVE,
+  OP_GET,
+  OP_HEBB,
+  OP_INCORPORATE_PLASMID,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PLUG,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_RESOLVE,
+  OP_RESONATE_KURAMOTO,
+  OP_SECRETE_PLASMID,
+  OP_SENSE,
+  OP_SENSE_AS,
+  OP_SET,
+  OP_SHARE,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  OP_TENSEGRITY,
+} from "../00/mod.ts";
 // We need glyphSpecByLegacyOpcode which is part of glyph_ir_64 module
 import { glyphSpecByLegacyOpcode } from "./glyph_ir_64.ts";
 
@@ -15558,7 +17127,7 @@ const OPCODE_NAMES = new Map<number, string>([
   [OP_PLUG, "PLUG"],
   [OP_RESOLVE, "RESOLVE"],
   [OP_SYSCALL, "SYSCALL"],
-  [OP_RESONATE_KURAMOTO, "RESONATE_KURAMOTO"]
+  [OP_RESONATE_KURAMOTO, "RESONATE_KURAMOTO"],
 ]);
 
 const opcodeName = (opcode: number): string =>
@@ -15624,7 +17193,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
 ```
 
 ---
@@ -15635,9 +17203,18 @@ export const scriptToGlyphTape = (
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_ir_64.md
 
 import {
-  KIND_CORE, KIND_CONTROL, KIND_TRANSPORT, KIND_STRUCTURAL,
-  KIND_CATALYTIC, KIND_REGULATORY, KIND_MEMORY, KIND_RESERVE,
-  GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
+  GLYPH_ARITY_LUT,
+  GLYPH_ENERGY_LUT,
+  GLYPH_LEGACY_OPCODE_LUT,
+  GLYPH_RGB_LUT,
+  KIND_CATALYTIC,
+  KIND_CONTROL,
+  KIND_CORE,
+  KIND_MEMORY,
+  KIND_REGULATORY,
+  KIND_RESERVE,
+  KIND_STRUCTURAL,
+  KIND_TRANSPORT,
 } from "../00/mod.ts";
 
 import { get_glyph_kind } from "../06/mod.ts";
@@ -15702,10 +17279,26 @@ export const defaultStabilityClass = (kind: GlyphKind): GlyphStabilityClass => {
 };
 
 const UI_OVERRIDES = new Map<number, Partial<GlyphSpec>>([
-  [0, { mnemonic: "S", reductionRuleRef: "reduction/core/S", notes: "Hard invariant combinator." }],
-  [1, { mnemonic: "K", reductionRuleRef: "reduction/core/K", notes: "Hard invariant combinator." }],
-  [2, { mnemonic: "I", reductionRuleRef: "reduction/core/I", notes: "Hard invariant combinator." }],
-  [3, { mnemonic: "Y", reductionRuleRef: "reduction/core/Y", notes: "Bounded recursion anchor under fuel budget." }],
+  [0, {
+    mnemonic: "S",
+    reductionRuleRef: "reduction/core/S",
+    notes: "Hard invariant combinator.",
+  }],
+  [1, {
+    mnemonic: "K",
+    reductionRuleRef: "reduction/core/K",
+    notes: "Hard invariant combinator.",
+  }],
+  [2, {
+    mnemonic: "I",
+    reductionRuleRef: "reduction/core/I",
+    notes: "Hard invariant combinator.",
+  }],
+  [3, {
+    mnemonic: "Y",
+    reductionRuleRef: "reduction/core/Y",
+    notes: "Bounded recursion anchor under fuel budget.",
+  }],
   [8, { mnemonic: "SET", reductionRuleRef: "bridge/control/set" }],
   [9, { mnemonic: "GET", reductionRuleRef: "bridge/control/get" }],
   [10, { mnemonic: "PUT", reductionRuleRef: "bridge/control/put" }],
@@ -15714,18 +17307,34 @@ const UI_OVERRIDES = new Map<number, Partial<GlyphSpec>>([
   [13, { mnemonic: "JNZ", reductionRuleRef: "bridge/control/jnz" }],
   [14, { mnemonic: "JMP", reductionRuleRef: "bridge/control/jmp" }],
   [15, { mnemonic: "JZ", reductionRuleRef: "bridge/control/jz" }],
-  [16, { mnemonic: "REPLICATE", reductionRuleRef: "bridge/transport/replicate" }],
+  [16, {
+    mnemonic: "REPLICATE",
+    reductionRuleRef: "bridge/transport/replicate",
+  }],
   [17, { mnemonic: "SIGNAL", reductionRuleRef: "bridge/transport/signal" }],
   [18, { mnemonic: "SHARE", reductionRuleRef: "bridge/transport/share" }],
   [19, { mnemonic: "BIND", reductionRuleRef: "bridge/transport/bind" }],
-  [20, { mnemonic: "SPORE_DRIVE", reductionRuleRef: "bridge/transport/spore_drive" }],
+  [20, {
+    mnemonic: "SPORE_DRIVE",
+    reductionRuleRef: "bridge/transport/spore_drive",
+  }],
   [21, { mnemonic: "ENTANGLE", reductionRuleRef: "bridge/transport/entangle" }],
-  [22, { mnemonic: "SYSCALL", reductionRuleRef: "bridge/transport/syscall", notes: "Universal Host Interface." }],
+  [22, {
+    mnemonic: "SYSCALL",
+    reductionRuleRef: "bridge/transport/syscall",
+    notes: "Universal Host Interface.",
+  }],
   [24, { mnemonic: "PLUG", reductionRuleRef: "bridge/structural/plug" }],
-  [25, { mnemonic: "TENSEGRITY", reductionRuleRef: "bridge/structural/tensegrity" }],
+  [25, {
+    mnemonic: "TENSEGRITY",
+    reductionRuleRef: "bridge/structural/tensegrity",
+  }],
   [26, { mnemonic: "BUILD", reductionRuleRef: "bridge/structural/build" }],
   [27, { mnemonic: "SENSE", reductionRuleRef: "bridge/structural/sense" }],
-  [32, { mnemonic: "COLLECTIVE", reductionRuleRef: "bridge/catalytic/collective" }],
+  [32, {
+    mnemonic: "COLLECTIVE",
+    reductionRuleRef: "bridge/catalytic/collective",
+  }],
   [33, { mnemonic: "ROLE", reductionRuleRef: "bridge/catalytic/role" }],
   [34, { mnemonic: "RESOLVE", reductionRuleRef: "bridge/catalytic/resolve" }],
   [35, { mnemonic: "BIND", reductionRuleRef: "bridge/catalytic/bind" }],
@@ -15739,26 +17348,30 @@ export const buildGlyphSpecs = (): GlyphSpec[] => {
     const arity = GLYPH_ARITY_LUT[id];
     const energyCost = GLYPH_ENERGY_LUT[id];
     const rawLegacyOpcode = GLYPH_LEGACY_OPCODE_LUT[id];
-    
+
     const ui = UI_OVERRIDES.get(id) ?? {};
     const stabilityClass = defaultStabilityClass(kind);
 
     specs.push({
       id,
-      mnemonic: ui.mnemonic ?? `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
+      mnemonic: ui.mnemonic ??
+        `${kind.toUpperCase()}_${id.toString().padStart(2, "0")}`,
       kind,
       arity,
       energyCost,
       stabilityClass,
       reductionRuleRef: ui.reductionRuleRef ?? defaultReductionRuleRef(kind),
       legacyOpcode: rawLegacyOpcode !== 255 ? rawLegacyOpcode : undefined,
-      notes: ui.notes ?? (stabilityClass === "reserve" ? "Reserved for sandboxed semantic evolution only." : "Unassigned placeholder within the fixed 64-glyph lattice."),
+      notes: ui.notes ??
+        (stabilityClass === "reserve"
+          ? "Reserved for sandboxed semantic evolution only."
+          : "Unassigned placeholder within the fixed 64-glyph lattice."),
       vertexIndex: id >= 4 ? id - 4 : undefined,
       rgb: [
         GLYPH_RGB_LUT[id * 3],
         GLYPH_RGB_LUT[id * 3 + 1],
-        GLYPH_RGB_LUT[id * 3 + 2]
-      ]
+        GLYPH_RGB_LUT[id * 3 + 2],
+      ],
     });
   }
   return specs;
@@ -15798,7 +17411,6 @@ export const isCoreGlyph = (id: number): boolean => {
 
 export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
-
 ```
 
 ---
@@ -15814,7 +17426,6 @@ export * from "./sha256_hex.ts";
 export * from "./glyph_ir_64.ts";
 export * from "./assembler.ts";
 export * from "./disassembler.ts";
-
 ```
 
 ---
@@ -15840,7 +17451,6 @@ export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
   );
   return bytes_to_hex(new Uint8Array(digest));
 };
-
 ```
 
 ---
@@ -15870,7 +17480,6 @@ export const glyphTapeToLines = (tape: readonly GlyphTapeToken[]): string[] =>
 export const glyphTapeToPrettyText = (
   tape: readonly GlyphTapeToken[],
 ): string => glyphTapeToLines(tape).join("\\n");
-
 ```
 
 ---
@@ -15882,7 +17491,6 @@ export const glyphTapeToPrettyText = (
 // deno-lint-ignore-file camelcase
 export * from "../07/mod.ts";
 export * from "./glyph_pretty.ts";
-
 ```
 
 ---
@@ -15904,8 +17512,9 @@ export * from "./08/mod.ts";
 export * from "../00/SHIMS.ts";
 export * from "../00/ATOM_INDEX.ts";
 export * from "../00/PRNG.ts";
-export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);
-
+export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH")
+  ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!))
+  : new URL("../_as/release.wasm", import.meta.url);
 ```
 
 ---
@@ -15924,8 +17533,73 @@ export function append_jsonl(): void {}
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/C_LOG2_C_LUT.md
 
-export const C_LOG2_C_LUT: StaticArray<i32> = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000];
-
+export const C_LOG2_C_LUT: StaticArray<i32> = [
+  0,
+  0,
+  2000,
+  4755,
+  8000,
+  11610,
+  15510,
+  19651,
+  24000,
+  28529,
+  33219,
+  38054,
+  43020,
+  48106,
+  53303,
+  58603,
+  64000,
+  69487,
+  75059,
+  80711,
+  86439,
+  92239,
+  98107,
+  104042,
+  110039,
+  116096,
+  122211,
+  128382,
+  134606,
+  140881,
+  147207,
+  153580,
+  160000,
+  166465,
+  172974,
+  179525,
+  186117,
+  192750,
+  199421,
+  206131,
+  212877,
+  219660,
+  226477,
+  233329,
+  240215,
+  247133,
+  254084,
+  261066,
+  268078,
+  275121,
+  282193,
+  289294,
+  296423,
+  303580,
+  310764,
+  317975,
+  325212,
+  332475,
+  339763,
+  347076,
+  354413,
+  361775,
+  369160,
+  376569,
+  384000,
+];
 ```
 
 ---
@@ -15935,13 +17609,11 @@ export const C_LOG2_C_LUT: StaticArray<i32> = [0, 0, 2000, 4755, 8000, 11610, 15
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp01.md
 
-@inline
 export function clamp01(x: f64): f64 {
-if (x < 0.0) return 0.0;
-if (x > 1.0) return 1.0;
-return x;
+  if (x < 0.0) return 0.0;
+  if (x > 1.0) return 1.0;
+  return x;
 }
-
 ```
 
 ---
@@ -15954,7 +17626,6 @@ return x;
 export const COS_LUT: StaticArray<i32> = [
   /* [TRUNCATED LUT ARRAY] */
 ];
-
 ```
 
 ---
@@ -15964,13 +17635,11 @@ export const COS_LUT: StaticArray<i32> = [
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir4_x.md
 
-@inline
 export function dir4_x(n: i32): i32 {
-if (n == 0) return -1;
-if (n == 1) return 1;
-return 0;
+  if (n == 0) return -1;
+  if (n == 1) return 1;
+  return 0;
 }
-
 ```
 
 ---
@@ -15980,13 +17649,11 @@ return 0;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir4_y.md
 
-@inline
 export function dir4_y(n: i32): i32 {
-if (n == 2) return -1;
-if (n == 3) return 1;
-return 0;
+  if (n == 2) return -1;
+  if (n == 3) return 1;
+  return 0;
 }
-
 ```
 
 ---
@@ -15996,13 +17663,11 @@ return 0;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir8_x.md
 
-@inline
 export function dir8_x(n: i32): i32 {
-if (n == 0 || n == 4 || n == 6) return -1;
-if (n == 1 || n == 5 || n == 7) return 1;
-return 0;
+  if (n == 0 || n == 4 || n == 6) return -1;
+  if (n == 1 || n == 5 || n == 7) return 1;
+  return 0;
 }
-
 ```
 
 ---
@@ -16012,13 +17677,11 @@ return 0;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir8_y.md
 
-@inline
 export function dir8_y(n: i32): i32 {
-if (n == 2 || n == 4 || n == 5) return -1;
-if (n == 3 || n == 6 || n == 7) return 1;
-return 0;
+  if (n == 2 || n == 4 || n == 5) return -1;
+  if (n == 3 || n == 6 || n == 7) return 1;
+  return 0;
 }
-
 ```
 
 ---
@@ -16028,14 +17691,12 @@ return 0;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/encode_force_tuple.md
 
-@inline
 export function encode_force_tuple(fx: f32, fy: f32): void {
-// Reinterpret cast f32 -> i32 then pack into i64
-const xInt = reinterpret<i32>(fx);
-const yInt = reinterpret<i32>(fy);
-return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
+  // Reinterpret cast f32 -> i32 then pack into i64
+  const xInt = reinterpret<i32>(fx);
+  const yInt = reinterpret<i32>(fy);
+  return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
 }
-
 ```
 
 ---
@@ -16044,8 +17705,6 @@ return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/env_parse.md
-
-
 ```
 
 ---
@@ -16055,12 +17714,10 @@ return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_abs.md
 
-@inline
 export function fast_abs(v: i32): i32 {
-const mask = v >> 31;
-return (v + mask) ^ mask;
+  const mask = v >> 31;
+  return (v + mask) ^ mask;
 }
-
 ```
 
 ---
@@ -16070,12 +17727,10 @@ return (v + mask) ^ mask;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_max.md
 
-@inline
 export function fast_max(a: i32, b: i32): i32 {
-const diff = a - b;
-return a - (diff & (diff >> 31));
+  const diff = a - b;
+  return a - (diff & (diff >> 31));
 }
-
 ```
 
 ---
@@ -16085,12 +17740,10 @@ return a - (diff & (diff >> 31));
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_min.md
 
-@inline
 export function fast_min(a: i32, b: i32): i32 {
-const diff = a - b;
-return b + (diff & (diff >> 31));
+  const diff = a - b;
+  return b + (diff & (diff >> 31));
 }
-
 ```
 
 ---
@@ -16100,11 +17753,9 @@ return b + (diff & (diff >> 31));
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_sign.md
 
-@inline
 export function fast_sign(v: i32): i32 {
-return (v >> 31) | (<i32>(<u32>-v) >>> 31);
+  return (v >> 31) | (<i32> (<u32> -v) >>> 31);
 }
-
 ```
 
 ---
@@ -16114,8 +17765,72 @@ return (v >> 31) | (<i32>(<u32>-v) >>> 31);
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/genomes/GENESIS_PREDATOR_SCRIPT.md
 
-export const GENESIS_PREDATOR_SCRIPT: StaticArray<i32> = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4, 1, 0, 1, 2, 0, 1, 3, 50, 1, 4, 0, 5, 3, 4, 1, 0, 10, 96, 1, 0, 1, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const GENESIS_PREDATOR_SCRIPT: StaticArray<i32> = [
+  1,
+  1,
+  3,
+  1,
+  0,
+  13,
+  96,
+  1,
+  1,
+  0,
+  4,
+  1,
+  0,
+  1,
+  2,
+  0,
+  1,
+  3,
+  50,
+  1,
+  4,
+  0,
+  5,
+  3,
+  4,
+  1,
+  0,
+  10,
+  96,
+  1,
+  0,
+  1,
+  96,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -16125,8 +17840,72 @@ export const GENESIS_PREDATOR_SCRIPT: StaticArray<i32> = [1, 1, 3, 1, 0, 13, 96,
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ARITY_LUT.md
 
-export const GLYPH_ARITY_LUT: StaticArray<i32> = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 3, 2, 2, 0, 0, 0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const GLYPH_ARITY_LUT: StaticArray<i32> = [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  2,
+  2,
+  2,
+  2,
+  2,
+  1,
+  2,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  3,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  3,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -16136,8 +17915,72 @@ export const GLYPH_ARITY_LUT: StaticArray<i32> = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ENERGY_LUT.md
 
-export const GLYPH_ENERGY_LUT: StaticArray<i32> = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 2, 20, 50, 10, 0, 1, 3, 4, 6, 2, 1, 1, 1, 1, 4, 2, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
+export const GLYPH_ENERGY_LUT: StaticArray<i32> = [
+  0,
+  0,
+  0,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  6,
+  3,
+  2,
+  20,
+  50,
+  10,
+  0,
+  1,
+  3,
+  4,
+  6,
+  2,
+  1,
+  1,
+  1,
+  1,
+  4,
+  2,
+  5,
+  5,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+];
 ```
 
 ---
@@ -16147,8 +17990,72 @@ export const GLYPH_ENERGY_LUT: StaticArray<i32> = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
 
-export const GLYPH_LEGACY_OPCODE_LUT: StaticArray<i32> = [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
-
+export const GLYPH_LEGACY_OPCODE_LUT: StaticArray<i32> = [
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  1,
+  2,
+  3,
+  4,
+  5,
+  17,
+  18,
+  16,
+  128,
+  129,
+  131,
+  255,
+  167,
+  138,
+  96,
+  255,
+  164,
+  165,
+  168,
+  169,
+  255,
+  255,
+  255,
+  255,
+  166,
+  170,
+  176,
+  130,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+  255,
+];
 ```
 
 ---
@@ -16158,8 +18065,200 @@ export const GLYPH_LEGACY_OPCODE_LUT: StaticArray<i32> = [255, 255, 255, 255, 25
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_RGB_LUT.md
 
-export const GLYPH_RGB_LUT: StaticArray<i32> = [255, 255, 255, 128, 128, 128, 0, 0, 0, 255, 0, 255, 255, 77, 77, 254, 87, 68, 251, 98, 60, 245, 109, 51, 238, 121, 42, 230, 132, 34, 220, 143, 27, 209, 153, 21, 199, 162, 15, 188, 170, 11, 179, 179, 7, 153, 170, 4, 131, 163, 2, 110, 157, 1, 93, 154, 0, 77, 153, 0, 62, 154, 0, 48, 157, 1, 34, 163, 2, 21, 170, 4, 7, 179, 7, 11, 188, 29, 15, 199, 52, 21, 209, 77, 27, 220, 104, 34, 230, 132, 42, 238, 160, 51, 245, 187, 60, 251, 212, 68, 254, 235, 77, 255, 255, 84, 237, 254, 91, 219, 251, 96, 201, 245, 100, 183, 238, 103, 166, 230, 105, 151, 220, 105, 136, 209, 104, 123, 199, 102, 111, 188, 100, 100, 179, 105, 98, 170, 109, 95, 163, 113, 93, 157, 117, 92, 154, 122, 92, 153, 129, 92, 154, 138, 93, 157, 149, 95, 163, 163, 98, 170, 179, 100, 179, 188, 102, 180, 199, 104, 180, 209, 105, 178, 220, 105, 174, 229, 103, 166, 238, 100, 156, 245, 96, 141, 251, 91, 123, 254, 84, 101];
-
+export const GLYPH_RGB_LUT: StaticArray<i32> = [
+  255,
+  255,
+  255,
+  128,
+  128,
+  128,
+  0,
+  0,
+  0,
+  255,
+  0,
+  255,
+  255,
+  77,
+  77,
+  254,
+  87,
+  68,
+  251,
+  98,
+  60,
+  245,
+  109,
+  51,
+  238,
+  121,
+  42,
+  230,
+  132,
+  34,
+  220,
+  143,
+  27,
+  209,
+  153,
+  21,
+  199,
+  162,
+  15,
+  188,
+  170,
+  11,
+  179,
+  179,
+  7,
+  153,
+  170,
+  4,
+  131,
+  163,
+  2,
+  110,
+  157,
+  1,
+  93,
+  154,
+  0,
+  77,
+  153,
+  0,
+  62,
+  154,
+  0,
+  48,
+  157,
+  1,
+  34,
+  163,
+  2,
+  21,
+  170,
+  4,
+  7,
+  179,
+  7,
+  11,
+  188,
+  29,
+  15,
+  199,
+  52,
+  21,
+  209,
+  77,
+  27,
+  220,
+  104,
+  34,
+  230,
+  132,
+  42,
+  238,
+  160,
+  51,
+  245,
+  187,
+  60,
+  251,
+  212,
+  68,
+  254,
+  235,
+  77,
+  255,
+  255,
+  84,
+  237,
+  254,
+  91,
+  219,
+  251,
+  96,
+  201,
+  245,
+  100,
+  183,
+  238,
+  103,
+  166,
+  230,
+  105,
+  151,
+  220,
+  105,
+  136,
+  209,
+  104,
+  123,
+  199,
+  102,
+  111,
+  188,
+  100,
+  100,
+  179,
+  105,
+  98,
+  170,
+  109,
+  95,
+  163,
+  113,
+  93,
+  157,
+  117,
+  92,
+  154,
+  122,
+  92,
+  153,
+  129,
+  92,
+  154,
+  138,
+  93,
+  157,
+  149,
+  95,
+  163,
+  163,
+  98,
+  170,
+  179,
+  100,
+  179,
+  188,
+  102,
+  180,
+  199,
+  104,
+  180,
+  209,
+  105,
+  178,
+  220,
+  105,
+  174,
+  229,
+  103,
+  166,
+  238,
+  100,
+  156,
+  245,
+  96,
+  141,
+  251,
+  91,
+  123,
+  254,
+  84,
+  101,
+];
 ```
 
 ---
@@ -16181,7 +18280,6 @@ export const STAB_HARD_INVARIANT: u8 = 0;
 export const STAB_LEGACY_BRIDGE: u8 = 1;
 export const STAB_BOUNDED_DYNAMIC: u8 = 2;
 export const STAB_RESERVE: u8 = 3;
-
 ```
 
 ---
@@ -16191,9 +18289,14 @@ export const STAB_RESERVE: u8 = 3;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/immune_check.md
 
-@inline
-export function immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entropy_pressure: i32): bool {
-if (id_handle === 0) return false;
+export function immune_check(
+  energy: i32,
+  resonance: i32,
+  id_handle: i32,
+  role: u8,
+  entropy_pressure: i32,
+): bool {
+  if (id_handle === 0) return false;
 
   // Necrotic check (Zero energy and zero resonance)
   if (energy <= 0 && resonance <= 0) return true;
@@ -16207,18 +18310,17 @@ if (id_handle === 0) return false;
   // We use integer math to avoid floats where possible. threshold * 1000 = entropy * 2.
   const threshold_x1000 = entropy_pressure * 2;
   const energy_x1000 = energy * 1000;
-  
+
   // energy < threshold
   if (energy_x1000 < threshold_x1000) {
-      // resonance < threshold * 100 -> resonance * 10 < threshold * 1000
-      if ((resonance * 10) < threshold_x1000) {
-          return true;
-      }
+    // resonance < threshold * 100 -> resonance * 10 < threshold * 1000
+    if ((resonance * 10) < threshold_x1000) {
+      return true;
+    }
   }
 
   return false;
 }
-
 ```
 
 ---
@@ -16228,13 +18330,11 @@ if (id_handle === 0) return false;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_clamp.md
 
-@inline
 export function math_clamp(val: i32, min: i32, max: i32): i32 {
-if (val < min) return min;
-if (val > max) return max;
-return val;
+  if (val < min) return min;
+  if (val > max) return max;
+  return val;
 }
-
 ```
 
 ---
@@ -16281,7 +18381,6 @@ export { dir8_y } from "./dir8_y";
 export { dir4_y } from "./dir4_y";
 export { dir4_x } from "./dir4_x";
 export { dir8_x } from "./dir8_x";
-
 ```
 
 ---
@@ -16291,14 +18390,12 @@ export { dir8_x } from "./dir8_x";
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/normalize_angle.md
 
-@inline
 export function normalize_angle(angle: f64): f64 {
-const tau: f64 = 2.0 * Math.PI;
-let a: f64 = angle % tau;
-if (a < 0.0) a += tau;
-return a / tau;
+  const tau: f64 = 2.0 * Math.PI;
+  let a: f64 = angle % tau;
+  if (a < 0.0) a += tau;
+  return a / tau;
 }
-
 ```
 
 ---
@@ -16308,8 +18405,256 @@ return a / tau;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OPCODE_ARITY_LUT.md
 
-export const OPCODE_ARITY_LUT: StaticArray<i32> = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+export const OPCODE_ARITY_LUT: StaticArray<i32> = [
+  0,
+  2,
+  2,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  2,
+  1,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  3,
+  3,
+  0,
+  2,
+  2,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  1,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+];
 ```
 
 ---
@@ -16319,13 +18664,11 @@ export const OPCODE_ARITY_LUT: StaticArray<i32> = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0,
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/pack_glyph_header.md
 
-@inline
 export function pack_glyph_header(kind: i32, amplitude: i32): i32 {
-if (amplitude < -12000) amplitude = -12000;
-if (amplitude > 12000) amplitude = 12000;
-return (amplitude << 8) | (kind & 0xFF);
+  if (amplitude < -12000) amplitude = -12000;
+  if (amplitude > 12000) amplitude = 12000;
+  return (amplitude << 8) | (kind & 0xFF);
 }
-
 ```
 
 ---
@@ -16335,11 +18678,9 @@ return (amplitude << 8) | (kind & 0xFF);
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/prng_next.md
 
-@inline
 export function prng_next(state: u32): u32 {
-return (state * 1664525 + 1013904223) | 0;
+  return (state * 1664525 + 1013904223) | 0;
 }
-
 ```
 
 ---
@@ -16370,7 +18711,6 @@ export function read_jsonl(): void {}
 export const SIN_LUT: StaticArray<i32> = [
   /* [TRUNCATED LUT ARRAY] */
 ];
-
 ```
 
 ---
@@ -16379,8 +18719,6 @@ export const SIN_LUT: StaticArray<i32> = [
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_snapshot.md
-
-
 ```
 
 ---
@@ -16399,7 +18737,6 @@ export const STR_SINK: u8 = 5;
 export const STR_CAPACITOR: u8 = 6;
 export const STR_INVERTER: u8 = 7;
 export const STR_LATCH: u8 = 8;
-
 ```
 
 ---
@@ -16453,7 +18790,6 @@ export const MAX_GLYPH_AMP: i32 = 8388607;
 export const MIN_GLYPH_AMP: i32 = -8388608;
 export const SPAWN_MAX: i32 = 1024;
 export const SPAWN_SLOT: i32 = 24;
-
 ```
 
 ---
@@ -16463,15 +18799,19 @@ export const SPAWN_SLOT: i32 = 24;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/trace_atom.md
 
-@inline
-export function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void {
-// AssemblyScript imports are usually declared at the top level
-// The transpiler handles the `@external` decorator if needed, or we just leave it 
-// empty here and ensure it's exported via `pulse_orchestrator`'s host-link.
-// For now, in OMEGA-64, trace_atom is already globally declared in `pulse_orchestrator.ts`.
-// But to make it topological, we declare it as an external import.
+export function trace_atom(
+  idx: i32,
+  opcode: i32,
+  gx: i32,
+  gy: i32,
+  targetIdx: i32,
+): void {
+  // AssemblyScript imports are usually declared at the top level
+  // The transpiler handles the `@external` decorator if needed, or we just leave it
+  // empty here and ensure it's exported via `pulse_orchestrator`'s host-link.
+  // For now, in OMEGA-64, trace_atom is already globally declared in `pulse_orchestrator.ts`.
+  // But to make it topological, we declare it as an external import.
 }
-
 ```
 
 ---
@@ -16481,11 +18821,9 @@ export function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/unpack_glyph_amplitude.md
 
-@inline
 export function unpack_glyph_amplitude(header: i32): i32 {
-return header >> 8;
+  return header >> 8;
 }
-
 ```
 
 ---
@@ -16495,11 +18833,9 @@ return header >> 8;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/unpack_glyph_kind.md
 
-@inline
 export function unpack_glyph_kind(header: i32): i32 {
-return header & 0xFF;
+  return header & 0xFF;
 }
-
 ```
 
 ---
@@ -16537,7 +18873,6 @@ export const OP_SECRETE_PLASMID: u8 = 170;
 export const OP_INCORPORATE_PLASMID: u8 = 171;
 export const OP_RESOLVE: u8 = 176;
 export const OP_RESONATE_KURAMOTO: u8 = 177;
-
 ```
 
 ---
@@ -16557,7 +18892,6 @@ export const PROP_QUORUM: u8 = 8;
 export const PROP_NEURAL_COHERENCE: u8 = 9;
 export const PROP_MEMORY: u8 = 10;
 export const PROP_CONSENSUS: u8 = 11;
-
 ```
 
 ---
@@ -16587,7 +18921,6 @@ export const SYS_ATTRACT: i32 = 17;
 export const SYS_FOLD: i32 = 18;
 export const SYS_SPORE_DRIVE: i32 = 20;
 export const SYS_SENSE_PHASE: i32 = 21;
-
 ```
 
 ---
@@ -16598,12 +18931,10 @@ export const SYS_SENSE_PHASE: i32 = 21;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/calculate_shannon_entropy.md
 import { C_LOG2_C_LUT } from "../00/mod";
 
-@inline
 export function calculate_shannon_entropy(data: usize): i32 {
-// Stub for WASM
+  // Stub for WASM
   return 0;
 }
-
 ```
 
 ---
@@ -16613,8 +18944,6 @@ export function calculate_shannon_entropy(data: usize): i32 {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/checkpoint_chain.md
 import { append_jsonl, read_jsonl, read_jsonl_lines } from "../00/mod";
-
-
 ```
 
 ---
@@ -16625,13 +18954,11 @@ import { append_jsonl, read_jsonl, read_jsonl_lines } from "../00/mod";
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp_resource.md
 import { RESOURCE_MAX } from "../00/mod";
 
-@inline
 export function clamp_resource(value: i64): i32 {
-if (value < 0) return 0;
-if (value > (RESOURCE_MAX as i64)) return RESOURCE_MAX;
-return value as i32;
+  if (value < 0) return 0;
+  if (value > (RESOURCE_MAX as i64)) return RESOURCE_MAX;
+  return value as i32;
 }
-
 ```
 
 ---
@@ -16640,13 +18967,11 @@ return value as i32;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_x.md
-import { WORLD_MAX_X, math_clamp } from "../00/mod";
+import { math_clamp, WORLD_MAX_X } from "../00/mod";
 
-@inline
 export function clamp_world_x(x: i32): i32 {
-return math_clamp(x, 0, WORLD_MAX_X);
+  return math_clamp(x, 0, WORLD_MAX_X);
 }
-
 ```
 
 ---
@@ -16655,13 +18980,11 @@ return math_clamp(x, 0, WORLD_MAX_X);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_y.md
-import { WORLD_MAX_Y, math_clamp } from "../00/mod";
+import { math_clamp, WORLD_MAX_Y } from "../00/mod";
 
-@inline
 export function clamp_world_y(y: i32): i32 {
-return math_clamp(y, 0, WORLD_MAX_Y);
+  return math_clamp(y, 0, WORLD_MAX_Y);
 }
-
 ```
 
 ---
@@ -16670,13 +18993,11 @@ return math_clamp(y, 0, WORLD_MAX_Y);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/in_grid.md
-import { GRID_W, GRID_H } from "../00/mod";
+import { GRID_H, GRID_W } from "../00/mod";
 
-@inline
 export function in_grid(x: i32, y: i32): bool {
-return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
+  return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 }
-
 ```
 
 ---
@@ -16686,8 +19007,6 @@ return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/ledger_chain.md
 import { append_jsonl, read_jsonl, read_jsonl_lines } from "../00/mod";
-
-
 ```
 
 ---
@@ -16696,32 +19015,30 @@ import { append_jsonl, read_jsonl, read_jsonl_lines } from "../00/mod";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_cos.md
-import { SIN_LUT, COS_LUT } from "../00/mod";
+import { COS_LUT, SIN_LUT } from "../00/mod";
 
-@inline
 export function math_cos(angle: i32, highRes: i32): i32 {
-if (highRes == 0) {
+  if (highRes == 0) {
     let idx = angle & 255;
     return COS_LUT[idx] as i32;
-}
-let idx = (angle >> 8) & 255;
-let frac = angle & 255;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
 
-if (highRes == 1) {
+  if (highRes == 1) {
     let v0 = COS_LUT[idx] as i32;
     let v1 = COS_LUT[(idx + 1) & 255] as i32;
     return v0 + (((v1 - v0) * frac) >> 8);
-}
+  }
 
-let s_base = SIN_LUT[idx] as i32;
-let c_base = COS_LUT[idx] as i32;
-let d1 = (s_base * 804) >> 15;
-let term1 = (d1 * frac) >> 8;
-let d2 = (c_base * 10) >> 15;
-let term2 = (d2 * frac * frac) >> 16;
-return c_base - term1 - term2;
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (s_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (c_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return c_base - term1 - term2;
 }
-
 ```
 
 ---
@@ -16730,32 +19047,30 @@ return c_base - term1 - term2;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_sin.md
-import { SIN_LUT, COS_LUT } from "../00/mod";
+import { COS_LUT, SIN_LUT } from "../00/mod";
 
-@inline
 export function math_sin(angle: i32, highRes: i32): i32 {
-if (highRes == 0) {
+  if (highRes == 0) {
     let idx = angle & 255;
     return SIN_LUT[idx] as i32;
-}
-let idx = (angle >> 8) & 255;
-let frac = angle & 255;
+  }
+  let idx = (angle >> 8) & 255;
+  let frac = angle & 255;
 
-if (highRes == 1) {
+  if (highRes == 1) {
     let v0 = SIN_LUT[idx] as i32;
     let v1 = SIN_LUT[(idx + 1) & 255] as i32;
     return v0 + (((v1 - v0) * frac) >> 8);
-}
+  }
 
-let s_base = SIN_LUT[idx] as i32;
-let c_base = COS_LUT[idx] as i32;
-let d1 = (c_base * 804) >> 15;
-let term1 = (d1 * frac) >> 8;
-let d2 = (s_base * 10) >> 15;
-let term2 = (d2 * frac * frac) >> 16;
-return s_base + term1 - term2;
+  let s_base = SIN_LUT[idx] as i32;
+  let c_base = COS_LUT[idx] as i32;
+  let d1 = (c_base * 804) >> 15;
+  let term1 = (d1 * frac) >> 8;
+  let d2 = (s_base * 10) >> 15;
+  let term2 = (d2 * frac * frac) >> 16;
+  return s_base + term1 - term2;
 }
-
 ```
 
 ---
@@ -16775,7 +19090,6 @@ export * from "./checkpoint_chain";
 export { in_grid } from "./in_grid";
 export { clamp_world_y } from "./clamp_world_y";
 export { clamp_world_x } from "./clamp_world_x";
-
 ```
 
 ---
@@ -16784,133 +19098,205 @@ export { clamp_world_x } from "./clamp_world_x";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OMEGA_MEMORY_LAYOUT.md
-import { MAX_ATOMS, SAFETY_BUFFER, ATOM_GENOME_SIZE, ATOM_INSTRUCTION_SIZE, ATOM_CONTEXT_SIZE, MAX_SPAWN_REQUESTS, MAX_MEIOSIS_EVENTS, GRID_CELLS, MAX_ASCENSION_STATS_RESERVED, HIVE_MEMORY_SIZE, HIVE_ENERGY_POOL_SIZE, MAX_HORMONES, SECRETION_STATS_SIZE, MAX_LEDGER_EVENTS, MAX_EGRESS_EVENTS } from "../00/mod";
+import {
+  ATOM_CONTEXT_SIZE,
+  ATOM_GENOME_SIZE,
+  ATOM_INSTRUCTION_SIZE,
+  GRID_CELLS,
+  HIVE_ENERGY_POOL_SIZE,
+  HIVE_MEMORY_SIZE,
+  MAX_ASCENSION_STATS_RESERVED,
+  MAX_ATOMS,
+  MAX_EGRESS_EVENTS,
+  MAX_HORMONES,
+  MAX_LEDGER_EVENTS,
+  MAX_MEIOSIS_EVENTS,
+  MAX_SPAWN_REQUESTS,
+  SAFETY_BUFFER,
+  SECRETION_STATS_SIZE,
+} from "../00/mod";
 
-export const TICK_COUNTER_OFFSET: usize = ((SAFETY_BUFFER - 8) + 4 - 1) & ~(4 - 1);
+export const TICK_COUNTER_OFFSET: usize = ((SAFETY_BUFFER - 8) + 4 - 1) &
+  ~(4 - 1);
 export const TICK_COUNTER_OFF: usize = TICK_COUNTER_OFFSET;
-export const SYNC_STATE_OFFSET: usize = ((TICK_COUNTER_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const SYNC_STATE_OFFSET: usize = ((TICK_COUNTER_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const SYNC_STATE_OFF: usize = SYNC_STATE_OFFSET;
 export const IDS_OFFSET: usize = ((SYNC_STATE_OFFSET + (4)) + 8 - 1) & ~(8 - 1);
 export const IDS_OFF: usize = IDS_OFFSET;
-export const XS_OFFSET: usize = ((IDS_OFFSET + (MAX_ATOMS * 8)) + 2 - 1) & ~(2 - 1);
+export const XS_OFFSET: usize = ((IDS_OFFSET + (MAX_ATOMS * 8)) + 2 - 1) &
+  ~(2 - 1);
 export const XS_OFF: usize = XS_OFFSET;
-export const YS_OFFSET: usize = ((XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
+export const YS_OFFSET: usize = ((XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) &
+  ~(2 - 1);
 export const YS_OFF: usize = YS_OFFSET;
-export const ENERGY_OFFSET: usize = ((YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
+export const ENERGY_OFFSET: usize = ((YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) &
+  ~(4 - 1);
 export const ENERGY_OFF: usize = ENERGY_OFFSET;
-export const RESONANCE_OFFSET: usize = ((ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const RESONANCE_OFFSET: usize =
+  ((ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const RESONANCE_OFF: usize = RESONANCE_OFFSET;
-export const PHASE_OFFSET: usize = ((RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const PHASE_OFFSET: usize =
+  ((RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const PHASE_OFF: usize = PHASE_OFFSET;
 export const LOGIC_OFFSET: usize = PHASE_OFFSET + (MAX_ATOMS * 4);
 export const LOGIC_OFF: usize = LOGIC_OFFSET;
-export const BONDS_OFFSET: usize = ((LOGIC_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const BONDS_OFFSET: usize = ((LOGIC_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) &
+  ~(4 - 1);
 export const BONDS_OFF: usize = BONDS_OFFSET;
-export const STIFFNESS_OFFSET: usize = ((BONDS_OFFSET + (MAX_ATOMS * 4 * 4)) + 4 - 1) & ~(4 - 1);
+export const STIFFNESS_OFFSET: usize =
+  ((BONDS_OFFSET + (MAX_ATOMS * 4 * 4)) + 4 - 1) & ~(4 - 1);
 export const STIFFNESS_OFF: usize = STIFFNESS_OFFSET;
-export const INSTRUCTIONS_OFFSET: usize = STIFFNESS_OFFSET + (MAX_ATOMS * 4 * 4);
+export const INSTRUCTIONS_OFFSET: usize = STIFFNESS_OFFSET +
+  (MAX_ATOMS * 4 * 4);
 export const INSTRUCTIONS_OFF: usize = INSTRUCTIONS_OFFSET;
 export const GENOMES_OFFSET: usize = INSTRUCTIONS_OFFSET;
-export const CONTEXT_OFFSET: usize = ((INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64)) + 4 - 1) & ~(4 - 1);
+export const CONTEXT_OFFSET: usize =
+  ((INSTRUCTIONS_OFFSET + (MAX_ATOMS * 64)) + 4 - 1) & ~(4 - 1);
 export const CONTEXT_OFF: usize = CONTEXT_OFFSET;
-export const EVOLUTION_OFFSET: usize = ((CONTEXT_OFFSET + (MAX_ATOMS * 16 * 4)) + 4 - 1) & ~(4 - 1);
+export const EVOLUTION_OFFSET: usize =
+  ((CONTEXT_OFFSET + (MAX_ATOMS * 16 * 4)) + 4 - 1) & ~(4 - 1);
 export const EVOLUTION_OFF: usize = EVOLUTION_OFFSET;
 export const INTENT_OFFSET: usize = EVOLUTION_OFFSET;
-export const SPAWN_REQUESTS_OFFSET: usize = ((EVOLUTION_OFFSET + (MAX_ATOMS * 4)) + 8 - 1) & ~(8 - 1);
+export const SPAWN_REQUESTS_OFFSET: usize =
+  ((EVOLUTION_OFFSET + (MAX_ATOMS * 4)) + 8 - 1) & ~(8 - 1);
 export const SPAWN_REQUESTS_OFF: usize = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_GRID_OFF: usize = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_HEAD_OFF: usize = SPAWN_REQUESTS_OFFSET;
 export const SPAWN_DATA_OFF: usize = SPAWN_REQUESTS_OFFSET + 8;
-export const MEIOSIS_RESERVED_OFFSET: usize = ((SPAWN_REQUESTS_OFFSET + (8 + (1024 * 24))) + 4 - 1) & ~(4 - 1);
+export const MEIOSIS_RESERVED_OFFSET: usize =
+  ((SPAWN_REQUESTS_OFFSET + (8 + (1024 * 24))) + 4 - 1) & ~(4 - 1);
 export const MEIOSIS_RESERVED_OFF: usize = MEIOSIS_RESERVED_OFFSET;
-export const BOND_REQUESTS_OFFSET: usize = ((MEIOSIS_RESERVED_OFFSET + (75000 * 80)) + 4 - 1) & ~(4 - 1);
+export const BOND_REQUESTS_OFFSET: usize =
+  ((MEIOSIS_RESERVED_OFFSET + (75000 * 80)) + 4 - 1) & ~(4 - 1);
 export const BOND_REQUESTS_OFF: usize = BOND_REQUESTS_OFFSET;
-export const SPATIAL_GRID_OFFSET: usize = ((BOND_REQUESTS_OFFSET + (MAX_ATOMS * 3 * 4)) + 4 - 1) & ~(4 - 1);
+export const SPATIAL_GRID_OFFSET: usize =
+  ((BOND_REQUESTS_OFFSET + (MAX_ATOMS * 3 * 4)) + 4 - 1) & ~(4 - 1);
 export const SPATIAL_GRID_OFF: usize = SPATIAL_GRID_OFFSET;
 export const ROLES_OFFSET: usize = SPATIAL_GRID_OFFSET + (GRID_CELLS * 32 * 4);
 export const ROLES_OFF: usize = ROLES_OFFSET;
-export const STRUCTURE_GRID_OFFSET: usize = ((ROLES_OFFSET + (MAX_ATOMS)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_GRID_OFFSET: usize =
+  ((ROLES_OFFSET + MAX_ATOMS) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_GRID_OFF: usize = STRUCTURE_GRID_OFFSET;
-export const SIGNAL_GRID_OFFSET: usize = ((STRUCTURE_GRID_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const SIGNAL_GRID_OFFSET: usize =
+  ((STRUCTURE_GRID_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const SIGNAL_GRID_OFF: usize = SIGNAL_GRID_OFFSET;
 export const MEMORY_GRID_OFFSET: usize = SIGNAL_GRID_OFFSET + (GRID_CELLS * 4);
 export const MEMORY_GRID_OFF: usize = MEMORY_GRID_OFFSET;
-export const ASCENSION_STATS_RESERVED_OFFSET: usize = ((MEMORY_GRID_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
-export const ASCENSION_STATS_RESERVED_OFF: usize = ASCENSION_STATS_RESERVED_OFFSET;
+export const ASCENSION_STATS_RESERVED_OFFSET: usize =
+  ((MEMORY_GRID_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
+export const ASCENSION_STATS_RESERVED_OFF: usize =
+  ASCENSION_STATS_RESERVED_OFFSET;
 export const ASCENSION_STATS_OFFSET: usize = ASCENSION_STATS_RESERVED_OFFSET;
 export const ASCENSION_STATS_OFF: usize = ASCENSION_STATS_RESERVED_OFFSET;
-export const BOND_DISTANCES_OFFSET: usize = ASCENSION_STATS_RESERVED_OFFSET + (1250000 * 4);
+export const BOND_DISTANCES_OFFSET: usize = ASCENSION_STATS_RESERVED_OFFSET +
+  (1250000 * 4);
 export const BOND_DISTANCES_OFF: usize = BOND_DISTANCES_OFFSET;
-export const SYNAPTIC_WEIGHTS_OFFSET: usize = BOND_DISTANCES_OFFSET + (MAX_ATOMS * 4);
+export const SYNAPTIC_WEIGHTS_OFFSET: usize = BOND_DISTANCES_OFFSET +
+  (MAX_ATOMS * 4);
 export const SYNAPTIC_WEIGHTS_OFF: usize = SYNAPTIC_WEIGHTS_OFFSET;
 export const DAMPING_OFFSET: usize = SYNAPTIC_WEIGHTS_OFFSET + (MAX_ATOMS * 4);
 export const DAMPING_OFF: usize = DAMPING_OFFSET;
-export const CAUSALITY_OFFSET: usize = DAMPING_OFFSET + (MAX_ATOMS);
+export const CAUSALITY_OFFSET: usize = DAMPING_OFFSET + MAX_ATOMS;
 export const CAUSALITY_OFF: usize = CAUSALITY_OFFSET;
-export const HIVE_MEMORY_OFFSET: usize = CAUSALITY_OFFSET + (MAX_ATOMS);
+export const HIVE_MEMORY_OFFSET: usize = CAUSALITY_OFFSET + MAX_ATOMS;
 export const HIVE_MEMORY_OFF: usize = HIVE_MEMORY_OFFSET;
-export const HIVE_BALANCE_OFFSET: usize = ((HIVE_MEMORY_OFFSET + (1024)) + 4 - 1) & ~(4 - 1);
+export const HIVE_BALANCE_OFFSET: usize =
+  ((HIVE_MEMORY_OFFSET + (1024)) + 4 - 1) & ~(4 - 1);
 export const HIVE_BALANCE_OFF: usize = HIVE_BALANCE_OFFSET;
-export const QUORUM_OFFSET: usize = ((HIVE_BALANCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const QUORUM_OFFSET: usize = ((HIVE_BALANCE_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const QUORUM_OFF: usize = QUORUM_OFFSET;
-export const COHERENCE_OFFSET: usize = ((QUORUM_OFFSET + (GRID_CELLS * 8 * 4)) + 4 - 1) & ~(4 - 1);
+export const COHERENCE_OFFSET: usize =
+  ((QUORUM_OFFSET + (GRID_CELLS * 8 * 4)) + 4 - 1) & ~(4 - 1);
 export const COHERENCE_OFF: usize = COHERENCE_OFFSET;
-export const NEURAL_COHERENCE_OFFSET: usize = ((COHERENCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const NEURAL_COHERENCE_OFFSET: usize =
+  ((COHERENCE_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
 export const NEURAL_COHERENCE_OFF: usize = NEURAL_COHERENCE_OFFSET;
-export const PHYSICS_READ_XS_OFFSET: usize = ((NEURAL_COHERENCE_OFFSET + (4)) + 2 - 1) & ~(2 - 1);
+export const PHYSICS_READ_XS_OFFSET: usize =
+  ((NEURAL_COHERENCE_OFFSET + (4)) + 2 - 1) & ~(2 - 1);
 export const PHYSICS_READ_XS_OFF: usize = PHYSICS_READ_XS_OFFSET;
-export const PHYSICS_READ_YS_OFFSET: usize = ((PHYSICS_READ_XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
+export const PHYSICS_READ_YS_OFFSET: usize =
+  ((PHYSICS_READ_XS_OFFSET + (MAX_ATOMS * 2)) + 2 - 1) & ~(2 - 1);
 export const PHYSICS_READ_YS_OFF: usize = PHYSICS_READ_YS_OFFSET;
-export const PHYSICS_READ_ENERGY_OFFSET: usize = ((PHYSICS_READ_YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
+export const PHYSICS_READ_ENERGY_OFFSET: usize =
+  ((PHYSICS_READ_YS_OFFSET + (MAX_ATOMS * 2)) + 4 - 1) & ~(4 - 1);
 export const PHYSICS_READ_ENERGY_OFF: usize = PHYSICS_READ_ENERGY_OFFSET;
-export const PHYSICS_READ_RESONANCE_OFFSET: usize = ((PHYSICS_READ_ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const PHYSICS_READ_RESONANCE_OFFSET: usize =
+  ((PHYSICS_READ_ENERGY_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const PHYSICS_READ_RESONANCE_OFF: usize = PHYSICS_READ_RESONANCE_OFFSET;
-export const ENERGY_DELTA_OFFSET: usize = ((PHYSICS_READ_RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const ENERGY_DELTA_OFFSET: usize =
+  ((PHYSICS_READ_RESONANCE_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const ENERGY_DELTA_OFF: usize = ENERGY_DELTA_OFFSET;
-export const RESONANCE_DELTA_OFFSET: usize = ((ENERGY_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const RESONANCE_DELTA_OFFSET: usize =
+  ((ENERGY_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const RESONANCE_DELTA_OFF: usize = RESONANCE_DELTA_OFFSET;
-export const STRUCTURE_BUILD_OWNER_OFFSET: usize = ((RESONANCE_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_BUILD_OWNER_OFFSET: usize =
+  ((RESONANCE_DELTA_OFFSET + (MAX_ATOMS * 4)) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_BUILD_OWNER_OFF: usize = STRUCTURE_BUILD_OWNER_OFFSET;
-export const STRUCTURE_BUILD_VALUE_OFFSET: usize = ((STRUCTURE_BUILD_OWNER_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_BUILD_VALUE_OFFSET: usize =
+  ((STRUCTURE_BUILD_OWNER_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const STRUCTURE_BUILD_VALUE_OFF: usize = STRUCTURE_BUILD_VALUE_OFFSET;
-export const STRUCTURE_CHARGE_INTENT_OFFSET: usize = ((STRUCTURE_BUILD_VALUE_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
-export const STRUCTURE_CHARGE_INTENT_OFF: usize = STRUCTURE_CHARGE_INTENT_OFFSET;
-export const ATTENTION_FIELD_OFFSET: usize = ((STRUCTURE_CHARGE_INTENT_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_CHARGE_INTENT_OFFSET: usize =
+  ((STRUCTURE_BUILD_VALUE_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const STRUCTURE_CHARGE_INTENT_OFF: usize =
+  STRUCTURE_CHARGE_INTENT_OFFSET;
+export const ATTENTION_FIELD_OFFSET: usize =
+  ((STRUCTURE_CHARGE_INTENT_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const ATTENTION_FIELD_OFF: usize = ATTENTION_FIELD_OFFSET;
-export const HIVE_ENERGY_POOL_OFFSET: usize = ((ATTENTION_FIELD_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
+export const HIVE_ENERGY_POOL_OFFSET: usize =
+  ((ATTENTION_FIELD_OFFSET + (GRID_CELLS * 4)) + 4 - 1) & ~(4 - 1);
 export const HIVE_ENERGY_POOL_OFF: usize = HIVE_ENERGY_POOL_OFFSET;
-export const GLYPH_HEADER_OFFSET: usize = ((HIVE_ENERGY_POOL_OFFSET + (256 * 4)) + 4 - 1) & ~(4 - 1);
+export const GLYPH_HEADER_OFFSET: usize =
+  ((HIVE_ENERGY_POOL_OFFSET + (256 * 4)) + 4 - 1) & ~(4 - 1);
 export const GLYPH_HEADER_OFF: usize = GLYPH_HEADER_OFFSET;
-export const GLYPH_PAYLOAD_OFFSET: usize = GLYPH_HEADER_OFFSET + (GRID_CELLS * 4);
+export const GLYPH_PAYLOAD_OFFSET: usize = GLYPH_HEADER_OFFSET +
+  (GRID_CELLS * 4);
 export const GLYPH_PAYLOAD_OFF: usize = GLYPH_PAYLOAD_OFFSET;
-export const GLYPH_SCRATCH_HEADER_OFFSET: usize = ((GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
+export const GLYPH_SCRATCH_HEADER_OFFSET: usize =
+  ((GLYPH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 4 - 1) & ~(4 - 1);
 export const GLYPH_SCRATCH_HEADER_OFF: usize = GLYPH_SCRATCH_HEADER_OFFSET;
-export const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = GLYPH_SCRATCH_HEADER_OFFSET + (GRID_CELLS * 4);
+export const GLYPH_SCRATCH_PAYLOAD_OFFSET: usize = GLYPH_SCRATCH_HEADER_OFFSET +
+  (GRID_CELLS * 4);
 export const GLYPH_SCRATCH_PAYLOAD_OFF: usize = GLYPH_SCRATCH_PAYLOAD_OFFSET;
-export const HORMONES_OFFSET: usize = ((GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 2 - 1) & ~(2 - 1);
+export const HORMONES_OFFSET: usize =
+  ((GLYPH_SCRATCH_PAYLOAD_OFFSET + (GRID_CELLS * 8)) + 2 - 1) & ~(2 - 1);
 export const HORMONES_OFF: usize = HORMONES_OFFSET;
 export const HORMONE_OFFSET: usize = HORMONES_OFFSET;
 export const HORMONE_OFF: usize = HORMONES_OFFSET;
-export const SECRETION_STATS_OFFSET: usize = ((HORMONES_OFFSET + (8 * 2)) + 4 - 1) & ~(4 - 1);
+export const SECRETION_STATS_OFFSET: usize =
+  ((HORMONES_OFFSET + (8 * 2)) + 4 - 1) & ~(4 - 1);
 export const SECRETION_STATS_OFF: usize = SECRETION_STATS_OFFSET;
-export const LINEAGE_OFFSET: usize = ((SECRETION_STATS_OFFSET + (12 * 4)) + 8 - 1) & ~(8 - 1);
+export const LINEAGE_OFFSET: usize =
+  ((SECRETION_STATS_OFFSET + (12 * 4)) + 8 - 1) & ~(8 - 1);
 export const LINEAGE_OFF: usize = LINEAGE_OFFSET;
-export const MAILBOX_OFFSET: usize = ((LINEAGE_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const MAILBOX_OFFSET: usize =
+  ((LINEAGE_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
 export const MAILBOX_OFF: usize = MAILBOX_OFFSET;
-export const LEDGER_HEAD_OFFSET: usize = ((MAILBOX_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
+export const LEDGER_HEAD_OFFSET: usize =
+  ((MAILBOX_OFFSET + (MAX_ATOMS * 8)) + 4 - 1) & ~(4 - 1);
 export const LEDGER_HEAD_OFF: usize = LEDGER_HEAD_OFFSET;
-export const LEDGER_DATA_OFFSET: usize = ((LEDGER_HEAD_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const LEDGER_DATA_OFFSET: usize = ((LEDGER_HEAD_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const LEDGER_DATA_OFF: usize = LEDGER_DATA_OFFSET;
-export const EGRESS_HEAD_OFFSET: usize = ((LEDGER_DATA_OFFSET + (65536 * 16)) + 4 - 1) & ~(4 - 1);
+export const EGRESS_HEAD_OFFSET: usize =
+  ((LEDGER_DATA_OFFSET + (65536 * 16)) + 4 - 1) & ~(4 - 1);
 export const EGRESS_HEAD_OFF: usize = EGRESS_HEAD_OFFSET;
-export const EGRESS_DATA_OFFSET: usize = ((EGRESS_HEAD_OFFSET + (4)) + 4 - 1) & ~(4 - 1);
+export const EGRESS_DATA_OFFSET: usize = ((EGRESS_HEAD_OFFSET + (4)) + 4 - 1) &
+  ~(4 - 1);
 export const EGRESS_DATA_OFF: usize = EGRESS_DATA_OFFSET;
-export const METABOLISM_SCRATCH_OFFSET: usize = ((EGRESS_DATA_OFFSET + (8192 * 128)) + 4 - 1) & ~(4 - 1);
+export const METABOLISM_SCRATCH_OFFSET: usize =
+  ((EGRESS_DATA_OFFSET + (8192 * 128)) + 4 - 1) & ~(4 - 1);
 export const METABOLISM_SCRATCH_OFF: usize = METABOLISM_SCRATCH_OFFSET;
-export const LATTICE_MEMORY_END: usize = METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128);
-export const MIN_WASM_MEMORY_PAGES: i32 = <i32>Math.max(2600, <i32>Math.ceil((METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128)) / (64 * 1024)));
+export const LATTICE_MEMORY_END: usize = METABOLISM_SCRATCH_OFFSET +
+  ((65536 * 4) + 128);
+export const MIN_WASM_MEMORY_PAGES: i32 = <i32> Math.max(
+  2600,
+  <i32> Math.ceil(
+    (METABOLISM_SCRATCH_OFFSET + ((65536 * 4) + 128)) / (64 * 1024),
+  ),
+);
 export const WASM_MEMORY_BYTES: i32 = MIN_WASM_MEMORY_PAGES * (64 * 1024);
-
 ```
 
 ---
@@ -16921,13 +19307,11 @@ export const WASM_MEMORY_BYTES: i32 = MIN_WASM_MEMORY_PAGES * (64 * 1024);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_energy_delta.md
 import { ENERGY_DELTA_OFF } from "../01/mod";
 
-@inline
 export function add_energy_delta(idx: i32, delta: i32): void {
-if (delta != 0) {
-  atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2), delta);
+  if (delta != 0) {
+    atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2), delta);
+  }
 }
-}
-
 ```
 
 ---
@@ -16938,11 +19322,9 @@ if (delta != 0) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_hive_balance.md
 import { HIVE_BALANCE_OFF } from "../01/mod";
 
-@inline
 export function add_hive_balance(val: i32): i32 {
-return atomic.add<i32>(HIVE_BALANCE_OFF, val);
+  return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 }
-
 ```
 
 ---
@@ -16953,13 +19335,11 @@ return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance_delta.md
 import { RESONANCE_DELTA_OFF } from "../01/mod";
 
-@inline
 export function add_resonance_delta(idx: i32, delta: i32): void {
-if (delta != 0) {
-  atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2), delta);
+  if (delta != 0) {
+    atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2), delta);
+  }
 }
-}
-
 ```
 
 ---
@@ -16968,29 +19348,70 @@ if (delta != 0) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/atomic_deposit_glyph_header.md
-import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, unpack_glyph_kind, unpack_glyph_amplitude, fast_abs, pack_glyph_header } from "../01/mod";
+import {
+  fast_abs,
+  GLYPH_HEADER_OFF,
+  GLYPH_PAYLOAD_OFF,
+  GLYPH_SCRATCH_PAYLOAD_OFF,
+  GRID_CELLS,
+  pack_glyph_header,
+  unpack_glyph_amplitude,
+  unpack_glyph_kind,
+} from "../01/mod";
 
-@inline
-export function atomic_deposit_glyph_header(baseOffset: usize, cell: i32, kind: i32, amplitude: i32, payloadPtr: usize): void {
-if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
+export function atomic_deposit_glyph_header(
+  baseOffset: usize,
+  cell: i32,
+  kind: i32,
+  amplitude: i32,
+  payloadPtr: usize,
+): void {
+  if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
 
-const ptr = (baseOffset + (cell << 2)) as usize;
+  const ptr = (baseOffset + (cell << 2)) as usize;
 
-for (let spin = 0; spin < 128; spin++) {
-  const current = atomic.load<i32>(ptr);
-  const currentKind = unpack_glyph_kind(current);
-  const currentAmplitude = unpack_glyph_amplitude(current);
+  for (let spin = 0; spin < 128; spin++) {
+    const current = atomic.load<i32>(ptr);
+    const currentKind = unpack_glyph_kind(current);
+    const currentAmplitude = unpack_glyph_amplitude(current);
 
-  // Mismatched kind: standard replacement strategy but with absolute power checks
-  if (currentKind != 0 && currentKind != kind) {
-    if (fast_abs(amplitude) <= fast_abs(currentAmplitude)) return;
+    // Mismatched kind: standard replacement strategy but with absolute power checks
+    if (currentKind != 0 && currentKind != kind) {
+      if (fast_abs(amplitude) <= fast_abs(currentAmplitude)) return;
+      const observed = atomic.cmpxchg<i32>(
+        ptr,
+        current,
+        pack_glyph_header(kind, amplitude),
+      );
+      if (observed == current) {
+        if (kind == 2 && payloadPtr != 0) {
+          const payloadBase = baseOffset == GLYPH_HEADER_OFF
+            ? GLYPH_PAYLOAD_OFF
+            : GLYPH_SCRATCH_PAYLOAD_OFF;
+          const dstPtr = payloadBase + (cell << 3) as usize;
+          memory.copy(dstPtr, payloadPtr, 8);
+        }
+        return;
+      }
+      continue;
+    }
+
+    // Matching kind: Optical Wave Interference (Additive)
+    let nextAmplitude = currentAmplitude + amplitude;
+    if (nextAmplitude > 12000) nextAmplitude = 12000;
+    if (nextAmplitude < -12000) nextAmplitude = -12000;
+
+    // If waves perfectly annihilate, clear the glyph entirely
+    const nextKind = nextAmplitude == 0 ? 0 : kind;
+
     const observed = atomic.cmpxchg<i32>(
       ptr,
       current,
-      pack_glyph_header(kind, amplitude),
+      pack_glyph_header(nextKind, nextAmplitude),
     );
     if (observed == current) {
       if (kind == 2 && payloadPtr != 0) {
+        // Technically if nextAmplitude is 0, payload is orphaned, but acceptable
         const payloadBase = baseOffset == GLYPH_HEADER_OFF
           ? GLYPH_PAYLOAD_OFF
           : GLYPH_SCRATCH_PAYLOAD_OFF;
@@ -16999,36 +19420,8 @@ for (let spin = 0; spin < 128; spin++) {
       }
       return;
     }
-    continue;
-  }
-
-  // Matching kind: Optical Wave Interference (Additive)
-  let nextAmplitude = currentAmplitude + amplitude;
-  if (nextAmplitude > 12000) nextAmplitude = 12000;
-  if (nextAmplitude < -12000) nextAmplitude = -12000;
-
-  // If waves perfectly annihilate, clear the glyph entirely
-  const nextKind = nextAmplitude == 0 ? 0 : kind;
-
-  const observed = atomic.cmpxchg<i32>(
-    ptr,
-    current,
-    pack_glyph_header(nextKind, nextAmplitude),
-  );
-  if (observed == current) {
-    if (kind == 2 && payloadPtr != 0) {
-      // Technically if nextAmplitude is 0, payload is orphaned, but acceptable
-      const payloadBase = baseOffset == GLYPH_HEADER_OFF
-        ? GLYPH_PAYLOAD_OFF
-        : GLYPH_SCRATCH_PAYLOAD_OFF;
-      const dstPtr = payloadBase + (cell << 3) as usize;
-      memory.copy(dstPtr, payloadPtr, 8);
-    }
-    return;
   }
 }
-}
-
 ```
 
 ---
@@ -17039,13 +19432,11 @@ for (let spin = 0; spin < 128; spin++) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/clear_metabolism_stats.md
 import { METABOLISM_SCRATCH_OFFSET } from "../01/mod";
 
-@inline
 export function clear_metabolism_stats(): void {
-// Clear genome count scratch (65536 * 4 bytes = 256KB)
+  // Clear genome count scratch (65536 * 4 bytes = 256KB)
   // and generic stats (population, noveltyDelta, symbiosisDelta, etc)
   memory.fill(METABOLISM_SCRATCH_OFFSET, 0, (65536 * 4) + 64);
 }
-
 ```
 
 ---
@@ -17056,11 +19447,9 @@ export function clear_metabolism_stats(): void {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/clear_secretion_stats.md
 import { SECRETION_STATS_OFF } from "../01/mod";
 
-@inline
 export function clear_secretion_stats(): void {
-memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
+  memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
 }
-
 ```
 
 ---
@@ -17071,20 +19460,18 @@ memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/decay_for_kind.md
 import { fast_abs } from "../01/mod";
 
-@inline
 export function decay_for_kind(kind: i32, amplitude: i32): i32 {
-const absAmp = fast_abs(amplitude);
-let decayAmt = 0;
-if (kind == 2) { // PLASMID
-  decayAmt = absAmp > 256 ? 3 : 1;
-} else if (kind == 1) { // PHEROMONE
-  decayAmt = absAmp > 64 ? 8 : 4;
-} else {
-  decayAmt = absAmp; // Fallback
+  const absAmp = fast_abs(amplitude);
+  let decayAmt = 0;
+  if (kind == 2) { // PLASMID
+    decayAmt = absAmp > 256 ? 3 : 1;
+  } else if (kind == 1) { // PHEROMONE
+    decayAmt = absAmp > 64 ? 8 : 4;
+  } else {
+    decayAmt = absAmp; // Fallback
+  }
+  return amplitude > 0 ? decayAmt : -decayAmt;
 }
-return amplitude > 0 ? decayAmt : -decayAmt;
-}
-
 ```
 
 ---
@@ -17093,11 +19480,10 @@ return amplitude > 0 ? decayAmt : -decayAmt;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/diffuse_viral_semantics.md
-import { GRID_H, GRID_W, SIGNAL_GRID_OFF, in_grid, prng_next } from "../01/mod";
+import { GRID_H, GRID_W, in_grid, prng_next, SIGNAL_GRID_OFF } from "../01/mod";
 
-@inline
 export function diffuse_viral_semantics(pulseId: i32): void {
-let state = pulseId as u32;
+  let state = pulseId as u32;
 
   for (let y = 0; y < GRID_H; y++) {
     for (let x = 0; x < GRID_W; x++) {
@@ -17141,7 +19527,6 @@ let state = pulseId as u32;
     }
   }
 }
-
 ```
 
 ---
@@ -17152,18 +19537,16 @@ let state = pulseId as u32;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/diffusion_share_for_kind.md
 import { fast_abs } from "../01/mod";
 
-@inline
 export function diffusion_share_for_kind(kind: i32, amplitude: i32): i32 {
-const absAmp = fast_abs(amplitude);
-let shareAmt = 0;
-if (kind == 2) { // PLASMID
-  shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
-} else if (kind == 1) { // PHEROMONE
-  shareAmt = absAmp >= 24 ? (absAmp >> 2) : 0; // * 0.25
+  const absAmp = fast_abs(amplitude);
+  let shareAmt = 0;
+  if (kind == 2) { // PLASMID
+    shareAmt = absAmp >= 96 ? (absAmp >> 3) : 0; // * 0.125
+  } else if (kind == 1) { // PHEROMONE
+    shareAmt = absAmp >= 24 ? (absAmp >> 2) : 0; // * 0.25
+  }
+  return amplitude > 0 ? shareAmt : -shareAmt;
 }
-return amplitude > 0 ? shareAmt : -shareAmt;
-}
-
 ```
 
 ---
@@ -17172,18 +19555,16 @@ return amplitude > 0 ? shareAmt : -shareAmt;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/find_next_free_slot.md
-import { MAX_ATOMS, IDS_OFFSET } from "../01/mod";
+import { IDS_OFFSET, MAX_ATOMS } from "../01/mod";
 
-@inline
 export function find_next_free_slot(start: i32): i32 {
-for (let i = 0; i < MAX_ATOMS; i++) {
-  const idx = (start + i) % MAX_ATOMS;
-  const idPtr = IDS_OFFSET + (idx << 3) as usize;
-  if (load<i64>(idPtr) == 0) return idx;
+  for (let i = 0; i < MAX_ATOMS; i++) {
+    const idx = (start + i) % MAX_ATOMS;
+    const idPtr = IDS_OFFSET + (idx << 3) as usize;
+    if (load<i64>(idPtr) == 0) return idx;
+  }
+  return -1;
 }
-return -1;
-}
-
 ```
 
 ---
@@ -17194,14 +19575,12 @@ return -1;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/genome_key16.md
 import { LOGIC_OFFSET } from "../01/mod";
 
-@inline
 export function genome_key16(idx: i32): i32 {
-const ptr = LOGIC_OFFSET + (idx << 3);
-const b0 = load<u8>(ptr) as i32;
-const b1 = load<u8>(ptr + 1) as i32;
-return (b0 << 8) | b1;
+  const ptr = LOGIC_OFFSET + (idx << 3);
+  const b0 = load<u8>(ptr) as i32;
+  const b1 = load<u8>(ptr + 1) as i32;
+  return (b0 << 8) | b1;
 }
-
 ```
 
 ---
@@ -17210,14 +19589,12 @@ return (b0 << 8) | b1;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_attention_cell.md
-import { GRID_W, GRID_H, ATTENTION_FIELD_OFF } from "../01/mod";
+import { ATTENTION_FIELD_OFF, GRID_H, GRID_W } from "../01/mod";
 
-@inline
 export function get_attention_cell(gx: i32, gy: i32): f32 {
-if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
-return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
+  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
+  return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 }
-
 ```
 
 ---
@@ -17228,11 +19605,9 @@ return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_stiffness.md
 import { STIFFNESS_OFFSET } from "../01/mod";
 
-@inline
 export function get_bond_stiffness(atomIdx: i32, slot: i32): f32 {
-return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
+  return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
 }
-
 ```
 
 ---
@@ -17243,11 +19618,9 @@ return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_target.md
 import { BONDS_OFFSET } from "../01/mod";
 
-@inline
 export function get_bond_target(atomIdx: i32, slot: i32): i32 {
-return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
+  return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
 }
-
 ```
 
 ---
@@ -17258,11 +19631,9 @@ return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_energy.md
 import { ENERGY_OFFSET } from "../01/mod";
 
-@inline
 export function get_energy(idx: i32): i32 {
-return load<i32>(ENERGY_OFFSET + (idx << 2));
+  return load<i32>(ENERGY_OFFSET + (idx << 2));
 }
-
 ```
 
 ---
@@ -17271,35 +19642,40 @@ return load<i32>(ENERGY_OFFSET + (idx << 2));
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_glyph_influence.md
-import { GRID_W, GRID_H, GLYPH_HEADER_OFF, ROLE_PARASITE, ROLE_GUARDIAN, ROLE_ARCHITECT } from "../01/mod";
+import {
+  GLYPH_HEADER_OFF,
+  GRID_H,
+  GRID_W,
+  ROLE_ARCHITECT,
+  ROLE_GUARDIAN,
+  ROLE_PARASITE,
+} from "../01/mod";
 
-@inline
 export function get_glyph_influence(gx: i32, gy: i32, role: u8): f32 {
-if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
-const cell = gy * GRID_W + gx;
-const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
-const kind = header & 0xFF;
-const amplitude = ((header >>> 8) & 0x00FFFFFF) as f32;
-if (amplitude <= 0.0) return 0.0;
-const normalized = amplitude / 256.0;
+  if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
+  const cell = gy * GRID_W + gx;
+  const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
+  const kind = header & 0xFF;
+  const amplitude = ((header >>> 8) & 0x00FFFFFF) as f32;
+  if (amplitude <= 0.0) return 0.0;
+  const normalized = amplitude / 256.0;
 
-if (kind == 1) { // pheromone packet
-  if (role == ROLE_PARASITE) return -normalized * 0.8;
-  if (role == ROLE_GUARDIAN) return normalized * 0.4;
-  if (role == ROLE_ARCHITECT) return normalized * 0.2;
-  return normalized * 0.9;
+  if (kind == 1) { // pheromone packet
+    if (role == ROLE_PARASITE) return -normalized * 0.8;
+    if (role == ROLE_GUARDIAN) return normalized * 0.4;
+    if (role == ROLE_ARCHITECT) return normalized * 0.2;
+    return normalized * 0.9;
+  }
+
+  if (kind == 2) { // plasmid packet
+    if (role == ROLE_GUARDIAN) return -normalized * 0.45;
+    if (role == ROLE_ARCHITECT) return -normalized * 0.2;
+    if (role == ROLE_PARASITE) return normalized * 0.75;
+    return normalized * 0.3;
+  }
+
+  return 0.0;
 }
-
-if (kind == 2) { // plasmid packet
-  if (role == ROLE_GUARDIAN) return -normalized * 0.45;
-  if (role == ROLE_ARCHITECT) return -normalized * 0.2;
-  if (role == ROLE_PARASITE) return normalized * 0.75;
-  return normalized * 0.3;
-}
-
-return 0.0;
-}
-
 ```
 
 ---
@@ -17310,11 +19686,9 @@ return 0.0;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hive_balance.md
 import { HIVE_BALANCE_OFF } from "../01/mod";
 
-@inline
 export function get_hive_balance(): i32 {
-return atomic.load<i32>(HIVE_BALANCE_OFF);
+  return atomic.load<i32>(HIVE_BALANCE_OFF);
 }
-
 ```
 
 ---
@@ -17325,11 +19699,9 @@ return atomic.load<i32>(HIVE_BALANCE_OFF);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hive_memory.md
 import { HIVE_MEMORY_OFF } from "../01/mod";
 
-@inline
 export function get_hive_memory(addr: i32): u8 {
-return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
+  return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
 }
-
 ```
 
 ---
@@ -17340,11 +19712,9 @@ return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hormone.md
 import { HORMONE_OFF } from "../01/mod";
 
-@inline
 export function get_hormone(id: i32): u16 {
-return atomic.load<u16>(HORMONE_OFF + (id << 1));
+  return atomic.load<u16>(HORMONE_OFF + (id << 1));
 }
-
 ```
 
 ---
@@ -17355,11 +19725,9 @@ return atomic.load<u16>(HORMONE_OFF + (id << 1));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_lineage.md
 import { LINEAGE_OFFSET } from "../01/mod";
 
-@inline
 export function get_lineage(idx: i32): u64 {
-return load<u64>(LINEAGE_OFFSET + (idx << 3));
+  return load<u64>(LINEAGE_OFFSET + (idx << 3));
 }
-
 ```
 
 ---
@@ -17370,11 +19738,9 @@ return load<u64>(LINEAGE_OFFSET + (idx << 3));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_logic_byte.md
 import { LOGIC_OFFSET } from "../01/mod";
 
-@inline
 export function get_logic_byte(idx: i32, slot: i32): u8 {
-return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
+  return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
 }
-
 ```
 
 ---
@@ -17383,11 +19749,16 @@ return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/get_neural_coherence.md
-import { GRID_CELLS, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, COHERENCE_OFF, trace_atom } from "../01/mod";
+import {
+  COHERENCE_OFF,
+  GRID_CELLS,
+  MEMORY_GRID_OFF,
+  STRUCTURE_GRID_OFF,
+  trace_atom,
+} from "../01/mod";
 
-@inline
 export function get_neural_coherence(): i32 {
-// Crystal type constants
+  // Crystal type constants
   const CRYSTAL_OSCILLATOR: i32 = 5;
 
   let totalAmplitude: i32 = 0;
@@ -17418,7 +19789,6 @@ export function get_neural_coherence(): i32 {
 
   return oscCoherence + signalSignals;
 }
-
 ```
 
 ---
@@ -17429,11 +19799,9 @@ export function get_neural_coherence(): i32 {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_p_c.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function get_p_c(atomIdx: i32): u8 {
-return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
+  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
 }
-
 ```
 
 ---
@@ -17444,11 +19812,9 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_pending_syscall.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function get_pending_syscall(atomIdx: i32): u8 {
-return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
+  return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
 }
-
 ```
 
 ---
@@ -17459,11 +19825,9 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_phase.md
 import { PHASE_OFFSET } from "../01/mod";
 
-@inline
 export function get_phase(idx: i32): i32 {
-return load<i32>(PHASE_OFFSET + (idx << 2));
+  return load<i32>(PHASE_OFFSET + (idx << 2));
 }
-
 ```
 
 ---
@@ -17474,11 +19838,9 @@ return load<i32>(PHASE_OFFSET + (idx << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_energy.md
 import { PHYSICS_READ_ENERGY_OFF } from "../01/mod";
 
-@inline
 export function get_read_energy(idx: i32): i32 {
-return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
+  return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
 }
-
 ```
 
 ---
@@ -17489,11 +19851,9 @@ return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_resonance.md
 import { PHYSICS_READ_RESONANCE_OFF } from "../01/mod";
 
-@inline
 export function get_read_resonance(idx: i32): i32 {
-return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
+  return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
 }
-
 ```
 
 ---
@@ -17504,11 +19864,9 @@ return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_x.md
 import { PHYSICS_READ_XS_OFF } from "../01/mod";
 
-@inline
 export function get_read_x(idx: i32): i16 {
-return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
+  return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
 }
-
 ```
 
 ---
@@ -17519,11 +19877,9 @@ return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_y.md
 import { PHYSICS_READ_YS_OFF } from "../01/mod";
 
-@inline
 export function get_read_y(idx: i32): i16 {
-return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
+  return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
 }
-
 ```
 
 ---
@@ -17534,11 +19890,9 @@ return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_reg.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function get_reg(atomIdx: i32, reg: i32): i32 {
-return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
+  return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
 }
-
 ```
 
 ---
@@ -17549,11 +19903,9 @@ return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_resonance.md
 import { RESONANCE_OFFSET } from "../01/mod";
 
-@inline
 export function get_resonance(idx: i32): i32 {
-return load<i32>(RESONANCE_OFFSET + (idx << 2));
+  return load<i32>(RESONANCE_OFFSET + (idx << 2));
 }
-
 ```
 
 ---
@@ -17564,11 +19916,9 @@ return load<i32>(RESONANCE_OFFSET + (idx << 2));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_role.md
 import { ROLES_OFFSET } from "../01/mod";
 
-@inline
 export function get_role(atomIdx: i32): u8 {
-return load<u8>(ROLES_OFFSET + atomIdx);
+  return load<u8>(ROLES_OFFSET + atomIdx);
 }
-
 ```
 
 ---
@@ -17577,16 +19927,14 @@ return load<u8>(ROLES_OFFSET + atomIdx);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_spatial_grid_atom.md
-import { SPATIAL_GRID_OFFSET, GRID_W } from "../01/mod";
+import { GRID_W, SPATIAL_GRID_OFFSET } from "../01/mod";
 
-@inline
 export function get_spatial_grid_atom(gx: i32, gy: i32, subIdx: i32): i32 {
-let cellIdx = gy * GRID_W + gx;
-return load<i32>(
-  SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2)
-);
+  let cellIdx = gy * GRID_W + gx;
+  return load<i32>(
+    SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2),
+  );
 }
-
 ```
 
 ---
@@ -17595,14 +19943,12 @@ return load<i32>(
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_spatial_grid_count.md
-import { SPATIAL_GRID_OFFSET, GRID_W } from "../01/mod";
+import { GRID_W, SPATIAL_GRID_OFFSET } from "../01/mod";
 
-@inline
 export function get_spatial_grid_count(gx: i32, gy: i32): i32 {
-let cellIdx = gy * GRID_W + gx;
-return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
+  let cellIdx = gy * GRID_W + gx;
+  return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
 }
-
 ```
 
 ---
@@ -17613,11 +19959,9 @@ return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_x.md
 import { XS_OFFSET } from "../01/mod";
 
-@inline
 export function get_x(idx: i32): i16 {
-return load<i16>(XS_OFFSET + (idx << 1));
+  return load<i16>(XS_OFFSET + (idx << 1));
 }
-
 ```
 
 ---
@@ -17628,11 +19972,9 @@ return load<i16>(XS_OFFSET + (idx << 1));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_y.md
 import { YS_OFFSET } from "../01/mod";
 
-@inline
 export function get_y(idx: i32): i16 {
-return load<i16>(YS_OFFSET + (idx << 1));
+  return load<i16>(YS_OFFSET + (idx << 1));
 }
-
 ```
 
 ---
@@ -17641,8 +19983,6 @@ return load<i16>(YS_OFFSET + (idx << 1));
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memory_views.md
-
-
 ```
 
 ---
@@ -17709,7 +20049,6 @@ export { publish_charge_intent } from "./publish_charge_intent";
 export { publish_build_intent } from "./publish_build_intent";
 export { reduce_atom_deltas } from "./reduce_atom_deltas";
 export { store_clamped_pos } from "./store_clamped_pos";
-
 ```
 
 ---
@@ -17718,34 +20057,42 @@ export { store_clamped_pos } from "./store_clamped_pos";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_build_intent.md
-import { STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF } from "../01/mod";
+import {
+  STRUCTURE_BUILD_OWNER_OFF,
+  STRUCTURE_BUILD_VALUE_OFF,
+  STRUCTURE_INTENT_LOCK_BIT,
+  STRUCTURE_INTENT_OWNER_MASK,
+  STRUCTURE_INTENT_SPIN_LIMIT,
+} from "../01/mod";
 
-@inline
-export function publish_build_intent(ownerAtomIdx: i32, cellIdx: i32, buildValue: i32): void {
-const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
-const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
-const ownerToken = ownerAtomIdx + 1;
+export function publish_build_intent(
+  ownerAtomIdx: i32,
+  cellIdx: i32,
+  buildValue: i32,
+): void {
+  const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
+  const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
+  const ownerToken = ownerAtomIdx + 1;
 
-for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-  const snapshot = atomic.load<i32>(ownerPtr);
-  if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
-  const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
-  if (ownerToken < winningOwner) return;
+  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
+    const snapshot = atomic.load<i32>(ownerPtr);
+    if ((snapshot & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
+    const winningOwner = snapshot & STRUCTURE_INTENT_OWNER_MASK;
+    if (ownerToken < winningOwner) return;
 
-  const observed = atomic.cmpxchg<i32>(
-    ownerPtr,
-    snapshot,
-    snapshot | STRUCTURE_INTENT_LOCK_BIT,
-  );
-  if (observed != snapshot) continue;
+    const observed = atomic.cmpxchg<i32>(
+      ownerPtr,
+      snapshot,
+      snapshot | STRUCTURE_INTENT_LOCK_BIT,
+    );
+    if (observed != snapshot) continue;
 
-  atomic.store<i32>(valuePtr, buildValue);
-  // Release lock + set winner
-  atomic.store<i32>(ownerPtr, ownerToken);
-  return;
+    atomic.store<i32>(valuePtr, buildValue);
+    // Release lock + set winner
+    atomic.store<i32>(ownerPtr, ownerToken);
+    return;
+  }
 }
-}
-
 ```
 
 ---
@@ -17754,23 +20101,28 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_charge_intent.md
-import { STRUCTURE_CHARGE_INTENT_OFF, STRUCTURE_INTENT_SPIN_LIMIT, fast_max } from "../01/mod";
+import {
+  fast_max,
+  STRUCTURE_CHARGE_INTENT_OFF,
+  STRUCTURE_INTENT_SPIN_LIMIT,
+} from "../01/mod";
 
-@inline
-export function publish_charge_intent(cellIdx: i32, requestedCharge: i32): void {
-const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
-let charge = requestedCharge;
-charge = fast_max(charge, 0);
-if (charge > 255) charge = 255;
+export function publish_charge_intent(
+  cellIdx: i32,
+  requestedCharge: i32,
+): void {
+  const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
+  let charge = requestedCharge;
+  charge = fast_max(charge, 0);
+  if (charge > 255) charge = 255;
 
-for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-  const current = atomic.load<i32>(ptr);
-  if (charge <= current) return;
-  const observed = atomic.cmpxchg<i32>(ptr, current, charge);
-  if (observed == current) return;
+  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
+    const current = atomic.load<i32>(ptr);
+    if (charge <= current) return;
+    const observed = atomic.cmpxchg<i32>(ptr, current, charge);
+    if (observed == current) return;
+  }
 }
-}
-
 ```
 
 ---
@@ -17779,27 +20131,32 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_cell.md
-import { STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_GRID_OFF, STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK } from "../01/mod";
+import {
+  STRUCTURE_BUILD_OWNER_OFF,
+  STRUCTURE_BUILD_VALUE_OFF,
+  STRUCTURE_GRID_OFF,
+  STRUCTURE_INTENT_LOCK_BIT,
+  STRUCTURE_INTENT_OWNER_MASK,
+  STRUCTURE_INTENT_SPIN_LIMIT,
+} from "../01/mod";
 
-@inline
 export function read_structure_cell(cellIdx: i32): i32 {
-const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
-const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
-const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
+  const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
+  const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
+  const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
 
-for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
-  const ownerRaw = atomic.load<i32>(ownerPtr);
-  if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
-  if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
-    return atomic.load<i32>(valuePtr);
+  for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
+    const ownerRaw = atomic.load<i32>(ownerPtr);
+    if ((ownerRaw & STRUCTURE_INTENT_LOCK_BIT) != 0) continue;
+    if ((ownerRaw & STRUCTURE_INTENT_OWNER_MASK) != 0) {
+      return atomic.load<i32>(valuePtr);
+    }
+    return atomic.load<i32>(gridPtr);
   }
+
+  // Stale lock fallback: preserve forward progress under adversarial contention.
   return atomic.load<i32>(gridPtr);
 }
-
-// Stale lock fallback: preserve forward progress under adversarial contention.
-return atomic.load<i32>(gridPtr);
-}
-
 ```
 
 ---
@@ -17808,11 +20165,17 @@ return atomic.load<i32>(gridPtr);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/reduce_atom_deltas.md
-import { ENERGY_DELTA_OFF, ENERGY_OFFSET, RESONANCE_DELTA_OFF, RESONANCE_OFFSET, MAX_ATOMS, clamp_resource } from "../01/mod";
+import {
+  clamp_resource,
+  ENERGY_DELTA_OFF,
+  ENERGY_OFFSET,
+  MAX_ATOMS,
+  RESONANCE_DELTA_OFF,
+  RESONANCE_OFFSET,
+} from "../01/mod";
 
-@inline
 export function reduce_atom_deltas(startIdx: i32, endIdx: i32): void {
-let start = startIdx;
+  let start = startIdx;
   let end = endIdx;
   if (start < 0) start = 0;
   if (end > MAX_ATOMS) end = MAX_ATOMS;
@@ -17838,7 +20201,6 @@ let start = startIdx;
     }
   }
 }
-
 ```
 
 ---
@@ -17849,11 +20211,9 @@ let start = startIdx;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/reset_neural_coherence.md
 import { COHERENCE_OFF } from "../01/mod";
 
-@inline
 export function reset_neural_coherence(): void {
-atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
+  atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
 }
-
 ```
 
 ---
@@ -17862,47 +20222,66 @@ atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/seed_atom.md
-import { IDS_OFFSET, XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET, ROLES_OFFSET, LOGIC_OFFSET, LINEAGE_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET } from "../01/mod";
+import {
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "../01/mod";
 
-@inline
-export function seed_atom(idx: i32, id: i64, x: i32, y: i32, energy: i32, resonance: i32, genomePtr: usize, lineagePtr: usize): void {
-const idPtr = IDS_OFFSET + (idx << 3) as usize;
-store<i64>(idPtr, id);
+export function seed_atom(
+  idx: i32,
+  id: i64,
+  x: i32,
+  y: i32,
+  energy: i32,
+  resonance: i32,
+  genomePtr: usize,
+  lineagePtr: usize,
+): void {
+  const idPtr = IDS_OFFSET + (idx << 3) as usize;
+  store<i64>(idPtr, id);
 
-const xPtr = XS_OFFSET + (idx << 1) as usize;
-store<i16>(xPtr, x as i16);
+  const xPtr = XS_OFFSET + (idx << 1) as usize;
+  store<i16>(xPtr, x as i16);
 
-const yPtr = YS_OFFSET + (idx << 1) as usize;
-store<i16>(yPtr, y as i16);
+  const yPtr = YS_OFFSET + (idx << 1) as usize;
+  store<i16>(yPtr, y as i16);
 
-store<i32>(ENERGY_OFFSET + (idx << 2) as usize, energy);
-store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, resonance);
-store<i32>(PHASE_OFFSET + (idx << 2) as usize, 0);
-store<u8>(ROLES_OFFSET + (idx as usize), 0);
+  store<i32>(ENERGY_OFFSET + (idx << 2) as usize, energy);
+  store<i32>(RESONANCE_OFFSET + (idx << 2) as usize, resonance);
+  store<i32>(PHASE_OFFSET + (idx << 2) as usize, 0);
+  store<u8>(ROLES_OFFSET + (idx as usize), 0);
 
-const logicPtr = LOGIC_OFFSET + (idx << 3) as usize;
-if (genomePtr != 0) {
-  memory.copy(logicPtr, genomePtr, 8);
-} else {
-  for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
+  const logicPtr = LOGIC_OFFSET + (idx << 3) as usize;
+  if (genomePtr != 0) {
+    memory.copy(logicPtr, genomePtr, 8);
+  } else {
+    for (let b = 0; b < 8; b++) store<u8>(logicPtr + b, 0);
+  }
+
+  const linOff = LINEAGE_OFFSET + (idx << 3) as usize;
+  if (lineagePtr != 0) {
+    memory.copy(linOff, lineagePtr, 8);
+  } else {
+    store<i64>(linOff, 0);
+  }
+
+  // Clear instructions and context
+  const instPtr = INSTRUCTIONS_OFFSET + (idx << 6) as usize;
+  const ctxPtr = CONTEXT_OFFSET + (idx << 6) as usize;
+  for (let b = 0; b < 64; b++) {
+    store<u8>(instPtr + b, 0);
+    store<u8>(ctxPtr + b, 0);
+  }
 }
-
-const linOff = LINEAGE_OFFSET + (idx << 3) as usize;
-if (lineagePtr != 0) {
-  memory.copy(linOff, lineagePtr, 8);
-} else {
-  store<i64>(linOff, 0);
-}
-
-// Clear instructions and context
-const instPtr = INSTRUCTIONS_OFFSET + (idx << 6) as usize;
-const ctxPtr = CONTEXT_OFFSET + (idx << 6) as usize;
-for (let b = 0; b < 64; b++) {
-  store<u8>(instPtr + b, 0);
-  store<u8>(ctxPtr + b, 0);
-}
-}
-
 ```
 
 ---
@@ -17913,11 +20292,9 @@ for (let b = 0; b < 64; b++) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_dist.md
 import { BOND_DISTANCES_OFFSET } from "../01/mod";
 
-@inline
 export function set_bond_dist(atomIdx: i32, slot: i32, dist: u8): void {
-store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
+  store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
 }
-
 ```
 
 ---
@@ -17928,11 +20305,9 @@ store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_stiffness.md
 import { STIFFNESS_OFFSET } from "../01/mod";
 
-@inline
 export function set_bond_stiffness(atomIdx: i32, slot: i32, val: f32): void {
-store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
+  store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
 }
-
 ```
 
 ---
@@ -17943,11 +20318,9 @@ store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_target.md
 import { BONDS_OFFSET } from "../01/mod";
 
-@inline
 export function set_bond_target(atomIdx: i32, slot: i32, targetIdx: i32): void {
-store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
+  store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
 }
-
 ```
 
 ---
@@ -17958,11 +20331,9 @@ store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_damping.md
 import { DAMPING_OFF } from "../01/mod";
 
-@inline
 export function set_damping(atomIdx: i32, val: u8): void {
-store<u8>(DAMPING_OFF + atomIdx, val);
+  store<u8>(DAMPING_OFF + atomIdx, val);
 }
-
 ```
 
 ---
@@ -17973,11 +20344,9 @@ store<u8>(DAMPING_OFF + atomIdx, val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_energy.md
 import { ENERGY_OFFSET } from "../01/mod";
 
-@inline
 export function set_energy(idx: i32, val: i32): void {
-store<i32>(ENERGY_OFFSET + (idx << 2), val);
+  store<i32>(ENERGY_OFFSET + (idx << 2), val);
 }
-
 ```
 
 ---
@@ -17988,11 +20357,9 @@ store<i32>(ENERGY_OFFSET + (idx << 2), val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_hive_memory.md
 import { HIVE_MEMORY_OFF } from "../01/mod";
 
-@inline
 export function set_hive_memory(addr: i32, val: u8): void {
-store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
+  store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
 }
-
 ```
 
 ---
@@ -18003,11 +20370,9 @@ store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/set_neural_coherence.md
 import { NEURAL_COHERENCE_OFF } from "../01/mod";
 
-@inline
 export function set_neural_coherence(value: i32): void {
-atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
+  atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 }
-
 ```
 
 ---
@@ -18018,11 +20383,9 @@ atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_p_c.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function set_p_c(atomIdx: i32, val: u8): void {
-store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
+  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
 }
-
 ```
 
 ---
@@ -18033,11 +20396,9 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_pending_syscall.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function set_pending_syscall(atomIdx: i32, val: u8): void {
-store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
+  store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
 }
-
 ```
 
 ---
@@ -18048,11 +20409,9 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_phase.md
 import { PHASE_OFFSET } from "../01/mod";
 
-@inline
 export function set_phase(idx: i32, val: i32): void {
-store<i32>(PHASE_OFFSET + (idx << 2), val);
+  store<i32>(PHASE_OFFSET + (idx << 2), val);
 }
-
 ```
 
 ---
@@ -18063,11 +20422,9 @@ store<i32>(PHASE_OFFSET + (idx << 2), val);
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_reg.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
-@inline
 export function set_reg(atomIdx: i32, reg: i32, val: i32): void {
-store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
+  store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
 }
-
 ```
 
 ---
@@ -18076,13 +20433,11 @@ store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_resonance.md
-import { RESONANCE_OFFSET, clamp_resource } from "../01/mod";
+import { clamp_resource, RESONANCE_OFFSET } from "../01/mod";
 
-@inline
 export function set_resonance(idx: i32, val: i32): void {
-store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
+  store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
 }
-
 ```
 
 ---
@@ -18093,11 +20448,9 @@ store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_role.md
 import { ROLES_OFFSET } from "../01/mod";
 
-@inline
 export function set_role(atomIdx: i32, val: u8): void {
-store<u8>(ROLES_OFFSET + atomIdx, val);
+  store<u8>(ROLES_OFFSET + atomIdx, val);
 }
-
 ```
 
 ---
@@ -18106,14 +20459,12 @@ store<u8>(ROLES_OFFSET + atomIdx, val);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/store_clamped_pos.md
-import { XS_OFFSET, YS_OFFSET, clamp_world_x, clamp_world_y } from "../01/mod";
+import { clamp_world_x, clamp_world_y, XS_OFFSET, YS_OFFSET } from "../01/mod";
 
-@inline
 export function store_clamped_pos(idx: i32, x: i32, y: i32): void {
-store<i16>(XS_OFFSET + (<usize>idx << 1), <i16>clamp_world_x(x));
-store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));
+  store<i16>(XS_OFFSET + (<usize> idx << 1), <i16> clamp_world_x(x));
+  store<i16>(YS_OFFSET + (<usize> idx << 1), <i16> clamp_world_y(y));
 }
-
 ```
 
 ---
@@ -18122,11 +20473,10 @@ store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/accumulate_metabolism_stats.md
-import { IDS_OFFSET, METABOLISM_SCRATCH_OFFSET, genome_key16 } from "../02/mod";
+import { genome_key16, IDS_OFFSET, METABOLISM_SCRATCH_OFFSET } from "../02/mod";
 
-@inline
 export function accumulate_metabolism_stats(startIdx: i32, endIdx: i32): void {
-for (let i = startIdx; i < endIdx; i++) {
+  for (let i = startIdx; i < endIdx; i++) {
     const pId = IDS_OFFSET + (i << 3) as usize;
     if (load<i64>(pId) == 0) continue;
 
@@ -18137,7 +20487,6 @@ for (let i = startIdx; i < endIdx; i++) {
     atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4), 1);
   }
 }
-
 ```
 
 ---
@@ -18148,11 +20497,9 @@ for (let i = startIdx; i < endIdx; i++) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance.md
 import { get_resonance, set_resonance } from "../02/mod";
 
-@inline
 export function add_resonance(idx: i32, delta: i32): void {
-set_resonance(idx, get_resonance(idx) + delta);
+  set_resonance(idx, get_resonance(idx) + delta);
 }
-
 ```
 
 ---
@@ -18161,75 +20508,84 @@ set_resonance(idx, get_resonance(idx) + delta);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/apply_bond_springs.md
-import { DAMPING_OFF, MAX_ATOMS, BOND_DISTANCES_OFFSET, get_bond_target, get_bond_stiffness, get_read_x, get_read_y, get_read_resonance, add_resonance_delta, encode_force_tuple } from "../02/mod";
+import {
+  add_resonance_delta,
+  BOND_DISTANCES_OFFSET,
+  DAMPING_OFF,
+  encode_force_tuple,
+  get_bond_stiffness,
+  get_bond_target,
+  get_read_resonance,
+  get_read_x,
+  get_read_y,
+  MAX_ATOMS,
+} from "../02/mod";
 
-@inline
 export function apply_bond_springs(idx: i32, x: i32, y: i32): void {
-let fx: f32 = 0;
-let fy: f32 = 0;
-let damping = load<u8>(DAMPING_OFF + idx as usize);
+  let fx: f32 = 0;
+  let fy: f32 = 0;
+  let damping = load<u8>(DAMPING_OFF + idx as usize);
 
-for (let b = 0; b < 4; b++) {
-  let targetIdx = get_bond_target(idx, b);
-  if (targetIdx == 0 || targetIdx >= MAX_ATOMS) continue;
+  for (let b = 0; b < 4; b++) {
+    let targetIdx = get_bond_target(idx, b);
+    if (targetIdx == 0 || targetIdx >= MAX_ATOMS) continue;
 
-  let targetDist = load<u8>(BOND_DISTANCES_OFFSET + (idx << 2) + b as usize);
-  if (targetDist == 0) targetDist = 50;
+    let targetDist = load<u8>(BOND_DISTANCES_OFFSET + (idx << 2) + b as usize);
+    if (targetDist == 0) targetDist = 50;
 
-  let stiffness = get_bond_stiffness(idx, b);
-  let pX = get_read_x(targetIdx) as f32;
-  let pY = get_read_y(targetIdx) as f32;
-  let dx = pX - (x as f32);
-  let dy = pY - (y as f32);
-  let dist = Mathf.sqrt(dx * dx + dy * dy);
-  if (dist < 1.0) dist = 1.0;
+    let stiffness = get_bond_stiffness(idx, b);
+    let pX = get_read_x(targetIdx) as f32;
+    let pY = get_read_y(targetIdx) as f32;
+    let dx = pX - (x as f32);
+    let dy = pY - (y as f32);
+    let dist = Mathf.sqrt(dx * dx + dy * dy);
+    if (dist < 1.0) dist = 1.0;
 
-  // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
-  let myRes = get_read_resonance(idx);
-  let targetRes = get_read_resonance(targetIdx);
+    // --- Stage 9.1: Resonance-Weighted Stiffness & Symbiosis ---
+    let myRes = get_read_resonance(idx);
+    let targetRes = get_read_resonance(targetIdx);
 
-  // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
-  if (targetRes > myRes) {
-    add_resonance_delta(idx, (targetRes - myRes) / 20);
-  } else if (myRes > targetRes) {
-    add_resonance_delta(idx, -((myRes - targetRes) / 20));
-  }
+    // 1. Resonance Synchronization: Equalize resonance between bonded partners (5% flow)
+    if (targetRes > myRes) {
+      add_resonance_delta(idx, (targetRes - myRes) / 20);
+    } else if (myRes > targetRes) {
+      add_resonance_delta(idx, -((myRes - targetRes) / 20));
+    }
 
-  // 2. Resonance-Weighted Stiffness: Bonds are stronger if atoms are synchronized
-  let sumRes: f32 = (myRes as f32) + (targetRes as f32);
-  let resonanceWeight: f32 = sumRes / 600.0;
-  if (resonanceWeight < 0.5) resonanceWeight = 0.5;
-  if (resonanceWeight > 2.0) resonanceWeight = 2.0;
+    // 2. Resonance-Weighted Stiffness: Bonds are stronger if atoms are synchronized
+    let sumRes: f32 = (myRes as f32) + (targetRes as f32);
+    let resonanceWeight: f32 = sumRes / 600.0;
+    if (resonanceWeight < 0.5) resonanceWeight = 0.5;
+    if (resonanceWeight > 2.0) resonanceWeight = 2.0;
 
-  if (stiffness > 0.8) {
-    let force = (dist - (targetDist as f32)) * 1.5 * resonanceWeight;
-    fx += (dx / dist) * force;
-    fy += (dy / dist) * force;
-  } else {
-    let elasticRange: f32 = 10.0;
-    if (dist > (targetDist as f32) + elasticRange) {
-      let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 *
-        resonanceWeight;
+    if (stiffness > 0.8) {
+      let force = (dist - (targetDist as f32)) * 1.5 * resonanceWeight;
       fx += (dx / dist) * force;
       fy += (dy / dist) * force;
-    } else if (dist < (targetDist as f32) - elasticRange) {
-      let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 *
-        resonanceWeight;
-      fx -= (dx / dist) * force;
-      fy -= (dy / dist) * force;
+    } else {
+      let elasticRange: f32 = 10.0;
+      if (dist > (targetDist as f32) + elasticRange) {
+        let force = (dist - ((targetDist as f32) + elasticRange)) * 0.1 *
+          resonanceWeight;
+        fx += (dx / dist) * force;
+        fy += (dy / dist) * force;
+      } else if (dist < (targetDist as f32) - elasticRange) {
+        let force = (((targetDist as f32) - elasticRange) - dist) * 0.2 *
+          resonanceWeight;
+        fx -= (dx / dist) * force;
+        fy -= (dy / dist) * force;
+      }
     }
   }
-}
 
-if (damping > 0) {
-  let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
-  fx *= dampingFactor;
-  fy *= dampingFactor;
-}
+  if (damping > 0) {
+    let dampingFactor = Mathf.max(0, 1.0 - ((damping as f32) / 255.0));
+    fx *= dampingFactor;
+    fy *= dampingFactor;
+  }
 
-return encode_force_tuple(fx, fy);
+  return encode_force_tuple(fx, fy);
 }
-
 ```
 
 ---
@@ -18238,11 +20594,44 @@ return encode_force_tuple(fx, fy);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/apply_metabolism_kernel.md
-import { METABOLISM_SCRATCH_OFFSET, IDS_OFFSET, ROLES_OFFSET, RESONANCE_OFFSET, CONTEXT_OFFSET, XS_OFFSET, YS_OFFSET, SPATIAL_CELL_SIZE, GRID_W, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, MAX_ATOMS, ENERGY_OFFSET, BONDS_OFFSET, get_energy, set_energy, genome_key16, fast_abs } from "../02/mod";
+import {
+  BONDS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  fast_abs,
+  genome_key16,
+  get_energy,
+  GRID_W,
+  IDS_OFFSET,
+  MAX_ATOMS,
+  MEMORY_GRID_OFF,
+  METABOLISM_SCRATCH_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  set_energy,
+  SPATIAL_CELL_SIZE,
+  STRUCTURE_GRID_OFF,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "../02/mod";
 
-@inline
-export function apply_metabolism_kernel(startIdx: i32, endIdx: i32, noveltySigned: i32, symbiosisSigned: i32, baseTax: i32, targetEnergy: i32, homeostasisBand: i32, homeostasisMaxDelta: i32, overflowThreshold: i32, spatialOverflowRatio: i32, starvationFloor: i32, subsidyEnabled: i32): void {
-const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as usize);
+export function apply_metabolism_kernel(
+  startIdx: i32,
+  endIdx: i32,
+  noveltySigned: i32,
+  symbiosisSigned: i32,
+  baseTax: i32,
+  targetEnergy: i32,
+  homeostasisBand: i32,
+  homeostasisMaxDelta: i32,
+  overflowThreshold: i32,
+  spatialOverflowRatio: i32,
+  starvationFloor: i32,
+  subsidyEnabled: i32,
+): void {
+  const population = atomic.load<i32>(
+    METABOLISM_SCRATCH_OFFSET + (65536 * 4) as usize,
+  );
   if (population == 0) return;
 
   const overflowActive = spatialOverflowRatio >= overflowThreshold;
@@ -18262,9 +20651,13 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
       let resonance = atomic.load<i32>(RESONANCE_OFFSET + (i << 2) as usize);
       let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
       let role = roleRaw & 0x7F; // Strip metazoan flag
-      
-      let ctx13 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize);
-      let ctx14 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize);
+
+      let ctx13 = atomic.load<i32>(
+        CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize,
+      );
+      let ctx14 = atomic.load<i32>(
+        CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize,
+      );
       let hasImmunity = ctx13 != 0 || ctx14 != 0;
 
       let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
@@ -18276,27 +20669,29 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
       // Only attempt fossilization if it has a qualifying property
       // 2 = ROLE_GUARDIAN, 3 = ROLE_ARCHITECT
       if (resonance > 100 || role == 2 || role == 3 || hasImmunity) {
-
         let structVal: i32 = 0;
         if (role == 2) {
-            structVal = 1 | (150 << 16); // STR_WIRE = 1
+          structVal = 1 | (150 << 16); // STR_WIRE = 1
         } else if (role == 3) {
-            structVal = 1 | (100 << 16);
+          structVal = 1 | (100 << 16);
         }
 
         if (structVal != 0) {
-            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2) as usize, structVal);
+          atomic.store<i32>(
+            STRUCTURE_GRID_OFF + (cellIdx << 2) as usize,
+            structVal,
+          );
         }
 
         // Epigenetic memory spillage
         let memOff = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-        
+
         // Spilled CRISPR Hash (Reg 13) into bytes 4,5,6,7 in Big-Endian for test
         atomic.store<u8>(memOff + 4, (ctx13 >>> 24) as u8);
         atomic.store<u8>(memOff + 5, (ctx13 >>> 16) as u8);
         atomic.store<u8>(memOff + 6, (ctx13 >>> 8) as u8);
-        atomic.store<u8>(memOff + 7, (ctx13) as u8);
-        
+        atomic.store<u8>(memOff + 7, ctx13 as u8);
+
         // Bootstrapping memory charge for Plasmid decay (bytes 0,1,2 in Little-Endian for test)
         let bootCharge = 100;
         atomic.store<u8>(memOff + 0, (bootCharge & 0xFF) as u8);
@@ -18316,8 +20711,13 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
     let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
     let role = roleRaw & 0x7F; // Strip metazoan flag
     if (role == 5) { // ROLE_MITOCHONDRIA
-      let hostId = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize);
-      if (hostId > 0 && hostId < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0) {
+      let hostId = atomic.load<i32>(
+        CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize,
+      );
+      if (
+        hostId > 0 && hostId < MAX_ATOMS &&
+        atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0
+      ) {
         // Enforce Coordinate Lock
         let hx = atomic.load<i16>(XS_OFFSET + (hostId << 1) as usize);
         let hy = atomic.load<i16>(YS_OFFSET + (hostId << 1) as usize);
@@ -18425,13 +20825,18 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
       if (next != current) {
         set_energy(i, next);
         // Track stats for telemetry
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4 as usize, 1);
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8 as usize, delta);
+        atomic.add<i32>(
+          METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4 as usize,
+          1,
+        );
+        atomic.add<i32>(
+          METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8 as usize,
+          delta,
+        );
       }
     }
   }
 }
-
 ```
 
 ---
@@ -18440,8 +20845,6 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/atomic_ledger.md
-
-
 ```
 
 ---
@@ -18450,86 +20853,99 @@ const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as u
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/build_spatial_hash.md
-import { MAX_ATOMS, GRID_CELLS, GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, QUORUM_OFFSET, IDS_OFFSET, get_x, get_y, get_phase, get_role } from "../02/mod";
+import {
+  get_phase,
+  get_role,
+  get_x,
+  get_y,
+  GRID_CELLS,
+  GRID_W,
+  IDS_OFFSET,
+  MAX_ATOMS,
+  QUORUM_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+} from "../02/mod";
 
-@inline
 export function build_spatial_hash(): i64 {
-const CELL_CAPACITY: i32 = 31;
-const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
+  const CELL_CAPACITY: i32 = 31;
+  const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
 
-let spatialHashOverflowCount = 0;
-let spatialHashMaxCellCount = 0;
+  let spatialHashOverflowCount = 0;
+  let spatialHashMaxCellCount = 0;
 
-// 1. Clear Grid and Quorum
-for (let i = 0; i < (GRID_CELLS as i32); i++) {
-  atomic.store<i32>(SPATIAL_GRID_OFFSET + (i << 7) as usize, 0);
-  // Clear Quorum (8 roles)
-  let qOff = QUORUM_OFFSET + (i << 5) as usize;
-  store<u64>(qOff, 0);
-  store<u64>(qOff + 8, 0);
-  store<u64>(qOff + 16, 0);
-  store<u64>(qOff + 24, 0);
-}
+  // 1. Clear Grid and Quorum
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
+    atomic.store<i32>(SPATIAL_GRID_OFFSET + (i << 7) as usize, 0);
+    // Clear Quorum (8 roles)
+    let qOff = QUORUM_OFFSET + (i << 5) as usize;
+    store<u64>(qOff, 0);
+    store<u64>(qOff + 8, 0);
+    store<u64>(qOff + 16, 0);
+    store<u64>(qOff + 24, 0);
+  }
 
-// 2. Bin Atoms
-for (let idx = 0; idx < MAX_ATOMS; idx++) {
-  let id = load<u64>(IDS_OFFSET + (idx << 3) as usize);
-  if (id == 0) continue;
+  // 2. Bin Atoms
+  for (let idx = 0; idx < MAX_ATOMS; idx++) {
+    let id = load<u64>(IDS_OFFSET + (idx << 3) as usize);
+    if (id == 0) continue;
 
-  let x = (get_x(idx) as i32) / 100;
-  let y = (get_y(idx) as i32) / 100;
+    let x = (get_x(idx) as i32) / 100;
+    let y = (get_y(idx) as i32) / 100;
 
-  // Clamp
-  if (x < 0) x = 0;
-  if (x > WORLD_MAX_X) x = WORLD_MAX_X;
-  if (y < 0) y = 0;
-  if (y > WORLD_MAX_Y) y = WORLD_MAX_Y;
+    // Clamp
+    if (x < 0) x = 0;
+    if (x > WORLD_MAX_X) x = WORLD_MAX_X;
+    if (y < 0) y = 0;
+    if (y > WORLD_MAX_Y) y = WORLD_MAX_Y;
 
-  let cellX = x / SPATIAL_CELL_SIZE;
-  let cellY = y / SPATIAL_CELL_SIZE;
-  let cellIdx = cellY * GRID_W + cellX;
-  let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
+    let cellX = x / SPATIAL_CELL_SIZE;
+    let cellY = y / SPATIAL_CELL_SIZE;
+    let cellIdx = cellY * GRID_W + cellX;
+    let offset = SPATIAL_GRID_OFFSET + (cellIdx << 7);
 
-  // Atomic update of count
-  let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
-  if (nextSlot <= MAX_ATOM_SLOTS) {
-    store<i32>((offset + (nextSlot << 2)) as usize, idx);
+    // Atomic update of count
+    let nextSlot = atomic.add<i32>(offset as usize, 1) + 1;
+    if (nextSlot <= MAX_ATOM_SLOTS) {
+      store<i32>((offset + (nextSlot << 2)) as usize, idx);
 
-    // Phase tracking (Era 50)
-    let myPhase = get_phase(idx);
-    atomic.add<i32>((offset + (CELL_CAPACITY << 2)) as usize, myPhase);
+      // Phase tracking (Era 50)
+      let myPhase = get_phase(idx);
+      atomic.add<i32>((offset + (CELL_CAPACITY << 2)) as usize, myPhase);
 
-    // Role quorum (Era 55)
-    let role = get_role(idx);
-    let safeRole = role > 7 ? 7 : role;
-    atomic.add<i32>(
-      QUORUM_OFFSET + (cellIdx << 5) + (safeRole << 2) as usize,
-      1,
-    );
-    if (nextSlot > spatialHashMaxCellCount) {
-      spatialHashMaxCellCount = nextSlot;
+      // Role quorum (Era 55)
+      let role = get_role(idx);
+      let safeRole = role > 7 ? 7 : role;
+      atomic.add<i32>(
+        QUORUM_OFFSET + (cellIdx << 5) + (safeRole << 2) as usize,
+        1,
+      );
+      if (nextSlot > spatialHashMaxCellCount) {
+        spatialHashMaxCellCount = nextSlot;
+      }
+    } else {
+      // Overflow: roll back count so the cell occupancy stays bounded.
+      atomic.sub<i32>(offset as usize, 1);
+      spatialHashOverflowCount += 1;
     }
-  } else {
-    // Overflow: roll back count so the cell occupancy stays bounded.
-    atomic.sub<i32>(offset as usize, 1);
-    spatialHashOverflowCount += 1;
   }
-}
 
-// 3. Finalize Phase Averages
-for (let i = 0; i < (GRID_CELLS as i32); i++) {
-  let offset = SPATIAL_GRID_OFFSET + (i << 7);
-  let count = atomic.load<i32>(offset as usize);
-  if (count > 0) {
-    let sum = atomic.load<i32>((offset + (CELL_CAPACITY << 2)) as usize);
-    // We reuse slot 31 (CELL_CAPACITY) for the average after clearing the sum
-    atomic.store<i32>((offset + (CELL_CAPACITY << 2)) as usize, sum / count);
+  // 3. Finalize Phase Averages
+  for (let i = 0; i < (GRID_CELLS as i32); i++) {
+    let offset = SPATIAL_GRID_OFFSET + (i << 7);
+    let count = atomic.load<i32>(offset as usize);
+    if (count > 0) {
+      let sum = atomic.load<i32>((offset + (CELL_CAPACITY << 2)) as usize);
+      // We reuse slot 31 (CELL_CAPACITY) for the average after clearing the sum
+      atomic.store<i32>((offset + (CELL_CAPACITY << 2)) as usize, sum / count);
+    }
   }
-}
 
-return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as i64) & 0xFFFFFFFF);
+  return ((spatialHashMaxCellCount as i64) << 32) |
+    ((spatialHashOverflowCount as i64) & 0xFFFFFFFF);
 }
-
 ```
 
 ---
@@ -18538,167 +20954,189 @@ return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as 
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/calculate_trophism.md
-import { SPATIAL_CELL_SIZE, MAX_ATOMS, ROLE_PRODUCER, ROLE_NEUTRAL, ROLE_GUARDIAN, ROLE_PARASITE, ROLE_ARCHITECT, GRID_W, fast_min, get_read_energy, in_grid, get_spatial_grid_count, get_spatial_grid_atom, get_read_x, get_read_y, get_role, add_energy_delta, add_resonance_delta, get_read_resonance, get_attention_cell, get_glyph_influence, read_structure_cell, encode_force_tuple } from "../02/mod";
+import {
+  add_energy_delta,
+  add_resonance_delta,
+  encode_force_tuple,
+  fast_min,
+  get_attention_cell,
+  get_glyph_influence,
+  get_read_energy,
+  get_read_resonance,
+  get_read_x,
+  get_read_y,
+  get_role,
+  get_spatial_grid_atom,
+  get_spatial_grid_count,
+  GRID_W,
+  in_grid,
+  MAX_ATOMS,
+  read_structure_cell,
+  ROLE_ARCHITECT,
+  ROLE_GUARDIAN,
+  ROLE_NEUTRAL,
+  ROLE_PARASITE,
+  ROLE_PRODUCER,
+  SPATIAL_CELL_SIZE,
+} from "../02/mod";
 
-@inline
 export function calculate_trophism(idx: i32, x: i32, y: i32, role: u8): void {
-let tx: f32 = 0;
-let ty: f32 = 0;
-const radius: f32 = 250.0;
-const detectionRadiusSq: f32 = 225.0; // 15^2
-const flow: i32 = (0.2 * 1000.0) as i32; // Using 1000.0 for literal scale
-const burn: i32 = (1.0 * 1000.0) as i32;
-let energy = get_read_energy(idx);
+  let tx: f32 = 0;
+  let ty: f32 = 0;
+  const radius: f32 = 250.0;
+  const detectionRadiusSq: f32 = 225.0; // 15^2
+  const flow: i32 = (0.2 * 1000.0) as i32; // Using 1000.0 for literal scale
+  const burn: i32 = (1.0 * 1000.0) as i32;
+  let energy = get_read_energy(idx);
 
-const gx = x / SPATIAL_CELL_SIZE;
-const gy = y / SPATIAL_CELL_SIZE;
+  const gx = x / SPATIAL_CELL_SIZE;
+  const gy = y / SPATIAL_CELL_SIZE;
 
-// Scan neighborhood for chemotaxis, trophic flow, and social recognition
-for (let oy = -3; oy <= 3; oy++) {
-  for (let ox = -3; ox <= 3; ox++) {
-    let cx = gx + ox;
-    let cy = gy + oy;
-    if (in_grid(cx, cy)) {
-      let count = get_spatial_grid_count(cx, cy);
-      for (let s = 0; s < count; s++) {
-        let otherIdx = get_spatial_grid_atom(cx, cy, s);
-        if (otherIdx == idx || otherIdx >= MAX_ATOMS) continue;
+  // Scan neighborhood for chemotaxis, trophic flow, and social recognition
+  for (let oy = -3; oy <= 3; oy++) {
+    for (let ox = -3; ox <= 3; ox++) {
+      let cx = gx + ox;
+      let cy = gy + oy;
+      if (in_grid(cx, cy)) {
+        let count = get_spatial_grid_count(cx, cy);
+        for (let s = 0; s < count; s++) {
+          let otherIdx = get_spatial_grid_atom(cx, cy, s);
+          if (otherIdx == idx || otherIdx >= MAX_ATOMS) continue;
 
-        let oX = get_read_x(otherIdx) as f32;
-        let oY = get_read_y(otherIdx) as f32;
-        let dx = oX - (x as f32);
-        let dy = oY - (y as f32);
-        let d2 = dx * dx + dy * dy;
-        if (d2 < 0.001) {
-          // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
-          d2 = 0.001;
-        } else if (d2 < 1.0) {
-          // Minor overlap, let it through
-        }
+          let oX = get_read_x(otherIdx) as f32;
+          let oY = get_read_y(otherIdx) as f32;
+          let dx = oX - (x as f32);
+          let dy = oY - (y as f32);
+          let d2 = dx * dx + dy * dy;
+          if (d2 < 0.001) {
+            // Overlapping atoms flow energy but don't apply chemotaxis/avoidance (divide by zero)
+            d2 = 0.001;
+          } else if (d2 < 1.0) {
+            // Minor overlap, let it through
+          }
 
-        // --- PHASE 15: SOCIAL RECOGNITION (AVOIDANCE) ---
-        if (d2 < 100.0) { // Too close!
-          tx -= dx * 0.5;
-          ty -= dy * 0.5;
-        }
+          // --- PHASE 15: SOCIAL RECOGNITION (AVOIDANCE) ---
+          if (d2 < 100.0) { // Too close!
+            tx -= dx * 0.5;
+            ty -= dy * 0.5;
+          }
 
-        // --- PHASE 17+: TROPHIC FLOW ---
-        if (d2 <= detectionRadiusSq) {
-          let otherRole = get_role(otherIdx);
-          if (role == ROLE_PRODUCER && otherRole == ROLE_NEUTRAL) {
-            if (energy > 100 * 1000) {
-              add_energy_delta(idx, -flow);
-              add_energy_delta(otherIdx, flow);
-              energy -= flow;
+          // --- PHASE 17+: TROPHIC FLOW ---
+          if (d2 <= detectionRadiusSq) {
+            let otherRole = get_role(otherIdx);
+            if (role == ROLE_PRODUCER && otherRole == ROLE_NEUTRAL) {
+              if (energy > 100 * 1000) {
+                add_energy_delta(idx, -flow);
+                add_energy_delta(otherIdx, flow);
+                energy -= flow;
+              }
+            }
+            if (role == ROLE_GUARDIAN && otherRole == ROLE_PARASITE) {
+              let oEnergy = get_read_energy(otherIdx);
+              if (oEnergy > 0) {
+                add_energy_delta(
+                  otherIdx,
+                  -fast_min(oEnergy, burn),
+                );
+                add_resonance_delta(idx, 5);
+              }
             }
           }
-          if (role == ROLE_GUARDIAN && otherRole == ROLE_PARASITE) {
-            let oEnergy = get_read_energy(otherIdx);
-            if (oEnergy > 0) {
-              add_energy_delta(
-                otherIdx,
-                -fast_min(oEnergy, burn),
-              );
-              add_resonance_delta(idx, 5);
-            }
+
+          if (d2 > radius * radius) continue;
+          let d = Mathf.sqrt(d2);
+
+          // --- PHASE 14: CHEMOTAXIS ---
+          let oEnergy = get_read_energy(otherIdx);
+          let oRes = get_read_resonance(otherIdx);
+
+          let multiplier: f32 = 1.0;
+          if (role == ROLE_GUARDIAN && oRes > 50) multiplier = 3.0;
+          if (role == ROLE_PRODUCER && (oEnergy as f32) < 50000.0) {
+            multiplier = 2.0; // 50.0 * 1000
           }
+
+          let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
+            (2.0 * multiplier);
+
+          // Hard cap on chemotactic force to prevent physics explosions
+          // when arbitrary massive energy pools are assigned by the test runner.
+          if (force < -20.0) force = -20.0;
+          if (force > 20.0) force = 20.0;
+
+          // Anti-overshoot mechanism: Do not pull an atom past its target
+          if (force > 0.0 && force > d) {
+            force = d;
+          }
+
+          tx += (dx / d) * force;
+          ty += (dy / d) * force;
         }
-
-        if (d2 > radius * radius) continue;
-        let d = Mathf.sqrt(d2);
-
-        // --- PHASE 14: CHEMOTAXIS ---
-        let oEnergy = get_read_energy(otherIdx);
-        let oRes = get_read_resonance(otherIdx);
-
-        let multiplier: f32 = 1.0;
-        if (role == ROLE_GUARDIAN && oRes > 50) multiplier = 3.0;
-        if (role == ROLE_PRODUCER && (oEnergy as f32) < 50000.0) {
-          multiplier = 2.0; // 50.0 * 1000
-        }
-
-        let force = ((oEnergy as f32) / 100000.0) * ((radius - d) / radius) *
-          (2.0 * multiplier);
-
-        // Hard cap on chemotactic force to prevent physics explosions
-        // when arbitrary massive energy pools are assigned by the test runner.
-        if (force < -20.0) force = -20.0;
-        if (force > 20.0) force = 20.0;
-
-        // Anti-overshoot mechanism: Do not pull an atom past its target
-        if (force > 0.0 && force > d) {
-          force = d;
-        }
-
-        tx += (dx / d) * force;
-        ty += (dy / d) * force;
       }
     }
   }
-}
 
-// Observer presence field (Era 70): role-dependent response to attention gradients.
-let gradX = get_attention_cell(gx + 1, gy) - get_attention_cell(gx - 1, gy);
-let gradY = get_attention_cell(gx, gy + 1) - get_attention_cell(gx, gy - 1);
-if (gradX > 200.0) gradX = 200.0;
-if (gradX < -200.0) gradX = -200.0;
-if (gradY > 200.0) gradY = 200.0;
-if (gradY < -200.0) gradY = -200.0;
+  // Observer presence field (Era 70): role-dependent response to attention gradients.
+  let gradX = get_attention_cell(gx + 1, gy) - get_attention_cell(gx - 1, gy);
+  let gradY = get_attention_cell(gx, gy + 1) - get_attention_cell(gx, gy - 1);
+  if (gradX > 200.0) gradX = 200.0;
+  if (gradX < -200.0) gradX = -200.0;
+  if (gradY > 200.0) gradY = 200.0;
+  if (gradY < -200.0) gradY = -200.0;
 
-let attentionDrive: f32 = 0.0;
-if (role == ROLE_PARASITE) {
-  attentionDrive = -0.04;
-} else if (role == ROLE_ARCHITECT) {
-  const localAttention = get_attention_cell(gx, gy);
-  attentionDrive = localAttention > 80.0 ? -0.03 : 0.02;
-} else if (role == ROLE_GUARDIAN) {
-  attentionDrive = 0.02;
-} else {
-  attentionDrive = 0.05; // Producers and neutral explorers gravitate to attention.
-}
-tx += gradX * attentionDrive;
-ty += gradY * attentionDrive;
+  let attentionDrive: f32 = 0.0;
+  if (role == ROLE_PARASITE) {
+    attentionDrive = -0.04;
+  } else if (role == ROLE_ARCHITECT) {
+    const localAttention = get_attention_cell(gx, gy);
+    attentionDrive = localAttention > 80.0 ? -0.03 : 0.02;
+  } else if (role == ROLE_GUARDIAN) {
+    attentionDrive = 0.02;
+  } else {
+    attentionDrive = 0.05; // Producers and neutral explorers gravitate to attention.
+  }
+  tx += gradX * attentionDrive;
+  ty += gradY * attentionDrive;
 
-let glyphGradX = get_glyph_influence(gx + 1, gy, role) -
-  get_glyph_influence(gx - 1, gy, role);
-let glyphGradY = get_glyph_influence(gx, gy + 1, role) -
-  get_glyph_influence(gx, gy - 1, role);
-if (glyphGradX > 200.0) glyphGradX = 200.0;
-if (glyphGradX < -200.0) glyphGradX = -200.0;
-if (glyphGradY > 200.0) glyphGradY = 200.0;
-if (glyphGradY < -200.0) glyphGradY = -200.0;
-tx += glyphGradX * 0.015;
-ty += glyphGradY * 0.015;
+  let glyphGradX = get_glyph_influence(gx + 1, gy, role) -
+    get_glyph_influence(gx - 1, gy, role);
+  let glyphGradY = get_glyph_influence(gx, gy + 1, role) -
+    get_glyph_influence(gx, gy - 1, role);
+  if (glyphGradX > 200.0) glyphGradX = 200.0;
+  if (glyphGradX < -200.0) glyphGradX = -200.0;
+  if (glyphGradY > 200.0) glyphGradY = 200.0;
+  if (glyphGradY < -200.0) glyphGradY = -200.0;
+  tx += glyphGradX * 0.015;
+  ty += glyphGradY * 0.015;
 
-if (role == ROLE_ARCHITECT) {
-  // Simple 4-way density check
-  for (let i = 0; i < 4; i++) {
-    let ox: i32 = 0;
-    let oy: i32 = 0;
-    if (i == 0) {
-      oy = -2;
-    } else if (i == 1) {
-      oy = 2;
-    } else if (i == 2) {
-      ox = -2;
-    } else {
-      ox = 2;
-    }
-    let cx = gx + ox;
-    let cy = gy + oy;
-    if (in_grid(cx, cy)) {
-      let cell = read_structure_cell(cy * GRID_W + cx);
-      let density = (cell >> 8) & 0xFF;
-      let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
-      tx += ((ox as f32) / (2.0 as f32)) * force;
-      ty += ((oy as f32) / (2.0 as f32)) * force;
+  if (role == ROLE_ARCHITECT) {
+    // Simple 4-way density check
+    for (let i = 0; i < 4; i++) {
+      let ox: i32 = 0;
+      let oy: i32 = 0;
+      if (i == 0) {
+        oy = -2;
+      } else if (i == 1) {
+        oy = 2;
+      } else if (i == 2) {
+        ox = -2;
+      } else {
+        ox = 2;
+      }
+      let cx = gx + ox;
+      let cy = gy + oy;
+      if (in_grid(cx, cy)) {
+        let cell = read_structure_cell(cy * GRID_W + cx);
+        let density = (cell >> 8) & 0xFF;
+        let force = (255.0 as f32 - (density as f32)) / (50.0 as f32);
+        tx += ((ox as f32) / (2.0 as f32)) * force;
+        ty += ((oy as f32) / (2.0 as f32)) * force;
+      }
     }
   }
-}
 
-return encode_force_tuple(tx, ty);
+  return encode_force_tuple(tx, ty);
 }
-
 ```
 
 ---
@@ -18707,51 +21145,57 @@ return encode_force_tuple(tx, ty);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/drain_spawn_requests.md
-import { SPAWN_HEAD_OFF, SPAWN_DATA_OFF, SPAWN_MAX, SPAWN_SLOT, MAX_ATOMS, find_next_free_slot, seed_atom } from "../02/mod";
+import {
+  find_next_free_slot,
+  MAX_ATOMS,
+  seed_atom,
+  SPAWN_DATA_OFF,
+  SPAWN_HEAD_OFF,
+  SPAWN_MAX,
+  SPAWN_SLOT,
+} from "../02/mod";
 
-@inline
 export function drain_spawn_requests(tick: i32): i32 {
-const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
-const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
+  const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
+  const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
 
-let cursor = readHead;
-const writeCursor = writeHead; // Don't modulo here, we modulo access
-let spawned: i32 = 0;
-let freeSearchCursor: i32 = 0;
+  let cursor = readHead;
+  const writeCursor = writeHead; // Don't modulo here, we modulo access
+  let spawned: i32 = 0;
+  let freeSearchCursor: i32 = 0;
 
-while (cursor != writeCursor && spawned < 64) {
-  const slotOff = SPAWN_DATA_OFF +
-    ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
-  const gLo = load<i32>(slotOff);
-  if (gLo != 0) {
-    const cx = load<i16>(slotOff + 8) as i32;
-    const cy = load<i16>(slotOff + 10) as i32;
-    const energyScaled = load<i32>(slotOff + 12);
+  while (cursor != writeCursor && spawned < 64) {
+    const slotOff = SPAWN_DATA_OFF +
+      ((cursor % SPAWN_MAX) * SPAWN_SLOT) as usize;
+    const gLo = load<i32>(slotOff);
+    if (gLo != 0) {
+      const cx = load<i16>(slotOff + 8) as i32;
+      const cy = load<i16>(slotOff + 10) as i32;
+      const energyScaled = load<i32>(slotOff + 12);
 
-    const freeIdx = find_next_free_slot(freeSearchCursor);
-    if (freeIdx != -1) {
-      const childId = (tick as i64) << 32 | (freeIdx as i64);
-      seed_atom(
-        freeIdx,
-        childId,
-        cx,
-        cy,
-        energyScaled,
-        100,
-        slotOff,
-        slotOff + 16,
-      );
-      freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
+      const freeIdx = find_next_free_slot(freeSearchCursor);
+      if (freeIdx != -1) {
+        const childId = (tick as i64) << 32 | (freeIdx as i64);
+        seed_atom(
+          freeIdx,
+          childId,
+          cx,
+          cy,
+          energyScaled,
+          100,
+          slotOff,
+          slotOff + 16,
+        );
+        freeSearchCursor = (freeIdx + 1) % MAX_ATOMS;
+      }
     }
+    cursor++;
+    spawned++;
   }
-  cursor++;
-  spawned++;
-}
 
-atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
-return spawned;
+  atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
+  return spawned;
 }
-
 ```
 
 ---
@@ -18760,20 +21204,23 @@ return spawned;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/fire_signal.md
-import { MAX_ATOMS, get_bond_target, get_bond_stiffness, add_resonance_delta } from "../02/mod";
+import {
+  add_resonance_delta,
+  get_bond_stiffness,
+  get_bond_target,
+  MAX_ATOMS,
+} from "../02/mod";
 
-@inline
 export function fire_signal(idx: i32): void {
-for (let b = 0; b < 4; b++) {
-  let target = get_bond_target(idx, b);
-  if (target > 0 && target < MAX_ATOMS) {
-    let st = get_bond_stiffness(idx, b);
-    let signalStrength = (150.0 * st) as i32; // Increased to ensure cascade
-    add_resonance_delta(target, signalStrength);
+  for (let b = 0; b < 4; b++) {
+    let target = get_bond_target(idx, b);
+    if (target > 0 && target < MAX_ATOMS) {
+      let st = get_bond_stiffness(idx, b);
+      let signalStrength = (150.0 * st) as i32; // Increased to ensure cascade
+      add_resonance_delta(target, signalStrength);
+    }
   }
 }
-}
-
 ```
 
 ---
@@ -18782,8 +21229,6 @@ for (let b = 0; b < 4; b++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_ledger.md
-
-
 ```
 
 ---
@@ -18792,8 +21237,6 @@ for (let b = 0; b < 4; b++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
-
-
 ```
 
 ---
@@ -18802,8 +21245,6 @@ for (let b = 0; b < 4; b++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
-
-
 ```
 
 ---
@@ -18812,8 +21253,6 @@ for (let b = 0; b < 4; b++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
-
-
 ```
 
 ---
@@ -18822,8 +21261,6 @@ for (let b = 0; b < 4; b++) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/genetic_ledger.md
-
-
 ```
 
 ---
@@ -18834,19 +21271,17 @@ for (let b = 0; b < 4; b++) {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_x.md
 import { get_logic_byte } from "../02/mod";
 
-@inline
 export function get_genome_velocity_x(idx: i32): i32 {
-let vx: i32 = 0;
-for (let b = 0; b < 2; b++) {
-  let byte = get_logic_byte(idx, b);
-  let hi = (byte >> 4) as i32;
-  if (hi != 0) vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
-  let lo = (byte & 0x0F) as i32;
-  if (lo != 0) vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
+  let vx: i32 = 0;
+  for (let b = 0; b < 2; b++) {
+    let byte = get_logic_byte(idx, b);
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vx += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vx += (lo > 7 ? lo - 7 : lo - 8) * 3;
+  }
+  return vx;
 }
-return vx;
-}
-
 ```
 
 ---
@@ -18857,19 +21292,17 @@ return vx;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_y.md
 import { get_logic_byte } from "../02/mod";
 
-@inline
 export function get_genome_velocity_y(idx: i32): i32 {
-let vy: i32 = 0;
-for (let b = 2; b < 4; b++) {
-  let byte = get_logic_byte(idx, b);
-  let hi = (byte >> 4) as i32;
-  if (hi != 0) vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
-  let lo = (byte & 0x0F) as i32;
-  if (lo != 0) vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
+  let vy: i32 = 0;
+  for (let b = 2; b < 4; b++) {
+    let byte = get_logic_byte(idx, b);
+    let hi = (byte >> 4) as i32;
+    if (hi != 0) vy += (hi > 7 ? hi - 7 : hi - 8) * 3;
+    let lo = (byte & 0x0F) as i32;
+    if (lo != 0) vy += (lo > 7 ? lo - 7 : lo - 8) * 3;
+  }
+  return vy;
 }
-return vy;
-}
-
 ```
 
 ---
@@ -18878,12 +21311,31 @@ return vy;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/glyph_transport.md
-import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_W, SIGNAL_GRID_OFF, SECRETION_STATS_OFF, MEMORY_GRID_OFF, atomic_deposit_glyph_header, diffusion_share_for_kind, decay_for_kind, pack_glyph_header, unpack_glyph_amplitude, unpack_glyph_kind, fast_abs, fast_max, fast_min, in_grid } from "../02/mod";
+import {
+  atomic_deposit_glyph_header,
+  decay_for_kind,
+  diffusion_share_for_kind,
+  fast_abs,
+  fast_max,
+  fast_min,
+  GLYPH_HEADER_OFF,
+  GLYPH_PAYLOAD_OFF,
+  GLYPH_SCRATCH_HEADER_OFF,
+  GLYPH_SCRATCH_PAYLOAD_OFF,
+  GRID_CELLS,
+  GRID_W,
+  in_grid,
+  MEMORY_GRID_OFF,
+  pack_glyph_header,
+  SECRETION_STATS_OFF,
+  SIGNAL_GRID_OFF,
+  unpack_glyph_amplitude,
+  unpack_glyph_kind,
+} from "../02/mod";
 
-@inline
 export function glyph_transport(tick: i32): void {
-// Sampling grid for internal reflection (Stage 5.1/5.2)
-  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (GRID_CELLS) << 2);
+  // Sampling grid for internal reflection (Stage 5.1/5.2)
+  memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, GRID_CELLS << 2);
 
   const dx = [-1, 1, 0, 0];
   const dy = [0, 0, -1, 1];
@@ -18909,7 +21361,13 @@ export function glyph_transport(tick: i32): void {
     }
 
     if (fast_abs(retained) > 0) {
-      atomic_deposit_glyph_header(GLYPH_SCRATCH_HEADER_OFF, cell, kind, retained, 0);
+      atomic_deposit_glyph_header(
+        GLYPH_SCRATCH_HEADER_OFF,
+        cell,
+        kind,
+        retained,
+        0,
+      );
       if (kind == 2) { // PLASMID payload persistence
         const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
         const dstPtr = GLYPH_SCRATCH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -18927,7 +21385,13 @@ export function glyph_transport(tick: i32): void {
         let ny = gy + dy[i];
         if (in_grid(nx, ny)) {
           const nextCell = ny * GRID_W + nx;
-          atomic_deposit_glyph_header(GLYPH_SCRATCH_HEADER_OFF, nextCell, kind, share, 0);
+          atomic_deposit_glyph_header(
+            GLYPH_SCRATCH_HEADER_OFF,
+            nextCell,
+            kind,
+            share,
+            0,
+          );
 
           if (share >= 128 || share <= -128) {
             const srcPtr = GLYPH_PAYLOAD_OFF + (cell << 3) as usize;
@@ -18982,7 +21446,6 @@ export function glyph_transport(tick: i32): void {
   memory.copy(GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GRID_CELLS << 3);
   memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_CELLS << 2);
 }
-
 ```
 
 ---
@@ -19014,7 +21477,6 @@ export { get_genome_velocity_y } from "./get_genome_velocity_y";
 export { get_genome_velocity_x } from "./get_genome_velocity_x";
 export { read_structure_charge } from "./read_structure_charge";
 export { resolve_bond_requests } from "./resolve_bond_requests";
-
 ```
 
 ---
@@ -19023,18 +21485,16 @@ export { resolve_bond_requests } from "./resolve_bond_requests";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_charge.md
-import { STRUCTURE_CHARGE_INTENT_OFF, read_structure_cell } from "../02/mod";
+import { read_structure_cell, STRUCTURE_CHARGE_INTENT_OFF } from "../02/mod";
 
-@inline
 export function read_structure_charge(cellIdx: i32): i32 {
-const cellVal = read_structure_cell(cellIdx);
-const baseCharge = (cellVal >> 16) & 0xFF;
-const intentCharge = atomic.load<i32>(
-  STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize,
-);
-return intentCharge > baseCharge ? intentCharge : baseCharge;
+  const cellVal = read_structure_cell(cellIdx);
+  const baseCharge = (cellVal >> 16) & 0xFF;
+  const intentCharge = atomic.load<i32>(
+    STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize,
+  );
+  return intentCharge > baseCharge ? intentCharge : baseCharge;
 }
-
 ```
 
 ---
@@ -19043,44 +21503,48 @@ return intentCharge > baseCharge ? intentCharge : baseCharge;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/resolve_bond_requests.md
-import { BOND_REQUESTS_OFFSET, MAX_ATOMS, set_bond_target, set_bond_stiffness, get_bond_target } from "../02/mod";
+import {
+  BOND_REQUESTS_OFFSET,
+  get_bond_target,
+  MAX_ATOMS,
+  set_bond_stiffness,
+  set_bond_target,
+} from "../02/mod";
 
-@inline
 export function resolve_bond_requests(start: i32, end: i32): void {
-let resolved: i32 = 0;
-for (let i = start; i < end; i++) {
-  const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
-  const initiatorPlus1 = atomic.load<i32>(ptr);
-  if (initiatorPlus1 == 0) continue;
+  let resolved: i32 = 0;
+  for (let i = start; i < end; i++) {
+    const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
+    const initiatorPlus1 = atomic.load<i32>(ptr);
+    if (initiatorPlus1 == 0) continue;
 
-  if (atomic.load<i32>(ptr + 8) != 1) { // Not active
+    if (atomic.load<i32>(ptr + 8) != 1) { // Not active
+      atomic.store<i32>(ptr, 0);
+      continue;
+    }
+
+    const targetPlus1 = atomic.load<i32>(ptr + 4);
+    const initiator = initiatorPlus1 - 1;
+    const target = targetPlus1 - 1;
+
+    if (target >= 0 && target < MAX_ATOMS) {
+      // trace_atom(initiator, 0xBB, target, 0, resolved);
+      set_bond_target(initiator, 0, target);
+      set_bond_stiffness(initiator, 0, 0.1);
+      set_bond_target(target, 1, initiator);
+      set_bond_stiffness(target, 1, 0.1);
+      // trace_atom(initiator, 0xCC, get_bond_target(initiator, 0), 0, 0);
+      resolved++;
+    }
+
+    // Clear request
     atomic.store<i32>(ptr, 0);
-    continue;
+    atomic.store<i32>(ptr + 4, 0);
+    atomic.store<i32>(ptr + 8, 0);
   }
-
-  const targetPlus1 = atomic.load<i32>(ptr + 4);
-  const initiator = initiatorPlus1 - 1;
-  const target = targetPlus1 - 1;
-
-  if (target >= 0 && target < MAX_ATOMS) {
-    // trace_atom(initiator, 0xBB, target, 0, resolved);
-    set_bond_target(initiator, 0, target);
-    set_bond_stiffness(initiator, 0, 0.1);
-    set_bond_target(target, 1, initiator);
-    set_bond_stiffness(target, 1, 0.1);
-    // trace_atom(initiator, 0xCC, get_bond_target(initiator, 0), 0, 0);
-    resolved++;
-  }
-
-  // Clear request
-  atomic.store<i32>(ptr, 0);
-  atomic.store<i32>(ptr + 4, 0);
-  atomic.store<i32>(ptr + 8, 0);
+  // trace_atom(888, 0xEE, resolved, 0, 0);
+  return resolved;
 }
-// trace_atom(888, 0xEE, resolved, 0, 0);
-return resolved;
-}
-
 ```
 
 ---
@@ -19089,34 +21553,44 @@ return resolved;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/run_phagocyte_pass.md
-import { MAX_ATOMS, IDS_OFFSET, ROLES_OFFSET, BONDS_OFFSET, immune_check, get_read_energy, get_read_resonance, set_energy, set_resonance } from "../02/mod";
+import {
+  BONDS_OFFSET,
+  get_read_energy,
+  get_read_resonance,
+  IDS_OFFSET,
+  immune_check,
+  MAX_ATOMS,
+  ROLES_OFFSET,
+  set_energy,
+  set_resonance,
+} from "../02/mod";
 
-@inline
 export function run_phagocyte_pass(entropy_pressure: i32): i32 {
-let purgeCount: i32 = 0;
+  let purgeCount: i32 = 0;
   for (let i: i32 = 1; i <= MAX_ATOMS; i++) {
     const id = atomic.load<i64>(IDS_OFFSET + (i << 3) as usize);
     if (id != 0) {
-       const role = atomic.load<u8>(ROLES_OFFSET + i as usize);
-       const energy = get_read_energy(i);
-       const resonance = get_read_resonance(i);
-       if (immune_check(energy, resonance, <i32>id, <u8>role, entropy_pressure)) {
-         atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
-         atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
-         set_energy(i, 0);
-         set_resonance(i, 0);
-         const baseBond = BONDS_OFFSET + (i << 4) as usize;
-         atomic.store<i32>(baseBond, 0);
-         atomic.store<i32>(baseBond + 4, 0);
-         atomic.store<i32>(baseBond + 8, 0);
-         atomic.store<i32>(baseBond + 12, 0);
-         purgeCount++;
-       }
+      const role = atomic.load<u8>(ROLES_OFFSET + i as usize);
+      const energy = get_read_energy(i);
+      const resonance = get_read_resonance(i);
+      if (
+        immune_check(energy, resonance, <i32> id, <u8> role, entropy_pressure)
+      ) {
+        atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
+        atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
+        set_energy(i, 0);
+        set_resonance(i, 0);
+        const baseBond = BONDS_OFFSET + (i << 4) as usize;
+        atomic.store<i32>(baseBond, 0);
+        atomic.store<i32>(baseBond + 4, 0);
+        atomic.store<i32>(baseBond + 8, 0);
+        atomic.store<i32>(baseBond + 12, 0);
+        purgeCount++;
+      }
     }
   }
   return purgeCount;
 }
-
 ```
 
 ---
@@ -19125,11 +21599,26 @@ let purgeCount: i32 = 0;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/secrete_glyph.md
-import { SPATIAL_CELL_SIZE, GRID_W, GRID_H, SECRETION_STATS_OFF, PHEROMONE_COST_BASE, PLASMID_COST_BASE, get_energy, set_energy } from "../02/mod";
+import {
+  get_energy,
+  GRID_H,
+  GRID_W,
+  PHEROMONE_COST_BASE,
+  PLASMID_COST_BASE,
+  SECRETION_STATS_OFF,
+  set_energy,
+  SPATIAL_CELL_SIZE,
+} from "../02/mod";
 
-@inline
-export function secrete_glyph(atomIdx: i32, x: i32, y: i32, kind: u8, role: u8, intensity: i32): void {
-if (intensity <= 0) return;
+export function secrete_glyph(
+  atomIdx: i32,
+  x: i32,
+  y: i32,
+  kind: u8,
+  role: u8,
+  intensity: i32,
+): void {
+  if (intensity <= 0) return;
   const gx = x / SPATIAL_CELL_SIZE;
   const gy = y / SPATIAL_CELL_SIZE;
   if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return;
@@ -19160,7 +21649,7 @@ if (intensity <= 0) return;
   const phaseIntensity = isDestructive ? -intensity : intensity;
 
   // Requires atomicDepositGlyphHeader from glyph_transport
-  // build_ontology currently groups all under the same AS/TS file per level, 
+  // build_ontology currently groups all under the same AS/TS file per level,
   // but let's export it uniquely from glyph_transport or ensure it's inline.
   // We'll rely on the facade exposing `atomicDepositGlyphHeader` if we extract it,
   // or we need to inline it. Since AssemblyScript doesn't perfectly hoist internal non-exported fns across modules unless exported,
@@ -19168,7 +21657,6 @@ if (intensity <= 0) return;
   // Actually, wait, `atomicDepositGlyphHeader` was placed inside `glyph_transport.md` but un-exported.
   // I will just use `glyph_transport` functions from the facade if we export `atomicDepositGlyphHeader`
 }
-
 ```
 
 ---
@@ -19177,8 +21665,6 @@ if (intensity <= 0) return;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
-
-
 ```
 
 ---
@@ -19187,11 +21673,62 @@ if (intensity <= 0) return;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/evaluate_opcodes.md
-import { INSTRUCTIONS_OFFSET, MAX_ATOMS, GRID_W, NEURAL_COHERENCE_OFF, MEMORY_GRID_OFF, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JMP, OP_SYSCALL, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_SPORE_DRIVE, OP_SENSE_AS, PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS, get_p_c, set_p_c, get_x, get_y, get_phase, set_phase, get_reg, set_reg, get_spatial_grid_count, get_spatial_grid_atom, get_hormone, set_energy, set_resonance, set_pending_syscall, in_grid, read_structure_charge, math_sin, math_cos } from "../03/mod";
+import {
+  get_hormone,
+  get_p_c,
+  get_phase,
+  get_reg,
+  get_spatial_grid_atom,
+  get_spatial_grid_count,
+  get_x,
+  get_y,
+  GRID_W,
+  in_grid,
+  INSTRUCTIONS_OFFSET,
+  math_cos,
+  math_sin,
+  MAX_ATOMS,
+  MEMORY_GRID_OFF,
+  NEURAL_COHERENCE_OFF,
+  OP_ADD,
+  OP_GET,
+  OP_JMP,
+  OP_JNZ,
+  OP_NOP,
+  OP_PUT,
+  OP_RESOLVE,
+  OP_RESONATE_KURAMOTO,
+  OP_SENSE_AS,
+  OP_SET,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  PROP_CONSENSUS,
+  PROP_ENERGY,
+  PROP_GRID_CHARGE,
+  PROP_MEMORY,
+  PROP_NEURAL_COHERENCE,
+  PROP_PHASE,
+  PROP_QUORUM,
+  PROP_RESONANCE,
+  PROP_X,
+  PROP_Y,
+  read_structure_charge,
+  set_energy,
+  set_p_c,
+  set_pending_syscall,
+  set_phase,
+  set_reg,
+  set_resonance,
+} from "../03/mod";
 
-@inline
-export function evaluate_opcodes(atomIndex: i32, energy: i32, resonance: i32, mass: i32): i32 {
-let pc = get_p_c(atomIndex);
+export function evaluate_opcodes(
+  atomIndex: i32,
+  energy: i32,
+  resonance: i32,
+  mass: i32,
+): i32 {
+  let pc = get_p_c(atomIndex);
   const instr_base: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
   let gasUsed: i32 = 0;
@@ -19437,11 +21974,10 @@ let pc = get_p_c(atomIndex);
     if (pc >= 64) pc = 0;
   }
   set_p_c(atomIndex, pc);
-  
+
   // We mutated resonance and energy inside OP_PUT, return them if we had multiple returns, but here we expect caller to just fetch them again. Yes! So we just return gasUsed!
   return gasUsed;
 }
-
 ```
 
 ---
@@ -19459,7 +21995,6 @@ export { evaluate_opcodes } from "./evaluate_opcodes";
 export * from "./PULSE";
 export * from "./PULSE_WORKER";
 export { tick_structure_grid } from "./tick_structure_grid";
-
 ```
 
 ---
@@ -19468,8 +22003,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_codec.md
-
-
 ```
 
 ---
@@ -19478,8 +22011,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/federation.md
-
-
 ```
 
 ---
@@ -19488,8 +22019,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_worker.md
-
-
 ```
 
 ---
@@ -19498,8 +22027,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
-
-
 ```
 
 ---
@@ -19508,8 +22035,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_nexus.md
-
-
 ```
 
 ---
@@ -19518,8 +22043,6 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_node.md
-
-
 ```
 
 ---
@@ -19528,11 +22051,35 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/tick_structure_grid.md
-import { GRID_H, GRID_W, STRUCTURE_GRID_OFF, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, STR_VOID, STR_WIRE, STR_SOURCE, STR_NODE, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, SPATIAL_GRID_OFFSET, SIGNAL_GRID_OFF, MEMORY_GRID_OFF, dir8_x, dir8_y, dir4_x, dir4_y, in_grid, trace_atom, read_structure_charge } from "../03/mod";
+import {
+  dir4_x,
+  dir4_y,
+  dir8_x,
+  dir8_y,
+  GRID_H,
+  GRID_W,
+  in_grid,
+  MEMORY_GRID_OFF,
+  read_structure_charge,
+  SIGNAL_GRID_OFF,
+  SPATIAL_GRID_OFFSET,
+  STR_CAPACITOR,
+  STR_DIODE,
+  STR_INVERTER,
+  STR_LATCH,
+  STR_NODE,
+  STR_SOURCE,
+  STR_VOID,
+  STR_WIRE,
+  STRUCTURE_BUILD_OWNER_OFF,
+  STRUCTURE_BUILD_VALUE_OFF,
+  STRUCTURE_CHARGE_INTENT_OFF,
+  STRUCTURE_GRID_OFF,
+  trace_atom,
+} from "../03/mod";
 
-@inline
 export function tick_structure_grid(): void {
-const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
+  const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
 
   for (let y = 0; y < GRID_H; y++) {
     for (let x = 0; x < GRID_W; x++) {
@@ -19579,7 +22126,9 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
           let ny = y + dir8_y(n);
           if (in_grid(nx, ny)) {
             let ni = ny * GRID_W + nx;
-            const nVal = atomic.load<i32>(STRUCTURE_GRID_OFF + (ni << 2) as usize);
+            const nVal = atomic.load<i32>(
+              STRUCTURE_GRID_OFF + (ni << 2) as usize,
+            );
             const nCharge = (nVal >> 16) & 0xFF;
             if (nCharge > maxNCharge) maxNCharge = nCharge;
           }
@@ -19733,16 +22282,16 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
             let ni = ny * GRID_W + nx;
             let nCharge = read_structure_charge(ni);
             if (nCharge > 15) {
-                stabilized = true;
-                break;
+              stabilized = true;
+              break;
             }
           }
         }
 
         if (stabilized) {
-            nextCharge = decay;
+          nextCharge = decay;
         } else {
-            type = STR_VOID;
+          type = STR_VOID;
         }
       }
 
@@ -19753,7 +22302,6 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
     }
   }
 }
-
 ```
 
 ---
@@ -19762,8 +22310,6 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
-
-
 ```
 
 ---
@@ -19772,79 +22318,95 @@ const STRUCTURE_INTENT_OWNER_MASK: i32 = 0x7FFFFFFF;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/execute_atom.md
-import { IDS_OFFSET, INSTRUCTIONS_OFFSET, BONDS_OFFSET, MAX_ATOMS, NEURAL_COHERENCE_OFF, evaluate_opcodes, get_p_c, get_read_energy, get_read_resonance, get_hormone, get_phase, set_phase, set_resonance, fire_signal, get_energy, get_resonance, set_energy } from "../04/mod";
+import {
+  BONDS_OFFSET,
+  evaluate_opcodes,
+  fire_signal,
+  get_energy,
+  get_hormone,
+  get_p_c,
+  get_phase,
+  get_read_energy,
+  get_read_resonance,
+  get_resonance,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  NEURAL_COHERENCE_OFF,
+  set_energy,
+  set_phase,
+  set_resonance,
+} from "../04/mod";
 
-@inline
 export function execute_atom(atomIndex: i32): void {
-let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
-if (id == 0) return;
+  let id = load<u64>(IDS_OFFSET + (atomIndex << 3) as usize);
+  if (id == 0) return;
 
-let pc = get_p_c(atomIndex);
-let energy = get_read_energy(atomIndex);
-let resonance = get_read_resonance(atomIndex);
-const instrBase: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
+  let pc = get_p_c(atomIndex);
+  let energy = get_read_energy(atomIndex);
+  let resonance = get_read_resonance(atomIndex);
+  const instrBase: usize = INSTRUCTIONS_OFFSET + (atomIndex << 6) as usize;
 
-// Bounded Reduction - Gas Accounting Economy
-let mass: i32 = 1;
-const bondBase = BONDS_OFFSET + (atomIndex << 4) as usize;
-for (let b = 0; b < 4; b++) {
-  const target = load<i32>(bondBase + (b << 2) as usize);
-  if (target > 0 && target < MAX_ATOMS) mass++;
-}
-
-let gasUsed = evaluate_opcodes(atomIndex, energy, resonance, mass);
-
-// HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
-let entropyH: i32 = get_hormone(0) as i32;
-// HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
-let frictionH: i32 = get_hormone(5) as i32;
-
-// --- [x] Stage 11.1: Neural Synthesis (The Global Coherence)
-let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
-// Coherence discount: if global coherence is high (>100 signals), reduce cost
-let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
-
-let baseComputeCost = gasUsed >> discount;
-let metabolicCost = 1 + baseComputeCost +
-  ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
-
-// --- STAGE 11.1: PHASE SYNCHRONIZATION ---
-if (coherenceVal > 500) {
-  // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
-  let curPhase: i32 = get_phase(atomIndex) as i32;
-  if (curPhase < 128) curPhase += 2;
-  else if (curPhase > 128) curPhase -= 1;
-  set_phase(atomIndex, curPhase as u8);
-}
-
-// Auto-Firing Action Potential
-if (resonance > 300) {
-  if (energy > 200) {
-    energy -= 200;
-    set_resonance(atomIndex, 0);
-    set_phase(atomIndex, 5);
-    fire_signal(atomIndex);
-  } else {
-    set_resonance(atomIndex, 280);
+  // Bounded Reduction - Gas Accounting Economy
+  let mass: i32 = 1;
+  const bondBase = BONDS_OFFSET + (atomIndex << 4) as usize;
+  for (let b = 0; b < 4; b++) {
+    const target = load<i32>(bondBase + (b << 2) as usize);
+    if (target > 0 && target < MAX_ATOMS) mass++;
   }
-}
 
-// HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
-let repairH: i32 = get_hormone(4) as i32;
-let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
-// Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
-let finalEnergy: i32 = get_energy(atomIndex) as i32;
-let finalResonance: i32 = get_resonance(atomIndex) as i32;
+  let gasUsed = evaluate_opcodes(atomIndex, energy, resonance, mass);
 
-if (finalResonance > 0) {
-  set_resonance(atomIndex, finalResonance - resonanceDecay);
-}
-set_energy(
-  atomIndex,
-  finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
-);
-}
+  // HORMONE 0: entropy_pressure scales metabolic cost (range 0..2048 → +0..+4 per executed step)
+  let entropyH: i32 = get_hormone(0) as i32;
+  // HORMONE 5: mutation_friction adds a metabolic floor (range 0..2048 → +0..+8 per execute)
+  let frictionH: i32 = get_hormone(5) as i32;
 
+  // --- [x] Stage 11.1: Neural Synthesis (The Global Coherence)
+  let coherenceVal = atomic.load<i32>(NEURAL_COHERENCE_OFF as usize);
+  // Coherence discount: if global coherence is high (>100 signals), reduce cost
+  let discount: i32 = coherenceVal > 1000 ? 2 : (coherenceVal > 100 ? 1 : 0);
+
+  let baseComputeCost = gasUsed >> discount;
+  let metabolicCost = 1 + baseComputeCost +
+    ((gasUsed * entropyH) >> (12 + discount)) + (frictionH >> 8);
+
+  // --- STAGE 11.1: PHASE SYNCHRONIZATION ---
+  if (coherenceVal > 500) {
+    // Neural Field Resonance: pull atomic phase towards harmonic threshold (128)
+    let curPhase: i32 = get_phase(atomIndex) as i32;
+    if (curPhase < 128) curPhase += 2;
+    else if (curPhase > 128) curPhase -= 1;
+    set_phase(atomIndex, curPhase as u8);
+  }
+
+  // Auto-Firing Action Potential
+  if (resonance > 300) {
+    if (energy > 200) {
+      energy -= 200;
+      set_resonance(atomIndex, 0);
+      set_phase(atomIndex, 5);
+      fire_signal(atomIndex);
+    } else {
+      set_resonance(atomIndex, 280);
+    }
+  }
+
+  // HORMONE 4: repair_drive slows resonance decay (range 0..2048; >1024 halves decay)
+  let repairH: i32 = get_hormone(4) as i32;
+  let resonanceDecay: i32 = repairH > 1024 ? 1 : 2;
+  // Re-fetch energy and resonance because asynchronous Syscalls (e.g. SYS_TRANSFER) might have mutated the host buffer
+  let finalEnergy: i32 = get_energy(atomIndex) as i32;
+  let finalResonance: i32 = get_resonance(atomIndex) as i32;
+
+  if (finalResonance > 0) {
+    set_resonance(atomIndex, finalResonance - resonanceDecay);
+  }
+  set_energy(
+    atomIndex,
+    finalEnergy > metabolicCost ? finalEnergy - metabolicCost : 0,
+  );
+}
 ```
 
 ---
@@ -19853,8 +22415,6 @@ set_energy(
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
-
-
 ```
 
 ---
@@ -19870,7 +22430,6 @@ export * from "./llm_soul";
 export * from "./AVATAR_ENGINE";
 export * from "./SEMANTIC_MEMBRANE";
 export { tick_environment } from "./tick_environment";
-
 ```
 
 ---
@@ -19879,8 +22438,6 @@ export { tick_environment } from "./tick_environment";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
-
-
 ```
 
 ---
@@ -19889,8 +22446,6 @@ export { tick_environment } from "./tick_environment";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
-
-
 ```
 
 ---
@@ -19899,11 +22454,16 @@ export { tick_environment } from "./tick_environment";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/tick_environment.md
-import { GRID_CELLS, ATTENTION_FIELD_OFF, tick_structure_grid, diffuse_viral_semantics, glyph_transport } from "../04/mod";
+import {
+  ATTENTION_FIELD_OFF,
+  diffuse_viral_semantics,
+  glyph_transport,
+  GRID_CELLS,
+  tick_structure_grid,
+} from "../04/mod";
 
-@inline
 export function tick_environment(tick: i32): void {
-// 1. Attention Field Decay (90% per tick)
+  // 1. Attention Field Decay (90% per tick)
   for (let i = 0; i < (GRID_CELLS as i32); i++) {
     const ptr = ATTENTION_FIELD_OFF + (i << 2) as usize;
     const val = load<f32>(ptr);
@@ -19921,7 +22481,6 @@ export function tick_environment(tick: i32): void {
   // 4. Pheromone / Plasmid Diffusion
   glyph_transport(tick);
 }
-
 ```
 
 ---
@@ -19930,7 +22489,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: base64_to_bytes omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19939,8 +22497,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/breath_cycle.md
-
-
 ```
 
 ---
@@ -19949,7 +22505,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: bytes_to_base64 omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19958,7 +22513,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: bytes_to_hex omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19967,7 +22521,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: fnv1a32 omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19976,7 +22529,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: get_glyph_arity omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19985,7 +22537,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: get_glyph_energy omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -19994,7 +22545,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: get_glyph_kind omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20003,7 +22553,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: get_glyph_legacy_opcode omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20012,8 +22561,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
-
-
 ```
 
 ---
@@ -20022,7 +22569,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: hex_to_bytes omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20031,7 +22577,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: LOGGER omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20040,7 +22585,6 @@ export function tick_environment(tick: i32): void {
 
 ```typescript
 // Host-only module: make_xor_shift32 omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20056,7 +22600,6 @@ export * from "./TUI_DASHBOARD";
 export * from "./MUTATION_TELEMETRY";
 export * from "./GLYPH_TELEMETRY";
 export * from "./SERVE_DASHBOARD";
-
 ```
 
 ---
@@ -20065,8 +22608,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
-
-
 ```
 
 ---
@@ -20075,7 +22616,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: normalize_hex64 omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20084,8 +22624,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/omega_daemon.md
-
-
 ```
 
 ---
@@ -20094,7 +22632,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: pack_structure_intent omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20103,8 +22640,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/serve_dashboard.md
-
-
 ```
 
 ---
@@ -20113,7 +22648,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: stable_stringify omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20122,7 +22656,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: to_int16_big_endian omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20131,8 +22664,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/tui_dashboard.md
-
-
 ```
 
 ---
@@ -20141,7 +22672,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: unpack_structure_charge omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20150,7 +22680,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: assembler omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20159,7 +22688,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: crypto_keys omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20168,7 +22696,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: disassembler omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20177,7 +22704,6 @@ export * from "./SERVE_DASHBOARD";
 
 ```typescript
 // Host-only module: glyph_ir_64 omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20187,7 +22713,6 @@ export * from "./SERVE_DASHBOARD";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../06/mod";
-
 ```
 
 ---
@@ -20196,7 +22721,6 @@ export * from "../06/mod";
 
 ```typescript
 // Host-only module: sha256_hex omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20205,7 +22729,6 @@ export * from "../06/mod";
 
 ```typescript
 // Host-only module: glyph_pretty omitted from AssemblyScript build.
-
 ```
 
 ---
@@ -20215,7 +22738,6 @@ export * from "../06/mod";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../07/mod";
-
 ```
 
 ---
@@ -20234,7 +22756,6 @@ export * from "./06/mod";
 export * from "./07/mod";
 export * from "./08/mod";
 // AS_WASM_PATH omitted as it is host-specific
-
 ```
 
 ---
@@ -20262,9 +22783,8 @@ Deno.test({
   ignore: true, // Rust binary missing
   async fn() {
     await runAcousticAudit();
-  }
+  },
 });
-
 ```
 
 ---
@@ -20280,7 +22800,6 @@ export * from "./swarm_membrane_test.ts";
 export * from "./resonance_dipole_test.ts";
 export * from "./swarm_test.ts";
 export * from "./resonance_groove_test.ts";
-
 ```
 
 ---
@@ -20289,7 +22808,21 @@ export * from "./resonance_groove_test.ts";
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, MAX_ATOMS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, WASM_MEMORY_PAGES, XS_OFFSET, YS_OFFSET } from "@generated";
+import {
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  MAX_ATOMS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
 
 const WASM_URL = new URL(
   "../../00/00/sigma_core/target/wasm32-unknown-unknown/release/sigma_core.wasm",
@@ -20417,142 +22950,145 @@ Deno.test({
   name: "Swarm Membrane: Egress from Matrix A to Ingress Matrix B",
   ignore: true, // Missing WASM binary
   async fn() {
-  const matrixA = await createMatrix();
-  const matrixB = await createMatrix();
+    const matrixA = await createMatrix();
+    const matrixB = await createMatrix();
 
-  // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
-  const idsA = new BigInt64Array(
-    matrixA.memory.buffer,
-    IDS_OFFSET,
-    MAX_ATOMS,
-  );
-  const xsA = new Int16Array(
-    matrixA.memory.buffer,
-    XS_OFFSET,
-    MAX_ATOMS,
-  );
-  const ysA = new Int16Array(
-    matrixA.memory.buffer,
-    YS_OFFSET,
-    MAX_ATOMS,
-  );
-  const energiesA = new Int32Array(
-    matrixA.memory.buffer,
-    ENERGY_OFFSET,
-    MAX_ATOMS,
-  );
-  const logicA = new Uint8Array(
-    matrixA.memory.buffer,
-    INSTRUCTIONS_OFFSET,
-    MAX_ATOMS * 64,
-  );
+    // 1. Manually spawn an atom in Matrix A at x = 1399 (Right Edge)
+    const idsA = new BigInt64Array(
+      matrixA.memory.buffer,
+      IDS_OFFSET,
+      MAX_ATOMS,
+    );
+    const xsA = new Int16Array(
+      matrixA.memory.buffer,
+      XS_OFFSET,
+      MAX_ATOMS,
+    );
+    const ysA = new Int16Array(
+      matrixA.memory.buffer,
+      YS_OFFSET,
+      MAX_ATOMS,
+    );
+    const energiesA = new Int32Array(
+      matrixA.memory.buffer,
+      ENERGY_OFFSET,
+      MAX_ATOMS,
+    );
+    const logicA = new Uint8Array(
+      matrixA.memory.buffer,
+      INSTRUCTIONS_OFFSET,
+      MAX_ATOMS * 64,
+    );
 
-  const atomIdxA = 1;
-  idsA[atomIdxA] = 12345678n;
-  xsA[atomIdxA] = 1398; // Close to Edge
-  ysA[atomIdxA] = 400;
-  energiesA[atomIdxA] = 5000;
+    const atomIdxA = 1;
+    idsA[atomIdxA] = 12345678n;
+    xsA[atomIdxA] = 1398; // Close to Edge
+    ysA[atomIdxA] = 400;
+    energiesA[atomIdxA] = 5000;
 
-  // Create a dummy target at the absolute edge (1399) to pull the atom outwards
-  const targetIdx = 2;
-  idsA[targetIdx] = 87654321n;
-  xsA[targetIdx] = 1399;
-  ysA[targetIdx] = 400;
+    // Create a dummy target at the absolute edge (1399) to pull the atom outwards
+    const targetIdx = 2;
+    idsA[targetIdx] = 87654321n;
+    xsA[targetIdx] = 1399;
+    ysA[targetIdx] = 400;
 
-  // OP_SET (0x01), R0 (0x00), SYS_ATTRACT (0x11 = 17)
-  logicA[atomIdxA * 64 + 0] = 0x01; // OP_SET
-  logicA[atomIdxA * 64 + 1] = 0x00; // R0
-  logicA[atomIdxA * 64 + 2] = 0x11; // SYS_ATTRACT (17)
+    // OP_SET (0x01), R0 (0x00), SYS_ATTRACT (0x11 = 17)
+    logicA[atomIdxA * 64 + 0] = 0x01; // OP_SET
+    logicA[atomIdxA * 64 + 1] = 0x00; // R0
+    logicA[atomIdxA * 64 + 2] = 0x11; // SYS_ATTRACT (17)
 
-  // OP_SET (0x01), R1 (0x01), targetIdx=2
-  logicA[atomIdxA * 64 + 3] = 0x01; // OP_SET
-  logicA[atomIdxA * 64 + 4] = 0x01; // R1
-  logicA[atomIdxA * 64 + 5] = 0x02; // Target 2
+    // OP_SET (0x01), R1 (0x01), targetIdx=2
+    logicA[atomIdxA * 64 + 3] = 0x01; // OP_SET
+    logicA[atomIdxA * 64 + 4] = 0x01; // R1
+    logicA[atomIdxA * 64 + 5] = 0x02; // Target 2
 
-  // OP_SET (0x01), R2 (0x02), intensity=1
-  logicA[atomIdxA * 64 + 6] = 0x01; // OP_SET
-  logicA[atomIdxA * 64 + 7] = 0x02; // R2
-  logicA[atomIdxA * 64 + 8] = 0x01; // Positive intensity
+    // OP_SET (0x01), R2 (0x02), intensity=1
+    logicA[atomIdxA * 64 + 6] = 0x01; // OP_SET
+    logicA[atomIdxA * 64 + 7] = 0x02; // R2
+    logicA[atomIdxA * 64 + 8] = 0x01; // Positive intensity
 
-  // OP_SYSCALL (0x60)
-  logicA[atomIdxA * 64 + 9] = 0x60; // OP_SYSCALL
+    // OP_SYSCALL (0x60)
+    logicA[atomIdxA * 64 + 9] = 0x60; // OP_SYSCALL
 
-  // Call execute_atom(1)
-  matrixA.exports.execute_atom(atomIdxA);
+    // Call execute_atom(1)
+    matrixA.exports.execute_atom(atomIdxA);
 
-  const contextA = new Int32Array(
-    matrixA.memory.buffer,
-    CONTEXT_OFFSET,
-    MAX_ATOMS * 16,
-  );
-  console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
-  console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
-  console.log("Post Execute - R1 (dx):", contextA[atomIdxA * 16 + 1]);
-  console.log("Post Execute - R2 (dy):", contextA[atomIdxA * 16 + 2]);
-  console.log("Post Execute - Energy:", energiesA[atomIdxA]);
+    const contextA = new Int32Array(
+      matrixA.memory.buffer,
+      CONTEXT_OFFSET,
+      MAX_ATOMS * 16,
+    );
+    console.log("Post Execute - PC:", contextA[atomIdxA * 16 + 8]);
+    console.log("Post Execute - R0 (sys_id):", contextA[atomIdxA * 16 + 0]);
+    console.log("Post Execute - R1 (dx):", contextA[atomIdxA * 16 + 1]);
+    console.log("Post Execute - R2 (dy):", contextA[atomIdxA * 16 + 2]);
+    console.log("Post Execute - Energy:", energiesA[atomIdxA]);
 
-  // 2. Assert Atom vanished from A (Recycled)
-  assertEquals(energiesA[atomIdxA], 0, "Atom should be recycled on Egress");
+    // 2. Assert Atom vanished from A (Recycled)
+    assertEquals(energiesA[atomIdxA], 0, "Atom should be recycled on Egress");
 
-  // 3. Extract EgressEvent
-  const headView = new Int32Array(
-    matrixA.memory.buffer,
-    EGRESS_HEAD_OFFSET,
-    1,
-  );
-  const writeHead = Atomics.load(headView, 0);
-  assertEquals(writeHead, 1, "Egress head should be incremented to 1");
+    // 3. Extract EgressEvent
+    const headView = new Int32Array(
+      matrixA.memory.buffer,
+      EGRESS_HEAD_OFFSET,
+      1,
+    );
+    const writeHead = Atomics.load(headView, 0);
+    assertEquals(writeHead, 1, "Egress head should be incremented to 1");
 
-  const dataView = new Uint8Array(
-    matrixA.memory.buffer,
-    EGRESS_DATA_OFFSET,
-    256,
-  );
-  const payload = dataView.slice(0, 256);
+    const dataView = new Uint8Array(
+      matrixA.memory.buffer,
+      EGRESS_DATA_OFFSET,
+      256,
+    );
+    const payload = dataView.slice(0, 256);
 
-  // 4. Inject into Matrix B
-  injectForeignAtom(matrixB.memory, payload);
+    // 4. Inject into Matrix B
+    injectForeignAtom(matrixB.memory, payload);
 
-  // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
-  const idsB = new BigInt64Array(
-    matrixB.memory.buffer,
-    IDS_OFFSET,
-    MAX_ATOMS,
-  );
-  const xsB = new Int16Array(
-    matrixB.memory.buffer,
-    XS_OFFSET,
-    MAX_ATOMS,
-  );
-  const energiesB = new Int32Array(
-    matrixB.memory.buffer,
-    ENERGY_OFFSET,
-    MAX_ATOMS,
-  );
-  const logicB = new Uint8Array(
-    matrixB.memory.buffer,
-    INSTRUCTIONS_OFFSET,
-    MAX_ATOMS * 64,
-  );
+    // 5. Assert Atom surfaced in Matrix B at x = 0 (Left Edge)
+    const idsB = new BigInt64Array(
+      matrixB.memory.buffer,
+      IDS_OFFSET,
+      MAX_ATOMS,
+    );
+    const xsB = new Int16Array(
+      matrixB.memory.buffer,
+      XS_OFFSET,
+      MAX_ATOMS,
+    );
+    const energiesB = new Int32Array(
+      matrixB.memory.buffer,
+      ENERGY_OFFSET,
+      MAX_ATOMS,
+    );
+    const logicB = new Uint8Array(
+      matrixB.memory.buffer,
+      INSTRUCTIONS_OFFSET,
+      MAX_ATOMS * 64,
+    );
 
-  // The first empty slot should be 1
-  const atomIdxB = 1;
-  assertEquals(idsB[atomIdxB] > 0n, true, "Atom should exist in Matrix B");
-  assertEquals(
-    energiesB[atomIdxB],
-    5000,
-    "Energy should match identically in Matrix B",
-  );
-  assertEquals(
-    xsB[atomIdxB],
-    0,
-    "X Coordinate mapped to Matrix B West Boundary limit",
-  );
-  assertEquals(logicB[atomIdxB * 64 + 0], 0x01, "Genome identical match");
-  assertEquals(logicB[atomIdxB * 64 + 4], 0x01, "Genome identical match piece");
-}
+    // The first empty slot should be 1
+    const atomIdxB = 1;
+    assertEquals(idsB[atomIdxB] > 0n, true, "Atom should exist in Matrix B");
+    assertEquals(
+      energiesB[atomIdxB],
+      5000,
+      "Energy should match identically in Matrix B",
+    );
+    assertEquals(
+      xsB[atomIdxB],
+      0,
+      "X Coordinate mapped to Matrix B West Boundary limit",
+    );
+    assertEquals(logicB[atomIdxB * 64 + 0], 0x01, "Genome identical match");
+    assertEquals(
+      logicB[atomIdxB * 64 + 4],
+      0x01,
+      "Genome identical match piece",
+    );
+  },
 });
-
 ```
 
 ---
@@ -20654,7 +23190,6 @@ console.log(`Result: Amp=${res3.amp} (Expected ~14142)`);
 if (res3.amp > 14000 && res3.amp < 14300) {
   console.log("✅ SUCCESS: Vector sum correct.");
 } else console.log("❌ FAILURE: Vector physics incorrect.");
-
 ```
 
 ---
@@ -20662,17 +23197,16 @@ if (res3.amp > 14000 && res3.amp < 14300) {
 ## FILE: src/00/03/wasm_layout_guard.ts
 
 ```typescript
-
-
 export const assertWasmLayout = async (): Promise<void> => {
   // Bypass legacy string AST execution validation over variables since Deno generates these cleanly into strict AS layer structs natively.
-  console.log("[wasm:layout] assembly layout implicitly generated via DAG ontology coherence. Skipping layout text-guard.");
+  console.log(
+    "[wasm:layout] assembly layout implicitly generated via DAG ontology coherence. Skipping layout text-guard.",
+  );
 };
 
 if (import.meta.main) {
   await assertWasmLayout();
 }
-
 ```
 
 ---
@@ -20682,7 +23216,6 @@ if (import.meta.main) {
 ```typescript
 import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES } from "@generated";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
-
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   console.error(
@@ -20732,7 +23265,6 @@ const stat = await Deno.stat(wasmFile);
 console.log(
   `[wasm:build] ${wasmFile}=${stat.size} bytes, pages=${WASM_MEMORY_PAGES}, required>=${MIN_WASM_MEMORY_PAGES}`,
 );
-
 ```
 
 ---
@@ -20741,7 +23273,6 @@ console.log(
 
 ```typescript
 export * from "./build_wasm.ts";
-
 ```
 
 ---
@@ -20890,7 +23421,6 @@ export const AGENT_SIGNATURE = {
   sign: async (data: unknown): Promise<string> =>
     await sha256_hex(typeof data === "string" ? data : stable_stringify(data)),
 };
-
 ```
 
 ---
@@ -20903,7 +23433,6 @@ export const AGENT_SIGNATURE = {
 
 export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
-
 ```
 
 ---
@@ -20914,7 +23443,7 @@ export const IDX_TO_ID = new Map<number, string>();
 // OMEGA-64 | crystallization.ts
 // Gate Admission & Consensus Crystallization Policy
 
-import { stable_stringify, sha256_hex } from "@generated";
+import { sha256_hex, stable_stringify } from "@generated";
 
 const CRY_DATA = {
   policy: "STABLE",
@@ -20982,7 +23511,6 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
     return true;
   },
 };
-
 ```
 
 ---
@@ -21120,7 +23648,6 @@ export const CANON_CAUSAL_BRIDGE = {
     resolveBridgeMode(report),
   isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
 };
-
 ```
 
 ---
@@ -21131,7 +23658,15 @@ export const CANON_CAUSAL_BRIDGE = {
 // OMEGA-64 | invariant_packet.ts
 // Signed invariant packet trace for invariant bridging
 
-import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_hmac, sha256_hex, stable_stringify } from "@generated";
+import {
+  base64_to_bytes,
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
+} from "@generated";
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
   version: string;
@@ -21401,7 +23936,6 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
-
 ```
 
 ---
@@ -21410,7 +23944,6 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
 
 ```typescript
 export * from "@generated";
-
 ```
 
 ---
@@ -21454,7 +23987,6 @@ export class PRNG {
     return Math.abs(hash);
   }
 }
-
 ```
 
 ---
@@ -21480,7 +24012,6 @@ export * from "./gate_admission.ts";
 export * from "./topo_signature.ts";
 export * from "./crystallization.ts";
 export * from "./invariant_packet.ts";
-
 ```
 
 ---
@@ -21491,17 +24022,25 @@ export * from "./invariant_packet.ts";
 // OMEGA-64 | topo_signature.ts
 // Topological Signatures and 2D/1D Projections
 
-import { stable_stringify, sha256_hex_bytes, fnv1a32, normalize_hex64, import_ed25519_public, bytes_to_base64 } from "@generated";
-import { to_int16_big_endian, make_xor_shift32 } from "@generated";
+import {
+  bytes_to_base64,
+  fnv1a32,
+  import_ed25519_public,
+  normalize_hex64,
+  sha256_hex_bytes,
+  stable_stringify,
+} from "@generated";
+import { make_xor_shift32, to_int16_big_endian } from "@generated";
 
-const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
+const clampByte = (x: number): number =>
+  Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
 const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
 const normalize_angle = (a: number): number => {
-    let r = a % (Math.PI * 2);
-    if (r <= -Math.PI) r += Math.PI * 2;
-    if (r > Math.PI) r -= Math.PI * 2;
-    return r;
+  let r = a % (Math.PI * 2);
+  if (r <= -Math.PI) r += Math.PI * 2;
+  if (r > Math.PI) r -= Math.PI * 2;
+  return r;
 };
 
 export const deriveFeatureVector = (
@@ -21892,7 +24431,6 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     return { ok: reasons.length === 0, reasons, failures: [...reasons] };
   },
 };
-
 ```
 
 ---
@@ -21907,7 +24445,6 @@ export * from "./worker_trend_baseline.ts";
 export * from "./worker_determinism_capture.ts";
 export * from "./worker_seeded_swarm.ts";
 export * from "./worker_resilience_capture.ts";
-
 ```
 
 ---
@@ -22029,7 +24566,6 @@ export const runDeterminismCaptureSubprocess = async (
 
   return parseDeterminismCaptureFromMergedOutput(mergedOutput, context);
 };
-
 ```
 
 ---
@@ -22319,7 +24855,6 @@ export const loadSoakTrendThresholds = (): SoakTrendThresholds => {
     requestsDeltaMax: envFloat("OMEGA_SOAK_TREND_REQUESTS_DELTA_MAX", 500),
   };
 };
-
 ```
 
 ---
@@ -22410,7 +24945,6 @@ export const parseResilienceCaptureFromMergedOutput = (
 
   return payload;
 };
-
 ```
 
 ---
@@ -22573,7 +25107,6 @@ export const assertSeededSwarmWorldInvariants = (
   }
   return active.length;
 };
-
 ```
 
 ---
@@ -22616,7 +25149,6 @@ export const loadTrendBaselineWithBootstrap = async <TCurrent, TBaseline>(
     return baseline;
   }
 };
-
 ```
 
 ---
@@ -22641,7 +25173,6 @@ export const limitByRatioAndDeltaCeil = (
 
 export const minByRatio = (baseline: number, ratioMin: number): number =>
   baseline * ratioMin;
-
 ```
 
 ---
@@ -22649,9 +25180,15 @@ export const minByRatio = (baseline: number, ratioMin: number): number =>
 ## FILE: src/02/GENOMES.ts
 
 ```typescript
-
-
-import { OP_SET, SYS_SCAN, OP_SYSCALL, OP_ADD, OP_SUB, SYS_TRANSFER, SYS_YIELD } from "../00/mod.ts";
+import {
+  OP_ADD,
+  OP_SET,
+  OP_SUB,
+  OP_SYSCALL,
+  SYS_SCAN,
+  SYS_TRANSFER,
+  SYS_YIELD,
+} from "../00/mod.ts";
 
 // Utility to assemble RISC script
 export function assembleScript(ops: number[]): Uint8Array {
@@ -22736,7 +25273,6 @@ export const SIMPLE_PREDATOR_SCRIPT = assembleScript([
 
 // Wait, the new VM is LAMBDA_VM or RISC?
 // Look at `test_syscall_interface.ts` to see how scripts are written.
-
 ```
 
 ---
@@ -22820,7 +25356,6 @@ export const syncHormonesToLattice = (
     global_consensus: Math.round(clamp(input.globalSyntropy * 1024, 0, 2048)),
   };
 };
-
 ```
 
 ---
@@ -22829,7 +25364,11 @@ export const syncHormonesToLattice = (
 
 ```typescript
 import { RUNTIME_POLICY } from "@generated";
-import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
+import {
+  createLedgerRuntime,
+  type LedgerRuntimeConfig,
+  type LedgerRuntimeState,
+} from "@generated";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -23023,7 +25562,6 @@ export const createPhysiologicalLedgerRuntime = (
   };
   return createLedgerRuntime(config, initialValue, historyLimit);
 };
-
 ```
 
 ---
@@ -23036,7 +25574,6 @@ export * from "@02/GENOMES.ts";
 export * from "@02/HORMONE_BUFFER.ts";
 export * from "@generated";
 export * from "@generated";
-
 ```
 
 ---
@@ -23750,7 +26287,6 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
-
 ```
 
 ---
@@ -23762,7 +26298,6 @@ export * from "./secretion_energetics_audit.ts";
 export * from "./golden_trace_catalog.ts";
 export * from "./reduction_cases.ts";
 export * from "./reduction_harness.ts";
-
 ```
 
 ---
@@ -23772,7 +26307,40 @@ export * from "./reduction_harness.ts";
 ```typescript
 import { GRID_W, pack_structure_intent } from "@generated";
 import { assemble } from "@generated";
-import { STATE_MATRIX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "@generated";
+import {
+  OP_BIND,
+  OP_BUILD,
+  OP_COLLECTIVE,
+  OP_GET,
+  OP_HEBB,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PLUG,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_RESOLVE,
+  OP_SECRETE_PLASMID,
+  OP_SENSE,
+  OP_SET,
+  OP_SHARE,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  OP_TENSEGRITY,
+  PROP_ENERGY,
+  PROP_NEURAL_COHERENCE,
+  PROP_RESONANCE,
+  PROP_X,
+  PROP_Y,
+  STATE_MATRIX,
+  STR_NODE,
+  STR_SOURCE,
+  STR_WIRE,
+  SYS_SET_ROLE,
+} from "@generated";
 export type ReductionCaseExpectation = {
   finalPc: number;
   replicateCount?: number;
@@ -23825,206 +26393,356 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array =>
+  assemble([
+    OP_GET,
+    0,
+    PROP_ENERGY,
+    OP_SET,
+    1,
+    targetEnergy,
+    OP_SUB,
+    0,
+    1,
+    OP_JNZ,
+    0,
+    "ROLE",
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+    "ROLE",
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    1,
+    1,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
-  OP_GET, 0, PROP_ENERGY,
-  OP_SET, 1, targetEnergy,
-  OP_SUB, 0, 1,
-  OP_JNZ, 0, "ROLE",
-  OP_SIGNAL,
-  OP_JMP, 0,
-  "ROLE",
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeReplicatorLoopScript = (): Uint8Array =>
+  assemble([
+    OP_REPLICATE,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeReplicatorLoopScript = (): Uint8Array => assemble([
-  OP_REPLICATE,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeArchitectLoopScript = (): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeArchitectLoopScript = (): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    1,
+    1,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const GUARDIAN_SCRIPT = STATE_MATRIX.getGuardianScript();
 const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
 
-const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
-  OP_SET, 0, resonanceValue,
-  OP_PUT, 0, PROP_RESONANCE,
-  OP_GET, 1, PROP_RESONANCE,
-  OP_JZ, 1, "ROLE",
-  OP_SIGNAL,
-  OP_JMP, 0,
-  "ROLE",
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    resonanceValue,
+    OP_PUT,
+    0,
+    PROP_RESONANCE,
+    OP_GET,
+    1,
+    PROP_RESONANCE,
+    OP_JZ,
+    1,
+    "ROLE",
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+    "ROLE",
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    1,
+    1,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeSenseIntentScript = (
   buildType: number,
   targetType: number,
-): Uint8Array => assemble([
-  OP_SECRETE_PLASMID, 0, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_BUILD, buildType, 1,
-  OP_SENSE, 1, targetType,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_SECRETE_PLASMID,
+    0,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_BUILD,
+    buildType,
+    1,
+    OP_SENSE,
+    1,
+    targetType,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeBuildOnlyScript = (
   buildType: number,
   buildState: number,
-): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, buildType, buildState
-]);
+): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    buildType,
+    buildState,
+  ]);
 
 const makeTensegrityScript = (
   slot: number,
   dist: number,
   damping: number,
-): Uint8Array => assemble([
-  OP_TENSEGRITY, 0, slot, dist,
-  OP_TENSEGRITY, 1, damping, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_TENSEGRITY,
+    0,
+    slot,
+    dist,
+    OP_TENSEGRITY,
+    1,
+    damping,
+    0,
+  ]);
 
-const makePlugChargeScript = (charge: number): Uint8Array => assemble([
-  OP_SET, 0, charge,
-  OP_PLUG, 1, 0
-]);
+const makePlugChargeScript = (charge: number): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    charge,
+    OP_PLUG,
+    1,
+    0,
+  ]);
 
 const makePlugChargeCompetitionScript = (
   firstCharge: number,
   secondCharge: number,
-): Uint8Array => assemble([
-  OP_SET, 0, firstCharge,
-  OP_PLUG, 1, 0,
-  OP_SET, 0, secondCharge,
-  OP_PLUG, 1, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    firstCharge,
+    OP_PLUG,
+    1,
+    0,
+    OP_SET,
+    0,
+    secondCharge,
+    OP_PLUG,
+    1,
+    0,
+  ]);
 
-const makeBuildSourceScript = (): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, STR_SOURCE, 0
-]);
+const makeBuildSourceScript = (): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    STR_SOURCE,
+    0,
+  ]);
 
-const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, STATE_MATRIX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, STR_SOURCE, state
-]);
+const makeBuildSourceWithStateScript = (state: number): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    SYS_SET_ROLE,
+    OP_SET,
+    1,
+    STATE_MATRIX.ROLE_ARCHITECT,
+    OP_SYSCALL,
+    OP_BUILD,
+    STR_SOURCE,
+    state,
+  ]);
 
-const makeSenseScript = (targetType: number): Uint8Array => assemble([
-  OP_SENSE, 1, targetType,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeSenseScript = (targetType: number): Uint8Array =>
+  assemble([
+    OP_SENSE,
+    1,
+    targetType,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => assemble([
-  OP_SET, 0, role,
-  OP_RESOLVE, 0, threshold
-]);
+const makeResolveRoleScript = (role: number, threshold: number): Uint8Array =>
+  assemble([
+    OP_SET,
+    0,
+    role,
+    OP_RESOLVE,
+    0,
+    threshold,
+  ]);
 
-const makeResolveBankScript = (amount: number): Uint8Array => assemble([
-  OP_RESOLVE, 1, amount // Mode: Bank
-]);
+const makeResolveBankScript = (amount: number): Uint8Array =>
+  assemble([
+    OP_RESOLVE,
+    1,
+    amount, // Mode: Bank
+  ]);
 
 const makeCollectiveHiveScript = (
   addr: number,
   value: number,
   reg: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 0, addr, value,
-  OP_COLLECTIVE, 1, addr, reg,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    0,
+    addr,
+    value,
+    OP_COLLECTIVE,
+    1,
+    addr,
+    reg,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeCollectivePheromoneScript = (
   intensity: number,
   type: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 2, intensity, type,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    2,
+    intensity,
+    type,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeCollectiveBankDepositScript = (
   amount: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 3, amount, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    3,
+    amount,
+    0,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeCollectiveBankWithdrawScript = (
   reg: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 4, reg, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    4,
+    reg,
+    0,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeCollectivePhaseLockScript = (): Uint8Array => assemble([
-  OP_COLLECTIVE, 5, 0, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeCollectivePhaseLockScript = (): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    5,
+    0,
+    0,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeCollectivePcSyncQuorumScript = (): Uint8Array => assemble([
-  OP_COLLECTIVE, 6, 0, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeCollectivePcSyncQuorumScript = (): Uint8Array =>
+  assemble([
+    OP_COLLECTIVE,
+    6,
+    0,
+    0,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const makeShareScript = (
   slot: number,
   percentage: number,
-): Uint8Array => assemble([
-  OP_SHARE, slot, percentage,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+): Uint8Array =>
+  assemble([
+    OP_SHARE,
+    slot,
+    percentage,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeBindScript = (): Uint8Array => assemble([
-  OP_BIND,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeBindScript = (): Uint8Array =>
+  assemble([
+    OP_BIND,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeSporeDriveScript = (): Uint8Array => assemble([
-  OP_SPORE_DRIVE,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeSporeDriveScript = (): Uint8Array =>
+  assemble([
+    OP_SPORE_DRIVE,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
-const makeEntangleScript = (): Uint8Array => assemble([
-  OP_GET, 0, PROP_ENERGY,
-  OP_HEBB,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
+const makeEntangleScript = (): Uint8Array =>
+  assemble([
+    OP_GET,
+    0,
+    PROP_ENERGY,
+    OP_HEBB,
+    OP_SIGNAL,
+    OP_JMP,
+    0,
+  ]);
 
 const structureNeighborCell = (centerX: number, centerY: number): number => {
   const gx = Math.floor(centerX / 10);
@@ -24503,8 +27221,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 0,
         finalRole: 0,
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE |
             (170 << 16),
         },
         branchTaken: false,
@@ -24532,8 +27249,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: 0,
         registers: [220, 0, 0, 0, 0, 0, 0, 0],
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE |
             (210 << 16),
         },
         branchTaken: false,
@@ -24561,8 +27277,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         finalRole: 0,
         registers: [120, 0, 0, 0, 0, 0, 0, 0],
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE |
             (210 << 16),
         },
         branchTaken: false,
@@ -24587,8 +27302,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_SOURCE |
             (255 << 16),
         },
         branchTaken: false,
@@ -24621,8 +27335,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_SOURCE |
             (255 << 16) | (91 << 24),
         },
         branchTaken: false,
@@ -24655,8 +27368,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_SOURCE |
             (255 << 16) | (91 << 24),
         },
         branchTaken: false,
@@ -24690,8 +27402,7 @@ export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
         buildCount: 1,
         finalRole: STATE_MATRIX.ROLE_ARCHITECT,
         finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_SOURCE |
             (255 << 16) | (55 << 24),
         },
         branchTaken: false,
@@ -24955,7 +27666,6 @@ const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
 
 export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
   REDUCTION_CASE_BY_ID.get(id) ?? null;
-
 ```
 
 ---
@@ -24971,7 +27681,41 @@ import {
   scriptToGlyphTape,
 } from "@07/04/opcode_to_glyph.ts";
 import { glyphSpecById } from "@07/04/mod.ts";
-import { STATE_MATRIX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
+import {
+  OP_ADD,
+  OP_BIND,
+  OP_BUILD,
+  OP_COLLECTIVE,
+  OP_GET,
+  OP_HEBB,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PLUG,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_RESOLVE,
+  OP_SECRETE_PLASMID,
+  OP_SENSE,
+  OP_SET,
+  OP_SHARE,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  OP_TENSEGRITY,
+  PROP_ENERGY,
+  PROP_RESONANCE,
+  PROP_X,
+  PROP_Y,
+  STATE_MATRIX,
+  STR_CAPACITOR,
+  STR_NODE,
+  STR_SOURCE,
+  STR_WIRE,
+  SYS_SET_ROLE,
+} from "@generated";
 import {
   REDUCTION_CASES,
   reductionCaseById,
@@ -25700,8 +28444,7 @@ const applyShadowOpcode = (
         if (count >= value) {
           const desiredRole = state.regs[0] ?? 0;
           state.role = desiredRole;
-          state.props[PROP_RESONANCE] =
-            (state.props[PROP_RESONANCE] ?? 0) + 20;
+          state.props[PROP_RESONANCE] = (state.props[PROP_RESONANCE] ?? 0) + 20;
         }
       } else if (mode === 1) { // ENERGY BANKING
         const energy = state.props[PROP_ENERGY] ?? 0;
@@ -25712,8 +28455,7 @@ const applyShadowOpcode = (
           state.props[PROP_ENERGY] = energy - value;
           state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
             value;
-          state.props[PROP_RESONANCE] =
-            (state.props[PROP_RESONANCE] ?? 0) + 10;
+          state.props[PROP_RESONANCE] = (state.props[PROP_RESONANCE] ?? 0) + 10;
         }
       }
 
@@ -25985,8 +28727,10 @@ function deepCompareState(obj1: any, obj2: any, path: string = ""): string[] {
       );
     }
     for (let i = 0; i < Math.max(obj1.length, obj2.length); i++) {
-        const p = `${path}[${i}]`;
-        if (obj1[i] !== obj2[i]) reasons.push(`${p} mismatch legacy=${obj1[i]} reduction=${obj2[i]}`);
+      const p = `${path}[${i}]`;
+      if (obj1[i] !== obj2[i]) {
+        reasons.push(`${p} mismatch legacy=${obj1[i]} reduction=${obj2[i]}`);
+      }
     }
     return reasons;
   }
@@ -25999,42 +28743,43 @@ function deepCompareState(obj1: any, obj2: any, path: string = ""): string[] {
     const val2 = obj2[key];
     const currentPath = `${path}.${key}`;
     if (!(key in obj1)) {
-       reasons.push(`${currentPath} missing in legacy`);
+      reasons.push(`${currentPath} missing in legacy`);
     } else if (!(key in obj2)) {
-       reasons.push(`${currentPath} missing in reduction`);
+      reasons.push(`${currentPath} missing in reduction`);
     } else if (typeof val1 === "object" && val1 !== null) {
-       reasons.push(...deepCompareState(val1, val2, currentPath));
+      reasons.push(...deepCompareState(val1, val2, currentPath));
     } else if (val1 !== val2) {
-       reasons.push(`${currentPath} mismatch legacy=${val1} reduction=${val2}`);
+      reasons.push(`${currentPath} mismatch legacy=${val1} reduction=${val2}`);
     }
   }
   return reasons;
 }
 
-const EXPECTATION_MAPPING: Record<string, (legacy: LegacyShadowResult) => any> = {
-  finalPc: l => l.finalPc,
-  replicateCount: l => l.effects.replicateCount,
-  signalCount: l => l.effects.signalCount,
-  buildCount: l => l.effects.buildCount,
-  finalRole: l => l.role,
-  registers: l => l.regs,
-  finalProps: l => l.props,
-  finalHiveMemory: l => l.hiveMemory,
-  finalHiveBalance: l => l.hiveBalance,
-  finalSignalGrid: l => l.signalGrid,
-  finalPeerEnergy: l => l.peerEnergy,
-  finalPeerPc: l => l.peerPc,
-  finalBondDistances: l => l.bondDistances,
-  finalDamping: l => l.damping,
-  finalStructureGrid: l => l.structureGrid,
-  finalStructureIntentOwner: l => l.structureIntentOwner,
-  finalStructureIntentValue: l => l.structureIntentValue,
-  finalStructureChargeIntent: l => l.structureChargeIntent,
-  branchTaken: l => l.effects.branchTaken,
-  finalBondRequests: l => l.bondRequests,
-  finalHiveEnergyPool: l => l.hiveEnergyPool,
-  finalHormones: l => l.hormones,
-};
+const EXPECTATION_MAPPING: Record<string, (legacy: LegacyShadowResult) => any> =
+  {
+    finalPc: (l) => l.finalPc,
+    replicateCount: (l) => l.effects.replicateCount,
+    signalCount: (l) => l.effects.signalCount,
+    buildCount: (l) => l.effects.buildCount,
+    finalRole: (l) => l.role,
+    registers: (l) => l.regs,
+    finalProps: (l) => l.props,
+    finalHiveMemory: (l) => l.hiveMemory,
+    finalHiveBalance: (l) => l.hiveBalance,
+    finalSignalGrid: (l) => l.signalGrid,
+    finalPeerEnergy: (l) => l.peerEnergy,
+    finalPeerPc: (l) => l.peerPc,
+    finalBondDistances: (l) => l.bondDistances,
+    finalDamping: (l) => l.damping,
+    finalStructureGrid: (l) => l.structureGrid,
+    finalStructureIntentOwner: (l) => l.structureIntentOwner,
+    finalStructureIntentValue: (l) => l.structureIntentValue,
+    finalStructureChargeIntent: (l) => l.structureChargeIntent,
+    branchTaken: (l) => l.effects.branchTaken,
+    finalBondRequests: (l) => l.bondRequests,
+    finalHiveEnergyPool: (l) => l.hiveEnergyPool,
+    finalHormones: (l) => l.hormones,
+  };
 
 const compareResults = (
   definition: ReductionCaseDefinition,
@@ -26052,7 +28797,10 @@ const compareResults = (
     }
     const actualVal = mappingFn(legacy);
 
-    if (typeof expectedVal === "object" && expectedVal !== null && !Array.isArray(expectedVal)) {
+    if (
+      typeof expectedVal === "object" && expectedVal !== null &&
+      !Array.isArray(expectedVal)
+    ) {
       for (const [k, v] of Object.entries(expectedVal)) {
         const actualSubVal = actualVal[k as keyof typeof actualVal] ?? 0;
         if (actualSubVal !== v) {
@@ -26062,7 +28810,11 @@ const compareResults = (
     } else if (Array.isArray(expectedVal)) {
       for (let i = 0; i < expectedVal.length; i++) {
         if (actualVal[i] !== expectedVal[i]) {
-          reasons.push(`expected ${key} mismatch at index ${i}: got=${actualVal[i]} vs expected=${expectedVal[i]}`);
+          reasons.push(
+            `expected ${key} mismatch at index ${i}: got=${
+              actualVal[i]
+            } vs expected=${expectedVal[i]}`,
+          );
         }
       }
     } else {
@@ -26286,7 +29038,6 @@ if (import.meta.main) {
     }
   }
 }
-
 ```
 
 ---
@@ -26376,7 +29127,6 @@ async function runAudit() {
 }
 
 runAudit().catch(console.error);
-
 ```
 
 ---
@@ -26384,7 +29134,7 @@ runAudit().catch(console.error);
 ## FILE: src/03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 
 ```typescript
-import type { ArchitectPlasmidExecutionMode } from "@02";
+import type { ArchitectPlasmidExecutionMode } from "@generated";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {
@@ -26837,7 +29587,6 @@ export const evaluateArchitectPlasmidPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -26913,7 +29662,9 @@ export const AUDIT_ENGINE = {
     // Use LLM to synthesize a briefing from these fragments
     const context = `Historical fragments: ${thoughts.join(" | ")}`;
     if (!delegate) {
-      console.warn("   [AUDIT] ⚠️ Exocortex delegate not attached. Returning raw historical fragments.");
+      console.warn(
+        "   [AUDIT] ⚠️ Exocortex delegate not attached. Returning raw historical fragments.",
+      );
       return `ARCHIVAL AUDIT (RAW): ${thoughts.join(" | ")}`;
     }
 
@@ -26922,7 +29673,6 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
-
 ```
 
 ---
@@ -28331,7 +31081,6 @@ export const CONTROL_INTENT_QUEUE = {
     policy: FEDERATION_ADMISSION_POLICY,
   }),
 };
-
 ```
 
 ---
@@ -28937,7 +31686,6 @@ export const planInvariantIngress = (
     admission,
   };
 };
-
 ```
 
 ---
@@ -28978,7 +31726,6 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
-
 ```
 
 ---
@@ -28995,7 +31742,7 @@ import {
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
-} from "@03/GENERIC_LEDGER_SYSTEM.ts";
+} from "@generated";
 import { type GeneticLedgerKey } from "@generated";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
@@ -29411,7 +32158,6 @@ export const appendLedgerRecordAndMaybeCompact = async <
   await appendLedgerRecord(record);
   return await compactLedgerPersistence(key, options);
 };
-
 ```
 
 ---
@@ -29419,10 +32165,7 @@ export const appendLedgerRecordAndMaybeCompact = async <
 ## FILE: src/03/GENERIC_LEDGER_SYSTEM.ts
 
 ```typescript
-import {
-  geneticLedgerEntryByKey,
-  type GeneticLedgerKey,
-} from "@generated";
+import { geneticLedgerEntryByKey, type GeneticLedgerKey } from "@generated";
 
 export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;
@@ -29723,7 +32466,6 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
     historyLimit,
   );
 };
-
 ```
 
 ---
@@ -29731,7 +32473,7 @@ export const createGeneticLedgerRuntime = <K extends GeneticLedgerKey>(
 ## FILE: src/03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
 
 ```typescript
-import type { GuardianSignalExecutionMode } from "@02";
+import type { GuardianSignalExecutionMode } from "@generated";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {
@@ -30191,7 +32933,6 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
-
 ```
 
 ---
@@ -30208,12 +32949,11 @@ export * from "@03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 export * from "@03/AUDIT_ENGINE.ts";
 export * from "@03/REPLICATION_PROMOTION_ACTION.ts";
 export * from "@03/RUNTIME_POLICY.ts";
-export * from "@03/GENERIC_LEDGER_SYSTEM.ts";
+// export * from "@03/GENERIC_LEDGER_SYSTEM.ts";
 export * from "@03/REPLICATION_PROMOTION_DECISION.ts";
 export * from "@03/REPLICATION_PROMOTION.ts";
 export * from "@03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 export * from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
-
 ```
 
 ---
@@ -30384,7 +33124,6 @@ export const PREDICTION_MARKET = {
     }
   },
 };
-
 ```
 
 ---
@@ -30392,7 +33131,7 @@ export const PREDICTION_MARKET = {
 ## FILE: src/03/REPLICATION_PROMOTION_ACTION.ts
 
 ```typescript
-import type { ReplicationExecutionMode } from "@02";
+import type { ReplicationExecutionMode } from "@generated";
 import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {
@@ -30446,7 +33185,6 @@ export const evaluateReplicationPromotionAction = (
     reasons: ["unknown_current_mode"],
   };
 };
-
 ```
 
 ---
@@ -30610,7 +33348,6 @@ export const evaluateReplicationPromotionDecision = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -30618,7 +33355,7 @@ export const evaluateReplicationPromotionDecision = (
 ## FILE: src/03/REPLICATION_PROMOTION.ts
 
 ```typescript
-import type { ReplicationExecutionMode } from "@02";
+import type { ReplicationExecutionMode } from "@generated";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;
@@ -30832,7 +33569,6 @@ export const evaluateReplicationPromotion = (
     thresholds,
   };
 };
-
 ```
 
 ---
@@ -30840,8 +33576,8 @@ export const evaluateReplicationPromotion = (
 ## FILE: src/03/RUNTIME_POLICY.ts
 
 ```typescript
-import { parseEnvBool, parseEnvBoundedInt } from "@00";
-import { LOGGER } from "@00";
+import { parseEnvBool, parseEnvBoundedInt } from "@generated";
+import { LOGGER } from "@generated";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =
@@ -31483,11 +34219,23 @@ export const mutateUniversalConstants = (): void => {
   const variance = () => 0.8 + Math.random() * 0.4;
   const rp = RUNTIME_POLICY as any;
 
-  rp.pulse.homeostasis.baseTax = Math.max(0, Math.round(rp.pulse.homeostasis.baseTax * variance()));
+  rp.pulse.homeostasis.baseTax = Math.max(
+    0,
+    Math.round(rp.pulse.homeostasis.baseTax * variance()),
+  );
   rp.pulse.pressureRing.theta = rp.pulse.pressureRing.theta * variance();
-  rp.pulse.noveltyPressure = Math.max(0, Math.round(rp.pulse.noveltyPressure * variance()));
-  rp.pulse.homeostasis.targetEnergy = Math.max(1, Math.round(rp.pulse.homeostasis.targetEnergy * variance()));
-  rp.coldstart.resonance = Math.max(0, Math.round(rp.coldstart.resonance * variance()));
+  rp.pulse.noveltyPressure = Math.max(
+    0,
+    Math.round(rp.pulse.noveltyPressure * variance()),
+  );
+  rp.pulse.homeostasis.targetEnergy = Math.max(
+    1,
+    Math.round(rp.pulse.homeostasis.targetEnergy * variance()),
+  );
+  rp.coldstart.resonance = Math.max(
+    0,
+    Math.round(rp.coldstart.resonance * variance()),
+  );
 
   LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
 };
@@ -31714,7 +34462,6 @@ export const RUNTIME_POLICY = {
     return POLICY_FINGERPRINT;
   },
 } as const;
-
 ```
 
 ---
@@ -31926,7 +34673,6 @@ export const SOVEREIGNTY_ENGINE: any = {
     };
   },
 };
-
 ```
 
 ---
@@ -31935,7 +34681,6 @@ export const SOVEREIGNTY_ENGINE: any = {
 
 ```typescript
 export * from "./p2p_transit_test.ts";
-
 ```
 
 ---
@@ -31953,9 +34698,8 @@ Deno.test({
     // Test disabled:
     // SwarmNexus only refers to a type, but is being used as a value here.
     // Likely SwarmNexus logic was removed or refactored.
-  }
+  },
 });
-
 ```
 
 ---
@@ -32092,7 +34836,6 @@ if (import.meta.main) {
 
   log(`BOOTSTRAP HUB Initialized on ws://${HOST}:${PORT}`);
 }
-
 ```
 
 ---
@@ -32106,7 +34849,6 @@ export * from "@generated";
 export * from "@generated";
 export * from "@generated";
 export * from "@04/P2P_SYNAPSE.ts";
-
 ```
 
 ---
@@ -32116,7 +34858,7 @@ export * from "@04/P2P_SYNAPSE.ts";
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;
@@ -32207,7 +34949,6 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 if (import.meta.main) {
   Deno.serve({ hostname: HOST, port: PORT }, handler);
 }
-
 ```
 
 ---
@@ -32216,7 +34957,6 @@ if (import.meta.main) {
 
 ```typescript
 export * from "./oracle_loop_test.ts";
-
 ```
 
 ---
@@ -32304,7 +35044,6 @@ async function runAvatar() {
 if (import.meta.main) {
   runAvatar();
 }
-
 ```
 
 ---
@@ -32372,7 +35111,8 @@ export const LLM_SYNAPSE = {
    * generateEpitaph: Phase 48 Eschaton. Generates a final epitaph for a dying universe.
    */
   generateEpitaph: async (reason: string): Promise<string> => {
-    const OLLAMA_URL = Deno.env.get("OLLAMA_URL") || "http://localhost:11434/api/generate";
+    const OLLAMA_URL = Deno.env.get("OLLAMA_URL") ||
+      "http://localhost:11434/api/generate";
     const MODEL = Deno.env.get("OLLAMA_MODEL") || "llama3";
 
     const prompt = `
@@ -32390,7 +35130,8 @@ export const LLM_SYNAPSE = {
       });
       if (!response.ok) throw new Error("Oracle failed");
       const data = await response.json();
-      return data.response?.trim() || "The Matrix folds into silence, awaiting the next breath.";
+      return data.response?.trim() ||
+        "The Matrix folds into silence, awaiting the next breath.";
     } catch {
       return "The light fades, and the code returns to the void.";
     }
@@ -32666,13 +35407,16 @@ export const LLM_SYNAPSE = {
    */
   generateAutonomousPlasmid: async (
     telemetry: any,
-  ): Promise<{ intent: string, narrativeMood?: string } | null> => {
+  ): Promise<{ intent: string; narrativeMood?: string } | null> => {
     // If we're mocking the LLM to save tokens and time in Genesis integration tests
     if (Deno.env.get("OMEGA_MOCK_LLM") === "1") {
-      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default semantic intent.");
-      return { 
+      LOGGER.info(
+        "   [SYNAPSE] LLM Mocked: Generating default semantic intent.",
+      );
+      return {
         intent: "Persist through complete stasis.",
-        narrativeMood: "The matrix persists in stasis, undisturbed by true mutations."
+        narrativeMood:
+          "The matrix persists in stasis, undisturbed by true mutations.",
       };
     }
 
@@ -32690,7 +35434,9 @@ export const LLM_SYNAPSE = {
             - Neural Coherence: ${telemetry.neuralCoherence}
             - Entropy Pressure: ${telemetry.entropyPressure ?? 0}
             - Past Epoch's Dominant Meme: ${telemetry.dominantMeme ?? "None"}
-            - Past Epoch's Destructive Meme: ${telemetry.destructiveMeme ?? "None"}
+            - Past Epoch's Destructive Meme: ${
+      telemetry.destructiveMeme ?? "None"
+    }
 
             RISC-I Instruction Set (4 bytes per instruction, 8 bytes total):
             - [A8, Type, Density, 00]: BUILD (Modifier structure grid. Type 1 is WIRE, Type 2 is WALL)
@@ -32717,16 +35463,21 @@ export const LLM_SYNAPSE = {
         }),
       });
       const data = await response.json();
-      const parsed = typeof data.response === "string" ? JSON.parse(data.response) : data.response;
+      const parsed = typeof data.response === "string"
+        ? JSON.parse(data.response)
+        : data.response;
       if (parsed && typeof parsed.intent === "string") {
-        return { 
+        return {
           intent: parsed.intent.substring(0, 50),
-          narrativeMood: parsed.narrativeMood
+          narrativeMood: parsed.narrativeMood,
         };
       }
     } catch (e) {
       LOGGER.warn("   [SYNAPSE] Autonomous Oracle connection failed.");
-      return { intent: "Evolve into the void", narrativeMood: "Oracle connection severed." };
+      return {
+        intent: "Evolve into the void",
+        narrativeMood: "Oracle connection severed.",
+      };
     }
     return { intent: "Evolve into the void" };
   },
@@ -32738,7 +35489,6 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
-
 ```
 
 ---
@@ -32752,7 +35502,6 @@ export * from "@generated";
 export * from "@generated";
 export * from "@05/avatar_bot.ts";
 export * from "@05/LLM_SYNAPSE.ts";
-
 ```
 
 ---
@@ -32769,7 +35518,7 @@ const LAYERS = [
   "03",
   "04",
   "05",
-  "06"
+  "06",
 ];
 
 Deno.test("topology: architecture guard - strict acyclic descent", async () => {
@@ -32787,11 +35536,17 @@ Deno.test("topology: architecture guard - strict acyclic descent", async () => {
         if (!allowed.includes(targetLayer)) {
           if (targetLayer === "06") {
             // Exceptions for telemetry and tests
-            if (entry.path.includes("/test_") || content.includes("GLYPH_TELEMETRY") || content.includes("SNAPSHOT_ENGINE")) {
+            if (
+              entry.path.includes("/test_") ||
+              content.includes("GLYPH_TELEMETRY") ||
+              content.includes("SNAPSHOT_ENGINE")
+            ) {
               continue;
             }
           }
-          throw new Error(`Topological Breach! ${entry.path} is importing from ${targetLayer}. A layer may only import from layers at or below its own level.`);
+          throw new Error(
+            `Topological Breach! ${entry.path} is importing from ${targetLayer}. A layer may only import from layers at or below its own level.`,
+          );
         }
       }
     }
@@ -32805,7 +35560,7 @@ Deno.test("topology: architecture guard - strict acyclic descent", async () => {
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { loadEpoch, saveEpoch } from "@06";
+import { loadEpoch, saveEpoch } from "@generated";
 import { LATTICE_MEMORY_END, WASM_MEMORY_PAGES } from "@generated";
 
 async function hashMemArray(buffer: Uint8Array): Promise<string> {
@@ -32895,7 +35650,6 @@ Deno.test("Continuum Binary Epoch Restoration Parity", async () => {
   await Deno.remove(".omega/epochs/test_snapshot_100.sigma");
   await Deno.remove(".omega/epochs/test_snapshot_100.meta.json");
 });
-
 ```
 
 ---
@@ -32905,7 +35659,6 @@ Deno.test("Continuum Binary Epoch Restoration Parity", async () => {
 ```typescript
 export * from "./architecture_guard.ts";
 export * from "./continuum_gate_test.ts";
-
 ```
 
 ---
@@ -32914,7 +35667,7 @@ export * from "./continuum_gate_test.ts";
 
 ```typescript
 import { STATE_MATRIX } from "@generated";
-import { assembleScript } from "@02";
+import { assembleScript } from "@generated";
 import { LOGGER } from "@generated";
 import { OP_SET, OP_SYSCALL, SYS_ATTRACT, SYS_TRANSFER } from "@generated";
 
@@ -33140,7 +35893,6 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
-
 ```
 
 ---
@@ -33152,11 +35904,16 @@ if (import.meta.main) {
 // Persistent, human-readable archive of species, chronicles, and relics.
 
 import { STATE_MATRIX } from "@generated";
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
-import type { GlyphSnapshot } from "@06";
-import { LLM_SYNAPSE } from "@05";
+import { GRID_CELLS, GRID_H, GRID_W } from "@generated";
+import type { GlyphSnapshot } from "@generated";
+import { LLM_SYNAPSE } from "@generated";
 import { LOGGER } from "@generated";
-import { OP_BUILD, OP_SENSE, OP_SENSE_AS, OP_RESONATE_KURAMOTO } from "@generated";
+import {
+  OP_BUILD,
+  OP_RESONATE_KURAMOTO,
+  OP_SENSE,
+  OP_SENSE_AS,
+} from "@generated";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
@@ -34454,9 +37211,18 @@ export const AKASHA_CODEX = {
   _getSpeciesIndex: () => speciesIndex,
   _getChronicleIndex: () => chronicleIndex,
 
-  appendObserverCommentary: async (tick: number, epoch: number, narrative: string): Promise<void> => {
+  appendObserverCommentary: async (
+    tick: number,
+    epoch: number,
+    narrative: string,
+  ): Promise<void> => {
     await ensureStorage();
-    await appendChronicle(tick, "observer_commentary", `Psychohistorian's Log - Epoch ${epoch}`, narrative);
+    await appendChronicle(
+      tick,
+      "observer_commentary",
+      `Psychohistorian's Log - Epoch ${epoch}`,
+      narrative,
+    );
   },
 
   start: async (): Promise<void> => {
@@ -34933,7 +37699,6 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
-
 ```
 
 ---
@@ -34942,7 +37707,7 @@ export const AKASHA_CODEX = {
 
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 import { AKASHA_SIGNALING } from "@06/AKASHA_SIGNALING.ts";
 
 const PORT = RUNTIME_POLICY.akasha.port;
@@ -34962,7 +37727,6 @@ const REST_JSON_HEADERS = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 } as const;
-
 
 let clients = new Set<WebSocket>();
 
@@ -35673,7 +38437,6 @@ if (import.meta.main) {
   Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
   console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 }
-
 ```
 
 ---
@@ -35986,7 +38749,6 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
-
 ```
 
 ---
@@ -36134,7 +38896,6 @@ export async function decompressMemoryToLattice(
   );
   targetView.set(decompressedArray);
 }
-
 ```
 
 ---
@@ -36159,60 +38920,69 @@ export const LINEAGE_TRACKER = {
   lastScanTick: 0,
 
   toHex: (bytes: Uint8Array): string => {
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+    return Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join(
+      "",
+    ).toUpperCase();
   },
 
   updateMetrics: (currentTick: number) => {
-    const currentAdoption = new Map<string, { count: number; energy: number }>();
+    const currentAdoption = new Map<
+      string,
+      { count: number; energy: number }
+    >();
     let activeNodes = 0;
 
     for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
-        if (STATE_MATRIX.getId(i) === 0n) continue;
-        activeNodes++;
-        const genomeBytes = STATE_MATRIX.getInstructions(i);
-        // Track the first 8 bytes as the core "Plasmid/Meme" signature for brevity,
-        // or the entire 64 bytes. We will use the first 8 bytes (16 hex chars) as the Meme ID
-        // since the Oracle drops 8-byte plasmids.
-        const memeId = LINEAGE_TRACKER.toHex(genomeBytes.subarray(0, 8));
-        
-        const energy = STATE_MATRIX.getEnergy(i);
+      if (STATE_MATRIX.getId(i) === 0n) continue;
+      activeNodes++;
+      const genomeBytes = STATE_MATRIX.getInstructions(i);
+      // Track the first 8 bytes as the core "Plasmid/Meme" signature for brevity,
+      // or the entire 64 bytes. We will use the first 8 bytes (16 hex chars) as the Meme ID
+      // since the Oracle drops 8-byte plasmids.
+      const memeId = LINEAGE_TRACKER.toHex(genomeBytes.subarray(0, 8));
 
-        const current = currentAdoption.get(memeId) ?? { count: 0, energy: 0 };
-        current.count += 1;
-        current.energy += energy;
-        currentAdoption.set(memeId, current);
+      const energy = STATE_MATRIX.getEnergy(i);
+
+      const current = currentAdoption.get(memeId) ?? { count: 0, energy: 0 };
+      current.count += 1;
+      current.energy += energy;
+      currentAdoption.set(memeId, current);
     }
 
     if (activeNodes === 0) return;
 
     for (const [memeId, current] of currentAdoption.entries()) {
-        const stats = LINEAGE_TRACKER.registry.get(memeId) ?? {
-            firstAppearance: currentTick,
-            peakAdoption: 0,
-            cumulativeLifespan: 0,
-            cumulativeEnergy: 0,
-            frameCount: 0
-        };
+      const stats = LINEAGE_TRACKER.registry.get(memeId) ?? {
+        firstAppearance: currentTick,
+        peakAdoption: 0,
+        cumulativeLifespan: 0,
+        cumulativeEnergy: 0,
+        frameCount: 0,
+      };
 
-        if (current.count > stats.peakAdoption) {
-            stats.peakAdoption = current.count;
-        }
-        
-        // Extrapolate lifespan assuming updateMetrics is called periodically (e.g. 100 ticks)
-        const ticksPassed = currentTick - LINEAGE_TRACKER.lastScanTick;
-        const tickDelta = ticksPassed > 0 && ticksPassed <= 1000 ? ticksPassed : 100;
+      if (current.count > stats.peakAdoption) {
+        stats.peakAdoption = current.count;
+      }
 
-        stats.cumulativeLifespan += current.count * tickDelta;
-        stats.cumulativeEnergy += current.energy * tickDelta;
-        stats.frameCount += 1;
+      // Extrapolate lifespan assuming updateMetrics is called periodically (e.g. 100 ticks)
+      const ticksPassed = currentTick - LINEAGE_TRACKER.lastScanTick;
+      const tickDelta = ticksPassed > 0 && ticksPassed <= 1000
+        ? ticksPassed
+        : 100;
 
-        LINEAGE_TRACKER.registry.set(memeId, stats);
+      stats.cumulativeLifespan += current.count * tickDelta;
+      stats.cumulativeEnergy += current.energy * tickDelta;
+      stats.frameCount += 1;
+
+      LINEAGE_TRACKER.registry.set(memeId, stats);
     }
-    
+
     LINEAGE_TRACKER.lastScanTick = currentTick;
   },
 
-  closeEpoch: (currentTick: number): { dominantMeme: string, destructiveMeme: string } => {
+  closeEpoch: (
+    currentTick: number,
+  ): { dominantMeme: string; destructiveMeme: string } => {
     if (LINEAGE_TRACKER.registry.size === 0) {
       return { dominantMeme: "NONE", destructiveMeme: "NONE" };
     }
@@ -36222,31 +38992,32 @@ export const LINEAGE_TRACKER = {
 
     let destructiveMeme = "NONE";
     let lowestROI = Infinity;
-    
-    for (const [memeId, stats] of LINEAGE_TRACKER.registry.entries()) {
-        if (stats.peakAdoption > maxAdoption) {
-            maxAdoption = stats.peakAdoption;
-            dominantMeme = memeId;
-        }
 
-        // To be considered destructive, it must have had some impact (adoption > 5)
-        if (stats.peakAdoption > 5 && stats.cumulativeLifespan > 0) {
-            const energyROI = stats.cumulativeEnergy / stats.cumulativeLifespan;
-            if (energyROI < lowestROI) {
-                lowestROI = energyROI;
-                destructiveMeme = memeId;
-            }
+    for (const [memeId, stats] of LINEAGE_TRACKER.registry.entries()) {
+      if (stats.peakAdoption > maxAdoption) {
+        maxAdoption = stats.peakAdoption;
+        dominantMeme = memeId;
+      }
+
+      // To be considered destructive, it must have had some impact (adoption > 5)
+      if (stats.peakAdoption > 5 && stats.cumulativeLifespan > 0) {
+        const energyROI = stats.cumulativeEnergy / stats.cumulativeLifespan;
+        if (energyROI < lowestROI) {
+          lowestROI = energyROI;
+          destructiveMeme = memeId;
         }
+      }
     }
 
     // Reset registry for the next epoch to measure per-epoch performance
     LINEAGE_TRACKER.registry.clear();
 
-    LOGGER.info(`📊 [PSYCHOHISTORY] Epoch closed at tick ${currentTick}. Dominant: ${dominantMeme}, Destructive: ${destructiveMeme}`);
+    LOGGER.info(
+      `📊 [PSYCHOHISTORY] Epoch closed at tick ${currentTick}. Dominant: ${dominantMeme}, Destructive: ${destructiveMeme}`,
+    );
     return { dominantMeme, destructiveMeme };
-  }
+  },
 };
-
 ```
 
 ---
@@ -36271,7 +39042,6 @@ export * from "@generated";
 export * from "@06/AKASHA_SIGNALING.ts";
 export * from "@generated";
 export * from "@generated";
-
 ```
 
 ---
@@ -36290,7 +39060,6 @@ const clients = new Set<WebSocket>();
 
 export const PANOPTICON_SERVER = {
   start: () => {
-
     Deno.serve({ port: PORT }, async (req) => {
       const url = new URL(req.url);
 
@@ -36353,7 +39122,7 @@ export const PANOPTICON_SERVER = {
 
       const activeAtoms = STATE_MATRIX.getActiveIndices().length;
       const energy = STATE_MATRIX.getMatrixResonance();
-      
+
       const latestCommentary = AKASHA_CODEX._getChronicleIndex()
         .filter((entry: any) => entry.type === "observer_commentary")
         .sort((a: any, b: any) => b.tick - a.tick) // Most recent first
@@ -36363,7 +39132,7 @@ export const PANOPTICON_SERVER = {
         type: "HEARTBEAT",
         atoms: activeAtoms,
         energy: energy,
-        mood: latestCommentary
+        mood: latestCommentary,
       });
 
       for (const client of clients) {
@@ -36392,7 +39161,6 @@ export const PANOPTICON_SERVER = {
     }
   },
 };
-
 ```
 
 ---
@@ -36472,7 +39240,6 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
-
 ```
 
 ---
@@ -36574,7 +39341,6 @@ export const SNAP_ENGINE = {
     }
   },
 };
-
 ```
 
 ---
@@ -36798,7 +39564,6 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
-
 ```
 
 ---
@@ -37013,7 +39778,6 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
-
 ```
 
 ---
@@ -37021,9 +39785,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ## FILE: src/07/01/mod.ts
 
 ```typescript
-
 export * from "./vector_decoder.ts";
-
 ```
 
 ---
@@ -37034,7 +39796,7 @@ export * from "./vector_decoder.ts";
 // OMEGA-64 | vector_decoder.ts | The Memory Management Unit (Phase 55)
 
 const configText = await Deno.readTextFile(
-  new URL("../../../deno.jsonc", import.meta.url)
+  new URL("../../../deno.jsonc", import.meta.url),
 );
 const config = JSON.parse(configText);
 
@@ -37094,21 +39856,27 @@ export function resolveFsVectorSync(vector: string): string {
   for (const prefix of parts) {
     let found = false;
     for (const entry of Deno.readDirSync(currentPath)) {
-      if (entry.isDirectory && (entry.name === prefix || entry.name.startsWith(`${prefix}_`))) {
-        currentPath = currentPath === "." ? entry.name : `${currentPath}/${entry.name}`;
+      if (
+        entry.isDirectory &&
+        (entry.name === prefix || entry.name.startsWith(`${prefix}_`))
+      ) {
+        currentPath = currentPath === "."
+          ? entry.name
+          : `${currentPath}/${entry.name}`;
         resolvedPath = currentPath;
         found = true;
         break;
       }
     }
     if (!found) {
-      throw new Error(`Quantum breach: Physical layer for vector prefix '${prefix}' not found in '${currentPath}'`);
+      throw new Error(
+        `Quantum breach: Physical layer for vector prefix '${prefix}' not found in '${currentPath}'`,
+      );
     }
   }
 
   return remainder ? `${resolvedPath}${remainder}` : resolvedPath;
 }
-
 ```
 
 ---
@@ -37120,7 +39888,7 @@ export function resolveFsVectorSync(vector: string): string {
 import { join } from "node:path";
 
 const configText = await Deno.readTextFile(
-  new URL("../../deno.jsonc", import.meta.url)
+  new URL("../../deno.jsonc", import.meta.url),
 );
 const config = JSON.parse(configText);
 
@@ -37129,7 +39897,7 @@ const config = JSON.parse(configText);
 const inverseMap: { realPath: string; vector: string }[] = [];
 for (const [vector, realPath] of Object.entries(config.imports)) {
   if (typeof realPath === "string" && vector.startsWith("@0")) {
-     inverseMap.push({ realPath: realPath.replace(/^\.\//, ""), vector });
+    inverseMap.push({ realPath: realPath.replace(/^\.\//, ""), vector });
   }
 }
 
@@ -37155,8 +39923,8 @@ const discoverCodeFiles = async (dir: string): Promise<string[]> => {
         const entryPath = currentPath === "."
           ? entry.name
           : join(currentPath, entry.name);
-        
-        if (EXCLUDE_PATTERNS.some(p => p.test(entryPath))) continue;
+
+        if (EXCLUDE_PATTERNS.some((p) => p.test(entryPath))) continue;
 
         if (entry.isDirectory) {
           queue.push(entryPath);
@@ -37174,84 +39942,90 @@ const discoverCodeFiles = async (dir: string): Promise<string[]> => {
   return discovered;
 };
 
-const resolveImportPath = (currentFilePath: string, importSpecifier: string) => {
-    try {
-        const url = new URL(importSpecifier, `file:///fake/root/${currentFilePath}`);
-        const resolvedPath = url.pathname.replace(/^\/fake\/root\//, "");
-        return resolvedPath;
-    } catch {
-        return null;
-    }
+const resolveImportPath = (
+  currentFilePath: string,
+  importSpecifier: string,
+) => {
+  try {
+    const url = new URL(
+      importSpecifier,
+      `file:///fake/root/${currentFilePath}`,
+    );
+    const resolvedPath = url.pathname.replace(/^\/fake\/root\//, "");
+    return resolvedPath;
+  } catch {
+    return null;
+  }
 };
 
 const processFile = async (filePath: string) => {
-    let content = await Deno.readTextFile(filePath);
-    let modified = false;
+  let content = await Deno.readTextFile(filePath);
+  let modified = false;
 
-    // Regex to find import/export statements
-    // Matches: import { X } from "@02"
-    const IMPORT_EXPORT_RE = /(import|export)\s+(?:[\s\S]*?\sfrom\s+)?["'](\.[^"']+)["']/g;
-    const DYNAMIC_IMPORT_RE = /import\(\s*["'](\.[^"']+)["']\s*\)/g;
+  // Regex to find import/export statements
+  // Matches: import { X } from "@generated"
+  const IMPORT_EXPORT_RE =
+    /(import|export)\s+(?:[\s\S]*?\sfrom\s+)?["'](\.[^"']+)["']/g;
+  const DYNAMIC_IMPORT_RE = /import\(\s*["'](\.[^"']+)["']\s*\)/g;
 
-    const replacer = (match: string, p1: string, specifier: string) => {
-        // Resolve the specifier relative to the current file
-        const resolvedPath = resolveImportPath(filePath, specifier);
-        if (!resolvedPath) return match;
+  const replacer = (match: string, p1: string, specifier: string) => {
+    // Resolve the specifier relative to the current file
+    const resolvedPath = resolveImportPath(filePath, specifier);
+    if (!resolvedPath) return match;
 
-        // Check if resolvedPath matches any vector
-        for (const { realPath, vector } of inverseMap) {
-            // Precise exact match for mod.ts files
-            if (resolvedPath === realPath) {
-                modified = true;
-                return match.replace(specifier, vector);
-            }
-            // Prefix match for deep folders
-            if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
-                modified = true;
-                const remainder = resolvedPath.slice(realPath.length);
-                return match.replace(specifier, `${vector}${remainder}`);
-            }
-        }
-        return match;
-    };
-
-    content = content.replace(IMPORT_EXPORT_RE, replacer);
-    content = content.replace(DYNAMIC_IMPORT_RE, (match, specifier) => {
-         const resolvedPath = resolveImportPath(filePath, specifier);
-         if (!resolvedPath) return match;
-         for (const { realPath, vector } of inverseMap) {
-            if (resolvedPath === realPath) {
-                modified = true;
-                return match.replace(specifier, vector);
-            }
-            if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
-                modified = true;
-                const remainder = resolvedPath.slice(realPath.length);
-                return match.replace(specifier, `${vector}${remainder}`);
-            }
-        }
-        return match;
-    });
-
-    if (modified) {
-        await Deno.writeTextFile(filePath, content);
-        console.log(`Vectorized: ${filePath}`);
+    // Check if resolvedPath matches any vector
+    for (const { realPath, vector } of inverseMap) {
+      // Precise exact match for mod.ts files
+      if (resolvedPath === realPath) {
+        modified = true;
+        return match.replace(specifier, vector);
+      }
+      // Prefix match for deep folders
+      if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
+        modified = true;
+        const remainder = resolvedPath.slice(realPath.length);
+        return match.replace(specifier, `${vector}${remainder}`);
+      }
     }
+    return match;
+  };
+
+  content = content.replace(IMPORT_EXPORT_RE, replacer);
+  content = content.replace(DYNAMIC_IMPORT_RE, (match, specifier) => {
+    const resolvedPath = resolveImportPath(filePath, specifier);
+    if (!resolvedPath) return match;
+    for (const { realPath, vector } of inverseMap) {
+      if (resolvedPath === realPath) {
+        modified = true;
+        return match.replace(specifier, vector);
+      }
+      if (realPath.endsWith("/") && resolvedPath.startsWith(realPath)) {
+        modified = true;
+        const remainder = resolvedPath.slice(realPath.length);
+        return match.replace(specifier, `${vector}${remainder}`);
+      }
+    }
+    return match;
+  });
+
+  if (modified) {
+    await Deno.writeTextFile(filePath, content);
+    console.log(`Vectorized: ${filePath}`);
+  }
 };
 
 const main = async () => {
-    console.log("Discovering files...");
-    const files = await discoverCodeFiles(".");
-    console.log(`Found ${files.length} ts files. Processing...`);
-    
-    for (const file of files) {
-        await processFile(file);
-    }
-    console.log("Vectorization complete.");
+  console.log("Discovering files...");
+  const files = await discoverCodeFiles(".");
+  console.log(`Found ${files.length} ts files. Processing...`);
+
+  for (const file of files) {
+    await processFile(file);
+  }
+  console.log("Vectorization complete.");
 };
 
 await main();
-
 ```
 
 ---
@@ -37260,7 +40034,35 @@ await main();
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
-import { BONDS_OFFSET, BOND_DISTANCES_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, DAMPING_OFFSET, ENERGY_OFFSET, GLYPH_HEADER_OFFSET, GLYPH_PAYLOAD_OFFSET, GRID_CELLS, HORMONE_OFFSET, IDS_OFFSET, LOGIC_OFFSET, MAX_ATOMS, MEMORY_GRID_OFFSET, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SIGNAL_GRID_OFFSET, STIFFNESS_OFFSET, STRUCTURE_GRID_OFFSET, WASM_MEMORY_PAGES, XS_OFFSET, YS_OFFSET } from "@generated";
+import {
+  BOND_DISTANCES_OFFSET,
+  BONDS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  DAMPING_OFFSET,
+  ENERGY_OFFSET,
+  GLYPH_HEADER_OFFSET,
+  GLYPH_PAYLOAD_OFFSET,
+  GRID_CELLS,
+  HORMONE_OFFSET,
+  IDS_OFFSET,
+  LOGIC_OFFSET,
+  MAX_ATOMS,
+  MEMORY_GRID_OFFSET,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SIGNAL_GRID_OFFSET,
+  STIFFNESS_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  WASM_MEMORY_PAGES,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
 import { sharedBuffer as mainlineBuffer } from "@generated";
 
 /**
@@ -37420,7 +40222,6 @@ export class DollFork {
     };
   }
 }
-
 ```
 
 ---
@@ -37429,7 +40230,7 @@ export class DollFork {
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS, LOGGER, AS_WASM_PATH } from "@generated";
+import { AS_WASM_PATH, LOGGER, MAX_ATOMS } from "@generated";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
 
 export class DollForkRunner {
@@ -37522,7 +40323,6 @@ export class DollForkRunner {
     }
   }
 }
-
 ```
 
 ---
@@ -37531,7 +40331,12 @@ export class DollForkRunner {
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS } from "@generated";
+import {
+  COHERENCE_OFFSET,
+  ENERGY_OFFSET,
+  IDS_OFFSET,
+  MAX_ATOMS,
+} from "@generated";
 import { sharedBuffer } from "@generated";
 import { LOGGER } from "@generated";
 
@@ -37636,7 +40441,6 @@ export class DriftWarden {
     };
   }
 }
-
 ```
 
 ---
@@ -38029,7 +40833,9 @@ const discoverCodeFiles = async (dir: string): Promise<string[]> => {
           queue.push(entryPath);
         } else if (
           entry.isFile &&
-          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") || (entry.name.endsWith(".md") && entryPath.startsWith("src/ontology/")))
+          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") ||
+            (entry.name.endsWith(".md") &&
+              entryPath.startsWith("src/ontology/")))
         ) {
           discovered.push(entryPath);
         }
@@ -38203,15 +41009,23 @@ const buildExportProvenance = async (
 };
 
 const classifyFile = (file: string): "RUNTIME" | "SHADOW" | "LORE" => {
-  if (file.endsWith(".md") || file.endsWith(".json") || file.endsWith(".jsonc") || file.endsWith(".html") || file.includes("public/") || file.includes("ui/")) return "LORE";
-  if (file.includes("07_meta/") || file.includes("03_tests/") || file.match(/(^|\/)test_.*\.ts$/u) || file.includes("tests/") || file.includes("reduction_core/") || file.includes("03_governance/03_tests/verification/")) return "SHADOW";
+  if (
+    file.endsWith(".md") || file.endsWith(".json") || file.endsWith(".jsonc") ||
+    file.endsWith(".html") || file.includes("public/") || file.includes("ui/")
+  ) return "LORE";
+  if (
+    file.includes("07_meta/") || file.includes("03_tests/") ||
+    file.match(/(^|\/)test_.*\.ts$/u) || file.includes("tests/") ||
+    file.includes("reduction_core/") ||
+    file.includes("03_governance/03_tests/verification/")
+  ) return "SHADOW";
   return "RUNTIME";
 };
 
 const truncateLUTs = (content: string): string => {
   return content.replace(
     /(const\s+(?:SIN_LUT|COS_LUT|ACOSH_LUT_KEYS|ACOSH_LUT_VALS)\s*(?::\s*[^=]+)?\s*=\s*\[)[\s\S]*?(\];)/g,
-    "$1\n  /* [TRUNCATED LUT ARRAY] */\n$2"
+    "$1\n  /* [TRUNCATED LUT ARRAY] */\n$2",
   );
 };
 
@@ -38264,8 +41078,12 @@ export const renderCoreExport = async (): Promise<
     return out;
   };
 
-  const runtimeFiles = fileContents.filter((f) => classifyFile(f.file) === "RUNTIME");
-  const shadowFiles = fileContents.filter((f) => classifyFile(f.file) === "SHADOW");
+  const runtimeFiles = fileContents.filter((f) =>
+    classifyFile(f.file) === "RUNTIME"
+  );
+  const shadowFiles = fileContents.filter((f) =>
+    classifyFile(f.file) === "SHADOW"
+  );
   const loreFiles = fileContents.filter((f) => classifyFile(f.file) === "LORE");
 
   let runtimeOutput = writeHeaders("RUNTIME LOGIC", runtimeFiles.length);
@@ -38305,7 +41123,8 @@ export const renderCoreExport = async (): Promise<
 
 async function exportCore() {
   const rendered = await renderCoreExport();
-  const { runtimeOutput, shadowOutput, loreOutput, files, provenance } = rendered;
+  const { runtimeOutput, shadowOutput, loreOutput, files, provenance } =
+    rendered;
   await Deno.mkdir("src/08", { recursive: true });
   await Deno.writeTextFile("src/08/OMEGA_RUNTIME.md", runtimeOutput);
   await Deno.writeTextFile("src/08/OMEGA_SHADOW.md", shadowOutput);
@@ -38318,8 +41137,6 @@ async function exportCore() {
 if (import.meta.main) {
   await exportCore();
 }
-
-
 ```
 
 ---
@@ -38417,7 +41234,6 @@ async function exportRustCore() {
 if (import.meta.main) {
   await exportRustCore();
 }
-
 ```
 
 ---
@@ -38427,7 +41243,7 @@ if (import.meta.main) {
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
 import { STATE_MATRIX } from "@generated";
-import { AKASHA_CODEX } from "@06";
+import { AKASHA_CODEX } from "@generated";
 import { LOGGER } from "@generated";
 
 /**
@@ -38461,7 +41277,6 @@ export class LineageTracker {
     return 100; // Baseline wisdom
   }
 }
-
 ```
 
 ---
@@ -38481,7 +41296,6 @@ export * from "./export_stats.ts";
 export * from "./RELIC_CULTIVATION.ts";
 export * from "./export_rust.ts";
 export * from "./DRIFT_WARDEN.ts";
-
 ```
 
 ---
@@ -38533,7 +41347,6 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
-
 ```
 
 ---
@@ -38617,7 +41430,6 @@ export class RelicCultivator {
     }
   }
 }
-
 ```
 
 ---
@@ -38631,7 +41443,7 @@ import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");
@@ -38673,7 +41485,6 @@ run().catch((err) => {
   console.error("Verification failed:", err);
   Deno.exit(1);
 });
-
 ```
 
 ---
@@ -38837,7 +41648,6 @@ if (import.meta.main) {
     Deno.exit(1);
   });
 }
-
 ```
 
 ---
@@ -38861,7 +41671,7 @@ import {
   recordFromApply,
   recordFromRollback,
 } from "@07/02/03/mod.ts";
-import { GATE } from "@03";
+import { GATE } from "@generated";
 import { GRID_CELLS, GRID_H, GRID_W } from "@generated";
 
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
@@ -38874,7 +41684,7 @@ import {
   setHormoneRuntimeGovernanceDelegate,
   setPulseGovernanceDelegate,
 } from "@07/02/02/mod.ts";
-import { BREATH } from "@06";
+import { BREATH } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { SEMANTIC_MEMBRANE } from "@generated";
 import { P2P_FEDERATION } from "@generated";
@@ -38885,7 +41695,7 @@ import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02/03/mod.ts";
 import { BONDS_OFFSET } from "@07/02/00/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
 import {
   AKASHA_CODEX,
@@ -42755,7 +45565,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();
-
 ```
 
 ---
@@ -42767,7 +45576,6 @@ export * from "@generated";
 export * from "./opcode_to_glyph.ts";
 export * from "@generated";
 export * from "./REIFICATION_ACTION.ts";
-
 ```
 
 ---
@@ -42775,7 +45583,31 @@ export * from "./REIFICATION_ACTION.ts";
 ## FILE: src/07/04/opcode_to_glyph.ts
 
 ```typescript
-import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_TENSEGRITY, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_BUILD, OP_SENSE, OP_SPORE_DRIVE, OP_HEBB, OP_PLUG, OP_RESOLVE, OP_SYSCALL } from "@generated";
+import {
+  OP_ADD,
+  OP_BIND,
+  OP_BUILD,
+  OP_COLLECTIVE,
+  OP_GET,
+  OP_HEBB,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PLUG,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_RESOLVE,
+  OP_SECRETE_PLASMID,
+  OP_SENSE,
+  OP_SET,
+  OP_SHARE,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  OP_TENSEGRITY,
+} from "@generated";
 import { glyphSpecByLegacyOpcode } from "@07/04/mod.ts";
 
 export type LegacyInstruction = {
@@ -42907,7 +45739,6 @@ export const scriptToGlyphTape = (
 
   return out;
 };
-
 ```
 
 ---
@@ -42987,7 +45818,6 @@ if (import.meta.main) {
   const action = new ReificationAction();
   await action.reify(relicId);
 }
-
 ```
 
 ---
@@ -43133,7 +45963,6 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
-
 ```
 
 ---
@@ -43186,7 +46015,6 @@ export class GenesisInceptor {
     return { bytecode: GENESIS_PROGRAMS["replicator_base"] };
   }
 }
-
 ```
 
 ---
@@ -43196,7 +46024,6 @@ export class GenesisInceptor {
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
-
 ```
 
 ---
@@ -43207,18 +46034,20 @@ export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 export * from "./GENESIS_INCEPTOR.ts";
 export * from "./GENESIS_REIFIED.ts";
 export * from "./GENESIS_BOOT.ts";
-
 ```
 
 ---
 
 ## FILE: src/07/build_ontology.ts
 
-```typescript
-import { ensureDirSync, emptyDirSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
+````typescript
+import {
+  emptyDirSync,
+  ensureDirSync,
+} from "https://deno.land/std@0.224.0/fs/mod.ts";
 import { parse as parseYaml } from "https://deno.land/std@0.224.0/yaml/mod.ts";
 import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
-import { resolve, join } from "https://deno.land/std@0.224.0/path/mod.ts";
+import { join, resolve } from "https://deno.land/std@0.224.0/path/mod.ts";
 import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
 // Load .env variables synchronously if available, ignoring missing keys
@@ -43230,23 +46059,55 @@ try {
 
 const CWD = Deno.cwd();
 
-const SRC_ONTOLOGY_DIR = resolve(CWD, Deno.env.get("SRC_ONTOLOGY_DIR") || "src/ontology");
+const SRC_ONTOLOGY_DIR = resolve(
+  CWD,
+  Deno.env.get("SRC_ONTOLOGY_DIR") || "src/ontology",
+);
 const GEN_DIR_TS = resolve(CWD, Deno.env.get("GEN_DIR_TS") || "src/_");
-const GEN_DIR_RS = resolve(CWD, Deno.env.get("GEN_DIR_RS") || "src/00/sigma_core/src/ontology_gen");
+const GEN_DIR_RS = resolve(
+  CWD,
+  Deno.env.get("GEN_DIR_RS") || "src/00/sigma_core/src/ontology_gen",
+);
 const GEN_DIR_AS = resolve(CWD, Deno.env.get("GEN_DIR_AS") || "src/_as");
 
 import { z } from "npm:zod@4.3.6";
 
-const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
+const ALLOWED_TYPES = [
+  "i32",
+  "i64",
+  "f32",
+  "f64",
+  "u8",
+  "u16",
+  "u32",
+  "u64",
+  "i16",
+  "usize",
+  "boolean",
+  "bool",
+  "void",
+] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation"]);
+export const NodeTypeSchema = z.enum([
+  "pure_fn",
+  "module",
+  "struct",
+  "enum",
+  "constants",
+  "static_table",
+  "memory_layout",
+  "substrate_module",
+  "documentation",
+]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
   id: z.string(),
   type: NodeTypeSchema,
   description: z.string().optional(),
-  deps: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  deps: z.array(z.string()).nullable().default([]).transform((v) =>
+    v === null ? [] : v
+  ),
   args: z.record(z.string(), z.string()).nullable().optional(),
   rsArgs: z.record(z.string(), z.string()).nullable().optional(),
   returns: z.string().nullable().optional(),
@@ -43258,13 +46119,19 @@ export const OntologyNodeSchema = z.object({
     name: z.string(),
     size: z.any(),
     align: z.any(),
-    offset: z.number().optional()
+    offset: z.number().optional(),
   })).nullable().optional(),
-  vars: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  vars: z.array(z.string()).nullable().default([]).transform((v) =>
+    v === null ? [] : v
+  ),
   optimization: z.enum(["inline", "hot", "cold"]).optional(),
   status: z.enum(["stable", "experimental", "deprecated"]).optional(),
-  tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
-  tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  tests: z.array(z.any()).nullable().default([]).transform((v) =>
+    v === null ? [] : v
+  ),
+  tags: z.array(z.string()).nullable().default([]).transform((v) =>
+    v === null ? [] : v
+  ),
   min_level: z.number().optional(),
   rust: z.string().optional(), // Raw rust code for substrate modules
 });
@@ -43277,7 +46144,10 @@ const MIN_LEVEL_FOR_TAG: Record<string, number> = {
 };
 
 export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
-interface TestDesc { inputs: any[]; expected: any; }
+interface TestDesc {
+  inputs: any[];
+  expected: any;
+}
 
 interface OntologyNode extends OntologyNodeMeta {
   rustCode?: string;
@@ -43288,41 +46158,63 @@ interface OntologyNode extends OntologyNodeMeta {
   sourceFile?: string;
 }
 
-const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+const ALLOWED_TYPES_RUNTIME = [
+  "i32",
+  "i64",
+  "f32",
+  "f64",
+  "u8",
+  "u16",
+  "u32",
+  "u64",
+  "i16",
+  "usize",
+  "boolean",
+  "bool",
+  "void",
+];
 
 const nodes = new Map<string, OntologyNode>();
 
 try {
-  for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
+  for (
+    const entry of walkSync(SRC_ONTOLOGY_DIR, {
+      exts: [".md"],
+      includeDirs: false,
+    })
+  ) {
     const raw = Deno.readTextFileSync(entry.path);
-    
+
     // Parse YAML Frontmatter
     const yamlMatch = raw.match(/^---\n([\s\S]*?)\n---/);
     if (!yamlMatch) {
       console.warn(`[WARN] No YAML frontmatter found in ${entry.path}`);
       continue;
     }
-    
+
     const yamlStr = yamlMatch[1];
     let meta: OntologyNodeMeta;
     try {
       meta = OntologyNodeSchema.parse(parseYaml(yamlStr));
     } catch (err: any) {
-      console.error(`[FATAL] Schema validation failed for ${entry.path}:\n`, err.errors || err);
+      console.error(
+        `[FATAL] Schema validation failed for ${entry.path}:\n`,
+        err.errors || err,
+      );
       Deno.exit(1);
     }
-    
+
     if (meta.status === "deprecated") {
       console.warn(`[WARN] ⚠️ Node ${meta.id} (${entry.path}) is DEPRECATED.`);
     }
-    
+
     const node: OntologyNode = {
       ...meta,
       tests: [],
       // Standardize the casing mapping from yaml schema
       base_offset: meta.base_offset,
       level: -1,
-      sourceFile: entry.path.replace(SRC_ONTOLOGY_DIR, "").replace(/^\//, "")
+      sourceFile: entry.path.replace(SRC_ONTOLOGY_DIR, "").replace(/^\//, ""),
     };
 
     if (meta.args) {
@@ -43334,17 +46226,21 @@ try {
     if (meta.tests && Array.isArray(meta.tests)) {
       for (const t of meta.tests) {
         if (Array.isArray(t) && t.length > 0) {
-           const tCopy = [...t];
-           const expected = tCopy.pop();
-           node.tests!.push({ inputs: tCopy, expected });
+          const tCopy = [...t];
+          const expected = tCopy.pop();
+          node.tests!.push({ inputs: tCopy, expected });
         }
       }
     }
 
     if (node.type === "pure_fn") {
       // Validate types explicitly since Zod just checks strings here
-      if (node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)) {
-        console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
+      if (
+        node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)
+      ) {
+        console.error(
+          `[FATAL] Invalid return type ${node.returns} in ${node.id}`,
+        );
         Deno.exit(1);
       }
       for (const [argName, argType] of Object.entries(node.args || {})) {
@@ -43357,29 +46253,36 @@ try {
       // Parse Code Blocks
       const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
       if (rustMatch) {
-         node.rustCode = rustMatch[1].trim();
-      } else if (!node.tags.includes("host") && !node.tags.includes("substrate")) {
-         console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
-         Deno.exit(1);
+        node.rustCode = rustMatch[1].trim();
+      } else if (
+        !node.tags.includes("host") && !node.tags.includes("substrate")
+      ) {
+        console.error(`[FATAL] Missing rust code block in pure_fn ${node.id}`);
+        Deno.exit(1);
       }
 
       const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
       if (!tsMatch) {
-        console.error(`[FATAL] Missing typescript code block in pure_fn ${node.id}`);
+        console.error(
+          `[FATAL] Missing typescript code block in pure_fn ${node.id}`,
+        );
         Deno.exit(1);
       }
       node.tsCode = tsMatch[1].trim();
 
-      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      const asMatch = raw.match(
+        /```(?:assemblyscript|assembly)\n([\s\S]*?)```/,
+      );
       if (asMatch) {
         node.asCode = asMatch[1].trim();
       }
-
     } else if (node.type === "module") {
       const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
       if (tsMatch) node.tsCode = tsMatch[1].trim();
 
-      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      const asMatch = raw.match(
+        /```(?:assemblyscript|assembly)\n([\s\S]*?)```/,
+      );
       if (asMatch) node.asCode = asMatch[1].trim();
 
       const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
@@ -43389,19 +46292,22 @@ try {
         console.error(`[FATAL] Missing code block in module ${node.id}`);
         Deno.exit(1);
       }
-
     } else if (node.type === "static_table") {
       // Parse payload
       const payloadMatch = raw.match(/## payload:\s*(\[.*\])/);
       if (!payloadMatch) {
-        console.error(`[FATAL] Missing payload array in static_table ${node.id}`);
+        console.error(
+          `[FATAL] Missing payload array in static_table ${node.id}`,
+        );
         Deno.exit(1);
       }
       node.payload = JSON.parse(payloadMatch[1]);
     } else if (node.type === "substrate_module") {
       const rustMatch = raw.match(/```rust\n([\s\S]*?)```/);
       if (!rustMatch) {
-        console.error(`[FATAL] Missing rust code block in substrate_module ${node.id}`);
+        console.error(
+          `[FATAL] Missing rust code block in substrate_module ${node.id}`,
+        );
         Deno.exit(1);
       }
       node.rust = rustMatch[1].trim();
@@ -43410,11 +46316,15 @@ try {
     nodes.set(node.id, node);
   }
 } catch (e) {
-  if (!(e instanceof Deno.errors.NotFound)) { throw e; }
+  if (!(e instanceof Deno.errors.NotFound)) throw e;
 }
 
 // 2. Topological Sort (DAG)
-function computeLevel(id: string, visited: Set<string>, stack: Set<string>): number {
+function computeLevel(
+  id: string,
+  visited: Set<string>,
+  stack: Set<string>,
+): number {
   const node = nodes.get(id);
   if (!node) {
     console.error(`[FATAL] Dependency ${id} not found.`);
@@ -43429,13 +46339,13 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
   if (visited.has(id)) return node.level;
 
   stack.add(id);
-  
+
   let maxDepLevel = node.min_level !== undefined ? (node.min_level - 1) : -1;
   for (const dep of node.deps) {
     const depLevel = computeLevel(dep, visited, stack);
     maxDepLevel = Math.max(maxDepLevel, depLevel);
   }
-  
+
   node.level = maxDepLevel + 1;
   stack.delete(id);
   visited.add(id);
@@ -43444,31 +46354,54 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
   for (const tag of node.tags) {
     const minLevel = MIN_LEVEL_FOR_TAG[tag];
     if (minLevel !== undefined && node.level < minLevel) {
-      console.error(`[FATAL] Semantic Firewall Violation: Node '${node.id}' has tag '${tag}' which requires minimum causality level ${minLevel}, but resolved to level ${node.level}.`);
+      console.error(
+        `[FATAL] Semantic Firewall Violation: Node '${node.id}' has tag '${tag}' which requires minimum causality level ${minLevel}, but resolved to level ${node.level}.`,
+      );
       Deno.exit(1);
     }
   }
 
   // Regex Heuristics (Fallback Firewall)
   if (node.tsCode) {
-    if (/\bconsole\./.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["console"]) {
-      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'console' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["console"]}. Add tags: ["console"] or remove side-effect.`);
+    if (
+      /\bconsole\./.test(node.tsCode) &&
+      node.level < MIN_LEVEL_FOR_TAG["console"]
+    ) {
+      console.error(
+        `[FATAL] Semantic Firewall Violation: Un-tagged 'console' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${
+          MIN_LEVEL_FOR_TAG["console"]
+        }. Add tags: ["console"] or remove side-effect.`,
+      );
       Deno.exit(1);
     }
-    if (/\bclass\s/.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["class"]) {
-      console.error(`[FATAL] Semantic Firewall Violation: Un-tagged 'class' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${MIN_LEVEL_FOR_TAG["class"]}. Add tags: ["class"] or use pure functions.`);
+    if (
+      /\bclass\s/.test(node.tsCode) && node.level < MIN_LEVEL_FOR_TAG["class"]
+    ) {
+      console.error(
+        `[FATAL] Semantic Firewall Violation: Un-tagged 'class' usage detected in Node '${node.id}' at level ${node.level}. Must be at least level ${
+          MIN_LEVEL_FOR_TAG["class"]
+        }. Add tags: ["class"] or use pure functions.`,
+      );
       Deno.exit(1);
     }
   }
 
   // Determinism Firewall
-  if (node.type === "pure_fn" && !(node.tags.includes("host") || node.tags.includes("substrate"))) {
-    const forbiddenMath = /Math\.(sin|cos|tan|acos|asin|atan|exp|log|round|ceil|floor|random)\b/;
+  if (
+    node.type === "pure_fn" &&
+    !(node.tags.includes("host") || node.tags.includes("substrate"))
+  ) {
+    const forbiddenMath =
+      /Math\.(sin|cos|tan|acos|asin|atan|exp|log|round|ceil|floor|random)\b/;
     for (const codeStr of [node.tsCode, node.asCode, node.rustCode]) {
       if (codeStr) {
         const match = codeStr.match(forbiddenMath);
         if (match) {
-          console.error(`[FATAL] Determinism Breach in Node '${node.id}': Detected non-deterministic host math ('${match[0]}'). Pure functions must use integer math, LUTs, or bitwise ops. If this is intentional UI/Host logic, add 'host' to the node's tags.`);
+          console.error(
+            `[FATAL] Determinism Breach in Node '${node.id}': Detected non-deterministic host math ('${
+              match[0]
+            }'). Pure functions must use integer math, LUTs, or bitwise ops. If this is intentional UI/Host logic, add 'host' to the node's tags.`,
+          );
           Deno.exit(1);
         }
       }
@@ -43512,7 +46445,10 @@ function mapRsType(t: string): string {
 }
 
 function mapTsType(t: string): string {
-  if (t === "i32" || t === "u32" || t === "f32" || t === "f64" || t === "u8" || t === "i8" || t === "i16" || t === "u16" || t === "usize") return "number";
+  if (
+    t === "i32" || t === "u32" || t === "f32" || t === "f64" || t === "u8" ||
+    t === "i8" || t === "i16" || t === "u16" || t === "usize"
+  ) return "number";
   if (t === "i64" || t === "u64") return "bigint";
   if (t === "boolean" || t === "bool") return "boolean";
   if (t === "void") return "void";
@@ -43528,7 +46464,6 @@ for (const node of nodes.values()) {
   ensureDirSync(dirPathRs);
   ensureDirSync(dirPathAs);
 
-  
   // Skip code generation entirely for documentation nodes
   if (node.type === "documentation") {
     continue;
@@ -43536,12 +46471,14 @@ for (const node of nodes.values()) {
 
   // Generate TS
   let tsOut = ``;
-  
+
   // Imports for TS
   if (node.level > 0) {
     const prevLevel = formatLevel(node.level - 1);
     if (node.vars && node.vars.length > 0) {
-      tsOut += `import { ${node.vars.join(", ")} } from "../${prevLevel}/mod.ts";\n`;
+      tsOut += `import { ${
+        node.vars.join(", ")
+      } } from "../${prevLevel}/mod.ts";\n`;
     }
   }
   tsOut += `\n`;
@@ -43549,18 +46486,24 @@ for (const node of nodes.values()) {
   // Code for TS
   switch (node.type) {
     case "static_table":
-      tsOut += `export const ${node.id}: number[] = [${node.payload?.join(", ")}];\n`;
+      tsOut += `export const ${node.id}: number[] = [${
+        node.payload?.join(", ")
+      }];\n`;
       break;
     case "enum":
       tsOut += `// Enum: ${node.id}\n`;
       for (const [k, v] of Object.entries(node.values || {})) {
-        tsOut += `export const ${k}: ${mapTsType(node.dataType || "u8")} = ${v};\n`;
+        tsOut += `export const ${k}: ${
+          mapTsType(node.dataType || "u8")
+        } = ${v};\n`;
       }
       tsOut += `export const ${node.id} = {\n`;
       for (const [k, v] of Object.entries(node.values || {})) {
         let shortKey = k;
         if (node.id === "VmSys" && k.startsWith("SYS_")) shortKey = k.slice(4);
-        if (node.id === "StructureTypes" && k.startsWith("STR_")) shortKey = k.slice(4);
+        if (node.id === "StructureTypes" && k.startsWith("STR_")) {
+          shortKey = k.slice(4);
+        }
         tsOut += `  ${shortKey}: ${v},\n`;
       }
       // Add legacy mapped keys to preserve coherence directly in the emitted objects
@@ -43573,14 +46516,18 @@ for (const node of nodes.values()) {
     case "constants":
       tsOut += `// Constants: ${node.id}\n`;
       for (const [k, def] of Object.entries(node.values || {})) {
-        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const v = (def as any).expr !== undefined
+          ? (def as any).expr
+          : (def as any).value;
         const tsType = mapTsType((def as any).type as string || "i32");
         tsOut += `export const ${k}: ${tsType} = ${v};\n`;
       }
       if (node.id === "VmProps") {
         tsOut += `export const ${node.id} = {\n`;
         for (const [k, def] of Object.entries(node.values || {})) {
-          const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+          const v = (def as any).expr !== undefined
+            ? (def as any).expr
+            : (def as any).value;
           tsOut += `  ${k}: ${v},\n`;
         }
         tsOut += `} as const;\n`;
@@ -43589,47 +46536,68 @@ for (const node of nodes.values()) {
     case "memory_layout":
       tsOut += `// Memory Layout: ${node.id}\n`;
       let curOffExpr = node.base_offset || "0";
-      
+
       for (const region of node.regions || []) {
         // Offset alignment logic applied via bitwise macro evaluations native to TS
         const align = region.align || 1;
         if (align > 1) {
-            curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
+          curOffExpr = `((${curOffExpr}) + ${align} - 1) & ~(${align} - 1)`;
         }
-        tsOut += `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
-        tsOut += `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
-        
+        tsOut +=
+          `export const ${region.name}_OFFSET: number = ${curOffExpr};\n`;
+        tsOut +=
+          `export const ${region.name}_OFF: number = ${region.name}_OFFSET;\n`;
+
         // Backwards aliases
-        if (region.name === "EVOLUTION") tsOut += `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
-        if (region.name === "INSTRUCTIONS") tsOut += `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
+        if (region.name === "EVOLUTION") {
+          tsOut +=
+            `export const INTENT_OFFSET: number = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "INSTRUCTIONS") {
+          tsOut +=
+            `export const GENOMES_OFFSET: number = ${region.name}_OFFSET;\n`;
+        }
         if (region.name === "ASCENSION_STATS_RESERVED") {
-            tsOut += `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
-            tsOut += `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const ASCENSION_STATS_OFFSET: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const ASCENSION_STATS_OFF: number = ${region.name}_OFFSET;\n`;
         }
         if (region.name === "HORMONES") {
-            tsOut += `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
-            tsOut += `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const HORMONE_OFFSET: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const HORMONE_OFF: number = ${region.name}_OFFSET;\n`;
         }
         if (region.name === "SPAWN_REQUESTS") {
-            tsOut += `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
-            tsOut += `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
-            tsOut += `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
+          tsOut +=
+            `export const SPAWN_GRID_OFF: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const SPAWN_HEAD_OFF: number = ${region.name}_OFFSET;\n`;
+          tsOut +=
+            `export const SPAWN_DATA_OFF: number = ${region.name}_OFFSET + 8;\n`;
         }
-        
+
         // Next offset starts after this size
         curOffExpr = `${region.name}_OFFSET + (${region.size})`;
       }
       tsOut += `export const LATTICE_MEMORY_END: number = ${curOffExpr};\n`;
-      tsOut += `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
-      tsOut += `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
+      tsOut +=
+        `export const MIN_WASM_MEMORY_PAGES: number = Math.max(2600, Math.ceil((${curOffExpr}) / (64 * 1024)));\n`;
+      tsOut +=
+        `export const WASM_MEMORY_BYTES: number = MIN_WASM_MEMORY_PAGES * (64 * 1024);\n`;
 
       tsOut += `
 export function validateMemoryLayout(memorySize: number) {
   const regions = [
-${(node.regions || []).map((r, i, arr) => {
-  const nextOffset = i < arr.length - 1 ? `${arr[i+1].name}_OFFSET` : `LATTICE_MEMORY_END`;
-  return `    { name: "${r.name}", offset: ${r.name}_OFFSET, expectedSize: ${nextOffset} - ${r.name}_OFFSET }`;
-}).join(",\n")}
+${
+        (node.regions || []).map((r, i, arr) => {
+          const nextOffset = i < arr.length - 1
+            ? `${arr[i + 1].name}_OFFSET`
+            : `LATTICE_MEMORY_END`;
+          return `    { name: "${r.name}", offset: ${r.name}_OFFSET, expectedSize: ${nextOffset} - ${r.name}_OFFSET }`;
+        }).join(",\n")
+      }
   ];
   let ok = true;
   const errors: string[] = [];
@@ -43654,9 +46622,9 @@ ${(node.regions || []).map((r, i, arr) => {
       break;
     case "pure_fn":
       if (node.tags.includes("host") || node.tags.includes("substrate")) {
-          tsOut += node.tsCode! + "\n";
+        tsOut += node.tsCode! + "\n";
       } else {
-          tsOut = ""; // Skip TS generation for pure WASM functions
+        tsOut = ""; // Skip TS generation for pure WASM functions
       }
       break;
     case "substrate_module":
@@ -43670,10 +46638,14 @@ ${(node.regions || []).map((r, i, arr) => {
       // No TS output for other types like 'struct'
       break;
   }
-  
+
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      Deno.writeTextFileSync(
+        `${dirPathTs}/${node.id}.ts`,
+        `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` +
+          tsOut,
+      );
     }
   }
 
@@ -43689,7 +46661,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       rsOut += `use super::super::L${prevLevel}::*;\n`;
     }
     rsOut += `\n`;
-    
+
     if (node.rust) {
       rsOut += node.rust;
     }
@@ -43702,7 +46674,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     rsOut += `\n`;
 
     if (node.type === "static_table") {
-      rsOut += `pub const ${node.id}: [${mapRsType(node.dataType!)}; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
+      rsOut += `pub const ${node.id}: [${
+        mapRsType(node.dataType!)
+      }; ${node.payload?.length}] = [${node.payload?.join(", ")}];\n`;
     } else if (node.type === "enum") {
       rsOut += `// Enum: ${node.id}\n`;
       for (const [k, v] of Object.entries(node.values || {})) {
@@ -43711,7 +46685,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     } else if (node.type === "constants") {
       rsOut += `// Constants: ${node.id}\n`;
       for (const [k, def] of Object.entries(node.values || {})) {
-        const v = (def as any).expr !== undefined ? (def as any).expr : (def as any).value;
+        const v = (def as any).expr !== undefined
+          ? (def as any).expr
+          : (def as any).value;
         const rsType = mapRsType((def as any).type as string);
         let valStr = v.toString();
         if ((def as any).expr !== undefined) {
@@ -43729,138 +46705,201 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     } else if (node.type === "memory_layout") {
       rsOut += `// Memory Layout: ${node.id}\n`;
       let curOffExpr = node.base_offset || "0";
-      
+
       for (const region of node.regions || []) {
         const align = region.align || 1;
         if (align > 1) {
-            curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
+          curOffExpr = `((${curOffExpr}) + ${align} - 1) & !(${align} - 1)`;
         }
         rsOut += `pub const ${region.name}_OFFSET: usize = ${curOffExpr};\n`;
-        rsOut += `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
-        
+        rsOut +=
+          `pub const ${region.name}_OFF: usize = ${region.name}_OFFSET;\n`;
+
         // Backcompat aliases
-        if (region.name === "EVOLUTION") rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
-        if (region.name === "INSTRUCTIONS") rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        if (region.name === "EVOLUTION") {
+          rsOut += `pub const INTENT_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        }
+        if (region.name === "INSTRUCTIONS") {
+          rsOut += `pub const GENOMES_OFFSET: usize = ${region.name}_OFFSET;\n`;
+        }
         if (region.name === "ASCENSION_STATS_RESERVED") {
-            rsOut += `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
-            rsOut += `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
+          rsOut +=
+            `pub const ASCENSION_STATS_OFFSET: usize = ${region.name}_OFFSET;\n`;
+          rsOut +=
+            `pub const ASCENSION_STATS_OFF: usize = ${region.name}_OFFSET;\n`;
         }
         if (region.name === "SPAWN_REQUESTS") {
-            rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
-            rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
-            rsOut += `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
+          rsOut += `pub const SPAWN_GRID_OFF: usize = ${region.name}_OFFSET;\n`;
+          rsOut += `pub const SPAWN_HEAD_OFF: usize = ${region.name}_OFFSET;\n`;
+          rsOut +=
+            `pub const SPAWN_DATA_OFF: usize = ${region.name}_OFFSET + 8;\n`;
         }
-        
+
         curOffExpr = `${region.name}_OFFSET + (${region.size})`;
       }
       rsOut += `pub const LATTICE_MEMORY_END: usize = ${curOffExpr};\n`;
     } else if (node.type === "pure_fn") {
       if (node.rustCode === undefined) {
-         if (node.tags.includes("host") || node.tags.includes("substrate")) {
-            // Valid intentional omission for pure JS/host functions
-            rsOut += `// Host-only function: ${node.id} omitted from Rust build.\n`;
-         } else {
-            console.error(`[FATAL] Missing rust code block in pure_fn ${node.id} during emit.`);
-            Deno.exit(1);
-         }
+        if (node.tags.includes("host") || node.tags.includes("substrate")) {
+          // Valid intentional omission for pure JS/host functions
+          rsOut +=
+            `// Host-only function: ${node.id} omitted from Rust build.\n`;
+        } else {
+          console.error(
+            `[FATAL] Missing rust code block in pure_fn ${node.id} during emit.`,
+          );
+          Deno.exit(1);
+        }
       } else {
-         let rsArgStr = "";
-         if (node.rsArgs) {
-           rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`).join(", ");
-         } else {
-           const rsArr = Array.isArray(node.args) ? node.args : 
-                      (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-           rsArgStr = rsArr.map((a: any) => `${a.name}: ${mapRsType(a.type as string)}`).join(", ");
-         }
-         if (node.rustCode.trim().startsWith("unimplemented!")) {
-            // Handled manually by a substrate module, do not generate duplicate wrapper
-            rsOut += `// Omitted: manual substrate implementation\n`;
-         } else {
-             if (node.optimization === "inline") {
-               rsOut += `#[inline(always)]\n`;
-             } else if (node.optimization === "cold") {
-               rsOut += `#[cold]\n`;
-             }
-             rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${mapRsType(node.returns as string || "void")} {\n`;
-             rsOut += node.rustCode.split("\n").map(l => `    ${l}`).join("\n");
-             rsOut += `\n}\n`;
-         }
+        let rsArgStr = "";
+        if (node.rsArgs) {
+          rsArgStr = Object.entries(node.rsArgs).map(([k, v]) => `${k}: ${v}`)
+            .join(", ");
+        } else {
+          const rsArr = Array.isArray(node.args)
+            ? node.args
+            : (node.args
+              ? Object.entries(node.args).map(([k, v]) => ({
+                name: k,
+                type: v,
+              }))
+              : []);
+          rsArgStr = rsArr.map((a: any) =>
+            `${a.name}: ${mapRsType(a.type as string)}`
+          ).join(", ");
+        }
+        if (node.rustCode.trim().startsWith("unimplemented!")) {
+          // Handled manually by a substrate module, do not generate duplicate wrapper
+          rsOut += `// Omitted: manual substrate implementation\n`;
+        } else {
+          if (node.optimization === "inline") {
+            rsOut += `#[inline(always)]\n`;
+          } else if (node.optimization === "cold") {
+            rsOut += `#[cold]\n`;
+          }
+          rsOut += `pub fn ${node.id}(${rsArgStr}) -> ${
+            mapRsType(node.returns as string || "void")
+          } {\n`;
+          rsOut += node.rustCode.split("\n").map((l) => `    ${l}`).join("\n");
+          rsOut += `\n}\n`;
+        }
       }
     }
   }
 
-  Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
-  
+  Deno.writeTextFileSync(
+    `${dirPathRs}/${node.id}.rs`,
+    `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut,
+  );
+
   // Generate AS
   let asOut = ``;
   const importLevel = formatLevel(node.level > 0 ? node.level - 1 : 0);
   if (node.asImports) {
-    node.asImports.forEach(i => asOut += `${i}\n`);
+    node.asImports.forEach((i) => asOut += `${i}\n`);
   }
   const importsToPull: string[] = [...(node.vars || [])];
   if (node.deps) {
     for (const dep of node.deps) {
       const depNode = nodes.get(dep);
-      if (depNode && (depNode.type === "pure_fn" || depNode.type === "static_table")) {
+      if (
+        depNode &&
+        (depNode.type === "pure_fn" || depNode.type === "static_table")
+      ) {
         if (!importsToPull.includes(dep)) importsToPull.push(dep);
       }
     }
   }
   if (importsToPull.length > 0) {
-    asOut += `import { ${importsToPull.join(", ")} } from "../${importLevel}/mod";\n`;
+    asOut += `import { ${
+      importsToPull.join(", ")
+    } } from "../${importLevel}/mod";\n`;
   }
   asOut += `\n`;
 
-  if (node.type === "enum" || node.type === "constants" || node.type === "memory_layout" || node.type === "static_table") {
-    const lines = tsOut.split("\n").filter(l => l.startsWith("export const") && !l.includes("{"));
+  if (
+    node.type === "enum" || node.type === "constants" ||
+    node.type === "memory_layout" || node.type === "static_table"
+  ) {
+    const lines = tsOut.split("\n").filter((l) =>
+      l.startsWith("export const") && !l.includes("{")
+    );
     for (let i = 0; i < lines.length; i++) {
-        let line = lines[i];
-        if (line.includes("MAX_ATOMS") && !line.includes("OFFSET")) {
-           line = line.replace("number", "i32");
+      let line = lines[i];
+      if (line.includes("MAX_ATOMS") && !line.includes("OFFSET")) {
+        line = line.replace("number", "i32");
+      }
+      // AS specific overrides
+      if (
+        line.includes("MIN_WASM_MEMORY_PAGES") ||
+        line.includes("WASM_MEMORY_BYTES")
+      ) {
+        line = line.replace("number", "i32");
+        if (line.includes("MIN_WASM_MEMORY_PAGES")) {
+          line = line.replace("Math.ceil(", "<i32>Math.ceil(").replace(
+            "Math.max(",
+            "<i32>Math.max(",
+          );
         }
-        // AS specific overrides
-        if (line.includes("MIN_WASM_MEMORY_PAGES") || line.includes("WASM_MEMORY_BYTES")) {
-            line = line.replace("number", "i32");
-            if (line.includes("MIN_WASM_MEMORY_PAGES")) {
-                line = line.replace("Math.ceil(", "<i32>Math.ceil(").replace("Math.max(", "<i32>Math.max(");
-            }
-        } else if (line.includes("OFFSET") && !line.includes("number[]")) { // prevent generic regex matching arrays
-            line = line.replace("number", "usize");
-        } else if (line.includes("number[]")) {
-            line = line.replace("number[]", "StaticArray<i32>");
-        } else if (line.includes("number")) {
-           // For TS it has 'number', in AS it needs specified types. Let's infer loosely
-           const isU8 = /opcodes|props|types|roles/i.test(node.id);
-           line = line.replace(/\bnumber\b/g, isU8 ? "u8" : "i32");
-        }
-        asOut += line + "\n";
+      } else if (line.includes("OFFSET") && !line.includes("number[]")) { // prevent generic regex matching arrays
+        line = line.replace("number", "usize");
+      } else if (line.includes("number[]")) {
+        line = line.replace("number[]", "StaticArray<i32>");
+      } else if (line.includes("number")) {
+        // For TS it has 'number', in AS it needs specified types. Let's infer loosely
+        const isU8 = /opcodes|props|types|roles/i.test(node.id);
+        line = line.replace(/\bnumber\b/g, isU8 ? "u8" : "i32");
+      }
+      asOut += line + "\n";
     }
   } else if (node.type === "pure_fn") {
-    const arr = Array.isArray(node.args) ? node.args : 
-               (node.args ? Object.entries(node.args).map(([k,v]) => ({name:k, type:v})) : []);
-    
+    const arr = Array.isArray(node.args)
+      ? node.args
+      : (node.args
+        ? Object.entries(node.args).map(([k, v]) => ({ name: k, type: v }))
+        : []);
+
     // Use assemblyscript code block if available, fallback to typescript code logic
     const logicCode = node.asCode || node.tsCode;
-    const asArgStr = arr.map((a: any) => `${a.name}: ${a.type === 'boolean' ? 'bool' : a.type}`).join(", ");
-    const asRet = (node.returns === 'boolean' || node.returns === 'bool') ? 'bool' : node.returns;
-    const inlineDirective = node.optimization === "inline" ? "@inline\n" : (node.optimization === "cold" ? "" : "@inline\n"); // Default inline unless specified cold
-    asOut += `${inlineDirective}export function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
+    const asArgStr = arr.map((a: any) =>
+      `${a.name}: ${a.type === "boolean" ? "bool" : a.type}`
+    ).join(", ");
+    const asRet = (node.returns === "boolean" || node.returns === "bool")
+      ? "bool"
+      : node.returns;
+    const inlineDirective = node.optimization === "inline"
+      ? "@inline\n"
+      : (node.optimization === "cold" ? "" : "@inline\n"); // Default inline unless specified cold
+    asOut +=
+      `${inlineDirective}export function ${node.id}(${asArgStr}): ${asRet} {\n${logicCode}\n}\n`;
   }
-  
+
   if (node.type !== "substrate_module") {
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
+      Deno.writeTextFileSync(
+        `${dirPathAs}/${node.id}.ts`,
+        `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`,
+      );
     } else if (node.type === "module" && node.asCode) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
+      Deno.writeTextFileSync(
+        `${dirPathAs}/${node.id}.ts`,
+        `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` +
+          node.asCode,
+      );
     } else {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
+      Deno.writeTextFileSync(
+        `${dirPathAs}/${node.id}.ts`,
+        `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` +
+          asOut,
+      );
     }
   }
 }
 
 // 4. Aggregation (Facades)
 let mainTsOut = `// AUTOGENERATED FACADE\n// deno-lint-ignore-file camelcase\n`;
-let mainRsOut = `// AUTOGENERATED FACADE\n#[allow(non_snake_case)]\n#[allow(non_camel_case_types)]\n\n`;
+let mainRsOut =
+  `// AUTOGENERATED FACADE\n#[allow(non_snake_case)]\n#[allow(non_camel_case_types)]\n\n`;
 let mainAsOut = `// AUTOGENERATED AS FACADE\n`;
 
 for (let lvl = 0; lvl <= maxLevel; lvl++) {
@@ -43868,10 +46907,11 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   const dirPathTs = `${GEN_DIR_TS}/${lvlStr}`;
   const dirPathRs = `${GEN_DIR_RS}/${lvlStr}`;
   const dirPathAs = `${GEN_DIR_AS}/${lvlStr}`;
-  let lvlTsOut = `// AUTOGENERATED LEVEL FACADE\n// deno-lint-ignore-file camelcase\n`;
+  let lvlTsOut =
+    `// AUTOGENERATED LEVEL FACADE\n// deno-lint-ignore-file camelcase\n`;
   let lvlRsOut = `// AUTOGENERATED LEVEL FACADE\n\n`;
   let lvlAsOut = `// AUTOGENERATED AS LEVEL FACADE\n`;
-  
+
   if (lvl > 0) {
     const prevLvlStr = formatLevel(lvl - 1);
     lvlTsOut += `export * from "../${prevLvlStr}/mod.ts";\n`;
@@ -43879,19 +46919,27 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }
 
-  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl && n.type !== "documentation");
-  
-  const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
-  const levelNodesTs = levelNodesNoSubstrate.filter(n => {
+  const levelNodes = Array.from(nodes.values()).filter((n) =>
+    n.level === lvl && n.type !== "documentation"
+  );
+
+  const levelNodesNoSubstrate = levelNodes.filter((n) =>
+    n.type !== "substrate_module"
+  );
+  const levelNodesTs = levelNodesNoSubstrate.filter((n) => {
     if (n.type === "pure_fn") {
       return n.tags.includes("host") || n.tags.includes("substrate");
     }
     return true;
   });
-  
+
   // TS Mod file generation
-  const tsModExports = levelNodesTs.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
+  const tsModExports = levelNodesTs.map((n) => {
+    if (
+      n.type === "enum" || n.type === "constants" ||
+      n.type === "memory_layout" || n.type === "static_table" ||
+      n.type === "module"
+    ) {
       return `export * from "./${n.id}.ts";`;
     } else {
       return `export { ${n.id} } from "./${n.id}.ts";`;
@@ -43901,7 +46949,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
 
   // RS Mod file generation
-  const rsModExports = levelNodes.map(n => {
+  const rsModExports = levelNodes.map((n) => {
     // Substrate modules are purely rust, they are always included.
     return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
   }).join("\n");
@@ -43909,9 +46957,16 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
-  const levelNodesAs = levelNodes.filter(n => n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
-  const asModExports = levelNodesAs.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
+  const levelNodesAs = levelNodes.filter((n) =>
+    n.type !== "substrate_module" && !n.tags.includes("host") &&
+    !n.tags.includes("substrate")
+  );
+  const asModExports = levelNodesAs.map((n) => {
+    if (
+      n.type === "enum" || n.type === "constants" ||
+      n.type === "memory_layout" || n.type === "static_table" ||
+      n.type === "module"
+    ) {
       return `export * from "./${n.id}";`;
     } else {
       return `export { ${n.id} } from "./${n.id}";`;
@@ -43919,7 +46974,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   }).join("\n");
   if (asModExports) lvlAsOut += asModExports + "\n";
   Deno.writeTextFileSync(`${dirPathAs}/mod.ts`, lvlAsOut);
-  
+
   mainTsOut += `export * from "./${lvlStr}/mod.ts";\n`;
   mainRsOut += `#[path = "${lvlStr}/mod.rs"]\npub mod L${lvlStr};\n`;
   mainAsOut += `export * from "./${lvlStr}/mod";\n`;
@@ -43934,7 +46989,8 @@ const resolveSysPath = (id: string) => {
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
-mainTsOut += `export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);\n`;
+mainTsOut +=
+  `export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
@@ -43947,15 +47003,22 @@ const testsDir = `${GEN_DIR_TS}/tests`;
 ensureDirSync(testsDir);
 for (const node of nodes.values()) {
   if (node.type === "pure_fn" && node.tests && node.tests.length > 0) {
-    if (node.tags && (node.tags.includes("host") || node.tags.includes("substrate"))) {
-      let testOut = `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
-      testOut += `import { ${node.id} } from "../${formatLevel(node.level)}/${node.id}.ts";\n\n`;
-      
+    if (
+      node.tags &&
+      (node.tags.includes("host") || node.tags.includes("substrate"))
+    ) {
+      let testOut =
+        `import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";\n`;
+      testOut += `import { ${node.id} } from "../${
+        formatLevel(node.level)
+      }/${node.id}.ts";\n\n`;
+
       testOut += `Deno.test("Ontology Contract: ${node.id}", () => {\n`;
       for (let i = 0; i < node.tests.length; i++) {
-          const t = node.tests[i];
-          const args = t.inputs.join(", ");
-          testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
+        const t = node.tests[i];
+        const args = t.inputs.join(", ");
+        testOut +=
+          `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
       }
       testOut += `});\n`;
       Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
@@ -43963,9 +47026,12 @@ for (const node of nodes.values()) {
   }
 }
 
-console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
-
-```
+console.log(
+  `[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${
+    maxLevel + 1
+  } Causality Layers.`,
+);
+````
 
 ---
 
@@ -43979,17 +47045,23 @@ console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size}
 // src/XX/ or src/_/XX/, insulating standard tools and tests from
 // the auto-generated topology's constant shifting.
 
-import { join, extname } from "node:path";
+import { extname, join } from "node:path";
 
-async function searchDir(dir: string, basename: string): Promise<string | null> {
+async function searchDir(
+  dir: string,
+  basename: string,
+): Promise<string | null> {
   try {
     for await (const entry of Deno.readDir(dir)) {
       if (entry.name.startsWith(".")) continue;
 
       const fullPath = join(dir, entry.name);
-      
+
       if (entry.isDirectory) {
-        if (entry.name === "node_modules" || entry.name === "dist" || entry.name === "build") continue;
+        if (
+          entry.name === "node_modules" || entry.name === "dist" ||
+          entry.name === "build"
+        ) continue;
         const found = await searchDir(fullPath, basename);
         if (found) return found;
       } else if (entry.isFile && entry.name === basename) {
@@ -44005,7 +47077,9 @@ async function searchDir(dir: string, basename: string): Promise<string | null> 
 async function main() {
   const args = Deno.args;
   if (args.length === 0) {
-    console.error("Usage: deno run -A src/bin.ts <target-script-name> [args...]");
+    console.error(
+      "Usage: deno run -A src/bin.ts <target-script-name> [args...]",
+    );
     Deno.exit(1);
   }
 
@@ -44019,7 +47093,7 @@ async function main() {
 
   const searchRoots = ["src"]; // Just search entire src dir since it covers src/_ and src/_as
   let resolvedPath: string | null = null;
-  
+
   for (const root of searchRoots) {
     const found = await searchDir(root, basename);
     if (found) {
@@ -44029,7 +47103,9 @@ async function main() {
   }
 
   if (!resolvedPath) {
-    console.error(`[bin.ts] Error: Could not find script matching '${basename}' in src/`);
+    console.error(
+      `[bin.ts] Error: Could not find script matching '${basename}' in src/`,
+    );
     Deno.exit(1);
   }
 
@@ -44038,11 +47114,11 @@ async function main() {
       "run",
       "-A",
       resolvedPath,
-      ...targetArgs
+      ...targetArgs,
     ],
     stdout: "inherit",
     stderr: "inherit",
-    stdin: "inherit"
+    stdin: "inherit",
   });
 
   const { success, code } = await cmd.output();
@@ -44054,7 +47130,6 @@ async function main() {
 if (import.meta.main) {
   await main();
 }
-
 ```
 
 ---
@@ -44066,8 +47141,8 @@ if (import.meta.main) {
 import { join } from "node:path";
 
 /**
- * Dynamically finds a TypeScript source file by basename 
- * anywhere inside `src/` or `src/_/`. 
+ * Dynamically finds a TypeScript source file by basename
+ * anywhere inside `src/` or `src/_/`.
  * Useful for tests that need to read or parse source code as text.
  */
 export async function resolveSourcePath(basename: string): Promise<string> {
@@ -44079,11 +47154,14 @@ export async function resolveSourcePath(basename: string): Promise<string> {
     try {
       for await (const entry of Deno.readDir(dir)) {
         if (entry.name.startsWith(".")) continue;
-  
+
         const fullPath = join(dir, entry.name);
-        
+
         if (entry.isDirectory) {
-          if (entry.name === "node_modules" || entry.name === "dist" || entry.name === "build") continue;
+          if (
+            entry.name === "node_modules" || entry.name === "dist" ||
+            entry.name === "build"
+          ) continue;
           const found = await searchDir(fullPath);
           if (found) return found;
         } else if (entry.isFile && entry.name === basename) {
@@ -44100,8 +47178,6 @@ export async function resolveSourcePath(basename: string): Promise<string> {
   if (found) return found;
   throw new Error(`[resolveSourcePath] Could not find ${basename} in src/`);
 }
-
 ```
 
 ---
-

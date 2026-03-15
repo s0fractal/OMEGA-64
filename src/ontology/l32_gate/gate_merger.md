@@ -214,4 +214,8 @@ export const mergeGateProposals = (
   };
 };
 
+export const GATE_MERGER = {
+  mergeGateProposals
+};
+
 ```

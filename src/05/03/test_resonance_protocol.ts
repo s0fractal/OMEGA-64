@@ -1,7 +1,7 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
-import { SOVEREIGN_ORACLE } from "@05";
+import { PULSE } from "@generated";
+import { SOVEREIGN_ORACLE } from "@generated";
 import { NEURAL_COHERENCE_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
 
 async function testResonance() {

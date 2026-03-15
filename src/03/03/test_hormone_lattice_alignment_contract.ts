@@ -11,10 +11,10 @@
 import {
   HORMONE_OFFSET,
   WASM_MEMORY_BYTES
-} from "@00";
-import { STATE_MATRIX } from "@00";
-import { syncHormonesToLattice } from "@02";
-import { HORMONE_BUFFER_CATALOG } from "@02";
+} from "@generated";
+import { STATE_MATRIX } from "@generated";
+import { syncHormonesToLattice } from "@generated";
+import { HORMONE_BUFFER_CATALOG } from "@generated";
 import { RUNTIME_POLICY } from "@generated";
 
 let passed = 0;

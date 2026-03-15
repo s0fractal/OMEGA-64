@@ -1,8 +1,8 @@
 import { GRID_W } from "@generated";
 // OMEGA-64 | test_vector10_planetary.ts | Vector 10 Verification
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
-import { SOVEREIGN_ORACLE } from "@05";
+import { PULSE } from "@generated";
+import { SOVEREIGN_ORACLE } from "@generated";
 import {
   assertEquals,
   assertGreater,

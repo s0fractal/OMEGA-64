@@ -1,6 +1,14 @@
-import type { GuardianSignalExecutionMode } from "@generated";
+---
+id: ARCHITECT_PLASMID_PROMOTION_DECISION
+type: pure_fn
+tags: ["core", "control", "host"]
+min_level: 6
 
-export type GuardianSignalPromotionDecisionInput = {
+---
+```typescript
+import type { ArchitectPlasmidExecutionMode } from "@generated";
+
+export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {
     latestReady: boolean;
     readyRatio: number;
@@ -27,21 +35,21 @@ export type GuardianSignalPromotionDecisionInput = {
   };
 };
 
-export type GuardianSignalPromotionDecisionThresholds = {
+export type ArchitectPlasmidPromotionDecisionThresholds = {
   minReadyRatio: number;
   maxFallbackRatioP95: number;
 };
 
-export type GuardianSignalPromotionDecision = {
+export type ArchitectPlasmidPromotionDecision = {
   verdict: "promote" | "hold";
   promotionReady: boolean;
   healthPass: boolean;
   recommendedMode: "hybrid-reduce" | "shadow-reduce";
   blockers: string[];
-  thresholds: GuardianSignalPromotionDecisionThresholds;
+  thresholds: ArchitectPlasmidPromotionDecisionThresholds;
 };
 
-const DEFAULT_THRESHOLDS: GuardianSignalPromotionDecisionThresholds = {
+const DEFAULT_THRESHOLDS: ArchitectPlasmidPromotionDecisionThresholds = {
   minReadyRatio: 0.5,
   maxFallbackRatioP95: 0.05,
 };
@@ -53,8 +61,8 @@ const clampRatio = (value: number): number => {
 };
 
 const normalizeDecisionThresholds = (
-  overrides?: Partial<GuardianSignalPromotionDecisionThresholds>,
-): GuardianSignalPromotionDecisionThresholds => ({
+  overrides?: Partial<ArchitectPlasmidPromotionDecisionThresholds>,
+): ArchitectPlasmidPromotionDecisionThresholds => ({
   minReadyRatio: clampRatio(
     overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
   ),
@@ -63,10 +71,10 @@ const normalizeDecisionThresholds = (
   ),
 });
 
-export const evaluateGuardianSignalPromotionDecision = (
-  input: GuardianSignalPromotionDecisionInput,
-  overrides?: Partial<GuardianSignalPromotionDecisionThresholds>,
-): GuardianSignalPromotionDecision => {
+export const evaluateArchitectPlasmidPromotionDecision = (
+  input: ArchitectPlasmidPromotionDecisionInput,
+  overrides?: Partial<ArchitectPlasmidPromotionDecisionThresholds>,
+): ArchitectPlasmidPromotionDecision => {
   const thresholds = normalizeDecisionThresholds(overrides);
   const blockers: string[] = [];
   let healthPass = true;
@@ -187,73 +195,66 @@ export const evaluateGuardianSignalPromotionDecision = (
   };
 };
 
-export type GuardianSignalHybridSnapshot = {
-  mode: GuardianSignalExecutionMode;
+export type ArchitectPlasmidHybridSnapshot = {
+  mode: ArchitectPlasmidExecutionMode;
   hybridRuns: number;
   shadowRuns: number;
   fallbackRuns: number;
-  stableBranchCount: number;
-  repairBranchCount: number;
-  allowedGuardianSignals: number;
-  suppressedGuardianSignals: number;
-  shadowSuppressedGuardianSignals: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedArchitectPlasmids: number;
+  suppressedArchitectPlasmids: number;
+  shadowSuppressedArchitectPlasmids: number;
   lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "stable"
-    | "repair"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "stable" | "repair" | "unknown";
+  lastStatus: "legacy" | "emit" | "suppress" | "fallback";
+  lastBranch: "emit" | "suppress" | "unknown";
   lastFallbackReason: string;
 };
 
-export type GuardianSignalPromotionThresholds = {
+export type ArchitectPlasmidPromotionThresholds = {
   minShadowRuns: number;
   maxFallbackRatio: number;
-  minStableBranchCount: number;
-  minRepairBranchCount: number;
-  minShadowSuppressedGuardianSignals: number;
+  minEmitBranchCount: number;
+  minSuppressBranchCount: number;
+  minShadowSuppressedArchitectPlasmids: number;
 };
 
-export type GuardianSignalPromotionStatus =
+export type ArchitectPlasmidPromotionStatus =
   | "legacy-baseline-needed"
   | "warming"
   | "ready"
   | "already-hybrid";
 
-export type GuardianSignalPromotionSnapshot = {
-  status: GuardianSignalPromotionStatus;
+export type ArchitectPlasmidPromotionSnapshot = {
+  status: ArchitectPlasmidPromotionStatus;
   ready: boolean;
-  recommendedMode: GuardianSignalExecutionMode;
+  recommendedMode: ArchitectPlasmidExecutionMode;
   shadowRuns: number;
   hybridRuns: number;
   reductionRuns: number;
   fallbackRuns: number;
   fallbackRatio: number;
-  stableBranchCount: number;
-  repairBranchCount: number;
-  shadowSuppressedGuardianSignals: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  shadowSuppressedArchitectPlasmids: number;
   reasons: string[];
-  thresholds: GuardianSignalPromotionThresholds;
+  thresholds: ArchitectPlasmidPromotionThresholds;
 };
 
-const DEFAULT_PROMOTION_THRESHOLDS: GuardianSignalPromotionThresholds = {
+const DEFAULT_PROMOTION_THRESHOLDS: ArchitectPlasmidPromotionThresholds = {
   minShadowRuns: 64,
   maxFallbackRatio: 0.05,
-  minStableBranchCount: 8,
-  minRepairBranchCount: 4,
-  minShadowSuppressedGuardianSignals: 4,
+  minEmitBranchCount: 8,
+  minSuppressBranchCount: 4,
+  minShadowSuppressedArchitectPlasmids: 4,
 };
 
 const normalizeCount = (value: number): number =>
   Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
 
 const normalizePromoThresholds = (
-  overrides?: Partial<GuardianSignalPromotionThresholds>,
-): GuardianSignalPromotionThresholds => ({
+  overrides?: Partial<ArchitectPlasmidPromotionThresholds>,
+): ArchitectPlasmidPromotionThresholds => ({
   minShadowRuns: Math.max(
     1,
     Math.floor(
@@ -264,41 +265,41 @@ const normalizePromoThresholds = (
     overrides?.maxFallbackRatio ??
       DEFAULT_PROMOTION_THRESHOLDS.maxFallbackRatio,
   ),
-  minStableBranchCount: Math.max(
+  minEmitBranchCount: Math.max(
     1,
     Math.floor(
-      overrides?.minStableBranchCount ??
-        DEFAULT_PROMOTION_THRESHOLDS.minStableBranchCount,
+      overrides?.minEmitBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minEmitBranchCount,
     ),
   ),
-  minRepairBranchCount: Math.max(
+  minSuppressBranchCount: Math.max(
     1,
     Math.floor(
-      overrides?.minRepairBranchCount ??
-        DEFAULT_PROMOTION_THRESHOLDS.minRepairBranchCount,
+      overrides?.minSuppressBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minSuppressBranchCount,
     ),
   ),
-  minShadowSuppressedGuardianSignals: Math.max(
+  minShadowSuppressedArchitectPlasmids: Math.max(
     1,
     Math.floor(
-      overrides?.minShadowSuppressedGuardianSignals ??
-        DEFAULT_PROMOTION_THRESHOLDS.minShadowSuppressedGuardianSignals,
+      overrides?.minShadowSuppressedArchitectPlasmids ??
+        DEFAULT_PROMOTION_THRESHOLDS.minShadowSuppressedArchitectPlasmids,
     ),
   ),
 });
 
-export const evaluateGuardianSignalPromotion = (
-  raw: GuardianSignalHybridSnapshot,
-  overrides?: Partial<GuardianSignalPromotionThresholds>,
-): GuardianSignalPromotionSnapshot => {
+export const evaluateArchitectPlasmidPromotion = (
+  raw: ArchitectPlasmidHybridSnapshot,
+  overrides?: Partial<ArchitectPlasmidPromotionThresholds>,
+): ArchitectPlasmidPromotionSnapshot => {
   const thresholds = normalizePromoThresholds(overrides);
   const shadowRuns = normalizeCount(raw.shadowRuns);
   const hybridRuns = normalizeCount(raw.hybridRuns);
   const fallbackRuns = normalizeCount(raw.fallbackRuns);
-  const stableBranchCount = normalizeCount(raw.stableBranchCount);
-  const repairBranchCount = normalizeCount(raw.repairBranchCount);
-  const shadowSuppressedGuardianSignals = normalizeCount(
-    raw.shadowSuppressedGuardianSignals,
+  const emitBranchCount = normalizeCount(raw.emitBranchCount);
+  const suppressBranchCount = normalizeCount(raw.suppressBranchCount);
+  const shadowSuppressedArchitectPlasmids = normalizeCount(
+    raw.shadowSuppressedArchitectPlasmids,
   );
   const reductionRuns = shadowRuns + hybridRuns;
   const reductionDenominator = Math.max(1, reductionRuns);
@@ -317,9 +318,9 @@ export const evaluateGuardianSignalPromotion = (
       reductionRuns,
       fallbackRuns,
       fallbackRatio,
-      stableBranchCount,
-      repairBranchCount,
-      shadowSuppressedGuardianSignals,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedArchitectPlasmids,
       reasons,
       thresholds,
     };
@@ -336,9 +337,9 @@ export const evaluateGuardianSignalPromotion = (
       reductionRuns,
       fallbackRuns,
       fallbackRatio,
-      stableBranchCount,
-      repairBranchCount,
-      shadowSuppressedGuardianSignals,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedArchitectPlasmids,
       reasons,
       thresholds,
     };
@@ -354,22 +355,22 @@ export const evaluateGuardianSignalPromotion = (
       }`,
     );
   }
-  if (stableBranchCount < thresholds.minStableBranchCount) {
+  if (emitBranchCount < thresholds.minEmitBranchCount) {
     reasons.push(
-      `stable_branch_count_${stableBranchCount}_lt_${thresholds.minStableBranchCount}`,
+      `emit_branch_count_${emitBranchCount}_lt_${thresholds.minEmitBranchCount}`,
     );
   }
-  if (repairBranchCount < thresholds.minRepairBranchCount) {
+  if (suppressBranchCount < thresholds.minSuppressBranchCount) {
     reasons.push(
-      `repair_branch_count_${repairBranchCount}_lt_${thresholds.minRepairBranchCount}`,
+      `suppress_branch_count_${suppressBranchCount}_lt_${thresholds.minSuppressBranchCount}`,
     );
   }
   if (
-    shadowSuppressedGuardianSignals <
-      thresholds.minShadowSuppressedGuardianSignals
+    shadowSuppressedArchitectPlasmids <
+      thresholds.minShadowSuppressedArchitectPlasmids
   ) {
     reasons.push(
-      `shadow_suppressed_guardian_signals_${shadowSuppressedGuardianSignals}_lt_${thresholds.minShadowSuppressedGuardianSignals}`,
+      `shadow_suppressed_architect_plasmids_${shadowSuppressedArchitectPlasmids}_lt_${thresholds.minShadowSuppressedArchitectPlasmids}`,
     );
   }
   if (fallbackRuns > shadowDenominator) {
@@ -386,29 +387,29 @@ export const evaluateGuardianSignalPromotion = (
     reductionRuns,
     fallbackRuns,
     fallbackRatio,
-    stableBranchCount,
-    repairBranchCount,
-    shadowSuppressedGuardianSignals,
+    emitBranchCount,
+    suppressBranchCount,
+    shadowSuppressedArchitectPlasmids,
     reasons,
     thresholds,
   };
 };
 
-export type GuardianSignalPromotionActionInput = {
-  currentMode: GuardianSignalExecutionMode;
-  decision: GuardianSignalPromotionDecision;
+export type ArchitectPlasmidPromotionActionInput = {
+  currentMode: ArchitectPlasmidExecutionMode;
+  decision: ArchitectPlasmidPromotionDecision;
 };
 
-export type GuardianSignalPromotionAction = {
+export type ArchitectPlasmidPromotionAction = {
   verdict: "promote" | "hold" | "demote";
-  currentMode: GuardianSignalExecutionMode;
-  targetMode: GuardianSignalExecutionMode;
+  currentMode: ArchitectPlasmidExecutionMode;
+  targetMode: ArchitectPlasmidExecutionMode;
   reasons: string[];
 };
 
-export const evaluateGuardianSignalPromotionAction = (
-  input: GuardianSignalPromotionActionInput,
-): GuardianSignalPromotionAction => {
+export const evaluateArchitectPlasmidPromotionAction = (
+  input: ArchitectPlasmidPromotionActionInput,
+): ArchitectPlasmidPromotionAction => {
   if (input.currentMode === "legacy-execute") {
     return {
       verdict: "hold",
@@ -458,3 +459,11 @@ export const evaluateGuardianSignalPromotionAction = (
     reasons: ["hybrid_mode_confirmed"],
   };
 };
+
+export const ARCHITECT_PLASMID_PROMOTION_DECISION = {
+  evaluateArchitectPlasmidPromotionDecision,
+  evaluateArchitectPlasmidPromotion,
+  evaluateArchitectPlasmidPromotionAction
+};
+
+```

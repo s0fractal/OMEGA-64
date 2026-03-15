@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { STR_SOURCE, STR_WIRE } from "@generated";
 
 async function testCrystallineNetwork() {

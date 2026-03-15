@@ -2,7 +2,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_temporal.ts | Era 54: Temporal Cognition Verification
 // Tests ISA.AGE, ISA.PHASE_LIFE lifecycle phases, SENSE type 0x0A, and apoptosis.
 
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import {
   assert,

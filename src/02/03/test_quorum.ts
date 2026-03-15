@@ -2,7 +2,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_quorum.ts | Era 55: Quorum Sensing Verification
 // Tests ISA.QUORUM collective behaviors, quorumBuffer census, and SENSE type 0x0B.
 
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import {
   assert,

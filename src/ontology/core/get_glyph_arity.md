@@ -9,11 +9,13 @@ args:
 returns: u8
 ---
 ### Rust
+
 ```rust
 GLYPH_ARITY_LUT[(id & 63) as usize]
 ```
 
 ### TypeScript
+
 ```typescript
 import { GLYPH_ARITY_LUT } from "../00/mod.ts";
 

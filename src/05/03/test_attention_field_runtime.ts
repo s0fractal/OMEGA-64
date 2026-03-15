@@ -1,4 +1,4 @@
-import { AVATAR_ENGINE } from "@05";
+import { AVATAR_ENGINE } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import { GRID_W, SCALE } from "@generated";
 

@@ -7,6 +7,7 @@ min_level: 6
 ---
 
 ### TypeScript
+
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
@@ -1840,5 +1841,7 @@ if (import.meta.main) {
     Deno.exit(1);
   }
 }
+
+export const OMEGA_DAEMON = {};
 
 ```

@@ -6,9 +6,6 @@ tags:
   - substrate
 deps:
   - ENV_PARSE
-vars:
-  - parseEnvBool
-  - parseEnvBoundedInt
 ---
 
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
@@ -33,6 +30,9 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
   return value.length > 0 ? value : fallback;
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
+import { ENV_PARSE } from "@generated";
+const { parseEnvBool, parseEnvBoundedInt } = ENV_PARSE;
+
 const parsePort = (raw: string | undefined, fallback: number): number =>
   parseEnvBoundedInt(raw, fallback, 1, 65_535);
 const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {

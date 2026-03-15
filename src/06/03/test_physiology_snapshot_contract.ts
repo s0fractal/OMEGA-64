@@ -1,6 +1,10 @@
 import { capturePhysiologySnapshot } from "@06";
-import { createGeneticLedgerRuntime, snapshotLedgerRuntime } from "@03";
-import { createPhysiologicalLedgerRuntime } from "@02";
+import {
+  createGeneticLedgerRuntime,
+  snapshotLedgerRuntime,
+  HORMONE_BUFFER,
+} from "@generated";
+const { createPhysiologicalLedgerRuntime } = HORMONE_BUFFER;
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

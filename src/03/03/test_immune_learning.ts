@@ -2,7 +2,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_immune_learning.ts | Era 62: Immune Learning Verification
 // Tests GATE.ts tracking average resonance of novel plasmids and promoting them cleanly.
 
-import { GATE } from "@03";
+import { GATE } from "@generated";
 import {
   assert,
   assertEquals,

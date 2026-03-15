@@ -1,4 +1,4 @@
-import { HORMONE_BUFFER_CATALOG } from "@02";
+import { HORMONE_BUFFER_CATALOG } from "@generated";
 import { GENETIC_LEDGER_CATALOG } from "@generated";
 
 const expect = (condition: unknown, message: string): void => {

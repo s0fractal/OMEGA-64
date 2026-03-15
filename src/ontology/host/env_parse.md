@@ -35,4 +35,9 @@ export const parseEnvBoundedInt = (
   return Math.max(min, Math.min(max, n));
 };
 
+export const ENV_PARSE = {
+  parseEnvBool,
+  parseEnvBoundedInt
+};
+
 ```

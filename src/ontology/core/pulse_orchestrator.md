@@ -2,21 +2,52 @@
 id: PULSE
 type: module
 description: "Implementation of PULSE"
-deps: [STATE_MATRIX]
-min_level: 2
+deps: [STATE_MATRIX, GENERIC_LEDGER_SYSTEM, GENERIC_LEDGER_PERSISTENCE, HORMONE_BUFFER, HORMONE_BUFFER_RUNTIME]
+min_level: 7
 ---
 
 ### TypeScript
+
 ```typescript
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "@generated";
-import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "@generated";
+import {
+  AS_WASM_PATH,
+  LOGGER,
+  MAX_ATOMS,
+  sharedBuffer,
+  STATE_MATRIX,
+} from "@generated";
+import {
+  BONDS_OFFSET,
+  CAUSALITY_OFFSET,
+  COHERENCE_OFFSET,
+  CONTEXT_OFFSET,
+  EGRESS_DATA_OFFSET,
+  EGRESS_HEAD_OFFSET,
+  ENERGY_OFFSET,
+  GRID_H,
+  GRID_W,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LATTICE_MEMORY_END,
+  LOGIC_OFFSET,
+  MAX_EGRESS_EVENTS,
+  PHASE_OFFSET,
+  PHYSICS_READ_ENERGY_OFFSET,
+  PHYSICS_READ_RESONANCE_OFFSET,
+  PHYSICS_READ_XS_OFFSET,
+  PHYSICS_READ_YS_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
 
-import { SOVEREIGNTY_ENGINE } from "../../03/SOVEREIGNTY_ENGINE.ts";
+import { SOVEREIGNTY_ENGINE } from "@generated";
 import { GATE } from "../03/GATE.ts";
 import { PREDICTION_MARKET } from "@generated";
-import { CONTROL_INTENT_QUEUE } from "../../03/CONTROL_INTENT_QUEUE.ts";
-
+import { CONTROL_INTENT_QUEUE } from "@generated";
 
 export interface PulseOracleDelegate {
   setNeuralCoherence(coherence: number): void;
@@ -29,11 +60,23 @@ export interface PulseOracleDelegate {
 let oracleDelegate: PulseOracleDelegate | null = null;
 
 export interface PulseAkashaDelegate {
-  recordMutationTelemetry(event: { lane: string; kind: string; count: number }): void;
+  recordMutationTelemetry(
+    event: { lane: string; kind: string; count: number },
+  ): void;
   flushMutationTelemetry(tick: number): void;
   compressMemory(wasmMemory: WebAssembly.Memory): Promise<Uint8Array>;
-  decompressMemoryToLattice(wasmMemory: WebAssembly.Memory, payload: Uint8Array): Promise<void>;
-  saveEpoch(memory: WebAssembly.Memory, tick: number, label: string, count1: number, count2: number, hash: string): Promise<void>;
+  decompressMemoryToLattice(
+    wasmMemory: WebAssembly.Memory,
+    payload: Uint8Array,
+  ): Promise<void>;
+  saveEpoch(
+    memory: WebAssembly.Memory,
+    tick: number,
+    label: string,
+    count1: number,
+    count2: number,
+    hash: string,
+  ): Promise<void>;
   broadcastPanopticonFrame(frame: ArrayBuffer): void;
   recordImmunologicalPurge(count: number): Promise<void>;
   observePulseCodex(tick: number, pop: number, glyphs: any, syn: number): void;
@@ -45,7 +88,12 @@ let akashaDelegate: PulseAkashaDelegate | null = null;
 export interface PulseNoosphereDelegate {
   unpackAtom(payload: Uint8Array): number;
   packAtom(idx: number): Uint8Array;
-  evaluateHeartbeat(tick: number, epochHash: string, avgPhase: number, egressCount: number): void;
+  evaluateHeartbeat(
+    tick: number,
+    epochHash: string,
+    avgPhase: number,
+    egressCount: number,
+  ): void;
   sendEpochPayload(peerId: string, payload: Uint8Array): void;
   routeAtom(payload: Uint8Array): void;
   startNexus(): void;
@@ -68,8 +116,6 @@ export interface PulseNoosphereDelegate {
 }
 let noosphereDelegate: PulseNoosphereDelegate | null = null;
 
-
-
 const MAX_TICK_DRIFT = 50;
 let lastTickTime = performance.now();
 let lastPanopticonBroadcastTime = 0;
@@ -77,18 +123,38 @@ let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
 import { RUNTIME_POLICY } from "@generated";
-import { GLYPH_TELEMETRY } from "@06";
+import { GLYPH_TELEMETRY } from "@generated";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "@generated";
 
-import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
 import {
-  createPhysiologicalLedgerRuntime,
-  HORMONE_BUFFER_CATALOG,
+  HORMONE_BUFFER_RUNTIME,
+  HORMONE_BUFFER,
   type HormoneId,
-} from "../../02/HORMONE_BUFFER.ts";
-import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "../../03/GENERIC_LEDGER_SYSTEM.ts";
+} from "@generated";
+const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
+const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
+import {
+  applyLedgerUpdate,
+  createGeneticLedgerRuntime,
+  createLedgerRuntime,
+  type LedgerApplyResult,
+  type LedgerRollbackResult,
+  type LedgerRuntimeSnapshot,
+  type LedgerRuntimeState,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+} from "@generated";
 import { type GeneticLedgerKey } from "../03/GENETIC_LEDGER.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "../../03/GENERIC_LEDGER_PERSISTENCE.ts";
+import { GENERIC_LEDGER_SYSTEM, GENERIC_LEDGER_PERSISTENCE } from "@generated";
+import type { LedgerPersistenceSummary } from "@generated";
+const {
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  recordFromApply,
+  recordFromRollback,
+} = GENERIC_LEDGER_PERSISTENCE;
 
 import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
 import { DollFork } from "@07/02/DOLL_FORK_MATRIX.ts";
@@ -97,7 +163,28 @@ import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
 import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
-import { PROP_NEURAL_COHERENCE, OP_SET, OP_GET, OP_SUB, OP_JNZ, OP_JMP, OP_SIGNAL, OP_SECRETE_PLASMID, OP_BUILD, OP_SYSCALL, OP_NOP, SYS_YIELD, SYS_SET_ROLE, OP_JZ, OP_SPORE_DRIVE, PROP_ENERGY, PROP_RESONANCE, OP_ADD, OP_REPLICATE, OP_PUT } from "../00/mod.ts";
+import {
+  OP_ADD,
+  OP_BUILD,
+  OP_GET,
+  OP_JMP,
+  OP_JNZ,
+  OP_JZ,
+  OP_NOP,
+  OP_PUT,
+  OP_REPLICATE,
+  OP_SECRETE_PLASMID,
+  OP_SET,
+  OP_SIGNAL,
+  OP_SPORE_DRIVE,
+  OP_SUB,
+  OP_SYSCALL,
+  PROP_ENERGY,
+  PROP_NEURAL_COHERENCE,
+  PROP_RESONANCE,
+  SYS_SET_ROLE,
+  SYS_YIELD,
+} from "../00/mod.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -701,7 +788,7 @@ const applyHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = applyLedgerUpdate(homeostasisBaseTaxLedgerRuntime, update);
@@ -723,7 +810,7 @@ const rollbackHomeostasisBaseTaxLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "pulse.homeostasis.baseTax"
 > => {
   const result = rollbackLedgerUpdate(
@@ -770,7 +857,7 @@ const applyHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = applyLedgerUpdate(
@@ -795,7 +882,7 @@ const rollbackHomeostasisTargetEnergyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "pulse.homeostasis.targetEnergy"
 > => {
   const result = rollbackLedgerUpdate(
@@ -845,7 +932,7 @@ const applyPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "pulse.pressureRing.scale"
 > => {
   const result = applyLedgerUpdate(pressureRingScaleLedgerRuntime, update);
@@ -867,7 +954,7 @@ const rollbackPressureRingScaleLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "pulse.pressureRing.scale"
 > => {
   const result = rollbackLedgerUpdate(pressureRingScaleLedgerRuntime, rollback);
@@ -1457,7 +1544,11 @@ const waitForWorkerMessage = <T = any>(
         }
         cleanup();
         reject(
-          createWorkerTimeoutError(expectedType, expectedPulseId, timeoutWindows),
+          createWorkerTimeoutError(
+            expectedType,
+            expectedPulseId,
+            timeoutWindows,
+          ),
         );
       }, ms);
     };
@@ -1591,7 +1682,7 @@ const postAndWait = async <T = any>(
     if (isWorkerTimeoutError(err)) {
       const syncState = STATE_MATRIX.syncState;
       if (syncState) {
-         LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+        LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
@@ -1663,7 +1754,9 @@ const startWorkers = async (count: number): Promise<void> => {
         const atomIdAtStart = STATE_MATRIX.getId(idx);
         if (atomIdAtStart !== 0n) {
           // Immediately pack and schedule for migration to clear memory bounds
-          const packedAtom = (noosphereDelegate ? noosphereDelegate.packAtom(idx) : new Uint8Array(0));
+          const packedAtom = noosphereDelegate
+            ? noosphereDelegate.packAtom(idx)
+            : new Uint8Array(0);
           if (packedAtom) {
             noosphereDelegate?.routeAtom(packedAtom);
             LOGGER.debug(
@@ -1671,7 +1764,9 @@ const startWorkers = async (count: number): Promise<void> => {
             );
             STATE_MATRIX.recycleAtom(idx);
           } else {
-            LOGGER.error(`[PULSE] Failed to pack atom ${atomIdAtStart} for transit`);
+            LOGGER.error(
+              `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
+            );
           }
         }
       }
@@ -2051,12 +2146,15 @@ export const PULSE = {
     // Always start the network layer before bootstrapping bounds
     noosphereDelegate?.setNexusStatus({
       mainnetEnabled: RUNTIME_POLICY.p2p.mainnetEnabled,
-      bootstrapHubUrl: RUNTIME_POLICY.p2p.bootstrapHubUrl
+      bootstrapHubUrl: RUNTIME_POLICY.p2p.bootstrapHubUrl,
     });
-    await (noosphereDelegate ? noosphereDelegate.startNexus() : Promise.resolve());
+    await (noosphereDelegate
+      ? noosphereDelegate.startNexus()
+      : Promise.resolve());
 
     // Phase 30 / Phase 36: Bootstrapping Node Payload
-    const nexusStatus = noosphereDelegate?.getNexusStatus() || { seedNodesLength: 0, mainnetEnabled: false };
+    const nexusStatus = noosphereDelegate?.getNexusStatus() ||
+      { seedNodesLength: 0, mainnetEnabled: false };
     if (
       STATE_MATRIX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
@@ -2256,13 +2354,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("@03").LedgerApplyResult<
+    | LedgerApplyResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("@03").LedgerApplyResult<
+    | LedgerApplyResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("@03").LedgerApplyResult<
+    | LedgerApplyResult<
       "pulse.pressureRing.scale"
     >
   > => {
@@ -2388,13 +2486,13 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | import("@03").LedgerRollbackResult<
+    | LedgerRollbackResult<
       "pulse.homeostasis.baseTax"
     >
-    | import("@03").LedgerRollbackResult<
+    | LedgerRollbackResult<
       "pulse.homeostasis.targetEnergy"
     >
-    | import("@03").LedgerRollbackResult<
+    | LedgerRollbackResult<
       "pulse.pressureRing.scale"
     >
   > => {
@@ -2602,10 +2700,11 @@ export const PULSE = {
     return applied;
   },
 
-
   tick: async () => {
     if (isTicking) {
-      throw new Error("[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.");
+      throw new Error(
+        "[PULSE] tick() called concurrently! Overlapping ticks are forbidden and cause synchronization deadlocks.",
+      );
     }
     isTicking = true;
     if (workers.length === 0) {
@@ -2749,7 +2848,8 @@ export const PULSE = {
         );
       }
 
-      const telemetry = oracleDelegate?.gatherEpochTelemetry() || { matrixResonance: 0 };
+      const telemetry = oracleDelegate?.gatherEpochTelemetry() ||
+        { matrixResonance: 0 };
       oracleDelegate?.broadcastWhisper(currentTick, telemetry, coherence);
       // Trigger Oracle on either Matrix Resonance spike or High Coherence
       if (telemetry.matrixResonance > 5000 || coherence > 500) {
@@ -2876,9 +2976,11 @@ export const PULSE = {
       ) {
         // We trigger save but don't await it to avoid blocking the heartbeat.
         // It will complete in the background.
-        if (akashaDelegate) akashaDelegate.saveSnap(currentTick).then(() => {
-          akashaDelegate?.cleanupSnap(RUNTIME_POLICY.snapshot.retention);
-        });
+        if (akashaDelegate) {
+          akashaDelegate.saveSnap(currentTick).then(() => {
+            akashaDelegate?.cleanupSnap(RUNTIME_POLICY.snapshot.retention);
+          });
+        }
       }
 
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
@@ -2889,14 +2991,16 @@ export const PULSE = {
         const pCount = activeIdx.length;
         const autoEpochId = `auto_tick_${currentTick}`;
         const epochHash = await PULSE.generateEpochProof(currentTick);
-        if (akashaDelegate) await akashaDelegate.saveEpoch(
-          STATE_MATRIX.wasmMemory,
-          currentTick,
-          autoEpochId,
-          pCount,
-          0,
-          epochHash,
-        );
+        if (akashaDelegate) {
+          await akashaDelegate.saveEpoch(
+            STATE_MATRIX.wasmMemory,
+            currentTick,
+            autoEpochId,
+            pCount,
+            0,
+            epochHash,
+          );
+        }
         LOGGER.info(
           `[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`,
         );
@@ -3105,9 +3209,11 @@ export const PULSE = {
           "PHAGOCYTE_PASS_DONE",
         );
         const purgedCount = workerResponse.count || 0;
-        
+
         if (purgedCount > 0) {
-          if (akashaDelegate) await akashaDelegate.recordImmunologicalPurge(purgedCount);
+          if (akashaDelegate) {
+            await akashaDelegate.recordImmunologicalPurge(purgedCount);
+          }
           LOGGER.info(
             `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
@@ -3383,12 +3489,15 @@ export const PULSE = {
       const now = performance.now();
       const dt = now - lastTickTime;
       if (dt > 1000) {
-        noosphereDelegate?.setNexusStatus({ localTps: (currentTick - tickCountLog) / (dt / 1000) });
+        noosphereDelegate?.setNexusStatus({
+          localTps: (currentTick - tickCountLog) / (dt / 1000),
+        });
         lastTickTime = now;
         tickCountLog = currentTick;
       }
 
-      const medianTick = noosphereDelegate?.getMedianSwarmTick(currentTick) ?? 0;
+      const medianTick = noosphereDelegate?.getMedianSwarmTick(currentTick) ??
+        0;
       if (currentTick > medianTick + MAX_TICK_DRIFT) {
         await new Promise((r) => setTimeout(r, 10)); // Elastic yield bounds
       }
@@ -3416,24 +3525,39 @@ export const PULSE = {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
       const id = STATE_MATRIX.getId(newIdx!);
-      LOGGER.info(`🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`);
+      LOGGER.info(
+        `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
+      );
       akashaDelegate?.recordMutationTelemetry({
         lane: "external_ingress",
         kind: "federation_migration_clear",
         count: 1,
       });
     } else {
-      LOGGER.warn(`🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`);
+      LOGGER.warn(
+        `🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`,
+      );
     }
   },
   onRemoteSyncRequest: async (peerId: string) => {
-    LOGGER.info(`[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`);
-    const payload = (akashaDelegate ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory) : new Uint8Array(0));
+    LOGGER.info(
+      `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
+    );
+    const payload = akashaDelegate
+      ? await akashaDelegate.compressMemory(STATE_MATRIX.wasmMemory)
+      : new Uint8Array(0);
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
   onRemoteEpochPayload: async (payload: Uint8Array) => {
-    LOGGER.info(`[PULSE] Hot State Merging payload received. Unpacking into Lattice...`);
-    if (akashaDelegate) await akashaDelegate.decompressMemoryToLattice(STATE_MATRIX.wasmMemory, payload);
+    LOGGER.info(
+      `[PULSE] Hot State Merging payload received. Unpacking into Lattice...`,
+    );
+    if (akashaDelegate) {
+      await akashaDelegate.decompressMemoryToLattice(
+        STATE_MATRIX.wasmMemory,
+        payload,
+      );
+    }
     if (genesisPromiseResolver) {
       genesisPromiseResolver();
       genesisPromiseResolver = null;
@@ -4666,5 +4790,4 @@ export const evaluateReplicationExecution = (
     hybridSuppressed: !reduction.replicationAllowed,
   };
 };
-
 ```

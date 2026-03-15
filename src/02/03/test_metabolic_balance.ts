@@ -1,6 +1,6 @@
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
-import { ISA } from "@02";
+import { PULSE } from "@generated";
+import { ISA } from "@generated";
 import {
   assertAlmostEquals,
   assertEquals,

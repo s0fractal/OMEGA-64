@@ -1,5 +1,16 @@
+---
+id: HORMONE_BUFFER
+type: module
+description: "Hormone classification and ledger definition structure."
+deps: [RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM]
+min_level: 5
+---
+
+### TypeScript
+
+```typescript
 import { RUNTIME_POLICY } from "@generated";
-import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
+import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@generated";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -193,3 +204,12 @@ export const createPhysiologicalLedgerRuntime = (
   };
   return createLedgerRuntime(config, initialValue, historyLimit);
 };
+
+export const HORMONE_BUFFER = {
+  HORMONE_BUFFER_CATALOG,
+  hormoneSpecById,
+  HORMONE_BUFFER_LENGTH,
+  hormoneBaselineState,
+  createPhysiologicalLedgerRuntime,
+};
+```

@@ -1,4 +1,5 @@
-import { evaluateArchitectPlasmidPromotion } from "@03";
+import { ARCHITECT_PLASMID_PROMOTION_DECISION } from "@generated";
+const { evaluateArchitectPlasmidPromotion } = ARCHITECT_PLASMID_PROMOTION_DECISION;
 
 type Failure = {
   name: string;

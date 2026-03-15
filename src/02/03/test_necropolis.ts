@@ -1,9 +1,9 @@
 import { GRID_W } from "@generated";
 // OMEGA-64 | tests/test_necropolis.ts
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/assert_equals.ts";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { STATE_MATRIX } from "@generated";
-import { IMMUNE } from "@02"; // Just to verify it doesn't break GC
+import { IMMUNE } from "@generated"; // Just to verify it doesn't break GC
 
 Deno.test({
   name: "Phase 43: The Necropolis (Fossilization & Ruins)",

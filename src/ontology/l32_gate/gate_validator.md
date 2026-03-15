@@ -218,4 +218,8 @@ export const validateGateProposals = async (
   };
 };
 
+export const GATE_VALIDATOR = {
+  validateGateProposals
+};
+
 ```

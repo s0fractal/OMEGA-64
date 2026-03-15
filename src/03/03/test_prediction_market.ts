@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { betPoolInt, marketState, PREDICTION_MARKET } from "@generated";
 import { OP_SET, SYS_BET, OP_SYSCALL, SYS_YIELD } from "@generated";
 

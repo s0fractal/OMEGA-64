@@ -4,7 +4,7 @@ import {
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { LOGGER } from "@generated";
 import { OP_SET, SYS_REPLICATE, OP_SYSCALL } from "@generated";
 

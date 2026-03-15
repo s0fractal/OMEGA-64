@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 
 const parseTickCount = (): number => {
   const raw = Deno.env.get("OMEGA_WORKER_COHERENCE_TICKS");

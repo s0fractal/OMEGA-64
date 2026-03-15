@@ -491,4 +491,14 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   return self;
 };
 
+export const SWARM_NEXUS = {
+  OP_NEXUS_HANDSHAKE,
+  OP_NEXUS_ATOM_TRANSIT,
+  OP_NEXUS_HEARTBEAT,
+  OP_NEXUS_EPOCH_CONSENSUS,
+  OP_NEXUS_SYNC_REQUEST,
+  OP_NEXUS_EPOCH_PAYLOAD,
+  createSwarmNexus
+};
+
 ```

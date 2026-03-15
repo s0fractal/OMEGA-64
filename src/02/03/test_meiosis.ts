@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { ISA, LAMBDA_VM } from "@02";
+import { ISA, LAMBDA_VM } from "@generated";
 
 console.log("💞 [TEST] Initializing Meiosis Verification...");
 

@@ -1,7 +1,7 @@
 // OMEGA-64 | test_economic_swap.ts | Stage 31 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { LOGGER } from "@generated";
 import { OP_SET, SYS_TRANSFER, OP_SYSCALL } from "@generated";
 

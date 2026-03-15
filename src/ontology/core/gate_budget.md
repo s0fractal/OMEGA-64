@@ -4,9 +4,6 @@ type: module
 tags:
   - substrate
 deps: []
-vars:
-  - GateMergedDelta
-  - GATE_BUDGET
 ---
 
 ```typescript

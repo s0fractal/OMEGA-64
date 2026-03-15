@@ -1,3 +1,12 @@
+---
+id: REPLICATION_PROMOTION_DECISION
+type: pure_fn
+description: "Evaluates promotion conditions for Replication loops in hybrid shadow reduction."
+tags: ["core", "control", "host"]
+min_level: 6
+
+---
+```typescript
 export type ReplicationPromotionDecisionInput = {
   promotion: {
     latestReady: boolean;
@@ -154,3 +163,8 @@ export const evaluateReplicationPromotionDecision = (
     thresholds,
   };
 };
+
+export const REPLICATION_PROMOTION_DECISION = {
+  evaluateReplicationPromotionDecision
+};
+```

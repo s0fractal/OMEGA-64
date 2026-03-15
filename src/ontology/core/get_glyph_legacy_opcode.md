@@ -9,11 +9,13 @@ args:
 returns: u8
 ---
 ### Rust
+
 ```rust
 GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
 ```
 
 ### TypeScript
+
 ```typescript
 import { GLYPH_LEGACY_OPCODE_LUT } from "../00/mod.ts";
 

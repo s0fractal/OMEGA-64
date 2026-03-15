@@ -1,5 +1,5 @@
 // OMEGA-64 | test_stability.ts | Verify RISC VM Integration
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 
 async function run() {

@@ -40,4 +40,10 @@ export function prng_seed_from(tick: number, atomId: string): number {
   }
   return Math.abs(hash);
 }
+
+export const PRNG = {
+  prng_next,
+  prng_seed_from
+};
+
 ```

@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.211.0/assert/mod.ts";
-import { SOVEREIGN_ORACLE } from "@05";
-import { LLM_SYNAPSE } from "@05";
-import { SEMANTIC_MEMBRANE } from "@05";
+import { SOVEREIGN_ORACLE } from "@generated";
+import { LLM_SYNAPSE } from "@generated";
+import { SEMANTIC_MEMBRANE } from "@generated";
 
 Deno.test("Semantic Bridge: LSH Quantization of LLM Intent", async () => {
   // Preserve original methods

@@ -1,3 +1,11 @@
+---
+id: AUDIT_ENGINE
+type: module
+tags: ["core", "tool", "host", "fs"]
+min_level: 7
+
+---
+```typescript
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
 // Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
 
@@ -75,3 +83,4 @@ export const AUDIT_ENGINE = {
     return `ARCHIVAL AUDIT: ${briefing}`;
   },
 };
+```

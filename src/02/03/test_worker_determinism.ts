@@ -1,5 +1,5 @@
 import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { STATE_MATRIX } from "@generated";
 import { SIGNAL_GRID_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
 import {
