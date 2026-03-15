@@ -1,6 +1,6 @@
 import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES } from "@generated";
 import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
-import { resolveFsVectorSync } from "@07/01/vector_decoder.ts";
+
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   console.error(

@@ -4,9 +4,24 @@ import { parse } from "jsr:@std/jsonc";
 // Guards against accidental export drift (tests/archive artifacts).
 
 import { dirname, extname, join, normalize } from "node:path";
-import { resolveVector } from "../01/vector_decoder.ts";
 
 const MANIFEST_PATH = "deno.jsonc";
+
+const resolveVector = async (vector: string): Promise<string> => {
+  const configRaw = await Deno.readTextFile(MANIFEST_PATH);
+  const config = parse(configRaw) as any;
+  if (config.imports && config.imports[vector]) {
+    return config.imports[vector];
+  }
+  if (config.imports) {
+    for (const [key, value] of Object.entries(config.imports)) {
+      if (key.endsWith("/") && vector.startsWith(key)) {
+        return `${value as string}${vector.slice(key.length)}`;
+      }
+    }
+  }
+  throw new Error(`Unmapped vector: ${vector}`);
+};
 
 const EXCLUDE_PATTERNS: RegExp[] = [
   /(^|\/)test_.*\.ts$/u,
@@ -131,7 +146,7 @@ const parseManifestStringArray = (
 
 const loadManifest = async (): Promise<LoadedManifest> => {
   const raw = await Deno.readTextFile(MANIFEST_PATH);
-  const parsed = parse(raw).omega as ExportManifest;
+  const parsed = (parse(raw) as Record<string, any>).omega as ExportManifest;
 
   const era = typeof parsed?.era === "string" ? parsed.era.trim() : "";
   if (!era) {
@@ -261,7 +276,7 @@ const resolveLocalImport = async (
   let isFromRoot = false;
   if (specifier.startsWith("@")) {
     try {
-      specifier = resolveVector(specifier);
+      specifier = await resolveVector(specifier);
       isFromRoot = true;
     } catch {
       return null;
