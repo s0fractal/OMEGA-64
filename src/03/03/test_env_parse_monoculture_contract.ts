@@ -12,13 +12,13 @@ const TARGETS: FileExpectation[] = [
   { file: "src/_/04/PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
   { file: "src/07/02/SYSTEM_START.ts", requiresPolicyAccess: "RUNTIME_POLICY.system" },
   {
-    file: "src/04/P2P_FEDERATION.ts",
+    file: "src/_/04/P2P_FEDERATION.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.federation",
   },
   { file: "src/04/P2P_SYNAPSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.p2p" },
   { file: "src/06/AKASHA_SERVER.ts", requiresPolicyAccess: "RUNTIME_POLICY.akasha" },
   {
-    file: "src/06/MUTATION_TELEMETRY.ts",
+    file: "src/_/06/MUTATION_TELEMETRY.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.telemetry",
   },
   {
@@ -26,7 +26,7 @@ const TARGETS: FileExpectation[] = [
     requiresPolicyAccess: "RUNTIME_POLICY.controlIntent",
   },
   {
-    file: "src/05/SOVEREIGN_ORACLE.ts",
+    file: "src/_/05/SOVEREIGN_ORACLE.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.oracle",
   },
 ];

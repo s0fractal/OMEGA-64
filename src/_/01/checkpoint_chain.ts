@@ -1,10 +1,11 @@
 // SSoT: src/ontology/l32_gate/checkpoint_chain.md
+import { append_jsonl, read_jsonl, read_jsonl_lines } from "../00/mod.ts";
 
 // OMEGA-64 | checkpoint_chain.ts
 // Replay Invariant State Hash Checkpointing
 
 // Replay Invariant State Hash Checkpointing
-import { stable_stringify, sha256_hex, normalize_hex64 } from "../mod.ts";
+import { normalize_hex64, sha256_hex, stable_stringify } from "../mod.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
 

@@ -1416,6 +1416,10 @@ const createWorkerTimeoutError = (
   return err;
 };
 
+const isWorkerTimeoutError = (err: unknown): err is WorkerTimeoutError => {
+  return err instanceof Error && err.name === "WorkerTimeoutError";
+};
+
 const waitForWorkerMessage = <T = any>(
   worker: Worker,
   expectedType: string,
@@ -1576,7 +1580,7 @@ const postAndWait = async <T = any>(
     stats.lastError = "";
     return res.data;
   } catch (err) {
-    if (err instanceof WorkerTimeoutError) {
+    if (isWorkerTimeoutError(err)) {
       const syncState = STATE_MATRIX.syncState;
       if (syncState) {
          LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);

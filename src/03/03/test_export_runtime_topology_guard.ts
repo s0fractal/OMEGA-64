@@ -23,7 +23,7 @@ const REQUIRED_RUNTIME_CLOSURE_FILES = [
   "src/_/04/PULSE.ts",
   "src/03/CONTROL_INTENT_QUEUE.ts",
   "src/00/STATE_MATRIX.ts",
-  "src/03/GATE.ts",
+  "src/_/03/GATE.ts",
 ] as const;
 
 const isForbidden = (path: string): boolean =>

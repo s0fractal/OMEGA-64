@@ -3,17 +3,18 @@ id: ledger_chain
 type: module
 description: "Implementation of ledger_chain"
 tags: []
-min_level: 0
-deps: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
+min_level: 1
+vars: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
 ---
 
 ### TypeScript
+
 ```typescript
 // OMEGA-64 | ledger_chain.ts
 // Ledger Chain and Proposal Envelope Index verification
 
 // Stream utils managed by injected deps
-import { stable_stringify, sha256_hex, normalize_hex64 } from "../mod.ts";
+import { normalize_hex64, sha256_hex, stable_stringify } from "../mod.ts";
 
 const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
 
@@ -440,5 +441,4 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
     envelopeIndexCacheLoaded.add(indexPath);
   },
 };
-
 ```

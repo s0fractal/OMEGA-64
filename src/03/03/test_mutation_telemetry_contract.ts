@@ -11,7 +11,7 @@ type Violation = {
 const MANIFEST_PATH = "deno.jsonc";
 const TELEMETRY_PATH = "src/_/06/MUTATION_TELEMETRY.ts";
 const PULSE_PATH = "src/_/04/PULSE.ts";
-const ORACLE_PATH = "src/05/SOVEREIGN_ORACLE.ts";
+const ORACLE_PATH = "src/_/05/SOVEREIGN_ORACLE.ts";
 const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
 
 const requireSnippet = (

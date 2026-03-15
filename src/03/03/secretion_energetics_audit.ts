@@ -1,8 +1,6 @@
 import { STATE_MATRIX } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
-import {
-  ENERGY_OFFSET
-} from "@00";
+import { ENERGY_OFFSET } from "@generated";
 
 /**
  * Stage 5.3: Secretion Energetics Audit

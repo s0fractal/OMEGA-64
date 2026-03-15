@@ -15,7 +15,7 @@ const REQUIRED_RUNTIME_ROOT_FILES = [
   "src/07/02/SYSTEM_START.ts",
   "src/_/04/PULSE.ts",
   "src/06/AKASHA_SERVER.ts",
-  "src/06/OMEGA_DAEMON.ts",
+  "src/_/06/OMEGA_DAEMON.ts",
 ];
 const REQUIRED_RUNTIME_SUPPORT_FILES = [
   "src/00/07/build_wasm.ts",

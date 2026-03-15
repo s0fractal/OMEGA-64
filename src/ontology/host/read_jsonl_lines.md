@@ -17,3 +17,7 @@ export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   }
 };
 ```
+### AssemblyScript
+```assemblyscript
+export function read_jsonl_lines(): void {}
+```

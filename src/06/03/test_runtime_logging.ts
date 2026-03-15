@@ -9,7 +9,7 @@ const RUNTIME_HOT_PATH_FILES = [
   "src/_/04/PULSE_WORKER.ts",
   "src/_/03/STATE_MATRIX.ts",
   "src/06/SNAPSHOT_ENGINE.ts",
-  "src/06/BREATH.ts",
+  "src/_/06/BREATH.ts",
 ] as const;
 
 const CONSOLE_PATTERN = /\bconsole\.[a-zA-Z_]+\b/u;

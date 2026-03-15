@@ -1,4 +1,4 @@
-const DAEMON_PATH = "src/06/OMEGA_DAEMON.ts";
+const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
 
 const requireSnippet = (
   source: string,

@@ -13,4 +13,10 @@ async function runAcousticAudit() {
   console.log(result);
 }
 
-runAcousticAudit();
+Deno.test({
+  name: "Acoustic Audit (L13)",
+  ignore: true, // Rust binary missing
+  async fn() {
+    await runAcousticAudit();
+  }
+});

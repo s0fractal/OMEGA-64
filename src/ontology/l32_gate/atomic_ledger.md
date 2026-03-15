@@ -14,7 +14,7 @@ min_level: 3
 import { STATE_MATRIX } from "@generated";
 import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
 
-export type LedgerEvent = {
+export type AtomicLedgerEvent = {
   tick: number;
   atomIdx: number;
   r1: number;
@@ -33,7 +33,7 @@ export const ATOMIC_LEDGER = {
    * Reads a raw event from the circular buffer given an absolute sequence number.
    * If the sequence number is too old (overwritten by MAX_EVENTS), this will return overwritten data.
    */
-  getEvent(sequence: number): LedgerEvent {
+  getEvent(sequence: number): AtomicLedgerEvent {
     const cursor = sequence % MAX_LEDGER_EVENTS;
     const base = cursor * 4;
     return {
@@ -75,8 +75,8 @@ export const ATOMIC_LEDGER = {
   /**
    * Reads all events from `startSequence` to `endSequence` strictly.
    */
-  readRange(startSeq: number, endSeq: number): LedgerEvent[] {
-    const events: LedgerEvent[] = [];
+  readRange(startSeq: number, endSeq: number): AtomicLedgerEvent[] {
+    const events: AtomicLedgerEvent[] = [];
     // Ensure we don't try to read more than the buffer can hold
     const safeStart = Math.max(startSeq, endSeq - MAX_LEDGER_EVENTS);
     for (let i = safeStart; i < endSeq; i++) {

@@ -3,11 +3,11 @@ type Violation = {
   reason: string;
 };
 
-const GATE_PATH = "src/03/GATE.ts";
-const VALIDATOR_PATH = "src/03/GATE_VALIDATOR.ts";
-const MERGER_PATH = "src/03/GATE_MERGER.ts";
+const GATE_PATH = "src/_/03/GATE.ts";
+const VALIDATOR_PATH = "src/_/03/GATE_VALIDATOR.ts";
+const MERGER_PATH = "src/_/03/GATE_MERGER.ts";
 const BUDGET_PATH = "src/03/GATE_BUDGET.ts";
-const LEDGER_PATH = "src/03/GATE_LEDGER.ts";
+const LEDGER_PATH = "src/_/03/GATE_LEDGER.ts";
 
 const requireSnippet = (
   source: string,
@@ -41,9 +41,9 @@ const main = async () => {
   const budget = await Deno.readTextFile(BUDGET_PATH);
   const ledger = await Deno.readTextFile(LEDGER_PATH);
 
-  requireSnippet(gate, "import { validateGateProposals } from \"@03\";", GATE_PATH, "GATE must delegate proposal validation", violations);
-  requireSnippet(gate, "import { mergeGateProposals } from \"@03\";", GATE_PATH, "GATE must delegate proposal merge/budget", violations);
-  requireSnippet(gate, "import { persistGateLedgerArtifacts } from \"@03\";", GATE_PATH, "GATE must delegate ledger/checkpoint persistence", violations);
+  requireSnippet(gate, "import { validateGateProposals } from \"@generated\";", GATE_PATH, "GATE must delegate proposal validation", violations);
+  requireSnippet(gate, "import { mergeGateProposals } from \"@generated\";", GATE_PATH, "GATE must delegate proposal merge/budget", violations);
+  requireSnippet(gate, "import { persistGateLedgerArtifacts } from \"@generated\";", GATE_PATH, "GATE must delegate ledger/checkpoint persistence", violations);
   forbidSnippet(
     gate,
     "AGENT_SIGNATURE.proposalEnvelopeHash(",

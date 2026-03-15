@@ -1,9 +1,7 @@
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
-import { STATE_MATRIX } from "@generated";
-import { SEMANTIC_MEMBRANE } from "@05";
-import { LOGGER } from "@generated";
+import { LOGGER, SEMANTIC_MEMBRANE, STATE_MATRIX } from "@generated";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
@@ -46,7 +44,11 @@ export const SNAPSHOT_ENGINE = {
       // 2. Binary dump of the Thermodynamics Grid (Nutrients)
       await Deno.writeFile(
         physicsPath,
-        new Uint8Array(STATE_MATRIX.attentionField.buffer, STATE_MATRIX.attentionField.byteOffset, STATE_MATRIX.attentionField.byteLength),
+        new Uint8Array(
+          STATE_MATRIX.attentionField.buffer,
+          STATE_MATRIX.attentionField.byteOffset,
+          STATE_MATRIX.attentionField.byteLength,
+        ),
       );
 
       // 3. JSON dump of the LLM Knowledge / Thoughts
@@ -108,7 +110,11 @@ export const SNAPSHOT_ENGINE = {
       // 2. Restore Thermodynamics Grid
       try {
         const physicsData = await Deno.readFile(physicsPath);
-        new Uint8Array(STATE_MATRIX.attentionField.buffer, STATE_MATRIX.attentionField.byteOffset, STATE_MATRIX.attentionField.byteLength).set(physicsData);
+        new Uint8Array(
+          STATE_MATRIX.attentionField.buffer,
+          STATE_MATRIX.attentionField.byteOffset,
+          STATE_MATRIX.attentionField.byteLength,
+        ).set(physicsData);
       } catch {
         LOGGER.warn(
           `⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`,

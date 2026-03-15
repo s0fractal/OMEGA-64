@@ -1,7 +1,5 @@
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
-import { sharedBuffer } from "@generated";
-import { LATTICE_MEMORY_END } from "@generated";
-import { LOGGER } from "@generated";
+import { LATTICE_MEMORY_END, LOGGER, sharedBuffer } from "@generated";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const SNAP_DIR = ".omega/snap";

@@ -1,7 +1,6 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_CELLS } from "@generated";
 import { STATE_MATRIX, wasmMemory } from "@generated";
-import { RIBOSOME } from "@02";
-import { GLYPH_TELEMETRY } from "@06";
+import { GLYPH_TELEMETRY } from "@generated";
 
 async function runSecretionOpcodeTests() {
   console.log("🕸️ [TEST] Booting WASM native secretion opcode diagnostics...");
@@ -21,7 +20,8 @@ async function runSecretionOpcodeTests() {
   ) => void;
 
   STATE_MATRIX.clear();
-  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
+  STATE_MATRIX.glyphHeaders.fill(0);
+  STATE_MATRIX.glyphPayload.fill(0);
 
   // 2. Setup Architect Atom
   const atomIdx = 20; // Skip trace threshold
@@ -80,7 +80,8 @@ async function runSecretionOpcodeTests() {
   const tick_glyph_transport = instantiated.instance.exports
     .glyph_transport as (tick: number) => void;
 
-  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
+  STATE_MATRIX.glyphHeaders.fill(0);
+  STATE_MATRIX.glyphPayload.fill(0);
 
   // Set high signal in a cell (use multiple of 32 due to WASM sampling)
   const cellIdx = 512;

@@ -1,6 +1,6 @@
-const FEDERATION_PATH = "src/04/P2P_FEDERATION.ts";
+const FEDERATION_PATH = "src/_/04/P2P_FEDERATION.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const DAEMON_PATH = "src/06/OMEGA_DAEMON.ts";
+const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
 
 type Violation = {
   file: string;

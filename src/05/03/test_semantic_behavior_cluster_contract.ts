@@ -1,6 +1,6 @@
-const MEMBRANE_PATH = "src/05/SEMANTIC_MEMBRANE.ts";
+const MEMBRANE_PATH = "src/_/05/SEMANTIC_MEMBRANE.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const DAEMON_PATH = "src/06/OMEGA_DAEMON.ts";
+const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
 
 type Violation = {
   file: string;

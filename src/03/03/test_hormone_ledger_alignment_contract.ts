@@ -1,5 +1,5 @@
 import { HORMONE_BUFFER_CATALOG } from "@02";
-import { GENETIC_LEDGER_CATALOG } from "@03";
+import { GENETIC_LEDGER_CATALOG } from "@generated";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

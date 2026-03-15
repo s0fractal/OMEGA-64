@@ -1,5 +1,4 @@
-import { GLYPH_TELEMETRY } from "@06";
-import { GRID_W } from "@generated";
+import { GLYPH_TELEMETRY } from "@generated";
 import { STATE_MATRIX, wasmMemory } from "@generated";
 
 const main = async () => {
@@ -19,7 +18,8 @@ const main = async () => {
     return GLYPH_TELEMETRY.snapshot();
   };
 
-  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
+  STATE_MATRIX.glyphHeaders.fill(0);
+  STATE_MATRIX.glyphPayload.fill(0);
 
   GLYPH_TELEMETRY.depositPheromone(920, 30, 120);
   const pheromoneSnapshot = GLYPH_TELEMETRY.snapshot();
@@ -70,7 +70,8 @@ const main = async () => {
     );
   }
 
-  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
+  STATE_MATRIX.glyphHeaders.fill(0);
+  STATE_MATRIX.glyphPayload.fill(0);
   STATE_MATRIX.signalGrid.fill(0);
   STATE_MATRIX.memoryGrid.fill(0);
 
@@ -115,7 +116,8 @@ const main = async () => {
     );
   }
 
-  STATE_MATRIX.glyphHeaders.fill(0); STATE_MATRIX.glyphPayload.fill(0);
+  STATE_MATRIX.glyphHeaders.fill(0);
+  STATE_MATRIX.glyphPayload.fill(0);
   GLYPH_TELEMETRY.beginInternalAtomEmissionTick();
   GLYPH_TELEMETRY.emitAtomPheromone(
     200,

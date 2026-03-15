@@ -1,13 +1,9 @@
-import { GRID_W, GRID_H, SCALE } from "@generated";
+import { GRID_H, GRID_W, SCALE } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
-
 import { LOGGER } from "@generated";
-
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
-import { PRNG } from "../00/PRNG.ts";
-
 import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
-import { GLYPH_TELEMETRY } from "@06";
+import { GLYPH_TELEMETRY } from "@generated";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
@@ -1175,7 +1171,9 @@ const applyIntent = async (intent: ControlIntent): Promise<boolean> => {
     case "plasmid":
       return applyPlasmidIntent(intent);
     case "snapshot_import": {
-      const result = delegate ? await delegate.importSnapshot(intent.timestamp) : { success: false };
+      const result = delegate
+        ? await delegate.importSnapshot(intent.timestamp)
+        : { success: false };
       return result.success === true;
     }
   }

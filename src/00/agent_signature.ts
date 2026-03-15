@@ -1,7 +1,16 @@
 // OMEGA-64 | agent_signature.ts
 // Legacy Compliance Shims - Proposal Signatures
 
-import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_ed25519_private, import_ed25519_public, import_hmac, sha256_hex, stable_stringify } from "@generated";
+import {
+  bytes_to_base64,
+  bytes_to_hex,
+  hex_to_bytes,
+  import_ed25519_private,
+  import_ed25519_public,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
+} from "@generated";
 import { REJECTION } from "@generated";
 import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "@generated";
 
@@ -66,7 +75,9 @@ export const AGENT_SIGNATURE = {
       return bytes_to_hex(new Uint8Array(sig));
     }
     if (signingKey.scheme === "ed25519/v1") {
-      const key = await import_ed25519_private(signingKey.private_key_pkcs8_b64);
+      const key = await import_ed25519_private(
+        signingKey.private_key_pkcs8_b64,
+      );
       const sig = await crypto.subtle.sign("Ed25519", key, payload);
       return bytes_to_hex(new Uint8Array(sig));
     }

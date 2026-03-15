@@ -1,6 +1,6 @@
 const SYSTEM_START_PATH = "src/07/02/SYSTEM_START.ts";
 const CONTROL_QUEUE_PATH = "src/03/CONTROL_INTENT_QUEUE.ts";
-const TELEMETRY_PATH = "src/06/MUTATION_TELEMETRY.ts";
+const TELEMETRY_PATH = "src/_/06/MUTATION_TELEMETRY.ts";
 
 type Violation = {
   file: string;

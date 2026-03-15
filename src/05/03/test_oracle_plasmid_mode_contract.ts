@@ -4,7 +4,7 @@ type Violation = {
 };
 
 const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
-const ORACLE_PATH = "src/05/SOVEREIGN_ORACLE.ts";
+const ORACLE_PATH = "src/_/05/SOVEREIGN_ORACLE.ts";
 
 const between = (source: string, start: string, end: string): string => {
   const startIdx = source.indexOf(start);

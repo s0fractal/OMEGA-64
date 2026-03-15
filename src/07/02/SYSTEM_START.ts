@@ -1,34 +1,52 @@
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
-import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
+import {
+  applyLedgerUpdate,
+  createGeneticLedgerRuntime,
+  createLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+} from "@07/02/03/mod.ts";
+import {
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  type LedgerPersistenceSummary,
+  recordFromApply,
+  recordFromRollback,
+} from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_CELLS, GRID_H, GRID_W } from "@generated";
 
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
 
-import { PULSE, type ReplicationHybridState, setPulseGovernanceDelegate, setHormoneGovernanceDelegate, setHormoneRuntimeGovernanceDelegate } from "@07/02/02/mod.ts";
+import {
+  PULSE,
+  type ReplicationHybridState,
+  setHormoneGovernanceDelegate,
+  setHormoneRuntimeGovernanceDelegate,
+  setPulseGovernanceDelegate,
+} from "@07/02/02/mod.ts";
 import { BREATH } from "@06";
-import { MAX_ATOMS, STATE_MATRIX } from "@07/02/00/mod.ts";
-import { SEMANTIC_MEMBRANE } from "@07/02/05/mod.ts";
-import { P2P_FEDERATION } from "@07/02/04/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@generated";
+import { SEMANTIC_MEMBRANE } from "@generated";
+import { P2P_FEDERATION } from "@generated";
 import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
-import {
-  SOVEREIGN_ORACLE,
-} from "@07/02/05/mod.ts";
-import {
-  SwarmNexus,
-  SWARM_NODE,
-  P2P_CODEC,
-} from "@07/02/04/mod.ts";
+import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
+import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02/03/mod.ts";
-import {
-  BONDS_OFFSET
-} from "@07/02/00/mod.ts";
+import { BONDS_OFFSET } from "@07/02/00/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { RUNTIME_POLICY } from "@03";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
-import { AKASHA_CODEX, compressMemory, decompressMemoryToLattice, saveEpoch, SNAP_ENGINE } from "@07/02/06/mod.ts";
+import {
+  AKASHA_CODEX,
+  compressMemory,
+  decompressMemoryToLattice,
+  saveEpoch,
+  SNAP_ENGINE,
+} from "@07/02/06/mod.ts";
 import { MUTATION_TELEMETRY } from "@07/02/06/mod.ts";
 import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
 import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
@@ -39,24 +57,47 @@ import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
 import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
 import type {
-  ReplicationHybridSnapshot,
-  ReplicationPromotionSnapshot,
-  GuardianSignalHybridSnapshot,
-  GuardianSignalPromotionSnapshot,
   ArchitectPlasmidHybridSnapshot,
   ArchitectPlasmidPromotionSnapshot,
+  GuardianSignalHybridSnapshot,
+  GuardianSignalPromotionSnapshot,
+  ReplicationHybridSnapshot,
+  ReplicationPromotionSnapshot,
 } from "@07/02/03/mod.ts";
 import { PANOPTICON_SERVER } from "@07/02/06/mod.ts";
-import { DAEMON_INGRESS_POLICY_LIMITS, type DaemonAction, type DaemonInjectEnvelope, evaluateInvariantAdmission, evaluatePlasmidPolicy, evaluatePlasmidRisk, normalizeDaemonNarrativeContext, planInvariantIngress, type PlasmidRiskProfile, snapshotDaemonIngressPolicyLimits, syncDaemonIngressMaxPheromoneIntensity, syncDaemonIngressMaxPlasmidCharge } from "@07/02/03/mod.ts";
+import {
+  DAEMON_INGRESS_POLICY_LIMITS,
+  type DaemonAction,
+  type DaemonInjectEnvelope,
+  evaluateInvariantAdmission,
+  evaluatePlasmidPolicy,
+  evaluatePlasmidRisk,
+  normalizeDaemonNarrativeContext,
+  planInvariantIngress,
+  type PlasmidRiskProfile,
+  snapshotDaemonIngressPolicyLimits,
+  syncDaemonIngressMaxPheromoneIntensity,
+  syncDaemonIngressMaxPlasmidCharge,
+} from "@07/02/03/mod.ts";
 
-
-
-setPulseGovernanceDelegate({ 
-  GATE, SOVEREIGNTY_ENGINE, CONTROL_INTENT_QUEUE, PREDICTION_MARKET, 
-  RUNTIME_POLICY, DAEMON_INGRESS_POLICY_LIMITS, applyLedgerUpdate, 
-  createLedgerRuntime, createGeneticLedgerRuntime, rollbackLedgerUpdate, 
-  snapshotLedgerRuntime, appendLedgerRecordAndMaybeCompact, getLogPath, 
-  getSnapshotPath, hydrateLedgerRuntime, recordFromApply, recordFromRollback 
+setPulseGovernanceDelegate({
+  GATE,
+  SOVEREIGNTY_ENGINE,
+  CONTROL_INTENT_QUEUE,
+  PREDICTION_MARKET,
+  RUNTIME_POLICY,
+  DAEMON_INGRESS_POLICY_LIMITS,
+  applyLedgerUpdate,
+  createLedgerRuntime,
+  createGeneticLedgerRuntime,
+  rollbackLedgerUpdate,
+  snapshotLedgerRuntime,
+  appendLedgerRecordAndMaybeCompact,
+  getLogPath,
+  getSnapshotPath,
+  hydrateLedgerRuntime,
+  recordFromApply,
+  recordFromRollback,
 });
 setHormoneGovernanceDelegate({ RUNTIME_POLICY, createLedgerRuntime });
 setHormoneRuntimeGovernanceDelegate({ RUNTIME_POLICY });
@@ -1357,7 +1398,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   if (url.pathname === "/grid") {
     const attention = STATE_MATRIX.attentionField;
-    const env = new Int32Array(attention.buffer, attention.byteOffset, attention.byteLength / 4);
+    const env = new Int32Array(
+      attention.buffer,
+      attention.byteOffset,
+      attention.byteLength / 4,
+    );
 
     const buffer = new ArrayBuffer(env.byteLength + attention.byteLength);
     const outEnv = new Int32Array(buffer, 0, env.length);
@@ -3604,20 +3649,27 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     );
   }
 
-  const isGenesisRun = Deno.args.includes("--genesis") || Deno.args.includes("--autonomous");
+  const isGenesisRun = Deno.args.includes("--genesis") ||
+    Deno.args.includes("--autonomous");
   if (isGenesisRun) {
-    LOGGER.info("🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.");
+    LOGGER.info(
+      "🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.",
+    );
     try {
       Deno.addSignalListener("SIGINT", async () => {
-        LOGGER.info("🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...");
+        LOGGER.info(
+          "🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...",
+        );
         const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
         await SNAPSHOT_ENGINE.exportSnapshot({
           tick,
           reason: "genesis_shutdown",
           prune: false,
-          retention: 0
+          retention: 0,
         });
-        LOGGER.info(`💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`);
+        LOGGER.info(
+          `💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`,
+        );
         Deno.exit(0);
       });
     } catch {
@@ -3627,27 +3679,44 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
   await syncDaemonPheromonePolicyLedgerHydration();
   await syncDaemonPlasmidPolicyLedgerHydration();
-  
+
   PULSE.setOracleDelegate({
-    setNeuralCoherence: (c: number) => { SOVEREIGN_ORACLE.neuralCoherence = c; },
+    setNeuralCoherence: (c: number) => {
+      SOVEREIGN_ORACLE.neuralCoherence = c;
+    },
     getNeuralCoherence: () => SOVEREIGN_ORACLE.neuralCoherence,
     gatherEpochTelemetry: () => SOVEREIGN_ORACLE.gatherEpochTelemetry(),
-    broadcastWhisper: (t: number, tel: any, c: number) => SOVEREIGN_ORACLE.broadcastWhisper(t, tel, c),
-    consultOracle: (idx: number, tel: any) => SOVEREIGN_ORACLE.consultOracle(idx, tel),
-    drainPendingMutations: () => SOVEREIGN_ORACLE.drainPendingMutations()
+    broadcastWhisper: (t: number, tel: any, c: number) =>
+      SOVEREIGN_ORACLE.broadcastWhisper(t, tel, c),
+    consultOracle: (idx: number, tel: any) =>
+      SOVEREIGN_ORACLE.consultOracle(idx, tel),
+    drainPendingMutations: () => SOVEREIGN_ORACLE.drainPendingMutations(),
   });
 
   PULSE.setAkashaDelegate({
     recordMutationTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
     flushMutationTelemetry: (t: number) => MUTATION_TELEMETRY.flushIfDue(t),
     compressMemory: (m: any) => compressMemory(m),
-    decompressMemoryToLattice: (m: any, p: any) => decompressMemoryToLattice(m, p),
-    saveEpoch: (m: any, t: number, l: string, p1: number, p2: number, h: string) => saveEpoch(m as any, t, l, p1, p2, h),
-    broadcastPanopticonFrame: (f: ArrayBuffer) => PANOPTICON_SERVER.broadcastBinaryFrame(f),
-    recordImmunologicalPurge: (c: number) => AKASHA_CODEX.recordImmunologicalPurge(c),
-    observePulseCodex: (t: number, p: number, g: any, s: number) => AKASHA_CODEX.observePulse(t, p, g, s),
-    saveSnap: async (t: number) => { await SNAP_ENGINE.save(t); },
-    cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r)
+    decompressMemoryToLattice: (m: any, p: any) =>
+      decompressMemoryToLattice(m, p),
+    saveEpoch: (
+      m: any,
+      t: number,
+      l: string,
+      p1: number,
+      p2: number,
+      h: string,
+    ) => saveEpoch(m as any, t, l, p1, p2, h),
+    broadcastPanopticonFrame: (f: ArrayBuffer) =>
+      PANOPTICON_SERVER.broadcastBinaryFrame(f),
+    recordImmunologicalPurge: (c: number) =>
+      AKASHA_CODEX.recordImmunologicalPurge(c),
+    observePulseCodex: (t: number, p: number, g: any, s: number) =>
+      AKASHA_CODEX.observePulse(t, p, g, s),
+    saveSnap: async (t: number) => {
+      await SNAP_ENGINE.save(t);
+    },
+    cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r),
   });
 
   const NEXUS_DAEMON = new SwarmNexus({
@@ -3666,22 +3735,26 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   });
 
   PREDICTION_MARKET.setDelegate({
-    recordMarketResolution: (t, c, f, w) => AKASHA_CODEX.recordMarketResolution(t, c, f, w),
+    recordMarketResolution: (t, c, f, w) =>
+      AKASHA_CODEX.recordMarketResolution(t, c, f, w),
   });
 
   SOVEREIGNTY_ENGINE.setDelegate({
-    recordDecreeShift: (t: number, o: string, n: string, e: number) => AKASHA_CODEX.recordDecreeShift(t, o, n, e),
+    recordDecreeShift: (t: number, o: string, n: string, e: number) =>
+      AKASHA_CODEX.recordDecreeShift(t, o, n, e),
   });
 
   P2P_FEDERATION.setUpwardDelegate({
     recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
     lookupLineageProfile: (l: string) => AKASHA_CODEX.lookupLineageProfile(l),
-    captureBehaviorFrame: (idx: number) => SEMANTIC_MEMBRANE.captureBehaviorFrame(idx),
+    captureBehaviorFrame: (idx: number) =>
+      SEMANTIC_MEMBRANE.captureBehaviorFrame(idx),
   });
 
   SOVEREIGN_ORACLE.setAkashaDelegate({
     recordTelemetry: (e: any) => MUTATION_TELEMETRY.record(e),
-    appendObserverCommentary: (t: number, ep: number, m: string) => AKASHA_CODEX.appendObserverCommentary(t, ep, m),
+    appendObserverCommentary: (t: number, ep: number, m: string) =>
+      AKASHA_CODEX.appendObserverCommentary(t, ep, m),
   });
 
   PULSE.setNoosphereDelegate({
@@ -3692,28 +3765,39 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     routeAtom: (p) => NEXUS_DAEMON.routeAtom(p),
     startNexus: () => NEXUS_DAEMON.start(),
     broadcastSyncRequest: () => NEXUS_DAEMON.broadcastSyncRequest(),
-    broadcastEpochConsensus: (t, h) => NEXUS_DAEMON.broadcastEpochConsensus(t, h),
+    broadcastEpochConsensus: (t, h) =>
+      NEXUS_DAEMON.broadcastEpochConsensus(t, h),
     getNexusStatus: () => ({
       mainnetEnabled: NEXUS_DAEMON.mainnetEnabled,
       bootstrapHubUrl: NEXUS_DAEMON.bootstrapHubUrl ?? "",
       seedNodesLength: NEXUS_DAEMON.seedNodes.length,
       localCurrentTick: NEXUS_DAEMON.localCurrentTick,
-      localTps: NEXUS_DAEMON.localTps
+      localTps: NEXUS_DAEMON.localTps,
     }),
     setNexusStatus: (s) => {
-      if (s.mainnetEnabled !== undefined) NEXUS_DAEMON.mainnetEnabled = s.mainnetEnabled;
-      if (s.bootstrapHubUrl !== undefined) NEXUS_DAEMON.bootstrapHubUrl = s.bootstrapHubUrl;
-      if (s.localCurrentTick !== undefined) NEXUS_DAEMON.localCurrentTick = s.localCurrentTick;
+      if (s.mainnetEnabled !== undefined) {
+        NEXUS_DAEMON.mainnetEnabled = s.mainnetEnabled;
+      }
+      if (s.bootstrapHubUrl !== undefined) {
+        NEXUS_DAEMON.bootstrapHubUrl = s.bootstrapHubUrl;
+      }
+      if (s.localCurrentTick !== undefined) {
+        NEXUS_DAEMON.localCurrentTick = s.localCurrentTick;
+      }
       if (s.localTps !== undefined) NEXUS_DAEMON.localTps = s.localTps;
     },
-    getMedianSwarmTick: (t) => NEXUS_DAEMON.getMedianSwarmTick(t)
+    getMedianSwarmTick: (t) => NEXUS_DAEMON.getMedianSwarmTick(t),
   });
 
   await PULSE.initWorkers();
 
   let lastOracleTick = 0;
-  const intervalArg = Deno.args.find(a => a.startsWith("--genesis-interval="));
-  const genesisInterval = intervalArg ? Number(intervalArg.split("=")[1]) : 10000;
+  const intervalArg = Deno.args.find((a) =>
+    a.startsWith("--genesis-interval=")
+  );
+  const genesisInterval = intervalArg
+    ? Number(intervalArg.split("=")[1])
+    : 10000;
 
   // Phase 48: Eschaton Trackers
   let stagnantTicks = 0;
@@ -3723,11 +3807,11 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   while (true) {
     await PULSE.tick();
     const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
-    
+
     if (tick % 100 === 0) {
       LINEAGE_TRACKER.updateMetrics(tick);
     }
-    
+
     await flushDaemonAuditEffects(tick);
     await maybeAutoSnapshot(tick);
     if (
@@ -3752,7 +3836,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (isGenesisRun && tick - lastOracleTick >= genesisInterval) {
       const epoch = Math.floor(tick / genesisInterval);
       const metrics = collectRuntimeMetrics();
-      const { dominantMeme, destructiveMeme } = LINEAGE_TRACKER.closeEpoch(tick);
+      const { dominantMeme, destructiveMeme } = LINEAGE_TRACKER.closeEpoch(
+        tick,
+      );
       const telemetry = {
         epoch,
         population: metrics.population,
@@ -3760,20 +3846,24 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         neuralCoherence: metrics.neuralCoherence,
         entropyPressure: STATE_MATRIX.getHormone(0),
         dominantMeme,
-        destructiveMeme
+        destructiveMeme,
       };
 
       // Phase 48 Stagnation Check
       let eschatonReason: string | null = null;
       const epochTelemetry = SOVEREIGN_ORACLE.gatherEpochTelemetry();
       const topGenome = epochTelemetry.dominant_genomes[0];
-      const isMonoculture = topGenome && (topGenome.count / Math.max(1, metrics.population)) > 0.90;
+      const isMonoculture = topGenome &&
+        (topGenome.count / Math.max(1, metrics.population)) > 0.90;
 
       if (metrics.neuralCoherence >= 10000) {
         eschatonReason = "Absolute Order (Singularity of Coherence)";
       } else if (metrics.population > 0 && isMonoculture) {
         eschatonReason = "Leviathan Victory (Absolute Monoculture)";
-      } else if (metrics.population > 0 && metrics.avgEnergy < 10 && Math.abs(metrics.population - lastPopulation) < 5) {
+      } else if (
+        metrics.population > 0 && metrics.avgEnergy < 10 &&
+        Math.abs(metrics.population - lastPopulation) < 5
+      ) {
         stagnantTicks += genesisInterval;
         if (stagnantTicks >= STAGNATION_THRESHOLD) {
           eschatonReason = "Heat Death (Energetic and Memetic Stagnation)";
@@ -3789,13 +3879,17 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         mutateUniversalConstants();
         stagnantTicks = 0;
         lastOracleTick = tick;
-        LOGGER.info("🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.");
+        LOGGER.info(
+          "🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.",
+        );
         // We do not consult the Oracle for a normal plasmid on Kalpa boundary
         continue;
       }
 
       // For testing speed: always run the first interval.
-      SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch(e => LOGGER.error("[GENESIS] Oracle Loop Failed:", e));
+      SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch((e) =>
+        LOGGER.error("[GENESIS] Oracle Loop Failed:", e)
+      );
       lastOracleTick = tick;
     }
 

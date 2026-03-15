@@ -1,6 +1,14 @@
-import { GENETIC_LEDGER_CATALOG, type GeneticLedgerEntry, type GeneticLedgerKey } from "@03";
-import { HORMONE_BUFFER_CATALOG, type HormoneId, type HormoneSpec } from "@02";
-import type { LedgerRuntimeSnapshot } from "@03";
+import {
+  GENETIC_LEDGER_CATALOG,
+  type GeneticLedgerEntry,
+  type GeneticLedgerKey,
+} from "@generated";
+import {
+  HORMONE_BUFFER_CATALOG,
+  type HormoneId,
+  type HormoneSpec,
+} from "@02/mod.ts";
+import type { LedgerRuntimeSnapshot } from "@03/mod.ts";
 
 export type PhysiologySnapshotInput = {
   tick: number;
@@ -43,7 +51,7 @@ export const capturePhysiologySnapshot = (
   ) as Record<HormoneId, HormoneSnapshot>;
 
   const ledger = Object.fromEntries(
-    GENETIC_LEDGER_CATALOG.map((entry) => {
+    GENETIC_LEDGER_CATALOG.map((entry: GeneticLedgerEntry) => {
       const snap = input.ledger[entry.key];
       const val = snap ? snap.currentValue : entry.defaultValue;
       const src = snap ? "runtime" : "policy";
