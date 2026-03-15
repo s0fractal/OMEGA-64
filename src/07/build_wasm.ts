@@ -1,20 +1,15 @@
-import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES } from "@generated";
-import { assertWasmLayout } from "@00/03/wasm_layout_guard.ts";
+import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, assert_wasm_memory_depth } from "../_/mod.ts";
 
+assert_wasm_memory_depth();
 
-if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
-  console.error(
-    `[wasm:build] Refusing build: pages=${WASM_MEMORY_PAGES} < required=${MIN_WASM_MEMORY_PAGES}`,
-  );
-  Deno.exit(1);
-}
+const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";
+const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";
 
-const artifactsDir = new URL("../../_as", import.meta.url).pathname;
+const artifactsDir = Deno.cwd() + "/" + envAsDir;
 await Deno.mkdir(artifactsDir, { recursive: true });
-await assertWasmLayout();
 
-const wasmFile = `${artifactsDir}/release.wasm`;
-const assemblyFile = `${artifactsDir}/mod.ts`;
+const wasmFile = artifactsDir + "/" + envAsName;
+const assemblyFile = artifactsDir + "/mod.ts";
 
 const args = [
   "run",

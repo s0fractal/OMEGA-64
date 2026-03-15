@@ -23,7 +23,7 @@
     "wasm:layout": "deno run -A src/wasm_layout_guard.ts",
     "build:topology": "deno run -A src/00/generate.ts",
     "ontology:build": "deno run -A src/07/build_ontology.ts",
-    "wasm:build": "deno task ontology:build && deno run -A src/00/07/build_wasm.ts",
+    "wasm:build": "deno task ontology:build && deno run -A src/07/build_wasm.ts",
     "test:resonance": "deno run -A src/05/03/test_resonance_protocol.ts",
     "test:swarm": "deno run -A src/00/03/test_swarm.ts",
     "test:tensegrity": "deno run -A src/00/03/test_tensegrity.ts",
@@ -183,7 +183,7 @@
       "src/_/05/llm_soul.ts"
     ],
     "runtime_support_files": [
-      "src/00/07/build_wasm.ts",
+      "src/07/build_wasm.ts",
       "src/04/P2P_SYNAPSE.ts",
       "src/02/RECOVERY.ts",
       "src/00/03/wasm_layout_guard.ts",
@@ -217,7 +217,7 @@
       "src/03/GENERIC_LEDGER_PERSISTENCE.ts",
       "src/03/GENERIC_LEDGER_SYSTEM.ts",
       "src/02/HORMONE_BUFFER_RUNTIME.ts",
-      "src/00/07/build_wasm.ts",
+      "src/07/build_wasm.ts",
       "src/00/03/wasm_layout_guard.ts",
       "src/07/04/REIFICATION_ACTION.ts",
       "src/06/mod.ts"

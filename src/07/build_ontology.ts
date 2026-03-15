@@ -715,7 +715,10 @@ const resolveSysPath = (id: string) => {
 };
 
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
-mainTsOut += `export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);\n`;
+mainTsOut += `const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";\n`;
+mainTsOut += `const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";\n`;
+mainTsOut += `const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;\n`;
+mainTsOut += `export const AS_WASM_PATH = new URL(wasmFile, import.meta.url.replace("src/_/mod.ts", ""));\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
