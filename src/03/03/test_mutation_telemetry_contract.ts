@@ -32,9 +32,19 @@ const main = async () => {
 
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
   const manifest = parse(manifestRaw).omega as ExportManifest;
-  const coreFiles = Array.isArray(manifest.core_entry_files)
+  const coreFilesRaw = Array.isArray(manifest.core_entry_files)
     ? manifest.core_entry_files
     : [];
+  
+  const coreFiles: string[] = [];
+  for (const name of coreFilesRaw) {
+    try {
+      coreFiles.push(await resolveSourcePath(name));
+    } catch {
+      coreFiles.push(name);
+    }
+  }
+
   if (!coreFiles.includes(TELEMETRY_PATH)) {
     violations.push({
       file: MANIFEST_PATH,

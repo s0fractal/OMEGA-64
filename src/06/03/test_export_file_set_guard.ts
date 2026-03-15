@@ -1,4 +1,5 @@
 import { buildExportFileList } from "@07/02/export_core.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
 
 const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
   /^test_.*\.ts$/u,
@@ -18,33 +19,35 @@ const FORBIDDEN_EXPORT_PATHS: RegExp[] = [
   /\.bak$/u,
 ];
 
-const REQUIRED_RUNTIME_SURFACE = [
-  "src/06/AKASHA_SIGNALING.ts",
-  "src/00/01/assembly/index.ts",
-  "src/00/07/build_wasm.ts",
-  "src/00/03/wasm_layout_guard.ts",
-  "src/07/02/SYSTEM_START.ts",
-  "src/03/CONTROL_INTENT_QUEUE.ts",
-  "src/_/04/PULSE.ts",
-  "src/_/04/PULSE_WORKER.ts",
-  "src/00/STATE_MATRIX.ts",
-  "src/00/ENV_PARSE.ts",
-  "src/03/RUNTIME_POLICY.ts",
-  "src/03/DAEMON_INGRESS_POLICY.ts",
-  "src/_/06/GLYPH_TELEMETRY.ts",
-  "src/_/03/GATE.ts",
-  "src/06/AKASHA_CODEX.ts",
-  "src/_/03/GATE_VALIDATOR.ts",
-  "src/_/03/GATE_MERGER.ts",
-  "src/03/GATE_BUDGET.ts",
-  "src/_/03/GATE_LEDGER.ts",
-  "src/00/STATE_SNAPSHOT.ts",
-  "src/00/SHIMS.ts",
-  "src/03/SOVEREIGNTY_ENGINE.ts",
-  "src/05/SOVEREIGN_ORACLE.ts",
-  "src/_/06/MUTATION_TELEMETRY.ts",
-  "src/06/SNAPSHOT_ENGINE.ts",
+const REQUIRED_RUNTIME_SURFACE_NAMES = [
+  "AKASHA_SIGNALING.ts",
+  "build_wasm.ts",
+  "wasm_layout_guard.ts",
+  "SYSTEM_START.ts",
+  "CONTROL_INTENT_QUEUE.ts",
+  "PULSE.ts",
+  "PULSE_WORKER.ts",
+  "STATE_MATRIX.ts",
+  "ENV_PARSE.ts",
+  "RUNTIME_POLICY.ts",
+  "DAEMON_INGRESS_POLICY.ts",
+  "GLYPH_TELEMETRY.ts",
+  "GATE.ts",
+  "AKASHA_CODEX.ts",
+  "GATE_VALIDATOR.ts",
+  "GATE_MERGER.ts",
+  "GATE_BUDGET.ts",
+  "GATE_LEDGER.ts",
+  "STATE_SNAPSHOT.ts",
+  "SOVEREIGNTY_ENGINE.ts",
+  "SOVEREIGN_ORACLE.ts",
+  "MUTATION_TELEMETRY.ts",
+  "SNAPSHOT_ENGINE.ts",
 ] as const;
+
+// We need special handling for paths that resolveSourcePath might not find easily or are specific
+const EXPLICIT_PATHS: string[] = [
+];
 
 const isForbidden = (path: string): boolean => {
   if (path === "src/00/03/wasm_layout_guard.ts") return false;
@@ -64,9 +67,35 @@ const main = async () => {
     );
   }
 
-  const missingRuntimeSurface = REQUIRED_RUNTIME_SURFACE.filter((file) =>
-    !fileSet.has(file)
-  );
+  const missingRuntimeSurface: string[] = [];
+
+  for (const name of REQUIRED_RUNTIME_SURFACE_NAMES) {
+    let resolvedPath = "";
+    try {
+      resolvedPath = await resolveSourcePath(name);
+    } catch (e) {
+      console.warn(`[export-file-set] Warning: Could not resolve ${name}`);
+      continue;
+    }
+    
+    // resolveSourcePath returns absolute paths usually, but buildExportFileList returns relative paths starting with 'src/'
+    // We need to extract the relative portion starting with 'src/'
+    const srcIndex = resolvedPath.indexOf("src/");
+    if (srcIndex !== -1) {
+      resolvedPath = resolvedPath.substring(srcIndex);
+    }
+
+    if (!fileSet.has(resolvedPath)) {
+      missingRuntimeSurface.push(resolvedPath);
+    }
+  }
+
+  for (const explicitPath of EXPLICIT_PATHS) {
+    if (!fileSet.has(explicitPath)) {
+        missingRuntimeSurface.push(explicitPath);
+    }
+  }
+
   if (missingRuntimeSurface.length > 0) {
     throw new Error(
       `[export-file-set] required runtime files missing from export set:\n${

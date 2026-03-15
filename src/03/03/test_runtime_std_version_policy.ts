@@ -1,4 +1,5 @@
 import { parse } from "jsr:@std/jsonc";
+import { resolveSourcePath } from "../../resolve_source.ts";
 type ExportManifest = {
   core_entry_files: string[];
   required_additional_files: string[];
@@ -29,9 +30,17 @@ const collectManifestTsFiles = async (): Promise<string[]> => {
       : []),
     ...(Array.isArray(parsed.context_files) ? parsed.context_files : []),
   ];
-  return Array.from(new Set(all)).filter(
-    (f) => f.endsWith(".ts") || f.endsWith(".tsx"),
-  );
+  const unique = Array.from(new Set(all));
+  const tsNames = unique.filter((f) => f.endsWith(".ts") || f.endsWith(".tsx"));
+  const resolved: string[] = [];
+  for (const name of tsNames) {
+    try {
+      resolved.push(await resolveSourcePath(name));
+    } catch {
+      resolved.push(name);
+    }
+  }
+  return resolved;
 };
 
 const collectViolationsForFile = async (file: string): Promise<Violation[]> => {

@@ -1,4 +1,5 @@
 import { parse } from "jsr:@std/jsonc";
+import { resolveSourcePath } from "../../resolve_source.ts";
 type ExportManifest = {
   core_entry_files: string[];
 };
@@ -19,7 +20,16 @@ const collectCoreEntryFiles = async (): Promise<string[]> => {
   if (!Array.isArray(parsed.core_entry_files)) {
     throw new Error(`[runtime-api] invalid manifest: ${MANIFEST_PATH}`);
   }
-  return parsed.core_entry_files.filter((f) => f.endsWith(".ts"));
+  const names = parsed.core_entry_files.filter((f) => f.endsWith(".ts"));
+  const resolved: string[] = [];
+  for (const name of names) {
+    try {
+      resolved.push(await resolveSourcePath(name));
+    } catch {
+      resolved.push(name);
+    }
+  }
+  return resolved;
 };
 
 const collectViolations = async (file: string): Promise<Violation[]> => {

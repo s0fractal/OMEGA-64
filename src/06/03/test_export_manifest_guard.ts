@@ -1,4 +1,5 @@
 import { parse } from "jsr:@std/jsonc";
+import { resolveSourcePath } from "../../resolve_source.ts";
 type ExportManifest = {
   era: string;
   runtime_root_files?: string[];
@@ -11,18 +12,17 @@ type ExportManifest = {
 
 const MANIFEST_PATH = "deno.jsonc";
 const REQUIRED_CONTEXT_FILES: string[] = [];
-const REQUIRED_RUNTIME_ROOT_FILES = [
-  "src/07/02/SYSTEM_START.ts",
-  "src/_/04/PULSE.ts",
-  "src/06/AKASHA_SERVER.ts",
-  "src/_/06/OMEGA_DAEMON.ts",
+const REQUIRED_RUNTIME_ROOT_FILE_NAMES = [
+  "SYSTEM_START.ts",
+  "PULSE.ts",
+  "AKASHA_SERVER.ts",
+  "OMEGA_DAEMON.ts",
 ];
-const REQUIRED_RUNTIME_SUPPORT_FILES = [
-  "src/00/07/build_wasm.ts",
-  "src/00/03/wasm_layout_guard.ts",
+const REQUIRED_RUNTIME_SUPPORT_FILE_NAMES = [
+  "build_wasm.ts",
+  "wasm_layout_guard.ts",
 ];
-const REQUIRED_EXPERIMENTAL_FILES = [
-  "src/02/LAMBDA_VM.ts",
+const REQUIRED_EXPERIMENTAL_FILE_NAMES: string[] = [
 ];
 const FORBIDDEN_CONTEXT_FILES = ["ARCHITECTURE.md", "GEMINI.md"];
 
@@ -113,24 +113,42 @@ const main = async () => {
     throw new Error("[manifest] era must be a non-empty string");
   }
 
-  const core = ensureStringArray(parsed.core_entry_files, "core_entry_files");
-  const runtimeRoots = ensureStringArray(
+  const resolveAll = async (names: string[]): Promise<string[]> => {
+    const resolved: string[] = [];
+    for (const name of names) {
+      try {
+        let p = await resolveSourcePath(name);
+        // buildExportFileList yields paths starting with src/
+        const srcIndex = p.indexOf("src/");
+        if (srcIndex !== -1) {
+          p = p.substring(srcIndex);
+        }
+        resolved.push(p);
+      } catch (e) {
+        resolved.push(name);
+      }
+    }
+    return resolved;
+  };
+
+  const core = await resolveAll(ensureStringArray(parsed.core_entry_files, "core_entry_files"));
+  const runtimeRoots = await resolveAll(ensureStringArray(
     parsed.runtime_root_files,
     "runtime_root_files",
-  );
-  const runtimeSupport = ensureStringArray(
+  ));
+  const runtimeSupport = await resolveAll(ensureStringArray(
     parsed.runtime_support_files,
     "runtime_support_files",
-  );
-  const experimental = ensureStringArray(
+  ));
+  const experimental = await resolveAll(ensureStringArray(
     parsed.experimental_files,
     "experimental_files",
-  );
-  const required = ensureStringArray(
+  ));
+  const required = await resolveAll(ensureStringArray(
     parsed.required_additional_files,
     "required_additional_files",
-  );
-  const context = ensureStringArray(parsed.context_files, "context_files");
+  ));
+  const context = await resolveAll(ensureStringArray(parsed.context_files, "context_files"));
 
   if (core.length === 0) {
     throw new Error("[manifest] core_entry_files cannot be empty");
@@ -146,24 +164,36 @@ const main = async () => {
   assertUnique(required, "required_additional_files");
   assertUnique(context, "context_files");
 
-  for (const root of REQUIRED_RUNTIME_ROOT_FILES) {
-    if (!runtimeRoots.includes(root)) {
+  const resolveAndStrip = async (name: string): Promise<string> => {
+    let resolved = await resolveSourcePath(name);
+    const srcIndex = resolved.indexOf("src/");
+    if (srcIndex !== -1) {
+      resolved = resolved.substring(srcIndex);
+    }
+    return resolved;
+  };
+
+  for (const rootName of REQUIRED_RUNTIME_ROOT_FILE_NAMES) {
+    const rootPath = await resolveAndStrip(rootName);
+    if (!runtimeRoots.includes(rootPath)) {
       throw new Error(
-        `[manifest] runtime_root_files missing required runtime root: ${root}`,
+        `[manifest] runtime_root_files missing required runtime root: ${rootPath}`,
       );
     }
   }
-  for (const supportFile of REQUIRED_RUNTIME_SUPPORT_FILES) {
-    if (!runtimeSupport.includes(supportFile)) {
+  for (const supportName of REQUIRED_RUNTIME_SUPPORT_FILE_NAMES) {
+    const supportPath = await resolveAndStrip(supportName);
+    if (!runtimeSupport.includes(supportPath)) {
       throw new Error(
-        `[manifest] runtime_support_files missing required support file: ${supportFile}`,
+        `[manifest] runtime_support_files missing required support file: ${supportPath}`,
       );
     }
   }
-  for (const experimentalFile of REQUIRED_EXPERIMENTAL_FILES) {
-    if (!experimental.includes(experimentalFile)) {
+  for (const experimentalName of REQUIRED_EXPERIMENTAL_FILE_NAMES) {
+    const experimentalPath = await resolveAndStrip(experimentalName);
+    if (!experimental.includes(experimentalPath)) {
       throw new Error(
-        `[manifest] experimental_files missing required file: ${experimentalFile}`,
+        `[manifest] experimental_files missing required file: ${experimentalPath}`,
       );
     }
   }

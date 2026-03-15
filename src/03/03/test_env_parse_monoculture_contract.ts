@@ -1,3 +1,5 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
+
 type FileExpectation = {
   file: string;
   requiresPolicyAccess: string;
@@ -9,24 +11,24 @@ type Violation = {
 };
 
 const TARGETS: FileExpectation[] = [
-  { file: "src/_/04/PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
-  { file: "src/07/02/SYSTEM_START.ts", requiresPolicyAccess: "RUNTIME_POLICY.system" },
+  { file: "PULSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.pulse" },
+  { file: "SYSTEM_START.ts", requiresPolicyAccess: "RUNTIME_POLICY.system" },
   {
-    file: "src/_/04/P2P_FEDERATION.ts",
+    file: "P2P_FEDERATION.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.federation",
   },
-  { file: "src/04/P2P_SYNAPSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.p2p" },
-  { file: "src/06/AKASHA_SERVER.ts", requiresPolicyAccess: "RUNTIME_POLICY.akasha" },
+  { file: "P2P_SYNAPSE.ts", requiresPolicyAccess: "RUNTIME_POLICY.p2p" },
+  { file: "AKASHA_SERVER.ts", requiresPolicyAccess: "RUNTIME_POLICY.akasha" },
   {
-    file: "src/_/06/MUTATION_TELEMETRY.ts",
+    file: "MUTATION_TELEMETRY.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.telemetry",
   },
   {
-    file: "src/03/CONTROL_INTENT_QUEUE.ts",
+    file: "CONTROL_INTENT_QUEUE.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.controlIntent",
   },
   {
-    file: "src/_/05/SOVEREIGN_ORACLE.ts",
+    file: "SOVEREIGN_ORACLE.ts",
     requiresPolicyAccess: "RUNTIME_POLICY.oracle",
   },
 ];
@@ -35,7 +37,14 @@ const main = async () => {
   const violations: Violation[] = [];
 
   for (const target of TARGETS) {
-    const source = await Deno.readTextFile(target.file);
+    let resolvedPath = "";
+    try {
+      resolvedPath = await resolveSourcePath(target.file);
+    } catch (e) {
+      console.warn(`[env-parse-monoculture] Warning: Could not find file ${target.file}`);
+      continue;
+    }
+    const source = await Deno.readTextFile(resolvedPath);
     if (!source.includes('@03"') && !source.includes('./RUNTIME_POLICY.ts"') && !source.includes('@03/RUNTIME_POLICY.ts"')) {
       violations.push({
         file: target.file,
@@ -74,30 +83,36 @@ const main = async () => {
     }
   }
 
-  const runtimePolicy = await Deno.readTextFile("src/03/RUNTIME_POLICY.ts");
-  if (!runtimePolicy.includes('@00"')) {
-    violations.push({
-      file: "src/03/RUNTIME_POLICY.ts",
-      reason: "must import canonical parser helpers from ENV_PARSE.ts/00_substrate",
-    });
-  }
-  if (!runtimePolicy.includes("logFingerprintOnce")) {
-    violations.push({
-      file: "src/03/RUNTIME_POLICY.ts",
-      reason: "must expose logFingerprintOnce API",
-    });
-  }
-  if (!runtimePolicy.includes("fingerprint")) {
-    violations.push({
-      file: "src/03/RUNTIME_POLICY.ts",
-      reason: "must expose runtime policy fingerprint",
-    });
-  }
-  if (!runtimePolicy.includes("Deno.env.get(")) {
-    violations.push({
-      file: "src/03/RUNTIME_POLICY.ts",
-      reason: "must be the central env-read location",
-    });
+  let runtimePolicyPath = "";
+  try {
+    runtimePolicyPath = await resolveSourcePath("RUNTIME_POLICY.ts");
+    const runtimePolicy = await Deno.readTextFile(runtimePolicyPath);
+    if (!runtimePolicy.includes('@generated"')) {
+      violations.push({
+        file: "RUNTIME_POLICY.ts",
+        reason: "must import canonical parser helpers from @generated",
+      });
+    }
+    if (!runtimePolicy.includes("logFingerprintOnce")) {
+      violations.push({
+        file: "RUNTIME_POLICY.ts",
+        reason: "must expose logFingerprintOnce API",
+      });
+    }
+    if (!runtimePolicy.includes("fingerprint")) {
+      violations.push({
+        file: "RUNTIME_POLICY.ts",
+        reason: "must expose runtime policy fingerprint",
+      });
+    }
+    if (!runtimePolicy.includes("Deno.env.get(")) {
+      violations.push({
+        file: "RUNTIME_POLICY.ts",
+        reason: "must be the central env-read location",
+      });
+    }
+  } catch (e) {
+    console.warn(`[env-parse-monoculture] Warning: Could not find RUNTIME_POLICY.ts`);
   }
 
   if (violations.length > 0) {

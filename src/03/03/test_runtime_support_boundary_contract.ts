@@ -1,5 +1,6 @@
 import { parse } from "jsr:@std/jsonc";
 import { dirname, join, normalize } from "jsr:@std/path";
+import { resolveSourcePath } from "../../resolve_source.ts";
 
 type Manifest = {
   runtime_root_files: string[];
@@ -61,6 +62,18 @@ const reconstructPath = (
   return chain.reverse();
 };
 
+const resolveAll = async (names: string[]): Promise<string[]> => {
+  const resolved: string[] = [];
+  for (const name of names) {
+    try {
+      resolved.push(await resolveSourcePath(name));
+    } catch {
+      resolved.push(name);
+    }
+  }
+  return resolved;
+};
+
 const ensureStringArray = (value: unknown, field: string): string[] => {
   if (!Array.isArray(value) || value.some((x) => typeof x !== "string")) {
     throw new Error(
@@ -74,14 +87,14 @@ const main = async () => {
   const manifestRaw = await Deno.readTextFile(MANIFEST_PATH);
   const manifest = parse(manifestRaw).omega as Manifest;
 
-  const runtimeRoots = ensureStringArray(
+  const runtimeRoots = await resolveAll(ensureStringArray(
     manifest.runtime_root_files,
     "runtime_root_files",
-  );
-  const runtimeSupportFiles = ensureStringArray(
+  ));
+  const runtimeSupportFiles = await resolveAll(ensureStringArray(
     manifest.runtime_support_files,
     "runtime_support_files",
-  );
+  ));
 
   if (runtimeRoots.length === 0) {
     throw new Error(
