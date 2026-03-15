@@ -1,25 +1,12 @@
 {
-  "yaml.schemas": {
-    "./omega.schema.json": "i/*.yaml"
-  },
   "deno.enable": true,
   "deno.lint": true,
-  "deno.unstable": [],
-  "editor.defaultFormatter": "denoland.vscode-deno",
+  "deno.unstable": false,
   "editor.formatOnSave": true,
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
-  "[markdown]": {
+  "[typescriptreact]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   }
 }
