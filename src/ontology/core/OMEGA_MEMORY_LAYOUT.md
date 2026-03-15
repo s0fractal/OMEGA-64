@@ -4,23 +4,10 @@ type: memory_layout
 description: "Isomorphic topological mapping of all generic WebAssembly shared arrays"
 deps: 
   - SYSTEM_CONSTANTS
-  - SYSTEM_CONSTANTS
 vars:
   - MAX_ATOMS
   - SAFETY_BUFFER
-  - ATOM_GENOME_SIZE
-  - ATOM_INSTRUCTION_SIZE
-  - ATOM_CONTEXT_SIZE
-  - MAX_SPAWN_REQUESTS
-  - MAX_MEIOSIS_EVENTS
   - GRID_CELLS
-  - MAX_ASCENSION_STATS_RESERVED
-  - HIVE_MEMORY_SIZE
-  - HIVE_ENERGY_POOL_SIZE
-  - MAX_HORMONES
-  - SECRETION_STATS_SIZE
-  - MAX_LEDGER_EVENTS
-  - MAX_EGRESS_EVENTS
 base_offset: "SAFETY_BUFFER - 8"
 regions:
   - name: TICK_COUNTER
