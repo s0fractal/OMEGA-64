@@ -407,7 +407,19 @@ for (const node of nodes.values()) {
   // Imports for TS
   if (node.level > 0) {
     const prevLevel = formatLevel(node.level - 1);
-    const importsToPull = Array.from(new Set([...(node.vars || []), ...(node.deps || [])]));
+    
+    const depsAsSymbols = (node.deps || []).filter(dep => {
+       const depNode = nodes.get(dep);
+       if (!depNode) return true;
+       // Non-exported struct types
+       if (depNode.type === "constants" && depNode.id !== "VmProps") return false;
+       if (depNode.type === "memory_layout") return false;
+       if (depNode.type === "documentation" || depNode.type === "docs" || depNode.type === "lore") return false;
+       // We must implicitly include modules, pure_fns, enums, etc. because layers rely on them
+       return true;
+    });
+
+    const importsToPull = Array.from(new Set([...(node.vars || []), ...depsAsSymbols]));
     if (importsToPull.length > 0) {
       tsOut += `import { ${importsToPull.join(", ")} } from "@g${prevLevel}";\n`;
     }
