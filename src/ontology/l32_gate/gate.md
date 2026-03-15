@@ -9,11 +9,11 @@ min_level: 3
 ### TypeScript
 
 ```typescript
-import { GRID_H } from "../mod.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@generated";
+import { GRID_H } from "../00/SYSTEM_CONSTANTS.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@g12";
 import {
   type LedgerEvent
-} from "@generated";
+} from "@g12";
 import {
   CANON_CAUSAL_BRIDGE,
   CRYSTALLIZATION_CONFIG,
@@ -23,17 +23,17 @@ import {
   PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX,
   TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE
-} from "@generated";
+} from "@g12";
 
 import {
   validateGateProposals
-} from "@generated";
+} from "@g12";
 import {
   mergeGateProposals
-} from "@generated";
+} from "@g12";
 import {
   persistGateLedgerArtifacts
-} from "@generated";
+} from "@g12";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;

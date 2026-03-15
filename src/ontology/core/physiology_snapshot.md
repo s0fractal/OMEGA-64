@@ -22,7 +22,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import type { LedgerRuntimeSnapshot } from "@generated";
+import type { LedgerRuntimeSnapshot } from "@g12";
 
 export type PhysiologySnapshotInput = {
   tick: number;

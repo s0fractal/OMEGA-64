@@ -25,7 +25,7 @@ extra_symbols:
   - evaluateGuardianSignalPromotionDecision
 ---
 ```typescript
-import type { GuardianSignalExecutionMode } from "@generated";
+import type { GuardianSignalExecutionMode } from "@g12";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {

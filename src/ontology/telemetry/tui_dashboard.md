@@ -15,11 +15,9 @@ vars:
   - STATE_MATRIX
   - WORLD_MAX_X
   - WORLD_MAX_Y
-  - assemble
 extra_symbols:
   - TUI_DASHBOARD
 deps:
-  - AGENT_PROXY
   - LOGGER
   - PULSE
 ---

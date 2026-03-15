@@ -391,7 +391,7 @@ export const SOVEREIGN_ORACLE = {
    * Consults the LLM to dictate new bytecode for the reigning Regent.
    * Operates asynchronously to avoid blocking the PULSE lifecycle.
    */
-  consultOracle: async (regentIndex: number, telemetry: any) => {
+  consultOracle: async (regentIndex: number, telemetry: unknown) => {
     if (SOVEREIGN_ORACLE.isConsulting) return; // Prevent concurrent overlaps
     SOVEREIGN_ORACLE.isConsulting = true;
 
@@ -568,7 +568,7 @@ export const SOVEREIGN_ORACLE = {
           `👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`,
         );
       }
-    } catch (err) {
+    } catch (_err) {
       Le(`👁️ [ORACLE] Connection severed:`, err);
 
       // --- ERA 68: CACHE FALLBACK ---
@@ -616,7 +616,7 @@ export const SOVEREIGN_ORACLE = {
   /**
    * consultAutonomousOracle: Genesis mode where Oracle provides 8-byte plasmid based on world state.
    */
-  consultAutonomousOracle: async (telemetry: any) => {
+  consultAutonomousOracle: async (telemetry: unknown) => {
     if (SOVEREIGN_ORACLE.isConsulting) return;
     SOVEREIGN_ORACLE.isConsulting = true;
 
@@ -706,7 +706,7 @@ export const SOVEREIGN_ORACLE = {
    * Poll WASM for global neural coherence and broadcast it back
    * to the shared memory register so ISA_SENSE atoms can tune in.
    */
-  pollNeuralCoherence: (workerExports: any, currentTick: number) => {
+  pollNeuralCoherence: (workerExports: unknown, currentTick: number) => {
     if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
     SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
 

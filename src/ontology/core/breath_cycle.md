@@ -12,20 +12,20 @@ min_level: 6
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@g12";
 import {
   SEMANTIC_MEMBRANE
-} from "@generated";
+} from "@g12";
 import {
   LLM_SYNAPSE
-} from "@generated";
+} from "@g12";
 import {
   AUDIT_ENGINE
-} from "@generated";
+} from "@g12";
 
 import {
   AKASHA_CODEX
-} from "@generated";
+} from "@g12";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 

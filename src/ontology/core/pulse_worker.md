@@ -2,13 +2,6 @@
 id: PULSE_WORKER
 type: module
 description: Implementation of PULSE_WORKER
-deps:
-  - GENERIC_LEDGER_PERSISTENCE
-  - GENERIC_LEDGER_SYSTEM
-  - HORMONE_BUFFER
-  - HORMONE_BUFFER_RUNTIME
-  - LOGGER
-  - STATE_MATRIX
 min_level: 13
 vars:
   - BONDS_OFFSET
@@ -24,12 +17,7 @@ vars:
   - LEDGER_DATA_OFFSET
   - LEDGER_HEAD_OFFSET
   - LINEAGE_OFFSET
-  - LOGGER
   - LOGIC_OFFSET
-  - Ld
-  - Le
-  - Li
-  - Lw
   - MAILBOX_OFFSET
   - MAX_ATOMS
   - MAX_LEDGER_EVENTS
@@ -40,7 +28,6 @@ vars:
   - SPATIAL_CELL_SIZE
   - SPATIAL_GRID_OFFSET
   - SPAWN_REQUESTS_OFFSET
-  - STATE_MATRIX
   - STRUCTURE_BUILD_OWNER_OFFSET
   - STRUCTURE_BUILD_VALUE_OFFSET
   - STRUCTURE_GRID_OFFSET
@@ -96,6 +83,8 @@ const resolveWithPhase = (
   // Return "intensity" = |z|
   return Math.floor(Math.sqrt(real * real + imag * imag));
 };
+
+const _noop = (..._args: any[]) => {};
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: ((idx: number) => void) | null = null;
 let tick_environment_fn: ((tick: number) => void) | null = null;
@@ -178,7 +167,7 @@ function handle_syscall(atomIdx: number) {
   const r2 = contextI32View[regBase + 2];
   const r3 = contextI32View[regBase + 3];
 
-  Ld(
+  _noop(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
 
@@ -250,7 +239,7 @@ function handle_syscall(atomIdx: number) {
   const currentEnergy = Atomics.load(energiesView, atomIdx);
   if (currentEnergy < gasCost * 1000) {
     // Out of Gas for this syscall
-    Ld(
+    _noop(
       `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
         currentEnergy / 1000
       })`,
@@ -272,7 +261,7 @@ function handle_syscall(atomIdx: number) {
       ) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
       );
       contextI32View[regBase] = val; // Return value in R0
@@ -280,7 +269,7 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_WRITE_MEM: {
       const gx = r1, gy = r2, newVal = r3;
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
@@ -347,13 +336,13 @@ function handle_syscall(atomIdx: number) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
         Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
             (newValue & 0xFF).toString(16)
           }`,
         );
       } else {
-        Ld(
+        _noop(
           `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
         );
       }
@@ -367,7 +356,7 @@ function handle_syscall(atomIdx: number) {
         // Simple 1-deep mailbox per atom
         Atomics.store(mailboxView, targetIdx * 2, msgType);
         Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
         );
       }
@@ -388,7 +377,7 @@ function handle_syscall(atomIdx: number) {
         if (msgType !== 0) {
           Atomics.store(mailboxView, atomIdx * 2, 0);
           Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          Ld(
+          _noop(
             `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
           );
         }
@@ -408,7 +397,7 @@ function handle_syscall(atomIdx: number) {
             if (senderEnergy >= scaledAmount) {
               Atomics.sub(energiesView, atomIdx, scaledAmount);
               Atomics.add(energiesView, targetIdx, scaledAmount);
-              Ld(
+              _noop(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
               );
             }
@@ -449,7 +438,7 @@ function handle_syscall(atomIdx: number) {
                         atomIdx,
                       ); // Store host atomIdx in Context Reg 12
                     }
-                    Ld(
+                    _noop(
                       `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
                     );
                     break;
@@ -466,7 +455,7 @@ function handle_syscall(atomIdx: number) {
                   if (takeAmount > 0) {
                     Atomics.sub(energiesView, targetIdx, takeAmount);
                     Atomics.add(energiesView, atomIdx, takeAmount);
-                    Ld(
+                    _noop(
                       `   [SYSCALL] Atom ${atomIdx} STOLE ${
                         takeAmount / 1000
                       } Energy from Atom ${targetIdx}`,
@@ -491,7 +480,7 @@ function handle_syscall(atomIdx: number) {
             if (senderResonance >= amount) {
               Atomics.sub(resonancesView, atomIdx, amount);
               Atomics.add(resonancesView, targetIdx, amount);
-              Ld(
+              _noop(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
               );
             }
@@ -544,11 +533,11 @@ function handle_syscall(atomIdx: number) {
           idsView[targetIdx] = BigInt(targetIdx + 1);
         }
 
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
         );
       } else {
-        Ld(
+        _noop(
           `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
         );
       }
@@ -571,7 +560,7 @@ function handle_syscall(atomIdx: number) {
         Atomics.store(ledgerDataView, base + 2, r1);
         Atomics.store(ledgerDataView, base + 3, r2);
 
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
         );
       }
@@ -639,11 +628,11 @@ function handle_syscall(atomIdx: number) {
               }
             }
           }
-          Ld(
+          _noop(
             `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
           );
         } else {
-          Ld(
+          _noop(
             `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
           );
         }
@@ -675,7 +664,7 @@ function handle_syscall(atomIdx: number) {
         if (dxStr !== 0 || dyStr !== 0) {
           let nx = ox + dxStr * SPATIAL_CELL_SIZE;
           let ny = oy + dyStr * SPATIAL_CELL_SIZE;
-          Ld(
+          _noop(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
@@ -701,7 +690,7 @@ function handle_syscall(atomIdx: number) {
             }
           }
 
-          Ld(
+          _noop(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
 
@@ -767,7 +756,7 @@ function handle_syscall(atomIdx: number) {
           atomIdx,
         });
         // Syscall intercept verification
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
             Math.floor(currentTheta)
           }, AtomPhase=${atomPhase}).`,
@@ -782,7 +771,7 @@ function handle_syscall(atomIdx: number) {
       const packed = (epochPhase & 0xFFFF) |
         ((Math.floor(currentTheta) & 0xFFFF) << 16);
       contextI32View![regBase] = packed;
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
           Math.floor(currentTheta)
         })`,
@@ -790,7 +779,7 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     default:
-      Ld(
+      _noop(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
       );
       break;
@@ -843,7 +832,7 @@ const maybeDelay = async () => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
-    const { buffer, marketBuffer, wasmMemory, workerIndex } = e.data;
+    const { buffer, marketBuffer, wasmMemory, workerIndex, wasmPath } = e.data;
     sharedBuffer = buffer;
     if (marketBuffer) {
       marketState = new Int32Array(marketBuffer, 0, 1);
@@ -919,12 +908,12 @@ const maybeDelay = async () => {
       });
       return;
     }
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
       const wasmRes = await fetch(
-        AS_WASM_PATH.href,
+        wasmPath,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (
@@ -937,12 +926,12 @@ const maybeDelay = async () => {
         if (op === 0xDD) {
           const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
           const epoch = Math.floor(tick / 10000);
-          Li(
+          _noop(
             `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
           );
           return;
         }
-        Ld(
+        _noop(
           `   [WASM_TRACE] Atom ${idx} executed ${
             op.toString(16)
           } | Pos: (${gx},${gy}) | target: ${target}`,
@@ -954,7 +943,7 @@ const maybeDelay = async () => {
         },
         env: {
           memory: wasmMemory,
-          abort: (msg: any) => Le("   [WASM ABORT]:", msg),
+          abort: (msg: any) => _noop("   [WASM ABORT]:", msg),
           trace_atom: traceAtom,
         },
       });
@@ -988,7 +977,7 @@ const maybeDelay = async () => {
         .accumulate_metabolism_stats as any;
       apply_metabolism_kernel_fn = wasmInstance.exports
         .apply_metabolism_kernel as any;
-      Li("   [WORKER] WASM Instantiated successfully.");
+      _noop("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       (self as unknown as Worker).postMessage({ type: "READY" });
       const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
@@ -1000,7 +989,7 @@ const maybeDelay = async () => {
         workerIndex: Number(workerIndex),
       });
     } catch (err) {
-      Le("   [WORKER] WASM LOAD ERROR:", err);
+      _noop("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
@@ -1017,7 +1006,7 @@ const maybeDelay = async () => {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId +
         "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
       Atomics.load(syncStateView, 0),
@@ -1025,7 +1014,7 @@ const maybeDelay = async () => {
     let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
       if (stuckCycles++ > 100) {
-        Lw(
+        _noop(
           "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
           Atomics.load(syncStateView, 0),
         );
@@ -1038,7 +1027,7 @@ const maybeDelay = async () => {
       }
     }
 
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
@@ -1053,7 +1042,7 @@ const maybeDelay = async () => {
         execute_atom_fn(i);
         const afterX11 = Atomics.load(xsView!, 11);
         if (beforeX11 !== afterX11) {
-          Ld(
+          _noop(
             `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
           );
         }
@@ -1063,17 +1052,17 @@ const maybeDelay = async () => {
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
-          Ld(
+          _noop(
             `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
           );
         }
       }
     } catch (err) {
-      Le("   [WORKER EXECUTION ERROR]", err);
+      _noop("   [WORKER EXECUTION ERROR]", err);
     }
 
     await maybeDelay();
-    Ld("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
+    _noop("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
     (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
   }
 
@@ -1104,7 +1093,7 @@ const maybeDelay = async () => {
       BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
-    Ld(
+    _noop(
       `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
         bH[2 * 4]
       }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
@@ -1119,7 +1108,7 @@ const maybeDelay = async () => {
   }
 
   if (type === "RESOLVE_BONDS") {
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
@@ -1127,14 +1116,14 @@ const maybeDelay = async () => {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
       const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
-      Li(`[DEBUG-WORKER] WASM resolve returned ${count}`);
+      _noop(`[DEBUG-WORKER] WASM resolve returned ${count}`);
       (self as unknown as Worker).postMessage({
         type: "RESOLVE_BONDS_DONE",
         count,
         pulseId: e.data.pulseId,
       });
     } catch (err) {
-      Le(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
+      _noop(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
     }
   }
 

@@ -16,8 +16,8 @@ extra_symbols:
   - evaluateReplicationPromotionAction
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@generated";
-import type { ReplicationPromotionDecision } from "@generated";
+import type { ReplicationExecutionMode } from "@g12";
+import type { ReplicationPromotionDecision } from "@g12";
 
 export type ReplicationPromotionActionInput = {
   currentMode: ReplicationExecutionMode;

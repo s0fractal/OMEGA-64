@@ -1,0 +1,4892 @@
+{
+  "version": 1,
+  "diagnostics": [
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/00/read_jsonl.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 73,
+          "bytePos": 145
+        },
+        "end": {
+          "line": 3,
+          "col": 76,
+          "bytePos": 148
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 35,
+          "bytePos": 115
+        },
+        "end": {
+          "line": 2,
+          "col": 51,
+          "bytePos": 131
+        }
+      },
+      "message": "`ATOM_GENOME_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `ATOM_GENOME_SIZE as _ATOM_GENOME_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 53,
+          "bytePos": 133
+        },
+        "end": {
+          "line": 2,
+          "col": 74,
+          "bytePos": 154
+        }
+      },
+      "message": "`ATOM_INSTRUCTION_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `ATOM_INSTRUCTION_SIZE as _ATOM_INSTRUCTION_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 76,
+          "bytePos": 156
+        },
+        "end": {
+          "line": 2,
+          "col": 93,
+          "bytePos": 173
+        }
+      },
+      "message": "`ATOM_CONTEXT_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `ATOM_CONTEXT_SIZE as _ATOM_CONTEXT_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 95,
+          "bytePos": 175
+        },
+        "end": {
+          "line": 2,
+          "col": 113,
+          "bytePos": 193
+        }
+      },
+      "message": "`MAX_SPAWN_REQUESTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_SPAWN_REQUESTS as _MAX_SPAWN_REQUESTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 115,
+          "bytePos": 195
+        },
+        "end": {
+          "line": 2,
+          "col": 133,
+          "bytePos": 213
+        }
+      },
+      "message": "`MAX_MEIOSIS_EVENTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_MEIOSIS_EVENTS as _MAX_MEIOSIS_EVENTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 147,
+          "bytePos": 227
+        },
+        "end": {
+          "line": 2,
+          "col": 175,
+          "bytePos": 255
+        }
+      },
+      "message": "`MAX_ASCENSION_STATS_RESERVED` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_ASCENSION_STATS_RESERVED as _MAX_ASCENSION_STATS_RESERVED`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 177,
+          "bytePos": 257
+        },
+        "end": {
+          "line": 2,
+          "col": 193,
+          "bytePos": 273
+        }
+      },
+      "message": "`HIVE_MEMORY_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HIVE_MEMORY_SIZE as _HIVE_MEMORY_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 195,
+          "bytePos": 275
+        },
+        "end": {
+          "line": 2,
+          "col": 216,
+          "bytePos": 296
+        }
+      },
+      "message": "`HIVE_ENERGY_POOL_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HIVE_ENERGY_POOL_SIZE as _HIVE_ENERGY_POOL_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 218,
+          "bytePos": 298
+        },
+        "end": {
+          "line": 2,
+          "col": 230,
+          "bytePos": 310
+        }
+      },
+      "message": "`MAX_HORMONES` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_HORMONES as _MAX_HORMONES`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 232,
+          "bytePos": 312
+        },
+        "end": {
+          "line": 2,
+          "col": 252,
+          "bytePos": 332
+        }
+      },
+      "message": "`SECRETION_STATS_SIZE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SECRETION_STATS_SIZE as _SECRETION_STATS_SIZE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 254,
+          "bytePos": 334
+        },
+        "end": {
+          "line": 2,
+          "col": 271,
+          "bytePos": 351
+        }
+      },
+      "message": "`MAX_LEDGER_EVENTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_LEDGER_EVENTS as _MAX_LEDGER_EVENTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 273,
+          "bytePos": 353
+        },
+        "end": {
+          "line": 2,
+          "col": 290,
+          "bytePos": 370
+        }
+      },
+      "message": "`MAX_EGRESS_EVENTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `MAX_EGRESS_EVENTS as _MAX_EGRESS_EVENTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 292,
+          "bytePos": 372
+        },
+        "end": {
+          "line": 2,
+          "col": 308,
+          "bytePos": 388
+        }
+      },
+      "message": "`SYSTEM_CONSTANTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SYSTEM_CONSTANTS as _SYSTEM_CONSTANTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/RUNTIME_POLICY.ts",
+      "range": {
+        "start": {
+          "line": 23,
+          "col": 9,
+          "bytePos": 825
+        },
+        "end": {
+          "line": 23,
+          "col": 11,
+          "bytePos": 827
+        }
+      },
+      "message": "`Li` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `Li as _Li`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/RUNTIME_POLICY.ts",
+      "range": {
+        "start": {
+          "line": 646,
+          "col": 31,
+          "bytePos": 21433
+        },
+        "end": {
+          "line": 646,
+          "col": 34,
+          "bytePos": 21436
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/RUNTIME_POLICY.ts",
+      "range": {
+        "start": {
+          "line": 881,
+          "col": 23,
+          "bytePos": 31135
+        },
+        "end": {
+          "line": 881,
+          "col": 38,
+          "bytePos": 31150
+        }
+      },
+      "message": "`context` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_context`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/memory_views.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 20,
+          "bytePos": 95
+        },
+        "end": {
+          "line": 2,
+          "col": 25,
+          "bytePos": 100
+        }
+      },
+      "message": "`SCALE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SCALE as _SCALE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/memory_views.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 944,
+          "bytePos": 1019
+        },
+        "end": {
+          "line": 2,
+          "col": 960,
+          "bytePos": 1035
+        }
+      },
+      "message": "`SYSTEM_CONSTANTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SYSTEM_CONSTANTS as _SYSTEM_CONSTANTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/02/memory_views.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 962,
+          "bytePos": 1037
+        },
+        "end": {
+          "line": 2,
+          "col": 981,
+          "bytePos": 1056
+        }
+      },
+      "message": "`OMEGA_MEMORY_LAYOUT` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `OMEGA_MEMORY_LAYOUT as _OMEGA_MEMORY_LAYOUT`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 107,
+          "bytePos": 213
+        },
+        "end": {
+          "line": 4,
+          "col": 113,
+          "bytePos": 219
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+      "range": {
+        "start": {
+          "line": 316,
+          "col": 35,
+          "bytePos": 10322
+        },
+        "end": {
+          "line": 316,
+          "col": 38,
+          "bytePos": 10325
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+      "range": {
+        "start": {
+          "line": 381,
+          "col": 32,
+          "bytePos": 12580
+        },
+        "end": {
+          "line": 381,
+          "col": 35,
+          "bytePos": 12583
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+      "range": {
+        "start": {
+          "line": 386,
+          "col": 10,
+          "bytePos": 12741
+        },
+        "end": {
+          "line": 386,
+          "col": 19,
+          "bytePos": 12750
+        }
+      },
+      "message": "`viralGrid` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_viralGrid`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+      "range": {
+        "start": {
+          "line": 436,
+          "col": 29,
+          "bytePos": 14497
+        },
+        "end": {
+          "line": 436,
+          "col": 32,
+          "bytePos": 14500
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE_MERGER.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 96,
+          "bytePos": 173
+        },
+        "end": {
+          "line": 3,
+          "col": 102,
+          "bytePos": 179
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE_MERGER.ts",
+      "range": {
+        "start": {
+          "line": 96,
+          "col": 10,
+          "bytePos": 2711
+        },
+        "end": {
+          "line": 96,
+          "col": 20,
+          "bytePos": 2721
+        }
+      },
+      "message": "`agentPhase` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_agentPhase`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/GATE_MERGER.ts",
+      "range": {
+        "start": {
+          "line": 98,
+          "col": 12,
+          "bytePos": 2791
+        },
+        "end": {
+          "line": 98,
+          "col": 22,
+          "bytePos": 2801
+        }
+      },
+      "message": "`levelPhase` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_levelPhase`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 63,
+          "bytePos": 138
+        },
+        "end": {
+          "line": 2,
+          "col": 69,
+          "bytePos": 144
+        }
+      },
+      "message": "`GRID_H` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GRID_H as _GRID_H`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 71,
+          "bytePos": 146
+        },
+        "end": {
+          "line": 2,
+          "col": 77,
+          "bytePos": 152
+        }
+      },
+      "message": "`GRID_W` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GRID_W as _GRID_W`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 1031,
+          "bytePos": 1106
+        },
+        "end": {
+          "line": 2,
+          "col": 1043,
+          "bytePos": 1118
+        }
+      },
+      "message": "`memory_views` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `memory_views as _memory_views`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 1045,
+          "bytePos": 1120
+        },
+        "end": {
+          "line": 2,
+          "col": 1061,
+          "bytePos": 1136
+        }
+      },
+      "message": "`SYSTEM_CONSTANTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SYSTEM_CONSTANTS as _SYSTEM_CONSTANTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 1063,
+          "bytePos": 1138
+        },
+        "end": {
+          "line": 2,
+          "col": 1070,
+          "bytePos": 1145
+        }
+      },
+      "message": "`VmProps` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `VmProps as _VmProps`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 1072,
+          "bytePos": 1147
+        },
+        "end": {
+          "line": 2,
+          "col": 1081,
+          "bytePos": 1156
+        }
+      },
+      "message": "`VmOpcodes` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `VmOpcodes as _VmOpcodes`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 1083,
+          "bytePos": 1158
+        },
+        "end": {
+          "line": 2,
+          "col": 1088,
+          "bytePos": 1163
+        }
+      },
+      "message": "`VmSys` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `VmSys as _VmSys`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+      "range": {
+        "start": {
+          "line": 6,
+          "col": 50,
+          "bytePos": 228
+        },
+        "end": {
+          "line": 6,
+          "col": 56,
+          "bytePos": 234
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+      "range": {
+        "start": {
+          "line": 9,
+          "col": 41,
+          "bytePos": 443
+        },
+        "end": {
+          "line": 9,
+          "col": 44,
+          "bytePos": 446
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+      "range": {
+        "start": {
+          "line": 10,
+          "col": 37,
+          "bytePos": 485
+        },
+        "end": {
+          "line": 10,
+          "col": 40,
+          "bytePos": 488
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+      "range": {
+        "start": {
+          "line": 138,
+          "col": 27,
+          "bytePos": 4608
+        },
+        "end": {
+          "line": 138,
+          "col": 42,
+          "bytePos": 4623
+        }
+      },
+      "message": "`pulseId` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_pulseId`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+      "range": {
+        "start": {
+          "line": 220,
+          "col": 18,
+          "bytePos": 7513
+        },
+        "end": {
+          "line": 220,
+          "col": 21,
+          "bytePos": 7516
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/BOOTSTRAP_HUB.ts",
+      "range": {
+        "start": {
+          "line": 5,
+          "col": 26,
+          "bytePos": 237
+        },
+        "end": {
+          "line": 5,
+          "col": 51,
+          "bytePos": 262
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/BOOTSTRAP_HUB.ts",
+      "range": {
+        "start": {
+          "line": 5,
+          "col": 26,
+          "bytePos": 237
+        },
+        "end": {
+          "line": 5,
+          "col": 51,
+          "bytePos": 262
+        }
+      },
+      "message": "Missing version in specifier",
+      "code": "no-unversioned-import",
+      "hint": "Add a version requirement after the package name"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/BOOTSTRAP_HUB.ts",
+      "range": {
+        "start": {
+          "line": 77,
+          "col": 20,
+          "bytePos": 2103
+        },
+        "end": {
+          "line": 77,
+          "col": 22,
+          "bytePos": 2105
+        }
+      },
+      "message": "Empty block statement",
+      "code": "no-empty",
+      "hint": "Add code or comment to the empty block"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/BOOTSTRAP_HUB.ts",
+      "range": {
+        "start": {
+          "line": 120,
+          "col": 22,
+          "bytePos": 3295
+        },
+        "end": {
+          "line": 120,
+          "col": 23,
+          "bytePos": 3296
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/P2P_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 32,
+          "bytePos": 145
+        },
+        "end": {
+          "line": 4,
+          "col": 54,
+          "bytePos": 167
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/P2P_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 5,
+          "col": 9,
+          "bytePos": 178
+        },
+        "end": {
+          "line": 5,
+          "col": 15,
+          "bytePos": 184
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/SEMANTIC_MEMBRANE.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 9,
+          "bytePos": 92
+        },
+        "end": {
+          "line": 3,
+          "col": 15,
+          "bytePos": 98
+        }
+      },
+      "message": "`GRID_W` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GRID_W as _GRID_W`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/SEMANTIC_MEMBRANE.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 17,
+          "bytePos": 100
+        },
+        "end": {
+          "line": 3,
+          "col": 23,
+          "bytePos": 106
+        }
+      },
+      "message": "`GRID_H` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GRID_H as _GRID_H`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/05/SEMANTIC_MEMBRANE.ts",
+      "range": {
+        "start": {
+          "line": 483,
+          "col": 10,
+          "bytePos": 15803
+        },
+        "end": {
+          "line": 483,
+          "col": 16,
+          "bytePos": 15809
+        }
+      },
+      "message": "`GRID_H` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_GRID_H`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/BREATH.ts",
+      "range": {
+        "start": {
+          "line": 6,
+          "col": 23,
+          "bytePos": 227
+        },
+        "end": {
+          "line": 6,
+          "col": 29,
+          "bytePos": 233
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/BREATH.ts",
+      "range": {
+        "start": {
+          "line": 20,
+          "col": 6,
+          "bytePos": 450
+        },
+        "end": {
+          "line": 20,
+          "col": 15,
+          "bytePos": 459
+        }
+      },
+      "message": "`PULSE_LOG` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_PULSE_LOG`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/CONTINUUM.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 21,
+          "bytePos": 135
+        },
+        "end": {
+          "line": 4,
+          "col": 64,
+          "bytePos": 178
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/CONTINUUM.ts",
+      "range": {
+        "start": {
+          "line": 5,
+          "col": 26,
+          "bytePos": 206
+        },
+        "end": {
+          "line": 5,
+          "col": 74,
+          "bytePos": 254
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/EXPORT_CORE.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 22,
+          "bytePos": 95
+        },
+        "end": {
+          "line": 3,
+          "col": 38,
+          "bytePos": 111
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/EXPORT_CORE.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 22,
+          "bytePos": 95
+        },
+        "end": {
+          "line": 3,
+          "col": 38,
+          "bytePos": 111
+        }
+      },
+      "message": "Missing version in specifier",
+      "code": "no-unversioned-import",
+      "hint": "Add a version requirement after the package name"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/EXPORT_CORE.ts",
+      "range": {
+        "start": {
+          "line": 14,
+          "col": 37,
+          "bytePos": 583
+        },
+        "end": {
+          "line": 14,
+          "col": 40,
+          "bytePos": 586
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/EXPORT_CORE.ts",
+      "range": {
+        "start": {
+          "line": 151,
+          "col": 47,
+          "bytePos": 4189
+        },
+        "end": {
+          "line": 151,
+          "col": 50,
+          "bytePos": 4192
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/GLYPH_TELEMETRY.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 9,
+          "bytePos": 91
+        },
+        "end": {
+          "line": 3,
+          "col": 19,
+          "bytePos": 101
+        }
+      },
+      "message": "`GRID_CELLS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GRID_CELLS as _GRID_CELLS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/GLYPH_TELEMETRY.ts",
+      "range": {
+        "start": {
+          "line": 8,
+          "col": 6,
+          "bytePos": 306
+        },
+        "end": {
+          "line": 8,
+          "col": 25,
+          "bytePos": 325
+        }
+      },
+      "message": "`GLYPH_AMPLITUDE_MAX` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_GLYPH_AMPLITUDE_MAX`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 3,
+          "col": 22,
+          "bytePos": 104
+        },
+        "end": {
+          "line": 3,
+          "col": 68,
+          "bytePos": 150
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 7,
+          "col": 7,
+          "bytePos": 220
+        },
+        "end": {
+          "line": 7,
+          "col": 29,
+          "bytePos": 242
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 22,
+          "col": 19,
+          "bytePos": 698
+        },
+        "end": {
+          "line": 22,
+          "col": 22,
+          "bytePos": 701
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 112,
+          "col": 52,
+          "bytePos": 3645
+        },
+        "end": {
+          "line": 112,
+          "col": 55,
+          "bytePos": 3648
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 153,
+          "col": 11,
+          "bytePos": 4738
+        },
+        "end": {
+          "line": 153,
+          "col": 12,
+          "bytePos": 4739
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 247,
+          "col": 13,
+          "bytePos": 8066
+        },
+        "end": {
+          "line": 247,
+          "col": 14,
+          "bytePos": 8067
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 269,
+          "col": 13,
+          "bytePos": 8774
+        },
+        "end": {
+          "line": 269,
+          "col": 14,
+          "bytePos": 8775
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 276,
+          "col": 16,
+          "bytePos": 8967
+        },
+        "end": {
+          "line": 276,
+          "col": 19,
+          "bytePos": 8970
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 277,
+          "col": 21,
+          "bytePos": 9029
+        },
+        "end": {
+          "line": 277,
+          "col": 24,
+          "bytePos": 9032
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SOVEREIGNTY_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 16,
+          "col": 37,
+          "bytePos": 427
+        },
+        "end": {
+          "line": 16,
+          "col": 40,
+          "bytePos": 430
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SOVEREIGNTY_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 39,
+          "col": 33,
+          "bytePos": 939
+        },
+        "end": {
+          "line": 39,
+          "col": 36,
+          "bytePos": 942
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/SOVEREIGNTY_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 139,
+          "col": 8,
+          "bytePos": 4179
+        },
+        "end": {
+          "line": 139,
+          "col": 22,
+          "bytePos": 4193
+        }
+      },
+      "message": "`dominantPrefix` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_dominantPrefix`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/assert_wasm_memory_depth.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 51,
+          "bytePos": 131
+        },
+        "end": {
+          "line": 2,
+          "col": 67,
+          "bytePos": 147
+        }
+      },
+      "message": "`SYSTEM_CONSTANTS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SYSTEM_CONSTANTS as _SYSTEM_CONSTANTS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/assert_wasm_memory_depth.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 69,
+          "bytePos": 149
+        },
+        "end": {
+          "line": 2,
+          "col": 88,
+          "bytePos": 168
+        }
+      },
+      "message": "`OMEGA_MEMORY_LAYOUT` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `OMEGA_MEMORY_LAYOUT as _OMEGA_MEMORY_LAYOUT`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/06/get_glyph_kind.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 34,
+          "bytePos": 109
+        },
+        "end": {
+          "line": 2,
+          "col": 45,
+          "bytePos": 120
+        }
+      },
+      "message": "`GLYPH_TYPES` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GLYPH_TYPES as _GLYPH_TYPES`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/AVATAR_BOT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 84
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 90
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/AVATAR_BOT.ts",
+      "range": {
+        "start": {
+          "line": 46,
+          "col": 37,
+          "bytePos": 1377
+        },
+        "end": {
+          "line": 46,
+          "col": 40,
+          "bytePos": 1380
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/AVATAR_BOT.ts",
+      "range": {
+        "start": {
+          "line": 71,
+          "col": 16,
+          "bytePos": 2174
+        },
+        "end": {
+          "line": 71,
+          "col": 19,
+          "bytePos": 2177
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 19,
+          "bytePos": 96
+        },
+        "end": {
+          "line": 2,
+          "col": 25,
+          "bytePos": 102
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 24,
+          "col": 6,
+          "bytePos": 635
+        },
+        "end": {
+          "line": 24,
+          "col": 17,
+          "bytePos": 646
+        }
+      },
+      "message": "`idx` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_idx`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 25,
+          "col": 6,
+          "bytePos": 654
+        },
+        "end": {
+          "line": 25,
+          "col": 16,
+          "bytePos": 664
+        }
+      },
+      "message": "`op` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_op`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 26,
+          "col": 6,
+          "bytePos": 672
+        },
+        "end": {
+          "line": 26,
+          "col": 16,
+          "bytePos": 682
+        }
+      },
+      "message": "`gx` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_gx`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 27,
+          "col": 6,
+          "bytePos": 690
+        },
+        "end": {
+          "line": 27,
+          "col": 16,
+          "bytePos": 700
+        }
+      },
+      "message": "`gy` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_gy`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 28,
+          "col": 6,
+          "bytePos": 708
+        },
+        "end": {
+          "line": 28,
+          "col": 20,
+          "bytePos": 722
+        }
+      },
+      "message": "`target` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_target`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 37,
+          "col": 21,
+          "bytePos": 961
+        },
+        "end": {
+          "line": 37,
+          "col": 24,
+          "bytePos": 964
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+      "range": {
+        "start": {
+          "line": 54,
+          "col": 49,
+          "bytePos": 1437
+        },
+        "end": {
+          "line": 54,
+          "col": 52,
+          "bytePos": 1440
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/DRIFT_WARDEN.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 54,
+          "bytePos": 127
+        },
+        "end": {
+          "line": 2,
+          "col": 60,
+          "bytePos": 133
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/GENESIS_INCEPTOR.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 27,
+          "bytePos": 108
+        },
+        "end": {
+          "line": 2,
+          "col": 33,
+          "bytePos": 114
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 85
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 91
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 51,
+          "col": 13,
+          "bytePos": 1680
+        },
+        "end": {
+          "line": 51,
+          "col": 18,
+          "bytePos": 1685
+        }
+      },
+      "message": "`error` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_error`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 238,
+          "col": 18,
+          "bytePos": 8534
+        },
+        "end": {
+          "line": 238,
+          "col": 21,
+          "bytePos": 8537
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 271,
+          "col": 15,
+          "bytePos": 9639
+        },
+        "end": {
+          "line": 271,
+          "col": 18,
+          "bytePos": 9642
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 278,
+          "col": 44,
+          "bytePos": 9974
+        },
+        "end": {
+          "line": 278,
+          "col": 47,
+          "bytePos": 9977
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 327,
+          "col": 18,
+          "bytePos": 12038
+        },
+        "end": {
+          "line": 327,
+          "col": 21,
+          "bytePos": 12041
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 343,
+          "col": 13,
+          "bytePos": 12545
+        },
+        "end": {
+          "line": 343,
+          "col": 14,
+          "bytePos": 12546
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 356,
+          "col": 15,
+          "bytePos": 12911
+        },
+        "end": {
+          "line": 356,
+          "col": 18,
+          "bytePos": 12914
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+      "range": {
+        "start": {
+          "line": 415,
+          "col": 13,
+          "bytePos": 15409
+        },
+        "end": {
+          "line": 415,
+          "col": 14,
+          "bytePos": 15410
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/QUORUM_ADVOCATE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 85
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 91
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/RELIC_CULTIVATION.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 19,
+          "bytePos": 97
+        },
+        "end": {
+          "line": 2,
+          "col": 25,
+          "bytePos": 103
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SNAP_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 29,
+          "bytePos": 101
+        },
+        "end": {
+          "line": 2,
+          "col": 35,
+          "bytePos": 107
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SNAP_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 21,
+          "bytePos": 171
+        },
+        "end": {
+          "line": 4,
+          "col": 64,
+          "bytePos": 214
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SWARM_NEXUS.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 82
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 88
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SWARM_NEXUS.ts",
+      "range": {
+        "start": {
+          "line": 78,
+          "col": 17,
+          "bytePos": 2645
+        },
+        "end": {
+          "line": 78,
+          "col": 18,
+          "bytePos": 2646
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SWARM_NEXUS.ts",
+      "range": {
+        "start": {
+          "line": 94,
+          "col": 32,
+          "bytePos": 3181
+        },
+        "end": {
+          "line": 94,
+          "col": 35,
+          "bytePos": 3184
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SWARM_NEXUS.ts",
+      "range": {
+        "start": {
+          "line": 307,
+          "col": 30,
+          "bytePos": 9414
+        },
+        "end": {
+          "line": 307,
+          "col": 33,
+          "bytePos": 9417
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/SWARM_NODE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 81
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 87
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/disassembler.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 82
+        },
+        "end": {
+          "line": 2,
+          "col": 25,
+          "bytePos": 98
+        }
+      },
+      "message": "`OPCODE_ARITY_LUT` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `OPCODE_ARITY_LUT as _OPCODE_ARITY_LUT`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/glyph_ir_64.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 218,
+          "bytePos": 290
+        },
+        "end": {
+          "line": 2,
+          "col": 229,
+          "bytePos": 301
+        }
+      },
+      "message": "`GLYPH_TYPES` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GLYPH_TYPES as _GLYPH_TYPES`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 82
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 88
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 52,
+          "col": 34,
+          "bytePos": 1983
+        },
+        "end": {
+          "line": 52,
+          "col": 37,
+          "bytePos": 1986
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 52,
+          "col": 47,
+          "bytePos": 1996
+        },
+        "end": {
+          "line": 52,
+          "col": 50,
+          "bytePos": 1999
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 52,
+          "col": 63,
+          "bytePos": 2012
+        },
+        "end": {
+          "line": 52,
+          "col": 66,
+          "bytePos": 2015
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 92,
+          "col": 14,
+          "bytePos": 3195
+        },
+        "end": {
+          "line": 92,
+          "col": 17,
+          "bytePos": 3198
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 116,
+          "col": 20,
+          "bytePos": 3817
+        },
+        "end": {
+          "line": 116,
+          "col": 23,
+          "bytePos": 3820
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 132,
+          "col": 46,
+          "bytePos": 4382
+        },
+        "end": {
+          "line": 132,
+          "col": 49,
+          "bytePos": 4385
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+      "range": {
+        "start": {
+          "line": 165,
+          "col": 16,
+          "bytePos": 5418
+        },
+        "end": {
+          "line": 165,
+          "col": 19,
+          "bytePos": 5421
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_PROXY.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 85
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 91
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_PROXY.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 96,
+          "bytePos": 172
+        },
+        "end": {
+          "line": 2,
+          "col": 105,
+          "bytePos": 181
+        }
+      },
+      "message": "`assembler` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `assembler as _assembler`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_PROXY.ts",
+      "range": {
+        "start": {
+          "line": 57,
+          "col": 19,
+          "bytePos": 1479
+        },
+        "end": {
+          "line": 57,
+          "col": 22,
+          "bytePos": 1482
+        }
+      },
+      "message": "`req` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_req`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_PROXY.ts",
+      "range": {
+        "start": {
+          "line": 60,
+          "col": 47,
+          "bytePos": 1594
+        },
+        "end": {
+          "line": 60,
+          "col": 50,
+          "bytePos": 1597
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 54,
+          "bytePos": 132
+        },
+        "end": {
+          "line": 2,
+          "col": 65,
+          "bytePos": 143
+        }
+      },
+      "message": "`crypto_keys` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `crypto_keys as _crypto_keys`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 97,
+          "bytePos": 175
+        },
+        "end": {
+          "line": 2,
+          "col": 111,
+          "bytePos": 189
+        }
+      },
+      "message": "`STATE_SNAPSHOT` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `STATE_SNAPSHOT as _STATE_SNAPSHOT`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 7,
+          "col": 44,
+          "bytePos": 320
+        },
+        "end": {
+          "line": 7,
+          "col": 47,
+          "bytePos": 323
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 11,
+          "col": 25,
+          "bytePos": 460
+        },
+        "end": {
+          "line": 11,
+          "col": 28,
+          "bytePos": 463
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 28,
+          "col": 34,
+          "bytePos": 982
+        },
+        "end": {
+          "line": 28,
+          "col": 37,
+          "bytePos": 985
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 55,
+          "col": 14,
+          "bytePos": 1706
+        },
+        "end": {
+          "line": 55,
+          "col": 17,
+          "bytePos": 1709
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 56,
+          "col": 16,
+          "bytePos": 1727
+        },
+        "end": {
+          "line": 56,
+          "col": 19,
+          "bytePos": 1730
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 75,
+          "col": 14,
+          "bytePos": 2464
+        },
+        "end": {
+          "line": 75,
+          "col": 17,
+          "bytePos": 2467
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 76,
+          "col": 15,
+          "bytePos": 2484
+        },
+        "end": {
+          "line": 76,
+          "col": 18,
+          "bytePos": 2487
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_CODEX.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 50,
+          "bytePos": 127
+        },
+        "end": {
+          "line": 2,
+          "col": 56,
+          "bytePos": 133
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 35,
+          "bytePos": 171
+        },
+        "end": {
+          "line": 4,
+          "col": 57,
+          "bytePos": 193
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 24,
+          "col": 4,
+          "bytePos": 896
+        },
+        "end": {
+          "line": 24,
+          "col": 11,
+          "bytePos": 903
+        }
+      },
+      "message": "`clients` is never reassigned",
+      "code": "prefer-const",
+      "hint": "Use `const` instead"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 537,
+          "col": 15,
+          "bytePos": 15278
+        },
+        "end": {
+          "line": 537,
+          "col": 18,
+          "bytePos": 15281
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 550,
+          "col": 53,
+          "bytePos": 15759
+        },
+        "end": {
+          "line": 550,
+          "col": 56,
+          "bytePos": 15762
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 568,
+          "col": 19,
+          "bytePos": 16513
+        },
+        "end": {
+          "line": 568,
+          "col": 20,
+          "bytePos": 16514
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 600,
+          "col": 2,
+          "bytePos": 17292
+        },
+        "end": {
+          "line": 609,
+          "col": 3,
+          "bytePos": 17635
+        }
+      },
+      "message": "Move function declaration to module root",
+      "code": "no-inner-declarations",
+      "hint": "Move the declaration up into the correct scope"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 613,
+          "col": 19,
+          "bytePos": 17691
+        },
+        "end": {
+          "line": 613,
+          "col": 24,
+          "bytePos": 17696
+        }
+      },
+      "message": "Async arrow function has no 'await' expression or 'await using' declaration.",
+      "code": "require-await",
+      "hint": "Remove 'async' keyword from the function or use 'await' expression or 'await using' declaration inside."
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 716,
+          "col": 22,
+          "bytePos": 20922
+        },
+        "end": {
+          "line": 716,
+          "col": 23,
+          "bytePos": 20923
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 42,
+          "bytePos": 123
+        },
+        "end": {
+          "line": 2,
+          "col": 48,
+          "bytePos": 129
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 257,
+          "col": 6,
+          "bytePos": 6356
+        },
+        "end": {
+          "line": 257,
+          "col": 28,
+          "bytePos": 6378
+        }
+      },
+      "message": "`parseRuleGenomeProfile` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_parseRuleGenomeProfile`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 315,
+          "col": 6,
+          "bytePos": 8027
+        },
+        "end": {
+          "line": 315,
+          "col": 31,
+          "bytePos": 8052
+        }
+      },
+      "message": "`parseLocalBehaviorContext` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_parseLocalBehaviorContext`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 351,
+          "col": 6,
+          "bytePos": 9276
+        },
+        "end": {
+          "line": 351,
+          "col": 28,
+          "bytePos": 9298
+        }
+      },
+      "message": "`parseLocalCodexContext` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_parseLocalCodexContext`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 1223,
+          "col": 36,
+          "bytePos": 34677
+        },
+        "end": {
+          "line": 1223,
+          "col": 39,
+          "bytePos": 34680
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 1224,
+          "col": 50,
+          "bytePos": 34732
+        },
+        "end": {
+          "line": 1224,
+          "col": 53,
+          "bytePos": 34735
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 1225,
+          "col": 52,
+          "bytePos": 34789
+        },
+        "end": {
+          "line": 1225,
+          "col": 55,
+          "bytePos": 34792
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 1226,
+          "col": 44,
+          "bytePos": 34838
+        },
+        "end": {
+          "line": 1226,
+          "col": 47,
+          "bytePos": 34841
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+      "range": {
+        "start": {
+          "line": 1227,
+          "col": 46,
+          "bytePos": 34889
+        },
+        "end": {
+          "line": 1227,
+          "col": 49,
+          "bytePos": 34892
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CRYSTALLIZATION_CONFIG.ts",
+      "range": {
+        "start": {
+          "line": 53,
+          "col": 18,
+          "bytePos": 1903
+        },
+        "end": {
+          "line": 53,
+          "col": 21,
+          "bytePos": 1906
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CRYSTALLIZATION_CONFIG.ts",
+      "range": {
+        "start": {
+          "line": 54,
+          "col": 18,
+          "bytePos": 1941
+        },
+        "end": {
+          "line": 54,
+          "col": 21,
+          "bytePos": 1944
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CRYSTALLIZATION_CONFIG.ts",
+      "range": {
+        "start": {
+          "line": 56,
+          "col": 18,
+          "bytePos": 2024
+        },
+        "end": {
+          "line": 56,
+          "col": 21,
+          "bytePos": 2027
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/CRYSTALLIZATION_CONFIG.ts",
+      "range": {
+        "start": {
+          "line": 57,
+          "col": 18,
+          "bytePos": 2059
+        },
+        "end": {
+          "line": 57,
+          "col": 21,
+          "bytePos": 2062
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/INVARIANT_PACKET.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 86,
+          "bytePos": 165
+        },
+        "end": {
+          "line": 2,
+          "col": 97,
+          "bytePos": 176
+        }
+      },
+      "message": "`crypto_keys` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `crypto_keys as _crypto_keys`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/INVARIANT_PACKET.ts",
+      "range": {
+        "start": {
+          "line": 226,
+          "col": 12,
+          "bytePos": 6965
+        },
+        "end": {
+          "line": 226,
+          "col": 15,
+          "bytePos": 6968
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/INVARIANT_PACKET.ts",
+      "range": {
+        "start": {
+          "line": 244,
+          "col": 5,
+          "bytePos": 7791
+        },
+        "end": {
+          "line": 244,
+          "col": 8,
+          "bytePos": 7794
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/MUTATION_TELEMETRY.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 93
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 99
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/OPCODE_TO_GLYPH.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 277,
+          "bytePos": 357
+        },
+        "end": {
+          "line": 2,
+          "col": 288,
+          "bytePos": 368
+        }
+      },
+      "message": "`glyph_ir_64` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `glyph_ir_64 as _glyph_ir_64`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/TOPOLOGICAL_SIGNATURE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 110,
+          "bytePos": 187
+        },
+        "end": {
+          "line": 2,
+          "col": 120,
+          "bytePos": 197
+        }
+      },
+      "message": "`sha256_hex` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `sha256_hex as _sha256_hex`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 124,
+          "col": 22,
+          "bytePos": 3720
+        },
+        "end": {
+          "line": 124,
+          "col": 25,
+          "bytePos": 3723
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 124,
+          "col": 37,
+          "bytePos": 3735
+        },
+        "end": {
+          "line": 124,
+          "col": 40,
+          "bytePos": 3738
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 149,
+          "col": 32,
+          "bytePos": 4620
+        },
+        "end": {
+          "line": 149,
+          "col": 35,
+          "bytePos": 4623
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 150,
+          "col": 16,
+          "bytePos": 4653
+        },
+        "end": {
+          "line": 150,
+          "col": 19,
+          "bytePos": 4656
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 156,
+          "col": 43,
+          "bytePos": 4843
+        },
+        "end": {
+          "line": 156,
+          "col": 46,
+          "bytePos": 4846
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 157,
+          "col": 15,
+          "bytePos": 4875
+        },
+        "end": {
+          "line": 157,
+          "col": 18,
+          "bytePos": 4878
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 165,
+          "col": 55,
+          "bytePos": 5125
+        },
+        "end": {
+          "line": 165,
+          "col": 58,
+          "bytePos": 5128
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+      "range": {
+        "start": {
+          "line": 166,
+          "col": 17,
+          "bytePos": 5159
+        },
+        "end": {
+          "line": 166,
+          "col": 20,
+          "bytePos": 5162
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/glyph_pretty.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 24,
+          "bytePos": 97
+        },
+        "end": {
+          "line": 2,
+          "col": 35,
+          "bytePos": 108
+        }
+      },
+      "message": "`glyph_ir_64` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `glyph_ir_64 as _glyph_ir_64`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/glyph_pretty.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 37,
+          "bytePos": 110
+        },
+        "end": {
+          "line": 2,
+          "col": 49,
+          "bytePos": 122
+        }
+      },
+      "message": "`disassembler` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `disassembler as _disassembler`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/ledger_chain.ts",
+      "range": {
+        "start": {
+          "line": 124,
+          "col": 24,
+          "bytePos": 3580
+        },
+        "end": {
+          "line": 124,
+          "col": 27,
+          "bytePos": 3583
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/ledger_chain.ts",
+      "range": {
+        "start": {
+          "line": 146,
+          "col": 49,
+          "bytePos": 4388
+        },
+        "end": {
+          "line": 146,
+          "col": 52,
+          "bytePos": 4391
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/ledger_chain.ts",
+      "range": {
+        "start": {
+          "line": 149,
+          "col": 46,
+          "bytePos": 4504
+        },
+        "end": {
+          "line": 149,
+          "col": 49,
+          "bytePos": 4507
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/08/ledger_chain.ts",
+      "range": {
+        "start": {
+          "line": 393,
+          "col": 39,
+          "bytePos": 12437
+        },
+        "end": {
+          "line": 393,
+          "col": 42,
+          "bytePos": 12440
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/GENERIC_LEDGER_SYSTEM.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 34,
+          "bytePos": 116
+        },
+        "end": {
+          "line": 2,
+          "col": 48,
+          "bytePos": 130
+        }
+      },
+      "message": "`GENETIC_LEDGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENETIC_LEDGER as _GENETIC_LEDGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/LINEAGE_TRACKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 85
+        },
+        "end": {
+          "line": 2,
+          "col": 21,
+          "bytePos": 97
+        }
+      },
+      "message": "`AKASHA_CODEX` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `AKASHA_CODEX as _AKASHA_CODEX`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/LINEAGE_TRACKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 23,
+          "bytePos": 99
+        },
+        "end": {
+          "line": 2,
+          "col": 29,
+          "bytePos": 105
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/LINEAGE_TRACKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 35,
+          "bytePos": 111
+        },
+        "end": {
+          "line": 2,
+          "col": 47,
+          "bytePos": 123
+        }
+      },
+      "message": "`STATE_MATRIX` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `STATE_MATRIX as _STATE_MATRIX`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/LINEAGE_TRACKER.ts",
+      "range": {
+        "start": {
+          "line": 31,
+          "col": 29,
+          "bytePos": 1192
+        },
+        "end": {
+          "line": 31,
+          "col": 33,
+          "bytePos": 1196
+        }
+      },
+      "message": "`hash` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_hash`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 23,
+          "bytePos": 105
+        },
+        "end": {
+          "line": 2,
+          "col": 29,
+          "bytePos": 111
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 5,
+          "col": 6,
+          "bytePos": 214
+        },
+        "end": {
+          "line": 5,
+          "col": 9,
+          "bytePos": 217
+        }
+      },
+      "message": "`FPS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_FPS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 76,
+          "col": 24,
+          "bytePos": 2268
+        },
+        "end": {
+          "line": 76,
+          "col": 27,
+          "bytePos": 2271
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 77,
+          "col": 18,
+          "bytePos": 2332
+        },
+        "end": {
+          "line": 77,
+          "col": 21,
+          "bytePos": 2335
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 77,
+          "col": 26,
+          "bytePos": 2340
+        },
+        "end": {
+          "line": 77,
+          "col": 29,
+          "bytePos": 2343
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 78,
+          "col": 21,
+          "bytePos": 2407
+        },
+        "end": {
+          "line": 78,
+          "col": 24,
+          "bytePos": 2410
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 91,
+          "col": 19,
+          "bytePos": 2784
+        },
+        "end": {
+          "line": 91,
+          "col": 20,
+          "bytePos": 2785
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+      "range": {
+        "start": {
+          "line": 106,
+          "col": 17,
+          "bytePos": 3123
+        },
+        "end": {
+          "line": 106,
+          "col": 18,
+          "bytePos": 3124
+        }
+      },
+      "message": "`e` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_e`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/SNAPSHOT_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 85
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "bytePos": 91
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/SNAPSHOT_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 64,
+          "col": 22,
+          "bytePos": 2325
+        },
+        "end": {
+          "line": 64,
+          "col": 25,
+          "bytePos": 2328
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/09/SNAPSHOT_ENGINE.ts",
+      "range": {
+        "start": {
+          "line": 157,
+          "col": 18,
+          "bytePos": 5345
+        },
+        "end": {
+          "line": 157,
+          "col": 21,
+          "bytePos": 5348
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 56,
+          "bytePos": 143
+        },
+        "end": {
+          "line": 2,
+          "col": 75,
+          "bytePos": 162
+        }
+      },
+      "message": "`createLedgerRuntime` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `createLedgerRuntime as _createLedgerRuntime`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 122,
+          "bytePos": 209
+        },
+        "end": {
+          "line": 2,
+          "col": 143,
+          "bytePos": 230
+        }
+      },
+      "message": "`GENERIC_LEDGER_SYSTEM` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENERIC_LEDGER_SYSTEM as _GENERIC_LEDGER_SYSTEM`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/10/HORMONE_BUFFER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 30,
+          "bytePos": 105
+        },
+        "end": {
+          "line": 2,
+          "col": 51,
+          "bytePos": 126
+        }
+      },
+      "message": "`GENERIC_LEDGER_SYSTEM` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENERIC_LEDGER_SYSTEM as _GENERIC_LEDGER_SYSTEM`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/11/HORMONE_BUFFER_RUNTIME.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 92
+        },
+        "end": {
+          "line": 2,
+          "col": 23,
+          "bytePos": 106
+        }
+      },
+      "message": "`HORMONE_BUFFER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HORMONE_BUFFER as _HORMONE_BUFFER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/11/PHYSIOLOGY_SNAPSHOT.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 57,
+          "bytePos": 137
+        },
+        "end": {
+          "line": 2,
+          "col": 71,
+          "bytePos": 151
+        }
+      },
+      "message": "`HORMONE_BUFFER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HORMONE_BUFFER as _HORMONE_BUFFER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/12/GATE_BUDGET.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 9,
+          "bytePos": 81
+        },
+        "end": {
+          "line": 2,
+          "col": 31,
+          "bytePos": 103
+        }
+      },
+      "message": "`CRYSTALLIZATION_CONFIG` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `CRYSTALLIZATION_CONFIG as _CRYSTALLIZATION_CONFIG`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/12/GATE_BUDGET.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 33,
+          "bytePos": 105
+        },
+        "end": {
+          "line": 2,
+          "col": 44,
+          "bytePos": 116
+        }
+      },
+      "message": "`GATE_MERGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GATE_MERGER as _GATE_MERGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/12/GATE_BUDGET.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 46,
+          "bytePos": 118
+        },
+        "end": {
+          "line": 2,
+          "col": 60,
+          "bytePos": 132
+        }
+      },
+      "message": "`GATE_VALIDATOR` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GATE_VALIDATOR as _GATE_VALIDATOR`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 148,
+          "bytePos": 914
+        },
+        "end": {
+          "line": 4,
+          "col": 169,
+          "bytePos": 935
+        }
+      },
+      "message": "`GENERIC_LEDGER_SYSTEM` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENERIC_LEDGER_SYSTEM as _GENERIC_LEDGER_SYSTEM`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 320,
+          "bytePos": 1086
+        },
+        "end": {
+          "line": 4,
+          "col": 336,
+          "bytePos": 1102
+        }
+      },
+      "message": "`REIFIED_PROGRAMS` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `REIFIED_PROGRAMS as _REIFIED_PROGRAMS`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 4,
+          "col": 435,
+          "bytePos": 1201
+        },
+        "end": {
+          "line": 4,
+          "col": 454,
+          "bytePos": 1220
+        }
+      },
+      "message": "`createLedgerRuntime` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `createLedgerRuntime as _createLedgerRuntime`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 11,
+          "col": 26,
+          "bytePos": 1498
+        },
+        "end": {
+          "line": 11,
+          "col": 29,
+          "bytePos": 1501
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 12,
+          "col": 44,
+          "bytePos": 1547
+        },
+        "end": {
+          "line": 12,
+          "col": 47,
+          "bytePos": 1550
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 13,
+          "col": 46,
+          "bytePos": 1624
+        },
+        "end": {
+          "line": 13,
+          "col": 49,
+          "bytePos": 1627
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 38,
+          "col": 55,
+          "bytePos": 2416
+        },
+        "end": {
+          "line": 38,
+          "col": 58,
+          "bytePos": 2419
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 148,
+          "col": 6,
+          "bytePos": 6919
+        },
+        "end": {
+          "line": 148,
+          "col": 16,
+          "bytePos": 6929
+        }
+      },
+      "message": "`CACHE_WASM` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_CACHE_WASM`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 403,
+          "col": 38,
+          "bytePos": 14899
+        },
+        "end": {
+          "line": 403,
+          "col": 41,
+          "bytePos": 14902
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 523,
+          "col": 6,
+          "bytePos": 18708
+        },
+        "end": {
+          "line": 523,
+          "col": 39,
+          "bytePos": 18741
+        }
+      },
+      "message": "`resetSpatialHashStateForColdStart` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_resetSpatialHashStateForColdStart`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 894,
+          "col": 6,
+          "bytePos": 31800
+        },
+        "end": {
+          "line": 894,
+          "col": 33,
+          "bytePos": 31827
+        }
+      },
+      "message": "`syncGenericLedgersHydration` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_syncGenericLedgersHydration`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 982,
+          "col": 28,
+          "bytePos": 34854
+        },
+        "end": {
+          "line": 982,
+          "col": 31,
+          "bytePos": 34857
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1153,
+          "col": 6,
+          "bytePos": 39065
+        },
+        "end": {
+          "line": 1153,
+          "col": 19,
+          "bytePos": 39078
+        }
+      },
+      "message": "`deriveChildId` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_deriveChildId`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1170,
+          "col": 6,
+          "bytePos": 39598
+        },
+        "end": {
+          "line": 1170,
+          "col": 22,
+          "bytePos": 39614
+        }
+      },
+      "message": "`findNextFreeSlot` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_findNextFreeSlot`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1180,
+          "col": 6,
+          "bytePos": 39907
+        },
+        "end": {
+          "line": 1180,
+          "col": 22,
+          "bytePos": 39923
+        }
+      },
+      "message": "`hasGenomeResidue` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_hasGenomeResidue`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1426,
+          "col": 34,
+          "bytePos": 47068
+        },
+        "end": {
+          "line": 1426,
+          "col": 37,
+          "bytePos": 47071
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1547,
+          "col": 31,
+          "bytePos": 50474
+        },
+        "end": {
+          "line": 1547,
+          "col": 34,
+          "bytePos": 50477
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1801,
+          "col": 19,
+          "bytePos": 57662
+        },
+        "end": {
+          "line": 1801,
+          "col": 22,
+          "bytePos": 57665
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1809,
+          "col": 34,
+          "bytePos": 57922
+        },
+        "end": {
+          "line": 1809,
+          "col": 37,
+          "bytePos": 57925
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 1811,
+          "col": 33,
+          "bytePos": 58016
+        },
+        "end": {
+          "line": 1811,
+          "col": 36,
+          "bytePos": 58019
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 2201,
+          "col": 27,
+          "bytePos": 70497
+        },
+        "end": {
+          "line": 2201,
+          "col": 30,
+          "bytePos": 70500
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 2218,
+          "col": 27,
+          "bytePos": 71147
+        },
+        "end": {
+          "line": 2218,
+          "col": 30,
+          "bytePos": 71150
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 2691,
+          "col": 12,
+          "bytePos": 88731
+        },
+        "end": {
+          "line": 2691,
+          "col": 29,
+          "bytePos": 88748
+        }
+      },
+      "message": "`noveltyDriftRatio` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_noveltyDriftRatio`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 3071,
+          "col": 40,
+          "bytePos": 102382
+        },
+        "end": {
+          "line": 3071,
+          "col": 43,
+          "bytePos": 102385
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+      "range": {
+        "start": {
+          "line": 3431,
+          "col": 28,
+          "bytePos": 116243
+        },
+        "end": {
+          "line": 3431,
+          "col": 31,
+          "bytePos": 116246
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 211,
+          "bytePos": 284
+        },
+        "end": {
+          "line": 2,
+          "col": 217,
+          "bytePos": 290
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 341,
+          "bytePos": 414
+        },
+        "end": {
+          "line": 2,
+          "col": 346,
+          "bytePos": 419
+        }
+      },
+      "message": "`SCALE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `SCALE as _SCALE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 794,
+          "bytePos": 867
+        },
+        "end": {
+          "line": 2,
+          "col": 811,
+          "bytePos": 884
+        }
+      },
+      "message": "`WASM_MEMORY_BYTES` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `WASM_MEMORY_BYTES as _WASM_MEMORY_BYTES`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 861,
+          "bytePos": 934
+        },
+        "end": {
+          "line": 2,
+          "col": 887,
+          "bytePos": 960
+        }
+      },
+      "message": "`GENERIC_LEDGER_PERSISTENCE` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENERIC_LEDGER_PERSISTENCE as _GENERIC_LEDGER_PERSISTENCE`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 889,
+          "bytePos": 962
+        },
+        "end": {
+          "line": 2,
+          "col": 910,
+          "bytePos": 983
+        }
+      },
+      "message": "`GENERIC_LEDGER_SYSTEM` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `GENERIC_LEDGER_SYSTEM as _GENERIC_LEDGER_SYSTEM`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 912,
+          "bytePos": 985
+        },
+        "end": {
+          "line": 2,
+          "col": 926,
+          "bytePos": 999
+        }
+      },
+      "message": "`HORMONE_BUFFER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HORMONE_BUFFER as _HORMONE_BUFFER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 928,
+          "bytePos": 1001
+        },
+        "end": {
+          "line": 2,
+          "col": 950,
+          "bytePos": 1023
+        }
+      },
+      "message": "`HORMONE_BUFFER_RUNTIME` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `HORMONE_BUFFER_RUNTIME as _HORMONE_BUFFER_RUNTIME`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 25,
+          "col": 4,
+          "bytePos": 1765
+        },
+        "end": {
+          "line": 25,
+          "col": 26,
+          "bytePos": 1787
+        }
+      },
+      "message": "`tick_structure_grid_fn` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_tick_structure_grid_fn`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 397,
+          "col": 28,
+          "bytePos": 14495
+        },
+        "end": {
+          "line": 397,
+          "col": 36,
+          "bytePos": 14503
+        }
+      },
+      "message": "`flagsIdx` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_flagsIdx`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 432,
+          "col": 14,
+          "bytePos": 15748
+        },
+        "end": {
+          "line": 432,
+          "col": 28,
+          "bytePos": 15762
+        }
+      },
+      "message": "`receiverEnergy` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_receiverEnergy`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 614,
+          "col": 16,
+          "bytePos": 22179
+        },
+        "end": {
+          "line": 614,
+          "col": 31,
+          "bytePos": 22194
+        }
+      },
+      "message": "`emptySlotOffset` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_emptySlotOffset`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 764,
+          "col": 9,
+          "bytePos": 26750
+        },
+        "end": {
+          "line": 764,
+          "col": 12,
+          "bytePos": 26753
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 764,
+          "col": 36,
+          "bytePos": 26777
+        },
+        "end": {
+          "line": 764,
+          "col": 39,
+          "bytePos": 26780
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 879,
+          "col": 23,
+          "bytePos": 30442
+        },
+        "end": {
+          "line": 879,
+          "col": 26,
+          "bytePos": 30445
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 884,
+          "col": 61,
+          "bytePos": 30638
+        },
+        "end": {
+          "line": 884,
+          "col": 64,
+          "bytePos": 30641
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 885,
+          "col": 69,
+          "bytePos": 30712
+        },
+        "end": {
+          "line": 885,
+          "col": 72,
+          "bytePos": 30715
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 886,
+          "col": 59,
+          "bytePos": 30776
+        },
+        "end": {
+          "line": 886,
+          "col": 62,
+          "bytePos": 30779
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 887,
+          "col": 75,
+          "bytePos": 30856
+        },
+        "end": {
+          "line": 887,
+          "col": 78,
+          "bytePos": 30859
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 888,
+          "col": 73,
+          "bytePos": 30934
+        },
+        "end": {
+          "line": 888,
+          "col": 76,
+          "bytePos": 30937
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 890,
+          "col": 44,
+          "bytePos": 31047
+        },
+        "end": {
+          "line": 890,
+          "col": 47,
+          "bytePos": 31050
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 892,
+          "col": 44,
+          "bytePos": 31160
+        },
+        "end": {
+          "line": 892,
+          "col": 47,
+          "bytePos": 31163
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 893,
+          "col": 73,
+          "bytePos": 31238
+        },
+        "end": {
+          "line": 893,
+          "col": 76,
+          "bytePos": 31241
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 895,
+          "col": 33,
+          "bytePos": 31329
+        },
+        "end": {
+          "line": 895,
+          "col": 36,
+          "bytePos": 31332
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 897,
+          "col": 33,
+          "bytePos": 31420
+        },
+        "end": {
+          "line": 897,
+          "col": 36,
+          "bytePos": 31423
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 898,
+          "col": 72,
+          "bytePos": 31497
+        },
+        "end": {
+          "line": 898,
+          "col": 75,
+          "bytePos": 31500
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 900,
+          "col": 34,
+          "bytePos": 31590
+        },
+        "end": {
+          "line": 900,
+          "col": 37,
+          "bytePos": 31593
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 902,
+          "col": 34,
+          "bytePos": 31683
+        },
+        "end": {
+          "line": 902,
+          "col": 37,
+          "bytePos": 31686
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 904,
+          "col": 33,
+          "bytePos": 31774
+        },
+        "end": {
+          "line": 904,
+          "col": 36,
+          "bytePos": 31777
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 906,
+          "col": 31,
+          "bytePos": 31861
+        },
+        "end": {
+          "line": 906,
+          "col": 34,
+          "bytePos": 31864
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 908,
+          "col": 35,
+          "bytePos": 31956
+        },
+        "end": {
+          "line": 908,
+          "col": 38,
+          "bytePos": 31959
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 910,
+          "col": 40,
+          "bytePos": 32061
+        },
+        "end": {
+          "line": 910,
+          "col": 43,
+          "bytePos": 32064
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 912,
+          "col": 36,
+          "bytePos": 32158
+        },
+        "end": {
+          "line": 912,
+          "col": 39,
+          "bytePos": 32161
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 916,
+          "col": 12,
+          "bytePos": 32324
+        },
+        "end": {
+          "line": 916,
+          "col": 17,
+          "bytePos": 32329
+        }
+      },
+      "message": "`bview` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_bview`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 969,
+          "col": 14,
+          "bytePos": 34067
+        },
+        "end": {
+          "line": 969,
+          "col": 21,
+          "bytePos": 34074
+        }
+      },
+      "message": "`startId` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_startId`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 984,
+          "col": 14,
+          "bytePos": 34676
+        },
+        "end": {
+          "line": 984,
+          "col": 25,
+          "bytePos": 34687
+        }
+      },
+      "message": "`deltaAtomMs` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_deltaAtomMs`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 1012,
+          "col": 10,
+          "bytePos": 35516
+        },
+        "end": {
+          "line": 1012,
+          "col": 12,
+          "bytePos": 35518
+        }
+      },
+      "message": "`bH` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_bH`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 1194,
+          "col": 13,
+          "bytePos": 40314
+        },
+        "end": {
+          "line": 1194,
+          "col": 16,
+          "bytePos": 40317
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+      "range": {
+        "start": {
+          "line": 1209,
+          "col": 13,
+          "bytePos": 40843
+        },
+        "end": {
+          "line": 1209,
+          "col": 16,
+          "bytePos": 40846
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 38,
+          "bytePos": 119
+        },
+        "end": {
+          "line": 2,
+          "col": 44,
+          "bytePos": 125
+        }
+      },
+      "message": "`LOGGER` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `LOGGER as _LOGGER`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 363,
+          "col": 56,
+          "bytePos": 11734
+        },
+        "end": {
+          "line": 363,
+          "col": 59,
+          "bytePos": 11737
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 489,
+          "col": 21,
+          "bytePos": 16324
+        },
+        "end": {
+          "line": 489,
+          "col": 24,
+          "bytePos": 16327
+        }
+      },
+      "message": "`err` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, prefix it with an underscore like `_err`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 588,
+          "col": 45,
+          "bytePos": 19754
+        },
+        "end": {
+          "line": 588,
+          "col": 48,
+          "bytePos": 19757
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 643,
+          "col": 15,
+          "bytePos": 21856
+        },
+        "end": {
+          "line": 643,
+          "col": 18,
+          "bytePos": 21859
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+      "range": {
+        "start": {
+          "line": 678,
+          "col": 39,
+          "bytePos": 22936
+        },
+        "end": {
+          "line": 678,
+          "col": 42,
+          "bytePos": 22939
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/TUI_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 124,
+          "bytePos": 203
+        },
+        "end": {
+          "line": 2,
+          "col": 132,
+          "bytePos": 211
+        }
+      },
+      "message": "`assemble` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `assemble as _assemble`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/TUI_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 2,
+          "col": 134,
+          "bytePos": 213
+        },
+        "end": {
+          "line": 2,
+          "col": 145,
+          "bytePos": 224
+        }
+      },
+      "message": "`AGENT_PROXY` is never used",
+      "code": "no-unused-vars",
+      "hint": "If this is intentional, alias it with an underscore like `AGENT_PROXY as _AGENT_PROXY`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/14/TUI_DASHBOARD.ts",
+      "range": {
+        "start": {
+          "line": 16,
+          "col": 33,
+          "bytePos": 645
+        },
+        "end": {
+          "line": 16,
+          "col": 36,
+          "bytePos": 648
+        }
+      },
+      "message": "`any` type is not allowed",
+      "code": "no-explicit-any",
+      "hint": "Use a specific type other than `any`"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/tests/pack_structure_intent.test.ts",
+      "range": {
+        "start": {
+          "line": 1,
+          "col": 29,
+          "bytePos": 29
+        },
+        "end": {
+          "line": 1,
+          "col": 74,
+          "bytePos": 74
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    },
+    {
+      "filename": "file:///Users/s0fractal/OMEGA/src/_/tests/unpack_structure_charge.test.ts",
+      "range": {
+        "start": {
+          "line": 1,
+          "col": 29,
+          "bytePos": 29
+        },
+        "end": {
+          "line": 1,
+          "col": 74,
+          "bytePos": 74
+        }
+      },
+      "message": "Inline 'npm:', 'jsr:' or 'https:' dependency not allowed",
+      "code": "no-import-prefix",
+      "hint": "Add it as a dependency in a deno.json or package.json instead and reference it here via its bare specifier"
+    }
+  ],
+  "errors": [],
+  "checked_files": [
+    "/Users/s0fractal/OMEGA/src/_/00/read_jsonl.ts",
+    "/Users/s0fractal/OMEGA/src/_/01/OMEGA_MEMORY_LAYOUT.ts",
+    "/Users/s0fractal/OMEGA/src/_/02/RUNTIME_POLICY.ts",
+    "/Users/s0fractal/OMEGA/src/_/02/memory_views.ts",
+    "/Users/s0fractal/OMEGA/src/_/03/GATE.ts",
+    "/Users/s0fractal/OMEGA/src/_/03/GATE_MERGER.ts",
+    "/Users/s0fractal/OMEGA/src/_/03/STATE_MATRIX.ts",
+    "/Users/s0fractal/OMEGA/src/_/04/P2P_FEDERATION.ts",
+    "/Users/s0fractal/OMEGA/src/_/05/BOOTSTRAP_HUB.ts",
+    "/Users/s0fractal/OMEGA/src/_/05/P2P_SYNAPSE.ts",
+    "/Users/s0fractal/OMEGA/src/_/05/SEMANTIC_MEMBRANE.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/BREATH.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/CONTINUUM.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/EXPORT_CORE.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/GLYPH_TELEMETRY.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/SERVE_DASHBOARD.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/SOVEREIGNTY_ENGINE.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/assert_wasm_memory_depth.ts",
+    "/Users/s0fractal/OMEGA/src/_/06/get_glyph_kind.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/AVATAR_BOT.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/DOLL_FORK_RUNNER.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/DRIFT_WARDEN.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/GENESIS_INCEPTOR.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/LLM_SYNAPSE.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/QUORUM_ADVOCATE.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/RELIC_CULTIVATION.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/SNAP_ENGINE.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/SWARM_NEXUS.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/SWARM_NODE.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/disassembler.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/glyph_ir_64.ts",
+    "/Users/s0fractal/OMEGA/src/_/07/llm_soul.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/AGENT_PROXY.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/AGENT_SIGNATURE.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/AKASHA_CODEX.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/AKASHA_SERVER.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/CONTROL_INTENT_QUEUE.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/CRYSTALLIZATION_CONFIG.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/INVARIANT_PACKET.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/MUTATION_TELEMETRY.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/OPCODE_TO_GLYPH.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/TOPOLOGICAL_SIGNATURE.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/checkpoint_chain.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/glyph_pretty.ts",
+    "/Users/s0fractal/OMEGA/src/_/08/ledger_chain.ts",
+    "/Users/s0fractal/OMEGA/src/_/09/GENERIC_LEDGER_SYSTEM.ts",
+    "/Users/s0fractal/OMEGA/src/_/09/LINEAGE_TRACKER.ts",
+    "/Users/s0fractal/OMEGA/src/_/09/PANOPTICON_SERVER.ts",
+    "/Users/s0fractal/OMEGA/src/_/09/SNAPSHOT_ENGINE.ts",
+    "/Users/s0fractal/OMEGA/src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
+    "/Users/s0fractal/OMEGA/src/_/10/HORMONE_BUFFER.ts",
+    "/Users/s0fractal/OMEGA/src/_/11/HORMONE_BUFFER_RUNTIME.ts",
+    "/Users/s0fractal/OMEGA/src/_/11/PHYSIOLOGY_SNAPSHOT.ts",
+    "/Users/s0fractal/OMEGA/src/_/12/GATE_BUDGET.ts",
+    "/Users/s0fractal/OMEGA/src/_/13/PULSE.ts",
+    "/Users/s0fractal/OMEGA/src/_/13/PULSE_WORKER.ts",
+    "/Users/s0fractal/OMEGA/src/_/14/SOVEREIGN_ORACLE.ts",
+    "/Users/s0fractal/OMEGA/src/_/14/TUI_DASHBOARD.ts",
+    "/Users/s0fractal/OMEGA/src/_/tests/pack_structure_intent.test.ts",
+    "/Users/s0fractal/OMEGA/src/_/tests/unpack_structure_charge.test.ts"
+  ]
+}

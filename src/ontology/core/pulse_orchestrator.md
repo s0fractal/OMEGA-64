@@ -93,7 +93,11 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GENERIC_LEDGER_PERSISTENCE, GENERIC_LEDGER_SYSTEM, GLYPH_TELEMETRY, GenesisInceptor, HORMONE_BUFFER, HORMONE_BUFFER_RUNTIME, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, sharedBuffer, snapshotLedgerRuntime } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, sharedBuffer } from "../mod.ts";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
+import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
+import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
+import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 
 
@@ -175,7 +179,7 @@ const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
 import type {
   LedgerPersistenceSummary
-} from "@generated";
+} from "@g12";
 const {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -1778,6 +1782,7 @@ const startWorkers = async (count: number): Promise<void> => {
     const p = waitForWorkerInit(worker, i);
     worker.postMessage({
       type: "INIT",
+      wasmPath: AS_WASM_PATH.href,
       wasmMemory: STATE_MATRIX.wasmMemory,
       buffer: STATE_MATRIX.buffer,
       marketBuffer: PREDICTION_MARKET.buffer,

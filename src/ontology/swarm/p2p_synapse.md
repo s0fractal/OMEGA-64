@@ -11,10 +11,10 @@ min_level: 5
 
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER, Li, Le } from "@generated";
+import { LOGGER, Li, Le } from "@g12";
 import {
   RUNTIME_POLICY
-} from "@generated";
+} from "@g12";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;

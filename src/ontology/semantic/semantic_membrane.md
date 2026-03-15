@@ -8,12 +8,12 @@ min_level: 5
 
 ### TypeScript
 ```typescript
-import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "@generated";
-import { LLM_SYNAPSE } from "@generated";
+import { STATE_MATRIX } from "@g12";
+import { LLM_SYNAPSE } from "@g12";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);

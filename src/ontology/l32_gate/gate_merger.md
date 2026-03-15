@@ -8,14 +8,14 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@generated";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@g12";
 
 import {
   GATE_BUDGET
-} from "@generated";
+} from "@g12";
 import {
   STATE_MATRIX
-} from "@generated";
+} from "@g12";
 
 type I16Limits = {
   max: number;

@@ -18,7 +18,7 @@ extra_symbols:
   - evaluateReplicationPromotion
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@generated";
+import type { ReplicationExecutionMode } from "@g12";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;

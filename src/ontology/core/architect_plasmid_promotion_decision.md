@@ -22,7 +22,7 @@ extra_symbols:
   - evaluateArchitectPlasmidPromotionDecision
 ---
 ```typescript
-import type { ArchitectPlasmidExecutionMode } from "@generated";
+import type { ArchitectPlasmidExecutionMode } from "@g12";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {

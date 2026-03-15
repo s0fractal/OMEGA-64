@@ -2,8 +2,7 @@
 id: HORMONE_BUFFER_RUNTIME
 type: module
 description: Hormone Buffer Runtime Sync Logic
-deps:
-  - HORMONE_BUFFER
+deps: []
 min_level: 6
 extra_symbols:
   - HORMONE_BUFFER_RUNTIME
@@ -43,7 +42,7 @@ const clamp = (value: number, min: number, max: number): number =>
  */
 export const syncHormonesToLattice = (
   input: HormoneSyncInput,
-): Record<HormoneId, number> => {
+): Record<string, number> => {
   return {
     entropy_pressure: Math.round(
       clamp(

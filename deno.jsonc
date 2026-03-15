@@ -142,8 +142,7 @@
         "recommended"
       ],
       "exclude": [
-        "no-explicit-any",
-        "no-unused-vars"
+        "no-explicit-any"
       ]
     }
   },
@@ -243,7 +242,7 @@
       "src/_/06/GLYPH_TELEMETRY.ts",
       "src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
       "src/_/09/GENERIC_LEDGER_SYSTEM.ts",
-      "src/_/11/HORMONE_BUFFER_RUNTIME.ts",
+      "src/_/06/HORMONE_BUFFER_RUNTIME.ts",
       "src/07/build_wasm.ts",
       "src/00/03/wasm_layout_guard.ts"
     ],

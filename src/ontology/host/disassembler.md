@@ -13,5 +13,5 @@ vars:
 
 ### TypeScript
 ```typescript
-export * from "@generated";
+export * from "@g12";
 ```

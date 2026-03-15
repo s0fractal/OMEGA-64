@@ -11,9 +11,9 @@ min_level: 5
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@generated";
-import { STATE_MATRIX } from "@generated";
-import { GRID_W, SCALE } from "../mod.ts";
+import { GLYPH_TELEMETRY } from "@g12";
+import { STATE_MATRIX } from "@g12";
+import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);

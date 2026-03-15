@@ -22,7 +22,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { RUNTIME_POLICY } from "../mod.ts";
+import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
 export type HormoneId =
   | "entropy_pressure"
