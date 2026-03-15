@@ -1,5 +1,5 @@
 ---
-id: ATOM_INDEX
+id: IDX_TO_ID
 type: module
 epoch: 8
 description: Lightweight ID↔Index registry shared across runtime modules.
@@ -8,23 +8,12 @@ tags:
   - atom
   - registry
   - index
-extra_symbols:
-  - ATOM_INDEX
-  - IDX_TO_ID
-  - ID_TO_IDX
 ---
 
-# OMEGA-64 | ATOM_INDEX.ts
+# OMEGA-64 | IDX_TO_ID.ts
 
 Lightweight ID↔Index registry shared across runtime modules.
 
 ```typescript
-export const ID_TO_IDX = new Map<string, number>();
 export const IDX_TO_ID = new Map<number, string>();
-
-export const ATOM_INDEX = {
-  ID_TO_IDX,
-  IDX_TO_ID
-};
-
 ```

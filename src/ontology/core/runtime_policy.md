@@ -5,7 +5,8 @@ min_level: 2
 tags:
   - substrate
 deps:
-  - ENV_PARSE
+  - parse_env_bool
+  - parse_env_bounded_int
 ---
 
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
@@ -31,10 +32,8 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
 import { Li } from "@g01";
-const { parseEnvBool, parseEnvBoundedInt } = ENV_PARSE;
-
 const parsePort = (raw: string | undefined, fallback: number): number =>
-  parseEnvBoundedInt(raw, fallback, 1, 65_535);
+  parse_env_bounded_int(raw, fallback, 1, 65_535);
 const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   const value = (raw ?? "").trim().toLowerCase();
   if (value === "safe-noop" || value === "safe_noop" || value === "noop") {
@@ -190,9 +189,9 @@ const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
-const systemControlEnabled = parseEnvBool(rawSystemControlEnable, false);
+const systemControlEnabled = parse_env_bool(rawSystemControlEnable, false);
 const systemControlToken = normalizeToken(rawSystemControlToken);
-const systemAvatarIngressEnabled = parseEnvBool(
+const systemAvatarIngressEnabled = parse_env_bool(
   rawSystemAvatarIngressEnable,
   true,
 );
@@ -200,10 +199,10 @@ const systemAvatarIngressEnabled = parseEnvBool(
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
 const hasMainnetArg = typeof Deno !== "undefined" &&
   Deno.args.includes("--mainnet");
-const mainnetEnabled = parseEnvBool(rawOmegaMainnet, hasMainnetArg);
+const mainnetEnabled = parse_env_bool(rawOmegaMainnet, hasMainnetArg);
 const bootstrapHubUrl = normalizeToken(rawBootstrapHubUrl) ||
   "ws://127.0.0.1:9999";
-const p2pMutateEnabled = parseEnvBool(
+const p2pMutateEnabled = parse_env_bool(
   rawP2PMutateEnable ?? rawSystemControlEnable,
   false,
 );
@@ -211,18 +210,18 @@ const p2pMutateToken = normalizeToken(
   rawP2PMutateToken ?? rawSystemControlToken,
 );
 
-const federationEnabled = parseEnvBool(rawFederationEnable, false);
-const federationTimeoutMs = parseEnvBoundedInt(
+const federationEnabled = parse_env_bool(rawFederationEnable, false);
+const federationTimeoutMs = parse_env_bounded_int(
   rawFederationTimeoutMs,
   2000,
   50,
   120_000,
 );
-const federationAdmissionEnabled = parseEnvBool(
+const federationAdmissionEnabled = parse_env_bool(
   rawFederationAdmissionEnable,
   true,
 );
-const federationAdmissionMidScore = parseEnvBoundedInt(
+const federationAdmissionMidScore = parse_env_bounded_int(
   rawFederationAdmissionMidScore,
   4,
   1,
@@ -230,13 +229,13 @@ const federationAdmissionMidScore = parseEnvBoundedInt(
 );
 const federationAdmissionHighScore = Math.max(
   federationAdmissionMidScore + 1,
-  parseEnvBoundedInt(rawFederationAdmissionHighScore, 7, 2, 128),
+  parse_env_bounded_int(rawFederationAdmissionHighScore, 7, 2, 128),
 );
-const federationAdmissionRejectOnStrictMismatch = parseEnvBool(
+const federationAdmissionRejectOnStrictMismatch = parse_env_bool(
   rawFederationAdmissionRejectOnStrictMismatch,
   true,
 );
-const federationHybridizeEnabled = parseEnvBool(
+const federationHybridizeEnabled = parse_env_bool(
   rawFederationHybridizeEnable,
   true,
 );
@@ -253,31 +252,31 @@ const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   0.1,
   1,
 );
-const federationOpenWorld = parseEnvBool(rawFederationOpenWorld, false);
+const federationOpenWorld = parse_env_bool(rawFederationOpenWorld, false);
 
-const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
-const telemetryFlushIntervalTicks = parseEnvBoundedInt(
+const telemetryEnabled = parse_env_bool(rawTelemetryEnabled, true);
+const telemetryFlushIntervalTicks = parse_env_bounded_int(
   rawTelemetryFlushTicks,
   25,
   1,
   10_000,
 );
-const telemetryTopKinds = parseEnvBoundedInt(rawTelemetryTopKinds, 6, 1, 32);
+const telemetryTopKinds = parse_env_bounded_int(rawTelemetryTopKinds, 6, 1, 32);
 
-const controlIntentMaxPending = parseEnvBoundedInt(
+const controlIntentMaxPending = parse_env_bounded_int(
   rawControlIntentMax,
   512,
   8,
   100_000,
 );
-const controlIntentApplyBudget = parseEnvBoundedInt(
+const controlIntentApplyBudget = parse_env_bounded_int(
   rawControlIntentBudget,
   8,
   1,
   4096,
 );
 
-const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
+const oraclePendingMax = parse_env_bounded_int(rawOraclePendingMax, 256, 32, 8192);
 const oracleMutationMode = (() => {
   const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
   if (value === "direct" || value === "head") return "direct" as const;
@@ -285,44 +284,44 @@ const oracleMutationMode = (() => {
   return "stigmergic" as const;
 })();
 
-const pulseWorkerCount = parseEnvBoundedInt(rawPulseWorkers, 4, 1, 32);
-const pulseStrictDeterminism = parseEnvBool(rawStrictDeterminism, false);
-const pulseWorkerResponseTimeoutMs = parseEnvBoundedInt(
+const pulseWorkerCount = parse_env_bounded_int(rawPulseWorkers, 4, 1, 32);
+const pulseStrictDeterminism = parse_env_bool(rawStrictDeterminism, false);
+const pulseWorkerResponseTimeoutMs = parse_env_bounded_int(
   rawWorkerResponseTimeoutMs,
   30_000,
   10,
   120_000,
 );
-const pulseWorkerTimeoutRetryCount = parseEnvBoundedInt(
+const pulseWorkerTimeoutRetryCount = parse_env_bounded_int(
   rawWorkerTimeoutRetryCount,
   1,
   0,
   4,
 );
-const pulseWorkerTimeoutRetryMs = parseEnvBoundedInt(
+const pulseWorkerTimeoutRetryMs = parse_env_bounded_int(
   rawWorkerTimeoutRetryMs,
   5_000,
   10,
   120_000,
 );
-const pulseWorkerInitFallbackEnabled = parseEnvBool(
+const pulseWorkerInitFallbackEnabled = parse_env_bool(
   rawWorkerInitFallback,
   true,
 );
-const pulseWorkerRecoveryVerbose = parseEnvBool(
+const pulseWorkerRecoveryVerbose = parse_env_bool(
   rawWorkerRecoveryVerbose,
   false,
 );
 const pulseWasmBootPolicy = parseWasmBootPolicy(rawWasmBootPolicy);
-const pulseWasmBootPrecheckEnabled = parseEnvBool(rawWasmBootPrecheck, true);
-const pulseForceWasmPreflightFail = parseEnvBool(
+const pulseWasmBootPrecheckEnabled = parse_env_bool(rawWasmBootPrecheck, true);
+const pulseForceWasmPreflightFail = parse_env_bool(
   rawForceWasmPreflightFail,
   false,
 );
 const pulsePressureRingEnabled = hasEnvValue(rawMatrixTheta) ||
   hasEnvValue(rawPressureRingScale);
 const pulsePressureRingScale = pulsePressureRingEnabled
-  ? parseEnvBoundedInt(rawPressureRingScale, 256, 0, 2048)
+  ? parse_env_bounded_int(rawPressureRingScale, 256, 0, 2048)
   : 0;
 const pulseMatrixThetaRaw = parseEnvBoundedFloat(
   rawMatrixTheta,
@@ -355,28 +354,28 @@ const pulseSymbiosisAxisFromRing = pulsePressureRingEnabled &&
   !hasEnvValue(rawSymbiosisPressure);
 const pulseNoveltyPressure = pulseNoveltyAxisFromRing
   ? pulseRingNoveltyPressure
-  : parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
+  : parse_env_bounded_int(rawNoveltyPressure, 0, 0, 2048);
 const pulseFearPressure = pulseNoveltyAxisFromRing ? pulseRingFearPressure : 0;
 const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
   ? pulseRingSymbiosisPressure
-  : parseEnvBoundedInt(rawSymbiosisPressure, 0, 0, 2048);
+  : parse_env_bounded_int(rawSymbiosisPressure, 0, 0, 2048);
 const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
 const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
 const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
-const pulseHomeostasisEnabled = parseEnvBool(rawHomeostasisEnable, true);
-const pulseHomeostasisTargetEnergy = parseEnvBoundedInt(
+const pulseHomeostasisEnabled = parse_env_bool(rawHomeostasisEnable, true);
+const pulseHomeostasisTargetEnergy = parse_env_bounded_int(
   rawHomeostasisTargetEnergy,
   1200,
   1,
   1_000_000,
 );
-const pulseHomeostasisBand = parseEnvBoundedInt(
+const pulseHomeostasisBand = parse_env_bounded_int(
   rawHomeostasisBand,
   240,
   1,
   1_000_000,
 );
-const pulseHomeostasisMaxDelta = parseEnvBoundedInt(
+const pulseHomeostasisMaxDelta = parse_env_bounded_int(
   rawHomeostasisMaxDelta,
   12,
   1,
@@ -388,35 +387,35 @@ const pulseHomeostasisOverflowThreshold = parseEnvBoundedFloat(
   0,
   1,
 );
-const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
+const pulseHomeostasisStarvationFloor = parse_env_bounded_int(
   rawHomeostasisStarvationFloor,
   200,
   0,
   1_000_000,
 );
-const pulseHomeostasisBaseTax = parseEnvBoundedInt(
+const pulseHomeostasisBaseTax = parse_env_bounded_int(
   rawHomeostasisBaseTax,
   2,
   0,
   1024,
 );
-const pulseHomeostasisSubsidyEnabled = parseEnvBool(
+const pulseHomeostasisSubsidyEnabled = parse_env_bool(
   rawHomeostasisSubsidyEnable,
   false,
 );
-const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
-const pulseStartupSelfTestTicks = parseEnvBoundedInt(
+const pulseStartupSelfTestEnabled = parse_env_bool(rawStartupSelfTest, true);
+const pulseStartupSelfTestTicks = parse_env_bounded_int(
   rawStartupSelfTestTicks,
   3,
   1,
   32,
 );
-const pulseStartupSelfTestFallbackEnabled = parseEnvBool(
+const pulseStartupSelfTestFallbackEnabled = parse_env_bool(
   rawStartupSelfTestFallback,
   true,
 );
-const pulseStartupSelfTestQuiet = parseEnvBool(rawStartupSelfTestQuiet, true);
-const pulseStartupSelfTestForceBreach = parseEnvBool(
+const pulseStartupSelfTestQuiet = parse_env_bool(rawStartupSelfTestQuiet, true);
+const pulseStartupSelfTestForceBreach = parse_env_bool(
   rawStartupSelfTestForceBreach,
   false,
 );
@@ -436,43 +435,43 @@ const pulseReplicationExecutionMode = parseExecutionMode(
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
 const akashaPort = 8080;
 const p2pPort = 8081;
-const daemonPolicyWindowMs = parseEnvBoundedInt(
+const daemonPolicyWindowMs = parse_env_bounded_int(
   rawDaemonPolicyWindowMs,
   60_000,
   5_000,
   3_600_000,
 );
-const daemonMaxActionsPerWindow = parseEnvBoundedInt(
+const daemonMaxActionsPerWindow = parse_env_bounded_int(
   rawDaemonMaxActionsPerWindow,
   8,
   1,
   10_000,
 );
-const daemonMaxPheromoneIntensity = parseEnvBoundedInt(
+const daemonMaxPheromoneIntensity = parse_env_bounded_int(
   rawDaemonMaxPheromoneIntensity,
   300,
   1,
   5_000,
 );
-const daemonMaxPlasmidCharge = parseEnvBoundedInt(
+const daemonMaxPlasmidCharge = parse_env_bounded_int(
   rawDaemonMaxPlasmidCharge,
   1200,
   1,
   65_535,
 );
-const daemonSafeMinPopulation = parseEnvBoundedInt(
+const daemonSafeMinPopulation = parse_env_bounded_int(
   rawDaemonSafeMinPopulation,
   16,
   0,
   100_000,
 );
-const daemonSafeMinAvgEnergy = parseEnvBoundedInt(
+const daemonSafeMinAvgEnergy = parse_env_bounded_int(
   rawDaemonSafeMinAvgEnergy,
   5,
   0,
   100_000,
 );
-const daemonAuditEffectTicks = parseEnvBoundedInt(
+const daemonAuditEffectTicks = parse_env_bounded_int(
   rawDaemonAuditEffectTicks,
   32,
   1,
@@ -481,8 +480,8 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
-const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
-const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
+const coldstartEnabled = parse_env_bool(rawColdstartEnable, false);
+const coldstartCount = parse_env_bounded_int(rawColdstartCount, 48, 0, 100_000);
 const coldstartReplicatorRatio = parseEnvBoundedFloat(
   rawColdstartReplicatorRatio,
   0.15,
@@ -495,32 +494,32 @@ const coldstartGuardianRatio = parseEnvBoundedFloat(
   0,
   1,
 );
-const coldstartSeed = parseEnvBoundedInt(
+const coldstartSeed = parse_env_bounded_int(
   rawColdstartSeed,
   424242,
   1,
   2_147_483_647,
 );
-const coldstartEnergy = parseEnvBoundedInt(
+const coldstartEnergy = parse_env_bounded_int(
   rawColdstartEnergy,
   3200,
   1,
   1_000_000,
 );
-const coldstartResonance = parseEnvBoundedInt(
+const coldstartResonance = parse_env_bounded_int(
   rawColdstartResonance,
   220,
   0,
   100_000,
 );
-const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
-const autoSnapshotIntervalTicks = parseEnvBoundedInt(
+const autoSnapshotEnabled = parse_env_bool(rawAutoSnapshotEnable, true);
+const autoSnapshotIntervalTicks = parse_env_bounded_int(
   rawAutoSnapshotIntervalTicks,
   10_000,
   100,
   10_000_000,
 );
-const autoSnapshotRetention = parseEnvBoundedInt(
+const autoSnapshotRetention = parse_env_bounded_int(
   rawAutoSnapshotRetention,
   8,
   1,

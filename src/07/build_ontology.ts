@@ -72,9 +72,10 @@ interface OntologyNode extends OntologyNodeMeta {
   sourceFile?: string;
 }
 
-const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
+const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void", "string", "any", "number"];
 
 const nodes = new Map<string, OntologyNode>();
+const extraSymbolsMap = new Map<string, string>();
 
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
@@ -191,6 +192,11 @@ try {
       node.rust = rustMatch[1].trim();
     }
 
+    if (node.extra_symbols) {
+      for (const sym of node.extra_symbols) {
+        extraSymbolsMap.set(sym, node.id);
+      }
+    }
     nodes.set(node.id, node);
   }
 } catch (e) {
@@ -199,20 +205,27 @@ try {
 
 // 2. Topological Sort (DAG)
 function computeLevel(id: string, visited: Set<string>, stack: Set<string>): number {
-  const node = nodes.get(id);
+  let node = nodes.get(id);
+  if (!node) {
+    const parentId = extraSymbolsMap.get(id);
+    if (parentId) {
+      node = nodes.get(parentId);
+    }
+  }
+
   if (!node) {
     console.error(`[FATAL] Dependency ${id} not found.`);
     Deno.exit(1);
   }
 
-  if (stack.has(id)) {
+  if (stack.has(node.id)) {
     console.error(`[FATAL] Cyclic dependency detected involving ${id}`);
     Deno.exit(1);
   }
 
-  if (visited.has(id)) return node.level;
+  if (visited.has(node.id)) return node.level;
 
-  stack.add(id);
+  stack.add(node.id);
   
   let maxDepLevel = node.min_level !== undefined ? (node.min_level - 1) : -1;
   for (const dep of node.deps) {
@@ -221,8 +234,8 @@ function computeLevel(id: string, visited: Set<string>, stack: Set<string>): num
   }
   
   node.level = maxDepLevel + 1;
-  stack.delete(id);
-  visited.add(id);
+  stack.delete(node.id);
+  visited.add(node.id);
 
   // Semantic Firewall Check
   for (const tag of node.tags) {
@@ -671,7 +684,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   if (node.deps) {
     for (const dep of node.deps) {
       const depNode = nodes.get(dep);
-      if (depNode && (depNode.type === "pure_fn" || depNode.type === "static_table")) {
+      if (depNode && (depNode.type === "pure_fn" || depNode.type === "static_table" || (depNode.type === "module" && depNode.asCode))) {
         if (!importsToPull.includes(dep)) importsToPull.push(dep);
       }
     }

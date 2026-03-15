@@ -4,14 +4,19 @@ type: module
 description: "Implementation of P2P_FEDERATION"
 tags: []
 min_level: 4
+deps:
+  - STATE_MATRIX
+  - prng_seed_from
+  - prng_next
+  - LOGGER
+  - RUNTIME_POLICY
+  - Le
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
-
-import { STATE_MATRIX, prng_seed_from, prng_next, LOGGER, RUNTIME_POLICY, Le } from "@g12";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;

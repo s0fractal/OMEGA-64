@@ -5,31 +5,10 @@ description: Implementation of STATE_MATRIX
 tags: []
 min_level: 0
 deps:
-  - memory_views
   - SYSTEM_CONSTANTS
   - VmProps
   - VmOpcodes
   - VmSys
-vars:
-  - ATOM_CONTEXT_SIZE
-  - ATOM_INSTRUCTION_SIZE
-  - GRID_CELLS
-  - GRID_H
-  - GRID_W
-  - MAX_ATOMS
-  - OP_BUILD
-  - OP_GET
-  - OP_JMP
-  - OP_JNZ
-  - OP_SET
-  - OP_SIGNAL
-  - OP_SUB
-  - OP_SYSCALL
-  - PROP_NEURAL_COHERENCE
-  - RESOURCE_MAX
-  - SCALE
-  - SYS_SET_ROLE
-  - SYS_YIELD
   - attentionField
   - attentionFieldBuffer
   - bondDistBuffer
@@ -88,6 +67,26 @@ vars:
   - wasmMemory
   - xs
   - ys
+vars:
+  - ATOM_CONTEXT_SIZE
+  - ATOM_INSTRUCTION_SIZE
+  - GRID_CELLS
+  - GRID_H
+  - GRID_W
+  - MAX_ATOMS
+  - OP_BUILD
+  - OP_GET
+  - OP_JMP
+  - OP_JNZ
+  - OP_SET
+  - OP_SIGNAL
+  - OP_SUB
+  - OP_SYSCALL
+  - PROP_NEURAL_COHERENCE
+  - RESOURCE_MAX
+  - SCALE
+  - SYS_SET_ROLE
+  - SYS_YIELD
 extra_symbols:
   - STATE_MATRIX
   - SYNC
