@@ -15,7 +15,7 @@ import {
   GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
 } from "../00/mod.ts";
 
-import { get_glyph_kind } from "../06/mod.ts";
+import { get_glyph_kind } from "@generated";
 
 export type GlyphKind =
   | "core"

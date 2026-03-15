@@ -2,7 +2,7 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
-import { AgentProxy } from "@06";
+import { AgentProxy } from "../../_/06/AGENT_PROXY.ts";
 import { LOGGER } from "@generated";
 
 Deno.test("Stage 38: Autonomous Agents (LLM to Atom Gateway)", async () => {

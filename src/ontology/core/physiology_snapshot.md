@@ -1,3 +1,15 @@
+---
+id: PHYSIOLOGY_SNAPSHOT
+type: module
+description: "Migrated from src/06/PHYSIOLOGY_SNAPSHOT.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import {
   GENETIC_LEDGER_CATALOG,
   type GeneticLedgerEntry,
@@ -7,8 +19,8 @@ import {
   HORMONE_BUFFER_CATALOG,
   type HormoneId,
   type HormoneSpec,
-} from "@02/mod.ts";
-import type { LedgerRuntimeSnapshot } from "@03/mod.ts";
+} from "@generated";
+import type { LedgerRuntimeSnapshot } from "@generated";
 
 export type PhysiologySnapshotInput = {
   tick: number;
@@ -70,3 +82,4 @@ export const capturePhysiologySnapshot = (
     ledger,
   };
 };
+```

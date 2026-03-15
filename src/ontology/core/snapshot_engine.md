@@ -1,3 +1,15 @@
+---
+id: SNAPSHOT_ENGINE
+type: module
+description: "Migrated from src/06/SNAPSHOT_ENGINE.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
@@ -214,3 +226,4 @@ export const SNAPSHOT_ENGINE = {
     return stale.length;
   },
 };
+```

@@ -17,7 +17,7 @@ import { SEMANTIC_MEMBRANE } from "@generated";
 import { LLM_SYNAPSE } from "@generated";
 import { AUDIT_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "../../06/AKASHA_CODEX.ts";
+import { AKASHA_CODEX } from "@generated";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 

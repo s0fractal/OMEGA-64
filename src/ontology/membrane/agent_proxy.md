@@ -1,3 +1,15 @@
+---
+id: AGENT_PROXY
+type: module
+description: "Migrated from src/06/AGENT_PROXY.ts"
+tags: ["standalone", "server"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { STATE_MATRIX } from "@generated";
 import { assemble } from "@generated";
 import { LOGGER } from "@generated";
@@ -225,3 +237,4 @@ if (import.meta.main) {
   const proxy = new AgentProxy();
   proxy.start();
 }
+```

@@ -1,3 +1,15 @@
+---
+id: CONTINUUM
+type: module
+description: "Migrated from src/06/CONTINUUM.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { LATTICE_MEMORY_END } from "@generated";
 import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
 import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
@@ -138,3 +150,4 @@ export async function decompressMemoryToLattice(
   );
   targetView.set(decompressedArray);
 }
+```

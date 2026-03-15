@@ -1,6 +1,18 @@
+---
+id: PANOPTICON_SERVER
+type: module
+description: "Migrated from src/06/PANOPTICON_SERVER.ts"
+tags: ["standalone", "server"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@06/AKASHA_CODEX.ts";
+import { AKASHA_CODEX } from "@generated";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
@@ -111,3 +123,4 @@ export const PANOPTICON_SERVER = {
     }
   },
 };
+```

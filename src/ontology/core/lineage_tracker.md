@@ -1,6 +1,18 @@
+---
+id: LINEAGE_TRACKER
+type: module
+description: "Migrated from src/06/LINEAGE_TRACKER.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@06/AKASHA_CODEX.ts";
+import { AKASHA_CODEX } from "@generated";
 
 export type MemeticStats = {
   firstAppearance: number;
@@ -102,3 +114,4 @@ export const LINEAGE_TRACKER = {
     return { dominantMeme, destructiveMeme };
   }
 };
+```

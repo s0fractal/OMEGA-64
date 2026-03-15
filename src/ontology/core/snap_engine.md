@@ -1,3 +1,15 @@
+---
+id: SNAP_ENGINE
+type: module
+description: "Migrated from src/06/SNAP_ENGINE.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 import { LATTICE_MEMORY_END, LOGGER, sharedBuffer } from "@generated";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
@@ -92,3 +104,4 @@ export const SNAP_ENGINE = {
     }
   },
 };
+```

@@ -13,7 +13,7 @@ import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "@generated";
 import { PULSE } from "@generated";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
-import { AgentProxy } from "../../06/AGENT_PROXY.ts";
+import { AgentProxy } from "./AGENT_PROXY.ts";
 import { LOGGER } from "@generated";
 
 const STARTING_PREY = 500;

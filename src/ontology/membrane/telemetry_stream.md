@@ -1,3 +1,15 @@
+---
+id: TELEMETRY_STREAM
+type: module
+description: "Migrated from src/06/TELEMETRY_STREAM.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 type TelemetrySample = {
   ts: number;
   tick: number;
@@ -205,3 +217,4 @@ export const TELEMETRY_STREAM = {
 };
 
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
+```

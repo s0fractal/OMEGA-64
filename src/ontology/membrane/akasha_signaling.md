@@ -1,3 +1,15 @@
+---
+id: AKASHA_SIGNALING
+type: module
+description: "Migrated from src/06/AKASHA_SIGNALING.ts"
+tags: ["membrane", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 const RTC_SIGNAL_PATH = "/rtc/signal";
 const MAX_SIGNAL_MESSAGE_BYTES = 128 * 1024;
 const PEER_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
@@ -303,3 +315,4 @@ export const AKASHA_SIGNALING = {
   attach,
   status,
 } as const;
+```

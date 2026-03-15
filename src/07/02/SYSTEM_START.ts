@@ -65,7 +65,7 @@ import type {
   ReplicationHybridSnapshot,
   ReplicationPromotionSnapshot,
 } from "@07/02/03/mod.ts";
-import { PANOPTICON_SERVER } from "@07/02/06/mod.ts";
+import { PANOPTICON_SERVER } from "../../_/06/PANOPTICON_SERVER.ts";
 import {
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,

@@ -1,6 +1,18 @@
+---
+id: AKASHA_SERVER
+type: module
+description: "Migrated from src/06/AKASHA_SERVER.ts"
+tags: ["standalone", "server"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
 import { RUNTIME_POLICY } from "@generated";
-import { AKASHA_SIGNALING } from "@06/AKASHA_SIGNALING.ts";
+import { AKASHA_SIGNALING } from "@generated";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -730,3 +742,4 @@ if (import.meta.main) {
   Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
   console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
 }
+```

@@ -12220,7 +12220,7 @@ import {
   GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
 } from "../00/mod.ts";
 
-import { get_glyph_kind } from "../06/mod.ts";
+import { get_glyph_kind } from "@generated";
 
 export type GlyphKind =
   | "core"
@@ -26942,7 +26942,7 @@ import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";
 import { PULSE } from "../04/PULSE.ts";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
-import { AgentProxy } from "../../06/AGENT_PROXY.ts";
+import { AgentProxy } from "@generated";
 import { LOGGER } from "@generated";
 
 const STARTING_PREY = 500;
