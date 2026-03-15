@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/get_glyph_energy.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

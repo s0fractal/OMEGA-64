@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/prng_next.md
 #![allow(unused_imports)]
 
 pub fn prng_next(state: u32) -> u32 {

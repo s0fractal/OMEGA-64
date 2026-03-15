@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_bonding.md
 // Substrate Node: sigma_bonding
 // Level: 2
 // Solves simultaneous structural bonding intents using spatial hashes

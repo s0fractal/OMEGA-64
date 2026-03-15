@@ -52,12 +52,12 @@ export type OntologyNodeMeta = z.infer<typeof OntologyNodeSchema>;
 interface TestDesc { inputs: any[]; expected: any; }
 
 interface OntologyNode extends OntologyNodeMeta {
-  payload?: any[];
   rustCode?: string;
   tsCode?: string;
   asCode?: string;
   level: number;
   tests: any[];
+  sourceFile?: string;
 }
 
 const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"];
@@ -93,7 +93,8 @@ try {
       tests: [],
       // Standardize the casing mapping from yaml schema
       base_offset: meta.base_offset,
-      level: -1
+      level: -1,
+      sourceFile: entry.path.split("/src/ontology/")[1] || entry.path
     };
 
     if (meta.args) {
@@ -438,7 +439,7 @@ ${(node.regions || []).map((r, i, arr) => {
   
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, tsOut);
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -554,7 +555,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     }
   }
 
-  Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, rsOut);
+  Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, `// SSoT: src/ontology/${node.sourceFile}\n` + rsOut);
   
   // Generate AS
   let asOut = ``;
@@ -616,9 +617,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
         Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
     } else if (node.type === "module" && node.asCode) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, node.asCode);
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + node.asCode);
     } else {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, asOut);
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + asOut);
     }
   }
 }
@@ -696,11 +697,8 @@ const resolveSysPath = (id: string) => {
   return n ? `../_/${formatLevel(n.level)}/${id}.ts` : `../_/00/${id}.ts`;
 };
 
-mainTsOut += `export * from "${resolveSysPath('STATE_MATRIX')}";\n`;
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
-mainTsOut += `export * from "${resolveSysPath('STATE_SNAPSHOT')}";\n`;
-mainTsOut += `export * from "${resolveSysPath('ENV_PARSE')}";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
 mainTsOut += `export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);\n`;
 

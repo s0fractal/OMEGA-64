@@ -1,3 +1,4 @@
+// SSoT: src/ontology/autopoiesis/immune_check.md
 #![allow(unused_imports)]
 
 #[inline(always)]

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/spatial/clamp_world_y.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/autopoiesis/clear_secretion_stats.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

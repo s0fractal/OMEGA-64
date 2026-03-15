@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/clamp01.md
 #![allow(unused_imports)]
 
 pub fn clamp01(x: f64) -> f64 {

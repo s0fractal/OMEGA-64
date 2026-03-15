@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_replication.md
 // Substrate Node: sigma_replication
 // Level: 2
 // Manages autopoietic mitosis processes and genome verification

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_atom_role.md
 // Substrate Node: sigma_atom_role
 // Level: 0
 // Defines the role enumerations for OMEGA atoms

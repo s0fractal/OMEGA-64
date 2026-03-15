@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_structure.md
 // Substrate Node: sigma_structure
 // Level: 2
 // Handles the cellular automaton lifecycle of the crystalline grid

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/get_glyph_legacy_opcode.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

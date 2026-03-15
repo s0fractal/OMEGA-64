@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/trace_atom.md
 #![allow(unused_imports)]
 
 pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> () {

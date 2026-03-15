@@ -1,3 +1,4 @@
+// SSoT: src/ontology/memory/get_p_c.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/VmProps.md
 #![allow(unused_imports)]
 
 // Enum: VmProps

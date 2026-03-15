@@ -1,3 +1,4 @@
+// SSoT: src/ontology/memory/get_pending_syscall.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

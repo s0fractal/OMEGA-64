@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_isa.md
 // Substrate Node: sigma_isa
 // Level: 0
 // Defines the Instruction Set Architecture values for the interpreter.

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_environment.md
 // Substrate Node: sigma_environment
 // Level: 2
 // Ticks environmental cellular automata, structural cells, and glyphi transport

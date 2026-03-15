@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_memory.md
 // Substrate Node: sigma_memory
 // Level: 1
 // The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer

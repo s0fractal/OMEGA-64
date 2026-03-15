@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/SYSTEM_CONSTANTS.md
 #![allow(unused_imports)]
 
 // Constants: SYSTEM_CONSTANTS

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/autopoiesis/diffuse_viral_semantics.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

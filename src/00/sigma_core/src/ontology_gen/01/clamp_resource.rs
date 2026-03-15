@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/clamp_resource.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

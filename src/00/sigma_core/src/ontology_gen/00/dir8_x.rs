@@ -1,3 +1,4 @@
+// SSoT: src/ontology/spatial/dir8_x.md
 #![allow(unused_imports)]
 
 pub fn dir8_x(n: i32) -> i32 {

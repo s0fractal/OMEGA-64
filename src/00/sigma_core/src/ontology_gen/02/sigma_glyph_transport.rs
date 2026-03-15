@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_glyph_transport.md
 // Substrate Node: sigma_glyph_transport
 // Level: 2
 // Handles wave interference physics and optical secretion

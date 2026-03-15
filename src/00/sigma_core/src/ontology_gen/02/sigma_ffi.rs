@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_ffi.md
 // Substrate Node: sigma_ffi
 // Level: 2
 // FFI bridging logic and memory alignment for WebAssembly workers

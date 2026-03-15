@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_shadow.md
 // Substrate Node: sigma_shadow
 // Level: 2
 // Implements the speculative execution engine for quantum divergence

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/StructureTypes.md
 #![allow(unused_imports)]
 
 // Enum: StructureTypes

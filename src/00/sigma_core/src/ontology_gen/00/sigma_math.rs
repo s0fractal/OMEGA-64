@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_math.md
 // Substrate Node: sigma_math
 // Level: 0
 // Mathematical Coprocessor (Deterministic LUT Trigonometry)

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/spatial/in_grid.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

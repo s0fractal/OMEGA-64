@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/math_cos.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

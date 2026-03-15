@@ -1,3 +1,4 @@
+// SSoT: src/ontology/spatial/store_clamped_pos.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/unpack_structure_charge.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

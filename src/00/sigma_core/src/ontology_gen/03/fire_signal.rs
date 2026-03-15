@@ -1,3 +1,4 @@
+// SSoT: src/ontology/physics/fire_signal.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

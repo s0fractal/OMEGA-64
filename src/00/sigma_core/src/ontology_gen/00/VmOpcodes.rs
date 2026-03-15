@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/VmOpcodes.md
 #![allow(unused_imports)]
 
 // Enum: VmOpcodes

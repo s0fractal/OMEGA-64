@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/GLYPH_TYPES.md
 #![allow(unused_imports)]
 
 // Enum: GLYPH_TYPES

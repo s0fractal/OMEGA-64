@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/fast_min.md
 #![allow(unused_imports)]
 
 pub fn fast_min(a: i32, b: i32) -> i32 {

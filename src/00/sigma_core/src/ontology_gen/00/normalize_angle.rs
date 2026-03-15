@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/normalize_angle.md
 #![allow(unused_imports)]
 
 pub fn normalize_angle(angle: f64) -> f64 {

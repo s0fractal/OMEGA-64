@@ -1,0 +1,47 @@
+// SSoT: src/ontology/core/SYSTEM_CONSTANTS.md
+
+// Constants: SYSTEM_CONSTANTS
+export const MAX_ATOMS: number = 500000;
+export const LAYOUT_VERSION: number = 1;
+export const SAFETY_BUFFER: number = 8000000;
+export const GRID_W: number = 140;
+export const GRID_H: number = 80;
+export const GRID_CELLS: number = GRID_W * GRID_H;
+export const SPATIAL_CELL_SIZE: number = 10;
+export const WORLD_MAX_X: number = (GRID_W * SPATIAL_CELL_SIZE) - 1;
+export const WORLD_MAX_Y: number = (GRID_H * SPATIAL_CELL_SIZE) - 1;
+export const STRUCTURE_INTENT_SPIN_LIMIT: number = 128;
+export const PHEROMONE_COST_BASE: number = 10;
+export const PLASMID_COST_BASE: number = 25;
+export const ROLE_NEUTRAL: number = 0;
+export const ROLE_PRODUCER: number = 1;
+export const ROLE_GUARDIAN: number = 2;
+export const ROLE_ARCHITECT: number = 3;
+export const ROLE_PARASITE: number = 4;
+export const STRUCTURE_INTENT_LOCK_BIT: number = -2147483648;
+export const STRUCTURE_INTENT_OWNER_MASK: number = 2147483647;
+export const SCALE: number = 1000;
+export const CELL_CAPACITY: number = 32;
+export const MAX_PC: number = 64;
+export const MAX_EXECUTION_STEPS: number = 64;
+export const ATOM_LOGIC_SIZE: number = 64;
+export const MAX_LEDGER_EVENTS: number = 65536;
+export const MAX_EGRESS_EVENTS: number = 8192;
+export const WASM_PAGE_BYTES: number = 65536;
+export const WASM_MEMORY_PAGES: number = 7630;
+export const HIVE_MEMORY_SIZE: number = 1024;
+export const HIVE_ENERGY_POOL_SIZE: number = 256;
+export const MAX_HORMONES: number = 8;
+export const SECRETION_STATS_SIZE: number = 12;
+export const MAX_SPAWN_REQUESTS: number = 1024;
+export const MAX_MEIOSIS_EVENTS: number = 75000;
+export const MAX_ASCENSION_STATS: number = 62500;
+export const MAX_ASCENSION_STATS_RESERVED: number = 1250000;
+export const ATOM_CONTEXT_SIZE: number = 16;
+export const ATOM_GENOME_SIZE: number = 8;
+export const ATOM_INSTRUCTION_SIZE: number = 64;
+export const RESOURCE_MAX: number = 2000000000;
+export const MAX_GLYPH_AMP: number = 8388607;
+export const MIN_GLYPH_AMP: number = -8388608;
+export const SPAWN_MAX: number = 1024;
+export const SPAWN_SLOT: number = 24;

@@ -1,3 +1,4 @@
+// SSoT: src/ontology/memory/set_resonance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

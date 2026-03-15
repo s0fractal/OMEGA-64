@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_vm.md
 // Substrate Node: sigma_vm
 // Level: 3
 // LambdaVM Execution Engine

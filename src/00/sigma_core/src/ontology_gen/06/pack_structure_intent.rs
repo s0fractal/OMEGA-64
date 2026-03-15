@@ -1,3 +1,4 @@
+// SSoT: src/ontology/math/pack_structure_intent.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

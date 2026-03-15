@@ -1,3 +1,4 @@
+// SSoT: src/ontology/core/VmSys.md
 #![allow(unused_imports)]
 
 // Enum: VmSys

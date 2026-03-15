@@ -1,3 +1,4 @@
+// SSoT: src/ontology/host/sigma_pulse.md
 // Substrate Node: sigma_pulse
 // Level: 2
 // Multithreaded tick orchestrator and phase sequencer using Rayon
