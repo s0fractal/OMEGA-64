@@ -14,7 +14,7 @@ import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRES
 
 import { SOVEREIGNTY_ENGINE } from "../../03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "../03/GATE.ts";
-import { PREDICTION_MARKET } from "../../03/PREDICTION_MARKET.ts";
+import { PREDICTION_MARKET } from "@generated";
 import { CONTROL_INTENT_QUEUE } from "../../03/CONTROL_INTENT_QUEUE.ts";
 
 
@@ -76,9 +76,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { GLYPH_TELEMETRY } from "@06";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/DAEMON_INGRESS_POLICY.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "@generated";
 
 import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
 import {

@@ -5332,9 +5332,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { GLYPH_TELEMETRY } from "@06";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/DAEMON_INGRESS_POLICY.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/daemon_ingress_policy.md";
 
 import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
 import {
@@ -16905,7 +16905,7 @@ min_level: 3
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { LOAD_LOAD as LOAD } from "@generated";
 import { LOGGER } from "@generated";
-import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
+import { GATE_BUDGET } from "../../03/gate_budget.md";
 import { STATE_MATRIX } from "@generated";
 
 type I16Limits = {
@@ -17844,7 +17844,7 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"

@@ -14,7 +14,7 @@ const AKASHA_PATH = await resolveSourcePath("AKASHA_SERVER.ts");
 const P2P_PATH = await resolveSourcePath("P2P_SYNAPSE.ts");
 const FEDERATION_PATH = await resolveSourcePath("P2P_FEDERATION.ts");
 const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
-const RUNTIME_POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const RUNTIME_POLICY_PATH = await resolveSourcePath("runtime_policy.md");
 const SYSTEM_CONTROLLED_POST_PATHS = [
   "/crisis",
   "/federate",

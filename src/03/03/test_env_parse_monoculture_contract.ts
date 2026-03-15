@@ -45,10 +45,10 @@ const main = async () => {
       continue;
     }
     const source = await Deno.readTextFile(resolvedPath);
-    if (!source.includes('@03"') && !source.includes('./RUNTIME_POLICY.ts"') && !source.includes('@03/RUNTIME_POLICY.ts"')) {
+    if (!source.includes('@generated"')) {
       violations.push({
         file: target.file,
-        reason: "must import runtime policy from RUNTIME_POLICY.ts / 03_governance",
+        reason: "must import runtime policy from @generated",
       });
     }
     if (!source.includes(target.requiresPolicyAccess)) {
@@ -57,10 +57,10 @@ const main = async () => {
         reason: `expected policy access: ${target.requiresPolicyAccess}`,
       });
     }
-    if (source.includes('parseEnvBool') && (!source.includes('@03/RUNTIME_POLICY.ts') && !source.includes('@03'))) {
+    if (source.includes('parseEnvBool') && !source.includes('@generated')) {
       violations.push({
         file: target.file,
-        reason: "env parser helpers should be consumed through RUNTIME_POLICY",
+        reason: "env parser helpers should be consumed through @generated",
       });
     }
     if (/\bconst\s+parseBool\b/u.test(source)) {
@@ -85,15 +85,15 @@ const main = async () => {
 
   let runtimePolicyPath = "";
   try {
-    runtimePolicyPath = await resolveSourcePath("RUNTIME_POLICY.ts");
+    runtimePolicyPath = await resolveSourcePath("runtime_policy.md");
     const runtimePolicy = await Deno.readTextFile(runtimePolicyPath);
-    if (!runtimePolicy.includes('@generated"')) {
+    if (!runtimePolicy.includes('export const RUNTIME_POLICY = {')) {
       violations.push({
-        file: "RUNTIME_POLICY.ts",
-        reason: "must import canonical parser helpers from @generated",
+        file: "@generated",
+        reason: "must export RUNTIME_POLICY",
       });
     }
-    if (!runtimePolicy.includes("logFingerprintOnce")) {
+    if (!runtimePolicy.includes("logFingerprintOnce:")) {
       violations.push({
         file: "RUNTIME_POLICY.ts",
         reason: "must expose logFingerprintOnce API",
@@ -107,12 +107,12 @@ const main = async () => {
     }
     if (!runtimePolicy.includes("Deno.env.get(")) {
       violations.push({
-        file: "RUNTIME_POLICY.ts",
+        file: "@generated",
         reason: "must be the central env-read location",
       });
     }
   } catch (e) {
-    console.warn(`[env-parse-monoculture] Warning: Could not find RUNTIME_POLICY.ts`);
+    console.warn(`[env-parse-monoculture] Warning: Could not find @generated`);
   }
 
   if (violations.length > 0) {

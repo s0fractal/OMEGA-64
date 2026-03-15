@@ -1,3 +1,15 @@
+---
+id: GATE_BUDGET
+type: module
+tags:
+  - substrate
+deps: []
+vars:
+  - GateMergedDelta
+  - GATE_BUDGET
+---
+
+```typescript
 export type GateMergedDelta = Array<{ level: number; value: number }>;
 
 const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {
@@ -31,3 +43,4 @@ export const GATE_BUDGET = {
   computeScaleFactor,
   flattenScaledDelta,
 };
+```

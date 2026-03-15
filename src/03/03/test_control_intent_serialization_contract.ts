@@ -7,7 +7,7 @@ type Violation = {
 const QUEUE_PATH = await resolveSourcePath("CONTROL_INTENT_QUEUE.ts");
 const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 const PULSE_PATH = await resolveSourcePath("PULSE.ts");
-const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const POLICY_PATH = await resolveSourcePath("runtime_policy.md");
 
 const between = (source: string, start: string, end: string): string => {
   const startIdx = source.indexOf(start);

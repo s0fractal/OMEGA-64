@@ -1,4 +1,4 @@
-import type { ReplicationExecutionMode } from "@02";
+import type { ReplicationExecutionMode } from "@generated";
 import type { ReplicationPromotionDecision } from "@03/REPLICATION_PROMOTION_DECISION.ts";
 
 export type ReplicationPromotionActionInput = {

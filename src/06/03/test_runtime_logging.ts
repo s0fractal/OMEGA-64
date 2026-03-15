@@ -1,3 +1,5 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
+
 type Violation = {
   file: string;
   line: number;
@@ -5,11 +7,11 @@ type Violation = {
 };
 
 const RUNTIME_HOT_PATH_FILES = [
-  "src/_/04/PULSE.ts",
-  "src/_/04/PULSE_WORKER.ts",
-  "src/_/03/STATE_MATRIX.ts",
-  "src/06/SNAPSHOT_ENGINE.ts",
-  "src/_/06/BREATH.ts",
+  "PULSE.ts",
+  "PULSE_WORKER.ts",
+  "STATE_MATRIX.ts",
+  "SNAPSHOT_ENGINE.ts",
+  "BREATH.ts",
 ] as const;
 
 const CONSOLE_PATTERN = /\bconsole\.[a-zA-Z_]+\b/u;
@@ -35,8 +37,15 @@ const collectViolations = async (file: string): Promise<Violation[]> => {
 const main = async () => {
   const violations: Violation[] = [];
 
-  for (const file of RUNTIME_HOT_PATH_FILES) {
-    violations.push(...(await collectViolations(file)));
+  for (const name of RUNTIME_HOT_PATH_FILES) {
+    let resolvedPath = "";
+    try {
+      resolvedPath = await resolveSourcePath(name);
+    } catch (e) {
+      console.warn(`[logging] Warning: Could not resolve hot path file ${name}`);
+      continue;
+    }
+    violations.push(...(await collectViolations(resolvedPath)));
   }
 
   if (violations.length > 0) {

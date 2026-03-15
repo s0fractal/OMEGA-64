@@ -1,5 +1,5 @@
 import { resolveSourcePath } from "../../resolve_source.ts";
-const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const POLICY_PATH = await resolveSourcePath("runtime_policy.md");
 const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 const SNAPSHOT_ENGINE_PATH = await resolveSourcePath("SNAPSHOT_ENGINE.ts");
 

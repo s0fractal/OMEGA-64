@@ -1,6 +1,6 @@
 import { resolveSourcePath } from "../../resolve_source.ts";
 const PULSE_PATH = await resolveSourcePath("PULSE.ts");
-const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const POLICY_PATH = await resolveSourcePath("runtime_policy.md");
 
 type Violation = {
   file: string;

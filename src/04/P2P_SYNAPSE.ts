@@ -1,6 +1,6 @@
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;

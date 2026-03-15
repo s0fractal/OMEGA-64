@@ -7,7 +7,7 @@ type Violation = {
 const GATE_PATH = await resolveSourcePath("GATE.ts");
 const VALIDATOR_PATH = await resolveSourcePath("GATE_VALIDATOR.ts");
 const MERGER_PATH = await resolveSourcePath("GATE_MERGER.ts");
-const BUDGET_PATH = await resolveSourcePath("GATE_BUDGET.ts");
+const BUDGET_PATH = await resolveSourcePath("gate_budget.md");
 const LEDGER_PATH = await resolveSourcePath("GATE_LEDGER.ts");
 
 const requireSnippet = (

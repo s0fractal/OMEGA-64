@@ -284,8 +284,8 @@
 - src/03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 - src/03/AUDIT_ENGINE.ts
 - src/03/CONTROL_INTENT_QUEUE.ts
-- src/03/DAEMON_INGRESS_POLICY.ts
-- src/03/GATE_BUDGET.ts
+- src/03/daemon_ingress_policy.md
+- src/03/gate_budget.md
 - src/03/GENERIC_LEDGER_PERSISTENCE.ts
 - src/03/GENERIC_LEDGER_SYSTEM.ts
 - src/03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
@@ -2396,7 +2396,7 @@ export const persistGateLedgerArtifacts = async (
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { LOAD_LOAD as LOAD } from "@generated";
 import { LOGGER } from "@generated";
-import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
+import { GATE_BUDGET } from "../../03/gate_budget.md";
 import { STATE_MATRIX } from "@generated";
 
 type I16Limits = {
@@ -3305,7 +3305,7 @@ export const GATE = {
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/genetic_ledger.md
 
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"
@@ -5650,9 +5650,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { GLYPH_TELEMETRY } from "@06";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/DAEMON_INGRESS_POLICY.ts";
+import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/daemon_ingress_policy.md";
 
 import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
 import {
@@ -22828,7 +22828,7 @@ export const syncHormonesToLattice = (
 ## FILE: src/02/HORMONE_BUFFER.ts
 
 ```typescript
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
@@ -26934,7 +26934,7 @@ import { GRID_H, GRID_W, SCALE } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -28336,10 +28336,10 @@ export const CONTROL_INTENT_QUEUE = {
 
 ---
 
-## FILE: src/03/DAEMON_INGRESS_POLICY.ts
+## FILE: src/03/daemon_ingress_policy.md
 
 ```typescript
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
@@ -28942,7 +28942,7 @@ export const planInvariantIngress = (
 
 ---
 
-## FILE: src/03/GATE_BUDGET.ts
+## FILE: src/03/gate_budget.md
 
 ```typescript
 export type GateMergedDelta = Array<{ level: number; value: number }>;
@@ -30200,8 +30200,8 @@ export const evaluateGuardianSignalPromotionAction = (
 
 ```typescript
 export * from "@03/CONTROL_INTENT_QUEUE.ts";
-export * from "@03/DAEMON_INGRESS_POLICY.ts";
-export * from "@03/GATE_BUDGET.ts";
+export * from "@03/daemon_ingress_policy.md";
+export * from "@03/gate_budget.md";
 export * from "@03/PREDICTION_MARKET.ts";
 export * from "@03/SOVEREIGNTY_ENGINE.ts";
 export * from "@03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts";

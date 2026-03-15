@@ -16,7 +16,7 @@ import {
   type DaemonNarrativeContext,
   evaluateInvariantAdmission,
   normalizeDaemonNarrativeContext,
-} from "@03/DAEMON_INGRESS_POLICY.ts";
+} from "@generated";
 
 let passed = 0;
 let failed = 0;

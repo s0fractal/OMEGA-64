@@ -1,4 +1,40 @@
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+---
+id: DAEMON_INGRESS_POLICY
+type: module
+tags:
+  - substrate
+deps:
+  - RUNTIME_POLICY
+vars:
+  - DAEMON_INGRESS_POLICY_LIMITS
+  - DAEMON_INGRESS_POLICY_LIMITS
+  - snapshotDaemonIngressPolicyLimits
+  - syncDaemonIngressMaxPheromoneIntensity
+  - resetDaemonIngressMaxPheromoneIntensity
+  - syncDaemonIngressMaxPlasmidCharge
+  - resetDaemonIngressMaxPlasmidCharge
+  - evaluatePlasmidPolicy
+  - evaluatePlasmidRisk
+  - normalizeDaemonNarrativeContext
+  - evaluateInvariantAdmission
+  - planInvariantIngress
+  - DaemonAction
+  - DaemonInjectEnvelope
+  - DaemonNarrativeContext
+  - DaemonInvariantAdmission
+  - PlasmidRiskProfile
+  - DaemonIngressPlan
+  - DaemonIngressMetrics
+  - resetDaemonIngressMaxPlasmidCharge
+  - evaluatePlasmidPolicy
+  - evaluatePlasmidRisk
+  - normalizeDaemonNarrativeContext
+  - evaluateInvariantAdmission
+  - planInvariantIngress
+---
+
+```typescript
+import { RUNTIME_POLICY } from "@generated";
 
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
@@ -596,3 +632,4 @@ export const planInvariantIngress = (
     admission,
   };
 };
+```

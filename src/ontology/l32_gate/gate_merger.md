@@ -10,7 +10,7 @@ min_level: 3
 ```typescript
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { LOGGER } from "@generated";
-import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
+import { GATE_BUDGET } from "@generated";
 import { STATE_MATRIX } from "@generated";
 
 type I16Limits = {

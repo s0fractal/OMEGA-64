@@ -1,4 +1,4 @@
-import type { GuardianSignalExecutionMode } from "@02";
+import type { GuardianSignalExecutionMode } from "@generated";
 
 export type GuardianSignalPromotionDecisionInput = {
   promotion: {

@@ -15,7 +15,7 @@ import {
 import { STATE_MATRIX } from "@00";
 import { syncHormonesToLattice } from "@02";
 import { HORMONE_BUFFER_CATALOG } from "@02";
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 
 let passed = 0;
 let failed = 0;

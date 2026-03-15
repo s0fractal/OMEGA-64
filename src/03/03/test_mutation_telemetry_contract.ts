@@ -13,7 +13,7 @@ const MANIFEST_PATH = "deno.jsonc";
 const TELEMETRY_PATH = await resolveSourcePath("MUTATION_TELEMETRY.ts");
 const PULSE_PATH = await resolveSourcePath("PULSE.ts");
 const ORACLE_PATH = await resolveSourcePath("SOVEREIGN_ORACLE.ts");
-const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const POLICY_PATH = await resolveSourcePath("runtime_policy.md");
 
 const requireSnippet = (
   source: string,

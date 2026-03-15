@@ -1,8 +1,8 @@
 import { GRID_H, GRID_W, SCALE } from "@generated";
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
-import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { PREDICTION_MARKET } from "@generated";
+import { RUNTIME_POLICY } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;

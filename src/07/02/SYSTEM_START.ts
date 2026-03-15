@@ -35,10 +35,11 @@ import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
 import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
 import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
-import { CONTROL_INTENT_QUEUE, PREDICTION_MARKET } from "@07/02/03/mod.ts";
+import { CONTROL_INTENT_QUEUE } from "@07/02/03/mod.ts";
+import { PREDICTION_MARKET } from "@generated";
 import { BONDS_OFFSET } from "@07/02/00/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
 import {
   AKASHA_CODEX,

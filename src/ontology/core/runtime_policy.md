@@ -1,6 +1,19 @@
-import { parseEnvBool, parseEnvBoundedInt } from "@00";
-import { LOGGER } from "@00";
+---
+id: RUNTIME_POLICY
+type: module
+min_level: 2
+tags:
+  - substrate
+deps:
+  - ENV_PARSE
+vars:
+  - parseEnvBool
+  - parseEnvBoundedInt
+---
 
+Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
+
+```typescript
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
 type GuardianSignalExecutionMode =
   | "legacy-execute"
@@ -232,6 +245,7 @@ const federationDegradeEnergyRatio = parseEnvBoundedFloat(
   0.72,
   0.1,
   1,
+  234,
 );
 const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   rawFederationDegradeResonanceRatio,
@@ -641,13 +655,25 @@ export const mutateUniversalConstants = (): void => {
   const variance = () => 0.8 + Math.random() * 0.4;
   const rp = RUNTIME_POLICY as any;
 
-  rp.pulse.homeostasis.baseTax = Math.max(0, Math.round(rp.pulse.homeostasis.baseTax * variance()));
+  rp.pulse.homeostasis.baseTax = Math.max(
+    0,
+    Math.round(rp.pulse.homeostasis.baseTax * variance()),
+  );
   rp.pulse.pressureRing.theta = rp.pulse.pressureRing.theta * variance();
-  rp.pulse.noveltyPressure = Math.max(0, Math.round(rp.pulse.noveltyPressure * variance()));
-  rp.pulse.homeostasis.targetEnergy = Math.max(1, Math.round(rp.pulse.homeostasis.targetEnergy * variance()));
-  rp.coldstart.resonance = Math.max(0, Math.round(rp.coldstart.resonance * variance()));
+  rp.pulse.noveltyPressure = Math.max(
+    0,
+    Math.round(rp.pulse.noveltyPressure * variance()),
+  );
+  rp.pulse.homeostasis.targetEnergy = Math.max(
+    1,
+    Math.round(rp.pulse.homeostasis.targetEnergy * variance()),
+  );
+  rp.coldstart.resonance = Math.max(
+    0,
+    Math.round(rp.coldstart.resonance * variance()),
+  );
 
-  LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
+  // LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
 };
 
 export const RUNTIME_POLICY = {
@@ -865,10 +891,11 @@ export const RUNTIME_POLICY = {
   logFingerprintOnce: (context: string = "runtime"): string => {
     if (!policyFingerprintLogged) {
       policyFingerprintLogged = true;
-      LOGGER.info(
-        `[POLICY] context=${context} fingerprint=${POLICY_FINGERPRINT} controlEnabled=${systemControlEnabled} workerCount=${pulseWorkerCount} mutateEnabled=${p2pMutateEnabled}`,
-      );
+      // LOGGER.info(
+      //   `[POLICY] context=${context} fingerprint=${POLICY_FINGERPRINT} controlEnabled=${systemControlEnabled} workerCount=${pulseWorkerCount} mutateEnabled=${p2pMutateEnabled}`,
+      // );
     }
     return POLICY_FINGERPRINT;
   },
 } as const;
+```

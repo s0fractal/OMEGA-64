@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { betPoolInt, PREDICTION_MARKET } from "@03";
+import { betPoolInt, PREDICTION_MARKET } from "@generated";
 
 console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
 

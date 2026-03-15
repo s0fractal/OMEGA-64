@@ -1,4 +1,4 @@
-import type { ArchitectPlasmidExecutionMode } from "@02";
+import type { ArchitectPlasmidExecutionMode } from "@generated";
 
 export type ArchitectPlasmidPromotionDecisionInput = {
   promotion: {

@@ -8,7 +8,7 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"

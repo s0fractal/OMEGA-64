@@ -4,7 +4,7 @@ import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
 import { LOGGER } from "@07/02/00/mod.ts";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { RUNTIME_POLICY } from "@03";
+import { RUNTIME_POLICY } from "@generated";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");

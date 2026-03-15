@@ -4,9 +4,9 @@ import {
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
+import { PULSE } from "@generated";
 import { LOGGER } from "@generated";
-import { OP_SET, SYS_MSG, OP_SYSCALL, SYS_READ_INBOX } from "@generated";
+import { OP_SET, OP_SYSCALL, SYS_MSG, SYS_READ_INBOX } from "@generated";
 
 Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   LOGGER.info("--- STAGE 30: NETWORKED COGNITION TEST ---");

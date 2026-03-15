@@ -1,4 +1,4 @@
-import { RUNTIME_POLICY } from "@03/RUNTIME_POLICY.ts";
+import { RUNTIME_POLICY } from "@generated";
 import { createLedgerRuntime, type LedgerRuntimeConfig, type LedgerRuntimeState } from "@03/GENERIC_LEDGER_SYSTEM.ts";
 
 export type HormoneId =
