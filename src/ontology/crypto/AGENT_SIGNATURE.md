@@ -1,19 +1,21 @@
-// OMEGA-64 | agent_signature.ts
-// Legacy Compliance Shims - Proposal Signatures
+---
+id: AGENT_SIGNATURE
+type: module
+description: "Legacy Compliance Shims - Proposal Signatures"
+tags: ["crypto", "host", "signatures", "legacy"]
+min_level: 6
+deps:
+  - bytes_to_base64
+  - bytes_to_hex
+  - hex_to_bytes
+  - crypto_keys
+  - sha256_hex
+  - stable_stringify
+  - STATE_SNAPSHOT
+---
 
-import {
-  bytes_to_base64,
-  bytes_to_hex,
-  hex_to_bytes,
-  import_ed25519_private,
-  import_ed25519_public,
-  import_hmac,
-  sha256_hex,
-  stable_stringify,
-} from "@generated";
-import { REJECTION } from "@generated";
-import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "@generated";
-
+### TypeScript
+```typescript
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
 
@@ -66,7 +68,7 @@ export const AGENT_SIGNATURE = {
 
   signProposal: async (
     proposal: any,
-    signingKey: Ed25519SigningKey | HmacKey,
+    signingKey: any, // Ed25519SigningKey | HmacKey
   ): Promise<string> => {
     const payload = encoder.encode(canonicalProposalPayload(proposal));
     if (signingKey.scheme === "hmac-sha256/v1") {
@@ -86,7 +88,7 @@ export const AGENT_SIGNATURE = {
 
   verifyProposal: async (
     proposal: any,
-    verifyKey: Ed25519VerifyKey | HmacKey,
+    verifyKey: any, // Ed25519VerifyKey | HmacKey
   ): Promise<{ ok: boolean; reason?: string }> => {
     try {
       const signature = typeof proposal?.agent_signature === "string"
@@ -139,3 +141,4 @@ export const AGENT_SIGNATURE = {
   sign: async (data: unknown): Promise<string> =>
     await sha256_hex(typeof data === "string" ? data : stable_stringify(data)),
 };
+```

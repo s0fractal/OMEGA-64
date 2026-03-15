@@ -11,7 +11,7 @@ const LOAD_DATA = {
 };
 export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 
-export * from "./agent_signature.ts";
+
 export * from "./gate_admission.ts";
 export * from "./topo_signature.ts";
 export * from "./crystallization.ts";
