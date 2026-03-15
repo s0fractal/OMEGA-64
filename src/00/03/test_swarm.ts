@@ -1,3 +1,4 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GRID_W, GRID_H , GRID_CELLS} from "../mod.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
 import { STATE_MATRIX } from "../mod.ts";
@@ -17,7 +18,7 @@ async function runTest() {
 
   // Load WASM
   const wasmRes = await fetch(
-    new URL("../../00/release.wasm", import.meta.url).href,
+    AS_WASM_PATH,
   );
   const wasmBytes = await wasmRes.arrayBuffer();
   const trace_atom = (

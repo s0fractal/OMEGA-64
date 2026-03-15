@@ -5,7 +5,7 @@ import {
 import { STATE_MATRIX, wasmMemory } from "@generated";
 import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, GRID_W, INSTRUCTIONS_OFFSET, MAX_ATOMS, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_DELTA_OFFSET, SPATIAL_GRID_OFFSET } from "@generated";
 
-const WASM_PATH = "src/00/release.wasm";
+const WASM_PATH = AS_WASM_PATH;
 const wasmModule = await Deno.readFile(WASM_PATH);
 const { instance } = await WebAssembly.instantiate(wasmModule, {
   index: {

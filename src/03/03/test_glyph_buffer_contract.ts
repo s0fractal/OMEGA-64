@@ -1,8 +1,9 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GLYPH_TELEMETRY } from "@generated";
 import { STATE_MATRIX, wasmMemory } from "@generated";
 
 const main = async () => {
-  const wasmBytes = await Deno.readFile("src/00/release.wasm");
+  const wasmBytes = await Deno.readFile(AS_WASM_PATH);
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: (a: any, b: any) => console.log("TRACE:", a, b) },
     env: {

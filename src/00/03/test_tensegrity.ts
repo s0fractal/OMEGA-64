@@ -1,3 +1,4 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 // OMEGA-64 | test_tensegrity.ts | Vector 2 Verification
 import { STATE_MATRIX } from "@generated";
 import { INSTRUCTIONS_OFFSET } from "@generated";
@@ -12,7 +13,7 @@ async function runTest() {
 
   // Load WASM
   const wasmRes = await fetch(
-    new URL("../../00/release.wasm", import.meta.url).href,
+    AS_WASM_PATH,
   );
   const wasmBytes = await wasmRes.arrayBuffer();
   const trace_atom = (

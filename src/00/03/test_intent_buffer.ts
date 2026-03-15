@@ -1,3 +1,4 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "@generated";
 
 async function testIntentBuffer() {
@@ -8,7 +9,7 @@ async function testIntentBuffer() {
   STATE_MATRIX.set_energy(0, 100000); // 100 * SCALE
 
   // 2. Load WASM
-  const wasmCode = await Deno.readFile("src/00/release.wasm");
+  const wasmCode = await Deno.readFile(AS_WASM_PATH);
   const wasmModule = await WebAssembly.compile(wasmCode);
   const instance = await WebAssembly.instantiate(wasmModule, {
     index: { trace_atom: () => {} },

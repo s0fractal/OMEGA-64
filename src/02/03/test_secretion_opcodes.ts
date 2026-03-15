@@ -1,3 +1,4 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 import { GRID_CELLS } from "@generated";
 import { STATE_MATRIX, wasmMemory } from "@generated";
 import { GLYPH_TELEMETRY } from "@generated";
@@ -6,7 +7,7 @@ async function runSecretionOpcodeTests() {
   console.log("🕸️ [TEST] Booting WASM native secretion opcode diagnostics...");
 
   // 1. Load WASM
-  const wasmBytes = await Deno.readFile("src/00/release.wasm");
+  const wasmBytes = await Deno.readFile(AS_WASM_PATH);
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     index: { trace_atom: () => {} },
     env: {

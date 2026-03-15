@@ -1,7 +1,6 @@
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS } from "@generated";
+import { MAX_ATOMS, LOGGER, AS_WASM_PATH } from "@generated";
 import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { LOGGER } from "@generated";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;
@@ -16,7 +15,7 @@ export class DollForkRunner {
    */
   public async init(): Promise<void> {
     const wasmRes = await fetch(
-      new URL("../../00/release.wasm", import.meta.url).href,
+      AS_WASM_PATH,
     );
     const wasmBytes = await wasmRes.arrayBuffer();
 

@@ -4,8 +4,12 @@ import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
 import { resolve, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
-// Load .env variables synchronously
-loadSync({ export: true });
+// Load .env variables synchronously if available, ignoring missing keys
+try {
+  loadSync({ export: true });
+} catch (e) {
+  // Ignore missing vars error, defaults will be used
+}
 
 const CWD = Deno.cwd();
 
@@ -713,7 +717,7 @@ const resolveSysPath = (id: string) => {
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
 mainTsOut += `export * from "../00/PRNG.ts";\n`;
-mainTsOut += `export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);\n`;
+mainTsOut += `export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 

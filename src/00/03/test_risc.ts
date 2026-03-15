@@ -1,3 +1,4 @@
+import { AS_WASM_PATH } from "../../_/mod.ts";
 // OMEGA-64 | test_risc.ts | VM Verification Suite
 import { STATE_MATRIX } from "@generated";
 import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "@generated";
@@ -5,7 +6,7 @@ import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "@ge
 async function runTest() {
   console.log("🚀 Initializing RISC VM Test...");
 
-  const wasmCode = await Deno.readFile("src/00/release.wasm");
+  const wasmCode = await Deno.readFile(AS_WASM_PATH);
   const trace_atom = (
     idx: number,
     op: number,
