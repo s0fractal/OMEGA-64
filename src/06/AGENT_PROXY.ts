@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { assembleScript } from "@02";
+import { assemble } from "@generated";
 import { LOGGER } from "@generated";
 import { OP_SET, OP_SYSCALL, SYS_ATTRACT, SYS_TRANSFER } from "@generated";
 
@@ -205,7 +205,7 @@ export class AgentProxy {
           break;
       }
 
-      const compiledScript = assembleScript(ops);
+      const compiledScript = assemble(ops);
       STATE_MATRIX.setInstructions(atomId, compiledScript);
 
       return new Response(
