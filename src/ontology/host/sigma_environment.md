@@ -19,7 +19,6 @@ use crate::{
 };
 use crate::SigmaState;
 
-
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
     tick_glyph_transport(state);

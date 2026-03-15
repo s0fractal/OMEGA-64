@@ -8,7 +8,7 @@ min_level: 4
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "@generated";
+import { LOGGER, Li } from "@generated";
 
 export type SwarmHeartbeat = {
   nodeId: string;
@@ -44,12 +44,12 @@ export const createMetaKuramotoNode = (
           phase: avgPhase,
         };
 
-        LOGGER.info(
+        Li(
           `[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`,
         );
 
         if (egressCount > 0) {
-          LOGGER.info(
+          Li(
             `[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`,
           );
         }

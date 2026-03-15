@@ -1,12 +1,18 @@
 // OMEGA-64 | test_economic_swap.ts | Stage 31 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_TRANSFER, OP_SYSCALL } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_TRANSFER,
+  OP_SYSCALL
+} from "@generated";
 
 Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async () => {
-  LOGGER.info("--- STAGE 31: ECONOMIC SWAP TEST ---");
+  Li("--- STAGE 31: ECONOMIC SWAP TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -56,7 +62,7 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
 
   // Receiver does nothing this tick.
 
-  LOGGER.info("Executing Economic Transfer Pulse...");
+  Li("Executing Economic Transfer Pulse...");
   await PULSE.tick();
 
   const senderEnergy = STATE_MATRIX.getEnergy(senderIdx);
@@ -64,8 +70,8 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
 
   // Sender started at 1000.
   // Sent 200. Gas fee ~10. Metabolic tick takes ~1-3. expected remaining ~785-790.
-  LOGGER.info(`Sender Energy remaining: ${senderEnergy}`);
-  LOGGER.info(`Receiver Energy remaining: ${receiverEnergy}`);
+  Li(`Sender Energy remaining: ${senderEnergy}`);
+  Li(`Receiver Energy remaining: ${receiverEnergy}`);
 
   assertEquals(
     senderEnergy < 800,
@@ -97,14 +103,14 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
   STATE_MATRIX.setInstructions(senderIdx, senderScript);
   STATE_MATRIX.setPC(senderIdx, 0); // Need to reset PC for new script to run!
 
-  LOGGER.info("Executing Resonance Transfer Pulse...");
+  Li("Executing Resonance Transfer Pulse...");
   await PULSE.tick();
 
   const senderResonance = STATE_MATRIX.getResonance(senderIdx);
   const receiverResonance = STATE_MATRIX.getResonance(receiverIdx);
 
-  LOGGER.info(`Sender Resonance remaining: ${senderResonance}`);
-  LOGGER.info(`Receiver Resonance remaining: ${receiverResonance}`);
+  Li(`Sender Resonance remaining: ${senderResonance}`);
+  Li(`Receiver Resonance remaining: ${receiverResonance}`);
 
   // Sender started at 50. Pulse 1 decay: -2 (48). Pulse 2 transferred 25, decay -2 = 21.
   // Receiver started at 10. Pulse 1 decay: -2 (8). Pulse 2 received 25, decay -2 = 31.
@@ -119,6 +125,6 @@ Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async (
     "Receiver Resonance should be 31 (10 - 2 decay + 25 received - 2 decay)",
   );
 
-  LOGGER.info("--- STAGE 31: SUCCESS ---");
+  Li("--- STAGE 31: SUCCESS ---");
   PULSE.stopWorkers();
 });

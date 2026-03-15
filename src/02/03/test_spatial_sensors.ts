@@ -1,12 +1,20 @@
 // OMEGA-64 | test_spatial_sensors.ts | Stage 35 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_SCAN, OP_SYSCALL, SYS_EMIT, OP_NOP } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_SCAN,
+  OP_SYSCALL,
+  SYS_EMIT,
+  OP_NOP
+} from "@generated";
 
 Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
-  LOGGER.info("--- STAGE 35: SPATIAL SENSORS TEST ---");
+  Li("--- STAGE 35: SPATIAL SENSORS TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -58,7 +66,7 @@ Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
   // It's easier to just read the context manually via STATE_MATRIX!
   STATE_MATRIX.setInstructions(atomA, scriptA);
 
-  LOGGER.info("Executing scan pulse...");
+  Li("Executing scan pulse...");
   await PULSE.tick(); // Tick 2: Atom A executes SCAN
 
   // The result of the syscall is stored in R0 (context offset 0)
@@ -69,7 +77,7 @@ Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
   );
   const foundIdx = contextA[0]; // R0
 
-  LOGGER.info(`Atom A scanned radius 5, found closest Idx: ${foundIdx}`);
+  Li(`Atom A scanned radius 5, found closest Idx: ${foundIdx}`);
   assertEquals(
     foundIdx,
     atomB,
@@ -101,7 +109,7 @@ Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
     16,
   );
   const notFoundIdx = contextA_empty[0]; // R0
-  LOGGER.info(
+  Li(
     `Atom A scanned radius 5 at (50,50), found closest Idx: ${notFoundIdx}`,
   );
   assertEquals(
@@ -110,6 +118,6 @@ Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
     "SYS_SCAN should return -1 when no valid atoms are within radius",
   );
 
-  LOGGER.info("--- STAGE 35: SUCCESS ---");
+  Li("--- STAGE 35: SUCCESS ---");
   PULSE.stopWorkers();
 });

@@ -10,10 +10,17 @@ min_level: 6
 ### TypeScript
 
 ```typescript
-import { STATE_MATRIX } from "@generated";
-import { assemble } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, OP_SYSCALL, SYS_ATTRACT, SYS_TRANSFER } from "@generated";
+import { STATE_MATRIX, LOGGER, Li, Le } from "@generated";
+import {
+  assemble
+} from "@generated";
+
+import {
+  OP_SET,
+  OP_SYSCALL,
+  SYS_ATTRACT,
+  SYS_TRANSFER
+} from "@generated";
 
 export class AgentProxy {
   port: number;
@@ -24,7 +31,7 @@ export class AgentProxy {
   }
 
   start() {
-    LOGGER.info(
+    Li(
       `[AGENT_PROXY] Starting LLM Sandbox Proxy on port ${this.port}...`,
     );
     this.server = Deno.serve(
@@ -36,7 +43,7 @@ export class AgentProxy {
   stop() {
     if (this.server) {
       this.server.shutdown();
-      LOGGER.info("[AGENT_PROXY] Server stopped.");
+      Li("[AGENT_PROXY] Server stopped.");
     }
   }
 
@@ -224,7 +231,7 @@ export class AgentProxy {
         JSON.stringify({ success: true, compiled_bytes: ops.length }),
       );
     } catch (e) {
-      LOGGER.error(e);
+      Le(e);
       return new Response(
         JSON.stringify({ error: "Invalid JSON or Internal Error" }),
         { status: 400 },

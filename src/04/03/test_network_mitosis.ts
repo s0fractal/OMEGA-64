@@ -3,13 +3,19 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_REPLICATE, OP_SYSCALL } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_REPLICATE,
+  OP_SYSCALL
+} from "@generated";
 
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
-  LOGGER.info("--- STAGE 32: NETWORK MITOSIS TEST ---");
+  Li("--- STAGE 32: NETWORK MITOSIS TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -43,7 +49,7 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   parentScript[7] = 0;
   STATE_MATRIX.setInstructions(parentIdx, parentScript);
 
-  LOGGER.info("Executing Mitosis Pulse...");
+  Li("Executing Mitosis Pulse...");
   await PULSE.tick();
 
   const parentEnergy = STATE_MATRIX.getEnergy(parentIdx);
@@ -52,11 +58,11 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   const childId = STATE_MATRIX.getId(childIdx);
   const childPc = STATE_MATRIX.getPC(childIdx);
 
-  LOGGER.info(`Parent Energy remaining: ${parentEnergy}`);
-  LOGGER.info(`Child Energy remaining: ${childEnergy}`);
-  LOGGER.info(`Child Genome Byte 2 (Syscall ID): ${childGenome[2]}`);
-  LOGGER.info(`Child ID: ${childId}`);
-  LOGGER.info(`Child PC: ${childPc}`);
+  Li(`Parent Energy remaining: ${parentEnergy}`);
+  Li(`Child Energy remaining: ${childEnergy}`);
+  Li(`Child Genome Byte 2 (Syscall ID): ${childGenome[2]}`);
+  Li(`Child ID: ${childId}`);
+  Li(`Child PC: ${childPc}`);
 
   // Checks:
   // 1. Child genome matches Parent (byte 2 should be SYS.REPLICATE = 11)
@@ -98,6 +104,6 @@ Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
     "Child must receive the metabolic spark and be alive",
   );
 
-  LOGGER.info("--- STAGE 32: SUCCESS ---");
+  Li("--- STAGE 32: SUCCESS ---");
   PULSE.stopWorkers();
 });

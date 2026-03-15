@@ -11,9 +11,10 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS } from "@generated";
-import { DollFork } from "@generated";
-import { LOGGER } from "@generated";
+import { MAX_ATOMS, LOGGER, Li } from "@generated";
+import {
+  DollFork
+} from "@generated";
 
 export type Relic = {
   id: string;
@@ -67,7 +68,7 @@ export class RelicCultivator {
     }
 
     if (relics.length > 0) {
-      LOGGER.info(
+      Li(
         `[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`,
       );
     }
@@ -82,7 +83,7 @@ export class RelicCultivator {
     for (const relic of relics) {
       const path = `./@07/02/sandbox/relic_${relic.id}.json`;
       await Deno.writeTextFile(path, JSON.stringify(relic, null, 2));
-      LOGGER.info(`[RELIC CULTIVATOR] Saved relic to ${path}`);
+      Li(`[RELIC CULTIVATOR] Saved relic to ${path}`);
     }
   }
 }

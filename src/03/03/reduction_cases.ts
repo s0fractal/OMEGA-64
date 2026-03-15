@@ -53,7 +53,6 @@ export type ReductionCaseDefinition = {
   expected: ReductionCaseExpectation;
 };
 
-
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
   OP_GET, 0, PROP_ENERGY,
   OP_SET, 1, targetEnergy,

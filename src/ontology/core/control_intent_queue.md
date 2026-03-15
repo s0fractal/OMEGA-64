@@ -6,12 +6,21 @@ min_level: 6
 
 ---
 ```typescript
-import { GRID_H, GRID_W, SCALE } from "@generated";
-import { MAX_ATOMS, STATE_MATRIX } from "@generated";
-import { LOGGER } from "@generated";
-import { PREDICTION_MARKET } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
-import { GLYPH_TELEMETRY } from "@generated";
+import { GRID_H, GRID_W, SCALE, LOGGER, Li, Lw } from "@generated";
+import {
+  MAX_ATOMS,
+  STATE_MATRIX
+} from "@generated";
+
+import {
+  PREDICTION_MARKET
+} from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
+import {
+  GLYPH_TELEMETRY
+} from "@generated";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
@@ -1068,14 +1077,14 @@ const applyFederateIntent = (intent: FederateIntent): boolean => {
   // Delegate to P2P_CODEC.unpackAtom(intent.packet) asynchronously during apply
   const idx = delegate ? delegate.unpackAtom(intent.packet) : -1;
   if (idx < 0) {
-    LOGGER.warn(
+    Lw(
       `🛸 [FEDERATION] Queue apply skipped for binary ingress from ${intent.sourceNode}: matrix full or invalid packet.`,
     );
     return false;
   }
 
   const idStr = STATE_MATRIX.getId(idx).toString();
-  LOGGER.info(
+  Li(
     `🛸 [FEDERATION] Applied queued binary migration from ${intent.sourceNode}: ${idStr}`,
   );
   return true;
@@ -1265,7 +1274,7 @@ export const CONTROL_INTENT_QUEUE = {
     }
 
     if (admissionResult.action === "reject") {
-      LOGGER.warn(
+      Lw(
         `🛸 [FEDERATION] Rejected binary ingress ${sourceNode}:${atomId} score=${admissionResult.admission.score} reasons=${
           admissionResult.admission.reasons.join("|")
         }`,
@@ -1390,7 +1399,7 @@ export const CONTROL_INTENT_QUEUE = {
       else failed++;
     }
     if (failed > 0) {
-      LOGGER.warn(
+      Lw(
         `[CONTROL] host-lock apply failures=${failed} drained=${drained} remaining=${queue.length}`,
       );
     }

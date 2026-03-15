@@ -11,9 +11,10 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-import { GENESIS_PROGRAMS } from "@generated";
-import { REIFIED_PROGRAMS } from "@generated";
-import { LOGGER } from "@generated";
+import { GENESIS_PROGRAMS, LOGGER, Ld } from "@generated";
+import {
+  REIFIED_PROGRAMS
+} from "@generated";
 
 export interface InceptiveProgram {
   bytecode: number[];
@@ -40,7 +41,7 @@ export class GenesisInceptor {
       // Simple heuristic: pick a random reified program or one matching role hint
       const pickedKey =
         reifiedKeys[Math.floor(Math.random() * reifiedKeys.length)];
-      LOGGER.debug(`[INCEPTOR] Selected reified program: ${pickedKey}`);
+      Ld(`[INCEPTOR] Selected reified program: ${pickedKey}`);
       return {
         bytecode: REIFIED_PROGRAMS[pickedKey],
         metadata: { ancestorHash: BigInt("0x" + pickedKey.substring(0, 16)) }, // Pseudo-hash

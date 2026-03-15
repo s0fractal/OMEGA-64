@@ -12,12 +12,22 @@ min_level: 5
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE } from "@generated";
-import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { SOVEREIGNTY_ENGINE } from "@generated";
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
-import { PULSE } from "@generated";
+import { LLM_SYNAPSE, LOGGER, Ld, Li, Lw, Le } from "@generated";
+import {
+  STATE_MATRIX,
+  MAX_GLYPH_AMP,
+  MIN_GLYPH_AMP
+} from "@generated";
+import {
+  SOVEREIGNTY_ENGINE
+} from "@generated";
+
+import {
+  RUNTIME_POLICY
+} from "@generated";
+import {
+  PULSE
+} from "@generated";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
 import { GRID_W, GRID_H } from "../mod.ts";
 
@@ -109,9 +119,9 @@ export const SOVEREIGN_ORACLE = {
   maxPendingMutations: ORACLE_PENDING_MAX,
 
   declareEschaton: async (reason: string): Promise<void> => {
-    LOGGER.info(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
+    Li(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
     const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
-    LOGGER.info(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
+    Li(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
     
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     await delegate?.appendObserverCommentary(
@@ -275,7 +285,7 @@ export const SOVEREIGN_ORACLE = {
             kind: "oracle_cache_fallback",
             count: 1,
           });
-          LOGGER.warn(
+          Lw(
             `♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${mutation.cachedHex}]`,
           );
           applied++;
@@ -380,7 +390,7 @@ export const SOVEREIGN_ORACLE = {
     SOVEREIGN_ORACLE.isConsulting = true;
 
     try {
-      LOGGER.info(
+      Li(
         `👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`,
       );
 
@@ -392,7 +402,7 @@ export const SOVEREIGN_ORACLE = {
       });
 
       if (oracleResult && oracleResult.intent) {
-        LOGGER.info(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
+        Li(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
         let newPlasmid: Uint8Array;
         let hex: string;
 
@@ -410,7 +420,7 @@ export const SOVEREIGN_ORACLE = {
           // Save the exact intent into the archive for UI/Telemetry
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
+          Lw(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -422,11 +432,11 @@ export const SOVEREIGN_ORACLE = {
           }
         }
 
-        LOGGER.info(
+        Li(
           `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
         if (STATE_MATRIX.getId(regentIndex) === 0n) {
-          LOGGER.debug(
+          Ld(
             `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
           );
           return;
@@ -461,20 +471,20 @@ export const SOVEREIGN_ORACLE = {
             }
 
             if (driftIndex > 20 || drift.populationDiff <= -1) {
-              LOGGER.warn(
+              Lw(
                 `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${
                   driftIndex.toFixed(2)
                 })`,
               );
               return;
             }
-            LOGGER.info(
+            Li(
               `🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${
                 driftIndex.toFixed(2)
               }`,
             );
           } catch (simErr) {
-            LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
+            Lw(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
             return;
           }
 
@@ -511,7 +521,7 @@ export const SOVEREIGN_ORACLE = {
               headBytes: fullGenome,
               genomeHex: hex,
             });
-            LOGGER.info(
+            Li(
               `⚡ [ORACLE] Divine Intervention applied. Direct semantic mutation queued. Hash: [${hex}]`,
             );
           }
@@ -526,7 +536,7 @@ export const SOVEREIGN_ORACLE = {
               plasmidBytes: newPlasmid,
               source: "oracle_guidance",
             });
-            LOGGER.info(
+            Li(
               `🧬 [ORACLE] Divine Intervention applied. Stigmergic plasmid queued. Hash: [${hex}]`,
             );
           }
@@ -543,17 +553,17 @@ export const SOVEREIGN_ORACLE = {
             regentIndex,
             memeBytes,
           });
-          LOGGER.info(
+          Li(
             `🌀 [ORACLE] Memetic Injection queued for HOST_LOCK apply: [${memeHex}]`,
           );
         }
       } else {
-        LOGGER.debug(
+        Ld(
           `👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`,
         );
       }
     } catch (err) {
-      LOGGER.error(`👁️ [ORACLE] Connection severed:`, err);
+      Le(`👁️ [ORACLE] Connection severed:`, err);
 
       // --- ERA 68: CACHE FALLBACK ---
       if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
@@ -573,7 +583,7 @@ export const SOVEREIGN_ORACLE = {
               logicBytes: bytes,
               cachedHex,
             });
-            LOGGER.warn(
+            Lw(
               `♻️ [ORACLE] LLM Offline. Direct cache mutation queued for HOST_LOCK: [${cachedHex}]`,
             );
           } else {
@@ -586,7 +596,7 @@ export const SOVEREIGN_ORACLE = {
                 plasmidBytes: bytes,
                 source: "oracle_cache_fallback",
               });
-              LOGGER.warn(
+              Lw(
                 `♻️ [ORACLE] LLM Offline. Stigmergic cache plasmid queued for HOST_LOCK: [${cachedHex}]`,
               );
             }
@@ -605,7 +615,7 @@ export const SOVEREIGN_ORACLE = {
     SOVEREIGN_ORACLE.isConsulting = true;
 
     try {
-      LOGGER.info(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
+      Li(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
 
       const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
 
@@ -618,7 +628,7 @@ export const SOVEREIGN_ORACLE = {
           hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
+          Lw(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -634,16 +644,16 @@ export const SOVEREIGN_ORACLE = {
           source: "oracle_guidance",
         });
 
-        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
+        Li(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
 
         if (oracleResult.narrativeMood) {
-          LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
+          Li(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
           const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
           await delegate?.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
         }
       }
     } catch (err) {
-      LOGGER.error(`👁️ [AUTONOMOUS_ORACLE] Connection severed:`, err);
+      Le(`👁️ [AUTONOMOUS_ORACLE] Connection severed:`, err);
     } finally {
       SOVEREIGN_ORACLE.isConsulting = false;
     }
@@ -703,12 +713,12 @@ export const SOVEREIGN_ORACLE = {
         workerExports.set_neural_coherence(coherence);
 
         if (coherence >= 100) {
-          LOGGER.info(
+          Li(
             `🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`,
           );
         }
         if (coherence >= 1000) {
-          LOGGER.info(
+          Li(
             `⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`,
           );
         }

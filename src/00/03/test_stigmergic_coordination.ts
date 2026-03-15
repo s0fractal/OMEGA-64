@@ -1,13 +1,19 @@
 // OMEGA-64 | test_stigmergic_coordination.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX } from "@generated";
+import { STATE_MATRIX, LOGGER, Li, Lw, Le } from "@generated";
 const { OP_BUILD, OP_RESONATE } = RISC;
-import { QuorumAdvocate } from "@generated";
-import { LOGGER } from "@generated";
-import { wasmMemory } from "@generated";
-import { OP_RESONATE } from "@generated";
+import {
+  QuorumAdvocate
+} from "@generated";
+
+import {
+  wasmMemory
+} from "@generated";
+import {
+  OP_RESONATE
+} from "@generated";
 
 async function runTest() {
-  LOGGER.info("🧪 [TEST] Starting Stigmergic Coordination Verification...");
+  Li("🧪 [TEST] Starting Stigmergic Coordination Verification...");
 
   const qa = new QuorumAdvocate();
 
@@ -28,12 +34,12 @@ async function runTest() {
   // 2. Test QuorumAdvocate evaluation
   const activeIdx = [atomA, atomB];
   const syntropy = qa.evaluateQuorum(activeIdx);
-  LOGGER.info(`📊 Syntropy Level: ${syntropy.toFixed(4)}`);
+  Li(`📊 Syntropy Level: ${syntropy.toFixed(4)}`);
 
   if (syntropy > 0) {
-    LOGGER.info("✅ QuorumAdvocate detected organization.");
+    Li("✅ QuorumAdvocate detected organization.");
   } else {
-    LOGGER.warn(
+    Lw(
       "⚠️ QuorumAdvocate detected zero syntropy (check proximity logic).",
     );
   }
@@ -42,13 +48,13 @@ async function runTest() {
   // Since we can't easily run the full thread pool here without bootstrapping,
   // we'll verify the constants and the logic in the WASM source (already done).
 
-  LOGGER.info(`RISC OP_RESONATE: 0x${OP_RESONATE(16)}`);
-  LOGGER.info(`Individual OP_RESONATE: 0x${OP_RESONATE.toString(16)}`);
+  Li(`RISC OP_RESONATE: 0x${OP_RESONATE(16)}`);
+  Li(`Individual OP_RESONATE: 0x${OP_RESONATE.toString(16)}`);
 
   if (OP_RESONATE === 0xAE) {
-    LOGGER.info("✅ OP_RESONATE opcode constant is correct.");
+    Li("✅ OP_RESONATE opcode constant is correct.");
   } else {
-    LOGGER.error("❌ OP_RESONATE opcode constant mismatch!");
+    Le("❌ OP_RESONATE opcode constant mismatch!");
   }
 
   // 4. Test OP_BUILD cost logic simulation
@@ -57,7 +63,7 @@ async function runTest() {
   STATE_MATRIX.setLineage(atomA, lineageHash);
   // In a real run, wisdom would reward high-resonance lineages.
 
-  LOGGER.info("✅ Stigmergic Coordination Verification Script Completed.");
+  Li("✅ Stigmergic Coordination Verification Script Completed.");
 }
 
 if (import.meta.main) {

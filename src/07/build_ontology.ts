@@ -333,7 +333,6 @@ for (const node of nodes.values()) {
   }
 }
 
-
 // 3. Constant Evaluation Pre-Pass Removed (Native Compile-time Math)
 
 // 4. File Emission
@@ -374,7 +373,6 @@ for (const node of nodes.values()) {
   ensureDirSync(dirPathRs);
   ensureDirSync(dirPathAs);
 
-  
   // Skip code generation entirely for documentation nodes
   if (node.type === "documentation" || node.type === "docs" || node.type === "lore") {
     continue;

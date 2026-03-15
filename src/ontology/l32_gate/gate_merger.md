@@ -8,10 +8,14 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
-import { LOGGER } from "@generated";
-import { GATE_BUDGET } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@generated";
+
+import {
+  GATE_BUDGET
+} from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 
 type I16Limits = {
   max: number;
@@ -82,16 +86,16 @@ export const mergeGateProposals = (
 
   for (const p of validProposals) {
     if (p.resonance !== undefined) {
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
       );
     } else if (p.origin_atom_idx !== undefined) {
       const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
     } else {
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
       );
     }
@@ -125,7 +129,7 @@ export const mergeGateProposals = (
       const oldCost = physicalCost;
       physicalCost = physicalCost * (1 - totalDiscount);
 
-      LOGGER.debug(
+      Ld(
         `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${
           oldCost.toFixed(1)
         }, Res: ${atomResonance.toFixed(1)}, Quorum: ${

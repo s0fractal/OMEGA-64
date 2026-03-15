@@ -255,7 +255,6 @@ pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/env_parse.md
 #![allow(unused_imports)]
 
-
 ```
 
 ---
@@ -373,7 +372,6 @@ pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 639
 ```rust
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_snapshot.md
 #![allow(unused_imports)]
-
 
 ```
 
@@ -555,7 +553,6 @@ pub const SYS_SENSE_PHASE: i32 = 21;
 ```rust
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/append_jsonl.md
 #![allow(unused_imports)]
-
 
 ```
 
@@ -966,7 +963,6 @@ pub fn prng_next(state: u32) -> u32 {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl.md
 #![allow(unused_imports)]
 
-
 ```
 
 ---
@@ -976,7 +972,6 @@ pub fn prng_next(state: u32) -> u32 {
 ```rust
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl_lines.md
 #![allow(unused_imports)]
-
 
 ```
 
@@ -1336,7 +1331,6 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 #![allow(unused_imports)]
 use super::super::L00::*;
 
-
 ```
 
 ---
@@ -1413,7 +1407,6 @@ pub fn in_grid(x: i32, y: i32) -> bool {
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/ledger_chain.md
 #![allow(unused_imports)]
 use super::super::L00::*;
-
 
 ```
 
@@ -2697,7 +2690,6 @@ use super::super::L01::*;
 #![allow(unused_imports)]
 use super::super::L01::*;
 
-
 ```
 
 ---
@@ -3281,7 +3273,6 @@ use crate::{
     STR_SOURCE, STR_VOID, STR_WIRE, MAX_GLYPH_AMP, MIN_GLYPH_AMP
 };
 use crate::SigmaState;
-
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
@@ -5160,7 +5151,6 @@ pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
 #![allow(unused_imports)]
 use super::super::L02::*;
 
-
 ```
 
 ---
@@ -5171,7 +5161,6 @@ use super::super::L02::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
 #![allow(unused_imports)]
 use super::super::L02::*;
-
 
 ```
 
@@ -5184,7 +5173,6 @@ use super::super::L02::*;
 #![allow(unused_imports)]
 use super::super::L02::*;
 
-
 ```
 
 ---
@@ -5195,7 +5183,6 @@ use super::super::L02::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
 #![allow(unused_imports)]
 use super::super::L02::*;
-
 
 ```
 
@@ -5208,7 +5195,6 @@ use super::super::L02::*;
 #![allow(unused_imports)]
 use super::super::L02::*;
 
-
 ```
 
 ---
@@ -5220,7 +5206,6 @@ use super::super::L02::*;
 #![allow(unused_imports)]
 use super::super::L02::*;
 
-
 ```
 
 ---
@@ -5231,7 +5216,6 @@ use super::super::L02::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
 #![allow(unused_imports)]
 use super::super::L02::*;
-
 
 ```
 
@@ -6696,7 +6680,6 @@ impl LambdaVM {
 #![allow(unused_imports)]
 use super::super::L02::*;
 
-
 ```
 
 ---
@@ -6707,7 +6690,6 @@ use super::super::L02::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_codec.md
 #![allow(unused_imports)]
 use super::super::L03::*;
-
 
 ```
 
@@ -6720,7 +6702,6 @@ use super::super::L03::*;
 #![allow(unused_imports)]
 use super::super::L03::*;
 
-
 ```
 
 ---
@@ -6731,7 +6712,6 @@ use super::super::L03::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
 #![allow(unused_imports)]
 use super::super::L03::*;
-
 
 ```
 
@@ -6744,7 +6724,6 @@ use super::super::L03::*;
 #![allow(unused_imports)]
 use super::super::L03::*;
 
-
 ```
 
 ---
@@ -6756,7 +6735,6 @@ use super::super::L03::*;
 #![allow(unused_imports)]
 use super::super::L03::*;
 
-
 ```
 
 ---
@@ -6767,7 +6745,6 @@ use super::super::L03::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_node.md
 #![allow(unused_imports)]
 use super::super::L03::*;
-
 
 ```
 
@@ -6842,7 +6819,6 @@ use super::super::L03::*;
 #![allow(unused_imports)]
 use super::super::L04::*;
 
-
 ```
 
 ---
@@ -6854,7 +6830,6 @@ use super::super::L04::*;
 #![allow(unused_imports)]
 use super::super::L04::*;
 
-
 ```
 
 ---
@@ -6865,7 +6840,6 @@ use super::super::L04::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
 #![allow(unused_imports)]
 use super::super::L04::*;
-
 
 ```
 
@@ -6890,7 +6864,6 @@ use super::super::L04::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
 #![allow(unused_imports)]
 use super::super::L04::*;
-
 
 ```
 
@@ -6946,7 +6919,6 @@ use super::super::L04::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -6957,7 +6929,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -6970,7 +6941,6 @@ use super::super::L05::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -6981,7 +6951,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -6994,7 +6963,6 @@ use super::super::L05::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7005,7 +6973,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/serve_dashboard.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -7018,7 +6985,6 @@ use super::super::L05::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7029,7 +6995,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/base64_to_bytes.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -7042,7 +7007,6 @@ use super::super::L05::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7054,7 +7018,6 @@ use super::super::L05::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7065,7 +7028,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/fnv1a32.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -7144,7 +7106,6 @@ pub fn get_glyph_legacy_opcode(id: u8) -> u8 {
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7155,7 +7116,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/make_xor_shift32.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -7246,7 +7206,6 @@ pub use SERVE_DASHBOARD::*;
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7277,7 +7236,6 @@ pub fn pack_structure_intent(target_type: u32, target_value: u32, locked: bool) 
 #![allow(unused_imports)]
 use super::super::L05::*;
 
-
 ```
 
 ---
@@ -7288,7 +7246,6 @@ use super::super::L05::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/to_int16_big_endian.md
 #![allow(unused_imports)]
 use super::super::L05::*;
-
 
 ```
 
@@ -7316,7 +7273,6 @@ pub fn unpack_structure_charge(intent: i32) -> u32 {
 #![allow(unused_imports)]
 use super::super::L06::*;
 
-
 ```
 
 ---
@@ -7327,7 +7283,6 @@ use super::super::L06::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/crypto_keys.md
 #![allow(unused_imports)]
 use super::super::L06::*;
-
 
 ```
 
@@ -7340,7 +7295,6 @@ use super::super::L06::*;
 #![allow(unused_imports)]
 use super::super::L06::*;
 
-
 ```
 
 ---
@@ -7351,7 +7305,6 @@ use super::super::L06::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_ir_64.md
 #![allow(unused_imports)]
 use super::super::L06::*;
-
 
 ```
 
@@ -7391,7 +7344,6 @@ pub use disassembler::*;
 #![allow(unused_imports)]
 use super::super::L06::*;
 
-
 ```
 
 ---
@@ -7402,7 +7354,6 @@ use super::super::L06::*;
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_pretty.md
 #![allow(unused_imports)]
 use super::super::L07::*;
-
 
 ```
 

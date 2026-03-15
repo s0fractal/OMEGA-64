@@ -1,12 +1,17 @@
 // OMEGA-64 | test_memetic_contagion.ts | Stage 38 Verification
 import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { NEXUS_DAEMON, PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  NEXUS_DAEMON,
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET
+} from "@generated";
 
 Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => {
-  LOGGER.info("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");
+  Li("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -52,9 +57,9 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
     STATE_MATRIX.contexts,
     atomStudent * 16 + 15,
   );
-  LOGGER.info(`Student Pre-Entropy Cache (Uninitialized): ${entropyBefore}`);
+  Li(`Student Pre-Entropy Cache (Uninitialized): ${entropyBefore}`);
 
-  LOGGER.info("Executing physics loop for 20 ticks...");
+  Li("Executing physics loop for 20 ticks...");
   for (let i = 0; i < 20; i++) {
     await PULSE.tick();
   }
@@ -63,7 +68,7 @@ Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => 
     STATE_MATRIX.contexts,
     atomStudent * 16 + 15,
   );
-  LOGGER.info(
+  Li(
     `Student Post-Entropy Cache (Evicted or Recomputed): ${entropyAfter}`,
   );
 

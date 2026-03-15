@@ -13,7 +13,6 @@ min_level: 6
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
 import { WORLD_MAX_X, WORLD_MAX_Y } from "../mod.ts";
 
-
 type Telemetry = {
   tick: number;
   avgEnergy: number;

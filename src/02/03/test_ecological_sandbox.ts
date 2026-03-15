@@ -1,12 +1,20 @@
 // OMEGA-64 | test_ecological_sandbox.ts | Stage 36 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { NEXUS_DAEMON, PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  NEXUS_DAEMON,
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_ATTRACT,
+  OP_SYSCALL,
+  SYS_TRANSFER
+} from "@generated";
 
 Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () => {
-  LOGGER.info("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");
+  Li("--- STAGE 36: ECOLOGICAL SANDBOX TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -45,10 +53,10 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
 
   STATE_MATRIX.setInstructions(predatorA, scriptMoveX);
 
-  LOGGER.info("Executing ATTRACT pulse...");
+  Li("Executing ATTRACT pulse...");
   await PULSE.tick(); // Tick 2: Predator moves
   const newPx = STATE_MATRIX.getX(predatorA);
-  LOGGER.info(`Predator X is now: ${newPx}`);
+  Li(`Predator X is now: ${newPx}`);
 
   assertEquals(
     newPx,
@@ -79,7 +87,7 @@ Deno.test("Stage 36: Ecological Sandbox (SYS_ATTRACT, SYS_TRANSFER)", async () =
   STATE_MATRIX.setPC(predatorA, 0);
 
   const initialPreyEnergy = STATE_MATRIX.getEnergy(preyB);
-  LOGGER.info("Executing TRANSFER (Theft) pulse...");
+  Li("Executing TRANSFER (Theft) pulse...");
   await PULSE.tick(); // Tick 4: Predator eats
 
   const finalPreyEnergy = STATE_MATRIX.getEnergy(preyB);

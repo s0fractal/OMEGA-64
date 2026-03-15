@@ -11,7 +11,7 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
-import { LOGGER } from "@generated";
+import { LOGGER, Li, Lw, Le } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999; // Assume an atom seeded with this ID
@@ -21,14 +21,14 @@ function sleep(ms: number) {
 }
 
 async function runAvatar() {
-  LOGGER.info(`[AVATAR] Waking up Avatar ID: ${AVATAR_ID}`);
+  Li(`[AVATAR] Waking up Avatar ID: ${AVATAR_ID}`);
 
   while (true) {
     try {
       // 1. SENSE Environment
       const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
       if (!res.ok) {
-        LOGGER.warn(
+        Lw(
           "[AVATAR] Cannot reach Proxy or Avatar is dead. Waiting...",
         );
         await sleep(2000);
@@ -39,7 +39,7 @@ async function runAvatar() {
       const me = data.self;
       const vision = data.vision;
 
-      LOGGER.info(
+      Li(
         `[AVATAR] Pos: (${me.x}, ${me.y}) | Energy: ${
           Math.floor(me.energy)
         } | Seeing ${vision.length} entities.`,
@@ -58,7 +58,7 @@ async function runAvatar() {
           if (food.distance <= 15) {
             action = "EAT";
             targetIdx = food.idx;
-            LOGGER.info(
+            Li(
               `[AVATAR] DECISION: EAT target ${targetIdx} at Dist ${
                 Math.floor(food.distance)
               }`,
@@ -67,7 +67,7 @@ async function runAvatar() {
             // Move towards food
             dx = Math.sign(food.dx);
             dy = Math.sign(food.dy);
-            LOGGER.info(`[AVATAR] DECISION: CHASE target ${food.idx}`);
+            Li(`[AVATAR] DECISION: CHASE target ${food.idx}`);
           }
         }
       }
@@ -79,7 +79,7 @@ async function runAvatar() {
         body: JSON.stringify({ action, dx, dy, targetIdx, amount: 100 }),
       });
     } catch (e: any) {
-      LOGGER.error("[AVATAR] Network error:", e.message);
+      Le("[AVATAR] Network error:", e.message);
     }
 
     // Tick delay (Assuming matrix ticks at 10 TPS, we query every 500ms so we don't spam, acting at 2 TPS)

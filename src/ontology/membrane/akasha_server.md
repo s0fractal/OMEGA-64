@@ -32,7 +32,6 @@ const REST_JSON_HEADERS = {
   "Access-Control-Allow-Origin": "*",
 } as const;
 
-
 let clients = new Set<WebSocket>();
 
 // Store the latest state of the universe

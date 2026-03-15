@@ -2143,12 +2143,20 @@ min_level: 6
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX } from "@generated";
-import { SEMANTIC_MEMBRANE } from "@generated";
-import { LLM_SYNAPSE } from "@generated";
-import { AUDIT_ENGINE } from "@generated";
-import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@generated";
+import { STATE_MATRIX, LOGGER, Ld, Li, Lw, Le } from "@generated";
+import {
+  SEMANTIC_MEMBRANE
+} from "@generated";
+import {
+  LLM_SYNAPSE
+} from "@generated";
+import {
+  AUDIT_ENGINE
+} from "@generated";
+
+import {
+  AKASHA_CODEX
+} from "@generated";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -2158,19 +2166,19 @@ export const BREATH = {
       generateThought: (c: string) => LLM_SYNAPSE.generateThought(c),
     });
 
-    LOGGER.info("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
+    Li("🌬️ OMEGA-64 | BREATH ACTIVE | Initializing Cognitive Loop");
 
     while (true) {
-      LOGGER.info("\n--- [BREATH] Deep Sample ---");
+      Li("\n--- [BREATH] Deep Sample ---");
 
       // 1. Listen to the Matrix (Vox Populi + Oracle Queue)
       const vox = await SEMANTIC_MEMBRANE.readVoxelPopuli(Deno.cwd());
       const oracle = SEMANTIC_MEMBRANE.readOracleQueue(5);
-      LOGGER.info(
+      Li(
         `   [BREATH] Listening: "${vox[0]}" (and ${vox.length - 1} memories)`,
       );
       if (oracle.length > 0) {
-        LOGGER.info(
+        Li(
           `   [BREATH] Oracle Guidance: "${oracle[0].substring(0, 40)}..."`,
         );
       }
@@ -2178,13 +2186,13 @@ export const BREATH = {
       // 2. Audit Archived Intent (Historical Context)
       const historicalBriefing = await AUDIT_ENGINE
         .generateHistoricalBriefing();
-      LOGGER.info(
+      Li(
         `   [BREATH] Historical Briefing: "${
           historicalBriefing.substring(0, 50)
         }..."`,
       );
       const codexChronicle = await AKASHA_CODEX.getChronicleContext(3);
-      LOGGER.info(
+      Li(
         `   [BREATH] Codex Chronicle: "${codexChronicle.substring(0, 60)}..."`,
       );
 
@@ -2200,7 +2208,7 @@ export const BREATH = {
 
       // Phase 23: Entropy Flux (Negative Entropy Injection)
       const energyInjected = STATE_MATRIX.injectEnergy(weight * 2);
-      LOGGER.info(
+      Li(
         `   [BREATH] Negentropy Flux: +${
           (weight * 2).toFixed(1)
         } energy units across ${energyInjected} atoms`,
@@ -2208,17 +2216,17 @@ export const BREATH = {
 
       // 5. Digital Archaeology (Every 5 cycles)
       if (Math.floor(Date.now() / BREATH_INTERVAL_MS) % 5 === 0) {
-        LOGGER.info("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
+        Li("\n--- [ARCHAEOLOGY] Scanning Digital Ruins ---");
         const ruins = SEMANTIC_MEMBRANE.scanDigitalRuins();
         if (ruins.length > 0) {
           const report = await LLM_SYNAPSE.generateArchaeologicalReport(ruins);
-          LOGGER.info(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
+          Li(`🏺 [ARCHAEOLOGIST] Report: "${report}"`);
         } else {
-          LOGGER.info("   [ARCHAEOLOGY] No ruins found in this sector.");
+          Li("   [ARCHAEOLOGY] No ruins found in this sector.");
         }
       }
 
-      LOGGER.info(
+      Li(
         `   [BREATH] Exhale complete. Next cycle in ${
           BREATH_INTERVAL_MS / 1000
         }s.`,
@@ -5317,10 +5325,9 @@ min_level: 2
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 import {
   AS_WASM_PATH,
-  LOGGER,
   MAX_ATOMS,
   sharedBuffer,
-  STATE_MATRIX,
+  STATE_MATRIX
 } from "@generated";
 import {
   BONDS_OFFSET,
@@ -5346,7 +5353,7 @@ import {
   ROLES_OFFSET,
   SPAWN_REQUESTS_OFFSET,
   XS_OFFSET,
-  YS_OFFSET,
+  YS_OFFSET
 } from "@generated";
 
 import { SOVEREIGNTY_ENGINE } from "../../03/SOVEREIGNTY_ENGINE.ts";
@@ -5427,8 +5434,12 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "@generated";
-import { GLYPH_TELEMETRY } from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
+import {
+  GLYPH_TELEMETRY
+} from "@generated";
 import { DAEMON_INGRESS_POLICY_LIMITS } from "../../03/daemon_ingress_policy.md";
 
 import { syncHormonesToLattice } from "../../02/HORMONE_BUFFER_RUNTIME.ts";
@@ -5444,7 +5455,7 @@ import {
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
+  snapshotLedgerRuntime
 } from "@generated";
 import { type GeneticLedgerKey } from "../03/GENETIC_LEDGER.ts";
 import {
@@ -5457,13 +5468,27 @@ import {
   recordFromRollback,
 } from "../../03/GENERIC_LEDGER_PERSISTENCE.ts";
 
-import { DriftWarden } from "@generated";
-import { DollFork } from "@generated";
-import { DollForkRunner } from "@generated";
-import { REIFIED_PROGRAMS } from "@generated";
-import { GenesisInceptor } from "@generated";
-import { LineageTracker } from "@generated";
-import { QuorumAdvocate } from "@generated";
+import {
+  DriftWarden
+} from "@generated";
+import {
+  DollFork
+} from "@generated";
+import {
+  DollForkRunner
+} from "@generated";
+import {
+  REIFIED_PROGRAMS
+} from "@generated";
+import {
+  GenesisInceptor
+} from "@generated";
+import {
+  LineageTracker
+} from "@generated";
+import {
+  QuorumAdvocate
+} from "@generated";
 import {
   OP_ADD,
   OP_BUILD,
@@ -5543,7 +5568,7 @@ const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
     const bytes = await Deno.readFile(AS_WASM_PATH);
     return await WebAssembly.compile(bytes);
   } catch (err) {
-    LOGGER.error(`Failed to cache WASM module: ${(err as Error).message}`);
+    Le(`Failed to cache WASM module: ${(err as Error).message}`);
     return null;
   }
 };
@@ -6655,7 +6680,7 @@ const applyEvolutionPressureTerms = (
       count: adjusted,
     });
     if (tick % 200 === 0) {
-      LOGGER.info(
+      Li(
         `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
@@ -6740,7 +6765,7 @@ const applyEnergyHomeostasisTerms = (
       count: adjusted,
     });
     if (tick % 20 === 0) {
-      LOGGER.debug(
+      Ld(
         `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${targetEnergy} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${
           spatialOverflowRatio.toFixed(3)
         }`,
@@ -6855,7 +6880,7 @@ const waitForWorkerMessage = <T = any>(
     };
 
     const listener = (e: MessageEvent) => {
-      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
+      Ld("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data || data.type !== expectedType) return;
       if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) {
@@ -6908,13 +6933,13 @@ const waitForWorkerInit = (
     };
 
     const listener = (e: MessageEvent) => {
-      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
+      Ld("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data) return;
       if (data.type === "READY") {
         cleanup();
         if (shouldLogWorkerRecovery(workerIndex, "READY", timeoutWindows)) {
-          LOGGER.warn(
+          Lw(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
         }
@@ -6970,7 +6995,7 @@ const postAndWait = async <T = any>(
           res.timeoutWindows,
         )
       ) {
-        LOGGER.warn(
+        Lw(
           `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
         );
       }
@@ -6983,7 +7008,7 @@ const postAndWait = async <T = any>(
     if (isWorkerTimeoutError(err)) {
       const syncState = STATE_MATRIX.syncState;
       if (syncState) {
-        LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+        Le(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
@@ -7060,12 +7085,12 @@ const startWorkers = async (count: number): Promise<void> => {
             : new Uint8Array(0);
           if (packedAtom) {
             noosphereDelegate?.routeAtom(packedAtom);
-            LOGGER.debug(
+            Ld(
               `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
             );
             STATE_MATRIX.recycleAtom(idx);
           } else {
-            LOGGER.error(
+            Le(
               `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
             );
           }
@@ -7109,11 +7134,11 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
       pulseInitialized = true;
 
-      LOGGER.info(`[PULSE] System initialization complete.`);
+      Li(`[PULSE] System initialization complete.`);
       runtimeWorkerCount = 0;
       const failMsg = `[PULSE] Worker init failed: ${primaryErr}`;
       if (WASM_BOOT_POLICY === "safe-noop") {
-        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        Le(`${failMsg}. Entering safe-noop mode.`);
         enterWasmSafeNoopMode(failMsg);
         return;
       }
@@ -7123,7 +7148,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     runtimeWorkerCount = 1;
     initFallbackActivated = true;
     initFallbackReason = primaryErr;
-    LOGGER.warn(
+    Lw(
       `   [PULSE] Worker init failed; fallback to single worker. reason=${primaryErr}`,
     );
 
@@ -7138,7 +7163,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
       const failMsg =
         `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`;
       if (WASM_BOOT_POLICY === "safe-noop") {
-        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        Le(`${failMsg}. Entering safe-noop mode.`);
         enterWasmSafeNoopMode(failMsg);
         return;
       }
@@ -7191,7 +7216,7 @@ async function initShadowWasm(): Promise<void> {
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     env: {
       memory: STATE_MATRIX.wasmMemory,
-      abort: (msg: any) => LOGGER.error("   [SHADOW WASM ABORT]:", msg),
+      abort: (msg: any) => Le("   [SHADOW WASM ABORT]:", msg),
       // Dummy trace_atom for shadow
       trace_atom: () => {},
     },
@@ -7357,30 +7382,30 @@ export const PULSE = {
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
     if (RUNTIME_POLICY.pulse.source.workerCount) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
     }
     if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
-      LOGGER.info(
+      Li(
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
     if (RUNTIME_POLICY.pulse.source.workerResponseTimeoutMs) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
     if (RUNTIME_POLICY.pulse.source.workerInitFallback) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
       );
     }
     if (RUNTIME_POLICY.pulse.source.wasmBootPolicy) {
-      LOGGER.info(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
+      Li(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
     }
     if (RUNTIME_POLICY.pulse.source.wasmBootPrecheck) {
-      LOGGER.info(
+      Li(
         `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
       );
     }
@@ -7394,7 +7419,7 @@ export const PULSE = {
       pressureState.fear > 0 ||
       pressureState.ego > 0
     ) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Evolution pressure terms novelty=${pressureState.noveltySigned} symbiosis=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego} ring=${pressureState.ring.enabled} theta=${
           pressureState.ring.theta.toFixed(4)
         } scale=${pressureState.ring.scale}.`,
@@ -7404,7 +7429,7 @@ export const PULSE = {
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       RUNTIME_POLICY.pulse.source.startupSelfTest
     ) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
       );
     }
@@ -7416,7 +7441,7 @@ export const PULSE = {
       if (!preflight.ok) {
         const failMsg = `[PULSE] WASM preflight failed: ${preflight.reason}`;
         if (WASM_BOOT_POLICY === "safe-noop") {
-          LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+          Le(`${failMsg}. Entering safe-noop mode.`);
           enterWasmSafeNoopMode(failMsg);
           return;
         }
@@ -7428,11 +7453,11 @@ export const PULSE = {
     if (wasmBootDegraded) return;
 
     if (initFallbackActivated) {
-      LOGGER.warn(
+      Lw(
         `   [PULSE] ${runtimeWorkerCount} Worker READY after init fallback.`,
       );
     } else {
-      LOGGER.info(
+      Li(
         `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
       );
     }
@@ -7460,17 +7485,17 @@ export const PULSE = {
       STATE_MATRIX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
     ) {
-      LOGGER.info(
+      Li(
         `[PULSE] Matrix is uninstantiated. Awaiting Swarm Handshake...`,
       );
       await new Promise((r) => setTimeout(r, 600)); // allow sockets to open
 
-      LOGGER.info(`[PULSE] Requesting Genesis Block via Nexus...`);
+      Li(`[PULSE] Requesting Genesis Block via Nexus...`);
       await new Promise<void>((resolve) => {
         genesisPromiseResolver = resolve;
         noosphereDelegate?.broadcastSyncRequest();
       });
-      LOGGER.info(
+      Li(
         `[PULSE] Genesis Bootstrapping complete! Synchronized to Swarm Lattice.`,
       );
     }
@@ -7520,7 +7545,7 @@ export const PULSE = {
         return;
       }
 
-      LOGGER.warn(
+      Lw(
         `   [PULSE] Startup self-test breach at tick=${startupSelfTestLastBreachTick} workers=${runtimeWorkerCount}.`,
       );
       if (!STARTUP_SELFTEST_FALLBACK_ENABLED || runtimeWorkerCount <= 1) {
@@ -7536,7 +7561,7 @@ export const PULSE = {
       PULSE.stopWorkers();
       runtimeWorkerCount = 1;
       await startWorkers(runtimeWorkerCount);
-      LOGGER.warn(
+      Lw(
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
@@ -7695,7 +7720,7 @@ export const PULSE = {
           kind: "genetic_ledger_update",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
         );
       }
@@ -7733,7 +7758,7 @@ export const PULSE = {
           kind: "genetic_ledger_update",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
         );
       }
@@ -7769,7 +7794,7 @@ export const PULSE = {
         kind: "genetic_ledger_update",
         count: 1,
       });
-      LOGGER.info(
+      Li(
         `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
       );
     }
@@ -7827,7 +7852,7 @@ export const PULSE = {
           kind: "genetic_ledger_rollback",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
         );
       }
@@ -7868,7 +7893,7 @@ export const PULSE = {
           kind: "genetic_ledger_rollback",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
         );
       }
@@ -7904,7 +7929,7 @@ export const PULSE = {
         kind: "genetic_ledger_rollback",
         count: 1,
       });
-      LOGGER.info(
+      Li(
         `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
       );
     }
@@ -7991,7 +8016,7 @@ export const PULSE = {
       deltaTheta: boundedDelta,
       enabled: update.enabled,
     });
-    LOGGER.info(
+    Li(
       `   [PULSE] Evolution pressure ring update source=${
         update.source ?? "runtime"
       } mode=${update.mode} novelty=${applied.noveltySigned} symbiosis=${applied.symbiosisSigned} fear=${applied.fear} ego=${applied.ego} enabled=${applied.ring.enabled} theta=${
@@ -8067,7 +8092,7 @@ export const PULSE = {
           XS_OFFSET,
           MAX_ATOMS,
         );
-        LOGGER.debug(
+        Ld(
           `[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`,
         );
       };
@@ -8144,7 +8169,7 @@ export const PULSE = {
       }
 
       if (coherence > 1000) {
-        LOGGER.debug(
+        Ld(
           `🧠 [PULSE] High Coherence detected: ${coherence}. Consulting Oracle...`,
         );
       }
@@ -8216,7 +8241,7 @@ export const PULSE = {
         overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
       };
       if (overflowCount > 0 && currentTick % 20 === 0) {
-        LOGGER.warn(
+        Lw(
           `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
         );
       }
@@ -8228,7 +8253,7 @@ export const PULSE = {
         readEnergiesView.set(energiesView);
         readResonancesView.set(resonancesView);
         if (currentTick <= 104) {
-          LOGGER.info(
+          Li(
             `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
               xsView[11]
             }, readXsView[11]=${readXsView[11]}`,
@@ -8286,7 +8311,7 @@ export const PULSE = {
 
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
       if (currentTick > 0 && currentTick % 10000 === 0) {
-        LOGGER.info(
+        Li(
           `[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`,
         );
         const pCount = activeIdx.length;
@@ -8302,7 +8327,7 @@ export const PULSE = {
             epochHash,
           );
         }
-        LOGGER.info(
+        Li(
           `[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`,
         );
       }
@@ -8395,7 +8420,7 @@ export const PULSE = {
         "DRAIN_SPAWN_DONE",
       );
       if (spawnRes.count > 0) {
-        LOGGER.debug(
+        Ld(
           `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
         );
         akashaDelegate?.recordMutationTelemetry({
@@ -8450,7 +8475,7 @@ export const PULSE = {
       const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
 
       if (currentTick % 20 === 0 && syntropy > 0.1) {
-        LOGGER.info(
+        Li(
           `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
             (taxDiscount * 100).toFixed(1)
           }% (Syntropy: ${syntropy.toFixed(3)})`,
@@ -8515,7 +8540,7 @@ export const PULSE = {
           if (akashaDelegate) {
             await akashaDelegate.recordImmunologicalPurge(purgedCount);
           }
-          LOGGER.info(
+          Li(
             `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
         }
@@ -8712,7 +8737,7 @@ export const PULSE = {
         Atomics.store(coherenceView, 0, coherence);
 
         if (currentTick % 20 === 0) {
-          LOGGER.debug(
+          Ld(
             `💎 [RESONANCE] System Coherence: ${coherence}/255 (Avg Res: ${
               (avgRes / 100).toFixed(1)
             })`,
@@ -8743,7 +8768,7 @@ export const PULSE = {
           // --- STAGE 22: DRIFT WARDEN AUDIT ---
           const drift = driftWarden.analyze(currentTick);
           if (drift.shadowForkRecommended && !shadowForkActive) {
-            LOGGER.warn(
+            Lw(
               `🚨 [ADAPTIVE] High Drift (${
                 drift.driftIndex.toFixed(4)
               }) detected. Triggering autonomous shadow rehearsal...`,
@@ -8759,11 +8784,11 @@ export const PULSE = {
                 for (let s = 0; s < 10; s++) {
                   runner.runShadowTick(currentTick + s);
                 }
-                LOGGER.info(
+                Li(
                   `✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`,
                 );
               } catch (e) {
-                LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
+                Le(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
               } finally {
                 shadowForkActive = false;
               }
@@ -8826,7 +8851,7 @@ export const PULSE = {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
       const id = STATE_MATRIX.getId(newIdx!);
-      LOGGER.info(
+      Li(
         `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
       );
       akashaDelegate?.recordMutationTelemetry({
@@ -8835,13 +8860,13 @@ export const PULSE = {
         count: 1,
       });
     } else {
-      LOGGER.warn(
+      Lw(
         `🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`,
       );
     }
   },
   onRemoteSyncRequest: async (peerId: string) => {
-    LOGGER.info(
+    Li(
       `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
     );
     const payload = akashaDelegate
@@ -8850,7 +8875,7 @@ export const PULSE = {
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
   onRemoteEpochPayload: async (payload: Uint8Array) => {
-    LOGGER.info(
+    Li(
       `[PULSE] Hot State Merging payload received. Unpacking into Lattice...`,
     );
     if (akashaDelegate) {
@@ -10110,12 +10135,72 @@ min_level: 2
 
 ### TypeScript
 ```typescript
-import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import {
+  WASM_MEMORY_BYTES,
+  AS_WASM_PATH,
+  GRID_W,
+  GRID_H,
+  GRID_CELLS
+} from "@generated";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, TICK_COUNTER_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "@generated";
-import { LOGGER, SCALE, SYS_YIELD, SYS_READ_MEM, SYS_WRITE_MEM, SYS_SPAWN, SYS_BIND, SYS_SET_ROLE, SYS_MUTATE, SYS_MSG, SYS_READ_INBOX, SYS_TRANSFER, SYS_REPLICATE, SYS_EMIT, SYS_SCAN, SYS_MOVE, SYS_EAT, SYS_BET, SYS_ATTRACT, SYS_FOLD, SYS_SPORE_DRIVE, SYS_SENSE_PHASE } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import {
+  BONDS_OFFSET,
+  BOND_REQUESTS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MAX_ATOMS,
+  MAX_LEDGER_EVENTS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+  XS_OFFSET,
+  YS_OFFSET
+} from "@generated";
+import {
+  SCALE,
+  SYS_YIELD,
+  SYS_READ_MEM,
+  SYS_WRITE_MEM,
+  SYS_SPAWN,
+  SYS_BIND,
+  SYS_SET_ROLE,
+  SYS_MUTATE,
+  SYS_MSG,
+  SYS_READ_INBOX,
+  SYS_TRANSFER,
+  SYS_REPLICATE,
+  SYS_EMIT,
+  SYS_SCAN,
+  SYS_MOVE,
+  SYS_EAT,
+  SYS_BET,
+  SYS_ATTRACT,
+  SYS_FOLD,
+  SYS_SPORE_DRIVE,
+  SYS_SENSE_PHASE
+} from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,
@@ -10202,8 +10287,6 @@ let ledgerDataView: Int32Array | null = null;
 let marketState: Int32Array | null = null;
 let betPoolInt: Int32Array | null = null;
 
-
-
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
   const flagIdx = (atomIdx << 6) + 33;
@@ -10216,10 +10299,9 @@ function handle_syscall(atomIdx: number) {
   const r2 = contextI32View[regBase + 2];
   const r3 = contextI32View[regBase + 3];
 
-  LOGGER.debug(
+  Ld(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
-
 
   let gasCost = 0;
   switch (sysId) {
@@ -10289,7 +10371,7 @@ function handle_syscall(atomIdx: number) {
   const currentEnergy = Atomics.load(energiesView, atomIdx);
   if (currentEnergy < gasCost * 1000) {
     // Out of Gas for this syscall
-    LOGGER.debug(
+    Ld(
       `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
         currentEnergy / 1000
       })`,
@@ -10309,7 +10391,7 @@ function handle_syscall(atomIdx: number) {
       if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
-      LOGGER.debug(
+      Ld(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
       );
       contextI32View[regBase] = val; // Return value in R0
@@ -10317,7 +10399,7 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_WRITE_MEM: {
       const gx = r1, gy = r2, newVal = r3;
-      LOGGER.debug(
+      Ld(
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
@@ -10384,13 +10466,13 @@ function handle_syscall(atomIdx: number) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
         Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
             (newValue & 0xFF).toString(16)
           }`,
         );
       } else {
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
         );
       }
@@ -10404,7 +10486,7 @@ function handle_syscall(atomIdx: number) {
         // Simple 1-deep mailbox per atom
         Atomics.store(mailboxView, targetIdx * 2, msgType);
         Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
         );
       }
@@ -10425,7 +10507,7 @@ function handle_syscall(atomIdx: number) {
         if (msgType !== 0) {
           Atomics.store(mailboxView, atomIdx * 2, 0);
           Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          LOGGER.debug(
+          Ld(
             `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
           );
         }
@@ -10445,7 +10527,7 @@ function handle_syscall(atomIdx: number) {
             if (senderEnergy >= scaledAmount) {
               Atomics.sub(energiesView, atomIdx, scaledAmount);
               Atomics.add(energiesView, targetIdx, scaledAmount);
-              LOGGER.debug(
+              Ld(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
               );
             }
@@ -10478,7 +10560,7 @@ function handle_syscall(atomIdx: number) {
                     if (contextI32View) {
                       Atomics.store(contextI32View, targetIdx * 16 + 12, atomIdx); // Store host atomIdx in Context Reg 12
                     }
-                    LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`);
+                    Ld(`   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`);
                     break;
                   }
                 }
@@ -10493,7 +10575,7 @@ function handle_syscall(atomIdx: number) {
                   if (takeAmount > 0) {
                     Atomics.sub(energiesView, targetIdx, takeAmount);
                     Atomics.add(energiesView, atomIdx, takeAmount);
-                    LOGGER.debug(
+                    Ld(
                       `   [SYSCALL] Atom ${atomIdx} STOLE ${
                         takeAmount / 1000
                       } Energy from Atom ${targetIdx}`,
@@ -10518,7 +10600,7 @@ function handle_syscall(atomIdx: number) {
             if (senderResonance >= amount) {
               Atomics.sub(resonancesView, atomIdx, amount);
               Atomics.add(resonancesView, targetIdx, amount);
-              LOGGER.debug(
+              Ld(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
               );
             }
@@ -10571,11 +10653,11 @@ function handle_syscall(atomIdx: number) {
           idsView[targetIdx] = BigInt(targetIdx + 1);
         }
 
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
         );
       } else {
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
         );
       }
@@ -10598,7 +10680,7 @@ function handle_syscall(atomIdx: number) {
         Atomics.store(ledgerDataView, base + 2, r1);
         Atomics.store(ledgerDataView, base + 3, r2);
 
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
         );
       }
@@ -10666,11 +10748,11 @@ function handle_syscall(atomIdx: number) {
               }
             }
           }
-          LOGGER.debug(
+          Ld(
             `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
           );
         } else {
-          LOGGER.debug(
+          Ld(
             `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
           );
         }
@@ -10702,10 +10784,9 @@ function handle_syscall(atomIdx: number) {
         if (dxStr !== 0 || dyStr !== 0) {
           let nx = ox + dxStr * SPATIAL_CELL_SIZE;
           let ny = oy + dyStr * SPATIAL_CELL_SIZE;
-          LOGGER.debug(
+          Ld(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
-
 
           if (nx < 0) nx = 0;
           else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
@@ -10729,10 +10810,9 @@ function handle_syscall(atomIdx: number) {
             }
           }
 
-          LOGGER.debug(
+          Ld(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
-
 
           if (capacityOk) {
             Atomics.store(xsView, atomIdx, nx);
@@ -10793,7 +10873,7 @@ function handle_syscall(atomIdx: number) {
         Atomics.sub(energiesView!, atomIdx, energyBet);
         (self as unknown as Worker).postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
         // Syscall intercept verification
-        LOGGER.debug(
+        Ld(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
             Math.floor(currentTheta)
           }, AtomPhase=${atomPhase}).`,
@@ -10808,7 +10888,7 @@ function handle_syscall(atomIdx: number) {
       const packed = (epochPhase & 0xFFFF) |
         ((Math.floor(currentTheta) & 0xFFFF) << 16);
       contextI32View![regBase] = packed;
-      LOGGER.debug(
+      Ld(
         `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
           Math.floor(currentTheta)
         })`,
@@ -10816,7 +10896,7 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     default:
-      LOGGER.debug(
+      Ld(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
       );
       break;
@@ -10945,7 +11025,7 @@ const maybeDelay = async () => {
       });
       return;
     }
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+    Ld("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
 try {
       const wasmRes = await fetch(
         AS_WASM_PATH.href,
@@ -10961,10 +11041,10 @@ try {
         if (op === 0xDD) {
            const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
            const epoch = Math.floor(tick / 10000);
-           LOGGER.info(`💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`);
+           Li(`💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`);
            return;
         }
-        LOGGER.debug(
+        Ld(
           `   [WASM_TRACE] Atom ${idx} executed ${
             op.toString(16)
           } | Pos: (${gx},${gy}) | target: ${target}`,
@@ -10976,7 +11056,7 @@ try {
         },
         env: {
           memory: wasmMemory,
-          abort: (msg: any) => LOGGER.error("   [WASM ABORT]:", msg),
+          abort: (msg: any) => Le("   [WASM ABORT]:", msg),
           trace_atom: traceAtom,
         },
       });
@@ -11009,7 +11089,7 @@ try {
         .accumulate_metabolism_stats as any;
       apply_metabolism_kernel_fn = wasmInstance.exports
         .apply_metabolism_kernel as any;
-      LOGGER.info("   [WORKER] WASM Instantiated successfully.");
+      Li("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       (self as unknown as Worker).postMessage({ type: "READY" });
       const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
@@ -11018,7 +11098,7 @@ try {
       }, 5000);
       (self as unknown as Worker).postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
     } catch (err) {
-      LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
+      Le("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
@@ -11035,10 +11115,10 @@ try {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
-    LOGGER.debug("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
+    Ld("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
     let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
-      if (stuckCycles++ > 100) { LOGGER.warn("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
+      if (stuckCycles++ > 100) { Lw("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
       Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
       if (Atomics.load(syncStateView, 0) === 2) {
         // If it's 2, we must wait for it to become 0 then 1
@@ -11046,7 +11126,7 @@ try {
       }
     }
 
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+    Ld("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
 try {
       for (let i = startIdx; i < endIdx; i++) {
         const startAtomMs = performance.now();
@@ -11059,7 +11139,7 @@ try {
         execute_atom_fn(i);
         const afterX11 = Atomics.load(xsView!, 11);
         if (beforeX11 !== afterX11) {
-          LOGGER.debug(
+          Ld(
             `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
           );
         }
@@ -11069,17 +11149,17 @@ try {
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
-          LOGGER.debug(
+          Ld(
             `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
           );
         }
       }
     } catch (err) {
-      LOGGER.error("   [WORKER EXECUTION ERROR]", err);
+      Le("   [WORKER EXECUTION ERROR]", err);
     }
 
     await maybeDelay();
-    LOGGER.debug("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
+    Ld("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
     (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
   }
 
@@ -11110,7 +11190,7 @@ try {
       BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
-    LOGGER.debug(
+    Ld(
       `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
         bH[2 * 4]
       }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
@@ -11122,20 +11202,20 @@ try {
   }
 
   if (type === "RESOLVE_BONDS") {
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
+    Ld("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
 try {
       if (!resolve_bond_requests_fn) {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
       const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
-      LOGGER.info(`[DEBUG-WORKER] WASM resolve returned ${count}`);
+      Li(`[DEBUG-WORKER] WASM resolve returned ${count}`);
       (self as unknown as Worker).postMessage({
         type: "RESOLVE_BONDS_DONE",
         count,
         pulseId: e.data.pulseId,
       });
     } catch (err) {
-      LOGGER.error(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
+      Le(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
     }
   }
 
@@ -12220,7 +12300,9 @@ import {
   GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
 } from "../00/mod.ts";
 
-import { get_glyph_kind } from "@generated";
+import {
+  get_glyph_kind
+} from "@generated";
 
 export type GlyphKind =
   | "core"
@@ -12771,7 +12853,6 @@ use crate::{
     STR_SOURCE, STR_VOID, STR_WIRE, MAX_GLYPH_AMP, MIN_GLYPH_AMP
 };
 use crate::SigmaState;
-
 
 pub fn tick_environment(state: &mut SigmaState, tick: i32) {
     tick_structure_grid(state);
@@ -16673,8 +16754,14 @@ min_level: 3
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "@generated";
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
+import {
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  MAX_LEDGER_EVENTS
+} from "@generated";
 
 export type AtomicLedgerEvent = {
   tick: number;
@@ -16976,10 +17063,19 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type BridgeModeEvent, type GateConfig } from "@generated";
-import { type LedgerEvent } from "@generated";
-import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+import {
+  type BridgeModeEvent,
+  type GateConfig
+} from "@generated";
+import {
+  type LedgerEvent
+} from "@generated";
+import {
+  CHECKPOINT_CHECKPOINT as CHECKPOINT,
+  LEDGER__08_00_LEDGER as LEDGER,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX
+} from "@generated";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -17034,11 +17130,21 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
-import { LOAD_LOAD as LOAD } from "@generated";
-import { LOGGER } from "@generated";
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot
+} from "@generated";
+import {
+  LOAD_LOAD as LOAD
+} from "@generated";
+
 import { GATE_BUDGET } from "../../03/gate_budget.md";
-import { STATE_MATRIX } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 
 type I16Limits = {
   max: number;
@@ -17109,16 +17215,16 @@ export const mergeGateProposals = (
 
   for (const p of validProposals) {
     if (p.resonance !== undefined) {
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, resonance: ${p.resonance}`,
       );
     } else if (p.origin_atom_idx !== undefined) {
       const resonance = STATE_MATRIX.getResonance(p.origin_atom_idx);
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, looked up resonance: ${resonance}`,
       );
     } else {
-      LOGGER.debug(
+      Ld(
         `   [DEBUG PROPOSAL] ID: ${p.proposal_id}, NO RESONANCE FOUND.`,
       );
     }
@@ -17157,7 +17263,7 @@ export const mergeGateProposals = (
       const oldCost = physicalCost;
       physicalCost = physicalCost * (1 - totalDiscount);
 
-      LOGGER.debug(
+      Ld(
         `      ⚖️ [SOVEREIGN] Route subsidized. Base: ${
           oldCost.toFixed(1)
         }, Res: ${atomResonance.toFixed(1)}, Quorum: ${
@@ -17263,9 +17369,19 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
-import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  REJECTION,
+  type StateSnapshot
+} from "@generated";
+import {
+  AGENT_SIGNATURE,
+  CANON_CAUSAL_BRIDGE,
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
+    as PROPOSAL_ENVELOPE_INDEX
+} from "@generated";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
@@ -17497,9 +17613,11 @@ import {
   type DeltaProposal,
   type GateConfig,
   type GateDecision,
-  type StateSnapshot,
+  type StateSnapshot
 } from "@generated";
-import { type LedgerEvent } from "@generated";
+import {
+  type LedgerEvent
+} from "@generated";
 import {
   CANON_CAUSAL_BRIDGE,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
@@ -17508,12 +17626,18 @@ import {
   LEDGER__08_00_LEDGER as LEDGER,
   PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX,
-  TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
+  TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE
 } from "@generated";
-import { LOGGER } from "@generated";
-import { validateGateProposals } from "@generated";
-import { mergeGateProposals } from "@generated";
-import { persistGateLedgerArtifacts } from "@generated";
+
+import {
+  validateGateProposals
+} from "@generated";
+import {
+  mergeGateProposals
+} from "@generated";
+import {
+  persistGateLedgerArtifacts
+} from "@generated";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -17852,7 +17976,7 @@ export const GATE = {
 
       // If score exceeds threshold, promote to Canon!
       if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
-        LOGGER.info(
+        Li(
           `🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${
             (avgResonance / 100).toFixed(1)
           } > Baseline: ${(baselineAvg / 100).toFixed(1)})`,
@@ -17912,7 +18036,7 @@ export const GATE = {
       // Apply Audit Decisions
       if (malignancy >= GRID_H) {
         stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
-        LOGGER.warn(
+        Lw(
           `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,
         );
       } else if (malignancy >= 40) {
@@ -17923,7 +18047,7 @@ export const GATE = {
   },
 
   auditMatrix: (stateMatrix: any) => {
-    LOGGER.debug("⚖️ [GATE] Starting Autonomous Systemic Audit...");
+    Ld("⚖️ [GATE] Starting Autonomous Systemic Audit...");
 
     // 1. Evaluate Symbiogenesis (Reward pro-resonant mutations)
     GATE.evaluateSymbiosis(stateMatrix);
@@ -17946,9 +18070,9 @@ export const GATE = {
     }
 
     if (ghostCount > 0) {
-      LOGGER.info(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
+      Li(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
     }
-    LOGGER.debug(
+    Ld(
       `⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`,
     );
   },
@@ -17971,7 +18095,9 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"
@@ -23429,8 +23555,12 @@ min_level: 5
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import {
+  GLYPH_TELEMETRY
+} from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 import { GRID_W, SCALE } from "../mod.ts";
 
 const getGridIdx = (x: number, y: number) => {
@@ -23488,14 +23618,13 @@ min_level: 5
 ### TypeScript
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-import { LOGGER } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999;
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
 if (!GEMINI_API_KEY) {
-  LOGGER.error("GEMINI_API_KEY environment variable is missing.");
+  Le("GEMINI_API_KEY environment variable is missing.");
   Deno.exit(1);
 }
 
@@ -23577,7 +23706,7 @@ async function queryGemini(state: any, vision: any[]): Promise<any[]> {
       .trim();
     return JSON.parse(cleanText);
   } catch (e: any) {
-    LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
+    Le(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
     // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
     return [
       { action: "YIELD" },
@@ -23598,7 +23727,7 @@ function sleep(ms: number) {
 }
 
 async function runSoul() {
-  LOGGER.info(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
+  Li(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
 
   let actionBuffer: any[] = [];
 
@@ -23608,7 +23737,7 @@ async function runSoul() {
         // 1. SENSE Environment (Only when buffer is empty)
         const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
         if (!res.ok) {
-          LOGGER.warn("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
+          Lw("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
           await sleep(2000);
           continue;
         }
@@ -23620,20 +23749,20 @@ async function runSoul() {
           v.role === 0 || v.role === 4
         ).slice(0, 10);
 
-        LOGGER.info(
+        Li(
           `[LLM_SOUL] Energy: ${
             Math.floor(me.energy)
           } | Seeing ${vision.length} threats/food.`,
         );
 
         // 2. COGNITION
-        LOGGER.debug("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
+        Ld("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
         const strategy = await queryGemini(me, vision);
 
         if (Array.isArray(strategy)) {
           actionBuffer = strategy;
         } else {
-          LOGGER.warn("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
+          Lw("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
           actionBuffer = [{ action: "YIELD" }, { action: "YIELD" }];
         }
       }
@@ -23641,7 +23770,7 @@ async function runSoul() {
       // 3. ACT (Pop one action from buffer)
       if (actionBuffer.length > 0) {
         const intent = actionBuffer.shift();
-        LOGGER.info(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
+        Li(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
 
         await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
           method: "POST",
@@ -23650,7 +23779,7 @@ async function runSoul() {
         });
       }
     } catch (e: any) {
-      LOGGER.error("[LLM_SOUL] Loop error:", e.message);
+      Le("[LLM_SOUL] Loop error:", e.message);
       actionBuffer = []; // Clear buffer on severe error
       await sleep(5000); // Backoff
     }
@@ -23685,8 +23814,12 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "@generated";
-import { LLM_SYNAPSE } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
+import {
+  LLM_SYNAPSE
+} from "@generated";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -24218,12 +24351,24 @@ min_level: 5
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE } from "@generated";
-import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { SOVEREIGNTY_ENGINE } from "@generated";
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
-import { PULSE } from "@generated";
+import {
+  LLM_SYNAPSE
+} from "@generated";
+import {
+  STATE_MATRIX,
+  MAX_GLYPH_AMP,
+  MIN_GLYPH_AMP
+} from "@generated";
+import {
+  SOVEREIGNTY_ENGINE
+} from "@generated";
+
+import {
+  RUNTIME_POLICY
+} from "@generated";
+import {
+  PULSE
+} from "@generated";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
 import { GRID_W, GRID_H } from "../mod.ts";
 
@@ -24315,9 +24460,9 @@ export const SOVEREIGN_ORACLE = {
   maxPendingMutations: ORACLE_PENDING_MAX,
 
   declareEschaton: async (reason: string): Promise<void> => {
-    LOGGER.info(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
+    Li(`🔥 [ESCHATON] The Big Crunch is imminent. Reason: ${reason}`);
     const epitaph = await LLM_SYNAPSE.generateEpitaph(reason);
-    LOGGER.info(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
+    Li(`🏛️ [ORACLE EPITAPH] "${epitaph}"`);
     
     const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
     await delegate?.appendObserverCommentary(
@@ -24481,7 +24626,7 @@ export const SOVEREIGN_ORACLE = {
             kind: "oracle_cache_fallback",
             count: 1,
           });
-          LOGGER.warn(
+          Lw(
             `♻️ [ORACLE] LLM Offline. Pulling from Canon Cache: [${mutation.cachedHex}]`,
           );
           applied++;
@@ -24586,7 +24731,7 @@ export const SOVEREIGN_ORACLE = {
     SOVEREIGN_ORACLE.isConsulting = true;
 
     try {
-      LOGGER.info(
+      Li(
         `👁️ [ORACLE] Regent ${regentIndex} is consulting the LLM for guidance...`,
       );
 
@@ -24598,7 +24743,7 @@ export const SOVEREIGN_ORACLE = {
       });
 
       if (oracleResult && oracleResult.intent) {
-        LOGGER.info(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
+        Li(`👁️ [ORACLE] Intent grasped: "${oracleResult.intent}"`);
         let newPlasmid: Uint8Array;
         let hex: string;
 
@@ -24616,7 +24761,7 @@ export const SOVEREIGN_ORACLE = {
           // Save the exact intent into the archive for UI/Telemetry
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
+          Lw(`🛑 [ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -24628,11 +24773,11 @@ export const SOVEREIGN_ORACLE = {
           }
         }
 
-        LOGGER.info(
+        Li(
           `👁️ [ORACLE] Oracle responded with plasmid of length ${newPlasmid.length} [Hash: ${hex}]`,
         );
         if (STATE_MATRIX.getId(regentIndex) === 0n) {
-          LOGGER.debug(
+          Ld(
             `👁️ [ORACLE] Regent ${regentIndex} perished before guidance could be delivered.`,
           );
           return;
@@ -24667,20 +24812,20 @@ export const SOVEREIGN_ORACLE = {
             }
 
             if (driftIndex > 20 || drift.populationDiff <= -1) {
-              LOGGER.warn(
+              Lw(
                 `🛑 [ORACLE] REJECTED_BY_SHADOW. Drift constraints violated (\u0394Pop: ${drift.populationDiff}, \u0394Coh: ${drift.coherenceDiff}, Index: ${
                   driftIndex.toFixed(2)
                 })`,
               );
               return;
             }
-            LOGGER.info(
+            Li(
               `🔬 [ORACLE] Shadow Simulation passed. Drift Index: ${
                 driftIndex.toFixed(2)
               }`,
             );
           } catch (simErr) {
-            LOGGER.warn(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
+            Lw(`🛑 [ORACLE] Shadow Simulation Crash: ${simErr}`);
             return;
           }
 
@@ -24717,7 +24862,7 @@ export const SOVEREIGN_ORACLE = {
               headBytes: fullGenome,
               genomeHex: hex,
             });
-            LOGGER.info(
+            Li(
               `⚡ [ORACLE] Divine Intervention applied. Direct semantic mutation queued. Hash: [${hex}]`,
             );
           }
@@ -24732,7 +24877,7 @@ export const SOVEREIGN_ORACLE = {
               plasmidBytes: newPlasmid,
               source: "oracle_guidance",
             });
-            LOGGER.info(
+            Li(
               `🧬 [ORACLE] Divine Intervention applied. Stigmergic plasmid queued. Hash: [${hex}]`,
             );
           }
@@ -24749,17 +24894,17 @@ export const SOVEREIGN_ORACLE = {
             regentIndex,
             memeBytes,
           });
-          LOGGER.info(
+          Li(
             `🌀 [ORACLE] Memetic Injection queued for HOST_LOCK apply: [${memeHex}]`,
           );
         }
       } else {
-        LOGGER.debug(
+        Ld(
           `👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`,
         );
       }
     } catch (err) {
-      LOGGER.error(`👁️ [ORACLE] Connection severed:`, err);
+      Le(`👁️ [ORACLE] Connection severed:`, err);
 
       // --- ERA 68: CACHE FALLBACK ---
       if (SOVEREIGN_ORACLE.guidanceCache.size > 0) {
@@ -24779,7 +24924,7 @@ export const SOVEREIGN_ORACLE = {
               logicBytes: bytes,
               cachedHex,
             });
-            LOGGER.warn(
+            Lw(
               `♻️ [ORACLE] LLM Offline. Direct cache mutation queued for HOST_LOCK: [${cachedHex}]`,
             );
           } else {
@@ -24792,7 +24937,7 @@ export const SOVEREIGN_ORACLE = {
                 plasmidBytes: bytes,
                 source: "oracle_cache_fallback",
               });
-              LOGGER.warn(
+              Lw(
                 `♻️ [ORACLE] LLM Offline. Stigmergic cache plasmid queued for HOST_LOCK: [${cachedHex}]`,
               );
             }
@@ -24811,7 +24956,7 @@ export const SOVEREIGN_ORACLE = {
     SOVEREIGN_ORACLE.isConsulting = true;
 
     try {
-      LOGGER.info(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
+      Li(`👁️ [AUTONOMOUS_ORACLE] Asking for guidance on epoch ${telemetry.epoch}...`);
 
       const oracleResult = await LLM_SYNAPSE.generateAutonomousPlasmid(telemetry);
 
@@ -24824,7 +24969,7 @@ export const SOVEREIGN_ORACLE = {
           hex = Array.from(newPlasmid).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
           SEMANTIC_MEMBRANE.thoughtArchive.set(hex, oracleResult.intent);
         } catch (parseError) {
-          LOGGER.warn(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
+          Lw(`🛑 [AUTONOMOUS_ORACLE] Semantic Quantization Failed: ${parseError}`);
           return;
         }
 
@@ -24840,16 +24985,16 @@ export const SOVEREIGN_ORACLE = {
           source: "oracle_guidance",
         });
 
-        LOGGER.info(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
+        Li(`🧬 [AUTONOMOUS_ORACLE] Divine Plasmid Dropped: "${oracleResult.intent}" at (${cx}, ${cy}) [Hash: ${hex}]`);
 
         if (oracleResult.narrativeMood) {
-          LOGGER.info(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
+          Li(`📖 [PSYCHOHISTORY] Oracle Commentary: ${oracleResult.narrativeMood}`);
           const tick = Atomics.load(STATE_MATRIX.tickCounter, 0);
           await delegate?.appendObserverCommentary(tick, telemetry.epoch, oracleResult.narrativeMood);
         }
       }
     } catch (err) {
-      LOGGER.error(`👁️ [AUTONOMOUS_ORACLE] Connection severed:`, err);
+      Le(`👁️ [AUTONOMOUS_ORACLE] Connection severed:`, err);
     } finally {
       SOVEREIGN_ORACLE.isConsulting = false;
     }
@@ -24909,12 +25054,12 @@ export const SOVEREIGN_ORACLE = {
         workerExports.set_neural_coherence(coherence);
 
         if (coherence >= 100) {
-          LOGGER.info(
+          Li(
             `🧠 [ORACLE] Neural Coherence: ${coherence} — planetary mind-field active!`,
           );
         }
         if (coherence >= 1000) {
-          LOGGER.info(
+          Li(
             `⚡ [ORACLE] PEAK COHERENCE ${coherence} — Planetary Consciousness ONLINE! 🌍🧠`,
           );
         }
@@ -25310,10 +25455,14 @@ min_level: 4
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 import { PRNG } from "../../00/PRNG.ts";
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
+
+import {
+  RUNTIME_POLICY
+} from "@generated";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -25528,7 +25677,7 @@ export const P2P_FEDERATION = {
           }
         }
       } catch (e: any) {
-        LOGGER.error(`Transit Error: ${e}`);
+        Le(`Transit Error: ${e}`);
       }
     }
   },
@@ -25554,7 +25703,9 @@ min_level: 4
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
 
-import { STATE_MATRIX } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
@@ -25686,7 +25837,6 @@ min_level: 4
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "@generated";
 
 export type NexusConfig = {
   instanceId: number;
@@ -25746,16 +25896,11 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   const serverAbortController = new AbortController();
   let heartbeatInterval: number | undefined;
 
-
-
-
-
-
   self.start = () => {
     console.error(
       `[NEXUS_DEBUG] CALLING START ON PORT ${self.port} FOR NODE ${self.nodeId}`,
     );
-    LOGGER.info(
+    Li(
       `[NEXUS] Booting Swarm Membrane on port ${self.port} (Node: ${self.nodeId})`,
     );
 
@@ -25771,7 +25916,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         console.error(
           `[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`,
         );
-        LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
+        Li(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
       },
     }, (req) => {
       if (req.headers.get("upgrade") != "websocket") {
@@ -25810,7 +25955,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   }
 
   self.stop = () => {
-    LOGGER.info(`[NEXUS] Shutting down Node ${self.nodeId}`);
+    Li(`[NEXUS] Shutting down Node ${self.nodeId}`);
     if (heartbeatInterval) {
       clearInterval(heartbeatInterval);
       heartbeatInterval = undefined;
@@ -25825,23 +25970,23 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
   const connectToPeer = (url: string) => {
     try {
-      LOGGER.info(`[NEXUS] Attempting connection to seed: ${url}`);
+      Li(`[NEXUS] Attempting connection to seed: ${url}`);
       const socket = new WebSocket(url);
       handleConnection(socket, "OUTBOUND");
     } catch (e) {
-      LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
+      Le(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
     }
   }
 
   const connectToHub = () => {
     try {
-      LOGGER.info(
+      Li(
         `[NEXUS] Connecting to Bootstrap Hub: ${self.bootstrapHubUrl}`,
       );
       const hubSocket = new WebSocket(self.bootstrapHubUrl);
 
       hubSocket.onopen = () => {
-        LOGGER.info(`[NEXUS] Connected to Hub.`);
+        Li(`[NEXUS] Connected to Hub.`);
         hubSocket.send(JSON.stringify({
           op: "REGISTER",
           nodeId: self.nodeId,
@@ -25853,7 +25998,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
         try {
           const data = JSON.parse(event.data);
           if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
-            LOGGER.info(
+            Li(
               `[NEXUS] Received ${data.peers.length} peers from Hub.`,
             );
             for (const peerUrl of data.peers) {
@@ -25863,15 +26008,15 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
             }
           }
         } catch (e) {
-          LOGGER.warn(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
+          Lw(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
         }
       };
 
       hubSocket.onclose = () => {
-        LOGGER.warn(`[NEXUS] Disconnected from Hub.`);
+        Lw(`[NEXUS] Disconnected from Hub.`);
       };
     } catch (e) {
-      LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
+      Le(`[NEXUS] Failed to connect to Hub: ${e}`);
     }
   }
 
@@ -25880,7 +26025,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     let remoteNodeId: string | null = null;
 
     socket.onopen = () => {
-      LOGGER.info(`[NEXUS] ${direction} Socket Opened.`);
+      Li(`[NEXUS] ${direction} Socket Opened.`);
       // Initiate Handshake
       sendHandshake(socket);
     };
@@ -25910,25 +26055,25 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
             handleEpochPayload(payload);
             break;
           default:
-            LOGGER.warn(`[NEXUS] Unknown binary OP code: ${op}`);
+            Lw(`[NEXUS] Unknown binary OP code: ${op}`);
         }
       } else {
-        LOGGER.warn(`[NEXUS] Received non-binary message, discarding.`);
+        Lw(`[NEXUS] Received non-binary message, discarding.`);
       }
     };
 
     socket.onclose = () => {
       if (remoteNodeId) {
-        LOGGER.info(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
+        Li(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
         self.connectedPeers.delete(remoteNodeId);
         self.peerHeartbeats.delete(remoteNodeId);
       } else {
-        LOGGER.info(`[NEXUS] Unidentified peer disconnected.`);
+        Li(`[NEXUS] Unidentified peer disconnected.`);
       }
     };
 
     socket.onerror = (e) => {
-      LOGGER.error(
+      Le(
         `[NEXUS] Socket Error on ${remoteNodeId || "unknown payload"}:`,
         e,
       );
@@ -25943,7 +26088,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     const idBytes = encoder.encode(self.nodeId);
 
     if (idBytes.length !== 36) {
-      LOGGER.error("[NEXUS] UUID encoding length mismatch!");
+      Le("[NEXUS] UUID encoding length mismatch!");
       return;
     }
 
@@ -25960,7 +26105,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     const decoder = new TextDecoder();
     const remoteId = decoder.decode(payload.slice(1, 37));
 
-    LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
+    Li(`[NEXUS] Handshake complete with Node: ${remoteId}`);
     self.connectedPeers.set(remoteId, socket);
     return remoteId;
   }
@@ -25968,7 +26113,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   self.routeAtom = (egressEvent: Uint8Array) => {
     // Egress Event is exactly 192 bytes from P2P_CODEC.
     if (egressEvent.length !== 192) {
-      LOGGER.error(
+      Le(
         `[NEXUS] Egress Event length mismatch. Expected 192, got ${egressEvent.length}`,
       );
       return;
@@ -25976,7 +26121,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
     if (self.connectedPeers.size === 0) {
       // Bounced because we are alone in the universe
-      LOGGER.info(
+      Li(
         `[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`,
       );
       return;
@@ -25991,7 +26136,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     payload.set(egressEvent, 1);
 
     sendDataChannel(targetPeer, payload.buffer);
-    LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+    Li(`[NEXUS] Atom dispatched to peer.`);
   }
 
   const sendDataChannel = (socket: WebSocket, payload: ArrayBufferLike) => {
@@ -26004,13 +26149,13 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(payload);
     } else {
-      LOGGER.warn(`[NEXUS] Target peer not OPEN. Payload lost.`);
+      Lw(`[NEXUS] Target peer not OPEN. Payload lost.`);
     }
   }
 
   const handleAtomTransit = (payload: Uint8Array) => {
     if (payload.length !== 193) {
-      LOGGER.error(
+      Le(
         `[NEXUS] Ingress payload length mismatch. Expected 193, got ${payload.length}`,
       );
       return;
@@ -26018,11 +26163,11 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
     // Strip OP_CODE and inject
     const atomData = payload.slice(1);
-    LOGGER.info(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
+    Li(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
     if (self.onAtomTransit) {
       self.onAtomTransit(atomData);
     } else {
-      LOGGER.warn(
+      Lw(
         `[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`,
       );
     }
@@ -26108,7 +26253,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     // Naive local check for Phase 29: we expect this to match exactly our local epoch hash if we are at this tick.
     // If not, we just log a Byzantine warning since full State Merging is a future phase.
     // For now we just emit a warning locally allowing test to pick it up.
-    LOGGER.warn(
+    Lw(
       `[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`,
     );
   }
@@ -26117,11 +26262,11 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
 
   self.broadcastSyncRequest = () => {
     if (self.connectedPeers.size === 0) {
-      LOGGER.warn(`[NEXUS] Cannot request SYNC: No peers connected.`);
+      Lw(`[NEXUS] Cannot request SYNC: No peers connected.`);
       return;
     }
     const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
-    LOGGER.info(`[NEXUS] Broadcasting SYNC_REQUEST to Swarm...`);
+    Li(`[NEXUS] Broadcasting SYNC_REQUEST to Swarm...`);
     for (const peer of self.connectedPeers.values()) {
       if (peer.readyState === WebSocket.OPEN) {
         peer.send(payload.buffer);
@@ -26130,7 +26275,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   }
 
   const handleSyncRequest = (remoteId: string) => {
-    LOGGER.info(
+    Li(
       `[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`,
     );
     if (self.onSyncRequest) {
@@ -26141,7 +26286,7 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
   self.sendEpochPayload = (targetNodeId: string, epochData: Uint8Array) => {
     const peer = self.connectedPeers.get(targetNodeId);
     if (!peer || peer.readyState !== WebSocket.OPEN) {
-      LOGGER.warn(
+      Lw(
         `[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`,
       );
       return;
@@ -26151,14 +26296,14 @@ export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
     payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
     payload.set(epochData, 1);
 
-    LOGGER.info(
+    Li(
       `[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`,
     );
     peer.send(payload.buffer);
   }
 
   const handleEpochPayload = (payload: Uint8Array) => {
-    LOGGER.info(
+    Li(
       `[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`,
     );
     const epochData = payload.slice(1);
@@ -26186,7 +26331,6 @@ min_level: 4
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "@generated";
 
 export type SwarmHeartbeat = {
   nodeId: string;
@@ -26222,12 +26366,12 @@ export const createMetaKuramotoNode = (
           phase: avgPhase,
         };
 
-        LOGGER.info(
+        Li(
           `[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`,
         );
 
         if (egressCount > 0) {
-          LOGGER.info(
+          Li(
             `[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`,
           );
         }
@@ -26255,8 +26399,17 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import {
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
+  SECRETION_STATS_OFFSET,
+  MAX_GLYPH_AMP,
+  MIN_GLYPH_AMP
+} from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -26481,8 +26634,10 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
+
+import {
+  RUNTIME_POLICY
+} from "@generated";
 
 type MutationLane =
   | "internal_oracle"
@@ -26554,7 +26709,7 @@ export const MUTATION_TELEMETRY = {
     if (totalMutations === lastFlushedTotal) return;
     lastFlushedTotal = totalMutations;
 
-    LOGGER.debug(
+    Ld(
       `[MUTATION_TELEMETRY] tick=${tick} total=${totalMutations} lanes=${summarizeLanes()} topKinds=${summarizeTopKinds()}`,
     );
   },
@@ -26805,7 +26960,9 @@ async function handler(req: Request): Promise<Response> {
         args: [
           "eval",
           `
-                    import { injectHologram } from "@generated";
+                    import {
+  injectHologram
+} from "@generated";
                     import { stringify } from "jsr:@std/yaml@^1.0.5";
                     const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
                     let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
@@ -26938,12 +27095,15 @@ min_level: 6
 ### TypeScript
 ```typescript
 
-import { STATE_MATRIX } from "@generated";
+import {
+  STATE_MATRIX
+} from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";
 import { PULSE } from "../04/PULSE.ts";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
-import { AgentProxy } from "@generated";
-import { LOGGER } from "@generated";
+import {
+  AgentProxy
+} from "@generated";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;

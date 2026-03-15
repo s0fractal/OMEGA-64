@@ -45,7 +45,6 @@ const main = async () => {
     violations,
   );
 
-
   requireSnippet(
     worker,
     "overflowCount",

@@ -10,13 +10,7 @@ min_level: 7
 
 ```typescript
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import {
-  AS_WASM_PATH,
-  LOGGER,
-  MAX_ATOMS,
-  sharedBuffer,
-  STATE_MATRIX,
-} from "@generated";
+import { AS_WASM_PATH, LOGGER, MAX_ATOMS, sharedBuffer, STATE_MATRIX, Ld, Li, Lw, Le } from "@generated";
 import {
   BONDS_OFFSET,
   CAUSALITY_OFFSET,
@@ -41,13 +35,19 @@ import {
   ROLES_OFFSET,
   SPAWN_REQUESTS_OFFSET,
   XS_OFFSET,
-  YS_OFFSET,
+  YS_OFFSET
 } from "@generated";
 
-import { SOVEREIGNTY_ENGINE } from "@generated";
+import {
+  SOVEREIGNTY_ENGINE
+} from "@generated";
 import { GATE } from "../03/GATE.ts";
-import { PREDICTION_MARKET } from "@generated";
-import { CONTROL_INTENT_QUEUE } from "@generated";
+import {
+  PREDICTION_MARKET
+} from "@generated";
+import {
+  CONTROL_INTENT_QUEUE
+} from "@generated";
 
 export interface PulseOracleDelegate {
   setNeuralCoherence(coherence: number): void;
@@ -122,14 +122,20 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import { RUNTIME_POLICY } from "@generated";
-import { GLYPH_TELEMETRY } from "@generated";
-import { DAEMON_INGRESS_POLICY_LIMITS } from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
+import {
+  GLYPH_TELEMETRY
+} from "@generated";
+import {
+  DAEMON_INGRESS_POLICY_LIMITS
+} from "@generated";
 
 import {
   HORMONE_BUFFER_RUNTIME,
   HORMONE_BUFFER,
-  type HormoneId,
+  type HormoneId
 } from "@generated";
 const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
@@ -142,11 +148,16 @@ import {
   type LedgerRuntimeSnapshot,
   type LedgerRuntimeState,
   rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
+  snapshotLedgerRuntime
 } from "@generated";
 import { type GeneticLedgerKey } from "../03/GENETIC_LEDGER.ts";
-import { GENERIC_LEDGER_SYSTEM, GENERIC_LEDGER_PERSISTENCE } from "@generated";
-import type { LedgerPersistenceSummary } from "@generated";
+import {
+  GENERIC_LEDGER_SYSTEM,
+  GENERIC_LEDGER_PERSISTENCE
+} from "@generated";
+import type {
+  LedgerPersistenceSummary
+} from "@generated";
 const {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -156,13 +167,27 @@ const {
   recordFromRollback,
 } = GENERIC_LEDGER_PERSISTENCE;
 
-import { DriftWarden } from "@generated";
-import { DollFork } from "@generated";
-import { DollForkRunner } from "@generated";
-import { REIFIED_PROGRAMS } from "@generated";
-import { GenesisInceptor } from "@generated";
-import { LineageTracker } from "@generated";
-import { QuorumAdvocate } from "@generated";
+import {
+  DriftWarden
+} from "@generated";
+import {
+  DollFork
+} from "@generated";
+import {
+  DollForkRunner
+} from "@generated";
+import {
+  REIFIED_PROGRAMS
+} from "@generated";
+import {
+  GenesisInceptor
+} from "@generated";
+import {
+  LineageTracker
+} from "@generated";
+import {
+  QuorumAdvocate
+} from "@generated";
 import {
   OP_ADD,
   OP_BUILD,
@@ -242,7 +267,7 @@ const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
     const bytes = await Deno.readFile(AS_WASM_PATH);
     return await WebAssembly.compile(bytes);
   } catch (err) {
-    LOGGER.error(`Failed to cache WASM module: ${(err as Error).message}`);
+    Le(`Failed to cache WASM module: ${(err as Error).message}`);
     return null;
   }
 };
@@ -1354,7 +1379,7 @@ const applyEvolutionPressureTerms = (
       count: adjusted,
     });
     if (tick % 200 === 0) {
-      LOGGER.info(
+      Li(
         `🧭 [EVOLUTION] pressure adjusted=${adjusted} noveltyRaw=${noveltyDeltaRaw} symbiosisRaw=${symbiosisDeltaRaw} pN=${pressureState.noveltySigned} pS=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego}`,
       );
     }
@@ -1439,7 +1464,7 @@ const applyEnergyHomeostasisTerms = (
       count: adjusted,
     });
     if (tick % 20 === 0) {
-      LOGGER.debug(
+      Ld(
         `⚖️ [HOMEOSTASIS] adjusted=${adjusted} netDelta=${netDelta} tax=${taxed} subsidy=${subsidized} target=${targetEnergy} band=${HOMEOSTASIS_BAND} baseTax=${baseTax} subsidyEnabled=${HOMEOSTASIS_SUBSIDY_ENABLED} overflow=${
           spatialOverflowRatio.toFixed(3)
         }`,
@@ -1554,7 +1579,7 @@ const waitForWorkerMessage = <T = any>(
     };
 
     const listener = (e: MessageEvent) => {
-      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
+      Ld("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data || data.type !== expectedType) return;
       if (expectedPulseId !== undefined && data.pulseId !== expectedPulseId) {
@@ -1607,13 +1632,13 @@ const waitForWorkerInit = (
     };
 
     const listener = (e: MessageEvent) => {
-      LOGGER.debug("[HOST] RECEIVED MESSAGE", e.data);
+      Ld("[HOST] RECEIVED MESSAGE", e.data);
       const data = e.data;
       if (!data) return;
       if (data.type === "READY") {
         cleanup();
         if (shouldLogWorkerRecovery(workerIndex, "READY", timeoutWindows)) {
-          LOGGER.warn(
+          Lw(
             `   [PULSE] Worker-${workerIndex} recovered READY after ${timeoutWindows} timeout window(s).`,
           );
         }
@@ -1669,7 +1694,7 @@ const postAndWait = async <T = any>(
           res.timeoutWindows,
         )
       ) {
-        LOGGER.warn(
+        Lw(
           `   [PULSE] Worker-${workerIndex} recovered ${expectedType} after ${res.timeoutWindows} timeout window(s).`,
         );
       }
@@ -1682,7 +1707,7 @@ const postAndWait = async <T = any>(
     if (isWorkerTimeoutError(err)) {
       const syncState = STATE_MATRIX.syncState;
       if (syncState) {
-        LOGGER.error(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
+        Le(`\n[FATAL STALL] Worker ${workerIndex} deadlocked.`);
       }
       stats.timeouts += err.timeoutWindows;
       stats.retryWaits += Math.max(0, err.timeoutWindows - 1);
@@ -1759,12 +1784,12 @@ const startWorkers = async (count: number): Promise<void> => {
             : new Uint8Array(0);
           if (packedAtom) {
             noosphereDelegate?.routeAtom(packedAtom);
-            LOGGER.debug(
+            Ld(
               `🛸 [PULSE] Spore Drive invoked: atom ${atomIdAtStart} routed to Nexus. Recycling locally.`,
             );
             STATE_MATRIX.recycleAtom(idx);
           } else {
-            LOGGER.error(
+            Le(
               `[PULSE] Failed to pack atom ${atomIdAtStart} for transit`,
             );
           }
@@ -1808,11 +1833,11 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     if (!WORKER_INIT_FALLBACK_ENABLED || count <= 1) {
       pulseInitialized = true;
 
-      LOGGER.info(`[PULSE] System initialization complete.`);
+      Li(`[PULSE] System initialization complete.`);
       runtimeWorkerCount = 0;
       const failMsg = `[PULSE] Worker init failed: ${primaryErr}`;
       if (WASM_BOOT_POLICY === "safe-noop") {
-        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        Le(`${failMsg}. Entering safe-noop mode.`);
         enterWasmSafeNoopMode(failMsg);
         return;
       }
@@ -1822,7 +1847,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
     runtimeWorkerCount = 1;
     initFallbackActivated = true;
     initFallbackReason = primaryErr;
-    LOGGER.warn(
+    Lw(
       `   [PULSE] Worker init failed; fallback to single worker. reason=${primaryErr}`,
     );
 
@@ -1837,7 +1862,7 @@ const startWorkersWithInitFallback = async (count: number): Promise<void> => {
       const failMsg =
         `[PULSE] Worker init fallback failed: primary=${primaryErr}; fallback=${fallbackMsg}`;
       if (WASM_BOOT_POLICY === "safe-noop") {
-        LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+        Le(`${failMsg}. Entering safe-noop mode.`);
         enterWasmSafeNoopMode(failMsg);
         return;
       }
@@ -1890,7 +1915,7 @@ async function initShadowWasm(): Promise<void> {
   const instantiated = await WebAssembly.instantiate(wasmBytes, {
     env: {
       memory: STATE_MATRIX.wasmMemory,
-      abort: (msg: any) => LOGGER.error("   [SHADOW WASM ABORT]:", msg),
+      abort: (msg: any) => Le("   [SHADOW WASM ABORT]:", msg),
       // Dummy trace_atom for shadow
       trace_atom: () => {},
     },
@@ -2056,30 +2081,30 @@ export const PULSE = {
       ? WORKER_COUNT
       : Math.max(1, Math.min(32, Math.floor(requestedWorkerCount)));
     if (RUNTIME_POLICY.pulse.source.workerCount) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker override: OMEGA_PULSE_WORKERS=${runtimeWorkerCount}`,
       );
     }
     if (STRICT_DETERMINISM && runtimeWorkerCount > 1) {
-      LOGGER.info(
+      Li(
         "   [PULSE] OMEGA_STRICT_DETERMINISM=1 -> serial execute on worker-0.",
       );
     }
     if (RUNTIME_POLICY.pulse.source.workerResponseTimeoutMs) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker timeout config: timeout=${WORKER_RESPONSE_TIMEOUT_MS}ms, retryCount=${WORKER_TIMEOUT_RETRY_COUNT}, retryMs=${WORKER_TIMEOUT_RETRY_MS}`,
       );
     }
     if (RUNTIME_POLICY.pulse.source.workerInitFallback) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Worker init fallback enabled=${WORKER_INIT_FALLBACK_ENABLED}.`,
       );
     }
     if (RUNTIME_POLICY.pulse.source.wasmBootPolicy) {
-      LOGGER.info(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
+      Li(`   [PULSE] WASM boot policy=${WASM_BOOT_POLICY}.`);
     }
     if (RUNTIME_POLICY.pulse.source.wasmBootPrecheck) {
-      LOGGER.info(
+      Li(
         `   [PULSE] WASM precheck enabled=${WASM_BOOT_PRECHECK_ENABLED}.`,
       );
     }
@@ -2093,7 +2118,7 @@ export const PULSE = {
       pressureState.fear > 0 ||
       pressureState.ego > 0
     ) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Evolution pressure terms novelty=${pressureState.noveltySigned} symbiosis=${pressureState.symbiosisSigned} fear=${pressureState.fear} ego=${pressureState.ego} ring=${pressureState.ring.enabled} theta=${
           pressureState.ring.theta.toFixed(4)
         } scale=${pressureState.ring.scale}.`,
@@ -2103,7 +2128,7 @@ export const PULSE = {
       STARTUP_SELFTEST_ENABLED && runtimeWorkerCount > 1 &&
       RUNTIME_POLICY.pulse.source.startupSelfTest
     ) {
-      LOGGER.info(
+      Li(
         `   [PULSE] Startup self-test enabled: ticks=${STARTUP_SELFTEST_TICKS}, fallback=${STARTUP_SELFTEST_FALLBACK_ENABLED}`,
       );
     }
@@ -2115,7 +2140,7 @@ export const PULSE = {
       if (!preflight.ok) {
         const failMsg = `[PULSE] WASM preflight failed: ${preflight.reason}`;
         if (WASM_BOOT_POLICY === "safe-noop") {
-          LOGGER.error(`${failMsg}. Entering safe-noop mode.`);
+          Le(`${failMsg}. Entering safe-noop mode.`);
           enterWasmSafeNoopMode(failMsg);
           return;
         }
@@ -2127,11 +2152,11 @@ export const PULSE = {
     if (wasmBootDegraded) return;
 
     if (initFallbackActivated) {
-      LOGGER.warn(
+      Lw(
         `   [PULSE] ${runtimeWorkerCount} Worker READY after init fallback.`,
       );
     } else {
-      LOGGER.info(
+      Li(
         `   [PULSE] ${runtimeWorkerCount} Parallel Workers READY with WASM VMs.`,
       );
     }
@@ -2159,17 +2184,17 @@ export const PULSE = {
       STATE_MATRIX.getActiveIndices().length === 0 &&
       (nexusStatus.seedNodesLength > 0 || nexusStatus.mainnetEnabled)
     ) {
-      LOGGER.info(
+      Li(
         `[PULSE] Matrix is uninstantiated. Awaiting Swarm Handshake...`,
       );
       await new Promise((r) => setTimeout(r, 600)); // allow sockets to open
 
-      LOGGER.info(`[PULSE] Requesting Genesis Block via Nexus...`);
+      Li(`[PULSE] Requesting Genesis Block via Nexus...`);
       await new Promise<void>((resolve) => {
         genesisPromiseResolver = resolve;
         noosphereDelegate?.broadcastSyncRequest();
       });
-      LOGGER.info(
+      Li(
         `[PULSE] Genesis Bootstrapping complete! Synchronized to Swarm Lattice.`,
       );
     }
@@ -2219,7 +2244,7 @@ export const PULSE = {
         return;
       }
 
-      LOGGER.warn(
+      Lw(
         `   [PULSE] Startup self-test breach at tick=${startupSelfTestLastBreachTick} workers=${runtimeWorkerCount}.`,
       );
       if (!STARTUP_SELFTEST_FALLBACK_ENABLED || runtimeWorkerCount <= 1) {
@@ -2235,7 +2260,7 @@ export const PULSE = {
       PULSE.stopWorkers();
       runtimeWorkerCount = 1;
       await startWorkers(runtimeWorkerCount);
-      LOGGER.warn(
+      Lw(
         "   [PULSE] Startup self-test fallback activated: forcing single-worker mode.",
       );
 
@@ -2394,7 +2419,7 @@ export const PULSE = {
           kind: "genetic_ledger_update",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
         );
       }
@@ -2432,7 +2457,7 @@ export const PULSE = {
           kind: "genetic_ledger_update",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
         );
       }
@@ -2468,7 +2493,7 @@ export const PULSE = {
         kind: "genetic_ledger_update",
         count: 1,
       });
-      LOGGER.info(
+      Li(
         `   [PULSE] Genetic ledger update key=${update.key} tick=${result.state.lastAppliedTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastAppliedRollbackToken} source=${result.state.lastAppliedSource} reason=${result.state.lastAppliedReason}`,
       );
     }
@@ -2526,7 +2551,7 @@ export const PULSE = {
           kind: "genetic_ledger_rollback",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
         );
       }
@@ -2567,7 +2592,7 @@ export const PULSE = {
           kind: "genetic_ledger_rollback",
           count: 1,
         });
-        LOGGER.info(
+        Li(
           `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
         );
       }
@@ -2603,7 +2628,7 @@ export const PULSE = {
         kind: "genetic_ledger_rollback",
         count: 1,
       });
-      LOGGER.info(
+      Li(
         `   [PULSE] Genetic ledger rollback key=${rollback.key} tick=${result.state.lastRollbackTick} value=${result.previousValue}->${result.nextValue} token=${result.state.lastRollbackToken} source=${result.state.lastRollbackSource} reason=${result.state.lastRollbackReason}`,
       );
     }
@@ -2690,7 +2715,7 @@ export const PULSE = {
       deltaTheta: boundedDelta,
       enabled: update.enabled,
     });
-    LOGGER.info(
+    Li(
       `   [PULSE] Evolution pressure ring update source=${
         update.source ?? "runtime"
       } mode=${update.mode} novelty=${applied.noveltySigned} symbiosis=${applied.symbiosisSigned} fear=${applied.fear} ego=${applied.ego} enabled=${applied.ring.enabled} theta=${
@@ -2766,7 +2791,7 @@ export const PULSE = {
           XS_OFFSET,
           MAX_ATOMS,
         );
-        LOGGER.debug(
+        Ld(
           `[PULSE TRACE] ${lbl} -> Atom 11 X=${xs[11]} or 15 X=${xs[15]}`,
         );
       };
@@ -2843,7 +2868,7 @@ export const PULSE = {
       }
 
       if (coherence > 1000) {
-        LOGGER.debug(
+        Ld(
           `🧠 [PULSE] High Coherence detected: ${coherence}. Consulting Oracle...`,
         );
       }
@@ -2915,7 +2940,7 @@ export const PULSE = {
         overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
       };
       if (overflowCount > 0 && currentTick % 20 === 0) {
-        LOGGER.warn(
+        Lw(
           `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
         );
       }
@@ -2927,7 +2952,7 @@ export const PULSE = {
         readEnergiesView.set(energiesView);
         readResonancesView.set(resonancesView);
         if (currentTick <= 104) {
-          LOGGER.info(
+          Li(
             `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
               xsView[11]
             }, readXsView[11]=${readXsView[11]}`,
@@ -2985,7 +3010,7 @@ export const PULSE = {
 
       // --- STAGE 26: CONTINUUM CHRONOSPHERE EPOCHS (HEARTBEAT) ---
       if (currentTick > 0 && currentTick % 10000 === 0) {
-        LOGGER.info(
+        Li(
           `[CONTINUUM] Pulse Heartbeat triggered at tick ${currentTick}. Archiving Epoch...`,
         );
         const pCount = activeIdx.length;
@@ -3001,7 +3026,7 @@ export const PULSE = {
             epochHash,
           );
         }
-        LOGGER.info(
+        Li(
           `[CONTINUUM] Epoch ${autoEpochId}.sigma securely sealed into Chronosphere. (Proof: ${epochHash})`,
         );
       }
@@ -3094,7 +3119,7 @@ export const PULSE = {
         "DRAIN_SPAWN_DONE",
       );
       if (spawnRes.count > 0) {
-        LOGGER.debug(
+        Ld(
           `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
         );
         akashaDelegate?.recordMutationTelemetry({
@@ -3149,7 +3174,7 @@ export const PULSE = {
       const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
 
       if (currentTick % 20 === 0 && syntropy > 0.1) {
-        LOGGER.info(
+        Li(
           `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
             (taxDiscount * 100).toFixed(1)
           }% (Syntropy: ${syntropy.toFixed(3)})`,
@@ -3214,7 +3239,7 @@ export const PULSE = {
           if (akashaDelegate) {
             await akashaDelegate.recordImmunologicalPurge(purgedCount);
           }
-          LOGGER.info(
+          Li(
             `🛡️ [IMMUNE] Phagocyte Purge: ${purgedCount} necrotic/drifting atoms recycled. (H0: ${entropyPressure})`,
           );
         }
@@ -3411,7 +3436,7 @@ export const PULSE = {
         Atomics.store(coherenceView, 0, coherence);
 
         if (currentTick % 20 === 0) {
-          LOGGER.debug(
+          Ld(
             `💎 [RESONANCE] System Coherence: ${coherence}/255 (Avg Res: ${
               (avgRes / 100).toFixed(1)
             })`,
@@ -3442,7 +3467,7 @@ export const PULSE = {
           // --- STAGE 22: DRIFT WARDEN AUDIT ---
           const drift = driftWarden.analyze(currentTick);
           if (drift.shadowForkRecommended && !shadowForkActive) {
-            LOGGER.warn(
+            Lw(
               `🚨 [ADAPTIVE] High Drift (${
                 drift.driftIndex.toFixed(4)
               }) detected. Triggering autonomous shadow rehearsal...`,
@@ -3458,11 +3483,11 @@ export const PULSE = {
                 for (let s = 0; s < 10; s++) {
                   runner.runShadowTick(currentTick + s);
                 }
-                LOGGER.info(
+                Li(
                   `✅ [ADAPTIVE] Shadow rehearsal complete for drift at tick ${currentTick}.`,
                 );
               } catch (e) {
-                LOGGER.error(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
+                Le(`❌ [ADAPTIVE] Shadow rehearsal failed:`, e);
               } finally {
                 shadowForkActive = false;
               }
@@ -3525,7 +3550,7 @@ export const PULSE = {
     const newIdx = noosphereDelegate?.unpackAtom(payload);
     if (newIdx !== -1) {
       const id = STATE_MATRIX.getId(newIdx!);
-      LOGGER.info(
+      Li(
         `🛸 [PULSE] Atom ${id} materialized from hyperspace at index ${newIdx}.`,
       );
       akashaDelegate?.recordMutationTelemetry({
@@ -3534,13 +3559,13 @@ export const PULSE = {
         count: 1,
       });
     } else {
-      LOGGER.warn(
+      Lw(
         `🛸 [PULSE] Ingress atom failed to materialize (Lattice full or corrupt).`,
       );
     }
   },
   onRemoteSyncRequest: async (peerId: string) => {
-    LOGGER.info(
+    Li(
       `[PULSE] Serving Hot State Merging Genesis block to ${peerId}...`,
     );
     const payload = akashaDelegate
@@ -3549,7 +3574,7 @@ export const PULSE = {
     noosphereDelegate?.sendEpochPayload(peerId, payload);
   },
   onRemoteEpochPayload: async (payload: Uint8Array) => {
-    LOGGER.info(
+    Li(
       `[PULSE] Hot State Merging payload received. Unpacking into Lattice...`,
     );
     if (akashaDelegate) {

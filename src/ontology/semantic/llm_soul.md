@@ -9,14 +9,14 @@ min_level: 5
 ### TypeScript
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-import { LOGGER } from "@generated";
+import { LOGGER, Ld, Li, Lw, Le } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999;
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
 if (!GEMINI_API_KEY) {
-  LOGGER.error("GEMINI_API_KEY environment variable is missing.");
+  Le("GEMINI_API_KEY environment variable is missing.");
   Deno.exit(1);
 }
 
@@ -98,7 +98,7 @@ async function queryGemini(state: any, vision: any[]): Promise<any[]> {
       .trim();
     return JSON.parse(cleanText);
   } catch (e: any) {
-    LOGGER.error(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
+    Le(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
     // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
     return [
       { action: "YIELD" },
@@ -119,7 +119,7 @@ function sleep(ms: number) {
 }
 
 async function runSoul() {
-  LOGGER.info(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
+  Li(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
 
   let actionBuffer: any[] = [];
 
@@ -129,7 +129,7 @@ async function runSoul() {
         // 1. SENSE Environment (Only when buffer is empty)
         const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
         if (!res.ok) {
-          LOGGER.warn("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
+          Lw("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
           await sleep(2000);
           continue;
         }
@@ -141,20 +141,20 @@ async function runSoul() {
           v.role === 0 || v.role === 4
         ).slice(0, 10);
 
-        LOGGER.info(
+        Li(
           `[LLM_SOUL] Energy: ${
             Math.floor(me.energy)
           } | Seeing ${vision.length} threats/food.`,
         );
 
         // 2. COGNITION
-        LOGGER.debug("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
+        Ld("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
         const strategy = await queryGemini(me, vision);
 
         if (Array.isArray(strategy)) {
           actionBuffer = strategy;
         } else {
-          LOGGER.warn("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
+          Lw("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
           actionBuffer = [{ action: "YIELD" }, { action: "YIELD" }];
         }
       }
@@ -162,7 +162,7 @@ async function runSoul() {
       // 3. ACT (Pop one action from buffer)
       if (actionBuffer.length > 0) {
         const intent = actionBuffer.shift();
-        LOGGER.info(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
+        Li(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
 
         await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
           method: "POST",
@@ -171,7 +171,7 @@ async function runSoul() {
         });
       }
     } catch (e: any) {
-      LOGGER.error("[LLM_SOUL] Loop error:", e.message);
+      Le("[LLM_SOUL] Loop error:", e.message);
       actionBuffer = []; // Clear buffer on severe error
       await sleep(5000); // Backoff
     }

@@ -10,14 +10,10 @@ min_level: 3
 
 ```typescript
 import { GRID_H } from "../mod.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@generated";
 import {
-  type BridgeModeEvent,
-  type DeltaProposal,
-  type GateConfig,
-  type GateDecision,
-  type StateSnapshot,
+  type LedgerEvent
 } from "@generated";
-import { type LedgerEvent } from "@generated";
 import {
   CANON_CAUSAL_BRIDGE,
   CRYSTALLIZATION_CONFIG,
@@ -26,12 +22,18 @@ import {
   LEDGER__08_00_LEDGER as LEDGER,
   PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX,
-  TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
+  TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE
 } from "@generated";
-import { LOGGER } from "@generated";
-import { validateGateProposals } from "@generated";
-import { mergeGateProposals } from "@generated";
-import { persistGateLedgerArtifacts } from "@generated";
+
+import {
+  validateGateProposals
+} from "@generated";
+import {
+  mergeGateProposals
+} from "@generated";
+import {
+  persistGateLedgerArtifacts
+} from "@generated";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -370,7 +372,7 @@ export const GATE = {
 
       // If score exceeds threshold, promote to Canon!
       if (score > 100 && !GATE.trustedSignatures.has(logicStr)) {
-        LOGGER.info(
+        Li(
           `🛡️ [ERA 62: IMMUNE_LEARNING] Viral Plasmid evolved into Symbiont: ${logicStr} (Avg Resonance: ${
             (avgResonance / 100).toFixed(1)
           } > Baseline: ${(baselineAvg / 100).toFixed(1)})`,
@@ -430,7 +432,7 @@ export const GATE = {
       // Apply Audit Decisions
       if (malignancy >= GRID_H) {
         stateMatrix.setId(idx, 0n); // RECYCLED (FATAL AUDIT)
-        LOGGER.warn(
+        Lw(
           `⚖️ [GATE] Fatal Audit: Atom ${idx} recycled (Malignancy: ${malignancy})`,
         );
       } else if (malignancy >= 40) {
@@ -441,7 +443,7 @@ export const GATE = {
   },
 
   auditMatrix: (stateMatrix: any) => {
-    LOGGER.debug("⚖️ [GATE] Starting Autonomous Systemic Audit...");
+    Ld("⚖️ [GATE] Starting Autonomous Systemic Audit...");
 
     // 1. Evaluate Symbiogenesis (Reward pro-resonant mutations)
     GATE.evaluateSymbiosis(stateMatrix);
@@ -464,9 +466,9 @@ export const GATE = {
     }
 
     if (ghostCount > 0) {
-      LOGGER.info(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
+      Li(`⚖️ [GATE] Recycled ${ghostCount} corrupted/starved atoms.`);
     }
-    LOGGER.debug(
+    Ld(
       `⚖️ [GATE] Audit Complete. Population: ${active.length}. Trusted Signatures: ${GATE.trustedSignatures.size}`,
     );
   },

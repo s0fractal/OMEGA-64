@@ -11,8 +11,10 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS, LOGGER, AS_WASM_PATH } from "@generated";
-import { DollFork } from "@generated";
+import { MAX_ATOMS, LOGGER, AS_WASM_PATH, Le } from "@generated";
+import {
+  DollFork
+} from "@generated";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;
@@ -45,7 +47,7 @@ export class DollForkRunner {
       index: { trace_atom: traceAtom },
       env: {
         memory: this.fork.wasmMemory,
-        abort: (msg: any) => LOGGER.error("[SHADOW WASM ABORT]:", msg),
+        abort: (msg: any) => Le("[SHADOW WASM ABORT]:", msg),
         trace_atom: traceAtom,
       },
     });
@@ -99,7 +101,7 @@ export class DollForkRunner {
         0, // Subsidy
       );
     } catch (err) {
-      LOGGER.error("[SHADOW TICK ERROR]", err);
+      Le("[SHADOW TICK ERROR]", err);
       throw err;
     }
   }

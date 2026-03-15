@@ -42,9 +42,9 @@ const main = async () => {
   const budget = await Deno.readTextFile(BUDGET_PATH);
   const ledger = await Deno.readTextFile(LEDGER_PATH);
 
-  requireSnippet(gate, "import { validateGateProposals } from \"@generated\";", GATE_PATH, "GATE must delegate proposal validation", violations);
-  requireSnippet(gate, "import { mergeGateProposals } from \"@generated\";", GATE_PATH, "GATE must delegate proposal merge/budget", violations);
-  requireSnippet(gate, "import { persistGateLedgerArtifacts } from \"@generated\";", GATE_PATH, "GATE must delegate ledger/checkpoint persistence", violations);
+  requireSnippet(gate, "validateGateProposals", GATE_PATH, "GATE must delegate proposal validation", violations);
+  requireSnippet(gate, "mergeGateProposals", GATE_PATH, "GATE must delegate proposal merge/budget", violations);
+  requireSnippet(gate, "persistGateLedgerArtifacts", GATE_PATH, "GATE must delegate ledger/checkpoint persistence", violations);
   forbidSnippet(
     gate,
     "AGENT_SIGNATURE.proposalEnvelopeHash(",

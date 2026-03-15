@@ -11,8 +11,10 @@ min_level: 5
 
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
+import { LOGGER, Li, Le } from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;
@@ -26,7 +28,7 @@ const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
 const issueAlienId = (): string =>
   `0x${crypto.randomUUID().replace(/-/g, "").slice(0, 16).toUpperCase()}`;
 
-LOGGER.info(
+Li(
   `🛸 P2P Synapse Membrane open on ${HOST}:${PORT} (mutate=${
     MUTATE_ENABLED ? "on" : "off"
   })`,
@@ -73,7 +75,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 </div>
 `;
       await Deno.writeTextFile(targetPath, content);
-      LOGGER.info(
+      Li(
         `   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${targetPath} (Logic: ${alienData.logic})`,
       );
       return new Response(
@@ -84,7 +86,7 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
         },
       );
     } catch (e) {
-      LOGGER.error(`   [P2P] ⚠️ Failed to parse alien logic. ${String(e)}`);
+      Le(`   [P2P] ⚠️ Failed to parse alien logic. ${String(e)}`);
       return new Response("MUTATION_REJECTED", { status: 400 });
     }
   }

@@ -2,7 +2,6 @@
 import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { PULSE } from "@generated";
 
-
 async function test_coherence_field() {
   console.log(
     "🧬 [TEST] Starting Dedicated Global Coherence Field Verification...",

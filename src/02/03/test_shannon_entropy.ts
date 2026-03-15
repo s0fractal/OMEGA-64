@@ -3,12 +3,13 @@ import {
   assert,
   assertEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
 
 Deno.test("Stage 37: Information Thermodynamics (Noise Tax)", async () => {
-  LOGGER.info("--- STAGE 37: SHANNON ENTROPY NOISE TAX TEST ---");
+  Li("--- STAGE 37: SHANNON ENTROPY NOISE TAX TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.tickCounter, 0, 100);

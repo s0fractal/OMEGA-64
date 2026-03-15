@@ -3,13 +3,20 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, OP_SYSCALL, SYS_MSG, SYS_READ_INBOX } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  OP_SYSCALL,
+  SYS_MSG,
+  SYS_READ_INBOX
+} from "@generated";
 
 Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
-  LOGGER.info("--- STAGE 30: NETWORKED COGNITION TEST ---");
+  Li("--- STAGE 30: NETWORKED COGNITION TEST ---");
 
   // 1. Initialize world
   STATE_MATRIX.clear();
@@ -68,7 +75,7 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   assertEquals(STATE_MATRIX.getMailboxPayload(receiverIdx), 0);
 
   // 5. Tick: Sender sends message, Receiver reads it (in the same parallel pulse)
-  LOGGER.info("Tick 1: Executing PULSE...");
+  Li("Tick 1: Executing PULSE...");
   await PULSE.tick();
 
   // 6. Verify message was read and cleared
@@ -100,6 +107,6 @@ Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
     `Sender should be taxed for sending MSG. Energy: ${senderEnergy}`,
   );
 
-  LOGGER.info("--- STAGE 30: SUCCESS ---");
+  Li("--- STAGE 30: SUCCESS ---");
   PULSE.stopWorkers();
 });

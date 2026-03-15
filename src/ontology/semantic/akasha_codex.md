@@ -13,16 +13,24 @@ min_level: 6
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { STATE_MATRIX } from "@generated";
-import { GRID_CELLS, GRID_H, GRID_W } from "@generated";
-import type { GlyphSnapshot } from "@generated";
-import { LLM_SYNAPSE } from "@generated";
-import { LOGGER } from "@generated";
+import { STATE_MATRIX, LOGGER, Li, Lw } from "@generated";
+import {
+  GRID_CELLS,
+  GRID_H,
+  GRID_W
+} from "@generated";
+import type {
+  GlyphSnapshot
+} from "@generated";
+import {
+  LLM_SYNAPSE
+} from "@generated";
+
 import {
   OP_BUILD,
   OP_RESONATE_KURAMOTO,
   OP_SENSE,
-  OP_SENSE_AS,
+  OP_SENSE_AS
 } from "@generated";
 
 const CODEX_ROOT = "codex";
@@ -754,7 +762,7 @@ const syncDaemonInvariants = async (force = false): Promise<void> => {
       invariantIndex.length = MAX_INVARIANTS;
     }
     await persistIndexes();
-    LOGGER.info(
+    Li(
       `📚 [CODEX] synced ${inserted} invariant frame(s) from daemon memory`,
     );
   }
@@ -893,7 +901,7 @@ const persistIndexes = async (): Promise<void> => {
 
 const enqueueWrite = (job: () => Promise<void>): void => {
   writeQueue = writeQueue.then(job).catch((err) => {
-    LOGGER.warn(`📚 [CODEX] write queue error: ${String(err)}`);
+    Lw(`📚 [CODEX] write queue error: ${String(err)}`);
   });
 };
 
@@ -1340,7 +1348,7 @@ export const AKASHA_CODEX = {
     started = true;
     await ensureStorage();
     await syncDaemonInvariants(true);
-    LOGGER.info(
+    Li(
       `📚 [CODEX] activated at ./${CODEX_ROOT} (epochTicks=${EPOCH_TICKS})`,
     );
   },

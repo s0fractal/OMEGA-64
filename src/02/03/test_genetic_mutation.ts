@@ -1,12 +1,20 @@
 // OMEGA-64 | test_genetic_mutation.ts | Stage 34 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_YIELD, OP_SYSCALL, SYS_MUTATE, OP_NOP } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_YIELD,
+  OP_SYSCALL,
+  SYS_MUTATE,
+  OP_NOP
+} from "@generated";
 
 Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
-  LOGGER.info("--- STAGE 34: GENETIC MUTATION TEST ---");
+  Li("--- STAGE 34: GENETIC MUTATION TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -56,7 +64,7 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
     "Atom B should start with OP_SET",
   );
 
-  LOGGER.info("Executing mutation pulse...");
+  Li("Executing mutation pulse...");
   await PULSE.tick();
 
   // Verify after state
@@ -79,13 +87,13 @@ Deno.test("Stage 34: Genetic Mutation Engine (SYS_MUTATE)", async () => {
   // Cost is 50 * 1000 = 50,000. Base tax is 100.
   // 5000 - 50 = 4950.
   // Metabolism might deduct 0.1 unscaled.
-  LOGGER.info(`Atom A remaining energy: ${energyA / 1000} (Expect ~4949.9)`);
+  Li(`Atom A remaining energy: ${energyA / 1000} (Expect ~4949.9)`);
   assertEquals(
     energyA < 5000 * 1000,
     true,
     "Atom A should have spent energy on mutation",
   );
 
-  LOGGER.info("--- STAGE 34: SUCCESS ---");
+  Li("--- STAGE 34: SUCCESS ---");
   PULSE.stopWorkers();
 });

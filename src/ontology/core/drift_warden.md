@@ -11,9 +11,10 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS } from "@generated";
-import { sharedBuffer } from "@generated";
-import { LOGGER } from "@generated";
+import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS, LOGGER, Li } from "@generated";
+import {
+  sharedBuffer
+} from "@generated";
 
 export type DriftMetrics = {
   coherence: number;
@@ -98,7 +99,7 @@ export class DriftWarden {
     const shadowForkRecommended = driftIndex > this.driftThreshold;
 
     if (currentTick % 100 === 0) {
-      LOGGER.info(
+      Li(
         `[DRIFT WARDEN] Tick ${currentTick} | Drift: ${
           driftIndex.toFixed(4)
         } | Coherence: ${

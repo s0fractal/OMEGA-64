@@ -11,9 +11,8 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
-import { STATE_MATRIX } from "@generated";
+import { STATE_MATRIX, LOGGER, Ld } from "@generated";
 import { AKASHA_CODEX } from "@06";
-import { LOGGER } from "@generated";
 
 /**
  * LineageTracker maintains the semantic link between active atoms and their ancestry.
@@ -32,7 +31,7 @@ export class LineageTracker {
     // we would pull stability metrics from AKASHA_CODEX.
 
     if (activeIdx.length > 0 && Math.random() < 0.05) {
-      LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
+      Ld(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
     }
   }
 

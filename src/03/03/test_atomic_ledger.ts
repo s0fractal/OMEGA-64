@@ -1,13 +1,21 @@
 // OMEGA-64 | test_atomic_ledger.ts | Stage 33 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { ATOMIC_LEDGER } from "@generated";
-import { OP_SET, SYS_EMIT, OP_SYSCALL } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  ATOMIC_LEDGER
+} from "@generated";
+import {
+  OP_SET,
+  SYS_EMIT,
+  OP_SYSCALL
+} from "@generated";
 
 Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
-  LOGGER.info("--- STAGE 33: ATOMIC LEDGER TEST ---");
+  Li("--- STAGE 33: ATOMIC LEDGER TEST ---");
 
   STATE_MATRIX.clear();
   Atomics.store(STATE_MATRIX.syncState, 0, 0);
@@ -56,20 +64,20 @@ Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   // Ensure Ledger is empty at the start
   assertEquals(ATOMIC_LEDGER.getHead(), 0, "Ledger should start empty");
 
-  LOGGER.info("Executing ledger emit pulse...");
+  Li("Executing ledger emit pulse...");
   await PULSE.tick();
 
   const head = ATOMIC_LEDGER.getHead();
-  LOGGER.info(`Ledger Head after pulse: 0 -> ${head}`);
+  Li(`Ledger Head after pulse: 0 -> ${head}`);
   assertEquals(head, 2, "Both atoms should have emitted successfully");
 
   const events = ATOMIC_LEDGER.readRange(0, head);
-  LOGGER.info(
+  Li(
     `Event 1: Atom ${events[0].atomIdx} at Tick ${events[0].tick} -> [${
       events[0].r1
     }, ${events[0].r2}]`,
   );
-  LOGGER.info(
+  Li(
     `Event 2: Atom ${events[1].atomIdx} at Tick ${events[1].tick} -> [${
       events[1].r1
     }, ${events[1].r2}]`,
@@ -101,6 +109,6 @@ Deno.test("Stage 33: Binary Event Ledger (SYS_EMIT)", async () => {
   // We need numbers under 255.
   // I will revise the test below, replacing 777/888 with 77/88.
 
-  LOGGER.info("--- STAGE 33: SUCCESS ---");
+  Li("--- STAGE 33: SUCCESS ---");
   PULSE.stopWorkers();
 });

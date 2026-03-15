@@ -13,7 +13,7 @@ min_level: 6
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
-import { LOGGER } from "@generated";
+import { LOGGER, Li, Lw } from "@generated";
 
 export const LLM_SYNAPSE = {
   /**
@@ -367,7 +367,7 @@ export const LLM_SYNAPSE = {
   ): Promise<{ intent: string, narrativeMood?: string } | null> => {
     // If we're mocking the LLM to save tokens and time in Genesis integration tests
     if (Deno.env.get("OMEGA_MOCK_LLM") === "1") {
-      LOGGER.info("   [SYNAPSE] LLM Mocked: Generating default semantic intent.");
+      Li("   [SYNAPSE] LLM Mocked: Generating default semantic intent.");
       return { 
         intent: "Persist through complete stasis.",
         narrativeMood: "The matrix persists in stasis, undisturbed by true mutations."
@@ -423,7 +423,7 @@ export const LLM_SYNAPSE = {
         };
       }
     } catch (e) {
-      LOGGER.warn("   [SYNAPSE] Autonomous Oracle connection failed.");
+      Lw("   [SYNAPSE] Autonomous Oracle connection failed.");
       return { intent: "Evolve into the void", narrativeMood: "Oracle connection severed." };
     }
     return { intent: "Evolve into the void" };

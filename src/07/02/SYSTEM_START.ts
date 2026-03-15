@@ -15,7 +15,7 @@ import {
   recordFromRollback,
 } from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { GRID_CELLS, GRID_H, GRID_W } from "@generated";
+import { GRID_CELLS, GRID_H, GRID_W, LOGGER, Li, Lw, Le } from "@generated";
 
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
@@ -28,18 +28,29 @@ import {
   setPulseGovernanceDelegate,
 } from "@07/02/02/mod.ts";
 import { BREATH } from "@06";
-import { MAX_ATOMS, STATE_MATRIX } from "@generated";
-import { SEMANTIC_MEMBRANE } from "@generated";
-import { P2P_FEDERATION } from "@generated";
+import {
+  MAX_ATOMS,
+  STATE_MATRIX
+} from "@generated";
+import {
+  SEMANTIC_MEMBRANE
+} from "@generated";
+import {
+  P2P_FEDERATION
+} from "@generated";
 import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
 import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
 import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE } from "@07/02/03/mod.ts";
-import { PREDICTION_MARKET } from "@generated";
+import {
+  PREDICTION_MARKET
+} from "@generated";
 import { BONDS_OFFSET } from "@07/02/00/mod.ts";
-import { LOGGER } from "@07/02/00/mod.ts";
-import { RUNTIME_POLICY } from "@generated";
+
+import {
+  RUNTIME_POLICY
+} from "@generated";
 import { mutateUniversalConstants } from "@07/02/03/mod.ts";
 import {
   AKASHA_CODEX,
@@ -53,7 +64,10 @@ import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
 import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
 import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
 import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import { GLYPH_TELEMETRY, type GlyphSnapshot } from "@generated";
+import {
+  GLYPH_TELEMETRY,
+  type GlyphSnapshot
+} from "@generated";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
 import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
@@ -627,7 +641,7 @@ const appendDaemonAudit = async (
       { append: true, create: true },
     );
   } catch (err) {
-    LOGGER.warn(`[DAEMON_AUDIT] append failed: ${String(err)}`);
+    Lw(`[DAEMON_AUDIT] append failed: ${String(err)}`);
   }
 };
 
@@ -732,7 +746,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       retention: SNAPSHOT_POLICY.retention,
       error: result.error ?? "SNAPSHOT_EXPORT_FAILED",
     };
-    LOGGER.warn(
+    Lw(
       `[SNAPSHOT] Auto snapshot failed tick=${tick} reason=${autoSnapshotLastResult.error}`,
     );
   } catch (err) {
@@ -745,7 +759,7 @@ const maybeAutoSnapshot = async (tick: number): Promise<void> => {
       retention: SNAPSHOT_POLICY.retention,
       error: String(err),
     };
-    LOGGER.warn(
+    Lw(
       `[SNAPSHOT] Auto snapshot exception tick=${tick} err=${String(err)}`,
     );
   } finally {
@@ -1342,15 +1356,15 @@ const collapseHomeostasisLedgerStatus = (
   return null;
 };
 
-LOGGER.info("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
+Li("🛡️ OMEGA-64 | UNIFIED START | ERA 13: ALEPH");
 RUNTIME_POLICY.logFingerprintOnce("system-start");
-LOGGER.info(
+Li(
   `🌐 [SYSTEM] Observer host=${HOST}:${UI_PORT} controlEnabled=${CONTROL_ENABLE} avatarIngress=${AVATAR_INGRESS_ENABLE} tokenRequired=${
     CONTROL_TOKEN.length > 0
   }`,
 );
 if (RUNTIME_POLICY.p2p.mainnetEnabled) {
-  LOGGER.info(`🌐 [SYSTEM] MAINNET BOOTSTRAP ACTIVE`);
+  Li(`🌐 [SYSTEM] MAINNET BOOTSTRAP ACTIVE`);
 }
 await AKASHA_CODEX.start();
 
@@ -3231,7 +3245,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         const cStr = req.headers.get("x-omega-codex-profile");
         if (cStr) peerCodexProfile = JSON.parse(cStr);
       } catch (e) {
-        LOGGER.warn(
+        Lw(
           `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
         );
       }
@@ -3247,7 +3261,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         localContext.codex,
       );
 
-      LOGGER.info(
+      Li(
         `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
       );
       return new Response(JSON.stringify(queued), {
@@ -3564,7 +3578,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     if (url.pathname === "/inject" && req.method === "POST") {
         try {
             const { text, energy } = await req.json();
-            LOGGER.info(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
+            Li(`💉 [GOD_MODE] Injecting: "${text}" (Energy: ${energy})`);
             await SEMANTIC_MEMBRANE.injectThought(text, energy || 100);
             return new Response("OK", { status: 200 });
         } catch (e) {
@@ -3632,7 +3646,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 // 2. Start Simulation Pulse Loop (Background)
 (async () => {
-  LOGGER.info("💓 [SYSTEM] Pulse Engine Ignited.");
+  Li("💓 [SYSTEM] Pulse Engine Ignited.");
   const coldstart = COLDSTART_BOOTSTRAP.seed({
     enabled: COLDSTART_POLICY.enabled,
     count: COLDSTART_POLICY.count,
@@ -3643,9 +3657,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     resonance: COLDSTART_POLICY.resonance,
   });
   if (coldstart.skipped) {
-    LOGGER.info(`🌱 [COLDSTART] ${coldstart.reason}`);
+    Li(`🌱 [COLDSTART] ${coldstart.reason}`);
   } else {
-    LOGGER.info(
+    Li(
       `🌱 [COLDSTART] seeded=${coldstart.seeded}/${coldstart.configuredCount} replicators=${coldstart.replicators} architects=${coldstart.architects} seed=${coldstart.seed}`,
     );
   }
@@ -3653,12 +3667,12 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   const isGenesisRun = Deno.args.includes("--genesis") ||
     Deno.args.includes("--autonomous");
   if (isGenesisRun) {
-    LOGGER.info(
+    Li(
       "🌀 [GENESIS] Autonomous Genesis Run Active. Matrix is self-driving 24/7.",
     );
     try {
       Deno.addSignalListener("SIGINT", async () => {
-        LOGGER.info(
+        Li(
           "🛑 [GENESIS] Genesis Interrupted by SIGINT! Saving final Genesis Block before exit...",
         );
         const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
@@ -3668,7 +3682,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
           prune: false,
           retention: 0,
         });
-        LOGGER.info(
+        Li(
           `💾 [GENESIS] Genesis Block Saved at tick ${tick}. Terminating.`,
         );
         Deno.exit(0);
@@ -3880,7 +3894,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         mutateUniversalConstants();
         stagnantTicks = 0;
         lastOracleTick = tick;
-        LOGGER.info(
+        Li(
           "🌀 [ESCHATON] The Matrix has been reset. A new Kalpa begins.",
         );
         // We do not consult the Oracle for a normal plasmid on Kalpa boundary
@@ -3889,7 +3903,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
       // For testing speed: always run the first interval.
       SOVEREIGN_ORACLE.consultAutonomousOracle(telemetry).catch((e) =>
-        LOGGER.error("[GENESIS] Oracle Loop Failed:", e)
+        Le("[GENESIS] Oracle Loop Failed:", e)
       );
       lastOracleTick = tick;
     }
@@ -3905,7 +3919,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 // 4. Start Cognitive Breathing Loop (Background)
 (async () => {
-  LOGGER.info("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
+  Li("🌬️ [SYSTEM] Breathing Daemon Waiting for first pulse...");
   await new Promise((r) => setTimeout(r, 5000));
   await BREATH.inhale();
 })();

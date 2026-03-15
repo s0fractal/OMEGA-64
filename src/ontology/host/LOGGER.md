@@ -81,4 +81,9 @@ export const LOGGER = {
     if (shouldLog("error")) emit("error", args);
   },
 };
+
+export const Ld = LOGGER.debug;
+export const Li = LOGGER.info;
+export const Lw = LOGGER.warn;
+export const Le = LOGGER.error;
 ```

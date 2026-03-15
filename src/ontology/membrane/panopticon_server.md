@@ -10,9 +10,11 @@ min_level: 6
 ### TypeScript
 
 ```typescript
-import { STATE_MATRIX } from "@generated";
-import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@generated";
+import { STATE_MATRIX, LOGGER, Li, Lw } from "@generated";
+
+import {
+  AKASHA_CODEX
+} from "@generated";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
@@ -30,17 +32,17 @@ export const PANOPTICON_SERVER = {
         const { socket, response } = Deno.upgradeWebSocket(req);
 
         socket.onopen = () => {
-          LOGGER.info(`👁️ [PANOPTICON] Observer Client Connected.`);
+          Li(`👁️ [PANOPTICON] Observer Client Connected.`);
           clients.add(socket);
         };
 
         socket.onclose = () => {
-          LOGGER.info(`👁️ [PANOPTICON] Observer Client Disconnected.`);
+          Li(`👁️ [PANOPTICON] Observer Client Disconnected.`);
           clients.delete(socket);
         };
 
         socket.onerror = (e) => {
-          LOGGER.warn(`👁️ [PANOPTICON] WebSocket Error: ${e}`);
+          Lw(`👁️ [PANOPTICON] WebSocket Error: ${e}`);
         };
 
         return response;
@@ -74,7 +76,7 @@ export const PANOPTICON_SERVER = {
       return new Response(null, { status: 405 });
     });
 
-    LOGGER.info(
+    Li(
       `👁️ [PANOPTICON] Global WebGL Observer Server listening on http://localhost:${PORT}`,
     );
 

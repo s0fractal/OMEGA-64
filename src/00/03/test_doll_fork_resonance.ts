@@ -1,12 +1,16 @@
 // OMEGA-64 | test_doll_fork_resonance.ts | Stage 21 Verification
-import { DollFork } from "@generated";
-import { DollForkRunner } from "@generated";
-import { RelicCultivator } from "@generated";
-import { LOGGER } from "@generated";
+import { DollFork, LOGGER, Li } from "@generated";
+import {
+  DollForkRunner
+} from "@generated";
+import {
+  RelicCultivator
+} from "@generated";
+
 import { assertEquals } from "https://deno.land/std@0.211.0/assert/mod.ts";
 
 async function testDollForkResonance() {
-  LOGGER.info("--- STAGE 21: DOLL FORK RESONANCE TEST ---");
+  Li("--- STAGE 21: DOLL FORK RESONANCE TEST ---");
 
   // 1. Initialize Substrate
   const fork = new DollFork();
@@ -14,18 +18,18 @@ async function testDollForkResonance() {
   const cultivator = new RelicCultivator(fork);
 
   await runner.init();
-  LOGGER.info("[TEST] DollForkRunner initialized.");
+  Li("[TEST] DollForkRunner initialized.");
 
   // 2. Fork from Mainline
   fork.forkFromMainline();
   const initialMetrics = fork.getMetrics();
-  LOGGER.info(
+  Li(
     `[TEST] Forked from mainline. Population: ${initialMetrics.activePopulation}`,
   );
 
   // 3. Seed some shadow content if mainline is empty (for testing)
   if (initialMetrics.activePopulation === 0) {
-    LOGGER.info("[TEST] Mainline empty, seeding test atom in shadow matrix.");
+    Li("[TEST] Mainline empty, seeding test atom in shadow matrix.");
     fork.views.ids[0] = 1337n;
     fork.views.energies[0] = 1000;
     fork.views.resonances[0] = 300;
@@ -34,10 +38,10 @@ async function testDollForkResonance() {
   }
 
   // 4. Run Shadow Ticks
-  LOGGER.info("[TEST] Running 5 shadow ticks...");
+  Li("[TEST] Running 5 shadow ticks...");
   for (let i = 1; i <= 5; i++) {
     await runner.runShadowTick(i);
-    LOGGER.info(
+    Li(
       `[TEST] Shadow Tick ${i} complete. Atom 0 Energy: ${
         fork.views.energies[0]
       }, Resonance: ${fork.views.resonances[0]}`,
@@ -45,13 +49,13 @@ async function testDollForkResonance() {
   }
 
   const finalMetrics = fork.getMetrics();
-  LOGGER.info(
+  Li(
     `[TEST] Shadow ticks complete. Final population: ${finalMetrics.activePopulation}`,
   );
 
   // 5. Cultivate Relics
   const relics = cultivator.cultivateRelics(5);
-  LOGGER.info(`[TEST] Cultivated ${relics.length} relics.`);
+  Li(`[TEST] Cultivated ${relics.length} relics.`);
 
   // 6. Verification
   assertEquals(
@@ -59,12 +63,12 @@ async function testDollForkResonance() {
     true,
     "Should have cultivated at least one relic from seeded data",
   );
-  LOGGER.info("[TEST] Relic extraction verified.");
+  Li("[TEST] Relic extraction verified.");
 
   // 7. Cleanup/Persist (optional for test)
   await cultivator.persistRelics(relics);
 
-  LOGGER.info("--- STAGE 21: SUCCESS ---");
+  Li("--- STAGE 21: SUCCESS ---");
 }
 
 if (import.meta.main) {

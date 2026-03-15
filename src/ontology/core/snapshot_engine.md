@@ -13,7 +13,7 @@ min_level: 6
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
-import { LOGGER, SEMANTIC_MEMBRANE, STATE_MATRIX } from "@generated";
+import { LOGGER, SEMANTIC_MEMBRANE, STATE_MATRIX, Li, Lw, Le } from "@generated";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
@@ -83,7 +83,7 @@ export const SNAPSHOT_ENGINE = {
         pruned = await SNAPSHOT_ENGINE.pruneSnapshots(retention);
       }
 
-      LOGGER.info(
+      Li(
         `💾 [SNAPSHOT] Genesis Saved: ${matrixPath} (Checksum: ${
           checksum.toString(16).toUpperCase()
         }) reason=${reason} tick=${tick ?? "n/a"} pruned=${pruned}`,
@@ -97,7 +97,7 @@ export const SNAPSHOT_ENGINE = {
         retention,
       };
     } catch (e) {
-      LOGGER.error(`❌ [SNAPSHOT] Export Failed:`, e);
+      Le(`❌ [SNAPSHOT] Export Failed:`, e);
       return { success: false, error: String(e), tick, reason };
     }
   },
@@ -128,7 +128,7 @@ export const SNAPSHOT_ENGINE = {
           STATE_MATRIX.attentionField.byteLength,
         ).set(physicsData);
       } catch {
-        LOGGER.warn(
+        Lw(
           `⚠️ [SNAPSHOT] No physics dump found for ${timestamp}. Falling back to default noise.`,
         );
       }
@@ -152,7 +152,7 @@ export const SNAPSHOT_ENGINE = {
               }, Found ${actualChecksum.toString(16)}`,
             );
           }
-          LOGGER.info(
+          Li(
             `🛡️ [SNAPSHOT] Integrity Verified: Checksum ${
               actualChecksum.toString(16).toUpperCase()
             }`,
@@ -166,16 +166,16 @@ export const SNAPSHOT_ENGINE = {
         }
       } catch (e: any) {
         if (e.message?.includes("Integrity Violation")) throw e;
-        LOGGER.warn(
+        Lw(
           `⚠️ [SNAPSHOT] No history or metadata for ${timestamp}:`,
           e,
         );
       }
 
-      LOGGER.info(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);
+      Li(`💾 [SNAPSHOT] Genesis Restored from: ${timestamp}`);
       return { success: true };
     } catch (e) {
-      LOGGER.error(`❌ [SNAPSHOT] Import Failed:`, e);
+      Le(`❌ [SNAPSHOT] Import Failed:`, e);
       return { success: false, error: String(e) };
     }
   },
@@ -220,7 +220,7 @@ export const SNAPSHOT_ENGINE = {
       }
     }
 
-    LOGGER.info(
+    Li(
       `🧹 [SNAPSHOT] Pruned stale snapshots: removed=${stale.length} keep=${keep}`,
     );
     return stale.length;

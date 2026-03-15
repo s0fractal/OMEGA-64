@@ -3,13 +3,19 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@generated";
-import { LOGGER } from "@generated";
-import { OP_SET, SYS_MUTATE, OP_SYSCALL } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import {
+  PULSE
+} from "@generated";
+
+import {
+  OP_SET,
+  SYS_MUTATE,
+  OP_SYSCALL
+} from "@generated";
 
 Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
-  LOGGER.info("--- STAGE 29: SEMANTIC MUTATION TEST ---");
+  Li("--- STAGE 29: SEMANTIC MUTATION TEST ---");
 
   // 1. Initialize world
   STATE_MATRIX.clear();
@@ -57,7 +63,7 @@ Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   );
 
   // 4. Tick to execute the mutation
-  LOGGER.info("Ticking to execute SYS_MUTATE...");
+  Li("Ticking to execute SYS_MUTATE...");
   await PULSE.tick();
 
   // 5. Verify mutation was applied
@@ -76,14 +82,14 @@ Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   // Total gas = 53
   // Initial energy = 1000. Expected remaining is ~950 after syscall and metabolic ticks
   const remainingEnergy = STATE_MATRIX.getEnergy(atomIdx);
-  LOGGER.info(`Remaining energy: ${remainingEnergy}`);
+  Li(`Remaining energy: ${remainingEnergy}`);
   assertEquals(
     remainingEnergy < 955 && remainingEnergy > 945,
     true,
     `Energy should reflect the high cost of SYS_MUTATE (~950). Got: ${remainingEnergy}`,
   );
 
-  LOGGER.info("--- STAGE 29: SUCCESS ---");
+  Li("--- STAGE 29: SUCCESS ---");
 
   // Cleanup
   PULSE.stopWorkers();

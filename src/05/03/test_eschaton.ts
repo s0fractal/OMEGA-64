@@ -16,7 +16,6 @@ Deno.test("Phase 48: Eschaton Big Crunch execution (Unit Level)", async () => {
   
   Atomics.store(new Int32Array(neuralCoherenceBuffer), 0, 15000); // Trigger Absolute Order
 
-
   const initialTheta = RUNTIME_POLICY.pulse.pressureRing.theta;
   const initialBaseTax = RUNTIME_POLICY.pulse.homeostasis.baseTax;
 

@@ -1,4 +1,4 @@
-import { LOGGER, type LogLevel } from "@generated";
+import { LOGGER, type LogLevel, Ld, Li, Lw, Le } from "@generated";
 
 type SinkCounts = {
   debug: number;
@@ -81,10 +81,10 @@ const main = async () => {
     setEnv(undefined);
     LOGGER.refreshLevelFromEnv();
     await withCapturedConsole((counts) => {
-      LOGGER.debug("[logger-policy] debug");
-      LOGGER.info("[logger-policy] info");
-      LOGGER.warn("[logger-policy] warn");
-      LOGGER.error("[logger-policy] error");
+      Ld("[logger-policy] debug");
+      Li("[logger-policy] info");
+      Lw("[logger-policy] warn");
+      Le("[logger-policy] error");
       assert(
         counts.debug === 0 && counts.info === 0 &&
           counts.warn === 1 && counts.error === 1,
@@ -97,10 +97,10 @@ const main = async () => {
     setEnv("info");
     LOGGER.refreshLevelFromEnv();
     await withCapturedConsole((counts) => {
-      LOGGER.debug("[logger-policy] debug");
-      LOGGER.info("[logger-policy] info");
-      LOGGER.warn("[logger-policy] warn");
-      LOGGER.error("[logger-policy] error");
+      Ld("[logger-policy] debug");
+      Li("[logger-policy] info");
+      Lw("[logger-policy] warn");
+      Le("[logger-policy] error");
       assert(
         counts.debug === 0 && counts.info === 1 &&
           counts.warn === 1 && counts.error === 1,
@@ -111,10 +111,10 @@ const main = async () => {
     setEnv("silent");
     LOGGER.refreshLevelFromEnv();
     await withCapturedConsole((counts) => {
-      LOGGER.debug("[logger-policy] debug");
-      LOGGER.info("[logger-policy] info");
-      LOGGER.warn("[logger-policy] warn");
-      LOGGER.error("[logger-policy] error");
+      Ld("[logger-policy] debug");
+      Li("[logger-policy] info");
+      Lw("[logger-policy] warn");
+      Le("[logger-policy] error");
       assert(
         counts.debug === 0 && counts.info === 0 &&
           counts.warn === 0 && counts.error === 0 && counts.log === 0,

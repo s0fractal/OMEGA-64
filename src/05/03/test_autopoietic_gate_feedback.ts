@@ -1,20 +1,31 @@
 // OMEGA-64 | test_autopoietic_gate_feedback.ts | Stage 25: Sovereign Feedback Verification
-import { STATE_MATRIX } from "@generated";
-import { QuorumAdvocate } from "@generated";
-import { mergeGateProposals } from "@generated";
-import { syncHormonesToLattice } from "@generated";
-import { LOGGER } from "@generated";
-import { type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@generated";
+import { STATE_MATRIX, LOGGER, Li, Le } from "@generated";
+import {
+  QuorumAdvocate
+} from "@generated";
+import {
+  mergeGateProposals
+} from "@generated";
+import {
+  syncHormonesToLattice
+} from "@generated";
+
+import {
+  type DeltaProposal,
+  type GateConfig,
+  type GateDecision,
+  type StateSnapshot
+} from "@generated";
 
 async function runTest() {
-  LOGGER.info(
+  Li(
     "🧪 [TEST] Starting Sovereign Feedback (Stage 25) Verification...",
   );
 
   const qa = new QuorumAdvocate();
 
   // --- 1. Test Hormone Lattice Signaling ---
-  LOGGER.info("Step 1: Testing Hormone Lattice alignment...");
+  Li("Step 1: Testing Hormone Lattice alignment...");
   const syntropy = 0.85; // High organization
 
   syncHormonesToLattice({
@@ -36,15 +47,15 @@ async function runTest() {
   });
 
   const value = STATE_MATRIX.getHormone(6);
-  LOGGER.info(`📡 Hormone 6 (global_consensus) value: ${value}`);
+  Li(`📡 Hormone 6 (global_consensus) value: ${value}`);
   if (value > 800) {
-    LOGGER.info("✅ Syntropy successfully synced to hormone lattice.");
+    Li("✅ Syntropy successfully synced to hormone lattice.");
   } else {
-    LOGGER.error("❌ Hormone sync failed or value is incorrect.");
+    Le("❌ Hormone sync failed or value is incorrect.");
   }
 
   // --- 2. Test Gate Cost Discounting ---
-  LOGGER.info("Step 2: Testing Gate Cost Discounting...");
+  Li("Step 2: Testing Gate Cost Discounting...");
 
   const mockState: StateSnapshot = {
     tick: 1,
@@ -94,15 +105,15 @@ async function runTest() {
   );
 
   const appliedCost = acceptedProposalMetrics[0]?.physical_cost ?? 1000;
-  LOGGER.info(`💸 Original Cost: 1000, Applied Cost: ${appliedCost}`);
+  Li(`💸 Original Cost: 1000, Applied Cost: ${appliedCost}`);
 
   if (appliedCost < 700) {
-    LOGGER.info("✅ Sovereing Discount successfully applied in GATE.");
+    Li("✅ Sovereing Discount successfully applied in GATE.");
   } else {
-    LOGGER.error(`❌ Sovereing Discount failed. Applied cost: ${appliedCost}`);
+    Le(`❌ Sovereing Discount failed. Applied cost: ${appliedCost}`);
   }
 
-  LOGGER.info(
+  Li(
     "✅ Sovereign Feedback (Stage 25) Verification Script Completed.",
   );
 }

@@ -8,8 +8,10 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "@generated";
-import { RUNTIME_POLICY } from "@generated";
+import { LOGGER, Ld } from "@generated";
+import {
+  RUNTIME_POLICY
+} from "@generated";
 
 type MutationLane =
   | "internal_oracle"
@@ -81,7 +83,7 @@ export const MUTATION_TELEMETRY = {
     if (totalMutations === lastFlushedTotal) return;
     lastFlushedTotal = totalMutations;
 
-    LOGGER.debug(
+    Ld(
       `[MUTATION_TELEMETRY] tick=${tick} total=${totalMutations} lanes=${summarizeLanes()} topKinds=${summarizeTopKinds()}`,
     );
   },

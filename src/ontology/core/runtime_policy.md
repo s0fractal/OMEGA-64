@@ -30,7 +30,7 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
   return value.length > 0 ? value : fallback;
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
-import { ENV_PARSE } from "@generated";
+import { ENV_PARSE, Li } from "@generated";
 const { parseEnvBool, parseEnvBoundedInt } = ENV_PARSE;
 
 const parsePort = (raw: string | undefined, fallback: number): number =>
@@ -673,7 +673,7 @@ export const mutateUniversalConstants = (): void => {
     Math.round(rp.coldstart.resonance * variance()),
   );
 
-  // LOGGER.info(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
+  // Li(`🌌 [ESCHATON] Universal Constants Mutated for the next Kalpa!`);
 };
 
 export const RUNTIME_POLICY = {
@@ -891,7 +891,7 @@ export const RUNTIME_POLICY = {
   logFingerprintOnce: (context: string = "runtime"): string => {
     if (!policyFingerprintLogged) {
       policyFingerprintLogged = true;
-      // LOGGER.info(
+      // Li(
       //   `[POLICY] context=${context} fingerprint=${POLICY_FINGERPRINT} controlEnabled=${systemControlEnabled} workerCount=${pulseWorkerCount} mutateEnabled=${p2pMutateEnabled}`,
       // );
     }

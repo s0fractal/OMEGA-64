@@ -11,7 +11,6 @@ import {
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { STATE_MATRIX } from "@generated";
 
-
 function makeViralGrid(): Uint8Array {
   return new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9));
 }

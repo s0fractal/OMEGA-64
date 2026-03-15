@@ -11,7 +11,7 @@ min_level: 6
 
 ```typescript
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
-import { LATTICE_MEMORY_END, LOGGER, sharedBuffer } from "@generated";
+import { LATTICE_MEMORY_END, LOGGER, sharedBuffer, Li, Lw, Le } from "@generated";
 import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const SNAP_DIR = ".omega/snap";
@@ -42,10 +42,10 @@ export const SNAP_ENGINE = {
 
       await Deno.writeFile(snapPath, data);
 
-      LOGGER.info(`📸 [SNAP] Matrix fixed at tick ${tick} -> ${snapPath}`);
+      Li(`📸 [SNAP] Matrix fixed at tick ${tick} -> ${snapPath}`);
       return snapPath;
     } catch (err) {
-      LOGGER.error(`❌ [SNAP] Save failed at tick ${tick}:`, err);
+      Le(`❌ [SNAP] Save failed at tick ${tick}:`, err);
       return null;
     }
   },
@@ -66,10 +66,10 @@ export const SNAP_ENGINE = {
       const view = new Uint8Array(sharedBuffer);
       view.set(data);
 
-      LOGGER.info(`💎 [SNAP] Matrix re-hydrated from ${snapPath}`);
+      Li(`💎 [SNAP] Matrix re-hydrated from ${snapPath}`);
       return true;
     } catch (err) {
-      LOGGER.error(`❌ [SNAP] Load failed from ${snapPath}:`, err);
+      Le(`❌ [SNAP] Load failed from ${snapPath}:`, err);
       return false;
     }
   },
@@ -97,10 +97,10 @@ export const SNAP_ENGINE = {
       }
 
       if (toDelete.length > 0) {
-        LOGGER.info(`🧹 [SNAP] Cleaned up ${toDelete.length} old snaps.`);
+        Li(`🧹 [SNAP] Cleaned up ${toDelete.length} old snaps.`);
       }
     } catch (err) {
-      LOGGER.warn(`⚠️ [SNAP] Cleanup failed:`, err);
+      Lw(`⚠️ [SNAP] Cleanup failed:`, err);
     }
   },
 };
