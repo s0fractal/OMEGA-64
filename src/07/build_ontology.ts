@@ -11,7 +11,7 @@ import { z } from "npm:zod@4.3.6";
 
 const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module"]);
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
@@ -299,6 +299,12 @@ for (const node of nodes.values()) {
   ensureDirSync(dirPathTs);
   ensureDirSync(dirPathRs);
   ensureDirSync(dirPathAs);
+
+  
+  // Skip code generation entirely for documentation nodes
+  if (node.type === "documentation") {
+    continue;
+  }
 
   // Generate TS
   let tsOut = ``;
@@ -645,7 +651,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }
 
-  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl);
+  const levelNodes = Array.from(nodes.values()).filter(n => n.level === lvl && n.type !== "documentation");
   
   const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
   const levelNodesTs = levelNodesNoSubstrate.filter(n => {
