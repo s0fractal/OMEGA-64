@@ -1,5 +1,5 @@
 
-import { glyphTapeToPrettyText } from "../../_/08/glyph_pretty.ts";
+import { glyphTapeToPrettyText } from "@generated";
 import { scriptToGlyphTape } from "@07/04/opcode_to_glyph.ts";
 import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "@generated";
 

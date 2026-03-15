@@ -4,7 +4,7 @@ Deno.env.set("OMEGA_STARTUP_SELFTEST", "0");
 Deno.env.set("OMEGA_WORKER_INIT_FALLBACK", "1");
 Deno.env.set("OMEGA_FORCE_WORKER_INIT_FAIL", "nonzero");
 
-const { PULSE } = await import("../../_/04/PULSE.ts");
+const { PULSE } = await import("@generated");
 const { STATE_MATRIX } = await import("@00");
 
 async function main() {

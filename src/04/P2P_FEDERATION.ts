@@ -12,7 +12,7 @@ export interface P2pFederationUpwardDelegate {
 }
 
 let delegate: P2pFederationUpwardDelegate | null = null;
-import { P2P_CODEC } from "../_/04/P2P_CODEC.ts";
+import { P2P_CODEC } from "@generated";
 
 export interface AtomPacket {
   id: string;

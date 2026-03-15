@@ -1,7 +1,7 @@
 import {
   geneticLedgerEntryByKey,
   type GeneticLedgerKey,
-} from "../_/03/GENETIC_LEDGER.ts";
+} from "@generated";
 
 export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;

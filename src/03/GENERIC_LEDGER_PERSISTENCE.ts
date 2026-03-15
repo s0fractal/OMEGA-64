@@ -8,7 +8,7 @@ import {
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "@03/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "../_/03/GENETIC_LEDGER.ts";
+import { type GeneticLedgerKey } from "@generated";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
   | {

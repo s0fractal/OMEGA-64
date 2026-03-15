@@ -1,8 +1,7 @@
 import { STATE_MATRIX } from "@generated";
-import { PULSE } from "@02";
 import { assembleScript } from "@02";
 import { LOGGER } from "@generated";
-import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "@generated";
+import { OP_SET, OP_SYSCALL, SYS_ATTRACT, SYS_TRANSFER } from "@generated";
 
 export class AgentProxy {
   port: number;
@@ -97,22 +96,22 @@ export class AgentProxy {
     // Radar scan (radius 50 units = 5 cells)
     const vision = [];
     const MAX_DISTANCE_SQ = 50 * 50;
-    
+
     // Bounded scan over STATE_MATRIX to avoid legacy SPATIAL_HASH O(1) grid overhead
     // which requires constant upkeep from workers.
     for (let currentAt = 1; currentAt <= 10000; currentAt++) {
       if (currentAt === atomId) continue;
-      
+
       const nId = Number(STATE_MATRIX.getId(currentAt));
       if (nId <= 0) continue;
-      
+
       const nX = STATE_MATRIX.getX(currentAt);
       const nY = STATE_MATRIX.getY(currentAt);
-      
+
       const dx = nX - x;
       const dy = nY - y;
       const dSq = dx * dx + dy * dy;
-      
+
       if (dSq <= MAX_DISTANCE_SQ) {
         vision.push({
           id: nId,

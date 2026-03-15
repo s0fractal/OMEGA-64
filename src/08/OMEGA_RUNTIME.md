@@ -426,8 +426,8 @@ for await (const entry of walk("./src", { exts: [".ts", ".md"] })) {
 
   const replacements = [
     { from: /from "\.\.\/02\/PULSE\.ts"/g, to: 'from "../05/PULSE.ts"' },
-    { from: /from "\.\.\/_\/02\/PULSE\.ts"/g, to: 'from "../_/05/PULSE.ts"' },
-    { from: /import\("@02\/PULSE\.ts"\)/g, to: 'import("../../_/05/PULSE.ts")' },
+    { from: /from "\.\.\/_\/02\/PULSE\.ts"/g, to: 'from "@generated"' },
+    { from: /import\("@02\/PULSE\.ts"\)/g, to: 'import("@generated")' },
     { from: /"src\/02\/PULSE\.ts"/g, to: '"src/_/05/PULSE.ts"' },
     { from: /"src\/02\/PULSE_WORKER\.ts"/g, to: '"src/_/05/PULSE_WORKER.ts"' },
     { from: /extractVector\("\.\/02\/PULSE\.ts"\)/g, to: 'extractVector("./05/PULSE.ts")' }
@@ -460,8 +460,8 @@ for await (const entry of walk("./src", { exts: [".ts", ".md"] })) {
   let originalText = text;
 
   text = text.replaceAll('from "../02/PULSE.ts"', 'from "../05/PULSE.ts"');
-  text = text.replaceAll('from "../_/02/PULSE.ts"', 'from "../_/05/PULSE.ts"');
-  text = text.replaceAll('import("@02/PULSE.ts")', 'import("../../_/05/PULSE.ts")');
+  text = text.replaceAll('from "@generated"', 'from "@generated"');
+  text = text.replaceAll('import("@02/PULSE.ts")', 'import("@generated")');
   text = text.replaceAll('"src/02/PULSE.ts"', '"src/_/05/PULSE.ts"');
   text = text.replaceAll('"src/02/PULSE_WORKER.ts"', '"src/_/05/PULSE_WORKER.ts"');
   text = text.replaceAll('extractVector("./02/PULSE.ts")', 'extractVector("./05/PULSE.ts")');
@@ -16280,11 +16280,11 @@ export * from "./05/mod.ts";
 export * from "./06/mod.ts";
 export * from "./07/mod.ts";
 export * from "./08/mod.ts";
-export * from "../_/04/STATE_MATRIX.ts";
+export * from "@generated";
 export * from "../00/SHIMS.ts";
 export * from "../00/ATOM_INDEX.ts";
-export * from "../_/00/STATE_SNAPSHOT.ts";
-export * from "../_/00/ENV_PARSE.ts";
+export * from "@generated";
+export * from "@generated";
 export * from "../00/PRNG.ts";
 export const AS_WASM_PATH = new URL("../_as/release.wasm", import.meta.url);
 
@@ -20959,7 +20959,7 @@ export * from "./build_wasm.ts";
 // Legacy Compliance Shims - Proposal Signatures
 
 import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_ed25519_private, import_ed25519_public, import_hmac, sha256_hex, stable_stringify } from "../_/mod.ts";
-import { REJECTION } from "../_/00/STATE_SNAPSHOT.ts";
+import { REJECTION } from "@generated";
 import type { Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "../_/mod.ts";
 
 const encoder = new TextEncoder();
@@ -21094,19 +21094,19 @@ export const AGENT_SIGNATURE = {
 
 ```typescript
 // OMEGA-64 | STATE_MATRIX.ts
-import { GRID_W, GRID_H, GRID_CELLS } from "../_/01/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import {
   ATOM_CONTEXT_SIZE,
   ATOM_INSTRUCTION_SIZE,
   MAX_ATOMS,
   RESOURCE_MAX,
   SCALE
-} from "../_/02/mod.ts";
+} from "@generated";
 import {
   SYS_YIELD, OP_SYSCALL, OP_GET, PROP_NEURAL_COHERENCE, OP_SUB, OP_JNZ, OP_SIGNAL, SYS_SET_ROLE, OP_JMP, OP_BUILD, OP_SET
 } from "../_/mod.ts";
 export * from "../_/mod.ts";
-import * as views from "../_/00/memory_views.ts";
+import * as views from "@generated";
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
@@ -22801,7 +22801,7 @@ import {
   ATOM_GENOME_SIZE, 
   ATOM_INSTRUCTION_SIZE, 
   ATOM_CONTEXT_SIZE 
-} from "../_/01/mod.ts";
+} from "@generated";
 import {
   ATTENTION_FIELD_OFFSET,
   BONDS_OFFSET,
@@ -22844,7 +22844,7 @@ import {
   XS_OFFSET,
   YS_OFFSET,
   validateMemoryLayout
-} from "../_/02/mod.ts";
+} from "@generated";
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
@@ -23022,8 +23022,8 @@ export const LOAD_LOAD = Object.assign(() => LOAD_DATA, LOAD_DATA);
 export * from "./stream_utils.ts";
 export * from "./agent_signature.ts";
 export * from "./gate_admission.ts";
-export * from "../_/00/checkpoint_chain.ts";
-export * from "../_/00/ledger_chain.ts";
+export * from "@generated";
+export * from "@generated";
 export * from "./topo_signature.ts";
 export * from "./crystallization.ts";
 export * from "./invariant_packet.ts";
@@ -23038,10 +23038,10 @@ export * from "./invariant_packet.ts";
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
 // Segmented into memory_views.ts and STATE_MATRIX.ts (Phase 2 Refactoring)
 
-export * from "../_/00/memory_views.ts";
-export * from "../_/00/STATE_MATRIX.ts";
+export * from "@generated";
+export * from "@generated";
 
-export { STATE_MATRIX as STATE_MATRIX } from "../_/00/STATE_MATRIX.ts";
+export { STATE_MATRIX as STATE_MATRIX } from "@generated";
 
 ```
 
@@ -24829,8 +24829,8 @@ export const createPhysiologicalLedgerRuntime = (
 export * from "@02/HORMONE_BUFFER_RUNTIME.ts";
 export * from "@02/GENOMES.ts";
 export * from "@02/HORMONE_BUFFER.ts";
-export * from "../_/05/PULSE_WORKER.ts";
-export * from "../_/05/PULSE.ts";
+export * from "@generated";
+export * from "@generated";
 
 ```
 
@@ -26011,7 +26011,7 @@ import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "@ge
 import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "@generated";
 
 import { SOVEREIGNTY_ENGINE } from "@03/SOVEREIGNTY_ENGINE.ts";
-import { GATE } from "../_/03/GATE.ts";
+import { GATE } from "@generated";
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
 import { CONTROL_INTENT_QUEUE } from "@03/CONTROL_INTENT_QUEUE.ts";
 
@@ -26085,7 +26085,7 @@ import {
   type HormoneId,
 } from "@02/HORMONE_BUFFER.ts";
 import { applyLedgerUpdate, createLedgerRuntime, createGeneticLedgerRuntime, type LedgerRuntimeSnapshot, type LedgerRuntimeState, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@03/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "../_/03/GENETIC_LEDGER.ts";
+import { type GeneticLedgerKey } from "@generated";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
 
 import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
@@ -31474,7 +31474,7 @@ export * from "./reduction_harness.ts";
 
 ```typescript
 import { GRID_W, pack_structure_intent } from "../../_/mod.ts";
-import { assemble } from "../../_/07/assembler.ts";
+import { assemble } from "@generated";
 import { STATE_MATRIX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "../../_/mod.ts";
 export type ReductionCaseExpectation = {
   finalPc: number;
@@ -32667,7 +32667,7 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
 
 ```typescript
 import { GRID_H, GRID_W } from "../../_/mod.ts";
-import { glyphTapeToPrettyText } from "../../_/08/glyph_pretty.ts";
+import { glyphTapeToPrettyText } from "@generated";
 import {
   decodeLegacyInstruction,
   type GlyphTapeToken,
@@ -33998,7 +33998,7 @@ if (import.meta.main) {
 
 ```typescript
 import { STATE_MATRIX } from "../../_/mod.ts";
-import { GLYPH_TELEMETRY } from "../../_/06/GLYPH_TELEMETRY.ts";
+import { GLYPH_TELEMETRY } from "@generated";
 import {
   ENERGY_OFFSET
 } from "@00";
@@ -37722,7 +37722,7 @@ import {
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
 } from "@03/GENERIC_LEDGER_SYSTEM.ts";
-import { type GeneticLedgerKey } from "../_/03/GENETIC_LEDGER.ts";
+import { type GeneticLedgerKey } from "@generated";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
   | {
@@ -38148,7 +38148,7 @@ export const appendLedgerRecordAndMaybeCompact = async <
 import {
   geneticLedgerEntryByKey,
   type GeneticLedgerKey,
-} from "../_/03/GENETIC_LEDGER.ts";
+} from "@generated";
 
 export type LedgerRuntimeEvent<K extends string> = {
   rollbackToken: string;
@@ -39114,23 +39114,23 @@ export const evaluateGuardianSignalPromotionAction = (
 ## FILE: src/03/mod.ts
 
 ```typescript
-export * from "../_/03/GATE_LEDGER.ts";
+export * from "@generated";
 export * from "@03/CONTROL_INTENT_QUEUE.ts";
 export * from "@03/DAEMON_INGRESS_POLICY.ts";
 export * from "@03/GATE_BUDGET.ts";
 export * from "@03/PREDICTION_MARKET.ts";
-export * from "../_/03/GATE.ts";
-export * from "../_/03/ATOMIC_LEDGER.ts";
+export * from "@generated";
+export * from "@generated";
 export * from "@03/SOVEREIGNTY_ENGINE.ts";
 export * from "@03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 export * from "@03/AUDIT_ENGINE.ts";
 export * from "@03/REPLICATION_PROMOTION_ACTION.ts";
-export * from "../_/03/GATE_MERGER.ts";
+export * from "@generated";
 export * from "@03/RUNTIME_POLICY.ts";
 export * from "@03/GENERIC_LEDGER_SYSTEM.ts";
 export * from "@03/REPLICATION_PROMOTION_DECISION.ts";
-export * from "../_/03/GENETIC_LEDGER.ts";
-export * from "../_/03/GATE_VALIDATOR.ts";
+export * from "@generated";
+export * from "@generated";
 export * from "@03/REPLICATION_PROMOTION.ts";
 export * from "@03/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
 export * from "@03/GENERIC_LEDGER_PERSISTENCE.ts";
@@ -41081,11 +41081,11 @@ if (import.meta.main) {
 ## FILE: src/04/mod.ts
 
 ```typescript
-export * from "../_/04/P2P_FEDERATION.ts";
+export * from "@generated";
 export * from "@04/BOOTSTRAP_HUB.ts";
-export * from "../_/04/P2P_CODEC.ts";
-export * from "../_/04/SWARM_NODE.ts";
-export * from "../_/04/SWARM_NEXUS.ts";
+export * from "@generated";
+export * from "@generated";
+export * from "@generated";
 export * from "@04/P2P_SYNAPSE.ts";
 
 ```
@@ -41234,7 +41234,7 @@ export interface P2pFederationUpwardDelegate {
 }
 
 let delegate: P2pFederationUpwardDelegate | null = null;
-import { P2P_CODEC } from "../_/04/P2P_CODEC.ts";
+import { P2P_CODEC } from "@generated";
 
 export interface AtomPacket {
   id: string;
@@ -42859,10 +42859,10 @@ if (import.meta.main) {
 ## FILE: src/05/mod.ts
 
 ```typescript
-export * from "../_/05/AVATAR_ENGINE.ts";
-export * from "../_/05/SOVEREIGN_ORACLE.ts";
-export * from "../_/05/llm_soul.ts";
-export * from "../_/05/SEMANTIC_MEMBRANE.ts";
+export * from "@generated";
+export * from "@generated";
+export * from "@generated";
+export * from "@generated";
 export * from "@05/avatar_bot.ts";
 export * from "@05/LLM_SYNAPSE.ts";
 
@@ -43406,7 +43406,7 @@ import { SOVEREIGNTY_ENGINE } from "@03";
 import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
-import { SEMANTIC_MEMBRANE } from "../_/05/SEMANTIC_MEMBRANE.ts";
+import { SEMANTIC_MEMBRANE } from "@generated";
 import { GRID_W, GRID_H } from "../_/mod.ts";
 
 export interface SovereignOracleAkashaDelegate {
@@ -47922,18 +47922,18 @@ export * from "@06/TELEMETRY_STREAM.ts";
 export * from "@06/AKASHA_CODEX.ts";
 export * from "@06/SNAP_ENGINE.ts";
 export * from "@06/SNAPSHOT_ENGINE.ts";
-export * from "../_/06/BREATH.ts";
+export * from "@generated";
 export * from "@06/PHYSIOLOGY_SNAPSHOT.ts";
 export * from "@06/AKASHA_SERVER.ts";
 export * from "@06/CONTINUUM.ts";
-export * from "../_/06/TUI_DASHBOARD.ts";
+export * from "@generated";
 export * from "@06/LINEAGE_TRACKER.ts";
 export * from "@06/PANOPTICON_SERVER.ts";
-export * from "../_/06/SERVE_DASHBOARD.ts";
-export * from "../_/06/OMEGA_DAEMON.ts";
+export * from "@generated";
+export * from "@generated";
 export * from "@06/AKASHA_SIGNALING.ts";
-export * from "../_/06/MUTATION_TELEMETRY.ts";
-export * from "../_/06/GLYPH_TELEMETRY.ts";
+export * from "@generated";
+export * from "@generated";
 
 ```
 
@@ -50951,7 +50951,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../_/mod.ts";
-import { PULSE } from "../_/05/PULSE.ts";
+import { PULSE } from "@generated";
 import { assembleScript, SIMPLE_PREDATOR_SCRIPT } from "@02";
 import { AgentProxy } from "@06/AGENT_PROXY.ts";
 import { LOGGER } from "@generated";
@@ -53013,7 +53013,7 @@ import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
 import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
 import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
 import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import { GLYPH_TELEMETRY, type GlyphSnapshot } from "../../_/06/GLYPH_TELEMETRY.ts";
+import { GLYPH_TELEMETRY, type GlyphSnapshot } from "@generated";
 import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
 import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
 import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
@@ -56829,9 +56829,9 @@ export const glyphTapeToPrettyText = (
 ## FILE: src/07/04/mod.ts
 
 ```typescript
-export * from "../../_/08/glyph_pretty.ts";
+export * from "@generated";
 export * from "./opcode_to_glyph.ts";
-export * from "../../_/07/glyph_ir_64.ts";
+export * from "@generated";
 export * from "./REIFICATION_ACTION.ts";
 
 ```

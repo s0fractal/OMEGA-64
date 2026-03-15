@@ -8,7 +8,7 @@ import { SOVEREIGNTY_ENGINE } from "@03";
 import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
-import { SEMANTIC_MEMBRANE } from "../_/05/SEMANTIC_MEMBRANE.ts";
+import { SEMANTIC_MEMBRANE } from "@generated";
 import { GRID_W, GRID_H } from "@generated";
 
 export interface SovereignOracleAkashaDelegate {

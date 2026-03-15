@@ -1,5 +1,5 @@
 import { GRID_H, GRID_W } from "@generated";
-import { glyphTapeToPrettyText } from "../../_/08/glyph_pretty.ts";
+import { glyphTapeToPrettyText } from "@generated";
 import {
   decodeLegacyInstruction,
   type GlyphTapeToken,

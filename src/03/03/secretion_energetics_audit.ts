@@ -1,5 +1,5 @@
 import { STATE_MATRIX } from "@generated";
-import { GLYPH_TELEMETRY } from "../../_/06/GLYPH_TELEMETRY.ts";
+import { GLYPH_TELEMETRY } from "@generated";
 import {
   ENERGY_OFFSET
 } from "@00";
