@@ -1,10 +1,11 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 type Violation = {
   file: string;
   reason: string;
 };
 
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 
 const main = async () => {
   const violations: Violation[] = [];

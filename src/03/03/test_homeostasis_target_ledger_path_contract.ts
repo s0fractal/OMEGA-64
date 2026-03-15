@@ -1,5 +1,6 @@
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const SYSTEM_START_PATH = "src/07/02/SYSTEM_START.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const SYSTEM_START_PATH = await resolveSourcePath("SYSTEM_START.ts");
 const LEDGER_RUNTIME_PATH = "HOMEOSTASIS_TARGET_LEDGER_RUNTIME.ts";
 const LEDGER_PERSISTENCE_PATH = "HOMEOSTASIS_TARGET_LEDGER_PERSISTENCE.ts";
 

@@ -1,7 +1,8 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 const ASSEMBLY_PATH = "src/ontology/core/build_spatial_hash.md";
-const WORKER_PATH = "src/_/04/PULSE_WORKER.ts";
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
+const WORKER_PATH = await resolveSourcePath("PULSE_WORKER.ts");
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 
 type Violation = {
   file: string;

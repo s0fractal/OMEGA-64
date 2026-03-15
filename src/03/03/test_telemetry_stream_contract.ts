@@ -1,5 +1,6 @@
-const STREAM_PATH = "src/06/TELEMETRY_STREAM.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const STREAM_PATH = await resolveSourcePath("TELEMETRY_STREAM.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 
 type Violation = {
   file: string;

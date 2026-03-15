@@ -1,3 +1,4 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   context_files: string[];
@@ -9,11 +10,11 @@ type Violation = {
 };
 
 const MANIFEST_PATH = "deno.jsonc";
-const AKASHA_PATH = "src/06/AKASHA_SERVER.ts";
-const P2P_PATH = "src/04/P2P_SYNAPSE.ts";
-const FEDERATION_PATH = "src/_/04/P2P_FEDERATION.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const RUNTIME_POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
+const AKASHA_PATH = await resolveSourcePath("AKASHA_SERVER.ts");
+const P2P_PATH = await resolveSourcePath("P2P_SYNAPSE.ts");
+const FEDERATION_PATH = await resolveSourcePath("P2P_FEDERATION.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
+const RUNTIME_POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
 const SYSTEM_CONTROLLED_POST_PATHS = [
   "/crisis",
   "/federate",

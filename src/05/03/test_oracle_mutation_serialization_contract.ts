@@ -1,10 +1,11 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 type Violation = {
   file: string;
   reason: string;
 };
 
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const ORACLE_PATH = "src/_/05/SOVEREIGN_ORACLE.ts";
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const ORACLE_PATH = await resolveSourcePath("SOVEREIGN_ORACLE.ts");
 
 const between = (source: string, start: string, end: string): string => {
   const startIdx = source.indexOf(start);

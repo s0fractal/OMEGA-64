@@ -1,6 +1,7 @@
-const SYSTEM_START_PATH = "src/07/02/SYSTEM_START.ts";
-const POLICY_PATH = "src/03/DAEMON_INGRESS_POLICY.ts";
-const AKASHA_SERVER_PATH = "src/06/AKASHA_SERVER.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const SYSTEM_START_PATH = await resolveSourcePath("SYSTEM_START.ts");
+const POLICY_PATH = await resolveSourcePath("DAEMON_INGRESS_POLICY.ts");
+const AKASHA_SERVER_PATH = await resolveSourcePath("AKASHA_SERVER.ts");
 const LEDGER_RUNTIME_PATH = "DAEMON_PHEROMONE_LEDGER_RUNTIME.ts";
 const LEDGER_PERSISTENCE_PATH = "DAEMON_PHEROMONE_LEDGER_PERSISTENCE.ts";
 

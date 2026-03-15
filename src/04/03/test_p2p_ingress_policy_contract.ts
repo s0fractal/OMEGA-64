@@ -1,9 +1,10 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 type Violation = {
   reason: string;
 };
 
-const P2P_PATH = "src/04/P2P_SYNAPSE.ts";
-const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
+const P2P_PATH = await resolveSourcePath("P2P_SYNAPSE.ts");
+const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
 
 const main = async () => {
   const violations: Violation[] = [];

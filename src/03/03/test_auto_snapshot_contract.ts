@@ -1,6 +1,7 @@
-const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const SNAPSHOT_ENGINE_PATH = "src/06/SNAPSHOT_ENGINE.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
+const SNAPSHOT_ENGINE_PATH = await resolveSourcePath("SNAPSHOT_ENGINE.ts");
 
 type Violation = {
   file: string;

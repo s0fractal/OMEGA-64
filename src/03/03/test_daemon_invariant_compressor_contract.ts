@@ -1,4 +1,5 @@
-const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const DAEMON_PATH = await resolveSourcePath("OMEGA_DAEMON.ts");
 
 const requireSnippet = (
   source: string,

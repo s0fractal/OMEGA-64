@@ -1,6 +1,7 @@
-const MEMBRANE_PATH = "src/_/05/SEMANTIC_MEMBRANE.ts";
-const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const MEMBRANE_PATH = await resolveSourcePath("SEMANTIC_MEMBRANE.ts");
+const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
+const DAEMON_PATH = await resolveSourcePath("OMEGA_DAEMON.ts");
 
 type Violation = {
   file: string;

@@ -1,7 +1,8 @@
-const DAEMON_PATH = "src/_/06/OMEGA_DAEMON.ts";
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const SYSTEM_START_PATH = "src/07/02/SYSTEM_START.ts";
-const AKASHA_SERVER_PATH = "src/06/AKASHA_SERVER.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const DAEMON_PATH = await resolveSourcePath("OMEGA_DAEMON.ts");
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const SYSTEM_START_PATH = await resolveSourcePath("SYSTEM_START.ts");
+const AKASHA_SERVER_PATH = await resolveSourcePath("AKASHA_SERVER.ts");
 
 type Violation = {
   file: string;

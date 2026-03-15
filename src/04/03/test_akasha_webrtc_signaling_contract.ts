@@ -1,5 +1,6 @@
-const AKASHA_SERVER_PATH = "src/06/AKASHA_SERVER.ts";
-const SIGNALING_PATH = "src/06/AKASHA_SIGNALING.ts";
+import { resolveSourcePath } from "../../resolve_source.ts";
+const AKASHA_SERVER_PATH = await resolveSourcePath("AKASHA_SERVER.ts");
+const SIGNALING_PATH = await resolveSourcePath("AKASHA_SIGNALING.ts");
 
 const requireSnippet = (
   source: string,

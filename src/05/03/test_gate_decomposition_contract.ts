@@ -1,13 +1,14 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 type Violation = {
   file: string;
   reason: string;
 };
 
-const GATE_PATH = "src/_/03/GATE.ts";
-const VALIDATOR_PATH = "src/_/03/GATE_VALIDATOR.ts";
-const MERGER_PATH = "src/_/03/GATE_MERGER.ts";
-const BUDGET_PATH = "src/03/GATE_BUDGET.ts";
-const LEDGER_PATH = "src/_/03/GATE_LEDGER.ts";
+const GATE_PATH = await resolveSourcePath("GATE.ts");
+const VALIDATOR_PATH = await resolveSourcePath("GATE_VALIDATOR.ts");
+const MERGER_PATH = await resolveSourcePath("GATE_MERGER.ts");
+const BUDGET_PATH = await resolveSourcePath("GATE_BUDGET.ts");
+const LEDGER_PATH = await resolveSourcePath("GATE_LEDGER.ts");
 
 const requireSnippet = (
   source: string,

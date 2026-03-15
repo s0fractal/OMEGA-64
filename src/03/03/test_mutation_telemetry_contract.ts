@@ -1,3 +1,4 @@
+import { resolveSourcePath } from "../../resolve_source.ts";
 import { parse } from "jsr:@std/jsonc";
 type ExportManifest = {
   core_entry_files: string[];
@@ -9,10 +10,10 @@ type Violation = {
 };
 
 const MANIFEST_PATH = "deno.jsonc";
-const TELEMETRY_PATH = "src/_/06/MUTATION_TELEMETRY.ts";
-const PULSE_PATH = "src/_/04/PULSE.ts";
-const ORACLE_PATH = "src/_/05/SOVEREIGN_ORACLE.ts";
-const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
+const TELEMETRY_PATH = await resolveSourcePath("MUTATION_TELEMETRY.ts");
+const PULSE_PATH = await resolveSourcePath("PULSE.ts");
+const ORACLE_PATH = await resolveSourcePath("SOVEREIGN_ORACLE.ts");
+const POLICY_PATH = await resolveSourcePath("RUNTIME_POLICY.ts");
 
 const requireSnippet = (
   source: string,
