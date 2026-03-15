@@ -1,10 +1,11 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
 import { SwarmNexus } from "@generated";
+import { resolveSourcePath } from "../../resolve_source.ts";
 
 Deno.test("Mainnet Bootstrap: Hub Discovery and WebSocket Fallback", async () => {
   // 1. Spawn BOOTSTRAP_HUB as an autonomous process
   const hubProcess = new Deno.Command(Deno.execPath(), {
-    args: ["run", "-A", "network/BOOTSTRAP_HUB.ts", "--port", "9999"],
+    args: ["run", "-A", await resolveSourcePath("BOOTSTRAP_HUB.ts"), "--port", "9999"],
     stdout: "inherit",
     stderr: "inherit",
   }).spawn();

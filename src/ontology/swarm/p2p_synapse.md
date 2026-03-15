@@ -1,3 +1,15 @@
+---
+id: P2P_SYNAPSE
+type: module
+description: "P2P Synapse Membrane"
+tags: ["standalone", "membrane"]
+deps: [RUNTIME_POLICY]
+min_level: 5
+---
+
+### TypeScript
+
+```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
 import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@generated";
@@ -91,3 +103,4 @@ desc: '${alienData.desc || "Migrated from an external dimension."}'
 if (import.meta.main) {
   Deno.serve({ hostname: HOST, port: PORT }, handler);
 }
+```

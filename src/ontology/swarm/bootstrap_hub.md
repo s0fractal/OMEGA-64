@@ -1,3 +1,15 @@
+---
+id: BOOTSTRAP_HUB
+type: module
+description: "Mainnet Signaling Server / Lightweight public directory for OMEGA-64 nodes to discover each other"
+tags: ["standalone", "network"]
+deps: []
+min_level: 5
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | BOOTSTRAP_HUB.ts | Mainnet Signaling Server
 // A lightweight public directory for OMEGA-64 nodes to discover each other.
 
@@ -127,3 +139,4 @@ if (import.meta.main) {
 
   log(`BOOTSTRAP HUB Initialized on ws://${HOST}:${PORT}`);
 }
+```

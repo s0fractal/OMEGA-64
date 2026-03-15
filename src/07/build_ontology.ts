@@ -729,6 +729,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   
   const levelNodesNoSubstrate = levelNodes.filter(n => n.type !== "substrate_module");
   const levelNodesTs = levelNodesNoSubstrate.filter(n => {
+    if (n.tags.includes("standalone")) return false;
     if (n.type === "pure_fn") {
       return n.tags.includes("host") || n.tags.includes("substrate");
     }
@@ -747,7 +748,8 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
 
   // RS Mod file generation
-  const rsModExports = levelNodes.map(n => {
+  const levelNodesRs = levelNodes.filter(n => !n.tags.includes("standalone"));
+  const rsModExports = levelNodesRs.map(n => {
     // Substrate modules are purely rust, they are always included.
     return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
   }).join("\n");
@@ -755,7 +757,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
-  const levelNodesAs = levelNodes.filter(n => n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
+  const levelNodesAs = levelNodes.filter(n => !n.tags.includes("standalone") && n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
   const asModExports = levelNodesAs.map(n => {
     if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
       return `export * from "./${n.id}";`;
