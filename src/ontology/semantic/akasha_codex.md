@@ -1,10 +1,30 @@
 ---
 id: AKASHA_CODEX
 type: module
-description: "Migrated from src/06/AKASHA_CODEX.ts"
-tags: ["membrane", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/06/AKASHA_CODEX.ts
+tags:
+  - membrane
+  - host
+deps:
+  - LLM_SYNAPSE
+  - LOGGER
+min_level: 8
+vars:
+  - GRID_CELLS
+  - GRID_H
+  - GRID_W
+  - LLM_SYNAPSE
+  - LOGGER
+  - Li
+  - Lw
+  - OP_BUILD
+  - OP_RESONATE_KURAMOTO
+  - OP_SENSE
+  - OP_SENSE_AS
+  - STATE_MATRIX
+extra_symbols:
+  - AKASHA_CODEX
+  - CodexLineageProfile
 ---
 
 ### TypeScript
@@ -13,25 +33,10 @@ min_level: 6
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
 
-import { STATE_MATRIX, LOGGER, Li, Lw } from "@generated";
-import {
-  GRID_CELLS,
-  GRID_H,
-  GRID_W
-} from "@generated";
 import type {
   GlyphSnapshot
 } from "@generated";
-import {
-  LLM_SYNAPSE
-} from "@generated";
 
-import {
-  OP_BUILD,
-  OP_RESONATE_KURAMOTO,
-  OP_SENSE,
-  OP_SENSE_AS
-} from "@generated";
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;

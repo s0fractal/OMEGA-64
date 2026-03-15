@@ -1,10 +1,28 @@
 ---
 id: GUARDIAN_SIGNAL_PROMOTION_DECISION
 type: pure_fn
-description: "Evaluates promotion conditions for Guardian Signals in the hybrid shadow reduction flow."
-tags: ["core", "control", "host"]
+description: >-
+  Evaluates promotion conditions for Guardian Signals in the hybrid shadow
+  reduction flow.
+tags:
+  - core
+  - control
+  - host
 min_level: 6
-
+extra_symbols:
+  - GUARDIAN_SIGNAL_PROMOTION_DECISION
+  - GuardianSignalHybridSnapshot
+  - GuardianSignalPromotionAction
+  - GuardianSignalPromotionActionInput
+  - GuardianSignalPromotionDecision
+  - GuardianSignalPromotionDecisionInput
+  - GuardianSignalPromotionDecisionThresholds
+  - GuardianSignalPromotionSnapshot
+  - GuardianSignalPromotionStatus
+  - GuardianSignalPromotionThresholds
+  - evaluateGuardianSignalPromotion
+  - evaluateGuardianSignalPromotionAction
+  - evaluateGuardianSignalPromotionDecision
 ---
 ```typescript
 import type { GuardianSignalExecutionMode } from "@generated";

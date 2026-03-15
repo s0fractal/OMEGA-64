@@ -1,15 +1,21 @@
 ---
 id: assembler
 type: module
-description: "Two-pass bytecode assembler for the OMEGA-64 virtual machine."
-tags: ["host"]
-deps: [OPCODE_ARITY_LUT]
+description: Two-pass bytecode assembler for the OMEGA-64 virtual machine.
+tags:
+  - host
+deps:
+  - OPCODE_ARITY_LUT
 min_level: 7
+vars:
+  - OPCODE_ARITY_LUT
+extra_symbols:
+  - AssembleToken
+  - assemble
 ---
 
 ### TypeScript
 ```typescript
-import { OPCODE_ARITY_LUT } from "../00/mod.ts";
 
 export type AssembleToken = number | string;
 

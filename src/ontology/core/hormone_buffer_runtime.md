@@ -1,15 +1,19 @@
 ---
 id: HORMONE_BUFFER_RUNTIME
 type: module
-description: "Hormone Buffer Runtime Sync Logic"
-deps: [HORMONE_BUFFER]
+description: Hormone Buffer Runtime Sync Logic
+deps:
+  - HORMONE_BUFFER
 min_level: 6
+extra_symbols:
+  - HORMONE_BUFFER_RUNTIME
+  - HormoneSyncInput
+  - syncHormonesToLattice
 ---
 
 ### TypeScript
 
 ```typescript
-import { type HormoneId } from "@generated";
 
 export type HormoneSyncInput = {
   baseTax: number;

@@ -1,9 +1,25 @@
 ---
 id: ARCHITECT_PLASMID_PROMOTION_DECISION
 type: pure_fn
-tags: ["core", "control", "host"]
+tags:
+  - core
+  - control
+  - host
 min_level: 6
-
+extra_symbols:
+  - ARCHITECT_PLASMID_PROMOTION_DECISION
+  - ArchitectPlasmidHybridSnapshot
+  - ArchitectPlasmidPromotionAction
+  - ArchitectPlasmidPromotionActionInput
+  - ArchitectPlasmidPromotionDecision
+  - ArchitectPlasmidPromotionDecisionInput
+  - ArchitectPlasmidPromotionDecisionThresholds
+  - ArchitectPlasmidPromotionSnapshot
+  - ArchitectPlasmidPromotionStatus
+  - ArchitectPlasmidPromotionThresholds
+  - evaluateArchitectPlasmidPromotion
+  - evaluateArchitectPlasmidPromotionAction
+  - evaluateArchitectPlasmidPromotionDecision
 ---
 ```typescript
 import type { ArchitectPlasmidExecutionMode } from "@generated";

@@ -2,34 +2,40 @@
 id: SOVEREIGN_ORACLE
 type: module
 description: "Implementation of SOVEREIGN_ORACLE"
-tags: []
-min_level: 5
+tags:
+  - host
+min_level: 9
+vars:
+  - GRID_H
+  - GRID_W
+  - LLM_SYNAPSE
+  - LOGGER
+  - Ld
+  - Le
+  - Li
+  - Lw
+  - MAX_GLYPH_AMP
+  - MIN_GLYPH_AMP
+  - PULSE
+  - RUNTIME_POLICY
+  - SEMANTIC_MEMBRANE
+  - SOVEREIGNTY_ENGINE
+  - STATE_MATRIX
+extra_symbols:
+  - SOVEREIGN_ORACLE
+  - SovereignOracleAkashaDelegate
+deps:
+  - LLM_SYNAPSE
+  - LOGGER
+  - PULSE
 ---
 
 ### TypeScript
 ```typescript
-
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE, LOGGER, Ld, Li, Lw, Le } from "@generated";
-import {
-  STATE_MATRIX,
-  MAX_GLYPH_AMP,
-  MIN_GLYPH_AMP
-} from "@generated";
-import {
-  SOVEREIGNTY_ENGINE
-} from "@generated";
 
-import {
-  RUNTIME_POLICY
-} from "@generated";
-import {
-  PULSE
-} from "@generated";
-import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
-import { GRID_W, GRID_H } from "../mod.ts";
 
 export interface SovereignOracleAkashaDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;

@@ -2,19 +2,31 @@
 id: TUI_DASHBOARD
 type: module
 description: "Implementation of TUI_DASHBOARD"
-tags: []
-min_level: 6
+tags:
+  - standalone
+min_level: 14
+vars:
+  - GENESIS_PREDATOR_SCRIPT
+  - GRID_H
+  - GRID_W
+  - LOGGER
+  - PULSE
+  - SPATIAL_CELL_SIZE
+  - STATE_MATRIX
+  - WORLD_MAX_X
+  - WORLD_MAX_Y
+  - assemble
+extra_symbols:
+  - TUI_DASHBOARD
+deps:
+  - AGENT_PROXY
+  - LOGGER
+  - PULSE
 ---
 
 ### TypeScript
 ```typescript
-
-import { STATE_MATRIX } from "@generated";
-import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "@generated";
-import { PULSE } from "@generated";
-import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
-import { AgentProxy } from "./AGENT_PROXY.ts";
-import { LOGGER } from "@generated";
+import { AgentProxy } from "../08/AGENT_PROXY.ts";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;

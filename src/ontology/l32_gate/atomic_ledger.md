@@ -1,9 +1,19 @@
 ---
 id: ATOMIC_LEDGER
 type: module
-description: "Implementation of ATOMIC_LEDGER"
+description: Implementation of ATOMIC_LEDGER
 tags: []
-min_level: 3
+min_level: 4
+vars:
+  - LEDGER_DATA_OFFSET
+  - LEDGER_HEAD_OFFSET
+  - MAX_LEDGER_EVENTS
+  - STATE_MATRIX
+extra_symbols:
+  - ATOMIC_LEDGER
+  - AtomicLedgerEvent
+deps:
+  - STATE_MATRIX
 ---
 
 ### TypeScript
@@ -11,8 +21,6 @@ min_level: 3
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "@generated";
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
 
 export type AtomicLedgerEvent = {
   tick: number;

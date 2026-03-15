@@ -11,6 +11,8 @@ args: {}
 vars: []
 deps: []
 description: Validates and normalizes 64-character hex strings (sha256 format).
+extra_symbols:
+  - normalize_hex64
 ---
 
 ```typescript

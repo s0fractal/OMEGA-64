@@ -1,17 +1,49 @@
 ---
 id: OPCODE_TO_GLYPH
 type: module
-description: "Migrated from src/07/04/opcode_to_glyph.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/04/opcode_to_glyph.ts
+tags:
+  - core
+  - host
+deps:
+  - glyph_ir_64
+min_level: 8
+vars:
+  - OP_ADD
+  - OP_BIND
+  - OP_BUILD
+  - OP_COLLECTIVE
+  - OP_GET
+  - OP_HEBB
+  - OP_JMP
+  - OP_JNZ
+  - OP_JZ
+  - OP_NOP
+  - OP_PLUG
+  - OP_PUT
+  - OP_REPLICATE
+  - OP_RESOLVE
+  - OP_SECRETE_PLASMID
+  - OP_SENSE
+  - OP_SET
+  - OP_SHARE
+  - OP_SIGNAL
+  - OP_SPORE_DRIVE
+  - OP_SUB
+  - OP_SYSCALL
+  - OP_TENSEGRITY
+  - glyphSpecByLegacyOpcode
+extra_symbols:
+  - GlyphTapeToken
+  - LegacyInstruction
+  - decodeLegacyInstruction
+  - legacyOpcodeLength
+  - scriptToGlyphTape
 ---
 
 ### TypeScript
 
 ```typescript
-import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_TENSEGRITY, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_BUILD, OP_SENSE, OP_SPORE_DRIVE, OP_HEBB, OP_PLUG, OP_RESOLVE, OP_SYSCALL } from "@generated";
-import { glyphSpecByLegacyOpcode } from "@generated";
 
 export type LegacyInstruction = {
   pc: number;

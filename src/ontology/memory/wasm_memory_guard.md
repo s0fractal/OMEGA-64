@@ -1,8 +1,12 @@
 ---
 id: assert_wasm_memory_depth
 type: pure_fn
-description: "Host validator ensuring pre-allocated WASM limits are not exceeded by minimum requirements."
-tags: ["memory", "host"]
+description: >-
+  Host validator ensuring pre-allocated WASM limits are not exceeded by minimum
+  requirements.
+tags:
+  - memory
+  - host
 min_level: 6
 deps:
   - SYSTEM_CONSTANTS
@@ -12,6 +16,8 @@ vars:
   - MIN_WASM_MEMORY_PAGES
 args: {}
 returns: void
+extra_symbols:
+  - assert_wasm_memory_depth
 ---
 
 ### TypeScript

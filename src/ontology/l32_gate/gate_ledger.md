@@ -1,17 +1,16 @@
 ---
 id: GATE_LEDGER
 type: module
-description: "Implementation of GATE_LEDGER"
+description: Implementation of GATE_LEDGER
 tags: []
 min_level: 3
+extra_symbols:
+  - GATE_LEDGER
+  - persistGateLedgerArtifacts
 ---
 
 ### TypeScript
 ```typescript
-import { type BridgeModeEvent, type GateConfig } from "@generated";
-import { type LedgerEvent } from "@generated";
-import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

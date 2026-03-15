@@ -10,7 +10,9 @@ tags:
 args: {}
 vars: []
 deps: []
-description: Converts a hex string to a Uint8Array, returning null if invalid.
+description: 'Converts a hex string to a Uint8Array, returning null if invalid.'
+extra_symbols:
+  - hex_to_bytes
 ---
 
 ```typescript

@@ -1,26 +1,32 @@
 ---
 id: AGENT_PROXY
 type: module
-description: "Migrated from src/06/AGENT_PROXY.ts"
-tags: ["standalone", "server"]
-deps: []
-min_level: 6
+description: Migrated from src/06/AGENT_PROXY.ts
+tags:
+  - standalone
+  - server
+deps:
+  - LOGGER
+  - assembler
+min_level: 8
+vars:
+  - LOGGER
+  - Le
+  - Li
+  - OP_SET
+  - OP_SYSCALL
+  - STATE_MATRIX
+  - SYS_ATTRACT
+  - SYS_TRANSFER
+  - assemble
+extra_symbols:
+  - AgentProxy
 ---
 
 ### TypeScript
 
 ```typescript
-import { STATE_MATRIX, LOGGER, Li, Le } from "@generated";
-import {
-  assemble
-} from "@generated";
 
-import {
-  OP_SET,
-  OP_SYSCALL,
-  SYS_ATTRACT,
-  SYS_TRANSFER
-} from "@generated";
 
 export class AgentProxy {
   port: number;

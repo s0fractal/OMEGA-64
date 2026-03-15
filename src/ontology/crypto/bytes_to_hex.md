@@ -11,6 +11,8 @@ args: {}
 vars: []
 deps: []
 description: Converts a Uint8Array to a hex string.
+extra_symbols:
+  - bytes_to_hex
 ---
 
 ```typescript

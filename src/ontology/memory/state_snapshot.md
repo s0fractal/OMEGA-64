@@ -1,9 +1,22 @@
 ---
 id: STATE_SNAPSHOT
 type: module
-description: "Implementation of STATE_SNAPSHOT"
+description: Implementation of STATE_SNAPSHOT
 tags: []
 min_level: 0
+extra_symbols:
+  - AgentSignatureKey
+  - AgentSignatureScheme
+  - AutonomyState
+  - BridgeModeEvent
+  - DeltaProposal
+  - GateConfig
+  - GateDecision
+  - LedgerEvent
+  - REJECTION
+  - STATE_SNAPSHOT
+  - SignaturePolicy
+  - StateSnapshot
 ---
 
 ### TypeScript

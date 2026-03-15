@@ -1,10 +1,21 @@
 ---
 id: REPLICATION_PROMOTION
 type: pure_fn
-description: "Evaluates the overall hybrid snapshot for Replication loops, returning promotion readiness."
-tags: ["core", "control", "host"]
+description: >-
+  Evaluates the overall hybrid snapshot for Replication loops, returning
+  promotion readiness.
+tags:
+  - core
+  - control
+  - host
 min_level: 6
-
+extra_symbols:
+  - REPLICATION_PROMOTION
+  - ReplicationHybridSnapshot
+  - ReplicationPromotionSnapshot
+  - ReplicationPromotionStatus
+  - ReplicationPromotionThresholds
+  - evaluateReplicationPromotion
 ---
 ```typescript
 import type { ReplicationExecutionMode } from "@generated";

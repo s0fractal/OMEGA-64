@@ -1,10 +1,21 @@
 ---
 id: checkpoint_chain
 type: module
-description: "Implementation of checkpoint_chain"
+description: Implementation of checkpoint_chain
 tags: []
-min_level: 1
-vars: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
+min_level: 8
+vars:
+  - append_jsonl
+  - normalize_hex64
+  - read_jsonl
+  - read_jsonl_lines
+  - sha256_hex
+  - stable_stringify
+extra_symbols:
+  - CHECKPOINT_CHECKPOINT
+deps:
+  - normalize_hex64
+  - sha256_hex
 ---
 
 ### TypeScript
@@ -14,7 +25,6 @@ vars: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
 // Replay Invariant State Hash Checkpointing
 
 // Replay Invariant State Hash Checkpointing
-import { normalize_hex64, sha256_hex, stable_stringify } from "../mod.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
 

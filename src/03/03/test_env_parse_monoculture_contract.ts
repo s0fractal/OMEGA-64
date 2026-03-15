@@ -45,10 +45,13 @@ const main = async () => {
       continue;
     }
     const source = await Deno.readTextFile(resolvedPath);
-    if (!source.includes('@generated"')) {
+    // Accept both legacy @generated and the new liquid architecture ../NN/mod.ts patterns
+    const hasLiquidImport = source.includes('@generated"') ||
+      /from "\.\.\/.+\/mod\.ts"/.test(source);
+    if (!hasLiquidImport) {
       violations.push({
         file: target.file,
-        reason: "must import runtime policy from @generated",
+        reason: "must import runtime policy from @generated or mod.ts chain",
       });
     }
     if (!source.includes(target.requiresPolicyAccess)) {
@@ -57,10 +60,10 @@ const main = async () => {
         reason: `expected policy access: ${target.requiresPolicyAccess}`,
       });
     }
-    if (source.includes('parseEnvBool') && !source.includes('@generated')) {
+    if (source.includes('parseEnvBool') && !hasLiquidImport) {
       violations.push({
         file: target.file,
-        reason: "env parser helpers should be consumed through @generated",
+        reason: "env parser helpers should be consumed through @generated or mod.ts",
       });
     }
     if (/\bconst\s+parseBool\b/u.test(source)) {

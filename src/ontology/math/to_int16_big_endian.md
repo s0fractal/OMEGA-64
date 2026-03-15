@@ -1,11 +1,16 @@
 ---
 id: to_int16_big_endian
 type: module
-description: "Converts an Int16Array wrapper into correctly encoded Uint8Array bytes via Big Endian orientation."
-tags: ["host"]
+description: >-
+  Converts an Int16Array wrapper into correctly encoded Uint8Array bytes via Big
+  Endian orientation.
+tags:
+  - host
 min_level: 6
 deps: []
 returns: void
+extra_symbols:
+  - to_int16_big_endian
 ---
 
 ### TypeScript

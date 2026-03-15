@@ -1,9 +1,11 @@
 ---
 id: append_jsonl
 type: module
-description: "Lightweight JSONL appender"
+description: Lightweight JSONL appender
 tags: []
 min_level: 0
+extra_symbols:
+  - append_jsonl
 ---
 
 ### TypeScript

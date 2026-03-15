@@ -1,19 +1,24 @@
 ---
 id: CRYSTALLIZATION_CONFIG
 type: module
-name: "Crystallization Config"
-description: "Gate admission & consensus crystallization policy parameters."
+name: Crystallization Config
+description: Gate admission & consensus crystallization policy parameters.
 tags:
   - gate
   - host
 deps:
   - sha256_hex
   - stable_stringify
+vars:
+  - sha256_hex
+  - stable_stringify
+extra_symbols:
+  - CRYSTALLIZATION_CONFIG
+  - CRYSTALLIZATION_POLICY
 ---
 
 ### TypeScript
 ```typescript
-import { stable_stringify, sha256_hex } from "@generated";
 
 const CRY_DATA = {
   policy: "STABLE",

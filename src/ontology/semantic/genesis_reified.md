@@ -1,10 +1,14 @@
 ---
 id: GENESIS_REIFIED
 type: module
-description: "Migrated from src/07/05/GENESIS_REIFIED.ts"
-tags: ["core", "host"]
+description: Migrated from src/07/05/GENESIS_REIFIED.ts
+tags:
+  - core
+  - host
 deps: []
 min_level: 6
+extra_symbols:
+  - REIFIED_PROGRAMS
 ---
 
 ### TypeScript

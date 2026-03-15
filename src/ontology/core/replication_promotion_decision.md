@@ -1,10 +1,20 @@
 ---
 id: REPLICATION_PROMOTION_DECISION
 type: pure_fn
-description: "Evaluates promotion conditions for Replication loops in hybrid shadow reduction."
-tags: ["core", "control", "host"]
+description: >-
+  Evaluates promotion conditions for Replication loops in hybrid shadow
+  reduction.
+tags:
+  - core
+  - control
+  - host
 min_level: 6
-
+extra_symbols:
+  - REPLICATION_PROMOTION_DECISION
+  - ReplicationPromotionDecision
+  - ReplicationPromotionDecisionInput
+  - ReplicationPromotionDecisionThresholds
+  - evaluateReplicationPromotionDecision
 ---
 ```typescript
 export type ReplicationPromotionDecisionInput = {

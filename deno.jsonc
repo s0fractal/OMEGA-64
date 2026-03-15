@@ -174,6 +174,16 @@
     "@g06": "./src/_/06/mod.ts",
     "@g07": "./src/_/07/mod.ts",
     "@g08": "./src/_/08/mod.ts",
+    "@g09": "./src/_/09/mod.ts",
+    "@g10": "./src/_/10/mod.ts",
+    "@g11": "./src/_/11/mod.ts",
+    "@g12": "./src/_/12/mod.ts",
+    "@g13": "./src/_/13/mod.ts",
+    "@g14": "./src/_/14/mod.ts",
+    "@g15": "./src/_/15/mod.ts",
+    "@g16": "./src/_/16/mod.ts",
+    "@g17": "./src/_/17/mod.ts",
+    "@g18": "./src/_/18/mod.ts",
     "@g00/": "./src/_/00/",
     "@g01/": "./src/_/01/",
     "@g02/": "./src/_/02/",
@@ -183,6 +193,16 @@
     "@g06/": "./src/_/06/",
     "@g07/": "./src/_/07/",
     "@g08/": "./src/_/08/",
+    "@g09/": "./src/_/09/",
+    "@g10/": "./src/_/10/",
+    "@g11/": "./src/_/11/",
+    "@g12/": "./src/_/12/",
+    "@g13/": "./src/_/13/",
+    "@g14/": "./src/_/14/",
+    "@g15/": "./src/_/15/",
+    "@g16/": "./src/_/16/",
+    "@g17/": "./src/_/17/",
+    "@g18/": "./src/_/18/",
     "@g": "./src/_/mod.ts",
     "zod": "npm:zod@^4.3.6"
   },
@@ -198,7 +218,7 @@
       "MUTATION_TELEMETRY.ts",
       "TUI_DASHBOARD.ts",
       "AGENT_PROXY.ts",
-      "src/_/05/llm_soul.ts"
+      "src/_/07/llm_soul.ts"
     ],
     "runtime_support_files": [
       "build_wasm.ts",
@@ -216,7 +236,7 @@
       "MUTATION_TELEMETRY.ts",
       "TUI_DASHBOARD.ts",
       "AGENT_PROXY.ts",
-      "src/_/05/llm_soul.ts"
+      "src/_/07/llm_soul.ts"
     ],
     "required_additional_files": [
       "DAEMON_INGRESS_POLICY.ts",

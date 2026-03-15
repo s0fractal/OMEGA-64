@@ -5,13 +5,21 @@ tags:
   - substrate
 deps:
   - STATE_MATRIX
+vars:
+  - STATE_MATRIX
+extra_symbols:
+  - PREDICTION_MARKET
+  - PredictionMarketAkashaDelegate
+  - betPoolInt
+  - marketBuffer
+  - marketState
+  - proposedInstructions
 ---
 
 // OMEGA-64 | PREDICTION_MARKET.ts | Era 18: Deterministic Monad
 // Replaces Parallel Realities. Crisis triggers mutations that atoms bet on.
 
 ```typescript
-import { STATE_MATRIX } from "@generated";
 
 export interface PredictionMarketAkashaDelegate {
   recordMarketResolution(

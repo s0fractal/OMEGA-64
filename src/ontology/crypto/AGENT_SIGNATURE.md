@@ -1,8 +1,12 @@
 ---
 id: AGENT_SIGNATURE
 type: module
-description: "Legacy Compliance Shims - Proposal Signatures"
-tags: ["crypto", "host", "signatures", "legacy"]
+description: Legacy Compliance Shims - Proposal Signatures
+tags:
+  - crypto
+  - host
+  - signatures
+  - legacy
 min_level: 6
 deps:
   - bytes_to_base64
@@ -12,6 +16,8 @@ deps:
   - sha256_hex
   - stable_stringify
   - STATE_SNAPSHOT
+extra_symbols:
+  - AGENT_SIGNATURE
 ---
 
 ### TypeScript

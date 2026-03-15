@@ -1,53 +1,101 @@
 ---
 id: PULSE
 type: module
-description: "Implementation of PULSE"
-deps: [STATE_MATRIX, GENERIC_LEDGER_SYSTEM, GENERIC_LEDGER_PERSISTENCE, HORMONE_BUFFER, HORMONE_BUFFER_RUNTIME]
-min_level: 7
+description: Implementation of PULSE
+deps:
+min_level: 13
+vars:
+  - BONDS_OFFSET
+  - CAUSALITY_OFFSET
+  - COHERENCE_OFFSET
+  - CONTEXT_OFFSET
+  - EGRESS_DATA_OFFSET
+  - EGRESS_HEAD_OFFSET
+  - ENERGY_OFFSET
+  - GRID_H
+  - GRID_W
+  - IDS_OFFSET
+  - INSTRUCTIONS_OFFSET
+  - LATTICE_MEMORY_END
+  - LOGIC_OFFSET
+  - MAX_ATOMS
+  - MAX_EGRESS_EVENTS
+  - OP_ADD
+  - OP_BUILD
+  - OP_GET
+  - OP_JMP
+  - OP_JNZ
+  - OP_JZ
+  - OP_NOP
+  - OP_PUT
+  - OP_REPLICATE
+  - OP_SECRETE_PLASMID
+  - OP_SET
+  - OP_SIGNAL
+  - OP_SPORE_DRIVE
+  - OP_SUB
+  - OP_SYSCALL
+  - PHASE_OFFSET
+  - PHYSICS_READ_ENERGY_OFFSET
+  - PHYSICS_READ_RESONANCE_OFFSET
+  - PHYSICS_READ_XS_OFFSET
+  - PHYSICS_READ_YS_OFFSET
+  - PROP_ENERGY
+  - PROP_NEURAL_COHERENCE
+  - PROP_RESONANCE
+  - RESONANCE_OFFSET
+  - ROLES_OFFSET
+  - SPAWN_REQUESTS_OFFSET
+  - SYS_SET_ROLE
+  - SYS_YIELD
+  - XS_OFFSET
+  - YS_OFFSET
+extra_symbols:
+  - ArchitectPlasmidBranch
+  - ArchitectPlasmidExecutionDecision
+  - ArchitectPlasmidExecutionMode
+  - ArchitectPlasmidReductionDecision
+  - DriftMetrics
+  - GuardianSignalBranch
+  - GuardianSignalExecutionDecision
+  - GuardianSignalExecutionMode
+  - GuardianSignalReductionDecision
+  - PULSE
+  - PulseAkashaDelegate
+  - PulseNoosphereDelegate
+  - PulseOracleDelegate
+  - ReplicationBranch
+  - ReplicationExecutionDecision
+  - ReplicationExecutionMode
+  - ReplicationHybridState
+  - ReplicationReductionDecision
+  - drainEgressEvents
+  - evaluateArchitectPlasmidExecution
+  - evaluateArchitectPlasmidReduction
+  - evaluateGuardianSignalExecution
+  - evaluateGuardianSignalReduction
+  - evaluateReplicationExecution
+  - evaluateReplicationReduction
+  - logicView
+  - normalizeArchitectPlasmidExecutionMode
+  - normalizeGuardianSignalExecutionMode
+  - normalizeReplicationExecutionMode
+  - phasesView
+  - rolesView
+  - GeneticLedgerKey
+  - LedgerApplyResult
+  - LedgerRollbackResult
+  - LedgerRuntimeSnapshot
+  - LedgerRuntimeState
+  - HormoneId
 ---
 
 ### TypeScript
 
 ```typescript
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GENERIC_LEDGER_PERSISTENCE, GENERIC_LEDGER_SYSTEM, GLYPH_TELEMETRY, GenesisInceptor, HORMONE_BUFFER, HORMONE_BUFFER_RUNTIME, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, sharedBuffer, snapshotLedgerRuntime } from "../mod.ts";
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { AS_WASM_PATH, LOGGER, MAX_ATOMS, sharedBuffer, STATE_MATRIX, Ld, Li, Lw, Le } from "@generated";
-import {
-  BONDS_OFFSET,
-  CAUSALITY_OFFSET,
-  COHERENCE_OFFSET,
-  CONTEXT_OFFSET,
-  EGRESS_DATA_OFFSET,
-  EGRESS_HEAD_OFFSET,
-  ENERGY_OFFSET,
-  GRID_H,
-  GRID_W,
-  IDS_OFFSET,
-  INSTRUCTIONS_OFFSET,
-  LATTICE_MEMORY_END,
-  LOGIC_OFFSET,
-  MAX_EGRESS_EVENTS,
-  PHASE_OFFSET,
-  PHYSICS_READ_ENERGY_OFFSET,
-  PHYSICS_READ_RESONANCE_OFFSET,
-  PHYSICS_READ_XS_OFFSET,
-  PHYSICS_READ_YS_OFFSET,
-  RESONANCE_OFFSET,
-  ROLES_OFFSET,
-  SPAWN_REQUESTS_OFFSET,
-  XS_OFFSET,
-  YS_OFFSET
-} from "@generated";
 
-import {
-  SOVEREIGNTY_ENGINE
-} from "@generated";
-import { GATE } from "../03/GATE.ts";
-import {
-  PREDICTION_MARKET
-} from "@generated";
-import {
-  CONTROL_INTENT_QUEUE
-} from "@generated";
 
 export interface PulseOracleDelegate {
   setNeuralCoherence(coherence: number): void;
@@ -122,39 +170,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-import {
-  RUNTIME_POLICY
-} from "@generated";
-import {
-  GLYPH_TELEMETRY
-} from "@generated";
-import {
-  DAEMON_INGRESS_POLICY_LIMITS
-} from "@generated";
 
-import {
-  HORMONE_BUFFER_RUNTIME,
-  HORMONE_BUFFER,
-  type HormoneId
-} from "@generated";
 const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
-import {
-  applyLedgerUpdate,
-  createGeneticLedgerRuntime,
-  createLedgerRuntime,
-  type LedgerApplyResult,
-  type LedgerRollbackResult,
-  type LedgerRuntimeSnapshot,
-  type LedgerRuntimeState,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime
-} from "@generated";
-import { type GeneticLedgerKey } from "../03/GENETIC_LEDGER.ts";
-import {
-  GENERIC_LEDGER_SYSTEM,
-  GENERIC_LEDGER_PERSISTENCE
-} from "@generated";
 import type {
   LedgerPersistenceSummary
 } from "@generated";
@@ -167,49 +185,6 @@ const {
   recordFromRollback,
 } = GENERIC_LEDGER_PERSISTENCE;
 
-import {
-  DriftWarden
-} from "@generated";
-import {
-  DollFork
-} from "@generated";
-import {
-  DollForkRunner
-} from "@generated";
-import {
-  REIFIED_PROGRAMS
-} from "@generated";
-import {
-  GenesisInceptor
-} from "@generated";
-import {
-  LineageTracker
-} from "@generated";
-import {
-  QuorumAdvocate
-} from "@generated";
-import {
-  OP_ADD,
-  OP_BUILD,
-  OP_GET,
-  OP_JMP,
-  OP_JNZ,
-  OP_JZ,
-  OP_NOP,
-  OP_PUT,
-  OP_REPLICATE,
-  OP_SECRETE_PLASMID,
-  OP_SET,
-  OP_SIGNAL,
-  OP_SPORE_DRIVE,
-  OP_SUB,
-  OP_SYSCALL,
-  PROP_ENERGY,
-  PROP_NEURAL_COHERENCE,
-  PROP_RESONANCE,
-  SYS_SET_ROLE,
-  SYS_YIELD,
-} from "../00/mod.ts";
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;

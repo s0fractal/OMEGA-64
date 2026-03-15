@@ -1,20 +1,30 @@
 ---
 id: DRIFT_WARDEN
 type: module
-description: "Migrated from src/07/02/DRIFT_WARDEN.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/02/DRIFT_WARDEN.ts
+tags:
+  - core
+  - host
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - COHERENCE_OFFSET
+  - ENERGY_OFFSET
+  - IDS_OFFSET
+  - LOGGER
+  - Li
+  - MAX_ATOMS
+  - sharedBuffer
+extra_symbols:
+  - DriftMetrics
+  - DriftWarden
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS, LOGGER, Li } from "@generated";
-import {
-  sharedBuffer
-} from "@generated";
 
 export type DriftMetrics = {
   coherence: number;

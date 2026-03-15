@@ -11,6 +11,8 @@ args: {}
 vars: []
 deps: []
 description: Converts a base64 string to a Uint8Array.
+extra_symbols:
+  - base64_to_bytes
 ---
 
 ```typescript

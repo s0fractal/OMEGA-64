@@ -1,8 +1,12 @@
 ---
 id: pack_structure_intent
 type: pure_fn
-description: "Packs a structure intent from a target type, a target value, and an optional lock bit."
-tags: [inline, host]
+description: >-
+  Packs a structure intent from a target type, a target value, and an optional
+  lock bit.
+tags:
+  - inline
+  - host
 min_level: 6
 deps: []
 args:
@@ -11,8 +15,16 @@ args:
   locked: bool
 returns: i32
 tests:
-  - [1, 55, false, 922746881]
-  - [3, 0, true, -2147483645]
+  - - 1
+    - 55
+    - false
+    - 922746881
+  - - 3
+    - 0
+    - true
+    - -2147483645
+extra_symbols:
+  - pack_structure_intent
 ---
 
 ### Rust

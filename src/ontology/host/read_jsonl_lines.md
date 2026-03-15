@@ -1,9 +1,11 @@
 ---
 id: read_jsonl_lines
 type: module
-description: "Lightweight JSONL array reader"
+description: Lightweight JSONL array reader
 tags: []
 min_level: 0
+extra_symbols:
+  - read_jsonl_lines
 ---
 
 ### TypeScript

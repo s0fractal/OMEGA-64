@@ -1,21 +1,26 @@
 ---
 id: EXPORT_CORE
 type: module
-description: "Migrated from src/07/02/export_core.ts"
-tags: ["core", "host"]
+description: Migrated from src/07/02/export_core.ts
+tags:
+  - core
+  - host
 deps: []
 min_level: 6
+extra_symbols:
+  - buildExportFileList
+  - renderCoreExport
 ---
 
 ### TypeScript
 
 ```typescript
 import { parse } from "jsr:@std/jsonc";
+import { dirname, extname, join, normalize } from "node:path";
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
 
-import { dirname, extname, join, normalize } from "node:path";
 
 const MANIFEST_PATH = "deno.jsonc";
 

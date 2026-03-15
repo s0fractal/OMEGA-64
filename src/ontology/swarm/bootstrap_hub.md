@@ -1,8 +1,12 @@
 ---
 id: BOOTSTRAP_HUB
 type: module
-description: "Mainnet Signaling Server / Lightweight public directory for OMEGA-64 nodes to discover each other"
-tags: ["standalone", "network"]
+description: >-
+  Mainnet Signaling Server / Lightweight public directory for OMEGA-64 nodes to
+  discover each other
+tags:
+  - standalone
+  - network
 deps: []
 min_level: 5
 ---
@@ -12,8 +16,7 @@ min_level: 5
 ```typescript
 // OMEGA-64 | BOOTSTRAP_HUB.ts | Mainnet Signaling Server
 // A lightweight public directory for OMEGA-64 nodes to discover each other.
-
-import { parseArgs } from "https://deno.land/std@0.208.0/cli/parse_args.ts";
+import { parseArgs } from "jsr:@std/cli/parse-args";
 
 const args = parseArgs(Deno.args, {
   string: ["port", "host"],

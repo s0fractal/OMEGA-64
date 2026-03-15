@@ -1,10 +1,13 @@
 ---
 id: CANON_CAUSAL_BRIDGE
 type: module
-name: "Canon Causal Bridge Admission"
-description: "Gate admission verification logic prioritizing invariant integrity chains."
+name: Canon Causal Bridge Admission
+description: Gate admission verification logic prioritizing invariant integrity chains.
 tags:
   - gate
+extra_symbols:
+  - BridgeInvariantReportLike
+  - CANON_CAUSAL_BRIDGE
 ---
 
 ### TypeScript

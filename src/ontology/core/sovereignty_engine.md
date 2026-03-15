@@ -1,13 +1,22 @@
 ---
 id: SOVEREIGNTY_ENGINE
 type: module
-description: "The Governance Layer Operations. Handles Regent Election, Decrees, and Legitimacy based on the Quadratic Voting algorithm."
-tags: ["core", "governance", "host"]
+description: >-
+  The Governance Layer Operations. Handles Regent Election, Decrees, and
+  Legitimacy based on the Quadratic Voting algorithm.
+tags:
+  - core
+  - governance
+  - host
 min_level: 6
-
+vars:
+  - STATE_MATRIX
+extra_symbols:
+  - DECREES
+  - SOVEREIGNTY_ENGINE
+  - SovereigntyEngineAkashaDelegate
 ---
 ```typescript
-import { STATE_MATRIX } from "@generated";
 export interface SovereigntyEngineAkashaDelegate {
   recordDecreeShift(
     tick: number,

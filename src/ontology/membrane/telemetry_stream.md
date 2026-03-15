@@ -1,10 +1,14 @@
 ---
 id: TELEMETRY_STREAM
 type: module
-description: "Migrated from src/06/TELEMETRY_STREAM.ts"
-tags: ["membrane", "host"]
+description: Migrated from src/06/TELEMETRY_STREAM.ts
+tags:
+  - membrane
+  - host
 deps: []
 min_level: 6
+extra_symbols:
+  - TELEMETRY_STREAM
 ---
 
 ### TypeScript

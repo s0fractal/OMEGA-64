@@ -1,18 +1,23 @@
 ---
 id: AKASHA_SERVER
 type: module
-description: "Migrated from src/06/AKASHA_SERVER.ts"
-tags: ["standalone", "server"]
-deps: []
-min_level: 6
+description: Migrated from src/06/AKASHA_SERVER.ts
+tags:
+  - standalone
+  - server
+deps:
+  - AKASHA_SIGNALING
+  - RUNTIME_POLICY
+min_level: 8
+vars:
+  - AKASHA_SIGNALING
+  - RUNTIME_POLICY
 ---
 
 ### TypeScript
 
 ```typescript
 import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-import { RUNTIME_POLICY } from "@generated";
-import { AKASHA_SIGNALING } from "@generated";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;

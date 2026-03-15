@@ -1,14 +1,31 @@
 ---
 id: SWARM_NEXUS
 type: module
-description: "Implementation of SWARM_NEXUS"
+description: Implementation of SWARM_NEXUS
 tags: []
-min_level: 4
+min_level: 7
+vars:
+  - LOGGER
+  - Le
+  - Li
+  - Lw
+extra_symbols:
+  - NexusConfig
+  - OP_NEXUS_ATOM_TRANSIT
+  - OP_NEXUS_EPOCH_CONSENSUS
+  - OP_NEXUS_EPOCH_PAYLOAD
+  - OP_NEXUS_HANDSHAKE
+  - OP_NEXUS_HEARTBEAT
+  - OP_NEXUS_SYNC_REQUEST
+  - SWARM_NEXUS
+  - SwarmNexus
+  - createSwarmNexus
+deps:
+  - LOGGER
 ---
 
 ### TypeScript
 ```typescript
-import { LOGGER, Li, Lw, Le } from "@generated";
 
 export type NexusConfig = {
   instanceId: number;

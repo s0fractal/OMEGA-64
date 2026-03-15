@@ -13,6 +13,9 @@ vars:
 deps:
   - bytes_to_hex
 description: Async SHA-256 hashing to hex strings for both text and raw bytes.
+extra_symbols:
+  - sha256_hex
+  - sha256_hex_bytes
 ---
 
 ```typescript

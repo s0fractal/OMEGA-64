@@ -1,9 +1,14 @@
 ---
 id: OMEGA_DAEMON
 type: module
-description: "Implementation of OMEGA_DAEMON"
+description: Implementation of OMEGA_DAEMON
 tags: []
 min_level: 6
+vars:
+  - WORLD_MAX_X
+  - WORLD_MAX_Y
+extra_symbols:
+  - OMEGA_DAEMON
 ---
 
 ### TypeScript
@@ -11,7 +16,6 @@ min_level: 6
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
-import { WORLD_MAX_X, WORLD_MAX_Y } from "../mod.ts";
 
 type Telemetry = {
   tick: number;

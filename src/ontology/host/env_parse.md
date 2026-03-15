@@ -1,9 +1,13 @@
 ---
 id: ENV_PARSE
 type: module
-description: "Implementation of ENV_PARSE"
+description: Implementation of ENV_PARSE
 tags: []
 min_level: 0
+extra_symbols:
+  - ENV_PARSE
+  - parseEnvBool
+  - parseEnvBoundedInt
 ---
 
 ### TypeScript

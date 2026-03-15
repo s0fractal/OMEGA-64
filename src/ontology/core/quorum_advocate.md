@@ -1,18 +1,24 @@
 ---
 id: QUORUM_ADVOCATE
 type: module
-description: "Migrated from src/07/02/QUORUM_ADVOCATE.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/02/QUORUM_ADVOCATE.ts
+tags:
+  - core
+  - host
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - LOGGER
+  - STATE_MATRIX
+extra_symbols:
+  - QuorumAdvocate
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX } from "@generated";
-import { LOGGER } from "@generated";
 
 /**
  * QuorumAdvocate evaluates local group coherence and biases the GATE system.

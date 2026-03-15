@@ -1,17 +1,21 @@
 ---
 id: MUTATION_TELEMETRY
 type: module
-description: "Implementation of MUTATION_TELEMETRY"
+description: Implementation of MUTATION_TELEMETRY
 tags: []
-min_level: 6
+min_level: 8
+vars:
+  - LOGGER
+  - Ld
+extra_symbols:
+  - MUTATION_TELEMETRY
+deps:
+  - LOGGER
 ---
 
 ### TypeScript
 ```typescript
-import { LOGGER, Ld } from "@generated";
-import {
-  RUNTIME_POLICY
-} from "@generated";
+import { RUNTIME_POLICY } from "../mod.ts";
 
 type MutationLane =
   | "internal_oracle"

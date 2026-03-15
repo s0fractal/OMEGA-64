@@ -1,8 +1,10 @@
 ---
 id: INVARIANT_PACKET
 type: module
-name: "Invariant Packet"
-description: "Cross-chain boundary invariant packet serialization and cryptographic digest tools."
+name: Invariant Packet
+description: >-
+  Cross-chain boundary invariant packet serialization and cryptographic digest
+  tools.
 tags:
   - crypto
   - host
@@ -12,17 +14,18 @@ deps:
   - crypto_keys
   - sha256_hex
   - stable_stringify
+vars:
+  - base64_to_bytes
+  - bytes_to_base64
+  - import_hmac
+  - sha256_hex
+  - stable_stringify
+extra_symbols:
+  - INVARIANT_PACKET
 ---
 
 ### TypeScript
 ```typescript
-import {
-  base64_to_bytes,
-  bytes_to_base64,
-  import_hmac,
-  sha256_hex,
-  stable_stringify,
-} from "@generated";
 
 export interface INVARIANT_PACKET {
   version: string;

@@ -651,7 +651,8 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   if (node.asImports) {
     node.asImports.forEach(i => asOut += `${i}\n`);
   }
-  // Collect all host-only symbols (extra_symbols from any dep node)
+  // Collect all host-only symbols: extra_symbols from nodes tagged host or standalone
+  // Use a global registry so transitive dependencies are covered
   const hostOnlySymbols = new Set<string>();
   for (const dep of (node.deps || [])) {
     const depNode = nodes.get(dep);
@@ -659,7 +660,13 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
       for (const sym of (depNode.extra_symbols || [])) hostOnlySymbols.add(sym);
     }
   }
-  const importsToPull: string[] = (node.vars || []).filter(v => !hostOnlySymbols.has(v));
+  // Additionally filter vars whose owning node (found by id in the graph) is host/standalone
+  const importsToPull: string[] = (node.vars || []).filter(v => {
+    if (hostOnlySymbols.has(v)) return false;
+    const varNode = nodes.get(v);
+    if (varNode && (varNode.tags.includes("host") || varNode.tags.includes("standalone"))) return false;
+    return true;
+  });
   if (node.deps) {
     for (const dep of node.deps) {
       const depNode = nodes.get(dep);

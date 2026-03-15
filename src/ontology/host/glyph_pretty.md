@@ -1,15 +1,23 @@
 ---
 id: glyph_pretty
 type: module
-description: "Tape token stringifier for the OMEGA-64 virtual machine."
-tags: ["host"]
-deps: [glyph_ir_64, disassembler]
+description: Tape token stringifier for the OMEGA-64 virtual machine.
+tags:
+  - host
+deps:
+  - glyph_ir_64
+  - disassembler
 min_level: 7
+vars:
+  - glyphSpecById
+extra_symbols:
+  - describeGlyphToken
+  - glyphTapeToLines
+  - glyphTapeToPrettyText
 ---
 
 ### TypeScript
 ```typescript
-import { glyphSpecById } from "../07/glyph_ir_64.ts";
 import type { GlyphTapeToken } from "../07/disassembler.ts";
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {

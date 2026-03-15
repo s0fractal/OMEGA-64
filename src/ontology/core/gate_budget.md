@@ -3,7 +3,14 @@ id: GATE_BUDGET
 type: module
 tags:
   - substrate
-deps: []
+deps:
+  - CRYSTALLIZATION_CONFIG
+  - GATE_MERGER
+  - GATE_VALIDATOR
+extra_symbols:
+  - GATE_BUDGET
+  - GateMergedDelta
+min_level: 12
 ---
 
 ```typescript

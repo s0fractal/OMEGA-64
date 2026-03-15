@@ -5,10 +5,31 @@ tags:
   - substrate
 deps:
   - RUNTIME_POLICY
+vars:
+  - RUNTIME_POLICY
+extra_symbols:
+  - DAEMON_INGRESS_POLICY
+  - DAEMON_INGRESS_POLICY_LIMITS
+  - DaemonAction
+  - DaemonIngressMetrics
+  - DaemonIngressPlan
+  - DaemonInjectEnvelope
+  - DaemonInvariantAdmission
+  - DaemonNarrativeContext
+  - PlasmidRiskProfile
+  - evaluateInvariantAdmission
+  - evaluatePlasmidPolicy
+  - evaluatePlasmidRisk
+  - normalizeDaemonNarrativeContext
+  - planInvariantIngress
+  - resetDaemonIngressMaxPheromoneIntensity
+  - resetDaemonIngressMaxPlasmidCharge
+  - snapshotDaemonIngressPolicyLimits
+  - syncDaemonIngressMaxPheromoneIntensity
+  - syncDaemonIngressMaxPlasmidCharge
 ---
 
 ```typescript
-import { RUNTIME_POLICY } from "@generated";
 
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 

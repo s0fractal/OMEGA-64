@@ -1,14 +1,23 @@
 ---
 id: SWARM_NODE
 type: module
-description: "Implementation of SWARM_NODE"
+description: Implementation of SWARM_NODE
 tags: []
-min_level: 4
+min_level: 7
+deps:
+  - LOGGER
+vars:
+  - LOGGER
+  - Li
+extra_symbols:
+  - MetaKuramotoNode
+  - SWARM_NODE
+  - SwarmHeartbeat
+  - createMetaKuramotoNode
 ---
 
 ### TypeScript
 ```typescript
-import { LOGGER, Li } from "@generated";
 
 export type SwarmHeartbeat = {
   nodeId: string;

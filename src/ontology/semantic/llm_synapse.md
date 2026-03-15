@@ -1,10 +1,22 @@
 ---
 id: LLM_SYNAPSE
 type: module
-description: "Cognitive Bridge: Communicates with external LLMs to generate emergent thoughts and axioms."
-tags: ["host", "semantic", "oracle"]
-deps: []
-min_level: 6
+description: >-
+  Cognitive Bridge: Communicates with external LLMs to generate emergent
+  thoughts and axioms.
+tags:
+  - host
+  - semantic
+  - oracle
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - LOGGER
+  - Li
+  - Lw
+extra_symbols:
+  - LLM_SYNAPSE
 ---
 
 ### TypeScript
@@ -13,7 +25,6 @@ min_level: 6
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
-import { LOGGER, Li, Lw } from "@generated";
 
 export const LLM_SYNAPSE = {
   /**

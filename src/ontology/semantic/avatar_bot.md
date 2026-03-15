@@ -1,17 +1,26 @@
 ---
 id: AVATAR_BOT
 type: module
-description: "Demonstration script representing a local remote-controlled entity within the Omega-64 grid."
-tags: ["standalone", "client"]
-deps: []
-min_level: 6
+description: >-
+  Demonstration script representing a local remote-controlled entity within the
+  Omega-64 grid.
+tags:
+  - standalone
+  - client
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - LOGGER
+  - Le
+  - Li
+  - Lw
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
-import { LOGGER, Li, Lw, Le } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999; // Assume an atom seeded with this ID

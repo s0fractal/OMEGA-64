@@ -1,9 +1,11 @@
 ---
 id: SERVE_DASHBOARD
 type: module
-description: "Implementation of SERVE_DASHBOARD"
+description: Implementation of SERVE_DASHBOARD
 tags: []
 min_level: 6
+extra_symbols:
+  - SERVE_DASHBOARD
 ---
 
 ### TypeScript

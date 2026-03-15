@@ -1,10 +1,14 @@
 ---
 id: AKASHA_SIGNALING
 type: module
-description: "Migrated from src/06/AKASHA_SIGNALING.ts"
-tags: ["membrane", "host"]
+description: Migrated from src/06/AKASHA_SIGNALING.ts
+tags:
+  - membrane
+  - host
 deps: []
 min_level: 6
+extra_symbols:
+  - AKASHA_SIGNALING
 ---
 
 ### TypeScript

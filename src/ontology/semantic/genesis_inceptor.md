@@ -1,20 +1,27 @@
 ---
 id: GENESIS_INCEPTOR
 type: module
-description: "Migrated from src/07/05/GENESIS_INCEPTOR.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/05/GENESIS_INCEPTOR.ts
+tags:
+  - core
+  - host
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - GENESIS_PROGRAMS
+  - LOGGER
+  - Ld
+  - REIFIED_PROGRAMS
+extra_symbols:
+  - GenesisInceptor
+  - InceptiveProgram
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-import { GENESIS_PROGRAMS, LOGGER, Ld } from "@generated";
-import {
-  REIFIED_PROGRAMS
-} from "@generated";
 
 export interface InceptiveProgram {
   bytecode: number[];

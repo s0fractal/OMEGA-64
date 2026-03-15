@@ -1,20 +1,27 @@
 ---
 id: RELIC_CULTIVATION
 type: module
-description: "Migrated from src/07/02/RELIC_CULTIVATION.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/02/RELIC_CULTIVATION.ts
+tags:
+  - core
+  - host
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - DollFork
+  - LOGGER
+  - Li
+  - MAX_ATOMS
+extra_symbols:
+  - Relic
+  - RelicCultivator
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS, LOGGER, Li } from "@generated";
-import {
-  DollFork
-} from "@generated";
 
 export type Relic = {
   id: string;

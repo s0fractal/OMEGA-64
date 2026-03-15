@@ -1,20 +1,26 @@
 ---
 id: DOLL_FORK_RUNNER
 type: module
-description: "Migrated from src/07/02/DOLL_FORK_RUNNER.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/02/DOLL_FORK_RUNNER.ts
+tags:
+  - core
+  - host
+deps:
+  - LOGGER
+min_level: 7
+vars:
+  - DollFork
+  - LOGGER
+  - Le
+  - MAX_ATOMS
+extra_symbols:
+  - DollForkRunner
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
-import { MAX_ATOMS, LOGGER, AS_WASM_PATH, Le } from "@generated";
-import {
-  DollFork
-} from "@generated";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;

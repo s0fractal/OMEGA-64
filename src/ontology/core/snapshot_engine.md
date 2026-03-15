@@ -1,10 +1,23 @@
 ---
 id: SNAPSHOT_ENGINE
 type: module
-description: "Migrated from src/06/SNAPSHOT_ENGINE.ts"
-tags: ["membrane", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/06/SNAPSHOT_ENGINE.ts
+tags:
+  - membrane
+  - host
+deps:
+  - LOGGER
+  - SEMANTIC_MEMBRANE
+min_level: 9
+vars:
+  - LOGGER
+  - Le
+  - Li
+  - Lw
+  - SEMANTIC_MEMBRANE
+  - STATE_MATRIX
+extra_symbols:
+  - SNAPSHOT_ENGINE
 ---
 
 ### TypeScript
@@ -13,7 +26,6 @@ min_level: 6
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (STATE_MATRIX.buffer)
 
-import { LOGGER, SEMANTIC_MEMBRANE, STATE_MATRIX, Li, Lw, Le } from "@generated";
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {

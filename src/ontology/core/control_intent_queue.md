@@ -1,26 +1,32 @@
 ---
 id: CONTROL_INTENT_QUEUE
 type: module
-tags: ["core", "control", "host"]
-min_level: 6
-
+tags:
+  - core
+  - control
+  - host
+min_level: 8
+vars:
+  - GLYPH_TELEMETRY
+  - GRID_H
+  - GRID_W
+  - LOGGER
+  - Li
+  - Lw
+  - MAX_ATOMS
+  - PREDICTION_MARKET
+  - RUNTIME_POLICY
+  - SCALE
+  - STATE_MATRIX
+extra_symbols:
+  - CONTROL_INTENT_QUEUE
+  - ControlIntentQueueDelegate
+deps:
+  - LOGGER
+  - RUNTIME_POLICY
 ---
 ```typescript
-import { GRID_H, GRID_W, SCALE, LOGGER, Li, Lw } from "@generated";
-import {
-  MAX_ATOMS,
-  STATE_MATRIX
-} from "@generated";
 
-import {
-  PREDICTION_MARKET
-} from "@generated";
-import {
-  RUNTIME_POLICY
-} from "@generated";
-import {
-  GLYPH_TELEMETRY
-} from "@generated";
 export interface ControlIntentQueueDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   importSnapshot(timestamp: string): Promise<{ success?: boolean }>;

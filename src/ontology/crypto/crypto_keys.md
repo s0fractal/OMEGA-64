@@ -13,6 +13,13 @@ vars:
 deps:
   - base64_to_bytes
 description: WebCrypto key management interfaces and import wrappers.
+extra_symbols:
+  - Ed25519SigningKey
+  - Ed25519VerifyKey
+  - HmacKey
+  - import_ed25519_private
+  - import_ed25519_public
+  - import_hmac
 ---
 
 ```typescript

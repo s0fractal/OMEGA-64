@@ -1,25 +1,27 @@
 ---
 id: PHYSIOLOGY_SNAPSHOT
 type: module
-description: "Migrated from src/06/PHYSIOLOGY_SNAPSHOT.ts"
-tags: ["membrane", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/06/PHYSIOLOGY_SNAPSHOT.ts
+tags:
+  - membrane
+  - host
+deps:
+  - HORMONE_BUFFER
+min_level: 9
+vars:
+  - GENETIC_LEDGER_CATALOG
+  - HORMONE_BUFFER_CATALOG
+extra_symbols:
+  - HormoneSnapshot
+  - LedgerSnapshot
+  - PhysiologySnapshot
+  - PhysiologySnapshotInput
+  - capturePhysiologySnapshot
 ---
 
 ### TypeScript
 
 ```typescript
-import {
-  GENETIC_LEDGER_CATALOG,
-  type GeneticLedgerEntry,
-  type GeneticLedgerKey,
-} from "@generated";
-import {
-  HORMONE_BUFFER_CATALOG,
-  type HormoneId,
-  type HormoneSpec,
-} from "@generated";
 import type { LedgerRuntimeSnapshot } from "@generated";
 
 export type PhysiologySnapshotInput = {

@@ -1,9 +1,15 @@
 ---
 id: AUDIT_ENGINE
 type: module
-tags: ["core", "tool", "host", "fs"]
+tags:
+  - core
+  - tool
+  - host
+  - fs
 min_level: 7
-
+extra_symbols:
+  - AUDIT_ENGINE
+  - AuditEngineExocortexDelegate
 ---
 ```typescript
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology

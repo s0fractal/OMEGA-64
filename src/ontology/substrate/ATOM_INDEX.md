@@ -2,8 +2,16 @@
 id: ATOM_INDEX
 type: module
 epoch: 8
-description: "Lightweight ID↔Index registry shared across runtime modules."
-tags: ["00_substrate", "atom", "registry", "index"]
+description: Lightweight ID↔Index registry shared across runtime modules.
+tags:
+  - 00_substrate
+  - atom
+  - registry
+  - index
+extra_symbols:
+  - ATOM_INDEX
+  - IDX_TO_ID
+  - ID_TO_IDX
 ---
 
 # OMEGA-64 | ATOM_INDEX.ts

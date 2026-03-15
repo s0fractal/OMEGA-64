@@ -1,22 +1,36 @@
 ---
 id: GENERIC_LEDGER_PERSISTENCE
 type: module
-tags: ["core", "db", "host", "fs"]
-min_level: 7
-
+tags:
+  - core
+  - db
+  - host
+  - fs
+min_level: 10
+vars:
+  - applyLedgerUpdate
+  - createGeneticLedgerRuntime
+  - createLedgerRuntime
+  - rollbackLedgerUpdate
+  - snapshotLedgerRuntime
+extra_symbols:
+  - GENERIC_LEDGER_PERSISTENCE
+  - LedgerHydrationResult
+  - LedgerPersistenceSummary
+  - LedgerRecord
+  - LedgerSnapshotRecord
+  - appendLedgerRecord
+  - appendLedgerRecordAndMaybeCompact
+  - compactLedgerPersistence
+  - getLogPath
+  - getSnapshotPath
+  - hydrateLedgerRuntime
+  - recordFromApply
+  - recordFromRollback
+deps:
+  - GENERIC_LEDGER_SYSTEM
 ---
 ```typescript
-import {
-  applyLedgerUpdate,
-  createGeneticLedgerRuntime,
-  createLedgerRuntime,
-  type LedgerRuntimeEvent,
-  type LedgerRuntimeSnapshot,
-  type LedgerRuntimeState,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
-} from "@generated";
-import { type GeneticLedgerKey } from "@generated";
 
 export type LedgerRecord<K extends GeneticLedgerKey> =
   | {

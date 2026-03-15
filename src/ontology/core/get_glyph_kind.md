@@ -1,13 +1,20 @@
 ---
 id: get_glyph_kind
 type: pure_fn
-description: "O(1) resolve of glyph category using bitwise shifts"
-deps: [GLYPH_TYPES]
-tags: ["host"]
+description: O(1) resolve of glyph category using bitwise shifts
+deps:
+  - GLYPH_TYPES
+tags:
+  - host
 min_level: 6
 args:
   id: u8
 returns: u8
+vars:
+  - KIND_CONTROL
+  - KIND_CORE
+extra_symbols:
+  - get_glyph_kind
 ---
 
 ### Rust
@@ -25,7 +32,6 @@ return id >> 3;
 ### TypeScript
 
 ```typescript
-import { KIND_CORE, KIND_CONTROL } from "../00/mod.ts";
 
 export function get_glyph_kind(id: number): number {
   if (id <= 3) return KIND_CORE;

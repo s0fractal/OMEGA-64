@@ -1,18 +1,27 @@
 ---
 id: LINEAGE_TRACKER
 type: module
-description: "Migrated from src/07/02/LINEAGE_TRACKER.ts"
-tags: ["core", "host"]
-deps: []
-min_level: 6
+description: Migrated from src/07/02/LINEAGE_TRACKER.ts
+tags:
+  - core
+  - host
+deps:
+  - AKASHA_CODEX
+  - LOGGER
+min_level: 8
+vars:
+  - AKASHA_CODEX
+  - LOGGER
+  - Ld
+  - STATE_MATRIX
+extra_symbols:
+  - LineageTracker
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
-import { STATE_MATRIX, LOGGER, Ld } from "@generated";
-import { AKASHA_CODEX } from "@06";
 
 /**
  * LineageTracker maintains the semantic link between active atoms and their ancestry.

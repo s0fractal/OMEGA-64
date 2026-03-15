@@ -1,11 +1,20 @@
 ---
 id: LOGGER
 type: module
-description: "Cross-platform Host Logger"
-tags: ["host", "console"]
+description: Cross-platform Host Logger
+tags:
+  - host
+  - console
 min_level: 6
 deps: []
 returns: void
+extra_symbols:
+  - LOGGER
+  - Ld
+  - Le
+  - Li
+  - LogLevel
+  - Lw
 ---
 
 ### TypeScript

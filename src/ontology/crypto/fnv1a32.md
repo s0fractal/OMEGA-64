@@ -11,6 +11,8 @@ args: {}
 vars: []
 deps: []
 description: Host implementation of the FNV-1a 32-bit hash.
+extra_symbols:
+  - fnv1a32
 ---
 
 ```typescript

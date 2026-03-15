@@ -1,10 +1,19 @@
 ---
 id: REPLICATION_PROMOTION_ACTION
 type: pure_fn
-description: "Determines the necessary action (promote/stay/rollback) based on Replication promotion evaluation."
-tags: ["core", "control", "host"]
+description: >-
+  Determines the necessary action (promote/stay/rollback) based on Replication
+  promotion evaluation.
+tags:
+  - core
+  - control
+  - host
 min_level: 6
-
+extra_symbols:
+  - REPLICATION_PROMOTION_ACTION
+  - ReplicationPromotionAction
+  - ReplicationPromotionActionInput
+  - evaluateReplicationPromotionAction
 ---
 ```typescript
 import type { ReplicationExecutionMode } from "@generated";

@@ -1,9 +1,11 @@
 ---
 id: read_jsonl
 type: module
-description: "Lightweight JSONL reader generator"
+description: Lightweight JSONL reader generator
 tags: []
 min_level: 0
+extra_symbols:
+  - read_jsonl
 ---
 
 ### TypeScript

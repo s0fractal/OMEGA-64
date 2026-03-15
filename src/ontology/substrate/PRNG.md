@@ -2,8 +2,19 @@
 id: PRNG
 type: module
 epoch: 8
-description: "The Immutable Deterministic Oracle. A seeded Linear Congruential Generator (LCG) for reproducible evolution. Immutable to prevent race conditions in the Memory Matrix."
-tags: ["00_substrate", "prng", "oracle", "deterministic"]
+description: >-
+  The Immutable Deterministic Oracle. A seeded Linear Congruential Generator
+  (LCG) for reproducible evolution. Immutable to prevent race conditions in the
+  Memory Matrix.
+tags:
+  - 00_substrate
+  - prng
+  - oracle
+  - deterministic
+extra_symbols:
+  - PRNG
+  - prng_next
+  - prng_seed_from
 ---
 
 # OMEGA-64 | PRNG.ts | The Immutable Deterministic Oracle

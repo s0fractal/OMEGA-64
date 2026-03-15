@@ -1,15 +1,22 @@
 ---
 id: llm_soul
 type: module
-description: "Implementation of llm_soul"
+description: Implementation of llm_soul
 tags: []
-min_level: 5
+min_level: 7
+vars:
+  - LOGGER
+  - Ld
+  - Le
+  - Li
+  - Lw
+deps:
+  - LOGGER
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-import { LOGGER, Ld, Li, Lw, Le } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999;

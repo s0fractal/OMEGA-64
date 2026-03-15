@@ -1,8 +1,10 @@
 ---
 id: TOPOLOGICAL_SIGNATURE
 type: module
-name: "Topological Signature Engine"
-description: "Generates 2D visual and 1D thread signatures from deterministic states, with optional aesthetic non-determinism."
+name: Topological Signature Engine
+description: >-
+  Generates 2D visual and 1D thread signatures from deterministic states, with
+  optional aesthetic non-determinism.
 tags:
   - crypto
   - host
@@ -13,18 +15,24 @@ deps:
   - sha256_hex
   - stable_stringify
   - to_int16_big_endian
+vars:
+  - fnv1a32
+  - make_xor_shift32
+  - normalize_hex64
+  - sha256_hex_bytes
+  - stable_stringify
+  - to_int16_big_endian
+extra_symbols:
+  - ProjectionOptions
+  - TOPOLOGICAL_SIGNATURE
+  - ThreadProjectionConfig
+  - TopologicalSignature
+  - TopologicalSignatureInput
+  - deriveFeatureVector
 ---
 
 ### TypeScript
 ```typescript
-import {
-  fnv1a32,
-  make_xor_shift32,
-  normalize_hex64,
-  sha256_hex_bytes,
-  stable_stringify,
-  to_int16_big_endian,
-} from "@generated";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));

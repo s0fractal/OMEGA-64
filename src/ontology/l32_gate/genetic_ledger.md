@@ -1,14 +1,24 @@
 ---
 id: GENETIC_LEDGER
 type: module
-description: "Implementation of GENETIC_LEDGER"
+description: Implementation of GENETIC_LEDGER
 tags: []
-min_level: 3
+min_level: 8
+vars:
+extra_symbols:
+  - GENETIC_LEDGER
+  - GENETIC_LEDGER_CATALOG
+  - GeneticLedgerEntry
+  - GeneticLedgerKey
+  - LedgerMutability
+  - geneticLedgerBaseline
+  - geneticLedgerEntryByKey
+deps:
 ---
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "@generated";
+import { RUNTIME_POLICY } from "../mod.ts";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"

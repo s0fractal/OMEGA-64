@@ -1,10 +1,15 @@
 ---
 id: STATE_MATRIX
 type: module
-description: "Implementation of STATE_MATRIX"
+description: Implementation of STATE_MATRIX
 tags: []
 min_level: 0
-deps: [memory_views, SYSTEM_CONSTANTS, VmProps, VmOpcodes, VmSys]
+deps:
+  - memory_views
+  - SYSTEM_CONSTANTS
+  - VmProps
+  - VmOpcodes
+  - VmSys
 vars:
   - ATOM_CONTEXT_SIZE
   - ATOM_INSTRUCTION_SIZE
@@ -83,6 +88,11 @@ vars:
   - wasmMemory
   - xs
   - ys
+extra_symbols:
+  - STATE_MATRIX
+  - SYNC
+  - clampResourceRaw
+  - toClampedEnergyRaw
 ---
 
 ### TypeScript

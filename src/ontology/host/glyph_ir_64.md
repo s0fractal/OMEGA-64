@@ -1,21 +1,52 @@
 ---
 id: glyph_ir_64
 type: module
-description: "Host UI types and caching maps for the 64-codon matrix."
-tags: ["host", "class"]
-deps: [GLYPH_TYPES, GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT, get_glyph_kind]
+description: Host UI types and caching maps for the 64-codon matrix.
+tags:
+  - host
+  - class
+deps:
+  - GLYPH_TYPES
+  - GLYPH_ARITY_LUT
+  - GLYPH_ENERGY_LUT
+  - GLYPH_RGB_LUT
+  - GLYPH_LEGACY_OPCODE_LUT
+  - get_glyph_kind
 min_level: 7
+vars:
+  - GLYPH_ARITY_LUT
+  - GLYPH_ENERGY_LUT
+  - GLYPH_LEGACY_OPCODE_LUT
+  - GLYPH_RGB_LUT
+  - KIND_CATALYTIC
+  - KIND_CONTROL
+  - KIND_CORE
+  - KIND_MEMORY
+  - KIND_REGULATORY
+  - KIND_RESERVE
+  - KIND_STRUCTURAL
+  - KIND_TRANSPORT
+  - get_glyph_kind
+extra_symbols:
+  - BRIDGE_GLYPH_IDS
+  - GLYPH_SPECS
+  - GLYPH_SPEC_BY_ID
+  - GLYPH_SPEC_BY_OPCODE
+  - GlyphKind
+  - GlyphSpec
+  - GlyphStabilityClass
+  - buildGlyphSpecs
+  - defaultReductionRuleRef
+  - defaultStabilityClass
+  - glyphSpecById
+  - glyphSpecByLegacyOpcode
+  - isCoreGlyph
+  - listGlyphSpecsByKind
 ---
 
 ### TypeScript
 ```typescript
-import {
-  KIND_CORE, KIND_CONTROL, KIND_TRANSPORT, KIND_STRUCTURAL,
-  KIND_CATALYTIC, KIND_REGULATORY, KIND_MEMORY, KIND_RESERVE,
-  GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_RGB_LUT, GLYPH_LEGACY_OPCODE_LUT
-} from "../00/mod.ts";
 
-import { get_glyph_kind } from "@generated";
 
 export type GlyphKind =
   | "core"

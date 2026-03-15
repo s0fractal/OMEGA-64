@@ -11,6 +11,8 @@ args: {}
 vars: []
 deps: []
 description: Deterministically stringifies JSON objects for signing.
+extra_symbols:
+  - stable_stringify
 ---
 
 ```typescript
