@@ -5,7 +5,7 @@ export * from "./DOLL_FORK_MATRIX.ts";
 export * from "./RUN_STAGE8_TICKS.ts";
 export * from "./LINEAGE_TRACKER.ts";
 export * from "./SYSTEM_START.ts";
-export * from "./apply_vector_maps.ts";
+
 export * from "./export_stats.ts";
 export * from "./RELIC_CULTIVATION.ts";
 export * from "./export_rust.ts";
