@@ -1,9 +1,30 @@
-// OMEGA-64 | invariant_packet.ts
-// Signed invariant packet trace for invariant bridging
+---
+id: INVARIANT_PACKET
+type: module
+name: "Invariant Packet"
+description: "Cross-chain boundary invariant packet serialization and cryptographic digest tools."
+tags:
+  - crypto
+  - host
+deps:
+  - base64_to_bytes
+  - bytes_to_base64
+  - crypto_keys
+  - sha256_hex
+  - stable_stringify
+---
 
-import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_hmac, sha256_hex, stable_stringify } from "@generated";
+### TypeScript
+```typescript
+import {
+  base64_to_bytes,
+  bytes_to_base64,
+  import_hmac,
+  sha256_hex,
+  stable_stringify,
+} from "@generated";
 
-export interface INVARIANT_PACKET__08_00_InvariantPacket {
+export interface INVARIANT_PACKET {
   version: string;
   tick_anchor: number;
   canon_index_chain_checked: boolean;
@@ -35,13 +56,13 @@ const packetSigningSecret = (
 };
 
 const canonicalInvariantPacket = (
-  packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
-): INVARIANT_PACKET__08_00_InvariantPacket => {
+  packet: Partial<INVARIANT_PACKET>,
+): INVARIANT_PACKET => {
   const tickAnchor =
     Number.isInteger(packet.tick_anchor) && packet.tick_anchor! >= 0
       ? packet.tick_anchor!
       : 0;
-  const normalized: INVARIANT_PACKET__08_00_InvariantPacket = {
+  const normalized: INVARIANT_PACKET = {
     version: INVARIANT_PACKET_VERSION,
     tick_anchor: tickAnchor,
     canon_index_chain_checked: packet.canon_index_chain_checked === true,
@@ -72,7 +93,7 @@ const canonicalInvariantPacket = (
 };
 
 const canonicalInvariantPacketPayload = (
-  packet: INVARIANT_PACKET__08_00_InvariantPacket,
+  packet: INVARIANT_PACKET,
 ): string =>
   stable_stringify({
     version: packet.version,
@@ -117,11 +138,11 @@ const invariantPacketFailures = (
   ok: boolean,
 ): string[] => ok ? [] : [`INVARIANT_PACKET_${label}_FAIL`];
 
-export const INVARIANT_PACKET_INVARIANT_PACKET = {
+export const INVARIANT_PACKET = {
   VERSION: INVARIANT_PACKET_VERSION,
 
   hash: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket> | string,
+    packet: Partial<INVARIANT_PACKET> | string,
   ): Promise<string> => {
     if (typeof packet === "string") {
       return await sha256_hex(stable_stringify(packet));
@@ -131,12 +152,12 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
   },
 
   seal: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+    packet: Partial<INVARIANT_PACKET>,
     signingKey?: InvariantPacketSigningKey,
-  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> => {
+  ): Promise<INVARIANT_PACKET> => {
     const normalized = canonicalInvariantPacket(packet);
-    const packetHash = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
-    const sealed: INVARIANT_PACKET__08_00_InvariantPacket = {
+    const packetHash = await INVARIANT_PACKET.hash(normalized);
+    const sealed: INVARIANT_PACKET = {
       ...normalized,
       packet_hash: packetHash,
     };
@@ -152,7 +173,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
   },
 
   verify: async (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+    packet: Partial<INVARIANT_PACKET>,
     verifyKey?: InvariantPacketSigningKey,
   ): Promise<{
     ok: boolean;
@@ -186,7 +207,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
       };
     }
 
-    const expected = await INVARIANT_PACKET_INVARIANT_PACKET.hash(normalized);
+    const expected = await INVARIANT_PACKET.hash(normalized);
     if (expected !== packet.packet_hash) {
       reasons.push("PACKET_HASH_MISMATCH");
     }
@@ -227,8 +248,8 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
   fromInvariantReport: async (
     report: any, // Use `any` to break circular dependency with SHIMS.ts ReplayInvariantReport type
     opts: { tick_anchor: number; witness?: string } = { tick_anchor: 0 },
-  ): Promise<INVARIANT_PACKET__08_00_InvariantPacket> =>
-    await INVARIANT_PACKET_INVARIANT_PACKET.seal({
+  ): Promise<INVARIANT_PACKET> =>
+    await INVARIANT_PACKET.seal({
       tick_anchor: opts.tick_anchor,
       witness: opts.witness,
       canon_index_chain_checked: report?.index_chain_checked === true,
@@ -242,7 +263,7 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     }),
 
   toInvariantReport: (
-    packet: Partial<INVARIANT_PACKET__08_00_InvariantPacket>,
+    packet: Partial<INVARIANT_PACKET>,
   ): any => {
     const p = canonicalInvariantPacket(packet);
     const out: Record<string, unknown> = {
@@ -271,3 +292,4 @@ export const INVARIANT_PACKET_INVARIANT_PACKET = {
     return out;
   },
 };
+```

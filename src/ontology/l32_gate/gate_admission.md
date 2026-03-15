@@ -1,6 +1,14 @@
-// OMEGA-64 | gate_admission.ts
-// L32 Gate Causal Bridge Admission rules
+---
+id: CANON_CAUSAL_BRIDGE
+type: module
+name: "Canon Causal Bridge Admission"
+description: "Gate admission verification logic prioritizing invariant integrity chains."
+tags:
+  - gate
+---
 
+### TypeScript
+```typescript
 export type BridgeInvariantReportLike = {
   index_chain_checked?: boolean;
   index_chain_ok?: boolean;
@@ -128,3 +136,4 @@ export const CANON_CAUSAL_BRIDGE = {
     resolveBridgeMode(report),
   isCanonBound: (proposal: unknown) => proposalIsCanonBound(proposal),
 };
+```

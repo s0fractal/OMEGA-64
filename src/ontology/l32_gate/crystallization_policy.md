@@ -1,6 +1,18 @@
-// OMEGA-64 | crystallization.ts
-// Gate Admission & Consensus Crystallization Policy
+---
+id: CRYSTALLIZATION_CONFIG
+type: module
+name: "Crystallization Config"
+description: "Gate admission & consensus crystallization policy parameters."
+tags:
+  - gate
+  - host
+deps:
+  - sha256_hex
+  - stable_stringify
+---
 
+### TypeScript
+```typescript
 import { stable_stringify, sha256_hex } from "@generated";
 
 const CRY_DATA = {
@@ -16,7 +28,8 @@ const CRY_DATA = {
   gateAdmissionTopAgents: 8,
   verifyLedgerChain: true,
 };
-export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG = Object.assign(
+
+export const CRYSTALLIZATION_CONFIG = Object.assign(
   () => CRY_DATA,
   CRY_DATA,
 );
@@ -37,7 +50,7 @@ const canonicalCrystallizationPolicyPayload = (): string =>
     verifyLedgerChain: CRY_DATA.verifyLedgerChain,
   });
 
-export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
+export const CRYSTALLIZATION_POLICY = {
   canonicalPayload: canonicalCrystallizationPolicyPayload,
   hash: async (): Promise<string> =>
     await sha256_hex(canonicalCrystallizationPolicyPayload()),
@@ -47,8 +60,7 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
       | { policy_hash?: string; policy_version?: string }
       | { policyHash?: string; policyVersion?: string },
   ): Promise<boolean> => {
-    const expectedHash = await CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY
-      .hash();
+    const expectedHash = await CRYSTALLIZATION_POLICY.hash();
     if (typeof input === "undefined") return true;
     if (typeof input === "string") return input === expectedHash;
     const maybeVersion = "policy_version" in input
@@ -69,3 +81,4 @@ export const CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY = {
     return true;
   },
 };
+```

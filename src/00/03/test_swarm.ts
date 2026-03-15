@@ -1,11 +1,11 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
-import { GRID_W, GRID_H , GRID_CELLS} from "../mod.ts";
+import { GRID_CELLS, GRID_W } from "../mod.ts";
 // OMEGA-64 | test_swarm.ts | Vector 3 Verification
 import { STATE_MATRIX } from "../mod.ts";
 import {
   CONTEXT_OFFSET,
   HIVE_MEMORY_OFFSET,
-  SIGNAL_GRID_OFFSET
+  SIGNAL_GRID_OFFSET,
 } from "../mod.ts";
 
 async function runTest() {
@@ -143,7 +143,8 @@ async function runTest() {
   ); // 200 << 8 | 5 = 0xC805
 
   if (
-    STATE_MATRIX.get_role(0) === 1 && hiveView[1] === 88 && regsView[0] === 88 &&
+    STATE_MATRIX.get_role(0) === 1 && hiveView[1] === 88 &&
+    regsView[0] === 88 &&
     (pValue & 0xFFFF) === 0xc805
   ) {
     console.log(

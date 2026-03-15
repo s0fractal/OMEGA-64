@@ -9,7 +9,6 @@ min_level: 3
 ### TypeScript
 ```typescript
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
-import { LOAD_LOAD as LOAD } from "@generated";
 import { LOGGER } from "@generated";
 import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
 import { STATE_MATRIX } from "@generated";
@@ -101,12 +100,7 @@ export const mergeGateProposals = (
     const agentPhase = p.agent_phase_u16 ?? 0;
     for (const d of p.delta) {
       const levelPhase = state.phase_u16 ? state.phase_u16[d.level] : 0;
-      const levelEntropy = state.entropy_i16 ? state.entropy_i16[d.level] : 0;
-      const load = LOAD.calculate({
-        entropy: levelEntropy,
-        phase: agentPhase,
-        weight: Math.abs(d.value),
-      }, levelPhase);
+      const load = 1.0; // Legacy LOAD projection
       physicalCost += Math.abs(d.value) + load;
     }
 

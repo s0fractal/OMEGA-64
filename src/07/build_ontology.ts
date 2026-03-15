@@ -714,7 +714,6 @@ const resolveSysPath = (id: string) => {
   return n ? `../_/${formatLevel(n.level)}/${id}.ts` : `../_/00/${id}.ts`;
 };
 
-mainTsOut += `export * from "../00/SHIMS.ts";\n`;
 mainTsOut += `const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";\n`;
 mainTsOut += `const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";\n`;
 mainTsOut += `const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;\n`;

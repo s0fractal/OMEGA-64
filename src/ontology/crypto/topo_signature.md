@@ -1,17 +1,39 @@
-// OMEGA-64 | topo_signature.ts
-// Topological Signatures and 2D/1D Projections
+---
+id: TOPOLOGICAL_SIGNATURE
+type: module
+name: "Topological Signature Engine"
+description: "Generates 2D visual and 1D thread signatures from deterministic states, with optional aesthetic non-determinism."
+tags:
+  - crypto
+  - host
+deps:
+  - fnv1a32
+  - make_xor_shift32
+  - normalize_hex64
+  - sha256_hex
+  - stable_stringify
+  - to_int16_big_endian
+---
 
-import { stable_stringify, sha256_hex_bytes, fnv1a32, normalize_hex64, import_ed25519_public, bytes_to_base64 } from "@generated";
-import { to_int16_big_endian, make_xor_shift32 } from "@generated";
+### TypeScript
+```typescript
+import {
+  fnv1a32,
+  make_xor_shift32,
+  normalize_hex64,
+  sha256_hex_bytes,
+  stable_stringify,
+  to_int16_big_endian,
+} from "@generated";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
 const clamp01 = (x: number): number => Math.max(0, Math.min(1, x));
 const normalize_angle = (a: number): number => {
-    let r = a % (Math.PI * 2);
-    if (r <= -Math.PI) r += Math.PI * 2;
-    if (r > Math.PI) r -= Math.PI * 2;
-    return r;
+  let r = a % (Math.PI * 2);
+  if (r <= -Math.PI) r += Math.PI * 2;
+  if (r > Math.PI) r -= Math.PI * 2;
+  return r;
 };
 
 export const deriveFeatureVector = (
@@ -32,19 +54,19 @@ export const deriveFeatureVector = (
   return out;
 };
 
-export interface TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions {
+export interface ProjectionOptions {
   resolution?: number;
   deterministic?: boolean;
   noiseAmplitude?: number;
   noiseAlpha?: number;
 }
 
-export interface TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig {
+export interface ThreadProjectionConfig {
   radial_bins: number;
   angular_bins: number;
 }
 
-export interface TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature {
+export interface TopologicalSignature {
   artifact_hash: string;
   state_hash: string;
   tick: number;
@@ -55,7 +77,7 @@ export interface TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature {
   witness?: string;
 }
 
-export interface TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignatureInput {
+export interface TopologicalSignatureInput {
   artifact_hash: string;
   state_hash: string;
   tick: number;
@@ -65,23 +87,20 @@ export interface TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignatureInput {
 }
 
 const TOPO_PROJECTION_VERSION = "topo-signature/v1";
-const TOPO_CANONICAL_2D_OPTIONS: Required<
-  TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions
-> = {
+const TOPO_CANONICAL_2D_OPTIONS: Required<ProjectionOptions> = {
   resolution: 256,
   deterministic: true,
   noiseAmplitude: 20,
   noiseAlpha: 50,
 };
-const TOPO_CANONICAL_THREAD_CONFIG:
-  TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig = {
-    radial_bins: 64,
-    angular_bins: 256,
-  };
+const TOPO_CANONICAL_THREAD_CONFIG: ThreadProjectionConfig = {
+  radial_bins: 64,
+  angular_bins: 256,
+};
 
 const normalizeProjectionOptions = (
-  options: TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions = {},
-): Required<TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions> => {
+  options: ProjectionOptions = {},
+): Required<ProjectionOptions> => {
   const resolution = Number.isFinite(options.resolution)
     ? Math.max(16, Math.min(1024, Math.floor(options.resolution!)))
     : TOPO_CANONICAL_2D_OPTIONS.resolution;
@@ -97,9 +116,8 @@ const normalizeProjectionOptions = (
 };
 
 const normalizeThreadConfig = (
-  config: TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig =
-    TOPO_CANONICAL_THREAD_CONFIG,
-): TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig => {
+  config: ThreadProjectionConfig = TOPO_CANONICAL_THREAD_CONFIG,
+): ThreadProjectionConfig => {
   const radial_bins = Number.isFinite(config.radial_bins)
     ? Math.max(4, Math.min(256, Math.floor(config.radial_bins)))
     : TOPO_CANONICAL_THREAD_CONFIG.radial_bins;
@@ -182,7 +200,7 @@ const toOrganismState = (
 
 const project2D = (
   state: unknown,
-  options: TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions = {},
+  options: ProjectionOptions = {},
 ): Uint8Array => {
   const opts = normalizeProjectionOptions(options);
   const resolution = opts.resolution;
@@ -235,8 +253,7 @@ const project2D = (
 const projectThread1D = (
   rgba: Uint8Array,
   resolution: number,
-  config: TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig =
-    TOPO_CANONICAL_THREAD_CONFIG,
+  config: ThreadProjectionConfig = TOPO_CANONICAL_THREAD_CONFIG,
 ): Int16Array => {
   const cfg = normalizeThreadConfig(config);
   const bins = cfg.radial_bins * cfg.angular_bins;
@@ -261,12 +278,6 @@ const projectThread1D = (
         Math.max(0, Math.floor(theta * (cfg.angular_bins - 1))),
       );
       const k = rBin * cfg.angular_bins + aBin;
-      // NOTE: The instruction provided a line `const key = await import_ed25519_public(verificationKeyB64);`
-      // but `verificationKeyB64` is not defined in this scope, and `await` is not allowed at the top level
-      // or in a non-async function. Assuming this was a placeholder or an incomplete instruction,
-      // I'm omitting it to maintain syntactical correctness and avoid undefined variables.
-      // If this line is critical, please provide the full context for `verificationKeyB64` and
-      // ensure `projectThread1D` is an async function.
       const idx = (y * resolution + x) * 4;
       const lum = Math.round(
         (rgba[idx] + rgba[idx + 1] + rgba[idx + 2]) / 3 - 127,
@@ -289,7 +300,7 @@ const canonicalCausalRefs = (refs: unknown): string[] => {
   return Array.from(out).sort();
 };
 
-export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
+export const TOPOLOGICAL_SIGNATURE = {
   PROJECTION_VERSION: TOPO_PROJECTION_VERSION,
   CANONICAL_2D_OPTIONS: TOPO_CANONICAL_2D_OPTIONS,
   CANONICAL_THREAD_CONFIG: TOPO_CANONICAL_THREAD_CONFIG,
@@ -302,8 +313,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
   hash2D: async (
     state: unknown,
-    options: TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions =
-      TOPO_CANONICAL_2D_OPTIONS,
+    options: ProjectionOptions = TOPO_CANONICAL_2D_OPTIONS,
   ): Promise<string> => {
     const rgba = project2D(state, options);
     return await sha256_hex_bytes(rgba);
@@ -311,10 +321,8 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
 
   hashThread1D: async (
     state: unknown,
-    options: TOPOLOGICAL_SIGNATURE__08_00_ProjectionOptions =
-      TOPO_CANONICAL_2D_OPTIONS,
-    config: TOPOLOGICAL_SIGNATURE__08_00_ThreadProjectionConfig =
-      TOPO_CANONICAL_THREAD_CONFIG,
+    options: ProjectionOptions = TOPO_CANONICAL_2D_OPTIONS,
+    config: ThreadProjectionConfig = TOPO_CANONICAL_THREAD_CONFIG,
   ): Promise<string> => {
     const opts = normalizeProjectionOptions(options);
     const rgba = project2D(state, opts);
@@ -325,8 +333,8 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   snapshotToOrganismState: toOrganismState,
 
   build: async (
-    input: TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignatureInput,
-  ): Promise<TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature> => {
+    input: TopologicalSignatureInput,
+  ): Promise<TopologicalSignature> => {
     const artifactHash = normalize_hex64(input.artifact_hash);
     const stateHash = normalize_hex64(input.state_hash);
     if (!artifactHash) {
@@ -362,7 +370,7 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
   },
 
   verify: async (
-    signature: TOPOLOGICAL_SIGNATURE__08_00_TopologicalSignature,
+    signature: TopologicalSignature,
     state: unknown,
   ): Promise<{ ok: boolean; reasons: string[]; failures: string[] }> => {
     const reasons: string[] = [];
@@ -402,3 +410,4 @@ export const TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE = {
     return { ok: reasons.length === 0, reasons, failures: [...reasons] };
   },
 };
+```

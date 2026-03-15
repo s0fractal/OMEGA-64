@@ -1,7 +1,7 @@
 # OMEGA-64 | RUST CORE LOGIC
 
-*Generated: 2026-03-14T21:30:34.178Z*
-*Exported Files: 193*
+*Generated: 2026-03-15T04:12:16.110Z*
+*Exported Files: 195*
 
 ---
 
@@ -25,7 +25,7 @@
 - src/00/sigma_core/src/ontology_gen/00/VmOpcodes.rs
 - src/00/sigma_core/src/ontology_gen/00/VmProps.rs
 - src/00/sigma_core/src/ontology_gen/00/VmSys.rs
-- src/00/sigma_core/src/ontology_gen/00/checkpoint_chain.rs
+- src/00/sigma_core/src/ontology_gen/00/append_jsonl.rs
 - src/00/sigma_core/src/ontology_gen/00/clamp01.rs
 - src/00/sigma_core/src/ontology_gen/00/dir4_x.rs
 - src/00/sigma_core/src/ontology_gen/00/dir4_y.rs
@@ -37,12 +37,13 @@
 - src/00/sigma_core/src/ontology_gen/00/fast_min.rs
 - src/00/sigma_core/src/ontology_gen/00/fast_sign.rs
 - src/00/sigma_core/src/ontology_gen/00/immune_check.rs
-- src/00/sigma_core/src/ontology_gen/00/ledger_chain.rs
 - src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
 - src/00/sigma_core/src/ontology_gen/00/mod.rs
 - src/00/sigma_core/src/ontology_gen/00/normalize_angle.rs
 - src/00/sigma_core/src/ontology_gen/00/pack_glyph_header.rs
 - src/00/sigma_core/src/ontology_gen/00/prng_next.rs
+- src/00/sigma_core/src/ontology_gen/00/read_jsonl.rs
+- src/00/sigma_core/src/ontology_gen/00/read_jsonl_lines.rs
 - src/00/sigma_core/src/ontology_gen/00/sigma_atom_role.rs
 - src/00/sigma_core/src/ontology_gen/00/sigma_isa.rs
 - src/00/sigma_core/src/ontology_gen/00/sigma_math.rs
@@ -51,10 +52,12 @@
 - src/00/sigma_core/src/ontology_gen/00/unpack_glyph_kind.rs
 - src/00/sigma_core/src/ontology_gen/01/OMEGA_MEMORY_LAYOUT.rs
 - src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
+- src/00/sigma_core/src/ontology_gen/01/checkpoint_chain.rs
 - src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
 - src/00/sigma_core/src/ontology_gen/01/clamp_world_x.rs
 - src/00/sigma_core/src/ontology_gen/01/clamp_world_y.rs
 - src/00/sigma_core/src/ontology_gen/01/in_grid.rs
+- src/00/sigma_core/src/ontology_gen/01/ledger_chain.rs
 - src/00/sigma_core/src/ontology_gen/01/math_cos.rs
 - src/00/sigma_core/src/ontology_gen/01/math_sin.rs
 - src/00/sigma_core/src/ontology_gen/01/mod.rs
@@ -127,12 +130,12 @@
 - src/00/sigma_core/src/ontology_gen/02/sigma_structure.rs
 - src/00/sigma_core/src/ontology_gen/02/store_clamped_pos.rs
 - src/00/sigma_core/src/ontology_gen/03/ATOMIC_LEDGER.rs
-- src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_LEDGER.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_VALIDATOR.rs
 - src/00/sigma_core/src/ontology_gen/03/GENETIC_LEDGER.rs
+- src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
 - src/00/sigma_core/src/ontology_gen/03/accumulate_metabolism_stats.rs
 - src/00/sigma_core/src/ontology_gen/03/add_resonance.rs
 - src/00/sigma_core/src/ontology_gen/03/apply_bond_springs.rs
@@ -153,15 +156,14 @@
 - src/00/sigma_core/src/ontology_gen/03/tick_membrane_physics.rs
 - src/00/sigma_core/src/ontology_gen/04/P2P_CODEC.rs
 - src/00/sigma_core/src/ontology_gen/04/P2P_FEDERATION.rs
-- src/00/sigma_core/src/ontology_gen/04/STATE_MATRIX.rs
+- src/00/sigma_core/src/ontology_gen/04/PULSE.rs
+- src/00/sigma_core/src/ontology_gen/04/PULSE_WORKER.rs
 - src/00/sigma_core/src/ontology_gen/04/SWARM_NEXUS.rs
 - src/00/sigma_core/src/ontology_gen/04/SWARM_NODE.rs
 - src/00/sigma_core/src/ontology_gen/04/evaluate_opcodes.rs
 - src/00/sigma_core/src/ontology_gen/04/mod.rs
 - src/00/sigma_core/src/ontology_gen/04/tick_structure_grid.rs
 - src/00/sigma_core/src/ontology_gen/05/AVATAR_ENGINE.rs
-- src/00/sigma_core/src/ontology_gen/05/PULSE.rs
-- src/00/sigma_core/src/ontology_gen/05/PULSE_WORKER.rs
 - src/00/sigma_core/src/ontology_gen/05/SEMANTIC_MEMBRANE.rs
 - src/00/sigma_core/src/ontology_gen/05/SOVEREIGN_ORACLE.rs
 - src/00/sigma_core/src/ontology_gen/05/execute_atom.rs
@@ -226,6 +228,7 @@ pub use ontology_gen::L06::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/COS_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/COS_LUT.md
 #![allow(unused_imports)]
 
 pub const COS_LUT: [i16; 256] = [32767, 32757, 32728, 32678, 32609, 32521, 32412, 32285, 32137, 31971, 31785, 31580, 31356, 31113, 30852, 30571, 30273, 29956, 29621, 29268, 28898, 28510, 28105, 27683, 27245, 26790, 26319, 25832, 25329, 24811, 24279, 23731, 23170, 22594, 22005, 21403, 20787, 20159, 19519, 18868, 18204, 17530, 16846, 16151, 15446, 14732, 14010, 13279, 12539, 11793, 11039, 10278, 9512, 8739, 7962, 7179, 6393, 5602, 4808, 4011, 3212, 2410, 1608, 804, 0, -804, -1608, -2410, -3212, -4011, -4808, -5602, -6393, -7179, -7962, -8739, -9512, -10278, -11039, -11793, -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594, -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956, -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757, -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571, -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731, -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279, -12539, -11793, -11039, -10278, -9512, -8739, -7962, -7179, -6393, -5602, -4808, -4011, -3212, -2410, -1608, -804, 0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 6393, 7179, 7962, 8739, 9512, 10278, 11039, 11793, 12539, 13279, 14010, 14732, 15446, 16151, 16846, 17530, 18204, 18868, 19519, 20159, 20787, 21403, 22005, 22594, 23170, 23731, 24279, 24811, 25329, 25832, 26319, 26790, 27245, 27683, 28105, 28510, 28898, 29268, 29621, 29956, 30273, 30571, 30852, 31113, 31356, 31580, 31785, 31971, 32137, 32285, 32412, 32521, 32609, 32678, 32728, 32757];
@@ -237,6 +240,7 @@ pub const COS_LUT: [i16; 256] = [32767, 32757, 32728, 32678, 32609, 32521, 32412
 ## FILE: src/00/sigma_core/src/ontology_gen/00/C_LOG2_C_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/C_LOG2_C_LUT.md
 #![allow(unused_imports)]
 
 pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000];
@@ -248,6 +252,7 @@ pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651
 ## FILE: src/00/sigma_core/src/ontology_gen/00/ENV_PARSE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/env_parse.md
 #![allow(unused_imports)]
 
 
@@ -258,6 +263,7 @@ pub const C_LOG2_C_LUT: [i32; 65] = [0, 0, 2000, 4755, 8000, 11610, 15510, 19651
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GENESIS_PREDATOR_SCRIPT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/genomes/GENESIS_PREDATOR_SCRIPT.md
 #![allow(unused_imports)]
 
 pub const GENESIS_PREDATOR_SCRIPT: [u8; 64] = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4, 1, 0, 1, 2, 0, 1, 3, 50, 1, 4, 0, 5, 3, 4, 1, 0, 10, 96, 1, 0, 1, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -269,6 +275,7 @@ pub const GENESIS_PREDATOR_SCRIPT: [u8; 64] = [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_ARITY_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ARITY_LUT.md
 #![allow(unused_imports)]
 
 pub const GLYPH_ARITY_LUT: [u8; 64] = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 3, 2, 2, 0, 0, 0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -280,6 +287,7 @@ pub const GLYPH_ARITY_LUT: [u8; 64] = [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2,
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_ENERGY_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_ENERGY_LUT.md
 #![allow(unused_imports)]
 
 pub const GLYPH_ENERGY_LUT: [u8; 64] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 2, 20, 50, 10, 0, 1, 3, 4, 6, 2, 1, 1, 1, 1, 4, 2, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -291,6 +299,7 @@ pub const GLYPH_ENERGY_LUT: [u8; 64] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_LEGACY_OPCODE_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
 #![allow(unused_imports)]
 
 pub const GLYPH_LEGACY_OPCODE_LUT: [u8; 64] = [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
@@ -302,6 +311,7 @@ pub const GLYPH_LEGACY_OPCODE_LUT: [u8; 64] = [255, 255, 255, 255, 255, 255, 255
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_RGB_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_RGB_LUT.md
 #![allow(unused_imports)]
 
 pub const GLYPH_RGB_LUT: [u8; 192] = [255, 255, 255, 128, 128, 128, 0, 0, 0, 255, 0, 255, 255, 77, 77, 254, 87, 68, 251, 98, 60, 245, 109, 51, 238, 121, 42, 230, 132, 34, 220, 143, 27, 209, 153, 21, 199, 162, 15, 188, 170, 11, 179, 179, 7, 153, 170, 4, 131, 163, 2, 110, 157, 1, 93, 154, 0, 77, 153, 0, 62, 154, 0, 48, 157, 1, 34, 163, 2, 21, 170, 4, 7, 179, 7, 11, 188, 29, 15, 199, 52, 21, 209, 77, 27, 220, 104, 34, 230, 132, 42, 238, 160, 51, 245, 187, 60, 251, 212, 68, 254, 235, 77, 255, 255, 84, 237, 254, 91, 219, 251, 96, 201, 245, 100, 183, 238, 103, 166, 230, 105, 151, 220, 105, 136, 209, 104, 123, 199, 102, 111, 188, 100, 100, 179, 105, 98, 170, 109, 95, 163, 113, 93, 157, 117, 92, 154, 122, 92, 153, 129, 92, 154, 138, 93, 157, 149, 95, 163, 163, 98, 170, 179, 100, 179, 188, 102, 180, 199, 104, 180, 209, 105, 178, 220, 105, 174, 229, 103, 166, 238, 100, 156, 245, 96, 141, 251, 91, 123, 254, 84, 101];
@@ -313,6 +323,7 @@ pub const GLYPH_RGB_LUT: [u8; 192] = [255, 255, 255, 128, 128, 128, 0, 0, 0, 255
 ## FILE: src/00/sigma_core/src/ontology_gen/00/GLYPH_TYPES.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_TYPES.md
 #![allow(unused_imports)]
 
 // Enum: GLYPH_TYPES
@@ -336,6 +347,7 @@ pub const STAB_RESERVE: u8 = 3;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/OPCODE_ARITY_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OPCODE_ARITY_LUT.md
 #![allow(unused_imports)]
 
 pub const OPCODE_ARITY_LUT: [u8; 248] = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -347,6 +359,7 @@ pub const OPCODE_ARITY_LUT: [u8; 248] = [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 
 ## FILE: src/00/sigma_core/src/ontology_gen/00/SIN_LUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/SIN_LUT.md
 #![allow(unused_imports)]
 
 pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 6393, 7179, 7962, 8739, 9512, 10278, 11039, 11793, 12539, 13279, 14010, 14732, 15446, 16151, 16846, 17530, 18204, 18868, 19519, 20159, 20787, 21403, 22005, 22594, 23170, 23731, 24279, 24811, 25329, 25832, 26319, 26790, 27245, 27683, 28105, 28510, 28898, 29268, 29621, 29956, 30273, 30571, 30852, 31113, 31356, 31580, 31785, 31971, 32137, 32285, 32412, 32521, 32609, 32678, 32728, 32757, 32767, 32757, 32728, 32678, 32609, 32521, 32412, 32285, 32137, 31971, 31785, 31580, 31356, 31113, 30852, 30571, 30273, 29956, 29621, 29268, 28898, 28510, 28105, 27683, 27245, 26790, 26319, 25832, 25329, 24811, 24279, 23731, 23170, 22594, 22005, 21403, 20787, 20159, 19519, 18868, 18204, 17530, 16846, 16151, 15446, 14732, 14010, 13279, 12539, 11793, 11039, 10278, 9512, 8739, 7962, 7179, 6393, 5602, 4808, 4011, 3212, 2410, 1608, 804, 0, -804, -1608, -2410, -3212, -4011, -4808, -5602, -6393, -7179, -7962, -8739, -9512, -10278, -11039, -11793, -12539, -13279, -14010, -14732, -15446, -16151, -16846, -17530, -18204, -18868, -19519, -20159, -20787, -21403, -22005, -22594, -23170, -23731, -24279, -24811, -25329, -25832, -26319, -26790, -27245, -27683, -28105, -28510, -28898, -29268, -29621, -29956, -30273, -30571, -30852, -31113, -31356, -31580, -31785, -31971, -32137, -32285, -32412, -32521, -32609, -32678, -32728, -32757, -32767, -32757, -32728, -32678, -32609, -32521, -32412, -32285, -32137, -31971, -31785, -31580, -31356, -31113, -30852, -30571, -30273, -29956, -29621, -29268, -28898, -28510, -28105, -27683, -27245, -26790, -26319, -25832, -25329, -24811, -24279, -23731, -23170, -22594, -22005, -21403, -20787, -20159, -19519, -18868, -18204, -17530, -16846, -16151, -15446, -14732, -14010, -13279, -12539, -11793, -11039, -10278, -9512, -8739, -7962, -7179, -6393, -5602, -4808, -4011, -3212, -2410, -1608, -804];
@@ -358,6 +371,7 @@ pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 639
 ## FILE: src/00/sigma_core/src/ontology_gen/00/STATE_SNAPSHOT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_snapshot.md
 #![allow(unused_imports)]
 
 
@@ -368,6 +382,7 @@ pub const SIN_LUT: [i16; 256] = [0, 804, 1608, 2410, 3212, 4011, 4808, 5602, 639
 ## FILE: src/00/sigma_core/src/ontology_gen/00/SYSTEM_CONSTANTS.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/SYSTEM_CONSTANTS.md
 #![allow(unused_imports)]
 
 // Constants: SYSTEM_CONSTANTS
@@ -423,6 +438,7 @@ pub const SPAWN_SLOT: i32 = 24;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/StructureTypes.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/StructureTypes.md
 #![allow(unused_imports)]
 
 // Enum: StructureTypes
@@ -443,6 +459,7 @@ pub const STR_LATCH: i32 = 8;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/VmOpcodes.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmOpcodes.md
 #![allow(unused_imports)]
 
 // Enum: VmOpcodes
@@ -482,6 +499,7 @@ pub const OP_RESONATE_KURAMOTO: u8 = 177;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/VmProps.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmProps.md
 #![allow(unused_imports)]
 
 // Enum: VmProps
@@ -503,6 +521,7 @@ pub const PROP_CONSENSUS: u8 = 11;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/VmSys.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmSys.md
 #![allow(unused_imports)]
 
 // Enum: VmSys
@@ -531,9 +550,10 @@ pub const SYS_SENSE_PHASE: i32 = 21;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/00/checkpoint_chain.rs
+## FILE: src/00/sigma_core/src/ontology_gen/00/append_jsonl.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/append_jsonl.md
 #![allow(unused_imports)]
 
 
@@ -544,6 +564,7 @@ pub const SYS_SENSE_PHASE: i32 = 21;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/clamp01.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp01.md
 #![allow(unused_imports)]
 
 pub fn clamp01(x: f64) -> f64 {
@@ -563,6 +584,7 @@ pub fn clamp01(x: f64) -> f64 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/dir4_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir4_x.md
 #![allow(unused_imports)]
 
 pub fn dir4_x(n: i32) -> i32 {
@@ -582,6 +604,7 @@ pub fn dir4_x(n: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/dir4_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir4_y.md
 #![allow(unused_imports)]
 
 pub fn dir4_y(n: i32) -> i32 {
@@ -601,6 +624,7 @@ pub fn dir4_y(n: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/dir8_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir8_x.md
 #![allow(unused_imports)]
 
 pub fn dir8_x(n: i32) -> i32 {
@@ -620,6 +644,7 @@ pub fn dir8_x(n: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/dir8_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir8_y.md
 #![allow(unused_imports)]
 
 pub fn dir8_y(n: i32) -> i32 {
@@ -639,6 +664,7 @@ pub fn dir8_y(n: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/encode_force_tuple.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/encode_force_tuple.md
 #![allow(unused_imports)]
 
 // Omitted: manual substrate implementation
@@ -650,6 +676,7 @@ pub fn dir8_y(n: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/fast_abs.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_abs.md
 #![allow(unused_imports)]
 
 pub fn fast_abs(v: i32) -> i32 {
@@ -664,6 +691,7 @@ pub fn fast_abs(v: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/fast_max.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_max.md
 #![allow(unused_imports)]
 
 pub fn fast_max(a: i32, b: i32) -> i32 {
@@ -678,6 +706,7 @@ pub fn fast_max(a: i32, b: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/fast_min.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_min.md
 #![allow(unused_imports)]
 
 pub fn fast_min(a: i32, b: i32) -> i32 {
@@ -692,6 +721,7 @@ pub fn fast_min(a: i32, b: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/fast_sign.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_sign.md
 #![allow(unused_imports)]
 
 pub fn fast_sign(v: i32) -> i32 {
@@ -705,6 +735,7 @@ pub fn fast_sign(v: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/immune_check.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/immune_check.md
 #![allow(unused_imports)]
 
 #[inline(always)]
@@ -731,19 +762,10 @@ pub fn immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entro
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/00/ledger_chain.rs
-
-```rust
-#![allow(unused_imports)]
-
-
-```
-
----
-
 ## FILE: src/00/sigma_core/src/ontology_gen/00/math_clamp.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_clamp.md
 #![allow(unused_imports)]
 
 pub fn math_clamp(val: i32, min: i32, max: i32) -> i32 {
@@ -801,12 +823,21 @@ pub use GLYPH_ENERGY_LUT::*;
 #[path = "GLYPH_RGB_LUT.rs"]
 pub mod GLYPH_RGB_LUT;
 pub use GLYPH_RGB_LUT::*;
+#[path = "append_jsonl.rs"]
+pub mod append_jsonl;
+pub use append_jsonl::*;
 #[path = "sigma_isa.rs"]
 pub mod sigma_isa;
 pub use sigma_isa::*;
+#[path = "read_jsonl.rs"]
+pub mod read_jsonl;
+pub use read_jsonl::*;
 #[path = "ENV_PARSE.rs"]
 pub mod ENV_PARSE;
 pub use ENV_PARSE::*;
+#[path = "read_jsonl_lines.rs"]
+pub mod read_jsonl_lines;
+pub use read_jsonl_lines::*;
 #[path = "sigma_math.rs"]
 pub mod sigma_math;
 pub use sigma_math::*;
@@ -864,12 +895,6 @@ pub use C_LOG2_C_LUT::*;
 #[path = "GENESIS_PREDATOR_SCRIPT.rs"]
 pub mod GENESIS_PREDATOR_SCRIPT;
 pub use GENESIS_PREDATOR_SCRIPT::*;
-#[path = "ledger_chain.rs"]
-pub mod ledger_chain;
-pub use ledger_chain::*;
-#[path = "checkpoint_chain.rs"]
-pub mod checkpoint_chain;
-pub use checkpoint_chain::*;
 #[path = "encode_force_tuple.rs"]
 pub mod encode_force_tuple;
 pub use encode_force_tuple::*;
@@ -893,6 +918,7 @@ pub use dir8_x::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/normalize_angle.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/normalize_angle.md
 #![allow(unused_imports)]
 
 pub fn normalize_angle(angle: f64) -> f64 {
@@ -911,6 +937,7 @@ pub fn normalize_angle(angle: f64) -> f64 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/pack_glyph_header.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/pack_glyph_header.md
 #![allow(unused_imports)]
 
 // Omitted: manual substrate implementation
@@ -922,6 +949,7 @@ pub fn normalize_angle(angle: f64) -> f64 {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/prng_next.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/prng_next.md
 #![allow(unused_imports)]
 
 pub fn prng_next(state: u32) -> u32 {
@@ -932,9 +960,32 @@ pub fn prng_next(state: u32) -> u32 {
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/00/read_jsonl.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl.md
+#![allow(unused_imports)]
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/00/read_jsonl_lines.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl_lines.md
+#![allow(unused_imports)]
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_atom_role.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_atom_role.md
 // Substrate Node: sigma_atom_role
 // Level: 0
 // Defines the role enumerations for OMEGA atoms
@@ -978,6 +1029,7 @@ impl AtomRole {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_isa.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_isa.md
 // Substrate Node: sigma_isa
 // Level: 0
 // Defines the Instruction Set Architecture values for the interpreter.
@@ -1057,6 +1109,7 @@ impl From<u8> for GlyphOp {
 ## FILE: src/00/sigma_core/src/ontology_gen/00/sigma_math.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_math.md
 // Substrate Node: sigma_math
 // Level: 0
 // Mathematical Coprocessor (Deterministic LUT Trigonometry)
@@ -1073,6 +1126,7 @@ pub use crate::ontology_gen::L00::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/00/trace_atom.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/trace_atom.md
 #![allow(unused_imports)]
 
 pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> () {
@@ -1086,6 +1140,7 @@ pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> ()
 ## FILE: src/00/sigma_core/src/ontology_gen/00/unpack_glyph_amplitude.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/unpack_glyph_amplitude.md
 #![allow(unused_imports)]
 
 // Omitted: manual substrate implementation
@@ -1097,6 +1152,7 @@ pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> ()
 ## FILE: src/00/sigma_core/src/ontology_gen/00/unpack_glyph_kind.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/unpack_glyph_kind.md
 #![allow(unused_imports)]
 
 // Omitted: manual substrate implementation
@@ -1108,6 +1164,7 @@ pub fn trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32) -> ()
 ## FILE: src/00/sigma_core/src/ontology_gen/01/OMEGA_MEMORY_LAYOUT.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OMEGA_MEMORY_LAYOUT.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1240,6 +1297,7 @@ pub const LATTICE_MEMORY_END: usize = METABOLISM_SCRATCH_OFFSET + ((65536 * 4) +
 ## FILE: src/00/sigma_core/src/ontology_gen/01/calculate_shannon_entropy.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/calculate_shannon_entropy.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1271,9 +1329,22 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/01/checkpoint_chain.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/checkpoint_chain.md
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_resource.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp_resource.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1294,6 +1365,7 @@ pub fn clamp_resource(value: i64) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_world_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_x.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1308,6 +1380,7 @@ pub fn clamp_world_x(x: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/01/clamp_world_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_y.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1322,6 +1395,7 @@ pub fn clamp_world_y(y: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/01/in_grid.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/in_grid.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1333,9 +1407,22 @@ pub fn in_grid(x: i32, y: i32) -> bool {
 
 ---
 
+## FILE: src/00/sigma_core/src/ontology_gen/01/ledger_chain.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/ledger_chain.md
+#![allow(unused_imports)]
+use super::super::L00::*;
+
+
+```
+
+---
+
 ## FILE: src/00/sigma_core/src/ontology_gen/01/math_cos.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_cos.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1369,6 +1456,7 @@ pub fn math_cos(angle: i32, highRes: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/01/math_sin.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_sin.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -1425,6 +1513,12 @@ pub use math_sin::*;
 #[path = "math_cos.rs"]
 pub mod math_cos;
 pub use math_cos::*;
+#[path = "ledger_chain.rs"]
+pub mod ledger_chain;
+pub use ledger_chain::*;
+#[path = "checkpoint_chain.rs"]
+pub mod checkpoint_chain;
+pub use checkpoint_chain::*;
 #[path = "in_grid.rs"]
 pub mod in_grid;
 pub use in_grid::*;
@@ -1442,6 +1536,7 @@ pub use clamp_world_x::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/01/sigma_memory.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_memory.md
 // Substrate Node: sigma_memory
 // Level: 1
 // The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
@@ -2127,6 +2222,7 @@ mod tests {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/add_energy_delta.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_energy_delta.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2139,6 +2235,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/add_hive_balance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_hive_balance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2151,6 +2248,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/add_resonance_delta.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance_delta.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2163,6 +2261,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/atomic_deposit_glyph_header.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/atomic_deposit_glyph_header.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2175,6 +2274,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/clear_metabolism_stats.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/clear_metabolism_stats.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2187,6 +2287,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/clear_secretion_stats.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/clear_secretion_stats.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2199,6 +2300,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/decay_for_kind.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/decay_for_kind.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2211,6 +2313,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/diffuse_viral_semantics.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/diffuse_viral_semantics.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2223,6 +2326,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/diffusion_share_for_kind.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/diffusion_share_for_kind.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2235,6 +2339,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/find_next_free_slot.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/find_next_free_slot.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2247,6 +2352,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/genome_key16.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/genome_key16.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2259,6 +2365,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_attention_cell.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_attention_cell.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2271,6 +2378,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_bond_stiffness.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_stiffness.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2283,6 +2391,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_bond_target.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_target.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2295,6 +2404,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_energy.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_energy.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2310,6 +2420,7 @@ pub fn get_energy(idx: i32) -> i32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_glyph_influence.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_glyph_influence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2322,6 +2433,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_hive_balance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hive_balance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2334,6 +2446,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_hive_memory.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hive_memory.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2346,6 +2459,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_hormone.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hormone.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2358,6 +2472,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_lineage.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_lineage.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2370,6 +2485,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_logic_byte.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_logic_byte.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2382,6 +2498,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_neural_coherence.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/get_neural_coherence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2394,6 +2511,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_p_c.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_p_c.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2406,6 +2524,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_pending_syscall.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_pending_syscall.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2418,6 +2537,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_phase.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_phase.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2430,6 +2550,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_energy.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_energy.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2442,6 +2563,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_resonance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_resonance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2454,6 +2576,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_x.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2466,6 +2589,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_read_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_y.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2478,6 +2602,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_reg.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_reg.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2490,6 +2615,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_resonance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_resonance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2502,6 +2628,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_role.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_role.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2514,6 +2641,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_atom.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_spatial_grid_atom.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2526,6 +2654,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_spatial_grid_count.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_spatial_grid_count.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2538,6 +2667,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_x.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2550,6 +2680,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/get_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_y.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2562,6 +2693,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/memory_views.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memory_views.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2783,6 +2915,7 @@ pub use store_clamped_pos::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/publish_build_intent.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_build_intent.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2795,6 +2928,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/publish_charge_intent.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_charge_intent.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2807,6 +2941,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/read_structure_cell.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_cell.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2819,6 +2954,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/reduce_atom_deltas.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/reduce_atom_deltas.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2831,6 +2967,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/reset_neural_coherence.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/reset_neural_coherence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2843,6 +2980,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/seed_atom.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/seed_atom.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2855,6 +2993,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_dist.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_dist.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2867,6 +3006,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_stiffness.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_stiffness.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2879,6 +3019,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_bond_target.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_target.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2891,6 +3032,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_damping.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_damping.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2903,6 +3045,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_energy.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_energy.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2915,6 +3058,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_hive_memory.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_hive_memory.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2927,6 +3071,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_neural_coherence.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/set_neural_coherence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2939,6 +3084,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_p_c.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_p_c.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2951,6 +3097,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_pending_syscall.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_pending_syscall.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2963,6 +3110,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_phase.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_phase.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2975,6 +3123,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_reg.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_reg.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2987,6 +3136,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_resonance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_resonance.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -2999,6 +3149,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/set_role.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_role.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -3011,6 +3162,7 @@ use super::super::L01::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_bonding.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_bonding.md
 // Substrate Node: sigma_bonding
 // Level: 2
 // Solves simultaneous structural bonding intents using spatial hashes
@@ -3116,6 +3268,7 @@ impl SigmaState {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_environment.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_environment.md
 // Substrate Node: sigma_environment
 // Level: 2
 // Ticks environmental cellular automata, structural cells, and glyphi transport
@@ -3683,6 +3836,7 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_ffi.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi.md
 // Substrate Node: sigma_ffi
 // Level: 2
 // FFI bridging logic and memory alignment for WebAssembly workers
@@ -4027,6 +4181,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_glyph_transport.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_glyph_transport.md
 // Substrate Node: sigma_glyph_transport
 // Level: 2
 // Handles wave interference physics and optical secretion
@@ -4102,6 +4257,7 @@ impl SigmaState {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_pulse.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_pulse.md
 // Substrate Node: sigma_pulse
 // Level: 2
 // Multithreaded tick orchestrator and phase sequencer using Rayon
@@ -4396,6 +4552,7 @@ impl<'a> PulseOrchestrator<'a> {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_replication.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_replication.md
 // Substrate Node: sigma_replication
 // Level: 2
 // Manages autopoietic mitosis processes and genome verification
@@ -4597,6 +4754,7 @@ impl SigmaState {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_shadow.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_shadow.md
 // Substrate Node: sigma_shadow
 // Level: 2
 // Implements the speculative execution engine for quantum divergence
@@ -4732,6 +4890,7 @@ pub fn run_shadow_simulation(
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_spatial.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_spatial.md
 // Substrate Node: sigma_spatial
 // Level: 2
 // Implements the 2D grid hashing algorithm enabling fast localized queries
@@ -4856,6 +5015,7 @@ impl SigmaState {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/sigma_structure.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_structure.md
 // Substrate Node: sigma_structure
 // Level: 2
 // Handles the cellular automaton lifecycle of the crystalline grid
@@ -4979,6 +5139,7 @@ impl SigmaState {
 ## FILE: src/00/sigma_core/src/ontology_gen/02/store_clamped_pos.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/store_clamped_pos.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 
@@ -4995,17 +5156,7 @@ pub fn store_clamped_pos(idx: i32, x: i32, y: i32) -> () {
 ## FILE: src/00/sigma_core/src/ontology_gen/03/ATOMIC_LEDGER.rs
 
 ```rust
-#![allow(unused_imports)]
-use super::super::L02::*;
-
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
-
-```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/atomic_ledger.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5017,6 +5168,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/GATE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5028,6 +5180,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_LEDGER.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_ledger.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5039,6 +5192,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5050,6 +5204,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/GATE_VALIDATOR.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5061,6 +5216,19 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/GENETIC_LEDGER.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/genetic_ledger.md
+#![allow(unused_imports)]
+use super::super::L02::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5072,6 +5240,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/accumulate_metabolism_stats.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/accumulate_metabolism_stats.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5084,6 +5253,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/add_resonance.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5096,6 +5266,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/apply_bond_springs.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/apply_bond_springs.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5108,6 +5279,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/apply_metabolism_kernel.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/apply_metabolism_kernel.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5120,6 +5292,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/build_spatial_hash.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/build_spatial_hash.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5132,6 +5305,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/calculate_trophism.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/calculate_trophism.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5144,6 +5318,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/drain_spawn_requests.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/drain_spawn_requests.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5156,6 +5331,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/fire_signal.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/fire_signal.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5168,6 +5344,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_x.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_x.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5180,6 +5357,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/get_genome_velocity_y.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_y.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5192,6 +5370,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/glyph_transport.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/glyph_transport.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5214,12 +5393,12 @@ pub use build_spatial_hash::*;
 #[path = "sigma_vm.rs"]
 pub mod sigma_vm;
 pub use sigma_vm::*;
-#[path = "add_resonance.rs"]
-pub mod add_resonance;
-pub use add_resonance::*;
 #[path = "STATE_MATRIX.rs"]
 pub mod STATE_MATRIX;
 pub use STATE_MATRIX::*;
+#[path = "add_resonance.rs"]
+pub mod add_resonance;
+pub use add_resonance::*;
 #[path = "tick_membrane_physics.rs"]
 pub mod tick_membrane_physics;
 pub use tick_membrane_physics::*;
@@ -5288,6 +5467,7 @@ pub use resolve_bond_requests::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/read_structure_charge.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_charge.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5300,6 +5480,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/resolve_bond_requests.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/resolve_bond_requests.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5312,6 +5493,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/run_phagocyte_pass.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/run_phagocyte_pass.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5324,6 +5506,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/secrete_glyph.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/secrete_glyph.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
@@ -5336,6 +5519,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/03/sigma_vm.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_vm.md
 // Substrate Node: sigma_vm
 // Level: 3
 // LambdaVM Execution Engine
@@ -6504,6 +6688,7 @@ impl LambdaVM {
 ## FILE: src/00/sigma_core/src/ontology_gen/03/tick_membrane_physics.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/tick_membrane_physics.md
 // Substrate Node: tick_membrane_physics
 // Level: 3
 // Membrane physics and tissue differentiation for Topography analysis
@@ -6519,6 +6704,7 @@ use super::super::L02::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/P2P_CODEC.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_codec.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6530,6 +6716,7 @@ use super::super::L03::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/P2P_FEDERATION.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/federation.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6538,9 +6725,22 @@ use super::super::L03::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/04/STATE_MATRIX.rs
+## FILE: src/00/sigma_core/src/ontology_gen/04/PULSE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
+#![allow(unused_imports)]
+use super::super::L03::*;
+
+
+```
+
+---
+
+## FILE: src/00/sigma_core/src/ontology_gen/04/PULSE_WORKER.rs
+
+```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_worker.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6552,6 +6752,7 @@ use super::super::L03::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/SWARM_NEXUS.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_nexus.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6563,6 +6764,7 @@ use super::super::L03::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/SWARM_NODE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_node.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6574,6 +6776,7 @@ use super::super::L03::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/evaluate_opcodes.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/evaluate_opcodes.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6605,9 +6808,12 @@ pub use SWARM_NEXUS::*;
 #[path = "evaluate_opcodes.rs"]
 pub mod evaluate_opcodes;
 pub use evaluate_opcodes::*;
-#[path = "STATE_MATRIX.rs"]
-pub mod STATE_MATRIX;
-pub use STATE_MATRIX::*;
+#[path = "PULSE.rs"]
+pub mod PULSE;
+pub use PULSE::*;
+#[path = "PULSE_WORKER.rs"]
+pub mod PULSE_WORKER;
+pub use PULSE_WORKER::*;
 #[path = "tick_structure_grid.rs"]
 pub mod tick_structure_grid;
 pub use tick_structure_grid::*;
@@ -6619,6 +6825,7 @@ pub use tick_structure_grid::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/04/tick_structure_grid.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/tick_structure_grid.md
 #![allow(unused_imports)]
 use super::super::L03::*;
 
@@ -6631,28 +6838,7 @@ use super::super::L03::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/AVATAR_ENGINE.rs
 
 ```rust
-#![allow(unused_imports)]
-use super::super::L04::*;
-
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/05/PULSE.rs
-
-```rust
-#![allow(unused_imports)]
-use super::super::L04::*;
-
-
-```
-
----
-
-## FILE: src/00/sigma_core/src/ontology_gen/05/PULSE_WORKER.rs
-
-```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6664,6 +6850,7 @@ use super::super::L04::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/SEMANTIC_MEMBRANE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6675,6 +6862,7 @@ use super::super::L04::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/SOVEREIGN_ORACLE.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6686,6 +6874,7 @@ use super::super::L04::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/execute_atom.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/execute_atom.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6698,6 +6887,7 @@ use super::super::L04::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/llm_soul.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6713,12 +6903,6 @@ use super::super::L04::*;
 
 pub use super::L04::*;
 
-#[path = "PULSE.rs"]
-pub mod PULSE;
-pub use PULSE::*;
-#[path = "PULSE_WORKER.rs"]
-pub mod PULSE_WORKER;
-pub use PULSE_WORKER::*;
 #[path = "execute_atom.rs"]
 pub mod execute_atom;
 pub use execute_atom::*;
@@ -6745,6 +6929,7 @@ pub use tick_environment::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/05/tick_environment.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/tick_environment.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 
@@ -6757,6 +6942,7 @@ use super::super::L04::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/BREATH.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/breath_cycle.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6768,6 +6954,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/GLYPH_TELEMETRY.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6779,6 +6966,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/LOGGER.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/LOGGER.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6790,6 +6978,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/MUTATION_TELEMETRY.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6801,6 +6990,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/OMEGA_DAEMON.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/omega_daemon.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6812,6 +7002,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/SERVE_DASHBOARD.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/serve_dashboard.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6823,6 +7014,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/TUI_DASHBOARD.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/tui_dashboard.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6834,6 +7026,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/base64_to_bytes.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/base64_to_bytes.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6845,6 +7038,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/bytes_to_base64.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/bytes_to_base64.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6856,6 +7050,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/bytes_to_hex.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/bytes_to_hex.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6867,6 +7062,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/fnv1a32.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/fnv1a32.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6878,6 +7074,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_arity.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_arity.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6892,6 +7089,7 @@ pub fn get_glyph_arity(id: u8) -> u8 {
 ## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_energy.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_energy.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6906,6 +7104,7 @@ pub fn get_glyph_energy(id: u8) -> u8 {
 ## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_kind.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_kind.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6926,6 +7125,7 @@ pub fn get_glyph_kind(id: u8) -> u8 {
 ## FILE: src/00/sigma_core/src/ontology_gen/06/get_glyph_legacy_opcode.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_legacy_opcode.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6940,6 +7140,7 @@ pub fn get_glyph_legacy_opcode(id: u8) -> u8 {
 ## FILE: src/00/sigma_core/src/ontology_gen/06/hex_to_bytes.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/hex_to_bytes.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -6951,6 +7152,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/make_xor_shift32.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/make_xor_shift32.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7040,6 +7242,7 @@ pub use SERVE_DASHBOARD::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/normalize_hex64.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/normalize_hex64.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7051,6 +7254,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/pack_structure_intent.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/pack_structure_intent.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7069,6 +7273,7 @@ pub fn pack_structure_intent(target_type: u32, target_value: u32, locked: bool) 
 ## FILE: src/00/sigma_core/src/ontology_gen/06/stable_stringify.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/stable_stringify.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7080,6 +7285,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/to_int16_big_endian.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/to_int16_big_endian.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7091,6 +7297,7 @@ use super::super::L05::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/06/unpack_structure_charge.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/unpack_structure_charge.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 
@@ -7105,6 +7312,7 @@ pub fn unpack_structure_charge(intent: i32) -> u32 {
 ## FILE: src/00/sigma_core/src/ontology_gen/07/assembler.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/assembler.md
 #![allow(unused_imports)]
 use super::super::L06::*;
 
@@ -7116,6 +7324,7 @@ use super::super::L06::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/07/crypto_keys.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/crypto_keys.md
 #![allow(unused_imports)]
 use super::super::L06::*;
 
@@ -7127,6 +7336,7 @@ use super::super::L06::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/07/disassembler.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/disassembler.md
 #![allow(unused_imports)]
 use super::super::L06::*;
 
@@ -7138,6 +7348,7 @@ use super::super::L06::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/07/glyph_ir_64.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_ir_64.md
 #![allow(unused_imports)]
 use super::super::L06::*;
 
@@ -7176,6 +7387,7 @@ pub use disassembler::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/07/sha256_hex.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/sha256_hex.md
 #![allow(unused_imports)]
 use super::super::L06::*;
 
@@ -7187,6 +7399,7 @@ use super::super::L06::*;
 ## FILE: src/00/sigma_core/src/ontology_gen/08/glyph_pretty.rs
 
 ```rust
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_pretty.md
 #![allow(unused_imports)]
 use super::super::L07::*;
 
