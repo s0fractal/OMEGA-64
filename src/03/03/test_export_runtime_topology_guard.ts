@@ -20,7 +20,7 @@ const FORBIDDEN_PATHS: RegExp[] = [
 
 const REQUIRED_RUNTIME_CLOSURE_FILES = [
   "src/07/02/SYSTEM_START.ts",
-  "src/_/05/PULSE.ts",
+  "src/_/04/PULSE.ts",
   "src/03/CONTROL_INTENT_QUEUE.ts",
   "src/00/STATE_MATRIX.ts",
   "src/03/GATE.ts",

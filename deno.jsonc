@@ -172,8 +172,8 @@
     "era": "69",
     "runtime_root_files": [
       "src/07/02/SYSTEM_START.ts",
-      "src/_/05/PULSE.ts",
-      "src/_/05/PULSE_WORKER.ts",
+      "src/_/04/PULSE.ts",
+      "src/_/04/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
@@ -199,8 +199,8 @@
     ],
     "core_entry_files": [
       "src/07/02/SYSTEM_START.ts",
-      "src/_/05/PULSE.ts",
-      "src/_/05/PULSE_WORKER.ts",
+      "src/_/04/PULSE.ts",
+      "src/_/04/PULSE_WORKER.ts",
       "src/06/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",

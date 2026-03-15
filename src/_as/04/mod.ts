@@ -5,5 +5,6 @@ export * from "./P2P_CODEC";
 export * from "./P2P_FEDERATION";
 export * from "./SWARM_NEXUS";
 export { evaluate_opcodes } from "./evaluate_opcodes";
-export * from "./STATE_MATRIX";
+export * from "./PULSE";
+export * from "./PULSE_WORKER";
 export { tick_structure_grid } from "./tick_structure_grid";

@@ -127,7 +127,7 @@
 - src/00/sigma_core/src/ontology_gen/02/sigma_structure.rs
 - src/00/sigma_core/src/ontology_gen/02/store_clamped_pos.rs
 - src/00/sigma_core/src/ontology_gen/03/ATOMIC_LEDGER.rs
-- src/00/sigma_core/src/ontology_gen/03/ATOM_ACCESS.rs
+- src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_LEDGER.rs
 - src/00/sigma_core/src/ontology_gen/03/GATE_MERGER.rs
@@ -5003,7 +5003,7 @@ use super::super::L02::*;
 
 ---
 
-## FILE: src/00/sigma_core/src/ontology_gen/03/ATOM_ACCESS.rs
+## FILE: src/00/sigma_core/src/ontology_gen/03/STATE_MATRIX.rs
 
 ```rust
 #![allow(unused_imports)]
@@ -5217,9 +5217,9 @@ pub use sigma_vm::*;
 #[path = "add_resonance.rs"]
 pub mod add_resonance;
 pub use add_resonance::*;
-#[path = "ATOM_ACCESS.rs"]
-pub mod ATOM_ACCESS;
-pub use ATOM_ACCESS::*;
+#[path = "STATE_MATRIX.rs"]
+pub mod STATE_MATRIX;
+pub use STATE_MATRIX::*;
 #[path = "tick_membrane_physics.rs"]
 pub mod tick_membrane_physics;
 pub use tick_membrane_physics::*;

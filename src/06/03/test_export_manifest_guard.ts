@@ -13,7 +13,7 @@ const MANIFEST_PATH = "deno.jsonc";
 const REQUIRED_CONTEXT_FILES: string[] = [];
 const REQUIRED_RUNTIME_ROOT_FILES = [
   "src/07/02/SYSTEM_START.ts",
-  "src/_/05/PULSE.ts",
+  "src/_/04/PULSE.ts",
   "src/06/AKASHA_SERVER.ts",
   "src/06/OMEGA_DAEMON.ts",
 ];

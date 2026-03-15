@@ -5,7 +5,7 @@ type Violation = {
 
 const QUEUE_PATH = "src/03/CONTROL_INTENT_QUEUE.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
-const PULSE_PATH = "src/_/05/PULSE.ts";
+const PULSE_PATH = "src/_/04/PULSE.ts";
 const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
 
 const between = (source: string, start: string, end: string): string => {

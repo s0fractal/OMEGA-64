@@ -3,7 +3,7 @@ type Violation = {
   reason: string;
 };
 
-const PULSE_PATH = "src/_/05/PULSE.ts";
+const PULSE_PATH = "src/_/04/PULSE.ts";
 const SYSTEM_PATH = "src/07/02/SYSTEM_START.ts";
 
 const main = async () => {

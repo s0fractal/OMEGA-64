@@ -2133,11 +2133,11 @@ min_level: 6
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { SEMANTIC_MEMBRANE } from "@05";
 import { LLM_SYNAPSE } from "@05";
 import { AUDIT_ENGINE } from "@03";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { AKASHA_CODEX } from "@06";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
@@ -5191,8 +5191,8 @@ min_level: 2
 ### TypeScript
 ```typescript
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "@generated";
+import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_EGRESS_EVENTS, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, XS_OFFSET, YS_OFFSET } from "@generated";
 
 import { SOVEREIGNTY_ENGINE } from "../../03/SOVEREIGNTY_ENGINE.ts";
 import { GATE } from "../03/GATE.ts";
@@ -9867,9 +9867,9 @@ min_level: 2
 import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
 
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, TICK_COUNTER_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER, SCALE, SYS_YIELD, SYS_READ_MEM, SYS_WRITE_MEM, SYS_SPAWN, SYS_BIND, SYS_SET_ROLE, SYS_MUTATE, SYS_MSG, SYS_READ_INBOX, SYS_TRANSFER, SYS_REPLICATE, SYS_EMIT, SYS_SCAN, SYS_MOVE, SYS_EAT, SYS_BET, SYS_ATTRACT, SYS_FOLD, SYS_SPORE_DRIVE, SYS_SENSE_PHASE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, TICK_COUNTER_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "@generated";
+import { LOGGER, SCALE, SYS_YIELD, SYS_READ_MEM, SYS_WRITE_MEM, SYS_SPAWN, SYS_BIND, SYS_SET_ROLE, SYS_MUTATE, SYS_MSG, SYS_READ_INBOX, SYS_TRANSFER, SYS_REPLICATE, SYS_EMIT, SYS_SCAN, SYS_MOVE, SYS_EAT, SYS_BET, SYS_ATTRACT, SYS_FOLD, SYS_SPORE_DRIVE, SYS_SENSE_PHASE } from "@generated";
+import { STATE_MATRIX } from "@generated";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,
@@ -16356,8 +16356,8 @@ min_level: 3
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
 
 export type LedgerEvent = {
   tick: number;
@@ -16661,10 +16661,10 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type BridgeModeEvent, type GateConfig } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type BridgeModeEvent, type GateConfig } from "@generated";
+import { type LedgerEvent } from "@generated";
 import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -16721,11 +16721,11 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOAD_LOAD as LOAD } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
+import { LOAD_LOAD as LOAD } from "@generated";
+import { LOGGER } from "@generated";
 import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 
 type I16Limits = {
   max: number;
@@ -16952,9 +16952,9 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
@@ -17182,11 +17182,11 @@ min_level: 3
 ### TypeScript
 ```typescript
 import { GRID_H } from "../mod.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@generated";
+import { type LedgerEvent } from "@generated";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@generated";
+import { LOGGER } from "@generated";
 import { validateGateProposals } from "@03";
 import { mergeGateProposals } from "@03";
 import { persistGateLedgerArtifacts } from "@03";
@@ -19230,9 +19230,9 @@ set_resonance(idx, get_resonance(idx) + delta);
 
 ```markdown
 ---
-id: ATOM_ACCESS
+id: STATE_MATRIX
 type: module
-description: "Implementation of ATOM_ACCESS"
+description: "Implementation of STATE_MATRIX"
 tags: []
 deps: [memory_views]
 min_level: 0
@@ -19240,7 +19240,7 @@ min_level: 0
 
 ### TypeScript
 ```typescript
-// OMEGA-64 | ATOM_ACCESS.ts
+// OMEGA-64 | STATE_MATRIX.ts
 import {
   ATOM_CONTEXT_SIZE,
   ATOM_INSTRUCTION_SIZE,
@@ -19285,7 +19285,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
-export const ATOM_ACCESS = {
+export const STATE_MATRIX = {
   MAX_ATOMS: MAX_ATOMS,
   buffer: views.sharedBuffer,
   wasmMemory: views.wasmMemory,
@@ -19507,7 +19507,7 @@ export const ATOM_ACCESS = {
   },
 
   packRenderFrame: (): Float32Array => {
-    const active = ATOM_ACCESS.getActiveIndices();
+    const active = STATE_MATRIX.getActiveIndices();
     const len = active.length;
     const packet = new Float32Array(len * 4);
 
@@ -19523,7 +19523,7 @@ export const ATOM_ACCESS = {
   },
 
   packPanopticonFrame: (): ArrayBuffer => {
-    const active = ATOM_ACCESS.getActiveIndices();
+    const active = STATE_MATRIX.getActiveIndices();
     const atomCount = active.length;
     const gridCells = GRID_CELLS;
     const bytesPerAtom = 24;
@@ -19543,7 +19543,7 @@ export const ATOM_ACCESS = {
     offset += 4;
     
     for(let i=0; i < gridCells; i++) {
-        const type = ATOM_ACCESS.getGridType(i);
+        const type = STATE_MATRIX.getGridType(i);
         const hasPlasmid = views.memoryGrid[i*8] > 0 ? 0x80 : 0;
         u8[offset++] = type | hasPlasmid;
     }
@@ -19605,9 +19605,9 @@ export const ATOM_ACCESS = {
     resonance: number = 100,
   ) => {
     const genome = new Uint8Array(8);
-    const script = ATOM_ACCESS.getGuardianScript();
-    ATOM_ACCESS.seedAtom(i, id, x, y, energy, resonance, genome, script);
-    ATOM_ACCESS.set_role(i, ATOM_ACCESS.ROLE_GUARDIAN);
+    const script = STATE_MATRIX.getGuardianScript();
+    STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
+    STATE_MATRIX.set_role(i, STATE_MATRIX.ROLE_GUARDIAN);
   },
 
   getGuardianScript: () => {
@@ -21204,18 +21204,18 @@ store<u8>(ROLES_OFFSET + atomIdx, val);
 id: STATE_MATRIX
 type: module
 description: "Implementation of STATE_MATRIX"
-deps: [memory_views, ATOM_ACCESS]
+deps: [memory_views, STATE_MATRIX]
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | STATE_MATRIX.ts | Era 68: Absolute Coherence
-// Segmented into memory_views.ts and ATOM_ACCESS.ts (Phase 2 Refactoring)
+// Segmented into memory_views.ts and STATE_MATRIX.ts (Phase 2 Refactoring)
 
 export * from "../02/memory_views.ts";
-export * from "../03/ATOM_ACCESS.ts";
+export * from "../03/STATE_MATRIX.ts";
 
-export { ATOM_ACCESS as STATE_MATRIX } from "../03/ATOM_ACCESS.ts";
+export { STATE_MATRIX as STATE_MATRIX } from "../03/STATE_MATRIX.ts";
 
 ```
 
@@ -23148,7 +23148,7 @@ min_level: 5
 ### TypeScript
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 const PROXY_URL = "http://localhost:8080";
 const AVATAR_ID = 9999;
@@ -23347,7 +23347,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;
@@ -23883,9 +23883,9 @@ min_level: 5
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
 import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
-import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
 import { SOVEREIGNTY_ENGINE } from "@03";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";
@@ -24968,9 +24968,9 @@ min_level: 4
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PRNG } from "../../00/PRNG.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -25214,7 +25214,7 @@ min_level: 4
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
@@ -25348,7 +25348,7 @@ min_level: 4
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 export type NexusConfig = {
   instanceId: number;
@@ -25850,7 +25850,7 @@ min_level: 4
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 export type SwarmHeartbeat = {
   nodeId: string;
@@ -25921,8 +25921,8 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
+import { STATE_MATRIX } from "@generated";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -26149,7 +26149,7 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 
 type MutationLane =
@@ -26610,12 +26610,12 @@ min_level: 6
 ### TypeScript
 ```typescript
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";
 import { PULSE } from "../05/PULSE.ts";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
 import { AgentProxy } from "../../06/AGENT_PROXY.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;

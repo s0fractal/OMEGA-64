@@ -1,15 +1,6 @@
----
-id: ATOM_ACCESS
-type: module
-description: "Implementation of ATOM_ACCESS"
-tags: []
-deps: [memory_views]
-min_level: 0
----
+// SSoT: src/ontology/memory/state_matrix.md
 
-### TypeScript
-```typescript
-// OMEGA-64 | ATOM_ACCESS.ts
+// OMEGA-64 | STATE_MATRIX.ts
 import {
   ATOM_CONTEXT_SIZE,
   ATOM_INSTRUCTION_SIZE,
@@ -54,7 +45,7 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
-export const ATOM_ACCESS = {
+export const STATE_MATRIX = {
   MAX_ATOMS: MAX_ATOMS,
   buffer: views.sharedBuffer,
   wasmMemory: views.wasmMemory,
@@ -276,7 +267,7 @@ export const ATOM_ACCESS = {
   },
 
   packRenderFrame: (): Float32Array => {
-    const active = ATOM_ACCESS.getActiveIndices();
+    const active = STATE_MATRIX.getActiveIndices();
     const len = active.length;
     const packet = new Float32Array(len * 4);
 
@@ -292,7 +283,7 @@ export const ATOM_ACCESS = {
   },
 
   packPanopticonFrame: (): ArrayBuffer => {
-    const active = ATOM_ACCESS.getActiveIndices();
+    const active = STATE_MATRIX.getActiveIndices();
     const atomCount = active.length;
     const gridCells = GRID_CELLS;
     const bytesPerAtom = 24;
@@ -312,7 +303,7 @@ export const ATOM_ACCESS = {
     offset += 4;
     
     for(let i=0; i < gridCells; i++) {
-        const type = ATOM_ACCESS.getGridType(i);
+        const type = STATE_MATRIX.getGridType(i);
         const hasPlasmid = views.memoryGrid[i*8] > 0 ? 0x80 : 0;
         u8[offset++] = type | hasPlasmid;
     }
@@ -374,9 +365,9 @@ export const ATOM_ACCESS = {
     resonance: number = 100,
   ) => {
     const genome = new Uint8Array(8);
-    const script = ATOM_ACCESS.getGuardianScript();
-    ATOM_ACCESS.seedAtom(i, id, x, y, energy, resonance, genome, script);
-    ATOM_ACCESS.set_role(i, ATOM_ACCESS.ROLE_GUARDIAN);
+    const script = STATE_MATRIX.getGuardianScript();
+    STATE_MATRIX.seedAtom(i, id, x, y, energy, resonance, genome, script);
+    STATE_MATRIX.set_role(i, STATE_MATRIX.ROLE_GUARDIAN);
   },
 
   getGuardianScript: () => {
@@ -518,5 +509,3 @@ export const ATOM_ACCESS = {
   get_hormone: (id: number) => Atomics.load(views.hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(views.hormones, id, val),
 };
-
-```

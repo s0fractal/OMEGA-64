@@ -9,12 +9,12 @@ min_level: 6
 ### TypeScript
 ```typescript
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";
-import { PULSE } from "../05/PULSE.ts";
+import { PULSE } from "../04/PULSE.ts";
 import { assemble, GENESIS_PREDATOR_SCRIPT } from "../mod.ts";
 import { AgentProxy } from "../../06/AGENT_PROXY.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;

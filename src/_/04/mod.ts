@@ -5,4 +5,5 @@ export * from "./SWARM_NODE.ts";
 export * from "./P2P_CODEC.ts";
 export * from "./P2P_FEDERATION.ts";
 export * from "./SWARM_NEXUS.ts";
-export * from "./STATE_MATRIX.ts";
+export * from "./PULSE.ts";
+export * from "./PULSE_WORKER.ts";

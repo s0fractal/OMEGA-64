@@ -8,10 +8,10 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type BridgeModeEvent, type GateConfig } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type BridgeModeEvent, type GateConfig } from "@generated";
+import { type LedgerEvent } from "@generated";
 import { CHECKPOINT_CHECKPOINT as CHECKPOINT, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

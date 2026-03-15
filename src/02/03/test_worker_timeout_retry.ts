@@ -24,7 +24,7 @@ Deno.env.set("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", String(timeoutMs));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
-const { PULSE } = await import("../../_/05/PULSE.ts");
+const { PULSE } = await import("../../_/04/PULSE.ts");
 const { STATE_MATRIX } = await import("@00");
 
 async function main() {

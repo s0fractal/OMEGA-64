@@ -9,11 +9,11 @@ min_level: 3
 ### TypeScript
 ```typescript
 import { GRID_H } from "../mod.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { type LedgerEvent } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@generated";
+import { type LedgerEvent } from "@generated";
 import { CANON_CAUSAL_BRIDGE, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG, CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY, INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET, LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+    as PROPOSAL_ENVELOPE_INDEX, TOPOLOGICAL_SIGNATURE__08_00_TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@generated";
+import { LOGGER } from "@generated";
 import { validateGateProposals } from "@03";
 import { mergeGateProposals } from "@03";
 import { persistGateLedgerArtifacts } from "@03";

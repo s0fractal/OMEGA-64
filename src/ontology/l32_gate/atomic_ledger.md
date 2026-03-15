@@ -11,8 +11,8 @@ min_level: 3
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "@generated";
 
 export type LedgerEvent = {
   tick: number;

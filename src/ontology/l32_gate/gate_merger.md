@@ -8,11 +8,11 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOAD_LOAD as LOAD } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
+import { LOAD_LOAD as LOAD } from "@generated";
+import { LOGGER } from "@generated";
 import { GATE_BUDGET } from "../../03/GATE_BUDGET.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 
 type I16Limits = {
   max: number;

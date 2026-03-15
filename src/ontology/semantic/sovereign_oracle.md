@@ -13,9 +13,9 @@ min_level: 5
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
 import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
-import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
 import { SOVEREIGNTY_ENGINE } from "@03";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 import { PULSE } from "@02";
 import { SEMANTIC_MEMBRANE } from "../05/SEMANTIC_MEMBRANE.ts";

@@ -1,4 +1,4 @@
-const PULSE_PATH = "src/_/05/PULSE.ts";
+const PULSE_PATH = "src/_/04/PULSE.ts";
 const POLICY_PATH = "src/03/RUNTIME_POLICY.ts";
 
 type Violation = {

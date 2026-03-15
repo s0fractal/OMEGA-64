@@ -17,9 +17,12 @@ pub use SWARM_NEXUS::*;
 #[path = "evaluate_opcodes.rs"]
 pub mod evaluate_opcodes;
 pub use evaluate_opcodes::*;
-#[path = "STATE_MATRIX.rs"]
-pub mod STATE_MATRIX;
-pub use STATE_MATRIX::*;
+#[path = "PULSE.rs"]
+pub mod PULSE;
+pub use PULSE::*;
+#[path = "PULSE_WORKER.rs"]
+pub mod PULSE_WORKER;
+pub use PULSE_WORKER::*;
 #[path = "tick_structure_grid.rs"]
 pub mod tick_structure_grid;
 pub use tick_structure_grid::*;
