@@ -1,4 +1,4 @@
-import { scriptToGlyphTape } from "@07/04/opcode_to_glyph.ts";
+import { scriptToGlyphTape } from "@generated";
 import {
   REDUCTION_CASES,
   reductionCaseById,

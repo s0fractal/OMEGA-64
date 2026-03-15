@@ -7137,10 +7137,10 @@ import {
 import { DriftWarden } from "@generated";
 import { DollFork } from "@generated";
 import { DollForkRunner } from "@generated";
-import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
-import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
-import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
-import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
+import { REIFIED_PROGRAMS } from "@generated";
+import { GenesisInceptor } from "@generated";
+import { LineageTracker } from "@generated";
+import { QuorumAdvocate } from "@generated";
 import {
   OP_ADD,
   OP_BUILD,
@@ -27679,8 +27679,8 @@ import {
   decodeLegacyInstruction,
   type GlyphTapeToken,
   scriptToGlyphTape,
-} from "@07/04/opcode_to_glyph.ts";
-import { glyphSpecById } from "@07/04/mod.ts";
+} from "@generated";
+import { glyphSpecById } from "@generated";
 import {
   OP_ADD,
   OP_BIND,
@@ -27723,7 +27723,7 @@ import {
 } from "./reduction_cases.ts";
 import { pack_structure_intent, unpack_structure_charge } from "@generated";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-import { GENESIS_PROGRAMS } from "@07/05/GENESIS_BOOT.ts";
+import { GENESIS_PROGRAMS } from "@generated";
 
 type HarnessProps = Record<number, number>;
 
@@ -41286,10 +41286,10 @@ export class LineageTracker {
 ```typescript
 export * from "./SHADOW_EVOLUTION_RUNNER.ts";
 export * from "@generated";
-export * from "./QUORUM_ADVOCATE.ts";
+export * from "@generated";
 export * from "@generated";
 export * from "./RUN_STAGE8_TICKS.ts";
-export * from "./LINEAGE_TRACKER.ts";
+export * from "@generated";
 export * from "./SYSTEM_START.ts";
 export * from "./apply_vector_maps.ts";
 export * from "./export_stats.ts";
@@ -41499,7 +41499,7 @@ run().catch((err) => {
  */
 
 import { REDUCTION_CASES } from "../../03/03/verification/reduction_cases.ts";
-import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
+import { GENESIS_PROGRAMS } from "@generated";
 import { DollFork } from "@generated";
 import { DollForkRunner } from "@generated";
 import { DriftWarden } from "@generated";
@@ -45573,7 +45573,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 
 ```typescript
 export * from "@generated";
-export * from "./opcode_to_glyph.ts";
+export * from "@generated";
 export * from "@generated";
 export * from "./REIFICATION_ACTION.ts";
 ```
@@ -45608,7 +45608,7 @@ import {
   OP_SYSCALL,
   OP_TENSEGRITY,
 } from "@generated";
-import { glyphSpecByLegacyOpcode } from "@07/04/mod.ts";
+import { glyphSpecByLegacyOpcode } from "@generated";
 
 export type LegacyInstruction = {
   pc: number;
@@ -45971,8 +45971,8 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
-import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
+import { GENESIS_PROGRAMS } from "@generated";
+import { REIFIED_PROGRAMS } from "@generated";
 import { LOGGER } from "@generated";
 
 export interface InceptiveProgram {
@@ -46031,9 +46031,9 @@ export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 ## FILE: src/07/05/mod.ts
 
 ```typescript
-export * from "./GENESIS_INCEPTOR.ts";
-export * from "./GENESIS_REIFIED.ts";
-export * from "./GENESIS_BOOT.ts";
+export * from "@generated";
+export * from "@generated";
+export * from "@generated";
 ```
 
 ---

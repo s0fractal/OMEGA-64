@@ -184,12 +184,9 @@
     "runtime_support_files": [
       "build_wasm.ts",
       "P2P_SYNAPSE.ts",
-      "wasm_layout_guard.ts",
-      "REIFICATION_ACTION.ts"
+      "wasm_layout_guard.ts"
     ],
-    "experimental_files": [
-      "opcode_to_glyph.ts"
-    ],
+    "experimental_files": [],
     "core_entry_files": [
       "SYSTEM_START.ts",
       "PULSE.ts",
@@ -211,9 +208,7 @@
       "GENERIC_LEDGER_SYSTEM.ts",
       "HORMONE_BUFFER_RUNTIME.ts",
       "build_wasm.ts",
-      "wasm_layout_guard.ts",
-      "REIFICATION_ACTION.ts",
-      "src/06/mod.ts"
+      "wasm_layout_guard.ts"
     ],
     "context_files": []
   }

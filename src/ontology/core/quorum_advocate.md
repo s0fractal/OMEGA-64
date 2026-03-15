@@ -1,3 +1,15 @@
+---
+id: QUORUM_ADVOCATE
+type: module
+description: "Migrated from src/07/02/QUORUM_ADVOCATE.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
 import { STATE_MATRIX } from "@generated";
 import { LOGGER } from "@generated";
@@ -42,3 +54,4 @@ export class QuorumAdvocate {
     return quorumStrength > 0.7;
   }
 }
+```

@@ -1,8 +1,8 @@
 ---
 id: LINEAGE_TRACKER
 type: module
-description: "Migrated from src/06/LINEAGE_TRACKER.ts"
-tags: ["membrane", "host"]
+description: "Migrated from src/07/02/LINEAGE_TRACKER.ts"
+tags: ["core", "host"]
 deps: []
 min_level: 6
 ---
@@ -10,108 +10,40 @@ min_level: 6
 ### TypeScript
 
 ```typescript
+// OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
 import { STATE_MATRIX } from "@generated";
+import { AKASHA_CODEX } from "@06";
 import { LOGGER } from "@generated";
-import { AKASHA_CODEX } from "@generated";
 
-export type MemeticStats = {
-  firstAppearance: number;
-  peakAdoption: number;
-  cumulativeLifespan: number;
-  cumulativeEnergy: number;
-  frameCount: number;
-};
+/**
+ * LineageTracker maintains the semantic link between active atoms and their ancestry.
+ */
+export class LineageTracker {
+  /**
+   * Initializes or updates the lineage buffer based on active atoms and their parents.
+   * This is called during the host-lock phase of individual pulses.
+   */
+  public syncLineages(activeIdx: number[]): void {
+    // 1. Scan for newly spawned atoms that inherited parent lineages
+    // Logic: If WASM replication copied the lineage hash, we correlate it here.
 
-export const LINEAGE_TRACKER = {
-  registry: new Map<string, MemeticStats>(),
-  lastScanTick: 0,
+    // 2. Map lineages to Akasha wisdom
+    // For now, we'll just log detections. In a full implementation,
+    // we would pull stability metrics from AKASHA_CODEX.
 
-  toHex: (bytes: Uint8Array): string => {
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("").toUpperCase();
-  },
-
-  updateMetrics: (currentTick: number) => {
-    const currentAdoption = new Map<string, { count: number; energy: number }>();
-    let activeNodes = 0;
-
-    for (let i = 0; i < STATE_MATRIX.MAX_ATOMS; i++) {
-        if (STATE_MATRIX.getId(i) === 0n) continue;
-        activeNodes++;
-        const genomeBytes = STATE_MATRIX.getInstructions(i);
-        // Track the first 8 bytes as the core "Plasmid/Meme" signature for brevity,
-        // or the entire 64 bytes. We will use the first 8 bytes (16 hex chars) as the Meme ID
-        // since the Oracle drops 8-byte plasmids.
-        const memeId = LINEAGE_TRACKER.toHex(genomeBytes.subarray(0, 8));
-        
-        const energy = STATE_MATRIX.getEnergy(i);
-
-        const current = currentAdoption.get(memeId) ?? { count: 0, energy: 0 };
-        current.count += 1;
-        current.energy += energy;
-        currentAdoption.set(memeId, current);
+    if (activeIdx.length > 0 && Math.random() < 0.05) {
+      LOGGER.debug(`[LINEAGE] Tracking ${activeIdx.length} active threads.`);
     }
-
-    if (activeNodes === 0) return;
-
-    for (const [memeId, current] of currentAdoption.entries()) {
-        const stats = LINEAGE_TRACKER.registry.get(memeId) ?? {
-            firstAppearance: currentTick,
-            peakAdoption: 0,
-            cumulativeLifespan: 0,
-            cumulativeEnergy: 0,
-            frameCount: 0
-        };
-
-        if (current.count > stats.peakAdoption) {
-            stats.peakAdoption = current.count;
-        }
-        
-        // Extrapolate lifespan assuming updateMetrics is called periodically (e.g. 100 ticks)
-        const ticksPassed = currentTick - LINEAGE_TRACKER.lastScanTick;
-        const tickDelta = ticksPassed > 0 && ticksPassed <= 1000 ? ticksPassed : 100;
-
-        stats.cumulativeLifespan += current.count * tickDelta;
-        stats.cumulativeEnergy += current.energy * tickDelta;
-        stats.frameCount += 1;
-
-        LINEAGE_TRACKER.registry.set(memeId, stats);
-    }
-    
-    LINEAGE_TRACKER.lastScanTick = currentTick;
-  },
-
-  closeEpoch: (currentTick: number): { dominantMeme: string, destructiveMeme: string } => {
-    if (LINEAGE_TRACKER.registry.size === 0) {
-      return { dominantMeme: "NONE", destructiveMeme: "NONE" };
-    }
-
-    let dominantMeme = "NONE";
-    let maxAdoption = -1;
-
-    let destructiveMeme = "NONE";
-    let lowestROI = Infinity;
-    
-    for (const [memeId, stats] of LINEAGE_TRACKER.registry.entries()) {
-        if (stats.peakAdoption > maxAdoption) {
-            maxAdoption = stats.peakAdoption;
-            dominantMeme = memeId;
-        }
-
-        // To be considered destructive, it must have had some impact (adoption > 5)
-        if (stats.peakAdoption > 5 && stats.cumulativeLifespan > 0) {
-            const energyROI = stats.cumulativeEnergy / stats.cumulativeLifespan;
-            if (energyROI < lowestROI) {
-                lowestROI = energyROI;
-                destructiveMeme = memeId;
-            }
-        }
-    }
-
-    // Reset registry for the next epoch to measure per-epoch performance
-    LINEAGE_TRACKER.registry.clear();
-
-    LOGGER.info(`📊 [PSYCHOHISTORY] Epoch closed at tick ${currentTick}. Dominant: ${dominantMeme}, Destructive: ${destructiveMeme}`);
-    return { dominantMeme, destructiveMeme };
   }
-};
+
+  /**
+   * Calculates a "Wisdom Coefficient" for a given lineage hash.
+   * Stability and historical resonance from the Codex increase this coefficient.
+   */
+  public getWisdomForLineage(hash: bigint): number {
+    // Placeholder: In a mature system, this queries the species registry.
+    // High historical resonance = high wisdom.
+    return 100; // Baseline wisdom
+  }
+}
 ```

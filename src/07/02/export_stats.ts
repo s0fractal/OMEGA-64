@@ -1,4 +1,4 @@
-import { buildExportFileList } from "./export_core.ts";
+import { buildExportFileList } from "@generated";
 
 async function main() {
   const { files } = await buildExportFileList();

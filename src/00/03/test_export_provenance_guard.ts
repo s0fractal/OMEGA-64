@@ -1,4 +1,4 @@
-import { renderCoreExport } from "@07/02/export_core.ts";
+import { renderCoreExport } from "@generated";
 
 const SHA256_RE = /^[0-9a-f]{64}$/u;
 const COMMIT_RE = /^(unknown|[0-9a-f]{7,40})$/u;

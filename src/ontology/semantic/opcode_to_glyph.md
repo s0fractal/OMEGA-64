@@ -1,5 +1,17 @@
+---
+id: OPCODE_TO_GLYPH
+type: module
+description: "Migrated from src/07/04/opcode_to_glyph.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_TENSEGRITY, OP_COLLECTIVE, OP_SECRETE_PLASMID, OP_BUILD, OP_SENSE, OP_SPORE_DRIVE, OP_HEBB, OP_PLUG, OP_RESOLVE, OP_SYSCALL } from "@generated";
-import { glyphSpecByLegacyOpcode } from "@07/04/mod.ts";
+import { glyphSpecByLegacyOpcode } from "@generated";
 
 export type LegacyInstruction = {
   pc: number;
@@ -130,3 +142,4 @@ export const scriptToGlyphTape = (
 
   return out;
 };
+```

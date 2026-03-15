@@ -159,10 +159,10 @@ const {
 import { DriftWarden } from "@generated";
 import { DollFork } from "@generated";
 import { DollForkRunner } from "@generated";
-import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
-import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
-import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
-import { QuorumAdvocate } from "@07/02/QUORUM_ADVOCATE.ts";
+import { REIFIED_PROGRAMS } from "@generated";
+import { GenesisInceptor } from "@generated";
+import { LineageTracker } from "@generated";
+import { QuorumAdvocate } from "@generated";
 import {
   OP_ADD,
   OP_BUILD,

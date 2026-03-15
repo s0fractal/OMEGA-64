@@ -1,3 +1,15 @@
+---
+id: GENESIS_BOOT
+type: module
+description: "Migrated from src/07/05/GENESIS_BOOT.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 /**
  * GENESIS_BOOT.ts
  * Axiomatic bytecode definitions for OMEGA-64 Stage 20.
@@ -136,3 +148,4 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
     GLYPH.I,
   ],
 };
+```

@@ -1,3 +1,15 @@
+---
+id: EXPORT_CORE
+type: module
+description: "Migrated from src/07/02/export_core.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 import { parse } from "jsr:@std/jsonc";
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
@@ -673,3 +685,4 @@ if (import.meta.main) {
   await exportCore();
 }
 
+```
