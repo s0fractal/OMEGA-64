@@ -62,3 +62,17 @@ src/_as/
 
 # Auto-generated Ontology Rust Bindings
 src/00/sigma_core/src/ontology_gen/
+
+# -------------------------------------------------------------------
+# Root-Level Housekeeping
+# -------------------------------------------------------------------
+# Ignore any arbitrary temporary scripts or logs created in the root
+/*.ts
+/*.js
+/*.py
+/*.log
+/*.rlib
+/*.vsix
+
+# Explicitly whitelist necessary root config files
+!/deno.jsonc
