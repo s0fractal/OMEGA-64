@@ -30,7 +30,7 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
   return value.length > 0 ? value : fallback;
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
-import { ENV_PARSE, Li } from "@generated";
+import { Li } from "@g01";
 const { parseEnvBool, parseEnvBoundedInt } = ENV_PARSE;
 
 const parsePort = (raw: string | undefined, fallback: number): number =>

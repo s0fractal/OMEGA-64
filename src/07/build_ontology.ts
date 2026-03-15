@@ -394,8 +394,9 @@ for (const node of nodes.values()) {
   // Imports for TS
   if (node.level > 0) {
     const prevLevel = formatLevel(node.level - 1);
-    if (node.vars && node.vars.length > 0) {
-      tsOut += `import { ${node.vars.join(", ")} } from "@g${prevLevel}";\n`;
+    const importsToPull = Array.from(new Set([...(node.vars || []), ...(node.deps || [])]));
+    if (importsToPull.length > 0) {
+      tsOut += `import { ${importsToPull.join(", ")} } from "@g${prevLevel}";\n`;
     }
   }
   tsOut += `\n`;
