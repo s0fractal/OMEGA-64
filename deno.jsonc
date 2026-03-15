@@ -10,7 +10,7 @@
   ],
   "tasks": {
     "lint": "deno lint",
-    "core:export": "deno run -A src/07/02/export_core.ts && deno run -A src/07/02/export_rust.ts",
+    "core:export": "deno run -A src/_/06/EXPORT_CORE.ts",
     "core:refresh": "deno task core:export",
     "core:pulse": "deno run -A src/PULSE.ts",
     "core:breath": "deno run -A src/06/BREATH.ts",
@@ -209,45 +209,43 @@
   "omega": {
     "era": "69",
     "runtime_root_files": [
-      "SYSTEM_START.ts",
-      "PULSE.ts",
-      "PULSE_WORKER.ts",
-      "AKASHA_SERVER.ts",
-      "OMEGA_DAEMON.ts",
+      "src/_/13/PULSE.ts",
+      "src/_/13/PULSE_WORKER.ts",
+      "src/_/08/AKASHA_SERVER.ts",
+      "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
-      "MUTATION_TELEMETRY.ts",
-      "TUI_DASHBOARD.ts",
-      "AGENT_PROXY.ts",
-      "src/_/07/llm_soul.ts"
+      "src/_/08/MUTATION_TELEMETRY.ts",
+      "src/_/14/TUI_DASHBOARD.ts",
+      "src/_/08/AGENT_PROXY.ts",
+      "src/_/07/LLM_SOUL.ts"
     ],
     "runtime_support_files": [
-      "build_wasm.ts",
-      "P2P_SYNAPSE.ts",
-      "wasm_layout_guard.ts"
+      "src/07/build_wasm.ts",
+      "src/_/05/P2P_SYNAPSE.ts",
+      "src/00/03/wasm_layout_guard.ts"
     ],
     "experimental_files": [],
     "core_entry_files": [
-      "SYSTEM_START.ts",
-      "PULSE.ts",
-      "PULSE_WORKER.ts",
-      "AKASHA_SERVER.ts",
-      "OMEGA_DAEMON.ts",
+      "src/_/13/PULSE.ts",
+      "src/_/13/PULSE_WORKER.ts",
+      "src/_/08/AKASHA_SERVER.ts",
+      "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
-      "MUTATION_TELEMETRY.ts",
-      "TUI_DASHBOARD.ts",
-      "AGENT_PROXY.ts",
-      "src/_/07/llm_soul.ts"
+      "src/_/08/MUTATION_TELEMETRY.ts",
+      "src/_/14/TUI_DASHBOARD.ts",
+      "src/_/08/AGENT_PROXY.ts",
+      "src/_/07/LLM_SOUL.ts"
     ],
     "required_additional_files": [
-      "DAEMON_INGRESS_POLICY.ts",
-      "GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
-      "ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
-      "GLYPH_TELEMETRY.ts",
-      "GENERIC_LEDGER_PERSISTENCE.ts",
-      "GENERIC_LEDGER_SYSTEM.ts",
-      "HORMONE_BUFFER_RUNTIME.ts",
-      "build_wasm.ts",
-      "wasm_layout_guard.ts"
+      "src/_/03/DAEMON_INGRESS_POLICY.ts",
+      "src/_/06/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
+      "src/_/06/ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
+      "src/_/06/GLYPH_TELEMETRY.ts",
+      "src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
+      "src/_/09/GENERIC_LEDGER_SYSTEM.ts",
+      "src/_/11/HORMONE_BUFFER_RUNTIME.ts",
+      "src/07/build_wasm.ts",
+      "src/00/03/wasm_layout_guard.ts"
     ],
     "context_files": []
   }
