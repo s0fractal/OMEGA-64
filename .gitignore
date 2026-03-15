@@ -59,3 +59,6 @@ src/_
 
 # Auto-generated AssemblyScript layer
 src/_as/
+
+# Auto-generated Ontology Rust Bindings
+src/00/sigma_core/src/ontology_gen/
