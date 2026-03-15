@@ -51,7 +51,7 @@ const main = async () => {
       reason: "P2P mutate token must come from runtime policy",
     });
   }
-  const hasPolicyImport = source.includes('@generated"') || source.includes("/mod.ts\"");
+  const hasPolicyImport = source.includes('@generated"') || source.includes("/mod.ts\"") || /from "@g\d{2}"/.test(source);
   if (!hasPolicyImport) {
     violations.push({
       reason: "P2P synapse must source ingress policy from @generated or mod.ts chain",

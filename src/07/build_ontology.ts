@@ -395,7 +395,7 @@ for (const node of nodes.values()) {
   if (node.level > 0) {
     const prevLevel = formatLevel(node.level - 1);
     if (node.vars && node.vars.length > 0) {
-      tsOut += `import { ${node.vars.join(", ")} } from "../${prevLevel}/mod.ts";\n`;
+      tsOut += `import { ${node.vars.join(", ")} } from "@g${prevLevel}";\n`;
     }
   }
   tsOut += `\n`;
@@ -743,7 +743,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   
   if (lvl > 0) {
     const prevLvlStr = formatLevel(lvl - 1);
-    lvlTsOut += `export * from "../${prevLvlStr}/mod.ts";\n`;
+    lvlTsOut += `export * from "@g${prevLvlStr}";\n`;
     lvlRsOut += `pub use super::L${prevLvlStr}::*;\n\n`;
     lvlAsOut += `export * from "../${prevLvlStr}/mod";\n`;
   }

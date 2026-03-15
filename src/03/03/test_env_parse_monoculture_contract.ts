@@ -47,7 +47,7 @@ const main = async () => {
     const source = await Deno.readTextFile(resolvedPath);
     // Accept both legacy @generated and the new liquid architecture ../NN/mod.ts patterns
     const hasLiquidImport = source.includes('@generated"') ||
-      /from "\.\.\/.+\/mod\.ts"/.test(source);
+      /from "\.\.\/.+\/mod\.ts"/.test(source) || /from "@g\d{2}"/.test(source);
     if (!hasLiquidImport) {
       violations.push({
         file: target.file,
