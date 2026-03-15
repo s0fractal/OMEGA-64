@@ -1,3 +1,15 @@
+---
+id: DRIFT_WARDEN
+type: module
+description: "Migrated from src/07/02/DRIFT_WARDEN.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
 import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, MAX_ATOMS } from "@generated";
 import { sharedBuffer } from "@generated";
@@ -104,3 +116,4 @@ export class DriftWarden {
     };
   }
 }
+```

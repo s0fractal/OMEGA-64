@@ -7134,9 +7134,9 @@ import {
   recordFromRollback,
 } from "../../03/GENERIC_LEDGER_PERSISTENCE.ts";
 
-import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
-import { DollFork } from "@07/02/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "@07/02/DOLL_FORK_RUNNER.ts";
+import { DriftWarden } from "@generated";
+import { DollFork } from "@generated";
+import { DollForkRunner } from "@generated";
 import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
@@ -40231,7 +40231,7 @@ export class DollFork {
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
 import { AS_WASM_PATH, LOGGER, MAX_ATOMS } from "@generated";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
+import { DollFork } from "@generated";
 
 export class DollForkRunner {
   private wasmInstance: WebAssembly.Instance | null = null;
@@ -41285,17 +41285,17 @@ export class LineageTracker {
 
 ```typescript
 export * from "./SHADOW_EVOLUTION_RUNNER.ts";
-export * from "./DOLL_FORK_RUNNER.ts";
+export * from "@generated";
 export * from "./QUORUM_ADVOCATE.ts";
-export * from "./DOLL_FORK_MATRIX.ts";
+export * from "@generated";
 export * from "./RUN_STAGE8_TICKS.ts";
 export * from "./LINEAGE_TRACKER.ts";
 export * from "./SYSTEM_START.ts";
 export * from "./apply_vector_maps.ts";
 export * from "./export_stats.ts";
-export * from "./RELIC_CULTIVATION.ts";
+export * from "@generated";
 export * from "./export_rust.ts";
-export * from "./DRIFT_WARDEN.ts";
+export * from "@generated";
 ```
 
 ---
@@ -41356,7 +41356,7 @@ export class QuorumAdvocate {
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
 import { MAX_ATOMS } from "@generated";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
+import { DollFork } from "@generated";
 import { LOGGER } from "@generated";
 
 export type Relic = {
@@ -41500,9 +41500,9 @@ run().catch((err) => {
 
 import { REDUCTION_CASES } from "../../03/03/verification/reduction_cases.ts";
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "./DOLL_FORK_RUNNER.ts";
-import { DriftWarden } from "./DRIFT_WARDEN.ts";
+import { DollFork } from "@generated";
+import { DollForkRunner } from "@generated";
+import { DriftWarden } from "@generated";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
 import { MAX_ATOMS } from "@generated";
 
@@ -45747,7 +45747,7 @@ export const scriptToGlyphTape = (
 
 ```typescript
 // OMEGA-64 | REIFICATION_ACTION.ts | Stage 21: The Doll Fork
-import { Relic } from "../02/RELIC_CULTIVATION.ts";
+import { Relic } from "@generated";
 import { LOGGER } from "@generated";
 
 /**

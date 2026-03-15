@@ -6,9 +6,9 @@
 
 import { REDUCTION_CASES } from "../../03/03/verification/reduction_cases.ts";
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "./DOLL_FORK_RUNNER.ts";
-import { DriftWarden } from "./DRIFT_WARDEN.ts";
+import { DollFork } from "@generated";
+import { DollForkRunner } from "@generated";
+import { DriftWarden } from "@generated";
 import { ReificationAction } from "./REIFICATION_ACTION.ts";
 import { MAX_ATOMS } from "@generated";
 

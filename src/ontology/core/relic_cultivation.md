@@ -1,6 +1,18 @@
+---
+id: RELIC_CULTIVATION
+type: module
+description: "Migrated from src/07/02/RELIC_CULTIVATION.ts"
+tags: ["core", "host"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
 import { MAX_ATOMS } from "@generated";
-import { DollFork } from "./DOLL_FORK_MATRIX.ts";
+import { DollFork } from "@generated";
 import { LOGGER } from "@generated";
 
 export type Relic = {
@@ -74,3 +86,4 @@ export class RelicCultivator {
     }
   }
 }
+```

@@ -156,9 +156,9 @@ const {
   recordFromRollback,
 } = GENERIC_LEDGER_PERSISTENCE;
 
-import { DriftWarden } from "@07/02/DRIFT_WARDEN.ts";
-import { DollFork } from "@07/02/DOLL_FORK_MATRIX.ts";
-import { DollForkRunner } from "@07/02/DOLL_FORK_RUNNER.ts";
+import { DriftWarden } from "@generated";
+import { DollFork } from "@generated";
+import { DollForkRunner } from "@generated";
 import { REIFIED_PROGRAMS } from "@07/05/GENESIS_REIFIED.ts";
 import { GenesisInceptor } from "@07/05/GENESIS_INCEPTOR.ts";
 import { LineageTracker } from "@07/02/LINEAGE_TRACKER.ts";
