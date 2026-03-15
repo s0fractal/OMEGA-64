@@ -715,8 +715,6 @@ const resolveSysPath = (id: string) => {
 };
 
 mainTsOut += `export * from "../00/SHIMS.ts";\n`;
-mainTsOut += `export * from "../00/ATOM_INDEX.ts";\n`;
-mainTsOut += `export * from "../00/PRNG.ts";\n`;
 mainTsOut += `export const AS_WASM_PATH = Deno.env.get("WASM_RELEASE_PATH") ? new URL("file://" + await Deno.realPath(Deno.env.get("WASM_RELEASE_PATH")!)) : new URL("../_as/release.wasm", import.meta.url);\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;

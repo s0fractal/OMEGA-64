@@ -11,9 +11,7 @@ min_level: 4
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
 
-import { STATE_MATRIX } from "@generated";
-import { PRNG } from "../../00/PRNG.ts";
-import { LOGGER } from "@generated";
+import { STATE_MATRIX, prng_seed_from, prng_next, LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
@@ -184,8 +182,8 @@ export const P2P_FEDERATION = {
     const packet = P2P_FEDERATION.serialize(idx, pulseId);
 
     if (packet && atomIdAtStart !== 0n) {
-      const prng = new PRNG(PRNG.seedFrom(pulseId, atomIdAtStart.toString()));
-      const { value: pSelector } = prng.next();
+      const stateSeed = prng_seed_from(pulseId, atomIdAtStart.toString());
+      const { value: pSelector } = prng_next(stateSeed);
       const peerList = Array.from(P2P_FEDERATION.peers);
       if (peerList.length === 0) {
         return;
