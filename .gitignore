@@ -74,5 +74,8 @@ src/00/sigma_core/src/ontology_gen/
 /*.rlib
 /*.vsix
 
+# Environment variables
+.env
+
 # Explicitly whitelist necessary root config files
 !/deno.jsonc
