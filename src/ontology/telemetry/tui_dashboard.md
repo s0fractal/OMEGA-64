@@ -4,6 +4,7 @@ type: module
 description: "Implementation of TUI_DASHBOARD"
 tags:
   - standalone
+entry: true
 min_level: 14
 vars:
   - GENESIS_PREDATOR_SCRIPT

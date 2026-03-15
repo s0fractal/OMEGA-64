@@ -1,0 +1,463 @@
+[0m[32mTask[0m [0m[36mverify:coherence[0m deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:memory-layout && deno task test:attention-field && deno task test:runtime-std-import-policy && deno task test:runtime-std-version-policy && deno task test:evolution-pressure && deno task test:homeostasis-contract && deno task test:homeostasis-scheduler && deno task test:pressure-ring-scheduler && deno task test:auto-snapshot && deno task test:spatial-hash-guard && deno task test:mutation-telemetry-contract && deno task test:mutation-telemetry-api && deno task test:gate-decomposition-contract && deno task test:oracle-mutation-serialization && deno task test:oracle-plasmid-mode && deno task test:control-intent-serialization && deno task test:pulse-clock-contract && deno task test:log-level-policy && deno task test:daemon-contract && deno task test:daemon-glyph-admission && deno task test:architect-plasmid-promotion && deno task test:architect-plasmid-promotion-decision && deno task test:architect-plasmid-promotion-action && deno task test:guardian-signal-promotion && deno task test:guardian-signal-promotion-decision && deno task test:guardian-signal-promotion-action && deno task test:guardian-signal-mode-diff-artifacts && deno task test:architect-plasmid-mode-diff-artifacts && deno task test:daemon-invariant-compressor && deno task test:semantic-behavior-cluster && deno task test:akasha-webrtc-signaling && deno task test:daemon-governance && deno task test:hormone-buffer && deno task test:hormone-ledger-alignment && deno task test:physiology-snapshot && deno task test:physiology-api && deno task test:telemetry-stream-contract && deno task test:codex-narrative-contract && deno task test:runtime-support-boundary && deno task test:runtime-experimental-boundary && deno task test:glyphir64-contract && deno task test:opcode-to-glyph-contract && deno task test:golden-trace-catalog && deno task test:golden-trace-artifacts && deno task test:admission-diff-artifacts && deno task test:reduction-cases && deno task test:reduction-harness && deno task test:reduction-diff-artifacts && deno task vector10:verify && deno task test:worker-determinism && deno task test:crystalline && deno task test:quantum && deno task test:quantum-mycelium && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain && deno task test:structure
+[0m[32mTask[0m [0m[36mtest:runtime-monoculture[0m deno run -A src/00/03/test_runtime_monoculture.ts
+[toolchain] Deno monoculture guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-logging[0m deno run -A src/06/03/test_runtime_logging.ts
+[logging] runtime LOGGER guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-state-matrix-api[0m deno run -A src/00/03/test_runtime_state_matrix_api_guard.ts
+[runtime-api] state-matrix API guard passed. scanned=9
+[0m[32mTask[0m [0m[36mtest:memory-layout[0m deno run -A src/00/03/test_memory_layout_guard.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[memory-layout-guard] layout guard passed. regions=56
+[0m[32mTask[0m [0m[36mtest:attention-field[0m deno run -A src/05/03/test_attention_field_runtime.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[attention-field] runtime guard passed. center=200.00
+[0m[32mTask[0m [0m[36mtest:runtime-std-import-policy[0m deno run -A src/03/03/test_runtime_std_import_policy.ts
+[std-policy] std import policy guard passed. scanned=18
+[0m[32mTask[0m [0m[36mtest:runtime-std-version-policy[0m deno run -A src/03/03/test_runtime_std_version_policy.ts
+[std-version-policy] std version policy guard passed. scanned=18
+[0m[32mTask[0m [0m[36mtest:evolution-pressure[0m deno run -A src/03/03/test_evolution_pressure_contract.ts
+[evolution-pressure] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:homeostasis-contract[0m deno run -A src/03/03/test_homeostasis_contract.ts
+[homeostasis-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:homeostasis-scheduler[0m deno run -A src/03/03/test_homeostasis_scheduler_contract.ts
+[homeostasis-scheduler] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:pressure-ring-scheduler[0m deno run -A src/03/03/test_pressure_ring_scheduler_contract.ts
+[pressure-ring-scheduler] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:auto-snapshot[0m deno run -A src/03/03/test_auto_snapshot_contract.ts
+[auto-snapshot-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:spatial-hash-guard[0m deno run -A src/03/03/test_spatial_hash_guard_contract.ts
+[spatial-hash-guard] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:mutation-telemetry-contract[0m deno run -A src/03/03/test_mutation_telemetry_contract.ts
+[mutation-telemetry] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:mutation-telemetry-api[0m deno run -A src/03/03/test_mutation_telemetry_api_contract.ts
+[mutation-telemetry-api] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:gate-decomposition-contract[0m deno run -A src/05/03/test_gate_decomposition_contract.ts
+[gate-decomposition] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:oracle-mutation-serialization[0m deno run -A src/05/03/test_oracle_mutation_serialization_contract.ts
+[oracle-serialization] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:oracle-plasmid-mode[0m deno run -A src/05/03/test_oracle_plasmid_mode_contract.ts
+[oracle-plasmid-mode] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:control-intent-serialization[0m deno run -A src/03/03/test_control_intent_serialization_contract.ts
+[control-intent-serialization] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:pulse-clock-contract[0m deno run -A src/03/03/test_pulse_clock_contract.ts
+[pulse-clock] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:log-level-policy[0m deno run -A src/03/03/test_log_level_policy.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+✅ [TEST] LOGGER level policy verified.
+[0m[32mTask[0m [0m[36mtest:daemon-contract[0m deno run -A src/03/03/test_daemon_contract.ts
+[daemon-contract] daemon + akasha API contract passed.
+[0m[32mTask[0m [0m[36mtest:daemon-glyph-admission[0m deno run -A src/03/03/test_daemon_glyph_admission_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[daemon-glyph-admission] glyph pressure contract passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion[0m deno run -A src/03/03/test_architect_plasmid_promotion_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[architect-plasmid-promotion] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion-decision[0m deno run -A src/03/03/test_architect_plasmid_promotion_decision_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[architect-plasmid-promotion-decision] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-promotion-action[0m deno run -A src/03/03/test_architect_plasmid_promotion_action_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[architect-plasmid-promotion-action] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion[0m deno run -A src/03/03/test_guardian_signal_promotion_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[guardian-signal-promotion] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion-decision[0m deno run -A src/03/03/test_guardian_signal_promotion_decision_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[guardian-signal-promotion-decision] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-promotion-action[0m deno run -A src/03/03/test_guardian_signal_promotion_action_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[guardian-signal-promotion-action] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:guardian-signal-mode-diff-artifacts[0m deno run -A src/03/03/test_guardian_signal_mode_diff_artifact_contract.ts
+[guardian-signal-mode-diff-artifacts] contract guard passed. artifacts=3
+[0m[32mTask[0m [0m[36mtest:architect-plasmid-mode-diff-artifacts[0m deno run -A src/03/03/test_architect_plasmid_mode_diff_artifact_contract.ts
+[architect-plasmid-mode-diff-artifacts] contract guard passed. artifacts=3
+[0m[32mTask[0m [0m[36mtest:daemon-invariant-compressor[0m deno run -A src/03/03/test_daemon_invariant_compressor_contract.ts
+[daemon-invariant-compressor] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:semantic-behavior-cluster[0m deno run -A src/05/03/test_semantic_behavior_cluster_contract.ts
+[semantic-behavior-cluster] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:akasha-webrtc-signaling[0m deno run -A src/04/03/test_akasha_webrtc_signaling_contract.ts
+[akasha-webrtc-signaling] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:daemon-governance[0m deno run -A src/03/03/test_daemon_governance_contract.ts
+[daemon-governance] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:hormone-buffer[0m deno run -A src/03/03/test_hormone_buffer_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[hormone_buffer] contract guard passed. hormones=7
+[0m[32mTask[0m [0m[36mtest:hormone-ledger-alignment[0m deno run -A src/03/03/test_hormone_ledger_alignment_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[hormone_ledger] alignment guard passed. hormones=7 ledger=11
+[0m[32mTask[0m [0m[36mtest:physiology-snapshot[0m deno run -A src/06/03/test_physiology_snapshot_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[physiology_snapshot] contract guard passed. hormones=7 ledger=11
+[0m[32mTask[0m [0m[36mtest:physiology-api[0m deno run -A src/03/03/test_physiology_api_contract.ts
+[physiology-api] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:telemetry-stream-contract[0m deno run -A src/03/03/test_telemetry_stream_contract.ts
+[telemetry-stream-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:codex-narrative-contract[0m deno run -A src/03/03/test_codex_narrative_contract.ts
+[codex-narrative-contract] contract guard passed.
+[0m[32mTask[0m [0m[36mtest:runtime-support-boundary[0m deno run -A src/03/03/test_runtime_support_boundary_contract.ts
+[runtime-support-boundary] guard passed. runtimeVisited=404 support=2
+[0m[32mTask[0m [0m[36mtest:runtime-experimental-boundary[0m deno run -A src/03/03/test_runtime_experimental_boundary_contract.ts
+[runtime-experimental-boundary] guard passed. runtimeVisited=404 experimental=0
+[0m[32mTask[0m [0m[36mtest:glyphir64-contract[0m deno run -A src/03/03/test_glyphir64_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[glyphir64] contract guard passed. specs=64 bridge=22
+[0m[32mTask[0m [0m[36mtest:opcode-to-glyph-contract[0m deno run -A src/03/03/test_opcode_to_glyph_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[opcode_to_glyph] contract guard passed. tokens=3
+[0m[32mTask[0m [0m[36mtest:golden-trace-catalog[0m deno run -A src/03/03/test_golden_trace_catalog_contract.ts
+[golden_trace_catalog] contract guard passed. scenarios=22
+[0m[32mTask[0m [0m[36mtest:golden-trace-artifacts[0m deno run -A src/03/03/test_golden_trace_artifact_contract.ts
+[golden_trace_artifacts] contract guard passed. scenarios=22
+[0m[32mTask[0m [0m[36mtest:admission-diff-artifacts[0m deno run -A src/03/03/test_admission_diff_artifact_contract.ts
+[admission_diff] contract guard passed. artifacts=4
+[0m[32mTask[0m [0m[36mtest:reduction-cases[0m deno run -A src/03/03/test_reduction_cases_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[reduction_cases] contract guard passed. cases=37
+[0m[32mTask[0m [0m[36mtest:reduction-harness[0m deno run -A src/03/03/test_reduction_harness_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[runReductionHarnessCase] => rc01_gt01_replicator_loop
+[runReductionHarnessCase] => rc02_gt01_architect_loop
+[runReductionHarnessCase] => rc03_gt03_guardian_stable_branch
+[runReductionHarnessCase] => rc04_gt03_guardian_repair_branch
+[runReductionHarnessCase] => rc05_gt05_band_anchor_match
+[runReductionHarnessCase] => rc06_gt05_band_anchor_mismatch
+[runReductionHarnessCase] => rc07_gt04_plasmid_prop_write_signal
+[runReductionHarnessCase] => rc08_gt04_plasmid_zero_branch
+[runReductionHarnessCase] => rc09_gt08_structure_intent_visible
+[runReductionHarnessCase] => rc10_gt08_structure_intent_typed_miss
+[runReductionHarnessCase] => rc11_gt09_collective_hive_store_load
+[runReductionHarnessCase] => rc12_gt09_collective_pheromone_emit
+[runReductionHarnessCase] => rc13_gt10_share_transfer_success
+[runReductionHarnessCase] => rc14_gt10_share_transfer_empty_bond
+[runReductionHarnessCase] => rc15_gt11_collective_bank_deposit
+[runReductionHarnessCase] => rc16_gt11_collective_bank_withdraw
+[runReductionHarnessCase] => rc17_gt12_collective_phase_lock
+[runReductionHarnessCase] => rc18_gt12_collective_pc_sync_quorum
+[runReductionHarnessCase] => rc19_gt13_sense_stale_lock_visible
+[runReductionHarnessCase] => rc20_gt13_sense_stale_lock_typed_miss
+[runReductionHarnessCase] => rc21_gt14_plug_charge_resolve
+[runReductionHarnessCase] => rc22_gt15_plug_charge_competition_low_high
+REDUCTION EXECUTION TRACE: [
+  "pc=0 glyph=SET[8] rule=bridge/control/set",
+  "pc=3 glyph=PLUG[24] rule=bridge/structural/plug",
+  "pc=6 glyph=SET[8] rule=bridge/control/set",
+  "pc=9 glyph=PLUG[24] rule=bridge/structural/plug",
+  "post=structure_tick"
+]
+REDUCTION TAPE TOKENS: [
+  "pc=0 id=8 len=3 op=1",
+  "pc=3 id=24 len=3 op=164",
+  "pc=6 id=8 len=3 op=1",
+  "pc=9 id=24 len=3 op=164"
+]
+[runReductionHarnessCase] => rc23_gt15_plug_charge_competition_high_low
+[runReductionHarnessCase] => rc24_gt16_build_source_materialize
+[runReductionHarnessCase] => rc25_gt17_build_competition_high_owner_overwrite
+[runReductionHarnessCase] => rc26_gt17_build_competition_low_owner_blocked
+[runReductionHarnessCase] => rc27_gt18_build_stale_lock_blocked
+[runReductionHarnessCase] => rc28_gt19_tensegrity_kinematics
+[runReductionHarnessCase] => rc29_gt20_bind_resolution
+[runReductionHarnessCase] => rc30_spore_drive_jump
+[runReductionHarnessCase] => rc31_entangle_hive_deposit
+[runReductionHarnessCase] => rc32_quorum_pc_sync
+[runReductionHarnessCase] => rc33_share_percentage_drift
+[runReductionHarnessCase] => rc34_role_resolution
+[runReductionHarnessCase] => rc35_bank_resolution
+[runReductionHarnessCase] => rc36_genesis_guardian
+[runReductionHarnessCase] => rc37_genesis_architect
+[reduction_harness] contract guard passed. cases=37
+[0m[32mTask[0m [0m[36mtest:reduction-diff-artifacts[0m deno run -A src/03/03/test_reduction_diff_artifact_contract.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[reduction_diff_artifacts] contract guard passed. cases=37
+[0m[32mTask[0m [0m[36mvector10:verify[0m deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity
+[0m[32mTask[0m [0m[36mwasm:build[0m deno task ontology:build && deno run -A src/07/build_wasm.ts
+[0m[32mTask[0m [0m[36montology:build[0m deno run -A src/07/build_ontology.ts
+
+============================================================
+             OMEGA-64 ONTOLOGY BUILD SUMMARY
+============================================================
+
+Node Counts by Type:
+  - constants           : 1
+  - documentation       : 1
+  - enum                : 5
+  - lore                : 1
+  - memory_layout       : 1
+  - module              : 144
+  - pure_fn             : 108
+  - static_table        : 9
+  - substrate_module    : 15
+
+[OK] No dead code candidates detected.
+
+============================================================
+[Genesis Builder] Successfully compiled ontology into 285 atoms and 15 Causality Layers.
+============================================================
+
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[wasm:build] /Users/s0fractal/OMEGA/src/_as/release.wasm=40745 bytes, pages=7630, required>=2600
+[0m[32mTask[0m [0m[36mtest:worker-coherence[0m deno run -A src/02/03/test_wasm_worker_coherence.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+🧪 [TEST] WASM worker coherence baseline (OMEGA_PULSE_WORKERS=4, ticks=12, logEvery=1)
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+   [TICK 0] active=0, id0=0
+   [TICK 1] active=0, id0=0
+   [TICK 2] active=0, id0=0
+   [TICK 3] active=0, id0=0
+   [TICK 4] active=0, id0=0
+   [TICK 5] active=0, id0=0
+   [TICK 6] active=0, id0=0
+   [TICK 7] active=0, id0=0
+   [TICK 8] active=0, id0=0
+   [TICK 9] active=0, id0=0
+   [TICK 10] active=0, id0=0
+   [TICK 11] active=0, id0=0
+✅ [TEST] No spontaneous atom emergence across baseline ticks.
+[0m[32mTask[0m [0m[36mtest:resonance[0m deno run -A src/05/03/test_resonance_protocol.ts
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+💎 [TEST] Resonance Protocol Verification...
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+[GLYPH_TELEMETRY] Initialized with SECRETION_STATS_OFFSET=140945860
+   [STAGE 1] Low Coherence set: 50/255. Guardian should switch to ARCHITECT (Role 3).
+   [RESULT 1] Guardian Role: 3 (Expected 3: ARCHITECT)
+   [STAGE 2] Testing Autopoiesis: Injecting high charge into Structure Grid.
+   [RESULT 2] Autopoietic Cell (10,10) Type: 1 (Expected 1: WIRE)
+   [STAGE 3] Testing Oracle Whisper injection into MEMORY_GRID.
+   [RESULT 3a] Oracle drain applied=1 skipped=0
+   [RESULT 3] Whisper-seeded cells delta: 1 (Expected > 0)
+💎 [TEST] Resonance Protocol Verification Done.
+Task not found: test:swarm
+[0m[32mAvailable tasks:[0m
+- [0m[36mlint[0m
+    deno lint
+- [0m[36mcore:export[0m
+    deno run -A src/_/06/EXPORT_CORE.ts
+- [0m[36mcore:refresh[0m
+    deno task core:export
+- [0m[36mcore:pulse[0m
+    deno run -A src/PULSE.ts
+- [0m[36mcore:breath[0m
+    deno run -A src/06/BREATH.ts
+- [0m[36mcore:ui[0m
+    deno run -A src/OBSERVER_UI.ts
+- [0m[36mcore:start[0m
+    deno run -A src/07/02/SYSTEM_START.ts
+- [0m[36mcore:genesis[0m
+    deno run -A --unstable src/07/02/SYSTEM_START.ts --genesis --genesis-interval=50
+- [0m[36mdaemon:start[0m
+    deno run -A src/OMEGA_DAEMON.ts
+- [0m[36mmembrane:test[0m
+    deno run -A src/SEMANTIC_MEMBRANE.ts
+- [0m[36mmembrane:inject[0m
+    deno eval 'import { src/SEMANTIC_MEMBRANE } from "./src/SEMANTIC_MEMBRANE.ts"; await src/SEMANTIC_MEMBRANE.injectThought(Deno.args[0] || "Default Thought", Number(Deno.args[1]) || 100)' --
+- [0m[36mwasm:layout[0m
+    deno run -A src/wasm_layout_guard.ts
+- [0m[36mbuild:topology[0m
+    deno run -A src/00/generate.ts
+- [0m[36montology:build[0m
+    deno run -A src/07/build_ontology.ts
+- [0m[36mwasm:build[0m
+    deno task ontology:build && deno run -A src/07/build_wasm.ts
+- [0m[36mtest:resonance[0m
+    deno run -A src/05/03/test_resonance_protocol.ts
+- [0m[36mtest:tensegrity[0m
+    deno run -A src/00/03/test_tensegrity.ts
+- [0m[36mtest:quantum[0m
+    deno run -A src/00/03/test_quantum_shift.ts
+- [0m[36mtest:quantum-mycelium[0m
+    deno run -A src/00/03/test_quantum_mycelium.ts
+- [0m[36mtest:crystalline[0m
+    deno run -A src/00/03/test_crystalline_lattice.ts
+- [0m[36mtest:worker-coherence[0m
+    deno run -A src/02/03/test_wasm_worker_coherence.ts
+- [0m[36mtest:worker-coherence:long[0m
+    OMEGA_WORKER_COHERENCE_TICKS=1000 OMEGA_WORKER_COHERENCE_LOG_EVERY=100 deno run -A src/02/03/test_wasm_worker_coherence.ts
+- [0m[36mtest:worker-determinism[0m
+    deno run -A src/02/03/test_worker_determinism.ts
+- [0m[36mtest:spawn-determinism[0m
+    deno run -A src/02/03/test_spawn_determinism.ts
+- [0m[36mtest:spawn-jitter-resilience[0m
+    deno run -A src/02/03/test_spawn_jitter_resilience.ts
+- [0m[36mtest:worker-timeout-retry[0m
+    deno run -A src/02/03/test_worker_timeout_retry.ts
+- [0m[36mtest:worker-timeout-retry:multi[0m
+    deno run -A src/02/03/test_worker_timeout_retry_multi.ts
+- [0m[36mtest:worker-jitter-resilience[0m
+    deno run -A src/02/03/test_worker_jitter_resilience.ts
+- [0m[36mtest:worker-init-fallback[0m
+    deno run -A src/02/03/test_worker_init_fallback.ts
+- [0m[36mtest:worker-init-total-fail[0m
+    deno run -A src/02/03/test_worker_init_total_fail.ts
+- [0m[36mtest:worker-init-safe-noop[0m
+    deno run -A src/02/03/test_worker_init_safe_noop.ts
+- [0m[36mtest:worker-resilience-audit[0m
+    deno run -A src/02/03/test_worker_resilience_audit.ts
+- [0m[36mtest:worker-resilience-budget[0m
+    deno task test:worker-resilience-audit && deno run -A src/02/03/test_worker_resilience_budget.ts
+- [0m[36mtest:worker-resilience-trend[0m
+    deno task test:worker-resilience-budget && deno run -A src/02/03/test_worker_resilience_trend.ts
+- [0m[36mtest:worker-soak-stability[0m
+    deno run -A src/02/03/test_worker_soak_stability.ts
+- [0m[36mtest:worker-soak-trend[0m
+    deno task test:worker-soak-stability && deno run -A src/02/03/test_worker_soak_trend.ts
+- [0m[36maudit:longrun-canary[0m
+    deno run -A src/LONGRUN_CANARY.ts
+- [0m[36maudit:longrun-24h[0m
+    OMEGA_LONGRUN_DURATION_SEC=86400 src/OMEGA_LONGRUN_SAMPLE_MS=10000 deno run -A src/LONGRUN_CANARY.ts
+- [0m[36maudit:longrun-daemon[0m
+    deno run -A src/LONGRUN_DAEMON_AUDIT.ts
+- [0m[36maudit:longrun-daemon-24h[0m
+    OMEGA_LONGRUN_DURATION_SEC=86400 src/OMEGA_LONGRUN_SAMPLE_MS=10000 deno run -A src/LONGRUN_DAEMON_AUDIT.ts
+- [0m[36mtest:startup-selftest-fallback[0m
+    deno run -A src/02/03/test_startup_selftest_fallback.ts
+- [0m[36mtest:startup-selftest-nominal[0m
+    deno run -A src/02/03/test_startup_selftest_nominal.ts
+- [0m[36mtest:worker-determinism-fuzz[0m
+    deno run -A src/02/03/test_worker_determinism_fuzz.ts
+- [0m[36mtest:worker-drift-audit[0m
+    deno run -A src/02/03/test_worker_drift_audit.ts
+- [0m[36mtest:runtime-monoculture[0m
+    deno run -A src/00/03/test_runtime_monoculture.ts
+- [0m[36mtest:runtime-logging[0m
+    deno run -A src/06/03/test_runtime_logging.ts
+- [0m[36mtest:runtime-state-matrix-api[0m
+    deno run -A src/00/03/test_runtime_state_matrix_api_guard.ts
+- [0m[36mtest:memory-layout[0m
+    deno run -A src/00/03/test_memory_layout_guard.ts
+- [0m[36mtest:attention-field[0m
+    deno run -A src/05/03/test_attention_field_runtime.ts
+- [0m[36mtest:runtime-std-import-policy[0m
+    deno run -A src/03/03/test_runtime_std_import_policy.ts
+- [0m[36mtest:runtime-std-version-policy[0m
+    deno run -A src/03/03/test_runtime_std_version_policy.ts
+- [0m[36mtest:evolution-pressure[0m
+    deno run -A src/03/03/test_evolution_pressure_contract.ts
+- [0m[36mtest:homeostasis-contract[0m
+    deno run -A src/03/03/test_homeostasis_contract.ts
+- [0m[36mtest:homeostasis-scheduler[0m
+    deno run -A src/03/03/test_homeostasis_scheduler_contract.ts
+- [0m[36mtest:pressure-ring-scheduler[0m
+    deno run -A src/03/03/test_pressure_ring_scheduler_contract.ts
+- [0m[36mtest:auto-snapshot[0m
+    deno run -A src/03/03/test_auto_snapshot_contract.ts
+- [0m[36mtest:spatial-hash-guard[0m
+    deno run -A src/03/03/test_spatial_hash_guard_contract.ts
+- [0m[36mtest:mutation-telemetry-contract[0m
+    deno run -A src/03/03/test_mutation_telemetry_contract.ts
+- [0m[36mtest:gate-decomposition-contract[0m
+    deno run -A src/05/03/test_gate_decomposition_contract.ts
+- [0m[36mtest:oracle-mutation-serialization[0m
+    deno run -A src/05/03/test_oracle_mutation_serialization_contract.ts
+- [0m[36mtest:oracle-plasmid-mode[0m
+    deno run -A src/05/03/test_oracle_plasmid_mode_contract.ts
+- [0m[36mtest:control-intent-serialization[0m
+    deno run -A src/03/03/test_control_intent_serialization_contract.ts
+- [0m[36mtest:pulse-clock-contract[0m
+    deno run -A src/03/03/test_pulse_clock_contract.ts
+- [0m[36mtest:log-level-policy[0m
+    deno run -A src/03/03/test_log_level_policy.ts
+- [0m[36mtest:daemon-contract[0m
+    deno run -A src/03/03/test_daemon_contract.ts
+- [0m[36mtest:daemon-glyph-admission[0m
+    deno run -A src/03/03/test_daemon_glyph_admission_contract.ts
+- [0m[36mtest:architect-plasmid-promotion[0m
+    deno run -A src/03/03/test_architect_plasmid_promotion_contract.ts
+- [0m[36mtest:architect-plasmid-promotion-decision[0m
+    deno run -A src/03/03/test_architect_plasmid_promotion_decision_contract.ts
+- [0m[36mtest:architect-plasmid-promotion-action[0m
+    deno run -A src/03/03/test_architect_plasmid_promotion_action_contract.ts
+- [0m[36mtest:guardian-signal-promotion[0m
+    deno run -A src/03/03/test_guardian_signal_promotion_contract.ts
+- [0m[36mtest:guardian-signal-promotion-decision[0m
+    deno run -A src/03/03/test_guardian_signal_promotion_decision_contract.ts
+- [0m[36mtest:guardian-signal-promotion-action[0m
+    deno run -A src/03/03/test_guardian_signal_promotion_action_contract.ts
+- [0m[36mtest:guardian-signal-mode-diff-artifacts[0m
+    deno run -A src/03/03/test_guardian_signal_mode_diff_artifact_contract.ts
+- [0m[36mtest:architect-plasmid-mode-diff-artifacts[0m
+    deno run -A src/03/03/test_architect_plasmid_mode_diff_artifact_contract.ts
+- [0m[36mtest:daemon-invariant-compressor[0m
+    deno run -A src/03/03/test_daemon_invariant_compressor_contract.ts
+- [0m[36mtest:semantic-behavior-cluster[0m
+    deno run -A src/05/03/test_semantic_behavior_cluster_contract.ts
+- [0m[36mtest:akasha-webrtc-signaling[0m
+    deno run -A src/04/03/test_akasha_webrtc_signaling_contract.ts
+- [0m[36mtest:daemon-governance[0m
+    deno run -A src/03/03/test_daemon_governance_contract.ts
+- [0m[36mtest:hormone-buffer[0m
+    deno run -A src/03/03/test_hormone_buffer_contract.ts
+- [0m[36mtest:hormone-ledger-alignment[0m
+    deno run -A src/03/03/test_hormone_ledger_alignment_contract.ts
+- [0m[36mtest:physiology-snapshot[0m
+    deno run -A src/06/03/test_physiology_snapshot_contract.ts
+- [0m[36mtest:physiology-api[0m
+    deno run -A src/03/03/test_physiology_api_contract.ts
+- [0m[36mtest:telemetry-stream-contract[0m
+    deno run -A src/03/03/test_telemetry_stream_contract.ts
+- [0m[36mtest:codex-narrative-contract[0m
+    deno run -A src/03/03/test_codex_narrative_contract.ts
+- [0m[36mtest:runtime-support-boundary[0m
+    deno run -A src/03/03/test_runtime_support_boundary_contract.ts
+- [0m[36mtest:runtime-experimental-boundary[0m
+    deno run -A src/03/03/test_runtime_experimental_boundary_contract.ts
+- [0m[36mtest:export-manifest[0m
+    deno run -A src/06/03/test_export_manifest_guard.ts
+- [0m[36mtest:export-file-set[0m
+    deno run -A src/06/03/test_export_file_set_guard.ts
+- [0m[36mtest:export-provenance[0m
+    deno run -A src/00/03/test_export_provenance_guard.ts
+- [0m[36mtest:glyphir64-contract[0m
+    deno run -A src/03/03/test_glyphir64_contract.ts
+- [0m[36mtest:opcode-to-glyph-contract[0m
+    deno run -A src/03/03/test_opcode_to_glyph_contract.ts
+- [0m[36mtest:golden-trace-catalog[0m
+    deno run -A src/03/03/test_golden_trace_catalog_contract.ts
+- [0m[36mtest:golden-trace-artifacts[0m
+    deno run -A src/03/03/test_golden_trace_artifact_contract.ts
+- [0m[36mtest:mutation-telemetry-api[0m
+    deno run -A src/03/03/test_mutation_telemetry_api_contract.ts
+- [0m[36mtest:admission-diff-artifacts[0m
+    deno run -A src/03/03/test_admission_diff_artifact_contract.ts
+- [0m[36mtest:reduction-cases[0m
+    deno run -A src/03/03/test_reduction_cases_contract.ts
+- [0m[36mtest:reduction-harness[0m
+    deno run -A src/03/03/test_reduction_harness_contract.ts
+- [0m[36mtest:reduction-diff-artifacts[0m
+    deno run -A src/03/03/test_reduction_diff_artifact_contract.ts
+- [0m[36mreduction-harness:capture[0m
+    deno run -A src/03/03/reduction_harness.ts
+- [0m[36mtest:topological-signature[0m
+    deno run -A src/00/03/test_topological_signature_runtime.ts
+- [0m[36mtest:invariant-packet[0m
+    deno run -A src/00/03/test_invariant_packet_runtime.ts
+- [0m[36mtest:bridge-policy[0m
+    deno run -A src/03/03/test_bridge_policy_runtime.ts
+- [0m[36mtest:proposal-envelope-index[0m
+    deno run -A src/00/03/test_proposal_envelope_index_runtime.ts
+- [0m[36mtest:ledger-chain[0m
+    deno run -A src/03/03/test_ledger_chain_runtime.ts
+- [0m[36mtest:checkpoint-chain[0m
+    deno run -A src/00/03/test_checkpoint_chain_runtime.ts
+- [0m[36mtest:structure[0m
+    deno run -A scripts/check_structure.ts
+- [0m[36mtest:active[0m
+    deno task verify:coherence:deep
+- [0m[36mci:verify:worker1[0m
+    OMEGA_PULSE_WORKERS=1 deno task verify:coherence:deep
+- [0m[36mci:verify:worker4[0m
+    OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep
+- [0m[36mci:verify:matrix[0m
+    deno task ci:verify:worker1 && deno task ci:verify:worker4
+- [0m[36mci:soak:worker4[0m
+    OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && deno task test:worker-resilience-trend && deno task test:worker-soak-trend
+- [0m[36mvector10:verify[0m
+    deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity
+- [0m[36mverify:coherence[0m
+    deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:memory-layout && deno task test:attention-field && deno task test:runtime-std-import-policy && deno task test:runtime-std-version-policy && deno task test:evolution-pressure && deno task test:homeostasis-contract && deno task test:homeostasis-scheduler && deno task test:pressure-ring-scheduler && deno task test:auto-snapshot && deno task test:spatial-hash-guard && deno task test:mutation-telemetry-contract && deno task test:mutation-telemetry-api && deno task test:gate-decomposition-contract && deno task test:oracle-mutation-serialization && deno task test:oracle-plasmid-mode && deno task test:control-intent-serialization && deno task test:pulse-clock-contract && deno task test:log-level-policy && deno task test:daemon-contract && deno task test:daemon-glyph-admission && deno task test:architect-plasmid-promotion && deno task test:architect-plasmid-promotion-decision && deno task test:architect-plasmid-promotion-action && deno task test:guardian-signal-promotion && deno task test:guardian-signal-promotion-decision && deno task test:guardian-signal-promotion-action && deno task test:guardian-signal-mode-diff-artifacts && deno task test:architect-plasmid-mode-diff-artifacts && deno task test:daemon-invariant-compressor && deno task test:semantic-behavior-cluster && deno task test:akasha-webrtc-signaling && deno task test:daemon-governance && deno task test:hormone-buffer && deno task test:hormone-ledger-alignment && deno task test:physiology-snapshot && deno task test:physiology-api && deno task test:telemetry-stream-contract && deno task test:codex-narrative-contract && deno task test:runtime-support-boundary && deno task test:runtime-experimental-boundary && deno task test:glyphir64-contract && deno task test:opcode-to-glyph-contract && deno task test:golden-trace-catalog && deno task test:golden-trace-artifacts && deno task test:admission-diff-artifacts && deno task test:reduction-cases && deno task test:reduction-harness && deno task test:reduction-diff-artifacts && deno task vector10:verify && deno task test:worker-determinism && deno task test:crystalline && deno task test:quantum && deno task test:quantum-mycelium && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain && deno task test:structure
+- [0m[36mverify:coherence:deep[0m
+    deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:worker-init-fallback && deno task test:worker-init-total-fail && deno task test:worker-init-safe-noop && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal

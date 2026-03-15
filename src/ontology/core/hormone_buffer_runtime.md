@@ -3,6 +3,7 @@ id: HORMONE_BUFFER_RUNTIME
 type: module
 description: Hormone Buffer Runtime Sync Logic
 deps: []
+entry: true
 min_level: 6
 extra_symbols:
   - HORMONE_BUFFER_RUNTIME

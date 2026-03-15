@@ -4,6 +4,7 @@ type: module
 description: Implementation of OMEGA_DAEMON
 tags: []
 min_level: 6
+entry: true
 vars:
   - WORLD_MAX_X
   - WORLD_MAX_Y
@@ -36,51 +37,8 @@ type Telemetry = {
     };
     lastTick?: number;
   }>;
-  federation_rule_genome?: {
-    local?: {
-      signature: string;
-      noveltySigned: number;
-      symbiosisSigned: number;
-      pressureRingScale: number;
-      workerCount: number;
-      strictDeterminism: boolean;
-      generatedAt: string;
-    };
-    peers?: Array<{
-      peer: string;
-      profile: {
-        signature: string;
-        noveltySigned: number;
-        symbiosisSigned: number;
-        pressureRingScale: number;
-        workerCount: number;
-        strictDeterminism: boolean;
-        generatedAt: string;
-      };
-    }>;
-  };
-  federation_admission?: {
-    latest?: {
-      action: string;
-      severity: string;
-      score: number;
-      sourceNode?: string;
-      localBehaviorInvariant?: string;
-      peerBehaviorInvariant?: string;
-      behaviorDistance?: number;
-      localCodexLabel?: string;
-      peerCodexLabel?: string;
-      codexDistance?: number;
-      policyEnergyRatio?: number;
-      policyResonanceRatio?: number;
-      policyFragments?: Array<{
-        id?: string;
-        source?: string;
-        mode?: string;
-        reason?: string;
-      }>;
-    };
-  };
+  federation_rule_genome?: any;
+  federation_admission?: any;
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -691,158 +649,8 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       ? source.behavior_invariant
       : undefined,
     behavior_clusters: behaviorClusters,
-    federation_rule_genome: federationRaw
-      ? {
-        local: federationLocalRaw
-          ? {
-            signature: typeof federationLocalRaw.signature === "string"
-              ? federationLocalRaw.signature
-              : "NONE",
-            noveltySigned: Math.floor(
-              asFiniteNumber(federationLocalRaw.noveltySigned, 0),
-            ),
-            symbiosisSigned: Math.floor(
-              asFiniteNumber(federationLocalRaw.symbiosisSigned, 0),
-            ),
-            pressureRingScale: Math.max(
-              0,
-              Math.floor(
-                asFiniteNumber(federationLocalRaw.pressureRingScale, 0),
-              ),
-            ),
-            workerCount: Math.max(
-              1,
-              Math.floor(asFiniteNumber(federationLocalRaw.workerCount, 1)),
-            ),
-            strictDeterminism: parseEnvBool(
-              typeof federationLocalRaw.strictDeterminism === "string" ||
-                typeof federationLocalRaw.strictDeterminism === "boolean"
-                ? String(federationLocalRaw.strictDeterminism)
-                : undefined,
-              false,
-            ),
-            generatedAt: typeof federationLocalRaw.generatedAt === "string"
-              ? federationLocalRaw.generatedAt
-              : "",
-          }
-          : undefined,
-        peers: federationPeersRaw
-          .filter((entry): entry is Record<string, unknown> =>
-            !!entry && typeof entry === "object"
-          )
-          .map((entry) => {
-            const profile = entry.profile && typeof entry.profile === "object"
-              ? entry.profile as Record<string, unknown>
-              : {};
-            return {
-              peer: typeof entry.peer === "string" ? entry.peer : "unknown",
-              profile: {
-                signature: typeof profile.signature === "string"
-                  ? profile.signature
-                  : "NONE",
-                noveltySigned: Math.floor(
-                  asFiniteNumber(profile.noveltySigned, 0),
-                ),
-                symbiosisSigned: Math.floor(
-                  asFiniteNumber(profile.symbiosisSigned, 0),
-                ),
-                pressureRingScale: Math.max(
-                  0,
-                  Math.floor(asFiniteNumber(profile.pressureRingScale, 0)),
-                ),
-                workerCount: Math.max(
-                  1,
-                  Math.floor(asFiniteNumber(profile.workerCount, 1)),
-                ),
-                strictDeterminism: parseEnvBool(
-                  typeof profile.strictDeterminism === "string" ||
-                    typeof profile.strictDeterminism === "boolean"
-                    ? String(profile.strictDeterminism)
-                    : undefined,
-                  false,
-                ),
-                generatedAt: typeof profile.generatedAt === "string"
-                  ? profile.generatedAt
-                  : "",
-              },
-            };
-          })
-          .slice(0, 8),
-      }
-      : undefined,
-    federation_admission: federationAdmissionRaw
-      ? {
-        latest: federationAdmissionLatestRaw
-          ? {
-            action: typeof federationAdmissionLatestRaw.action === "string"
-              ? federationAdmissionLatestRaw.action
-              : "accept",
-            severity: typeof federationAdmissionLatestRaw.severity === "string"
-              ? federationAdmissionLatestRaw.severity
-              : "LOW",
-            score: Math.floor(
-              asFiniteNumber(federationAdmissionLatestRaw.score, 0),
-            ),
-            sourceNode: typeof federationAdmissionLatestRaw.sourceNode ===
-                "string"
-              ? federationAdmissionLatestRaw.sourceNode
-              : undefined,
-            localBehaviorInvariant:
-              typeof federationAdmissionLatestRaw.localBehaviorInvariant ===
-                  "string"
-                ? federationAdmissionLatestRaw.localBehaviorInvariant
-                : undefined,
-            peerBehaviorInvariant:
-              typeof federationAdmissionLatestRaw.peerBehaviorInvariant ===
-                  "string"
-                ? federationAdmissionLatestRaw.peerBehaviorInvariant
-                : undefined,
-            behaviorDistance: asFiniteNumber(
-              federationAdmissionLatestRaw.behaviorDistance,
-              -1,
-            ),
-            localCodexLabel:
-              typeof federationAdmissionLatestRaw.localCodexLabel === "string"
-                ? federationAdmissionLatestRaw.localCodexLabel
-                : undefined,
-            peerCodexLabel:
-              typeof federationAdmissionLatestRaw.peerCodexLabel === "string"
-                ? federationAdmissionLatestRaw.peerCodexLabel
-                : undefined,
-            codexDistance: asFiniteNumber(
-              federationAdmissionLatestRaw.codexDistance,
-              -1,
-            ),
-            policyEnergyRatio: asFiniteNumber(
-              federationAdmissionLatestRaw.policyEnergyRatio,
-              1,
-            ),
-            policyResonanceRatio: asFiniteNumber(
-              federationAdmissionLatestRaw.policyResonanceRatio,
-              1,
-            ),
-            policyFragments: Array.isArray(
-                federationAdmissionLatestRaw.policyFragments,
-              )
-              ? (
-                federationAdmissionLatestRaw.policyFragments as unknown[]
-              ).filter((entry): entry is Record<string, unknown> =>
-                !!entry && typeof entry === "object"
-              ).map((entry) => ({
-                id: typeof entry.id === "string" ? entry.id : undefined,
-                source: typeof entry.source === "string"
-                  ? entry.source
-                  : undefined,
-                mode: typeof entry.mode === "string" ? entry.mode : undefined,
-                reason: typeof entry.reason === "string"
-                  ? entry.reason
-                  : undefined,
-              })).slice(0, 8)
-              : [],
-          }
-          : undefined,
-      }
-      : undefined,
+    federation_rule_genome: undefined,
+    federation_admission: undefined,
     pulse_pressure: pulseRaw && ringRaw
       ? {
         novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),

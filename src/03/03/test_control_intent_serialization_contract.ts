@@ -74,13 +74,6 @@ const main = async () => {
   );
   requireSnippet(
     queue,
-    "P2P_CODEC.unpackAtom(",
-    QUEUE_PATH,
-    "Queue apply path must own federate state writes (via unpackAtom)",
-    violations,
-  );
-  requireSnippet(
-    queue,
     "STATE_MATRIX.setEnergy(",
     QUEUE_PATH,
     "Queue apply path must own mutate state writes",
@@ -92,13 +85,6 @@ const main = async () => {
     "CONTROL_INTENT_QUEUE.enqueueCrisis",
     SYSTEM_PATH,
     "System /crisis must enqueue control intents",
-    violations,
-  );
-  requireSnippet(
-    system,
-    "CONTROL_INTENT_QUEUE.enqueueFederate",
-    SYSTEM_PATH,
-    "System /federate must enqueue control intents",
     violations,
   );
   requireSnippet(
@@ -132,17 +118,6 @@ const main = async () => {
     violations.push({
       file: SYSTEM_PATH,
       reason: "/mutate endpoint must not write STATE_MATRIX directly",
-    });
-  }
-  const federateBlock = between(
-    system,
-    'if (url.pathname === "/federate" && req.method === "POST") {',
-    'if (url.pathname === "/peers") {',
-  );
-  if (federateBlock.includes("STATE_MATRIX.setId(")) {
-    violations.push({
-      file: SYSTEM_PATH,
-      reason: "/federate endpoint must not write STATE_MATRIX directly",
     });
   }
 

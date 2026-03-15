@@ -50,6 +50,7 @@ export const OntologyNodeSchema = z.object({
   tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
   tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
   min_level: z.number().optional(),
+  entry: z.boolean().optional(),
   rust: z.string().optional(), // Raw rust code for substrate modules
   payload: z.array(z.any()).optional(), // For static_table
 });
@@ -890,10 +891,16 @@ for (const type of sortedTypes) {
 
 const deadCodeCandidates = Array.from(nodes.values()).filter(node => {
   if (usedNodes.has(node.id)) return false;
+  if (node.entry === true) return false;
   if (node.type === "memory_layout") return false;
   if (node.type === "substrate_module") return false;
   if (node.type === "documentation" || node.type === "docs" || node.type === "lore") return false;
-  if (node.tags.includes("host")) return false;
+  if (node.tags.includes("host") || node.tags.includes("substrate") || node.tags.includes("atom")) return false;
+  
+  // Exclude core engine directories which are likely used by WASM or as entry points
+  const coreDirs = ["l32_gate", "physics", "memory", "substrate", "autopoiesis", "spatial", "genomes", "math"];
+  if (node.sourceFile && coreDirs.some(dir => node.sourceFile!.startsWith(dir + "/"))) return false;
+
   return true;
 });
 

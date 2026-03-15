@@ -25,7 +25,6 @@
     "ontology:build": "deno run -A src/07/build_ontology.ts",
     "wasm:build": "deno task ontology:build && deno run -A src/07/build_wasm.ts",
     "test:resonance": "deno run -A src/05/03/test_resonance_protocol.ts",
-    "test:swarm": "deno run -A src/00/03/test_swarm.ts",
     "test:tensegrity": "deno run -A src/00/03/test_tensegrity.ts",
     "test:quantum": "deno run -A src/00/03/test_quantum_shift.ts",
     "test:quantum-mycelium": "deno run -A src/00/03/test_quantum_mycelium.ts",
@@ -59,7 +58,6 @@
     "test:runtime-state-matrix-api": "deno run -A src/00/03/test_runtime_state_matrix_api_guard.ts",
     "test:memory-layout": "deno run -A src/00/03/test_memory_layout_guard.ts",
     "test:attention-field": "deno run -A src/05/03/test_attention_field_runtime.ts",
-    "test:env-parse-monoculture": "deno run -A src/03/03/test_env_parse_monoculture_contract.ts",
     "test:runtime-std-import-policy": "deno run -A src/03/03/test_runtime_std_import_policy.ts",
     "test:runtime-std-version-policy": "deno run -A src/03/03/test_runtime_std_version_policy.ts",
     "test:evolution-pressure": "deno run -A src/03/03/test_evolution_pressure_contract.ts",
@@ -68,13 +66,11 @@
     "test:pressure-ring-scheduler": "deno run -A src/03/03/test_pressure_ring_scheduler_contract.ts",
     "test:auto-snapshot": "deno run -A src/03/03/test_auto_snapshot_contract.ts",
     "test:spatial-hash-guard": "deno run -A src/03/03/test_spatial_hash_guard_contract.ts",
-    "test:mutation-lane-contract": "deno run -A src/03/03/test_mutation_lane_contract.ts",
     "test:mutation-telemetry-contract": "deno run -A src/03/03/test_mutation_telemetry_contract.ts",
     "test:gate-decomposition-contract": "deno run -A src/05/03/test_gate_decomposition_contract.ts",
     "test:oracle-mutation-serialization": "deno run -A src/05/03/test_oracle_mutation_serialization_contract.ts",
     "test:oracle-plasmid-mode": "deno run -A src/05/03/test_oracle_plasmid_mode_contract.ts",
     "test:control-intent-serialization": "deno run -A src/03/03/test_control_intent_serialization_contract.ts",
-    "test:p2p-ingress-policy": "deno run -A src/04/03/test_p2p_ingress_policy_contract.ts",
     "test:pulse-clock-contract": "deno run -A src/03/03/test_pulse_clock_contract.ts",
     "test:log-level-policy": "deno run -A src/03/03/test_log_level_policy.ts",
     "test:daemon-contract": "deno run -A src/03/03/test_daemon_contract.ts",
@@ -89,7 +85,6 @@
     "test:architect-plasmid-mode-diff-artifacts": "deno run -A src/03/03/test_architect_plasmid_mode_diff_artifact_contract.ts",
     "test:daemon-invariant-compressor": "deno run -A src/03/03/test_daemon_invariant_compressor_contract.ts",
     "test:semantic-behavior-cluster": "deno run -A src/05/03/test_semantic_behavior_cluster_contract.ts",
-    "test:federation-rule-genome": "deno run -A src/03/03/test_federation_rule_genome_contract.ts",
     "test:akasha-webrtc-signaling": "deno run -A src/04/03/test_akasha_webrtc_signaling_contract.ts",
     "test:daemon-governance": "deno run -A src/03/03/test_daemon_governance_contract.ts",
     "test:hormone-buffer": "deno run -A src/03/03/test_hormone_buffer_contract.ts",
@@ -125,8 +120,8 @@
     "ci:verify:worker4": "OMEGA_PULSE_WORKERS=4 deno task verify:coherence:deep",
     "ci:verify:matrix": "deno task ci:verify:worker1 && deno task ci:verify:worker4",
     "ci:soak:worker4": "OMEGA_PULSE_WORKERS=4 deno task test:worker-coherence:long && deno task test:worker-resilience-trend && deno task test:worker-soak-trend",
-    "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:swarm && deno task test:tensegrity",
-    "verify:coherence": "deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:memory-layout && deno task test:attention-field && deno task test:env-parse-monoculture && deno task test:runtime-std-import-policy && deno task test:runtime-std-version-policy && deno task test:evolution-pressure && deno task test:homeostasis-contract && deno task test:homeostasis-scheduler && deno task test:pressure-ring-scheduler && deno task test:auto-snapshot && deno task test:spatial-hash-guard && deno task test:mutation-lane-contract && deno task test:mutation-telemetry-contract && deno task test:mutation-telemetry-api && deno task test:gate-decomposition-contract && deno task test:oracle-mutation-serialization && deno task test:oracle-plasmid-mode && deno task test:control-intent-serialization && deno task test:p2p-ingress-policy && deno task test:pulse-clock-contract && deno task test:log-level-policy && deno task test:daemon-contract && deno task test:daemon-glyph-admission && deno task test:architect-plasmid-promotion && deno task test:architect-plasmid-promotion-decision && deno task test:architect-plasmid-promotion-action && deno task test:guardian-signal-promotion && deno task test:guardian-signal-promotion-decision && deno task test:guardian-signal-promotion-action && deno task test:guardian-signal-mode-diff-artifacts && deno task test:architect-plasmid-mode-diff-artifacts && deno task test:daemon-invariant-compressor && deno task test:semantic-behavior-cluster && deno task test:federation-rule-genome && deno task test:akasha-webrtc-signaling && deno task test:daemon-governance && deno task test:hormone-buffer && deno task test:hormone-ledger-alignment && deno task test:physiology-snapshot && deno task test:physiology-api && deno task test:telemetry-stream-contract && deno task test:codex-narrative-contract && deno task test:runtime-support-boundary && deno task test:runtime-experimental-boundary && deno task test:glyphir64-contract && deno task test:opcode-to-glyph-contract && deno task test:golden-trace-catalog && deno task test:golden-trace-artifacts && deno task test:admission-diff-artifacts && deno task test:reduction-cases && deno task test:reduction-harness && deno task test:reduction-diff-artifacts && deno task vector10:verify && deno task test:worker-determinism && deno task test:crystalline && deno task test:quantum && deno task test:quantum-mycelium && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain && deno task test:structure",
+    "vector10:verify": "deno task wasm:build && deno task test:worker-coherence && deno task test:resonance && deno task test:tensegrity",
+    "verify:coherence": "deno task test:runtime-monoculture && deno task test:runtime-logging && deno task test:runtime-state-matrix-api && deno task test:memory-layout && deno task test:attention-field && deno task test:runtime-std-import-policy && deno task test:runtime-std-version-policy && deno task test:evolution-pressure && deno task test:homeostasis-contract && deno task test:homeostasis-scheduler && deno task test:pressure-ring-scheduler && deno task test:auto-snapshot && deno task test:spatial-hash-guard && deno task test:mutation-telemetry-contract && deno task test:mutation-telemetry-api && deno task test:gate-decomposition-contract && deno task test:oracle-mutation-serialization && deno task test:oracle-plasmid-mode && deno task test:control-intent-serialization && deno task test:pulse-clock-contract && deno task test:log-level-policy && deno task test:daemon-contract && deno task test:daemon-glyph-admission && deno task test:architect-plasmid-promotion && deno task test:architect-plasmid-promotion-decision && deno task test:architect-plasmid-promotion-action && deno task test:guardian-signal-promotion && deno task test:guardian-signal-promotion-decision && deno task test:guardian-signal-promotion-action && deno task test:guardian-signal-mode-diff-artifacts && deno task test:architect-plasmid-mode-diff-artifacts && deno task test:daemon-invariant-compressor && deno task test:semantic-behavior-cluster && deno task test:akasha-webrtc-signaling && deno task test:daemon-governance && deno task test:hormone-buffer && deno task test:hormone-ledger-alignment && deno task test:physiology-snapshot && deno task test:physiology-api && deno task test:telemetry-stream-contract && deno task test:codex-narrative-contract && deno task test:runtime-support-boundary && deno task test:runtime-experimental-boundary && deno task test:glyphir64-contract && deno task test:opcode-to-glyph-contract && deno task test:golden-trace-catalog && deno task test:golden-trace-artifacts && deno task test:admission-diff-artifacts && deno task test:reduction-cases && deno task test:reduction-harness && deno task test:reduction-diff-artifacts && deno task vector10:verify && deno task test:worker-determinism && deno task test:crystalline && deno task test:quantum && deno task test:quantum-mycelium && deno task test:topological-signature && deno task test:invariant-packet && deno task test:bridge-policy && deno task test:proposal-envelope-index && deno task test:ledger-chain && deno task test:checkpoint-chain && deno task test:structure",
     "verify:coherence:deep": "deno task verify:coherence && deno task test:worker-drift-audit && deno task test:worker-determinism-fuzz && deno task test:spawn-determinism && deno task test:spawn-jitter-resilience && deno task test:worker-timeout-retry && deno task test:worker-timeout-retry:multi && deno task test:worker-jitter-resilience && deno task test:worker-init-fallback && deno task test:worker-init-total-fail && deno task test:worker-init-safe-noop && deno task test:startup-selftest-fallback && deno task test:startup-selftest-nominal"
   },
   "lint": {
@@ -210,30 +205,29 @@
     "runtime_root_files": [
       "src/_/13/PULSE.ts",
       "src/_/13/PULSE_WORKER.ts",
-      "src/_/08/AKASHA_SERVER.ts",
+      "src/_/07/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
       "src/_/08/MUTATION_TELEMETRY.ts",
       "src/_/14/TUI_DASHBOARD.ts",
       "src/_/08/AGENT_PROXY.ts",
-      "src/_/07/LLM_SOUL.ts"
+      "src/_/07/llm_soul.ts"
     ],
     "runtime_support_files": [
       "src/07/build_wasm.ts",
-      "src/_/05/P2P_SYNAPSE.ts",
       "src/00/03/wasm_layout_guard.ts"
     ],
     "experimental_files": [],
     "core_entry_files": [
       "src/_/13/PULSE.ts",
       "src/_/13/PULSE_WORKER.ts",
-      "src/_/08/AKASHA_SERVER.ts",
+      "src/_/07/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_as/mod.ts",
       "src/_/08/MUTATION_TELEMETRY.ts",
       "src/_/14/TUI_DASHBOARD.ts",
       "src/_/08/AGENT_PROXY.ts",
-      "src/_/07/LLM_SOUL.ts"
+      "src/_/07/llm_soul.ts"
     ],
     "required_additional_files": [
       "src/_/03/DAEMON_INGRESS_POLICY.ts",

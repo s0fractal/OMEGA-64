@@ -3,6 +3,7 @@ id: llm_soul
 type: module
 description: Implementation of llm_soul
 tags: []
+entry: true
 min_level: 7
 vars:
   - LOGGER

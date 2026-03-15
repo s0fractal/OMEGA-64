@@ -4,6 +4,7 @@ type: pure_fn
 dataType: null
 returns: void
 level: 1
+entry: true
 args:
   atomIndex: i32
 vars:

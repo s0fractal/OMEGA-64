@@ -4,6 +4,7 @@ type: module
 description: "Implementation of BREATH"
 tags: []
 min_level: 6
+entry: true
 ---
 
 ### TypeScript

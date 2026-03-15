@@ -4,6 +4,7 @@ type: module
 description: Implementation of SERVE_DASHBOARD
 tags: []
 min_level: 6
+entry: true
 extra_symbols:
   - SERVE_DASHBOARD
 ---

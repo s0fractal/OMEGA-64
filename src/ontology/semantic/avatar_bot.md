@@ -7,6 +7,7 @@ description: >-
 tags:
   - standalone
   - client
+entry: true
 deps:
   - LOGGER
 min_level: 7

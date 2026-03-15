@@ -8,7 +8,8 @@ tags:
 deps:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY
-min_level: 8
+min_level: 6
+entry: true
 vars:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY

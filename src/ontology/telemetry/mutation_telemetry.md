@@ -3,6 +3,7 @@ id: MUTATION_TELEMETRY
 type: module
 description: Implementation of MUTATION_TELEMETRY
 tags: []
+entry: true
 min_level: 8
 vars:
   - LOGGER

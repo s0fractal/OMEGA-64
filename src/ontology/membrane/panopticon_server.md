@@ -9,6 +9,7 @@ deps:
   - AKASHA_CODEX
   - LOGGER
 min_level: 9
+entry: true
 vars:
   - AKASHA_CODEX
   - LOGGER

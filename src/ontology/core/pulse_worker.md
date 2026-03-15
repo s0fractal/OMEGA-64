@@ -3,6 +3,7 @@ id: PULSE_WORKER
 type: module
 description: Implementation of PULSE_WORKER
 min_level: 13
+entry: true
 vars:
   - BONDS_OFFSET
   - BOND_REQUESTS_OFFSET

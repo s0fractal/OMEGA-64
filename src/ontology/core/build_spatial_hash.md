@@ -4,6 +4,7 @@ type: pure_fn
 dataType: null
 returns: i64
 level: 3
+entry: true
 args:
 vars:
   - MAX_ATOMS

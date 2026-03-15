@@ -3,7 +3,9 @@ id: AVATAR_ENGINE
 type: module
 description: "Implementation of AVATAR_ENGINE"
 tags: []
-min_level: 5
+entry: true
+min_level: 7
+vars:
 ---
 
 ### TypeScript

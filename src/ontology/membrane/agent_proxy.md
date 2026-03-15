@@ -9,6 +9,7 @@ deps:
   - LOGGER
   - assembler
 min_level: 8
+entry: true
 vars:
   - LOGGER
   - Le

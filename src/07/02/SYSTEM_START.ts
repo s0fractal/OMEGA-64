@@ -35,13 +35,9 @@ import {
 import {
   SEMANTIC_MEMBRANE
 } from "@generated";
-import {
-  P2P_FEDERATION
-} from "@generated";
 import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
 import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
 import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
-import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
 import { CONTROL_INTENT_QUEUE } from "@07/02/03/mod.ts";
 import {
   PREDICTION_MARKET
@@ -778,7 +774,6 @@ const buildTelemetry = async () => {
     metrics.tick,
     4096,
   );
-  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
   const federationAdmissionState = CONTROL_INTENT_QUEUE
     .getFederationAdmissionState();
   let voxPopuli: string[] = [];
@@ -900,8 +895,8 @@ const buildTelemetry = async () => {
     behavior_clusters: behaviorClusters.slice(0, 6),
     behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
     federation_rule_genome: {
-      local: P2P_FEDERATION.localRuleGenome,
-      peers: peerRuleProfiles.slice(0, 8),
+      local: {}, // Swarm disabled
+      peers: [], // Swarm disabled
     },
     federation_admission: {
       latest: federationAdmissionState.latest,
@@ -909,12 +904,12 @@ const buildTelemetry = async () => {
       policy: federationAdmissionState.policy,
     },
     hormones: [
-      STATE_MATRIX.getHormone(0),
-      STATE_MATRIX.getHormone(1),
-      STATE_MATRIX.getHormone(2),
-      STATE_MATRIX.getHormone(3),
-      STATE_MATRIX.getHormone(4),
-      STATE_MATRIX.getHormone(5),
+      STATE_MATRIX.get_hormone(0),
+      STATE_MATRIX.get_hormone(1),
+      STATE_MATRIX.get_hormone(2),
+      STATE_MATRIX.get_hormone(3),
+      STATE_MATRIX.get_hormone(4),
+      STATE_MATRIX.get_hormone(5),
     ],
     glyph_buffer: GLYPH_TELEMETRY.snapshot(),
   };
@@ -3220,77 +3215,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     }
   }
 
-  if (url.pathname === "/federate" && req.method === "POST") {
-    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
-      CONTROL_INTENT_QUEUE,
-    );
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const arrayBuffer = await req.arrayBuffer();
-      const packet = new Uint8Array(arrayBuffer);
-      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
-
-      let peerRuleGenome = null;
-      let peerBehaviorProfile = null;
-      let peerCodexProfile = null;
-      try {
-        const rStr = req.headers.get("x-omega-rule-genome");
-        if (rStr) {
-          peerRuleGenome = JSON.parse(rStr);
-          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
-        }
-        const bStr = req.headers.get("x-omega-behavior-profile");
-        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
-        const cStr = req.headers.get("x-omega-codex-profile");
-        if (cStr) peerCodexProfile = JSON.parse(cStr);
-      } catch (e) {
-        Lw(
-          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
-        );
-      }
-
-      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
-      const queued = qCall(
-        packet,
-        sourceNode,
-        peerRuleGenome,
-        peerBehaviorProfile,
-        localContext.behavior,
-        peerCodexProfile,
-        localContext.codex,
-      );
-
-      Li(
-        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
-      );
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_FEDERATE_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  if (url.pathname === "/peers") {
-    return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  if (url.pathname === "/peers/profiles") {
+  if (url.pathname === "/federate/admission") {
     return new Response(
-      JSON.stringify({
-        local: P2P_FEDERATION.localRuleGenome,
-        peers: P2P_FEDERATION.getPeerRuleProfiles(),
-      }),
+      JSON.stringify(CONTROL_INTENT_QUEUE.getFederationAdmissionState()),
       {
         headers: { "Content-Type": "application/json" },
       },
@@ -3480,7 +3407,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/bonds" && req.method === "GET") {
-    const BONDS_OFFSET = BONDS_OFFSET;
     const BONDS_SIZE = MAX_ATOMS * 4 * 4;
     const view = new Uint8Array(STATE_MATRIX.buffer, BONDS_OFFSET, BONDS_SIZE);
     const copy = new Uint8Array(view.byteLength);
@@ -3746,7 +3672,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   CONTROL_INTENT_QUEUE.setDelegate({
     recordTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
     importSnapshot: (ts) => SNAPSHOT_ENGINE.importSnapshot(ts),
-    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
   });
 
   PREDICTION_MARKET.setDelegate({
@@ -3859,7 +3784,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         population: metrics.population,
         avgEnergy: metrics.avgEnergy,
         neuralCoherence: metrics.neuralCoherence,
-        entropyPressure: STATE_MATRIX.getHormone(0),
+        entropyPressure: STATE_MATRIX.get_hormone(0),
         dominantMeme,
         destructiveMeme,
       };
