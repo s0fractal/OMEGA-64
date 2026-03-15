@@ -1,13 +1,13 @@
 import { ensureDirSync, emptyDirSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
 import { parse as parseYaml } from "https://deno.land/std@0.224.0/yaml/mod.ts";
 import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
-import { resolve, join } from "https://deno.land/std@0.224.0/path/mod.ts";
+import { resolve, join as _join } from "https://deno.land/std@0.224.0/path/mod.ts";
 import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
 // Load .env variables synchronously if available, ignoring missing keys
 try {
   loadSync({ export: true });
-} catch (e) {
+} catch (_e) {
   // Ignore missing vars error, defaults will be used
 }
 
@@ -20,7 +20,7 @@ const GEN_DIR_AS = resolve(CWD, Deno.env.get("GEN_DIR_AS") || "src/_as");
 
 import { z } from "npm:zod@4.3.6";
 
-const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
+const _ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
 export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
@@ -51,6 +51,7 @@ export const OntologyNodeSchema = z.object({
   tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
   min_level: z.number().optional(),
   rust: z.string().optional(), // Raw rust code for substrate modules
+  payload: z.array(z.any()).optional(), // For static_table
 });
 
 const MIN_LEVEL_FOR_TAG: Record<string, number> = {
@@ -76,6 +77,8 @@ const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "
 
 const nodes = new Map<string, OntologyNode>();
 const extraSymbolsMap = new Map<string, string>();
+const countsByType: Record<string, number> = {};
+const usedNodes = new Set<string>();
 
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
@@ -126,13 +129,15 @@ try {
       }
     }
 
+    countsByType[node.type] = (countsByType[node.type] || 0) + 1;
+
     if (node.type === "pure_fn") {
       // Validate types explicitly since Zod just checks strings here
       if (node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)) {
         console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
         Deno.exit(1);
       }
-      for (const [argName, argType] of Object.entries(node.args || {})) {
+      for (const [_argName, argType] of Object.entries(node.args || {})) {
         if (!ALLOWED_TYPES_RUNTIME.includes(argType as any)) {
           console.error(`[FATAL] Invalid arg type ${argType} in ${node.id}`);
           Deno.exit(1);
@@ -331,6 +336,13 @@ for (const node of nodes.values()) {
   }
 }
 
+// Track usage via deps
+for (const node of nodes.values()) {
+  for (const dep of node.deps || []) {
+    usedNodes.add(dep);
+  }
+}
+
 // Validate that every imported var exists and is causally valid
 for (const node of nodes.values()) {
   if (!node.vars || node.vars.length === 0) continue;
@@ -341,6 +353,10 @@ for (const node of nodes.values()) {
        console.error(`[FATAL] Missing Symbol Registration: Node '${node.id}' attempts to import '${v}' via 'vars', but no node exports this symbol. Verify spelling or add the missing node.`);
        Deno.exit(1);
     }
+    
+    usedNodes.add(sourceNodeId);
+    
+    usedNodes.add(sourceNodeId);
     
     const sourceNode = nodes.get(sourceNodeId);
     if (!sourceNode) continue; // Should be impossible but satisfy types
@@ -466,7 +482,7 @@ for (const node of nodes.values()) {
         tsOut += `} as const;\n`;
       }
       break;
-    case "memory_layout":
+    case "memory_layout": {
       tsOut += `// Memory Layout: ${node.id}\n`;
       let curOffExpr = node.base_offset || "0";
       
@@ -532,6 +548,8 @@ ${(node.regions || []).map((r, i, arr) => {
   return { ok, errors, regions, latticeEnd: LATTICE_MEMORY_END };
 }\n`;
       break;
+    }
+
     case "pure_fn":
       if (node.tags.includes("host") || node.tags.includes("substrate")) {
           tsOut += node.tsCode! + "\n";
@@ -823,7 +841,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
 }
 
 // Re-export core topological state that lives outside the pure DAG
-const resolveSysPath = (id: string) => {
+const _resolveSysPath = (id: string) => {
   const n = nodes.get(id);
   return n ? `../_/${formatLevel(n.level)}/${id}.ts` : `../_/00/${id}.ts`;
 };
@@ -860,4 +878,34 @@ for (const node of nodes.values()) {
   }
 }
 
+console.log("\n" + "=".repeat(60));
+console.log("             OMEGA-64 ONTOLOGY BUILD SUMMARY");
+console.log("=".repeat(60));
+
+console.log("\nNode Counts by Type:");
+const sortedTypes = Object.keys(countsByType).sort();
+for (const type of sortedTypes) {
+  console.log(`  - ${type.padEnd(20)}: ${countsByType[type]}`);
+}
+
+const deadCodeCandidates = Array.from(nodes.values()).filter(node => {
+  if (usedNodes.has(node.id)) return false;
+  if (node.type === "memory_layout") return false;
+  if (node.type === "substrate_module") return false;
+  if (node.type === "documentation" || node.type === "docs" || node.type === "lore") return false;
+  if (node.tags.includes("host")) return false;
+  return true;
+});
+
+if (deadCodeCandidates.length > 0) {
+  console.log("\nDead Code Candidates (Unreferenced Nodes):");
+  for (const node of deadCodeCandidates) {
+    console.log(`  [!] ${node.id} (${node.sourceFile})`);
+  }
+} else {
+  console.log("\n[OK] No dead code candidates detected.");
+}
+
+console.log("\n" + "=".repeat(60));
 console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
+console.log("=".repeat(60) + "\n");

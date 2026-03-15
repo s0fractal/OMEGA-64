@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-15T12:12:20.189Z*
-*Exported Files in Category: 235*
-*Total Exported Files: 641*
+*Generated: 2026-03-15T16:33:25.227Z*
+*Exported Files in Category: 308*
+*Total Exported Files: 862*
 *Runtime Roots: 9*
-*Runtime Closure Files: 297*
-*Non-Runtime Code Files: 109*
+*Runtime Closure Files: 443*
+*Non-Runtime Code Files: 111*
 *Runtime-Support Code Files: 3*
-*Experimental Code Files: 106*
-*Manifest SHA256: d448da997d59bcc0af1ce1b378a2937bbae0ea3a07c46c166aeae513831e5b0f*
-*Export Set SHA256: c43fff3936c13b58ab16bcd74540e4e6a2539fb38cd3dfd59487ebb644d36bda*
-*Export Content SHA256: 0c53274527cb6fd7accd0e04cce05c6856b0327ba2780a4e637151d65d6dd6d9*
-*Git Commit: d4308ce710f6*
+*Experimental Code Files: 108*
+*Manifest SHA256: edb6687e32f21a957fed36cc2a7be70a97040c4343140971bd9382d407a1c7f3*
+*Export Set SHA256: 13bb1500c561a1b88e48b322aab748f80435fe76f977940a2f33f6c69e9fbebe*
+*Export Content SHA256: e4b30d4a3349951d7e87cfa88d0a2672b5eb8b99da10e32e9075306c38c898f4*
+*Git Commit: 4172961d52e5*
 
 ---
 
@@ -2127,7 +2127,12 @@ tags:
   - core
   - control
   - host
-min_level: 6
+deps:
+  - GENERIC_PROMOTION_DECISION
+  - evaluateGenericPromotionDecision
+  - evaluateGenericPromotionAction
+  - clampRatio
+  - normalizeCount
 extra_symbols:
   - ARCHITECT_PLASMID_PROMOTION_DECISION
   - ArchitectPlasmidHybridSnapshot
@@ -2144,194 +2149,25 @@ extra_symbols:
   - evaluateArchitectPlasmidPromotionDecision
 ---
 ```typescript
-import type { ArchitectPlasmidExecutionMode } from "@generated";
+import type { ArchitectPlasmidExecutionMode } from "@g12";
+import type {
+  GenericPromotionAction,
+  GenericPromotionActionInput,
+  GenericPromotionDecision,
+  GenericPromotionDecisionInput,
+  GenericPromotionDecisionThresholds,
+  clampRatio,
+  normalizeCount,
+} from "@g12";
 
-export type ArchitectPlasmidPromotionDecisionInput = {
-  promotion: {
-    latestReady: boolean;
-    readyRatio: number;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    fallbackRatioP95: number;
-    status: string;
-  };
-  health: {
-    bootReady: boolean;
-    processExitedUnexpectedly: boolean;
-    successRate: number;
-    minSuccessRate: number;
-    p95TelemetryLatencyMs: number;
-    maxP95TelemetryLatencyMs: number;
-    p95SpatialOverflowRatio: number;
-    maxSpatialOverflowRatioP95: number;
-    safeModeRatio?: number;
-    maxSafeModeRatio?: number;
-    daemonRejectRatio?: number;
-    maxDaemonRejectRatio?: number;
-    effectEvalCoverage?: number;
-    minEffectEvalCoverage?: number;
-    enforceActionQualityGate?: boolean;
-  };
-};
+export type ArchitectPlasmidPromotionDecisionInput =
+  GenericPromotionDecisionInput;
+export type ArchitectPlasmidPromotionDecisionThresholds =
+  GenericPromotionDecisionThresholds;
+export type ArchitectPlasmidPromotionDecision = GenericPromotionDecision;
 
-export type ArchitectPlasmidPromotionDecisionThresholds = {
-  minReadyRatio: number;
-  maxFallbackRatioP95: number;
-};
-
-export type ArchitectPlasmidPromotionDecision = {
-  verdict: "promote" | "hold";
-  promotionReady: boolean;
-  healthPass: boolean;
-  recommendedMode: "hybrid-reduce" | "shadow-reduce";
-  blockers: string[];
-  thresholds: ArchitectPlasmidPromotionDecisionThresholds;
-};
-
-const DEFAULT_THRESHOLDS: ArchitectPlasmidPromotionDecisionThresholds = {
-  minReadyRatio: 0.5,
-  maxFallbackRatioP95: 0.05,
-};
-
-const clampRatio = (value: number): number => {
-  if (!Number.isFinite(value) || value <= 0) return 0;
-  if (value >= 1) return 1;
-  return Number(value.toFixed(6));
-};
-
-const normalizeDecisionThresholds = (
-  overrides?: Partial<ArchitectPlasmidPromotionDecisionThresholds>,
-): ArchitectPlasmidPromotionDecisionThresholds => ({
-  minReadyRatio: clampRatio(
-    overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
-  ),
-  maxFallbackRatioP95: clampRatio(
-    overrides?.maxFallbackRatioP95 ?? DEFAULT_THRESHOLDS.maxFallbackRatioP95,
-  ),
-});
-
-export const evaluateArchitectPlasmidPromotionDecision = (
-  input: ArchitectPlasmidPromotionDecisionInput,
-  overrides?: Partial<ArchitectPlasmidPromotionDecisionThresholds>,
-): ArchitectPlasmidPromotionDecision => {
-  const thresholds = normalizeDecisionThresholds(overrides);
-  const blockers: string[] = [];
-  let healthPass = true;
-
-  if (!input.health.bootReady) {
-    blockers.push("boot_not_ready");
-    healthPass = false;
-  }
-  if (input.health.processExitedUnexpectedly) {
-    blockers.push("process_exited_unexpectedly");
-    healthPass = false;
-  }
-  if (input.health.successRate < input.health.minSuccessRate) {
-    blockers.push(
-      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
-        input.health.minSuccessRate.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
-  ) {
-    blockers.push(
-      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
-        input.health.maxP95TelemetryLatencyMs.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95SpatialOverflowRatio >
-      input.health.maxSpatialOverflowRatioP95
-  ) {
-    blockers.push(
-      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
-        input.health.maxSpatialOverflowRatioP95.toFixed(6)
-      }`,
-    );
-    healthPass = false;
-  }
-
-  if (!input.promotion.latestReady) {
-    blockers.push(`promotion_latest_not_ready(${input.promotion.status})`);
-  }
-  if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
-    blockers.push(
-      `promotion_ready_ratio_${
-        clampRatio(input.promotion.readyRatio).toFixed(3)
-      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
-    );
-  }
-  if (input.promotion.recommendedMode !== "hybrid-reduce") {
-    blockers.push(
-      `promotion_mode_${input.promotion.recommendedMode}_not_hybrid_reduce`,
-    );
-  }
-  if (
-    clampRatio(input.promotion.fallbackRatioP95) >
-      thresholds.maxFallbackRatioP95
-  ) {
-    blockers.push(
-      `promotion_fallback_ratio_p95_${
-        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
-      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
-    );
-  }
-
-  if (input.health.enforceActionQualityGate === true) {
-    if (
-      input.health.maxSafeModeRatio !== undefined &&
-      input.health.safeModeRatio !== undefined &&
-      clampRatio(input.health.safeModeRatio) >
-        clampRatio(input.health.maxSafeModeRatio)
-    ) {
-      blockers.push(
-        `safe_mode_ratio_${
-          clampRatio(input.health.safeModeRatio).toFixed(3)
-        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-    if (
-      input.health.maxDaemonRejectRatio !== undefined &&
-      input.health.daemonRejectRatio !== undefined &&
-      clampRatio(input.health.daemonRejectRatio) >
-        clampRatio(input.health.maxDaemonRejectRatio)
-    ) {
-      blockers.push(
-        `daemon_reject_ratio_${
-          clampRatio(input.health.daemonRejectRatio).toFixed(3)
-        }_gt_${clampRatio(input.health.maxDaemonRejectRatio).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-    if (
-      input.health.minEffectEvalCoverage !== undefined &&
-      input.health.effectEvalCoverage !== undefined &&
-      clampRatio(input.health.effectEvalCoverage) <
-        clampRatio(input.health.minEffectEvalCoverage)
-    ) {
-      blockers.push(
-        `effect_eval_coverage_${
-          clampRatio(input.health.effectEvalCoverage).toFixed(3)
-        }_lt_${clampRatio(input.health.minEffectEvalCoverage).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-  }
-
-  return {
-    verdict: blockers.length === 0 ? "promote" : "hold",
-    promotionReady: input.promotion.latestReady,
-    healthPass,
-    recommendedMode: blockers.length === 0 ? "hybrid-reduce" : "shadow-reduce",
-    blockers,
-    thresholds,
-  };
-};
+export const evaluateArchitectPlasmidPromotionDecision =
+  evaluateGenericPromotionDecision;
 
 export type ArchitectPlasmidHybridSnapshot = {
   mode: ArchitectPlasmidExecutionMode;
@@ -2386,9 +2222,6 @@ const DEFAULT_PROMOTION_THRESHOLDS: ArchitectPlasmidPromotionThresholds = {
   minSuppressBranchCount: 4,
   minShadowSuppressedArchitectPlasmids: 4,
 };
-
-const normalizeCount = (value: number): number =>
-  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
 
 const normalizePromoThresholds = (
   overrides?: Partial<ArchitectPlasmidPromotionThresholds>,
@@ -2533,70 +2366,14 @@ export const evaluateArchitectPlasmidPromotion = (
   };
 };
 
-export type ArchitectPlasmidPromotionActionInput = {
-  currentMode: ArchitectPlasmidExecutionMode;
-  decision: ArchitectPlasmidPromotionDecision;
-};
+export type ArchitectPlasmidPromotionActionInput =
+  GenericPromotionActionInput<ArchitectPlasmidExecutionMode>;
 
-export type ArchitectPlasmidPromotionAction = {
-  verdict: "promote" | "hold" | "demote";
-  currentMode: ArchitectPlasmidExecutionMode;
-  targetMode: ArchitectPlasmidExecutionMode;
-  reasons: string[];
-};
+export type ArchitectPlasmidPromotionAction =
+  GenericPromotionAction<ArchitectPlasmidExecutionMode>;
 
-export const evaluateArchitectPlasmidPromotionAction = (
-  input: ArchitectPlasmidPromotionActionInput,
-): ArchitectPlasmidPromotionAction => {
-  if (input.currentMode === "legacy-execute") {
-    return {
-      verdict: "hold",
-      currentMode: input.currentMode,
-      targetMode: input.currentMode,
-      reasons: ["legacy_mode_requires_shadow_baseline"],
-    };
-  }
-
-  if (input.currentMode === "shadow-reduce") {
-    if (
-      input.decision.verdict === "promote" &&
-      input.decision.recommendedMode === "hybrid-reduce"
-    ) {
-      return {
-        verdict: "promote",
-        currentMode: input.currentMode,
-        targetMode: "hybrid-reduce",
-        reasons: ["shadow_baseline_ready_for_hybrid"],
-      };
-    }
-    return {
-      verdict: "hold",
-      currentMode: input.currentMode,
-      targetMode: input.currentMode,
-      reasons: input.decision.blockers.length > 0
-        ? input.decision.blockers
-        : ["shadow_mode_hold"],
-    };
-  }
-
-  if (input.decision.verdict === "hold") {
-    return {
-      verdict: "demote",
-      currentMode: input.currentMode,
-      targetMode: "shadow-reduce",
-      reasons: input.decision.blockers.length > 0
-        ? input.decision.blockers
-        : ["hybrid_mode_requires_shadow_fallback"],
-    };
-  }
-
-  return {
-    verdict: "hold",
-    currentMode: input.currentMode,
-    targetMode: input.currentMode,
-    reasons: ["hybrid_mode_confirmed"],
-  };
-};
+export const evaluateArchitectPlasmidPromotionAction =
+  evaluateGenericPromotionAction<ArchitectPlasmidExecutionMode>;
 
 export const ARCHITECT_PLASMID_PROMOTION_DECISION = {
   evaluateArchitectPlasmidPromotionDecision,
@@ -2727,20 +2504,20 @@ min_level: 6
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { STATE_MATRIX, LOGGER, Li } from "@generated";
+import { STATE_MATRIX, LOGGER, Li } from "@g12";
 import {
   SEMANTIC_MEMBRANE
-} from "@generated";
+} from "@g12";
 import {
   LLM_SYNAPSE
-} from "@generated";
+} from "@g12";
 import {
   AUDIT_ENGINE
-} from "@generated";
+} from "@g12";
 
 import {
   AKASHA_CODEX
-} from "@generated";
+} from "@g12";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -7785,6 +7562,301 @@ export const GENERIC_LEDGER_SYSTEM = {
 
 ---
 
+## FILE: src/ontology/core/generic_promotion_decision.md
+
+```markdown
+---
+id: GENERIC_PROMOTION_DECISION
+type: pure_fn
+description: >-
+  Generic evaluation logic for promotion decisions across AI modalities
+  (Guardian, Architect, etc.) in the hybrid shadow reduction flow.
+tags:
+  - core
+  - control
+  - host
+min_level: 6
+extra_symbols:
+  - GENERIC_PROMOTION_DECISION
+  - clampRatio
+  - normalizeCount
+  - GenericPromotionDecisionInput
+  - GenericPromotionDecisionThresholds
+  - GenericPromotionDecision
+  - GenericPromotionActionInput
+  - GenericPromotionAction
+  - evaluateGenericPromotionDecision
+  - evaluateGenericPromotionAction
+---
+
+```typescript
+export type GenericPromotionDecisionInput = {
+  promotion: {
+    latestReady: boolean;
+    readyRatio: number;
+    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
+    fallbackRatioP95: number;
+    status: string;
+  };
+  health: {
+    bootReady: boolean;
+    processExitedUnexpectedly: boolean;
+    successRate: number;
+    minSuccessRate: number;
+    p95TelemetryLatencyMs: number;
+    maxP95TelemetryLatencyMs: number;
+    p95SpatialOverflowRatio: number;
+    maxSpatialOverflowRatioP95: number;
+    safeModeRatio?: number;
+    maxSafeModeRatio?: number;
+    daemonRejectRatio?: number;
+    maxDaemonRejectRatio?: number;
+    effectEvalCoverage?: number;
+    minEffectEvalCoverage?: number;
+    enforceActionQualityGate?: boolean;
+  };
+};
+
+export type GenericPromotionDecisionThresholds = {
+  minReadyRatio: number;
+  maxFallbackRatioP95: number;
+};
+
+export type GenericPromotionDecision = {
+  verdict: "promote" | "hold";
+  promotionReady: boolean;
+  healthPass: boolean;
+  recommendedMode: "hybrid-reduce" | "shadow-reduce";
+  blockers: string[];
+  thresholds: GenericPromotionDecisionThresholds;
+};
+
+const DEFAULT_THRESHOLDS: GenericPromotionDecisionThresholds = {
+  minReadyRatio: 0.5,
+  maxFallbackRatioP95: 0.05,
+};
+
+export const clampRatio = (value: number): number => {
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  if (value >= 1) return 1;
+  return Number(value.toFixed(6));
+};
+
+export const normalizeCount = (value: number): number =>
+  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
+
+const normalizeDecisionThresholds = (
+  overrides?: Partial<GenericPromotionDecisionThresholds>,
+): GenericPromotionDecisionThresholds => ({
+  minReadyRatio: clampRatio(
+    overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
+  ),
+  maxFallbackRatioP95: clampRatio(
+    overrides?.maxFallbackRatioP95 ?? DEFAULT_THRESHOLDS.maxFallbackRatioP95,
+  ),
+});
+
+export const evaluateGenericPromotionDecision = (
+  input: GenericPromotionDecisionInput,
+  overrides?: Partial<GenericPromotionDecisionThresholds>,
+): GenericPromotionDecision => {
+  const thresholds = normalizeDecisionThresholds(overrides);
+  const blockers: string[] = [];
+  let healthPass = true;
+
+  if (!input.health.bootReady) {
+    blockers.push("boot_not_ready");
+    healthPass = false;
+  }
+  if (input.health.processExitedUnexpectedly) {
+    blockers.push("process_exited_unexpectedly");
+    healthPass = false;
+  }
+  if (input.health.successRate < input.health.minSuccessRate) {
+    blockers.push(
+      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
+        input.health.minSuccessRate.toFixed(3)
+      }`,
+    );
+    healthPass = false;
+  }
+  if (
+    input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
+  ) {
+    blockers.push(
+      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
+        input.health.maxP95TelemetryLatencyMs.toFixed(3)
+      }`,
+    );
+    healthPass = false;
+  }
+  if (
+    input.health.p95SpatialOverflowRatio >
+      input.health.maxSpatialOverflowRatioP95
+  ) {
+    blockers.push(
+      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
+        input.health.maxSpatialOverflowRatioP95.toFixed(6)
+      }`,
+    );
+    healthPass = false;
+  }
+
+  if (!input.promotion.latestReady) {
+    blockers.push(`promotion_latest_not_ready(${input.promotion.status})`);
+  }
+  if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
+    blockers.push(
+      `promotion_ready_ratio_${
+        clampRatio(input.promotion.readyRatio).toFixed(3)
+      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
+    );
+  }
+  if (input.promotion.recommendedMode !== "hybrid-reduce") {
+    blockers.push(
+      `promotion_mode_${input.promotion.recommendedMode}_not_hybrid_reduce`,
+    );
+  }
+  if (
+    clampRatio(input.promotion.fallbackRatioP95) >
+      thresholds.maxFallbackRatioP95
+  ) {
+    blockers.push(
+      `promotion_fallback_ratio_p95_${
+        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
+      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
+    );
+  }
+
+  if (input.health.enforceActionQualityGate === true) {
+    if (
+      input.health.maxSafeModeRatio !== undefined &&
+      input.health.safeModeRatio !== undefined &&
+      clampRatio(input.health.safeModeRatio) >
+        clampRatio(input.health.maxSafeModeRatio)
+    ) {
+      blockers.push(
+        `safe_mode_ratio_${
+          clampRatio(input.health.safeModeRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
+      );
+      healthPass = false;
+    }
+    if (
+      input.health.maxDaemonRejectRatio !== undefined &&
+      input.health.daemonRejectRatio !== undefined &&
+      clampRatio(input.health.daemonRejectRatio) >
+        clampRatio(input.health.maxDaemonRejectRatio)
+    ) {
+      blockers.push(
+        `daemon_reject_ratio_${
+          clampRatio(input.health.daemonRejectRatio).toFixed(3)
+        }_gt_${clampRatio(input.health.maxDaemonRejectRatio).toFixed(3)}`,
+      );
+      healthPass = false;
+    }
+    if (
+      input.health.minEffectEvalCoverage !== undefined &&
+      input.health.effectEvalCoverage !== undefined &&
+      clampRatio(input.health.effectEvalCoverage) <
+        clampRatio(input.health.minEffectEvalCoverage)
+    ) {
+      blockers.push(
+        `effect_eval_coverage_${
+          clampRatio(input.health.effectEvalCoverage).toFixed(3)
+        }_lt_${clampRatio(input.health.minEffectEvalCoverage).toFixed(3)}`,
+      );
+      healthPass = false;
+    }
+  }
+
+  return {
+    verdict: blockers.length === 0 ? "promote" : "hold",
+    promotionReady: input.promotion.latestReady,
+    healthPass,
+    recommendedMode: blockers.length === 0 ? "hybrid-reduce" : "shadow-reduce",
+    blockers,
+    thresholds,
+  };
+};
+
+export type GenericPromotionActionInput<TMode extends string> = {
+  currentMode: TMode;
+  decision: GenericPromotionDecision;
+};
+
+export type GenericPromotionAction<TMode extends string> = {
+  verdict: "promote" | "hold" | "demote";
+  currentMode: TMode;
+  targetMode: TMode;
+  reasons: string[];
+};
+
+export const evaluateGenericPromotionAction = <TMode extends string>(
+  input: GenericPromotionActionInput<TMode>,
+): GenericPromotionAction<TMode> => {
+  if (input.currentMode === "legacy-execute") {
+    return {
+      verdict: "hold",
+      currentMode: input.currentMode,
+      targetMode: input.currentMode,
+      reasons: ["legacy_mode_requires_shadow_baseline"],
+    };
+  }
+
+  if (input.currentMode === "shadow-reduce") {
+    if (
+      input.decision.verdict === "promote" &&
+      input.decision.recommendedMode === "hybrid-reduce"
+    ) {
+      return {
+        verdict: "promote",
+        currentMode: input.currentMode,
+        targetMode: "hybrid-reduce" as unknown as TMode,
+        reasons: ["shadow_baseline_ready_for_hybrid"],
+      };
+    }
+    return {
+      verdict: "hold",
+      currentMode: input.currentMode,
+      targetMode: input.currentMode,
+      reasons: input.decision.blockers.length > 0
+        ? input.decision.blockers
+        : ["shadow_mode_hold"],
+    };
+  }
+
+  if (input.decision.verdict === "hold") {
+    return {
+      verdict: "demote",
+      currentMode: input.currentMode,
+      targetMode: "shadow-reduce" as unknown as TMode,
+      reasons: input.decision.blockers.length > 0
+        ? input.decision.blockers
+        : ["hybrid_mode_requires_shadow_fallback"],
+    };
+  }
+
+  return {
+    verdict: "hold",
+    currentMode: input.currentMode,
+    targetMode: input.currentMode,
+    reasons: ["hybrid_mode_confirmed"],
+  };
+};
+
+export const GENERIC_PROMOTION_DECISION = {
+  clampRatio,
+  normalizeCount,
+  evaluateGenericPromotionDecision,
+  evaluateGenericPromotionAction,
+};
+```
+
+```
+
+---
+
 ## FILE: src/ontology/core/get_glyph_arity.md
 
 ```markdown
@@ -8058,7 +8130,12 @@ tags:
   - core
   - control
   - host
-min_level: 6
+deps:
+  - GENERIC_PROMOTION_DECISION
+  - evaluateGenericPromotionDecision
+  - evaluateGenericPromotionAction
+  - clampRatio
+  - normalizeCount
 extra_symbols:
   - GUARDIAN_SIGNAL_PROMOTION_DECISION
   - GuardianSignalHybridSnapshot
@@ -8075,194 +8152,25 @@ extra_symbols:
   - evaluateGuardianSignalPromotionDecision
 ---
 ```typescript
-import type { GuardianSignalExecutionMode } from "@generated";
+import type { GuardianSignalExecutionMode } from "@g12";
+import type {
+  GenericPromotionAction,
+  GenericPromotionActionInput,
+  GenericPromotionDecision,
+  GenericPromotionDecisionInput,
+  GenericPromotionDecisionThresholds,
+  clampRatio,
+  normalizeCount,
+} from "@g12";
 
-export type GuardianSignalPromotionDecisionInput = {
-  promotion: {
-    latestReady: boolean;
-    readyRatio: number;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    fallbackRatioP95: number;
-    status: string;
-  };
-  health: {
-    bootReady: boolean;
-    processExitedUnexpectedly: boolean;
-    successRate: number;
-    minSuccessRate: number;
-    p95TelemetryLatencyMs: number;
-    maxP95TelemetryLatencyMs: number;
-    p95SpatialOverflowRatio: number;
-    maxSpatialOverflowRatioP95: number;
-    safeModeRatio?: number;
-    maxSafeModeRatio?: number;
-    daemonRejectRatio?: number;
-    maxDaemonRejectRatio?: number;
-    effectEvalCoverage?: number;
-    minEffectEvalCoverage?: number;
-    enforceActionQualityGate?: boolean;
-  };
-};
+export type GuardianSignalPromotionDecisionInput =
+  GenericPromotionDecisionInput;
+export type GuardianSignalPromotionDecisionThresholds =
+  GenericPromotionDecisionThresholds;
+export type GuardianSignalPromotionDecision = GenericPromotionDecision;
 
-export type GuardianSignalPromotionDecisionThresholds = {
-  minReadyRatio: number;
-  maxFallbackRatioP95: number;
-};
-
-export type GuardianSignalPromotionDecision = {
-  verdict: "promote" | "hold";
-  promotionReady: boolean;
-  healthPass: boolean;
-  recommendedMode: "hybrid-reduce" | "shadow-reduce";
-  blockers: string[];
-  thresholds: GuardianSignalPromotionDecisionThresholds;
-};
-
-const DEFAULT_THRESHOLDS: GuardianSignalPromotionDecisionThresholds = {
-  minReadyRatio: 0.5,
-  maxFallbackRatioP95: 0.05,
-};
-
-const clampRatio = (value: number): number => {
-  if (!Number.isFinite(value) || value <= 0) return 0;
-  if (value >= 1) return 1;
-  return Number(value.toFixed(6));
-};
-
-const normalizeDecisionThresholds = (
-  overrides?: Partial<GuardianSignalPromotionDecisionThresholds>,
-): GuardianSignalPromotionDecisionThresholds => ({
-  minReadyRatio: clampRatio(
-    overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
-  ),
-  maxFallbackRatioP95: clampRatio(
-    overrides?.maxFallbackRatioP95 ?? DEFAULT_THRESHOLDS.maxFallbackRatioP95,
-  ),
-});
-
-export const evaluateGuardianSignalPromotionDecision = (
-  input: GuardianSignalPromotionDecisionInput,
-  overrides?: Partial<GuardianSignalPromotionDecisionThresholds>,
-): GuardianSignalPromotionDecision => {
-  const thresholds = normalizeDecisionThresholds(overrides);
-  const blockers: string[] = [];
-  let healthPass = true;
-
-  if (!input.health.bootReady) {
-    blockers.push("boot_not_ready");
-    healthPass = false;
-  }
-  if (input.health.processExitedUnexpectedly) {
-    blockers.push("process_exited_unexpectedly");
-    healthPass = false;
-  }
-  if (input.health.successRate < input.health.minSuccessRate) {
-    blockers.push(
-      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
-        input.health.minSuccessRate.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
-  ) {
-    blockers.push(
-      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
-        input.health.maxP95TelemetryLatencyMs.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95SpatialOverflowRatio >
-      input.health.maxSpatialOverflowRatioP95
-  ) {
-    blockers.push(
-      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
-        input.health.maxSpatialOverflowRatioP95.toFixed(6)
-      }`,
-    );
-    healthPass = false;
-  }
-
-  if (!input.promotion.latestReady) {
-    blockers.push(`promotion_latest_not_ready(${input.promotion.status})`);
-  }
-  if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
-    blockers.push(
-      `promotion_ready_ratio_${
-        clampRatio(input.promotion.readyRatio).toFixed(3)
-      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
-    );
-  }
-  if (input.promotion.recommendedMode !== "hybrid-reduce") {
-    blockers.push(
-      `promotion_mode_${input.promotion.recommendedMode}_not_hybrid_reduce`,
-    );
-  }
-  if (
-    clampRatio(input.promotion.fallbackRatioP95) >
-      thresholds.maxFallbackRatioP95
-  ) {
-    blockers.push(
-      `promotion_fallback_ratio_p95_${
-        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
-      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
-    );
-  }
-
-  if (input.health.enforceActionQualityGate === true) {
-    if (
-      input.health.maxSafeModeRatio !== undefined &&
-      input.health.safeModeRatio !== undefined &&
-      clampRatio(input.health.safeModeRatio) >
-        clampRatio(input.health.maxSafeModeRatio)
-    ) {
-      blockers.push(
-        `safe_mode_ratio_${
-          clampRatio(input.health.safeModeRatio).toFixed(3)
-        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-    if (
-      input.health.maxDaemonRejectRatio !== undefined &&
-      input.health.daemonRejectRatio !== undefined &&
-      clampRatio(input.health.daemonRejectRatio) >
-        clampRatio(input.health.maxDaemonRejectRatio)
-    ) {
-      blockers.push(
-        `daemon_reject_ratio_${
-          clampRatio(input.health.daemonRejectRatio).toFixed(3)
-        }_gt_${clampRatio(input.health.maxDaemonRejectRatio).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-    if (
-      input.health.minEffectEvalCoverage !== undefined &&
-      input.health.effectEvalCoverage !== undefined &&
-      clampRatio(input.health.effectEvalCoverage) <
-        clampRatio(input.health.minEffectEvalCoverage)
-    ) {
-      blockers.push(
-        `effect_eval_coverage_${
-          clampRatio(input.health.effectEvalCoverage).toFixed(3)
-        }_lt_${clampRatio(input.health.minEffectEvalCoverage).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-  }
-
-  return {
-    verdict: blockers.length === 0 ? "promote" : "hold",
-    promotionReady: input.promotion.latestReady,
-    healthPass,
-    recommendedMode: blockers.length === 0 ? "hybrid-reduce" : "shadow-reduce",
-    blockers,
-    thresholds,
-  };
-};
+export const evaluateGuardianSignalPromotionDecision =
+  evaluateGenericPromotionDecision;
 
 export type GuardianSignalHybridSnapshot = {
   mode: GuardianSignalExecutionMode;
@@ -8325,8 +8233,6 @@ const DEFAULT_PROMOTION_THRESHOLDS: GuardianSignalPromotionThresholds = {
   minShadowSuppressedGuardianSignals: 4,
 };
 
-const normalizeCount = (value: number): number =>
-  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
 
 const normalizePromoThresholds = (
   overrides?: Partial<GuardianSignalPromotionThresholds>,
@@ -8471,70 +8377,14 @@ export const evaluateGuardianSignalPromotion = (
   };
 };
 
-export type GuardianSignalPromotionActionInput = {
-  currentMode: GuardianSignalExecutionMode;
-  decision: GuardianSignalPromotionDecision;
-};
+export type GuardianSignalPromotionActionInput =
+  GenericPromotionActionInput<GuardianSignalExecutionMode>;
 
-export type GuardianSignalPromotionAction = {
-  verdict: "promote" | "hold" | "demote";
-  currentMode: GuardianSignalExecutionMode;
-  targetMode: GuardianSignalExecutionMode;
-  reasons: string[];
-};
+export type GuardianSignalPromotionAction =
+  GenericPromotionAction<GuardianSignalExecutionMode>;
 
-export const evaluateGuardianSignalPromotionAction = (
-  input: GuardianSignalPromotionActionInput,
-): GuardianSignalPromotionAction => {
-  if (input.currentMode === "legacy-execute") {
-    return {
-      verdict: "hold",
-      currentMode: input.currentMode,
-      targetMode: input.currentMode,
-      reasons: ["legacy_mode_requires_shadow_baseline"],
-    };
-  }
-
-  if (input.currentMode === "shadow-reduce") {
-    if (
-      input.decision.verdict === "promote" &&
-      input.decision.recommendedMode === "hybrid-reduce"
-    ) {
-      return {
-        verdict: "promote",
-        currentMode: input.currentMode,
-        targetMode: "hybrid-reduce",
-        reasons: ["shadow_baseline_ready_for_hybrid"],
-      };
-    }
-    return {
-      verdict: "hold",
-      currentMode: input.currentMode,
-      targetMode: input.currentMode,
-      reasons: input.decision.blockers.length > 0
-        ? input.decision.blockers
-        : ["shadow_mode_hold"],
-    };
-  }
-
-  if (input.decision.verdict === "hold") {
-    return {
-      verdict: "demote",
-      currentMode: input.currentMode,
-      targetMode: "shadow-reduce",
-      reasons: input.decision.blockers.length > 0
-        ? input.decision.blockers
-        : ["hybrid_mode_requires_shadow_fallback"],
-    };
-  }
-
-  return {
-    verdict: "hold",
-    currentMode: input.currentMode,
-    targetMode: input.currentMode,
-    reasons: ["hybrid_mode_confirmed"],
-  };
-};
+export const evaluateGuardianSignalPromotionAction =
+  evaluateGenericPromotionAction<GuardianSignalExecutionMode>;
 
 export const GUARDIAN_SIGNAL_PROMOTION_DECISION = {
   evaluateGuardianSignalPromotionDecision,
@@ -8555,8 +8405,7 @@ export const GUARDIAN_SIGNAL_PROMOTION_DECISION = {
 id: HORMONE_BUFFER_RUNTIME
 type: module
 description: Hormone Buffer Runtime Sync Logic
-deps:
-  - HORMONE_BUFFER
+deps: []
 min_level: 6
 extra_symbols:
   - HORMONE_BUFFER_RUNTIME
@@ -8596,7 +8445,7 @@ const clamp = (value: number, min: number, max: number): number =>
  */
 export const syncHormonesToLattice = (
   input: HormoneSyncInput,
-): Record<HormoneId, number> => {
+): Record<string, number> => {
   return {
     entropy_pressure: Math.round(
       clamp(
@@ -8677,7 +8526,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { RUNTIME_POLICY } from "../mod.ts";
+import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
 export type HormoneId =
   | "entropy_pressure"
@@ -10879,23 +10728,10 @@ type: memory_layout
 description: "Isomorphic topological mapping of all generic WebAssembly shared arrays"
 deps: 
   - SYSTEM_CONSTANTS
-  - SYSTEM_CONSTANTS
 vars:
   - MAX_ATOMS
   - SAFETY_BUFFER
-  - ATOM_GENOME_SIZE
-  - ATOM_INSTRUCTION_SIZE
-  - ATOM_CONTEXT_SIZE
-  - MAX_SPAWN_REQUESTS
-  - MAX_MEIOSIS_EVENTS
   - GRID_CELLS
-  - MAX_ASCENSION_STATS_RESERVED
-  - HIVE_MEMORY_SIZE
-  - HIVE_ENERGY_POOL_SIZE
-  - MAX_HORMONES
-  - SECRETION_STATS_SIZE
-  - MAX_LEDGER_EVENTS
-  - MAX_EGRESS_EVENTS
 base_offset: "SAFETY_BUFFER - 8"
 regions:
   - name: TICK_COUNTER
@@ -11205,7 +11041,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import type { LedgerRuntimeSnapshot } from "@generated";
+import type { LedgerRuntimeSnapshot } from "@g12";
 
 export type PhysiologySnapshotInput = {
   tick: number;
@@ -11561,7 +11397,11 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GENERIC_LEDGER_PERSISTENCE, GENERIC_LEDGER_SYSTEM, GLYPH_TELEMETRY, GenesisInceptor, HORMONE_BUFFER, HORMONE_BUFFER_RUNTIME, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, sharedBuffer, snapshotLedgerRuntime } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, STATE_MATRIX, sharedBuffer } from "../mod.ts";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
+import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
+import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
+import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 
 
@@ -11643,7 +11483,7 @@ const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
 import type {
   LedgerPersistenceSummary
-} from "@generated";
+} from "@g12";
 const {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -13246,6 +13086,7 @@ const startWorkers = async (count: number): Promise<void> => {
     const p = waitForWorkerInit(worker, i);
     worker.postMessage({
       type: "INIT",
+      wasmPath: AS_WASM_PATH.href,
       wasmMemory: STATE_MATRIX.wasmMemory,
       buffer: STATE_MATRIX.buffer,
       marketBuffer: PREDICTION_MARKET.buffer,
@@ -16271,13 +16112,6 @@ export const evaluateReplicationExecution = (
 id: PULSE_WORKER
 type: module
 description: Implementation of PULSE_WORKER
-deps:
-  - GENERIC_LEDGER_PERSISTENCE
-  - GENERIC_LEDGER_SYSTEM
-  - HORMONE_BUFFER
-  - HORMONE_BUFFER_RUNTIME
-  - LOGGER
-  - STATE_MATRIX
 min_level: 13
 vars:
   - BONDS_OFFSET
@@ -16293,12 +16127,7 @@ vars:
   - LEDGER_DATA_OFFSET
   - LEDGER_HEAD_OFFSET
   - LINEAGE_OFFSET
-  - LOGGER
   - LOGIC_OFFSET
-  - Ld
-  - Le
-  - Li
-  - Lw
   - MAILBOX_OFFSET
   - MAX_ATOMS
   - MAX_LEDGER_EVENTS
@@ -16309,7 +16138,6 @@ vars:
   - SPATIAL_CELL_SIZE
   - SPATIAL_GRID_OFFSET
   - SPAWN_REQUESTS_OFFSET
-  - STATE_MATRIX
   - STRUCTURE_BUILD_OWNER_OFFSET
   - STRUCTURE_BUILD_VALUE_OFFSET
   - STRUCTURE_GRID_OFFSET
@@ -16365,6 +16193,8 @@ const resolveWithPhase = (
   // Return "intensity" = |z|
   return Math.floor(Math.sqrt(real * real + imag * imag));
 };
+
+const _noop = (..._args: any[]) => {};
 let wasmInstance: WebAssembly.Instance | null = null;
 let execute_atom_fn: ((idx: number) => void) | null = null;
 let tick_environment_fn: ((tick: number) => void) | null = null;
@@ -16447,7 +16277,7 @@ function handle_syscall(atomIdx: number) {
   const r2 = contextI32View[regBase + 2];
   const r3 = contextI32View[regBase + 3];
 
-  Ld(
+  _noop(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
 
@@ -16519,7 +16349,7 @@ function handle_syscall(atomIdx: number) {
   const currentEnergy = Atomics.load(energiesView, atomIdx);
   if (currentEnergy < gasCost * 1000) {
     // Out of Gas for this syscall
-    Ld(
+    _noop(
       `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
         currentEnergy / 1000
       })`,
@@ -16541,7 +16371,7 @@ function handle_syscall(atomIdx: number) {
       ) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
       );
       contextI32View[regBase] = val; // Return value in R0
@@ -16549,7 +16379,7 @@ function handle_syscall(atomIdx: number) {
     }
     case SYS_WRITE_MEM: {
       const gx = r1, gy = r2, newVal = r3;
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
       );
       if (
@@ -16616,13 +16446,13 @@ function handle_syscall(atomIdx: number) {
         const globalOffset = targetIdx * 64 + offset;
         Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
         Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
             (newValue & 0xFF).toString(16)
           }`,
         );
       } else {
-        Ld(
+        _noop(
           `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
         );
       }
@@ -16636,7 +16466,7 @@ function handle_syscall(atomIdx: number) {
         // Simple 1-deep mailbox per atom
         Atomics.store(mailboxView, targetIdx * 2, msgType);
         Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
         );
       }
@@ -16657,7 +16487,7 @@ function handle_syscall(atomIdx: number) {
         if (msgType !== 0) {
           Atomics.store(mailboxView, atomIdx * 2, 0);
           Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          Ld(
+          _noop(
             `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
           );
         }
@@ -16677,7 +16507,7 @@ function handle_syscall(atomIdx: number) {
             if (senderEnergy >= scaledAmount) {
               Atomics.sub(energiesView, atomIdx, scaledAmount);
               Atomics.add(energiesView, targetIdx, scaledAmount);
-              Ld(
+              _noop(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
               );
             }
@@ -16718,7 +16548,7 @@ function handle_syscall(atomIdx: number) {
                         atomIdx,
                       ); // Store host atomIdx in Context Reg 12
                     }
-                    Ld(
+                    _noop(
                       `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
                     );
                     break;
@@ -16735,7 +16565,7 @@ function handle_syscall(atomIdx: number) {
                   if (takeAmount > 0) {
                     Atomics.sub(energiesView, targetIdx, takeAmount);
                     Atomics.add(energiesView, atomIdx, takeAmount);
-                    Ld(
+                    _noop(
                       `   [SYSCALL] Atom ${atomIdx} STOLE ${
                         takeAmount / 1000
                       } Energy from Atom ${targetIdx}`,
@@ -16760,7 +16590,7 @@ function handle_syscall(atomIdx: number) {
             if (senderResonance >= amount) {
               Atomics.sub(resonancesView, atomIdx, amount);
               Atomics.add(resonancesView, targetIdx, amount);
-              Ld(
+              _noop(
                 `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
               );
             }
@@ -16813,11 +16643,11 @@ function handle_syscall(atomIdx: number) {
           idsView[targetIdx] = BigInt(targetIdx + 1);
         }
 
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
         );
       } else {
-        Ld(
+        _noop(
           `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
         );
       }
@@ -16840,7 +16670,7 @@ function handle_syscall(atomIdx: number) {
         Atomics.store(ledgerDataView, base + 2, r1);
         Atomics.store(ledgerDataView, base + 3, r2);
 
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
         );
       }
@@ -16908,11 +16738,11 @@ function handle_syscall(atomIdx: number) {
               }
             }
           }
-          Ld(
+          _noop(
             `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
           );
         } else {
-          Ld(
+          _noop(
             `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
           );
         }
@@ -16944,7 +16774,7 @@ function handle_syscall(atomIdx: number) {
         if (dxStr !== 0 || dyStr !== 0) {
           let nx = ox + dxStr * SPATIAL_CELL_SIZE;
           let ny = oy + dyStr * SPATIAL_CELL_SIZE;
-          Ld(
+          _noop(
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
@@ -16970,7 +16800,7 @@ function handle_syscall(atomIdx: number) {
             }
           }
 
-          Ld(
+          _noop(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
 
@@ -17036,7 +16866,7 @@ function handle_syscall(atomIdx: number) {
           atomIdx,
         });
         // Syscall intercept verification
-        Ld(
+        _noop(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
             Math.floor(currentTheta)
           }, AtomPhase=${atomPhase}).`,
@@ -17051,7 +16881,7 @@ function handle_syscall(atomIdx: number) {
       const packed = (epochPhase & 0xFFFF) |
         ((Math.floor(currentTheta) & 0xFFFF) << 16);
       contextI32View![regBase] = packed;
-      Ld(
+      _noop(
         `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
           Math.floor(currentTheta)
         })`,
@@ -17059,7 +16889,7 @@ function handle_syscall(atomIdx: number) {
       break;
     }
     default:
-      Ld(
+      _noop(
         `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
       );
       break;
@@ -17112,7 +16942,7 @@ const maybeDelay = async () => {
   const { type, pulseId } = e.data;
 
   if (type === "INIT") {
-    const { buffer, marketBuffer, wasmMemory, workerIndex } = e.data;
+    const { buffer, marketBuffer, wasmMemory, workerIndex, wasmPath } = e.data;
     sharedBuffer = buffer;
     if (marketBuffer) {
       marketState = new Int32Array(marketBuffer, 0, 1);
@@ -17188,12 +17018,12 @@ const maybeDelay = async () => {
       });
       return;
     }
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
       const wasmRes = await fetch(
-        AS_WASM_PATH.href,
+        wasmPath,
       );
       const wasmBytes = await wasmRes.arrayBuffer();
       const traceAtom = (
@@ -17206,12 +17036,12 @@ const maybeDelay = async () => {
         if (op === 0xDD) {
           const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
           const epoch = Math.floor(tick / 10000);
-          Li(
+          _noop(
             `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
           );
           return;
         }
-        Ld(
+        _noop(
           `   [WASM_TRACE] Atom ${idx} executed ${
             op.toString(16)
           } | Pos: (${gx},${gy}) | target: ${target}`,
@@ -17223,7 +17053,7 @@ const maybeDelay = async () => {
         },
         env: {
           memory: wasmMemory,
-          abort: (msg: any) => Le("   [WASM ABORT]:", msg),
+          abort: (msg: any) => _noop("   [WASM ABORT]:", msg),
           trace_atom: traceAtom,
         },
       });
@@ -17257,7 +17087,7 @@ const maybeDelay = async () => {
         .accumulate_metabolism_stats as any;
       apply_metabolism_kernel_fn = wasmInstance.exports
         .apply_metabolism_kernel as any;
-      Li("   [WORKER] WASM Instantiated successfully.");
+      _noop("   [WORKER] WASM Instantiated successfully.");
       await maybeDelay();
       (self as unknown as Worker).postMessage({ type: "READY" });
       const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
@@ -17269,7 +17099,7 @@ const maybeDelay = async () => {
         workerIndex: Number(workerIndex),
       });
     } catch (err) {
-      Le("   [WORKER] WASM LOAD ERROR:", err);
+      _noop("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
         ? `${err.name}: ${err.message}`
         : String(err);
@@ -17286,7 +17116,7 @@ const maybeDelay = async () => {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId +
         "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
       Atomics.load(syncStateView, 0),
@@ -17294,7 +17124,7 @@ const maybeDelay = async () => {
     let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
       if (stuckCycles++ > 100) {
-        Lw(
+        _noop(
           "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
           Atomics.load(syncStateView, 0),
         );
@@ -17307,7 +17137,7 @@ const maybeDelay = async () => {
       }
     }
 
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
@@ -17322,7 +17152,7 @@ const maybeDelay = async () => {
         execute_atom_fn(i);
         const afterX11 = Atomics.load(xsView!, 11);
         if (beforeX11 !== afterX11) {
-          Ld(
+          _noop(
             `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
           );
         }
@@ -17332,17 +17162,17 @@ const maybeDelay = async () => {
 
         const afterSys11 = Atomics.load(xsView!, 11);
         if (afterX11 !== afterSys11) {
-          Ld(
+          _noop(
             `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
           );
         }
       }
     } catch (err) {
-      Le("   [WORKER EXECUTION ERROR]", err);
+      _noop("   [WORKER EXECUTION ERROR]", err);
     }
 
     await maybeDelay();
-    Ld("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
+    _noop("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
     (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
   }
 
@@ -17373,7 +17203,7 @@ const maybeDelay = async () => {
       BONDS_OFFSET,
       MAX_ATOMS * 4,
     );
-    Ld(
+    _noop(
       `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
         bH[2 * 4]
       }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
@@ -17388,7 +17218,7 @@ const maybeDelay = async () => {
   }
 
   if (type === "RESOLVE_BONDS") {
-    Ld(
+    _noop(
       "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
     );
     try {
@@ -17396,14 +17226,14 @@ const maybeDelay = async () => {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
       const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
-      Li(`[DEBUG-WORKER] WASM resolve returned ${count}`);
+      _noop(`[DEBUG-WORKER] WASM resolve returned ${count}`);
       (self as unknown as Worker).postMessage({
         type: "RESOLVE_BONDS_DONE",
         count,
         pulseId: e.data.pulseId,
       });
     } catch (err) {
-      Le(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
+      _noop(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
     }
   }
 
@@ -17767,8 +17597,8 @@ extra_symbols:
   - evaluateReplicationPromotionAction
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@generated";
-import type { ReplicationPromotionDecision } from "@generated";
+import type { ReplicationExecutionMode } from "@g12";
+import type { ReplicationPromotionDecision } from "@g12";
 
 export type ReplicationPromotionActionInput = {
   currentMode: ReplicationExecutionMode;
@@ -18043,7 +17873,7 @@ extra_symbols:
   - evaluateReplicationPromotion
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@generated";
+import type { ReplicationExecutionMode } from "@g12";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;
@@ -18277,7 +18107,8 @@ min_level: 2
 tags:
   - substrate
 deps:
-  - ENV_PARSE
+  - parse_env_bool
+  - parse_env_bounded_int
 ---
 
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
@@ -18302,11 +18133,9 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
   return value.length > 0 ? value : fallback;
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
-import { Li } from "@g01";
-const { parseEnvBool, parseEnvBoundedInt } = ENV_PARSE;
 
 const parsePort = (raw: string | undefined, fallback: number): number =>
-  parseEnvBoundedInt(raw, fallback, 1, 65_535);
+  parse_env_bounded_int(raw, fallback, 1, 65_535);
 const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
   const value = (raw ?? "").trim().toLowerCase();
   if (value === "safe-noop" || value === "safe_noop" || value === "noop") {
@@ -18462,9 +18291,9 @@ const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
-const systemControlEnabled = parseEnvBool(rawSystemControlEnable, false);
+const systemControlEnabled = parse_env_bool(rawSystemControlEnable, false);
 const systemControlToken = normalizeToken(rawSystemControlToken);
-const systemAvatarIngressEnabled = parseEnvBool(
+const systemAvatarIngressEnabled = parse_env_bool(
   rawSystemAvatarIngressEnable,
   true,
 );
@@ -18472,10 +18301,10 @@ const systemAvatarIngressEnabled = parseEnvBool(
 const p2pHost = normalizeHost(rawP2PHost, "127.0.0.1");
 const hasMainnetArg = typeof Deno !== "undefined" &&
   Deno.args.includes("--mainnet");
-const mainnetEnabled = parseEnvBool(rawOmegaMainnet, hasMainnetArg);
+const mainnetEnabled = parse_env_bool(rawOmegaMainnet, hasMainnetArg);
 const bootstrapHubUrl = normalizeToken(rawBootstrapHubUrl) ||
   "ws://127.0.0.1:9999";
-const p2pMutateEnabled = parseEnvBool(
+const p2pMutateEnabled = parse_env_bool(
   rawP2PMutateEnable ?? rawSystemControlEnable,
   false,
 );
@@ -18483,18 +18312,18 @@ const p2pMutateToken = normalizeToken(
   rawP2PMutateToken ?? rawSystemControlToken,
 );
 
-const federationEnabled = parseEnvBool(rawFederationEnable, false);
-const federationTimeoutMs = parseEnvBoundedInt(
+const federationEnabled = parse_env_bool(rawFederationEnable, false);
+const federationTimeoutMs = parse_env_bounded_int(
   rawFederationTimeoutMs,
   2000,
   50,
   120_000,
 );
-const federationAdmissionEnabled = parseEnvBool(
+const federationAdmissionEnabled = parse_env_bool(
   rawFederationAdmissionEnable,
   true,
 );
-const federationAdmissionMidScore = parseEnvBoundedInt(
+const federationAdmissionMidScore = parse_env_bounded_int(
   rawFederationAdmissionMidScore,
   4,
   1,
@@ -18502,13 +18331,13 @@ const federationAdmissionMidScore = parseEnvBoundedInt(
 );
 const federationAdmissionHighScore = Math.max(
   federationAdmissionMidScore + 1,
-  parseEnvBoundedInt(rawFederationAdmissionHighScore, 7, 2, 128),
+  parse_env_bounded_int(rawFederationAdmissionHighScore, 7, 2, 128),
 );
-const federationAdmissionRejectOnStrictMismatch = parseEnvBool(
+const federationAdmissionRejectOnStrictMismatch = parse_env_bool(
   rawFederationAdmissionRejectOnStrictMismatch,
   true,
 );
-const federationHybridizeEnabled = parseEnvBool(
+const federationHybridizeEnabled = parse_env_bool(
   rawFederationHybridizeEnable,
   true,
 );
@@ -18517,7 +18346,6 @@ const federationDegradeEnergyRatio = parseEnvBoundedFloat(
   0.72,
   0.1,
   1,
-  234,
 );
 const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   rawFederationDegradeResonanceRatio,
@@ -18525,31 +18353,31 @@ const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   0.1,
   1,
 );
-const federationOpenWorld = parseEnvBool(rawFederationOpenWorld, false);
+const federationOpenWorld = parse_env_bool(rawFederationOpenWorld, false);
 
-const telemetryEnabled = parseEnvBool(rawTelemetryEnabled, true);
-const telemetryFlushIntervalTicks = parseEnvBoundedInt(
+const telemetryEnabled = parse_env_bool(rawTelemetryEnabled, true);
+const telemetryFlushIntervalTicks = parse_env_bounded_int(
   rawTelemetryFlushTicks,
   25,
   1,
   10_000,
 );
-const telemetryTopKinds = parseEnvBoundedInt(rawTelemetryTopKinds, 6, 1, 32);
+const telemetryTopKinds = parse_env_bounded_int(rawTelemetryTopKinds, 6, 1, 32);
 
-const controlIntentMaxPending = parseEnvBoundedInt(
+const controlIntentMaxPending = parse_env_bounded_int(
   rawControlIntentMax,
   512,
   8,
   100_000,
 );
-const controlIntentApplyBudget = parseEnvBoundedInt(
+const controlIntentApplyBudget = parse_env_bounded_int(
   rawControlIntentBudget,
   8,
   1,
   4096,
 );
 
-const oraclePendingMax = parseEnvBoundedInt(rawOraclePendingMax, 256, 32, 8192);
+const oraclePendingMax = parse_env_bounded_int(rawOraclePendingMax, 256, 32, 8192);
 const oracleMutationMode = (() => {
   const value = (rawOracleMutationMode ?? "").trim().toLowerCase();
   if (value === "direct" || value === "head") return "direct" as const;
@@ -18557,44 +18385,44 @@ const oracleMutationMode = (() => {
   return "stigmergic" as const;
 })();
 
-const pulseWorkerCount = parseEnvBoundedInt(rawPulseWorkers, 4, 1, 32);
-const pulseStrictDeterminism = parseEnvBool(rawStrictDeterminism, false);
-const pulseWorkerResponseTimeoutMs = parseEnvBoundedInt(
+const pulseWorkerCount = parse_env_bounded_int(rawPulseWorkers, 4, 1, 32);
+const pulseStrictDeterminism = parse_env_bool(rawStrictDeterminism, false);
+const pulseWorkerResponseTimeoutMs = parse_env_bounded_int(
   rawWorkerResponseTimeoutMs,
   30_000,
   10,
   120_000,
 );
-const pulseWorkerTimeoutRetryCount = parseEnvBoundedInt(
+const pulseWorkerTimeoutRetryCount = parse_env_bounded_int(
   rawWorkerTimeoutRetryCount,
   1,
   0,
   4,
 );
-const pulseWorkerTimeoutRetryMs = parseEnvBoundedInt(
+const pulseWorkerTimeoutRetryMs = parse_env_bounded_int(
   rawWorkerTimeoutRetryMs,
   5_000,
   10,
   120_000,
 );
-const pulseWorkerInitFallbackEnabled = parseEnvBool(
+const pulseWorkerInitFallbackEnabled = parse_env_bool(
   rawWorkerInitFallback,
   true,
 );
-const pulseWorkerRecoveryVerbose = parseEnvBool(
+const pulseWorkerRecoveryVerbose = parse_env_bool(
   rawWorkerRecoveryVerbose,
   false,
 );
 const pulseWasmBootPolicy = parseWasmBootPolicy(rawWasmBootPolicy);
-const pulseWasmBootPrecheckEnabled = parseEnvBool(rawWasmBootPrecheck, true);
-const pulseForceWasmPreflightFail = parseEnvBool(
+const pulseWasmBootPrecheckEnabled = parse_env_bool(rawWasmBootPrecheck, true);
+const pulseForceWasmPreflightFail = parse_env_bool(
   rawForceWasmPreflightFail,
   false,
 );
 const pulsePressureRingEnabled = hasEnvValue(rawMatrixTheta) ||
   hasEnvValue(rawPressureRingScale);
 const pulsePressureRingScale = pulsePressureRingEnabled
-  ? parseEnvBoundedInt(rawPressureRingScale, 256, 0, 2048)
+  ? parse_env_bounded_int(rawPressureRingScale, 256, 0, 2048)
   : 0;
 const pulseMatrixThetaRaw = parseEnvBoundedFloat(
   rawMatrixTheta,
@@ -18627,28 +18455,28 @@ const pulseSymbiosisAxisFromRing = pulsePressureRingEnabled &&
   !hasEnvValue(rawSymbiosisPressure);
 const pulseNoveltyPressure = pulseNoveltyAxisFromRing
   ? pulseRingNoveltyPressure
-  : parseEnvBoundedInt(rawNoveltyPressure, 0, 0, 2048);
+  : parse_env_bounded_int(rawNoveltyPressure, 0, 0, 2048);
 const pulseFearPressure = pulseNoveltyAxisFromRing ? pulseRingFearPressure : 0;
 const pulseSymbiosisPressure = pulseSymbiosisAxisFromRing
   ? pulseRingSymbiosisPressure
-  : parseEnvBoundedInt(rawSymbiosisPressure, 0, 0, 2048);
+  : parse_env_bounded_int(rawSymbiosisPressure, 0, 0, 2048);
 const pulseEgoPressure = pulseSymbiosisAxisFromRing ? pulseRingEgoPressure : 0;
 const pulseNoveltyPressureSigned = pulseNoveltyPressure - pulseFearPressure;
 const pulseSymbiosisPressureSigned = pulseSymbiosisPressure - pulseEgoPressure;
-const pulseHomeostasisEnabled = parseEnvBool(rawHomeostasisEnable, true);
-const pulseHomeostasisTargetEnergy = parseEnvBoundedInt(
+const pulseHomeostasisEnabled = parse_env_bool(rawHomeostasisEnable, true);
+const pulseHomeostasisTargetEnergy = parse_env_bounded_int(
   rawHomeostasisTargetEnergy,
   1200,
   1,
   1_000_000,
 );
-const pulseHomeostasisBand = parseEnvBoundedInt(
+const pulseHomeostasisBand = parse_env_bounded_int(
   rawHomeostasisBand,
   240,
   1,
   1_000_000,
 );
-const pulseHomeostasisMaxDelta = parseEnvBoundedInt(
+const pulseHomeostasisMaxDelta = parse_env_bounded_int(
   rawHomeostasisMaxDelta,
   12,
   1,
@@ -18660,35 +18488,35 @@ const pulseHomeostasisOverflowThreshold = parseEnvBoundedFloat(
   0,
   1,
 );
-const pulseHomeostasisStarvationFloor = parseEnvBoundedInt(
+const pulseHomeostasisStarvationFloor = parse_env_bounded_int(
   rawHomeostasisStarvationFloor,
   200,
   0,
   1_000_000,
 );
-const pulseHomeostasisBaseTax = parseEnvBoundedInt(
+const pulseHomeostasisBaseTax = parse_env_bounded_int(
   rawHomeostasisBaseTax,
   2,
   0,
   1024,
 );
-const pulseHomeostasisSubsidyEnabled = parseEnvBool(
+const pulseHomeostasisSubsidyEnabled = parse_env_bool(
   rawHomeostasisSubsidyEnable,
   false,
 );
-const pulseStartupSelfTestEnabled = parseEnvBool(rawStartupSelfTest, true);
-const pulseStartupSelfTestTicks = parseEnvBoundedInt(
+const pulseStartupSelfTestEnabled = parse_env_bool(rawStartupSelfTest, true);
+const pulseStartupSelfTestTicks = parse_env_bounded_int(
   rawStartupSelfTestTicks,
   3,
   1,
   32,
 );
-const pulseStartupSelfTestFallbackEnabled = parseEnvBool(
+const pulseStartupSelfTestFallbackEnabled = parse_env_bool(
   rawStartupSelfTestFallback,
   true,
 );
-const pulseStartupSelfTestQuiet = parseEnvBool(rawStartupSelfTestQuiet, true);
-const pulseStartupSelfTestForceBreach = parseEnvBool(
+const pulseStartupSelfTestQuiet = parse_env_bool(rawStartupSelfTestQuiet, true);
+const pulseStartupSelfTestForceBreach = parse_env_bool(
   rawStartupSelfTestForceBreach,
   false,
 );
@@ -18708,43 +18536,43 @@ const pulseReplicationExecutionMode = parseExecutionMode(
 const akashaHost = normalizeHost(rawAkashaHost, "127.0.0.1");
 const akashaPort = 8080;
 const p2pPort = 8081;
-const daemonPolicyWindowMs = parseEnvBoundedInt(
+const daemonPolicyWindowMs = parse_env_bounded_int(
   rawDaemonPolicyWindowMs,
   60_000,
   5_000,
   3_600_000,
 );
-const daemonMaxActionsPerWindow = parseEnvBoundedInt(
+const daemonMaxActionsPerWindow = parse_env_bounded_int(
   rawDaemonMaxActionsPerWindow,
   8,
   1,
   10_000,
 );
-const daemonMaxPheromoneIntensity = parseEnvBoundedInt(
+const daemonMaxPheromoneIntensity = parse_env_bounded_int(
   rawDaemonMaxPheromoneIntensity,
   300,
   1,
   5_000,
 );
-const daemonMaxPlasmidCharge = parseEnvBoundedInt(
+const daemonMaxPlasmidCharge = parse_env_bounded_int(
   rawDaemonMaxPlasmidCharge,
   1200,
   1,
   65_535,
 );
-const daemonSafeMinPopulation = parseEnvBoundedInt(
+const daemonSafeMinPopulation = parse_env_bounded_int(
   rawDaemonSafeMinPopulation,
   16,
   0,
   100_000,
 );
-const daemonSafeMinAvgEnergy = parseEnvBoundedInt(
+const daemonSafeMinAvgEnergy = parse_env_bounded_int(
   rawDaemonSafeMinAvgEnergy,
   5,
   0,
   100_000,
 );
-const daemonAuditEffectTicks = parseEnvBoundedInt(
+const daemonAuditEffectTicks = parse_env_bounded_int(
   rawDaemonAuditEffectTicks,
   32,
   1,
@@ -18753,8 +18581,8 @@ const daemonAuditEffectTicks = parseEnvBoundedInt(
 const daemonAuditPath = (rawDaemonAuditPath ?? "").trim().length > 0
   ? (rawDaemonAuditPath ?? "").trim()
   : "./DAEMON_AUDIT.jsonl";
-const coldstartEnabled = parseEnvBool(rawColdstartEnable, false);
-const coldstartCount = parseEnvBoundedInt(rawColdstartCount, 48, 0, 100_000);
+const coldstartEnabled = parse_env_bool(rawColdstartEnable, false);
+const coldstartCount = parse_env_bounded_int(rawColdstartCount, 48, 0, 100_000);
 const coldstartReplicatorRatio = parseEnvBoundedFloat(
   rawColdstartReplicatorRatio,
   0.15,
@@ -18767,32 +18595,32 @@ const coldstartGuardianRatio = parseEnvBoundedFloat(
   0,
   1,
 );
-const coldstartSeed = parseEnvBoundedInt(
+const coldstartSeed = parse_env_bounded_int(
   rawColdstartSeed,
   424242,
   1,
   2_147_483_647,
 );
-const coldstartEnergy = parseEnvBoundedInt(
+const coldstartEnergy = parse_env_bounded_int(
   rawColdstartEnergy,
   3200,
   1,
   1_000_000,
 );
-const coldstartResonance = parseEnvBoundedInt(
+const coldstartResonance = parse_env_bounded_int(
   rawColdstartResonance,
   220,
   0,
   100_000,
 );
-const autoSnapshotEnabled = parseEnvBool(rawAutoSnapshotEnable, true);
-const autoSnapshotIntervalTicks = parseEnvBoundedInt(
+const autoSnapshotEnabled = parse_env_bool(rawAutoSnapshotEnable, true);
+const autoSnapshotIntervalTicks = parse_env_bounded_int(
   rawAutoSnapshotIntervalTicks,
   10_000,
   100,
   10_000_000,
 );
-const autoSnapshotRetention = parseEnvBoundedInt(
+const autoSnapshotRetention = parse_env_bounded_int(
   rawAutoSnapshotRetention,
   8,
   1,
@@ -21486,62 +21314,7 @@ vars:
 
 ### TypeScript
 ```typescript
-export * from "@generated";
-```
-
-```
-
----
-
-## FILE: src/ontology/host/env_parse.md
-
-```markdown
----
-id: ENV_PARSE
-type: module
-description: Implementation of ENV_PARSE
-tags: []
-min_level: 0
-extra_symbols:
-  - ENV_PARSE
-  - parseEnvBool
-  - parseEnvBoundedInt
----
-
-### TypeScript
-```typescript
-export const parseEnvBool = (
-  raw: string | undefined,
-  fallback: boolean,
-): boolean => {
-  if (raw === undefined) return fallback;
-  const norm = raw.trim().toLowerCase();
-  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
-    return true;
-  }
-  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
-    return false;
-  }
-  return fallback;
-};
-
-export const parseEnvBoundedInt = (
-  raw: string | undefined,
-  fallback: number,
-  min: number,
-  max: number,
-): number => {
-  if (!raw) return fallback;
-  const n = Number.parseInt(raw, 10);
-  if (!Number.isFinite(n)) return fallback;
-  return Math.max(min, Math.min(max, n));
-};
-
-export const ENV_PARSE = {
-  parseEnvBool,
-  parseEnvBoundedInt
-};
-
+export * from "@g12";
 ```
 
 ```
@@ -21911,6 +21684,69 @@ export const Ld = LOGGER.debug;
 export const Li = LOGGER.info;
 export const Lw = LOGGER.warn;
 export const Le = LOGGER.error;
+```
+
+```
+
+---
+
+## FILE: src/ontology/host/parse_env_bool.md
+
+```markdown
+---
+id: parse_env_bool
+type: module
+description: "Implementation of parse_env_bool"
+tags: []
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const parse_env_bool = (
+  raw: string | undefined,
+  fallback: boolean,
+): boolean => {
+  if (raw === undefined) return fallback;
+  const norm = raw.trim().toLowerCase();
+  if (norm === "1" || norm === "true" || norm === "yes" || norm === "on") {
+    return true;
+  }
+  if (norm === "0" || norm === "false" || norm === "no" || norm === "off") {
+    return false;
+  }
+  return fallback;
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/host/parse_env_bounded_int.md
+
+```markdown
+---
+id: parse_env_bounded_int
+type: module
+description: "Implementation of parse_env_bounded_int"
+tags: []
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const parse_env_bounded_int = (
+  raw: string | undefined,
+  fallback: number,
+  min: number,
+  max: number,
+): number => {
+  if (!raw) return fallback;
+  const n = Number.parseInt(raw, 10);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+};
 ```
 
 ```
@@ -26726,14 +26562,14 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@generated";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@g12";
 
 import {
   GATE_BUDGET
-} from "@generated";
+} from "@g12";
 import {
   STATE_MATRIX
-} from "@generated";
+} from "@g12";
 
 type I16Limits = {
   max: number;
@@ -26959,9 +26795,9 @@ min_level: 3
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g12";
 import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+    as PROPOSAL_ENVELOPE_INDEX } from "@g12";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
@@ -27193,11 +27029,11 @@ min_level: 3
 ### TypeScript
 
 ```typescript
-import { GRID_H } from "../mod.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@generated";
+import { GRID_H } from "../00/SYSTEM_CONSTANTS.ts";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@g12";
 import {
   type LedgerEvent
-} from "@generated";
+} from "@g12";
 import {
   CANON_CAUSAL_BRIDGE,
   CRYSTALLIZATION_CONFIG,
@@ -27207,17 +27043,17 @@ import {
   PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
     as PROPOSAL_ENVELOPE_INDEX,
   TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE
-} from "@generated";
+} from "@g12";
 
 import {
   validateGateProposals
-} from "@generated";
+} from "@g12";
 import {
   mergeGateProposals
-} from "@generated";
+} from "@g12";
 import {
   persistGateLedgerArtifacts
-} from "@generated";
+} from "@g12";
 
 export interface ReplayInvariantReport {
   index_chain_checked: boolean;
@@ -27686,7 +27522,7 @@ deps:
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../mod.ts";
+import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
 export type GeneticLedgerKey =
   | "pulse.homeostasis.targetEnergy"
@@ -29023,40 +28859,6 @@ if (locked) {
     intent |= 0x80000000;
 }
 return intent as i32;
-```
-
-```
-
----
-
-## FILE: src/ontology/math/prng_next.md
-
-```markdown
----
-id: prng_next
-type: pure_fn
-dataType: null
-returns: u32
-level: 1
-args:
-  state: u32
-deps: []
-vars: []
----
-
----
----
-
-```rust
-    state.wrapping_mul(1664525).wrapping_add(1013904223)
-```
-
-```typescript
-    return (state * 1664525 + 1013904223) | 0;
-```
-
-```assemblyscript
-  return (state * 1664525 + 1013904223) | 0;
 ```
 
 ```
@@ -31040,6 +30842,466 @@ set_resonance(idx, get_resonance(idx) + delta);
 
 ---
 
+## FILE: src/ontology/memory/attentionField.md
+
+```markdown
+---
+id: attentionField
+type: module
+description: "Implementation of attentionField"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, ATTENTION_FIELD_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/attentionFieldBuffer.md
+
+```markdown
+---
+id: attentionFieldBuffer
+type: module
+description: "Implementation of attentionFieldBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, ATTENTION_FIELD_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bondBuffer.md
+
+```markdown
+---
+id: bondBuffer
+type: module
+description: "Implementation of bondBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, BONDS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bondBuffer = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bondDistances.md
+
+```markdown
+---
+id: bondDistances
+type: module
+description: "Implementation of bondDistances"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, BOND_DISTANCES_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bondDistBuffer.md
+
+```markdown
+---
+id: bondDistBuffer
+type: module
+description: "Implementation of bondDistBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, BOND_DISTANCES_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bondRequests.md
+
+```markdown
+---
+id: bondRequests
+type: module
+description: "Implementation of bondRequests"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, BOND_REQUESTS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bonds.md
+
+```markdown
+---
+id: bonds
+type: module
+description: "Implementation of bonds"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, BONDS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/bondStiffness.md
+
+```markdown
+---
+id: bondStiffness
+type: module
+description: "Implementation of bondStiffness"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, STIFFNESS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/causality.md
+
+```markdown
+---
+id: causality
+type: module
+description: "Implementation of causality"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, CAUSALITY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/causalityBuffer.md
+
+```markdown
+---
+id: causalityBuffer
+type: module
+description: "Implementation of causalityBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, CAUSALITY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const causalityBuffer = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/codeWords.md
+
+```markdown
+---
+id: codeWords
+type: module
+description: "Implementation of codeWords"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, INSTRUCTIONS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/coherence.md
+
+```markdown
+---
+id: coherence
+type: module
+description: "Implementation of coherence"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [COHERENCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/coherenceBuffer.md
+
+```markdown
+---
+id: coherenceBuffer
+type: module
+description: "Implementation of coherenceBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [COHERENCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const coherenceBuffer = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/contextByteView.md
+
+```markdown
+---
+id: contextByteView
+type: module
+description: "Implementation of contextByteView"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/contexts.md
+
+```markdown
+---
+id: contexts
+type: module
+description: "Implementation of contexts"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/damping.md
+
+```markdown
+---
+id: damping
+type: module
+description: "Implementation of damping"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, DAMPING_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/dampingBuffer.md
+
+```markdown
+---
+id: dampingBuffer
+type: module
+description: "Implementation of dampingBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, DAMPING_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/energies.md
+
+```markdown
+---
+id: energies
+type: module
+description: "Implementation of energies"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ENERGY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/energyBuffer.md
+
+```markdown
+---
+id: energyBuffer
+type: module
+description: "Implementation of energyBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ENERGY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const energyBuffer = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/evolutionReserved.md
+
+```markdown
+---
+id: evolutionReserved
+type: module
+description: "Implementation of evolutionReserved"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, EVOLUTION_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
 ## FILE: src/ontology/memory/genome_key16.md
 
 ```markdown
@@ -31866,146 +32128,581 @@ return load<i16>(YS_OFFSET + (idx << 1));
 
 ---
 
-## FILE: src/ontology/memory/memory_views.md
+## FILE: src/ontology/memory/glyphHeaderBuffer.md
 
 ```markdown
 ---
-id: memory_views
+id: glyphHeaderBuffer
 type: module
-description: "Implementation of memory_views"
-tags: []
-deps: [SYSTEM_CONSTANTS, OMEGA_MEMORY_LAYOUT]
-vars:
-  - MAX_ATOMS
-  - SCALE
-  - GRID_CELLS
-  - MAX_LEDGER_EVENTS
-  - HIVE_ENERGY_POOL_SIZE
-  - HIVE_MEMORY_SIZE
-  - MAX_HORMONES
-  - ATOM_GENOME_SIZE
-  - ATOM_INSTRUCTION_SIZE
-  - ATOM_CONTEXT_SIZE
-  - WASM_MEMORY_PAGES
-  - ATTENTION_FIELD_OFFSET
-  - BONDS_OFFSET
-  - BOND_DISTANCES_OFFSET
-  - BOND_REQUESTS_OFFSET
-  - CAUSALITY_OFFSET
-  - COHERENCE_OFFSET
-  - CONTEXT_OFFSET
-  - DAMPING_OFFSET
-  - ENERGY_OFFSET
-  - EVOLUTION_OFFSET
-  - GLYPH_HEADER_OFFSET
-  - GLYPH_PAYLOAD_OFFSET
-  - HIVE_BALANCE_OFFSET
-  - HIVE_ENERGY_POOL_OFFSET
-  - HIVE_MEMORY_OFFSET
-  - HORMONE_OFFSET
-  - IDS_OFFSET
-  - INSTRUCTIONS_OFFSET
-  - LEDGER_DATA_OFFSET
-  - LEDGER_HEAD_OFFSET
-  - LINEAGE_OFFSET
-  - LOGIC_OFFSET
-  - MAILBOX_OFFSET
-  - MEMORY_GRID_OFFSET
-  - MIN_WASM_MEMORY_PAGES
-  - NEURAL_COHERENCE_OFFSET
-  - PHASE_OFFSET
-  - RESONANCE_OFFSET
-  - ROLES_OFFSET
-  - SIGNAL_GRID_OFFSET
-  - SPATIAL_GRID_OFFSET
-  - STIFFNESS_OFFSET
-  - STRUCTURE_GRID_OFFSET
-  - SYNAPTIC_WEIGHTS_OFFSET
-  - SYNC_STATE_OFFSET
-  - TICK_COUNTER_OFFSET
-  - WASM_MEMORY_BYTES
-  - XS_OFFSET
-  - YS_OFFSET
-  - validateMemoryLayout
+description: "Implementation of glyphHeaderBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, GLYPH_HEADER_OFFSET]
 min_level: 0
-extra_symbols:
-  - attentionField
-  - attentionFieldBuffer
-  - bondBuffer
-  - bondDistBuffer
-  - bondDistances
-  - bondRequests
-  - bondStiffness
-  - bonds
-  - causality
-  - causalityBuffer
-  - codeWords
-  - coherence
-  - coherenceBuffer
-  - contextByteView
-  - contexts
-  - damping
-  - dampingBuffer
-  - energies
-  - energyBuffer
-  - evolutionReserved
-  - glyphHeaderBuffer
-  - glyphHeaders
-  - glyphPayload
-  - glyphPayloadBuffer
-  - hiveBalance
-  - hiveBalanceBuffer
-  - hiveEnergyPool
-  - hiveEnergyPoolBuffer
-  - hiveMemory
-  - hiveMemoryBuffer
-  - hormoneBuffer
-  - hormones
-  - idBuffer
-  - ids
-  - instructions
-  - latticeClearView
-  - ledgerDataView
-  - ledgerHeadView
-  - lineage
-  - lineageBuffer
-  - logic
-  - logicBuffer
-  - mailboxBuffer
-  - mailboxes
-  - memoryGrid
-  - memoryGridBuffer
-  - neuralCoherence
-  - neuralCoherenceBuffer
-  - phaseBuffer
-  - phases
-  - resonanceBuffer
-  - resonances
-  - roleBuffer
-  - roles
-  - semanticBonuses
-  - semanticBonusesBuffer
-  - sharedBuffer
-  - signalGrid
-  - signalGridBuffer
-  - spatialGrid
-  - stiffnessBuffer
-  - structureGrid
-  - structureGridBuffer
-  - synapticWeightBuffer
-  - synapticWeights
-  - syncState
-  - tickCounter
-  - wasmMemory
-  - xBuffer
-  - xs
-  - yBuffer
-  - ys
 ---
 
 ### TypeScript
 ```typescript
+export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
+```
 
+```
+
+---
+
+## FILE: src/ontology/memory/glyphHeaders.md
+
+```markdown
+---
+id: glyphHeaders
+type: module
+description: "Implementation of glyphHeaders"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, GLYPH_HEADER_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/glyphPayload.md
+
+```markdown
+---
+id: glyphPayload
+type: module
+description: "Implementation of glyphPayload"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, GLYPH_PAYLOAD_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/glyphPayloadBuffer.md
+
+```markdown
+---
+id: glyphPayloadBuffer
+type: module
+description: "Implementation of glyphPayloadBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, GLYPH_PAYLOAD_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveBalance.md
+
+```markdown
+---
+id: hiveBalance
+type: module
+description: "Implementation of hiveBalance"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_BALANCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveBalanceBuffer.md
+
+```markdown
+---
+id: hiveBalanceBuffer
+type: module
+description: "Implementation of hiveBalanceBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_BALANCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveBalanceBuffer = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveEnergyPool.md
+
+```markdown
+---
+id: hiveEnergyPool
+type: module
+description: "Implementation of hiveEnergyPool"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveEnergyPoolBuffer.md
+
+```markdown
+---
+id: hiveEnergyPoolBuffer
+type: module
+description: "Implementation of hiveEnergyPoolBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveMemory.md
+
+```markdown
+---
+id: hiveMemory
+type: module
+description: "Implementation of hiveMemory"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hiveMemoryBuffer.md
+
+```markdown
+---
+id: hiveMemoryBuffer
+type: module
+description: "Implementation of hiveMemoryBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hormoneBuffer.md
+
+```markdown
+---
+id: hormoneBuffer
+type: module
+description: "Implementation of hormoneBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [MAX_HORMONES, HORMONE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/hormones.md
+
+```markdown
+---
+id: hormones
+type: module
+description: "Implementation of hormones"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [MAX_HORMONES, HORMONE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/idBuffer.md
+
+```markdown
+---
+id: idBuffer
+type: module
+description: "Implementation of idBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, IDS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const idBuffer = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/ids.md
+
+```markdown
+---
+id: ids
+type: module
+description: "Implementation of ids"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, IDS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/instructions.md
+
+```markdown
+---
+id: instructions
+type: module
+description: "Implementation of instructions"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ATOM_INSTRUCTION_SIZE, INSTRUCTIONS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/latticeClearView.md
+
+```markdown
+---
+id: latticeClearView
+type: module
+description: "Implementation of latticeClearView"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [TICK_COUNTER_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/ledgerDataView.md
+
+```markdown
+---
+id: ledgerDataView
+type: module
+description: "Implementation of ledgerDataView"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [MAX_LEDGER_EVENTS, LEDGER_DATA_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/ledgerHeadView.md
+
+```markdown
+---
+id: ledgerHeadView
+type: module
+description: "Implementation of ledgerHeadView"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [LEDGER_HEAD_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/lineage.md
+
+```markdown
+---
+id: lineage
+type: module
+description: "Implementation of lineage"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, LINEAGE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/lineageBuffer.md
+
+```markdown
+---
+id: lineageBuffer
+type: module
+description: "Implementation of lineageBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, LINEAGE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/logic.md
+
+```markdown
+---
+id: logic
+type: module
+description: "Implementation of logic"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/logicBuffer.md
+
+```markdown
+---
+id: logicBuffer
+type: module
+description: "Implementation of logicBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const logicBuffer = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/mailboxBuffer.md
+
+```markdown
+---
+id: mailboxBuffer
+type: module
+description: "Implementation of mailboxBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, MAILBOX_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const mailboxBuffer = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/mailboxes.md
+
+```markdown
+---
+id: mailboxes
+type: module
+description: "Implementation of mailboxes"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, MAILBOX_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/memory_views_base.md
+
+```markdown
+---
+id: memory_views_base
+type: module
+description: "Base memory views initialization"
+tags:
+  - 00_memory
+deps: [SYSTEM_CONSTANTS, OMEGA_MEMORY_LAYOUT]
+vars:
+  - MIN_WASM_MEMORY_PAGES
+  - WASM_MEMORY_PAGES
+  - WASM_MEMORY_BYTES
+  - validateMemoryLayout
+min_level: 0
+extra_symbols:
+  - wasmMemory
+  - sharedBuffer
+---
+
+### TypeScript
+```typescript
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
     "[STATE_MATRIX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
@@ -32017,8 +32714,8 @@ const layoutValidation = validateMemoryLayout(
 );
 if (!layoutValidation.ok) {
   throw new Error(
-    "[STATE_MATRIX] Invalid OFFSETS memory layout:\\n" +
-      layoutValidation.errors.map((entry) => "- " + entry).join("\\n")
+    "[STATE_MATRIX] Invalid OFFSETS memory layout:\n" +
+      layoutValidation.errors.map((entry: any) => "- " + entry).join("\n")
   );
 }
 
@@ -32029,83 +32726,284 @@ export const wasmMemory = new WebAssembly.Memory({
   shared: true,
 });
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
+```
 
-// Expose underlying buffers for UI export
-export const idBuffer = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
-export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
-export const yBuffer = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
-export const energyBuffer = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
-export const resonanceBuffer = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
-export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
-export const logicBuffer = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE).buffer;
-export const bondBuffer = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
-export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
-export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
-export const synapticWeightBuffer = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
-export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
-export const causalityBuffer = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
-export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
-export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
-export const hiveBalanceBuffer = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
-export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
-export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
-export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
-export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
-export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
-export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
-export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
-export const coherenceBuffer = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
-export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
-export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
-export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
-export const mailboxBuffer = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
+```
 
-// TypedArray Views (Host side)
-export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
-export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
-export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
-export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
-export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
-export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
-export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
-export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
-export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
-export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
-export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
-export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
-export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
-export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
-export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
-export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
-export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
-export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
-export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
-export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
-export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
-export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
+---
+
+## FILE: src/ontology/memory/memoryGrid.md
+
+```markdown
+---
+id: memoryGrid
+type: module
+description: "Implementation of memoryGrid"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, MEMORY_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
 export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
-export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
-export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
-export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
-export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
-export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
-export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/memoryGridBuffer.md
+
+```markdown
+---
+id: memoryGridBuffer
+type: module
+description: "Implementation of memoryGridBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, MEMORY_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/neuralCoherence.md
+
+```markdown
+---
+id: neuralCoherence
+type: module
+description: "Implementation of neuralCoherence"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [NEURAL_COHERENCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
 export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
-export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
-export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
-export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
-export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
-export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
-export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
-export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/neuralCoherenceBuffer.md
+
+```markdown
+---
+id: neuralCoherenceBuffer
+type: module
+description: "Implementation of neuralCoherenceBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [NEURAL_COHERENCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/phaseBuffer.md
+
+```markdown
+---
+id: phaseBuffer
+type: module
+description: "Implementation of phaseBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, PHASE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/phases.md
+
+```markdown
+---
+id: phases
+type: module
+description: "Implementation of phases"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, PHASE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/resonanceBuffer.md
+
+```markdown
+---
+id: resonanceBuffer
+type: module
+description: "Implementation of resonanceBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, RESONANCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const resonanceBuffer = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/resonances.md
+
+```markdown
+---
+id: resonances
+type: module
+description: "Implementation of resonances"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, RESONANCE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/roleBuffer.md
+
+```markdown
+---
+id: roleBuffer
+type: module
+description: "Implementation of roleBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ROLES_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/roles.md
+
+```markdown
+---
+id: roles
+type: module
+description: "Implementation of roles"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, ROLES_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/semanticBonuses.md
+
+```markdown
+---
+id: semanticBonuses
+type: module
+description: "Implementation of semanticBonuses"
+tags:
+  - 00_memory
+deps: [SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+
 
 export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/semanticBonusesBuffer.md
+
+```markdown
+---
+id: semanticBonusesBuffer
+type: module
+description: "Implementation of semanticBonusesBuffer"
+tags:
+  - 00_memory
+deps: [semanticBonuses]
+vars: []
+min_level: 0
+---
+
+### TypeScript
+```typescript
 export const semanticBonusesBuffer = semanticBonuses.buffer;
-
-export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
-export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
-export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
-
 ```
 
 ```
@@ -32551,6 +33449,75 @@ store<u8>(ROLES_OFFSET + atomIdx, val);
 
 ---
 
+## FILE: src/ontology/memory/signalGrid.md
+
+```markdown
+---
+id: signalGrid
+type: module
+description: "Implementation of signalGrid"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, SIGNAL_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/signalGridBuffer.md
+
+```markdown
+---
+id: signalGridBuffer
+type: module
+description: "Implementation of signalGridBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, SIGNAL_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/spatialGrid.md
+
+```markdown
+---
+id: spatialGrid
+type: module
+description: "Implementation of spatialGrid"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, SPATIAL_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
+```
+
+```
+
+---
+
 ## FILE: src/ontology/memory/state_matrix.md
 
 ```markdown
@@ -32561,31 +33528,10 @@ description: Implementation of STATE_MATRIX
 tags: []
 min_level: 0
 deps:
-  - memory_views
   - SYSTEM_CONSTANTS
   - VmProps
   - VmOpcodes
   - VmSys
-vars:
-  - ATOM_CONTEXT_SIZE
-  - ATOM_INSTRUCTION_SIZE
-  - GRID_CELLS
-  - GRID_H
-  - GRID_W
-  - MAX_ATOMS
-  - OP_BUILD
-  - OP_GET
-  - OP_JMP
-  - OP_JNZ
-  - OP_SET
-  - OP_SIGNAL
-  - OP_SUB
-  - OP_SYSCALL
-  - PROP_NEURAL_COHERENCE
-  - RESOURCE_MAX
-  - SCALE
-  - SYS_SET_ROLE
-  - SYS_YIELD
   - attentionField
   - attentionFieldBuffer
   - bondDistBuffer
@@ -32644,6 +33590,26 @@ vars:
   - wasmMemory
   - xs
   - ys
+vars:
+  - ATOM_CONTEXT_SIZE
+  - ATOM_INSTRUCTION_SIZE
+  - GRID_CELLS
+  - GRID_H
+  - GRID_W
+  - MAX_ATOMS
+  - OP_BUILD
+  - OP_GET
+  - OP_JMP
+  - OP_JNZ
+  - OP_SET
+  - OP_SIGNAL
+  - OP_SUB
+  - OP_SYSCALL
+  - PROP_NEURAL_COHERENCE
+  - RESOURCE_MAX
+  - SCALE
+  - SYS_SET_ROLE
+  - SYS_YIELD
 extra_symbols:
   - STATE_MATRIX
   - SYNC
@@ -33368,6 +34334,167 @@ export const STATE_SNAPSHOT = {
 
 ---
 
+## FILE: src/ontology/memory/stiffnessBuffer.md
+
+```markdown
+---
+id: stiffnessBuffer
+type: module
+description: "Implementation of stiffnessBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, STIFFNESS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/structureGrid.md
+
+```markdown
+---
+id: structureGrid
+type: module
+description: "Implementation of structureGrid"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, STRUCTURE_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/structureGridBuffer.md
+
+```markdown
+---
+id: structureGridBuffer
+type: module
+description: "Implementation of structureGridBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [GRID_CELLS, STRUCTURE_GRID_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/synapticWeightBuffer.md
+
+```markdown
+---
+id: synapticWeightBuffer
+type: module
+description: "Implementation of synapticWeightBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const synapticWeightBuffer = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/synapticWeights.md
+
+```markdown
+---
+id: synapticWeights
+type: module
+description: "Implementation of synapticWeights"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/syncState.md
+
+```markdown
+---
+id: syncState
+type: module
+description: "Implementation of syncState"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [SYNC_STATE_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/tickCounter.md
+
+```markdown
+---
+id: tickCounter
+type: module
+description: "Implementation of tickCounter"
+tags:
+  - 00_memory
+deps: [sharedBuffer]
+vars: [TICK_COUNTER_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
+```
+
+```
+
+---
+
 ## FILE: src/ontology/memory/wasm_memory_guard.md
 
 ```markdown
@@ -33403,6 +34530,98 @@ export const assert_wasm_memory_depth = (): void => {
     throw new Error("WASM_MEMORY_PAGES_INSUFFICIENT");
   }
 };
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/xBuffer.md
+
+```markdown
+---
+id: xBuffer
+type: module
+description: "Implementation of xBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, XS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/xs.md
+
+```markdown
+---
+id: xs
+type: module
+description: "Implementation of xs"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, XS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/yBuffer.md
+
+```markdown
+---
+id: yBuffer
+type: module
+description: "Implementation of yBuffer"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, YS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const yBuffer = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
+```
+
+```
+
+---
+
+## FILE: src/ontology/memory/ys.md
+
+```markdown
+---
+id: ys
+type: module
+description: "Implementation of ys"
+tags:
+  - 00_memory
+deps: [sharedBuffer, SYSTEM_CONSTANTS]
+vars: [MAX_ATOMS, YS_OFFSET]
+min_level: 0
+---
+
+### TypeScript
+```typescript
+export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 ```
 
 ```
@@ -35099,7 +36318,7 @@ extra_symbols:
 
 import type {
   GlyphSnapshot
-} from "@generated";
+} from "@g12";
 
 
 const CODEX_ROOT = "codex";
@@ -37018,9 +38237,9 @@ min_level: 5
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@generated";
-import { STATE_MATRIX } from "@generated";
-import { GRID_W, SCALE } from "../mod.ts";
+import { GLYPH_TELEMETRY } from "@g12";
+import { STATE_MATRIX } from "@g12";
+import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);
@@ -38190,12 +39409,12 @@ min_level: 5
 
 ### TypeScript
 ```typescript
-import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "@generated";
-import { LLM_SYNAPSE } from "@generated";
+import { STATE_MATRIX } from "@g12";
+import { LLM_SYNAPSE } from "@g12";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -39108,7 +40327,7 @@ export const SOVEREIGN_ORACLE = {
    * Consults the LLM to dictate new bytecode for the reigning Regent.
    * Operates asynchronously to avoid blocking the PULSE lifecycle.
    */
-  consultOracle: async (regentIndex: number, telemetry: any) => {
+  consultOracle: async (regentIndex: number, telemetry: unknown) => {
     if (SOVEREIGN_ORACLE.isConsulting) return; // Prevent concurrent overlaps
     SOVEREIGN_ORACLE.isConsulting = true;
 
@@ -39285,7 +40504,7 @@ export const SOVEREIGN_ORACLE = {
           `👁️ [ORACLE] The Oracle was silent or spoke in riddles (Invalid hex returned).`,
         );
       }
-    } catch (err) {
+    } catch (_err) {
       Le(`👁️ [ORACLE] Connection severed:`, err);
 
       // --- ERA 68: CACHE FALLBACK ---
@@ -39333,7 +40552,7 @@ export const SOVEREIGN_ORACLE = {
   /**
    * consultAutonomousOracle: Genesis mode where Oracle provides 8-byte plasmid based on world state.
    */
-  consultAutonomousOracle: async (telemetry: any) => {
+  consultAutonomousOracle: async (telemetry: unknown) => {
     if (SOVEREIGN_ORACLE.isConsulting) return;
     SOVEREIGN_ORACLE.isConsulting = true;
 
@@ -39423,7 +40642,7 @@ export const SOVEREIGN_ORACLE = {
    * Poll WASM for global neural coherence and broadcast it back
    * to the shared memory register so ISA_SENSE atoms can tune in.
    */
-  pollNeuralCoherence: (workerExports: any, currentTick: number) => {
+  pollNeuralCoherence: (workerExports: unknown, currentTick: number) => {
     if (currentTick - SOVEREIGN_ORACLE.lastCoherenceTick < 5) return;
     SOVEREIGN_ORACLE.lastCoherenceTick = currentTick;
 
@@ -39815,11 +41034,11 @@ store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));
 
 ---
 
-## FILE: src/ontology/substrate/ATOM_INDEX.md
+## FILE: src/ontology/substrate/ID_TO_IDX.md
 
 ```markdown
 ---
-id: ATOM_INDEX
+id: ID_TO_IDX
 type: module
 epoch: 8
 description: Lightweight ID↔Index registry shared across runtime modules.
@@ -39828,57 +41047,65 @@ tags:
   - atom
   - registry
   - index
-extra_symbols:
-  - ATOM_INDEX
-  - IDX_TO_ID
-  - ID_TO_IDX
 ---
 
-# OMEGA-64 | ATOM_INDEX.ts
+# OMEGA-64 | ID_TO_IDX.ts
 
 Lightweight ID↔Index registry shared across runtime modules.
 
 ```typescript
 export const ID_TO_IDX = new Map<string, number>();
-export const IDX_TO_ID = new Map<number, string>();
-
-export const ATOM_INDEX = {
-  ID_TO_IDX,
-  IDX_TO_ID
-};
-
 ```
 
 ```
 
 ---
 
-## FILE: src/ontology/substrate/PRNG.md
+## FILE: src/ontology/substrate/IDX_TO_ID.md
 
 ```markdown
 ---
-id: PRNG
+id: IDX_TO_ID
+type: module
+epoch: 8
+description: Lightweight ID↔Index registry shared across runtime modules.
+tags:
+  - 00_substrate
+  - atom
+  - registry
+  - index
+---
+
+# OMEGA-64 | IDX_TO_ID.ts
+
+Lightweight ID↔Index registry shared across runtime modules.
+
+```typescript
+export const IDX_TO_ID = new Map<number, string>();
+```
+
+```
+
+---
+
+## FILE: src/ontology/substrate/prng_next.md
+
+```markdown
+---
+id: prng_next
 type: module
 epoch: 8
 description: >-
-  The Immutable Deterministic Oracle. A seeded Linear Congruential Generator
-  (LCG) for reproducible evolution. Immutable to prevent race conditions in the
-  Memory Matrix.
+  Generates the next value and the subsequent state for the PRNG.
 tags:
   - 00_substrate
   - prng
   - oracle
   - deterministic
-extra_symbols:
-  - PRNG
-  - prng_next
-  - prng_seed_from
+min_level: 0
 ---
 
-# OMEGA-64 | PRNG.ts | The Immutable Deterministic Oracle
-
-A seeded Linear Congruential Generator (LCG) for reproducible evolution.
-In Era 8, this is immutable to prevent race conditions in the Memory Matrix.
+# OMEGA-64 | prng_next.ts | The Immutable Deterministic Oracle
 
 ```typescript
 /**
@@ -39894,7 +41121,40 @@ export function prng_next(state: number): { value: number; nextState: number } {
     nextState,
   };
 }
+```
 
+```assemblyscript
+// @ts-ignore
+@inline
+export function prng_next(state: u32): u32 {
+  return (state * 1664525 + 1013904223);
+}
+```
+
+```
+
+---
+
+## FILE: src/ontology/substrate/prng_seed_from.md
+
+```markdown
+---
+id: prng_seed_from
+type: module
+epoch: 8
+description: >-
+  Static helper to derive a deterministic seed from tick and atom ID.
+tags:
+  - 00_substrate
+  - prng
+  - oracle
+  - deterministic
+min_level: 0
+---
+
+# OMEGA-64 | prng_seed_from.ts | The Immutable Deterministic Oracle
+
+```typescript
 /**
  * Static helper to derive a seed from tick and atom ID.
  * @param tick Current system tick
@@ -39905,16 +41165,23 @@ export function prng_seed_from(tick: number, atomId: string): number {
   let hash = tick;
   for (let i = 0; i < atomId.length; i++) {
     hash = ((hash << 5) - hash) + atomId.charCodeAt(i);
-    hash |= 0; // Convert to 32bit int
+    hash |= 0; // Convert to 32bit integer
   }
-  return Math.abs(hash);
+  return (hash >>> 0);
 }
+```
 
-export const PRNG = {
-  prng_next,
-  prng_seed_from
-};
-
+```assemblyscript
+// @ts-ignore
+@inline
+export function prng_seed_from(tick: u32, atomId: string): u32 {
+  let hash = tick;
+  for (let i = 0; i < atomId.length; i++) {
+    hash = ((hash << 5) - hash) + atomId.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash;
+}
 ```
 
 ```
@@ -40083,14 +41350,19 @@ type: module
 description: "Implementation of P2P_FEDERATION"
 tags: []
 min_level: 4
+deps:
+  - STATE_MATRIX
+  - prng_seed_from
+  - prng_next
+  - LOGGER
+  - RUNTIME_POLICY
+  - Le
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.
-
-import { STATE_MATRIX, prng_seed_from, prng_next, LOGGER, RUNTIME_POLICY, Le } from "@generated";
 export interface P2pFederationUpwardDelegate {
   recordTelemetry(event: { lane: string; kind: string; count: number }): void;
   lookupLineageProfile(lineage: string): any;
@@ -40333,7 +41605,7 @@ min_level: 4
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
 
-import { STATE_MATRIX } from "@generated";
+import { STATE_MATRIX } from "@g12";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
@@ -40470,10 +41742,10 @@ min_level: 5
 
 ```typescript
 import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER, Li, Le } from "@generated";
+import { LOGGER, Li, Le } from "@g12";
 import {
   RUNTIME_POLICY
-} from "@generated";
+} from "@g12";
 
 const PORT = RUNTIME_POLICY.p2p.port;
 const HOST = RUNTIME_POLICY.p2p.host;
@@ -41187,8 +42459,8 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
-import { STATE_MATRIX } from "@generated";
+import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g12";
+import { STATE_MATRIX } from "@g12";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -41422,7 +42694,7 @@ deps:
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../mod.ts";
+import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
 type MutationLane =
   | "internal_oracle"
@@ -41749,7 +43021,7 @@ async function handler(req: Request): Promise<Response> {
         args: [
           "eval",
           `
-                    import { injectHologram } from "@generated";
+                    import { injectHologram } from "@g12";
                     import { stringify } from "jsr:@std/yaml@^1.0.5";
                     const alpha = { eigenvalue: "${eigen}", energy: ${energy}, x: Math.floor(Math.random()*800)+100, y: Math.floor(Math.random()*600)+100, ex: [], thought: "BORN" };
                     let content = "---\\n" + stringify(alpha) + "---\\n\\nexport const ATOM = () => (x: any) => x;";
@@ -41893,11 +43165,9 @@ vars:
   - STATE_MATRIX
   - WORLD_MAX_X
   - WORLD_MAX_Y
-  - assemble
 extra_symbols:
   - TUI_DASHBOARD
 deps:
-  - AGENT_PROXY
   - LOGGER
   - PULSE
 ---

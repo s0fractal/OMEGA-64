@@ -1,13 +1,15 @@
 // OMEGA-64 | test_bond_resolution_parity.ts | Bond Resolution Verifier
 import { STATE_MATRIX } from "@generated";
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, MAX_ATOMS, STIFFNESS_OFFSET } from "@generated";
+import {
+  BOND_REQUESTS_OFFSET,
+  BONDS_OFFSET,
+  MAX_ATOMS,
+  STIFFNESS_OFFSET,
+} from "@generated";
 import { PULSE } from "@generated";
 
 async function testBondParity() {
   console.log("🧬 [TEST] Starting Bond Resolution Parity Test...");
-
-  // 1. Setup Bond Requests
-  const MAX_ATOMS = MAX_ATOMS;
 
   // Clear buffers
   new Uint8Array(STATE_MATRIX.sharedBuffer).fill(

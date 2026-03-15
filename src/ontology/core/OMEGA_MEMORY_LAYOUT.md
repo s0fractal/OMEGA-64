@@ -2,8 +2,8 @@
 id: OMEGA_MEMORY_LAYOUT
 type: memory_layout
 description: "Isomorphic topological mapping of all generic WebAssembly shared arrays"
-deps: 
-  - SYSTEM_CONSTANTS
+min_level: 1
+deps: []
 vars:
   - MAX_ATOMS
   - SAFETY_BUFFER

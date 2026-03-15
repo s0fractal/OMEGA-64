@@ -31,7 +31,7 @@ const normalizeHost = (raw: string | undefined, fallback: string): string => {
   return value.length > 0 ? value : fallback;
 };
 const normalizeToken = (raw: string | undefined): string => (raw ?? "").trim();
-import { Li } from "@g01";
+
 const parsePort = (raw: string | undefined, fallback: number): number =>
   parse_env_bounded_int(raw, fallback, 1, 65_535);
 const parseWasmBootPolicy = (raw: string | undefined): WasmBootPolicy => {
@@ -244,7 +244,6 @@ const federationDegradeEnergyRatio = parseEnvBoundedFloat(
   0.72,
   0.1,
   1,
-  234,
 );
 const federationDegradeResonanceRatio = parseEnvBoundedFloat(
   rawFederationDegradeResonanceRatio,

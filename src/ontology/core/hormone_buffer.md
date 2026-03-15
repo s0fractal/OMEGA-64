@@ -15,6 +15,13 @@ extra_symbols:
   - HormoneId
   - HormoneSpec
   - createPhysiologicalLedgerRuntime
+  - HORMONE_ENTROPY_PRESSURE
+  - HORMONE_TIME_VISCOSITY
+  - HORMONE_AGGRESSION
+  - HORMONE_REPLICATION_BIAS
+  - HORMONE_REPAIR_DRIVE
+  - HORMONE_MUTATION_FRICTION
+  - HORMONE_GLOBAL_CONSENSUS
   - hormoneBaselineState
   - hormoneSpecById
 ---
@@ -67,6 +74,14 @@ const hormone = (
   defaultValue: clamp(spec.defaultValue, spec.min, spec.max),
 });
 
+export const HORMONE_ENTROPY_PRESSURE = 0;
+export const HORMONE_TIME_VISCOSITY = 1;
+export const HORMONE_AGGRESSION = 2;
+export const HORMONE_REPLICATION_BIAS = 3;
+export const HORMONE_REPAIR_DRIVE = 4;
+export const HORMONE_MUTATION_FRICTION = 5;
+export const HORMONE_GLOBAL_CONSENSUS = 6;
+
 export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
   hormone({
     id: "entropy_pressure",
@@ -85,7 +100,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.homeostasis.baseTax",
     notes:
       "Derived from homeostasis taxation. Higher values mean the world burns surplus energy faster.",
-  }, 0),
+  }, HORMONE_ENTROPY_PRESSURE),
   hormone({
     id: "time_viscosity",
     domain: "temporal",
@@ -102,7 +117,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.workerCount",
     notes:
       "Proxy for how dense each tick may become relative to available worker throughput.",
-  }, 1),
+  }, HORMONE_TIME_VISCOSITY),
   hormone({
     id: "aggression",
     domain: "conflict",
@@ -117,7 +132,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.egoPressure + pulse.fearPressure",
     notes:
       "Conflict climate projected from the current pressure ring / signed pressure state.",
-  }, 2),
+  }, HORMONE_AGGRESSION),
   hormone({
     id: "replication_bias",
     domain: "reproduction",
@@ -135,7 +150,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.noveltyPressure + coldstart.replicatorRatio",
     notes:
       "Bias toward exploratory reproduction. Uses current novelty pressure with a coldstart baseline.",
-  }, 3),
+  }, HORMONE_REPLICATION_BIAS),
   hormone({
     id: "repair_drive",
     domain: "repair",
@@ -154,7 +169,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
       "pulse.symbiosisPressure + federation.admission.degradeEnergyRatio",
     notes:
       "World tendency to preserve/repair structure instead of letting mutations land at full energy.",
-  }, 4),
+  }, HORMONE_REPAIR_DRIVE),
   hormone({
     id: "mutation_friction",
     domain: "mutation",
@@ -172,7 +187,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "daemon.maxPlasmidCharge / pulse.pressureRing.scale",
     notes:
       "How expensive it is for daemon-side symbolic ingress to cross the membrane.",
-  }, 5),
+  }, HORMONE_MUTATION_FRICTION),
   hormone({
     id: "global_consensus",
     domain: "systemic",
@@ -183,8 +198,9 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.syntropy",
     notes:
       "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
-  }, 6),
+  }, HORMONE_GLOBAL_CONSENSUS),
 ]);
+
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
   HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),

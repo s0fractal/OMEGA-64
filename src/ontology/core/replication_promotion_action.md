@@ -8,7 +8,12 @@ tags:
   - core
   - control
   - host
-min_level: 6
+deps:
+  - GENERIC_PROMOTION_DECISION
+  - evaluateGenericPromotionDecision
+  - evaluateGenericPromotionAction
+  - clampRatio
+  - normalizeCount
 extra_symbols:
   - REPLICATION_PROMOTION_ACTION
   - ReplicationPromotionAction
@@ -16,63 +21,22 @@ extra_symbols:
   - evaluateReplicationPromotionAction
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@g12";
-import type { ReplicationPromotionDecision } from "@g12";
+import {
+  GenericPromotionAction,
+  GenericPromotionActionInput,
+} from "@g12";
 
-export type ReplicationPromotionActionInput = {
-  currentMode: ReplicationExecutionMode;
-  decision: ReplicationPromotionDecision;
-};
+export type ReplicationPromotionActionInput = GenericPromotionActionInput;
+export type ReplicationPromotionAction = GenericPromotionAction;
 
-export type ReplicationPromotionAction = {
-  verdict: "promote" | "stay" | "rollback";
-  targetMode: ReplicationExecutionMode;
-  reasons: string[];
-};
-
-export const evaluateReplicationPromotionAction = (
-  input: ReplicationPromotionActionInput,
-): ReplicationPromotionAction => {
-  const { currentMode, decision } = input;
-  const reasons: string[] = [];
-
-  if (currentMode === "hybrid-reduce") {
-    if (decision.verdict === "hold" && !decision.healthPass) {
-      reasons.push("health_regression_in_hybrid_mode");
-      // Note: We don't automatically rollback to shadow-reduce here to avoid oscillating
-      // unless the health regression is severe. For now, we stay.
-      return { verdict: "stay", targetMode: "hybrid-reduce", reasons };
-    }
-    return {
-      verdict: "stay",
-      targetMode: "hybrid-reduce",
-      reasons: ["already_at_target_mode"],
-    };
-  }
-
-  if (currentMode === "shadow-reduce") {
-    if (decision.verdict === "promote") {
-      reasons.push("promotion_criteria_met");
-      return { verdict: "promote", targetMode: "hybrid-reduce", reasons };
-    }
-    reasons.push(...decision.blockers);
-    return { verdict: "stay", targetMode: "shadow-reduce", reasons };
-  }
-
-  if (currentMode === "legacy-execute") {
-    reasons.push("enabling_shadow_baseline");
-    return { verdict: "promote", targetMode: "shadow-reduce", reasons };
-  }
-
-  return {
-    verdict: "stay",
-    targetMode: currentMode,
-    reasons: ["unknown_current_mode"],
-  };
-};
+/** @deprecated Use evaluateGenericPromotionAction */
+export const evaluateReplicationPromotionAction =
+  evaluateGenericPromotionAction;
 
 export const REPLICATION_PROMOTION_ACTION = {
-  evaluateReplicationPromotionAction
+  evaluateReplicationPromotionAction,
 };
+
+
 
 ```

@@ -34,8 +34,6 @@ import type {
   GenericPromotionDecision,
   GenericPromotionDecisionInput,
   GenericPromotionDecisionThresholds,
-  clampRatio,
-  normalizeCount,
 } from "@g12";
 
 export type ArchitectPlasmidPromotionDecisionInput =

@@ -9,6 +9,9 @@ tags:
   - control
   - host
 min_level: 6
+deps:
+  - clampRatio
+  - normalizeCount
 extra_symbols:
   - REPLICATION_PROMOTION
   - ReplicationHybridSnapshot
@@ -18,7 +21,7 @@ extra_symbols:
   - evaluateReplicationPromotion
 ---
 ```typescript
-import type { ReplicationExecutionMode } from "@g12";
+import { ReplicationExecutionMode } from "@g12";
 
 export type ReplicationHybridSnapshot = {
   mode: ReplicationExecutionMode;
@@ -81,15 +84,6 @@ const DEFAULT_PROMOTION_THRESHOLDS: ReplicationPromotionThresholds = {
   minShadowSuppressedReplications: 0,
 };
 
-const clampRatio = (value: number): number => {
-  if (!Number.isFinite(value) || value <= 0) return 0;
-  if (value >= 1) return 1;
-  return Number(value.toFixed(6));
-};
-
-const normalizeCount = (value: number): number =>
-  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
-
 const normalizeThresholds = (
   overrides?: Partial<ReplicationPromotionThresholds>,
 ): ReplicationPromotionThresholds => ({
@@ -125,6 +119,7 @@ const normalizeThresholds = (
     ),
   ),
 });
+
 
 export const evaluateReplicationPromotion = (
   raw: ReplicationHybridSnapshot,
