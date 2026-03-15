@@ -237,8 +237,8 @@
     ],
     "required_additional_files": [
       "src/_/03/DAEMON_INGRESS_POLICY.ts",
-      "src/_/06/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
-      "src/_/06/ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
+      "src/_/07/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts",
+      "src/_/07/ARCHITECT_PLASMID_PROMOTION_DECISION.ts",
       "src/_/06/GLYPH_TELEMETRY.ts",
       "src/_/10/GENERIC_LEDGER_PERSISTENCE.ts",
       "src/_/09/GENERIC_LEDGER_SYSTEM.ts",

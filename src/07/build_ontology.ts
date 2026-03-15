@@ -787,7 +787,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
   
   // TS Mod file generation
   const tsModExports = levelNodesTs.map(n => {
-    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module") {
+    if (n.type === "enum" || n.type === "constants" || n.type === "memory_layout" || n.type === "static_table" || n.type === "module" || n.type === "pure_fn") {
       return `export * from "./${n.id}.ts";`;
     } else {
       return `export { ${n.id} } from "./${n.id}.ts";`;
