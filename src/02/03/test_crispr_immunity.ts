@@ -1,6 +1,6 @@
 import { assertEquals, assertNotEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 
 Deno.test({
   name: "Phase 42: CRISPR Adaptive Immunity & Trauma Learning",

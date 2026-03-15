@@ -4,6 +4,7 @@ type: module
 description: "Implementation of ledger_chain"
 tags: []
 min_level: 0
+deps: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
 ---
 
 ### TypeScript
@@ -11,7 +12,7 @@ min_level: 0
 // OMEGA-64 | ledger_chain.ts
 // Ledger Chain and Proposal Envelope Index verification
 
-import { readJsonlLines, appendJsonl, readJsonl } from "../../00/stream_utils.ts";
+// Stream utils managed by injected deps
 import { stable_stringify, sha256_hex, normalize_hex64 } from "../mod.ts";
 
 const LEDGER_CHAIN_VERSION = "ledger-hash-chain/v1";
@@ -48,7 +49,7 @@ type LedgerChainReportInternal = {
 const verifyLedgerChainDetailedInternal = async (
   path: string,
 ): Promise<LedgerChainReportInternal> => {
-  const lines = await readJsonlLines(path);
+  const lines = await read_jsonl_lines(path);
   const failures: string[] = [];
   let chainAnchoredEvents = 0;
   let legacyEvents = 0;
@@ -144,7 +145,7 @@ export const LEDGER__08_00_LEDGER = {
     const body = stripLedgerChainFields(rawEntry);
     const prevEventHash = chain.tailEventHash;
     const eventHash = await ledgerEventHash(body, prevEventHash);
-    await appendJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH, {
+    await append_jsonl(LEDGER__08_00_LEDGER.STORAGE_PATH, {
       ...body,
       chain_version: LEDGER_CHAIN_VERSION,
       prev_event_hash: prevEventHash,
@@ -152,10 +153,10 @@ export const LEDGER__08_00_LEDGER = {
     });
   },
   readAllRaw: async function* (): AsyncGenerator<any> {
-    yield* readJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
+    yield* read_jsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
   },
   readAll: async function* (): AsyncGenerator<any> {
-    yield* readJsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
+    yield* read_jsonl(LEDGER__08_00_LEDGER.STORAGE_PATH);
   },
   verifyChainDetailed: async (path?: string) => {
     const report = await verifyLedgerChainDetailedInternal(
@@ -230,7 +231,7 @@ const ensureEnvelopeIndexCache = async (path: string): Promise<void> => {
   if (envelopeIndexCacheLoaded.has(path)) return;
   const seen = getEnvelopeIndexSeen(path);
   let tail: string | null = null;
-  const lines = await readJsonlLines(path);
+  const lines = await read_jsonl_lines(path);
   for (const line of lines) {
     try {
       const row = JSON.parse(line) as Record<string, unknown>;
@@ -298,7 +299,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
   },
   verifyChainDetailed: async (path?: string) => {
     const indexPath = resolveEnvelopeIndexPath(path);
-    const lines = await readJsonlLines(indexPath);
+    const lines = await read_jsonl_lines(indexPath);
     const failures: string[] = [];
     let prevHash: string | null = null;
 
@@ -388,7 +389,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
     path?: string,
   ): Promise<Set<string>> => {
     const result = new Set<string>();
-    for await (const row of readJsonl(resolveEnvelopeIndexPath(path))) {
+    for await (const row of read_jsonl(resolveEnvelopeIndexPath(path))) {
       const tick = Number(row?.tick ?? -1);
       const envelopeHash = typeof row?.envelope_hash === "string"
         ? row.envelope_hash
@@ -423,7 +424,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
         envelope_hash: envelopeHash,
         source_event_id: sourceEventId,
       }, prevIndexHash);
-      await appendJsonl(indexPath, {
+      await append_jsonl(indexPath, {
         tick,
         proposal_id: proposalId,
         envelope_hash: envelopeHash,

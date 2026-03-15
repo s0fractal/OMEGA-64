@@ -1,19 +1,19 @@
 // test_replay_policy_transition.ts
 // Validates policy hash chain and explicit POLICY_TRANSITION_EVENT behavior.
 
-import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
-import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@omega";
-import { POLICY_TRANSITION_POLICY_TRANSITION as POLICY_TRANSITION } from "@omega";
+import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@generated";
+import { POLICY_TRANSITION_POLICY_TRANSITION as POLICY_TRANSITION } from "@generated";
 import {
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
-} from "@omega";
+} from "@generated";
 import {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
+} from "@generated";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

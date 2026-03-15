@@ -149,7 +149,7 @@
     }
   },
   "imports": {
-    "@omega": "./src/_/mod.ts",
+    "@generated": "./src/_/mod.ts",
     "@00": "./src/00/mod.ts",
     "@01": "./src/01/mod.ts",
     "@02": "./src/02/mod.ts",

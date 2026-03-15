@@ -1,15 +1,15 @@
 // test_gate_pipeline.ts
 // Verifies integrated gate pipeline with automatic/runtime bridge context.
 
-import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 import type {
   STATE_SNAPSHOT_BridgeModeEvent as BridgeModeEvent,
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_LedgerEvent as LedgerEvent,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
+} from "@generated";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

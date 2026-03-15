@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 
 const parseTickCount = (): number => {

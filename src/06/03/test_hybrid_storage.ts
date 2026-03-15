@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { SNAPSHOT_ENGINE } from "@06";
 import { RIBOSOME } from "@02";
 

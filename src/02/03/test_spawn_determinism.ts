@@ -1,7 +1,7 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 import { PULSE } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { SIGNAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_GRID_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { SIGNAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
 
 const CAPTURE_MARKER = "__OMEGA_SPAWN_CAPTURE__";
 const DEFAULT_SEED = 424242;

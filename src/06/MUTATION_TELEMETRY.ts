@@ -1,4 +1,4 @@
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";
 
 type MutationLane =

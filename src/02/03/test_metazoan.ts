@@ -1,7 +1,7 @@
 import { assertEquals, assertGreater } from "https://deno.land/std@0.208.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_TRANSFER, OP_SUB, OP_SYSCALL } from "../../_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { OP_SET, SYS_TRANSFER, OP_SUB, OP_SYSCALL } from "@generated";
 
 Deno.test({
   name: "Phase 40: Metazoan Emergence (Membrane Defense)",

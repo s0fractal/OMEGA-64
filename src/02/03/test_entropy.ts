@@ -1,5 +1,5 @@
 // OMEGA-64 | test_entropy.ts | Phase 23: Entropy Flux Verification
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 
 async function runTest() {

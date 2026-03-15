@@ -1,14 +1,14 @@
 // test_decrystallization.ts
 // Smoke test for DECRYSTALLIZATION_EVENT emission and rollback hint.
 
-import { CRYSTALLIZATION_CRYSTALLIZATION as CRYSTALLIZATION } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { CRYSTALLIZATION_CRYSTALLIZATION as CRYSTALLIZATION } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 import {
   STATE_SNAPSHOT_CanonizationEvent as CanonizationEvent,
   STATE_SNAPSHOT_LedgerEvent as LedgerEvent,
   STATE_SNAPSHOT_ViolationEvent as ViolationEvent,
-} from "@omega";
-import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@omega";
+} from "@generated";
+import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@generated";
 
 export async function runTest() {
   console.log("🧪 TESTING: Decrystallization Enforcement");

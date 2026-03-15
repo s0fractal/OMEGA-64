@@ -1,5 +1,5 @@
 // OMEGA-64 | test_coherence.ts | Phase 21: Synchronization Barrier 🛡️💎
-import { STATE_MATRIX, SYNC } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX, SYNC } from "@generated";
 import { PULSE } from "@02";
 
 async function runTest() {

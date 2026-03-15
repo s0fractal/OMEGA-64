@@ -1,6 +1,6 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
-import { STR_SOURCE, STR_WIRE } from "../../_/mod.ts";
+import { STR_SOURCE, STR_WIRE } from "@generated";
 
 async function testCrystallineNetwork() {
   console.log("💎 [TEST] Starting Crystalline Neural Network Verification...");

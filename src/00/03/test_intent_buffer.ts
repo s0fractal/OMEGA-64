@@ -1,4 +1,4 @@
-import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { INTENT_OFFSET, STATE_MATRIX, wasmMemory } from "@generated";
 
 async function testIntentBuffer() {
   console.log("🧪 Testing Zero-Allocation WASM Intent Buffer");

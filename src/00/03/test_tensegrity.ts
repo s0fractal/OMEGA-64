@@ -1,6 +1,6 @@
 // OMEGA-64 | test_tensegrity.ts | Vector 2 Verification
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { INSTRUCTIONS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { INSTRUCTIONS_OFFSET } from "@generated";
 
 async function runTest() {
   console.log("=== VECTOR 2: TENSEGRITY TEST ===");

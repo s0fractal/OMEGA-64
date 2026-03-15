@@ -1,15 +1,15 @@
 // test_gate_runtime_context.ts
 // Verifies helper APIs for building Gate runtime bridge context.
 
-import { GATE_RUNTIME_CONTEXT_GATE_RUNTIME_CONTEXT as GATE_RUNTIME_CONTEXT } from "@omega";
-import { GATE_GATE as GATE } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { GATE_RUNTIME_CONTEXT_GATE_RUNTIME_CONTEXT as GATE_RUNTIME_CONTEXT } from "@generated";
+import { GATE_GATE as GATE } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 import {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
-import type { REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@omega";
+} from "@generated";
+import type { REPLAY_AUDIT__08_00_ReplayInvariantReport as ReplayInvariantReport } from "@generated";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

@@ -1,8 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { PULSE } from "@02";
-import { CONTEXT_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_ADD, OP_JMP } from "../../_/mod.ts";
+import { CONTEXT_OFFSET } from "@generated";
+import { STATE_MATRIX } from "@generated";
+import { OP_ADD, OP_JMP } from "@generated";
 
 Deno.test({
   name: "Bounded Compute - Gas Economy halts VM execution",

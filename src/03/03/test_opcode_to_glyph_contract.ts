@@ -1,7 +1,7 @@
 
 import { glyphTapeToPrettyText } from "../../_/08/glyph_pretty.ts";
 import { scriptToGlyphTape } from "@07/04/opcode_to_glyph.ts";
-import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "../../_/mod.ts";
+import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "@generated";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

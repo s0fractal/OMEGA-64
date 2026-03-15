@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | test_decay.ts | Era 57: Synaptic Plasticity Decay Verification
 // Tests: passive decay, ISA.DECAY (auto/specific/all modes), SENSE type 0x0D, HEBB protection.
 
 import { ISA, LAMBDA_VM } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import {
   assert,
   assertEquals,

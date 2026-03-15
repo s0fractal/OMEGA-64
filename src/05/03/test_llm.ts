@@ -1,8 +1,8 @@
 // test_llm.ts
 // Verification of Era 3.4: Semantic Bridge
 
-import { VOID__04_06 as injectSecrets, VOID__04_06 as VOID } from "@omega";
-import { LLM_ADAPTER as MockAdapter } from "@omega";
+import { VOID__04_06 as injectSecrets, VOID__04_06 as VOID } from "@generated";
+import { LLM_ADAPTER as MockAdapter } from "@generated";
 
 console.log("🌉 TEST: Semantic Bridge");
 

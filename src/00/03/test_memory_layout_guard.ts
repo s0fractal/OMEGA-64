@@ -1,4 +1,4 @@
-import { LATTICE_MEMORY_END, WASM_MEMORY_BYTES, validateMemoryLayout } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LATTICE_MEMORY_END, WASM_MEMORY_BYTES, validateMemoryLayout } from "@generated";
 
 const main = () => {
   const report = validateMemoryLayout(WASM_MEMORY_BYTES);

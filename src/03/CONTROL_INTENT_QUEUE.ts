@@ -1,7 +1,7 @@
-import { GRID_W, GRID_H, SCALE } from "../_/mod.ts";
-import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W, GRID_H, SCALE } from "@generated";
+import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 import { PREDICTION_MARKET } from "@03/PREDICTION_MARKET.ts";
 import { PRNG } from "../00/PRNG.ts";

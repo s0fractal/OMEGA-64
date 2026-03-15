@@ -1,7 +1,7 @@
 // test_checkpoint.ts
 // Checkpoint persistence and lookup behavior.
 
-import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@omega";
+import { CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@generated";
 
 export async function runTest() {
   console.log("🧪 TESTING: Checkpoint Save/Load");

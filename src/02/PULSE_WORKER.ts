@@ -1,9 +1,63 @@
-import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@omega";
-
 // OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, TICK_COUNTER_OFFSET, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER, SCALE, SYS_YIELD, SYS_READ_MEM, SYS_WRITE_MEM, SYS_SPAWN, SYS_BIND, SYS_SET_ROLE, SYS_MUTATE, SYS_MSG, SYS_READ_INBOX, SYS_TRANSFER, SYS_REPLICATE, SYS_EMIT, SYS_SCAN, SYS_MOVE, SYS_EAT, SYS_BET, SYS_ATTRACT, SYS_FOLD, SYS_SPORE_DRIVE, SYS_SENSE_PHASE } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import {
+  AS_WASM_PATH,
+  BOND_REQUESTS_OFFSET,
+  BONDS_OFFSET,
+  CONTEXT_OFFSET,
+  ENERGY_OFFSET,
+  EVOLUTION_OFFSET,
+  GRID_CELLS,
+  GRID_H,
+  GRID_W,
+  IDS_OFFSET,
+  INSTRUCTIONS_OFFSET,
+  LEDGER_DATA_OFFSET,
+  LEDGER_HEAD_OFFSET,
+  LINEAGE_OFFSET,
+  LOGIC_OFFSET,
+  MAILBOX_OFFSET,
+  MAX_ATOMS,
+  MAX_LEDGER_EVENTS,
+  PHASE_OFFSET,
+  RESONANCE_OFFSET,
+  ROLES_OFFSET,
+  SPATIAL_CELL_SIZE,
+  SPATIAL_GRID_OFFSET,
+  SPAWN_REQUESTS_OFFSET,
+  STRUCTURE_BUILD_OWNER_OFFSET,
+  STRUCTURE_BUILD_VALUE_OFFSET,
+  STRUCTURE_GRID_OFFSET,
+  SYNC_STATE_OFFSET,
+  TICK_COUNTER_OFFSET,
+  WORLD_MAX_X,
+  WORLD_MAX_Y,
+  XS_OFFSET,
+  YS_OFFSET,
+} from "@generated";
+import {
+  LOGGER,
+  SYS_ATTRACT,
+  SYS_BET,
+  SYS_BIND,
+  SYS_EAT,
+  SYS_EMIT,
+  SYS_FOLD,
+  SYS_MOVE,
+  SYS_MSG,
+  SYS_MUTATE,
+  SYS_READ_INBOX,
+  SYS_READ_MEM,
+  SYS_REPLICATE,
+  SYS_SCAN,
+  SYS_SENSE_PHASE,
+  SYS_SET_ROLE,
+  SYS_SPAWN,
+  SYS_SPORE_DRIVE,
+  SYS_TRANSFER,
+  SYS_WRITE_MEM,
+  SYS_YIELD,
+} from "@generated";
+import { STATE_MATRIX } from "@generated";
 const resolveWithPhase = (
   baseValue: number,
   modifiers: Array<{ phase: number; weight: number }>,
@@ -90,8 +144,6 @@ let ledgerDataView: Int32Array | null = null;
 let marketState: Int32Array | null = null;
 let betPoolInt: Int32Array | null = null;
 
-
-
 function handle_syscall(atomIdx: number) {
   if (!contextU8View || !contextI32View || !energiesView) return;
   const flagIdx = (atomIdx << 6) + 33;
@@ -107,7 +159,6 @@ function handle_syscall(atomIdx: number) {
   LOGGER.debug(
     `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
   );
-
 
   let gasCost = 0;
   switch (sysId) {
@@ -194,7 +245,9 @@ function handle_syscall(atomIdx: number) {
     case SYS_READ_MEM: {
       const gx = r1, gy = r2;
       let val = 0;
-      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView) {
+      if (
+        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView
+      ) {
         val = structureGridView[gy * GRID_W + gx] & 0xFF;
       }
       LOGGER.debug(
@@ -343,7 +396,7 @@ function handle_syscall(atomIdx: number) {
             if (resonancesView && xsView && ysView) {
               const myRes = Atomics.load(resonancesView, atomIdx);
               let tRes = Atomics.load(resonancesView, targetIdx);
-              
+
               if (evolutionReservedView) {
                 const shield = Atomics.load(evolutionReservedView, targetIdx);
                 if (shield > 0) tRes = shield;
@@ -355,7 +408,11 @@ function handle_syscall(atomIdx: number) {
                 const tx = Atomics.load(xsView, targetIdx);
                 const ty = Atomics.load(ysView, targetIdx);
 
-                const rolesView = new Uint8Array(sharedBuffer!, ROLES_OFFSET, MAX_ATOMS);
+                const rolesView = new Uint8Array(
+                  sharedBuffer!,
+                  ROLES_OFFSET,
+                  MAX_ATOMS,
+                );
                 const myRole = Atomics.load(rolesView, atomIdx);
                 const tRole = Atomics.load(rolesView, targetIdx);
 
@@ -364,9 +421,15 @@ function handle_syscall(atomIdx: number) {
                   if (tEnergy > 20000) { // Enough base generation
                     Atomics.store(rolesView, targetIdx, 5); // ROLE_MITOCHONDRIA = 5
                     if (contextI32View) {
-                      Atomics.store(contextI32View, targetIdx * 16 + 12, atomIdx); // Store host atomIdx in Context Reg 12
+                      Atomics.store(
+                        contextI32View,
+                        targetIdx * 16 + 12,
+                        atomIdx,
+                      ); // Store host atomIdx in Context Reg 12
                     }
-                    LOGGER.debug(`   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`);
+                    LOGGER.debug(
+                      `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
+                    );
                     break;
                   }
                 }
@@ -512,7 +575,7 @@ function handle_syscall(atomIdx: number) {
           const cy = ysView[atomIdx] / 100;
 
           const CELL_SIZE = 10;
-                    
+
           const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
           const endX = Math.min(
             GRID_W - 1,
@@ -594,7 +657,6 @@ function handle_syscall(atomIdx: number) {
             `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
           );
 
-
           if (nx < 0) nx = 0;
           else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
           if (ny < 0) ny = 0;
@@ -620,7 +682,6 @@ function handle_syscall(atomIdx: number) {
           LOGGER.debug(
             `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
           );
-
 
           if (capacityOk) {
             Atomics.store(xsView, atomIdx, nx);
@@ -679,7 +740,10 @@ function handle_syscall(atomIdx: number) {
 
       if (energy >= energyBet) {
         Atomics.sub(energiesView!, atomIdx, energyBet);
-        (self as unknown as Worker).postMessage({ type: "SPORE_DRIVE_REQUEST", atomIdx });
+        (self as unknown as Worker).postMessage({
+          type: "SPORE_DRIVE_REQUEST",
+          atomIdx,
+        });
         // Syscall intercept verification
         LOGGER.debug(
           `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
@@ -833,8 +897,10 @@ const maybeDelay = async () => {
       });
       return;
     }
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       const wasmRes = await fetch(
         AS_WASM_PATH.href,
       );
@@ -847,10 +913,12 @@ try {
         target: number,
       ) => {
         if (op === 0xDD) {
-           const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
-           const epoch = Math.floor(tick / 10000);
-           LOGGER.info(`💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`);
-           return;
+          const tick = Number(Atomics.load(STATE_MATRIX.tickCounter, 0));
+          const epoch = Math.floor(tick / 10000);
+          LOGGER.info(
+            `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
+          );
+          return;
         }
         LOGGER.debug(
           `   [WASM_TRACE] Atom ${idx} executed ${
@@ -884,7 +952,8 @@ try {
       set_neural_coherence_fn = wasmInstance.exports
         .set_neural_coherence as any;
       tick_glyph_transport_fn = wasmInstance.exports.glyph_transport as any;
-      tick_membrane_physics_fn = wasmInstance.exports.tick_membrane_physics as any;
+      tick_membrane_physics_fn = wasmInstance.exports
+        .tick_membrane_physics as any;
       resolve_bond_requests_fn = wasmInstance.exports
         .resolve_bond_requests as any;
       drain_spawn_requests_fn = wasmInstance.exports
@@ -904,7 +973,10 @@ try {
       setInterval(() => {
         // removed debug logging
       }, 5000);
-      (self as unknown as Worker).postMessage({ type: "INIT_OK", workerIndex: Number(workerIndex) });
+      (self as unknown as Worker).postMessage({
+        type: "INIT_OK",
+        workerIndex: Number(workerIndex),
+      });
     } catch (err) {
       LOGGER.error("   [WORKER] WASM LOAD ERROR:", err);
       const error = err instanceof Error
@@ -923,10 +995,20 @@ try {
 
     // Wait for WASM_TICKING state (1)
     // If Host is locking (2) or Idle (0), we don't start yet.
-    LOGGER.debug("[WORKER " + currentPulseId + "] RECEIVED PULSE MSG. CHECKING SYNC STATE...", Atomics.load(syncStateView, 0));
+    LOGGER.debug(
+      "[WORKER " + currentPulseId +
+        "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
+      Atomics.load(syncStateView, 0),
+    );
     let stuckCycles = 0;
     while (Atomics.load(syncStateView, 0) !== 1) {
-      if (stuckCycles++ > 100) { LOGGER.warn("[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:", Atomics.load(syncStateView, 0)); stuckCycles = 0;} 
+      if (stuckCycles++ > 100) {
+        LOGGER.warn(
+          "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
+          Atomics.load(syncStateView, 0),
+        );
+        stuckCycles = 0;
+      }
       Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
       if (Atomics.load(syncStateView, 0) === 2) {
         // If it's 2, we must wait for it to become 0 then 1
@@ -934,8 +1016,10 @@ try {
       }
     }
 
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       for (let i = startIdx; i < endIdx; i++) {
         const startAtomMs = performance.now();
         const startId = Atomics.load(idsView, i);
@@ -1006,12 +1090,17 @@ try {
     if (tick_environment_fn) tick_environment_fn(e.data.tick);
     if (tick_membrane_physics_fn) tick_membrane_physics_fn();
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "ENVIRONMENT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "ENVIRONMENT_DONE",
+      pulseId,
+    });
   }
 
   if (type === "RESOLVE_BONDS") {
-    LOGGER.debug("[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!");
-try {
+    LOGGER.debug(
+      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
+    );
+    try {
       if (!resolve_bond_requests_fn) {
         throw new Error("resolve_bond_requests_fn is not initialized.");
       }
@@ -1032,7 +1121,11 @@ try {
       ? drain_spawn_requests_fn(e.data.tick)
       : 0;
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "DRAIN_SPAWN_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({
+      type: "DRAIN_SPAWN_DONE",
+      pulseId,
+      count,
+    });
   }
 
   if (type === "PHAGOCYTE_PASS") {
@@ -1040,7 +1133,11 @@ try {
       ? run_phagocyte_pass_fn(e.data.entropy)
       : 0;
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "PHAGOCYTE_PASS_DONE", pulseId, count });
+    (self as unknown as Worker).postMessage({
+      type: "PHAGOCYTE_PASS_DONE",
+      pulseId,
+      count,
+    });
   }
 
   if (type === "BUILD_SPATIAL_HASH") {
@@ -1063,14 +1160,21 @@ try {
   if (type === "TICK_GLYPH_TRANSPORT") {
     if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "GLYPH_TRANSPORT_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "GLYPH_TRANSPORT_DONE",
+      pulseId,
+    });
   }
 
   if (type === "POLL_COHERENCE") {
     if (get_neural_coherence_fn) {
       const coherence = get_neural_coherence_fn();
       await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "COHERENCE_VAL", coherence, pulseId });
+      (self as unknown as Worker).postMessage({
+        type: "COHERENCE_VAL",
+        coherence,
+        pulseId,
+      });
     }
   }
 
@@ -1078,7 +1182,10 @@ try {
     if (set_neural_coherence_fn) {
       set_neural_coherence_fn(e.data.coherence);
       await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "COHERENCE_SET_DONE", pulseId });
+      (self as unknown as Worker).postMessage({
+        type: "COHERENCE_SET_DONE",
+        pulseId,
+      });
     }
   }
 
@@ -1089,7 +1196,10 @@ try {
       accumulate_metabolism_stats_fn(startIdx, endIdx);
     }
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "METABOLISM_ACCUMULATE_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "METABOLISM_ACCUMULATE_DONE",
+      pulseId,
+    });
   }
 
   if (type === "METABOLISM_APPLY") {
@@ -1125,7 +1235,10 @@ try {
       );
     }
     await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "METABOLISM_APPLY_DONE", pulseId });
+    (self as unknown as Worker).postMessage({
+      type: "METABOLISM_APPLY_DONE",
+      pulseId,
+    });
   }
 
   if (type === "SET_DEBUG_DELAY") {

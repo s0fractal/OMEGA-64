@@ -1,5 +1,5 @@
 // OMEGA-64 | test_coherence_field.ts | Stage 11.1 Dedicated Verification
-import { MAX_ATOMS, STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { MAX_ATOMS, STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 
 

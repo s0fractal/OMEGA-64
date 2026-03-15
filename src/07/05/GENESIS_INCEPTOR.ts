@@ -1,7 +1,7 @@
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
 import { GENESIS_PROGRAMS } from "./GENESIS_BOOT.ts";
 import { REIFIED_PROGRAMS } from "./GENESIS_REIFIED.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
 
 export interface InceptiveProgram {
   bytecode: number[];

@@ -1,6 +1,6 @@
 import { GLYPH_TELEMETRY } from "@06";
-import { GRID_W } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W } from "@generated";
+import { STATE_MATRIX, wasmMemory } from "@generated";
 
 const main = async () => {
   const wasmBytes = await Deno.readFile("src/00/release.wasm");

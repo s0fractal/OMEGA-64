@@ -1,8 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 import { betPoolInt, marketState, PREDICTION_MARKET } from "@03";
-import { OP_SET, SYS_BET, OP_SYSCALL, SYS_YIELD } from "../../_/mod.ts";
+import { OP_SET, SYS_BET, OP_SYSCALL, SYS_YIELD } from "@generated";
 
 Deno.test("Prediction Market: SYS_BET energy transfer", async () => {
   STATE_MATRIX.clear();

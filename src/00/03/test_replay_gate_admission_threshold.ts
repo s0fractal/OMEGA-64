@@ -1,16 +1,16 @@
 // test_replay_gate_admission_threshold.ts
 // Ensures crystallization can be gated by gate-admission pressure metrics.
 
-import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@omega";
-import { CRYSTALLIZATION_CRYSTALLIZATION as CRYSTALLIZATION } from "@omega";
-import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@omega";
-import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { GATE_PIPELINE_GATE_PIPELINE as GATE_PIPELINE } from "@generated";
+import { CRYSTALLIZATION_CRYSTALLIZATION as CRYSTALLIZATION } from "@generated";
+import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@generated";
+import { GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 import type {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
+} from "@generated";
 
 const processLocal = async (
   state: StateSnapshot,

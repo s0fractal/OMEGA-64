@@ -1,7 +1,7 @@
 // OMEGA-64 | invariant_packet.ts
 // Signed invariant packet trace for invariant bridging
 
-import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_hmac, sha256_hex, stable_stringify } from "../_/mod.ts";
+import { base64_to_bytes, bytes_to_base64, bytes_to_hex, hex_to_bytes, import_hmac, sha256_hex, stable_stringify } from "@generated";
 
 export interface INVARIANT_PACKET__08_00_InvariantPacket {
   version: string;

@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "../../_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { GLYPH_TELEMETRY } from "../../_/06/GLYPH_TELEMETRY.ts";
 import {
   ENERGY_OFFSET

@@ -1,5 +1,5 @@
-import { GRID_W } from "../../_/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W } from "@generated";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 import { ISA } from "@02";
 import { GATE } from "@03";

@@ -1,4 +1,4 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { betPoolInt, PREDICTION_MARKET } from "@03";
 
 console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");

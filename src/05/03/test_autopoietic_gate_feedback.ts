@@ -1,10 +1,10 @@
 // OMEGA-64 | test_autopoietic_gate_feedback.ts | Stage 25: Sovereign Feedback Verification
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { QuorumAdvocate } from "@07/02/relics/QUORUM_ADVOCATE.ts";
 import { mergeGateProposals } from "@03";
 import { syncHormonesToLattice } from "@02";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { LOGGER } from "@generated";
+import { type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@generated";
 
 async function runTest() {
   LOGGER.info(

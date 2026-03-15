@@ -1,13 +1,13 @@
 // test_gate_runner.ts
 // Smoke test for runtime runner routed through GATE_PIPELINE.
 
-import { GATE_RUNNER_GATE_RUNNER as GATE_RUNNER } from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+import { GATE_RUNNER_GATE_RUNNER as GATE_RUNNER } from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 import type {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
+} from "@generated";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

@@ -1,7 +1,7 @@
 // test_gate_runner_cli.ts
 // Smoke test for CLI wrapper over GATE_RUNNER.
 
-import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET } from "@omega";
+import { INVARIANT_PACKET_INVARIANT_PACKET as INVARIANT_PACKET } from "@generated";
 
 Deno.test("gate runner cli processes JSON input and writes output", async () => {
   const tempDir = await Deno.makeTempDir({ prefix: "omega-gate-runner-cli-" });

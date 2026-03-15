@@ -1,1 +1,1 @@
-export * from "../_/mod.ts";
+export * from "@generated";

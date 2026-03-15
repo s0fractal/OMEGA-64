@@ -1,5 +1,5 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
-import { STATE_MATRIX, wasmMemory } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { STATE_MATRIX, wasmMemory } from "@generated";
 import { RIBOSOME } from "@02";
 import { GLYPH_TELEMETRY } from "@06";
 

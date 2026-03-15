@@ -4,6 +4,7 @@ type: module
 description: "Implementation of checkpoint_chain"
 tags: []
 min_level: 0
+deps: ["append_jsonl", "read_jsonl", "read_jsonl_lines"]
 ---
 
 ### TypeScript
@@ -11,7 +12,7 @@ min_level: 0
 // OMEGA-64 | checkpoint_chain.ts
 // Replay Invariant State Hash Checkpointing
 
-import { readJsonlLines, appendJsonl, readJsonl } from "../../00/stream_utils.ts";
+// Replay Invariant State Hash Checkpointing
 import { stable_stringify, sha256_hex, normalize_hex64 } from "../mod.ts";
 
 const CHECKPOINT_CHAIN_VERSION = "checkpoint-hash-chain/v1";
@@ -48,7 +49,7 @@ type CheckpointChainReportInternal = {
 const verifyCheckpointChainDetailedInternal = async (
   path: string,
 ): Promise<CheckpointChainReportInternal> => {
-  const lines = await readJsonlLines(path);
+  const lines = await read_jsonl_lines(path);
   const failures: string[] = [];
   let chainAnchoredRows = 0;
   let legacyRows = 0;
@@ -147,7 +148,7 @@ export const CHECKPOINT_CHECKPOINT = {
 
     const prevCheckpointHash = chain.tailCheckpointHash;
     const checkpointHash = await checkpointRecordHash(body, prevCheckpointHash);
-    await appendJsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH, {
+    await append_jsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH, {
       ...body,
       chain_version: CHECKPOINT_CHAIN_VERSION,
       prev_checkpoint_hash: prevCheckpointHash,
@@ -156,14 +157,14 @@ export const CHECKPOINT_CHECKPOINT = {
   },
   loadLatest: async (): Promise<any | null> => {
     let latest: any | null = null;
-    for await (const row of readJsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
+    for await (const row of read_jsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
       latest = row;
     }
     return latest;
   },
   loadExact: async (tick: number): Promise<any | null> => {
     let exact: any | null = null;
-    for await (const row of readJsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
+    for await (const row of read_jsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
       if (Number(row?.tick) === tick) {
         exact = row;
       }
@@ -173,7 +174,7 @@ export const CHECKPOINT_CHECKPOINT = {
   loadNearestAtOrBefore: async (tick: number): Promise<any | null> => {
     let nearest: any | null = null;
     let nearestTick = Number.NEGATIVE_INFINITY;
-    for await (const row of readJsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
+    for await (const row of read_jsonl(CHECKPOINT_CHECKPOINT.STORAGE_PATH)) {
       const rowTick = Number(row?.tick);
       if (
         !Number.isFinite(rowTick) || rowTick > tick || rowTick < nearestTick

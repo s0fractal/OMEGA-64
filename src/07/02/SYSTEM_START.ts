@@ -1,7 +1,7 @@
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime } from "@07/02/03/mod.ts";
 import { appendLedgerRecordAndMaybeCompact, getLogPath, getSnapshotPath, hydrateLedgerRuntime, type LedgerPersistenceSummary, recordFromApply, recordFromRollback } from "@07/02/03/mod.ts";
 import { GATE } from "@03";
-import { GRID_W, GRID_H, GRID_CELLS } from "../../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 
 // OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
 // Orchestrates the Pulse, Breath, and Observer UI in a single memory space.

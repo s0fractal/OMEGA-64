@@ -8,7 +8,7 @@
  * 3. discoverSpecies enqueues chronicles mentioning the hormone regime.
  */
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { AKASHA_CODEX } from "@06";
 import { LLM_SYNAPSE } from "@05";
 

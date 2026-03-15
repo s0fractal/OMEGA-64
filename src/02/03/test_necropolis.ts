@@ -1,8 +1,8 @@
-import { GRID_W } from "../../_/mod.ts";
+import { GRID_W } from "@generated";
 // OMEGA-64 | tests/test_necropolis.ts
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/assert_equals.ts";
 import { PULSE } from "@02";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { IMMUNE } from "@02"; // Just to verify it doesn't break GC
 
 Deno.test({

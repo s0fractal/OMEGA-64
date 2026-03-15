@@ -1,4 +1,4 @@
-import { GRID_H, GRID_W } from "../../_/mod.ts";
+import { GRID_H, GRID_W } from "@generated";
 import { glyphTapeToPrettyText } from "../../_/08/glyph_pretty.ts";
 import {
   decodeLegacyInstruction,
@@ -6,13 +6,13 @@ import {
   scriptToGlyphTape,
 } from "@07/04/opcode_to_glyph.ts";
 import { glyphSpecById } from "@07/04/mod.ts";
-import { STATE_MATRIX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "../../_/mod.ts";
+import { STATE_MATRIX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
 import {
   REDUCTION_CASES,
   reductionCaseById,
   type ReductionCaseDefinition,
 } from "./reduction_cases.ts";
-import { pack_structure_intent, unpack_structure_charge } from "../../_/mod.ts";
+import { pack_structure_intent, unpack_structure_charge } from "@generated";
 import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
 import { GENESIS_PROGRAMS } from "@07/05/GENESIS_BOOT.ts";
 

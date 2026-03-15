@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_MSG, OP_SYSCALL, SYS_READ_INBOX } from "../../_/mod.ts";
+import { LOGGER } from "@generated";
+import { OP_SET, SYS_MSG, OP_SYSCALL, SYS_READ_INBOX } from "@generated";
 
 Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   LOGGER.info("--- STAGE 30: NETWORKED COGNITION TEST ---");

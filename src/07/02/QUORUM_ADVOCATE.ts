@@ -1,6 +1,6 @@
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { LOGGER } from "@generated";
 
 /**
  * QuorumAdvocate evaluates local group coherence and biases the GATE system.

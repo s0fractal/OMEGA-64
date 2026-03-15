@@ -1,8 +1,8 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "../_/mod.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { LLM_SYNAPSE } from "@05/LLM_SYNAPSE.ts";
 
 const PROJECTION_SIZE = 64;

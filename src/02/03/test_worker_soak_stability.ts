@@ -1,4 +1,4 @@
-import { SPAWN_REQUESTS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { SPAWN_REQUESTS_OFFSET } from "@generated";
 import { loadSoakStabilityConfig } from "@02/03/worker_gate_thresholds.ts";
 import {
   assertSeededSwarmWorldInvariants,

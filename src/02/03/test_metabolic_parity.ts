@@ -1,6 +1,6 @@
 // OMEGA-64 | test_metabolic_parity.ts | Metabolic Parity Verifier
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { ENERGY_OFFSET, LOGIC_OFFSET, MAX_ATOMS } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { ENERGY_OFFSET, LOGIC_OFFSET, MAX_ATOMS } from "@generated";
 import { PULSE } from "@02";
 
 async function testMetabolicParity() {

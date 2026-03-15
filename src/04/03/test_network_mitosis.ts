@@ -3,10 +3,10 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_REPLICATE, OP_SYSCALL } from "../../_/mod.ts";
+import { LOGGER } from "@generated";
+import { OP_SET, SYS_REPLICATE, OP_SYSCALL } from "@generated";
 
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   LOGGER.info("--- STAGE 32: NETWORK MITOSIS TEST ---");

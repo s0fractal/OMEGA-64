@@ -3,7 +3,7 @@
 
 import { GLYPH_TELEMETRY } from "@06";
 import { STATE_MATRIX } from "@00";
-import { GRID_W, SCALE } from "../_/mod.ts";
+import { GRID_W, SCALE } from "@generated";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);

@@ -4,7 +4,7 @@
 import {
   GATE_ADMISSION_REPORT_GATE_ADMISSION_REPORT as GATE_ADMISSION_REPORT,
   type GATE_ADMISSION_REPORT_GateAdmissionReport as GateAdmissionReport,
-} from "@omega";
+} from "@generated";
 
 const mkReport = (): GateAdmissionReport => ({
   version: GATE_ADMISSION_REPORT.VERSION,

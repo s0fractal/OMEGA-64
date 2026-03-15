@@ -1,8 +1,8 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
 import { PULSE } from "@02";
 import { assembleScript } from "@02";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "../_/mod.ts";
+import { LOGGER } from "@generated";
+import { OP_SET, SYS_ATTRACT, OP_SYSCALL, SYS_TRANSFER } from "@generated";
 
 export class AgentProxy {
   port: number;

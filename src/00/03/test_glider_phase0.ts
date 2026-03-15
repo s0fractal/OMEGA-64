@@ -1,14 +1,14 @@
 // test_glider_phase0.ts
 // Verification script for Gemini Glider Lite Phase 0
 
-import { GATE_GATE as GATE } from "@omega";
+import { GATE_GATE as GATE } from "@generated";
 import {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_REJECTION as REJECTION,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@omega";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@omega";
+} from "@generated";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
 
 async function runTest() {
   console.log("🧪 TESTING: Gemini Glider Lite Phase 0 (Instrumentation)");

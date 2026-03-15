@@ -1,6 +1,6 @@
 // OMEGA-64 | test_spawn_parity.ts | Spawn Resolution Verifier
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { MAX_ATOMS, SPAWN_REQUESTS_OFFSET } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { MAX_ATOMS, SPAWN_REQUESTS_OFFSET } from "@generated";
 import { PULSE } from "@02";
 
 async function testSpawnParity() {

@@ -1,5 +1,5 @@
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { LOGGER } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { LOGGER } from "@generated";
 import { AKASHA_CODEX } from "@06/AKASHA_CODEX.ts";
 
 export type MemeticStats = {

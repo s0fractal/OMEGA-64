@@ -1,9 +1,9 @@
 // test_oracle.ts
 // Verification of Era 3.2: Semantic Immunity
 
-import { KAIROS_KAIROS as KAIROS } from "@omega";
-import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@omega";
-import type { RIBOSOME_Atom as Atom } from "@omega";
+import { KAIROS_KAIROS as KAIROS } from "@generated";
+import { SIGNAL__07_07_SIGNAL as SIGNAL } from "@generated";
+import type { RIBOSOME_Atom as Atom } from "@generated";
 
 console.log("🔮 TEST ORACLE: Initializing...");
 

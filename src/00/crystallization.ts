@@ -1,7 +1,7 @@
 // OMEGA-64 | crystallization.ts
 // Gate Admission & Consensus Crystallization Policy
 
-import { stable_stringify, sha256_hex } from "../_/mod.ts";
+import { stable_stringify, sha256_hex } from "@generated";
 
 const CRY_DATA = {
   policy: "STABLE",

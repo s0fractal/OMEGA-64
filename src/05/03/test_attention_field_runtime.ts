@@ -1,6 +1,6 @@
 import { AVATAR_ENGINE } from "@05";
-import { STATE_MATRIX } from "/Users/s0fractal/OMEGA/src/_/mod.ts";
-import { GRID_W, SCALE } from "../../_/mod.ts";
+import { STATE_MATRIX } from "@generated";
+import { GRID_W, SCALE } from "@generated";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);
