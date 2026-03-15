@@ -10,7 +10,7 @@
 
 import { STATE_MATRIX } from "@generated";
 import { AKASHA_CODEX } from "@06";
-import { LLM_SYNAPSE } from "@05";
+import { LLM_SYNAPSE } from "@generated";
 
 let passed = 0;
 let failed = 0;

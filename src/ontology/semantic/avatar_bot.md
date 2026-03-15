@@ -1,3 +1,15 @@
+---
+id: AVATAR_BOT
+type: module
+description: "Demonstration script representing a local remote-controlled entity within the Omega-64 grid."
+tags: ["standalone", "client"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
 import { LOGGER } from "@generated";
 
@@ -78,3 +90,4 @@ async function runAvatar() {
 if (import.meta.main) {
   runAvatar();
 }
+```

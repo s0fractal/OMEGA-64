@@ -14,7 +14,7 @@ min_level: 6
 
 import { STATE_MATRIX } from "@generated";
 import { SEMANTIC_MEMBRANE } from "@generated";
-import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
+import { LLM_SYNAPSE } from "@generated";
 import { AUDIT_ENGINE } from "@generated";
 import { LOGGER } from "@generated";
 import { AKASHA_CODEX } from "../../06/AKASHA_CODEX.ts";

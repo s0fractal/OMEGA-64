@@ -1,3 +1,15 @@
+---
+id: LLM_SYNAPSE
+type: module
+description: "Cognitive Bridge: Communicates with external LLMs to generate emergent thoughts and axioms."
+tags: ["host", "semantic", "oracle"]
+deps: []
+min_level: 6
+---
+
+### TypeScript
+
+```typescript
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
 
@@ -424,3 +436,4 @@ if (import.meta.main) {
   const thought = await LLM_SYNAPSE.generateThought(testVox);
   console.log("TEST RESULT:", thought);
 }
+```

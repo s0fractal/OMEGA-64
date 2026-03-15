@@ -12585,7 +12585,7 @@ import { GRID_CELLS, GRID_H, GRID_W } from "../mod.ts";
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
 import { STATE_MATRIX } from "@generated";
-import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
+import { LLM_SYNAPSE } from "@generated";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -13107,7 +13107,7 @@ export const SEMANTIC_MEMBRANE = {
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
 
-import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
+import { LLM_SYNAPSE } from "@generated";
 import { MAX_GLYPH_AMP, MIN_GLYPH_AMP, STATE_MATRIX } from "@generated";
 import { SOVEREIGNTY_ENGINE } from "@generated";
 import { LOGGER } from "@generated";

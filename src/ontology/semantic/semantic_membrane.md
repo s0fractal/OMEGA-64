@@ -13,7 +13,7 @@ import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
 import { STATE_MATRIX } from "@generated";
-import { LLM_SYNAPSE } from "../../05/LLM_SYNAPSE.ts";
+import { LLM_SYNAPSE } from "@generated";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
