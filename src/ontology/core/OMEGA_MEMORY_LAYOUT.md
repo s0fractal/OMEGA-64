@@ -191,4 +191,6 @@ regions:
   - name: METABOLISM_SCRATCH
     size: "(65536 * 4) + 128"
     align: 4
+extra_symbols:
+  - validateMemoryLayout
 ---

@@ -44,6 +44,7 @@ export const OntologyNodeSchema = z.object({
     offset: z.number().optional()
   })).nullable().optional(),
   vars: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
+  extra_symbols: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
   optimization: z.enum(["inline", "hot", "cold"]).optional(),
   status: z.enum(["stable", "experimental", "deprecated"]).optional(),
   tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
@@ -305,6 +306,15 @@ for (const node of nodes.values()) {
     symbolToNodeId.set("LATTICE_MEMORY_END", node.id);
     symbolToNodeId.set("MIN_WASM_MEMORY_PAGES", node.id);
     symbolToNodeId.set("WASM_MEMORY_BYTES", node.id);
+    // Register any extra symbols explicitly declared (memory_layout)
+    for (const sym of (node.extra_symbols || [])) {
+      symbolToNodeId.set(sym, node.id);
+    }
+  } else if (node.type === "module" || node.type === "pure_fn") {
+    // Register module's explicitly declared exports
+    for (const sym of (node.extra_symbols || [])) {
+      symbolToNodeId.set(sym, node.id);
+    }
   }
 }
 
@@ -641,7 +651,15 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   if (node.asImports) {
     node.asImports.forEach(i => asOut += `${i}\n`);
   }
-  const importsToPull: string[] = [...(node.vars || [])];
+  // Collect all host-only symbols (extra_symbols from any dep node)
+  const hostOnlySymbols = new Set<string>();
+  for (const dep of (node.deps || [])) {
+    const depNode = nodes.get(dep);
+    if (depNode) {
+      for (const sym of (depNode.extra_symbols || [])) hostOnlySymbols.add(sym);
+    }
+  }
+  const importsToPull: string[] = (node.vars || []).filter(v => !hostOnlySymbols.has(v));
   if (node.deps) {
     for (const dep of node.deps) {
       const depNode = nodes.get(dep);

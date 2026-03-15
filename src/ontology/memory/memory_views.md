@@ -4,66 +4,136 @@ type: module
 description: "Implementation of memory_views"
 tags: []
 deps: [SYSTEM_CONSTANTS, OMEGA_MEMORY_LAYOUT]
+vars:
+  - MAX_ATOMS
+  - SCALE
+  - GRID_CELLS
+  - MAX_LEDGER_EVENTS
+  - HIVE_ENERGY_POOL_SIZE
+  - HIVE_MEMORY_SIZE
+  - MAX_HORMONES
+  - ATOM_GENOME_SIZE
+  - ATOM_INSTRUCTION_SIZE
+  - ATOM_CONTEXT_SIZE
+  - WASM_MEMORY_PAGES
+  - ATTENTION_FIELD_OFFSET
+  - BONDS_OFFSET
+  - BOND_DISTANCES_OFFSET
+  - BOND_REQUESTS_OFFSET
+  - CAUSALITY_OFFSET
+  - COHERENCE_OFFSET
+  - CONTEXT_OFFSET
+  - DAMPING_OFFSET
+  - ENERGY_OFFSET
+  - EVOLUTION_OFFSET
+  - GLYPH_HEADER_OFFSET
+  - GLYPH_PAYLOAD_OFFSET
+  - HIVE_BALANCE_OFFSET
+  - HIVE_ENERGY_POOL_OFFSET
+  - HIVE_MEMORY_OFFSET
+  - HORMONE_OFFSET
+  - IDS_OFFSET
+  - INSTRUCTIONS_OFFSET
+  - LEDGER_DATA_OFFSET
+  - LEDGER_HEAD_OFFSET
+  - LINEAGE_OFFSET
+  - LOGIC_OFFSET
+  - MAILBOX_OFFSET
+  - MEMORY_GRID_OFFSET
+  - MIN_WASM_MEMORY_PAGES
+  - NEURAL_COHERENCE_OFFSET
+  - PHASE_OFFSET
+  - RESONANCE_OFFSET
+  - ROLES_OFFSET
+  - SIGNAL_GRID_OFFSET
+  - SPATIAL_GRID_OFFSET
+  - STIFFNESS_OFFSET
+  - STRUCTURE_GRID_OFFSET
+  - SYNAPTIC_WEIGHTS_OFFSET
+  - SYNC_STATE_OFFSET
+  - TICK_COUNTER_OFFSET
+  - WASM_MEMORY_BYTES
+  - XS_OFFSET
+  - YS_OFFSET
+  - validateMemoryLayout
 min_level: 0
+extra_symbols:
+  - attentionField
+  - attentionFieldBuffer
+  - bondBuffer
+  - bondDistBuffer
+  - bondDistances
+  - bondRequests
+  - bondStiffness
+  - bonds
+  - causality
+  - causalityBuffer
+  - codeWords
+  - coherence
+  - coherenceBuffer
+  - contextByteView
+  - contexts
+  - damping
+  - dampingBuffer
+  - energies
+  - energyBuffer
+  - evolutionReserved
+  - glyphHeaderBuffer
+  - glyphHeaders
+  - glyphPayload
+  - glyphPayloadBuffer
+  - hiveBalance
+  - hiveBalanceBuffer
+  - hiveEnergyPool
+  - hiveEnergyPoolBuffer
+  - hiveMemory
+  - hiveMemoryBuffer
+  - hormoneBuffer
+  - hormones
+  - idBuffer
+  - ids
+  - instructions
+  - latticeClearView
+  - ledgerDataView
+  - ledgerHeadView
+  - lineage
+  - lineageBuffer
+  - logic
+  - logicBuffer
+  - mailboxBuffer
+  - mailboxes
+  - memoryGrid
+  - memoryGridBuffer
+  - neuralCoherence
+  - neuralCoherenceBuffer
+  - phaseBuffer
+  - phases
+  - resonanceBuffer
+  - resonances
+  - roleBuffer
+  - roles
+  - semanticBonuses
+  - semanticBonusesBuffer
+  - sharedBuffer
+  - signalGrid
+  - signalGridBuffer
+  - spatialGrid
+  - stiffnessBuffer
+  - structureGrid
+  - structureGridBuffer
+  - synapticWeightBuffer
+  - synapticWeights
+  - syncState
+  - tickCounter
+  - wasmMemory
+  - xBuffer
+  - xs
+  - yBuffer
+  - ys
 ---
 
 ### TypeScript
 ```typescript
-import { 
-  MAX_ATOMS, 
-  SCALE, 
-  GRID_CELLS, 
-  MAX_LEDGER_EVENTS, 
-  HIVE_ENERGY_POOL_SIZE, 
-  HIVE_MEMORY_SIZE, 
-  MAX_HORMONES, 
-  ATOM_GENOME_SIZE, 
-  ATOM_INSTRUCTION_SIZE, 
-  ATOM_CONTEXT_SIZE,
-  WASM_MEMORY_PAGES
-} from "../00/SYSTEM_CONSTANTS.ts";
-import {
-  ATTENTION_FIELD_OFFSET,
-  BONDS_OFFSET,
-  BOND_DISTANCES_OFFSET,
-  BOND_REQUESTS_OFFSET,
-  CAUSALITY_OFFSET,
-  COHERENCE_OFFSET,
-  CONTEXT_OFFSET,
-  DAMPING_OFFSET,
-  ENERGY_OFFSET,
-  EVOLUTION_OFFSET,
-  GLYPH_HEADER_OFFSET,
-  GLYPH_PAYLOAD_OFFSET,
-  HIVE_BALANCE_OFFSET,
-  HIVE_ENERGY_POOL_OFFSET,
-  HIVE_MEMORY_OFFSET,
-  HORMONE_OFFSET,
-  IDS_OFFSET,
-  INSTRUCTIONS_OFFSET,
-  LEDGER_DATA_OFFSET,
-  LEDGER_HEAD_OFFSET,
-  LINEAGE_OFFSET,
-  LOGIC_OFFSET,
-  MAILBOX_OFFSET,
-  MEMORY_GRID_OFFSET,
-  MIN_WASM_MEMORY_PAGES,
-  NEURAL_COHERENCE_OFFSET,
-  PHASE_OFFSET,
-  RESONANCE_OFFSET,
-  ROLES_OFFSET,
-  SIGNAL_GRID_OFFSET,
-  SPATIAL_GRID_OFFSET,
-  STIFFNESS_OFFSET,
-  STRUCTURE_GRID_OFFSET,
-  SYNAPTIC_WEIGHTS_OFFSET,
-  SYNC_STATE_OFFSET,
-  TICK_COUNTER_OFFSET,
-  WASM_MEMORY_BYTES,
-  XS_OFFSET,
-  YS_OFFSET,
-  validateMemoryLayout
-} from "../01/OMEGA_MEMORY_LAYOUT.ts";
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(

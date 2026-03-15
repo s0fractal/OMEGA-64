@@ -3,29 +3,91 @@ id: STATE_MATRIX
 type: module
 description: "Implementation of STATE_MATRIX"
 tags: []
-deps: [memory_views]
 min_level: 0
+deps: [memory_views, SYSTEM_CONSTANTS, VmProps, VmOpcodes, VmSys]
+vars:
+  - ATOM_CONTEXT_SIZE
+  - ATOM_INSTRUCTION_SIZE
+  - GRID_CELLS
+  - GRID_H
+  - GRID_W
+  - MAX_ATOMS
+  - OP_BUILD
+  - OP_GET
+  - OP_JMP
+  - OP_JNZ
+  - OP_SET
+  - OP_SIGNAL
+  - OP_SUB
+  - OP_SYSCALL
+  - PROP_NEURAL_COHERENCE
+  - RESOURCE_MAX
+  - SCALE
+  - SYS_SET_ROLE
+  - SYS_YIELD
+  - attentionField
+  - attentionFieldBuffer
+  - bondDistBuffer
+  - bondDistances
+  - bondRequests
+  - bondStiffness
+  - bonds
+  - causality
+  - codeWords
+  - coherence
+  - contextByteView
+  - contexts
+  - damping
+  - dampingBuffer
+  - energies
+  - evolutionReserved
+  - glyphHeaderBuffer
+  - glyphHeaders
+  - glyphPayload
+  - glyphPayloadBuffer
+  - hiveBalance
+  - hiveEnergyPool
+  - hiveEnergyPoolBuffer
+  - hiveMemory
+  - hiveMemoryBuffer
+  - hormoneBuffer
+  - hormones
+  - ids
+  - instructions
+  - latticeClearView
+  - ledgerDataView
+  - ledgerHeadView
+  - lineage
+  - lineageBuffer
+  - logic
+  - mailboxes
+  - memoryGrid
+  - memoryGridBuffer
+  - neuralCoherence
+  - phases
+  - resonances
+  - roleBuffer
+  - roles
+  - semanticBonuses
+  - semanticBonusesBuffer
+  - sharedBuffer
+  - signalGrid
+  - signalGridBuffer
+  - spatialGrid
+  - stiffnessBuffer
+  - structureGrid
+  - structureGridBuffer
+  - synapticWeights
+  - syncState
+  - tickCounter
+  - wasmMemory
+  - xs
+  - ys
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | STATE_MATRIX.ts
-import {
-  ATOM_CONTEXT_SIZE,
-  ATOM_INSTRUCTION_SIZE,
-  MAX_ATOMS,
-  RESOURCE_MAX,
-  SCALE,
-  GRID_W,
-  GRID_H,
-  GRID_CELLS
-} from "../00/SYSTEM_CONSTANTS.ts";
-import { PROP_NEURAL_COHERENCE } from "../00/VmProps.ts";
-import {
-  OP_SYSCALL, OP_GET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, OP_BUILD, OP_SET
-} from "../00/VmOpcodes.ts";
-import { SYS_YIELD, SYS_SET_ROLE } from "../00/VmSys.ts";
-import * as views from "../02/memory_views.ts";
 
 export const clampResourceRaw = (value: number): number => {
   if (!Number.isFinite(value)) return 0;
@@ -55,53 +117,53 @@ const DEFAULT_BOOT_SCRIPT = (() => {
 const GUARDIAN_COHERENCE_THRESHOLD = 200;
 
 export const STATE_MATRIX = {
-  MAX_ATOMS: MAX_ATOMS,
-  buffer: views.sharedBuffer,
-  wasmMemory: views.wasmMemory,
-  SCALE: SCALE,
-  syncState: views.syncState,
-  tickCounter: views.tickCounter,
+  MAX_ATOMS,
+  buffer: sharedBuffer,
+  wasmMemory,
+  SCALE,
+  syncState,
+  tickCounter,
   SYNC,
-  phases: views.phases,
-  evolutionReserved: views.evolutionReserved,
-  roles: views.roles,
-  spatialGrid: views.spatialGrid,
-  structureGrid: views.structureGrid,
-  signalGrid: views.signalGrid,
-  memoryGrid: views.memoryGrid,
-  attentionField: views.attentionField,
-  glyphHeaders: views.glyphHeaders,
-  glyphPayload: views.glyphPayload,
-  hiveEnergyPool: views.hiveEnergyPool,
-  coherence: views.coherence,
-  neuralCoherence: views.neuralCoherence,
-  hormones: views.hormones,
-  lineage: views.lineage,
-  instructions: views.instructions,
-  ledgerHeadView: views.ledgerHeadView,
-  ledgerDataView: views.ledgerDataView,
-  contexts: views.contexts,
-  semanticBonuses: views.semanticBonuses,
-  memoryGridBuffer: views.memoryGridBuffer,
-  signalGridBuffer: views.signalGridBuffer,
-  structureGridBuffer: views.structureGridBuffer,
-  attentionFieldBuffer: views.attentionFieldBuffer,
-  glyphHeaderBuffer: views.glyphHeaderBuffer,
-  glyphPayloadBuffer: views.glyphPayloadBuffer,
-  roleRegistryBuffer: views.roleBuffer,
-  bondStiffnessBuffer: views.stiffnessBuffer,
-  bondDistancesBuffer: views.bondDistBuffer,
-  dampingBuffer: views.dampingBuffer,
-  semanticBonusesBuffer: views.semanticBonusesBuffer,
-  immuneBuffer: views.signalGridBuffer,
-  currentReadBuffer: views.signalGridBuffer,
-  synapticStackBuffer: views.signalGridBuffer,
-  viralGrid: views.signalGrid,
-  viralGridBuffer: views.signalGridBuffer,
-  hiveMemoryBuffer: views.hiveMemoryBuffer,
-  hiveEnergyPoolBuffer: views.hiveEnergyPoolBuffer,
-  hormoneBuffer: views.hormoneBuffer,
-  lineageBuffer: views.lineageBuffer,
+  phases,
+  evolutionReserved,
+  roles,
+  spatialGrid,
+  structureGrid,
+  signalGrid,
+  memoryGrid,
+  attentionField,
+  glyphHeaders,
+  glyphPayload,
+  hiveEnergyPool,
+  coherence,
+  neuralCoherence,
+  hormones,
+  lineage,
+  instructions,
+  ledgerHeadView,
+  ledgerDataView,
+  contexts,
+  semanticBonuses,
+  memoryGridBuffer,
+  signalGridBuffer,
+  structureGridBuffer,
+  attentionFieldBuffer,
+  glyphHeaderBuffer,
+  glyphPayloadBuffer,
+  roleRegistryBuffer: roleBuffer,
+  bondStiffnessBuffer: stiffnessBuffer,
+  bondDistancesBuffer: bondDistBuffer,
+  dampingBuffer,
+  semanticBonusesBuffer,
+  immuneBuffer: signalGridBuffer,
+  currentReadBuffer: signalGridBuffer,
+  synapticStackBuffer: signalGridBuffer,
+  viralGrid: signalGrid,
+  viralGridBuffer: signalGridBuffer,
+  hiveMemoryBuffer,
+  hiveEnergyPoolBuffer,
+  hormoneBuffer,
+  lineageBuffer,
 
   ROLE_NEUTRAL: 0,
   ROLE_PRODUCER: 1,
@@ -110,130 +172,130 @@ export const STATE_MATRIX = {
   ROLE_PARASITE: 4,
   ROLE_MITOCHONDRIA: 5,
 
-  getId: (i: number) => Atomics.load(views.ids, i),
-  get_x: (i: number) => Atomics.load(views.xs, i),
-  get_y: (i: number) => Atomics.load(views.ys, i),
-  get_role: (i: number) => Atomics.load(views.roles, i),
-  getX: (i: number) => Atomics.load(views.xs, i),
-  getY: (i: number) => Atomics.load(views.ys, i),
-  getRole: (i: number) => Atomics.load(views.roles, i),
-  get_energy: (i: number) => Atomics.load(views.energies, i) / SCALE,
-  get_resonance: (i: number) => Atomics.load(views.resonances, i),
-  get_phase: (i: number) => Atomics.load(views.phases, i),
-  getEnergy: (i: number) => Atomics.load(views.energies, i) / SCALE,
-  getResonance: (i: number) => Atomics.load(views.resonances, i),
-  getPhase: (i: number) => Atomics.load(views.phases, i),
-  getEvolutionReserved: (i: number) => Atomics.load(views.evolutionReserved, i),
-  getLogic: (i: number) => views.logic.subarray(i * 8, i * 8 + 8),
-  getBonds: (i: number) => views.bonds.subarray(i * 4, i * 4 + 4),
-  setBonds: (i: number, val: Uint32Array) => views.bonds.set(val, i * 4),
-  get_bond_target: (i: number, slot: number) => Atomics.load(views.bonds, i * 4 + slot),
-  get_bond_stiffness: (i: number, slot: number) => views.bondStiffness[i * 4 + slot],
-  getBondTarget: (i: number, slot: number) => Atomics.load(views.bonds, i * 4 + slot),
-  getBondStiffness: (i: number, slot: number) => views.bondStiffness[i * 4 + slot],
-  getBondDistance: (i: number, slot: number) => Atomics.load(views.bondDistances, i * 4 + slot),
-  hasBondRequest: (i: number) => Atomics.load(views.bondRequests, i * 3) !== 0,
-  getBondRequestInitiator: (i: number) => Atomics.load(views.bondRequests, i * 3),
-  getBondRequestTarget: (i: number) => Atomics.load(views.bondRequests, i * 3 + 1),
-  getBondRequestDistance: (i: number) => Atomics.load(views.bondRequests, i * 3 + 2),
-  getDamping: (i: number) => Atomics.load(views.damping, i),
-  get_lineage: (i: number) => Atomics.load(views.lineage, i),
-  getLineage: (i: number) => Atomics.load(views.lineage, i),
-  getMailboxMsgType: (i: number) => Atomics.load(views.mailboxes, i * 2),
-  getMailboxPayload: (i: number) => Atomics.load(views.mailboxes, i * 2 + 1),
-  get_hive_memory: (addr: number) => Atomics.load(views.hiveMemory, addr & 1023),
-  set_hive_memory: (addr: number, val: number) => { Atomics.store(views.hiveMemory, addr & 1023, val); },
-  get_hive_balance: () => Atomics.load(views.hiveBalance, 0),
-  getHiveMemory: (addr: number) => Atomics.load(views.hiveMemory, addr & 1023),
-  setHiveMemory: (addr: number, val: number) => { Atomics.store(views.hiveMemory, addr & 1023, val); },
-  getHiveBalance: () => Atomics.load(views.hiveBalance, 0),
-  setHiveBalance: (val: number) => { Atomics.store(views.hiveBalance, 0, val); },
-  add_hive_balance: (val: number) => Atomics.add(views.hiveBalance, 0, val),
-  addHiveBalance: (val: number) => Atomics.add(views.hiveBalance, 0, val),
-  getHiveEnergyPoolSlot: (slot: number) => Atomics.load(views.hiveEnergyPool, slot & 255),
-  setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(views.hiveEnergyPool, slot & 255, val),
-  addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(views.hiveEnergyPool, slot & 255, val),
+  getId: (i: number) => Atomics.load(ids, i),
+  get_x: (i: number) => Atomics.load(xs, i),
+  get_y: (i: number) => Atomics.load(ys, i),
+  get_role: (i: number) => Atomics.load(roles, i),
+  getX: (i: number) => Atomics.load(xs, i),
+  getY: (i: number) => Atomics.load(ys, i),
+  getRole: (i: number) => Atomics.load(roles, i),
+  get_energy: (i: number) => Atomics.load(energies, i) / SCALE,
+  get_resonance: (i: number) => Atomics.load(resonances, i),
+  get_phase: (i: number) => Atomics.load(phases, i),
+  getEnergy: (i: number) => Atomics.load(energies, i) / SCALE,
+  getResonance: (i: number) => Atomics.load(resonances, i),
+  getPhase: (i: number) => Atomics.load(phases, i),
+  getEvolutionReserved: (i: number) => Atomics.load(evolutionReserved, i),
+  getLogic: (i: number) => logic.subarray(i * 8, i * 8 + 8),
+  getBonds: (i: number) => bonds.subarray(i * 4, i * 4 + 4),
+  setBonds: (i: number, val: Uint32Array) => bonds.set(val, i * 4),
+  get_bond_target: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
+  get_bond_stiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
+  getBondTarget: (i: number, slot: number) => Atomics.load(bonds, i * 4 + slot),
+  getBondStiffness: (i: number, slot: number) => bondStiffness[i * 4 + slot],
+  getBondDistance: (i: number, slot: number) => Atomics.load(bondDistances, i * 4 + slot),
+  hasBondRequest: (i: number) => Atomics.load(bondRequests, i * 3) !== 0,
+  getBondRequestInitiator: (i: number) => Atomics.load(bondRequests, i * 3),
+  getBondRequestTarget: (i: number) => Atomics.load(bondRequests, i * 3 + 1),
+  getBondRequestDistance: (i: number) => Atomics.load(bondRequests, i * 3 + 2),
+  getDamping: (i: number) => Atomics.load(damping, i),
+  get_lineage: (i: number) => Atomics.load(lineage, i),
+  getLineage: (i: number) => Atomics.load(lineage, i),
+  getMailboxMsgType: (i: number) => Atomics.load(mailboxes, i * 2),
+  getMailboxPayload: (i: number) => Atomics.load(mailboxes, i * 2 + 1),
+  get_hive_memory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
+  set_hive_memory: (addr: number, val: number) => { Atomics.store(hiveMemory, addr & 1023, val); },
+  get_hive_balance: () => Atomics.load(hiveBalance, 0),
+  getHiveMemory: (addr: number) => Atomics.load(hiveMemory, addr & 1023),
+  setHiveMemory: (addr: number, val: number) => { Atomics.store(hiveMemory, addr & 1023, val); },
+  getHiveBalance: () => Atomics.load(hiveBalance, 0),
+  setHiveBalance: (val: number) => { Atomics.store(hiveBalance, 0, val); },
+  add_hive_balance: (val: number) => Atomics.add(hiveBalance, 0, val),
+  addHiveBalance: (val: number) => Atomics.add(hiveBalance, 0, val),
+  getHiveEnergyPoolSlot: (slot: number) => Atomics.load(hiveEnergyPool, slot & 255),
+  setHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.store(hiveEnergyPool, slot & 255, val),
+  addHiveEnergyPoolSlot: (slot: number, val: number) => Atomics.add(hiveEnergyPool, slot & 255, val),
 
-  getInstructions: (i: number) => views.instructions.subarray(i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE),
-  getCode: (i: number) => views.codeWords.subarray(i * 16, i * 16 + 16),
-  get_reg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
-  get_p_c: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
-  getReg: (i: number, reg: number) => Atomics.load(views.contexts, i * ATOM_CONTEXT_SIZE + reg),
-  getPC: (i: number) => Atomics.load(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
-  getContext: (i: number) => views.contextByteView.subarray(i * (ATOM_CONTEXT_SIZE * 4), i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4)),
+  getInstructions: (i: number) => instructions.subarray(i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE),
+  getCode: (i: number) => codeWords.subarray(i * 16, i * 16 + 16),
+  get_reg: (i: number, reg: number) => Atomics.load(contexts, i * ATOM_CONTEXT_SIZE + reg),
+  get_p_c: (i: number) => Atomics.load(contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getReg: (i: number, reg: number) => Atomics.load(contexts, i * ATOM_CONTEXT_SIZE + reg),
+  getPC: (i: number) => Atomics.load(contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32),
+  getContext: (i: number) => contextByteView.subarray(i * (ATOM_CONTEXT_SIZE * 4), i * (ATOM_CONTEXT_SIZE * 4) + (ATOM_CONTEXT_SIZE * 4)),
 
-  setId: (i: number, val: bigint) => Atomics.store(views.ids, i, val),
-  setX: (i: number, val: number) => Atomics.store(views.xs, i, Math.round(val)),
-  setY: (i: number, val: number) => Atomics.store(views.ys, i, Math.round(val)),
-  getSynapticWeight: (index: number, slot: number): number => views.synapticWeights[index * 4 + slot],
-  setSynapticWeight: (index: number, slot: number, weight: number) => { views.synapticWeights[index * 4 + slot] = weight; },
-  set_role: (i: number, val: number) => Atomics.store(views.roles, i, val),
-  set_energy: (i: number, val: number) => Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
-  set_resonance: (i: number, val: number) => Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
-  set_phase: (i: number, val: number) => Atomics.store(views.phases, i, val),
-  setRole: (i: number, val: number) => Atomics.store(views.roles, i, val),
-  setEnergy: (i: number, val: number) => Atomics.store(views.energies, i, toClampedEnergyRaw(val)),
-  setResonance: (i: number, val: number) => Atomics.store(views.resonances, i, Math.trunc(clampResourceRaw(val))),
-  setPhase: (i: number, val: number) => Atomics.store(views.phases, i, val),
-  setLogic: (i: number, val: Uint8Array) => views.logic.set(val, i * 8),
-  set_bond_target: (i: number, slot: number, target: number) => Atomics.store(views.bonds, i * 4 + slot, target),
-  set_bond_stiffness: (i: number, slot: number, val: number) => { views.bondStiffness[i * 4 + slot] = val; },
-  setBondTarget: (i: number, slot: number, target: number) => Atomics.store(views.bonds, i * 4 + slot, target),
-  setBondStiffness: (i: number, slot: number, val: number) => { views.bondStiffness[i * 4 + slot] = val; },
-  setBondDistance: (i: number, slot: number, val: number) => Atomics.store(views.bondDistances, i * 4 + slot, val),
-  set_damping: (i: number, val: number) => Atomics.store(views.damping, i, val),
-  setDamping: (i: number, val: number) => Atomics.store(views.damping, i, val),
-  setLineage: (i: number, val: bigint) => Atomics.store(views.lineage, i, val),
-  setMailboxMsgType: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2, val),
-  setMailboxPayload: (i: number, val: number) => Atomics.store(views.mailboxes, i * 2 + 1, val),
+  setId: (i: number, val: bigint) => Atomics.store(ids, i, val),
+  setX: (i: number, val: number) => Atomics.store(xs, i, Math.round(val)),
+  setY: (i: number, val: number) => Atomics.store(ys, i, Math.round(val)),
+  getSynapticWeight: (index: number, slot: number): number => synapticWeights[index * 4 + slot],
+  setSynapticWeight: (index: number, slot: number, weight: number) => { synapticWeights[index * 4 + slot] = weight; },
+  set_role: (i: number, val: number) => Atomics.store(roles, i, val),
+  set_energy: (i: number, val: number) => Atomics.store(energies, i, toClampedEnergyRaw(val)),
+  set_resonance: (i: number, val: number) => Atomics.store(resonances, i, Math.trunc(clampResourceRaw(val))),
+  set_phase: (i: number, val: number) => Atomics.store(phases, i, val),
+  setRole: (i: number, val: number) => Atomics.store(roles, i, val),
+  setEnergy: (i: number, val: number) => Atomics.store(energies, i, toClampedEnergyRaw(val)),
+  setResonance: (i: number, val: number) => Atomics.store(resonances, i, Math.trunc(clampResourceRaw(val))),
+  setPhase: (i: number, val: number) => Atomics.store(phases, i, val),
+  setLogic: (i: number, val: Uint8Array) => logic.set(val, i * 8),
+  set_bond_target: (i: number, slot: number, target: number) => Atomics.store(bonds, i * 4 + slot, target),
+  set_bond_stiffness: (i: number, slot: number, val: number) => { bondStiffness[i * 4 + slot] = val; },
+  setBondTarget: (i: number, slot: number, target: number) => Atomics.store(bonds, i * 4 + slot, target),
+  setBondStiffness: (i: number, slot: number, val: number) => { bondStiffness[i * 4 + slot] = val; },
+  setBondDistance: (i: number, slot: number, val: number) => Atomics.store(bondDistances, i * 4 + slot, val),
+  set_damping: (i: number, val: number) => Atomics.store(damping, i, val),
+  setDamping: (i: number, val: number) => Atomics.store(damping, i, val),
+  setLineage: (i: number, val: bigint) => Atomics.store(lineage, i, val),
+  setMailboxMsgType: (i: number, val: number) => Atomics.store(mailboxes, i * 2, val),
+  setMailboxPayload: (i: number, val: number) => Atomics.store(mailboxes, i * 2 + 1, val),
 
-  setInstructions: (i: number, val: Uint8Array) => views.instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
+  setInstructions: (i: number, val: Uint8Array) => instructions.set(val, i * ATOM_INSTRUCTION_SIZE),
   setCode: (i: number, val: Uint32Array | Uint8Array) => {
     const codeStart = i * 16;
     if (val instanceof Uint32Array) {
-      views.codeWords.fill(0, codeStart, codeStart + 16);
-      views.codeWords.set(val.subarray(0, 16), codeStart);
+      codeWords.fill(0, codeStart, codeStart + 16);
+      codeWords.set(val.subarray(0, 16), codeStart);
       return;
     }
     const instStart = i * ATOM_INSTRUCTION_SIZE;
-    views.instructions.fill(0, instStart, instStart + ATOM_INSTRUCTION_SIZE);
-    views.instructions.set(val.subarray(0, ATOM_INSTRUCTION_SIZE), instStart);
+    instructions.fill(0, instStart, instStart + ATOM_INSTRUCTION_SIZE);
+    instructions.set(val.subarray(0, ATOM_INSTRUCTION_SIZE), instStart);
   },
-  set_reg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
-  set_p_c: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
-  setReg: (i: number, reg: number, val: number) => Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + reg, val),
-  setPC: (i: number, val: number) => Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  set_reg: (i: number, reg: number, val: number) => Atomics.store(contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  set_p_c: (i: number, val: number) => Atomics.store(contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
+  setReg: (i: number, reg: number, val: number) => Atomics.store(contexts, i * ATOM_CONTEXT_SIZE + reg, val),
+  setPC: (i: number, val: number) => Atomics.store(contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, val),
 
   getBondRequest: (i: number) => {
     const base = i * 3;
-    const initiator = Atomics.load(views.bondRequests, base);
-    return initiator !== 0 ? views.bondRequests.subarray(base, base + 3) : null;
+    const initiator = Atomics.load(bondRequests, base);
+    return initiator !== 0 ? bondRequests.subarray(base, base + 3) : null;
   },
-  clearBondRequest: (i: number) => Atomics.store(views.bondRequests, i * 3, 0),
+  clearBondRequest: (i: number) => Atomics.store(bondRequests, i * 3, 0),
 
   recycleAtom: (i: number) => {
-    Atomics.store(views.ids, i, 0n);
-    Atomics.store(views.energies, i, 0);
-    Atomics.store(views.resonances, i, 0);
-    Atomics.store(views.phases, i, 0);
-    Atomics.store(views.roles, i, 0);
-    views.bonds.fill(0, i * 4, i * 4 + 4);
-    views.bondStiffness.fill(0, i * 4, i * 4 + 4);
-    views.bondDistances.fill(0, i * 4, i * 4 + 4);
-    Atomics.store(views.damping, i, 0);
-    Atomics.store(views.lineage, i, 0n);
-    views.instructions.fill(0, i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE);
-    views.contexts.fill(0, i * ATOM_CONTEXT_SIZE, i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE);
+    Atomics.store(ids, i, 0n);
+    Atomics.store(energies, i, 0);
+    Atomics.store(resonances, i, 0);
+    Atomics.store(phases, i, 0);
+    Atomics.store(roles, i, 0);
+    bonds.fill(0, i * 4, i * 4 + 4);
+    bondStiffness.fill(0, i * 4, i * 4 + 4);
+    bondDistances.fill(0, i * 4, i * 4 + 4);
+    Atomics.store(damping, i, 0);
+    Atomics.store(lineage, i, 0n);
+    instructions.fill(0, i * ATOM_INSTRUCTION_SIZE, i * ATOM_INSTRUCTION_SIZE + ATOM_INSTRUCTION_SIZE);
+    contexts.fill(0, i * ATOM_CONTEXT_SIZE, i * ATOM_CONTEXT_SIZE + ATOM_CONTEXT_SIZE);
   },
 
   clear: () => {
-    views.latticeClearView.fill(0);
-    views.semanticBonuses.fill(0);
+    latticeClearView.fill(0);
+    semanticBonuses.fill(0);
   },
   getActiveIndices: () => {
     const active: number[] = [];
     for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(views.ids, i) !== 0n) active.push(i);
+      if (Atomics.load(ids, i) !== 0n) active.push(i);
     }
     return active;
   },
@@ -243,8 +305,8 @@ export const STATE_MATRIX = {
 
     const top: Array<{ idx: number; resonance: number }> = [];
     for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(views.ids, i) === 0n) continue;
-      const resonance = Atomics.load(views.resonances, i);
+      if (Atomics.load(ids, i) === 0n) continue;
+      const resonance = Atomics.load(resonances, i);
       if (top.length < limit) {
         top.push({ idx: i, resonance });
         continue;
@@ -264,13 +326,13 @@ export const STATE_MATRIX = {
 
   findFreeSlot: (): number => {
     for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(views.ids, i) === 0n) return i;
+      if (Atomics.load(ids, i) === 0n) return i;
     }
     return -1;
   },
   findEmptySlot: (): number => {
     for (let i = 1; i < MAX_ATOMS; i++) {
-      if (Atomics.load(views.ids, i) === 0n) return i;
+      if (Atomics.load(ids, i) === 0n) return i;
     }
     return -1;
   },
@@ -283,10 +345,10 @@ export const STATE_MATRIX = {
     for (let j = 0; j < len; j++) {
       const idx = active[j];
       const offset = j * 4;
-      packet[offset] = Atomics.load(views.xs, idx);
-      packet[offset + 1] = Atomics.load(views.ys, idx);
-      packet[offset + 2] = Atomics.load(views.roles, idx);
-      packet[offset + 3] = Atomics.load(views.resonances, idx);
+      packet[offset] = Atomics.load(xs, idx);
+      packet[offset + 1] = Atomics.load(ys, idx);
+      packet[offset + 2] = Atomics.load(roles, idx);
+      packet[offset + 3] = Atomics.load(resonances, idx);
     }
     return packet;
   },
@@ -305,7 +367,7 @@ export const STATE_MATRIX = {
     u8[0] = 79; u8[1] = 77; u8[2] = 71; u8[3] = 65;
     let offset = 4;
     
-    cv.setInt32(offset, Atomics.load(views.tickCounter, 0), true);
+    cv.setInt32(offset, Atomics.load(tickCounter, 0), true);
     offset += 4;
     
     cv.setInt32(offset, gridCells, true);
@@ -313,7 +375,7 @@ export const STATE_MATRIX = {
     
     for(let i=0; i < gridCells; i++) {
         const type = STATE_MATRIX.getGridType(i);
-        const hasPlasmid = views.memoryGrid[i*8] > 0 ? 0x80 : 0;
+        const hasPlasmid = memoryGrid[i*8] > 0 ? 0x80 : 0;
         u8[offset++] = type | hasPlasmid;
     }
     
@@ -322,16 +384,16 @@ export const STATE_MATRIX = {
     
     for(let j=0; j < atomCount; j++) {
         const idx = active[j];
-        cv.setInt16(offset, Atomics.load(views.xs, idx), true); offset += 2;
-        cv.setInt16(offset, Atomics.load(views.ys, idx), true); offset += 2;
-        u8[offset++] = Atomics.load(views.roles, idx);
-        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(views.resonances, idx)));
+        cv.setInt16(offset, Atomics.load(xs, idx), true); offset += 2;
+        cv.setInt16(offset, Atomics.load(ys, idx), true); offset += 2;
+        u8[offset++] = Atomics.load(roles, idx);
+        u8[offset++] = Math.min(255, Math.max(0, Atomics.load(resonances, idx)));
         cv.setUint16(offset, idx, true); offset += 2;
         
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 1), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 2), true); offset+=4;
-        cv.setUint32(offset, Atomics.load(views.bonds, idx*4 + 3), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(bonds, idx*4), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(bonds, idx*4 + 1), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(bonds, idx*4 + 2), true); offset+=4;
+        cv.setUint32(offset, Atomics.load(bonds, idx*4 + 3), true); offset+=4;
     }
     
     return buffer;
@@ -347,22 +409,22 @@ export const STATE_MATRIX = {
     logicVal?: Uint8Array,
     script?: Uint8Array,
   ) => {
-    Atomics.store(views.ids, i, id);
-    Atomics.store(views.xs, i, Math.round(x));
-    Atomics.store(views.ys, i, Math.round(y));
-    Atomics.store(views.energies, i, Math.round(energy * SCALE));
-    Atomics.store(views.resonances, i, Math.trunc(resonance));
-    Atomics.store(views.phases, i, 0);
-    Atomics.store(views.roles, i, 0);
-    Atomics.store(views.semanticBonuses, i, 0);
+    Atomics.store(ids, i, id);
+    Atomics.store(xs, i, Math.round(x));
+    Atomics.store(ys, i, Math.round(y));
+    Atomics.store(energies, i, Math.round(energy * SCALE));
+    Atomics.store(resonances, i, Math.trunc(resonance));
+    Atomics.store(phases, i, 0);
+    Atomics.store(roles, i, 0);
+    Atomics.store(semanticBonuses, i, 0);
 
-    if (logicVal) views.logic.set(logicVal, i * 8);
+    if (logicVal) logic.set(logicVal, i * 8);
 
     const boot = script || DEFAULT_BOOT_SCRIPT;
-    views.instructions.set(boot, i * ATOM_INSTRUCTION_SIZE);
+    instructions.set(boot, i * ATOM_INSTRUCTION_SIZE);
 
-    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) Atomics.store(views.contexts, i * ATOM_CONTEXT_SIZE + r, 0);
-    Atomics.store(views.contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, 0);
+    for (let r = 0; r < ATOM_CONTEXT_SIZE; r++) Atomics.store(contexts, i * ATOM_CONTEXT_SIZE + r, 0);
+    Atomics.store(contextByteView, i * (ATOM_CONTEXT_SIZE * 4) + 32, 0);
   },
 
   seedGuardian: (
@@ -446,7 +508,7 @@ export const STATE_MATRIX = {
   getMatrixResonance: () => {
     let total = 0;
     for (let i = 0; i < GRID_CELLS; i++) {
-      total += Atomics.load(views.signalGrid, i);
+      total += Atomics.load(signalGrid, i);
     }
     return total;
   },
@@ -454,7 +516,7 @@ export const STATE_MATRIX = {
   getClusterSync: () => {
     let sync = 0;
     for (let i = 0; i < GRID_CELLS; i++) {
-      const res = Atomics.load(views.signalGrid, i);
+      const res = Atomics.load(signalGrid, i);
       if (res > 100) sync++;
     }
     return sync;
@@ -463,9 +525,9 @@ export const STATE_MATRIX = {
   getMemorySummary: () => {
     const counts = new Map<number, number>();
     for (let i = 0; i < GRID_CELLS; i++) {
-      const energy = views.memoryGrid[i * 8] + (views.memoryGrid[i * 8 + 1] << 8);
+      const energy = memoryGrid[i * 8] + (memoryGrid[i * 8 + 1] << 8);
       if (energy > 0) {
-        const sig = views.memoryGrid[i * 8 + 4];
+        const sig = memoryGrid[i * 8 + 4];
         counts.set(sig, (counts.get(sig) || 0) + 1);
       }
     }
@@ -475,48 +537,48 @@ export const STATE_MATRIX = {
   injectEnergy: (amount: number) => {
     let count = 0;
     for (let i = 0; i < MAX_ATOMS; i++) {
-      if (Atomics.load(views.ids, i) !== 0n) {
-        const current = Atomics.load(views.energies, i);
-        Atomics.store(views.energies, i, current + Math.round(amount * SCALE));
+      if (Atomics.load(ids, i) !== 0n) {
+        const current = Atomics.load(energies, i);
+        Atomics.store(energies, i, current + Math.round(amount * SCALE));
         count++;
       }
     }
     return count;
   },
 
-  getGridType: (i: number) => Atomics.load(views.structureGrid, i) & 0xFF,
-  getGridDensity: (i: number) => (Atomics.load(views.structureGrid, i) >> 8) & 0xFF,
-  getGridCharge: (i: number) => (Atomics.load(views.structureGrid, i) >> 16) & 0xFF,
-  getGridState: (i: number) => (Atomics.load(views.structureGrid, i) >> 24) & 0xFF,
-  getGlyphHeader: (i: number) => Atomics.load(views.glyphHeaders, i),
-  getGlyphPayload: (i: number) => views.glyphPayload.subarray(i * 8, i * 8 + 8),
-  setGlyphHeader: (i: number, val: number) => Atomics.store(views.glyphHeaders, i, val),
+  getGridType: (i: number) => Atomics.load(structureGrid, i) & 0xFF,
+  getGridDensity: (i: number) => (Atomics.load(structureGrid, i) >> 8) & 0xFF,
+  getGridCharge: (i: number) => (Atomics.load(structureGrid, i) >> 16) & 0xFF,
+  getGridState: (i: number) => (Atomics.load(structureGrid, i) >> 24) & 0xFF,
+  getGlyphHeader: (i: number) => Atomics.load(glyphHeaders, i),
+  getGlyphPayload: (i: number) => glyphPayload.subarray(i * 8, i * 8 + 8),
+  setGlyphHeader: (i: number, val: number) => Atomics.store(glyphHeaders, i, val),
   setGlyphPayload: (i: number, val: Uint8Array) => {
-    views.glyphPayload.fill(0, i * 8, i * 8 + 8);
-    views.glyphPayload.set(val.subarray(0, 8), i * 8);
+    glyphPayload.fill(0, i * 8, i * 8 + 8);
+    glyphPayload.set(val.subarray(0, 8), i * 8);
   },
 
   setGridType: (i: number, val: number) => {
-    Atomics.and(views.structureGrid, i, ~0x000000FF);
-    Atomics.or(views.structureGrid, i, val & 0xFF);
+    Atomics.and(structureGrid, i, ~0x000000FF);
+    Atomics.or(structureGrid, i, val & 0xFF);
   },
   setGridDensity: (i: number, val: number) => {
-    Atomics.and(views.structureGrid, i, ~0x0000FF00);
-    Atomics.or(views.structureGrid, i, (val & 0xFF) << 8);
+    Atomics.and(structureGrid, i, ~0x0000FF00);
+    Atomics.or(structureGrid, i, (val & 0xFF) << 8);
   },
   setGridCharge: (i: number, val: number) => {
-    Atomics.and(views.structureGrid, i, ~0x00FF0000);
-    Atomics.or(views.structureGrid, i, (val & 0xFF) << 16);
+    Atomics.and(structureGrid, i, ~0x00FF0000);
+    Atomics.or(structureGrid, i, (val & 0xFF) << 16);
   },
   setGridState: (i: number, val: number) => {
-    Atomics.and(views.structureGrid, i, ~0xFF000000);
-    Atomics.or(views.structureGrid, i, (val & 0xFF) << 24);
+    Atomics.and(structureGrid, i, ~0xFF000000);
+    Atomics.or(structureGrid, i, (val & 0xFF) << 24);
   },
-  getCausality: (idx: number) => Atomics.load(views.causality, idx),
-  setCausality: (idx: number, val: number) => Atomics.store(views.causality, idx, val),
-  clearDamping: () => views.damping.fill(0),
-  get_hormone: (id: number) => Atomics.load(views.hormones, id),
-  setHormone: (id: number, val: number) => Atomics.store(views.hormones, id, val),
+  getCausality: (idx: number) => Atomics.load(causality, idx),
+  setCausality: (idx: number, val: number) => Atomics.store(causality, idx, val),
+  clearDamping: () => damping.fill(0),
+  get_hormone: (id: number) => Atomics.load(hormones, id),
+  setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
 
 ```
