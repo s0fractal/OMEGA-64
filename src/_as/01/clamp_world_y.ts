@@ -1,4 +1,4 @@
-// SSoT: src/ontology/spatial/clamp_world_y.md
+/** SSoT: {@link ../../ontology/spatial/clamp_world_y.md} */
 import { WORLD_MAX_Y, math_clamp } from "../00/mod";
 
 @inline

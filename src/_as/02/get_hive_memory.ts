@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_hive_memory.md
+/** SSoT: {@link ../../ontology/memory/get_hive_memory.md} */
 import { HIVE_MEMORY_OFF } from "../01/mod";
 
 @inline

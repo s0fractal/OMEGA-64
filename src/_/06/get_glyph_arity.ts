@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/get_glyph_arity.md
+/** SSoT: {@link ../../ontology/core/get_glyph_arity.md} */
 
 import { GLYPH_ARITY_LUT } from "../00/mod.ts";
 

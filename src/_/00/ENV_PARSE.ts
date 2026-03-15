@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/env_parse.md
+/** SSoT: {@link ../../ontology/host/env_parse.md} */
 
 export const parseEnvBool = (
   raw: string | undefined,

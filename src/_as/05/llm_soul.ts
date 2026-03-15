@@ -1,2 +1,2 @@
-// SSoT: src/ontology/semantic/llm_soul.md
+/** SSoT: {@link ../../ontology/semantic/llm_soul.md} */
 

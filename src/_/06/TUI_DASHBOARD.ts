@@ -1,4 +1,4 @@
-// SSoT: src/ontology/telemetry/tui_dashboard.md
+/** SSoT: {@link ../../ontology/telemetry/tui_dashboard.md} */
 
 import { STATE_MATRIX } from "@generated";
 import { GRID_W, GRID_H, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE } from "../mod.ts";

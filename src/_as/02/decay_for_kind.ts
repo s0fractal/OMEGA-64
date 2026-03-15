@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/decay_for_kind.md
+/** SSoT: {@link ../../ontology/autopoiesis/decay_for_kind.md} */
 import { fast_abs } from "../01/mod";
 
 @inline

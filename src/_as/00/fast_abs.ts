@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/fast_abs.md
+/** SSoT: {@link ../../ontology/math/fast_abs.md} */
 
 @inline
 export function fast_abs(v: i32): i32 {

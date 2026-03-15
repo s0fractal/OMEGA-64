@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_p_c.md
+/** SSoT: {@link ../../ontology/memory/set_p_c.md} */
 import { CONTEXT_OFFSET } from "../01/mod";
 
 @inline

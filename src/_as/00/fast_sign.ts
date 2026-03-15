@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/fast_sign.md
+/** SSoT: {@link ../../ontology/math/fast_sign.md} */
 
 @inline
 export function fast_sign(v: i32): i32 {

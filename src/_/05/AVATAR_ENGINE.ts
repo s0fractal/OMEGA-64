@@ -1,4 +1,4 @@
-// SSoT: src/ontology/semantic/avatar_engine.md
+/** SSoT: {@link ../../ontology/semantic/avatar_engine.md} */
 
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.

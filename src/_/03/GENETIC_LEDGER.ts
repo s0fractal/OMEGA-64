@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/genetic_ledger.md
+/** SSoT: {@link ../../ontology/l32_gate/genetic_ledger.md} */
 
 import { RUNTIME_POLICY } from "../../03/RUNTIME_POLICY.ts";
 

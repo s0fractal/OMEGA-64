@@ -1,2 +1,2 @@
-// SSoT: src/ontology/core/breath_cycle.md
+/** SSoT: {@link ../../ontology/core/breath_cycle.md} */
 

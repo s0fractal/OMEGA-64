@@ -1,4 +1,4 @@
-// SSoT: src/ontology/spatial/dir8_y.md
+/** SSoT: {@link ../../ontology/spatial/dir8_y.md} */
 
 @inline
 export function dir8_y(n: i32): i32 {

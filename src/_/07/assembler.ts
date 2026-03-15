@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/assembler.md
+/** SSoT: {@link ../../ontology/host/assembler.md} */
 
 import { OPCODE_ARITY_LUT } from "../00/mod.ts";
 

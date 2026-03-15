@@ -1,4 +1,4 @@
-// SSoT: src/ontology/swarm/swarm_nexus.md
+/** SSoT: {@link ../../ontology/swarm/swarm_nexus.md} */
 
 import { LOGGER } from "@generated";
 

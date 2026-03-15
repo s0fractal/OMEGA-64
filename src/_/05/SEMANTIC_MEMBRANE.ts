@@ -1,4 +1,4 @@
-// SSoT: src/ontology/semantic/semantic_membrane.md
+/** SSoT: {@link ../../ontology/semantic/semantic_membrane.md} */
 
 import { GRID_W, GRID_H, GRID_CELLS } from "../mod.ts";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)

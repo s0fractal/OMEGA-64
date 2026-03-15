@@ -1,2 +1,2 @@
-// SSoT: src/ontology/l32_gate/gate_validator.md
+/** SSoT: {@link ../../ontology/l32_gate/gate_validator.md} */
 

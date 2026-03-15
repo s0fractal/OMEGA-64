@@ -1,4 +1,4 @@
-// SSoT: src/ontology/spatial/store_clamped_pos.md
+/** SSoT: {@link ../../ontology/spatial/store_clamped_pos.md} */
 import { XS_OFFSET, YS_OFFSET, clamp_world_x, clamp_world_y } from "../01/mod";
 
 @inline

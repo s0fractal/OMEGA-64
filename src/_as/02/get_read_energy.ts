@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_read_energy.md
+/** SSoT: {@link ../../ontology/memory/get_read_energy.md} */
 import { PHYSICS_READ_ENERGY_OFF } from "../01/mod";
 
 @inline

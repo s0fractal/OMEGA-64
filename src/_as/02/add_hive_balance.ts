@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/add_hive_balance.md
+/** SSoT: {@link ../../ontology/memory/add_hive_balance.md} */
 import { HIVE_BALANCE_OFF } from "../01/mod";
 
 @inline

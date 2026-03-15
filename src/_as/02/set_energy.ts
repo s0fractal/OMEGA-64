@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_energy.md
+/** SSoT: {@link ../../ontology/memory/set_energy.md} */
 import { ENERGY_OFFSET } from "../01/mod";
 
 @inline

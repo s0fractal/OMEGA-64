@@ -1,4 +1,4 @@
-// SSoT: src/ontology/telemetry/glyph_telemetry.md
+/** SSoT: {@link ../../ontology/telemetry/glyph_telemetry.md} */
 
 import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@generated";
 import { STATE_MATRIX } from "@generated";

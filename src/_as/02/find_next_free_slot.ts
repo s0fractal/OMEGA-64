@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/find_next_free_slot.md
+/** SSoT: {@link ../../ontology/autopoiesis/find_next_free_slot.md} */
 import { MAX_ATOMS, IDS_OFFSET } from "../01/mod";
 
 @inline

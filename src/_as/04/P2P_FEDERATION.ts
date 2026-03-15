@@ -1,2 +1,2 @@
-// SSoT: src/ontology/swarm/federation.md
+/** SSoT: {@link ../../ontology/swarm/federation.md} */
 

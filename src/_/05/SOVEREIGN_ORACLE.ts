@@ -1,4 +1,4 @@
-// SSoT: src/ontology/semantic/sovereign_oracle.md
+/** SSoT: {@link ../../ontology/semantic/sovereign_oracle.md} */
 
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/get_glyph_influence.md
+/** SSoT: {@link ../../ontology/physics/get_glyph_influence.md} */
 import { GRID_W, GRID_H, GLYPH_HEADER_OFF, ROLE_PARASITE, ROLE_GUARDIAN, ROLE_ARCHITECT } from "../01/mod";
 
 @inline

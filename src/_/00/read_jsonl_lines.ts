@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/read_jsonl_lines.md
+/** SSoT: {@link ../../ontology/host/read_jsonl_lines.md} */
 
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {

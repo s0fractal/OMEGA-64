@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/math_clamp.md
+/** SSoT: {@link ../../ontology/math/math_clamp.md} */
 
 @inline
 export function math_clamp(val: i32, min: i32, max: i32): i32 {

@@ -1,2 +1,2 @@
-// SSoT: src/ontology/memory/state_snapshot.md
+/** SSoT: {@link ../../ontology/memory/state_snapshot.md} */
 

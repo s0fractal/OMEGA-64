@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/clear_metabolism_stats.md
+/** SSoT: {@link ../../ontology/autopoiesis/clear_metabolism_stats.md} */
 import { METABOLISM_SCRATCH_OFFSET } from "../01/mod";
 
 @inline

@@ -1,2 +1,2 @@
-// SSoT: src/ontology/telemetry/glyph_telemetry.md
+/** SSoT: {@link ../../ontology/telemetry/glyph_telemetry.md} */
 

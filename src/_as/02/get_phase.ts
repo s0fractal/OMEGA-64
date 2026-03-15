@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_phase.md
+/** SSoT: {@link ../../ontology/memory/get_phase.md} */
 import { PHASE_OFFSET } from "../01/mod";
 
 @inline

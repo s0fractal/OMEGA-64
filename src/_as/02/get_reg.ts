@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_reg.md
+/** SSoT: {@link ../../ontology/memory/get_reg.md} */
 import { CONTEXT_OFFSET } from "../01/mod";
 
 @inline

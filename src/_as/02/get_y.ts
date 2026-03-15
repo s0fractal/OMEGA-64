@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_y.md
+/** SSoT: {@link ../../ontology/memory/get_y.md} */
 import { YS_OFFSET } from "../01/mod";
 
 @inline

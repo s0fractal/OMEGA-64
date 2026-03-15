@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_bond_dist.md
+/** SSoT: {@link ../../ontology/memory/set_bond_dist.md} */
 import { BOND_DISTANCES_OFFSET } from "../01/mod";
 
 @inline

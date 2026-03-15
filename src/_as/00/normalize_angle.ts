@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/normalize_angle.md
+/** SSoT: {@link ../../ontology/math/normalize_angle.md} */
 
 @inline
 export function normalize_angle(angle: f64): f64 {

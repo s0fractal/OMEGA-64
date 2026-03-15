@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/pulse_worker.md
+/** SSoT: {@link ../../ontology/core/pulse_worker.md} */
 
 import { WASM_MEMORY_BYTES, AS_WASM_PATH, GRID_W, GRID_H, GRID_CELLS } from "@generated";
 

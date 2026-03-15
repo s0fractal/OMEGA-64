@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_spatial_grid_count.md
+/** SSoT: {@link ../../ontology/memory/get_spatial_grid_count.md} */
 import { SPATIAL_GRID_OFFSET, GRID_W } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/omega_daemon.md
+/** SSoT: {@link ../../ontology/core/omega_daemon.md} */
 
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.

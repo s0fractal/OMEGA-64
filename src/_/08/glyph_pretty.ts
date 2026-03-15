@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/glyph_pretty.md
+/** SSoT: {@link ../../ontology/host/glyph_pretty.md} */
 
 import { glyphSpecById } from "../07/glyph_ir_64.ts";
 import type { GlyphTapeToken } from "../07/disassembler.ts";

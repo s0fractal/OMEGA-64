@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/pack_glyph_header.md
+/** SSoT: {@link ../../ontology/autopoiesis/pack_glyph_header.md} */
 
 @inline
 export function pack_glyph_header(kind: i32, amplitude: i32): i32 {

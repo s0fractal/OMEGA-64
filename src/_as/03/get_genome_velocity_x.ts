@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/get_genome_velocity_x.md
+/** SSoT: {@link ../../ontology/physics/get_genome_velocity_x.md} */
 import { get_logic_byte } from "../02/mod";
 
 @inline

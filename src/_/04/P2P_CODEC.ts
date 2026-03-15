@@ -1,4 +1,4 @@
-// SSoT: src/ontology/swarm/p2p_codec.md
+/** SSoT: {@link ../../ontology/swarm/p2p_codec.md} */
 
 // OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
 // Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)

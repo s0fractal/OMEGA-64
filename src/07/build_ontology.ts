@@ -439,7 +439,7 @@ ${(node.regions || []).map((r, i, arr) => {
   
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + tsOut);
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `/** SSoT: {@link ../../ontology/${node.sourceFile}} */\n` + tsOut);
     }
   }
 
@@ -617,9 +617,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
         Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
     } else if (node.type === "module" && node.asCode) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + node.asCode);
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `/** SSoT: {@link ../../ontology/${node.sourceFile}} */\n` + node.asCode);
     } else {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: src/ontology/${node.sourceFile}\n` + asOut);
+        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `/** SSoT: {@link ../../ontology/${node.sourceFile}} */\n` + asOut);
     }
   }
 }

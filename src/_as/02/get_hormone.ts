@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_hormone.md
+/** SSoT: {@link ../../ontology/memory/get_hormone.md} */
 import { HORMONE_OFF } from "../01/mod";
 
 @inline

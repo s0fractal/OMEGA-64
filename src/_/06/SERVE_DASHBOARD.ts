@@ -1,4 +1,4 @@
-// SSoT: src/ontology/telemetry/serve_dashboard.md
+/** SSoT: {@link ../../ontology/telemetry/serve_dashboard.md} */
 
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import {

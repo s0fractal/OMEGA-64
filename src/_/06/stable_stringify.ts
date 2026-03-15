@@ -1,4 +1,4 @@
-// SSoT: src/ontology/crypto/stable_stringify.md
+/** SSoT: {@link ../../ontology/crypto/stable_stringify.md} */
 
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {

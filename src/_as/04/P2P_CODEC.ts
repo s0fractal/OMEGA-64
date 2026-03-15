@@ -1,2 +1,2 @@
-// SSoT: src/ontology/swarm/p2p_codec.md
+/** SSoT: {@link ../../ontology/swarm/p2p_codec.md} */
 

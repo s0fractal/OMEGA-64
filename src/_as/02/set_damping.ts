@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_damping.md
+/** SSoT: {@link ../../ontology/memory/set_damping.md} */
 import { DAMPING_OFF } from "../01/mod";
 
 @inline

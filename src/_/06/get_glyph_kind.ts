@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/get_glyph_kind.md
+/** SSoT: {@link ../../ontology/core/get_glyph_kind.md} */
 
 import { KIND_CORE, KIND_CONTROL } from "../00/mod.ts";
 

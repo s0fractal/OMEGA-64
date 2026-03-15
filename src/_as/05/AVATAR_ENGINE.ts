@@ -1,2 +1,2 @@
-// SSoT: src/ontology/semantic/avatar_engine.md
+/** SSoT: {@link ../../ontology/semantic/avatar_engine.md} */
 

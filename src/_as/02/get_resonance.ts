@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_resonance.md
+/** SSoT: {@link ../../ontology/memory/get_resonance.md} */
 import { RESONANCE_OFFSET } from "../01/mod";
 
 @inline

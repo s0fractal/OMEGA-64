@@ -1,2 +1,2 @@
-// SSoT: src/ontology/core/pulse_orchestrator.md
+/** SSoT: {@link ../../ontology/core/pulse_orchestrator.md} */
 

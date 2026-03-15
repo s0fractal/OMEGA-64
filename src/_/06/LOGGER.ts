@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/LOGGER.md
+/** SSoT: {@link ../../ontology/host/LOGGER.md} */
 
 export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
 

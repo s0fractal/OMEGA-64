@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmSys.md
+/** SSoT: {@link ../../ontology/core/VmSys.md} */
 
 export const SYS_YIELD: i32 = 1;
 export const SYS_READ_MEM: i32 = 2;

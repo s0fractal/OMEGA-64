@@ -1,2 +1,2 @@
-// SSoT: src/ontology/core/pulse_worker.md
+/** SSoT: {@link ../../ontology/core/pulse_worker.md} */
 

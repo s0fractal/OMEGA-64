@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmOpcodes.md
+/** SSoT: {@link ../../ontology/core/VmOpcodes.md} */
 
 export const OP_NOP: u8 = 0;
 export const OP_SET: u8 = 1;

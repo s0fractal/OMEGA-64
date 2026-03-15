@@ -1,4 +1,4 @@
-// SSoT: src/ontology/semantic/llm_soul.md
+/** SSoT: {@link ../../ontology/semantic/llm_soul.md} */
 
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 import { LOGGER } from "@generated";

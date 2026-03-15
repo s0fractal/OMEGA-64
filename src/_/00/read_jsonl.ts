@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/read_jsonl.md
+/** SSoT: {@link ../../ontology/host/read_jsonl.md} */
 
 export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   try {

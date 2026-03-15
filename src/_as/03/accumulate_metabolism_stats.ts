@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/accumulate_metabolism_stats.md
+/** SSoT: {@link ../../ontology/autopoiesis/accumulate_metabolism_stats.md} */
 import { IDS_OFFSET, METABOLISM_SCRATCH_OFFSET, genome_key16 } from "../02/mod";
 
 @inline

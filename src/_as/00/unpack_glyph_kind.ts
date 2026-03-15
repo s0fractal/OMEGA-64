@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/unpack_glyph_kind.md
+/** SSoT: {@link ../../ontology/autopoiesis/unpack_glyph_kind.md} */
 
 @inline
 export function unpack_glyph_kind(header: i32): i32 {

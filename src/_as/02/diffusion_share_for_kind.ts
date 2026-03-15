@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/diffusion_share_for_kind.md
+/** SSoT: {@link ../../ontology/autopoiesis/diffusion_share_for_kind.md} */
 import { fast_abs } from "../01/mod";
 
 @inline

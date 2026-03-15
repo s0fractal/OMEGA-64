@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmOpcodes.md
+/** SSoT: {@link ../../ontology/core/VmOpcodes.md} */
 
 // Enum: VmOpcodes
 export const OP_NOP: number = 0;

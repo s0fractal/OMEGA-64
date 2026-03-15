@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/make_xor_shift32.md
+/** SSoT: {@link ../../ontology/math/make_xor_shift32.md} */
 
 export const make_xor_shift32 = (seed: number): () => number => {
   let state = (seed >>> 0) || 1;

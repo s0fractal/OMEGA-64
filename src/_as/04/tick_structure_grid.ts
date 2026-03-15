@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/tick_structure_grid.md
+/** SSoT: {@link ../../ontology/physics/tick_structure_grid.md} */
 import { GRID_H, GRID_W, STRUCTURE_GRID_OFF, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_CHARGE_INTENT_OFF, STR_VOID, STR_WIRE, STR_SOURCE, STR_NODE, STR_CAPACITOR, STR_DIODE, STR_INVERTER, STR_LATCH, SPATIAL_GRID_OFFSET, SIGNAL_GRID_OFF, MEMORY_GRID_OFF, dir8_x, dir8_y, dir4_x, dir4_y, in_grid, trace_atom, read_structure_charge } from "../03/mod";
 
 @inline

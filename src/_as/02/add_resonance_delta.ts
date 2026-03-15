@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/add_resonance_delta.md
+/** SSoT: {@link ../../ontology/memory/add_resonance_delta.md} */
 import { RESONANCE_DELTA_OFF } from "../01/mod";
 
 @inline

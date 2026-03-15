@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/gate_ledger.md
+/** SSoT: {@link ../../ontology/l32_gate/gate_ledger.md} */
 
 import { type BridgeModeEvent, type GateConfig } from "@generated";
 import { type LedgerEvent } from "@generated";

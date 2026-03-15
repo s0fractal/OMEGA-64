@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/set_neural_coherence.md
+/** SSoT: {@link ../../ontology/autopoiesis/set_neural_coherence.md} */
 import { NEURAL_COHERENCE_OFF } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/glyph_ir_64.md
+/** SSoT: {@link ../../ontology/host/glyph_ir_64.md} */
 
 import {
   KIND_CORE, KIND_CONTROL, KIND_TRANSPORT, KIND_STRUCTURAL,

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/add_energy_delta.md
+/** SSoT: {@link ../../ontology/memory/add_energy_delta.md} */
 import { ENERGY_DELTA_OFF } from "../01/mod";
 
 @inline

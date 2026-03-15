@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/SYSTEM_CONSTANTS.md
+/** SSoT: {@link ../../ontology/core/SYSTEM_CONSTANTS.md} */
 
 // Constants: SYSTEM_CONSTANTS
 export const MAX_ATOMS: number = 500000;

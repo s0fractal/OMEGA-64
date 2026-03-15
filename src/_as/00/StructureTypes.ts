@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/StructureTypes.md
+/** SSoT: {@link ../../ontology/core/StructureTypes.md} */
 
 export const STR_VOID: u8 = 0;
 export const STR_WIRE: u8 = 1;

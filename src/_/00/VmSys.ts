@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmSys.md
+/** SSoT: {@link ../../ontology/core/VmSys.md} */
 
 // Enum: VmSys
 export const SYS_YIELD: number = 1;

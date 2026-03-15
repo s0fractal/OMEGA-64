@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/clear_secretion_stats.md
+/** SSoT: {@link ../../ontology/autopoiesis/clear_secretion_stats.md} */
 import { SECRETION_STATS_OFF } from "../01/mod";
 
 @inline

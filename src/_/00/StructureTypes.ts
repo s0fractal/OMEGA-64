@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/StructureTypes.md
+/** SSoT: {@link ../../ontology/core/StructureTypes.md} */
 
 // Enum: StructureTypes
 export const STR_VOID: number = 0;

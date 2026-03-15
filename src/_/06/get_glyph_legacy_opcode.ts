@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/get_glyph_legacy_opcode.md
+/** SSoT: {@link ../../ontology/core/get_glyph_legacy_opcode.md} */
 
 import { GLYPH_LEGACY_OPCODE_LUT } from "../00/mod.ts";
 

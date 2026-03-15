@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/apply_metabolism_kernel.md
+/** SSoT: {@link ../../ontology/autopoiesis/apply_metabolism_kernel.md} */
 import { METABOLISM_SCRATCH_OFFSET, IDS_OFFSET, ROLES_OFFSET, RESONANCE_OFFSET, CONTEXT_OFFSET, XS_OFFSET, YS_OFFSET, SPATIAL_CELL_SIZE, GRID_W, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, MAX_ATOMS, ENERGY_OFFSET, BONDS_OFFSET, get_energy, set_energy, genome_key16, fast_abs } from "../02/mod";
 
 @inline

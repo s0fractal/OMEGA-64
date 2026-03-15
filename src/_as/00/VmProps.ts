@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmProps.md
+/** SSoT: {@link ../../ontology/core/VmProps.md} */
 
 export const PROP_ENERGY: u8 = 0;
 export const PROP_RESONANCE: u8 = 1;

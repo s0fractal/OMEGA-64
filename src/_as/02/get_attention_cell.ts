@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/get_attention_cell.md
+/** SSoT: {@link ../../ontology/physics/get_attention_cell.md} */
 import { GRID_W, GRID_H, ATTENTION_FIELD_OFF } from "../01/mod";
 
 @inline

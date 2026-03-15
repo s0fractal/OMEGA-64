@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/memory_views.md
+/** SSoT: {@link ../../ontology/memory/memory_views.md} */
 
 import { 
   MAX_ATOMS, 

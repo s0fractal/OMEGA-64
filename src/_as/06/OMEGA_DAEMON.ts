@@ -1,2 +1,2 @@
-// SSoT: src/ontology/core/omega_daemon.md
+/** SSoT: {@link ../../ontology/core/omega_daemon.md} */
 

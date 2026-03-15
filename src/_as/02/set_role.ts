@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_role.md
+/** SSoT: {@link ../../ontology/memory/set_role.md} */
 import { ROLES_OFFSET } from "../01/mod";
 
 @inline

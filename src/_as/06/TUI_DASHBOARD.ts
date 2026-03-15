@@ -1,2 +1,2 @@
-// SSoT: src/ontology/telemetry/tui_dashboard.md
+/** SSoT: {@link ../../ontology/telemetry/tui_dashboard.md} */
 

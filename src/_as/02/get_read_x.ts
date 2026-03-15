@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_read_x.md
+/** SSoT: {@link ../../ontology/memory/get_read_x.md} */
 import { PHYSICS_READ_XS_OFF } from "../01/mod";
 
 @inline

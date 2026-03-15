@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/genome_key16.md
+/** SSoT: {@link ../../ontology/memory/genome_key16.md} */
 import { LOGIC_OFFSET } from "../01/mod";
 
 @inline

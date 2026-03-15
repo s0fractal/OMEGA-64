@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/pulse_orchestrator.md
+/** SSoT: {@link ../../ontology/core/pulse_orchestrator.md} */
 
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 import { MAX_ATOMS, sharedBuffer, STATE_MATRIX, AS_WASM_PATH, LOGGER } from "@generated";

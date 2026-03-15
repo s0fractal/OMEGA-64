@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/get_glyph_energy.md
+/** SSoT: {@link ../../ontology/core/get_glyph_energy.md} */
 
 import { GLYPH_ENERGY_LUT } from "../00/mod.ts";
 

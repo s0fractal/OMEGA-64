@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/gate_validator.md
+/** SSoT: {@link ../../ontology/l32_gate/gate_validator.md} */
 
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX

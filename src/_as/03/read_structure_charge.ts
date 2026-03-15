@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/read_structure_charge.md
+/** SSoT: {@link ../../ontology/physics/read_structure_charge.md} */
 import { STRUCTURE_CHARGE_INTENT_OFF, read_structure_cell } from "../02/mod";
 
 @inline

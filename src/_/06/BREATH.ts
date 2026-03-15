@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/breath_cycle.md
+/** SSoT: {@link ../../ontology/core/breath_cycle.md} */
 
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/state_snapshot.md
+/** SSoT: {@link ../../ontology/memory/state_snapshot.md} */
 
 // STATE_SNAPSHOT.ts
 // 🛡️ OMEGA-64 | Glider Lite | State & Proposal Types

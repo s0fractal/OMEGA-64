@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_logic_byte.md
+/** SSoT: {@link ../../ontology/memory/get_logic_byte.md} */
 import { LOGIC_OFFSET } from "../01/mod";
 
 @inline

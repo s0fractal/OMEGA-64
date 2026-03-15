@@ -1,4 +1,4 @@
-// SSoT: src/ontology/spatial/in_grid.md
+/** SSoT: {@link ../../ontology/spatial/in_grid.md} */
 import { GRID_W, GRID_H } from "../00/mod";
 
 @inline

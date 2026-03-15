@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/fire_signal.md
+/** SSoT: {@link ../../ontology/physics/fire_signal.md} */
 import { MAX_ATOMS, get_bond_target, get_bond_stiffness, add_resonance_delta } from "../02/mod";
 
 @inline

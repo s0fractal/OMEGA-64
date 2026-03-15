@@ -1,2 +1,2 @@
-// SSoT: src/ontology/l32_gate/gate_merger.md
+/** SSoT: {@link ../../ontology/l32_gate/gate_merger.md} */
 

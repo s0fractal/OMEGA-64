@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/gate.md
+/** SSoT: {@link ../../ontology/l32_gate/gate.md} */
 
 import { GRID_H } from "../mod.ts";
 import {

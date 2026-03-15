@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/SYSTEM_CONSTANTS.md
+/** SSoT: {@link ../../ontology/core/SYSTEM_CONSTANTS.md} */
 
 export const MAX_ATOMS: i32 = 500000;
 export const LAYOUT_VERSION: i32 = 1;

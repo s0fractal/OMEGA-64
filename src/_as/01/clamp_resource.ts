@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/clamp_resource.md
+/** SSoT: {@link ../../ontology/math/clamp_resource.md} */
 import { RESOURCE_MAX } from "../00/mod";
 
 @inline

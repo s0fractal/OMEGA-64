@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/GLYPH_TYPES.md
+/** SSoT: {@link ../../ontology/core/GLYPH_TYPES.md} */
 
 // Enum: GLYPH_TYPES
 export const KIND_CORE: number = 0;

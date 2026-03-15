@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/publish_build_intent.md
+/** SSoT: {@link ../../ontology/physics/publish_build_intent.md} */
 import { STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK, STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF } from "../01/mod";
 
 @inline

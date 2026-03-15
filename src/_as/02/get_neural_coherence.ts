@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/get_neural_coherence.md
+/** SSoT: {@link ../../ontology/autopoiesis/get_neural_coherence.md} */
 import { GRID_CELLS, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, COHERENCE_OFF, trace_atom } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/crypto/sha256_hex.md
+/** SSoT: {@link ../../ontology/crypto/sha256_hex.md} */
 import { bytes_to_hex } from "../06/mod.ts";
 
 const crypto = globalThis.crypto;

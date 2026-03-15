@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/atomic_ledger.md
+/** SSoT: {@link ../../ontology/l32_gate/atomic_ledger.md} */
 
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)

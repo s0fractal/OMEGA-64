@@ -1,2 +1,2 @@
-// SSoT: src/ontology/memory/state_matrix.md
+/** SSoT: {@link ../../ontology/memory/state_matrix.md} */
 

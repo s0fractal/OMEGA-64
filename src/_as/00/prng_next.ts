@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/prng_next.md
+/** SSoT: {@link ../../ontology/math/prng_next.md} */
 
 @inline
 export function prng_next(state: u32): u32 {

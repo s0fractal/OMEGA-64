@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/VmProps.md
+/** SSoT: {@link ../../ontology/core/VmProps.md} */
 
 // Enum: VmProps
 export const PROP_ENERGY: number = 0;

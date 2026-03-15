@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/apply_bond_springs.md
+/** SSoT: {@link ../../ontology/physics/apply_bond_springs.md} */
 import { DAMPING_OFF, MAX_ATOMS, BOND_DISTANCES_OFFSET, get_bond_target, get_bond_stiffness, get_read_x, get_read_y, get_read_resonance, add_resonance_delta, encode_force_tuple } from "../02/mod";
 
 @inline

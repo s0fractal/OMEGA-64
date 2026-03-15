@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/run_phagocyte_pass.md
+/** SSoT: {@link ../../ontology/autopoiesis/run_phagocyte_pass.md} */
 import { MAX_ATOMS, IDS_OFFSET, ROLES_OFFSET, BONDS_OFFSET, immune_check, get_read_energy, get_read_resonance, set_energy, set_resonance } from "../02/mod";
 
 @inline

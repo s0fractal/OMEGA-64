@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_read_resonance.md
+/** SSoT: {@link ../../ontology/memory/get_read_resonance.md} */
 import { PHYSICS_READ_RESONANCE_OFF } from "../01/mod";
 
 @inline

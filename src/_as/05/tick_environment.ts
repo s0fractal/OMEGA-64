@@ -1,4 +1,4 @@
-// SSoT: src/ontology/physics/tick_environment.md
+/** SSoT: {@link ../../ontology/physics/tick_environment.md} */
 import { GRID_CELLS, ATTENTION_FIELD_OFF, tick_structure_grid, diffuse_viral_semantics, glyph_transport } from "../04/mod";
 
 @inline

@@ -1,2 +1,2 @@
-// SSoT: src/ontology/semantic/sovereign_oracle.md
+/** SSoT: {@link ../../ontology/semantic/sovereign_oracle.md} */
 

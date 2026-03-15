@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_lineage.md
+/** SSoT: {@link ../../ontology/memory/get_lineage.md} */
 import { LINEAGE_OFFSET } from "../01/mod";
 
 @inline

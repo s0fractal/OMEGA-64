@@ -1,4 +1,4 @@
-// SSoT: src/ontology/crypto/crypto_keys.md
+/** SSoT: {@link ../../ontology/crypto/crypto_keys.md} */
 import { base64_to_bytes } from "../06/mod.ts";
 
 export type Ed25519SigningKey = {

@@ -1,4 +1,4 @@
-// SSoT: src/ontology/l32_gate/gate_merger.md
+/** SSoT: {@link ../../ontology/l32_gate/gate_merger.md} */
 
 import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@generated";
 import { LOAD_LOAD as LOAD } from "@generated";

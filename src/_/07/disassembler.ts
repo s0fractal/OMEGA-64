@@ -1,4 +1,4 @@
-// SSoT: src/ontology/host/disassembler.md
+/** SSoT: {@link ../../ontology/host/disassembler.md} */
 
 import { OPCODE_ARITY_LUT } from "../00/mod.ts";
 import { OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JZ, OP_JNZ, OP_JMP, OP_SYSCALL, OP_REPLICATE, OP_SIGNAL, OP_BIND, OP_SHARE, OP_HEBB, OP_PLUG, OP_TENSEGRITY, OP_COLLECTIVE, OP_BUILD, OP_SPORE_DRIVE, OP_SENSE, OP_SENSE_AS, OP_SECRETE_PLASMID, OP_INCORPORATE_PLASMID, OP_RESOLVE, OP_RESONATE_KURAMOTO } from "../00/mod.ts";

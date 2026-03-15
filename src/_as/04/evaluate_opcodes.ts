@@ -1,4 +1,4 @@
-// SSoT: src/ontology/core/evaluate_opcodes.md
+/** SSoT: {@link ../../ontology/core/evaluate_opcodes.md} */
 import { INSTRUCTIONS_OFFSET, MAX_ATOMS, GRID_W, NEURAL_COHERENCE_OFF, MEMORY_GRID_OFF, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JMP, OP_SYSCALL, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_SPORE_DRIVE, OP_SENSE_AS, PROP_ENERGY, PROP_RESONANCE, PROP_X, PROP_Y, PROP_PHASE, PROP_GRID_CHARGE, PROP_QUORUM, PROP_NEURAL_COHERENCE, PROP_MEMORY, PROP_CONSENSUS, get_p_c, set_p_c, get_x, get_y, get_phase, set_phase, get_reg, set_reg, get_spatial_grid_count, get_spatial_grid_atom, get_hormone, set_energy, set_resonance, set_pending_syscall, in_grid, read_structure_charge, math_sin, math_cos } from "../03/mod";
 
 @inline

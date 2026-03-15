@@ -1,4 +1,4 @@
-// SSoT: src/ontology/swarm/federation.md
+/** SSoT: {@link ../../ontology/swarm/federation.md} */
 
 // OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
 // Reliable inter-system atom migration.

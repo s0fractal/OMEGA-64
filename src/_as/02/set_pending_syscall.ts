@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/set_pending_syscall.md
+/** SSoT: {@link ../../ontology/memory/set_pending_syscall.md} */
 import { CONTEXT_OFFSET } from "../01/mod";
 
 @inline

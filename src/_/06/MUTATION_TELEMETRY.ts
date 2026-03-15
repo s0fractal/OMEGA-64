@@ -1,4 +1,4 @@
-// SSoT: src/ontology/telemetry/mutation_telemetry.md
+/** SSoT: {@link ../../ontology/telemetry/mutation_telemetry.md} */
 
 import { LOGGER } from "@generated";
 import { RUNTIME_POLICY } from "@03";

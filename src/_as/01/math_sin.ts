@@ -1,4 +1,4 @@
-// SSoT: src/ontology/math/math_sin.md
+/** SSoT: {@link ../../ontology/math/math_sin.md} */
 import { SIN_LUT, COS_LUT } from "../00/mod";
 
 @inline

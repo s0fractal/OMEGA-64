@@ -1,4 +1,4 @@
-// SSoT: src/ontology/autopoiesis/diffuse_viral_semantics.md
+/** SSoT: {@link ../../ontology/autopoiesis/diffuse_viral_semantics.md} */
 import { GRID_H, GRID_W, SIGNAL_GRID_OFF, in_grid, prng_next } from "../01/mod";
 
 @inline

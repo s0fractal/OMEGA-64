@@ -1,4 +1,4 @@
-// SSoT: src/ontology/memory/get_bond_stiffness.md
+/** SSoT: {@link ../../ontology/memory/get_bond_stiffness.md} */
 import { STIFFNESS_OFFSET } from "../01/mod";
 
 @inline
