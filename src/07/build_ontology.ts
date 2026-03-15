@@ -1,11 +1,18 @@
 import { ensureDirSync, emptyDirSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
 import { parse as parseYaml } from "https://deno.land/std@0.224.0/yaml/mod.ts";
 import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
+import { resolve, join } from "https://deno.land/std@0.224.0/path/mod.ts";
+import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
-const SRC_ONTOLOGY_DIR = new URL("../ontology", import.meta.url).pathname;
-const GEN_DIR_TS = new URL("../_", import.meta.url).pathname;
-const GEN_DIR_RS = new URL("../00/sigma_core/src/ontology_gen", import.meta.url).pathname;
-const GEN_DIR_AS = new URL("../_as", import.meta.url).pathname;
+// Load .env variables synchronously
+loadSync({ export: true });
+
+const CWD = Deno.cwd();
+
+const SRC_ONTOLOGY_DIR = resolve(CWD, Deno.env.get("SRC_ONTOLOGY_DIR") || "src/ontology");
+const GEN_DIR_TS = resolve(CWD, Deno.env.get("GEN_DIR_TS") || "src/_");
+const GEN_DIR_RS = resolve(CWD, Deno.env.get("GEN_DIR_RS") || "src/00/sigma_core/src/ontology_gen");
+const GEN_DIR_AS = resolve(CWD, Deno.env.get("GEN_DIR_AS") || "src/_as");
 
 import { z } from "npm:zod@4.3.6";
 
@@ -94,7 +101,7 @@ try {
       // Standardize the casing mapping from yaml schema
       base_offset: meta.base_offset,
       level: -1,
-      sourceFile: entry.path.split("/src/ontology/")[1] || entry.path
+      sourceFile: entry.path.replace(SRC_ONTOLOGY_DIR, "").replace(/^\//, "")
     };
 
     if (meta.args) {
