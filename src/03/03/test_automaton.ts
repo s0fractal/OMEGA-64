@@ -1,7 +1,7 @@
 // OMEGA-64 | test_automaton.ts | Phase 24: Pure Automaton Verification
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { GATE } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { GATE } from "@g";
 
 async function runTest() {
   console.log("🧪 OMEGA-64 | TEST_AUTOMATON | Starting...");

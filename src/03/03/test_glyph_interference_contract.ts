@@ -1,5 +1,5 @@
-import { GLYPH_KIND, GLYPH_TELEMETRY } from "@generated";
-import { MX } from "@generated";
+import { GLYPH_KIND, GLYPH_TELEMETRY } from "@g";
+import { MX } from "@g";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

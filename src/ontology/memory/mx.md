@@ -95,7 +95,7 @@ extra_symbols:
   - toClampedEnergyRaw
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | MX.ts
 

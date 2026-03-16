@@ -1,7 +1,7 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
 // OMEGA-64 | test_risc.ts | VM Verification Suite
-import { MX } from "@generated";
-import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "@generated";
+import { MX } from "@g";
+import { OP_GET, PROP_ENERGY, OP_SET, OP_ADD, OP_PUT, OP_SUB, OP_JNZ } from "@g";
 
 async function runTest() {
   console.log("🚀 Initializing RISC VM Test...");

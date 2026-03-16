@@ -59,7 +59,6 @@ extra_symbols:
   - reductionCaseById
 ---
 
-### TypeScript
 
 ```typescript
 

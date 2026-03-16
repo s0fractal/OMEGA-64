@@ -17,12 +17,12 @@ returns: u16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return Atomics.load(HormoneView, id);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return atomic.load<u16>(HORMONE_OFF + (id << 1));
 ```

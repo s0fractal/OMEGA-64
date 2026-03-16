@@ -1,8 +1,8 @@
 // test_proposal_envelope_index.ts
 // Verifies append-only proposal envelope replay index behavior.
 
-import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@generated";
-import type { STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@generated";
+import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g";
+import type { STATE_SNAPSHOT_LedgerEvent as LedgerEvent } from "@g";
 
 const mkEvent = (
   eventId: string,

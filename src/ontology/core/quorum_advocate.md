@@ -16,7 +16,6 @@ extra_symbols:
   - QuorumAdvocate
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis

@@ -1,6 +1,6 @@
-import { AVATAR_ENGINE } from "@generated";
-import { MX } from "@generated";
-import { GRID_W, SCALE } from "@generated";
+import { AVATAR_ENGINE } from "@g";
+import { MX } from "@g";
+import { GRID_W, SCALE } from "@g";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);

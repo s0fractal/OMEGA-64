@@ -25,10 +25,6 @@ deps:
   - TYPES
 description: Auto-recovered apply_bond_springs
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

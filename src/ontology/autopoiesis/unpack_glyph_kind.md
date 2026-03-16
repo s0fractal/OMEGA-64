@@ -10,10 +10,6 @@ description: Auto-recovered unpack_glyph_kind
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

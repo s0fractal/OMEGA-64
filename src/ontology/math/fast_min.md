@@ -28,7 +28,7 @@ let diff = a - b;
 b + (diff & (diff >> 31))
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38,7 +38,7 @@ const diff = a - b;
 return b + (diff & (diff >> 31));
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const diff = a - b;
 return b + (diff & (diff >> 31));

@@ -18,12 +18,12 @@ returns: f32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
 ```

@@ -22,12 +22,12 @@ tests:
 math_clamp(x, 0, WORLD_MAX_X)
 ```
 
-### TypeScript
+
 ```typescript
 return math_clamp(x, 0, WORLD_MAX_X);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return math_clamp(x, 0, WORLD_MAX_X);
 ```

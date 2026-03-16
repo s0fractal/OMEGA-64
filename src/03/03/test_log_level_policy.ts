@@ -1,4 +1,4 @@
-import { LOGGER, type LogLevel, Ld, Li, Lw, Le } from "@generated";
+import { LOGGER, type LogLevel, Ld, Li, Lw, Le } from "@g";
 
 type SinkCounts = {
   debug: number;

@@ -9,7 +9,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop

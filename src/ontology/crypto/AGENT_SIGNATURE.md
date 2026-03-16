@@ -23,7 +23,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 

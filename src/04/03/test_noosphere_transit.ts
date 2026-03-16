@@ -2,10 +2,10 @@
 // Simulates two nodes discovering each other via BOOTSTRAP_HUB and 
 // an atom triggering a SPORE_DRIVE payload.
 
-import { SwarmNexus } from "@generated";
-import { MX } from "@generated";
-import { P2P_CODEC } from "@generated";
-import { PULSE } from "@generated";
+import { SwarmNexus } from "@g";
+import { MX } from "@g";
+import { P2P_CODEC } from "@g";
+import { PULSE } from "@g";
 
 Deno.test("Noosphere Spore Drive Transit", async () => {
   console.log("🕸️ [TEST] Bootstrapping Noosphere Transit...");

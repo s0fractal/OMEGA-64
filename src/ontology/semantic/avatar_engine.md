@@ -17,7 +17,7 @@ vars:
   - GRID_W
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.

@@ -19,7 +19,7 @@ These principles govern all architectural decisions, code refactors, and self-mo
 
 ## 3. Ontology-Driven Development (SSoT)
 - Markdown files in `src/ontology/` are the Single Source of Truth (SSoT).
-- **Rule**: Never modify generated code (`@generated`, `sigma_core/src/ontology_gen`) directly. Update the `.md` source and rebuild.
+- **Rule**: Never modify generated code (`@g`, `sigma_core/src/ontology_gen`) directly. Update the `.md` source and rebuild.
 - **Reasoning**: This maintains the semantic mapping between human-readable lore and machine-executable logic.
 
 ## 4. Metabolic Stability (The Lockdown Pattern)

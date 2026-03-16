@@ -63,10 +63,6 @@ deps:
   - math_cos
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

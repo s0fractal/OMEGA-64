@@ -2,7 +2,7 @@
 // Verification of Era 4.0: Swarm Sync
 // Launches Alpha (Lead) and Beta (Lag).
 
-import { PEER_PEER as PEER } from "@generated";
+import { PEER_PEER as PEER } from "@g";
 
 console.log("🌐 TEST SYNC: Initializing Clusters...");
 

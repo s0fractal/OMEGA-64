@@ -75,7 +75,7 @@ import {
   GRID_CELLS,
   BREATH,
   mutateUniversalConstants,
-} from "@generated";
+} from "@g";
 
 // 1. Initial Delegate Setup (Legacy Bridge Removed)
 

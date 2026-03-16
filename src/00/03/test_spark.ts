@@ -1,14 +1,14 @@
 // test_spark.ts
 // Verification of Era 2.6: The Spark (Autonomous Loop)
 
-import { LOOP_LOOP as LOOP } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
+import { LOOP_LOOP as LOOP } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
 
 console.log("🔥 TEST SPARK: Initializing...");
 
 // Mock Ledger Storage to avoid cluttering real ledger
 LEDGER.STORAGE_PATH = "./TEST_SPARK_LEDGER.jsonl";
-import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@generated";
+import { PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g";
 PROPOSAL_ENVELOPE_INDEX.STORAGE_PATH = "./TEST_SPARK_ENVELOPE_INDEX.jsonl";
 
 // Run the Loop for 20 ticks

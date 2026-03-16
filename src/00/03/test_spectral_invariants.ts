@@ -5,7 +5,7 @@
 import {
   SPECTRAL_INVARIANTS__08_00_SPECTRAL_INVARIANTS as SPECTRAL_INVARIANTS,
   SPECTRAL_INVARIANTS__08_00_SpectralLens as SpectralLens,
-} from "@generated";
+} from "@g";
 
 const sample = { value: [1, 2, 3], label: "seed" };
 

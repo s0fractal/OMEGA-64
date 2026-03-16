@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { PULSE } from "@generated";
-import { CONTEXT_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
-import { energyBuffer, idBuffer, MX, structureGridBuffer } from "@generated";
-import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "@generated";
+import { PULSE } from "@g";
+import { CONTEXT_OFFSET, STRUCTURE_GRID_OFFSET } from "@g";
+import { energyBuffer, idBuffer, MX, structureGridBuffer } from "@g";
+import { OP_SET, SYS_WRITE_MEM, OP_SYSCALL, SYS_READ_MEM } from "@g";
 
 Deno.test({
   name: "Universal Syscall - WRITE_MEM / READ_MEM execution correctness",

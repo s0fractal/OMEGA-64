@@ -1,4 +1,4 @@
-import { buildExportFileList } from "@generated";
+import { buildExportFileList } from "@g";
 
 async function main() {
   const { files } = await buildExportFileList();

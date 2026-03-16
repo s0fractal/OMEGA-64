@@ -22,7 +22,7 @@ let b1 = state.matrix.logic[idx as usize][1] as i32;
 (b0 << 8) | b1
 ```
 
-### TypeScript
+
 ```typescript
  b0 
 
@@ -37,7 +37,7 @@ const b1 = dataView.getUint8(LOGIC_OFFSET + (idx << 3) + 1);
 return (b0 << 8) | b1;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const ptr = LOGIC_OFFSET + (idx << 3);
 const b0 = load<u8>(ptr) as i32;

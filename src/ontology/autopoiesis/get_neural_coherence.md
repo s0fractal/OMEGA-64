@@ -16,10 +16,6 @@ deps:
   - SYSTEM_CONSTANTS
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

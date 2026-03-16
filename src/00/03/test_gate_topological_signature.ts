@@ -1,21 +1,21 @@
 // test_gate_topological_signature.ts
 // Verifies that GATE emits deterministic projection anchors into ledger events.
 
-import { GATE_GATE as GATE } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
+import { GATE_GATE as GATE } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
 import {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@generated";
+} from "@g";
 import {
   TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE,
   TopologicalSignature as TopologicalSignature,
-} from "@generated";
+} from "@g";
 import {
   CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
-} from "@generated";
+} from "@g";
 
 const HEX_64 = /^[a-f0-9]{64}$/;
 

@@ -18,7 +18,7 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -28,7 +28,7 @@ unimplemented!("Memory accessors are host/WASM specific");
 return dataView.getInt32(ENERGY_OFFSET + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(ENERGY_OFFSET + (idx << 2));
 ```

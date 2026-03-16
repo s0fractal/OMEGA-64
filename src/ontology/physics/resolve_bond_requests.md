@@ -19,10 +19,6 @@ deps:
   - TYPES
 description: Auto-recovered resolve_bond_requests
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

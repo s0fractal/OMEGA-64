@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PULSE } from "@generated";
-import { MX } from "@generated";
+import { PULSE } from "@g";
+import { MX } from "@g";
 
 Deno.test({
   name: "Phase 41: Metazoan Morphogenesis (Organelle Differentiation)",

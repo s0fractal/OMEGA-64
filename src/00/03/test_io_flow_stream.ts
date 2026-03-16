@@ -2,17 +2,17 @@
 // @noncanonical
 // Smoke test: append → read → collapse (dry_run)
 
-import { O_STREAM_APPEND_O_STREAM_APPEND as O_STREAM_APPEND } from "@generated";
-import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@generated";
-import { IO_FLOW_IO_FLOW as IO_FLOW } from "@generated";
-import { O_STREAM_STORE_O_STREAM_STORE as O_STREAM_STORE } from "@generated";
-import { O_STREAM_ADAPTER_O_STREAM_ADAPTER as O_STREAM_ADAPTER } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
+import { O_STREAM_APPEND_O_STREAM_APPEND as O_STREAM_APPEND } from "@g";
+import { O_STREAM_PATH_O_STREAM_PATH as O_STREAM_PATH } from "@g";
+import { IO_FLOW_IO_FLOW as IO_FLOW } from "@g";
+import { O_STREAM_STORE_O_STREAM_STORE as O_STREAM_STORE } from "@g";
+import { O_STREAM_ADAPTER_O_STREAM_ADAPTER as O_STREAM_ADAPTER } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
 import type {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@generated";
+} from "@g";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

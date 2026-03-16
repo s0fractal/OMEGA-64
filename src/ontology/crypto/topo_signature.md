@@ -32,7 +32,7 @@ extra_symbols:
   - deriveFeatureVector
 ---
 
-### TypeScript
+
 ```typescript
 
 

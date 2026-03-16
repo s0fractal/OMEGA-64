@@ -18,14 +18,14 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 if (delta !== 0) {
   Atomics.add(resonanceDeltaView, idx, delta);
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (delta != 0) {
   atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2), delta);

@@ -1,7 +1,7 @@
 // OMEGA-64 | test_spawn_parity.ts | Spawn Resolution Verifier
-import { MX } from "@generated";
-import { MAX_ATOMS, SPAWN_REQUESTS_OFFSET } from "@generated";
-import { PULSE } from "@generated";
+import { MX } from "@g";
+import { MAX_ATOMS, SPAWN_REQUESTS_OFFSET } from "@g";
+import { PULSE } from "@g";
 
 async function testSpawnParity() {
   console.log("🧬 [TEST] Starting Spawn Resolution Parity Test...");

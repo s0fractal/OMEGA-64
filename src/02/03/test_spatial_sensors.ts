@@ -1,9 +1,9 @@
 // OMEGA-64 | test_spatial_sensors.ts | Stage 35 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET,
@@ -11,7 +11,7 @@ import {
   OP_SYSCALL,
   SYS_EMIT,
   OP_NOP
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 35: Spatial Sensors (SYS_SCAN)", async () => {
   Li("--- STAGE 35: SPATIAL SENSORS TEST ---");

@@ -4,9 +4,9 @@
 import {
   AGENT_SIGNATURE,
   type AGENT_SIGNATURE as AgentSigningKey,
-} from "@generated";
-import { GATE_GATE as GATE } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
+} from "@g";
+import { GATE_GATE as GATE } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
 import {
   type STATE_SNAPSHOT_AgentSignatureKey as AgentSignatureKey,
   type STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
@@ -14,7 +14,7 @@ import {
   type STATE_SNAPSHOT_LedgerEvent as LedgerEvent,
   STATE_SNAPSHOT_REJECTION as REJECTION,
   type STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@generated";
+} from "@g";
 
 const baseProposal = (
   id: string,

@@ -30,7 +30,6 @@ if id <= 15 {
 return id >> 3;
 ```
 
-### TypeScript
 
 ```typescript
 

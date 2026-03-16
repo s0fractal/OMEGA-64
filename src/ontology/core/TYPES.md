@@ -178,7 +178,6 @@ extra_symbols:
   - WasmBootPolicy
 ---
 
-### TypeScript
 
 ```typescript
 

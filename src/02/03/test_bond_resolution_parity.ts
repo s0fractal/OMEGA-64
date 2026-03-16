@@ -1,12 +1,12 @@
 // OMEGA-64 | test_bond_resolution_parity.ts | Bond Resolution Verifier
-import { MX } from "@generated";
+import { MX } from "@g";
 import {
   BOND_REQUESTS_OFFSET,
   BONDS_OFFSET,
   MAX_ATOMS,
   STIFFNESS_OFFSET,
-} from "@generated";
-import { PULSE } from "@generated";
+} from "@g";
+import { PULSE } from "@g";
 
 async function testBondParity() {
   console.log("🧬 [TEST] Starting Bond Resolution Parity Test...");

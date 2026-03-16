@@ -1,4 +1,4 @@
-import { LATTICE_MEMORY_END, WASM_MEMORY_BYTES, validateMemoryLayout } from "@generated";
+import { LATTICE_MEMORY_END, WASM_MEMORY_BYTES, validateMemoryLayout } from "@g";
 
 const main = () => {
   const report = validateMemoryLayout(WASM_MEMORY_BYTES);

@@ -34,10 +34,6 @@ deps:
   - trace_atom
   - read_structure_charge
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

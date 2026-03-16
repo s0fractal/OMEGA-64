@@ -17,10 +17,6 @@ deps:
   - TYPES
 description: Auto-recovered publish_charge_intent
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

@@ -41,7 +41,6 @@ extra_symbols:
   - AKASHA_CODEX
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone

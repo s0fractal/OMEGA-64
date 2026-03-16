@@ -1,4 +1,4 @@
-import { SEMANTIC_MEMBRANE } from "@generated";
+import { SEMANTIC_MEMBRANE } from "@g";
 
 async function testSimHash() {
   const phrases = [

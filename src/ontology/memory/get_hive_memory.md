@@ -17,12 +17,12 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(HIVE_MEMORY_OFF + (addr & 1023));
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
 ```

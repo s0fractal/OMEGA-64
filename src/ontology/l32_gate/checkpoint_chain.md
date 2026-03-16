@@ -20,7 +20,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | checkpoint_chain.ts

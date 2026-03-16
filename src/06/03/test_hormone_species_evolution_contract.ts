@@ -8,9 +8,9 @@
  * 3. discoverSpecies enqueues chronicles mentioning the hormone regime.
  */
 
-import { MX } from "@generated";
+import { MX } from "@g";
 import { AKASHA_CODEX } from "@06";
-import { LLM_SYNAPSE } from "@generated";
+import { LLM_SYNAPSE } from "@g";
 
 let passed = 0;
 let failed = 0;

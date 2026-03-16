@@ -61,7 +61,6 @@ values:
   STRUCTURE_INTENT_OWNER_MASK:
     value: 2147483647
     type: i32
-
   SCALE: 
     value: 1000
     type: i32

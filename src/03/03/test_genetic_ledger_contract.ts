@@ -1,4 +1,4 @@
-import { GENETIC_LEDGER_CATALOG, geneticLedgerBaseline, geneticLedgerEntryByKey } from "@generated";
+import { GENETIC_LEDGER_CATALOG, geneticLedgerBaseline, geneticLedgerEntryByKey } from "@g";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

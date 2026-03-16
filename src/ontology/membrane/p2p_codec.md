@@ -18,7 +18,6 @@ extra_symbols:
   - PACKET_SIZE
 ---
 
-### TypeScript
 
 ```typescript
 

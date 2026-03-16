@@ -16,7 +16,7 @@ import {
   type DaemonNarrativeContext,
   evaluateInvariantAdmission,
   normalizeDaemonNarrativeContext,
-} from "@generated";
+} from "@g";
 
 let passed = 0;
 let failed = 0;

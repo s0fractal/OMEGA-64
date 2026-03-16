@@ -1,8 +1,8 @@
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { PULSE } from "@generated";
-import { CONTEXT_OFFSET } from "@generated";
-import { MX } from "@generated";
-import { OP_ADD, OP_JMP } from "@generated";
+import { PULSE } from "@g";
+import { CONTEXT_OFFSET } from "@g";
+import { MX } from "@g";
+import { OP_ADD, OP_JMP } from "@g";
 
 Deno.test({
   name: "Bounded Compute - Gas Economy halts VM execution",

@@ -21,12 +21,12 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 set_resonance(idx, get_resonance(idx) + delta);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 set_resonance(idx, get_resonance(idx) + delta);
 ```

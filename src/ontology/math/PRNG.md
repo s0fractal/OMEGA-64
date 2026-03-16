@@ -16,7 +16,6 @@ extra_symbols:
   - PRNG
 ---
 
-### TypeScript
 
 ```typescript
 

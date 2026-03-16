@@ -12,7 +12,7 @@ extra_symbols:
   - make_xor_shift32
 ---
 
-### TypeScript
+
 ```typescript
 
 

@@ -13,7 +13,6 @@ vars:
   - HormoneSyncInput
 ---
 
-### TypeScript
 
 ```typescript
 

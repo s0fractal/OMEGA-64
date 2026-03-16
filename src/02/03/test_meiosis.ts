@@ -1,5 +1,5 @@
-import { MX } from "@generated";
-import { ISA, LAMBDA_VM } from "@generated";
+import { MX } from "@g";
+import { ISA, LAMBDA_VM } from "@g";
 
 console.log("💞 [TEST] Initializing Meiosis Verification...");
 

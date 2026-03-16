@@ -1,7 +1,7 @@
-import { appendLedgerRecord, hydrateLedgerRuntime, recordFromApply, recordFromRollback } from "@generated";
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate } from "@generated";
+import { appendLedgerRecord, hydrateLedgerRuntime, recordFromApply, recordFromRollback } from "@g";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate } from "@g";
 
-import { getLogPath } from "@generated";
+import { getLogPath } from "@g";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

@@ -19,12 +19,12 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
 ```

@@ -31,10 +31,6 @@ deps:
   - TYPES
 description: Auto-recovered seed_atom
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

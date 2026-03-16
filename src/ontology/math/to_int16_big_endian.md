@@ -14,7 +14,7 @@ extra_symbols:
   - to_int16_big_endian
 ---
 
-### TypeScript
+
 ```typescript
 
 

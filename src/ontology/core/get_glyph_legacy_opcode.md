@@ -21,7 +21,6 @@ extra_symbols:
 GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
 ```
 
-### TypeScript
 
 ```typescript
 

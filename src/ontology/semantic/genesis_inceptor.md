@@ -12,7 +12,6 @@ extra_symbols:
   - GenesisInceptor
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response

@@ -1,7 +1,7 @@
 // OMEGA-64 | test_neuro.ts | Sovereign Neurogenesis Verification
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { SPATIAL_HASH } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { SPATIAL_HASH } from "@g";
 
 const ISA_BIND = 0x40;
 const ISA_SHARE = 0x41;

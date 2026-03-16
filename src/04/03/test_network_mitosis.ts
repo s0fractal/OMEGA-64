@@ -3,16 +3,16 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET,
   SYS_REPLICATE,
   OP_SYSCALL
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 32: Network Mitosis (P2P Genetic Replication)", async () => {
   Li("--- STAGE 32: NETWORK MITOSIS TEST ---");

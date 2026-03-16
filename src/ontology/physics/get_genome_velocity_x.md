@@ -13,10 +13,6 @@ deps:
   - TYPES
 description: Auto-recovered get_genome_velocity_x
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

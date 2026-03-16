@@ -29,7 +29,6 @@ extra_symbols:
   - hormoneSpecById
 ---
 
-### TypeScript
 
 ```typescript
 

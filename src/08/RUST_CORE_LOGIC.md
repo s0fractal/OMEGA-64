@@ -4,9 +4,7 @@
 *Exported Files: 195*
 
 ---
-
 ## FILE INDEX
-
 - src/00/sigma_core/src/lib.rs
 - src/00/sigma_core/src/ontology_gen/00/COS_LUT.rs
 - src/00/sigma_core/src/ontology_gen/00/C_LOG2_C_LUT.rs
@@ -202,7 +200,6 @@
 - src/00/sigma_core/src/ontology_gen/08/glyph_pretty.rs
 - src/00/sigma_core/src/ontology_gen/08/mod.rs
 - src/00/sigma_core/src/ontology_gen/mod.rs
-
 ---
 
 ## FILE: src/00/sigma_core/src/lib.rs

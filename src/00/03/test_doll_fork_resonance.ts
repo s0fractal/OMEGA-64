@@ -1,11 +1,11 @@
 // OMEGA-64 | test_doll_fork_resonance.ts | Stage 21 Verification
-import { DollFork, LOGGER, Li } from "@generated";
+import { DollFork, LOGGER, Li } from "@g";
 import {
   DollForkRunner
-} from "@generated";
+} from "@g";
 import {
   RelicCultivator
-} from "@generated";
+} from "@g";
 
 import { assertEquals } from "https://deno.land/std@0.211.0/assert/mod.ts";
 

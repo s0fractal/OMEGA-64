@@ -7,7 +7,6 @@ deps: []
 ---
 
 
-### TypeScript
 
 ```typescript
 /**

@@ -13,7 +13,7 @@
  *   5. Asserts the metric has changed in the expected direction.
  */
 
-import { MX } from "@generated";
+import { MX } from "@g";
 
 let passed = 0;
 let failed = 0;

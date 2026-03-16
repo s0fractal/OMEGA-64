@@ -31,7 +31,7 @@ if n == 2 {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -42,7 +42,7 @@ if (n == 3) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 2) return -1;
 if (n == 3) return 1;

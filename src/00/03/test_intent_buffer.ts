@@ -1,5 +1,5 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
-import { INTENT_OFFSET, MX, wasmMemory } from "@generated";
+import { INTENT_OFFSET, MX, wasmMemory } from "@g";
 
 async function testIntentBuffer() {
   console.log("🧪 Testing Zero-Allocation WASM Intent Buffer");

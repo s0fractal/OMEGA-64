@@ -19,10 +19,6 @@ deps:
   - TYPES
 description: Auto-recovered read_structure_cell
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

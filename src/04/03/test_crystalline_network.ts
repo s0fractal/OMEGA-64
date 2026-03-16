@@ -1,6 +1,6 @@
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { STR_SOURCE, STR_WIRE } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { STR_SOURCE, STR_WIRE } from "@g";
 
 async function testCrystallineNetwork() {
   console.log("💎 [TEST] Starting Crystalline Neural Network Verification...");

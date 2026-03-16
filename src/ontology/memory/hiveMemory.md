@@ -13,7 +13,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 

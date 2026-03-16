@@ -17,10 +17,6 @@ deps:
   - TYPES
 description: Auto-recovered fire_signal
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

@@ -22,7 +22,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon

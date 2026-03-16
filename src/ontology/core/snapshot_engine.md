@@ -22,7 +22,6 @@ extra_symbols:
   - SNAPSHOT_ENGINE
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint

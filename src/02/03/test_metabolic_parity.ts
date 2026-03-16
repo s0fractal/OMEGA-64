@@ -1,7 +1,7 @@
 // OMEGA-64 | test_metabolic_parity.ts | Metabolic Parity Verifier
-import { MX } from "@generated";
-import { ENERGY_OFFSET, LOGIC_OFFSET, MAX_ATOMS } from "@generated";
-import { PULSE } from "@generated";
+import { MX } from "@g";
+import { ENERGY_OFFSET, LOGIC_OFFSET, MAX_ATOMS } from "@g";
+import { PULSE } from "@g";
 
 async function testMetabolicParity() {
   console.log("🧬 [TEST] Starting Metabolic Parity Test...");

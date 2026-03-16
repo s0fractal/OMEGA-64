@@ -3,16 +3,16 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET,
   SYS_MUTATE,
   OP_SYSCALL
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 29: Open Semantic Mutation via SYS_MUTATE", async () => {
   Li("--- STAGE 29: SEMANTIC MUTATION TEST ---");

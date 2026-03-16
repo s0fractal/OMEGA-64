@@ -13,7 +13,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 export const disassembler = {

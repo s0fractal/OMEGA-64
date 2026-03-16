@@ -1,7 +1,7 @@
 
-import { glyphTapeToPrettyText } from "@generated";
-import { scriptToGlyphTape } from "@generated";
-import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "@generated";
+import { glyphTapeToPrettyText } from "@g";
+import { scriptToGlyphTape } from "@g";
+import { OP_GET, PROP_ENERGY, OP_SIGNAL, OP_JMP, OP_JZ } from "@g";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

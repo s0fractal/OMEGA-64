@@ -3,8 +3,8 @@
  * Final verification for Stage 20: The Chromatic Genesis.
  */
 
-import { GLYPH_SPECS, glyphSpecById } from "@generated";
-import { GENESIS_PROGRAMS } from "@generated";
+import { GLYPH_SPECS, glyphSpecById } from "@g";
+import { GENESIS_PROGRAMS } from "@g";
 
 function testChromaticMapping() {
   console.log("[test] verifying chromatic mapping...");

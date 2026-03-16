@@ -16,10 +16,6 @@ deps:
   - in_grid
   - prng_next
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

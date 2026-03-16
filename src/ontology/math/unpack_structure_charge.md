@@ -27,7 +27,7 @@ extra_symbols:
 ((intent as u32) & 0x7F000000) >> 24
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38,7 +38,7 @@ export function unpack_structure_charge(intent: number): number {
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return ((intent as u32) & 0x7F000000) >> 24;
 ```

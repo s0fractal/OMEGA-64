@@ -27,7 +27,6 @@ extra_symbols:
   - AgentProxy
 ---
 
-### TypeScript
 
 ```typescript
 

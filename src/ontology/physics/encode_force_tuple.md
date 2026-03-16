@@ -11,10 +11,6 @@ description: Auto-recovered encode_force_tuple
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

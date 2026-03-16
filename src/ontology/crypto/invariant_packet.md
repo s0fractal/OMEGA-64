@@ -27,7 +27,7 @@ extra_symbols:
   - INVARIANT_PACKET
 ---
 
-### TypeScript
+
 ```typescript
 
 

@@ -24,7 +24,7 @@ let mask = v >> 31;
 (v + mask) ^ mask
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -34,7 +34,7 @@ const mask = v >> 31;
 return (v + mask) ^ mask;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const mask = v >> 31;
 return (v + mask) ^ mask;

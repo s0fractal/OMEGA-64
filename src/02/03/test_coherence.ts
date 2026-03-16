@@ -1,6 +1,6 @@
 // OMEGA-64 | test_coherence.ts | Phase 21: Synchronization Barrier 🛡️💎
-import { MX, SYNC } from "@generated";
-import { PULSE } from "@generated";
+import { MX, SYNC } from "@g";
+import { PULSE } from "@g";
 
 async function runTest() {
   console.log("🛡️ Phase 21: Synchronization Barrier Verification\n");

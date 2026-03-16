@@ -17,12 +17,12 @@ returns: i16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt16(XS_OFFSET + (idx << 1), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i16>(XS_OFFSET + (idx << 1));
 ```

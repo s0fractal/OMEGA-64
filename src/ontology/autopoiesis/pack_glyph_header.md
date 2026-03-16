@@ -11,10 +11,6 @@ description: Auto-recovered pack_glyph_header
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

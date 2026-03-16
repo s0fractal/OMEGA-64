@@ -20,10 +20,6 @@ deps:
   - TYPES
 description: Auto-recovered drain_spawn_requests
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

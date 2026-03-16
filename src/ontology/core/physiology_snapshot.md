@@ -20,7 +20,6 @@ extra_symbols:
   - capturePhysiologySnapshot
 ---
 
-### TypeScript
 
 ```typescript
 

@@ -18,7 +18,6 @@ vars:
   - ExportFileContent
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -632,7 +631,13 @@ export const renderCoreExport = async (): Promise<
     let res = out;
     for (const { file, content } of list) {
       res += `## FILE: ${file}\n\n`;
-      res += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
+      const lang = languageFor(file);
+      const cleaned = content.replace(/^###\s+(?:TypeScript|AssemblyScript)\s*$/gm, "").trim();
+      if (lang === "markdown") {
+        res += `${cleaned}\n\n---\n\n`;
+      } else {
+        res += `\`\`\`${lang}\n${cleaned}\n\`\`\`\n\n---\n\n`;
+      }
     }
     return res;
   };

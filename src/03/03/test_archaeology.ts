@@ -1,6 +1,6 @@
-import { MX } from "@generated";
-import { PHYSICS_ENGINE } from "@generated";
-import { AUDIT_ENGINE } from "@generated";
+import { MX } from "@g";
+import { PHYSICS_ENGINE } from "@g";
+import { AUDIT_ENGINE } from "@g";
 
 console.log("🏺 [TEST] Verifying Era 34: Digital Archaeology...");
 

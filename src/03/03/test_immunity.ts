@@ -1,8 +1,8 @@
-import { GRID_W } from "@generated";
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { ISA } from "@generated";
-import { GATE } from "@generated";
+import { GRID_W } from "@g";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { ISA } from "@g";
+import { GATE } from "@g";
 import {
   assert,
   assertEquals,

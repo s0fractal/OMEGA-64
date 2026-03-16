@@ -1,6 +1,6 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
-import { GLYPH_TELEMETRY } from "@generated";
-import { MX, wasmMemory } from "@generated";
+import { GLYPH_TELEMETRY } from "@g";
+import { MX, wasmMemory } from "@g";
 
 const main = async () => {
   const wasmBytes = await Deno.readFile(AS_WASM_PATH);

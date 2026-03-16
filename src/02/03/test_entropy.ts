@@ -1,6 +1,6 @@
 // OMEGA-64 | test_entropy.ts | Phase 23: Entropy Flux Verification
-import { MX } from "@generated";
-import { PULSE } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
 
 async function runTest() {
   console.log("🧪 OMEGA-64 | TEST_ENTROPY | Starting...");

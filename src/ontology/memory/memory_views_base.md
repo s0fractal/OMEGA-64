@@ -19,7 +19,7 @@ extra_symbols:
   - sharedBuffer
 ---
 
-### TypeScript
+
 ```typescript
 
 

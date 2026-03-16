@@ -39,10 +39,6 @@ deps:
   - TYPES
 description: Auto-recovered calculate_trophism
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

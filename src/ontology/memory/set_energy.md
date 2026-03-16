@@ -18,7 +18,7 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -28,7 +28,7 @@ unimplemented!("Memory accessors are host/WASM specific");
 dataView.setInt32(ENERGY_OFFSET + (idx << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(ENERGY_OFFSET + (idx << 2), val);
 ```

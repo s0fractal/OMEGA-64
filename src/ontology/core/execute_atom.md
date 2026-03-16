@@ -31,10 +31,6 @@ deps:
   - TYPES
 description: Auto-recovered execute_atom
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

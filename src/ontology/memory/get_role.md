@@ -17,12 +17,12 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(ROLES_OFFSET + atomIdx);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(ROLES_OFFSET + atomIdx);
 ```

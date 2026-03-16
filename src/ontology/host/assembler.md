@@ -15,7 +15,7 @@ extra_symbols:
   - assemble
 ---
 
-### TypeScript
+
 ```typescript
 
 

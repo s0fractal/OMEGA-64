@@ -1,14 +1,14 @@
 // OMEGA-64 | test_memetic_contagion.ts | Stage 38 Verification
 import { assert } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   NEXUS_DAEMON,
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 38: Memetic Contagion (Horizontal Gene Transfer)", async () => {
   Li("--- STAGE 38: THERMODYNAMIC MEMETICS TEST ---");

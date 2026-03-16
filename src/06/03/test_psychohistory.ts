@@ -1,6 +1,6 @@
 import { assert, assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 import { LINEAGE_TRACKER } from "@06";
-import { MX } from "@generated";
+import { MX } from "@g";
 
 Deno.test("Psychohistorian's Archive - Epoch Resolution", () => {
     // Clean state

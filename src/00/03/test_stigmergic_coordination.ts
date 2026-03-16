@@ -1,16 +1,16 @@
 // OMEGA-64 | test_stigmergic_coordination.ts | Stage 24: Stigmergic Synthesis
-import { MX, LOGGER, Li, Lw, Le } from "@generated";
+import { MX, LOGGER, Li, Lw, Le } from "@g";
 const { OP_BUILD, OP_RESONATE } = RISC;
 import {
   QuorumAdvocate
-} from "@generated";
+} from "@g";
 
 import {
   wasmMemory
-} from "@generated";
+} from "@g";
 import {
   OP_RESONATE
-} from "@generated";
+} from "@g";
 
 async function runTest() {
   Li("🧪 [TEST] Starting Stigmergic Coordination Verification...");

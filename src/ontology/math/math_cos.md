@@ -52,7 +52,7 @@ let term2 = (d2 * frac * frac) >> 16;
 c_base - term1 - term2
 ```
 
-### TypeScript
+
 ```typescript
 
 

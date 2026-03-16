@@ -37,7 +37,7 @@ if locked {
 intent as i32
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -52,7 +52,7 @@ export function pack_structure_intent(target_type: number, target_value: number,
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 let intent: u32 = target_type | (target_value << 24);
 if (locked) {

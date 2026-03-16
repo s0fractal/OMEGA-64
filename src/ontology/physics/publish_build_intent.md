@@ -20,10 +20,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

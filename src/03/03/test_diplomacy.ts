@@ -1,6 +1,6 @@
-import { MX } from "@generated";
-import { GATE } from "@generated";
-import { LAMBDA_VM } from "@generated";
+import { MX } from "@g";
+import { GATE } from "@g";
+import { LAMBDA_VM } from "@g";
 
 console.log("🤝 [TEST] Verifying Era 38: Diplomacy & Taxation...");
 

@@ -140,7 +140,6 @@ extra_symbols:
   - rolesView
 ---
 
-### TypeScript
 
 ```typescript
 

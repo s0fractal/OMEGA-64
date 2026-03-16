@@ -20,12 +20,12 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setInt32(RESONANCE_OFFSET + (idx << 2), clamp_resource(BigInt(val)), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
 ```

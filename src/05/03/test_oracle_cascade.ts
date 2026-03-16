@@ -1,8 +1,8 @@
 // OMEGA-64 | test_oracle_cascade.ts | Sovereign Oracle Verification
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { MATRIX_ENGINE } from "@generated";
-import { ID_TO_IDX, IDX_TO_ID } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { MATRIX_ENGINE } from "@g";
+import { ID_TO_IDX, IDX_TO_ID } from "@g";
 
 async function runTest() {
   console.log("👁️ Starting Phase 11: Sovereign Oracle Verification...");

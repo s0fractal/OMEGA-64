@@ -10,7 +10,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -33,7 +33,7 @@ export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   }
 };
 ```
-### AssemblyScript
+
 ```assemblyscript
 export function read_jsonl(): void {}
 ```

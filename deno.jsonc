@@ -106,7 +106,7 @@
     }
   },
   "imports": {
-    "@generated": "./src/_/mod.ts",
+    "@g": "./src/_/mod.ts",
     "@00": "./src/00/mod.ts",
     "@01": "./src/01/mod.ts",
     "@02": "./src/02/mod.ts",
@@ -161,7 +161,6 @@
     "@g16/": "./src/_/16/",
     "@g17/": "./src/_/17/",
     "@g18/": "./src/_/18/",
-    "@g": "./src/_/mod.ts",
     "zod": "npm:zod@^4.3.6"
   },
   "omega": {

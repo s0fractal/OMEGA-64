@@ -4,8 +4,8 @@ import {
   GLYPH_SPECS,
   glyphSpecById,
   glyphSpecByLegacyOpcode,
-} from "@generated";
-import { OP_SET, OP_REPLICATE, OP_BUILD, OP_JZ, OP_BIND } from "@generated";
+} from "@g";
+import { OP_SET, OP_REPLICATE, OP_BUILD, OP_JZ, OP_BIND } from "@g";
 
 const expect = (condition: unknown, message: string): void => {
   if (!condition) throw new Error(message);

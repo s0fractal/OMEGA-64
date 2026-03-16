@@ -20,7 +20,6 @@ extra_symbols:
   - SNAP_ENGINE
 ---
 
-### TypeScript
 
 ```typescript
 

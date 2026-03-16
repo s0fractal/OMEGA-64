@@ -17,10 +17,6 @@ deps:
   - glyph_transport
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

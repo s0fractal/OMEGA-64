@@ -20,7 +20,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 

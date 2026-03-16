@@ -1,4 +1,4 @@
-import { Q_PHYSICS, Q_PHYSICS_QAtom as QAtom } from "@generated";
+import { Q_PHYSICS, Q_PHYSICS_QAtom as QAtom } from "@g";
 
 const atoms = new Map<string, QAtom>();
 

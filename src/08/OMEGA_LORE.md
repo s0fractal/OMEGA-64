@@ -1,6 +1,6 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T17:55:47.895Z*
+*Generated: 2026-03-16T18:21:55.348Z*
 *Exported Files in Category: 285*
 *Total Exported Files: 805*
 *Runtime Roots: 7*
@@ -8,16 +8,15 @@
 *Non-Runtime Code Files: 333*
 *Runtime-Support Code Files: 2*
 *Experimental Code Files: 331*
-*Manifest SHA256: b066e6b1dcdc1e1632d70f6067842be4d10935ed38f31f19c9fc5e60abad5aff*
+*Manifest SHA256: 35b0536b830c118d3e4c672936d958184c72f0805cd77b638f6e72bef443edd1*
 *Export Set SHA256: 475ca760586672d0ef7f05b132ca1ea1e624b9547bd4a736045c5a148f7bb331*
-*Export Content SHA256: 3bc4d045f63ae55ed692fb012d7ad922f695e78aa62585970dc92229dd7904a0*
-*Git Commit: d3af7cf36cdb*
+*Export Content SHA256: 7a17453b7f4b77f76c98f4aa597a7ab5575b771ee2f4c5b3b00875343ec6c8c5*
+*Git Commit: 8a4ab37c89d5*
 
 ---
 
 ## FILE: src/ontology/autopoiesis/accumulate_metabolism_stats.md
 
-```markdown
 ---
 id: accumulate_metabolism_stats
 type: pure_fn
@@ -34,10 +33,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - genome_key16
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -58,13 +53,10 @@ unimplemented!()
   }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/apply_metabolism_kernel.md
 
-```markdown
 ---
 id: apply_metabolism_kernel
 type: pure_fn
@@ -120,10 +112,6 @@ deps:
   - genome_key16
   - fast_abs
 ---
-
----
----
-
 ```rust
     let population = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4)) as *const i32 };
     let population = unsafe { *population };
@@ -304,13 +292,10 @@ deps:
 ```assemblyscript
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/atomic_deposit_glyph_header.md
 
-```markdown
 ---
 id: atomic_deposit_glyph_header
 type: pure_fn
@@ -338,10 +323,6 @@ deps:
   - TYPES
 description: Auto-recovered atomic_deposit_glyph_header
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -470,13 +451,10 @@ for (let spin = 0; spin < 128; spin++) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/clear_metabolism_stats.md
 
-```markdown
 ---
 id: clear_metabolism_stats
 type: pure_fn
@@ -489,10 +467,6 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -506,13 +480,10 @@ unimplemented!()
   memory.fill(METABOLISM_SCRATCH_OFFSET, 0, (65536 * 4) + 64);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/clear_secretion_stats.md
 
-```markdown
 ---
 id: clear_secretion_stats
 type: pure_fn
@@ -525,10 +496,6 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -540,13 +507,10 @@ unimplemented!()
   memory.fill(SECRETION_STATS_OFF, 0, 48); // Ensure we clear all 12 I32 slots
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/decay_for_kind.md
 
-```markdown
 ---
 id: decay_for_kind
 type: pure_fn
@@ -564,10 +528,6 @@ deps:
   - TYPES
 description: Auto-recovered decay_for_kind
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -602,13 +562,10 @@ if (kind == 2) { // PLASMID
 return amplitude > 0 ? decayAmt : -decayAmt;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/diffuse_viral_semantics.md
 
-```markdown
 ---
 id: diffuse_viral_semantics
 type: pure_fn
@@ -627,10 +584,6 @@ deps:
   - in_grid
   - prng_next
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -684,13 +637,10 @@ unimplemented!()
   }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/diffusion_share_for_kind.md
 
-```markdown
 ---
 id: diffusion_share_for_kind
 type: pure_fn
@@ -708,10 +658,6 @@ deps:
   - TYPES
 description: Auto-recovered diffusion_share_for_kind
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -742,13 +688,10 @@ if (kind == 2) { // PLASMID
 return amplitude > 0 ? shareAmt : -shareAmt;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/drain_spawn_requests.md
 
-```markdown
 ---
 id: drain_spawn_requests
 type: pure_fn
@@ -771,10 +714,6 @@ deps:
   - TYPES
 description: Auto-recovered drain_spawn_requests
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -867,13 +806,10 @@ atomic.store<i32>(SPAWN_HEAD_OFF + 4, cursor);
 return spawned;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/find_next_free_slot.md
 
-```markdown
 ---
 id: find_next_free_slot
 type: pure_fn
@@ -891,10 +827,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -921,13 +853,10 @@ for (let i = 0; i < MAX_ATOMS; i++) {
 return -1;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/get_neural_coherence.md
 
-```markdown
 ---
 id: get_neural_coherence
 type: pure_fn
@@ -946,10 +875,6 @@ deps:
   - SYSTEM_CONSTANTS
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -996,13 +921,10 @@ return 0;
   return oscCoherence + signalSignals;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/glyph_transport.md
 
-```markdown
 ---
 id: glyph_transport
 type: pure_fn
@@ -1037,10 +959,6 @@ deps:
   - TYPES
 description: Auto-recovered glyph_transport
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1254,13 +1172,10 @@ unimplemented!()
   memory.copy(GLYPH_HEADER_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_CELLS << 2);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/immune_check.md
 
-```markdown
 ---
 id: immune_check
 type: pure_fn
@@ -1331,13 +1246,10 @@ if (id_handle === 0) return false;
 
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/pack_glyph_header.md
 
-```markdown
 ---
 id: pack_glyph_header
 type: pure_fn
@@ -1351,10 +1263,6 @@ description: Auto-recovered pack_glyph_header
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1375,13 +1283,10 @@ if (amplitude > 12000) amplitude = 12000;
 return (amplitude << 8) | (kind & 0xFF);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/reset_neural_coherence.md
 
-```markdown
 ---
 id: reset_neural_coherence
 type: pure_fn
@@ -1394,10 +1299,6 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1409,13 +1310,10 @@ unimplemented!()
   atomic.store<i32>(COHERENCE_OFF as usize, 0); // Reset accumulator
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/run_phagocyte_pass.md
 
-```markdown
 ---
 id: run_phagocyte_pass
 type: pure_fn
@@ -1480,13 +1378,10 @@ optimization: hot
   unimplemented!()
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/secrete_glyph.md
 
-```markdown
 ---
 id: secrete_glyph
 type: pure_fn
@@ -1515,10 +1410,6 @@ deps:
   - TYPES
 description: Auto-recovered secrete_glyph
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1609,13 +1500,10 @@ if (intensity <= 0) return;
   // I will just use `glyph_transport` functions from the facade if we export `atomicDepositGlyphHeader`
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/seed_atom.md
 
-```markdown
 ---
 id: seed_atom
 type: pure_fn
@@ -1649,10 +1537,6 @@ deps:
   - TYPES
 description: Auto-recovered seed_atom
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1737,13 +1621,10 @@ for (let b = 0; b < 64; b++) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/set_neural_coherence.md
 
-```markdown
 ---
 id: set_neural_coherence
 type: pure_fn
@@ -1757,10 +1638,6 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -1772,13 +1649,10 @@ unimplemented!()
   atomic.store<i32>(NEURAL_COHERENCE_OFF as usize, value);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/tick_membrane_physics.md
 
-```markdown
 ---
 id: tick_membrane_physics
 type: substrate_module
@@ -2128,13 +2002,10 @@ export function tick_membrane_physics(): void {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/unpack_glyph_amplitude.md
 
-```markdown
 ---
 id: unpack_glyph_amplitude
 type: pure_fn
@@ -2147,10 +2018,6 @@ description: Auto-recovered unpack_glyph_amplitude
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -2167,13 +2034,10 @@ return header >> 8;
 return header >> 8;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/autopoiesis/unpack_glyph_kind.md
 
-```markdown
 ---
 id: unpack_glyph_kind
 type: pure_fn
@@ -2186,10 +2050,6 @@ description: Auto-recovered unpack_glyph_kind
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -2206,13 +2066,10 @@ return header & 0xFF;
 return header & 0xFF;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/audit_engine.md
 
-```markdown
 ---
 id: AUDIT_ENGINE
 type: module
@@ -2304,13 +2161,10 @@ export const AUDIT_ENGINE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/breath_cycle.md
 
-```markdown
 ---
 id: BREATH
 type: module
@@ -2322,7 +2176,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
@@ -2414,13 +2267,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/build_spatial_hash.md
 
-```markdown
 ---
 id: build_spatial_hash
 type: pure_fn
@@ -2617,13 +2467,10 @@ for (let i = 0; i < (GRID_CELLS as i32); i++) {
 return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as i64) & 0xFFFFFFFF);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/continuum.md
 
-```markdown
 ---
 id: CONTINUUM
 type: module
@@ -2644,7 +2491,6 @@ extra_symbols:
   - saveEpoch
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -2780,13 +2626,10 @@ export async function decompressMemoryToLattice(
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/control_intent_queue.md
 
-```markdown
 ---
 id: CONTROL_INTENT_QUEUE
 type: module
@@ -4069,13 +3912,10 @@ export const CONTROL_INTENT_QUEUE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/daemon_ingress_policy.md
 
-```markdown
 ---
 id: DAEMON_INGRESS_POLICY
 type: module
@@ -4668,13 +4508,10 @@ export const DAEMON_INGRESS_POLICY = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/doll_fork_matrix.md
 
-```markdown
 ---
 id: DOLL_FORK_MATRIX
 type: module
@@ -4717,7 +4554,6 @@ extra_symbols:
   - DollFork
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
@@ -4881,13 +4717,10 @@ export class DollFork {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/doll_fork_runner.md
 
-```markdown
 ---
 id: DOLL_FORK_RUNNER
 type: module
@@ -4908,7 +4741,6 @@ extra_symbols:
   - DollForkRunner
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
@@ -5005,13 +4837,10 @@ export class DollForkRunner {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/drift_warden.md
 
-```markdown
 ---
 id: DRIFT_WARDEN
 type: module
@@ -5036,7 +4865,6 @@ extra_symbols:
   - DriftWarden
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
@@ -5136,13 +4964,10 @@ export class DriftWarden {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/evaluate_opcodes.md
 
-```markdown
 ---
 id: evaluate_opcodes
 type: pure_fn
@@ -5208,10 +5033,6 @@ deps:
   - math_cos
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -5477,13 +5298,10 @@ return 0;
   return gasUsed;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/execute_atom.md
 
-```markdown
 ---
 id: execute_atom
 type: pure_fn
@@ -5517,10 +5335,6 @@ deps:
   - TYPES
 description: Auto-recovered execute_atom
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -5603,13 +5417,10 @@ set_energy(
 );
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/export_core.md
 
-```markdown
 ---
 id: EXPORT_CORE
 type: module
@@ -5630,7 +5441,6 @@ vars:
   - ExportFileContent
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -6244,7 +6054,13 @@ export const renderCoreExport = async (): Promise<
     let res = out;
     for (const { file, content } of list) {
       res += `## FILE: ${file}\n\n`;
-      res += `\`\`\`${languageFor(file)}\n${content}\n\`\`\`\n\n---\n\n`;
+      const lang = languageFor(file);
+      const cleaned = content.replace(/^###\s+(?:TypeScript|AssemblyScript)\s*$/gm, "").trim();
+      if (lang === "markdown") {
+        res += `${cleaned}\n\n---\n\n`;
+      } else {
+        res += `\`\`\`${lang}\n${cleaned}\n\`\`\`\n\n---\n\n`;
+      }
     }
     return res;
   };
@@ -6281,13 +6097,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/gate_budget.md
 
-```markdown
 ---
 id: GATE_BUDGET
 type: module
@@ -6342,13 +6155,10 @@ export const GATE_BUDGET = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/generic_ledger_persistence.md
 
-```markdown
 ---
 id: GENERIC_LEDGER_PERSISTENCE
 type: module
@@ -6745,13 +6555,10 @@ export const GENERIC_LEDGER_PERSISTENCE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/generic_ledger_system.md
 
-```markdown
 ---
 type: module
 id: GENERIC_LEDGER_SYSTEM
@@ -7024,13 +6831,10 @@ export const GENERIC_LEDGER_SYSTEM = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/get_glyph_arity.md
 
-```markdown
 ---
 id: get_glyph_arity
 type: pure_fn
@@ -7054,7 +6858,6 @@ extra_symbols:
 GLYPH_ARITY_LUT[(id & 63) as usize]
 ```
 
-### TypeScript
 
 ```typescript
 
@@ -7066,13 +6869,10 @@ export function get_glyph_arity(id: number): number {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/get_glyph_energy.md
 
-```markdown
 ---
 id: get_glyph_energy
 type: pure_fn
@@ -7096,7 +6896,6 @@ extra_symbols:
 GLYPH_ENERGY_LUT[(id & 63) as usize]
 ```
 
-### TypeScript
 
 ```typescript
 
@@ -7108,13 +6907,10 @@ export function get_glyph_energy(id: number): number {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/get_glyph_kind.md
 
-```markdown
 ---
 id: get_glyph_kind
 type: pure_fn
@@ -7147,7 +6943,6 @@ if id <= 15 {
 return id >> 3;
 ```
 
-### TypeScript
 
 ```typescript
 
@@ -7161,13 +6956,10 @@ export function get_glyph_kind(id: number): number {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/get_glyph_legacy_opcode.md
 
-```markdown
 ---
 id: get_glyph_legacy_opcode
 type: pure_fn
@@ -7191,7 +6983,6 @@ extra_symbols:
 GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
 ```
 
-### TypeScript
 
 ```typescript
 
@@ -7203,13 +6994,10 @@ export function get_glyph_legacy_opcode(id: number): number {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/GLYPH_ARITY_LUT.md
 
-```markdown
 ---
 id: GLYPH_ARITY_LUT
 type: static_table
@@ -7220,13 +7008,10 @@ deps: []
 
 ## payload: [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 3, 2, 2, 0, 0, 0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-```
-
 ---
 
 ## FILE: src/ontology/core/GLYPH_ENERGY_LUT.md
 
-```markdown
 ---
 id: GLYPH_ENERGY_LUT
 type: static_table
@@ -7237,13 +7022,10 @@ deps: []
 
 ## payload: [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 3, 2, 20, 50, 10, 0, 1, 3, 4, 6, 2, 1, 1, 1, 1, 4, 2, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-```
-
 ---
 
 ## FILE: src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
 
-```markdown
 ---
 id: GLYPH_LEGACY_OPCODE_LUT
 type: static_table
@@ -7254,13 +7036,10 @@ deps: []
 
 ## payload: [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
 
-```
-
 ---
 
 ## FILE: src/ontology/core/GLYPH_RGB_LUT.md
 
-```markdown
 ---
 id: GLYPH_RGB_LUT
 type: static_table
@@ -7271,13 +7050,10 @@ deps: []
 
 ## payload: [255, 255, 255, 128, 128, 128, 0, 0, 0, 255, 0, 255, 255, 77, 77, 254, 87, 68, 251, 98, 60, 245, 109, 51, 238, 121, 42, 230, 132, 34, 220, 143, 27, 209, 153, 21, 199, 162, 15, 188, 170, 11, 179, 179, 7, 153, 170, 4, 131, 163, 2, 110, 157, 1, 93, 154, 0, 77, 153, 0, 62, 154, 0, 48, 157, 1, 34, 163, 2, 21, 170, 4, 7, 179, 7, 11, 188, 29, 15, 199, 52, 21, 209, 77, 27, 220, 104, 34, 230, 132, 42, 238, 160, 51, 245, 187, 60, 251, 212, 68, 254, 235, 77, 255, 255, 84, 237, 254, 91, 219, 251, 96, 201, 245, 100, 183, 238, 103, 166, 230, 105, 151, 220, 105, 136, 209, 104, 123, 199, 102, 111, 188, 100, 100, 179, 105, 98, 170, 109, 95, 163, 113, 93, 157, 117, 92, 154, 122, 92, 153, 129, 92, 154, 138, 93, 157, 149, 95, 163, 163, 98, 170, 179, 100, 179, 188, 102, 180, 199, 104, 180, 209, 105, 178, 220, 105, 174, 229, 103, 166, 238, 100, 156, 245, 96, 141, 251, 91, 123, 254, 84, 101]
 
-```
-
 ---
 
 ## FILE: src/ontology/core/GLYPH_TYPES.md
 
-```markdown
 ---
 id: GLYPH_TYPES
 type: enum
@@ -7293,20 +7069,16 @@ values:
   KIND_REGULATORY: 5
   KIND_MEMORY: 6
   KIND_RESERVE: 7
-
   STAB_HARD_INVARIANT: 0
   STAB_LEGACY_BRIDGE: 1
   STAB_BOUNDED_DYNAMIC: 2
   STAB_RESERVE: 3
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/hormone_buffer_runtime.md
 
-```markdown
 ---
 id: HORMONE_BUFFER_RUNTIME
 type: module
@@ -7322,7 +7094,6 @@ vars:
   - HormoneSyncInput
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -7389,13 +7160,10 @@ export const syncHormonesToLattice = (
 export const HORMONE_BUFFER_RUNTIME = { syncHormonesToLattice };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/hormone_buffer.md
 
-```markdown
 ---
 id: HORMONE_BUFFER
 type: module
@@ -7427,7 +7195,6 @@ extra_symbols:
   - hormoneSpecById
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -7616,13 +7383,10 @@ export const HORMONE_BUFFER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/lineage_tracker.md
 
-```markdown
 ---
 id: LINEAGE_TRACKER
 type: module
@@ -7644,7 +7408,6 @@ extra_symbols:
   - LineageTracker
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
@@ -7682,13 +7445,10 @@ export class LineageTracker {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/META_LORE.md
 
-```markdown
 ---
 id: META_LORE
 type: lore
@@ -7744,13 +7504,10 @@ tags: ["core", "physics", "llm_context", "meta"]
 
 > Архітектура зійшлася у фрактал: Код, який генерує Матрицю, сам побудований за законами цієї Матриці.
 
-```
-
 ---
 
 ## FILE: src/ontology/core/omega_daemon.md
 
-```markdown
 ---
 id: OMEGA_DAEMON
 type: module
@@ -7775,7 +7532,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
@@ -9268,13 +9024,10 @@ if (import.meta.main) {
 export const OMEGA_DAEMON = {};
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/OMEGA_MEMORY_LAYOUT.md
 
-```markdown
 ---
 id: OMEGA_MEMORY_LAYOUT
 type: memory_layout
@@ -9459,13 +9212,10 @@ extra_symbols:
   - validateMemoryLayout
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/OPCODE_ARITY_LUT.md
 
-```markdown
 ---
 id: OPCODE_ARITY_LUT
 type: static_table
@@ -9476,13 +9226,10 @@ deps: []
 
 ## payload: [0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-```
-
 ---
 
 ## FILE: src/ontology/core/OPTICAL_PHYSICS_LORE.md
 
-```markdown
 ---
 id: OPTICAL_PHYSICS_LORE
 type: documentation
@@ -9563,13 +9310,10 @@ OMEGA-64 — це P2P-розподілена система. Різні архі
 
 > "Світло — це лише дані, що отримали дозвіл на рух. Тінь — це лише дані, що зустріли рівноцінний спротив." — *OMEGA-64 Genesis Log*
 
-```
-
 ---
 
 ## FILE: src/ontology/core/physiology_snapshot.md
 
-```markdown
 ---
 id: PHYSIOLOGY_SNAPSHOT
 type: module
@@ -9592,7 +9336,6 @@ extra_symbols:
   - capturePhysiologySnapshot
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -9637,13 +9380,10 @@ export const capturePhysiologySnapshot = (
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/prediction_market.md
 
-```markdown
 ---
 id: PREDICTION_MARKET
 type: module
@@ -9822,13 +9562,10 @@ export const PREDICTION_MARKET = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/pulse_orchestrator.md
 
-```markdown
 ---
 id: PULSE
 type: module
@@ -9971,7 +9708,6 @@ extra_symbols:
   - rolesView
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -12170,13 +11906,10 @@ export const PULSE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/quorum_advocate.md
 
-```markdown
 ---
 id: QUORUM_ADVOCATE
 type: module
@@ -12195,7 +11928,6 @@ extra_symbols:
   - QuorumAdvocate
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
@@ -12242,13 +11974,10 @@ export class QuorumAdvocate {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/REJECTION_CODES.md
 
-```markdown
 ---
 id: REJECTION_CODES
 type: module
@@ -12258,7 +11987,6 @@ deps: []
 ---
 
 
-### TypeScript
 
 ```typescript
 /**
@@ -12282,13 +12010,10 @@ export const REJECTION = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/relic_cultivation.md
 
-```markdown
 ---
 id: RELIC_CULTIVATION
 type: module
@@ -12310,7 +12035,6 @@ extra_symbols:
   - RelicCultivator
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
@@ -12379,13 +12103,10 @@ export class RelicCultivator {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/runtime_policy.md
 
-```markdown
 ---
 id: RUNTIME_POLICY
 type: module
@@ -13296,13 +13017,10 @@ export const RUNTIME_POLICY = {
 } as const;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/snap_engine.md
 
-```markdown
 ---
 id: SNAP_ENGINE
 type: module
@@ -13325,7 +13043,6 @@ extra_symbols:
   - SNAP_ENGINE
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -13426,13 +13143,10 @@ export const SNAP_ENGINE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/snapshot_engine.md
 
-```markdown
 ---
 id: SNAPSHOT_ENGINE
 type: module
@@ -13457,7 +13171,6 @@ extra_symbols:
   - SNAPSHOT_ENGINE
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
@@ -13669,13 +13382,10 @@ export const SNAPSHOT_ENGINE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/sovereignty_engine.md
 
-```markdown
 ---
 id: SOVEREIGNTY_ENGINE
 type: module
@@ -13896,13 +13606,10 @@ export const SOVEREIGNTY_ENGINE: any = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/StructureTypes.md
 
-```markdown
 ---
 id: StructureTypes
 type: enum
@@ -13921,13 +13628,10 @@ values:
   STR_LATCH: 8
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/SYSTEM_CONSTANTS.md
 
-```markdown
 ---
 id: SYSTEM_CONSTANTS
 type: constants
@@ -13991,7 +13695,6 @@ values:
   STRUCTURE_INTENT_OWNER_MASK:
     value: 2147483647
     type: i32
-
   SCALE: 
     value: 1000
     type: i32
@@ -14069,13 +13772,10 @@ values:
     type: i32
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/trace_atom.md
 
-```markdown
 ---
 id: trace_atom
 type: pure_fn
@@ -14092,10 +13792,6 @@ deps:
   - TYPES
 vars: []
 ---
-
----
----
-
 ```rust
 // Externally defined in the host or FFI boundary for Sigma
 ```
@@ -14116,13 +13812,10 @@ vars: []
 // But to make it topological, we declare it as an external import.
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/core/TYPES.md
 
-```markdown
 ---
 id: TYPES
 type: module
@@ -14303,7 +13996,6 @@ extra_symbols:
   - WasmBootPolicy
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -16179,13 +15871,10 @@ export type ApplyStats = {
 ```
 export const TYPES = {};
 
-```
-
 ---
 
 ## FILE: src/ontology/core/VmOpcodes.md
 
-```markdown
 ---
 id: VmOpcodes
 type: enum
@@ -16223,13 +15912,10 @@ values:
   OP_RESONATE_KURAMOTO: 0xB1
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/VmProps.md
 
-```markdown
 ---
 id: VmProps
 type: enum
@@ -16249,13 +15935,10 @@ values:
   PROP_CONSENSUS: 11
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/core/VmSys.md
 
-```markdown
 ---
 id: VmSys
 type: enum
@@ -16285,13 +15968,10 @@ values:
   SYS_SENSE_PHASE: 21
 ---
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/AGENT_SIGNATURE.md
 
-```markdown
 ---
 id: AGENT_SIGNATURE
 type: module
@@ -16317,7 +15997,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 
@@ -16451,13 +16130,10 @@ export const AGENT_SIGNATURE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/base64_to_bytes.md
 
-```markdown
 ---
 id: base64_to_bytes
 type: module
@@ -16485,13 +16161,10 @@ export const base64_to_bytes = (b64: string): Uint8Array =>
   Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/bytes_to_base64.md
 
-```markdown
 ---
 id: bytes_to_base64
 type: module
@@ -16519,13 +16192,10 @@ export const bytes_to_base64 = (bytes: Uint8Array): string =>
   btoa(String.fromCharCode(...bytes));
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/bytes_to_hex.md
 
-```markdown
 ---
 id: bytes_to_hex
 type: module
@@ -16553,13 +16223,10 @@ export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/crypto_keys.md
 
-```markdown
 ---
 id: crypto_keys
 type: module
@@ -16625,13 +16292,10 @@ export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
   );
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/fnv1a32.md
 
-```markdown
 ---
 id: fnv1a32
 type: module
@@ -16665,13 +16329,10 @@ export const fnv1a32 = (input: string): number => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/hex_to_bytes.md
 
-```markdown
 ---
 id: hex_to_bytes
 type: module
@@ -16707,13 +16368,10 @@ export const hex_to_bytes = (hex: string): Uint8Array | null => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/invariant_packet.md
 
-```markdown
 ---
 id: INVARIANT_PACKET
 type: module
@@ -16743,7 +16401,7 @@ extra_symbols:
   - INVARIANT_PACKET
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -17002,13 +16660,10 @@ export const INVARIANT_PACKET = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/normalize_hex64.md
 
-```markdown
 ---
 id: normalize_hex64
 type: module
@@ -17039,13 +16694,10 @@ export const normalize_hex64 = (value: unknown): string | null => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/sha256_hex.md
 
-```markdown
 ---
 id: sha256_hex
 type: module
@@ -17089,13 +16741,10 @@ export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/stable_stringify.md
 
-```markdown
 ---
 id: stable_stringify
 type: module
@@ -17135,13 +16784,10 @@ export const stable_stringify = (value: unknown): string => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/crypto/topo_signature.md
 
-```markdown
 ---
 id: TOPOLOGICAL_SIGNATURE
 type: module
@@ -17176,7 +16822,7 @@ extra_symbols:
   - deriveFeatureVector
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -17535,13 +17181,10 @@ export const TOPOLOGICAL_SIGNATURE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/genomes/GENESIS_PREDATOR_SCRIPT.md
 
-```markdown
 ---
 id: GENESIS_PREDATOR_SCRIPT
 type: static_table
@@ -17552,13 +17195,10 @@ deps: []
 
 ## payload: [1, 1, 3, 1, 0, 13, 96, 1, 1, 0, 4, 1, 0, 1, 2, 0, 1, 3, 50, 1, 4, 0, 5, 3, 4, 1, 0, 10, 96, 1, 0, 1, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-```
-
 ---
 
 ## FILE: src/ontology/host/append_jsonl.md
 
-```markdown
 ---
 id: append_jsonl
 type: module
@@ -17571,7 +17211,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 export const append_jsonl = async (
@@ -17585,19 +17224,15 @@ export const append_jsonl = async (
 };
 ```
 
-### AssemblyScript
 
 ```assemblyscript
 export function append_jsonl(): void {}
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/host/assembler.md
 
-```markdown
 ---
 id: assembler
 type: module
@@ -17615,7 +17250,7 @@ extra_symbols:
   - assemble
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -17667,13 +17302,10 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/disassembler.md
 
-```markdown
 ---
 id: disassembler
 type: module
@@ -17689,7 +17321,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 export const disassembler = {
@@ -17697,13 +17328,10 @@ export const disassembler = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/glyph_ir_64.md
 
-```markdown
 ---
 id: glyph_ir_64
 type: module
@@ -17751,7 +17379,7 @@ extra_symbols:
   - listGlyphSpecsByKind
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -17886,13 +17514,10 @@ export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
   GLYPH_SPECS.filter((spec) => spec.kind === kind);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/glyph_pretty.md
 
-```markdown
 ---
 id: glyph_pretty
 type: module
@@ -17912,7 +17537,7 @@ extra_symbols:
   - glyphTapeToPrettyText
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -17938,13 +17563,10 @@ export const glyphTapeToPrettyText = (
 ): string => glyphTapeToLines(tape).join("\\n");
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/LOGGER.md
 
-```markdown
 ---
 id: LOGGER
 type: module
@@ -17967,7 +17589,6 @@ vars:
 ---
 
 
-### TypeScript
 
 ```typescript
 
@@ -18049,13 +17670,10 @@ export const Lw = LOGGER.warn;
 export const Le = LOGGER.error;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/parse_env_bool.md
 
-```markdown
 ---
 id: parse_env_bool
 type: module
@@ -18066,7 +17684,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -18088,13 +17706,10 @@ export const parse_env_bool = (
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/parse_env_bounded_int.md
 
-```markdown
 ---
 id: parse_env_bounded_int
 type: module
@@ -18105,7 +17720,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -18124,13 +17739,10 @@ export const parse_env_bounded_int = (
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/read_jsonl_lines.md
 
-```markdown
 ---
 id: read_jsonl_lines
 type: module
@@ -18143,7 +17755,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -18158,18 +17770,15 @@ export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   }
 };
 ```
-### AssemblyScript
+
 ```assemblyscript
 export function read_jsonl_lines(): void {}
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/host/read_jsonl.md
 
-```markdown
 ---
 id: read_jsonl
 type: module
@@ -18182,7 +17791,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -18205,18 +17814,15 @@ export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   }
 };
 ```
-### AssemblyScript
+
 ```assemblyscript
 export function read_jsonl(): void {}
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/host/sigma_atom_role.md
 
-```markdown
 ---
 id: sigma_atom_role
 type: substrate_module
@@ -18261,13 +17867,10 @@ impl AtomRole {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_bonding.md
 
-```markdown
 ---
 id: sigma_bonding
 type: substrate_module
@@ -18374,13 +17977,10 @@ impl SigmaState {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_environment.md
 
-```markdown
 ---
 id: sigma_environment
 type: substrate_module
@@ -18946,13 +18546,10 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_ffi_bridge.md
 
-```markdown
 ---
 id: SIGMA_FFI_BRIDGE
 type: module
@@ -18967,7 +18564,6 @@ extra_symbols:
   - SIGMA_FFI
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
@@ -19045,13 +18641,10 @@ export const SIGMA_FFI = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_ffi.md
 
-```markdown
 ---
 id: sigma_ffi
 type: substrate_module
@@ -19508,13 +19101,10 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_glyph_transport.md
 
-```markdown
 ---
 id: sigma_glyph_transport
 type: substrate_module
@@ -19593,13 +19183,10 @@ impl SigmaState {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_isa.md
 
-```markdown
 ---
 id: sigma_isa
 type: substrate_module
@@ -19680,13 +19267,10 @@ impl From<u8> for GlyphOp {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_math.md
 
-```markdown
 ---
 id: sigma_math
 type: substrate_module
@@ -19704,13 +19288,10 @@ pub use crate::ontology_gen::L01::*;
 pub use crate::ontology_gen::L00::*;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_memory.md
 
-```markdown
 ---
 id: sigma_memory
 type: substrate_module
@@ -20445,13 +20026,10 @@ mod tests {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_pulse.md
 
-```markdown
 ---
 id: sigma_pulse
 type: substrate_module
@@ -20694,13 +20272,10 @@ impl<'a> PulseOrchestrator<'a> {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_replication.md
 
-```markdown
 ---
 id: sigma_replication
 type: substrate_module
@@ -20903,13 +20478,10 @@ impl SigmaState {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_shadow.md
 
-```markdown
 ---
 id: sigma_shadow
 type: substrate_module
@@ -21047,13 +20619,10 @@ pub fn run_shadow_simulation(
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_spatial.md
 
-```markdown
 ---
 id: sigma_spatial
 type: substrate_module
@@ -21180,13 +20749,10 @@ impl SigmaState {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_structure.md
 
-```markdown
 ---
 id: sigma_structure
 type: substrate_module
@@ -21312,13 +20878,10 @@ impl SigmaState {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/host/sigma_vm.md
 
-```markdown
 ---
 id: sigma_vm
 type: substrate_module
@@ -22623,13 +22186,10 @@ impl LambdaVM {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/atomic_ledger.md
 
-```markdown
 ---
 id: ATOMIC_LEDGER
 type: module
@@ -22649,7 +22209,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
@@ -22720,13 +22280,10 @@ export const ATOMIC_LEDGER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/checkpoint_chain.md
 
-```markdown
 ---
 id: checkpoint_chain
 type: module
@@ -22749,7 +22306,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | checkpoint_chain.ts
@@ -22935,13 +22491,10 @@ export const CHECKPOINT_CHECKPOINT = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/crystallization_policy.md
 
-```markdown
 ---
 id: CRYSTALLIZATION_CONFIG
 type: module
@@ -22962,7 +22515,7 @@ extra_symbols:
   - CRYSTALLIZATION_POLICY
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -23036,13 +22589,10 @@ export const CRYSTALLIZATION_POLICY = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/gate_admission.md
 
-```markdown
 ---
 id: CANON_CAUSAL_BRIDGE
 type: module
@@ -23057,7 +22607,7 @@ deps:
 min_level: 12
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -23183,13 +22733,10 @@ export const CANON_CAUSAL_BRIDGE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/gate_ledger.md
 
-```markdown
 ---
 id: GATE_LEDGER
 type: module
@@ -23203,7 +22750,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -23250,13 +22797,10 @@ export const GATE_LEDGER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/gate_merger.md
 
-```markdown
 ---
 id: GATE_MERGER
 type: module
@@ -23273,7 +22817,6 @@ deps:
 ---
 
 
-### TypeScript
 
 ```typescript
 
@@ -23471,13 +23014,10 @@ export const GATE_MERGER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/gate_validator.md
 
-```markdown
 ---
 id: GATE_VALIDATOR
 type: module
@@ -23493,7 +23033,6 @@ deps:
 ---
 
 
-### TypeScript
 
 ```typescript
 
@@ -23698,13 +23237,10 @@ export const GATE_VALIDATOR = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/gate.md
 
-```markdown
 ---
 id: GATE
 type: module
@@ -23722,7 +23258,6 @@ deps:
   - REJECTION_CODES
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -24155,13 +23690,10 @@ export const GATE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/genetic_ledger.md
 
-```markdown
 ---
 id: GENETIC_LEDGER
 type: module
@@ -24182,7 +23714,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -24344,13 +23876,10 @@ export const GENETIC_LEDGER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/l32_gate/ledger_chain.md
 
-```markdown
 ---
 id: ledger_chain
 type: module
@@ -24376,7 +23905,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | ledger_chain.ts
@@ -24802,13 +24330,10 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/C_LOG2_C_LUT.md
 
-```markdown
 ---
 id: C_LOG2_C_LUT
 type: static_table
@@ -24819,13 +24344,10 @@ dataType: i32
 
 ## payload: [0, 0, 2000, 4755, 8000, 11610, 15510, 19651, 24000, 28529, 33219, 38054, 43020, 48106, 53303, 58603, 64000, 69487, 75059, 80711, 86439, 92239, 98107, 104042, 110039, 116096, 122211, 128382, 134606, 140881, 147207, 153580, 160000, 166465, 172974, 179525, 186117, 192750, 199421, 206131, 212877, 219660, 226477, 233329, 240215, 247133, 254084, 261066, 268078, 275121, 282193, 289294, 296423, 303580, 310764, 317975, 325212, 332475, 339763, 347076, 354413, 361775, 369160, 376569, 384000]
 
-```
-
 ---
 
 ## FILE: src/ontology/math/clamp_resource.md
 
-```markdown
 ---
 id: clamp_resource
 type: pure_fn
@@ -24851,7 +24373,7 @@ if value < 0 {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -24862,20 +24384,17 @@ if (value > BigInt(RESOURCE_MAX)) return RESOURCE_MAX;
 return Number(value);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (value < 0) return 0;
 if (value > (RESOURCE_MAX as i64)) return RESOURCE_MAX;
 return value as i32;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/COS_LUT.md
 
-```markdown
 ---
 id: COS_LUT
 type: static_table
@@ -24886,13 +24405,10 @@ dataType: i16
 
 ## payload: [32767,32757,32728,32678,32609,32521,32412,32285,32137,31971,31785,31580,31356,31113,30852,30571,30273,29956,29621,29268,28898,28510,28105,27683,27245,26790,26319,25832,25329,24811,24279,23731,23170,22594,22005,21403,20787,20159,19519,18868,18204,17530,16846,16151,15446,14732,14010,13279,12539,11793,11039,10278,9512,8739,7962,7179,6393,5602,4808,4011,3212,2410,1608,804,0,-804,-1608,-2410,-3212,-4011,-4808,-5602,-6393,-7179,-7962,-8739,-9512,-10278,-11039,-11793,-12539,-13279,-14010,-14732,-15446,-16151,-16846,-17530,-18204,-18868,-19519,-20159,-20787,-21403,-22005,-22594,-23170,-23731,-24279,-24811,-25329,-25832,-26319,-26790,-27245,-27683,-28105,-28510,-28898,-29268,-29621,-29956,-30273,-30571,-30852,-31113,-31356,-31580,-31785,-31971,-32137,-32285,-32412,-32521,-32609,-32678,-32728,-32757,-32767,-32757,-32728,-32678,-32609,-32521,-32412,-32285,-32137,-31971,-31785,-31580,-31356,-31113,-30852,-30571,-30273,-29956,-29621,-29268,-28898,-28510,-28105,-27683,-27245,-26790,-26319,-25832,-25329,-24811,-24279,-23731,-23170,-22594,-22005,-21403,-20787,-20159,-19519,-18868,-18204,-17530,-16846,-16151,-15446,-14732,-14010,-13279,-12539,-11793,-11039,-10278,-9512,-8739,-7962,-7179,-6393,-5602,-4808,-4011,-3212,-2410,-1608,-804,0,804,1608,2410,3212,4011,4808,5602,6393,7179,7962,8739,9512,10278,11039,11793,12539,13279,14010,14732,15446,16151,16846,17530,18204,18868,19519,20159,20787,21403,22005,22594,23170,23731,24279,24811,25329,25832,26319,26790,27245,27683,28105,28510,28898,29268,29621,29956,30273,30571,30852,31113,31356,31580,31785,31971,32137,32285,32412,32521,32609,32678,32728,32757]
 
-```
-
 ---
 
 ## FILE: src/ontology/math/fast_abs.md
 
-```markdown
 ---
 id: fast_abs
 type: pure_fn
@@ -24919,7 +24435,7 @@ let mask = v >> 31;
 (v + mask) ^ mask
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -24929,19 +24445,16 @@ const mask = v >> 31;
 return (v + mask) ^ mask;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const mask = v >> 31;
 return (v + mask) ^ mask;
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/math/fast_max.md
 
-```markdown
 ---
 id: fast_max
 type: pure_fn
@@ -24972,7 +24485,7 @@ let diff = a - b;
 a - (diff & (diff >> 31))
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -24982,19 +24495,16 @@ const diff = a - b;
 return a - (diff & (diff >> 31));
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const diff = a - b;
 return a - (diff & (diff >> 31));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/math/fast_min.md
 
-```markdown
 ---
 id: fast_min
 type: pure_fn
@@ -25025,7 +24535,7 @@ let diff = a - b;
 b + (diff & (diff >> 31))
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25035,19 +24545,16 @@ const diff = a - b;
 return b + (diff & (diff >> 31));
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const diff = a - b;
 return b + (diff & (diff >> 31));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/math/make_xor_shift32.md
 
-```markdown
 ---
 id: make_xor_shift32
 type: module
@@ -25062,7 +24569,7 @@ extra_symbols:
   - make_xor_shift32
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -25079,13 +24586,10 @@ export const make_xor_shift32 = (seed: number): () => number => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/math_clamp.md
 
-```markdown
 ---
 id: math_clamp
 type: pure_fn
@@ -25120,7 +24624,7 @@ if val < min {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25131,20 +24635,17 @@ if (val > max) return max;
 return val;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (val < min) return min;
 if (val > max) return max;
 return val;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/math_cos.md
 
-```markdown
 ---
 id: math_cos
 type: pure_fn
@@ -25199,7 +24700,7 @@ let term2 = (d2 * frac * frac) >> 16;
 c_base - term1 - term2
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25227,13 +24728,10 @@ let term2 = (d2 * frac * frac) >> 16;
 return c_base - term1 - term2;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/math_sin.md
 
-```markdown
 ---
 id: math_sin
 type: pure_fn
@@ -25286,7 +24784,7 @@ let term2 = (d2 * frac * frac) >> 16;
 s_base + term1 - term2
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25314,13 +24812,10 @@ let term2 = (d2 * frac * frac) >> 16;
 return s_base + term1 - term2;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/MATH_UTILS.md
 
-```markdown
 ---
 id: MATH_UTILS
 type: module
@@ -25338,7 +24833,6 @@ extra_symbols:
   - calculate_shannon_entropy
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -25417,7 +24911,6 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 }
 ```
 
-### AssemblyScript
 
 ```assemblyscript
 export function normalize_angle(angle: f64): f64 {
@@ -25443,13 +24936,10 @@ export function calculate_shannon_entropy(data: usize): i32 {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/pack_structure_intent.md
 
-```markdown
 ---
 id: pack_structure_intent
 type: pure_fn
@@ -25489,7 +24979,7 @@ if locked {
 intent as i32
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25504,7 +24994,7 @@ export function pack_structure_intent(target_type: number, target_value: number,
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 let intent: u32 = target_type | (target_value << 24);
 if (locked) {
@@ -25513,13 +25003,10 @@ if (locked) {
 return intent as i32;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/PRNG.md
 
-```markdown
 ---
 id: PRNG
 type: module
@@ -25538,7 +25025,6 @@ extra_symbols:
   - PRNG
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -25564,13 +25050,10 @@ export class PRNG {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/SIN_LUT.md
 
-```markdown
 ---
 id: SIN_LUT
 type: static_table
@@ -25581,13 +25064,10 @@ dataType: i16
 
 ## payload: [0,804,1608,2410,3212,4011,4808,5602,6393,7179,7962,8739,9512,10278,11039,11793,12539,13279,14010,14732,15446,16151,16846,17530,18204,18868,19519,20159,20787,21403,22005,22594,23170,23731,24279,24811,25329,25832,26319,26790,27245,27683,28105,28510,28898,29268,29621,29956,30273,30571,30852,31113,31356,31580,31785,31971,32137,32285,32412,32521,32609,32678,32728,32757,32767,32757,32728,32678,32609,32521,32412,32285,32137,31971,31785,31580,31356,31113,30852,30571,30273,29956,29621,29268,28898,28510,28105,27683,27245,26790,26319,25832,25329,24811,24279,23731,23170,22594,22005,21403,20787,20159,19519,18868,18204,17530,16846,16151,15446,14732,14010,13279,12539,11793,11039,10278,9512,8739,7962,7179,6393,5602,4808,4011,3212,2410,1608,804,0,-804,-1608,-2410,-3212,-4011,-4808,-5602,-6393,-7179,-7962,-8739,-9512,-10278,-11039,-11793,-12539,-13279,-14010,-14732,-15446,-16151,-16846,-17530,-18204,-18868,-19519,-20159,-20787,-21403,-22005,-22594,-23170,-23731,-24279,-24811,-25329,-25832,-26319,-26790,-27245,-27683,-28105,-28510,-28898,-29268,-29621,-29956,-30273,-30571,-30852,-31113,-31356,-31580,-31785,-31971,-32137,-32285,-32412,-32521,-32609,-32678,-32728,-32757,-32767,-32757,-32728,-32678,-32609,-32521,-32412,-32285,-32137,-31971,-31785,-31580,-31356,-31113,-30852,-30571,-30273,-29956,-29621,-29268,-28898,-28510,-28105,-27683,-27245,-26790,-26319,-25832,-25329,-24811,-24279,-23731,-23170,-22594,-22005,-21403,-20787,-20159,-19519,-18868,-18204,-17530,-16846,-16151,-15446,-14732,-14010,-13279,-12539,-11793,-11039,-10278,-9512,-8739,-7962,-7179,-6393,-5602,-4808,-4011,-3212,-2410,-1608,-804]
 
-```
-
 ---
 
 ## FILE: src/ontology/math/to_int16_big_endian.md
 
-```markdown
 ---
 id: to_int16_big_endian
 type: module
@@ -25604,7 +25084,7 @@ extra_symbols:
   - to_int16_big_endian
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -25621,13 +25101,10 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/math/unpack_structure_charge.md
 
-```markdown
 ---
 id: unpack_structure_charge
 type: pure_fn
@@ -25657,7 +25134,7 @@ extra_symbols:
 ((intent as u32) & 0x7F000000) >> 24
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -25668,18 +25145,15 @@ export function unpack_structure_charge(intent: number): number {
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return ((intent as u32) & 0x7F000000) >> 24;
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/membrane/agent_proxy.md
 
-```markdown
 ---
 id: AGENT_PROXY
 type: module
@@ -25709,7 +25183,6 @@ extra_symbols:
   - AgentProxy
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -25921,13 +25394,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/akasha_server.md
 
-```markdown
 ---
 id: AKASHA_SERVER
 type: module
@@ -25949,7 +25419,6 @@ vars:
   - ParsedMeshInject
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -26668,13 +26137,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/akasha_signaling.md
 
-```markdown
 ---
 id: AKASHA_SIGNALING
 type: module
@@ -26692,7 +26158,6 @@ vars:
   - SIGNAL_TYPES
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -26993,13 +26458,10 @@ export const AKASHA_SIGNALING = {
 } as const;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/p2p_codec.md
 
-```markdown
 ---
 id: P2P_CODEC
 type: module
@@ -27020,7 +26482,6 @@ extra_symbols:
   - PACKET_SIZE
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -27141,13 +26602,10 @@ export const P2P_CODEC = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/p2p_federation.md
 
-```markdown
 ---
 id: P2P_FEDERATION
 type: module
@@ -27169,7 +26627,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -27248,13 +26705,10 @@ export const P2P_FEDERATION = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/panopticon_server.md
 
-```markdown
 ---
 id: PANOPTICON_SERVER
 type: module
@@ -27278,7 +26732,6 @@ extra_symbols:
   - PANOPTICON_SERVER
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -27396,13 +26849,10 @@ export const PANOPTICON_SERVER = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/swarm_nexus.md
 
-```markdown
 ---
 id: SWARM_NEXUS
 type: module
@@ -27420,7 +26870,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -27769,13 +27218,10 @@ export class SwarmNexus {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/swarm_node.md
 
-```markdown
 ---
 id: SWARM_NODE
 type: module
@@ -27792,7 +27238,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -27837,13 +27282,10 @@ export class MetaKuramotoNode {
 export const SWARM_NODE = new MetaKuramotoNode();
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/membrane/telemetry_stream.md
 
-```markdown
 ---
 id: TELEMETRY_STREAM
 type: module
@@ -27863,7 +27305,6 @@ vars:
   - TelemetryHistogram
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -28049,13 +27490,10 @@ export const TELEMETRY_STREAM = {
 export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/add_energy_delta.md
 
-```markdown
 ---
 id: add_energy_delta
 type: pure_fn
@@ -28076,27 +27514,24 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 if (delta !== 0) {
   Atomics.add(energyDeltaView, idx, delta);
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (delta != 0) {
   atomic.add<i32>(ENERGY_DELTA_OFF + (idx << 2), delta);
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/add_hive_balance.md
 
-```markdown
 ---
 id: add_hive_balance
 type: pure_fn
@@ -28116,23 +27551,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return Atomics.add(hiveBalanceView, 0, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return atomic.add<i32>(HIVE_BALANCE_OFF, val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/add_resonance_delta.md
 
-```markdown
 ---
 id: add_resonance_delta
 type: pure_fn
@@ -28153,27 +27585,24 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 if (delta !== 0) {
   Atomics.add(resonanceDeltaView, idx, delta);
 }
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (delta != 0) {
   atomic.add<i32>(RESONANCE_DELTA_OFF + (idx << 2), delta);
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/add_resonance.md
 
-```markdown
 ---
 id: add_resonance
 type: pure_fn
@@ -28197,23 +27626,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 set_resonance(idx, get_resonance(idx) + delta);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 set_resonance(idx, get_resonance(idx) + delta);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/attentionField.md
 
-```markdown
 ---
 id: attentionField
 type: module
@@ -28229,7 +27655,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28238,13 +27664,10 @@ min_level: 0
 export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/attentionFieldBuffer.md
 
-```markdown
 ---
 id: attentionFieldBuffer
 type: module
@@ -28260,7 +27683,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28269,13 +27692,10 @@ min_level: 0
 export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/bondDistances.md
 
-```markdown
 ---
 id: bondDistances
 type: module
@@ -28292,7 +27712,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28301,13 +27721,10 @@ min_level: 0
 export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/bondDistBuffer.md
 
-```markdown
 ---
 id: bondDistBuffer
 type: module
@@ -28324,7 +27741,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28333,13 +27750,10 @@ min_level: 0
 export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/bondRequests.md
 
-```markdown
 ---
 id: bondRequests
 type: module
@@ -28356,7 +27770,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28365,13 +27779,10 @@ min_level: 0
 export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/bonds.md
 
-```markdown
 ---
 id: bonds
 type: module
@@ -28388,7 +27799,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28397,13 +27808,10 @@ min_level: 0
 export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/bondStiffness.md
 
-```markdown
 ---
 id: bondStiffness
 type: module
@@ -28420,7 +27828,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28429,13 +27837,10 @@ min_level: 0
 export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/causality.md
 
-```markdown
 ---
 id: causality
 type: module
@@ -28452,7 +27857,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28461,13 +27866,10 @@ min_level: 0
 export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/codeWords.md
 
-```markdown
 ---
 id: codeWords
 type: module
@@ -28484,7 +27886,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28493,13 +27895,10 @@ min_level: 0
 export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/coherence.md
 
-```markdown
 ---
 id: coherence
 type: module
@@ -28514,7 +27913,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28523,13 +27922,10 @@ min_level: 0
 export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/contextByteView.md
 
-```markdown
 ---
 id: contextByteView
 type: module
@@ -28547,7 +27943,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28556,13 +27952,10 @@ min_level: 0
 export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/contexts.md
 
-```markdown
 ---
 id: contexts
 type: module
@@ -28580,7 +27973,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28589,13 +27982,10 @@ min_level: 0
 export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/damping.md
 
-```markdown
 ---
 id: damping
 type: module
@@ -28612,7 +28002,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28621,13 +28011,10 @@ min_level: 0
 export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/dampingBuffer.md
 
-```markdown
 ---
 id: dampingBuffer
 type: module
@@ -28644,7 +28031,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28653,13 +28040,10 @@ min_level: 0
 export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/energies.md
 
-```markdown
 ---
 id: energies
 type: module
@@ -28676,7 +28060,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28685,13 +28069,10 @@ min_level: 0
 export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/evolutionReserved.md
 
-```markdown
 ---
 id: evolutionReserved
 type: module
@@ -28708,7 +28089,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -28717,13 +28098,10 @@ min_level: 0
 export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/genome_key16.md
 
-```markdown
 ---
 id: genome_key16
 type: pure_fn
@@ -28748,7 +28126,7 @@ let b1 = state.matrix.logic[idx as usize][1] as i32;
 (b0 << 8) | b1
 ```
 
-### TypeScript
+
 ```typescript
  b0 
 
@@ -28763,7 +28141,7 @@ const b1 = dataView.getUint8(LOGIC_OFFSET + (idx << 3) + 1);
 return (b0 << 8) | b1;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 const ptr = LOGIC_OFFSET + (idx << 3);
 const b0 = load<u8>(ptr) as i32;
@@ -28771,13 +28149,10 @@ const b1 = load<u8>(ptr + 1) as i32;
 return (b0 << 8) | b1;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/get_bond_stiffness.md
 
-```markdown
 ---
 id: get_bond_stiffness
 type: pure_fn
@@ -28798,23 +28173,20 @@ returns: f32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_bond_target.md
 
-```markdown
 ---
 id: get_bond_target
 type: pure_fn
@@ -28835,23 +28207,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_energy.md
 
-```markdown
 ---
 id: get_energy
 type: pure_fn
@@ -28872,7 +28241,7 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -28882,18 +28251,15 @@ unimplemented!("Memory accessors are host/WASM specific");
 return dataView.getInt32(ENERGY_OFFSET + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(ENERGY_OFFSET + (idx << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_hive_balance.md
 
-```markdown
 ---
 id: get_hive_balance
 type: pure_fn
@@ -28912,23 +28278,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return Atomics.load(hiveBalanceView, 0);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return atomic.load<i32>(HIVE_BALANCE_OFF);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_hive_memory.md
 
-```markdown
 ---
 id: get_hive_memory
 type: pure_fn
@@ -28948,23 +28311,20 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(HIVE_MEMORY_OFF + (addr & 1023));
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_hormone.md
 
-```markdown
 ---
 id: get_hormone
 type: pure_fn
@@ -28984,23 +28344,20 @@ returns: u16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return Atomics.load(HormoneView, id);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return atomic.load<u16>(HORMONE_OFF + (id << 1));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_lineage.md
 
-```markdown
 ---
 id: get_lineage
 type: pure_fn
@@ -29020,23 +28377,20 @@ returns: u64
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getBigUint64(LINEAGE_OFFSET + (idx << 3), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u64>(LINEAGE_OFFSET + (idx << 3));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_logic_byte.md
 
-```markdown
 ---
 id: get_logic_byte
 type: pure_fn
@@ -29057,23 +28411,20 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(LOGIC_OFFSET + (idx << 3) + slot);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_p_c.md
 
-```markdown
 ---
 id: get_p_c
 type: pure_fn
@@ -29093,23 +28444,20 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(CONTEXT_OFFSET + (atomIdx << 6) + 32);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_pending_syscall.md
 
-```markdown
 ---
 id: get_pending_syscall
 type: pure_fn
@@ -29129,23 +28477,20 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(CONTEXT_OFFSET + (atomIdx << 6) + 33);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_phase.md
 
-```markdown
 ---
 id: get_phase
 type: pure_fn
@@ -29165,23 +28510,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(PHASE_OFFSET + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(PHASE_OFFSET + (idx << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_read_energy.md
 
-```markdown
 ---
 id: get_read_energy
 type: pure_fn
@@ -29201,23 +28543,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(PHYSICS_READ_ENERGY_OFF + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_read_resonance.md
 
-```markdown
 ---
 id: get_read_resonance
 type: pure_fn
@@ -29237,23 +28576,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(PHYSICS_READ_RESONANCE_OFF + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_read_x.md
 
-```markdown
 ---
 id: get_read_x
 type: pure_fn
@@ -29273,23 +28609,20 @@ returns: i16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt16(PHYSICS_READ_XS_OFF + (idx << 1), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_read_y.md
 
-```markdown
 ---
 id: get_read_y
 type: pure_fn
@@ -29309,23 +28642,20 @@ returns: i16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt16(PHYSICS_READ_YS_OFF + (idx << 1), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_reg.md
 
-```markdown
 ---
 id: get_reg
 type: pure_fn
@@ -29346,23 +28676,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_resonance.md
 
-```markdown
 ---
 id: get_resonance
 type: pure_fn
@@ -29382,23 +28709,20 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(RESONANCE_OFFSET + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(RESONANCE_OFFSET + (idx << 2));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_role.md
 
-```markdown
 ---
 id: get_role
 type: pure_fn
@@ -29418,23 +28742,20 @@ returns: u8
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getUint8(ROLES_OFFSET + atomIdx);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<u8>(ROLES_OFFSET + atomIdx);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_spatial_grid_atom.md
 
-```markdown
 ---
 id: get_spatial_grid_atom
 type: pure_fn
@@ -29457,7 +28778,7 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -29467,7 +28788,7 @@ const cellIdx = gy * GRID_W + gx;
 return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 let cellIdx = gy * GRID_W + gx;
 return load<i32>(
@@ -29475,13 +28796,10 @@ return load<i32>(
 );
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/get_spatial_grid_count.md
 
-```markdown
 ---
 id: get_spatial_grid_count
 type: pure_fn
@@ -29503,7 +28821,7 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -29513,19 +28831,16 @@ const cellIdx = gy * GRID_W + gx;
 return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 let cellIdx = gy * GRID_W + gx;
 return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_x.md
 
-```markdown
 ---
 id: get_x
 type: pure_fn
@@ -29545,23 +28860,20 @@ returns: i16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt16(XS_OFFSET + (idx << 1), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i16>(XS_OFFSET + (idx << 1));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/get_y.md
 
-```markdown
 ---
 id: get_y
 type: pure_fn
@@ -29581,23 +28893,20 @@ returns: i16
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt16(YS_OFFSET + (idx << 1), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i16>(YS_OFFSET + (idx << 1));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/glyphHeaderBuffer.md
 
-```markdown
 ---
 id: glyphHeaderBuffer
 type: module
@@ -29613,7 +28922,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29622,13 +28931,10 @@ min_level: 0
 export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/glyphHeaders.md
 
-```markdown
 ---
 id: glyphHeaders
 type: module
@@ -29644,7 +28950,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29653,13 +28959,10 @@ min_level: 0
 export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/glyphPayload.md
 
-```markdown
 ---
 id: glyphPayload
 type: module
@@ -29675,7 +28978,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29684,13 +28987,10 @@ min_level: 0
 export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/glyphPayloadBuffer.md
 
-```markdown
 ---
 id: glyphPayloadBuffer
 type: module
@@ -29706,7 +29006,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29715,13 +29015,10 @@ min_level: 0
 export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hiveBalance.md
 
-```markdown
 ---
 id: hiveBalance
 type: module
@@ -29736,7 +29033,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29745,13 +29042,10 @@ min_level: 0
 export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hiveEnergyPool.md
 
-```markdown
 ---
 id: hiveEnergyPool
 type: module
@@ -29767,7 +29061,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29776,13 +29070,10 @@ min_level: 0
 export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hiveEnergyPoolBuffer.md
 
-```markdown
 ---
 id: hiveEnergyPoolBuffer
 type: module
@@ -29798,7 +29089,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29807,13 +29098,10 @@ min_level: 0
 export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hiveMemory.md
 
-```markdown
 ---
 id: hiveMemory
 type: module
@@ -29829,7 +29117,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29838,13 +29126,10 @@ min_level: 0
 export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hiveMemoryBuffer.md
 
-```markdown
 ---
 id: hiveMemoryBuffer
 type: module
@@ -29860,7 +29145,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29869,13 +29154,10 @@ min_level: 0
 export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hormoneBuffer.md
 
-```markdown
 ---
 id: hormoneBuffer
 type: module
@@ -29891,7 +29173,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29900,13 +29182,10 @@ min_level: 0
 export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/hormones.md
 
-```markdown
 ---
 id: hormones
 type: module
@@ -29922,7 +29201,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29931,13 +29210,10 @@ min_level: 0
 export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/ids.md
 
-```markdown
 ---
 id: ids
 type: module
@@ -29954,7 +29230,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29963,13 +29239,10 @@ min_level: 0
 export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/instructions.md
 
-```markdown
 ---
 id: instructions
 type: module
@@ -29987,7 +29260,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -29996,13 +29269,10 @@ min_level: 0
 export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/latticeClearView.md
 
-```markdown
 ---
 id: latticeClearView
 type: module
@@ -30017,7 +29287,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30026,13 +29296,10 @@ min_level: 0
 export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/ledgerDataView.md
 
-```markdown
 ---
 id: ledgerDataView
 type: module
@@ -30048,7 +29315,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30057,13 +29324,10 @@ min_level: 0
 export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/ledgerHeadView.md
 
-```markdown
 ---
 id: ledgerHeadView
 type: module
@@ -30078,7 +29342,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30087,13 +29351,10 @@ min_level: 0
 export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/lineage.md
 
-```markdown
 ---
 id: lineage
 type: module
@@ -30110,7 +29371,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30119,13 +29380,10 @@ min_level: 0
 export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/lineageBuffer.md
 
-```markdown
 ---
 id: lineageBuffer
 type: module
@@ -30142,7 +29400,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30151,13 +29409,10 @@ min_level: 0
 export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/logic.md
 
-```markdown
 ---
 id: logic
 type: module
@@ -30175,7 +29430,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30184,13 +29439,10 @@ min_level: 0
 export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/mailboxes.md
 
-```markdown
 ---
 id: mailboxes
 type: module
@@ -30207,7 +29459,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30216,13 +29468,10 @@ min_level: 0
 export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/memory_views_base.md
 
-```markdown
 ---
 id: memory_views_base
 type: module
@@ -30244,7 +29493,7 @@ extra_symbols:
   - sharedBuffer
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30275,13 +29524,10 @@ export const wasmMemory = new WebAssembly.Memory({
 export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/memoryGrid.md
 
-```markdown
 ---
 id: memoryGrid
 type: module
@@ -30297,7 +29543,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30306,13 +29552,10 @@ min_level: 0
 export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/memoryGridBuffer.md
 
-```markdown
 ---
 id: memoryGridBuffer
 type: module
@@ -30328,7 +29571,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30337,13 +29580,10 @@ min_level: 0
 export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/mx.md
 
-```markdown
 ---
 id: MX
 type: module
@@ -30441,7 +29681,7 @@ extra_symbols:
   - toClampedEnergyRaw
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | MX.ts
 
@@ -30946,13 +30186,10 @@ export const MX = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/neuralCoherence.md
 
-```markdown
 ---
 id: neuralCoherence
 type: module
@@ -30967,7 +30204,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -30976,13 +30213,10 @@ min_level: 0
 export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/phases.md
 
-```markdown
 ---
 id: phases
 type: module
@@ -30999,7 +30233,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31008,13 +30242,10 @@ min_level: 0
 export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/resonances.md
 
-```markdown
 ---
 id: resonances
 type: module
@@ -31031,7 +30262,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31040,13 +30271,10 @@ min_level: 0
 export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/roleBuffer.md
 
-```markdown
 ---
 id: roleBuffer
 type: module
@@ -31063,7 +30291,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31072,13 +30300,10 @@ min_level: 0
 export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/roles.md
 
-```markdown
 ---
 id: roles
 type: module
@@ -31095,7 +30320,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31104,13 +30329,10 @@ min_level: 0
 export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/semanticBonuses.md
 
-```markdown
 ---
 id: semanticBonuses
 type: module
@@ -31125,7 +30347,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31134,13 +30356,10 @@ min_level: 0
 export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/semanticBonusesBuffer.md
 
-```markdown
 ---
 id: semanticBonusesBuffer
 type: module
@@ -31154,7 +30373,7 @@ vars: []
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31163,13 +30382,10 @@ min_level: 0
 export const semanticBonusesBuffer = semanticBonuses.buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/set_bond_dist.md
 
-```markdown
 ---
 id: set_bond_dist
 type: pure_fn
@@ -31191,23 +30407,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_bond_stiffness.md
 
-```markdown
 ---
 id: set_bond_stiffness
 type: pure_fn
@@ -31229,23 +30442,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setFloat32(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_bond_target.md
 
-```markdown
 ---
 id: set_bond_target
 type: pure_fn
@@ -31267,23 +30477,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setInt32(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_damping.md
 
-```markdown
 ---
 id: set_damping
 type: pure_fn
@@ -31304,23 +30511,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(DAMPING_OFF + atomIdx, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(DAMPING_OFF + atomIdx, val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_energy.md
 
-```markdown
 ---
 id: set_energy
 type: pure_fn
@@ -31341,7 +30545,7 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -31351,18 +30555,15 @@ unimplemented!("Memory accessors are host/WASM specific");
 dataView.setInt32(ENERGY_OFFSET + (idx << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(ENERGY_OFFSET + (idx << 2), val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_hive_memory.md
 
-```markdown
 ---
 id: set_hive_memory
 type: pure_fn
@@ -31383,23 +30584,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(HIVE_MEMORY_OFF + (addr & 1023), val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_p_c.md
 
-```markdown
 ---
 id: set_p_c
 type: pure_fn
@@ -31420,23 +30618,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_pending_syscall.md
 
-```markdown
 ---
 id: set_pending_syscall
 type: pure_fn
@@ -31457,23 +30652,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_phase.md
 
-```markdown
 ---
 id: set_phase
 type: pure_fn
@@ -31494,23 +30686,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setInt32(PHASE_OFFSET + (idx << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(PHASE_OFFSET + (idx << 2), val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_reg.md
 
-```markdown
 ---
 id: set_reg
 type: pure_fn
@@ -31532,23 +30721,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setInt32(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val, true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_resonance.md
 
-```markdown
 ---
 id: set_resonance
 type: pure_fn
@@ -31571,23 +30757,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setInt32(RESONANCE_OFFSET + (idx << 2), clamp_resource(BigInt(val)), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/set_role.md
 
-```markdown
 ---
 id: set_role
 type: pure_fn
@@ -31608,23 +30791,20 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(ROLES_OFFSET + atomIdx, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(ROLES_OFFSET + atomIdx, val);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/memory/signalGrid.md
 
-```markdown
 ---
 id: signalGrid
 type: module
@@ -31640,7 +30820,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31649,13 +30829,10 @@ min_level: 0
 export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/signalGridBuffer.md
 
-```markdown
 ---
 id: signalGridBuffer
 type: module
@@ -31671,7 +30848,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31680,13 +30857,10 @@ min_level: 0
 export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/spatialGrid.md
 
-```markdown
 ---
 id: spatialGrid
 type: module
@@ -31702,7 +30876,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31711,13 +30885,10 @@ min_level: 0
 export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/stiffnessBuffer.md
 
-```markdown
 ---
 id: stiffnessBuffer
 type: module
@@ -31734,7 +30905,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31743,13 +30914,10 @@ min_level: 0
 export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/structureGrid.md
 
-```markdown
 ---
 id: structureGrid
 type: module
@@ -31765,7 +30933,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31774,13 +30942,10 @@ min_level: 0
 export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/structureGridBuffer.md
 
-```markdown
 ---
 id: structureGridBuffer
 type: module
@@ -31796,7 +30961,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31805,13 +30970,10 @@ min_level: 0
 export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/synapticWeights.md
 
-```markdown
 ---
 id: synapticWeights
 type: module
@@ -31828,7 +30990,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31837,13 +30999,10 @@ min_level: 0
 export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/syncState.md
 
-```markdown
 ---
 id: syncState
 type: module
@@ -31858,7 +31017,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31867,13 +31026,10 @@ min_level: 0
 export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/tickCounter.md
 
-```markdown
 ---
 id: tickCounter
 type: module
@@ -31888,7 +31044,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31897,13 +31053,10 @@ min_level: 0
 export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/wasm_memory_guard.md
 
-```markdown
 ---
 id: assert_wasm_memory_depth
 type: pure_fn
@@ -31927,7 +31080,7 @@ extra_symbols:
   - assert_wasm_memory_depth
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31943,13 +31096,10 @@ export const assert_wasm_memory_depth = (): void => {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/xs.md
 
-```markdown
 ---
 id: xs
 type: module
@@ -31966,7 +31116,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -31975,13 +31125,10 @@ min_level: 0
 export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/memory/ys.md
 
-```markdown
 ---
 id: ys
 type: module
@@ -31998,7 +31145,7 @@ vars:
 min_level: 0
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -32007,13 +31154,10 @@ min_level: 0
 export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/apply_bond_springs.md
 
-```markdown
 ---
 id: apply_bond_springs
 type: pure_fn
@@ -32041,10 +31185,6 @@ deps:
   - TYPES
 description: Auto-recovered apply_bond_springs
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32190,13 +31330,10 @@ if (damping > 0) {
 return encode_force_tuple(fx, fy);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/calculate_trophism.md
 
-```markdown
 ---
 id: calculate_trophism
 type: pure_fn
@@ -32238,10 +31375,6 @@ deps:
   - TYPES
 description: Auto-recovered calculate_trophism
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32570,13 +31703,10 @@ if (role == ROLE_ARCHITECT) {
 return encode_force_tuple(tx, ty);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/encode_force_tuple.md
 
-```markdown
 ---
 id: encode_force_tuple
 type: pure_fn
@@ -32590,10 +31720,6 @@ description: Auto-recovered encode_force_tuple
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32616,13 +31742,10 @@ const yInt = reinterpret<i32>(fy);
 return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/fire_signal.md
 
-```markdown
 ---
 id: fire_signal
 type: pure_fn
@@ -32642,10 +31765,6 @@ deps:
   - TYPES
 description: Auto-recovered fire_signal
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32676,13 +31795,10 @@ for (let b = 0; b < 4; b++) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/get_attention_cell.md
 
-```markdown
 ---
 id: get_attention_cell
 type: pure_fn
@@ -32702,10 +31818,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32728,13 +31840,10 @@ if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
 return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/get_genome_velocity_x.md
 
-```markdown
 ---
 id: get_genome_velocity_x
 type: pure_fn
@@ -32750,10 +31859,6 @@ deps:
   - TYPES
 description: Auto-recovered get_genome_velocity_x
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32790,13 +31895,10 @@ for (let b = 0; b < 2; b++) {
 return vx;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/get_genome_velocity_y.md
 
-```markdown
 ---
 id: get_genome_velocity_y
 type: pure_fn
@@ -32812,10 +31914,6 @@ deps:
   - TYPES
 description: Auto-recovered get_genome_velocity_y
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32852,13 +31950,10 @@ for (let b = 2; b < 4; b++) {
 return vy;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/get_glyph_influence.md
 
-```markdown
 ---
 id: get_glyph_influence
 type: pure_fn
@@ -32883,10 +31978,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -32951,13 +32042,10 @@ if (kind == 2) { // plasmid packet
 return 0.0;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/publish_build_intent.md
 
-```markdown
 ---
 id: publish_build_intent
 type: pure_fn
@@ -32980,10 +32068,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33042,13 +32126,10 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/publish_charge_intent.md
 
-```markdown
 ---
 id: publish_charge_intent
 type: pure_fn
@@ -33068,10 +32149,6 @@ deps:
   - TYPES
 description: Auto-recovered publish_charge_intent
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33108,13 +32185,10 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/read_structure_cell.md
 
-```markdown
 ---
 id: read_structure_cell
 type: pure_fn
@@ -33136,10 +32210,6 @@ deps:
   - TYPES
 description: Auto-recovered read_structure_cell
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33184,13 +32254,10 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 return atomic.load<i32>(gridPtr);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/read_structure_charge.md
 
-```markdown
 ---
 id: read_structure_charge
 type: pure_fn
@@ -33208,10 +32275,6 @@ deps:
   - TYPES
 description: Auto-recovered read_structure_charge
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33238,13 +32301,10 @@ const intentCharge = atomic.load<i32>(
 return intentCharge > baseCharge ? intentCharge : baseCharge;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/reduce_atom_deltas.md
 
-```markdown
 ---
 id: reduce_atom_deltas
 type: pure_fn
@@ -33264,10 +32324,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_resource
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33303,13 +32359,10 @@ unimplemented!()
   }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/resolve_bond_requests.md
 
-```markdown
 ---
 id: resolve_bond_requests
 type: pure_fn
@@ -33331,10 +32384,6 @@ deps:
   - TYPES
 description: Auto-recovered resolve_bond_requests
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33417,13 +32466,10 @@ for (let i = start; i < end; i++) {
 return resolved;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/tick_environment.md
 
-```markdown
 ---
 id: tick_environment
 type: pure_fn
@@ -33443,10 +32489,6 @@ deps:
   - glyph_transport
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33475,13 +32517,10 @@ unimplemented!()
   glyph_transport(tick);
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/physics/tick_structure_grid.md
 
-```markdown
 ---
 id: tick_structure_grid
 type: pure_fn
@@ -33518,10 +32557,6 @@ deps:
   - trace_atom
   - read_structure_charge
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```
@@ -33752,13 +32787,10 @@ unimplemented!()
   }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/akasha_codex.md
 
-```markdown
 ---
 id: AKASHA_CODEX
 type: module
@@ -33802,7 +32834,6 @@ extra_symbols:
   - AKASHA_CODEX
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
@@ -35397,13 +34428,10 @@ export const AKASHA_CODEX = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/avatar_bot.md
 
-```markdown
 ---
 id: AVATAR_BOT
 type: module
@@ -35425,7 +34453,6 @@ vars:
   - Lw
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
@@ -35510,13 +34537,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/avatar_engine.md
 
-```markdown
 ---
 id: AVATAR_ENGINE
 type: module
@@ -35536,7 +34560,7 @@ vars:
   - GRID_W
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
@@ -35580,13 +34604,10 @@ export const AVATAR_ENGINE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/genesis_boot.md
 
-```markdown
 ---
 id: GENESIS_BOOT
 type: module
@@ -35604,7 +34625,6 @@ extra_symbols:
   - GLYPH
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -35746,13 +34766,10 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/genesis_inceptor.md
 
-```markdown
 ---
 id: GENESIS_INCEPTOR
 type: module
@@ -35767,7 +34784,6 @@ extra_symbols:
   - GenesisInceptor
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
@@ -35806,13 +34822,10 @@ export class GenesisInceptor {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/genesis_reified.md
 
-```markdown
 ---
 id: GENESIS_REIFIED
 type: module
@@ -35827,20 +34840,16 @@ extra_symbols:
   - REIFIED_PROGRAMS
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/llm_soul.md
 
-```markdown
 ---
 id: llm_soul
 type: module
@@ -35859,7 +34868,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 
@@ -36047,13 +35056,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/llm_synapse.md
 
-```markdown
 ---
 id: LLM_SYNAPSE
 type: module
@@ -36076,7 +35082,6 @@ extra_symbols:
   - LLM_SYNAPSE
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
@@ -36505,13 +35510,10 @@ if (import.meta.main) {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/opcode_to_glyph.md
 
-```markdown
 ---
 id: OPCODE_TO_GLYPH
 type: module
@@ -36557,7 +35559,6 @@ extra_symbols:
   - scriptToGlyphTape
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -36676,13 +35677,10 @@ export const scriptToGlyphTape = (
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/semantic_membrane.md
 
-```markdown
 ---
 id: SEMANTIC_MEMBRANE
 type: module
@@ -36698,7 +35696,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -37184,13 +36182,10 @@ export const SEMANTIC_MEMBRANE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/semantic/sovereign_oracle.md
 
-```markdown
 ---
 id: SOVEREIGN_ORACLE
 type: module
@@ -37226,7 +36221,7 @@ extra_symbols:
   - SOVEREIGN_ORACLE
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
@@ -37885,13 +36880,10 @@ export const SOVEREIGN_ORACLE = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/spatial/clamp_world_x.md
 
-```markdown
 ---
 id: clamp_world_x
 type: pure_fn
@@ -37916,23 +36908,20 @@ tests:
 math_clamp(x, 0, WORLD_MAX_X)
 ```
 
-### TypeScript
+
 ```typescript
 return math_clamp(x, 0, WORLD_MAX_X);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return math_clamp(x, 0, WORLD_MAX_X);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/spatial/clamp_world_y.md
 
-```markdown
 ---
 id: clamp_world_y
 type: pure_fn
@@ -37957,23 +36946,20 @@ tests:
 math_clamp(y, 0, WORLD_MAX_Y)
 ```
 
-### TypeScript
+
 ```typescript
 return math_clamp(y, 0, WORLD_MAX_Y);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return math_clamp(y, 0, WORLD_MAX_Y);
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/spatial/dir4_x.md
 
-```markdown
 ---
 id: dir4_x
 type: pure_fn
@@ -38007,7 +36993,7 @@ if n == 0 {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38018,20 +37004,17 @@ if (n == 1) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 0) return -1;
 if (n == 1) return 1;
 return 0;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/spatial/dir4_y.md
 
-```markdown
 ---
 id: dir4_y
 type: pure_fn
@@ -38065,7 +37048,7 @@ if n == 2 {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38076,20 +37059,17 @@ if (n == 3) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 2) return -1;
 if (n == 3) return 1;
 return 0;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/spatial/dir8_x.md
 
-```markdown
 ---
 id: dir8_x
 type: pure_fn
@@ -38123,7 +37103,7 @@ if n == 0 || n == 4 || n == 6 {
 }
 ```
 
-### TypeScript
+
 ```typescript
  0 
 
@@ -38138,20 +37118,17 @@ if (n == 1 || n == 5 || n == 7) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 0 || n == 4 || n == 6) return -1;
 if (n == 1 || n == 5 || n == 7) return 1;
 return 0;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/spatial/dir8_y.md
 
-```markdown
 ---
 id: dir8_y
 type: pure_fn
@@ -38187,7 +37164,7 @@ if n == 2 || n == 4 || n == 5 {
 }
 ```
 
-### TypeScript
+
 ```typescript
  2 
 
@@ -38202,20 +37179,17 @@ if (n == 3 || n == 6 || n == 7) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 2 || n == 4 || n == 5) return -1;
 if (n == 3 || n == 6 || n == 7) return 1;
 return 0;
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/spatial/in_grid.md
 
-```markdown
 ---
 id: in_grid
 type: pure_fn
@@ -38244,7 +37218,7 @@ tests:
 x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38253,18 +37227,15 @@ x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
 return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/spatial/store_clamped_pos.md
 
-```markdown
 ---
 id: store_clamped_pos
 type: pure_fn
@@ -38295,7 +37266,7 @@ returns: void
 ()
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -38308,19 +37279,16 @@ AssemblyScript exports are intended to run natively. In Deno TS contexts this is
 return;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i16>(XS_OFFSET + (<usize>idx << 1), <i16>clamp_world_x(x));
 store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));
-```
-
 ```
 
 ---
 
 ## FILE: src/ontology/substrate/ID_TO_IDX.md
 
-```markdown
 ---
 id: ID_TO_IDX
 type: module
@@ -38347,13 +37315,10 @@ Lightweight ID↔Index registry shared across runtime modules.
 export const ID_TO_IDX = new Map<string, number>();
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/substrate/IDX_TO_ID.md
 
-```markdown
 ---
 id: IDX_TO_ID
 type: module
@@ -38380,13 +37345,10 @@ Lightweight ID↔Index registry shared across runtime modules.
 export const IDX_TO_ID = new Map<number, string>();
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/substrate/prng_next.md
 
-```markdown
 ---
 id: prng_next
 type: module
@@ -38432,13 +37394,10 @@ export function prng_next(state: u32): u32 {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/substrate/prng_seed_from.md
 
-```markdown
 ---
 id: prng_seed_from
 type: module
@@ -38490,13 +37449,10 @@ export function prng_seed_from(tick: u32, atomId: string): u32 {
 }
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/telemetry/glyph_telemetry.md
 
-```markdown
 ---
 id: GLYPH_TELEMETRY
 type: module
@@ -38519,7 +37475,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -38708,13 +37664,10 @@ export const GLYPH_TELEMETRY = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/telemetry/mutation_telemetry.md
 
-```markdown
 ---
 id: MUTATION_TELEMETRY
 type: module
@@ -38736,7 +37689,7 @@ deps:
   - RUNTIME_POLICY
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -38818,13 +37771,10 @@ export const MUTATION_TELEMETRY = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/telemetry/serve_dashboard.md
 
-```markdown
 ---
 id: SERVE_DASHBOARD
 type: module
@@ -38838,7 +37788,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -39182,13 +38132,10 @@ export const SERVE_DASHBOARD = {
 };
 ```
 
-```
-
 ---
 
 ## FILE: src/ontology/telemetry/tui_dashboard.md
 
-```markdown
 ---
 id: TUI_DASHBOARD
 type: module
@@ -39215,7 +38162,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 
 
@@ -39353,8 +38300,6 @@ if (import.meta.main) {
 }
 
 export const TUI_DASHBOARD = {};
-```
-
 ```
 
 ---

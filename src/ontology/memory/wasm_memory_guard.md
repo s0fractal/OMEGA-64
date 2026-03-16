@@ -21,7 +21,7 @@ extra_symbols:
   - assert_wasm_memory_depth
 ---
 
-### TypeScript
+
 ```typescript
 
 

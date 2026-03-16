@@ -15,7 +15,6 @@ extra_symbols:
   - calculate_shannon_entropy
 ---
 
-### TypeScript
 
 ```typescript
 
@@ -94,7 +93,6 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
 }
 ```
 
-### AssemblyScript
 
 ```assemblyscript
 export function normalize_angle(angle: f64): f64 {

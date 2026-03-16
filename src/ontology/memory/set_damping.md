@@ -18,12 +18,12 @@ returns: void
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 dataView.setUint8(DAMPING_OFF + atomIdx, val);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<u8>(DAMPING_OFF + atomIdx, val);
 ```

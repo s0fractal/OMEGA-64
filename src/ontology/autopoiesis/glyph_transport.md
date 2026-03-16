@@ -32,10 +32,6 @@ deps:
   - TYPES
 description: Auto-recovered glyph_transport
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

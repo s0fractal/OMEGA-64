@@ -16,12 +16,12 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return Atomics.load(hiveBalanceView, 0);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return atomic.load<i32>(HIVE_BALANCE_OFF);
 ```

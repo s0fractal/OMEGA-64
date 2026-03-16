@@ -22,7 +22,6 @@ extra_symbols:
   - DriftWarden
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response

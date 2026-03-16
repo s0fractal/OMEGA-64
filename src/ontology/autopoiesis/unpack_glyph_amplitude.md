@@ -10,10 +10,6 @@ description: Auto-recovered unpack_glyph_amplitude
 deps:
   - TYPES
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

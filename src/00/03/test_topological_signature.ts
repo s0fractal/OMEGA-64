@@ -1,7 +1,7 @@
 // test_topological_signature.ts
 // Smoke tests for deterministic topological signature runtime.
 
-import { TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@generated";
+import { TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE } from "@g";
 
 type OrganismState = {
   identity: string;

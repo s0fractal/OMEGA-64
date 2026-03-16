@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus, P2P_CODEC, MX } from "@generated";
+import { SwarmNexus, P2P_CODEC, MX } from "@g";
 
 Deno.test({
   name: "P2P Transit: Nexus A routes Atom to Nexus B",

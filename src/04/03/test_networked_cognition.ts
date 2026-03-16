@@ -3,17 +3,17 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET,
   OP_SYSCALL,
   SYS_MSG,
   SYS_READ_INBOX
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 30: Networked Cognition (P2P Syscalls)", async () => {
   Li("--- STAGE 30: NETWORKED COGNITION TEST ---");

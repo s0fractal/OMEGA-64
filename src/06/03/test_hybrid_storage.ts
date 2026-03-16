@@ -1,4 +1,4 @@
-import { MX } from "@generated";
+import { MX } from "@g";
 import { SNAPSHOT_ENGINE } from "@06";
 import { RIBOSOME } from "@02";
 

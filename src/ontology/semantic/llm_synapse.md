@@ -20,7 +20,6 @@ extra_symbols:
   - LLM_SYNAPSE
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge

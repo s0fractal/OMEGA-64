@@ -1,5 +1,5 @@
-import { BONDS_OFFSET, MAX_ATOMS } from "@generated";
-import { MX } from "@generated";
+import { BONDS_OFFSET, MAX_ATOMS } from "@g";
+import { MX } from "@g";
 
 const memory = MX.wasmMemory;
 const buffer = memory.buffer;

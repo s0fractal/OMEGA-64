@@ -21,7 +21,6 @@ extra_symbols:
   - PANOPTICON_SERVER
 ---
 
-### TypeScript
 
 ```typescript
 

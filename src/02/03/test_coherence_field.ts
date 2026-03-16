@@ -1,6 +1,6 @@
 // OMEGA-64 | test_coherence_field.ts | Stage 11.1 Dedicated Verification
-import { MAX_ATOMS, MX } from "@generated";
-import { PULSE } from "@generated";
+import { MAX_ATOMS, MX } from "@g";
+import { PULSE } from "@g";
 
 async function test_coherence_field() {
   console.log(

@@ -1,9 +1,9 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
 // OMEGA-64 | test_consciousness.ts | Phase 19: Planetary Consciousness
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { MATRIX_ENGINE } from "@generated";
-import { SOVEREIGN_ORACLE } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { MATRIX_ENGINE } from "@g";
+import { SOVEREIGN_ORACLE } from "@g";
 
 const CRYSTAL_STANDARD = 1;
 const CRYSTAL_OSCILLATOR = 5;

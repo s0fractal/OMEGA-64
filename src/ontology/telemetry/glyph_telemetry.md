@@ -20,7 +20,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
 ---
 
-### TypeScript
+
 ```typescript
 
 

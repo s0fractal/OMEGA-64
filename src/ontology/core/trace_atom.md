@@ -14,10 +14,6 @@ deps:
   - TYPES
 vars: []
 ---
-
----
----
-
 ```rust
 // Externally defined in the host or FFI boundary for Sigma
 ```

@@ -15,7 +15,6 @@ extra_symbols:
   - GLYPH
 ---
 
-### TypeScript
 
 ```typescript
 

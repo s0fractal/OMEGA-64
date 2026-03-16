@@ -18,7 +18,7 @@ extra_symbols:
   - CRYSTALLIZATION_POLICY
 ---
 
-### TypeScript
+
 ```typescript
 
 

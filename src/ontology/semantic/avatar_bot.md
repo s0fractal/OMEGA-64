@@ -19,7 +19,6 @@ vars:
   - Lw
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration

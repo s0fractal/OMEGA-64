@@ -1,7 +1,7 @@
 // test_hologram.ts
 // Verification of Era 3.0: The Holographic Face
 
-import { LOOP_LOOP as LOOP } from "@generated";
+import { LOOP_LOOP as LOOP } from "@g";
 import { StandardWebSocketClient } from "websocket";
 
 console.log("🎭 TEST HOLOGRAM: Initializing...");

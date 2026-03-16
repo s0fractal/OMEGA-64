@@ -1,14 +1,14 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
 // OMEGA-64 | test_immune_learning.ts | Era 62: Immune Learning Verification
 // Tests GATE.ts tracking average resonance of novel plasmids and promoting them cleanly.
 
-import { GATE } from "@generated";
+import { GATE } from "@g";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { MX } from "@generated";
+import { MX } from "@g";
 
 // Helper to construct a mock state matrix interface for GATE testing
 function mockMx(

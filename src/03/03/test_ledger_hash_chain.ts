@@ -1,14 +1,14 @@
 // test_ledger_hash_chain.ts
 // Verifies ledger hash-chain anchoring, detection, and replay integration.
 
-import { GATE_GATE as GATE } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
-import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@generated";
+import { GATE_GATE as GATE } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
+import { REPLAY_AUDIT__08_00_REPLAY_AUDIT as REPLAY_AUDIT } from "@g";
 import type {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@generated";
+} from "@g";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

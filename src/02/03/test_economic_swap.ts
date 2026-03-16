@@ -1,15 +1,15 @@
 // OMEGA-64 | test_economic_swap.ts | Stage 31 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 import {
   OP_SET,
   SYS_TRANSFER,
   OP_SYSCALL
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 31: Economic Swap Protocol (Cross-Chain P2P Transfer)", async () => {
   Li("--- STAGE 31: ECONOMIC SWAP TEST ---");

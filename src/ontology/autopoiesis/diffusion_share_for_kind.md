@@ -15,10 +15,6 @@ deps:
   - TYPES
 description: Auto-recovered diffusion_share_for_kind
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

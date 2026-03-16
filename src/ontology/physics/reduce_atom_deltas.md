@@ -17,10 +17,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_resource
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

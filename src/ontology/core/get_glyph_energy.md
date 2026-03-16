@@ -21,7 +21,6 @@ extra_symbols:
 GLYPH_ENERGY_LUT[(id & 63) as usize]
 ```
 
-### TypeScript
 
 ```typescript
 

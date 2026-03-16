@@ -3,10 +3,10 @@ import {
   assertGreater,
   assertLess,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { PULSE } from "@generated";
-import { MX } from "@generated";
-import { CONTEXT_OFFSET } from "@generated";
-import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "@generated";
+import { PULSE } from "@g";
+import { MX } from "@g";
+import { CONTEXT_OFFSET } from "@g";
+import { OP_SET, OP_RESOLVE, OP_RESONATE_KURAMOTO, OP_JMP } from "@g";
 
 Deno.test({
   name: "Stage 44: Vector Cognitive - Math LUTs and Kuramoto Resonance",

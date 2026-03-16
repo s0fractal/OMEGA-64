@@ -19,7 +19,6 @@ extra_symbols:
   - LineageTracker
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix

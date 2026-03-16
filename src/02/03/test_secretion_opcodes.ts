@@ -1,7 +1,7 @@
 import { AS_WASM_PATH } from "../../_/mod.ts";
-import { GRID_CELLS } from "@generated";
-import { MX, wasmMemory } from "@generated";
-import { GLYPH_TELEMETRY } from "@generated";
+import { GRID_CELLS } from "@g";
+import { MX, wasmMemory } from "@g";
+import { GLYPH_TELEMETRY } from "@g";
 
 async function runSecretionOpcodeTests() {
   console.log("🕸️ [TEST] Booting WASM native secretion opcode diagnostics...");

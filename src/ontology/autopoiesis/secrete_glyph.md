@@ -26,10 +26,6 @@ deps:
   - TYPES
 description: Auto-recovered secrete_glyph
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

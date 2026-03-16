@@ -14,10 +14,6 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - genome_key16
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

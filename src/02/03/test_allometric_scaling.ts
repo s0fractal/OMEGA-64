@@ -1,7 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { PULSE } from "@generated";
-import { MX } from "@generated";
-import { OP_SET, OP_ADD } from "@generated";
+import { PULSE } from "@g";
+import { MX } from "@g";
+import { OP_SET, OP_ADD } from "@g";
 
 Deno.test({
   name: "Allometric Scaling - Chronoflux Verification",

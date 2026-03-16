@@ -28,7 +28,7 @@ returns: void
 ()
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -41,7 +41,7 @@ AssemblyScript exports are intended to run natively. In Deno TS contexts this is
 return;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 store<i16>(XS_OFFSET + (<usize>idx << 1), <i16>clamp_world_x(x));
 store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));

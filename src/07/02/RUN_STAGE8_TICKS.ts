@@ -5,8 +5,8 @@ import {
   PULSE,
   RUNTIME_POLICY,
   SOVEREIGN_ORACLE,
-} from "@generated";
-import { evaluateGuardianSignalPromotion } from "@generated";
+} from "@g";
+import { evaluateGuardianSignalPromotion } from "@g";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");

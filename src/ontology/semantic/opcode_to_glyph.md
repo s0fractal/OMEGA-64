@@ -43,7 +43,6 @@ extra_symbols:
   - scriptToGlyphTape
 ---
 
-### TypeScript
 
 ```typescript
 

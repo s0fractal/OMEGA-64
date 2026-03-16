@@ -10,7 +10,7 @@
  * 5. AkashaServiceState.hormoneRegime is a string (type sanity at import).
  */
 
-import { MX } from "@generated";
+import { MX } from "@g";
 
 let passed = 0;
 let failed = 0;

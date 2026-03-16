@@ -5,7 +5,7 @@
 // export * from "@03/ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 // export * from "@03/AUDIT_ENGINE.ts";
 // export * from "@03/REPLICATION_PROMOTION_ACTION.ts";
-// export * from "@generated";
+// export * from "@g";
 // export * from "@03/GENERIC_LEDGER_SYSTEM.ts";
 // export * from "@03/REPLICATION_PROMOTION_DECISION.ts";
 // export * from "@03/REPLICATION_PROMOTION.ts";

@@ -11,10 +11,6 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

@@ -19,7 +19,6 @@ extra_symbols:
   - RelicCultivator
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork

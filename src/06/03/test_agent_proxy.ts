@@ -1,6 +1,6 @@
 // OMEGA-64 | test_agent_proxy.ts | Stage 38 Verification
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import { PULSE } from "@02";
 import { AgentProxy } from "../../_/06/AGENT_PROXY.ts";
 

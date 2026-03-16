@@ -1,10 +1,10 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
 // OMEGA-64 | test_emergent_roles.ts | Era 53: Emergent Roles Verification
 // Tests ISA.ATTUNE, signal tally accumulation, role derivation, and SENSE type 0x09.
 // All tests exercise LAMBDA_VM directly.
 
-import { MX } from "@generated";
-import { ISA, LAMBDA_VM } from "@generated";
+import { MX } from "@g";
+import { ISA, LAMBDA_VM } from "@g";
 import {
   assert,
   assertEquals,

@@ -18,12 +18,12 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
 ```

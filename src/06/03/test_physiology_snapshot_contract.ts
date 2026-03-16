@@ -3,7 +3,7 @@ import {
   createGeneticLedgerRuntime,
   snapshotLedgerRuntime,
   HORMONE_BUFFER,
-} from "@generated";
+} from "@g";
 const { createPhysiologicalLedgerRuntime } = HORMONE_BUFFER;
 
 const expect = (condition: unknown, message: string): void => {

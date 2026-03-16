@@ -39,26 +39,19 @@ the environment, and send WASM-compiled macro-intents to survive the savage
 ecology.
 
 ---
-
 ## 🚀 Running the Matrix
-
 To boot the live TUI dashboard and watch the ecosystem evolve in your terminal:
-
 ```bash
 deno run -A --unstable TUI_DASHBOARD.ts
 ```
-
 ### 🧠 Booting an LLM Avatar
-
 While the Matrix is running, you can connect an external Gemini AI to drive Atom
 `9999` (The Guardian). It will use your `GEMINI_API_KEY` to look at the Spatial
 Hash and physically run from predators or hunt prey!
-
 ```bash
 export GEMINI_API_KEY="..."
 deno run -A --unstable llm_soul.ts
 ```
-
 ---
 
 ## ⚖️ The Laws of Physics (Syscalls)

@@ -18,7 +18,6 @@ extra_symbols:
   - DollForkRunner
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork

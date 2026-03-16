@@ -1,8 +1,8 @@
 // test_signal.ts
 // Verification of Era 2.7: The Signal
 
-import { KAIROS_KAIROS as KAIROS } from "@generated";
-import { RIBOSOME_Atom as Atom } from "@generated";
+import { KAIROS_KAIROS as KAIROS } from "@g";
+import { RIBOSOME_Atom as Atom } from "@g";
 
 console.log("📡 TEST SIGNAL: Initializing...");
 

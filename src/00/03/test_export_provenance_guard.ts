@@ -1,4 +1,4 @@
-import { renderCoreExport } from "@generated";
+import { renderCoreExport } from "@g";
 
 const SHA256_RE = /^[0-9a-f]{64}$/u;
 const COMMIT_RE = /^(unknown|[0-9a-f]{7,40})$/u;

@@ -3,10 +3,10 @@ import {
   assert,
   assertEquals,
 } from "https://deno.land/std@0.210.0/assert/mod.ts";
-import { MX, LOGGER, Li } from "@generated";
+import { MX, LOGGER, Li } from "@g";
 import {
   PULSE
-} from "@generated";
+} from "@g";
 
 Deno.test("Stage 37: Information Thermodynamics (Noise Tax)", async () => {
   Li("--- STAGE 37: SHANNON ENTROPY NOISE TAX TEST ---");

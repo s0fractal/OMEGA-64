@@ -26,7 +26,7 @@ tests:
 x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -35,7 +35,7 @@ x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
 return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ```

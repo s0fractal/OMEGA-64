@@ -16,7 +16,7 @@ deps:
   - TYPES
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 

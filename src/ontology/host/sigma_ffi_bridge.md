@@ -12,7 +12,6 @@ extra_symbols:
   - SIGMA_FFI
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge

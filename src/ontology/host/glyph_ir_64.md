@@ -45,7 +45,7 @@ extra_symbols:
   - listGlyphSpecsByKind
 ---
 
-### TypeScript
+
 ```typescript
 
 

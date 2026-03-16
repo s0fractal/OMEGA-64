@@ -1,6 +1,6 @@
 // test_autonomy_gate.ts
-import { MUTATE__02_04_MUTATE as MUTATE } from "@generated";
-import { AUTONOMY_METRIC_AUTONOMY_METRIC as AUTONOMY_METRIC } from "@generated";
+import { MUTATE__02_04_MUTATE as MUTATE } from "@g";
+import { AUTONOMY_METRIC_AUTONOMY_METRIC as AUTONOMY_METRIC } from "@g";
 
 async function test() {
   console.log("⚛️ Testing Autonomy Sovereignty Gate...");

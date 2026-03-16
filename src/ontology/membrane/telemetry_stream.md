@@ -17,7 +17,6 @@ vars:
   - TelemetryHistogram
 ---
 
-### TypeScript
 
 ```typescript
 

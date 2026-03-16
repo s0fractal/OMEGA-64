@@ -1,7 +1,7 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
-import { PULSE } from "@generated";
-import { MX } from "@generated";
-import { SIGNAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
+import { PULSE } from "@g";
+import { MX } from "@g";
+import { SIGNAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_GRID_OFFSET } from "@g";
 
 const CAPTURE_MARKER = "__OMEGA_SPAWN_CAPTURE__";
 const DEFAULT_SEED = 424242;

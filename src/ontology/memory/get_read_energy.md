@@ -17,12 +17,12 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(PHYSICS_READ_ENERGY_OFF + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
 ```

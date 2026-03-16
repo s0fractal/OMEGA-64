@@ -1,5 +1,5 @@
-import { MX } from "@generated";
-import { betPoolInt, PREDICTION_MARKET } from "@generated";
+import { MX } from "@g";
+import { betPoolInt, PREDICTION_MARKET } from "@g";
 
 console.log("💹 [TEST] Verifying Era 37: Fractal Dividends...");
 

@@ -19,7 +19,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 

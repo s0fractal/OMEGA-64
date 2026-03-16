@@ -1,5 +1,5 @@
 // OMEGA-64 | test_snap_rehydration.ts | Era 71: The Quantum Snap
-import { sharedBuffer, MX, LOGGER, Li, Le } from "@generated";
+import { sharedBuffer, MX, LOGGER, Li, Le } from "@g";
 import { SNAP_ENGINE } from "@06";
 import { seedSeededSwarmScenario } from "@02";
 

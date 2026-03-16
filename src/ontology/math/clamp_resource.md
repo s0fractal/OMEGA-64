@@ -23,7 +23,7 @@ if value < 0 {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -34,7 +34,7 @@ if (value > BigInt(RESOURCE_MAX)) return RESOURCE_MAX;
 return Number(value);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (value < 0) return 0;
 if (value > (RESOURCE_MAX as i64)) return RESOURCE_MAX;

@@ -33,7 +33,7 @@ if n == 2 || n == 4 || n == 5 {
 }
 ```
 
-### TypeScript
+
 ```typescript
  2 
 
@@ -48,7 +48,7 @@ if (n == 3 || n == 6 || n == 7) return 1;
 return 0;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (n == 2 || n == 4 || n == 5) return -1;
 if (n == 3 || n == 6 || n == 7) return 1;

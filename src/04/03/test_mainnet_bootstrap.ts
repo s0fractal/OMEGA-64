@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus } from "@generated";
+import { SwarmNexus } from "@g";
 import { resolveSourcePath } from "../../resolve_source.ts";
 
 Deno.test("Mainnet Bootstrap: Hub Discovery and WebSocket Fallback", async () => {

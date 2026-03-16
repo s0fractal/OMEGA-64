@@ -17,7 +17,7 @@ extra_symbols:
   - glyphTapeToPrettyText
 ---
 
-### TypeScript
+
 ```typescript
 
 

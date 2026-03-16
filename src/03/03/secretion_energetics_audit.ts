@@ -1,6 +1,6 @@
-import { MX } from "@generated";
-import { GLYPH_TELEMETRY } from "@generated";
-import { ENERGY_OFFSET } from "@generated";
+import { MX } from "@g";
+import { GLYPH_TELEMETRY } from "@g";
+import { ENERGY_OFFSET } from "@g";
 
 /**
  * Stage 5.3: Secretion Energetics Audit

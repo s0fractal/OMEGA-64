@@ -1,11 +1,11 @@
 // test_crystallization_report_store.ts
 // Verifies content-addressed materialization for crystallization reports.
 
-import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@generated";
+import { CRYSTALLIZATION_REPORT_CRYSTALLIZATION_REPORT as CRYSTALLIZATION_REPORT } from "@g";
 import {
   CRYSTALLIZATION_CONFIG as CRYSTALLIZATION_CONFIG,
   CRYSTALLIZATION_CONFIG_CRYSTALLIZATION_POLICY as CRYSTALLIZATION_POLICY,
-} from "@generated";
+} from "@g";
 
 Deno.test("crystallization report materialization is idempotent by hash", async () => {
   const originalDir = CRYSTALLIZATION_REPORT.STORAGE_DIR;

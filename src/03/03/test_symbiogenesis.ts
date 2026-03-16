@@ -1,5 +1,5 @@
-import { MX } from "@generated";
-import { GATE } from "@generated";
+import { MX } from "@g";
+import { GATE } from "@g";
 
 console.log("🛡️ [TEST] Verifying Era 35: Symbiogenesis...");
 

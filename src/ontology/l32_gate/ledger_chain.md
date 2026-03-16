@@ -23,7 +23,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | ledger_chain.ts

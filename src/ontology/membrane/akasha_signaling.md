@@ -15,7 +15,6 @@ vars:
   - SIGNAL_TYPES
 ---
 
-### TypeScript
 
 ```typescript
 

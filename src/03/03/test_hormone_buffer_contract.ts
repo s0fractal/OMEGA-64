@@ -1,4 +1,4 @@
-import { HORMONE_BUFFER } from "@generated";
+import { HORMONE_BUFFER } from "@g";
 const { HORMONE_BUFFER_CATALOG, HORMONE_BUFFER_LENGTH, hormoneBaselineState, hormoneSpecById } = HORMONE_BUFFER;
 
 const expect = (condition: unknown, message: string): void => {

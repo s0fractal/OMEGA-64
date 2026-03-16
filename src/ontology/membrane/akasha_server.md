@@ -19,7 +19,6 @@ vars:
   - ParsedMeshInject
 ---
 
-### TypeScript
 
 ```typescript
 

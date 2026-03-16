@@ -1,8 +1,8 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { SOVEREIGN_ORACLE } from "@generated";
-import { NEURAL_COHERENCE_OFFSET, STRUCTURE_GRID_OFFSET } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { SOVEREIGN_ORACLE } from "@g";
+import { NEURAL_COHERENCE_OFFSET, STRUCTURE_GRID_OFFSET } from "@g";
 
 async function testResonance() {
   console.log("💎 [TEST] Resonance Protocol Verification...");

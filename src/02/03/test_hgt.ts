@@ -1,15 +1,15 @@
-import { GRID_W, GRID_H, GRID_CELLS } from "@generated";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g";
 // OMEGA-64 | test_hgt.ts | Era 60: Horizontal Gene Transfer Verification
 // Tests ISA.SECRETE_PLASMID (writes logic, updates intensity),
 // ISA.INCORPORATE_PLASMID (reads viralGrid, overwrites logic if > threshold).
 
-import { ISA, LAMBDA_VM } from "@generated";
+import { ISA, LAMBDA_VM } from "@g";
 import {
   assert,
   assertEquals,
   assertGreater,
 } from "https://deno.land/std@0.208.0/assert/mod.ts";
-import { MX } from "@generated";
+import { MX } from "@g";
 
 function makeViralGrid(): Uint8Array {
   return new Uint8Array(new SharedArrayBuffer(GRID_CELLS * 9));

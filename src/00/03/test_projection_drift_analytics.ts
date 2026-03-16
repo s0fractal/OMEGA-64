@@ -1,14 +1,14 @@
 // test_projection_drift_analytics.ts
 // Tests deterministic projection drift analytics report.
 
-import { GATE_GATE as GATE } from "@generated";
-import { LEDGER__08_00_LEDGER as LEDGER } from "@generated";
-import { PROJECTION_DRIFT_ANALYTICS_PROJECTION_DRIFT_ANALYTICS as PROJECTION_DRIFT_ANALYTICS } from "@generated";
+import { GATE_GATE as GATE } from "@g";
+import { LEDGER__08_00_LEDGER as LEDGER } from "@g";
+import { PROJECTION_DRIFT_ANALYTICS_PROJECTION_DRIFT_ANALYTICS as PROJECTION_DRIFT_ANALYTICS } from "@g";
 import {
   STATE_SNAPSHOT_DeltaProposal as DeltaProposal,
   STATE_SNAPSHOT_GateConfig as GateConfig,
   STATE_SNAPSHOT_StateSnapshot as StateSnapshot,
-} from "@generated";
+} from "@g";
 
 const baseConfig = (): GateConfig => ({
   max_abs_delta_per_level: 1000,

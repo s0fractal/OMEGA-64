@@ -10,7 +10,6 @@ deps:
   - TYPES
 ---
 
-### TypeScript
 
 ```typescript
 export const append_jsonl = async (
@@ -24,7 +23,6 @@ export const append_jsonl = async (
 };
 ```
 
-### AssemblyScript
 
 ```assemblyscript
 export function append_jsonl(): void {}

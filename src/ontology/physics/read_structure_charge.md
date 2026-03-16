@@ -15,10 +15,6 @@ deps:
   - TYPES
 description: Auto-recovered read_structure_charge
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

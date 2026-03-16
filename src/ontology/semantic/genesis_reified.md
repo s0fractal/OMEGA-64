@@ -12,7 +12,6 @@ extra_symbols:
   - REIFIED_PROGRAMS
 ---
 
-### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics

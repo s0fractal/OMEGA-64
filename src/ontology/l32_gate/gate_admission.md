@@ -12,7 +12,7 @@ deps:
 min_level: 12
 ---
 
-### TypeScript
+
 ```typescript
 
 

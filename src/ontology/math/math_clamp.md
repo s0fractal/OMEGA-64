@@ -32,7 +32,7 @@ if val < min {
 }
 ```
 
-### TypeScript
+
 ```typescript
 
 
@@ -43,7 +43,7 @@ if (val > max) return max;
 return val;
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 if (val < min) return min;
 if (val > max) return max;

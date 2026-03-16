@@ -1,4 +1,4 @@
-import { buildExportFileList } from "@generated";
+import { buildExportFileList } from "@g";
 import { resolveSourcePath } from "../../resolve_source.ts";
 
 const FORBIDDEN_EXPORT_PATHS: RegExp[] = [

@@ -25,10 +25,6 @@ deps:
   - TYPES
 description: Auto-recovered atomic_deposit_glyph_header
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

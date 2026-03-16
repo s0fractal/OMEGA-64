@@ -1,4 +1,4 @@
-import { type DaemonIngressMetrics, type DaemonInjectEnvelope, evaluateInvariantAdmission, normalizeDaemonNarrativeContext, planInvariantIngress } from "@generated";
+import { type DaemonIngressMetrics, type DaemonInjectEnvelope, evaluateInvariantAdmission, normalizeDaemonNarrativeContext, planInvariantIngress } from "@g";
 
 const expect = (condition: boolean, message: string): void => {
   if (!condition) throw new Error(`[daemon-glyph-admission] ${message}`);

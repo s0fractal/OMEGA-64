@@ -17,12 +17,12 @@ returns: i32
 unimplemented!("Memory accessors are host/WASM specific");
 ```
 
-### TypeScript
+
 ```typescript
 return dataView.getInt32(PHASE_OFFSET + (idx << 2), true);
 ```
 
-### AssemblyScript
+
 ```assemblyscript
 return load<i32>(PHASE_OFFSET + (idx << 2));
 ```

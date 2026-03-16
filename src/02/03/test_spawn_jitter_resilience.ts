@@ -1,4 +1,4 @@
-import { SPAWN_REQUESTS_OFFSET } from "@generated";
+import { SPAWN_REQUESTS_OFFSET } from "@g";
 import { emitResilienceCapture } from "@02/03/worker_resilience_capture.ts";
 import {
   assertSeededSwarmWorldInvariants,
@@ -51,7 +51,7 @@ Deno.env.set("OMEGA_WORKER_RESPONSE_TIMEOUT_MS", String(timeoutMs));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_COUNT", String(retryCount));
 Deno.env.set("OMEGA_WORKER_TIMEOUT_RETRY_MS", String(retryMs));
 
-const { PULSE } = await import("@generated");
+const { PULSE } = await import("@g");
 const { MX } = await import("@00");
 
 async function main() {

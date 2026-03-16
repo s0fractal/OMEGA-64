@@ -1,5 +1,5 @@
-import { MX } from "@generated";
-import { PULSE } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
 
 const parseTickCount = (): number => {
   const raw = Deno.env.get("OMEGA_WORKER_COHERENCE_TICKS");

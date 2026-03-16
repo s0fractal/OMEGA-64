@@ -1,21 +1,21 @@
 // OMEGA-64 | test_autopoietic_gate_feedback.ts | Stage 25: Sovereign Feedback Verification
-import { MX, LOGGER, Li, Le } from "@generated";
+import { MX, LOGGER, Li, Le } from "@g";
 import {
   QuorumAdvocate
-} from "@generated";
+} from "@g";
 import {
   mergeGateProposals
-} from "@generated";
+} from "@g";
 import {
   syncHormonesToLattice
-} from "@generated";
+} from "@g";
 
 import {
   type DeltaProposal,
   type GateConfig,
   type GateDecision,
   type StateSnapshot
-} from "@generated";
+} from "@g";
 
 async function runTest() {
   Li(

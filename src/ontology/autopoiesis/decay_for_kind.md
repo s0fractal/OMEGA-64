@@ -15,10 +15,6 @@ deps:
   - TYPES
 description: Auto-recovered decay_for_kind
 ---
-
----
----
-
 ```rust
 unimplemented!()
 ```

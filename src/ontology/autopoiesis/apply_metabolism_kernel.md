@@ -53,10 +53,6 @@ deps:
   - genome_key16
   - fast_abs
 ---
-
----
----
-
 ```rust
     let population = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4)) as *const i32 };
     let population = unsafe { *population };

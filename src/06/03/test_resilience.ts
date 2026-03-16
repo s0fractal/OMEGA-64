@@ -1,8 +1,8 @@
 // OMEGA-64 | test_resilience.ts | Era 68: Resilience Verification
-import { MX } from "@generated";
+import { MX } from "@g";
 import { PULSE } from "@02";
 import { SNAPSHOT_ENGINE } from "@06";
-import { IDS_OFFSET } from "@generated";
+import { IDS_OFFSET } from "@g";
 import { RIBOSOME } from "@02";
 
 async function runTest() {

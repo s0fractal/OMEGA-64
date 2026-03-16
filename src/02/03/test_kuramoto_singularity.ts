@@ -1,5 +1,5 @@
-import { PULSE } from "@generated";
-import { MX } from "@generated";
+import { PULSE } from "@g";
+import { MX } from "@g";
 import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
 
 async function main() {

@@ -33,7 +33,7 @@ extra_symbols:
   - SOVEREIGN_ORACLE
 ---
 
-### TypeScript
+
 ```typescript
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.

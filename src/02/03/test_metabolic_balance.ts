@@ -1,6 +1,6 @@
-import { MX } from "@generated";
-import { PULSE } from "@generated";
-import { ISA } from "@generated";
+import { MX } from "@g";
+import { PULSE } from "@g";
+import { ISA } from "@g";
 import {
   assertAlmostEquals,
   assertEquals,

@@ -18,7 +18,6 @@ extra_symbols:
   - saveEpoch
 ---
 
-### TypeScript
 
 ```typescript
 
