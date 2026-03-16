@@ -560,3 +560,57 @@ export type TaxonomyResult = {
   behavior: string;
   philosophy: string;
 };
+
+export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+export type DaemonInjectEnvelope = {
+  action_type: DaemonAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+export type DaemonNarrativeContext = {
+  mood: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel: string;
+  codexLineageGuardScore: number;
+  codexLineageGuardReasons: string[];
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
+  metabolicPressure: number;
+  hormoneRegime: string;
+};
+
+export type DaemonInvariantAdmission = {
+  score: number;
+  severity: "LOW" | "MID" | "HIGH";
+  reasons: string[];
+  context: DaemonNarrativeContext;
+};
+
+export type PlasmidRiskProfile = {
+  level: "LOW" | "MID" | "HIGH";
+  score: number;
+  reasons: string[];
+  opcode: number;
+};
+
+export type DaemonIngressPlan = {
+  requested: DaemonInjectEnvelope;
+  applied: DaemonInjectEnvelope;
+  degraded: boolean;
+  degradeReason: string | null;
+  admission: DaemonInvariantAdmission;
+};
+
+export type DaemonIngressMetrics = {
+  population: number;
+  avgEnergy: number;
+};
