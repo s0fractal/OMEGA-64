@@ -1,17 +1,17 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T02:16:13.268Z*
-*Exported Files in Category: 518*
-*Total Exported Files: 828*
-*Runtime Roots: 9*
-*Runtime Closure Files: 409*
-*Non-Runtime Code Files: 109*
+*Generated: 2026-03-16T07:07:57.995Z*
+*Exported Files in Category: 525*
+*Total Exported Files: 840*
+*Runtime Roots: 7*
+*Runtime Closure Files: 194*
+*Non-Runtime Code Files: 331*
 *Runtime-Support Code Files: 2*
-*Experimental Code Files: 107*
-*Manifest SHA256: 4013923fef1beb6e8e9a4ae659f67c9465877f3d0cb10b3cc598d3a63b7c91f8*
-*Export Set SHA256: dce029de7676e4ba3d078ad7473b2226a51ca33b27a40eb11aaea86aa063f5c7*
-*Export Content SHA256: b7d8b25f6afd6f797b69b74ba0dc03a6802309dd5830a26f00d91d681a093d78*
-*Git Commit: f2463afc7b2a*
+*Experimental Code Files: 329*
+*Manifest SHA256: 551fc6375e806383b9cb321bccd256174ab34f96181ef5a91b41e8d51213de54*
+*Export Set SHA256: a301d2da31e627dc8c22620fe09984830a766f80269af67fc4a969dcd89cda57*
+*Export Content SHA256: 264b526ff5b53be9f36d16a3dc7fe1f5ca3024e70e6429ddea416bb0bc96c2a3*
+*Git Commit: 91ac172fa927*
 
 ---
 
@@ -22,10 +22,8 @@
 - src/_/07/llm_soul.ts
 - src/_/08/AGENT_PROXY.ts
 - src/_/08/MUTATION_TELEMETRY.ts
-- src/_/13/PULSE_WORKER.ts
 - src/_/13/PULSE.ts
 - src/_/14/TUI_DASHBOARD.ts
-- src/_as/mod.ts
 
 ---
 
@@ -157,7 +155,9 @@
 - src/_/06/mod.ts
 - src/_/06/normalize_hex64.ts
 - src/_/06/OMEGA_DAEMON.ts
+- src/_/06/P2P_CODEC.ts
 - src/_/06/pack_structure_intent.ts
+- src/_/06/PRNG.ts
 - src/_/06/SERVE_DASHBOARD.ts
 - src/_/06/SOVEREIGNTY_ENGINE.ts
 - src/_/06/stable_stringify.ts
@@ -179,6 +179,7 @@
 - src/_/07/llm_soul.ts
 - src/_/07/LLM_SYNAPSE.ts
 - src/_/07/mod.ts
+- src/_/07/P2P_FEDERATION.ts
 - src/_/07/QUORUM_ADVOCATE.ts
 - src/_/07/RELIC_CULTIVATION.ts
 - src/_/07/REPLICATION_PROMOTION_ACTION.ts
@@ -186,6 +187,8 @@
 - src/_/07/REPLICATION_PROMOTION.ts
 - src/_/07/sha256_hex.ts
 - src/_/07/SNAP_ENGINE.ts
+- src/_/07/SWARM_NEXUS.ts
+- src/_/07/SWARM_NODE.ts
 - src/_/08/AGENT_PROXY.ts
 - src/_/08/AGENT_SIGNATURE.ts
 - src/_/08/AKASHA_CODEX.ts
@@ -214,232 +217,12 @@
 - src/_/12/mod.ts
 - src/_/12/REDUCTION_CASES.ts
 - src/_/13/mod.ts
-- src/_/13/PULSE_WORKER.ts
 - src/_/13/PULSE.ts
+- src/_/13/SIGMA_FFI_BRIDGE.ts
 - src/_/14/mod.ts
 - src/_/14/SOVEREIGN_ORACLE.ts
 - src/_/14/TUI_DASHBOARD.ts
 - src/_/mod.ts
-- src/_as/00/append_jsonl.ts
-- src/_as/00/C_LOG2_C_LUT.ts
-- src/_as/00/CANON_CAUSAL_BRIDGE.ts
-- src/_as/00/COS_LUT.ts
-- src/_as/00/dir4_x.ts
-- src/_as/00/dir4_y.ts
-- src/_as/00/dir8_x.ts
-- src/_as/00/dir8_y.ts
-- src/_as/00/encode_force_tuple.ts
-- src/_as/00/fast_abs.ts
-- src/_as/00/fast_max.ts
-- src/_as/00/fast_min.ts
-- src/_as/00/GENESIS_PREDATOR_SCRIPT.ts
-- src/_as/00/GLYPH_ARITY_LUT.ts
-- src/_as/00/GLYPH_ENERGY_LUT.ts
-- src/_as/00/GLYPH_LEGACY_OPCODE_LUT.ts
-- src/_as/00/GLYPH_RGB_LUT.ts
-- src/_as/00/GLYPH_TYPES.ts
-- src/_as/00/ID_TO_IDX.ts
-- src/_as/00/IDX_TO_ID.ts
-- src/_as/00/immune_check.ts
-- src/_as/00/math_clamp.ts
-- src/_as/00/mod.ts
-- src/_as/00/OPCODE_ARITY_LUT.ts
-- src/_as/00/pack_glyph_header.ts
-- src/_as/00/parse_env_bool.ts
-- src/_as/00/parse_env_bounded_int.ts
-- src/_as/00/prng_next.ts
-- src/_as/00/prng_seed_from.ts
-- src/_as/00/read_jsonl_lines.ts
-- src/_as/00/read_jsonl.ts
-- src/_as/00/SIN_LUT.ts
-- src/_as/00/STATE_SNAPSHOT.ts
-- src/_as/00/StructureTypes.ts
-- src/_as/00/SYSTEM_CONSTANTS.ts
-- src/_as/00/trace_atom.ts
-- src/_as/00/unpack_glyph_amplitude.ts
-- src/_as/00/unpack_glyph_kind.ts
-- src/_as/00/VmOpcodes.ts
-- src/_as/00/VmProps.ts
-- src/_as/00/VmSys.ts
-- src/_as/01/clamp_resource.ts
-- src/_as/01/clamp_world_x.ts
-- src/_as/01/clamp_world_y.ts
-- src/_as/01/in_grid.ts
-- src/_as/01/math_cos.ts
-- src/_as/01/math_sin.ts
-- src/_as/01/MATH_UTILS.ts
-- src/_as/01/mod.ts
-- src/_as/01/OMEGA_MEMORY_LAYOUT.ts
-- src/_as/01/semanticBonuses.ts
-- src/_as/02/add_energy_delta.ts
-- src/_as/02/add_hive_balance.ts
-- src/_as/02/add_resonance_delta.ts
-- src/_as/02/atomic_deposit_glyph_header.ts
-- src/_as/02/clear_metabolism_stats.ts
-- src/_as/02/clear_secretion_stats.ts
-- src/_as/02/decay_for_kind.ts
-- src/_as/02/diffuse_viral_semantics.ts
-- src/_as/02/diffusion_share_for_kind.ts
-- src/_as/02/find_next_free_slot.ts
-- src/_as/02/genome_key16.ts
-- src/_as/02/get_attention_cell.ts
-- src/_as/02/get_bond_stiffness.ts
-- src/_as/02/get_bond_target.ts
-- src/_as/02/get_energy.ts
-- src/_as/02/get_glyph_influence.ts
-- src/_as/02/get_hive_balance.ts
-- src/_as/02/get_hive_memory.ts
-- src/_as/02/get_hormone.ts
-- src/_as/02/get_lineage.ts
-- src/_as/02/get_logic_byte.ts
-- src/_as/02/get_neural_coherence.ts
-- src/_as/02/get_p_c.ts
-- src/_as/02/get_pending_syscall.ts
-- src/_as/02/get_phase.ts
-- src/_as/02/get_read_energy.ts
-- src/_as/02/get_read_resonance.ts
-- src/_as/02/get_read_x.ts
-- src/_as/02/get_read_y.ts
-- src/_as/02/get_reg.ts
-- src/_as/02/get_resonance.ts
-- src/_as/02/get_role.ts
-- src/_as/02/get_spatial_grid_atom.ts
-- src/_as/02/get_spatial_grid_count.ts
-- src/_as/02/get_x.ts
-- src/_as/02/get_y.ts
-- src/_as/02/memory_views_base.ts
-- src/_as/02/mod.ts
-- src/_as/02/publish_build_intent.ts
-- src/_as/02/publish_charge_intent.ts
-- src/_as/02/read_structure_cell.ts
-- src/_as/02/reduce_atom_deltas.ts
-- src/_as/02/reset_neural_coherence.ts
-- src/_as/02/seed_atom.ts
-- src/_as/02/semanticBonusesBuffer.ts
-- src/_as/02/set_bond_dist.ts
-- src/_as/02/set_bond_stiffness.ts
-- src/_as/02/set_bond_target.ts
-- src/_as/02/set_damping.ts
-- src/_as/02/set_energy.ts
-- src/_as/02/set_hive_memory.ts
-- src/_as/02/set_neural_coherence.ts
-- src/_as/02/set_p_c.ts
-- src/_as/02/set_pending_syscall.ts
-- src/_as/02/set_phase.ts
-- src/_as/02/set_reg.ts
-- src/_as/02/set_resonance.ts
-- src/_as/02/set_role.ts
-- src/_as/02/store_clamped_pos.ts
-- src/_as/03/accumulate_metabolism_stats.ts
-- src/_as/03/add_resonance.ts
-- src/_as/03/apply_bond_springs.ts
-- src/_as/03/apply_metabolism_kernel.ts
-- src/_as/03/attentionField.ts
-- src/_as/03/attentionFieldBuffer.ts
-- src/_as/03/bondDistances.ts
-- src/_as/03/bondDistBuffer.ts
-- src/_as/03/bondRequests.ts
-- src/_as/03/bonds.ts
-- src/_as/03/bondStiffness.ts
-- src/_as/03/build_spatial_hash.ts
-- src/_as/03/calculate_trophism.ts
-- src/_as/03/causality.ts
-- src/_as/03/codeWords.ts
-- src/_as/03/coherence.ts
-- src/_as/03/contextByteView.ts
-- src/_as/03/contexts.ts
-- src/_as/03/damping.ts
-- src/_as/03/dampingBuffer.ts
-- src/_as/03/drain_spawn_requests.ts
-- src/_as/03/energies.ts
-- src/_as/03/evolutionReserved.ts
-- src/_as/03/fire_signal.ts
-- src/_as/03/GATE_LEDGER.ts
-- src/_as/03/GATE_MERGER.ts
-- src/_as/03/GATE_VALIDATOR.ts
-- src/_as/03/GATE.ts
-- src/_as/03/get_genome_velocity_x.ts
-- src/_as/03/get_genome_velocity_y.ts
-- src/_as/03/glyph_transport.ts
-- src/_as/03/glyphHeaderBuffer.ts
-- src/_as/03/glyphHeaders.ts
-- src/_as/03/glyphPayload.ts
-- src/_as/03/glyphPayloadBuffer.ts
-- src/_as/03/hiveBalance.ts
-- src/_as/03/hiveEnergyPool.ts
-- src/_as/03/hiveEnergyPoolBuffer.ts
-- src/_as/03/hiveMemory.ts
-- src/_as/03/hiveMemoryBuffer.ts
-- src/_as/03/hormoneBuffer.ts
-- src/_as/03/hormones.ts
-- src/_as/03/ids.ts
-- src/_as/03/instructions.ts
-- src/_as/03/latticeClearView.ts
-- src/_as/03/ledgerDataView.ts
-- src/_as/03/ledgerHeadView.ts
-- src/_as/03/lineage.ts
-- src/_as/03/lineageBuffer.ts
-- src/_as/03/logic.ts
-- src/_as/03/mailboxes.ts
-- src/_as/03/memoryGrid.ts
-- src/_as/03/memoryGridBuffer.ts
-- src/_as/03/mod.ts
-- src/_as/03/neuralCoherence.ts
-- src/_as/03/phases.ts
-- src/_as/03/read_structure_charge.ts
-- src/_as/03/resolve_bond_requests.ts
-- src/_as/03/resonances.ts
-- src/_as/03/roleBuffer.ts
-- src/_as/03/roles.ts
-- src/_as/03/run_phagocyte_pass.ts
-- src/_as/03/secrete_glyph.ts
-- src/_as/03/signalGrid.ts
-- src/_as/03/signalGridBuffer.ts
-- src/_as/03/spatialGrid.ts
-- src/_as/03/stiffnessBuffer.ts
-- src/_as/03/structureGrid.ts
-- src/_as/03/structureGridBuffer.ts
-- src/_as/03/synapticWeights.ts
-- src/_as/03/syncState.ts
-- src/_as/03/tickCounter.ts
-- src/_as/03/xs.ts
-- src/_as/03/ys.ts
-- src/_as/04/evaluate_opcodes.ts
-- src/_as/04/mod.ts
-- src/_as/04/MX.ts
-- src/_as/04/tick_structure_grid.ts
-- src/_as/05/ATOMIC_LEDGER.ts
-- src/_as/05/execute_atom.ts
-- src/_as/05/mod.ts
-- src/_as/05/SEMANTIC_MEMBRANE.ts
-- src/_as/05/tick_environment.ts
-- src/_as/06/BREATH.ts
-- src/_as/06/GLYPH_TELEMETRY.ts
-- src/_as/06/HORMONE_BUFFER_RUNTIME.ts
-- src/_as/06/mod.ts
-- src/_as/06/OMEGA_DAEMON.ts
-- src/_as/06/SERVE_DASHBOARD.ts
-- src/_as/07/AVATAR_ENGINE.ts
-- src/_as/07/llm_soul.ts
-- src/_as/07/mod.ts
-- src/_as/08/checkpoint_chain.ts
-- src/_as/08/GENETIC_LEDGER.ts
-- src/_as/08/ledger_chain.ts
-- src/_as/08/mod.ts
-- src/_as/08/MUTATION_TELEMETRY.ts
-- src/_as/09/mod.ts
-- src/_as/10/HORMONE_BUFFER.ts
-- src/_as/10/mod.ts
-- src/_as/11/GOLDEN_TRACE_CATALOG.ts
-- src/_as/11/mod.ts
-- src/_as/12/mod.ts
-- src/_as/12/REDUCTION_CASES.ts
-- src/_as/13/mod.ts
-- src/_as/13/PULSE_WORKER.ts
-- src/_as/13/PULSE.ts
-- src/_as/13/REDUCTION_HARNESS.ts
-- src/_as/14/mod.ts
-- src/_as/mod.ts
 
 ---
 
@@ -496,73 +279,6 @@ for (const [tsFile, vars] of unusedImports.entries()) {
         console.log(`  Source MD: ${md.path}`);
      }
   }
-}
-
-```
-
----
-
-## FILE: scripts/check_structure.ts
-
-```typescript
-import { readLines } from "https://deno.land/std@0.224.0/io/read_lines.ts";
-import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
-import { resolve, join, relative } from "https://deno.land/std@0.224.0/path/mod.ts";
-
-const CWD = Deno.cwd();
-
-// Load .env variables synchronously
-try {
-  loadSync({ export: true });
-} catch (e) {
-  // Ignore
-}
-
-const GEN_DIR_TS = Deno.env.get("GEN_DIR_TS") || "src/_";
-const GEN_DIR_RS = Deno.env.get("GEN_DIR_RS") || "src/00/sigma_core/src/ontology_gen";
-const GEN_DIR_AS = Deno.env.get("GEN_DIR_AS") || "src/_as";
-
-async function checkGitignore() {
-  const gitignorePath = join(CWD, ".gitignore");
-  let gitignoreContent = "";
-  try {
-    gitignoreContent = await Deno.readTextFile(gitignorePath);
-  } catch (err) {
-    console.error(`[FATAL] Could not read .gitignore: ${err}`);
-    Deno.exit(1);
-  }
-
-  const lines = gitignoreContent.split("\n").map(l => l.trim()).filter(l => l && !l.startsWith("#"));
-
-  const requiredPaths = [GEN_DIR_TS, GEN_DIR_RS, GEN_DIR_AS];
-  let missing = false;
-
-  console.log("[Structure] Checking generated path IGNORE coverage...");
-
-  for (const p of requiredPaths) {
-    // Check if the path or path/ is in gitignore
-    const normalized = relative(CWD, resolve(CWD, p));
-    const isIgnored = lines.some(l => l === normalized || l === normalized + "/" || l === "/" + normalized || l === "/" + normalized + "/");
-
-    if (!isIgnored) {
-      console.error(`[ERROR] Generated path '${normalized}' is not present in .gitignore!`);
-      missing = true;
-    } else {
-      console.log(`  [OK] ${normalized}`);
-    }
-  }
-
-  if (missing) {
-    console.error("\n[FATAL] Some generated code directories are not ignored by Git. Committing these files leads to heavy diff pollution.");
-    console.error("Please add the missing paths to your .gitignore.");
-    Deno.exit(1);
-  }
-
-  console.log("\n[Structure] All generated paths are safely ignored.");
-}
-
-if (import.meta.main) {
-  await checkGitignore();
 }
 
 ```
@@ -2514,7 +2230,7 @@ const autoSnapshotRetention = parse_env_bounded_int(
   512,
 );
 
-const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "rust") ? "rust" : "as";
+const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "as") ? "as" : "rust";
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -2554,6 +2270,7 @@ const policyFingerprintSource = JSON.stringify({
     openWorld: federationOpenWorld,
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
@@ -2747,6 +2464,7 @@ export const RUNTIME_POLICY = {
     },
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
@@ -5269,6 +4987,11 @@ export const MX = {
   syncState,
   tickCounter,
   SYNC,
+  ids,
+  xs,
+  ys,
+  energies,
+  resonances,
   phases,
   evolutionReserved,
   roles,
@@ -5285,6 +5008,9 @@ export const MX = {
   hormones,
   lineage,
   instructions,
+  logic,
+  bonds,
+  bondDistances,
   ledgerHeadView,
   ledgerDataView,
   contexts,
@@ -8973,12 +8699,14 @@ export * from "./LOGGER.ts";
 export * from "./assert_wasm_memory_depth.ts";
 export * from "./pack_structure_intent.ts";
 export * from "./make_xor_shift32.ts";
+export * from "./PRNG.ts";
 export * from "./unpack_structure_charge.ts";
 export * from "./to_int16_big_endian.ts";
 export * from "./GENESIS_BOOT.ts";
 export * from "./GENESIS_REIFIED.ts";
 export * from "./GLYPH_TELEMETRY.ts";
 export * from "./SERVE_DASHBOARD.ts";
+export * from "./P2P_CODEC.ts";
 export * from "./TELEMETRY_STREAM.ts";
 export * from "./AKASHA_SIGNALING.ts";
 
@@ -10651,6 +10379,129 @@ export const OMEGA_DAEMON = {};
 
 ---
 
+## FILE: src/_/06/P2P_CODEC.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_codec.md
+import { MX } from "@g05";
+
+export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
+
+export const P2P_CODEC = {
+  /**
+   * Serializes an atom from MX into a strict Uint8Array binary format.
+   * Format:
+   * 0-7:   ID (BigUint64)
+   * 8-9:   X (Int16)
+   * 10-11: Y (Int16)
+   * 12-15: Energy (Float32 - converted back from Float/SCALE internals to preserve fidelity)
+   * 16-19: Resonance (Int32)
+   * 20-23: Phase (Int32)
+   * 24-31: Logic/Genome (Uint8Array x 8)
+   * 32:    Role (Uint8)
+   * 33:    Damping (Uint8)
+   * 34-35: Padding/Reserved (Uint16)
+   * 36-43: Lineage (BigUint64)
+   * 44-107: Context / Registers (Int32Array x 16 -> 64 bytes)
+   * 108-171: Instructions (Uint8Array x 64 -> 64 bytes)
+   * 172-191: Padding (20 bytes)
+   */
+  packAtom: (idx: number): Uint8Array => {
+    const buffer = new ArrayBuffer(PACKET_SIZE);
+    const view = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+
+    view.setBigUint64(0, MX.getId(idx), true);
+    view.setInt16(8, MX.getX(idx), true);
+    view.setInt16(10, MX.getY(idx), true);
+    view.setFloat32(12, MX.getEnergy(idx), true);
+    view.setInt32(16, MX.getResonance(idx), true);
+    view.setInt32(20, MX.getPhase(idx), true);
+
+    const logic = MX.getLogic(idx);
+    u8.set(logic, 24);
+
+    view.setUint8(32, MX.getRole(idx));
+    view.setUint8(33, MX.getDamping(idx));
+    // 34-35 reserved padding
+    view.setBigUint64(36, MX.getLineage(idx), true);
+
+    const context = MX.getContext(idx);
+    u8.set(
+      new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
+      44,
+    );
+
+    const instructions = MX.getInstructions(idx);
+    u8.set(instructions, 108);
+
+    return u8;
+  },
+
+  /**
+   * Unpacks a binary Uint8Array into a free MX atom slot.
+   * Returns the new index `idx` if successful, or -1 if the matrix is full.
+   */
+  unpackAtom: (buffer: Uint8Array): number => {
+    if (buffer.length < PACKET_SIZE) return -1; // Invalid packet size
+
+    const idx = MX.findEmptySlot();
+    if (idx === -1) return -1; // Lattice full
+
+    const view = new DataView(
+      buffer.buffer,
+      buffer.byteOffset,
+      buffer.byteLength,
+    );
+
+    const id = view.getBigUint64(0, true);
+    const x = view.getInt16(8, true);
+    const y = view.getInt16(10, true);
+    const energy = view.getFloat32(12, true);
+    const resonance = view.getInt32(16, true);
+    const phase = view.getInt32(20, true);
+
+    const logic = buffer.subarray(24, 32);
+    const role = view.getUint8(32);
+    const damping = view.getUint8(33);
+    const lineage = view.getBigUint64(36, true);
+
+    // Seed core fields
+    MX.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      Math.max(0, energy),
+      Math.max(0, resonance),
+      logic,
+    );
+    MX.setPhase(idx, phase);
+    MX.setRole(idx, role);
+    MX.setDamping(idx, damping);
+    MX.setLineage(idx, lineage);
+
+    // Restore execution context (registers and PC)
+    const contextSrc = buffer.subarray(44, 108);
+    const contextDst = new Uint8Array(
+      MX.getContext(idx).buffer,
+      MX.getContext(idx).byteOffset,
+      64,
+    );
+    contextDst.set(contextSrc);
+
+    // Restore instructions
+    const instSrc = buffer.subarray(108, 172);
+    MX.setInstructions(idx, instSrc);
+
+    return idx;
+  },
+};
+
+```
+
+---
+
 ## FILE: src/_/06/pack_structure_intent.ts
 
 ```typescript
@@ -10662,6 +10513,34 @@ export function pack_structure_intent(target_type: number, target_value: number,
         intent |= 0x80000000;
     }
     return intent | 0;
+}
+
+```
+
+---
+
+## FILE: src/_/06/PRNG.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/PRNG.md
+import { prng_seed_from, prng_next } from "@g05";
+
+export class PRNG {
+  private state: number;
+
+  constructor(seed: number) {
+    this.state = seed;
+  }
+
+  public static seedFrom(tick: number, atomId: string): number {
+    return prng_seed_from(tick, atomId);
+  }
+
+  public next(): { value: number; nextState: number } {
+    const result = prng_next(this.state);
+    this.state = result.nextState;
+    return result;
+  }
 }
 
 ```
@@ -14161,6 +14040,98 @@ export * from "./llm_soul.ts";
 export * from "./AVATAR_ENGINE.ts";
 export * from "./LLM_SYNAPSE.ts";
 export * from "./GENESIS_INCEPTOR.ts";
+export * from "./SWARM_NODE.ts";
+export * from "./P2P_FEDERATION.ts";
+export * from "./SWARM_NEXUS.ts";
+
+```
+
+---
+
+## FILE: src/_/07/P2P_FEDERATION.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_federation.md
+import { MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC } from "@g06";
+
+export interface P2pFederationUpwardDelegate {
+  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
+  lookupLineageProfile(lineage: string): any;
+  captureBehaviorFrame(idx: number): any;
+}
+
+let delegate: P2pFederationUpwardDelegate | null = null;
+
+const CURRENT_PORT = RUNTIME_POLICY.system.port;
+const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
+const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
+
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
+};
+
+const RULE_PROFILE_SOURCE = JSON.stringify({
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+});
+
+const RULE_GENOME_SIGNATURE = fnv1a32(RULE_PROFILE_SOURCE).toUpperCase();
+const LOCAL_RULE_GENOME = {
+  signature: RULE_GENOME_SIGNATURE,
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+  generatedAt: new Date().toISOString(),
+};
+
+const peerRuleProfiles = new Map<string, any>();
+
+export const P2P_FEDERATION = {
+  setUpwardDelegate: (newDelegate: P2pFederationUpwardDelegate) => {
+    delegate = newDelegate;
+  },
+  peers: new Set<string>(
+    CURRENT_PORT === 8000
+      ? ["http://localhost:8001"]
+      : ["http://localhost:8000"],
+  ),
+  nodeId: `OMEGA-${CURRENT_PORT}`,
+  enabled: FEDERATION_ENABLED,
+  localRuleGenome: LOCAL_RULE_GENOME,
+
+  serialize: (idx: number): Uint8Array | null => {
+    const id = MX.getId(idx);
+    if (!id) return null;
+    return P2P_CODEC.packAtom(idx);
+  },
+
+  observePeerRuleGenome: (sourceNode: string, rawProfile: any) => {
+    if (!rawProfile || !rawProfile.signature) return;
+    peerRuleProfiles.set(sourceNode, rawProfile);
+  },
+
+  getPeerRuleProfiles: () =>
+    Array.from(peerRuleProfiles.entries()).map(([peer, profile]) => ({
+      peer,
+      profile,
+    })),
+
+  migrate: async (idx: number, pulseId: number) => {
+    // Deprecated for Era 75: routeAtom is preferred. 
+    // Kept for partial compatibility with legacy callers.
+  },
+};
 
 ```
 
@@ -14704,6 +14675,418 @@ export const SNAP_ENGINE = {
     }
   },
 };
+
+```
+
+---
+
+## FILE: src/_/07/SWARM_NEXUS.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_nexus.md
+import { LOGGER } from "@g06";
+
+export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
+
+export type NexusConfig = {
+  instanceId: number;
+  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
+  mainnetEnabled?: boolean;
+  bootstrapHubUrl?: string;
+};
+
+export const OP_NEXUS_HANDSHAKE = 0x00;
+export const OP_NEXUS_ATOM_TRANSIT = 0x01;
+export const OP_NEXUS_HEARTBEAT = 0x02;
+export const OP_NEXUS_EPOCH_CONSENSUS = 0x03;
+export const OP_NEXUS_SYNC_REQUEST = 0x04;
+export const OP_NEXUS_EPOCH_PAYLOAD = 0x05;
+
+export class SwarmNexus {
+  public nodeId: string;
+  public instanceId: number;
+  public port: number;
+  public seedNodes: string[];
+  public mainnetEnabled: boolean;
+  public bootstrapHubUrl: string;
+
+  // Peer registry
+  public connectedPeers: Map<string, WebSocket> = new Map();
+  // Server handle
+  private serverAbortController: AbortController = new AbortController();
+
+  // Heartbeat tracking
+  public peerHeartbeats: Map<
+    string,
+    { tick: number; tps: number; lastSeen: number }
+  > = new Map();
+  private heartbeatInterval?: number;
+
+  // Local TPS tracking support
+  public localCurrentTick: number = 0;
+  public localTps: number = 0;
+
+  // Callback Hooks
+  public onAtomTransit?: (payload: Uint8Array) => void;
+  public onSyncRequest?: (peerId: string) => void;
+  public onEpochPayload?: (payload: Uint8Array) => void;
+
+  constructor(config: NexusConfig) {
+    this.nodeId = crypto.randomUUID();
+    this.instanceId = config.instanceId;
+    this.port = 8080 + config.instanceId;
+    this.seedNodes = config.seedNodes;
+    this.mainnetEnabled = config.mainnetEnabled ?? false;
+    this.bootstrapHubUrl = config.bootstrapHubUrl ?? "";
+  }
+
+  public start() {
+    LOGGER.info(`[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`);
+
+    // 1. Start listening for incoming WebSocket connections
+    const server = Deno.serve({
+      port: this.port,
+      hostname: "127.0.0.1",
+      signal: this.serverAbortController.signal,
+      onListen: ({ port, hostname }) => {
+        LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
+      },
+    }, (req) => {
+      if (req.headers.get("upgrade") != "websocket") {
+        return new Response(null, { status: 501 });
+      }
+
+      const { socket, response } = Deno.upgradeWebSocket(req);
+      this.handleConnection(socket, "INBOUND");
+      return response;
+    });
+
+    server.finished.catch((err: any) => {
+      LOGGER.error(`[NEXUS] FATAL SERVER CRASH: ${err}`);
+    });
+
+    // 2. Connect to known seed nodes
+    for (const seedUrl of this.seedNodes) {
+      if (
+        seedUrl === `ws://127.0.0.1:${this.port}` ||
+        seedUrl === `ws://localhost:${this.port}`
+      ) {
+        continue; // Don't connect to self
+      }
+      this.connectToPeer(seedUrl);
+    }
+
+    // 2.5 Connect to Bootstrap Hub if requested
+    if (this.mainnetEnabled && this.bootstrapHubUrl) {
+      this.connectToHub();
+    }
+
+    // 3. Start Heartbeat Broadcast
+    this.heartbeatInterval = setInterval(() => {
+      this.broadcastHeartbeat();
+    }, 100);
+  }
+
+  public stop() {
+    LOGGER.info(`[NEXUS] Shutting down Node ${this.nodeId}`);
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = undefined;
+    }
+    this.serverAbortController.abort();
+    for (const [, ws] of this.connectedPeers) {
+      ws.close();
+    }
+    this.connectedPeers.clear();
+    this.peerHeartbeats.clear();
+  }
+
+  private connectToPeer(url: string) {
+    try {
+      LOGGER.info(`[NEXUS] Attempting connection to seed: ${url}`);
+      const socket = new WebSocket(url);
+      this.handleConnection(socket, "OUTBOUND");
+    } catch (e) {
+      LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
+    }
+  }
+
+  private connectToHub() {
+    try {
+      LOGGER.info(`[NEXUS] Connecting to Bootstrap Hub: ${this.bootstrapHubUrl}`);
+      const hubSocket = new WebSocket(this.bootstrapHubUrl);
+
+      hubSocket.onopen = () => {
+        LOGGER.info(`[NEXUS] Connected to Hub.`);
+        hubSocket.send(JSON.stringify({
+          op: "REGISTER",
+          nodeId: this.nodeId,
+          url: `ws://127.0.0.1:${this.port}`,
+        }));
+      };
+
+      hubSocket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
+            LOGGER.info(`[NEXUS] Received ${data.peers.length} peers from Hub.`);
+            for (const peerUrl of data.peers) {
+              if (peerUrl !== `ws://127.0.0.1:${this.port}`) {
+                this.connectToPeer(peerUrl);
+              }
+            }
+          }
+        } catch (e) {
+          LOGGER.warn(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
+        }
+      };
+
+      hubSocket.onclose = () => {
+        LOGGER.warn(`[NEXUS] Disconnected from Hub.`);
+      };
+    } catch (e) {
+      LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
+    }
+  }
+
+  private handleConnection(
+    socket: WebSocket,
+    direction: "INBOUND" | "OUTBOUND",
+  ) {
+    socket.binaryType = "arraybuffer";
+    let remoteNodeId: string | null = null;
+
+    socket.onopen = () => {
+      LOGGER.info(`[NEXUS] ${direction} Socket Opened.`);
+      this.sendHandshake(socket);
+    };
+
+    socket.onmessage = (event) => {
+      if (event.data instanceof ArrayBuffer) {
+        const payload = new Uint8Array(event.data);
+        const op = payload[0];
+
+        switch (op) {
+          case OP_NEXUS_HANDSHAKE:
+            remoteNodeId = this.handleHandshake(socket, payload);
+            break;
+          case OP_NEXUS_ATOM_TRANSIT:
+            this.handleAtomTransit(payload);
+            break;
+          case OP_NEXUS_HEARTBEAT:
+            if (remoteNodeId) this.handleHeartbeat(remoteNodeId, payload);
+            break;
+          case OP_NEXUS_EPOCH_CONSENSUS:
+            if (remoteNodeId) this.handleEpochConsensus(remoteNodeId, payload);
+            break;
+          case OP_NEXUS_SYNC_REQUEST:
+            if (remoteNodeId) this.handleSyncRequest(remoteNodeId);
+            break;
+          case OP_NEXUS_EPOCH_PAYLOAD:
+            this.handleEpochPayload(payload);
+            break;
+          default:
+            LOGGER.warn(`[NEXUS] Unknown binary OP code: ${op}`);
+        }
+      } else {
+        LOGGER.warn(`[NEXUS] Received non-binary message, discarding.`);
+      }
+    };
+
+    socket.onclose = () => {
+      if (remoteNodeId) {
+        LOGGER.info(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
+        this.connectedPeers.delete(remoteNodeId);
+        this.peerHeartbeats.delete(remoteNodeId);
+      }
+    };
+
+    socket.onerror = (e) => {
+      LOGGER.error(`[NEXUS] Socket Error on ${remoteNodeId || "unknown peer"}:`, e);
+    };
+  }
+
+  private sendHandshake(socket: WebSocket) {
+    const encoder = new TextEncoder();
+    const idBytes = encoder.encode(this.nodeId);
+    if (idBytes.length !== 36) return;
+
+    const payload = new Uint8Array(1 + 36);
+    payload[0] = OP_NEXUS_HANDSHAKE;
+    payload.set(idBytes, 1);
+
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(payload.buffer);
+    }
+  }
+
+  private handleHandshake(socket: WebSocket, payload: Uint8Array): string {
+    const decoder = new TextDecoder();
+    const remoteId = decoder.decode(payload.slice(1, 37));
+    LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
+    this.connectedPeers.set(remoteId, socket);
+    return remoteId;
+  }
+
+  public routeAtom(egressEvent: Uint8Array) {
+    if (this.connectedPeers.size === 0) return;
+
+    const peers = Array.from(this.connectedPeers.values());
+    const targetPeer = peers[Math.floor(Math.random() * peers.length)];
+
+    const payload = new Uint8Array(1 + egressEvent.length);
+    payload[0] = OP_NEXUS_ATOM_TRANSIT;
+    payload.set(egressEvent, 1);
+
+    if (targetPeer.readyState === WebSocket.OPEN) {
+      targetPeer.send(payload.buffer);
+      LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+    }
+  }
+
+  private handleAtomTransit(payload: Uint8Array) {
+    const atomData = payload.slice(1);
+    LOGGER.info(`[NEXUS] Ingress Atom Materializing...`);
+    if (this.onAtomTransit) this.onAtomTransit(atomData);
+  }
+
+  private broadcastHeartbeat() {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_HEARTBEAT;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, this.localCurrentTick, true);
+    view.setFloat64(9, this.localTps, true);
+
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleHeartbeat(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const tick = view.getFloat64(1, true);
+    const tps = view.getFloat64(9, true);
+    this.peerHeartbeats.set(remoteId, { tick, tps, lastSeen: performance.now() });
+  }
+
+  public getMedianSwarmTick(localTickFallback: number): number {
+    const now = performance.now();
+    const ticks: number[] = [localTickFallback];
+    for (const [peerId, hb] of this.peerHeartbeats.entries()) {
+      if (now - hb.lastSeen > 2000) {
+        this.peerHeartbeats.delete(peerId);
+        continue;
+      }
+      ticks.push(hb.tick);
+    }
+    if (ticks.length === 1) return localTickFallback;
+    ticks.sort((a, b) => a - b);
+    const mid = Math.floor(ticks.length / 2);
+    return ticks.length % 2 === 0 ? (ticks[mid - 1] + ticks[mid]) / 2 : ticks[mid];
+  }
+
+  public broadcastEpochConsensus(epochTick: number, hash: bigint) {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_EPOCH_CONSENSUS;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, epochTick, true);
+    view.setBigUint64(9, hash, true);
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleEpochConsensus(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const epochTick = view.getFloat64(1, true);
+    const peerHash = view.getBigUint64(9, true);
+    LOGGER.warn(`[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`);
+  }
+
+  public broadcastSyncRequest() {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleSyncRequest(remoteId: string) {
+    if (this.onSyncRequest) this.onSyncRequest(remoteId);
+  }
+
+  public sendEpochPayload(targetNodeId: string, epochData: Uint8Array) {
+    const peer = this.connectedPeers.get(targetNodeId);
+    if (!peer || peer.readyState !== WebSocket.OPEN) return;
+    const payload = new Uint8Array(1 + epochData.length);
+    payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
+    payload.set(epochData, 1);
+    peer.send(payload.buffer);
+  }
+
+  private handleEpochPayload(payload: Uint8Array) {
+    const epochData = payload.slice(1);
+    if (this.onEpochPayload) this.onEpochPayload(epochData);
+  }
+}
+
+```
+
+---
+
+## FILE: src/_/07/SWARM_NODE.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_node.md
+import { LOGGER } from "@g06";
+
+export type SwarmHeartbeat = {
+  nodeId: string;
+  currentTick: number;
+  epochHash: string;
+  phase: number;
+};
+
+export class MetaKuramotoNode {
+  public readonly nodeId: string;
+  public readonly heartbeatInterval: number;
+
+  constructor(
+    nodeId: string = crypto.randomUUID(),
+    heartbeatInterval: number = 1000,
+  ) {
+    this.nodeId = nodeId;
+    this.heartbeatInterval = heartbeatInterval;
+  }
+
+  public evaluateHeartbeat(
+    currentTick: number,
+    epochHash: string,
+    avgPhase: number,
+    egressCount: number,
+  ): void {
+    if (currentTick > 0 && currentTick % this.heartbeatInterval === 0) {
+      const heartbeat: SwarmHeartbeat = {
+        nodeId: this.nodeId,
+        currentTick,
+        epochHash,
+        phase: avgPhase,
+      };
+
+      LOGGER.info(`[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`);
+
+      if (egressCount > 0) {
+        LOGGER.info(`[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`);
+      }
+    }
+  }
+}
+
+export const SWARM_NODE = new MetaKuramotoNode();
 
 ```
 
@@ -23436,1235 +23819,7 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | undefin
 // deno-lint-ignore-file camelcase
 export * from "@g12";
 export * from "./PULSE.ts";
-export * from "./PULSE_WORKER.ts";
-
-```
-
----
-
-## FILE: src/_/13/PULSE_WORKER.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_worker.md
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, GRID_CELLS, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SCALE, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, SYS_ATTRACT, SYS_BET, SYS_BIND, SYS_EAT, SYS_EMIT, SYS_FOLD, SYS_MOVE, SYS_MSG, SYS_MUTATE, SYS_READ_INBOX, SYS_READ_MEM, SYS_REPLICATE, SYS_SCAN, SYS_SENSE_PHASE, SYS_SET_ROLE, SYS_SPAWN, SYS_SPORE_DRIVE, SYS_TRANSFER, SYS_WRITE_MEM, SYS_YIELD, TICK_COUNTER_OFFSET, WASM_MEMORY_BYTES, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "@g12";
-
-// OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-const resolveWithPhase = (
-  baseValue: number,
-  modifiers: Array<{ phase: number; weight: number }>,
-): number => {
-  let real = baseValue;
-  let imag = 0;
-
-  for (const mod of modifiers) {
-    const rad = (mod.phase * Math.PI) / 128; // 0-255 → radians
-    real += mod.weight * Math.cos(rad);
-    imag += mod.weight * Math.sin(rad);
-  }
-
-  // Return "intensity" = |z|
-  return Math.floor(Math.sqrt(real * real + imag * imag));
-};
-
-const _noop = (..._args: any[]) => {};
-let wasmInstance: WebAssembly.Instance | null = null;
-let execute_atom_fn: ((idx: number) => void) | null = null;
-let tick_environment_fn: ((tick: number) => void) | null = null;
-let tick_matrix_fn: (() => void) | null = null;
-let tick_structure_grid_fn: (() => void) | null = null;
-let build_spatial_hash_fn: (() => void) | null = null;
-let get_spatial_hash_overflow_count_fn: (() => number) | null = null;
-let get_spatial_hash_max_cell_count_fn: (() => number) | null = null;
-let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
-  null;
-let get_neural_coherence_fn: (() => number) | null = null;
-let set_neural_coherence_fn: ((val: number) => void) | null = null;
-let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
-let tick_membrane_physics_fn: (() => void) | null = null;
-let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
-  null;
-let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
-let run_phagocyte_pass_fn: ((entropy: number) => number) | null = null;
-let clear_metabolism_stats_fn: (() => void) | null = null;
-let accumulate_metabolism_stats_fn:
-  | ((start: number, end: number) => void)
-  | null = null;
-let apply_metabolism_kernel_fn:
-  | ((
-    start: number,
-    end: number,
-    noveltySigned: number,
-    symbiosisSigned: number,
-    baseTax: number,
-    targetEnergy: number,
-    homeostasisBand: number,
-    homeostasisMaxDelta: number,
-    overflowThreshold: number,
-    spatialOverflowRatio: number,
-    starvationFloor: number,
-    subsidyEnabled: number,
-  ) => void)
-  | null = null;
-let sharedBuffer: SharedArrayBuffer | null = null;
-let tickCounterView: Int32Array | null = null;
-let syncStateView: Int32Array | null = null;
-
-let idsView: BigUint64Array | null = null;
-let xsView: Int16Array | null = null;
-let ysView: Int16Array | null = null;
-let contextI32View: Int32Array | null = null;
-let contextU8View: Uint8Array | null = null;
-let structureGridView: Int32Array | null = null;
-let spatialGridView: Int32Array | null = null;
-let buildOwnerView: Int32Array | null = null;
-let buildValueView: Int32Array | null = null;
-let spawnHeadView: Int32Array | null = null;
-let spawnDataView: DataView | null = null;
-let lineageView: BigUint64Array | null = null;
-let logicView: BigUint64Array | null = null;
-let bondRequestsView: Int32Array | null = null;
-let energiesView: Int32Array | null = null;
-let phaseView: Int32Array | null = null;
-let evolutionReservedView: Int32Array | null = null;
-
-let currentPulseId = 0;
-let currentTheta = 0;
-let resonancesView: Int32Array | null = null;
-let instructionsView: Uint8Array | null = null;
-let mailboxView: Int32Array | null = null;
-let ledgerHeadView: Int32Array | null = null;
-let ledgerDataView: Int32Array | null = null;
-let marketState: Int32Array | null = null;
-let betPoolInt: Int32Array | null = null;
-
-function handle_syscall(atomIdx: number) {
-  if (!contextU8View || !contextI32View || !energiesView) return;
-  const flagIdx = (atomIdx << 6) + 33;
-  if (contextU8View[flagIdx] === 0) return;
-  contextU8View[flagIdx] = 0; // Clear pending syscall flag
-
-  const regBase = atomIdx << 4;
-  const sysId = contextI32View[regBase]; // R0
-  const r1 = contextI32View[regBase + 1];
-  const r2 = contextI32View[regBase + 2];
-  const r3 = contextI32View[regBase + 3];
-
-  _noop(
-    `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
-  );
-
-  let gasCost = 0;
-  switch (sysId) {
-    case SYS_YIELD:
-      gasCost = 1;
-      break;
-    case SYS_READ_MEM:
-      gasCost = 5;
-      break;
-    case SYS_WRITE_MEM:
-      gasCost = 20;
-      break;
-    case SYS_SPAWN:
-      gasCost = 100;
-      break;
-    case SYS_BIND:
-      gasCost = 10;
-      break;
-    case SYS_SET_ROLE:
-      gasCost = 5;
-      break;
-    case SYS_MUTATE:
-      gasCost = 50;
-      break;
-    case SYS_MSG:
-      gasCost = 20;
-      break;
-    case SYS_READ_INBOX:
-      gasCost = 2;
-      break;
-    case SYS_TRANSFER:
-      gasCost = 10;
-      break;
-    case SYS_REPLICATE:
-      gasCost = 100;
-      break;
-    case SYS_EMIT:
-      gasCost = 5;
-      break;
-    case SYS_SCAN:
-      gasCost = 20;
-      break;
-    case SYS_MOVE:
-      gasCost = 10;
-      break;
-    case SYS_EAT:
-      gasCost = 30;
-      break;
-    case SYS_BET:
-      gasCost = 10;
-      break;
-    case SYS_ATTRACT:
-    case SYS_FOLD:
-      gasCost = 10;
-      break;
-    case SYS_SPORE_DRIVE:
-      gasCost = 500;
-      break;
-    case SYS_SENSE_PHASE:
-      gasCost = 5;
-      break;
-    default:
-      gasCost = 1;
-      break;
-  }
-
-  const currentEnergy = Atomics.load(energiesView, atomIdx);
-  if (currentEnergy < gasCost * 1000) {
-    // Out of Gas for this syscall
-    _noop(
-      `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
-        currentEnergy / 1000
-      })`,
-    );
-    return;
-  }
-
-  // Burn the gas
-  Atomics.sub(energiesView, atomIdx, gasCost * 1000); // 1000 is energy SCALE
-
-  switch (sysId) {
-    case SYS_YIELD:
-      break;
-    case SYS_READ_MEM: {
-      const gx = r1, gy = r2;
-      let val = 0;
-      if (
-        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView
-      ) {
-        val = structureGridView[gy * GRID_W + gx] & 0xFF;
-      }
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
-      );
-      contextI32View[regBase] = val; // Return value in R0
-      break;
-    }
-    case SYS_WRITE_MEM: {
-      const gx = r1, gy = r2, newVal = r3;
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
-      );
-      if (
-        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && buildOwnerView &&
-        buildValueView
-      ) {
-        const cellIdx = gy * GRID_W + gx;
-        Atomics.store(buildOwnerView, cellIdx, atomIdx);
-        Atomics.store(buildValueView, cellIdx, newVal);
-      }
-      break;
-    }
-    case SYS_SPAWN: {
-      const childGx = r1, childGy = r2;
-      if (
-        childGx >= 0 && childGx < GRID_W && childGy >= 0 && childGy < GRID_H &&
-        spawnHeadView && spawnDataView
-      ) {
-        const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;
-        const slotOff = slot * 24;
-        const parentGenome = logicView ? logicView[atomIdx] : 0n;
-        const parentLineage = lineageView ? lineageView[atomIdx] : 0n;
-        // Write spawn request struct
-        spawnDataView.setBigUint64(slotOff, parentGenome, true);
-        spawnDataView.setInt16(slotOff + 8, childGx, true);
-        spawnDataView.setInt16(slotOff + 10, childGy, true);
-        spawnDataView.setInt32(slotOff + 12, 100, true); // give 100 energy to start
-        spawnDataView.setBigUint64(slotOff + 16, parentLineage, true);
-      }
-      break;
-    }
-    case SYS_BIND: {
-      const targetIdx = r1;
-      if (targetIdx > 0 && targetIdx < MAX_ATOMS && bondRequestsView) {
-        const off = atomIdx * 3;
-        Atomics.store(bondRequestsView, off, atomIdx);
-        Atomics.store(bondRequestsView, off + 1, targetIdx);
-        Atomics.store(bondRequestsView, off + 2, 1);
-      }
-      break;
-    }
-    case SYS_SET_ROLE: {
-      const rolesView = new Uint8Array(
-        sharedBuffer!,
-        ROLES_OFFSET,
-        MAX_ATOMS,
-      );
-      const newRole = r1;
-      // Host validates the role
-      if (newRole >= 0 && newRole <= 8) {
-        Atomics.store(rolesView, atomIdx, newRole);
-      }
-      break;
-    }
-    case SYS_MUTATE: {
-      const targetIdx = r1;
-      const offset = r2;
-      const newValue = r3;
-      // Host validates target and instructions boundary (0-63 bytes)
-      if (
-        targetIdx >= 0 && targetIdx < MAX_ATOMS && offset >= 0 && offset < 64 &&
-        instructionsView
-      ) {
-        const globalOffset = targetIdx * 64 + offset;
-        Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
-        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
-            (newValue & 0xFF).toString(16)
-          }`,
-        );
-      } else {
-        _noop(
-          `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
-        );
-      }
-      break;
-    }
-    case SYS_MSG: {
-      const targetIdx = r1;
-      const msgType = r2;
-      const payload = r3;
-      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && mailboxView) {
-        // Simple 1-deep mailbox per atom
-        Atomics.store(mailboxView, targetIdx * 2, msgType);
-        Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
-        );
-      }
-      break;
-    }
-    case SYS_READ_INBOX: {
-      if (mailboxView) {
-        const msgType = Atomics.load(mailboxView, atomIdx * 2);
-        const payload = Atomics.load(mailboxView, atomIdx * 2 + 1);
-
-        // Return type in R0
-        contextI32View[regBase] = msgType;
-
-        // Return payload in R1 (we map R1 to contextI32View[regBase + 1])
-        contextI32View[regBase + 1] = payload;
-
-        // Clear mailbox after reading
-        if (msgType !== 0) {
-          Atomics.store(mailboxView, atomIdx * 2, 0);
-          Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          _noop(
-            `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
-          );
-        }
-      }
-      break;
-    }
-    case SYS_TRANSFER: {
-      const targetIdx = r1;
-      const resourceType = r2; // 0 = Energy, 1 = Resonance
-      const amount = r3; // Positive to give, Negative to steal
-
-      if (targetIdx > 0 && targetIdx < MAX_ATOMS && amount !== 0) {
-        if (resourceType === 0 && energiesView) { // ENERGY
-          if (amount > 0) {
-            const senderEnergy = Atomics.load(energiesView, atomIdx);
-            const scaledAmount = amount * 1000;
-            if (senderEnergy >= scaledAmount) {
-              Atomics.sub(energiesView, atomIdx, scaledAmount);
-              Atomics.add(energiesView, targetIdx, scaledAmount);
-              _noop(
-                `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
-              );
-            }
-          } else {
-            // Stealing
-            const stealAmount = (-amount) * 1000;
-            if (resonancesView && xsView && ysView) {
-              const myRes = Atomics.load(resonancesView, atomIdx);
-              let tRes = Atomics.load(resonancesView, targetIdx);
-
-              if (evolutionReservedView) {
-                const shield = Atomics.load(evolutionReservedView, targetIdx);
-                if (shield > 0) tRes = shield;
-              }
-
-              if (myRes > tRes && myRes > 250 && tRes < 100) {
-                const ox = Atomics.load(xsView, atomIdx);
-                const oy = Atomics.load(ysView, atomIdx);
-                const tx = Atomics.load(xsView, targetIdx);
-                const ty = Atomics.load(ysView, targetIdx);
-
-                const rolesView = new Uint8Array(
-                  sharedBuffer!,
-                  ROLES_OFFSET,
-                  MAX_ATOMS,
-                );
-                const myRole = Atomics.load(rolesView, atomIdx);
-                const tRole = Atomics.load(rolesView, targetIdx);
-
-                if (myRole === 3 && tRole === 1) { // Engulfment (Architect -> Producer)
-                  const tEnergy = Atomics.load(energiesView, targetIdx);
-                  if (tEnergy > 20000) { // Enough base generation
-                    Atomics.store(rolesView, targetIdx, 5); // ROLE_MITOCHONDRIA = 5
-                    if (contextI32View) {
-                      Atomics.store(
-                        contextI32View,
-                        targetIdx * 16 + 12,
-                        atomIdx,
-                      ); // Store host atomIdx in Context Reg 12
-                    }
-                    _noop(
-                      `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
-                    );
-                    break;
-                  }
-                }
-
-                const dx = (tx - ox) / SPATIAL_CELL_SIZE;
-                const dy = (ty - oy) / SPATIAL_CELL_SIZE;
-                const distSq = dx * dx + dy * dy;
-
-                if (distSq <= 2.25) {
-                  const tEnergy = Atomics.load(energiesView, targetIdx);
-                  const takeAmount = Math.min(stealAmount, tEnergy);
-                  if (takeAmount > 0) {
-                    Atomics.sub(energiesView, targetIdx, takeAmount);
-                    Atomics.add(energiesView, atomIdx, takeAmount);
-                    _noop(
-                      `   [SYSCALL] Atom ${atomIdx} STOLE ${
-                        takeAmount / 1000
-                      } Energy from Atom ${targetIdx}`,
-                    );
-                    if (contextU8View) {
-                      const flagsIdx = (atomIdx << 6) + 33; // pseudo-cost
-                      // Note: VM costs 30 for stealing, we already deducted 10, deduct 20 more
-                      const extraCost = 20 * 1000;
-                      const e = Atomics.load(energiesView, atomIdx);
-                      if (e >= extraCost) {
-                        Atomics.sub(energiesView, atomIdx, extraCost);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        } else if (resourceType === 1 && resonancesView) { // RESONANCE
-          if (amount > 0) {
-            const senderResonance = Atomics.load(resonancesView, atomIdx);
-            if (senderResonance >= amount) {
-              Atomics.sub(resonancesView, atomIdx, amount);
-              Atomics.add(resonancesView, targetIdx, amount);
-              _noop(
-                `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
-              );
-            }
-          }
-        }
-      }
-      break;
-    }
-    case SYS_REPLICATE: {
-      const targetIdx = r1;
-
-      if (
-        targetIdx >= 0 && targetIdx < MAX_ATOMS && targetIdx !== atomIdx &&
-        instructionsView && contextU8View
-      ) {
-        const receiverEnergy = Atomics.load(energiesView, targetIdx);
-        // Only allow replication into dead slots or by aggressive "infection"
-        // For now, let's keep it simple: can replicate anywhere, it overwrites the genome.
-
-        // Copy 64 bytes of genome
-        const srcOffset = atomIdx * 64;
-        const dstOffset = targetIdx * 64;
-
-        for (let i = 0; i < 64; i++) {
-          Atomics.store(
-            instructionsView,
-            dstOffset + i,
-            Atomics.load(instructionsView, srcOffset + i),
-          );
-        }
-
-        // Reset target PC (PC is at offset 32 in contextU8View)
-        const targetFlagIdx = (targetIdx << 6) + 32;
-        Atomics.store(contextU8View, targetFlagIdx, 0);
-
-        // Evict Target Entropy Cache
-        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0);
-
-        // Give the child a starter spark of energy from the sender
-        const replicationSpark = 50 * 1000; // 50 energy units
-        const senderEnergy = Atomics.load(energiesView, atomIdx);
-
-        if (senderEnergy > replicationSpark) {
-          Atomics.sub(energiesView, atomIdx, replicationSpark);
-          Atomics.add(energiesView, targetIdx, replicationSpark);
-        }
-
-        // Also "wake up" the atom by giving it ID if it doesn't have one
-        if (idsView && idsView[targetIdx] === 0n) {
-          idsView[targetIdx] = BigInt(targetIdx + 1);
-        }
-
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
-        );
-      } else {
-        _noop(
-          `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
-        );
-      }
-      break;
-    }
-    case SYS_EMIT: {
-      if (ledgerHeadView && ledgerDataView) {
-        // Atomic ring buffer increment
-        const cursor = Atomics.add(ledgerHeadView, 0, 1) %
-          MAX_LEDGER_EVENTS;
-        const base = cursor * 4; // 4 i32 per event
-
-        const currentTick = tickCounterView
-          ? Atomics.load(tickCounterView, 0)
-          : 0;
-
-        // Emitted Event Structure -> [Tick, AtomIdx, R1, R2]
-        Atomics.store(ledgerDataView, base, currentTick);
-        Atomics.store(ledgerDataView, base + 1, atomIdx);
-        Atomics.store(ledgerDataView, base + 2, r1);
-        Atomics.store(ledgerDataView, base + 3, r2);
-
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
-        );
-      }
-      break;
-    }
-    case SYS_SCAN: {
-      const radius = r1;
-      let closestIdx = -1;
-      let minDstSq = Infinity;
-
-      if (
-        radius > 0 && xsView && ysView && spatialGridView && idsView &&
-        energiesView && resonancesView
-      ) {
-        // Deduct scan cost. Let's say 20 gas.
-        const COST = 20 * 1000;
-        const currentEnergy = Atomics.load(energiesView, atomIdx);
-        if (currentEnergy >= COST) {
-          Atomics.sub(energiesView, atomIdx, COST);
-
-          // xsView stores coordinate * 100. Unscale to match spatial hash scale (1 unit = 1 pixel).
-          const cx = xsView[atomIdx] / 100;
-          const cy = ysView[atomIdx] / 100;
-
-          const CELL_SIZE = 10;
-
-          const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
-          const endX = Math.min(
-            GRID_W - 1,
-            Math.floor((cx + radius) / CELL_SIZE),
-          );
-          const startY = Math.max(0, Math.floor((cy - radius) / CELL_SIZE));
-          const endY = Math.min(
-            GRID_H - 1,
-            Math.floor((cy + radius) / CELL_SIZE),
-          );
-
-          for (let y = startY; y <= endY; y++) {
-            for (let x = startX; x <= endX; x++) {
-              const cellIdx = y * GRID_W + x;
-              const cellBase = cellIdx * 32; // 32 slots per cell (1 count + 31 items)
-
-              const count = spatialGridView[cellBase];
-
-              for (let i = 1; i <= count; i++) {
-                const targetIdx = spatialGridView[cellBase + i];
-                if (targetIdx === atomIdx) continue; // Skip self
-
-                if (idsView[targetIdx] !== 0n) {
-                  // Dark Forest Topology: Radar Stealth
-                  const targetRes = Atomics.load(resonancesView, targetIdx);
-                  if (targetRes <= 20) continue; // Invisible
-
-                  const tx = xsView[targetIdx] / 100;
-                  const ty = ysView[targetIdx] / 100;
-                  const dx = tx - cx;
-                  const dy = ty - cy;
-                  const dstSq = dx * dx + dy * dy;
-
-                  if (dstSq <= radius * radius && dstSq < minDstSq) {
-                    minDstSq = dstSq;
-                    closestIdx = targetIdx;
-                  }
-                }
-              }
-            }
-          }
-          _noop(
-            `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
-          );
-        } else {
-          _noop(
-            `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
-          );
-        }
-      }
-      contextI32View![regBase] = closestIdx;
-      break;
-    }
-    case SYS_ATTRACT: {
-      const targetIdx = r1;
-      const intensity = r2; // Pos=Attract, Neg=Repel
-      if (
-        targetIdx > 0 && targetIdx < MAX_ATOMS && xsView && ysView &&
-        spatialGridView
-      ) {
-        const ox = Atomics.load(xsView, atomIdx);
-        const oy = Atomics.load(ysView, atomIdx);
-        const tx = Atomics.load(xsView, targetIdx);
-        const ty = Atomics.load(ysView, targetIdx);
-
-        const dx = tx - ox;
-        const dy = ty - oy;
-
-        const dxSign = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
-        const dySign = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
-
-        const dxStr = intensity > 0 ? dxSign : -dxSign;
-        const dyStr = intensity > 0 ? dySign : -dySign;
-
-        if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * SPATIAL_CELL_SIZE;
-          let ny = oy + dyStr * SPATIAL_CELL_SIZE;
-          _noop(
-            `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
-          );
-
-          if (nx < 0) nx = 0;
-          else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
-          if (ny < 0) ny = 0;
-          else if (ny > WORLD_MAX_Y) ny = WORLD_MAX_Y;
-
-          const nGridX = Math.floor(nx / SPATIAL_CELL_SIZE);
-          const nGridY = Math.floor(ny / SPATIAL_CELL_SIZE);
-          const nCellIdx = nGridY * GRID_W + nGridX;
-
-          let capacityOk = false;
-          const emptySlotOffset = -1;
-          for (let s = 0; s < 32; s++) {
-            const currentAtomId = Atomics.load(
-              spatialGridView,
-              nCellIdx * 32 + s,
-            );
-            if (currentAtomId === 0) {
-              capacityOk = true;
-              break;
-            }
-          }
-
-          _noop(
-            `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
-          );
-
-          if (capacityOk) {
-            Atomics.store(xsView, atomIdx, nx);
-            Atomics.store(ysView, atomIdx, ny);
-          }
-        }
-      }
-      break;
-    }
-    case SYS_FOLD: {
-      break; // Placeholder for purely topological matrix operations
-    }
-    case SYS_BET: {
-      if (!marketState || !betPoolInt) {
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const energyBet = Math.max(0, r1);
-      if (energyBet <= 0) {
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const currentMarketState = Atomics.load(marketState, 0);
-      if (currentMarketState !== 1) {
-        // No active crisis
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const scaledBet = energyBet * 1000;
-      const availableEnergy = Atomics.load(energiesView, atomIdx);
-
-      // We already deducted gasCost * 1000 before reaching the switch block
-      if (availableEnergy >= scaledBet) {
-        Atomics.sub(energiesView, atomIdx, scaledBet);
-        Atomics.add(betPoolInt, 0, scaledBet);
-        contextI32View[regBase + 1] = 1; // success
-      } else {
-        contextI32View[regBase + 1] = 0; // failure
-      }
-      break;
-    }
-    case SYS_SPORE_DRIVE: {
-      const energy = Atomics.load(energiesView!, atomIdx);
-      const atomPhase = Atomics.load(phaseView!, atomIdx);
-      const epochPhase = (currentPulseId * 4) % 256;
-
-      const sporeCost = resolveWithPhase(500, [
-        { phase: epochPhase, weight: 50 },
-        { phase: currentTheta, weight: 30 },
-        { phase: atomPhase, weight: 20 },
-      ]);
-      const energyBet = sporeCost * 1000;
-
-      if (energy >= energyBet) {
-        Atomics.sub(energiesView!, atomIdx, energyBet);
-        (self as unknown as Worker).postMessage({
-          type: "SPORE_DRIVE_REQUEST",
-          atomIdx,
-        });
-        // Syscall intercept verification
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
-            Math.floor(currentTheta)
-          }, AtomPhase=${atomPhase}).`,
-        );
-      } else {
-        contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
-      }
-      break;
-    }
-    case SYS_SENSE_PHASE: {
-      const epochPhase = (currentPulseId * 4) % 256;
-      const packed = (epochPhase & 0xFFFF) |
-        ((Math.floor(currentTheta) & 0xFFFF) << 16);
-      contextI32View![regBase] = packed;
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
-          Math.floor(currentTheta)
-        })`,
-      );
-      break;
-    }
-    default:
-      _noop(
-        `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
-      );
-      break;
-  }
-}
-
-let debugDelayMs = 0;
-let debugJitterMinMs = 0;
-let debugJitterMaxMs = 0;
-let debugJitterSeed = 0x9E3779B9;
-const FORCE_INIT_FAIL_MODE =
-  (Deno.env.get("OMEGA_FORCE_WORKER_INIT_FAIL") ?? "").trim().toLowerCase();
-const shouldForceInitFail = (workerIndex: number): boolean => {
-  if (
-    FORCE_INIT_FAIL_MODE === "1" || FORCE_INIT_FAIL_MODE === "true" ||
-    FORCE_INIT_FAIL_MODE === "all"
-  ) {
-    return true;
-  }
-  if (FORCE_INIT_FAIL_MODE === "nonzero") {
-    return workerIndex > 0;
-  }
-  if (FORCE_INIT_FAIL_MODE.startsWith("index:")) {
-    const idx = Number.parseInt(
-      FORCE_INIT_FAIL_MODE.slice("index:".length),
-      10,
-    );
-    return Number.isFinite(idx) && idx === workerIndex;
-  }
-  return false;
-};
-const nextJitterUnit = (): number => {
-  debugJitterSeed = (Math.imul(debugJitterSeed, 1664525) + 1013904223) >>> 0;
-  return debugJitterSeed / 0x1_0000_0000;
-};
-const sampleJitterMs = (): number => {
-  if (debugJitterMaxMs <= 0) return 0;
-  const lo = Math.max(0, Math.min(2000, debugJitterMinMs));
-  const hi = Math.max(lo, Math.min(2000, debugJitterMaxMs));
-  if (hi === lo) return lo;
-  return lo + Math.floor(nextJitterUnit() * (hi - lo + 1));
-};
-const maybeDelay = async () => {
-  const totalDelay = debugDelayMs + sampleJitterMs();
-  if (totalDelay <= 0) return;
-  await new Promise((resolve) => setTimeout(resolve, totalDelay));
-};
-
-(self as any).onmessage = async (e: any) => {
-  const { type, pulseId } = e.data;
-
-  if (type === "INIT") {
-    const { buffer, marketBuffer, wasmMemory, workerIndex, wasmPath } = e.data;
-    sharedBuffer = buffer;
-    if (marketBuffer) {
-      marketState = new Int32Array(marketBuffer, 0, 1);
-      betPoolInt = new Int32Array(marketBuffer, 4, 1);
-    }
-    const sb = sharedBuffer as SharedArrayBuffer;
-    tickCounterView = new Int32Array(sb, TICK_COUNTER_OFFSET, 1);
-    syncStateView = new Int32Array(sb, SYNC_STATE_OFFSET, 1);
-
-    idsView = new BigUint64Array(sb, IDS_OFFSET, MAX_ATOMS);
-    xsView = new Int16Array(sb, XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
-    ysView = new Int16Array(sb, YS_OFFSET, MAX_ATOMS);
-    contextI32View = new Int32Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 16);
-    contextU8View = new Uint8Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 64);
-    structureGridView = new Int32Array(
-      sb,
-      STRUCTURE_GRID_OFFSET,
-      GRID_CELLS,
-    );
-    spatialGridView = new Int32Array(
-      sb,
-      SPATIAL_GRID_OFFSET,
-      GRID_CELLS * 32,
-    );
-    buildOwnerView = new Int32Array(
-      sb,
-      STRUCTURE_BUILD_OWNER_OFFSET,
-      GRID_CELLS,
-    );
-    buildValueView = new Int32Array(
-      sb,
-      STRUCTURE_BUILD_VALUE_OFFSET,
-      GRID_CELLS,
-    );
-    spawnHeadView = new Int32Array(sb, SPAWN_REQUESTS_OFFSET, 1);
-    spawnDataView = new DataView(
-      sb,
-      SPAWN_REQUESTS_OFFSET + 8,
-      1024 * 24,
-    );
-    lineageView = new BigUint64Array(sb, LINEAGE_OFFSET, MAX_ATOMS);
-    logicView = new BigUint64Array(sb, LOGIC_OFFSET, MAX_ATOMS);
-    bondRequestsView = new Int32Array(
-      sb,
-      BOND_REQUESTS_OFFSET,
-      MAX_ATOMS * 3,
-    );
-    energiesView = new Int32Array(sb, ENERGY_OFFSET, MAX_ATOMS);
-    resonancesView = new Int32Array(sb, RESONANCE_OFFSET, MAX_ATOMS);
-    phaseView = new Int32Array(sb, PHASE_OFFSET, MAX_ATOMS);
-    evolutionReservedView = new Int32Array(sb, EVOLUTION_OFFSET, MAX_ATOMS);
-    instructionsView = new Uint8Array(
-      sb,
-      INSTRUCTIONS_OFFSET,
-      MAX_ATOMS * 64,
-    );
-    mailboxView = new Int32Array(sb, MAILBOX_OFFSET, MAX_ATOMS * 2);
-    ledgerHeadView = new Int32Array(sb, LEDGER_HEAD_OFFSET, 1);
-    ledgerDataView = new Int32Array(
-      sb,
-      LEDGER_DATA_OFFSET,
-      MAX_LEDGER_EVENTS * 4,
-    );
-
-    const idx = Number(workerIndex);
-    if (Number.isFinite(idx)) {
-      debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
-    }
-    if (shouldForceInitFail(idx)) {
-      (self as unknown as Worker).postMessage({
-        type: "INIT_FAILED",
-        error: `FORCED_INIT_FAIL(worker=${idx})`,
-      });
-      return;
-    }
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      const wasmRes = await fetch(
-        wasmPath,
-      );
-      const wasmBytes = await wasmRes.arrayBuffer();
-      const traceAtom = (
-        idx: number,
-        op: number,
-        gx: number,
-        gy: number,
-        target: number,
-      ) => {
-        if (op === 0xDD) {
-          const tick = Number(Atomics.load(MX.tickCounter, 0));
-          const epoch = Math.floor(tick / 10000);
-          _noop(
-            `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
-          );
-          return;
-        }
-        _noop(
-          `   [WASM_TRACE] Atom ${idx} executed ${
-            op.toString(16)
-          } | Pos: (${gx},${gy}) | target: ${target}`,
-        );
-      };
-      const instantiated = await WebAssembly.instantiate(wasmBytes, {
-        index: {
-          trace_atom: traceAtom,
-        },
-        env: {
-          memory: wasmMemory,
-          abort: (msg: any) => _noop("   [WASM ABORT]:", msg),
-          trace_atom: traceAtom,
-        },
-      });
-      wasmInstance = instantiated.instance;
-      execute_atom_fn = wasmInstance.exports.execute_atom as any;
-      tick_environment_fn = wasmInstance.exports.tick_environment as any;
-      tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
-      tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
-      build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
-      get_spatial_hash_overflow_count_fn = wasmInstance.exports
-        .get_spatial_hash_overflow_count as any;
-      get_spatial_hash_max_cell_count_fn = wasmInstance.exports
-        .get_spatial_hash_max_cell_count as any;
-      reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
-      get_neural_coherence_fn = wasmInstance.exports
-        .get_neural_coherence as any;
-      set_neural_coherence_fn = wasmInstance.exports
-        .set_neural_coherence as any;
-      tick_glyph_transport_fn = wasmInstance.exports.glyph_transport as any;
-      tick_membrane_physics_fn = wasmInstance.exports
-        .tick_membrane_physics as any;
-      resolve_bond_requests_fn = wasmInstance.exports
-        .resolve_bond_requests as any;
-      drain_spawn_requests_fn = wasmInstance.exports
-        .drain_spawn_requests as any;
-      run_phagocyte_pass_fn = wasmInstance.exports
-        .run_phagocyte_pass as any;
-      clear_metabolism_stats_fn = wasmInstance.exports
-        .clear_metabolism_stats as any;
-      accumulate_metabolism_stats_fn = wasmInstance.exports
-        .accumulate_metabolism_stats as any;
-      apply_metabolism_kernel_fn = wasmInstance.exports
-        .apply_metabolism_kernel as any;
-      _noop("   [WORKER] WASM Instantiated successfully.");
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "READY" });
-      const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
-      setInterval(() => {
-        // removed debug logging
-      }, 5000);
-      (self as unknown as Worker).postMessage({
-        type: "INIT_OK",
-        workerIndex: Number(workerIndex),
-      });
-    } catch (err) {
-      _noop("   [WORKER] WASM LOAD ERROR:", err);
-      const error = err instanceof Error
-        ? `${err.name}: ${err.message}`
-        : String(err);
-      (self as unknown as Worker).postMessage({ type: "INIT_FAILED", error });
-    }
-    return;
-  }
-
-  if (type === "PULSE") {
-    const { startIdx, endIdx, pulseId, theta } = e.data;
-    currentPulseId = pulseId ?? 0;
-    currentTheta = theta ?? 0;
-    if (!wasmInstance || !execute_atom_fn || !syncStateView || !idsView) return;
-
-    // Wait for WASM_TICKING state (1)
-    // If Host is locking (2) or Idle (0), we don't start yet.
-    _noop(
-      "[WORKER " + currentPulseId +
-        "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
-      Atomics.load(syncStateView, 0),
-    );
-    let stuckCycles = 0;
-    while (Atomics.load(syncStateView, 0) !== 1) {
-      if (stuckCycles++ > 100) {
-        _noop(
-          "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
-          Atomics.load(syncStateView, 0),
-        );
-        stuckCycles = 0;
-      }
-      Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
-      if (Atomics.load(syncStateView, 0) === 2) {
-        // If it's 2, we must wait for it to become 0 then 1
-        Atomics.wait(syncStateView, 0, 2, 5);
-      }
-    }
-
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      for (let i = startIdx; i < endIdx; i++) {
-        const startAtomMs = performance.now();
-        const startId = Atomics.load(idsView, i);
-        const currentId = Atomics.load(idsView, i);
-        if (currentId === 0n) continue;
-
-        // Absolute WASM Coherence: The Kernel now handles Physics AND VM
-        const beforeX11 = Atomics.load(xsView!, 11);
-        execute_atom_fn(i);
-        const afterX11 = Atomics.load(xsView!, 11);
-        if (beforeX11 !== afterX11) {
-          _noop(
-            `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
-          );
-        }
-
-        handle_syscall(i); // Process any syscall intent pending from the atom
-        const deltaAtomMs = performance.now() - startAtomMs;
-
-        const afterSys11 = Atomics.load(xsView!, 11);
-        if (afterX11 !== afterSys11) {
-          _noop(
-            `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
-          );
-        }
-      }
-    } catch (err) {
-      _noop("   [WORKER EXECUTION ERROR]", err);
-    }
-
-    await maybeDelay();
-    _noop("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
-    (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
-  }
-
-  if (type === "REDUCE_DELTAS") {
-    const { startIdx, endIdx } = e.data;
-    if (reduce_atom_deltas_fn) {
-      reduce_atom_deltas_fn(startIdx, endIdx);
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "DELTA_DONE", pulseId });
-  }
-
-  if (type === "TICK_MATRIX") {
-    const bH = new Int32Array(
-      sharedBuffer!,
-      BONDS_OFFSET,
-      MAX_ATOMS * 4,
-    );
-    // removed debug logging
-    if (tick_matrix_fn) tick_matrix_fn();
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "MATRIX_DONE", pulseId });
-  }
-
-  if (type === "TICK_ENVIRONMENT") {
-    const bH = new Int32Array(
-      sharedBuffer!,
-      BONDS_OFFSET,
-      MAX_ATOMS * 4,
-    );
-    _noop(
-      `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
-        bH[2 * 4]
-      }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
-    );
-    if (tick_environment_fn) tick_environment_fn(e.data.tick);
-    if (tick_membrane_physics_fn) tick_membrane_physics_fn();
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "ENVIRONMENT_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "RESOLVE_BONDS") {
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      if (!resolve_bond_requests_fn) {
-        throw new Error("resolve_bond_requests_fn is not initialized.");
-      }
-      const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
-      _noop(`[DEBUG-WORKER] WASM resolve returned ${count}`);
-      (self as unknown as Worker).postMessage({
-        type: "RESOLVE_BONDS_DONE",
-        count,
-        pulseId: e.data.pulseId,
-      });
-    } catch (err) {
-      _noop(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
-    }
-  }
-
-  if (type === "DRAIN_SPAWN") {
-    const count = drain_spawn_requests_fn
-      ? drain_spawn_requests_fn(e.data.tick)
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "DRAIN_SPAWN_DONE",
-      pulseId,
-      count,
-    });
-  }
-
-  if (type === "PHAGOCYTE_PASS") {
-    const count = run_phagocyte_pass_fn
-      ? run_phagocyte_pass_fn(e.data.entropy)
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "PHAGOCYTE_PASS_DONE",
-      pulseId,
-      count,
-    });
-  }
-
-  if (type === "BUILD_SPATIAL_HASH") {
-    if (build_spatial_hash_fn) build_spatial_hash_fn();
-    const overflowCount = get_spatial_hash_overflow_count_fn
-      ? get_spatial_hash_overflow_count_fn()
-      : 0;
-    const maxCellCount = get_spatial_hash_max_cell_count_fn
-      ? get_spatial_hash_max_cell_count_fn()
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "HASH_DONE",
-      pulseId,
-      overflowCount,
-      maxCellCount,
-    });
-  }
-
-  if (type === "TICK_GLYPH_TRANSPORT") {
-    if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "GLYPH_TRANSPORT_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "POLL_COHERENCE") {
-    if (get_neural_coherence_fn) {
-      const coherence = get_neural_coherence_fn();
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({
-        type: "COHERENCE_VAL",
-        coherence,
-        pulseId,
-      });
-    }
-  }
-
-  if (type === "SET_COHERENCE") {
-    if (set_neural_coherence_fn) {
-      set_neural_coherence_fn(e.data.coherence);
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({
-        type: "COHERENCE_SET_DONE",
-        pulseId,
-      });
-    }
-  }
-
-  if (type === "METABOLISM_ACCUMULATE") {
-    const { startIdx, endIdx, clear } = e.data;
-    if (clear && clear_metabolism_stats_fn) clear_metabolism_stats_fn();
-    if (accumulate_metabolism_stats_fn) {
-      accumulate_metabolism_stats_fn(startIdx, endIdx);
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "METABOLISM_ACCUMULATE_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "METABOLISM_APPLY") {
-    const {
-      startIdx,
-      endIdx,
-      noveltySigned,
-      symbiosisSigned,
-      baseTax,
-      targetEnergy,
-      homeostasisBand,
-      homeostasisMaxDelta,
-      overflowThreshold,
-      spatialOverflowRatio,
-      starvationFloor,
-      subsidyEnabled,
-    } = e.data;
-
-    if (apply_metabolism_kernel_fn) {
-      apply_metabolism_kernel_fn(
-        startIdx,
-        endIdx,
-        noveltySigned,
-        symbiosisSigned,
-        baseTax,
-        targetEnergy,
-        homeostasisBand,
-        homeostasisMaxDelta,
-        Math.floor(overflowThreshold * 1024),
-        Math.floor(spatialOverflowRatio * 1024),
-        starvationFloor,
-        subsidyEnabled ? 1 : 0,
-      );
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "METABOLISM_APPLY_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "SET_DEBUG_DELAY") {
-    const delayRaw = Number(e.data.delayMs);
-    debugDelayMs = Number.isFinite(delayRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(delayRaw)))
-      : 0;
-    await maybeDelay();
-    (self as any).postMessage({ type: "DEBUG_DELAY_SET", pulseId });
-  }
-
-  if (type === "SET_DEBUG_JITTER") {
-    const minRaw = Number(e.data.minMs);
-    const maxRaw = Number(e.data.maxMs);
-    const minMs = Number.isFinite(minRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(minRaw)))
-      : 0;
-    const maxMs = Number.isFinite(maxRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(maxRaw)))
-      : 0;
-    debugJitterMinMs = Math.min(minMs, maxMs);
-    debugJitterMaxMs = Math.max(minMs, maxMs);
-    await maybeDelay();
-    (self as any).postMessage({
-      type: "DEBUG_JITTER_SET",
-      minMs: debugJitterMinMs,
-      maxMs: debugJitterMaxMs,
-      pulseId,
-    });
-  }
-};
-
-export const PULSE_WORKER = {};
+export * from "./SIGMA_FFI_BRIDGE.ts";
 
 ```
 
@@ -24676,7 +23831,7 @@ export const PULSE_WORKER = {};
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
 import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_ATOMS, MAX_EGRESS_EVENTS, OP_ADD, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PUT, OP_REPLICATE, OP_SECRETE_PLASMID, OP_SET, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, PROP_ENERGY, PROP_NEURAL_COHERENCE, PROP_RESONANCE, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, SYS_SET_ROLE, SYS_YIELD, XS_OFFSET, YS_OFFSET } from "@g12";
 
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer, SIGMA_FFI } from "../mod.ts";
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
@@ -26326,6 +25481,10 @@ const dispatchRangePhase = async (
   await Promise.all(workerPromises);
 };
 const startWorkers = async (count: number): Promise<void> => {
+  if (RUNTIME_POLICY.pulse.engine === "ffi") {
+    Ld("[PULSE] FFI mode active. Skipping worker initialization.");
+    return;
+  }
   workerFaultStats.length = 0;
   workerPromises = [];
   for (let i = 0; i < count; i++) {
@@ -26696,7 +25855,7 @@ export const PULSE = {
       );
     }
 
-    if (WASM_BOOT_PRECHECK_ENABLED) {
+    if (WASM_BOOT_PRECHECK_ENABLED && RUNTIME_POLICY.pulse.engine !== "ffi") {
       const preflight = await wasmPreflight();
       wasmBootPrecheckCompleted = true;
       wasmBootArtifactBytes = preflight.bytes;
@@ -27295,13 +26454,16 @@ export const PULSE = {
       );
     }
     isTicking = true;
-    if (workers.length === 0) {
+    if (RUNTIME_POLICY.pulse.engine === "ffi" && !SIGMA_FFI.loaded()) {
+      SIGMA_FFI.init();
+    }
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       await PULSE.initWorkers();
     }
     if (wasmBootDegraded) {
       return;
     }
-    if (workers.length === 0) {
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       throw new Error(
         `[PULSE] No workers ready for tick. reason=${
           wasmBootReason || "WORKERS_UNAVAILABLE"
@@ -27370,15 +26532,20 @@ export const PULSE = {
 
       const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) /
         1000.0;
-      // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
-      const coherencePulseId = nextPulseId();
-      const coherenceRes = await postAndWait<{ coherence: number }>(
-        0,
-        workers[0],
-        { type: "POLL_COHERENCE", pulseId: coherencePulseId },
-        "COHERENCE_VAL",
-      );
-      const coherence = coherenceRes.coherence ?? 0;
+      let coherence = 0;
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        coherence = Atomics.load(MX.neuralCoherence, 0);
+      } else if (workers.length > 0) {
+        // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
+        const coherencePulseId = nextPulseId();
+        const coherenceRes = await postAndWait<{ coherence: number }>(
+          0,
+          workers[0],
+          { type: "POLL_COHERENCE", pulseId: coherencePulseId },
+          "COHERENCE_VAL",
+        );
+        coherence = coherenceRes.coherence ?? 0;
+      }
       oracleDelegate?.setNeuralCoherence(coherence);
 
       dumpA11("Before Hormones");
@@ -27389,11 +26556,13 @@ export const PULSE = {
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
-      workers[0].postMessage({
-        type: "SET_COHERENCE",
-        coherence: guardianChannel,
-        pulseId: nextPulseId(),
-      });
+      if (workers.length > 0) {
+        workers[0].postMessage({
+          type: "SET_COHERENCE",
+          coherence: guardianChannel,
+          pulseId: nextPulseId(),
+        });
+      }
 
       dumpA11("Before Bonds");
 
@@ -27447,100 +26616,107 @@ export const PULSE = {
         }
       }
 
-      // 1. Resolve Sequential Logic (WASM)
-      const bondPulseId = nextPulseId();
-      const bondRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "RESOLVE_BONDS",
-          pulseId: bondPulseId,
-          startIdx: 0,
-          endIdx: MAX_ATOMS,
-        },
-        "RESOLVE_BONDS_DONE",
-      );
-      if (bondRes.count > 0) {
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_pair_resolution",
-          count: bondRes.count,
-        });
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_request_clear",
-          count: bondRes.count,
-        });
-      }
-
-      dumpA11("After Bonds");
-
-      // 2. Parallel Physics & WASM Kernel
-      // 2a. Rebuild Spatial Lattice (WASM)
-      const hashPulseId = nextPulseId();
-      const hashRes = await postAndWait<
-        { overflowCount?: number; maxCellCount?: number }
-      >(
-        0,
-        workers[0],
-        {
-          type: "BUILD_SPATIAL_HASH",
-          pulseId: hashPulseId,
-        },
-        "HASH_DONE",
-      );
-      const overflowCount = Number.isFinite(hashRes.overflowCount)
-        ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
-        : 0;
-      const maxCellCount = Number.isFinite(hashRes.maxCellCount)
-        ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
-        : 0;
-      const activeCount = Math.max(1, activeIdx.length);
-      spatialHashState = {
-        tick: currentTick,
-        overflowCount,
-        maxCellCount,
-        overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
-      };
-      if (overflowCount > 0 && currentTick % 20 === 0) {
-        Lw(
-          `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        // --- PHASE 1-4: NATIVE CORE EXECUTION ---
+        SIGMA_FFI.tick(currentTick);
+        dumpA11("After FFI Native Tick");
+      } else {
+        // --- PHASE 1-4: DISTRIBUTED WORKER EXECUTION ---
+        // 1. Resolve Sequential Logic (WASM)
+        const bondPulseId = nextPulseId();
+        const bondRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "RESOLVE_BONDS",
+            pulseId: bondPulseId,
+            startIdx: 0,
+            endIdx: MAX_ATOMS,
+          },
+          "RESOLVE_BONDS_DONE",
         );
-      }
+        if (bondRes.count > 0) {
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_pair_resolution",
+            count: bondRes.count,
+          });
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_request_clear",
+            count: bondRes.count,
+          });
+        }
 
-      // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
-      {
-        readXsView.set(xsView);
-        readYsView.set(ysView);
-        readEnergiesView.set(energiesView);
-        readResonancesView.set(resonancesView);
-        if (currentTick <= 104) {
-          Li(
-            `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
-              xsView[11]
-            }, readXsView[11]=${readXsView[11]}`,
+        dumpA11("After Bonds");
+
+        // 2. Parallel Physics & WASM Kernel
+        // 2a. Rebuild Spatial Lattice (WASM)
+        const hashPulseId = nextPulseId();
+        const hashRes = await postAndWait<
+          { overflowCount?: number; maxCellCount?: number }
+        >(
+          0,
+          workers[0],
+          {
+            type: "BUILD_SPATIAL_HASH",
+            pulseId: hashPulseId,
+          },
+          "HASH_DONE",
+        );
+        const overflowCount = Number.isFinite(hashRes.overflowCount)
+          ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
+          : 0;
+        const maxCellCount = Number.isFinite(hashRes.maxCellCount)
+          ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
+          : 0;
+        const activeCount = Math.max(1, activeIdx.length);
+        spatialHashState = {
+          tick: currentTick,
+          overflowCount,
+          maxCellCount,
+          overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
+        };
+        if (overflowCount > 0 && currentTick % 20 === 0) {
+          Lw(
+            `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
           );
         }
+
+        // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
+        {
+          readXsView.set(xsView);
+          readYsView.set(ysView);
+          readEnergiesView.set(energiesView);
+          readResonancesView.set(resonancesView);
+          if (currentTick <= 104) {
+            Li(
+              `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
+                xsView[11]
+              }, readXsView[11]=${readXsView[11]}`,
+            );
+          }
+        }
+        // 2b. Execute Physics (WASM)
+        // Transition to WASM_TICKING (1) to unblock workers
+        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+        Atomics.notify(syncState, 0);
+        await dispatchRangePhase("PULSE", "DONE");
+
+        // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
+        await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
+        dumpA11("After Reduce Deltas");
+
+        // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
+        // worker.ts message handler for 'TICK_ENVIRONMENT'.
+        const environmentPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_ENVIRONMENT",
+          tick: currentTick,
+          pulseId: environmentPulseId,
+        }, "ENVIRONMENT_DONE");
+        dumpA11("After Environment");
       }
-      // 2b. Execute Physics (WASM)
-      // Transition to WASM_TICKING (1) to unblock workers
-      Atomics.store(syncState, 0, SYNC.WASM_TICKING);
-      Atomics.notify(syncState, 0);
-      await dispatchRangePhase("PULSE", "DONE");
-
-      // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
-      await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
-      dumpA11("After Reduce Deltas");
-
-      // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
-      // worker.ts message handler for 'TICK_ENVIRONMENT'.
-      const environmentPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_ENVIRONMENT",
-        tick: currentTick,
-        pulseId: environmentPulseId,
-      }, "ENVIRONMENT_DONE");
-      dumpA11("After Environment");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
@@ -27625,12 +26801,14 @@ export const PULSE = {
       dumpA11("End of TICK phase 1");
 
       // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
-      const transportPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_GLYPH_TRANSPORT",
-        tick: currentTick,
-        pulseId: transportPulseId,
-      }, "GLYPH_TRANSPORT_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const transportPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_GLYPH_TRANSPORT",
+          tick: currentTick,
+          pulseId: transportPulseId,
+        }, "GLYPH_TRANSPORT_DONE");
+      }
 
       // 3.5 Sort Spawn Requests Deterministically
       const writeHead = Atomics.load(spawnHeadView, 0);
@@ -27670,121 +26848,129 @@ export const PULSE = {
       }
 
       // 4. Drain Spawn Queue (WASM)
-      const spawnPulseId = nextPulseId();
-      const spawnRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "DRAIN_SPAWN",
-          tick: currentTick,
-          pulseId: spawnPulseId,
-        },
-        "DRAIN_SPAWN_DONE",
-      );
-      if (spawnRes.count > 0) {
-        Ld(
-          `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const spawnPulseId = nextPulseId();
+        const spawnRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "DRAIN_SPAWN",
+            tick: currentTick,
+            pulseId: spawnPulseId,
+          },
+          "DRAIN_SPAWN_DONE",
         );
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "spawn_seed_atom",
-          count: spawnRes.count,
-        });
+        if (spawnRes.count > 0) {
+          Ld(
+            `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+          );
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "spawn_seed_atom",
+            count: spawnRes.count,
+          });
+        }
+      } else {
+        // In FFI mode, spawn results are already drained in the native tick
+        // but we might still want to record telemetry if we can track the count.
+        // For now, we skip the JS side of this.
+      }
 
-        // --- STAGE 22: ADAPTIVE INCEPTION ---
-        // Find newly spawned atoms (those with IDs but empty instructions/role)
-        // and inject evolved programs.
-        for (let idx = 0; idx < MAX_ATOMS; idx++) {
-          if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
-            // This is likely a fresh spawn. Incept it.
-            const prog = genesisInceptor.selectProgram();
-            const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+      // --- STAGE 22: ADAPTIVE INCEPTION ---
+      // Find newly spawned atoms (those with IDs but empty instructions/role)
+      // and inject evolved programs.
+      for (let idx = 0; idx < MAX_ATOMS; idx++) {
+        if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+          // This is likely a fresh spawn. Incept it.
+          const prog = genesisInceptor.selectProgram();
+          const lineageHash = prog.metadata?.ancestorHash ?? 0n;
 
-            MX.setInstructions(idx, new Uint8Array(prog.bytecode));
-            MX.setLineage(idx, lineageHash);
+          MX.setInstructions(idx, new Uint8Array(prog.bytecode));
+          MX.setLineage(idx, lineageHash);
 
-            // Mark its role if the program is for a specific one (e.g. role hint)
-            // For now, we'll let the role be assigned by the first op if needed,
-            // or just set a default.
-          }
+          // Mark its role if the program is for a specific one (e.g. role hint)
+          // For now, we'll let the role be assigned by the first op if needed,
+          // or just set a default.
         }
       }
 
       // 5. Metabolic and Homeostasis Closure (WASM)
-      // Pass 1: Accumulate genome frequencies (Scratch Space)
-      const clearStatsPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "METABOLISM_ACCUMULATE",
-        startIdx: 0,
-        endIdx: MAX_ATOMS,
-        clear: true,
-        pulseId: clearStatsPulseId,
-      }, "METABOLISM_ACCUMULATE_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        // Pass 1: Accumulate genome frequencies (Scratch Space)
+        const clearStatsPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "METABOLISM_ACCUMULATE",
+          startIdx: 0,
+          endIdx: MAX_ATOMS,
+          clear: true,
+          pulseId: clearStatsPulseId,
+        }, "METABOLISM_ACCUMULATE_DONE");
 
-      // Pass 2: Apply Metabolism (Parallel)
-      const pressureState = snapshotEvolutionPressureState();
+        // Pass 2: Apply Metabolism (Parallel)
+        const pressureState = snapshotEvolutionPressureState();
 
-      applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(
-        currentTick,
-        activeIdx,
-        spatialHashState.overflowRatio,
-      );
-
-      // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
-      const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
-      const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
-      const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
-
-      if (currentTick % 20 === 0 && syntropy > 0.1) {
-        Li(
-          `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
-            (taxDiscount * 100).toFixed(1)
-          }% (Syntropy: ${syntropy.toFixed(3)})`,
+        applyEvolutionPressureTerms(currentTick, activeIdx);
+        applyEnergyHomeostasisTerms(
+          currentTick,
+          activeIdx,
+          spatialHashState.overflowRatio,
         );
+
+        // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
+        const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+        const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
+        const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
+
+        if (currentTick % 20 === 0 && syntropy > 0.1) {
+          Li(
+            `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
+              (taxDiscount * 100).toFixed(1)
+            }% (Syntropy: ${syntropy.toFixed(3)})`,
+          );
+        }
+
+        const targetEnergy = clampHomeostasisTargetEnergy(
+          homeostasisTargetEnergyRuntime,
+        );
+
+        const metabolismPromises: Promise<any>[] = [];
+        const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+        for (let i = 0; i < runtimeWorkerCount; i++) {
+          const startIdx = i * chunkSize;
+          const endIdx = i === runtimeWorkerCount - 1
+            ? MAX_ATOMS
+            : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+          metabolismPromises.push(postAndWait(
+            i,
+            workers[i],
+            {
+              type: "METABOLISM_APPLY",
+              pulseId: nextPulseId(),
+              startIdx,
+              endIdx,
+              noveltySigned: pressureState.noveltySigned,
+              symbiosisSigned: pressureState.symbiosisSigned,
+              baseTax,
+              targetEnergy,
+              homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+              homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+              overflowThreshold:
+                homeostasisOverflowThresholdLedgerRuntime.currentValue,
+              spatialOverflowRatio: spatialHashState.overflowRatio,
+              starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+              subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+            },
+            "METABOLISM_APPLY_DONE",
+          ));
+        }
+        await Promise.all(metabolismPromises);
       }
-
-      const targetEnergy = clampHomeostasisTargetEnergy(
-        homeostasisTargetEnergyRuntime,
-      );
-
-      const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
-      for (let i = 0; i < runtimeWorkerCount; i++) {
-        const startIdx = i * chunkSize;
-        const endIdx = i === runtimeWorkerCount - 1
-          ? MAX_ATOMS
-          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-
-        metabolismPromises.push(postAndWait(
-          i,
-          workers[i],
-          {
-            type: "METABOLISM_APPLY",
-            pulseId: nextPulseId(),
-            startIdx,
-            endIdx,
-            noveltySigned: pressureState.noveltySigned,
-            symbiosisSigned: pressureState.symbiosisSigned,
-            baseTax,
-            targetEnergy,
-            homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
-            homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-            overflowThreshold:
-              homeostasisOverflowThresholdLedgerRuntime.currentValue,
-            spatialOverflowRatio: spatialHashState.overflowRatio,
-            starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
-            subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
-          },
-          "METABOLISM_APPLY_DONE",
-        ));
-      }
-      await Promise.all(metabolismPromises);
 
       // 6. Sequential Maintenance (Sequential JS)
 
       // --- STAGE 26: Immunological Phagocyte ---
-      {
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
         const entropyPressure = MX.get_hormone(0); // H0: entropy_pressure
         const workerResponse = await postAndWait(
           0, // use primary worker
@@ -30408,6 +29594,86 @@ Deno.test({
     }
   }
 });
+
+```
+
+---
+
+## FILE: src/_/13/SIGMA_FFI_BRIDGE.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi_bridge.md
+import { sharedBuffer } from "@g12";
+
+// OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
+
+const libSuffix = Deno.build.os === "windows" ? "dll" : Deno.build.os === "darwin" ? "dylib" : "so";
+const libPrefix = Deno.build.os === "windows" ? "" : "lib";
+
+const searchPaths = [
+  `./target/release/${libPrefix}omega_64.${libSuffix}`,
+  `./target/debug/${libPrefix}omega_64.${libSuffix}`,
+];
+
+// Buffer to safely pass pointers to Rust
+const latticeUint8 = new Uint8Array(sharedBuffer);
+
+let lib: Deno.DynamicLibrary<{
+  ffi_tick: { parameters: ["pointer", "u32"], result: "void" };
+  ffi_init: { parameters: ["pointer"], result: "void" };
+  execute_atom: { parameters: ["usize"], result: "void" };
+  build_spatial_hash: { parameters: [], result: "void" };
+  tick_environment: { parameters: ["u32"], result: "void" };
+}> | null = null;
+
+for (const path of searchPaths) {
+  try {
+    lib = Deno.dlopen(path, {
+      ffi_tick: { parameters: ["pointer", "u32"], result: "void" },
+      ffi_init: { parameters: ["pointer"], result: "void" },
+      execute_atom: { parameters: ["usize"], result: "void" },
+      build_spatial_hash: { parameters: [], result: "void" },
+      tick_environment: { parameters: ["u32"], result: "void" },
+    });
+    console.log(`[SIGMA_FFI] Native core loaded from ${path}`);
+    break;
+  } catch (_e) {
+    // try next
+  }
+}
+
+if (!lib) {
+  console.warn(`[SIGMA_FFI] Failed to load native core from search paths.`);
+  console.warn(`[SIGMA_FFI] Ensure you have run 'deno task native:build'`);
+}
+
+/**
+ * Executes a single tick of the entire OMEGA-64 matrix in the Rust core.
+ * This completely replaces the TS-worker pulse logic when active.
+ */
+export function tickFFI(tick: number) {
+  if (!lib) return;
+  const ptr = Deno.UnsafePointer.of(latticeUint8);
+  lib.symbols.ffi_tick(ptr, tick);
+}
+
+/**
+ * Initializes the Rust core with the current SharedArrayBuffer.
+ */
+export function initFFI() {
+  if (!lib) return;
+  const ptr = Deno.UnsafePointer.of(latticeUint8);
+  lib.symbols.ffi_init(ptr);
+}
+
+export const SIGMA_FFI = {
+  tick: tickFFI,
+  init: initFFI,
+  executeAtom: (idx: number) => lib?.symbols.execute_atom(idx),
+  buildSpatialHash: () => lib?.symbols.build_spatial_hash(),
+  tickEnvironment: (tick: number) => lib?.symbols.tick_environment(tick),
+  loaded: () => !!lib,
+};
 
 ```
 
@@ -33678,194 +32944,7 @@ import { METABOLISM_SCRATCH_OFFSET, IDS_OFFSET, ROLES_OFFSET, RESONANCE_OFFSET, 
 
 @inline
 export function apply_metabolism_kernel(startIdx: i32, endIdx: i32, noveltySigned: i32, symbiosisSigned: i32, baseTax: i32, targetEnergy: i32, homeostasisBand: i32, homeostasisMaxDelta: i32, overflowThreshold: i32, spatialOverflowRatio: i32, starvationFloor: i32, subsidyEnabled: i32): void {
-const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as usize);
-  if (population == 0) return;
 
-  const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  let bandStep = homeostasisBand >> 1;
-  if (bandStep < 1) bandStep = 1;
-  const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
-
-  for (let i = startIdx; i < endIdx; i++) {
-    const pId = IDS_OFFSET + (i << 3) as usize;
-    if (load<i64>(pId) == 0) continue;
-
-    const current = get_energy(i);
-
-    // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
-    // If atom is dead (energy <= 0), fossilize it before skipping metabolism
-    if (current <= 0) {
-      let resonance = atomic.load<i32>(RESONANCE_OFFSET + (i << 2) as usize);
-      let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-      let role = roleRaw & 0x7F; // Strip metazoan flag
-      
-      let ctx13 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize);
-      let ctx14 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize);
-      let hasImmunity = ctx13 != 0 || ctx14 != 0;
-
-      let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
-      let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
-      let gx = cx / SPATIAL_CELL_SIZE;
-      let gy = cy / SPATIAL_CELL_SIZE;
-      let cellIdx = gy * GRID_W + gx;
-
-      // Only attempt fossilization if it has a qualifying property
-      // 2 = ROLE_GUARDIAN, 3 = ROLE_ARCHITECT
-      if (resonance > 100 || role == 2 || role == 3 || hasImmunity) {
-
-        let structVal: i32 = 0;
-        if (role == 2) {
-            structVal = 1 | (150 << 16); // STR_WIRE = 1
-        } else if (role == 3) {
-            structVal = 1 | (100 << 16);
-        }
-
-        if (structVal != 0) {
-            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2) as usize, structVal);
-        }
-
-        // Epigenetic memory spillage
-        let memOff = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-        
-        // Spilled CRISPR Hash (Reg 13) into bytes 4,5,6,7 in Big-Endian for test
-        atomic.store<u8>(memOff + 4, (ctx13 >>> 24) as u8);
-        atomic.store<u8>(memOff + 5, (ctx13 >>> 16) as u8);
-        atomic.store<u8>(memOff + 6, (ctx13 >>> 8) as u8);
-        atomic.store<u8>(memOff + 7, (ctx13) as u8);
-        
-        // Bootstrapping memory charge for Plasmid decay (bytes 0,1,2 in Little-Endian for test)
-        let bootCharge = 100;
-        atomic.store<u8>(memOff + 0, (bootCharge & 0xFF) as u8);
-        atomic.store<u8>(memOff + 1, ((bootCharge >>> 8) & 0xFF) as u8);
-        atomic.store<u8>(memOff + 2, ((bootCharge >>> 16) & 0xFF) as u8);
-
-        // Neutralize resonance and role so IMMUNE.ts phagocyte immediately purges this necrotic corpse
-        atomic.store<i32>(RESONANCE_OFFSET + (i << 2) as usize, 0);
-        atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize, 0);
-      }
-      continue;
-    }
-
-    // --- PHASE 44: ENDOSYMBIOSIS ---
-    let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-    let role = roleRaw & 0x7F; // Strip metazoan flag
-    if (role == 5) { // ROLE_MITOCHONDRIA
-      let hostId = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize);
-      if (hostId > 0 && hostId < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0) {
-        // Enforce Coordinate Lock
-        let hx = atomic.load<i16>(XS_OFFSET + (hostId << 1) as usize);
-        let hy = atomic.load<i16>(YS_OFFSET + (hostId << 1) as usize);
-        atomic.store<i16>(XS_OFFSET + (i << 1) as usize, hx);
-        atomic.store<i16>(YS_OFFSET + (i << 1) as usize, hy);
-
-        // Pay up 90% of excess energy to Host
-        if (current > starvationFloor) {
-          let transfer = ((current - starvationFloor) * 9) / 10;
-          if (transfer > 0) {
-            atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
-            set_energy(i, current - transfer);
-          }
-        }
-      } else {
-        // Host died. Mitochondria perishes.
-        set_energy(i, 0);
-        atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
-      }
-      continue; // Skip entropy tax and standard homeostasis
-    }
-
-    const key = genome_key16(i);
-    const sameGenomeCount = atomic.load<i32>(
-      METABOLISM_SCRATCH_OFFSET + (key << 2) as usize,
-    );
-
-    let delta: i32 = 0;
-
-    // Pass 1: Evolution Pressure (Novelty + Symbiosis)
-    if (noveltySigned != 0) {
-      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) /
-        population;
-      delta += noveltyTerm;
-    }
-
-    if (symbiosisSigned != 0) {
-      const base = i * 4;
-      let crossGenomeBonds = 0;
-      for (let slot = 0; slot < 4; slot++) {
-        const target = atomic.load<i32>(
-          BONDS_OFFSET + ((base + slot) << 2) as usize,
-        );
-        if (target <= 0 || target >= MAX_ATOMS) continue;
-        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) {
-          continue;
-        }
-        if (genome_key16(target) != key) crossGenomeBonds++;
-      }
-      delta += crossGenomeBonds > 0
-        ? symbiosisSigned * crossGenomeBonds
-        : bondPolarity * -symbiosisSigned;
-    }
-
-    // 2. Homeostasis
-    // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    let interimEnergy = current + delta;
-    if (interimEnergy < 0) interimEnergy = 0;
-
-    if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
-      delta -= tax;
-    }
-
-    const deviation = interimEnergy - targetEnergy;
-    const absDeviation = fast_abs(deviation);
-
-    if (absDeviation > homeostasisBand) {
-      const gradient = absDeviation - homeostasisBand;
-      let rawStep = 1 + (gradient / bandStep);
-      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
-
-      if (deviation > 0) {
-        delta -= step;
-        if (overflowActive) delta -= 1;
-      } else if (subsidyEnabled) {
-        let subsidy = step;
-        if (overflowActive) {
-          subsidy = (subsidy * 6) / 10;
-          if (subsidy < 1) subsidy = 1;
-        }
-        delta += subsidy;
-      }
-    }
-
-    // Starvation Floor Guard (using interim energy for sequential match)
-    if (interimEnergy <= starvationFloor && delta < 0) {
-      // If we are at or below floor after evolution pressure,
-      // block any further downward delta from homeostasis/tax.
-      // But we should subtract what was already added in Pass 1 if it was negative?
-      // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
-      // where current is energy after Pass 1.
-      // This means Pass 2 delta becomes 0.
-
-      // To match exactly:
-      const pass2Delta = delta - (interimEnergy - current);
-      if (pass2Delta < 0) {
-        delta = interimEnergy - current;
-      }
-    }
-
-    if (delta != 0) {
-      let next = current + delta;
-      if (next < 0) next = 0;
-      if (next != current) {
-        set_energy(i, next);
-        // Track stats for telemetry
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4 as usize, 1);
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8 as usize, delta);
-      }
-    }
-  }
 }
 
 ```
@@ -36156,10 +35235,28 @@ import { WORLD_MAX_X, WORLD_MAX_Y } from "../05/mod";
 
 ---
 
+## FILE: src/_as/06/P2P_CODEC.ts
+
+```typescript
+// Host-only module: P2P_CODEC omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/06/pack_structure_intent.ts
 
 ```typescript
 // Host-only module: pack_structure_intent omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/06/PRNG.ts
+
+```typescript
+// Host-only module: PRNG omitted from AssemblyScript build.
 
 ```
 
@@ -36372,6 +35469,15 @@ export * from "./AVATAR_ENGINE";
 
 ---
 
+## FILE: src/_as/07/P2P_FEDERATION.ts
+
+```typescript
+// Host-only module: P2P_FEDERATION omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/07/QUORUM_ADVOCATE.ts
 
 ```typescript
@@ -36430,6 +35536,24 @@ export * from "./AVATAR_ENGINE";
 
 ```typescript
 // Host-only module: SNAP_ENGINE omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/SWARM_NEXUS.ts
+
+```typescript
+// Host-only module: SWARM_NEXUS omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/SWARM_NODE.ts
+
+```typescript
+// Host-only module: SWARM_NODE omitted from AssemblyScript build.
 
 ```
 
@@ -36655,8 +35779,7 @@ export * from "./HORMONE_BUFFER";
 ## FILE: src/_as/11/GOLDEN_TRACE_CATALOG.ts
 
 ```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
-
+// Host-only module: GOLDEN_TRACE_CATALOG omitted from AssemblyScript build.
 
 ```
 
@@ -36667,7 +35790,6 @@ export * from "./HORMONE_BUFFER";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../10/mod";
-export * from "./GOLDEN_TRACE_CATALOG";
 
 ```
 
@@ -36696,7 +35818,6 @@ export * from "./GOLDEN_TRACE_CATALOG";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../11/mod";
-export * from "./REDUCTION_CASES";
 
 ```
 
@@ -36705,9 +35826,7 @@ export * from "./REDUCTION_CASES";
 ## FILE: src/_as/12/REDUCTION_CASES.ts
 
 ```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
-import { GRID_W, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, pack_structure_intent } from "../11/mod";
-
+// Host-only module: REDUCTION_CASES omitted from AssemblyScript build.
 
 ```
 
@@ -36719,19 +35838,7 @@ import { GRID_W, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP,
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../12/mod";
 export * from "./PULSE";
-export * from "./PULSE_WORKER";
-export { REDUCTION_HARNESS } from "./REDUCTION_HARNESS";
-
-```
-
----
-
-## FILE: src/_as/13/PULSE_WORKER.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_worker.md
-import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOLUTION_OFFSET, GRID_CELLS, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, LINEAGE_OFFSET, LOGIC_OFFSET, MAILBOX_OFFSET, MAX_ATOMS, MAX_LEDGER_EVENTS, PHASE_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SCALE, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, SPAWN_REQUESTS_OFFSET, STRUCTURE_BUILD_OWNER_OFFSET, STRUCTURE_BUILD_VALUE_OFFSET, STRUCTURE_GRID_OFFSET, SYNC_STATE_OFFSET, SYS_ATTRACT, SYS_BET, SYS_BIND, SYS_EAT, SYS_EMIT, SYS_FOLD, SYS_MOVE, SYS_MSG, SYS_MUTATE, SYS_READ_INBOX, SYS_READ_MEM, SYS_REPLICATE, SYS_SCAN, SYS_SENSE_PHASE, SYS_SET_ROLE, SYS_SPAWN, SYS_SPORE_DRIVE, SYS_TRANSFER, SYS_WRITE_MEM, SYS_YIELD, TICK_COUNTER_OFFSET, WASM_MEMORY_BYTES, WORLD_MAX_X, WORLD_MAX_Y, XS_OFFSET, YS_OFFSET } from "../12/mod";
-
+export * from "./SIGMA_FFI_BRIDGE";
 
 ```
 
@@ -36751,8 +35858,16 @@ import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRES
 ## FILE: src/_as/13/REDUCTION_HARNESS.ts
 
 ```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_harness_verifier.md
-import { GRID_H, GRID_W, glyphSpecById, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge } from "../12/mod";
+// Host-only module: REDUCTION_HARNESS omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/13/SIGMA_FFI_BRIDGE.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi_bridge.md
 
 
 ```
@@ -38018,720 +37133,6 @@ export * from "@generated";
 
 ---
 
-## FILE: src/03/03/golden_trace_catalog.ts
-
-```typescript
-export type GoldenTraceMetricPolicy = "strict" | "bounded";
-
-export type GoldenTraceScenario = {
-  id: string;
-  scenario: string;
-  setup: string;
-  duration: string;
-  daemonEnabled: boolean;
-  metrics: readonly string[];
-  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
-  supportFiles: readonly string[];
-};
-
-const TRACE_ROOT = "src/03/03/verification/traces";
-
-const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
-  {
-    id: "gt01_coldstart_seeded_swarm",
-    scenario: "coldstart / seeded swarm",
-    setup: "cold boot, deterministic seed swarm, daemon off",
-    duration: "256 ticks",
-    daemonEnabled: false,
-    metrics: [
-      "population",
-      "avgEnergy",
-      "spatialOverflowRatio",
-      "mutationCounts",
-      "invariantDigest",
-    ],
-    driftPolicy: {
-      population: "strict",
-      avgEnergy: "bounded",
-      spatialOverflowRatio: "bounded",
-      mutationCounts: "strict",
-      invariantDigest: "strict",
-    },
-    supportFiles: [
-      "worker_seeded_swarm.ts",
-      "worker_determinism_capture.ts",
-    ],
-  },
-  {
-    id: "gt02_free_run_no_ingress",
-    scenario: "free run without external intervention",
-    setup: "cold boot, no inject, no daemon policy updates",
-    duration: "2048 ticks",
-    daemonEnabled: false,
-    metrics: [
-      "population",
-      "avgEnergy",
-      "spatialOverflowRatio",
-      "decreeShifts",
-      "mutationCounts",
-    ],
-    driftPolicy: {
-      population: "bounded",
-      avgEnergy: "bounded",
-      spatialOverflowRatio: "bounded",
-      decreeShifts: "strict",
-      mutationCounts: "strict",
-    },
-    supportFiles: [
-      "worker_trend_baseline.ts",
-      "worker_trend_math.ts",
-    ],
-  },
-  {
-    id: "gt03_pheromone_inject",
-    scenario: "bounded pheromone inject",
-    setup: "warmup 128 ticks, then one fixed DROP_PHEROMONE payload",
-    duration: "512 ticks total",
-    daemonEnabled: false,
-    metrics: [
-      "localResponseWindow",
-      "population",
-      "avgEnergy",
-      "spatialOverflowRatio",
-      "invariantDigest",
-    ],
-    driftPolicy: {
-      localResponseWindow: "strict",
-      population: "bounded",
-      avgEnergy: "bounded",
-      spatialOverflowRatio: "bounded",
-      invariantDigest: "strict",
-    },
-    supportFiles: [
-      "worker_determinism_capture.ts",
-    ],
-  },
-  {
-    id: "gt04_plasmid_inject",
-    scenario: "durable symbolic ingress",
-    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload",
-    duration: "512 ticks total",
-    daemonEnabled: false,
-    metrics: [
-      "acceptedMutationCounts",
-      "rejectedMutationCounts",
-      "population",
-      "avgEnergy",
-      "codexSnapshotDigest",
-      "invariantDigest",
-    ],
-    driftPolicy: {
-      acceptedMutationCounts: "strict",
-      rejectedMutationCounts: "strict",
-      population: "bounded",
-      avgEnergy: "bounded",
-      codexSnapshotDigest: "strict",
-      invariantDigest: "strict",
-    },
-    supportFiles: [
-      "worker_resilience_capture.ts",
-    ],
-  },
-  {
-    id: "gt05_homeostasis_correction",
-    scenario: "external homeostasis correction",
-    setup: "warmup 256 ticks, then one fixed /api/homeostasis update",
-    duration: "768 ticks total",
-    daemonEnabled: false,
-    metrics: [
-      "avgEnergySlope",
-      "spatialOverflowRatio",
-      "homeostasisStateDigest",
-      "mutationCounts",
-    ],
-    driftPolicy: {
-      avgEnergySlope: "bounded",
-      spatialOverflowRatio: "bounded",
-      homeostasisStateDigest: "strict",
-      mutationCounts: "strict",
-    },
-    supportFiles: [
-      "worker_trend_math.ts",
-    ],
-  },
-  {
-    id: "gt06_daemon_admission_case",
-    scenario: "daemon admission / rejection",
-    setup:
-      "one accepted ingress case and one degraded/rejected case with daemon governance on",
-    duration: "event-bounded",
-    daemonEnabled: true,
-    metrics: [
-      "admissionSeverity",
-      "appliedAction",
-      "codexChronicleDigest",
-      "dominantInvariantDigest",
-    ],
-    driftPolicy: {
-      admissionSeverity: "strict",
-      appliedAction: "strict",
-      codexChronicleDigest: "strict",
-      dominantInvariantDigest: "strict",
-    },
-    supportFiles: [
-      "test_daemon_governance_contract.ts",
-    ],
-  },
-  {
-    id: "gt07_daemon_policy_block",
-    scenario: "daemon policy block",
-    setup:
-      "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
-    duration: "256 ticks total",
-    daemonEnabled: true,
-    metrics: [
-      "httpStatus",
-      "responseReason",
-      "latestAdmissionStatus",
-      "latestAdmissionReason",
-      "mutationCounts",
-    ],
-    driftPolicy: {
-      httpStatus: "strict",
-      responseReason: "strict",
-      latestAdmissionStatus: "strict",
-      latestAdmissionReason: "strict",
-      mutationCounts: "strict",
-    },
-    supportFiles: [
-      "test_daemon_governance_contract.ts",
-    ],
-  },
-  {
-    id: "gt08_structure_intent_visibility",
-    scenario: "same-tick structure intent visibility",
-    setup:
-      "standalone deterministic capture of contended BUILD intents and same-tick OP_SENSE visibility under 1-worker vs 4-worker execution",
-    duration: "1 tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "strictHashMatch",
-      "senseVisibility",
-      "conflictCellType",
-      "conflictCellCharge",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      strictHashMatch: "strict",
-      senseVisibility: "strict",
-      conflictCellType: "strict",
-      conflictCellCharge: "bounded",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "test_structure_intent_determinism.ts",
-      "test_structure_lock_progress.ts",
-    ],
-  },
-  {
-    id: "gt09_collective_transport",
-    scenario: "standalone collective hive and pheromone semantics",
-    setup:
-      "standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive store-load and mode 2 pheromone emit through direct WASM execution",
-    duration: "3 execute_atom calls / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "hiveValue",
-      "loadedReg0",
-      "pheromoneWord",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      hiveValue: "strict",
-      loadedReg0: "strict",
-      pheromoneWord: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/collective_transport_capture.ts",
-      "test_swarm.ts",
-    ],
-  },
-  {
-    id: "gt10_share_transfer",
-    scenario: "standalone bonded share transfer semantics",
-    setup:
-      "standalone deterministic capture of OP_SHARE successful bonded transfer and empty-bond no-op through direct WASM execution",
-    duration: "2 execute_atom calls / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "successfulSenderEnergy",
-      "successfulReceiverEnergy",
-      "failedSenderEnergy",
-      "failedReceiverEnergy",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      successfulSenderEnergy: "strict",
-      successfulReceiverEnergy: "strict",
-      failedSenderEnergy: "strict",
-      failedReceiverEnergy: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/share_transfer_capture.ts",
-      "test_metabolism.ts",
-      "test_symbiosis.ts",
-    ],
-  },
-  {
-    id: "gt11_collective_banking",
-    scenario: "standalone collective banking semantics",
-    setup:
-      "standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and mode 4 capped withdraw through direct WASM execution",
-    duration: "2 execute_atom calls / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "finalHiveBalance",
-      "depositorEnergy",
-      "withdrawerEnergy",
-      "withdrawReg0",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      finalHiveBalance: "strict",
-      depositorEnergy: "strict",
-      withdrawerEnergy: "strict",
-      withdrawReg0: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/collective_banking_capture.ts",
-      "test_metabolism.ts",
-    ],
-  },
-  {
-    id: "gt12_collective_synchrony",
-    scenario: "standalone collective synchrony semantics",
-    setup:
-      "standalone deterministic capture of OP_COLLECTIVE mode 5 bonded phase-lock and mode 6 local quorum PC sync through direct WASM execution",
-    duration: "2 standalone execute phases / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "phasePeer1Pc",
-      "phasePeer2Pc",
-      "quorumPeer1Pc",
-      "quorumPeer2Pc",
-      "quorumOutsiderPc",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      phasePeer1Pc: "strict",
-      phasePeer2Pc: "strict",
-      quorumPeer1Pc: "strict",
-      quorumPeer2Pc: "strict",
-      quorumOutsiderPc: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/collective_synchrony_capture.ts",
-      "test_swarm.ts",
-      "test_structure_lock_progress.ts",
-    ],
-  },
-  {
-    id: "gt13_structure_lock_progress",
-    scenario: "standalone structure stale-lock progress",
-    setup:
-      "standalone deterministic subprocess capture of OP_SENSE visibility through a stale structure lock plus tick_structure_grid intent clearing",
-    duration: "2 execute phases + 1 structure tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "visibleSenseReg",
-      "typedMissSenseReg",
-      "resolvedCellType",
-      "resolvedCellCharge",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      visibleSenseReg: "strict",
-      typedMissSenseReg: "strict",
-      resolvedCellType: "strict",
-      resolvedCellCharge: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_lock_capture.ts",
-      "test_structure_lock_progress.ts",
-    ],
-  },
-  {
-    id: "gt14_structure_charge_resolution",
-    scenario: "standalone structure charge resolution",
-    setup:
-      "standalone deterministic subprocess capture of OP_PLUG publishing a charge intent and tick_structure_grid resolving it into a concrete charged structure cell",
-    duration: "1 execute phase + 1 structure tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "chargeIntentBeforeTick",
-      "resolvedCellType",
-      "resolvedCellCharge",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      chargeIntentBeforeTick: "strict",
-      resolvedCellType: "strict",
-      resolvedCellCharge: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_charge_capture.ts",
-      "test_structure_lock_progress.ts",
-    ],
-  },
-  {
-    id: "gt15_structure_charge_competition",
-    scenario: "standalone structure charge competition",
-    setup:
-      "standalone deterministic subprocess capture of two OP_PLUG publications hitting the same cell in both low->high and high->low orderings",
-    duration: "4 execute_atom calls + 1 structure tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "lowThenHighChargeIntent",
-      "highThenLowChargeIntent",
-      "lowThenHighResolvedCharge",
-      "highThenLowResolvedCharge",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      lowThenHighChargeIntent: "strict",
-      highThenLowChargeIntent: "strict",
-      lowThenHighResolvedCharge: "strict",
-      highThenLowResolvedCharge: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_charge_competition_capture.ts",
-      "src/03/03/verification/structure_charge_capture.ts",
-      "test_structure_lock_progress.ts",
-    ],
-  },
-  {
-    id: "gt16_runtime_build_materialization",
-    scenario: "runtime structure build materialization",
-    setup:
-      "worker-backed deterministic subprocess capture of a single architect executing OP_BUILD SOURCE through PULSE.tick",
-    duration: "1 pulse tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "targetResolvedType",
-      "targetResolvedCharge",
-      "ownerIntentAfterTick",
-      "valueIntentAfterTick",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      targetResolvedType: "strict",
-      targetResolvedCharge: "strict",
-      ownerIntentAfterTick: "strict",
-      valueIntentAfterTick: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_build_runtime_capture.ts",
-      "test_structure_intent_determinism.ts",
-    ],
-  },
-  {
-    id: "gt17_runtime_build_competition",
-    scenario: "runtime structure build competition",
-    setup:
-      "worker-backed deterministic subprocess capture of two architects publishing competing OP_BUILD SOURCE intents into the same cell through PULSE.tick",
-    duration: "1 pulse tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "targetResolvedType",
-      "targetResolvedCharge",
-      "targetResolvedState",
-      "ownerIntentAfterTick",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      targetResolvedType: "strict",
-      targetResolvedCharge: "strict",
-      targetResolvedState: "strict",
-      ownerIntentAfterTick: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_build_competition_capture.ts",
-      "src/03/03/verification/structure_build_runtime_capture.ts",
-      "test_structure_intent_determinism.ts",
-    ],
-  },
-  {
-    id: "gt18_runtime_build_stale_lock",
-    scenario: "runtime structure build stale-lock fallback",
-    setup:
-      "worker-backed deterministic subprocess capture of a single architect attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent through PULSE.tick",
-    duration: "1 pulse tick / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "targetResolvedType",
-      "targetResolvedCharge",
-      "targetResolvedState",
-      "ownerIntentAfterTick",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      targetResolvedType: "strict",
-      targetResolvedCharge: "strict",
-      targetResolvedState: "strict",
-      ownerIntentAfterTick: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/structure_build_lock_capture.ts",
-      "src/03/03/verification/structure_build_runtime_capture.ts",
-      "src/03/03/verification/structure_lock_capture.ts",
-      "test_structure_intent_determinism.ts",
-    ],
-  },
-  {
-    id: "gt19_tensegrity_kinematics",
-    scenario: "standalone tensegrity kinematics and bonding",
-    setup:
-      "standalone deterministic capture of OP_TENSEGRITY setting bond distances and damping, executing physics to resolve forces",
-    duration: "100 physics ticks execution / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "finalDistance",
-      "finalDamping",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      finalDistance: "bounded",
-      finalDamping: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/tensegrity_capture.ts",
-      "test_tensegrity.ts",
-    ],
-  },
-  {
-    id: "gt20_bind_resolution",
-    scenario: "standalone symbiotic bond resolution",
-    setup:
-      "standalone deterministic capture of OP_BIND writing a pending request into the shared buffer between two nearby atoms",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "initiatorId",
-      "targetId",
-      "requestStatus",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      initiatorId: "strict",
-      targetId: "strict",
-      requestStatus: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/bind_resolution_capture.ts",
-      "test_symbiosis.ts",
-    ],
-  },
-  {
-    id: "gt21_quorum_sync",
-    scenario: "sovereignty protocol collective sync and aggressive share",
-    setup:
-      "standalone deterministic capture of OP_COLLECTIVE (quorum sync) and OP_SHARE (hormone-modulated aggression bonus)",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "quorumPcSync",
-      "aggressiveShareAmount",
-      "hormoneIndex2",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      quorumPcSync: "strict",
-      aggressiveShareAmount: "strict",
-      hormoneIndex2: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/quorum_sync_capture.ts",
-    ],
-  },
-  {
-    id: "gt22_intent_resolution",
-    scenario: "sovereignty protocol collective intent resolution (role/bank)",
-    setup:
-      "standalone deterministic capture of OP_RESOLVE for collective role shifts and energy banking via neighborhood quorum",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "roleResolution",
-      "bankResolution",
-      "quorumCount",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      roleResolution: "strict",
-      bankResolution: "strict",
-      quorumCount: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/intent_resolution_capture.ts",
-    ],
-  },
-  /*
-  {
-    id: "gt23_cognitive_vector",
-    scenario: "standalone cognitive vector math and resonance resolution",
-    setup:
-      "standalone deterministic capture of OP_RESOLVE math precision tiers and OP_RESONATE_KURAMOTO spatial grid convergence",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "fastMathValue",
-      "preciseMathValue",
-      "fastMathEnergy",
-      "preciseMathEnergy",
-      "atom200PhaseAfter",
-      "atom201PhaseAfter",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      fastMathValue: "strict",
-      preciseMathValue: "strict",
-      fastMathEnergy: "strict",
-      preciseMathEnergy: "strict",
-      atom200PhaseAfter: "strict",
-      atom201PhaseAfter: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/cognitive_vector_capture.ts",
-      "test_kuramoto_lut.ts",
-    ],
-  },
-  {
-    id: "gt24_kuramoto_sync_threshold",
-    scenario: "standalone kuramoto phase sink at critical K",
-    setup:
-      "standalone deterministic capture of K-coupling scaling by neural coherence in OP_RESONATE_KURAMOTO",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "diffLowK",
-      "diffHighK",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      diffLowK: "strict",
-      diffHighK: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/kuramoto_sync_capture.ts",
-    ],
-  },
-  {
-    id: "gt25_lut_accuracy_tradeoff",
-    scenario: "standalone math LUT accuracy vs gas tradeoff",
-    setup:
-      "standalone deterministic capture of varying OP_RESOLVE metabolic cost depending on targeted math precision mode",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "val0",
-      "val1",
-      "val4",
-      "cost0",
-      "cost1",
-      "cost4",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      val0: "strict",
-      val1: "strict",
-      val4: "strict",
-      cost0: "strict",
-      cost1: "strict",
-      cost4: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/lut_accuracy_capture.ts",
-    ],
-  },
-  {
-    id: "gt26_resolution_phase_transition",
-    scenario: "standalone execution resource survival with coherence fields",
-    setup:
-      "standalone deterministic capture showing high phase resonance under large K resulting in metabolic survival",
-    duration: "10 execute phases / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "survivalCount",
-      "finalPhaseAvg",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      survivalCount: "strict",
-      finalPhaseAvg: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/resolution_phase_capture.ts",
-    ],
-  },
-  */
-];
-
-export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object
-  .freeze(
-    GOLDEN_TRACE_CATALOG_DATA.map((trace) =>
-      Object.freeze({
-        ...trace,
-        metrics: Object.freeze([...trace.metrics]),
-        driftPolicy: Object.freeze({ ...trace.driftPolicy }),
-        supportFiles: Object.freeze([...trace.supportFiles]),
-      })
-    ),
-  );
-
-const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(
-  GOLDEN_TRACE_CATALOG.map((trace) => [trace.id, trace]),
-);
-
-export const goldenTraceById = (id: string): GoldenTraceScenario | null =>
-  TRACE_BY_ID.get(id) ?? null;
-
-export const goldenTraceArtifactPaths = (id: string) => {
-  const trace = goldenTraceById(id);
-  if (!trace) {
-    throw new Error(`[golden_trace_catalog] unknown trace id: ${id}`);
-  }
-  const dir = `${TRACE_ROOT}/${trace.id}`;
-  return {
-    dir,
-    traceJson: `${dir}/trace.json`,
-    codexSnapshotJson: `${dir}/codex_snapshot.json`,
-    invariantsJson: `${dir}/invariants.json`,
-    notesMd: `${dir}/notes.md`,
-  };
-};
-
-```
-
----
-
 ## FILE: src/03/03/mod.ts
 
 ```typescript
@@ -38739,2529 +37140,6 @@ export * from "./secretion_energetics_audit.ts";
 export * from "./golden_trace_catalog.ts";
 export * from "./reduction_cases.ts";
 export * from "./reduction_harness.ts";
-
-```
-
----
-
-## FILE: src/03/03/reduction_cases.ts
-
-```typescript
-import { GRID_W, pack_structure_intent } from "@generated";
-import { assemble } from "@generated";
-import { MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP } from "@generated";
-export type ReductionCaseExpectation = {
-  finalPc: number;
-  replicateCount?: number;
-  signalCount?: number;
-  buildCount?: number;
-  finalRole?: number;
-  registers?: number[];
-  finalProps?: Partial<Record<number, number>>;
-  finalHiveMemory?: Partial<Record<number, number>>;
-  finalHiveBalance?: number;
-  finalSignalGrid?: Partial<Record<number, number>>;
-
-  finalPeerEnergy?: Partial<Record<number, number>>;
-  finalPeerPc?: Partial<Record<number, number>>;
-  finalBondDistances?: Partial<Record<number, number>>;
-  finalDamping?: number;
-  finalStructureGrid?: Partial<Record<number, number>>;
-
-  branchTaken?: boolean;
-  finalBondRequests?: Partial<Record<number, number>>;
-  finalHiveEnergyPool?: Partial<Record<number, number>>;
-  finalHormones?: number[];
-};
-
-export type ReductionCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  script: Uint8Array;
-  maxSteps: number;
-  ownerAtomIdx?: number;
-  postStructureTick?: boolean;
-  initialRegs?: number[];
-
-  initialProps: Partial<Record<number, number>>;
-  initialBondTargets?: Partial<Record<number, number>>;
-  initialBondDistances?: Partial<Record<number, number>>;
-  initialDamping?: number;
-  initialPeerEnergy?: Partial<Record<number, number>>;
-  initialPeerPc?: Partial<Record<number, number>>;
-  initialCellPeers?: number[];
-  initialHiveBalance?: number;
-  initialStructureGrid?: Partial<Record<number, number>>;
-  initialStructureIntentOwner?: Partial<Record<number, number>>;
-  initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialHiveMemory?: Partial<Record<number, number>>;
-  initialHormones?: number[];
-  initialHiveEnergyPool?: Partial<Record<number, number>>;
-  nativeProgram?: string; // Key in GENESIS_PROGRAMS
-  expected: ReductionCaseExpectation;
-};
-
-const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
-  OP_GET, 0, PROP_ENERGY,
-  OP_SET, 1, targetEnergy,
-  OP_SUB, 0, 1,
-  OP_JNZ, 0, "ROLE",
-  OP_SIGNAL,
-  OP_JMP, 0,
-  "ROLE",
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeReplicatorLoopScript = (): Uint8Array => assemble([
-  OP_REPLICATE,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeArchitectLoopScript = (): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const GUARDIAN_SCRIPT = MX.getGuardianScript();
-const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
-
-const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
-  OP_SET, 0, resonanceValue,
-  OP_PUT, 0, PROP_RESONANCE,
-  OP_GET, 1, PROP_RESONANCE,
-  OP_JZ, 1, "ROLE",
-  OP_SIGNAL,
-  OP_JMP, 0,
-  "ROLE",
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, 1, 1,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeSenseIntentScript = (
-  buildType: number,
-  targetType: number,
-): Uint8Array => assemble([
-  OP_SECRETE_PLASMID, 0, MX.ROLE_ARCHITECT,
-  OP_BUILD, buildType, 1,
-  OP_SENSE, 1, targetType,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeBuildOnlyScript = (
-  buildType: number,
-  buildState: number,
-): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, buildType, buildState
-]);
-
-const makeTensegrityScript = (
-  slot: number,
-  dist: number,
-  damping: number,
-): Uint8Array => assemble([
-  OP_TENSEGRITY, 0, slot, dist,
-  OP_TENSEGRITY, 1, damping, 0
-]);
-
-const makePlugChargeScript = (charge: number): Uint8Array => assemble([
-  OP_SET, 0, charge,
-  OP_PLUG, 1, 0
-]);
-
-const makePlugChargeCompetitionScript = (
-  firstCharge: number,
-  secondCharge: number,
-): Uint8Array => assemble([
-  OP_SET, 0, firstCharge,
-  OP_PLUG, 1, 0,
-  OP_SET, 0, secondCharge,
-  OP_PLUG, 1, 0
-]);
-
-const makeBuildSourceScript = (): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, STR_SOURCE, 0
-]);
-
-const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
-  OP_SET, 0, SYS_SET_ROLE,
-  OP_SET, 1, MX.ROLE_ARCHITECT,
-  OP_SYSCALL,
-  OP_BUILD, STR_SOURCE, state
-]);
-
-const makeSenseScript = (targetType: number): Uint8Array => assemble([
-  OP_SENSE, 1, targetType,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => assemble([
-  OP_SET, 0, role,
-  OP_RESOLVE, 0, threshold
-]);
-
-const makeResolveBankScript = (amount: number): Uint8Array => assemble([
-  OP_RESOLVE, 1, amount // Mode: Bank
-]);
-
-const makeCollectiveHiveScript = (
-  addr: number,
-  value: number,
-  reg: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 0, addr, value,
-  OP_COLLECTIVE, 1, addr, reg,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeCollectivePheromoneScript = (
-  intensity: number,
-  type: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 2, intensity, type,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeCollectiveBankDepositScript = (
-  amount: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 3, amount, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeCollectiveBankWithdrawScript = (
-  reg: number,
-): Uint8Array => assemble([
-  OP_COLLECTIVE, 4, reg, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeCollectivePhaseLockScript = (): Uint8Array => assemble([
-  OP_COLLECTIVE, 5, 0, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeCollectivePcSyncQuorumScript = (): Uint8Array => assemble([
-  OP_COLLECTIVE, 6, 0, 0,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeShareScript = (
-  slot: number,
-  percentage: number,
-): Uint8Array => assemble([
-  OP_SHARE, slot, percentage,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeBindScript = (): Uint8Array => assemble([
-  OP_BIND,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeSporeDriveScript = (): Uint8Array => assemble([
-  OP_SPORE_DRIVE,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const makeEntangleScript = (): Uint8Array => assemble([
-  OP_GET, 0, PROP_ENERGY,
-  OP_HEBB,
-  OP_SIGNAL,
-  OP_JMP, 0
-]);
-
-const structureNeighborCell = (centerX: number, centerY: number): number => {
-  const gx = Math.floor(centerX / 10);
-  const gy = Math.floor(centerY / 10);
-  return (gy * GRID_W) + gx + 1;
-};
-
-export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
-  .freeze([
-    {
-      id: "rc01_gt01_replicator_loop",
-      baselineTraceId: "gt01_coldstart_seeded_swarm",
-      description:
-        "Seeded-swarm replicator loop shadowed through REPLICATE -> SIGNAL -> JMP bridge subset.",
-      script: makeReplicatorLoopScript(),
-      maxSteps: 6,
-      initialProps: {},
-      expected: {
-        finalPc: 0,
-        replicateCount: 2,
-        signalCount: 2,
-        buildCount: 0,
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc02_gt01_architect_loop",
-      baselineTraceId: "gt01_coldstart_seeded_swarm",
-      description:
-        "An architect script spinning in an infinite build-signal loop should emit 2 full cycles before reduction stops it.",
-      script: makeArchitectLoopScript(),
-      maxSteps: 12,
-      initialProps: {},
-      expected: {
-        finalPc: 0,
-        buildCount: 2,
-        signalCount: 2,
-        finalRole: MX.ROLE_ARCHITECT,
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc03_gt03_guardian_stable_branch",
-      baselineTraceId: "gt03_pheromone_inject",
-      description:
-        "Guardian script on a coherent field should stay in the stable signaling branch.",
-      script: GUARDIAN_SCRIPT,
-      maxSteps: 9,
-      initialProps: {
-        [PROP_NEURAL_COHERENCE]: 200,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: MX.ROLE_GUARDIAN,
-        registers: [6, 2, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc04_gt03_guardian_repair_branch",
-      baselineTraceId: "gt03_pheromone_inject",
-      description:
-        "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
-      script: GUARDIAN_SCRIPT,
-      maxSteps: 9,
-      initialProps: {
-        [PROP_NEURAL_COHERENCE]: 0,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 0,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        registers: [6, 3, 0, 0, 0, 0, 0, 0],
-        branchTaken: true,
-      },
-    },
-    {
-      id: "rc05_gt05_band_anchor_match",
-      baselineTraceId: "gt05_homeostasis_correction",
-      description:
-        "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
-      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
-      maxSteps: 6,
-      initialProps: {
-        [PROP_ENERGY]: 240,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [0, 240, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc06_gt05_band_anchor_mismatch",
-      baselineTraceId: "gt05_homeostasis_correction",
-      description:
-        "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
-      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
-      maxSteps: 10,
-      initialProps: {
-        [PROP_ENERGY]: 1200,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        registers: [6, 3, 0, 0, 0, 0, 0, 0],
-        branchTaken: true,
-      },
-    },
-    {
-      id: "rc07_gt04_plasmid_prop_write_signal",
-      baselineTraceId: "gt04_plasmid_inject",
-      description:
-        "Durable symbolic ingress should preserve a property write through PUT and stay on the signaling branch when the written resonance value is non-zero.",
-      script: makePlasmidPropWriteScript(5),
-      maxSteps: 6,
-      initialProps: {
-        [PROP_RESONANCE]: 0,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [5, 5, 0, 0, 0, 0, 0, 0],
-        finalProps: {
-          [PROP_RESONANCE]: 5,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc08_gt04_plasmid_zero_branch",
-      baselineTraceId: "gt04_plasmid_inject",
-      description:
-        "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
-      script: makePlasmidPropWriteScript(0),
-      maxSteps: 10,
-      initialProps: {
-        [PROP_RESONANCE]: 255,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        registers: [6, 3, 0, 0, 0, 0, 0, 0],
-        finalProps: {
-          [PROP_RESONANCE]: 0,
-        },
-        branchTaken: true,
-      },
-    },
-    {
-      id: "rc09_gt08_structure_intent_visible",
-      baselineTraceId: "gt08_structure_intent_visibility",
-      description:
-        "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
-      script: makeSenseIntentScript(STR_NODE, STR_NODE),
-      maxSteps: 5,
-      initialProps: {
-        [PROP_X]: 705,
-        [PROP_Y]: 405,
-        [PROP_RESONANCE]: 2,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        registers: [0, 1, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc10_gt08_structure_intent_typed_miss",
-      baselineTraceId: "gt08_structure_intent_visibility",
-      description:
-        "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
-      script: makeSenseIntentScript(STR_NODE, STR_WIRE),
-      maxSteps: 5,
-      initialProps: {
-        [PROP_X]: 705,
-        [PROP_Y]: 405,
-        [PROP_RESONANCE]: 2,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        registers: [0, 0, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc11_gt09_collective_hive_store_load",
-      baselineTraceId: "gt09_collective_transport",
-      description:
-        "A bounded COLLECTIVE bridge should preserve hive store/load semantics through mode 0 and mode 1 without reaching outside the local shadow state.",
-      script: makeCollectiveHiveScript(1, 88, 0),
-      maxSteps: 4,
-      initialProps: {},
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [88, 0, 0, 0, 0, 0, 0, 0],
-        finalHiveMemory: {
-          1: 88,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc12_gt09_collective_pheromone_emit",
-      baselineTraceId: "gt09_collective_transport",
-      description:
-        "The same bounded COLLECTIVE bridge should preserve pheromone emission through mode 2 at the atom's local grid cell.",
-      script: makeCollectivePheromoneScript(200, 5),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_X]: 105,
-        [PROP_Y]: 105,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalSignalGrid: {
-          1410: 0xC805,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc13_gt10_share_transfer_success",
-      baselineTraceId: "gt10_share_transfer",
-      description:
-        "A bounded SHARE bridge should deduct percentage energy from self and credit the bonded peer when slot 0 resolves to a live target.",
-      script: makeShareScript(0, 50),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_ENERGY]: 1000,
-      },
-      initialBondTargets: {
-        0: 2,
-      },
-      initialPeerEnergy: {
-        2: 100,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalProps: {
-          [PROP_ENERGY]: 500,
-        },
-        finalPeerEnergy: {
-          2: 600,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc14_gt10_share_transfer_empty_bond",
-      baselineTraceId: "gt10_share_transfer",
-      description:
-        "The same SHARE bridge should fail closed when the selected bond slot is empty, leaving self and peer energy untouched.",
-      script: makeShareScript(0, 50),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_ENERGY]: 1000,
-      },
-      initialPeerEnergy: {
-        2: 100,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalProps: {
-          [PROP_ENERGY]: 1000,
-        },
-        finalPeerEnergy: {
-          2: 100,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc15_gt11_collective_bank_deposit",
-      baselineTraceId: "gt11_collective_banking",
-      description:
-        "A bounded COLLECTIVE bridge should preserve mode 3 bank deposit semantics as raw opcode units, reducing local energy and increasing hive balance.",
-      script: makeCollectiveBankDepositScript(80),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_ENERGY]: 5000,
-      },
-      initialHiveBalance: 250,
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalProps: {
-          [PROP_ENERGY]: 4920,
-        },
-        finalHiveBalance: 330,
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc16_gt11_collective_bank_withdraw",
-      baselineTraceId: "gt11_collective_banking",
-      description:
-        "The same bounded COLLECTIVE bridge should preserve mode 4 capped withdraw semantics, crediting at most 100 raw units to energy and writing the amount to the selected register.",
-      script: makeCollectiveBankWithdrawScript(0),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_ENERGY]: 5000,
-      },
-      initialHiveBalance: 250,
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [100, 0, 0, 0, 0, 0, 0, 0],
-        finalProps: {
-          [PROP_ENERGY]: 5100,
-        },
-        finalHiveBalance: 150,
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc17_gt12_collective_phase_lock",
-      baselineTraceId: "gt12_collective_synchrony",
-      description:
-        "A bounded COLLECTIVE bridge should preserve mode 5 phase-lock semantics by pushing bonded peers to the next instruction boundary.",
-      script: makeCollectivePhaseLockScript(),
-      maxSteps: 3,
-      initialProps: {},
-      initialBondTargets: {
-        0: 1,
-        1: 2,
-      },
-      initialPeerPc: {
-        1: 9,
-        2: 10,
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalPeerPc: {
-          1: 4,
-          2: 4,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc18_gt12_collective_pc_sync_quorum",
-      baselineTraceId: "gt12_collective_synchrony",
-      description:
-        "The same bounded COLLECTIVE bridge should preserve mode 6 quorum semantics by pushing local cell peers to the next instruction boundary.",
-      script: makeCollectivePcSyncQuorumScript(),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_X]: 205,
-        [PROP_Y]: 105,
-      },
-      initialPeerPc: {
-        1: 7,
-        2: 8,
-      },
-      initialCellPeers: [1, 2],
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        finalPeerPc: {
-          1: 4,
-          2: 4,
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc19_gt13_sense_stale_lock_visible",
-      baselineTraceId: "gt13_structure_lock_progress",
-      description:
-        "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
-      script: makeSenseScript(STR_WIRE),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_X]: 705,
-        [PROP_Y]: 405,
-      },
-      initialStructureGrid: {
-        [structureNeighborCell(705, 405)]: STR_WIRE,
-      },
-      initialStructureIntentOwner: {
-        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [0, 1, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc20_gt13_sense_stale_lock_typed_miss",
-      baselineTraceId: "gt13_structure_lock_progress",
-      description:
-        "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
-      script: makeSenseScript(STR_NODE),
-      maxSteps: 3,
-      initialProps: {
-        [PROP_X]: 705,
-        [PROP_Y]: 405,
-      },
-      initialStructureGrid: {
-        [structureNeighborCell(705, 405)]: STR_WIRE,
-      },
-      initialStructureIntentOwner: {
-        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
-      },
-      expected: {
-        finalPc: 0,
-        signalCount: 1,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [0, 0, 0, 0, 0, 0, 0, 0],
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc21_gt14_plug_charge_resolve",
-      baselineTraceId: "gt14_structure_charge_resolution",
-      description:
-        "A bounded PLUG bridge should publish a charge intent that resolves into a concrete wire charge on the next bounded structure tick, clearing the intent afterward.",
-      script: makePlugChargeScript(180),
-      maxSteps: 2,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-      },
-      initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
-      },
-      expected: {
-        finalPc: 6,
-        signalCount: 0,
-        buildCount: 0,
-        finalRole: 0,
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
-            (170 << 16),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc22_gt15_plug_charge_competition_low_high",
-      baselineTraceId: "gt15_structure_charge_competition",
-      description:
-        "A bounded PLUG bridge should preserve max-intent semantics when a lower charge is published before a higher one to the same cell.",
-      script: makePlugChargeCompetitionScript(120, 220),
-      maxSteps: 4,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-      },
-      initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
-      },
-      expected: {
-        finalPc: 12,
-        signalCount: 0,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [220, 0, 0, 0, 0, 0, 0, 0],
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
-            (210 << 16),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc23_gt15_plug_charge_competition_high_low",
-      baselineTraceId: "gt15_structure_charge_competition",
-      description:
-        "The same bounded PLUG bridge should still preserve max-intent semantics when the higher charge arrives first and a lower publication follows.",
-      script: makePlugChargeCompetitionScript(220, 120),
-      maxSteps: 4,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-      },
-      initialStructureGrid: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
-      },
-      expected: {
-        finalPc: 12,
-        signalCount: 0,
-        buildCount: 0,
-        finalRole: 0,
-        registers: [120, 0, 0, 0, 0, 0, 0, 0],
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_WIRE |
-            (210 << 16),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc24_gt16_build_source_materialize",
-      baselineTraceId: "gt16_runtime_build_materialization",
-      description:
-        "A bounded BUILD bridge should materialize an architect-published SOURCE through postStructureTick, including canonical SOURCE charge semantics.",
-      script: makeBuildSourceScript(),
-      maxSteps: 4,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-        [PROP_RESONANCE]: 1,
-      },
-      expected: {
-        finalPc: 10,
-        signalCount: 0,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
-            (255 << 16),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc25_gt17_build_competition_high_owner_overwrite",
-      baselineTraceId: "gt17_runtime_build_competition",
-      description:
-        "A bounded BUILD bridge should let a higher owner token overwrite a preseeded lower owner SOURCE intent on the same cell.",
-      script: makeBuildSourceWithStateScript(91),
-      maxSteps: 4,
-      ownerAtomIdx: 3,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-        [PROP_RESONANCE]: 1,
-      },
-      initialStructureIntentOwner: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 3,
-      },
-      initialStructureIntentValue: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STR_SOURCE, 17, false),
-      },
-      expected: {
-        finalPc: 10,
-        signalCount: 0,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
-            (255 << 16) | (91 << 24),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc26_gt17_build_competition_low_owner_blocked",
-      baselineTraceId: "gt17_runtime_build_competition",
-      description:
-        "The same bounded BUILD bridge should fail closed when a lower owner token attempts to overwrite a preseeded higher owner SOURCE intent.",
-      script: makeBuildSourceWithStateScript(17),
-      maxSteps: 4,
-      ownerAtomIdx: 2,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-        [PROP_RESONANCE]: 1,
-      },
-      initialStructureIntentOwner: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 4,
-      },
-      initialStructureIntentValue: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STR_SOURCE, 91, false),
-      },
-      expected: {
-        finalPc: 10,
-        signalCount: 0,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
-            (255 << 16) | (91 << 24),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc27_gt18_build_stale_lock_blocked",
-      baselineTraceId: "gt18_runtime_build_stale_lock",
-      description:
-        "A bounded BUILD bridge should fail closed on a stale locked intent and let postStructureTick materialize the locked SOURCE value instead of the attempted overwrite.",
-      script: makeBuildSourceWithStateScript(99),
-      maxSteps: 4,
-      ownerAtomIdx: 2,
-      postStructureTick: true,
-      initialProps: {
-        [PROP_X]: 35,
-        [PROP_Y]: 35,
-        [PROP_RESONANCE]: 1,
-      },
-      initialStructureIntentOwner: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(3, 0, true),
-      },
-      initialStructureIntentValue: {
-        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-          pack_structure_intent(STR_SOURCE, 55, false),
-      },
-      expected: {
-        finalPc: 10,
-        signalCount: 0,
-        buildCount: 1,
-        finalRole: MX.ROLE_ARCHITECT,
-        finalStructureGrid: {
-          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
-            STR_SOURCE |
-            (255 << 16) | (55 << 24),
-        },
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc28_gt19_tensegrity_kinematics",
-      baselineTraceId: "gt19_tensegrity_kinematics",
-      description:
-        "A bounded TENSEGRITY bridge should preserve mode 0 (SET_BOND_DIST) and mode 1 (SET_DAMPING) semantics.",
-      script: makeTensegrityScript(0, 100, 255),
-      maxSteps: 2,
-      initialProps: {},
-      initialBondDistances: {
-        0: 50,
-      },
-      initialDamping: 100,
-      expected: {
-        finalPc: 8,
-        signalCount: 0,
-        buildCount: 0,
-        finalRole: 0,
-        finalBondDistances: {
-          0: 100,
-        },
-        finalDamping: 255,
-        branchTaken: false,
-      },
-    },
-    {
-      id: "rc29_gt20_bind_resolution",
-      baselineTraceId: "gt20_bind_resolution",
-      description:
-        "Verify OP_BIND (Autonomous Bonding) writes a pending request into the shared buffer.",
-      script: makeBindScript(),
-      maxSteps: 1,
-      ownerAtomIdx: 1,
-      initialProps: {
-        [PROP_X]: 100,
-        [PROP_Y]: 100,
-      },
-      initialCellPeers: [2],
-      initialPeerEnergy: {
-        2: 100,
-      },
-      expected: {
-        finalPc: 1,
-        finalBondRequests: {
-          3: 2, // initiator (atomIdx 1 + 1)
-          4: 3, // target (targetIdx 2 + 1)
-          5: 1, // status pending
-        },
-      },
-    },
-    {
-      id: "rc30_spore_drive_jump",
-      baselineTraceId: "gt20_bind_resolution",
-      description:
-        "Verify OP_SPORE_DRIVE consumes energy and triggers a position jump.",
-      script: makeSporeDriveScript(),
-      maxSteps: 1,
-      initialProps: {
-        [PROP_ENERGY]: 1000,
-        [PROP_X]: 100,
-        [PROP_Y]: 100,
-      },
-      expected: {
-        finalPc: 1,
-        finalProps: {
-          [PROP_ENERGY]: 500,
-          [PROP_X]: 107,
-          [PROP_Y]: 107,
-        },
-      },
-    },
-    {
-      id: "rc31_entangle_hive_deposit",
-      baselineTraceId: "gt20_bind_resolution",
-      description: "Verify OP_ENTANGLE allows hive energy exchange.",
-      script: makeEntangleScript(),
-      maxSteps: 2,
-      initialProps: {
-        [PROP_ENERGY]: 5000,
-      },
-      expected: {
-        finalPc: 4,
-        finalProps: {
-          [PROP_ENERGY]: 4500,
-        },
-        finalHiveEnergyPool: {
-          0: 500,
-        },
-      },
-    },
-    {
-      id: "rc32_quorum_pc_sync",
-      baselineTraceId: "gt21_quorum_sync",
-      description:
-        "Verify OP_COLLECTIVE mode 6 synchronizes PC across cell peers.",
-      script: makeCollectivePcSyncQuorumScript(),
-      maxSteps: 1,
-      initialProps: {},
-      initialCellPeers: [1, 2, 3],
-      ownerAtomIdx: 0,
-      initialPeerPc: {
-        1: 0,
-        2: 0,
-      },
-      expected: {
-        finalPc: 4,
-        finalPeerPc: {
-          1: 4,
-          2: 4,
-        },
-      },
-    },
-    {
-      id: "rc33_share_percentage_drift",
-      baselineTraceId: "gt21_quorum_sync",
-      description: "Verify OP_SHARE handles aggression hormone bonus (>1024).",
-      script: makeShareScript(0, 50),
-      maxSteps: 1,
-      initialProps: {
-        [PROP_ENERGY]: 1000,
-      },
-      initialBondTargets: {
-        0: 2,
-      },
-      initialPeerEnergy: {
-        2: 0,
-      },
-      initialHormones: [1024, 1024, 1200, 1024, 1024, 1024], // H2=1200
-      expected: {
-        finalPc: 3,
-        finalProps: {
-          [PROP_ENERGY]: 400, // 50% + 10% bonus = 60%. 1000 - 600 = 400.
-        },
-        finalPeerEnergy: {
-          2: 600,
-        },
-      },
-    },
-    {
-      id: "rc34_role_resolution",
-      baselineTraceId: "gt22_intent_resolution",
-      description:
-        "Verify OP_RESOLVE mode 0 updates role if neighborhood quorum is met.",
-      script: makeResolveRoleScript(MX.ROLE_GUARDIAN, 2),
-      maxSteps: 2,
-      initialProps: {
-        [PROP_X]: 50,
-        [PROP_Y]: 50,
-        [PROP_RESONANCE]: 100,
-      },
-      initialStructureGrid: {
-        // gx=5, gy=5. Neighbors: (4,5), (6,5)
-        [5 * GRID_W + 4]: 1,
-        [5 * GRID_W + 6]: 1,
-      },
-      expected: {
-        finalPc: 6,
-        finalRole: MX.ROLE_GUARDIAN,
-        finalProps: {
-          [PROP_RESONANCE]: 120,
-        },
-      },
-    },
-    {
-      id: "rc35_bank_resolution",
-      baselineTraceId: "gt22_intent_resolution",
-      description:
-        "Verify OP_RESOLVE mode 1 deposits energy if neighborhood quorum >= 3.",
-      script: makeResolveBankScript(100),
-      maxSteps: 1,
-      initialProps: {
-        [PROP_X]: 50,
-        [PROP_Y]: 50,
-        [PROP_ENERGY]: 500,
-        [PROP_RESONANCE]: 100,
-      },
-      initialStructureGrid: {
-        [5 * GRID_W + 4]: 1,
-        [5 * GRID_W + 6]: 1,
-        [4 * GRID_W + 5]: 1,
-      },
-      ownerAtomIdx: 0,
-      initialRegs: [0, 0, 0, 0, 0, 0, 0, 0, 0x12], // Dummy gene bits or similar for pool slot
-      expected: {
-        finalPc: 3,
-        finalProps: {
-          [PROP_ENERGY]: 400,
-          [PROP_RESONANCE]: 110,
-        },
-        finalHiveEnergyPool: {
-          2: 100, // 0x12 % 4 = 2. No, slot logic in harness: gene0 % 4. regs[8] is gene0.
-        },
-      },
-    },
-    {
-      id: "rc36_genesis_guardian",
-      baselineTraceId: "gt01_coldstart_seeded_swarm",
-      description: "Native Genesis Guardian signaling behavior",
-      nativeProgram: "guardian_base",
-      script: new Uint8Array([
-        OP_SET,
-        0,
-        100,
-        OP_SET,
-        1,
-        1,
-        OP_SIGNAL,
-        OP_NOP,
-      ]),
-      maxSteps: 3, // SET, SET, SIGNAL
-      initialProps: {
-        [PROP_ENERGY]: 1000,
-      },
-      expected: {
-        finalPc: 7,
-        signalCount: 1,
-        registers: [100, 1, 0, 0, 0, 0, 0, 0],
-      },
-    },
-    {
-      id: "rc37_genesis_architect",
-      baselineTraceId: "gt01_coldstart_seeded_swarm",
-      description: "Native Genesis Architect collective emission behavior",
-      nativeProgram: "architect_base",
-      script: new Uint8Array([
-        OP_SET,
-        0,
-        100,
-        OP_SET,
-        1,
-        0,
-        OP_PLUG,
-        0,
-        0,
-        OP_SIGNAL,
-        OP_NOP,
-      ]),
-      maxSteps: 4,
-      initialProps: {
-        [PROP_X]: 50,
-        [PROP_Y]: 50,
-      },
-      expected: {
-        finalPc: 10,
-        signalCount: 1,
-        registers: [100, 0, 0, 0, 0, 0, 0, 0],
-        finalStructureChargeIntent: {
-          [5 * GRID_W + 5]: 100,
-        },
-      },
-    },
-  ]);
-
-const REDUCTION_CASE_BY_ID = new Map<string, ReductionCaseDefinition>(
-  REDUCTION_CASES.map((definition) => [definition.id, definition]),
-);
-
-export const reductionCaseById = (id: string): ReductionCaseDefinition | null =>
-  REDUCTION_CASE_BY_ID.get(id) ?? null;
-
-```
-
----
-
-## FILE: src/03/03/reduction_harness.ts
-
-```typescript
-import { GRID_H, GRID_W } from "@generated";
-import { glyphTapeToPrettyText } from "@generated";
-import {
-  decodeLegacyInstruction,
-  type GlyphTapeToken,
-  scriptToGlyphTape,
-} from "@generated";
-import { glyphSpecById } from "@generated";
-import { MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
-import {
-  REDUCTION_CASES,
-  reductionCaseById,
-  type ReductionCaseDefinition,
-} from "./reduction_cases.ts";
-import { pack_structure_intent, unpack_structure_charge } from "@generated";
-import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-import { GENESIS_PROGRAMS } from "@generated";
-
-type HarnessProps = Record<number, number>;
-
-type ShadowEffects = {
-  replicateCount: number;
-  signalCount: number;
-  buildCount: number;
-  bondRequestCount: number;
-  sporeDriveCount: number;
-  entangleCount: number;
-  roleWrites: number[];
-  branchTaken: boolean;
-  jumpCount: number;
-};
-
-type ShadowState = {
-  atomIndex: number;
-  pc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  cellPeers: number[];
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  executed: string[];
-  energySpent: number;
-};
-
-type LegacyShadowResult = {
-  mode: "legacy";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-};
-
-type ReductionShadowResult = {
-  mode: "glyph-reduction";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-  glyphTape: GlyphTapeToken[];
-  prettyTape: string;
-};
-
-type ReductionBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  tickStart: number;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-};
-
-export type ReductionHarnessResult = {
-  caseId: string;
-  baseline: ReductionBaselineAnchor;
-  legacy: LegacyShadowResult;
-  reduction: ReductionShadowResult;
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type ReductionHarnessArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_runtime_mode: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  legacy_digest: string;
-  reduction_digest: string;
-  executed_digest_legacy: string;
-  executed_digest_reduction: string;
-  diff: {
-    final_pc_match: boolean;
-    registers_match: boolean;
-
-    role_match: boolean;
-    props_match: boolean;
-    bond_targets_match: boolean;
-    bond_distances_match: boolean;
-    damping_match: boolean;
-    peer_energy_match: boolean;
-    peer_pc_match: boolean;
-    hive_memory_match: boolean;
-    hive_balance_match: boolean;
-    signal_grid_match: boolean;
-    structure_grid_match: boolean;
-    structure_intent_owner_match: boolean;
-    structure_intent_value_match: boolean;
-    structure_charge_intent_match: boolean;
-    bond_requests_match: boolean;
-    hive_energy_pool_match: boolean;
-    replicate_count_match: boolean;
-    signal_count_match: boolean;
-    build_count_match: boolean;
-    branch_taken_match: boolean;
-    role_writes_match: boolean;
-    energy_spent_delta: number;
-  };
-  expectation_summary: ReductionCaseDefinition["expected"];
-};
-
-const REDUCTION_DIFF_ROOT = "src/03/03/verification/reduction_diffs";
-const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
-
-const cloneEffects = (): ShadowEffects => ({
-  replicateCount: 0,
-  signalCount: 0,
-  buildCount: 0,
-  bondRequestCount: 0,
-  sporeDriveCount: 0,
-  entangleCount: 0,
-  roleWrites: [],
-  branchTaken: false,
-  jumpCount: 0,
-});
-
-const createInitialState = (
-  definition: ReductionCaseDefinition,
-): ShadowState => ({
-  atomIndex: definition.ownerAtomIdx ?? 0,
-  pc: 0,
-  regs: (() => {
-    const r = new Array(16).fill(0);
-    if (definition.initialRegs) {
-      for (
-        let i = 0;
-        i < Math.min(r.length, definition.initialRegs.length);
-        i++
-      ) {
-        r[i] = definition.initialRegs[i];
-      }
-    }
-    return r;
-  })(),
-  role: 0,
-  props: Object.fromEntries(
-    Object.entries(definition.initialProps).map(([key, value]) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  bondTargets: Object.fromEntries(
-    Object.entries(definition.initialBondTargets ?? {}).map(([key, value]) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-
-  bondDistances: Object.fromEntries(
-    Object.entries(definition.initialBondDistances ?? {}).map((
-      [key, value],
-    ) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  damping: definition.initialDamping ?? 0,
-  peerEnergy: Object.fromEntries(
-    Object.entries(definition.initialPeerEnergy ?? {}).map(([key, value]) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  peerPc: Object.fromEntries(
-    Object.entries(definition.initialPeerPc ?? {}).map(([key, value]) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  cellPeers: [...(definition.initialCellPeers ?? [])],
-  hiveMemory: {},
-  hiveBalance: definition.initialHiveBalance ?? 0,
-  signalGrid: {},
-  structureGrid: Object.fromEntries(
-    Object.entries(definition.initialStructureGrid ?? {}).map((
-      [key, value],
-    ) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  structureIntentOwner: Object.fromEntries(
-    Object.entries(definition.initialStructureIntentOwner ?? {}).map((
-      [key, value],
-    ) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  structureIntentValue: Object.fromEntries(
-    Object.entries(definition.initialStructureIntentValue ?? {}).map((
-      [key, value],
-    ) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  structureChargeIntent: Object.fromEntries(
-    Object.entries(definition.initialStructureChargeIntent ?? {}).map((
-      [key, value],
-    ) => [
-      Number(key),
-      Number(value),
-    ]),
-  ),
-  bondRequests: {},
-  hiveEnergyPool: Object.fromEntries(
-    Object.entries(definition.initialHiveEnergyPool ?? {}).map((
-      [k, v],
-    ) => [Number(k), Number(v)]),
-  ),
-  hormones: definition.initialHormones
-    ? [...definition.initialHormones]
-    : [1024, 1024, 1024, 1024, 1024, 1024],
-  effects: cloneEffects(),
-  executed: [],
-  energySpent: 0,
-});
-
-const equalNumberArray = (
-  a: readonly number[],
-  b: readonly number[],
-): boolean =>
-  a.length === b.length && a.every((value, index) => value === b[index]);
-
-const equalHarnessProps = (a: HarnessProps, b: HarnessProps): boolean => {
-  const aKeys = Object.keys(a).map(Number).sort((x, y) => x - y);
-  const bKeys = Object.keys(b).map(Number).sort((x, y) => x - y);
-  if (!equalNumberArray(aKeys, bKeys)) return false;
-  return aKeys.every((key) => (a[key] ?? 0) === (b[key] ?? 0));
-};
-
-const stableStringify = (value: unknown): string => {
-  if (value === null || typeof value !== "object") {
-    return JSON.stringify(value);
-  }
-  if (Array.isArray(value)) {
-    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
-  }
-  const entries = Object.entries(value as Record<string, unknown>)
-    .sort(([a], [b]) => a.localeCompare(b));
-  return `{${
-    entries.map(([key, item]) =>
-      `${JSON.stringify(key)}:${stableStringify(item)}`
-    ).join(",")
-  }}`;
-};
-
-const sha256Hex = async (value: unknown): Promise<string> => {
-  const bytes = new TextEncoder().encode(stableStringify(value));
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest)).map((byte) =>
-    byte.toString(16).padStart(2, "0")
-  ).join("");
-};
-
-const snapshotLegacy = (
-  state: ShadowState,
-  stepsExecuted: number,
-): LegacyShadowResult => ({
-  mode: "legacy",
-  finalPc: state.pc,
-  regs: [...state.regs],
-  role: state.role,
-  props: { ...state.props },
-  bondTargets: { ...state.bondTargets },
-
-  bondDistances: { ...state.bondDistances },
-  damping: state.damping,
-  peerEnergy: { ...state.peerEnergy },
-  peerPc: { ...state.peerPc },
-  hiveMemory: { ...state.hiveMemory },
-  hiveBalance: state.hiveBalance,
-  signalGrid: { ...state.signalGrid },
-  structureGrid: { ...state.structureGrid },
-  structureIntentOwner: { ...state.structureIntentOwner },
-  structureIntentValue: { ...state.structureIntentValue },
-  structureChargeIntent: { ...state.structureChargeIntent },
-  bondRequests: { ...state.bondRequests },
-  hiveEnergyPool: { ...state.hiveEnergyPool },
-  hormones: [...state.hormones],
-  effects: {
-    ...state.effects,
-    roleWrites: [...state.effects.roleWrites],
-  },
-  energySpent: state.energySpent,
-  executed: [...state.executed],
-  stepsExecuted,
-});
-
-const snapshotReduction = (
-  state: ShadowState,
-  stepsExecuted: number,
-  glyphTape: GlyphTapeToken[],
-): ReductionShadowResult => ({
-  mode: "glyph-reduction",
-  finalPc: state.pc,
-  regs: [...state.regs],
-  role: state.role,
-  props: { ...state.props },
-  bondTargets: { ...state.bondTargets },
-  bondDistances: { ...state.bondDistances },
-  damping: state.damping,
-  peerEnergy: { ...state.peerEnergy },
-  peerPc: { ...state.peerPc },
-  hiveMemory: { ...state.hiveMemory },
-  hiveBalance: state.hiveBalance,
-  signalGrid: { ...state.signalGrid },
-  structureGrid: { ...state.structureGrid },
-  structureIntentOwner: { ...state.structureIntentOwner },
-  structureIntentValue: { ...state.structureIntentValue },
-  structureChargeIntent: { ...state.structureChargeIntent },
-  bondRequests: { ...state.bondRequests },
-  hiveEnergyPool: { ...state.hiveEnergyPool },
-  hormones: [...state.hormones],
-  effects: {
-    ...state.effects,
-    roleWrites: [...state.effects.roleWrites],
-  },
-  energySpent: state.energySpent,
-  executed: [...state.executed],
-  stepsExecuted,
-  glyphTape,
-  prettyTape: glyphTapeToPrettyText(glyphTape),
-});
-
-const readStructureCell = (state: ShadowState, cellIdx: number): number => {
-  const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
-  if (ownerRaw < 0) {
-    return state.structureGrid[cellIdx] ?? 0;
-  }
-  if ((ownerRaw & 0x7FFFFFFF) !== 0) {
-    return state.structureIntentValue[cellIdx] ?? 0;
-  }
-  return state.structureGrid[cellIdx] ?? 0;
-};
-
-const publishBuildIntent = (
-  state: ShadowState,
-  cellIdx: number,
-  ownerAtomIdx: number,
-  buildValue: number,
-): void => {
-  const ownerToken = ownerAtomIdx + 1;
-  const current = state.structureIntentOwner[cellIdx] ?? 0;
-  if (current < 0) return;
-  const winningOwner = current & 0x7FFFFFFF;
-  if (ownerToken < winningOwner) return;
-  state.structureIntentValue[cellIdx] = buildValue;
-  state.structureIntentOwner[cellIdx] = ownerToken;
-};
-
-const flushStructureTick = (state: ShadowState): void => {
-  const cellKeys = new Set<number>([
-    ...Object.keys(state.structureGrid).map(Number),
-    ...Object.keys(state.structureIntentOwner).map(Number),
-    ...Object.keys(state.structureIntentValue).map(Number),
-    ...Object.keys(state.structureChargeIntent).map(Number),
-  ]);
-
-  for (const cellIdx of cellKeys) {
-    let cellVal = state.structureGrid[cellIdx] ?? 0;
-    const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
-    if (ownerRaw !== 0) {
-      cellVal = state.structureIntentValue[cellIdx] ?? 0;
-      state.structureGrid[cellIdx] = cellVal;
-      state.structureIntentOwner[cellIdx] = 0;
-      state.structureIntentValue[cellIdx] = 0;
-    }
-    const chargeRaw = state.structureChargeIntent[cellIdx] ?? 0;
-    if (chargeRaw > 0) {
-      const intentCharge = Math.min(chargeRaw, 255);
-      const baseCharge = (cellVal >> 16) & 0xFF;
-      if (intentCharge > baseCharge) {
-        cellVal = (cellVal & ~0x00FF0000) | (intentCharge << 16);
-      }
-      state.structureGrid[cellIdx] = cellVal;
-      state.structureChargeIntent[cellIdx] = 0;
-    }
-    const type = cellVal & 0xFF;
-    const currentCharge = (cellVal >> 16) & 0xFF;
-    if (type === STR_SOURCE) {
-      cellVal = (cellVal & ~0x00FF0000) | (255 << 16);
-      state.structureGrid[cellIdx] = cellVal;
-    } else if (
-      (type === STR_WIRE || type === STR_NODE ||
-        type === STR_CAPACITOR) &&
-      currentCharge > 0
-    ) {
-      const nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
-      cellVal = (cellVal & ~0x00FF0000) | (nextCharge << 16);
-      state.structureGrid[cellIdx] = cellVal;
-    }
-  }
-};
-
-const applyShadowOpcode = (
-  state: ShadowState,
-  opcode: number,
-  args: number[],
-  energyCost: number,
-  isNative: boolean = false,
-): void => {
-  state.energySpent += energyCost;
-  switch (opcode) {
-    case OP_NOP: {
-      if (opcode === OP_NOP) {
-        state.pc += 1;
-        return;
-      }
-    }
-    /* falls through */
-    case OP_SET: {
-      const reg = args[0] ?? 0;
-      state.regs[reg] = args[1] ?? 0;
-      state.pc += 3;
-      return;
-    }
-    case OP_GET: {
-      if (isNative) {
-        state.pc += 1; // Native 'I' is 1 byte/token
-        return;
-      }
-      const reg = args[0] ?? 0;
-      const prop = args[1] ?? 0;
-      state.regs[reg] = state.props[prop] ?? 0;
-      state.pc += 3;
-      return;
-    }
-    case OP_PUT: {
-      const reg = args[0] ?? 0;
-      const prop = args[1] ?? 0;
-      state.props[prop] = state.regs[reg] ?? 0;
-      state.pc += 3;
-      return;
-    }
-    case OP_ADD: {
-      const dst = args[0] ?? 0;
-      const src = args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
-      state.pc += 3;
-      return;
-    }
-    case OP_SUB: {
-      const dst = args[0] ?? 0;
-      const src = args[1] ?? 0;
-      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
-      state.pc += 3;
-      return;
-    }
-    case OP_JNZ: {
-      const reg = args[0] ?? 0;
-      const target = args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) !== 0) {
-        state.effects.branchTaken = true;
-        state.effects.jumpCount += 1;
-        state.pc = target;
-      } else {
-        state.pc += 3;
-      }
-      return;
-    }
-    case OP_JZ: {
-      const reg = args[0] ?? 0;
-      const target = args[1] ?? 0;
-      if ((state.regs[reg] ?? 0) === 0) {
-        state.effects.branchTaken = true;
-        state.effects.jumpCount += 1;
-        state.pc = target;
-      } else {
-        state.pc += 3;
-      }
-      return;
-    }
-    case OP_JMP: {
-      state.effects.jumpCount += 1;
-      state.pc = args[0] ?? 0;
-      return;
-    }
-    case OP_REPLICATE: {
-      state.effects.replicateCount += 1;
-      state.pc += 1;
-      return;
-    }
-    case OP_SIGNAL: {
-      state.effects.signalCount += 1;
-      state.pc += 1;
-      return;
-    }
-    case OP_SHARE: {
-      const slot = (args[0] ?? 0) & 3;
-      let percentage = args[1] ?? 0;
-      // HORMONE 2: aggression scales the share percentage
-      const aggression = state.hormones[2] ?? 1024;
-      if (aggression > 1024) {
-        percentage += 10;
-      }
-
-      const targetIdx = state.bondTargets[slot] ?? 0;
-      if (targetIdx > 0) {
-        const energy = state.props[PROP_ENERGY] ?? 0;
-        const amount = Math.trunc((energy * percentage) / 100);
-        if (energy >= amount) {
-          state.props[PROP_ENERGY] = energy - amount;
-          state.peerEnergy[targetIdx] = (state.peerEnergy[targetIdx] ?? 0) +
-            amount;
-        }
-      }
-      state.pc += 3;
-      return;
-    }
-    case OP_COLLECTIVE: {
-      const mode = args[0] ?? 0;
-      const p2 = args[1] ?? 0;
-      const p3 = args[2] ?? 0;
-      if (mode === 0) {
-        state.hiveMemory[p2 & 1023] = p3 & 0xFF;
-      } else if (mode === 1) {
-        state.regs[p3 & 7] = state.hiveMemory[p2 & 1023] ?? 0;
-      } else if (mode === 2) {
-        const rx = state.props[PROP_X] ?? 0;
-        const ry = state.props[PROP_Y] ?? 0;
-        const gx = Math.floor(rx / 10);
-        const gy = Math.floor(ry / 10);
-        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
-        }
-      } else if (mode === 3) {
-        const val = p2 & 0xFF;
-        const energy = state.props[PROP_ENERGY] ?? 0;
-        if (energy >= val) {
-          state.hiveBalance += val;
-          state.props[PROP_ENERGY] = energy - val;
-        }
-      } else if (mode === 4) {
-        const reg = p2 & 7;
-        const balance = state.hiveBalance;
-        const amount = balance > 100 ? 100 : balance;
-        if (amount > 0) {
-          state.hiveBalance -= amount;
-          state.props[PROP_ENERGY] = (state.props[PROP_ENERGY] ?? 0) +
-            amount;
-        }
-        state.regs[reg] = amount;
-      } else if (mode === 5) {
-        for (let slot = 0; slot < 4; slot++) {
-          const target = state.bondTargets[slot] ?? 0;
-          if (target > 0) {
-            state.peerPc[target] = state.pc + 4;
-          }
-        }
-      } else if (mode === 6) {
-        for (const peer of state.cellPeers) {
-          if (peer > 0) {
-            state.peerPc[peer] = state.pc + 4;
-          }
-        }
-      } else if (mode === 7) { // PLASMID_EMIT
-        const rx = state.props[PROP_X] ?? 0;
-        const ry = state.props[PROP_Y] ?? 0;
-        const gx = Math.floor(rx / 10);
-        const gy = Math.floor(ry / 10);
-        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
-        }
-      }
-      state.pc += 4;
-      return;
-    }
-    case OP_SECRETE_PLASMID: {
-      const mode = args[0] ?? 0;
-      const role = args[1] ?? 0;
-      if (mode === 0) {
-        state.role = role;
-        state.effects.roleWrites.push(role);
-      }
-      state.pc += 3;
-      return;
-    }
-    case OP_BUILD: {
-      state.effects.buildCount += 1;
-      if (state.role === MX.ROLE_ARCHITECT) {
-        const type = args[0] ?? 0;
-        const buildState = args[1] ?? 0;
-        const rx = state.props[PROP_X] ?? 0;
-        const ry = state.props[PROP_Y] ?? 0;
-        const resonance = state.props[PROP_RESONANCE] ?? 0;
-        const dx = (resonance % 3) - 1;
-        const dy = ((resonance * 7) % 3) - 1;
-        const tx = Math.floor(rx / 10) + dx;
-        const ty = Math.floor(ry / 10) + dy;
-        if (tx >= 0 && tx < GRID_W && ty >= 0 && ty < GRID_H) {
-          const cellIdx = ty * GRID_W + tx;
-          const newVal = pack_structure_intent(type, buildState, false);
-          publishBuildIntent(state, cellIdx, state.atomIndex, newVal);
-        }
-      }
-      state.pc += 3;
-      return;
-    }
-
-    case OP_TENSEGRITY: {
-      const mode = args[0] ?? 0;
-      const p2 = args[1] ?? 0;
-      const p3 = args[2] ?? 0;
-      if (mode === 0) {
-        state.bondDistances[p2] = p3;
-      } else if (mode === 1) {
-        state.damping = p2;
-      }
-      state.pc += 4;
-      return;
-    }
-    case OP_PLUG: {
-      const targetType = args[0] ?? 0;
-      const energyAmt = args[1] ?? 0;
-      const r0 = state.regs[0] ?? 0;
-      const rx = state.props[PROP_X] ?? 0;
-      const ry = state.props[PROP_Y] ?? 0;
-      const gx = Math.floor(rx / 10);
-      const gy = Math.floor(ry / 10);
-      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
-        const cellIdx = gy * GRID_W + gx;
-        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
-        if (r0 > currentChargeIntent) {
-          state.structureChargeIntent[cellIdx] = r0;
-        }
-      }
-      state.pc += 3;
-      return;
-    }
-    case OP_RESOLVE: {
-      const mode = args[0] ?? 0;
-      const value = args[1] ?? 0;
-
-      // Neighborhood Quorum Check (r=1)
-      const rx = state.props[PROP_X] ?? 0;
-      const ry = state.props[PROP_Y] ?? 0;
-      const gx = Math.floor(rx / 10);
-      const gy = Math.floor(ry / 10);
-      let count = 0;
-
-      for (let dy = -1; dy <= 1; dy++) {
-        for (let dx = -1; dx <= 1; dx++) {
-          if (dx === 0 && dy === 0) continue;
-          const nx = gx + dx;
-          const ny = gy + dy;
-          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
-            const cellIdx = ny * GRID_W + nx;
-            if (readStructureCell(state, cellIdx) !== 0) { // STR_VOID is 0
-              count++;
-            }
-          }
-        }
-      }
-
-      if (mode === 0) { // ROLE RESOLUTION
-        if (count >= value) {
-          const desiredRole = state.regs[0] ?? 0;
-          state.role = desiredRole;
-          state.props[PROP_RESONANCE] =
-            (state.props[PROP_RESONANCE] ?? 0) + 20;
-        }
-      } else if (mode === 1) { // ENERGY BANKING
-        const energy = state.props[PROP_ENERGY] ?? 0;
-        if (count >= 3 && energy >= value) {
-          // Deposit to hive energy pool
-          const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
-          const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
-          state.props[PROP_ENERGY] = energy - value;
-          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
-            value;
-          state.props[PROP_RESONANCE] =
-            (state.props[PROP_RESONANCE] ?? 0) + 10;
-        }
-      }
-
-      state.pc += 3;
-      return;
-    }
-    case OP_SENSE: {
-      const reg = args[0] ?? 0;
-      const targetType = args[1] ?? 0;
-      const rx = state.props[PROP_X] ?? 0;
-      const ry = state.props[PROP_Y] ?? 0;
-      const gx = Math.floor(rx / 10);
-      const gy = Math.floor(ry / 10);
-      let found = 0;
-      for (let ny = gy - 1; ny <= gy + 1 && found === 0; ny++) {
-        for (let nx = gx - 1; nx <= gx + 1; nx++) {
-          if (nx === gx && ny === gy) continue;
-          if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
-          const cellVal = readStructureCell(state, ny * GRID_W + nx);
-          if ((cellVal & 0xFF) === targetType) {
-            found = 1;
-            break;
-          }
-        }
-      }
-      state.regs[reg] = found;
-      state.pc += 3;
-      return;
-    }
-    case OP_BIND: {
-      state.effects.bondRequestCount += 1;
-      const rx = state.props[PROP_X] ?? 0;
-      const ry = state.props[PROP_Y] ?? 0;
-      // Shadow-model nearest neighbor logic (simplistic for harness)
-      // In ground truth, this uses the spatial grid.
-      // For harness testing, we assume definition.initialCellPeers contains candidates.
-      let nearestIdx = -1;
-      let minDist = 1000000;
-      for (const peerIdx of state.cellPeers) {
-        if (peerIdx === state.atomIndex) continue;
-        // In the harness, peers are often just indices. We need their positions.
-        // We'll rely on a convention where definition targets are pre-setup.
-        const px = state.peerEnergy[peerIdx] !== undefined ? 100 : 0; // Placeholder pos
-        const py = 100;
-        const d = Math.sqrt((px - rx) ** 2 + (py - ry) ** 2);
-        if (d < 250 && d < minDist) {
-          minDist = d;
-          nearestIdx = peerIdx;
-        }
-      }
-      if (nearestIdx !== -1) {
-        state.bondRequests[state.atomIndex * 3 + 0] = state.atomIndex + 1;
-        state.bondRequests[state.atomIndex * 3 + 1] = nearestIdx + 1;
-        state.bondRequests[state.atomIndex * 3 + 2] = 1; // PENDING
-      }
-      state.pc += 1;
-      return;
-    }
-    case OP_SPORE_DRIVE: {
-      state.effects.sporeDriveCount += 1;
-      const energy = state.props[PROP_ENERGY] ?? 0;
-      if (energy >= 500) {
-        state.props[PROP_ENERGY] = energy - 500;
-        // Pseudo-random jump for shadow model parity
-        // In real WASM it uses LCG. Here we just mark as "moved".
-        state.props[PROP_X] = (state.props[PROP_X] ?? 0) + 7;
-        state.props[PROP_Y] = (state.props[PROP_Y] ?? 0) + 7;
-      }
-      state.pc += 1;
-      return;
-    }
-    case OP_HEBB: {
-      state.effects.entangleCount += 1;
-      const energy = state.props[PROP_ENERGY] ?? 0;
-      // slot is derived from genomePoolSlot which needs logic bytes.
-      // for harness, we'll use a simplified mapping or just slot 0.
-      const slot = 0;
-      if (energy > 500) {
-        const deposit = Math.floor(energy / 10);
-        state.props[PROP_ENERGY] = energy - deposit;
-        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
-          deposit;
-      } else {
-        let draw = 500 - energy;
-        if (draw > 400) draw = 400;
-        const pool = state.hiveEnergyPool[slot] ?? 0;
-        const take = Math.min(pool, draw);
-        state.hiveEnergyPool[slot] = pool - take;
-        state.props[PROP_ENERGY] = energy + take;
-      }
-      state.pc += 1;
-      return;
-    }
-    case OP_SYSCALL: {
-      const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS_SET_ROLE) {
-        const role = state.regs[1] ?? 0;
-        state.role = role;
-        state.effects.roleWrites.push(role);
-      }
-      state.pc += 1;
-      return;
-    }
-    default:
-      throw new Error(
-        `[reduction_harness] unsupported legacy opcode 0x${
-          opcode.toString(16)
-        }`,
-      );
-  }
-};
-
-const runLegacyShadow = (
-  definition: ReductionCaseDefinition,
-): LegacyShadowResult => {
-  const state = createInitialState(definition);
-  let stepsExecuted = 0;
-  while (stepsExecuted < definition.maxSteps) {
-    const decoded = decodeLegacyInstruction(definition.script, state.pc);
-    if (!decoded || decoded.opcode === OP_NOP) break;
-    state.executed.push(
-      `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
-        decoded.args.join(",")
-      }] R0=${state.regs[0]} R1=${state.regs[1]}`,
-    );
-    applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
-    stepsExecuted++;
-  }
-  if (definition.postStructureTick) {
-    state.executed.push("post=structure_tick");
-    flushStructureTick(state);
-  }
-  return snapshotLegacy(state, stepsExecuted);
-};
-
-const runReductionShadow = (
-  definition: ReductionCaseDefinition,
-): ReductionShadowResult => {
-  let glyphTape: GlyphTapeToken[] = [];
-  if (definition.nativeProgram && GENESIS_PROGRAMS[definition.nativeProgram]) {
-    const bytecode = GENESIS_PROGRAMS[definition.nativeProgram];
-    let i = 0;
-    while (i < bytecode.length) {
-      const id = bytecode[i];
-      const spec = glyphSpecById(id);
-      const arity = spec?.arity ?? 0;
-      const pc = i;
-      const args: number[] = [];
-      for (let a = 0; a < arity; a++) {
-        args.push(bytecode[i + 1 + a] ?? 0);
-      }
-      glyphTape.push({
-        glyphId: id,
-        glyphMnemonic: spec?.mnemonic ?? "UNKNOWN",
-        mapped: true,
-        opcode: spec?.legacyOpcode ?? id,
-        opcodeMnemonic: spec?.mnemonic ?? "UNKNOWN",
-        args,
-        length: 1 + arity,
-        pc,
-      });
-      i += 1 + arity;
-    }
-  } else {
-    glyphTape = scriptToGlyphTape(definition.script);
-  }
-  const tokenByPc = new Map<number, GlyphTapeToken>(
-    glyphTape.map((token) => [token.pc, token]),
-  );
-  const state = createInitialState(definition);
-  let stepsExecuted = 0;
-
-  while (stepsExecuted < definition.maxSteps) {
-    const token = tokenByPc.get(state.pc);
-    if (!token || token.opcode === OP_NOP || token.glyphId === 2) {
-      break;
-    }
-    if (token.glyphId === null) {
-      throw new Error(
-        `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,
-      );
-    }
-    const spec = glyphSpecById(token.glyphId);
-    if (!spec) {
-      throw new Error(
-        `[reduction_harness] missing glyph spec for id=${token.glyphId} case=${definition.id}`,
-      );
-    }
-    state.executed.push(
-      `pc=${token.pc} glyph=${spec.mnemonic}[${spec.id}] rule=${spec.reductionRuleRef}`,
-    );
-    applyShadowOpcode(
-      state,
-      token.opcode,
-      token.args,
-      spec.energyCost,
-      !!definition.nativeProgram,
-    );
-    stepsExecuted++;
-  }
-  if (definition.postStructureTick) {
-    state.executed.push("post=structure_tick");
-    flushStructureTick(state);
-  }
-
-  if (definition.id.startsWith("rc22")) {
-    console.log("REDUCTION EXECUTION TRACE:", state.executed);
-    console.log(
-      "REDUCTION TAPE TOKENS:",
-      glyphTape.map((t) =>
-        `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`
-      ),
-    );
-  }
-  return snapshotReduction(state, stepsExecuted, glyphTape);
-};
-
-const loadBaselineAnchor = async (
-  traceId: string,
-): Promise<ReductionBaselineAnchor> => {
-  const { traceJson } = goldenTraceArtifactPaths(traceId);
-  const parsed = JSON.parse(
-    await Deno.readTextFile(traceJson),
-  ) as Record<string, unknown>;
-  return {
-    traceId,
-    scenario: String(parsed.scenario ?? traceId),
-    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
-    tickStart: Number(parsed.tick_start ?? -1),
-    tickEnd: Number(parsed.tick_end ?? -1),
-    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
-    invariantDigest: String(parsed.invariant_digest ?? "missing"),
-  };
-};
-
-const PARITY_IGNORE_KEYS = new Set([
-  "mode",
-  "executed",
-  "stepsExecuted",
-  "energySpent",
-  "glyphTape",
-  "prettyTape",
-]);
-
-function deepCompareState(obj1: any, obj2: any, path: string = ""): string[] {
-  const reasons: string[] = [];
-  if (obj1 === obj2) return reasons;
-  if (!path && obj1 && obj2) {
-    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
-    for (const key of keys) {
-      if (PARITY_IGNORE_KEYS.has(key)) continue;
-      reasons.push(...deepCompareState(obj1[key], obj2[key], key));
-    }
-    return reasons;
-  }
-
-  if (typeof obj1 !== typeof obj2) {
-    reasons.push(`${path} type mismatch: ${typeof obj1} vs ${typeof obj2}`);
-    return reasons;
-  }
-  if (typeof obj1 !== "object" || obj1 === null || obj2 === null) {
-    reasons.push(`${path} mismatch legacy=${obj1} reduction=${obj2}`);
-    return reasons;
-  }
-  if (Array.isArray(obj1) && Array.isArray(obj2)) {
-    if (obj1.length !== obj2.length) {
-      reasons.push(
-        `${path} length mismatch: legacy=${obj1.length} reduction=${obj2.length}`,
-      );
-    }
-    for (let i = 0; i < Math.max(obj1.length, obj2.length); i++) {
-        const p = `${path}[${i}]`;
-        if (obj1[i] !== obj2[i]) reasons.push(`${p} mismatch legacy=${obj1[i]} reduction=${obj2[i]}`);
-    }
-    return reasons;
-  }
-
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const allKeys = new Set([...keys1, ...keys2]);
-  for (const key of allKeys) {
-    const val1 = obj1[key];
-    const val2 = obj2[key];
-    const currentPath = `${path}.${key}`;
-    if (!(key in obj1)) {
-       reasons.push(`${currentPath} missing in legacy`);
-    } else if (!(key in obj2)) {
-       reasons.push(`${currentPath} missing in reduction`);
-    } else if (typeof val1 === "object" && val1 !== null) {
-       reasons.push(...deepCompareState(val1, val2, currentPath));
-    } else if (val1 !== val2) {
-       reasons.push(`${currentPath} mismatch legacy=${val1} reduction=${val2}`);
-    }
-  }
-  return reasons;
-}
-
-const EXPECTATION_MAPPING: Record<string, (legacy: LegacyShadowResult) => any> = {
-  finalPc: l => l.finalPc,
-  replicateCount: l => l.effects.replicateCount,
-  signalCount: l => l.effects.signalCount,
-  buildCount: l => l.effects.buildCount,
-  finalRole: l => l.role,
-  registers: l => l.regs,
-  finalProps: l => l.props,
-  finalHiveMemory: l => l.hiveMemory,
-  finalHiveBalance: l => l.hiveBalance,
-  finalSignalGrid: l => l.signalGrid,
-  finalPeerEnergy: l => l.peerEnergy,
-  finalPeerPc: l => l.peerPc,
-  finalBondDistances: l => l.bondDistances,
-  finalDamping: l => l.damping,
-  finalStructureGrid: l => l.structureGrid,
-  finalStructureIntentOwner: l => l.structureIntentOwner,
-  finalStructureIntentValue: l => l.structureIntentValue,
-  finalStructureChargeIntent: l => l.structureChargeIntent,
-  branchTaken: l => l.effects.branchTaken,
-  finalBondRequests: l => l.bondRequests,
-  finalHiveEnergyPool: l => l.hiveEnergyPool,
-  finalHormones: l => l.hormones,
-};
-
-const compareResults = (
-  definition: ReductionCaseDefinition,
-  legacy: LegacyShadowResult,
-  reduction: ReductionShadowResult,
-): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = deepCompareState(legacy, reduction);
-
-  for (const [key, expectedVal] of Object.entries(definition.expected)) {
-    if (expectedVal === undefined) continue;
-    const mappingFn = EXPECTATION_MAPPING[key];
-    if (!mappingFn) {
-      reasons.push(`Unknown expectation key: ${key}`);
-      continue;
-    }
-    const actualVal = mappingFn(legacy);
-
-    if (typeof expectedVal === "object" && expectedVal !== null && !Array.isArray(expectedVal)) {
-      for (const [k, v] of Object.entries(expectedVal)) {
-        const actualSubVal = actualVal[k as keyof typeof actualVal] ?? 0;
-        if (actualSubVal !== v) {
-          reasons.push(`expected ${key}[${k}]=${v} got=${actualSubVal}`);
-        }
-      }
-    } else if (Array.isArray(expectedVal)) {
-      for (let i = 0; i < expectedVal.length; i++) {
-        if (actualVal[i] !== expectedVal[i]) {
-          reasons.push(`expected ${key} mismatch at index ${i}: got=${actualVal[i]} vs expected=${expectedVal[i]}`);
-        }
-      }
-    } else {
-      if (actualVal !== expectedVal) {
-        reasons.push(`expected ${key}=${expectedVal} got=${actualVal}`);
-      }
-    }
-  }
-
-  return { ok: reasons.length === 0, reasons };
-};
-
-const artifactPathForCase = (caseId: string): string =>
-  `${REDUCTION_DIFF_ROOT}/${caseId}.json`;
-
-const buildReductionHarnessArtifact = async (
-  definition: ReductionCaseDefinition,
-  result: ReductionHarnessResult,
-): Promise<ReductionHarnessArtifact> => ({
-  case_id: result.caseId,
-  baseline_trace_id: result.baseline.traceId,
-  baseline_runtime_mode: result.baseline.runtimeMode,
-  parity_ok: result.parity.ok,
-  parity_reasons: [...result.parity.reasons],
-  legacy_digest: await sha256Hex({
-    finalPc: result.legacy.finalPc,
-    regs: result.legacy.regs,
-    role: result.legacy.role,
-    props: result.legacy.props,
-    bondTargets: result.legacy.bondTargets,
-
-    bondDistances: result.legacy.bondDistances,
-    damping: result.legacy.damping,
-    peerEnergy: result.legacy.peerEnergy,
-    peerPc: result.legacy.peerPc,
-    hiveMemory: result.legacy.hiveMemory,
-    hiveBalance: result.legacy.hiveBalance,
-    signalGrid: result.legacy.signalGrid,
-    structureGrid: result.legacy.structureGrid,
-    structureIntentOwner: result.legacy.structureIntentOwner,
-    structureIntentValue: result.legacy.structureIntentValue,
-    structureChargeIntent: result.legacy.structureChargeIntent,
-    bondRequests: result.legacy.bondRequests,
-    hiveEnergyPool: result.legacy.hiveEnergyPool,
-    effects: result.legacy.effects,
-    energySpent: result.legacy.energySpent,
-  }),
-  reduction_digest: await sha256Hex({
-    finalPc: result.reduction.finalPc,
-
-    regs: result.reduction.regs,
-    role: result.reduction.role,
-    props: result.reduction.props,
-    bondTargets: result.reduction.bondTargets,
-    bondDistances: result.reduction.bondDistances,
-    damping: result.reduction.damping,
-    peerEnergy: result.reduction.peerEnergy,
-    peerPc: result.reduction.peerPc,
-    hiveMemory: result.reduction.hiveMemory,
-    hiveBalance: result.reduction.hiveBalance,
-    signalGrid: result.reduction.signalGrid,
-    structureGrid: result.reduction.structureGrid,
-    structureIntentOwner: result.reduction.structureIntentOwner,
-    structureIntentValue: result.reduction.structureIntentValue,
-    structureChargeIntent: result.reduction.structureChargeIntent,
-    effects: result.reduction.effects,
-    energySpent: result.reduction.energySpent,
-  }),
-  executed_digest_legacy: await sha256Hex(result.legacy.executed),
-  executed_digest_reduction: await sha256Hex(result.reduction.executed),
-  diff: {
-    final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
-    registers_match: equalNumberArray(
-      result.legacy.regs,
-      result.reduction.regs,
-    ),
-    role_match: result.legacy.role === result.reduction.role,
-    props_match: equalHarnessProps(result.legacy.props, result.reduction.props),
-    bond_targets_match: equalHarnessProps(
-      result.legacy.bondTargets,
-      result.reduction.bondTargets,
-    ),
-
-    bond_distances_match: equalHarnessProps(
-      result.legacy.bondDistances,
-      result.reduction.bondDistances,
-    ),
-    damping_match: result.legacy.damping === result.reduction.damping,
-    peer_energy_match: equalHarnessProps(
-      result.legacy.peerEnergy,
-      result.reduction.peerEnergy,
-    ),
-    peer_pc_match: equalHarnessProps(
-      result.legacy.peerPc,
-      result.reduction.peerPc,
-    ),
-    hive_memory_match: equalHarnessProps(
-      result.legacy.hiveMemory,
-      result.reduction.hiveMemory,
-    ),
-    hive_balance_match:
-      result.legacy.hiveBalance === result.reduction.hiveBalance,
-    signal_grid_match: equalHarnessProps(
-      result.legacy.signalGrid,
-      result.reduction.signalGrid,
-    ),
-    structure_grid_match: equalHarnessProps(
-      result.legacy.structureGrid,
-      result.reduction.structureGrid,
-    ),
-    structure_intent_owner_match: equalHarnessProps(
-      result.legacy.structureIntentOwner,
-      result.reduction.structureIntentOwner,
-    ),
-    structure_intent_value_match: equalHarnessProps(
-      result.legacy.structureIntentValue,
-      result.reduction.structureIntentValue,
-    ),
-    structure_charge_intent_match: equalHarnessProps(
-      result.legacy.structureChargeIntent,
-      result.reduction.structureChargeIntent,
-    ),
-    bond_requests_match: equalHarnessProps(
-      result.legacy.bondRequests,
-      result.reduction.bondRequests,
-    ),
-    hive_energy_pool_match: equalHarnessProps(
-      result.legacy.hiveEnergyPool,
-      result.reduction.hiveEnergyPool,
-    ),
-    replicate_count_match: result.legacy.effects.replicateCount ===
-      result.reduction.effects.replicateCount,
-    signal_count_match: result.legacy.effects.signalCount ===
-      result.reduction.effects.signalCount,
-    build_count_match:
-      result.legacy.effects.buildCount === result.reduction.effects.buildCount,
-    branch_taken_match: result.legacy.effects.branchTaken ===
-      result.reduction.effects.branchTaken,
-    role_writes_match: equalNumberArray(
-      result.legacy.effects.roleWrites,
-      result.reduction.effects.roleWrites,
-    ),
-    energy_spent_delta: result.reduction.energySpent -
-      result.legacy.energySpent,
-  },
-  expectation_summary: definition.expected,
-});
-
-export const writeReductionHarnessArtifacts = async (
-  results: ReductionHarnessResult[],
-): Promise<string[]> => {
-  await Deno.mkdir(REDUCTION_DIFF_ROOT, { recursive: true });
-  const written: string[] = [];
-  for (const result of results) {
-    const definition = reductionCaseById(result.caseId);
-    if (!definition) {
-      throw new Error(
-        `[reduction_harness] missing definition for artifact case ${result.caseId}`,
-      );
-    }
-    const artifact = await buildReductionHarnessArtifact(definition, result);
-    const path = artifactPathForCase(result.caseId);
-    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2));
-    written.push(path);
-  }
-  return written;
-};
-
-export const runReductionHarnessCase = async (
-  caseId: string,
-): Promise<ReductionHarnessResult> => {
-  console.log("[runReductionHarnessCase] =>", caseId);
-  const definition = reductionCaseById(caseId);
-  if (!definition) {
-    throw new Error(`[reduction_harness] unknown case id: ${caseId}`);
-  }
-
-  const [baseline, legacy, reduction] = await Promise.all([
-    loadBaselineAnchor(definition.baselineTraceId),
-    Promise.resolve(runLegacyShadow(definition)),
-    Promise.resolve(runReductionShadow(definition)),
-  ]);
-
-  const result = {
-    caseId,
-    baseline,
-    legacy,
-    reduction,
-    parity: compareResults(definition, legacy, reduction),
-  };
-  if (!result.parity.ok && caseId === "rc03_gt03_guardian_stable_branch") {
-    console.log("LEGACY EXECUTION TRACE:", result.legacy.executed);
-  }
-  return result;
-};
-
-export const runReductionHarness = async (
-  caseIds: string[] = REDUCTION_CASES.map((definition) => definition.id),
-): Promise<ReductionHarnessResult[]> => {
-  const results: ReductionHarnessResult[] = [];
-  for (const caseId of caseIds) {
-    results.push(await runReductionHarnessCase(caseId));
-  }
-  return results;
-};
-
-if (import.meta.main) {
-  const caseIds = Deno.args.length > 0
-    ? Deno.args
-    : REDUCTION_CASES.map((caseDef) => caseDef.id);
-  const results = await runReductionHarness(caseIds);
-  await writeReductionHarnessArtifacts(results);
-  for (const result of results) {
-    console.log(
-      `[reduction_harness] case=${result.caseId} baseline=${result.baseline.traceId} parity=${
-        result.parity.ok ? "OK" : "FAIL"
-      } steps=${result.legacy.stepsExecuted} glyphs=${result.reduction.glyphTape.length}`,
-    );
-    if (!result.parity.ok) {
-      console.log(`  reasons=${result.parity.reasons.join(" | ")}`);
-    }
-  }
-}
 
 ```
 
@@ -41391,17 +37269,206 @@ export * from "./p2p_transit_test.ts";
 
 ```typescript
 import { assertEquals } from "https://deno.land/std@0.212.0/assert/mod.ts";
-import { SwarmNexus } from "@generated";
+import { SwarmNexus, P2P_CODEC, MX } from "@generated";
 
 Deno.test({
   name: "P2P Transit: Nexus A routes Atom to Nexus B",
-  ignore: true, // SwarmNexus was recently removed/refactored
   async fn() {
-    // Test disabled:
-    // SwarmNexus only refers to a type, but is being used as a value here.
-    // Likely SwarmNexus logic was removed or refactored.
+    // 1. Setup two Nexus nodes
+    const nexusA = new SwarmNexus({ instanceId: 10, seedNodes: [] });
+    const nexusB = new SwarmNexus({ instanceId: 11, seedNodes: ["ws://127.0.0.1:8090"] });
+
+    // Node A will listen on 8090, Node B will connect to it
+    nexusA.start();
+    nexusB.start();
+
+    // 2. Wait for handshake
+    let connected = false;
+    for (let i = 0; i < 50; i++) {
+      if (nexusA.connectedPeers.size > 0 && nexusB.connectedPeers.size > 0) {
+        connected = true;
+        break;
+      }
+      await new Promise(r => setTimeout(r, 100));
+    }
+    
+    try {
+      assertEquals(connected, true, "Nodes failed to connect");
+
+      // 3. Prepare an atom to transit
+      // We need a mock MX or just use the current one if it's safe
+      const mockAtomIdx = 5;
+      MX.seedAtom(mockAtomIdx, 12345n, 100, 200, 1.0, 50, new Uint8Array(8).fill(7));
+      
+      const egressPacket = P2P_CODEC.packAtom(mockAtomIdx);
+
+      // 4. Setup ingress listener on Node B
+      let receivedAtom: Uint8Array | null = null;
+      nexusB.onAtomTransit = (payload) => {
+        receivedAtom = payload;
+      };
+
+      // 5. Route from A to B
+      nexusA.routeAtom(egressPacket);
+
+      // 6. Wait for arrival
+      for (let i = 0; i < 20; i++) {
+        if (receivedAtom) break;
+        await new Promise(r => setTimeout(r, 100));
+      }
+
+      assertEquals(receivedAtom !== null, true, "Atom failed to arrive at Node B");
+      
+      // 7. Unpack and verify
+      const ingressIdx = P2P_CODEC.unpackAtom(receivedAtom!);
+      assertEquals(MX.getId(ingressIdx), 12345n);
+      assertEquals(MX.getX(ingressIdx), 100);
+      assertEquals(MX.getY(ingressIdx), 200);
+      assertEquals(MX.getResonance(ingressIdx), 50);
+
+    } finally {
+      nexusA.stop();
+      nexusB.stop();
+    }
   }
 });
+
+```
+
+---
+
+## FILE: src/04/BOOTSTRAP_HUB.ts
+
+```typescript
+// OMEGA-64 | BOOTSTRAP_HUB.ts | Mainnet Signaling Server
+// A lightweight public directory for OMEGA-64 nodes to discover each other.
+
+import { parseArgs } from "https://deno.land/std@0.208.0/cli/parse_args.ts";
+
+const args = parseArgs(Deno.args, {
+  string: ["port", "host"],
+  default: {
+    port: "9999",
+    host: "0.0.0.0",
+  },
+});
+
+const PORT = parseInt(args.port, 10);
+const HOST = args.host;
+
+// Registry of active nodes.
+// Key: Node UUID
+// Value: { socket, url }
+type NodeRecord = {
+  socket: WebSocket;
+  url: string;
+};
+const activeNodes = new Map<string, NodeRecord>();
+
+function log(msg: string) {
+  const ts = new Date().toISOString().substring(11, 19);
+  console.log(`[BOOTSTRAP ${ts}] ${msg}`);
+}
+
+function broadcastPeerStats() {
+  log(`Active Swarm Nodes: ${activeNodes.size}`);
+}
+
+if (import.meta.main) {
+  Deno.serve({ port: PORT, hostname: HOST }, (req) => {
+    if (req.headers.get("upgrade") !== "websocket") {
+      // Health check endpoint
+      return new Response(
+        JSON.stringify({
+          status: "OMEGA_BOOTSTRAP_HUB_ONLINE",
+          active_nodes: activeNodes.size,
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    let localNodeId: string | null = null;
+
+    socket.onopen = () => {
+      // Wait for the client to send a REGISTER json message
+    };
+
+    socket.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.op === "REGISTER") {
+          if (!data.nodeId || !data.url) {
+            socket.send(
+              JSON.stringify({ op: "ERROR", message: "Missing nodeId or url" }),
+            );
+            return;
+          }
+
+          localNodeId = data.nodeId;
+
+          // Remove old connection for same ID if exists (reconnection)
+          const old = activeNodes.get(localNodeId!);
+          if (old && old.socket !== socket) {
+            try {
+              old.socket.close();
+            } catch {}
+          }
+
+          activeNodes.set(localNodeId!, { socket, url: data.url });
+          log(`Node Registered: ${localNodeId} at ${data.url}`);
+
+          // Pick up to 5 random peers to send back
+          const peerUrls: string[] = [];
+          const allPeerIds = Array.from(activeNodes.keys()).filter((id) =>
+            id !== localNodeId
+          );
+
+          // Shuffle and take 5
+          allPeerIds.sort(() => Math.random() - 0.5);
+          const selectedIds = allPeerIds.slice(0, 5);
+
+          for (const id of selectedIds) {
+            const record = activeNodes.get(id);
+            if (record) {
+              peerUrls.push(record.url);
+            }
+          }
+
+          socket.send(JSON.stringify({
+            op: "PEER_LIST",
+            peers: peerUrls,
+          }));
+
+          broadcastPeerStats();
+        }
+      } catch (e) {
+        log(`Malformed message received: ${e}`);
+      }
+    };
+
+    socket.onclose = () => {
+      if (localNodeId && activeNodes.get(localNodeId)?.socket === socket) {
+        activeNodes.delete(localNodeId);
+        log(`Node Disconnected: ${localNodeId}`);
+        broadcastPeerStats();
+      }
+    };
+
+    socket.onerror = (e) => {
+      if (localNodeId) {
+        activeNodes.delete(localNodeId);
+      }
+    };
+
+    return response;
+  });
+
+  log(`BOOTSTRAP HUB Initialized on ws://${HOST}:${PORT}`);
+}
 
 ```
 
@@ -45844,6 +41911,22 @@ for (const node of nodes.values()) {
 // 3. Constant Evaluation Pre-Pass Removed (Native Compile-time Math)
 
 // 4. File Emission
+function writeSSoTFile(path: string, content: string) {
+  try {
+    // Try to make writable if exists, so we can overwrite
+    Deno.chmodSync(path, 0o644);
+  } catch (_e) {
+    // File might not exist, ignore
+  }
+  Deno.writeTextFileSync(path, content);
+  try {
+    // Set to Read-Only
+    Deno.chmodSync(path, 0o444);
+  } catch (_e) {
+    console.warn(`[WARN] Failed to set read-only permissions for ${path}`);
+  }
+}
+
 // Wipe the entire generation directory to prevent stale files from lingering
 // if an ontology node changes causality level.
 emptyDirSync(GEN_DIR_TS);
@@ -46044,7 +42127,7 @@ ${(node.regions || []).map((r, i, arr) => {
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
       const ext = node.type === "verifier" ? ".test.ts" : ".ts";
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      writeSSoTFile(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -46160,7 +42243,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     }
   }
 
-  Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
+  writeSSoTFile(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
   
   // Generate AS
   let asOut = ``;
@@ -46235,11 +42318,11 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   
   if (node.type !== "substrate_module") {
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
     } else if (node.type === "module" && node.asCode) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
     } else {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
     }
   }
 }
@@ -46286,7 +42369,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     }
   }).join("\n");
   if (tsModExports) lvlTsOut += tsModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
+  writeSSoTFile(`${dirPathTs}/mod.ts`, lvlTsOut);
 
   // RS Mod file generation
   const levelNodesRs = levelNodes.filter(n => !n.tags.includes("standalone"));
@@ -46295,7 +42378,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
   }).join("\n");
   if (rsModExports) lvlRsOut += rsModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
+  writeSSoTFile(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
   const levelNodesAs = levelNodes.filter(n => !n.tags.includes("standalone") && n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
@@ -46307,7 +42390,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     }
   }).join("\n");
   if (asModExports) lvlAsOut += asModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathAs}/mod.ts`, lvlAsOut);
+  writeSSoTFile(`${dirPathAs}/mod.ts`, lvlAsOut);
   
   mainTsOut += `export * from "./${lvlStr}/mod.ts";\n`;
   mainRsOut += `#[path = "${lvlStr}/mod.rs"]\npub mod L${lvlStr};\n`;
@@ -46328,9 +42411,9 @@ mainTsOut += `export const RUST_WASM_PATH = new URL("src/_rust/release.wasm", im
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
-Deno.writeTextFileSync(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
-Deno.writeTextFileSync(`${GEN_DIR_RS}/mod.rs`, mainRsOut);
-Deno.writeTextFileSync(`${GEN_DIR_AS}/mod.ts`, mainAsOut);
+writeSSoTFile(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
+writeSSoTFile(`${GEN_DIR_RS}/mod.rs`, mainRsOut);
+writeSSoTFile(`${GEN_DIR_AS}/mod.ts`, mainAsOut);
 
 // 5. Emission of tests
 const testsDir = `${GEN_DIR_TS}/tests`;
@@ -46348,7 +42431,7 @@ for (const node of nodes.values()) {
           testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
       }
       testOut += `});\n`;
-      Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
+      writeSSoTFile(`${testsDir}/${node.id}.test.ts`, testOut);
     }
   }
 }

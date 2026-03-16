@@ -10,7 +10,6 @@ export * from "./hex_to_bytes.ts";
 export * from "./bytes_to_hex.ts";
 export * from "./get_glyph_legacy_opcode.ts";
 export * from "./DOLL_FORK_MATRIX.ts";
-export * from "./GENERIC_PROMOTION_DECISION.ts";
 export * from "./EXPORT_CORE.ts";
 export * from "./get_glyph_kind.ts";
 export * from "./CONTINUUM.ts";

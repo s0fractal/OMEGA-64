@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T02:16:13.269Z*
-*Exported Files in Category: 310*
-*Total Exported Files: 828*
-*Runtime Roots: 9*
-*Runtime Closure Files: 409*
-*Non-Runtime Code Files: 109*
+*Generated: 2026-03-16T07:07:57.997Z*
+*Exported Files in Category: 315*
+*Total Exported Files: 840*
+*Runtime Roots: 7*
+*Runtime Closure Files: 194*
+*Non-Runtime Code Files: 331*
 *Runtime-Support Code Files: 2*
-*Experimental Code Files: 107*
-*Manifest SHA256: 4013923fef1beb6e8e9a4ae659f67c9465877f3d0cb10b3cc598d3a63b7c91f8*
-*Export Set SHA256: dce029de7676e4ba3d078ad7473b2226a51ca33b27a40eb11aaea86aa063f5c7*
-*Export Content SHA256: b7d8b25f6afd6f797b69b74ba0dc03a6802309dd5830a26f00d91d681a093d78*
-*Git Commit: f2463afc7b2a*
+*Experimental Code Files: 329*
+*Manifest SHA256: 551fc6375e806383b9cb321bccd256174ab34f96181ef5a91b41e8d51213de54*
+*Export Set SHA256: a301d2da31e627dc8c22620fe09984830a766f80269af67fc4a969dcd89cda57*
+*Export Content SHA256: 264b526ff5b53be9f36d16a3dc7fe1f5ca3024e70e6429ddea416bb0bc96c2a3*
+*Git Commit: 91ac172fa927*
 
 ---
 
@@ -84,6 +84,20 @@ args:
   spatialOverflowRatio: i32
   starvationFloor: i32
   subsidyEnabled: i32
+rsArgs:
+  state: "&mut SigmaState"
+  startIdx: i32
+  endIdx: i32
+  noveltySigned: i32
+  symbiosisSigned: i32
+  baseTax: i32
+  targetEnergy: i32
+  homeostasisBand: i32
+  homeostasisMaxDelta: i32
+  overflowThreshold: i32
+  spatialOverflowRatio: i32
+  starvationFloor: i32
+  subsidyEnabled: i32
 vars:
   - METABOLISM_SCRATCH_OFFSET
   - IDS_OFFSET
@@ -111,201 +125,183 @@ deps:
 ---
 
 ```rust
-unimplemented!()
+    let population = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4)) as *const i32 };
+    let population = unsafe { *population };
+    if population == 0 { return; }
+
+    let overflow_active = spatialOverflowRatio >= overflowThreshold;
+    let mut band_step = homeostasisBand >> 1;
+    if band_step < 1 { band_step = 1; }
+    let bond_polarity = if symbiosisSigned >= 0 { 1 } else { -1 };
+
+    for i in startIdx as usize..endIdx as usize {
+        if i >= crate::MAX_ATOMS { break; }
+        if state.matrix.ids[i] == 0 { continue; }
+
+        let current = state.matrix.energy[i];
+
+        // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
+        if current <= 0 {
+            let resonance = state.matrix.resonance[i];
+            let role_raw = state.matrix.roles[i];
+            let role = role_raw & 0x7F;
+            
+            let ctx13 = state.matrix.context[i][13];
+            let ctx14 = state.matrix.context[i][14];
+            let has_immunity = ctx13 != 0 || ctx14 != 0;
+
+            let cx = state.matrix.xs[i] as i32;
+            let cy = state.matrix.ys[i] as i32;
+            let gx = cx / crate::SPATIAL_CELL_SIZE;
+            let gy = cy / crate::SPATIAL_CELL_SIZE;
+            let cell_idx = (gy * crate::GRID_W + gx) as usize;
+
+            if cell_idx < crate::GRID_CELLS && (resonance > 100 || role == 2 || role == 3 || has_immunity) {
+                let mut struct_val: i32 = 0;
+                if role == 2 {
+                    struct_val = 1 | (150 << 16); // STR_WIRE = 1
+                } else if role == 3 {
+                    struct_val = 1 | (100 << 16);
+                }
+
+                if struct_val != 0 {
+                    state.matrix.structure_grid[cell_idx] = struct_val;
+                }
+
+                // Epigenetic memory spillage
+                state.matrix.memory_grid[cell_idx][4] = (ctx13 >> 24) as u8;
+                state.matrix.memory_grid[cell_idx][5] = (ctx13 >> 16) as u8;
+                state.matrix.memory_grid[cell_idx][6] = (ctx13 >> 8) as u8;
+                state.matrix.memory_grid[cell_idx][7] = ctx13 as u8;
+                
+                let boot_charge = 100u8;
+                state.matrix.memory_grid[cell_idx][0] = boot_charge;
+                state.matrix.memory_grid[cell_idx][1] = 0;
+                state.matrix.memory_grid[cell_idx][2] = 0;
+
+                state.matrix.resonance[i] = 0;
+                state.matrix.roles[i] = 0;
+                state.matrix.context[i][13] = 0;
+                state.matrix.context[i][14] = 0;
+                state.matrix.ids[i] = 0; // Final decommissioning
+            }
+            continue;
+        }
+
+        // --- PHASE 44: ENDOSYMBIOSIS ---
+        let role = state.matrix.roles[i] & 0x7F;
+        if role == 5 { // ROLE_MITOCHONDRIA
+            let host_id = state.matrix.context[i][12] as usize;
+            if host_id < crate::MAX_ATOMS && state.matrix.ids[host_id] != 0 {
+                state.matrix.xs[i] = state.matrix.xs[host_id];
+                state.matrix.ys[i] = state.matrix.ys[host_id];
+
+                if current > starvationFloor {
+                    let transfer = ((current - starvationFloor) * 9) / 10;
+                    if transfer > 0 {
+                        state.matrix.energy[host_id] += transfer;
+                        state.matrix.energy[i] = current - transfer;
+                    }
+                }
+            } else {
+                state.matrix.energy[i] = 0;
+                state.matrix.ids[i] = 0;
+            }
+            continue;
+        }
+
+        let key = genome_key16(state, i as i32);
+        let same_genome_count_ptr = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (key as usize * 4)) as *const i32 };
+        let same_genome_count = unsafe { *same_genome_count_ptr };
+
+        let mut delta: i32 = 0;
+
+        // Pass 1: Evolution Pressure
+        if noveltySigned != 0 {
+            delta += (noveltySigned * (population - (same_genome_count * 2))) / population;
+        }
+
+        if symbiosisSigned != 0 {
+            let mut cross_genome_bonds = 0;
+            for slot in 0..4 {
+                let target = state.matrix.bonds[i * 4 + slot] as usize;
+                if target < crate::MAX_ATOMS && state.matrix.ids[target] != 0 {
+                    if genome_key16(state, target as i32) != key {
+                        cross_genome_bonds += 1;
+                    }
+                }
+            }
+            delta += if cross_genome_bonds > 0 {
+                symbiosisSigned * cross_genome_bonds
+            } else {
+                bond_polarity * -symbiosisSigned
+            };
+        }
+
+        // 2. Homeostasis
+        let mut interim_energy = current + delta;
+        if interim_energy < 0 { interim_energy = 0; }
+
+        if baseTax > 0 && interim_energy > starvationFloor {
+            let tax = if baseTax < interim_energy { baseTax } else { interim_energy };
+            delta -= tax;
+        }
+
+        let deviation = interim_energy - targetEnergy;
+        let abs_deviation = crate::fast_abs(deviation);
+
+        if abs_deviation > homeostasisBand {
+            let gradient = abs_deviation - homeostasisBand;
+            let mut step = 1 + (gradient / band_step);
+            if step > homeostasisMaxDelta { step = homeostasisMaxDelta; }
+
+            if deviation > 0 {
+                delta -= step;
+                if overflow_active { delta -= 1; }
+            } else if subsidyEnabled != 0 {
+                let mut subsidy = step;
+                if overflow_active {
+                    subsidy = (subsidy * 6) / 10;
+                    if subsidy < 1 { subsidy = 1; }
+                }
+                delta += subsidy;
+            }
+        }
+
+        // Starvation Floor Guard
+        if interim_energy <= starvationFloor && delta < 0 {
+            let pass2_delta = delta - (interim_energy - current);
+            if pass2_delta < 0 {
+                delta = interim_energy - current;
+            }
+        }
+
+        // RESONANCE BUFFER Enhancement
+        let resonance = state.matrix.resonance[i];
+        if delta < 0 && resonance > 100 {
+            // Buffer up to 50% of the energy loss if highly resonant
+            let buffer_ratio = if resonance > 255 { 50 } else { (resonance - 100) * 50 / 155 };
+            delta = delta * (100 - buffer_ratio) / 100;
+        }
+
+        if delta != 0 {
+            let next = current + delta;
+            state.matrix.energy[i] = if next < 0 { 0 } else { next };
+            
+            // Track stats
+            unsafe {
+                let stats_ptr = (&mut *state.matrix as *mut SigmaMatrix as *mut u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4) as *mut i32;
+                *stats_ptr += 1;
+                *(stats_ptr.add(1)) += delta;
+            }
+        }
+    }
 ```
 
 ```typescript
 ```
 
 ```assemblyscript
-  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as usize);
-  if (population == 0) return;
-
-  const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  let bandStep = homeostasisBand >> 1;
-  if (bandStep < 1) bandStep = 1;
-  const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
-
-  for (let i = startIdx; i < endIdx; i++) {
-    const pId = IDS_OFFSET + (i << 3) as usize;
-    if (load<i64>(pId) == 0) continue;
-
-    const current = get_energy(i);
-
-    // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
-    // If atom is dead (energy <= 0), fossilize it before skipping metabolism
-    if (current <= 0) {
-      let resonance = atomic.load<i32>(RESONANCE_OFFSET + (i << 2) as usize);
-      let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-      let role = roleRaw & 0x7F; // Strip metazoan flag
-      
-      let ctx13 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize);
-      let ctx14 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize);
-      let hasImmunity = ctx13 != 0 || ctx14 != 0;
-
-      let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
-      let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
-      let gx = cx / SPATIAL_CELL_SIZE;
-      let gy = cy / SPATIAL_CELL_SIZE;
-      let cellIdx = gy * GRID_W + gx;
-
-      // Only attempt fossilization if it has a qualifying property
-      // 2 = ROLE_GUARDIAN, 3 = ROLE_ARCHITECT
-      if (resonance > 100 || role == 2 || role == 3 || hasImmunity) {
-
-        let structVal: i32 = 0;
-        if (role == 2) {
-            structVal = 1 | (150 << 16); // STR_WIRE = 1
-        } else if (role == 3) {
-            structVal = 1 | (100 << 16);
-        }
-
-        if (structVal != 0) {
-            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2) as usize, structVal);
-        }
-
-        // Epigenetic memory spillage
-        let memOff = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-        
-        // Spilled CRISPR Hash (Reg 13) into bytes 4,5,6,7 in Big-Endian for test
-        atomic.store<u8>(memOff + 4, (ctx13 >>> 24) as u8);
-        atomic.store<u8>(memOff + 5, (ctx13 >>> 16) as u8);
-        atomic.store<u8>(memOff + 6, (ctx13 >>> 8) as u8);
-        atomic.store<u8>(memOff + 7, (ctx13) as u8);
-        
-        // Bootstrapping memory charge for Plasmid decay (bytes 0,1,2 in Little-Endian for test)
-        let bootCharge = 100;
-        atomic.store<u8>(memOff + 0, (bootCharge & 0xFF) as u8);
-        atomic.store<u8>(memOff + 1, ((bootCharge >>> 8) & 0xFF) as u8);
-        atomic.store<u8>(memOff + 2, ((bootCharge >>> 16) & 0xFF) as u8);
-
-        // Neutralize resonance and role so IMMUNE.ts phagocyte immediately purges this necrotic corpse
-        atomic.store<i32>(RESONANCE_OFFSET + (i << 2) as usize, 0);
-        atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize, 0);
-      }
-      continue;
-    }
-
-    // --- PHASE 44: ENDOSYMBIOSIS ---
-    let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-    let role = roleRaw & 0x7F; // Strip metazoan flag
-    if (role == 5) { // ROLE_MITOCHONDRIA
-      let hostId = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize);
-      if (hostId > 0 && hostId < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0) {
-        // Enforce Coordinate Lock
-        let hx = atomic.load<i16>(XS_OFFSET + (hostId << 1) as usize);
-        let hy = atomic.load<i16>(YS_OFFSET + (hostId << 1) as usize);
-        atomic.store<i16>(XS_OFFSET + (i << 1) as usize, hx);
-        atomic.store<i16>(YS_OFFSET + (i << 1) as usize, hy);
-
-        // Pay up 90% of excess energy to Host
-        if (current > starvationFloor) {
-          let transfer = ((current - starvationFloor) * 9) / 10;
-          if (transfer > 0) {
-            atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
-            set_energy(i, current - transfer);
-          }
-        }
-      } else {
-        // Host died. Mitochondria perishes.
-        set_energy(i, 0);
-        atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
-      }
-      continue; // Skip entropy tax and standard homeostasis
-    }
-
-    const key = genome_key16(i);
-    const sameGenomeCount = atomic.load<i32>(
-      METABOLISM_SCRATCH_OFFSET + (key << 2) as usize,
-    );
-
-    let delta: i32 = 0;
-
-    // Pass 1: Evolution Pressure (Novelty + Symbiosis)
-    if (noveltySigned != 0) {
-      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) /
-        population;
-      delta += noveltyTerm;
-    }
-
-    if (symbiosisSigned != 0) {
-      const base = i * 4;
-      let crossGenomeBonds = 0;
-      for (let slot = 0; slot < 4; slot++) {
-        const target = atomic.load<i32>(
-          BONDS_OFFSET + ((base + slot) << 2) as usize,
-        );
-        if (target <= 0 || target >= MAX_ATOMS) continue;
-        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) {
-          continue;
-        }
-        if (genome_key16(target) != key) crossGenomeBonds++;
-      }
-      delta += crossGenomeBonds > 0
-        ? symbiosisSigned * crossGenomeBonds
-        : bondPolarity * -symbiosisSigned;
-    }
-
-    // 2. Homeostasis
-    // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    let interimEnergy = current + delta;
-    if (interimEnergy < 0) interimEnergy = 0;
-
-    if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
-      delta -= tax;
-    }
-
-    const deviation = interimEnergy - targetEnergy;
-    const absDeviation = fast_abs(deviation);
-
-    if (absDeviation > homeostasisBand) {
-      const gradient = absDeviation - homeostasisBand;
-      let rawStep = 1 + (gradient / bandStep);
-      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
-
-      if (deviation > 0) {
-        delta -= step;
-        if (overflowActive) delta -= 1;
-      } else if (subsidyEnabled) {
-        let subsidy = step;
-        if (overflowActive) {
-          subsidy = (subsidy * 6) / 10;
-          if (subsidy < 1) subsidy = 1;
-        }
-        delta += subsidy;
-      }
-    }
-
-    // Starvation Floor Guard (using interim energy for sequential match)
-    if (interimEnergy <= starvationFloor && delta < 0) {
-      // If we are at or below floor after evolution pressure,
-      // block any further downward delta from homeostasis/tax.
-      // But we should subtract what was already added in Pass 1 if it was negative?
-      // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
-      // where current is energy after Pass 1.
-      // This means Pass 2 delta becomes 0.
-
-      // To match exactly:
-      const pass2Delta = delta - (interimEnergy - current);
-      if (pass2Delta < 0) {
-        delta = interimEnergy - current;
-      }
-    }
-
-    if (delta != 0) {
-      let next = current + delta;
-      if (next < 0) next = 0;
-      if (next != current) {
-        set_energy(i, next);
-        // Track stats for telemetry
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4 as usize, 1);
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8 as usize, delta);
-      }
-    }
-  }
 ```
 
 ```
@@ -11221,7 +11217,7 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer, SIGMA_FFI } from "../mod.ts";
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
@@ -12871,6 +12867,10 @@ const dispatchRangePhase = async (
   await Promise.all(workerPromises);
 };
 const startWorkers = async (count: number): Promise<void> => {
+  if (RUNTIME_POLICY.pulse.engine === "ffi") {
+    Ld("[PULSE] FFI mode active. Skipping worker initialization.");
+    return;
+  }
   workerFaultStats.length = 0;
   workerPromises = [];
   for (let i = 0; i < count; i++) {
@@ -13241,7 +13241,7 @@ export const PULSE = {
       );
     }
 
-    if (WASM_BOOT_PRECHECK_ENABLED) {
+    if (WASM_BOOT_PRECHECK_ENABLED && RUNTIME_POLICY.pulse.engine !== "ffi") {
       const preflight = await wasmPreflight();
       wasmBootPrecheckCompleted = true;
       wasmBootArtifactBytes = preflight.bytes;
@@ -13840,13 +13840,16 @@ export const PULSE = {
       );
     }
     isTicking = true;
-    if (workers.length === 0) {
+    if (RUNTIME_POLICY.pulse.engine === "ffi" && !SIGMA_FFI.loaded()) {
+      SIGMA_FFI.init();
+    }
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       await PULSE.initWorkers();
     }
     if (wasmBootDegraded) {
       return;
     }
-    if (workers.length === 0) {
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       throw new Error(
         `[PULSE] No workers ready for tick. reason=${
           wasmBootReason || "WORKERS_UNAVAILABLE"
@@ -13915,15 +13918,20 @@ export const PULSE = {
 
       const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) /
         1000.0;
-      // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
-      const coherencePulseId = nextPulseId();
-      const coherenceRes = await postAndWait<{ coherence: number }>(
-        0,
-        workers[0],
-        { type: "POLL_COHERENCE", pulseId: coherencePulseId },
-        "COHERENCE_VAL",
-      );
-      const coherence = coherenceRes.coherence ?? 0;
+      let coherence = 0;
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        coherence = Atomics.load(MX.neuralCoherence, 0);
+      } else if (workers.length > 0) {
+        // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
+        const coherencePulseId = nextPulseId();
+        const coherenceRes = await postAndWait<{ coherence: number }>(
+          0,
+          workers[0],
+          { type: "POLL_COHERENCE", pulseId: coherencePulseId },
+          "COHERENCE_VAL",
+        );
+        coherence = coherenceRes.coherence ?? 0;
+      }
       oracleDelegate?.setNeuralCoherence(coherence);
 
       dumpA11("Before Hormones");
@@ -13934,11 +13942,13 @@ export const PULSE = {
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
-      workers[0].postMessage({
-        type: "SET_COHERENCE",
-        coherence: guardianChannel,
-        pulseId: nextPulseId(),
-      });
+      if (workers.length > 0) {
+        workers[0].postMessage({
+          type: "SET_COHERENCE",
+          coherence: guardianChannel,
+          pulseId: nextPulseId(),
+        });
+      }
 
       dumpA11("Before Bonds");
 
@@ -13992,100 +14002,107 @@ export const PULSE = {
         }
       }
 
-      // 1. Resolve Sequential Logic (WASM)
-      const bondPulseId = nextPulseId();
-      const bondRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "RESOLVE_BONDS",
-          pulseId: bondPulseId,
-          startIdx: 0,
-          endIdx: MAX_ATOMS,
-        },
-        "RESOLVE_BONDS_DONE",
-      );
-      if (bondRes.count > 0) {
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_pair_resolution",
-          count: bondRes.count,
-        });
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_request_clear",
-          count: bondRes.count,
-        });
-      }
-
-      dumpA11("After Bonds");
-
-      // 2. Parallel Physics & WASM Kernel
-      // 2a. Rebuild Spatial Lattice (WASM)
-      const hashPulseId = nextPulseId();
-      const hashRes = await postAndWait<
-        { overflowCount?: number; maxCellCount?: number }
-      >(
-        0,
-        workers[0],
-        {
-          type: "BUILD_SPATIAL_HASH",
-          pulseId: hashPulseId,
-        },
-        "HASH_DONE",
-      );
-      const overflowCount = Number.isFinite(hashRes.overflowCount)
-        ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
-        : 0;
-      const maxCellCount = Number.isFinite(hashRes.maxCellCount)
-        ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
-        : 0;
-      const activeCount = Math.max(1, activeIdx.length);
-      spatialHashState = {
-        tick: currentTick,
-        overflowCount,
-        maxCellCount,
-        overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
-      };
-      if (overflowCount > 0 && currentTick % 20 === 0) {
-        Lw(
-          `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        // --- PHASE 1-4: NATIVE CORE EXECUTION ---
+        SIGMA_FFI.tick(currentTick);
+        dumpA11("After FFI Native Tick");
+      } else {
+        // --- PHASE 1-4: DISTRIBUTED WORKER EXECUTION ---
+        // 1. Resolve Sequential Logic (WASM)
+        const bondPulseId = nextPulseId();
+        const bondRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "RESOLVE_BONDS",
+            pulseId: bondPulseId,
+            startIdx: 0,
+            endIdx: MAX_ATOMS,
+          },
+          "RESOLVE_BONDS_DONE",
         );
-      }
+        if (bondRes.count > 0) {
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_pair_resolution",
+            count: bondRes.count,
+          });
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_request_clear",
+            count: bondRes.count,
+          });
+        }
 
-      // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
-      {
-        readXsView.set(xsView);
-        readYsView.set(ysView);
-        readEnergiesView.set(energiesView);
-        readResonancesView.set(resonancesView);
-        if (currentTick <= 104) {
-          Li(
-            `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
-              xsView[11]
-            }, readXsView[11]=${readXsView[11]}`,
+        dumpA11("After Bonds");
+
+        // 2. Parallel Physics & WASM Kernel
+        // 2a. Rebuild Spatial Lattice (WASM)
+        const hashPulseId = nextPulseId();
+        const hashRes = await postAndWait<
+          { overflowCount?: number; maxCellCount?: number }
+        >(
+          0,
+          workers[0],
+          {
+            type: "BUILD_SPATIAL_HASH",
+            pulseId: hashPulseId,
+          },
+          "HASH_DONE",
+        );
+        const overflowCount = Number.isFinite(hashRes.overflowCount)
+          ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
+          : 0;
+        const maxCellCount = Number.isFinite(hashRes.maxCellCount)
+          ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
+          : 0;
+        const activeCount = Math.max(1, activeIdx.length);
+        spatialHashState = {
+          tick: currentTick,
+          overflowCount,
+          maxCellCount,
+          overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
+        };
+        if (overflowCount > 0 && currentTick % 20 === 0) {
+          Lw(
+            `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
           );
         }
+
+        // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
+        {
+          readXsView.set(xsView);
+          readYsView.set(ysView);
+          readEnergiesView.set(energiesView);
+          readResonancesView.set(resonancesView);
+          if (currentTick <= 104) {
+            Li(
+              `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
+                xsView[11]
+              }, readXsView[11]=${readXsView[11]}`,
+            );
+          }
+        }
+        // 2b. Execute Physics (WASM)
+        // Transition to WASM_TICKING (1) to unblock workers
+        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+        Atomics.notify(syncState, 0);
+        await dispatchRangePhase("PULSE", "DONE");
+
+        // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
+        await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
+        dumpA11("After Reduce Deltas");
+
+        // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
+        // worker.ts message handler for 'TICK_ENVIRONMENT'.
+        const environmentPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_ENVIRONMENT",
+          tick: currentTick,
+          pulseId: environmentPulseId,
+        }, "ENVIRONMENT_DONE");
+        dumpA11("After Environment");
       }
-      // 2b. Execute Physics (WASM)
-      // Transition to WASM_TICKING (1) to unblock workers
-      Atomics.store(syncState, 0, SYNC.WASM_TICKING);
-      Atomics.notify(syncState, 0);
-      await dispatchRangePhase("PULSE", "DONE");
-
-      // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
-      await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
-      dumpA11("After Reduce Deltas");
-
-      // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
-      // worker.ts message handler for 'TICK_ENVIRONMENT'.
-      const environmentPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_ENVIRONMENT",
-        tick: currentTick,
-        pulseId: environmentPulseId,
-      }, "ENVIRONMENT_DONE");
-      dumpA11("After Environment");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
@@ -14170,12 +14187,14 @@ export const PULSE = {
       dumpA11("End of TICK phase 1");
 
       // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
-      const transportPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_GLYPH_TRANSPORT",
-        tick: currentTick,
-        pulseId: transportPulseId,
-      }, "GLYPH_TRANSPORT_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const transportPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_GLYPH_TRANSPORT",
+          tick: currentTick,
+          pulseId: transportPulseId,
+        }, "GLYPH_TRANSPORT_DONE");
+      }
 
       // 3.5 Sort Spawn Requests Deterministically
       const writeHead = Atomics.load(spawnHeadView, 0);
@@ -14215,121 +14234,129 @@ export const PULSE = {
       }
 
       // 4. Drain Spawn Queue (WASM)
-      const spawnPulseId = nextPulseId();
-      const spawnRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "DRAIN_SPAWN",
-          tick: currentTick,
-          pulseId: spawnPulseId,
-        },
-        "DRAIN_SPAWN_DONE",
-      );
-      if (spawnRes.count > 0) {
-        Ld(
-          `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const spawnPulseId = nextPulseId();
+        const spawnRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "DRAIN_SPAWN",
+            tick: currentTick,
+            pulseId: spawnPulseId,
+          },
+          "DRAIN_SPAWN_DONE",
         );
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "spawn_seed_atom",
-          count: spawnRes.count,
-        });
+        if (spawnRes.count > 0) {
+          Ld(
+            `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+          );
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "spawn_seed_atom",
+            count: spawnRes.count,
+          });
+        }
+      } else {
+        // In FFI mode, spawn results are already drained in the native tick
+        // but we might still want to record telemetry if we can track the count.
+        // For now, we skip the JS side of this.
+      }
 
-        // --- STAGE 22: ADAPTIVE INCEPTION ---
-        // Find newly spawned atoms (those with IDs but empty instructions/role)
-        // and inject evolved programs.
-        for (let idx = 0; idx < MAX_ATOMS; idx++) {
-          if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
-            // This is likely a fresh spawn. Incept it.
-            const prog = genesisInceptor.selectProgram();
-            const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+      // --- STAGE 22: ADAPTIVE INCEPTION ---
+      // Find newly spawned atoms (those with IDs but empty instructions/role)
+      // and inject evolved programs.
+      for (let idx = 0; idx < MAX_ATOMS; idx++) {
+        if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+          // This is likely a fresh spawn. Incept it.
+          const prog = genesisInceptor.selectProgram();
+          const lineageHash = prog.metadata?.ancestorHash ?? 0n;
 
-            MX.setInstructions(idx, new Uint8Array(prog.bytecode));
-            MX.setLineage(idx, lineageHash);
+          MX.setInstructions(idx, new Uint8Array(prog.bytecode));
+          MX.setLineage(idx, lineageHash);
 
-            // Mark its role if the program is for a specific one (e.g. role hint)
-            // For now, we'll let the role be assigned by the first op if needed,
-            // or just set a default.
-          }
+          // Mark its role if the program is for a specific one (e.g. role hint)
+          // For now, we'll let the role be assigned by the first op if needed,
+          // or just set a default.
         }
       }
 
       // 5. Metabolic and Homeostasis Closure (WASM)
-      // Pass 1: Accumulate genome frequencies (Scratch Space)
-      const clearStatsPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "METABOLISM_ACCUMULATE",
-        startIdx: 0,
-        endIdx: MAX_ATOMS,
-        clear: true,
-        pulseId: clearStatsPulseId,
-      }, "METABOLISM_ACCUMULATE_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        // Pass 1: Accumulate genome frequencies (Scratch Space)
+        const clearStatsPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "METABOLISM_ACCUMULATE",
+          startIdx: 0,
+          endIdx: MAX_ATOMS,
+          clear: true,
+          pulseId: clearStatsPulseId,
+        }, "METABOLISM_ACCUMULATE_DONE");
 
-      // Pass 2: Apply Metabolism (Parallel)
-      const pressureState = snapshotEvolutionPressureState();
+        // Pass 2: Apply Metabolism (Parallel)
+        const pressureState = snapshotEvolutionPressureState();
 
-      applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(
-        currentTick,
-        activeIdx,
-        spatialHashState.overflowRatio,
-      );
-
-      // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
-      const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
-      const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
-      const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
-
-      if (currentTick % 20 === 0 && syntropy > 0.1) {
-        Li(
-          `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
-            (taxDiscount * 100).toFixed(1)
-          }% (Syntropy: ${syntropy.toFixed(3)})`,
+        applyEvolutionPressureTerms(currentTick, activeIdx);
+        applyEnergyHomeostasisTerms(
+          currentTick,
+          activeIdx,
+          spatialHashState.overflowRatio,
         );
+
+        // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
+        const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+        const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
+        const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
+
+        if (currentTick % 20 === 0 && syntropy > 0.1) {
+          Li(
+            `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
+              (taxDiscount * 100).toFixed(1)
+            }% (Syntropy: ${syntropy.toFixed(3)})`,
+          );
+        }
+
+        const targetEnergy = clampHomeostasisTargetEnergy(
+          homeostasisTargetEnergyRuntime,
+        );
+
+        const metabolismPromises: Promise<any>[] = [];
+        const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+        for (let i = 0; i < runtimeWorkerCount; i++) {
+          const startIdx = i * chunkSize;
+          const endIdx = i === runtimeWorkerCount - 1
+            ? MAX_ATOMS
+            : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+          metabolismPromises.push(postAndWait(
+            i,
+            workers[i],
+            {
+              type: "METABOLISM_APPLY",
+              pulseId: nextPulseId(),
+              startIdx,
+              endIdx,
+              noveltySigned: pressureState.noveltySigned,
+              symbiosisSigned: pressureState.symbiosisSigned,
+              baseTax,
+              targetEnergy,
+              homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+              homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+              overflowThreshold:
+                homeostasisOverflowThresholdLedgerRuntime.currentValue,
+              spatialOverflowRatio: spatialHashState.overflowRatio,
+              starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+              subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+            },
+            "METABOLISM_APPLY_DONE",
+          ));
+        }
+        await Promise.all(metabolismPromises);
       }
-
-      const targetEnergy = clampHomeostasisTargetEnergy(
-        homeostasisTargetEnergyRuntime,
-      );
-
-      const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
-      for (let i = 0; i < runtimeWorkerCount; i++) {
-        const startIdx = i * chunkSize;
-        const endIdx = i === runtimeWorkerCount - 1
-          ? MAX_ATOMS
-          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-
-        metabolismPromises.push(postAndWait(
-          i,
-          workers[i],
-          {
-            type: "METABOLISM_APPLY",
-            pulseId: nextPulseId(),
-            startIdx,
-            endIdx,
-            noveltySigned: pressureState.noveltySigned,
-            symbiosisSigned: pressureState.symbiosisSigned,
-            baseTax,
-            targetEnergy,
-            homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
-            homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-            overflowThreshold:
-              homeostasisOverflowThresholdLedgerRuntime.currentValue,
-            spatialOverflowRatio: spatialHashState.overflowRatio,
-            starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
-            subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
-          },
-          "METABOLISM_APPLY_DONE",
-        ));
-      }
-      await Promise.all(metabolismPromises);
 
       // 6. Sequential Maintenance (Sequential JS)
 
       // --- STAGE 26: Immunological Phagocyte ---
-      {
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
         const entropyPressure = MX.get_hormone(0); // H0: entropy_pressure
         const workerResponse = await postAndWait(
           0, // use primary worker
@@ -15929,1302 +15956,6 @@ export const evaluateReplicationExecution = (
 
 ---
 
-## FILE: src/ontology/core/pulse_worker.md
-
-```markdown
----
-id: PULSE_WORKER
-type: module
-description: Implementation of PULSE_WORKER
-min_level: 13
-entry: true
-vars:
-  - BONDS_OFFSET
-  - BOND_REQUESTS_OFFSET
-  - CONTEXT_OFFSET
-  - ENERGY_OFFSET
-  - EVOLUTION_OFFSET
-  - GRID_CELLS
-  - GRID_H
-  - GRID_W
-  - IDS_OFFSET
-  - INSTRUCTIONS_OFFSET
-  - LEDGER_DATA_OFFSET
-  - LEDGER_HEAD_OFFSET
-  - LINEAGE_OFFSET
-  - LOGIC_OFFSET
-  - MAILBOX_OFFSET
-  - MAX_ATOMS
-  - MAX_LEDGER_EVENTS
-  - PHASE_OFFSET
-  - RESONANCE_OFFSET
-  - ROLES_OFFSET
-  - SCALE
-  - SPATIAL_CELL_SIZE
-  - SPATIAL_GRID_OFFSET
-  - SPAWN_REQUESTS_OFFSET
-  - STRUCTURE_BUILD_OWNER_OFFSET
-  - STRUCTURE_BUILD_VALUE_OFFSET
-  - STRUCTURE_GRID_OFFSET
-  - SYNC_STATE_OFFSET
-  - SYS_ATTRACT
-  - SYS_BET
-  - SYS_BIND
-  - SYS_EAT
-  - SYS_EMIT
-  - SYS_FOLD
-  - SYS_MOVE
-  - SYS_MSG
-  - SYS_MUTATE
-  - SYS_READ_INBOX
-  - SYS_READ_MEM
-  - SYS_REPLICATE
-  - SYS_SCAN
-  - SYS_SENSE_PHASE
-  - SYS_SET_ROLE
-  - SYS_SPAWN
-  - SYS_SPORE_DRIVE
-  - SYS_TRANSFER
-  - SYS_WRITE_MEM
-  - SYS_YIELD
-  - TICK_COUNTER_OFFSET
-  - WASM_MEMORY_BYTES
-  - WORLD_MAX_X
-  - WORLD_MAX_Y
-  - XS_OFFSET
-  - YS_OFFSET
-extra_symbols:
-  - PULSE_WORKER
----
-
-### TypeScript
-
-```typescript
-
-// OMEGA-64 | PULSE_WORKER.ts | Era 68: Absolute Coherence
-const resolveWithPhase = (
-  baseValue: number,
-  modifiers: Array<{ phase: number; weight: number }>,
-): number => {
-  let real = baseValue;
-  let imag = 0;
-
-  for (const mod of modifiers) {
-    const rad = (mod.phase * Math.PI) / 128; // 0-255 → radians
-    real += mod.weight * Math.cos(rad);
-    imag += mod.weight * Math.sin(rad);
-  }
-
-  // Return "intensity" = |z|
-  return Math.floor(Math.sqrt(real * real + imag * imag));
-};
-
-const _noop = (..._args: any[]) => {};
-let wasmInstance: WebAssembly.Instance | null = null;
-let execute_atom_fn: ((idx: number) => void) | null = null;
-let tick_environment_fn: ((tick: number) => void) | null = null;
-let tick_matrix_fn: (() => void) | null = null;
-let tick_structure_grid_fn: (() => void) | null = null;
-let build_spatial_hash_fn: (() => void) | null = null;
-let get_spatial_hash_overflow_count_fn: (() => number) | null = null;
-let get_spatial_hash_max_cell_count_fn: (() => number) | null = null;
-let reduce_atom_deltas_fn: ((startIdx: number, endIdx: number) => void) | null =
-  null;
-let get_neural_coherence_fn: (() => number) | null = null;
-let set_neural_coherence_fn: ((val: number) => void) | null = null;
-let tick_glyph_transport_fn: ((tick: number) => void) | null = null;
-let tick_membrane_physics_fn: (() => void) | null = null;
-let resolve_bond_requests_fn: ((start: number, end: number) => number) | null =
-  null;
-let drain_spawn_requests_fn: ((tick: number) => number) | null = null;
-let run_phagocyte_pass_fn: ((entropy: number) => number) | null = null;
-let clear_metabolism_stats_fn: (() => void) | null = null;
-let accumulate_metabolism_stats_fn:
-  | ((start: number, end: number) => void)
-  | null = null;
-let apply_metabolism_kernel_fn:
-  | ((
-    start: number,
-    end: number,
-    noveltySigned: number,
-    symbiosisSigned: number,
-    baseTax: number,
-    targetEnergy: number,
-    homeostasisBand: number,
-    homeostasisMaxDelta: number,
-    overflowThreshold: number,
-    spatialOverflowRatio: number,
-    starvationFloor: number,
-    subsidyEnabled: number,
-  ) => void)
-  | null = null;
-let sharedBuffer: SharedArrayBuffer | null = null;
-let tickCounterView: Int32Array | null = null;
-let syncStateView: Int32Array | null = null;
-
-let idsView: BigUint64Array | null = null;
-let xsView: Int16Array | null = null;
-let ysView: Int16Array | null = null;
-let contextI32View: Int32Array | null = null;
-let contextU8View: Uint8Array | null = null;
-let structureGridView: Int32Array | null = null;
-let spatialGridView: Int32Array | null = null;
-let buildOwnerView: Int32Array | null = null;
-let buildValueView: Int32Array | null = null;
-let spawnHeadView: Int32Array | null = null;
-let spawnDataView: DataView | null = null;
-let lineageView: BigUint64Array | null = null;
-let logicView: BigUint64Array | null = null;
-let bondRequestsView: Int32Array | null = null;
-let energiesView: Int32Array | null = null;
-let phaseView: Int32Array | null = null;
-let evolutionReservedView: Int32Array | null = null;
-
-let currentPulseId = 0;
-let currentTheta = 0;
-let resonancesView: Int32Array | null = null;
-let instructionsView: Uint8Array | null = null;
-let mailboxView: Int32Array | null = null;
-let ledgerHeadView: Int32Array | null = null;
-let ledgerDataView: Int32Array | null = null;
-let marketState: Int32Array | null = null;
-let betPoolInt: Int32Array | null = null;
-
-function handle_syscall(atomIdx: number) {
-  if (!contextU8View || !contextI32View || !energiesView) return;
-  const flagIdx = (atomIdx << 6) + 33;
-  if (contextU8View[flagIdx] === 0) return;
-  contextU8View[flagIdx] = 0; // Clear pending syscall flag
-
-  const regBase = atomIdx << 4;
-  const sysId = contextI32View[regBase]; // R0
-  const r1 = contextI32View[regBase + 1];
-  const r2 = contextI32View[regBase + 2];
-  const r3 = contextI32View[regBase + 3];
-
-  _noop(
-    `   [DEBUG-SYSCALL] Atom ${atomIdx} invoked sysId=${sysId} with r1=${r1}, r2=${r2}, r3=${r3}`,
-  );
-
-  let gasCost = 0;
-  switch (sysId) {
-    case SYS_YIELD:
-      gasCost = 1;
-      break;
-    case SYS_READ_MEM:
-      gasCost = 5;
-      break;
-    case SYS_WRITE_MEM:
-      gasCost = 20;
-      break;
-    case SYS_SPAWN:
-      gasCost = 100;
-      break;
-    case SYS_BIND:
-      gasCost = 10;
-      break;
-    case SYS_SET_ROLE:
-      gasCost = 5;
-      break;
-    case SYS_MUTATE:
-      gasCost = 50;
-      break;
-    case SYS_MSG:
-      gasCost = 20;
-      break;
-    case SYS_READ_INBOX:
-      gasCost = 2;
-      break;
-    case SYS_TRANSFER:
-      gasCost = 10;
-      break;
-    case SYS_REPLICATE:
-      gasCost = 100;
-      break;
-    case SYS_EMIT:
-      gasCost = 5;
-      break;
-    case SYS_SCAN:
-      gasCost = 20;
-      break;
-    case SYS_MOVE:
-      gasCost = 10;
-      break;
-    case SYS_EAT:
-      gasCost = 30;
-      break;
-    case SYS_BET:
-      gasCost = 10;
-      break;
-    case SYS_ATTRACT:
-    case SYS_FOLD:
-      gasCost = 10;
-      break;
-    case SYS_SPORE_DRIVE:
-      gasCost = 500;
-      break;
-    case SYS_SENSE_PHASE:
-      gasCost = 5;
-      break;
-    default:
-      gasCost = 1;
-      break;
-  }
-
-  const currentEnergy = Atomics.load(energiesView, atomIdx);
-  if (currentEnergy < gasCost * 1000) {
-    // Out of Gas for this syscall
-    _noop(
-      `   [SYSCALL-OOG] Atom ${atomIdx} Out of Gas for sysId=${sysId} (Needs ${gasCost}, Has ${
-        currentEnergy / 1000
-      })`,
-    );
-    return;
-  }
-
-  // Burn the gas
-  Atomics.sub(energiesView, atomIdx, gasCost * 1000); // 1000 is energy SCALE
-
-  switch (sysId) {
-    case SYS_YIELD:
-      break;
-    case SYS_READ_MEM: {
-      const gx = r1, gy = r2;
-      let val = 0;
-      if (
-        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && structureGridView
-      ) {
-        val = structureGridView[gy * GRID_W + gx] & 0xFF;
-      }
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} requested READ_MEM at (${gx}, ${gy}) -> ${val}`,
-      );
-      contextI32View[regBase] = val; // Return value in R0
-      break;
-    }
-    case SYS_WRITE_MEM: {
-      const gx = r1, gy = r2, newVal = r3;
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} requested WRITE_MEM at (${gx}, ${gy}) with ${newVal}`,
-      );
-      if (
-        gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H && buildOwnerView &&
-        buildValueView
-      ) {
-        const cellIdx = gy * GRID_W + gx;
-        Atomics.store(buildOwnerView, cellIdx, atomIdx);
-        Atomics.store(buildValueView, cellIdx, newVal);
-      }
-      break;
-    }
-    case SYS_SPAWN: {
-      const childGx = r1, childGy = r2;
-      if (
-        childGx >= 0 && childGx < GRID_W && childGy >= 0 && childGy < GRID_H &&
-        spawnHeadView && spawnDataView
-      ) {
-        const slot = Atomics.add(spawnHeadView, 0, 1) % 1024;
-        const slotOff = slot * 24;
-        const parentGenome = logicView ? logicView[atomIdx] : 0n;
-        const parentLineage = lineageView ? lineageView[atomIdx] : 0n;
-        // Write spawn request struct
-        spawnDataView.setBigUint64(slotOff, parentGenome, true);
-        spawnDataView.setInt16(slotOff + 8, childGx, true);
-        spawnDataView.setInt16(slotOff + 10, childGy, true);
-        spawnDataView.setInt32(slotOff + 12, 100, true); // give 100 energy to start
-        spawnDataView.setBigUint64(slotOff + 16, parentLineage, true);
-      }
-      break;
-    }
-    case SYS_BIND: {
-      const targetIdx = r1;
-      if (targetIdx > 0 && targetIdx < MAX_ATOMS && bondRequestsView) {
-        const off = atomIdx * 3;
-        Atomics.store(bondRequestsView, off, atomIdx);
-        Atomics.store(bondRequestsView, off + 1, targetIdx);
-        Atomics.store(bondRequestsView, off + 2, 1);
-      }
-      break;
-    }
-    case SYS_SET_ROLE: {
-      const rolesView = new Uint8Array(
-        sharedBuffer!,
-        ROLES_OFFSET,
-        MAX_ATOMS,
-      );
-      const newRole = r1;
-      // Host validates the role
-      if (newRole >= 0 && newRole <= 8) {
-        Atomics.store(rolesView, atomIdx, newRole);
-      }
-      break;
-    }
-    case SYS_MUTATE: {
-      const targetIdx = r1;
-      const offset = r2;
-      const newValue = r3;
-      // Host validates target and instructions boundary (0-63 bytes)
-      if (
-        targetIdx >= 0 && targetIdx < MAX_ATOMS && offset >= 0 && offset < 64 &&
-        instructionsView
-      ) {
-        const globalOffset = targetIdx * 64 + offset;
-        Atomics.store(instructionsView, globalOffset, newValue & 0xFF);
-        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0); // Evict Entropy Cache
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} MUTATED Atom ${targetIdx} instruction at offset ${offset} to 0x${
-            (newValue & 0xFF).toString(16)
-          }`,
-        );
-      } else {
-        _noop(
-          `   [SYSCALL-ERROR] Atom ${atomIdx} invalid MUTATE on ${targetIdx} at ${offset}`,
-        );
-      }
-      break;
-    }
-    case SYS_MSG: {
-      const targetIdx = r1;
-      const msgType = r2;
-      const payload = r3;
-      if (targetIdx >= 0 && targetIdx < MAX_ATOMS && mailboxView) {
-        // Simple 1-deep mailbox per atom
-        Atomics.store(mailboxView, targetIdx * 2, msgType);
-        Atomics.store(mailboxView, targetIdx * 2 + 1, payload);
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} MSG -> Atom ${targetIdx} | Type: ${msgType}, Data: ${payload}`,
-        );
-      }
-      break;
-    }
-    case SYS_READ_INBOX: {
-      if (mailboxView) {
-        const msgType = Atomics.load(mailboxView, atomIdx * 2);
-        const payload = Atomics.load(mailboxView, atomIdx * 2 + 1);
-
-        // Return type in R0
-        contextI32View[regBase] = msgType;
-
-        // Return payload in R1 (we map R1 to contextI32View[regBase + 1])
-        contextI32View[regBase + 1] = payload;
-
-        // Clear mailbox after reading
-        if (msgType !== 0) {
-          Atomics.store(mailboxView, atomIdx * 2, 0);
-          Atomics.store(mailboxView, atomIdx * 2 + 1, 0);
-          _noop(
-            `   [SYSCALL] Atom ${atomIdx} READ INBOX | Type: ${msgType}, Data: ${payload}`,
-          );
-        }
-      }
-      break;
-    }
-    case SYS_TRANSFER: {
-      const targetIdx = r1;
-      const resourceType = r2; // 0 = Energy, 1 = Resonance
-      const amount = r3; // Positive to give, Negative to steal
-
-      if (targetIdx > 0 && targetIdx < MAX_ATOMS && amount !== 0) {
-        if (resourceType === 0 && energiesView) { // ENERGY
-          if (amount > 0) {
-            const senderEnergy = Atomics.load(energiesView, atomIdx);
-            const scaledAmount = amount * 1000;
-            if (senderEnergy >= scaledAmount) {
-              Atomics.sub(energiesView, atomIdx, scaledAmount);
-              Atomics.add(energiesView, targetIdx, scaledAmount);
-              _noop(
-                `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Energy to Atom ${targetIdx}`,
-              );
-            }
-          } else {
-            // Stealing
-            const stealAmount = (-amount) * 1000;
-            if (resonancesView && xsView && ysView) {
-              const myRes = Atomics.load(resonancesView, atomIdx);
-              let tRes = Atomics.load(resonancesView, targetIdx);
-
-              if (evolutionReservedView) {
-                const shield = Atomics.load(evolutionReservedView, targetIdx);
-                if (shield > 0) tRes = shield;
-              }
-
-              if (myRes > tRes && myRes > 250 && tRes < 100) {
-                const ox = Atomics.load(xsView, atomIdx);
-                const oy = Atomics.load(ysView, atomIdx);
-                const tx = Atomics.load(xsView, targetIdx);
-                const ty = Atomics.load(ysView, targetIdx);
-
-                const rolesView = new Uint8Array(
-                  sharedBuffer!,
-                  ROLES_OFFSET,
-                  MAX_ATOMS,
-                );
-                const myRole = Atomics.load(rolesView, atomIdx);
-                const tRole = Atomics.load(rolesView, targetIdx);
-
-                if (myRole === 3 && tRole === 1) { // Engulfment (Architect -> Producer)
-                  const tEnergy = Atomics.load(energiesView, targetIdx);
-                  if (tEnergy > 20000) { // Enough base generation
-                    Atomics.store(rolesView, targetIdx, 5); // ROLE_MITOCHONDRIA = 5
-                    if (contextI32View) {
-                      Atomics.store(
-                        contextI32View,
-                        targetIdx * 16 + 12,
-                        atomIdx,
-                      ); // Store host atomIdx in Context Reg 12
-                    }
-                    _noop(
-                      `   [SYSCALL] Atom ${atomIdx} ENGULFED Atom ${targetIdx} into a Mitochondria`,
-                    );
-                    break;
-                  }
-                }
-
-                const dx = (tx - ox) / SPATIAL_CELL_SIZE;
-                const dy = (ty - oy) / SPATIAL_CELL_SIZE;
-                const distSq = dx * dx + dy * dy;
-
-                if (distSq <= 2.25) {
-                  const tEnergy = Atomics.load(energiesView, targetIdx);
-                  const takeAmount = Math.min(stealAmount, tEnergy);
-                  if (takeAmount > 0) {
-                    Atomics.sub(energiesView, targetIdx, takeAmount);
-                    Atomics.add(energiesView, atomIdx, takeAmount);
-                    _noop(
-                      `   [SYSCALL] Atom ${atomIdx} STOLE ${
-                        takeAmount / 1000
-                      } Energy from Atom ${targetIdx}`,
-                    );
-                    if (contextU8View) {
-                      const flagsIdx = (atomIdx << 6) + 33; // pseudo-cost
-                      // Note: VM costs 30 for stealing, we already deducted 10, deduct 20 more
-                      const extraCost = 20 * 1000;
-                      const e = Atomics.load(energiesView, atomIdx);
-                      if (e >= extraCost) {
-                        Atomics.sub(energiesView, atomIdx, extraCost);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        } else if (resourceType === 1 && resonancesView) { // RESONANCE
-          if (amount > 0) {
-            const senderResonance = Atomics.load(resonancesView, atomIdx);
-            if (senderResonance >= amount) {
-              Atomics.sub(resonancesView, atomIdx, amount);
-              Atomics.add(resonancesView, targetIdx, amount);
-              _noop(
-                `   [SYSCALL] Atom ${atomIdx} TRANSFERRED ${amount} Resonance to Atom ${targetIdx}`,
-              );
-            }
-          }
-        }
-      }
-      break;
-    }
-    case SYS_REPLICATE: {
-      const targetIdx = r1;
-
-      if (
-        targetIdx >= 0 && targetIdx < MAX_ATOMS && targetIdx !== atomIdx &&
-        instructionsView && contextU8View
-      ) {
-        const receiverEnergy = Atomics.load(energiesView, targetIdx);
-        // Only allow replication into dead slots or by aggressive "infection"
-        // For now, let's keep it simple: can replicate anywhere, it overwrites the genome.
-
-        // Copy 64 bytes of genome
-        const srcOffset = atomIdx * 64;
-        const dstOffset = targetIdx * 64;
-
-        for (let i = 0; i < 64; i++) {
-          Atomics.store(
-            instructionsView,
-            dstOffset + i,
-            Atomics.load(instructionsView, srcOffset + i),
-          );
-        }
-
-        // Reset target PC (PC is at offset 32 in contextU8View)
-        const targetFlagIdx = (targetIdx << 6) + 32;
-        Atomics.store(contextU8View, targetFlagIdx, 0);
-
-        // Evict Target Entropy Cache
-        Atomics.store(contextI32View!, targetIdx * 16 + 15, 0);
-
-        // Give the child a starter spark of energy from the sender
-        const replicationSpark = 50 * 1000; // 50 energy units
-        const senderEnergy = Atomics.load(energiesView, atomIdx);
-
-        if (senderEnergy > replicationSpark) {
-          Atomics.sub(energiesView, atomIdx, replicationSpark);
-          Atomics.add(energiesView, targetIdx, replicationSpark);
-        }
-
-        // Also "wake up" the atom by giving it ID if it doesn't have one
-        if (idsView && idsView[targetIdx] === 0n) {
-          idsView[targetIdx] = BigInt(targetIdx + 1);
-        }
-
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} REPLICATED genome into Atom ${targetIdx}`,
-        );
-      } else {
-        _noop(
-          `   [SYSCALL-FAIL] Atom ${atomIdx} REPLICATE failed (invalid target ${targetIdx})`,
-        );
-      }
-      break;
-    }
-    case SYS_EMIT: {
-      if (ledgerHeadView && ledgerDataView) {
-        // Atomic ring buffer increment
-        const cursor = Atomics.add(ledgerHeadView, 0, 1) %
-          MAX_LEDGER_EVENTS;
-        const base = cursor * 4; // 4 i32 per event
-
-        const currentTick = tickCounterView
-          ? Atomics.load(tickCounterView, 0)
-          : 0;
-
-        // Emitted Event Structure -> [Tick, AtomIdx, R1, R2]
-        Atomics.store(ledgerDataView, base, currentTick);
-        Atomics.store(ledgerDataView, base + 1, atomIdx);
-        Atomics.store(ledgerDataView, base + 2, r1);
-        Atomics.store(ledgerDataView, base + 3, r2);
-
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} EMIT event: [${r1}, ${r2}] at Tick ${currentTick}`,
-        );
-      }
-      break;
-    }
-    case SYS_SCAN: {
-      const radius = r1;
-      let closestIdx = -1;
-      let minDstSq = Infinity;
-
-      if (
-        radius > 0 && xsView && ysView && spatialGridView && idsView &&
-        energiesView && resonancesView
-      ) {
-        // Deduct scan cost. Let's say 20 gas.
-        const COST = 20 * 1000;
-        const currentEnergy = Atomics.load(energiesView, atomIdx);
-        if (currentEnergy >= COST) {
-          Atomics.sub(energiesView, atomIdx, COST);
-
-          // xsView stores coordinate * 100. Unscale to match spatial hash scale (1 unit = 1 pixel).
-          const cx = xsView[atomIdx] / 100;
-          const cy = ysView[atomIdx] / 100;
-
-          const CELL_SIZE = 10;
-
-          const startX = Math.max(0, Math.floor((cx - radius) / CELL_SIZE));
-          const endX = Math.min(
-            GRID_W - 1,
-            Math.floor((cx + radius) / CELL_SIZE),
-          );
-          const startY = Math.max(0, Math.floor((cy - radius) / CELL_SIZE));
-          const endY = Math.min(
-            GRID_H - 1,
-            Math.floor((cy + radius) / CELL_SIZE),
-          );
-
-          for (let y = startY; y <= endY; y++) {
-            for (let x = startX; x <= endX; x++) {
-              const cellIdx = y * GRID_W + x;
-              const cellBase = cellIdx * 32; // 32 slots per cell (1 count + 31 items)
-
-              const count = spatialGridView[cellBase];
-
-              for (let i = 1; i <= count; i++) {
-                const targetIdx = spatialGridView[cellBase + i];
-                if (targetIdx === atomIdx) continue; // Skip self
-
-                if (idsView[targetIdx] !== 0n) {
-                  // Dark Forest Topology: Radar Stealth
-                  const targetRes = Atomics.load(resonancesView, targetIdx);
-                  if (targetRes <= 20) continue; // Invisible
-
-                  const tx = xsView[targetIdx] / 100;
-                  const ty = ysView[targetIdx] / 100;
-                  const dx = tx - cx;
-                  const dy = ty - cy;
-                  const dstSq = dx * dx + dy * dy;
-
-                  if (dstSq <= radius * radius && dstSq < minDstSq) {
-                    minDstSq = dstSq;
-                    closestIdx = targetIdx;
-                  }
-                }
-              }
-            }
-          }
-          _noop(
-            `   [SYSCALL] Atom ${atomIdx} SCAN r=${radius}. Found=${closestIdx}`,
-          );
-        } else {
-          _noop(
-            `   [SYSCALL-FAIL] Atom ${atomIdx} insufficient Energy for SCAN`,
-          );
-        }
-      }
-      contextI32View![regBase] = closestIdx;
-      break;
-    }
-    case SYS_ATTRACT: {
-      const targetIdx = r1;
-      const intensity = r2; // Pos=Attract, Neg=Repel
-      if (
-        targetIdx > 0 && targetIdx < MAX_ATOMS && xsView && ysView &&
-        spatialGridView
-      ) {
-        const ox = Atomics.load(xsView, atomIdx);
-        const oy = Atomics.load(ysView, atomIdx);
-        const tx = Atomics.load(xsView, targetIdx);
-        const ty = Atomics.load(ysView, targetIdx);
-
-        const dx = tx - ox;
-        const dy = ty - oy;
-
-        const dxSign = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
-        const dySign = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
-
-        const dxStr = intensity > 0 ? dxSign : -dxSign;
-        const dyStr = intensity > 0 ? dySign : -dySign;
-
-        if (dxStr !== 0 || dyStr !== 0) {
-          let nx = ox + dxStr * SPATIAL_CELL_SIZE;
-          let ny = oy + dyStr * SPATIAL_CELL_SIZE;
-          _noop(
-            `[PULSE_WORKER] SYS_ATTRACT executed by ${atomIdx} targeting ${targetIdx}. Moving to (${nx}, ${ny})`,
-          );
-
-          if (nx < 0) nx = 0;
-          else if (nx > WORLD_MAX_X) nx = WORLD_MAX_X;
-          if (ny < 0) ny = 0;
-          else if (ny > WORLD_MAX_Y) ny = WORLD_MAX_Y;
-
-          const nGridX = Math.floor(nx / SPATIAL_CELL_SIZE);
-          const nGridY = Math.floor(ny / SPATIAL_CELL_SIZE);
-          const nCellIdx = nGridY * GRID_W + nGridX;
-
-          let capacityOk = false;
-          const emptySlotOffset = -1;
-          for (let s = 0; s < 32; s++) {
-            const currentAtomId = Atomics.load(
-              spatialGridView,
-              nCellIdx * 32 + s,
-            );
-            if (currentAtomId === 0) {
-              capacityOk = true;
-              break;
-            }
-          }
-
-          _noop(
-            `[PULSE_WORKER_DEBUG] atomIdx: ${atomIdx}, targetIdx: ${targetIdx}, ox: ${ox}, tx: ${tx}`,
-          );
-
-          if (capacityOk) {
-            Atomics.store(xsView, atomIdx, nx);
-            Atomics.store(ysView, atomIdx, ny);
-          }
-        }
-      }
-      break;
-    }
-    case SYS_FOLD: {
-      break; // Placeholder for purely topological matrix operations
-    }
-    case SYS_BET: {
-      if (!marketState || !betPoolInt) {
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const energyBet = Math.max(0, r1);
-      if (energyBet <= 0) {
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const currentMarketState = Atomics.load(marketState, 0);
-      if (currentMarketState !== 1) {
-        // No active crisis
-        contextI32View[regBase + 1] = 0;
-        break;
-      }
-
-      const scaledBet = energyBet * 1000;
-      const availableEnergy = Atomics.load(energiesView, atomIdx);
-
-      // We already deducted gasCost * 1000 before reaching the switch block
-      if (availableEnergy >= scaledBet) {
-        Atomics.sub(energiesView, atomIdx, scaledBet);
-        Atomics.add(betPoolInt, 0, scaledBet);
-        contextI32View[regBase + 1] = 1; // success
-      } else {
-        contextI32View[regBase + 1] = 0; // failure
-      }
-      break;
-    }
-    case SYS_SPORE_DRIVE: {
-      const energy = Atomics.load(energiesView!, atomIdx);
-      const atomPhase = Atomics.load(phaseView!, atomIdx);
-      const epochPhase = (currentPulseId * 4) % 256;
-
-      const sporeCost = resolveWithPhase(500, [
-        { phase: epochPhase, weight: 50 },
-        { phase: currentTheta, weight: 30 },
-        { phase: atomPhase, weight: 20 },
-      ]);
-      const energyBet = sporeCost * 1000;
-
-      if (energy >= energyBet) {
-        Atomics.sub(energiesView!, atomIdx, energyBet);
-        (self as unknown as Worker).postMessage({
-          type: "SPORE_DRIVE_REQUEST",
-          atomIdx,
-        });
-        // Syscall intercept verification
-        _noop(
-          `   [SYSCALL] Atom ${atomIdx} initiated SPORE_DRIVE (Energy drained by ${sporeCost}: EpochPhase=${epochPhase}, Theta=${
-            Math.floor(currentTheta)
-          }, AtomPhase=${atomPhase}).`,
-        );
-      } else {
-        contextI32View![(atomIdx << 4) + 1] = 0; // failure in register
-      }
-      break;
-    }
-    case SYS_SENSE_PHASE: {
-      const epochPhase = (currentPulseId * 4) % 256;
-      const packed = (epochPhase & 0xFFFF) |
-        ((Math.floor(currentTheta) & 0xFFFF) << 16);
-      contextI32View![regBase] = packed;
-      _noop(
-        `   [SYSCALL] Atom ${atomIdx} performed SENSE_PHASE (EpochPhase=${epochPhase}, Theta=${
-          Math.floor(currentTheta)
-        })`,
-      );
-      break;
-    }
-    default:
-      _noop(
-        `   [SYSCALL-UNKNOWN] Atom ${atomIdx} requested UNKNOWN ${sysId}`,
-      );
-      break;
-  }
-}
-
-let debugDelayMs = 0;
-let debugJitterMinMs = 0;
-let debugJitterMaxMs = 0;
-let debugJitterSeed = 0x9E3779B9;
-const FORCE_INIT_FAIL_MODE =
-  (Deno.env.get("OMEGA_FORCE_WORKER_INIT_FAIL") ?? "").trim().toLowerCase();
-const shouldForceInitFail = (workerIndex: number): boolean => {
-  if (
-    FORCE_INIT_FAIL_MODE === "1" || FORCE_INIT_FAIL_MODE === "true" ||
-    FORCE_INIT_FAIL_MODE === "all"
-  ) {
-    return true;
-  }
-  if (FORCE_INIT_FAIL_MODE === "nonzero") {
-    return workerIndex > 0;
-  }
-  if (FORCE_INIT_FAIL_MODE.startsWith("index:")) {
-    const idx = Number.parseInt(
-      FORCE_INIT_FAIL_MODE.slice("index:".length),
-      10,
-    );
-    return Number.isFinite(idx) && idx === workerIndex;
-  }
-  return false;
-};
-const nextJitterUnit = (): number => {
-  debugJitterSeed = (Math.imul(debugJitterSeed, 1664525) + 1013904223) >>> 0;
-  return debugJitterSeed / 0x1_0000_0000;
-};
-const sampleJitterMs = (): number => {
-  if (debugJitterMaxMs <= 0) return 0;
-  const lo = Math.max(0, Math.min(2000, debugJitterMinMs));
-  const hi = Math.max(lo, Math.min(2000, debugJitterMaxMs));
-  if (hi === lo) return lo;
-  return lo + Math.floor(nextJitterUnit() * (hi - lo + 1));
-};
-const maybeDelay = async () => {
-  const totalDelay = debugDelayMs + sampleJitterMs();
-  if (totalDelay <= 0) return;
-  await new Promise((resolve) => setTimeout(resolve, totalDelay));
-};
-
-(self as any).onmessage = async (e: any) => {
-  const { type, pulseId } = e.data;
-
-  if (type === "INIT") {
-    const { buffer, marketBuffer, wasmMemory, workerIndex, wasmPath } = e.data;
-    sharedBuffer = buffer;
-    if (marketBuffer) {
-      marketState = new Int32Array(marketBuffer, 0, 1);
-      betPoolInt = new Int32Array(marketBuffer, 4, 1);
-    }
-    const sb = sharedBuffer as SharedArrayBuffer;
-    tickCounterView = new Int32Array(sb, TICK_COUNTER_OFFSET, 1);
-    syncStateView = new Int32Array(sb, SYNC_STATE_OFFSET, 1);
-
-    idsView = new BigUint64Array(sb, IDS_OFFSET, MAX_ATOMS);
-    xsView = new Int16Array(sb, XS_OFFSET, MAX_ATOMS); // 2 bytes per atom, so length is MAX_ATOMS
-    ysView = new Int16Array(sb, YS_OFFSET, MAX_ATOMS);
-    contextI32View = new Int32Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 16);
-    contextU8View = new Uint8Array(sb, CONTEXT_OFFSET, MAX_ATOMS * 64);
-    structureGridView = new Int32Array(
-      sb,
-      STRUCTURE_GRID_OFFSET,
-      GRID_CELLS,
-    );
-    spatialGridView = new Int32Array(
-      sb,
-      SPATIAL_GRID_OFFSET,
-      GRID_CELLS * 32,
-    );
-    buildOwnerView = new Int32Array(
-      sb,
-      STRUCTURE_BUILD_OWNER_OFFSET,
-      GRID_CELLS,
-    );
-    buildValueView = new Int32Array(
-      sb,
-      STRUCTURE_BUILD_VALUE_OFFSET,
-      GRID_CELLS,
-    );
-    spawnHeadView = new Int32Array(sb, SPAWN_REQUESTS_OFFSET, 1);
-    spawnDataView = new DataView(
-      sb,
-      SPAWN_REQUESTS_OFFSET + 8,
-      1024 * 24,
-    );
-    lineageView = new BigUint64Array(sb, LINEAGE_OFFSET, MAX_ATOMS);
-    logicView = new BigUint64Array(sb, LOGIC_OFFSET, MAX_ATOMS);
-    bondRequestsView = new Int32Array(
-      sb,
-      BOND_REQUESTS_OFFSET,
-      MAX_ATOMS * 3,
-    );
-    energiesView = new Int32Array(sb, ENERGY_OFFSET, MAX_ATOMS);
-    resonancesView = new Int32Array(sb, RESONANCE_OFFSET, MAX_ATOMS);
-    phaseView = new Int32Array(sb, PHASE_OFFSET, MAX_ATOMS);
-    evolutionReservedView = new Int32Array(sb, EVOLUTION_OFFSET, MAX_ATOMS);
-    instructionsView = new Uint8Array(
-      sb,
-      INSTRUCTIONS_OFFSET,
-      MAX_ATOMS * 64,
-    );
-    mailboxView = new Int32Array(sb, MAILBOX_OFFSET, MAX_ATOMS * 2);
-    ledgerHeadView = new Int32Array(sb, LEDGER_HEAD_OFFSET, 1);
-    ledgerDataView = new Int32Array(
-      sb,
-      LEDGER_DATA_OFFSET,
-      MAX_LEDGER_EVENTS * 4,
-    );
-
-    const idx = Number(workerIndex);
-    if (Number.isFinite(idx)) {
-      debugJitterSeed = (0x9E3779B9 ^ ((idx + 1) >>> 0)) >>> 0;
-    }
-    if (shouldForceInitFail(idx)) {
-      (self as unknown as Worker).postMessage({
-        type: "INIT_FAILED",
-        error: `FORCED_INIT_FAIL(worker=${idx})`,
-      });
-      return;
-    }
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      const wasmRes = await fetch(
-        wasmPath,
-      );
-      const wasmBytes = await wasmRes.arrayBuffer();
-      const traceAtom = (
-        idx: number,
-        op: number,
-        gx: number,
-        gy: number,
-        target: number,
-      ) => {
-        if (op === 0xDD) {
-          const tick = Number(Atomics.load(MX.tickCounter, 0));
-          const epoch = Math.floor(tick / 10000);
-          _noop(
-            `💀 [EPOCH ${epoch}] A Metazoan at (${gx}, ${gy}) has collapsed into Ruins.`,
-          );
-          return;
-        }
-        _noop(
-          `   [WASM_TRACE] Atom ${idx} executed ${
-            op.toString(16)
-          } | Pos: (${gx},${gy}) | target: ${target}`,
-        );
-      };
-      const instantiated = await WebAssembly.instantiate(wasmBytes, {
-        index: {
-          trace_atom: traceAtom,
-        },
-        env: {
-          memory: wasmMemory,
-          abort: (msg: any) => _noop("   [WASM ABORT]:", msg),
-          trace_atom: traceAtom,
-        },
-      });
-      wasmInstance = instantiated.instance;
-      execute_atom_fn = wasmInstance.exports.execute_atom as any;
-      tick_environment_fn = wasmInstance.exports.tick_environment as any;
-      tick_matrix_fn = wasmInstance.exports.tick_matrix as any;
-      tick_structure_grid_fn = wasmInstance.exports.tick_structure_grid as any;
-      build_spatial_hash_fn = wasmInstance.exports.build_spatial_hash as any;
-      get_spatial_hash_overflow_count_fn = wasmInstance.exports
-        .get_spatial_hash_overflow_count as any;
-      get_spatial_hash_max_cell_count_fn = wasmInstance.exports
-        .get_spatial_hash_max_cell_count as any;
-      reduce_atom_deltas_fn = wasmInstance.exports.reduce_atom_deltas as any;
-      get_neural_coherence_fn = wasmInstance.exports
-        .get_neural_coherence as any;
-      set_neural_coherence_fn = wasmInstance.exports
-        .set_neural_coherence as any;
-      tick_glyph_transport_fn = wasmInstance.exports.glyph_transport as any;
-      tick_membrane_physics_fn = wasmInstance.exports
-        .tick_membrane_physics as any;
-      resolve_bond_requests_fn = wasmInstance.exports
-        .resolve_bond_requests as any;
-      drain_spawn_requests_fn = wasmInstance.exports
-        .drain_spawn_requests as any;
-      run_phagocyte_pass_fn = wasmInstance.exports
-        .run_phagocyte_pass as any;
-      clear_metabolism_stats_fn = wasmInstance.exports
-        .clear_metabolism_stats as any;
-      accumulate_metabolism_stats_fn = wasmInstance.exports
-        .accumulate_metabolism_stats as any;
-      apply_metabolism_kernel_fn = wasmInstance.exports
-        .apply_metabolism_kernel as any;
-      _noop("   [WORKER] WASM Instantiated successfully.");
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({ type: "READY" });
-      const bview = new Int32Array(sb, BONDS_OFFSET, MAX_ATOMS * 4);
-      setInterval(() => {
-        // removed debug logging
-      }, 5000);
-      (self as unknown as Worker).postMessage({
-        type: "INIT_OK",
-        workerIndex: Number(workerIndex),
-      });
-    } catch (err) {
-      _noop("   [WORKER] WASM LOAD ERROR:", err);
-      const error = err instanceof Error
-        ? `${err.name}: ${err.message}`
-        : String(err);
-      (self as unknown as Worker).postMessage({ type: "INIT_FAILED", error });
-    }
-    return;
-  }
-
-  if (type === "PULSE") {
-    const { startIdx, endIdx, pulseId, theta } = e.data;
-    currentPulseId = pulseId ?? 0;
-    currentTheta = theta ?? 0;
-    if (!wasmInstance || !execute_atom_fn || !syncStateView || !idsView) return;
-
-    // Wait for WASM_TICKING state (1)
-    // If Host is locking (2) or Idle (0), we don't start yet.
-    _noop(
-      "[WORKER " + currentPulseId +
-        "] RECEIVED PULSE MSG. CHECKING SYNC STATE...",
-      Atomics.load(syncStateView, 0),
-    );
-    let stuckCycles = 0;
-    while (Atomics.load(syncStateView, 0) !== 1) {
-      if (stuckCycles++ > 100) {
-        _noop(
-          "[WORKER " + currentPulseId + "] SYNC STATE SPINLOOP STUCK! state:",
-          Atomics.load(syncStateView, 0),
-        );
-        stuckCycles = 0;
-      }
-      Atomics.wait(syncStateView, 0, 0, 1); // Wait if 0, expect 1
-      if (Atomics.load(syncStateView, 0) === 2) {
-        // If it's 2, we must wait for it to become 0 then 1
-        Atomics.wait(syncStateView, 0, 2, 5);
-      }
-    }
-
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      for (let i = startIdx; i < endIdx; i++) {
-        const startAtomMs = performance.now();
-        const startId = Atomics.load(idsView, i);
-        const currentId = Atomics.load(idsView, i);
-        if (currentId === 0n) continue;
-
-        // Absolute WASM Coherence: The Kernel now handles Physics AND VM
-        const beforeX11 = Atomics.load(xsView!, 11);
-        execute_atom_fn(i);
-        const afterX11 = Atomics.load(xsView!, 11);
-        if (beforeX11 !== afterX11) {
-          _noop(
-            `[WASM_MUTATION_TRACE] execute_atom(${i}) changed xs[11] from ${beforeX11} to ${afterX11}`,
-          );
-        }
-
-        handle_syscall(i); // Process any syscall intent pending from the atom
-        const deltaAtomMs = performance.now() - startAtomMs;
-
-        const afterSys11 = Atomics.load(xsView!, 11);
-        if (afterX11 !== afterSys11) {
-          _noop(
-            `[JS_MUTATION_TRACE] handle_syscall(${i}) changed xs[11] from ${afterX11} to ${afterSys11}`,
-          );
-        }
-      }
-    } catch (err) {
-      _noop("   [WORKER EXECUTION ERROR]", err);
-    }
-
-    await maybeDelay();
-    _noop("[WORKER " + currentPulseId + "] SENDING DONE", pulseId);
-    (self as unknown as Worker).postMessage({ type: "DONE", pulseId });
-  }
-
-  if (type === "REDUCE_DELTAS") {
-    const { startIdx, endIdx } = e.data;
-    if (reduce_atom_deltas_fn) {
-      reduce_atom_deltas_fn(startIdx, endIdx);
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "DELTA_DONE", pulseId });
-  }
-
-  if (type === "TICK_MATRIX") {
-    const bH = new Int32Array(
-      sharedBuffer!,
-      BONDS_OFFSET,
-      MAX_ATOMS * 4,
-    );
-    // removed debug logging
-    if (tick_matrix_fn) tick_matrix_fn();
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({ type: "MATRIX_DONE", pulseId });
-  }
-
-  if (type === "TICK_ENVIRONMENT") {
-    const bH = new Int32Array(
-      sharedBuffer!,
-      BONDS_OFFSET,
-      MAX_ATOMS * 4,
-    );
-    _noop(
-      `[PULSE_WORKER:TICK_ENV] TICK=${e.data.tick} BONDS: Atom 2 = [${
-        bH[2 * 4]
-      }, ${bH[2 * 4 + 1]}, ${bH[2 * 4 + 2]}, ${bH[2 * 4 + 3]}]`,
-    );
-    if (tick_environment_fn) tick_environment_fn(e.data.tick);
-    if (tick_membrane_physics_fn) tick_membrane_physics_fn();
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "ENVIRONMENT_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "RESOLVE_BONDS") {
-    _noop(
-      "[WORKER " + currentPulseId + "] ENTERING TRY-CATCH EXECUTION LOOP!",
-    );
-    try {
-      if (!resolve_bond_requests_fn) {
-        throw new Error("resolve_bond_requests_fn is not initialized.");
-      }
-      const count = resolve_bond_requests_fn(e.data.startIdx, e.data.endIdx);
-      _noop(`[DEBUG-WORKER] WASM resolve returned ${count}`);
-      (self as unknown as Worker).postMessage({
-        type: "RESOLVE_BONDS_DONE",
-        count,
-        pulseId: e.data.pulseId,
-      });
-    } catch (err) {
-      _noop(`[ERROR-WORKER] RESOLVE_BONDS failed`, err);
-    }
-  }
-
-  if (type === "DRAIN_SPAWN") {
-    const count = drain_spawn_requests_fn
-      ? drain_spawn_requests_fn(e.data.tick)
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "DRAIN_SPAWN_DONE",
-      pulseId,
-      count,
-    });
-  }
-
-  if (type === "PHAGOCYTE_PASS") {
-    const count = run_phagocyte_pass_fn
-      ? run_phagocyte_pass_fn(e.data.entropy)
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "PHAGOCYTE_PASS_DONE",
-      pulseId,
-      count,
-    });
-  }
-
-  if (type === "BUILD_SPATIAL_HASH") {
-    if (build_spatial_hash_fn) build_spatial_hash_fn();
-    const overflowCount = get_spatial_hash_overflow_count_fn
-      ? get_spatial_hash_overflow_count_fn()
-      : 0;
-    const maxCellCount = get_spatial_hash_max_cell_count_fn
-      ? get_spatial_hash_max_cell_count_fn()
-      : 0;
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "HASH_DONE",
-      pulseId,
-      overflowCount,
-      maxCellCount,
-    });
-  }
-
-  if (type === "TICK_GLYPH_TRANSPORT") {
-    if (tick_glyph_transport_fn) tick_glyph_transport_fn(e.data.tick);
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "GLYPH_TRANSPORT_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "POLL_COHERENCE") {
-    if (get_neural_coherence_fn) {
-      const coherence = get_neural_coherence_fn();
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({
-        type: "COHERENCE_VAL",
-        coherence,
-        pulseId,
-      });
-    }
-  }
-
-  if (type === "SET_COHERENCE") {
-    if (set_neural_coherence_fn) {
-      set_neural_coherence_fn(e.data.coherence);
-      await maybeDelay();
-      (self as unknown as Worker).postMessage({
-        type: "COHERENCE_SET_DONE",
-        pulseId,
-      });
-    }
-  }
-
-  if (type === "METABOLISM_ACCUMULATE") {
-    const { startIdx, endIdx, clear } = e.data;
-    if (clear && clear_metabolism_stats_fn) clear_metabolism_stats_fn();
-    if (accumulate_metabolism_stats_fn) {
-      accumulate_metabolism_stats_fn(startIdx, endIdx);
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "METABOLISM_ACCUMULATE_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "METABOLISM_APPLY") {
-    const {
-      startIdx,
-      endIdx,
-      noveltySigned,
-      symbiosisSigned,
-      baseTax,
-      targetEnergy,
-      homeostasisBand,
-      homeostasisMaxDelta,
-      overflowThreshold,
-      spatialOverflowRatio,
-      starvationFloor,
-      subsidyEnabled,
-    } = e.data;
-
-    if (apply_metabolism_kernel_fn) {
-      apply_metabolism_kernel_fn(
-        startIdx,
-        endIdx,
-        noveltySigned,
-        symbiosisSigned,
-        baseTax,
-        targetEnergy,
-        homeostasisBand,
-        homeostasisMaxDelta,
-        Math.floor(overflowThreshold * 1024),
-        Math.floor(spatialOverflowRatio * 1024),
-        starvationFloor,
-        subsidyEnabled ? 1 : 0,
-      );
-    }
-    await maybeDelay();
-    (self as unknown as Worker).postMessage({
-      type: "METABOLISM_APPLY_DONE",
-      pulseId,
-    });
-  }
-
-  if (type === "SET_DEBUG_DELAY") {
-    const delayRaw = Number(e.data.delayMs);
-    debugDelayMs = Number.isFinite(delayRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(delayRaw)))
-      : 0;
-    await maybeDelay();
-    (self as any).postMessage({ type: "DEBUG_DELAY_SET", pulseId });
-  }
-
-  if (type === "SET_DEBUG_JITTER") {
-    const minRaw = Number(e.data.minMs);
-    const maxRaw = Number(e.data.maxMs);
-    const minMs = Number.isFinite(minRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(minRaw)))
-      : 0;
-    const maxMs = Number.isFinite(maxRaw)
-      ? Math.max(0, Math.min(2000, Math.floor(maxRaw)))
-      : 0;
-    debugJitterMinMs = Math.min(minMs, maxMs);
-    debugJitterMaxMs = Math.max(minMs, maxMs);
-    await maybeDelay();
-    (self as any).postMessage({
-      type: "DEBUG_JITTER_SET",
-      minMs: debugJitterMinMs,
-      maxMs: debugJitterMaxMs,
-      pulseId,
-    });
-  }
-};
-
-export const PULSE_WORKER = {};
-
-```
-
-```
-
----
-
 ## FILE: src/ontology/core/quorum_advocate.md
 
 ```markdown
@@ -18278,7 +17009,7 @@ const autoSnapshotRetention = parse_env_bounded_int(
   512,
 );
 
-const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "rust") ? "rust" : "as";
+const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "as") ? "as" : "rust";
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -18318,6 +17049,7 @@ const policyFingerprintSource = JSON.stringify({
     openWorld: federationOpenWorld,
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
@@ -18511,6 +17243,7 @@ export const RUNTIME_POLICY = {
     },
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
@@ -22223,6 +20956,97 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 
 ---
 
+## FILE: src/ontology/host/sigma_ffi_bridge.md
+
+```markdown
+---
+id: SIGMA_FFI_BRIDGE
+type: module
+description: Interface to the Rust-based OMEGA Physics & VM Core via Deno FFI.
+tags: ["console"]
+min_level: 13
+deps:
+  - sharedBuffer
+---
+
+### TypeScript
+
+```typescript
+// OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
+
+const libSuffix = Deno.build.os === "windows" ? "dll" : Deno.build.os === "darwin" ? "dylib" : "so";
+const libPrefix = Deno.build.os === "windows" ? "" : "lib";
+
+const searchPaths = [
+  `./target/release/${libPrefix}omega_64.${libSuffix}`,
+  `./target/debug/${libPrefix}omega_64.${libSuffix}`,
+];
+
+// Buffer to safely pass pointers to Rust
+const latticeUint8 = new Uint8Array(sharedBuffer);
+
+let lib: Deno.DynamicLibrary<{
+  ffi_tick: { parameters: ["pointer", "u32"], result: "void" };
+  ffi_init: { parameters: ["pointer"], result: "void" };
+  execute_atom: { parameters: ["usize"], result: "void" };
+  build_spatial_hash: { parameters: [], result: "void" };
+  tick_environment: { parameters: ["u32"], result: "void" };
+}> | null = null;
+
+for (const path of searchPaths) {
+  try {
+    lib = Deno.dlopen(path, {
+      ffi_tick: { parameters: ["pointer", "u32"], result: "void" },
+      ffi_init: { parameters: ["pointer"], result: "void" },
+      execute_atom: { parameters: ["usize"], result: "void" },
+      build_spatial_hash: { parameters: [], result: "void" },
+      tick_environment: { parameters: ["u32"], result: "void" },
+    });
+    console.log(`[SIGMA_FFI] Native core loaded from ${path}`);
+    break;
+  } catch (_e) {
+    // try next
+  }
+}
+
+if (!lib) {
+  console.warn(`[SIGMA_FFI] Failed to load native core from search paths.`);
+  console.warn(`[SIGMA_FFI] Ensure you have run 'deno task native:build'`);
+}
+
+/**
+ * Executes a single tick of the entire OMEGA-64 matrix in the Rust core.
+ * This completely replaces the TS-worker pulse logic when active.
+ */
+export function tickFFI(tick: number) {
+  if (!lib) return;
+  const ptr = Deno.UnsafePointer.of(latticeUint8);
+  lib.symbols.ffi_tick(ptr, tick);
+}
+
+/**
+ * Initializes the Rust core with the current SharedArrayBuffer.
+ */
+export function initFFI() {
+  if (!lib) return;
+  const ptr = Deno.UnsafePointer.of(latticeUint8);
+  lib.symbols.ffi_init(ptr);
+}
+
+export const SIGMA_FFI = {
+  tick: tickFFI,
+  init: initFFI,
+  executeAtom: (idx: number) => lib?.symbols.execute_atom(idx),
+  buildSpatialHash: () => lib?.symbols.build_spatial_hash(),
+  tickEnvironment: (tick: number) => lib?.symbols.tick_environment(tick),
+  loaded: () => !!lib,
+};
+```
+
+```
+
+---
+
 ## FILE: src/ontology/host/sigma_ffi.md
 
 ```markdown
@@ -22251,11 +21075,13 @@ use std::mem::ManuallyDrop;
 
 // `SigmaMatrix` logically begins at address SAFETY_BUFFER natively matching the Deno SAB.
 
-/// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
-/// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
-    // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = crate::SAFETY_BUFFER as *mut crate::SigmaMatrix;
+    let lattice_ptr = crate::LATTICE_PTR.load(std::sync::atomic::Ordering::SeqCst);
+    let base_ptr = if lattice_ptr.is_null() {
+        crate::SAFETY_BUFFER as *mut crate::SigmaMatrix
+    } else {
+        unsafe { lattice_ptr.add(crate::SAFETY_BUFFER) as *mut crate::SigmaMatrix }
+    };
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -22277,6 +21103,17 @@ pub extern "C" fn execute_atom(idx: usize) {
     let mut state = unsafe { get_ffi_state() };
     let mut vm = crate::LambdaVM::new();
     vm.step(&mut state, idx);
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ffi_tick_all_atoms(start_idx: usize, end_idx: usize) {
+    let mut state = unsafe { get_ffi_state() };
+    let mut vm = crate::LambdaVM::new();
+    for i in start_idx..end_idx {
+        if i < crate::MAX_ATOMS && state.matrix.ids[i] != 0 {
+            vm.step(&mut state, i);
+        }
+    }
 }
 
 #[unsafe(no_mangle)]
@@ -22471,23 +21308,6 @@ pub extern "C" fn accumulate_metabolism_stats(_start: usize, _end: usize) {
     // Reduced natively in Deno JS space with the Rust `reduce_atom_deltas` side effects.
 }
 
-#[unsafe(no_mangle)]
-pub extern "C" fn apply_metabolism_kernel(
-    _param1: i32,
-    _param2: i32,
-    _param3: i32,
-    _param4: i32,
-    _param5: i32,
-    _param6: i32,
-    _param7: i32,
-    _param8: i32,
-    _param9: i32,
-    _param10: i32,
-    _param11: i32,
-    _param12: i32,
-) {
-    // Implemented internally via `pulse.rs` `apply_metabolism_kernel`.
-}
 
 #[unsafe(no_mangle)]
 pub extern "C" fn run_shadow_simulation_ffi(
@@ -22844,7 +21664,7 @@ pub struct SigmaMatrix {
     pub secretion_stats: [i32; SECRETION_STATS_SIZE],
     pub _pad_to_lineage: [u8; 4],
     pub lineage: [u64; MAX_ATOMS],
-    pub mailbox: [[i32; 2]; MAX_ATOMS],
+    pub mailbox: [[std::sync::atomic::AtomicI32; 2]; MAX_ATOMS],
     pub ledger_head: i32,
     pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
     pub egress_head: i32,
@@ -23069,6 +21889,15 @@ impl SigmaState {
         }
     }
 
+    pub fn mailbox_atomic(&self, atom_idx: usize) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.mailbox[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
+                2,
+            )
+        }
+    }
+
     /// Returns a slice of AtomicI32 mapping directly to the `energy` array
     #[inline]
     pub fn energy_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
@@ -23173,6 +22002,47 @@ impl SigmaState {
             let egress_ptr = self.matrix.egress_data.as_ptr() as *mut u8;
             let slot_ptr = egress_ptr.add(idx * 256);
             std::ptr::copy_nonoverlapping(payload.as_ptr(), slot_ptr, 256);
+        }
+    }
+
+    pub fn fossilize(&self, atom_idx: usize) {
+        let resonance = self.matrix.resonance[atom_idx];
+        let role = self.matrix.roles[atom_idx] & 0x7F;
+
+        // Condition for fossilization (Era 68)
+        let mut mass = 1;
+        for b_slot in 0..4 {
+            let target = self.matrix.bonds[(atom_idx * 4) + b_slot];
+            if target > 0 && (target as usize) < MAX_ATOMS && self.matrix.ids[target as usize] != 0 {
+                mass += 1;
+            }
+        }
+
+        let has_immunity = self.matrix.context[atom_idx][13] != 0 || self.matrix.context[atom_idx][14] != 0;
+
+        if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
+            let cx = self.matrix.xs[atom_idx] as usize;
+            let cy = self.matrix.ys[atom_idx] as usize;
+            let gx = cx / 10;
+            let gy = cy / 10;
+
+            if gx < GRID_W as usize && gy < GRID_H as usize {
+                let cell_idx = gy * GRID_W as usize + gx;
+                let current_val = self.matrix.structure_grid[cell_idx];
+                let current_type = current_val & 0xFF;
+
+                if current_type == 0 || current_type == 1 {
+                    let mut charge = resonance.clamp(10, 255);
+                    let base_charge = (current_val >> 16) & 0xFF;
+                    charge = std::cmp::max(charge, base_charge);
+
+                    let new_type = if role == 3 { 6 } else { 1 }; // STR_CAPACITOR or STR_WIRE
+                    unsafe {
+                        let grid_ptr = self.matrix.structure_grid.as_ptr() as *mut i32;
+                        *grid_ptr.add(cell_idx) = new_type | (charge << 16);
+                    }
+                }
+            }
         }
     }
 }
@@ -23476,6 +22346,7 @@ deps:
   - SYSTEM_CONSTANTS
   - SYSTEM_CONSTANTS
   - sigma_memory
+  - apply_metabolism_kernel
 description: Multithreaded tick orchestrator and phase sequencer using Rayon
 ---
 
@@ -23494,8 +22365,47 @@ impl<'a> PulseOrchestrator<'a> {
     pub fn new(buffer: &'a mut [u8]) -> Self {
         Self { visited: buffer }
     }
-
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {
+        // 0. Metabolism Phase (Resonant Autonomy)
+        
+        // --- Metabolism Reduction (Population Counting) ---
+        // Reset scratch space and count populations
+        let scratch_ptr = unsafe { (&mut *state.matrix as *mut crate::SigmaMatrix as *mut u8).add(crate::METABOLISM_SCRATCH_OFFSET) as *mut i32 };
+        unsafe { std::ptr::write_bytes(scratch_ptr, 0, (65536 * 4) + 128); }
+        
+        let mut total_pop = 0;
+        for i in 0..MAX_ATOMS {
+            if state.matrix.ids[i] != 0 {
+                total_pop += 1;
+                let key = crate::genome_key16(state, i as i32);
+                unsafe {
+                    let genome_count_ptr = scratch_ptr.add(key as usize);
+                    *genome_count_ptr += 1;
+                }
+            }
+        }
+        unsafe {
+            let population_ptr = scratch_ptr.add(65536);
+            *population_ptr = total_pop;
+        }
+
+        // Hardcoded parity with RUNTIME_POLICY defaults for now
+        apply_metabolism_kernel(
+            state,
+            0,
+            MAX_ATOMS as i32,
+            0,
+            0,
+            2,
+            1200,
+            240,
+            12,
+            5,
+            20,
+            200,
+            0,
+        );
+
         // 1. Spatial Hash
         state.build_spatial_hash();
 
@@ -23518,7 +22428,7 @@ impl<'a> PulseOrchestrator<'a> {
             .copy_from_slice(&state.matrix.resonance);
 
         // 3. Execution Phase (Parallelizing over all logical atom indices)
-        (1..MAX_ATOMS).for_each(|i| {
+        (0..MAX_ATOMS).for_each(|i| {
             if state.matrix.ids[i] != 0 {
                 let mut mass = 1;
                 for b_slot in 0..4 {
@@ -23547,139 +22457,18 @@ impl<'a> PulseOrchestrator<'a> {
         crate::tick_glyph_transport(state);
         crate::tick_structure_grid(state);
 
-        // 6. Metabolism Phase & 7. Immune Phase (GC)
-        let base_entropy_tax = 10;
-        let base_friction = 5;
-
-        for i in 1..MAX_ATOMS {
-            if state.matrix.ids[i] != 0 {
-                let role = state.matrix.roles[i] & 0x7F;
-
-                let mut e = state.matrix.energy[i];
-
-                if role == 5 {
-                    // ROLE_MITOCHONDRIA
-                    let host_idx = state.matrix.context[i][12] as usize;
-                    if host_idx > 0 && host_idx < MAX_ATOMS && state.matrix.ids[host_idx] != 0 {
-                        // Enforce Coordinate Lock
-                        state.matrix.xs[i] = state.matrix.xs[host_idx];
-                        state.matrix.ys[i] = state.matrix.ys[host_idx];
-
-                        // Pay up 90% of current energy
-                        if e > crate::SCALE {
-                            let transfer = ((e - crate::SCALE) as f64 * 0.9) as i32;
-                            if transfer > 0 {
-                                state.matrix.energy[host_idx] += transfer;
-                                e -= transfer;
-                            }
-                        }
-                        state.matrix.energy[i] = e;
-                    } else {
-                        // Host died
-                        state.matrix.energy[i] = 0;
-                        state.matrix.ids[i] = 0;
-                        state.matrix.roles[i] = 0;
-                    }
-                    continue;
-                }
-
-                let mut mass = 1;
-                for b_slot in 0..4 {
-                    let bond_idx = (i * 4) + b_slot;
-                    let target = state.matrix.bonds[bond_idx];
-                    if target > 0
-                        && (target as usize) < MAX_ATOMS
-                        && state.matrix.ids[target as usize] != 0
-                    {
-                        mass += 1;
-                    }
-                }
-
-                let effective_tax = base_entropy_tax / mass;
-
-                e -= effective_tax;
-                e -= base_friction; // Friction remains constant for mechanical movement parity
-
-                if e <= 0 {
-                    // PH 43: Fossilization Check
-                    let resonance = state.matrix.resonance[i];
-                    let role = state.matrix.roles[i] & 0x7F; // Strip metazoan flag
-                    let has_immunity =
-                        state.matrix.context[i][13] != 0 || state.matrix.context[i][14] != 0;
-
-                    if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
-                        let cx = state.matrix.xs[i] as usize;
-                        let cy = state.matrix.ys[i] as usize;
-                        let gx = cx / (crate::SCALE as usize);
-                        let gy = cy / (crate::SCALE as usize);
-
-                        if gx < (GRID_W as usize) && gy < (GRID_H as usize) {
-                            let cell_idx = gy * (GRID_W as usize) + gx;
-                            let structure_val = state.matrix.structure_grid[cell_idx];
-                            let structure_type = structure_val & 0xFF;
-
-                            // 1. Structural Crystallization
-                            if structure_type == 0 || structure_type == 1 {
-                                let mut charge = resonance.clamp(10, 255);
-                                let base_charge = (structure_val >> 16) & 0xFF;
-                                charge = std::cmp::max(charge, base_charge);
-
-                                let new_type = if role == 3 {
-                                    6 // STR_CAPACITOR (Architects leave energy banks)
-                                } else {
-                                    1 // STR_WIRE (Guardians and others leave hardened walls/pathways)
-                                };
-
-                                state.matrix.structure_grid[cell_idx] = new_type | (charge << 16);
-                            }
-
-                            // 2. Epigenetic Hash Trace (CRISPR memory spill)
-                            let mut scroll_hash = state.matrix.context[i][13];
-                            if scroll_hash == 0 {
-                                scroll_hash = state.matrix.context[i][14];
-                            }
-
-                            if scroll_hash != 0 {
-                                let mut mem = state.matrix.memory_grid[cell_idx];
-
-                                // To organically decay into a kind=2 plasmid via tick_glyph_transport,
-                                // memory_grid triggers off of the first 3-bytes being a 24-bit charge >= 1.
-                                // We'll put the scroll into the 4 upper bytes (4..8) as payload,
-                                // and set the first byte to a minimal charge trigger if not already charged.
-                                mem[4] = ((scroll_hash >> 24) & 0xFF) as u8;
-                                mem[5] = ((scroll_hash >> 16) & 0xFF) as u8;
-                                mem[6] = ((scroll_hash >> 8) & 0xFF) as u8;
-                                mem[7] = (scroll_hash & 0xFF) as u8;
-
-                                // memory_lo triggers charge.
-                                let memory_lo =
-                                    u32::from_le_bytes([mem[0], mem[1], mem[2], mem[3]]);
-                                let mut charge = (memory_lo & 0xFFFFFF) as i32;
-                                if charge < 100 {
-                                    charge = 100; // Provide enough plasma generic charge to bleed off into a kind=2
-                                    mem[0] = (charge & 0xFF) as u8;
-                                    mem[1] = ((charge >> 8) & 0xFF) as u8;
-                                    mem[2] = ((charge >> 16) & 0xFF) as u8;
-                                    // keep mem[3] unaltered
-                                }
-
-                                state.matrix.memory_grid[cell_idx] = mem;
-                            }
-                        }
-                    }
-
-                    state.recycle_atom(i);
-                } else {
-                    state.matrix.energy[i] = e;
-                }
-            }
-        }
-
         // 8. Membrane Physics (Metazoan Emergence)
         self.visited.fill(0);
 
-        for i in 1..MAX_ATOMS {
+        for i in 0..MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
+                // Resonance Protocol: Guardian -> Architect transition on low coherence
+                let role = state.matrix.roles[i] & 0x7F;
+                let coherence = state.matrix.neural_coherence;
+                if role == 2 && coherence < 100 {
+                    state.matrix.roles[i] = (state.matrix.roles[i] & 0x80) | 3;
+                }
+
                 state.matrix.roles[i] &= !0x80;
                 state.matrix.evolution_reserved[i] = 0;
             }
@@ -23688,7 +22477,7 @@ impl<'a> PulseOrchestrator<'a> {
         let mut rings: Vec<Vec<usize>> = Vec::new();
 
         // Detect simple topological cycles (length 3 to 8)
-        for start_node in 1..MAX_ATOMS {
+        for start_node in 0..MAX_ATOMS {
             if state.matrix.ids[start_node] == 0 || self.visited[start_node] == 1 {
                 continue;
             }
@@ -24412,7 +23201,11 @@ use crate::{
 };
 use crate::in_grid;
 use crate::GlyphOp;
-use crate::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
+use crate::{
+    SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND, SYS_SCAN,
+    SYS_MSG, SYS_READ_INBOX, SYS_MUTATE, SYS_EMIT, SYS_BET, SYS_SPORE_DRIVE,
+    SYS_SENSE_PHASE, SYS_SET_ROLE, SYS_YIELD
+};
 use crate::{math_cos, math_sin};
 use crate::{SigmaState, MAX_ATOMS};
 
@@ -25444,6 +24237,133 @@ impl LambdaVM {
                             }
                             gas_used += if amount < 0 { 30 } else { 10 };
                         }
+                        SYS_SCAN => {
+                            let radius = r1;
+                            let ox = state.matrix.xs[atom_idx] as i32 / 10;
+                            let oy = state.matrix.ys[atom_idx] as i32 / 10;
+                            let mut closest_idx = 0;
+                            let mut min_dist_sq = i32::MAX;
+
+                            let r_grid = (radius / 10).max(1);
+                            for dy in -r_grid..=r_grid {
+                                for dx in -r_grid..=r_grid {
+                                    let nx = ox + dx;
+                                    let ny = oy + dy;
+                                    if in_grid(nx, ny) {
+                                        let count = state.get_spatial_grid_count(nx, ny);
+                                        for i in 0..count {
+                                            let neighbor = state.get_spatial_grid_atom(nx, ny, i) as usize;
+                                            if neighbor > 0 && neighbor != atom_idx && neighbor < MAX_ATOMS {
+                                                // Simple Visibility Check (Resonance Threshold)
+                                                if state.matrix.resonance[neighbor] > 20 {
+                                                    let n_xs = state.matrix.xs[neighbor] as i32;
+                                                    let n_ys = state.matrix.ys[neighbor] as i32;
+                                                    let dx_p = n_xs - (state.matrix.xs[atom_idx] as i32);
+                                                    let dy_p = n_ys - (state.matrix.ys[atom_idx] as i32);
+                                                    let dist_sq = (dx_p * dx_p + dy_p * dy_p) >> 10;
+                                                    if dist_sq < min_dist_sq {
+                                                        min_dist_sq = dist_sq;
+                                                        closest_idx = neighbor;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            context_regs[0].store(closest_idx as i32, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 20;
+                        }
+                        SYS_MSG => {
+                            let target_idx = r1 as usize;
+                            let msg_type = r2;
+                            let payload = r3;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && state.matrix.ids[target_idx] != 0 {
+                                let target_mailbox = state.mailbox_atomic(target_idx);
+                                target_mailbox[0].store(msg_type, std::sync::atomic::Ordering::Relaxed);
+                                target_mailbox[1].store(payload, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 10;
+                        }
+                        SYS_READ_INBOX => {
+                            let my_mailbox = state.mailbox_atomic(atom_idx);
+                            let msg_type = my_mailbox[0].load(std::sync::atomic::Ordering::Relaxed);
+                            let payload = my_mailbox[1].load(std::sync::atomic::Ordering::Relaxed);
+                            context_regs[0].store(msg_type, std::sync::atomic::Ordering::Relaxed);
+                            context_regs[1].store(payload, std::sync::atomic::Ordering::Relaxed);
+                            if msg_type != 0 {
+                                my_mailbox[0].store(0, std::sync::atomic::Ordering::Relaxed);
+                                my_mailbox[1].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 10;
+                        }
+                        SYS_MUTATE => {
+                            let target_idx = r1 as usize;
+                            let offset = (r2 as usize) & 63;
+                            let new_val = (r3 & 0xFF) as u8;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && state.matrix.ids[target_idx] != 0 {
+                                unsafe {
+                                    let matrix_ptr = state.matrix.as_ref() as *const SigmaMatrix as *mut SigmaMatrix;
+                                    let target_inst_array = &mut (*std::ptr::addr_of_mut!((*matrix_ptr).instructions));
+                                    target_inst_array[target_idx][offset] = new_val;
+                                }
+                                // Evict entropy cache of target
+                                state.context_atomic(target_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 30;
+                        }
+                        SYS_EMIT => {
+                            let ev_a = r1;
+                            let ev_b = r2;
+                            let head = state.matrix.ledger_head % 1024; // MAX_LEDGER_EVENTS
+                            unsafe {
+                                let matrix_ptr = state.matrix.as_ref() as *const SigmaMatrix as *mut SigmaMatrix;
+                                let ledger_data = &mut (*std::ptr::addr_of_mut!((*matrix_ptr).ledger_data));
+                                let entry = &mut ledger_data[head as usize];
+                                entry[0] = atom_idx as i32;
+                                entry[1] = ev_a;
+                                entry[2] = ev_b;
+                                entry[3] = state.matrix.energy[atom_idx];
+                            }
+                            gas_used += 20;
+                        }
+                        SYS_BET => {
+                            let bet_energy = r1 * 1000;
+                            if energy >= bet_energy {
+                                // Simple market stub: register bet success in R1
+                                context_regs[1].store(1, std::sync::atomic::Ordering::Relaxed);
+                                state.energy_atomic()[atom_idx].fetch_sub(bet_energy, std::sync::atomic::Ordering::Relaxed);
+                                energy -= bet_energy;
+                            } else {
+                                context_regs[1].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 20;
+                        }
+                        SYS_SPORE_DRIVE => {
+                            let nx = state.matrix.xs[atom_idx] as i32 + r1;
+                            let ny = state.matrix.ys[atom_idx] as i32 + r2;
+                            state.dispatch_egress(atom_idx, nx, ny, energy);
+                            state.energy_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                            state.ids_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                            energy = 0;
+                            gas_used += 50;
+                        }
+                        SYS_SENSE_PHASE => {
+                            // Returns (epochPhase & 0xFFFF) | ((theta & 0xFFFF) << 16)
+                            // We don't have theta in state yet, assuming constant or from hormones
+                            let phase = state.matrix.neural_coherence & 0xFFFF;
+                            context_regs[0].store(phase, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 10;
+                        }
+                        SYS_SET_ROLE => {
+                            let new_role = (r1 & 0x7F) as u8;
+                            let current_flags = state.matrix.roles[atom_idx] & 0x80;
+                            state.roles_atomic()[atom_idx].store(new_role | current_flags, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 15;
+                        }
+                        SYS_YIELD => {
+                            gas_limit = 0; // Forces exit from while-loop
+                        }
                         _ => {
                             gas_used += 10;
                         }
@@ -25557,6 +24477,7 @@ impl LambdaVM {
         state.energy_atomic()[atom_idx].store(final_energy, std::sync::atomic::Ordering::Relaxed);
 
         if final_energy == 0 {
+            state.fossilize(atom_idx);
             state.ids_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
         }
     }
@@ -28457,6 +27378,52 @@ return intent as i32;
 
 ---
 
+## FILE: src/ontology/math/PRNG.md
+
+```markdown
+---
+id: PRNG
+type: module
+description: Deterministic PRNG wrapper class for simulation consistency.
+tags:
+  - host
+deps:
+  - prng_seed_from
+  - prng_next
+vars:
+  - prng_seed_from
+  - prng_next
+min_level: 6
+extra_symbols:
+  - PRNG
+---
+
+### TypeScript
+
+```typescript
+export class PRNG {
+  private state: number;
+
+  constructor(seed: number) {
+    this.state = seed;
+  }
+
+  public static seedFrom(tick: number, atomId: string): number {
+    return prng_seed_from(tick, atomId);
+  }
+
+  public next(): { value: number; nextState: number } {
+    const result = prng_next(this.state);
+    this.state = result.nextState;
+    return result;
+  }
+}
+```
+
+```
+
+---
+
 ## FILE: src/ontology/math/SIN_LUT.md
 
 ```markdown
@@ -29906,6 +28873,255 @@ export const AKASHA_SIGNALING = {
 
 ---
 
+## FILE: src/ontology/membrane/p2p_codec.md
+
+```markdown
+---
+id: P2P_CODEC
+type: module
+description: Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE).
+tags:
+  - membrane
+  - host
+deps:
+  - MX
+vars:
+  - MX
+min_level: 6
+extra_symbols:
+  - P2P_CODEC
+  - PACKET_SIZE
+---
+
+### TypeScript
+
+```typescript
+export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
+
+export const P2P_CODEC = {
+  /**
+   * Serializes an atom from MX into a strict Uint8Array binary format.
+   * Format:
+   * 0-7:   ID (BigUint64)
+   * 8-9:   X (Int16)
+   * 10-11: Y (Int16)
+   * 12-15: Energy (Float32 - converted back from Float/SCALE internals to preserve fidelity)
+   * 16-19: Resonance (Int32)
+   * 20-23: Phase (Int32)
+   * 24-31: Logic/Genome (Uint8Array x 8)
+   * 32:    Role (Uint8)
+   * 33:    Damping (Uint8)
+   * 34-35: Padding/Reserved (Uint16)
+   * 36-43: Lineage (BigUint64)
+   * 44-107: Context / Registers (Int32Array x 16 -> 64 bytes)
+   * 108-171: Instructions (Uint8Array x 64 -> 64 bytes)
+   * 172-191: Padding (20 bytes)
+   */
+  packAtom: (idx: number): Uint8Array => {
+    const buffer = new ArrayBuffer(PACKET_SIZE);
+    const view = new DataView(buffer);
+    const u8 = new Uint8Array(buffer);
+
+    view.setBigUint64(0, MX.getId(idx), true);
+    view.setInt16(8, MX.getX(idx), true);
+    view.setInt16(10, MX.getY(idx), true);
+    view.setFloat32(12, MX.getEnergy(idx), true);
+    view.setInt32(16, MX.getResonance(idx), true);
+    view.setInt32(20, MX.getPhase(idx), true);
+
+    const logic = MX.getLogic(idx);
+    u8.set(logic, 24);
+
+    view.setUint8(32, MX.getRole(idx));
+    view.setUint8(33, MX.getDamping(idx));
+    // 34-35 reserved padding
+    view.setBigUint64(36, MX.getLineage(idx), true);
+
+    const context = MX.getContext(idx);
+    u8.set(
+      new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
+      44,
+    );
+
+    const instructions = MX.getInstructions(idx);
+    u8.set(instructions, 108);
+
+    return u8;
+  },
+
+  /**
+   * Unpacks a binary Uint8Array into a free MX atom slot.
+   * Returns the new index `idx` if successful, or -1 if the matrix is full.
+   */
+  unpackAtom: (buffer: Uint8Array): number => {
+    if (buffer.length < PACKET_SIZE) return -1; // Invalid packet size
+
+    const idx = MX.findEmptySlot();
+    if (idx === -1) return -1; // Lattice full
+
+    const view = new DataView(
+      buffer.buffer,
+      buffer.byteOffset,
+      buffer.byteLength,
+    );
+
+    const id = view.getBigUint64(0, true);
+    const x = view.getInt16(8, true);
+    const y = view.getInt16(10, true);
+    const energy = view.getFloat32(12, true);
+    const resonance = view.getInt32(16, true);
+    const phase = view.getInt32(20, true);
+
+    const logic = buffer.subarray(24, 32);
+    const role = view.getUint8(32);
+    const damping = view.getUint8(33);
+    const lineage = view.getBigUint64(36, true);
+
+    // Seed core fields
+    MX.seedAtom(
+      idx,
+      id,
+      x,
+      y,
+      Math.max(0, energy),
+      Math.max(0, resonance),
+      logic,
+    );
+    MX.setPhase(idx, phase);
+    MX.setRole(idx, role);
+    MX.setDamping(idx, damping);
+    MX.setLineage(idx, lineage);
+
+    // Restore execution context (registers and PC)
+    const contextSrc = buffer.subarray(44, 108);
+    const contextDst = new Uint8Array(
+      MX.getContext(idx).buffer,
+      MX.getContext(idx).byteOffset,
+      64,
+    );
+    contextDst.set(contextSrc);
+
+    // Restore instructions
+    const instSrc = buffer.subarray(108, 172);
+    MX.setInstructions(idx, instSrc);
+
+    return idx;
+  },
+};
+```
+
+```
+
+---
+
+## FILE: src/ontology/membrane/p2p_federation.md
+
+```markdown
+---
+id: P2P_FEDERATION
+type: module
+description: RESTORED | High-level distributed migration policies and rule-genome consistency.
+tags:
+  - membrane
+  - host
+deps:
+  - MX
+  - PRNG
+  - LOGGER
+  - RUNTIME_POLICY
+  - P2P_CODEC
+min_level: 6
+extra_symbols:
+  - P2P_FEDERATION
+---
+
+### TypeScript
+
+```typescript
+export interface P2pFederationUpwardDelegate {
+  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
+  lookupLineageProfile(lineage: string): any;
+  captureBehaviorFrame(idx: number): any;
+}
+
+let delegate: P2pFederationUpwardDelegate | null = null;
+
+const CURRENT_PORT = RUNTIME_POLICY.system.port;
+const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
+const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
+const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
+
+const fnv1a32 = (input: string): string => {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
+};
+
+const RULE_PROFILE_SOURCE = JSON.stringify({
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+});
+
+const RULE_GENOME_SIGNATURE = fnv1a32(RULE_PROFILE_SOURCE).toUpperCase();
+const LOCAL_RULE_GENOME = {
+  signature: RULE_GENOME_SIGNATURE,
+  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
+  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
+  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
+  workerCount: RUNTIME_POLICY.pulse.workerCount,
+  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
+  generatedAt: new Date().toISOString(),
+};
+
+const peerRuleProfiles = new Map<string, any>();
+
+export const P2P_FEDERATION = {
+  setUpwardDelegate: (newDelegate: P2pFederationUpwardDelegate) => {
+    delegate = newDelegate;
+  },
+  peers: new Set<string>(
+    CURRENT_PORT === 8000
+      ? ["http://localhost:8001"]
+      : ["http://localhost:8000"],
+  ),
+  nodeId: `OMEGA-${CURRENT_PORT}`,
+  enabled: FEDERATION_ENABLED,
+  localRuleGenome: LOCAL_RULE_GENOME,
+
+  serialize: (idx: number): Uint8Array | null => {
+    const id = MX.getId(idx);
+    if (!id) return null;
+    return P2P_CODEC.packAtom(idx);
+  },
+
+  observePeerRuleGenome: (sourceNode: string, rawProfile: any) => {
+    if (!rawProfile || !rawProfile.signature) return;
+    peerRuleProfiles.set(sourceNode, rawProfile);
+  },
+
+  getPeerRuleProfiles: () =>
+    Array.from(peerRuleProfiles.entries()).map(([peer, profile]) => ({
+      peer,
+      profile,
+    })),
+
+  migrate: async (idx: number, pulseId: number) => {
+    // Deprecated for Era 75: routeAtom is preferred. 
+    // Kept for partial compatibility with legacy callers.
+  },
+};
+```
+
+```
+
+---
+
 ## FILE: src/ontology/membrane/panopticon_server.md
 
 ```markdown
@@ -30045,6 +29261,456 @@ export const PANOPTICON_SERVER = {
     }
   },
 };
+```
+
+```
+
+---
+
+## FILE: src/ontology/membrane/swarm_nexus.md
+
+```markdown
+---
+id: SWARM_NEXUS
+type: module
+description: RESTORED | Swarm Membrane for WebSocket-based peer backbone and heartbeat synchronization.
+tags:
+  - membrane
+  - host
+deps:
+  - LOGGER
+min_level: 6
+extra_symbols:
+  - SwarmNexus
+  - createSwarmNexus
+  - OP_NEXUS_HANDSHAKE
+  - OP_NEXUS_ATOM_TRANSIT
+  - OP_NEXUS_HEARTBEAT
+  - OP_NEXUS_EPOCH_CONSENSUS
+  - OP_NEXUS_SYNC_REQUEST
+  - OP_NEXUS_EPOCH_PAYLOAD
+---
+
+### TypeScript
+
+```typescript
+export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
+
+export type NexusConfig = {
+  instanceId: number;
+  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
+  mainnetEnabled?: boolean;
+  bootstrapHubUrl?: string;
+};
+
+export const OP_NEXUS_HANDSHAKE = 0x00;
+export const OP_NEXUS_ATOM_TRANSIT = 0x01;
+export const OP_NEXUS_HEARTBEAT = 0x02;
+export const OP_NEXUS_EPOCH_CONSENSUS = 0x03;
+export const OP_NEXUS_SYNC_REQUEST = 0x04;
+export const OP_NEXUS_EPOCH_PAYLOAD = 0x05;
+
+export class SwarmNexus {
+  public nodeId: string;
+  public instanceId: number;
+  public port: number;
+  public seedNodes: string[];
+  public mainnetEnabled: boolean;
+  public bootstrapHubUrl: string;
+
+  // Peer registry
+  public connectedPeers: Map<string, WebSocket> = new Map();
+  // Server handle
+  private serverAbortController: AbortController = new AbortController();
+
+  // Heartbeat tracking
+  public peerHeartbeats: Map<
+    string,
+    { tick: number; tps: number; lastSeen: number }
+  > = new Map();
+  private heartbeatInterval?: number;
+
+  // Local TPS tracking support
+  public localCurrentTick: number = 0;
+  public localTps: number = 0;
+
+  // Callback Hooks
+  public onAtomTransit?: (payload: Uint8Array) => void;
+  public onSyncRequest?: (peerId: string) => void;
+  public onEpochPayload?: (payload: Uint8Array) => void;
+
+  constructor(config: NexusConfig) {
+    this.nodeId = crypto.randomUUID();
+    this.instanceId = config.instanceId;
+    this.port = 8080 + config.instanceId;
+    this.seedNodes = config.seedNodes;
+    this.mainnetEnabled = config.mainnetEnabled ?? false;
+    this.bootstrapHubUrl = config.bootstrapHubUrl ?? "";
+  }
+
+  public start() {
+    LOGGER.info(`[NEXUS] Booting Swarm Membrane on port ${this.port} (Node: ${this.nodeId})`);
+
+    // 1. Start listening for incoming WebSocket connections
+    const server = Deno.serve({
+      port: this.port,
+      hostname: "127.0.0.1",
+      signal: this.serverAbortController.signal,
+      onListen: ({ port, hostname }) => {
+        LOGGER.info(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
+      },
+    }, (req) => {
+      if (req.headers.get("upgrade") != "websocket") {
+        return new Response(null, { status: 501 });
+      }
+
+      const { socket, response } = Deno.upgradeWebSocket(req);
+      this.handleConnection(socket, "INBOUND");
+      return response;
+    });
+
+    server.finished.catch((err: any) => {
+      LOGGER.error(`[NEXUS] FATAL SERVER CRASH: ${err}`);
+    });
+
+    // 2. Connect to known seed nodes
+    for (const seedUrl of this.seedNodes) {
+      if (
+        seedUrl === `ws://127.0.0.1:${this.port}` ||
+        seedUrl === `ws://localhost:${this.port}`
+      ) {
+        continue; // Don't connect to self
+      }
+      this.connectToPeer(seedUrl);
+    }
+
+    // 2.5 Connect to Bootstrap Hub if requested
+    if (this.mainnetEnabled && this.bootstrapHubUrl) {
+      this.connectToHub();
+    }
+
+    // 3. Start Heartbeat Broadcast
+    this.heartbeatInterval = setInterval(() => {
+      this.broadcastHeartbeat();
+    }, 100);
+  }
+
+  public stop() {
+    LOGGER.info(`[NEXUS] Shutting down Node ${this.nodeId}`);
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = undefined;
+    }
+    this.serverAbortController.abort();
+    for (const [, ws] of this.connectedPeers) {
+      ws.close();
+    }
+    this.connectedPeers.clear();
+    this.peerHeartbeats.clear();
+  }
+
+  private connectToPeer(url: string) {
+    try {
+      LOGGER.info(`[NEXUS] Attempting connection to seed: ${url}`);
+      const socket = new WebSocket(url);
+      this.handleConnection(socket, "OUTBOUND");
+    } catch (e) {
+      LOGGER.error(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
+    }
+  }
+
+  private connectToHub() {
+    try {
+      LOGGER.info(`[NEXUS] Connecting to Bootstrap Hub: ${this.bootstrapHubUrl}`);
+      const hubSocket = new WebSocket(this.bootstrapHubUrl);
+
+      hubSocket.onopen = () => {
+        LOGGER.info(`[NEXUS] Connected to Hub.`);
+        hubSocket.send(JSON.stringify({
+          op: "REGISTER",
+          nodeId: this.nodeId,
+          url: `ws://127.0.0.1:${this.port}`,
+        }));
+      };
+
+      hubSocket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
+            LOGGER.info(`[NEXUS] Received ${data.peers.length} peers from Hub.`);
+            for (const peerUrl of data.peers) {
+              if (peerUrl !== `ws://127.0.0.1:${this.port}`) {
+                this.connectToPeer(peerUrl);
+              }
+            }
+          }
+        } catch (e) {
+          LOGGER.warn(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
+        }
+      };
+
+      hubSocket.onclose = () => {
+        LOGGER.warn(`[NEXUS] Disconnected from Hub.`);
+      };
+    } catch (e) {
+      LOGGER.error(`[NEXUS] Failed to connect to Hub: ${e}`);
+    }
+  }
+
+  private handleConnection(
+    socket: WebSocket,
+    direction: "INBOUND" | "OUTBOUND",
+  ) {
+    socket.binaryType = "arraybuffer";
+    let remoteNodeId: string | null = null;
+
+    socket.onopen = () => {
+      LOGGER.info(`[NEXUS] ${direction} Socket Opened.`);
+      this.sendHandshake(socket);
+    };
+
+    socket.onmessage = (event) => {
+      if (event.data instanceof ArrayBuffer) {
+        const payload = new Uint8Array(event.data);
+        const op = payload[0];
+
+        switch (op) {
+          case OP_NEXUS_HANDSHAKE:
+            remoteNodeId = this.handleHandshake(socket, payload);
+            break;
+          case OP_NEXUS_ATOM_TRANSIT:
+            this.handleAtomTransit(payload);
+            break;
+          case OP_NEXUS_HEARTBEAT:
+            if (remoteNodeId) this.handleHeartbeat(remoteNodeId, payload);
+            break;
+          case OP_NEXUS_EPOCH_CONSENSUS:
+            if (remoteNodeId) this.handleEpochConsensus(remoteNodeId, payload);
+            break;
+          case OP_NEXUS_SYNC_REQUEST:
+            if (remoteNodeId) this.handleSyncRequest(remoteNodeId);
+            break;
+          case OP_NEXUS_EPOCH_PAYLOAD:
+            this.handleEpochPayload(payload);
+            break;
+          default:
+            LOGGER.warn(`[NEXUS] Unknown binary OP code: ${op}`);
+        }
+      } else {
+        LOGGER.warn(`[NEXUS] Received non-binary message, discarding.`);
+      }
+    };
+
+    socket.onclose = () => {
+      if (remoteNodeId) {
+        LOGGER.info(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
+        this.connectedPeers.delete(remoteNodeId);
+        this.peerHeartbeats.delete(remoteNodeId);
+      }
+    };
+
+    socket.onerror = (e) => {
+      LOGGER.error(`[NEXUS] Socket Error on ${remoteNodeId || "unknown peer"}:`, e);
+    };
+  }
+
+  private sendHandshake(socket: WebSocket) {
+    const encoder = new TextEncoder();
+    const idBytes = encoder.encode(this.nodeId);
+    if (idBytes.length !== 36) return;
+
+    const payload = new Uint8Array(1 + 36);
+    payload[0] = OP_NEXUS_HANDSHAKE;
+    payload.set(idBytes, 1);
+
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(payload.buffer);
+    }
+  }
+
+  private handleHandshake(socket: WebSocket, payload: Uint8Array): string {
+    const decoder = new TextDecoder();
+    const remoteId = decoder.decode(payload.slice(1, 37));
+    LOGGER.info(`[NEXUS] Handshake complete with Node: ${remoteId}`);
+    this.connectedPeers.set(remoteId, socket);
+    return remoteId;
+  }
+
+  public routeAtom(egressEvent: Uint8Array) {
+    if (this.connectedPeers.size === 0) return;
+
+    const peers = Array.from(this.connectedPeers.values());
+    const targetPeer = peers[Math.floor(Math.random() * peers.length)];
+
+    const payload = new Uint8Array(1 + egressEvent.length);
+    payload[0] = OP_NEXUS_ATOM_TRANSIT;
+    payload.set(egressEvent, 1);
+
+    if (targetPeer.readyState === WebSocket.OPEN) {
+      targetPeer.send(payload.buffer);
+      LOGGER.info(`[NEXUS] Atom dispatched to peer.`);
+    }
+  }
+
+  private handleAtomTransit(payload: Uint8Array) {
+    const atomData = payload.slice(1);
+    LOGGER.info(`[NEXUS] Ingress Atom Materializing...`);
+    if (this.onAtomTransit) this.onAtomTransit(atomData);
+  }
+
+  private broadcastHeartbeat() {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_HEARTBEAT;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, this.localCurrentTick, true);
+    view.setFloat64(9, this.localTps, true);
+
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleHeartbeat(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const tick = view.getFloat64(1, true);
+    const tps = view.getFloat64(9, true);
+    this.peerHeartbeats.set(remoteId, { tick, tps, lastSeen: performance.now() });
+  }
+
+  public getMedianSwarmTick(localTickFallback: number): number {
+    const now = performance.now();
+    const ticks: number[] = [localTickFallback];
+    for (const [peerId, hb] of this.peerHeartbeats.entries()) {
+      if (now - hb.lastSeen > 2000) {
+        this.peerHeartbeats.delete(peerId);
+        continue;
+      }
+      ticks.push(hb.tick);
+    }
+    if (ticks.length === 1) return localTickFallback;
+    ticks.sort((a, b) => a - b);
+    const mid = Math.floor(ticks.length / 2);
+    return ticks.length % 2 === 0 ? (ticks[mid - 1] + ticks[mid]) / 2 : ticks[mid];
+  }
+
+  public broadcastEpochConsensus(epochTick: number, hash: bigint) {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array(17);
+    payload[0] = OP_NEXUS_EPOCH_CONSENSUS;
+    const view = new DataView(payload.buffer);
+    view.setFloat64(1, epochTick, true);
+    view.setBigUint64(9, hash, true);
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleEpochConsensus(remoteId: string, payload: Uint8Array) {
+    if (payload.length !== 17) return;
+    const view = new DataView(payload.buffer);
+    const epochTick = view.getFloat64(1, true);
+    const peerHash = view.getBigUint64(9, true);
+    LOGGER.warn(`[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`);
+  }
+
+  public broadcastSyncRequest() {
+    if (this.connectedPeers.size === 0) return;
+    const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
+    for (const peer of this.connectedPeers.values()) {
+      if (peer.readyState === WebSocket.OPEN) peer.send(payload.buffer);
+    }
+  }
+
+  private handleSyncRequest(remoteId: string) {
+    if (this.onSyncRequest) this.onSyncRequest(remoteId);
+  }
+
+  public sendEpochPayload(targetNodeId: string, epochData: Uint8Array) {
+    const peer = this.connectedPeers.get(targetNodeId);
+    if (!peer || peer.readyState !== WebSocket.OPEN) return;
+    const payload = new Uint8Array(1 + epochData.length);
+    payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
+    payload.set(epochData, 1);
+    peer.send(payload.buffer);
+  }
+
+  private handleEpochPayload(payload: Uint8Array) {
+    const epochData = payload.slice(1);
+    if (this.onEpochPayload) this.onEpochPayload(epochData);
+  }
+}
+```
+
+```
+
+---
+
+## FILE: src/ontology/membrane/swarm_node.md
+
+```markdown
+---
+id: SWARM_NODE
+type: module
+description: RESTORED | Simple heartbeat and state broadcast logic for distributed synchronization.
+tags:
+  - membrane
+  - host
+deps:
+  - LOGGER
+min_level: 6
+extra_symbols:
+  - SWARM_NODE
+  - MetaKuramotoNode
+---
+
+### TypeScript
+
+```typescript
+export type SwarmHeartbeat = {
+  nodeId: string;
+  currentTick: number;
+  epochHash: string;
+  phase: number;
+};
+
+export class MetaKuramotoNode {
+  public readonly nodeId: string;
+  public readonly heartbeatInterval: number;
+
+  constructor(
+    nodeId: string = crypto.randomUUID(),
+    heartbeatInterval: number = 1000,
+  ) {
+    this.nodeId = nodeId;
+    this.heartbeatInterval = heartbeatInterval;
+  }
+
+  public evaluateHeartbeat(
+    currentTick: number,
+    epochHash: string,
+    avgPhase: number,
+    egressCount: number,
+  ): void {
+    if (currentTick > 0 && currentTick % this.heartbeatInterval === 0) {
+      const heartbeat: SwarmHeartbeat = {
+        nodeId: this.nodeId,
+        currentTick,
+        epochHash,
+        phase: avgPhase,
+      };
+
+      LOGGER.info(`[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`);
+
+      if (egressCount > 0) {
+        LOGGER.info(`[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`);
+      }
+    }
+  }
+}
+
+export const SWARM_NODE = new MetaKuramotoNode();
 ```
 
 ```
@@ -30818,12 +30484,17 @@ vars:
   - LOGIC_OFFSET
 args:
   idx: i32
+rsArgs:
+  state: "&SigmaState"
+  idx: i32
 returns: i32
 ---
 
 ### Rust
 ```rust
-unimplemented!("Memory accessors are host/WASM specific");
+let b0 = state.matrix.logic[idx as usize][0] as i32;
+let b1 = state.matrix.logic[idx as usize][1] as i32;
+(b0 << 8) | b1
 ```
 
 ### TypeScript
@@ -32327,6 +31998,11 @@ export const MX = {
   syncState,
   tickCounter,
   SYNC,
+  ids,
+  xs,
+  ys,
+  energies,
+  resonances,
   phases,
   evolutionReserved,
   roles,
@@ -32343,6 +32019,9 @@ export const MX = {
   hormones,
   lineage,
   instructions,
+  logic,
+  bonds,
+  bondDistances,
   ledgerHeadView,
   ledgerDataView,
   contexts,
@@ -41996,6 +41675,9 @@ and write a pending bond request (initiator=2, target=3, status=1) into the
 ---
 id: GOLDEN_TRACE_CATALOG
 type: module
+tags:
+  - core
+  - host
 min_level: 11
 description: Catalog of golden traces for system verification.
 extra_symbols:
@@ -42622,6 +42304,9 @@ export const goldenTraceArtifactPaths = (id: string) => {
 ---
 id: REDUCTION_CASES
 type: module
+tags:
+  - verifier
+  - host
 min_level: 12
 description: Catalog of reduction cases for verifying WASM-shadow parity.
 deps:
@@ -43796,6 +43481,9 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | undefin
 ---
 id: REDUCTION_HARNESS
 type: verifier
+tags:
+  - verifier
+  - host
 min_level: 13
 description: Reduction harness for verifying WASM-shadow parity.
 deps:

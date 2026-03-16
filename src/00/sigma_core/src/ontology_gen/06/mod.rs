@@ -29,9 +29,6 @@ pub use get_glyph_legacy_opcode::*;
 #[path = "DOLL_FORK_MATRIX.rs"]
 pub mod DOLL_FORK_MATRIX;
 pub use DOLL_FORK_MATRIX::*;
-#[path = "GENERIC_PROMOTION_DECISION.rs"]
-pub mod GENERIC_PROMOTION_DECISION;
-pub use GENERIC_PROMOTION_DECISION::*;
 #[path = "EXPORT_CORE.rs"]
 pub mod EXPORT_CORE;
 pub use EXPORT_CORE::*;
