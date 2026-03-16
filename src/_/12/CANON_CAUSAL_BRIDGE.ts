@@ -1,13 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_admission.md
-
-export type BridgeInvariantReportLike = {
-  index_chain_checked?: boolean;
-  index_chain_ok?: boolean;
-  index_chain_failures?: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_failures?: string[];
-};
+import { BridgeInvariantReportLike, TYPES } from "@g11";
 
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,

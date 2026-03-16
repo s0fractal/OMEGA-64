@@ -5,50 +5,21 @@ description: Implementation of GENETIC_LEDGER
 tags: []
 min_level: 8
 vars:
+  - GeneticLedgerKey
+  - LedgerMutability
+  - GeneticLedgerEntry
 extra_symbols:
   - GENETIC_LEDGER
   - GENETIC_LEDGER_CATALOG
-  - GeneticLedgerEntry
-  - GeneticLedgerKey
-  - LedgerMutability
   - geneticLedgerBaseline
   - geneticLedgerEntryByKey
 deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
 import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
-
-export type GeneticLedgerKey =
-  | "pulse.homeostasis.targetEnergy"
-  | "pulse.homeostasis.band"
-  | "pulse.homeostasis.maxDelta"
-  | "pulse.homeostasis.overflowThreshold"
-  | "pulse.homeostasis.baseTax"
-  | "pulse.pressureRing.scale"
-  | "daemon.maxActionsPerWindow"
-  | "daemon.maxPheromoneIntensity"
-  | "daemon.maxPlasmidCharge"
-  | "federation.admission.degradeEnergyRatio"
-  | "federation.admission.degradeResonanceRatio";
-
-export type LedgerMutability =
-  | "hard-invariant"
-  | "bounded-runtime"
-  | "daemon-governed";
-
-export type GeneticLedgerEntry = {
-  key: GeneticLedgerKey;
-  defaultValue: number;
-  min: number;
-  max: number;
-  mutability: LedgerMutability;
-  hormoneLink: string | null;
-  rollbackClass: "immediate" | "epochal";
-  sourcePath: string;
-  notes: string;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

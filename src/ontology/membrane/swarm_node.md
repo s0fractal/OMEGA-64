@@ -5,24 +5,16 @@ description: RESTORED | Simple heartbeat and state broadcast logic for distribut
 tags:
   - membrane
   - host
+vars:
+  - SwarmHeartbeat
 deps:
   - LOGGER
-min_level: 6
-extra_symbols:
-  - SWARM_NODE
-  - MetaKuramotoNode
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export type SwarmHeartbeat = {
-  nodeId: string;
-  currentTick: number;
-  epochHash: string;
-  phase: number;
-};
-
 export class MetaKuramotoNode {
   public readonly nodeId: string;
   public readonly heartbeatInterval: number;

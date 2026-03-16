@@ -5,12 +5,14 @@ description: Migrated from src/07/05/GENESIS_BOOT.ts
 tags:
   - core
   - host
-deps: []
 min_level: 6
+vars:
+  - RolePreamble
+deps:
+  - TYPES
 extra_symbols:
   - GENESIS_PROGRAMS
   - GLYPH
-  - RolePreamble
 ---
 
 ### TypeScript
@@ -53,11 +55,6 @@ export const GLYPH = {
   COLLECTIVE: 32,
   ROLE: 33,
   RESOLVE: 34,
-};
-
-export type RolePreamble = {
-  roleId: number;
-  bytecode: number[];
 };
 
 /**

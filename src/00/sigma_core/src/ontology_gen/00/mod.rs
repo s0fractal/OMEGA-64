@@ -33,6 +33,9 @@ pub use GLYPH_LEGACY_OPCODE_LUT::*;
 #[path = "GLYPH_ENERGY_LUT.rs"]
 pub mod GLYPH_ENERGY_LUT;
 pub use GLYPH_ENERGY_LUT::*;
+#[path = "TYPES.rs"]
+pub mod TYPES;
+pub use TYPES::*;
 #[path = "GLYPH_RGB_LUT.rs"]
 pub mod GLYPH_RGB_LUT;
 pub use GLYPH_RGB_LUT::*;
@@ -60,9 +63,6 @@ pub use sigma_math::*;
 #[path = "sigma_atom_role.rs"]
 pub mod sigma_atom_role;
 pub use sigma_atom_role::*;
-#[path = "STATE_SNAPSHOT.rs"]
-pub mod STATE_SNAPSHOT;
-pub use STATE_SNAPSHOT::*;
 #[path = "pack_glyph_header.rs"]
 pub mod pack_glyph_header;
 pub use pack_glyph_header::*;

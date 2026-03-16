@@ -4,17 +4,24 @@ type: module
 description: "Implementation of GATE"
 tags: []
 min_level: 12
+vars:
+  - ReplayInvariantReport
+  - GateRuntimeContext
+  - StateSnapshot
+  - DeltaProposal
+  - GateConfig
+  - GateDecision
+  - BridgeModeEvent
+  - LedgerEvent
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-import { GRID_H } from "@g00";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@g00";
+import { GRID_H, REJECTION } from "@g00";
 import { LOGGER, Ld, Li, Lw } from "@g06";
-import {
-  type LedgerEvent
-} from "@g00";
 import {
   CANON_CAUSAL_BRIDGE
 } from "@g12";
@@ -45,17 +52,6 @@ import {
   persistGateLedgerArtifacts
 } from "@g12";
 
-export interface ReplayInvariantReport {
-  index_chain_checked: boolean;
-  index_chain_ok: boolean;
-  index_chain_checked_records: number;
-  index_chain_failures: string[];
-  gate_admission_index_chain_checked: boolean;
-  gate_admission_index_chain_ok: boolean;
-  gate_admission_index_chain_checked_records: number;
-  gate_admission_index_chain_failures: string[];
-}
-
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;
 const I16 = {
@@ -66,11 +62,6 @@ const I16 = {
   LEVEL_COUNT: 64,
 };
 const I16_CLAMP = (x: number): number => Math.max(-32768, Math.min(32767, x));
-
-export interface GateRuntimeContext {
-  bridge_invariant_report?: ReplayInvariantReport;
-  witness?: string;
-}
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {

@@ -4,11 +4,16 @@ type: module
 description: "Implementation of SEMANTIC_MEMBRANE"
 tags: []
 min_level: 5
+vars:
+  - BehaviorFingerprint
+  - BehaviorCluster
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
+import { GRID_W, GRID_H, GRID_CELLS } from "@g00";
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
@@ -25,22 +30,6 @@ const BEHAVIOR_STATE_TTL_TICKS = 2048;
 const OP_REPLICATE = 0x80;
 const OP_SIGNAL = 0x81;
 const OP_BUILD = 0xA8;
-
-export type BehaviorFingerprint = {
-  replicateRatio: number;
-  signalRatio: number;
-  buildRatio: number;
-  survivalCurve: number[];
-};
-
-export type BehaviorCluster = {
-  behaviorSignature: string;
-  memberCount: number;
-  dominantRole: number;
-  genomeSamples: string[];
-  fingerprint: BehaviorFingerprint;
-  lastTick: number;
-};
 
 type BehaviorRuntime = {
   survivalCurve: number[];

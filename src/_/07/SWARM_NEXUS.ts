@@ -1,14 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_nexus.md
-import { LOGGER } from "@g06";
+import { NexusConfig, LOGGER, TYPES } from "@g06";
 
 export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
-
-export type NexusConfig = {
-  instanceId: number;
-  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
-  mainnetEnabled?: boolean;
-  bootstrapHubUrl?: string;
-};
 
 export const OP_NEXUS_HANDSHAKE = 0x00;
 export const OP_NEXUS_ATOM_TRANSIT = 0x01;

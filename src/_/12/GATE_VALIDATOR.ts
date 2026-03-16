@@ -1,21 +1,9 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
+import { GateBridgeResolution, GateValidationResult, TYPES } from "@g11";
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { REJECTION } from "@g00";
 import { CANON_CAUSAL_BRIDGE } from "@g12";
 import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
-
-type GateBridgeResolution = {
-  mode: "GREEN" | "AMBER" | "RED";
-  reason: string;
-};
-
-export type GateValidationResult = {
-  validProposals: DeltaProposal[];
-  proposalDigest: string;
-  envelopeHashByProposal: Map<string, string>;
-  canonBoundProposals: string[];
-  blockedCanonProposals: string[];
-};
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {

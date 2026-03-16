@@ -5,23 +5,15 @@ name: Canon Causal Bridge Admission
 description: Gate admission verification logic prioritizing invariant integrity chains.
 tags:
   - gate
-extra_symbols:
+vars:
   - BridgeInvariantReportLike
-  - CANON_CAUSAL_BRIDGE
+deps:
+  - TYPES
 min_level: 12
 ---
 
 ### TypeScript
 ```typescript
-export type BridgeInvariantReportLike = {
-  index_chain_checked?: boolean;
-  index_chain_ok?: boolean;
-  index_chain_failures?: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_failures?: string[];
-};
-
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,
 ): { mode: "GREEN" | "AMBER" | "RED"; reason: string } => {

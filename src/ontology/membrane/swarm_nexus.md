@@ -5,31 +5,18 @@ description: RESTORED | Swarm Membrane for WebSocket-based peer backbone and hea
 tags:
   - membrane
   - host
+min_level: 6
+vars:
+  - NexusConfig
 deps:
   - LOGGER
-min_level: 6
-extra_symbols:
-  - SwarmNexus
-  - createSwarmNexus
-  - OP_NEXUS_HANDSHAKE
-  - OP_NEXUS_ATOM_TRANSIT
-  - OP_NEXUS_HEARTBEAT
-  - OP_NEXUS_EPOCH_CONSENSUS
-  - OP_NEXUS_SYNC_REQUEST
-  - OP_NEXUS_EPOCH_PAYLOAD
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
 export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
-
-export type NexusConfig = {
-  instanceId: number;
-  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
-  mainnetEnabled?: boolean;
-  bootstrapHubUrl?: string;
-};
 
 export const OP_NEXUS_HANDSHAKE = 0x00;
 export const OP_NEXUS_ATOM_TRANSIT = 0x01;

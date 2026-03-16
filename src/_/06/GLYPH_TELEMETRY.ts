@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
+import { GlyphRoleCounters, GlyphSnapshot, TYPES } from "@g05";
 
 import { GRID_CELLS, GRID_H, GRID_W, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g00";
 import { SECRETION_STATS_OFFSET } from "@g01";
@@ -32,28 +33,6 @@ const getSecretionStatsView = (): Int32Array => {
 };
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
-
-export type GlyphRoleCounters = {
-  neutral: number;
-  producer: number;
-  guardian: number;
-  architect: number;
-  parasite: number;
-};
-
-export type GlyphSnapshot = {
-  activeCells: number;
-  pheromoneCells: number;
-  plasmidCells: number;
-  maxAmplitude: number;
-  totalAmplitude: number;
-  internalSignalSeeds: number;
-  internalMemorySeeds: number;
-  internalAtomPheromoneSeeds: number;
-  internalAtomPlasmidSeeds: number;
-  atomRolePheromone: GlyphRoleCounters;
-  atomRolePlasmid: GlyphRoleCounters;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

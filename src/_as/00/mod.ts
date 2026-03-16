@@ -16,7 +16,6 @@ export * from "./parse_env_bounded_int";
 export * from "./read_jsonl";
 export * from "./read_jsonl_lines";
 export * from "./parse_env_bool";
-export * from "./STATE_SNAPSHOT";
 export { pack_glyph_header } from "./pack_glyph_header";
 export { unpack_glyph_amplitude } from "./unpack_glyph_amplitude";
 export { unpack_glyph_kind } from "./unpack_glyph_kind";

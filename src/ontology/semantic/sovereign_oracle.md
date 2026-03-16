@@ -6,6 +6,8 @@ tags:
   - host
 min_level: 9
 vars:
+  - OraclePendingMutation
+  - OracleDrainStats
   - GRID_H
   - GRID_W
   - LLM_SYNAPSE
@@ -21,13 +23,13 @@ vars:
   - SEMANTIC_MEMBRANE
   - SOVEREIGNTY_ENGINE
   - MX
-extra_symbols:
-  - SOVEREIGN_ORACLE
-  - SovereignOracleAkashaDelegate
 deps:
   - LLM_SYNAPSE
   - LOGGER
   - PULSE
+extra_symbols:
+  - SOVEREIGN_ORACLE
+  - SovereignOracleAkashaDelegate
 ---
 
 ### TypeScript
@@ -43,45 +45,6 @@ export interface SovereignOracleAkashaDelegate {
 }
 
 let delegate: SovereignOracleAkashaDelegate | null = null;
-
-type OraclePendingMutation =
-  | {
-    kind: "oracle_head_mutation";
-    regentIndex: number;
-    headBytes: Uint8Array;
-    genomeHex: string;
-  }
-  | {
-    kind: "oracle_memetic_injection";
-    regentIndex: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_cache_fallback";
-    regentIndex: number;
-    logicBytes: Uint8Array;
-    cachedHex: string;
-  }
-  | {
-    kind: "oracle_whisper_broadcast";
-    gridIdx: number;
-    charge: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_plasmid_injection";
-    gridIdx: number;
-    charge: number;
-    plasmidBytes: Uint8Array;
-    source: "oracle_guidance" | "oracle_cache_fallback";
-  };
-
-type OracleDrainStats = {
-  applied: number;
-  skipped: number;
-  dropped: number;
-  remaining: number;
-};
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;

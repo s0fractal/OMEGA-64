@@ -1,11 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_federation.md
-import { MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC } from "@g06";
-
-export interface P2pFederationUpwardDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  lookupLineageProfile(lineage: string): any;
-  captureBehaviorFrame(idx: number): any;
-}
+import { P2pFederationUpwardDelegate, MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC, TYPES } from "@g06";
 
 let delegate: P2pFederationUpwardDelegate | null = null;
 

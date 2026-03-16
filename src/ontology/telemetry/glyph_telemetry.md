@@ -4,6 +4,11 @@ type: module
 description: "Implementation of GLYPH_TELEMETRY"
 tags: []
 min_level: 6
+vars:
+  - GlyphRoleCounters
+  - GlyphSnapshot
+deps:
+  - TYPES
 ---
 
 ### TypeScript
@@ -40,28 +45,6 @@ const getSecretionStatsView = (): Int32Array => {
 };
 
 type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
-
-export type GlyphRoleCounters = {
-  neutral: number;
-  producer: number;
-  guardian: number;
-  architect: number;
-  parasite: number;
-};
-
-export type GlyphSnapshot = {
-  activeCells: number;
-  pheromoneCells: number;
-  plasmidCells: number;
-  maxAmplitude: number;
-  totalAmplitude: number;
-  internalSignalSeeds: number;
-  internalMemorySeeds: number;
-  internalAtomPheromoneSeeds: number;
-  internalAtomPlasmidSeeds: number;
-  atomRolePheromone: GlyphRoleCounters;
-  atomRolePlasmid: GlyphRoleCounters;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

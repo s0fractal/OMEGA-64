@@ -4,26 +4,18 @@ type: module
 description: "Implementation of GATE_VALIDATOR"
 tags: []
 min_level: 12
+vars:
+  - GateBridgeResolution
+  - GateValidationResult
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { REJECTION } from "@g00";
 import { CANON_CAUSAL_BRIDGE } from "@g12";
 import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
-
-type GateBridgeResolution = {
-  mode: "GREEN" | "AMBER" | "RED";
-  reason: string;
-};
-
-export type GateValidationResult = {
-  validProposals: DeltaProposal[];
-  proposalDigest: string;
-  envelopeHashByProposal: Map<string, string>;
-  canonBoundProposals: string[];
-  blockedCanonProposals: string[];
-};
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {

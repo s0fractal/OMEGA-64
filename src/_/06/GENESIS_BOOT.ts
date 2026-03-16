@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_boot.md
+import { RolePreamble, TYPES } from "@g05";
 
 /**
  * GENESIS_BOOT.ts
@@ -37,11 +38,6 @@ export const GLYPH = {
   COLLECTIVE: 32,
   ROLE: 33,
   RESOLVE: 34,
-};
-
-export type RolePreamble = {
-  roleId: number;
-  bytecode: number[];
 };
 
 /**

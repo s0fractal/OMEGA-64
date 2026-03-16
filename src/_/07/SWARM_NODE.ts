@@ -1,12 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_node.md
-import { LOGGER } from "@g06";
-
-export type SwarmHeartbeat = {
-  nodeId: string;
-  currentTick: number;
-  epochHash: string;
-  phase: number;
-};
+import { SwarmHeartbeat, LOGGER, TYPES } from "@g06";
 
 export class MetaKuramotoNode {
   public readonly nodeId: string;

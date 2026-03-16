@@ -5,26 +5,21 @@ description: RESTORED | High-level distributed migration policies and rule-genom
 tags:
   - membrane
   - host
+min_level: 6
+vars:
+  - P2pFederationUpwardDelegate
 deps:
   - MX
   - PRNG
   - LOGGER
   - RUNTIME_POLICY
   - P2P_CODEC
-min_level: 6
-extra_symbols:
-  - P2P_FEDERATION
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export interface P2pFederationUpwardDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  lookupLineageProfile(lineage: string): any;
-  captureBehaviorFrame(idx: number): any;
-}
-
 let delegate: P2pFederationUpwardDelegate | null = null;
 
 const CURRENT_PORT = RUNTIME_POLICY.system.port;

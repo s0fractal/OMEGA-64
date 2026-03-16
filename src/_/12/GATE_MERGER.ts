@@ -1,6 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
+import { GateAcceptedProposalMetric, I16Limits, TYPES, LOGGER } from "@g11";
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { REJECTION } from "@g00";
 import { LOGGER, Ld } from "@g06";
 
 import {
@@ -9,23 +10,6 @@ import {
 import {
   MX
 } from "@g04";
-
-type I16Limits = {
-  max: number;
-  span: number;
-};
-
-export type GateAcceptedProposalMetric = {
-  proposal_id: string;
-  agent_id: string;
-  confidence: number;
-  reliability_base: number;
-  reliability_effective: number;
-  phase_coherence?: number;
-  weight: number;
-  physical_cost: number;
-  agent_phase_u16?: number;
-};
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;

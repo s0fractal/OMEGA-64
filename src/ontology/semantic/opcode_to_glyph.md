@@ -7,8 +7,11 @@ tags:
   - host
 deps:
   - glyph_ir_64
+  - TYPES
 min_level: 8
 vars:
+  - LegacyInstruction
+  - GlyphTapeToken
   - OP_ADD
   - OP_BIND
   - OP_BUILD
@@ -34,8 +37,6 @@ vars:
   - OP_TENSEGRITY
   - glyphSpecByLegacyOpcode
 extra_symbols:
-  - GlyphTapeToken
-  - LegacyInstruction
   - decodeLegacyInstruction
   - legacyOpcodeLength
   - scriptToGlyphTape
@@ -44,20 +45,6 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-
-export type LegacyInstruction = {
-  pc: number;
-  opcode: number;
-  opcodeMnemonic: string;
-  length: number;
-  args: number[];
-};
-
-export type GlyphTapeToken = LegacyInstruction & {
-  glyphId: number | null;
-  glyphMnemonic: string | null;
-  mapped: boolean;
-};
 
 const OPCODE_NAMES = new Map<number, string>([
   [OP_NOP, "NOP"],

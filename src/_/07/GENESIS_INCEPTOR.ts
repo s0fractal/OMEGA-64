@@ -1,15 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_inceptor.md
-import { GENESIS_PROGRAMS, LOGGER, Ld, REIFIED_PROGRAMS } from "@g06";
+import { LOGGER } from "@g06";
 
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-
-export interface InceptiveProgram {
-  bytecode: number[];
-  metadata?: {
-    ancestorHash?: bigint;
-    roleHint?: number;
-  };
-}
 
 /**
  * GenesisInceptor manages the selection of bytecode for new atomic entities.

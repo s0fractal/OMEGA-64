@@ -1,17 +1,17 @@
 # OMEGA-64 | SHADOW ECOLOGY (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T07:07:57.997Z*
+*Generated: 2026-03-16T15:12:06.682Z*
 *Exported Files in Category: 0*
-*Total Exported Files: 840*
+*Total Exported Files: 822*
 *Runtime Roots: 7*
-*Runtime Closure Files: 194*
-*Non-Runtime Code Files: 331*
+*Runtime Closure Files: 188*
+*Non-Runtime Code Files: 325*
 *Runtime-Support Code Files: 2*
-*Experimental Code Files: 329*
-*Manifest SHA256: 551fc6375e806383b9cb321bccd256174ab34f96181ef5a91b41e8d51213de54*
-*Export Set SHA256: a301d2da31e627dc8c22620fe09984830a766f80269af67fc4a969dcd89cda57*
-*Export Content SHA256: 264b526ff5b53be9f36d16a3dc7fe1f5ca3024e70e6429ddea416bb0bc96c2a3*
-*Git Commit: 91ac172fa927*
+*Experimental Code Files: 323*
+*Manifest SHA256: 47f0062aa4a44161dd8b999cfbfb8d858cd1348e9bf52fa6b30df20b51f58629*
+*Export Set SHA256: a69d1850701dd12202811e4e47ba208ab506ff86f6995eea2cc711af39a15ca6*
+*Export Content SHA256: 6fae3291f6e4646dd27b3392630829420065df45071f7ad8380897ad03255aad*
+*Git Commit: 87d29da98dcf*
 
 ---
 

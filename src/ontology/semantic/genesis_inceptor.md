@@ -7,29 +7,14 @@ tags:
   - host
 deps:
   - LOGGER
-min_level: 7
-vars:
-  - GENESIS_PROGRAMS
-  - LOGGER
-  - Ld
-  - REIFIED_PROGRAMS
 extra_symbols:
   - GenesisInceptor
-  - InceptiveProgram
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-
-export interface InceptiveProgram {
-  bytecode: number[];
-  metadata?: {
-    ancestorHash?: bigint;
-    roleHint?: number;
-  };
-}
 
 /**
  * GenesisInceptor manages the selection of bytecode for new atomic entities.

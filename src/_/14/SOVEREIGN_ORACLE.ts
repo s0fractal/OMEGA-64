@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
-import { GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX } from "@g13";
+import { OraclePendingMutation, OracleDrainStats, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX } from "@g13";
 
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
@@ -12,45 +12,6 @@ export interface SovereignOracleAkashaDelegate {
 }
 
 let delegate: SovereignOracleAkashaDelegate | null = null;
-
-type OraclePendingMutation =
-  | {
-    kind: "oracle_head_mutation";
-    regentIndex: number;
-    headBytes: Uint8Array;
-    genomeHex: string;
-  }
-  | {
-    kind: "oracle_memetic_injection";
-    regentIndex: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_cache_fallback";
-    regentIndex: number;
-    logicBytes: Uint8Array;
-    cachedHex: string;
-  }
-  | {
-    kind: "oracle_whisper_broadcast";
-    gridIdx: number;
-    charge: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_plasmid_injection";
-    gridIdx: number;
-    charge: number;
-    plasmidBytes: Uint8Array;
-    source: "oracle_guidance" | "oracle_cache_fallback";
-  };
-
-type OracleDrainStats = {
-  applied: number;
-  skipped: number;
-  dropped: number;
-  remaining: number;
-};
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
