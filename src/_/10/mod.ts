@@ -2,4 +2,5 @@
 // deno-lint-ignore-file camelcase
 export * from "@g09";
 export * from "./HORMONE_BUFFER.ts";
+export * from "./BREATH.ts";
 export * from "./GENERIC_LEDGER_PERSISTENCE.ts";

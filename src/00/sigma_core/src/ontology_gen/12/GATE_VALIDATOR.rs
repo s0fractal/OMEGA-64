@@ -1,4 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
 #![allow(unused_imports)]
-use super::super::L02::*;
+use super::super::L11::*;
 

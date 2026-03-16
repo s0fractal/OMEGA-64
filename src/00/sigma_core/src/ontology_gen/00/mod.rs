@@ -111,9 +111,6 @@ pub use C_LOG2_C_LUT::*;
 #[path = "GENESIS_PREDATOR_SCRIPT.rs"]
 pub mod GENESIS_PREDATOR_SCRIPT;
 pub use GENESIS_PREDATOR_SCRIPT::*;
-#[path = "CANON_CAUSAL_BRIDGE.rs"]
-pub mod CANON_CAUSAL_BRIDGE;
-pub use CANON_CAUSAL_BRIDGE::*;
 #[path = "encode_force_tuple.rs"]
 pub mod encode_force_tuple;
 pub use encode_force_tuple::*;

@@ -13,5 +13,9 @@ vars:
 
 ### TypeScript
 ```typescript
-export * from "@g12";
+import { OPCODE_ARITY_LUT } from "@g00";
+
+export const disassembler = {
+  // Minimal placeholder if missing or re-export from @g00 if it moved
+};
 ```

@@ -8,6 +8,7 @@ tags:
 extra_symbols:
   - BridgeInvariantReportLike
   - CANON_CAUSAL_BRIDGE
+min_level: 12
 ---
 
 ### TypeScript

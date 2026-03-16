@@ -35,7 +35,7 @@ extra_symbols:
 
 import type {
   GlyphSnapshot
-} from "@g12";
+} from "@g06";
 
 
 const CODEX_ROOT = "codex";

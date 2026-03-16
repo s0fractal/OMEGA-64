@@ -92,7 +92,6 @@ export class AgentProxy {
     const x = MX.getX(atomId);
     const y = MX.getY(atomId);
     const energy = MX.getEnergy(atomId);
-    const energy = MX.getEnergy(atomId);
     const role = MX.getRole(atomId);
 
     // Phase 4: Vector Vision (Directional Gradients)

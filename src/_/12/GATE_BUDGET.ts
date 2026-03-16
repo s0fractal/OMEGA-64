@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/gate_budget.md
-import { CRYSTALLIZATION_CONFIG, GATE_MERGER, GATE_VALIDATOR } from "@g11";
+import { CRYSTALLIZATION_CONFIG } from "@g11";
 
 export type GateMergedDelta = Array<{ level: number; value: number }>;
 

@@ -47,39 +47,40 @@ async function runAvatar() {
 
       const data = await res.json();
       const me = data.self;
-      const vision = data.vision;
+      const st = data.sensory_tensor;
 
       Li(
         `[AVATAR] Pos: (${me.x}, ${me.y}) | Energy: ${
           Math.floor(me.energy)
-        } | Seeing ${vision.length} entities.`,
+        } | Trophic: [${st.trophic.map((v: number) => v.toFixed(2)).join(",")}]`,
       );
 
-      // 2. DECIDE (Simulated LLM Policy: Move towards nearest PREY/PRODUCER to eat, or random wander)
+      // 2. DECIDE (Heuristic Policy based on Gradients)
       let action = "MOVE";
-      let dx = Math.random() > 0.5 ? 1 : -1;
-      let dy = Math.random() > 0.5 ? 1 : -1;
+      let dx = 0;
+      let dy = 0;
       let targetIdx = 0;
 
-      if (vision.length > 0) {
-        // Find nearest food (Role 1=Producer, Role 0=Prey)
-        const food = vision.find((v: any) => v.role === 1 || v.role === 0);
-        if (food) {
-          if (food.distance <= 15) {
-            action = "EAT";
-            targetIdx = food.idx;
-            Li(
-              `[AVATAR] DECISION: EAT target ${targetIdx} at Dist ${
-                Math.floor(food.distance)
-              }`,
-            );
-          } else {
-            // Move towards food
-            dx = Math.sign(food.dx);
-            dy = Math.sign(food.dy);
-            Li(`[AVATAR] DECISION: CHASE target ${food.idx}`);
-          }
-        }
+      // 2a. Avoid Threats (Quadrant Logic)
+      if (st.threat[0] > 0.3) dy = 1; // Threat North -> Move South
+      else if (st.threat[2] > 0.3) dy = -1; // Threat South -> Move North
+      
+      if (st.threat[3] > 0.3) dx = 1; // Threat West -> Move East
+      else if (st.threat[1] > 0.3) dx = -1; // Threat East -> Move West
+
+      // 2b. If no immediate threat, chase food
+      if (dx === 0 && dy === 0) {
+        if (st.trophic[0] > 0.1) dy = -1; // Food North
+        else if (st.trophic[2] > 0.1) dy = 1; // Food South
+        
+        if (st.trophic[3] > 0.1) dx = -1; // Food West
+        else if (st.trophic[1] > 0.1) dx = 1; // Food East
+      }
+
+      // 2c. Random wander if still stuck
+      if (dx === 0 && dy === 0) {
+        dx = Math.random() > 0.5 ? 1 : -1;
+        dy = Math.random() > 0.5 ? 1 : -1;
       }
 
       // 3. ACT

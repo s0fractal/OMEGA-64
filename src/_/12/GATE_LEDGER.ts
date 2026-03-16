@@ -1,5 +1,8 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_ledger.md
 
+import { type BridgeModeEvent, type LedgerEvent, type GateConfig } from "@g00";
+import { LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX, CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@g08";
+
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
   event: LedgerEvent,

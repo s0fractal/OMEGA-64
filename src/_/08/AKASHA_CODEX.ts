@@ -6,7 +6,7 @@ import { GRID_CELLS, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Li, Lw, OP_BUILD, OP_R
 
 import type {
   GlyphSnapshot
-} from "@g12";
+} from "@g06";
 
 
 const CODEX_ROOT = "codex";

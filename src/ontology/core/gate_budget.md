@@ -5,8 +5,6 @@ tags:
   - substrate
 deps:
   - CRYSTALLIZATION_CONFIG
-  - GATE_MERGER
-  - GATE_VALIDATOR
 extra_symbols:
   - GATE_BUDGET
   - GateMergedDelta

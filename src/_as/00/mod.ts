@@ -33,7 +33,6 @@ export * from "./SIN_LUT";
 export { fast_min } from "./fast_min";
 export * from "./C_LOG2_C_LUT";
 export * from "./GENESIS_PREDATOR_SCRIPT";
-export * from "./CANON_CAUSAL_BRIDGE";
 export { encode_force_tuple } from "./encode_force_tuple";
 export { dir8_y } from "./dir8_y";
 export { dir4_y } from "./dir4_y";

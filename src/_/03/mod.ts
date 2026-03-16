@@ -56,7 +56,3 @@ export * from "./ledgerHeadView.ts";
 export * from "./synapticWeights.ts";
 export * from "./neuralCoherence.ts";
 export * from "./coherence.ts";
-export * from "./GATE.ts";
-export * from "./GATE_LEDGER.ts";
-export * from "./GATE_VALIDATOR.ts";
-export * from "./GATE_MERGER.ts";

@@ -25,4 +25,3 @@ export * from "./COS_LUT.ts";
 export * from "./SIN_LUT.ts";
 export * from "./C_LOG2_C_LUT.ts";
 export * from "./GENESIS_PREDATOR_SCRIPT.ts";
-export * from "./CANON_CAUSAL_BRIDGE.ts";

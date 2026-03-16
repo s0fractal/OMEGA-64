@@ -3,19 +3,20 @@ id: GATE_MERGER
 type: module
 description: "Implementation of GATE_MERGER"
 tags: []
-min_level: 3
+min_level: 12
 ---
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@g12";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { LOGGER, Ld } from "@g06";
 
 import {
   GATE_BUDGET
 } from "@g12";
 import {
   MX
-} from "@g12";
+} from "@g04";
 
 type I16Limits = {
   max: number;

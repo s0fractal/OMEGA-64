@@ -1,13 +1,14 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot, LOGGER, Ld } from "@g12";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { LOGGER, Ld } from "@g06";
 
 import {
   GATE_BUDGET
 } from "@g12";
 import {
   MX
-} from "@g12";
+} from "@g04";
 
 type I16Limits = {
   max: number;

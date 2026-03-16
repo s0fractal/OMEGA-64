@@ -1,8 +1,8 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
 
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g12";
-import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@g12";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { CANON_CAUSAL_BRIDGE } from "@g12";
+import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";

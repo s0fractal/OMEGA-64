@@ -8,8 +8,9 @@ min_level: 6
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, SECRETION_STATS_OFFSET, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g12";
-import { MX } from "@g12";
+import { GRID_CELLS, GRID_H, GRID_W, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g00";
+import { SECRETION_STATS_OFFSET } from "@g01";
+import { MX } from "@g04";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;

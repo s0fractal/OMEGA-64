@@ -95,6 +95,8 @@ pub extern "C" fn tick_membrane_physics() {
         visited.clear();
         visited.resize(crate::MAX_ATOMS, 0);
 
+        use std::collections::VecDeque;
+
         for i in 1..crate::MAX_ATOMS {
             if state.matrix.ids[i] != 0 {
                 state.matrix.roles[i] &= !(crate::AtomRole::MetazoanFlag as u8);
@@ -102,78 +104,88 @@ pub extern "C" fn tick_membrane_physics() {
             }
         }
 
-        let mut rings: Vec<Vec<usize>> = Vec::new();
+        let mut tissues: Vec<Vec<usize>> = Vec::new();
 
         for start_node in 1..crate::MAX_ATOMS {
             if state.matrix.ids[start_node] == 0 || visited[start_node] == 1 {
                 continue;
             }
 
-            let mut path = Vec::with_capacity(8);
-            path.push(start_node);
+            let mut component = Vec::new();
+            let mut queue = VecDeque::new();
+            queue.push_back(start_node);
+            visited[start_node] = 1;
 
-            fn dfs(
-                current: usize,
-                start: usize,
-                depth: usize,
-                path: &mut Vec<usize>,
-                state: &crate::SigmaState,
-            ) -> bool {
-                if depth >= 8 {
-                    return false;
-                }
-
+            while let Some(current) = queue.pop_front() {
+                component.push(current);
                 for b_slot in 0..4 {
                     let target = state.matrix.bonds[(current * 4) + b_slot] as usize;
-                    if target > 0
-                        && target < crate::MAX_ATOMS
-                        && state.matrix.ids[target] != 0
-                    {
-                        if target == start && depth >= 2 {
-                            return true;
-                        }
-                        if target < start {
-                            continue;
-                        }
-                        if !path.contains(&target) {
-                            path.push(target);
-                            if dfs(target, start, depth + 1, path, state) {
-                                return true;
-                            }
-                            path.pop();
+                    if target > 0 && target < crate::MAX_ATOMS && state.matrix.ids[target] != 0 {
+                        if visited[target] == 0 {
+                            visited[target] = 1;
+                            queue.push_back(target);
                         }
                     }
                 }
-                false
             }
 
-            if dfs(start_node, start_node, 0, &mut path, &*state) {
-                rings.push(path.clone());
-                for &node in &path {
-                    visited[node] = 1;
-                }
+            if component.len() >= 3 {
+                tissues.push(component);
             }
         }
 
-        for ring in &rings {
-            let count = ring.len() as i32;
+        for tissue in &tissues {
+            let count = tissue.len() as i64;
             let mut sum_energy: i64 = 0;
             let mut sum_resonance: i64 = 0;
+            let mut total_dx = 0i32;
+            let mut total_dy = 0i32;
+            let mut architect_count = 0;
 
-            for &node in ring {
+            for &node in tissue {
                 sum_energy += state.matrix.energy[node] as i64;
                 sum_resonance += state.matrix.resonance[node] as i64;
-                state.matrix.roles[node] |= crate::AtomRole::MetazoanFlag as u8;
+                
+                let mut internal_bonds = 0;
+                for b_slot in 0..4 {
+                    let target = state.matrix.bonds[(node * 4) + b_slot] as usize;
+                    if target > 0 && target < crate::MAX_ATOMS && tissue.contains(&target) {
+                        internal_bonds += 1;
+                    }
+                }
+
+                if internal_bonds < 3 {
+                    state.matrix.roles[node] = (state.matrix.roles[node] & 0x80) | 2;
+                } else {
+                    state.matrix.roles[node] = (state.matrix.roles[node] & 0x80) | 3;
+                    let dx = (state.matrix.xs[node] - state.matrix.physics_read_xs[node]) as i32;
+                    let dy = (state.matrix.ys[node] - state.matrix.physics_read_ys[node]) as i32;
+                    if dx != 0 || dy != 0 {
+                        total_dx += dx;
+                        total_dy += dy;
+                        architect_count += 1;
+                    }
+                }
+                state.matrix.roles[node] |= 0x80;
             }
 
-            let avg_energy = (sum_energy / count as i64) as i32;
-            let avg_resonance = (sum_resonance / count as i64) as i32;
-            let total_resonance = sum_resonance as i32;
+            let avg_energy = (sum_energy / count) as i32;
+            let avg_resonance = (sum_resonance / count) as i32;
+            let (final_dx, final_dy) = if architect_count > 0 {
+                (total_dx / architect_count, total_dy / architect_count)
+            } else {
+                (0, 0)
+            };
 
-            for &node in ring {
+            for &node in tissue {
                 state.matrix.energy[node] = avg_energy;
                 state.matrix.resonance[node] = avg_resonance;
-                state.matrix.evolution_reserved[node] = total_resonance;
+                state.matrix.evolution_reserved[node] = sum_resonance as i32;
+
+                if (final_dx != 0 || final_dy != 0) && (state.matrix.roles[node] & 0x7F) != 3 {
+                    state.matrix.xs[node] = (state.matrix.physics_read_xs[node] as i32 + final_dx) as i16;
+                    state.matrix.ys[node] = (state.matrix.physics_read_ys[node] as i32 + final_dy) as i16;
+                }
             }
         }
     });

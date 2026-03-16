@@ -14,7 +14,6 @@ export * from "./EXPORT_CORE.ts";
 export * from "./get_glyph_kind.ts";
 export * from "./CONTINUUM.ts";
 export * from "./get_glyph_arity.ts";
-export * from "./BREATH.ts";
 export * from "./HORMONE_BUFFER_RUNTIME.ts";
 export * from "./get_glyph_energy.ts";
 export * from "./OMEGA_DAEMON.ts";

@@ -3,7 +3,7 @@ id: GATE_LEDGER
 type: module
 description: Implementation of GATE_LEDGER
 tags: []
-min_level: 3
+min_level: 12
 extra_symbols:
   - GATE_LEDGER
   - persistGateLedgerArtifacts
@@ -11,6 +11,8 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+import { type BridgeModeEvent, type LedgerEvent, type GateConfig } from "@g00";
+import { LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX, CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@g08";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

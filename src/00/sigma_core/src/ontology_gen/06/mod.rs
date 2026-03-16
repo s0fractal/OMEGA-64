@@ -41,9 +41,6 @@ pub use CONTINUUM::*;
 #[path = "get_glyph_arity.rs"]
 pub mod get_glyph_arity;
 pub use get_glyph_arity::*;
-#[path = "BREATH.rs"]
-pub mod BREATH;
-pub use BREATH::*;
 #[path = "HORMONE_BUFFER_RUNTIME.rs"]
 pub mod HORMONE_BUFFER_RUNTIME;
 pub use HORMONE_BUFFER_RUNTIME::*;

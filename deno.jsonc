@@ -75,7 +75,7 @@
     "test:export-provenance": "deno run -A src/00/03/test_export_provenance_guard.ts",
     "test:glyphir64-contract": "deno run -A src/03/03/test_glyphir64_contract.ts",
     "test:opcode-to-glyph-contract": "deno run -A src/03/03/test_opcode_to_glyph_contract.ts",
-    "test:reduction-harness": "deno test -A --no-check src/_/13/REDUCTION_HARNESS.test.ts",
+    "test:reduction-harness": "deno test -A --no-check src/_/14/REDUCTION_HARNESS.test.ts",
     "test:topological-signature": "deno run -A src/00/03/test_topological_signature_runtime.ts",
     "test:invariant-packet": "deno run -A src/00/03/test_invariant_packet_runtime.ts",
     "test:bridge-policy": "deno run -A src/03/03/test_bridge_policy_runtime.ts",

@@ -8,6 +8,6 @@ pub use PULSE::*;
 #[path = "SIGMA_FFI_BRIDGE.rs"]
 pub mod SIGMA_FFI_BRIDGE;
 pub use SIGMA_FFI_BRIDGE::*;
-#[path = "REDUCTION_HARNESS.rs"]
-pub mod REDUCTION_HARNESS;
-pub use REDUCTION_HARNESS::*;
+#[path = "REDUCTION_CASES.rs"]
+pub mod REDUCTION_CASES;
+pub use REDUCTION_CASES::*;

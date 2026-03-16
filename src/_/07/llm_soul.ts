@@ -27,9 +27,15 @@ ROLES:
 - 2: Guardian (Your Role). 
 - 4: Predator (Parasite). They want to eat you. RUN AWAY from them!
 
-You will receive your current state and a "vision" array showing nearby entities.
-Vision entities have "dx" and "dy" which are relative to you. (e.g. if dx is 20, the entity is 20 pixels to your Right).
-Distance is Euclidean distance.
+You will receive your current state and a "sensory_tensor" which is a 1-dimensional array of 12 normalized floats.
+DECODING THE TENSOR:
+Indices [0, 1, 2, 3]: TROPHIC DENSITY (Food/Energy) in directions North, East, South, West.
+Indices [4, 5, 6, 7]: THREAT PROXIMITY (Parasites) in directions North, East, South, West.
+Indices [8, 9, 10, 11]: SIGNAL INTENSITY (Glyphs) in directions North, East, South, West.
+
+Interpretation: Higher values indicate higher density/intensity/threat in that direction. Values are normalized between 0 and 1.
+Example: If tensor[4] > 0.8, there is a severe THREAT to your NORTH. MOVE SOUTH (dy: 1).
+Example: If tensor[1] > 0.5, there is FOOD to your EAST. MOVE EAST (dx: 1).
 
 AVAILABLE ACTIONS (Pick ONE per turn):
 1. MOVE: Requires you to specify a direction vector. dx can be -1, 0, or 1. dy can be -1, 0, or 1. (Speed is 10 pixels per move).
@@ -49,12 +55,15 @@ Example of a valid strategy array:
 ]
 `;
 
-async function queryGemini(state: any, vision: any[]): Promise<any[]> {
-  const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${
-    Math.floor(state.energy)
-  }\n\nVision (sorted by distance):\n${
-    JSON.stringify(vision, null, 2)
-  }\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
+async function queryGemini(state: any, tensor: number[]): Promise<any[]> {
+  const prompt = `Current State:
+Position: (${state.x}, ${state.y})
+Energy: ${Math.floor(state.energy)}
+
+Sensory Tensor (12-D):
+${JSON.stringify(tensor)}
+
+What is your 5-step macro-strategy? Output ONLY a JSON array.`;
 
   const payload = {
     systemInstruction: {
@@ -128,20 +137,20 @@ async function runSoul() {
 
         const data = await res.json();
         const me = data.self;
-        // Filter out producers to save tokens, only care about predators (4) and prey (0)
-        const vision = data.vision.filter((v: any) =>
-          v.role === 0 || v.role === 4
-        ).slice(0, 10);
+        const tensor = data.sensory_tensor.trophic.concat(
+          data.sensory_tensor.threat,
+          data.sensory_tensor.glyph,
+        );
 
         Li(
           `[LLM_SOUL] Energy: ${
             Math.floor(me.energy)
-          } | Seeing ${vision.length} threats/food.`,
+          } | Tensor: [${tensor.slice(0, 4).map((v: number) => v.toFixed(2)).join(",")}] ...`,
         );
 
         // 2. COGNITION
         Ld("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
-        const strategy = await queryGemini(me, vision);
+        const strategy = await queryGemini(me, tensor);
 
         if (Array.isArray(strategy)) {
           actionBuffer = strategy;

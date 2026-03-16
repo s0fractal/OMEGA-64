@@ -1,20 +1,30 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
 
-import { GRID_H } from "../00/SYSTEM_CONSTANTS.ts";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot, LOGGER, Ld, Li, Lw } from "@g12";
+import { GRID_H } from "@g00";
+import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@g00";
+import { LOGGER, Ld, Li, Lw } from "@g06";
 import {
   type LedgerEvent
+} from "@g00";
+import {
+  CANON_CAUSAL_BRIDGE
 } from "@g12";
 import {
-  CANON_CAUSAL_BRIDGE,
   CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY,
-  INVARIANT_PACKET as INVARIANT_PACKET,
-  LEDGER__08_00_LEDGER as LEDGER,
-  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX,
-  TOPOLOGICAL_SIGNATURE as TOPOLOGICAL_SIGNATURE
-} from "@g12";
+  CRYSTALLIZATION_POLICY
+} from "@g08";
+import {
+  INVARIANT_PACKET
+} from "@g08";
+import {
+  LEDGER__08_00_LEDGER as LEDGER
+} from "@g08";
+import {
+  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX
+} from "@g08";
+import {
+  TOPOLOGICAL_SIGNATURE
+} from "@g08";
 
 import {
   validateGateProposals

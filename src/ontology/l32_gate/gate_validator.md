@@ -3,14 +3,14 @@ id: GATE_VALIDATOR
 type: module
 description: "Implementation of GATE_VALIDATOR"
 tags: []
-min_level: 3
+min_level: 12
 ---
 
 ### TypeScript
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g12";
-import { AGENT_SIGNATURE, CANON_CAUSAL_BRIDGE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
-    as PROPOSAL_ENVELOPE_INDEX } from "@g12";
+import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
+import { CANON_CAUSAL_BRIDGE } from "@g12";
+import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
 
 type GateBridgeResolution = {
   mode: "GREEN" | "AMBER" | "RED";
