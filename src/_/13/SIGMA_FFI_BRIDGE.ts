@@ -1,7 +1,7 @@
-// OMEGA-64 | SIGMA_FFI.ts | Era 75: The Singularity Bridge
-// Interface to the Rust-based OMEGA Physics & VM Core via Deno FFI.
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi_bridge.md
+import { sharedBuffer } from "@g12";
 
-import { sharedBuffer } from "./_/mod.ts";
+// OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
 
 const libSuffix = Deno.build.os === "windows" ? "dll" : Deno.build.os === "darwin" ? "dylib" : "so";
 const libPrefix = Deno.build.os === "windows" ? "" : "lib";
@@ -17,6 +17,9 @@ const latticeUint8 = new Uint8Array(sharedBuffer);
 let lib: Deno.DynamicLibrary<{
   ffi_tick: { parameters: ["pointer", "u32"], result: "void" };
   ffi_init: { parameters: ["pointer"], result: "void" };
+  execute_atom: { parameters: ["usize"], result: "void" };
+  build_spatial_hash: { parameters: [], result: "void" };
+  tick_environment: { parameters: ["u32"], result: "void" };
 }> | null = null;
 
 for (const path of searchPaths) {

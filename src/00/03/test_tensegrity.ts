@@ -1,5 +1,4 @@
-import { MX, INSTRUCTIONS_OFFSET } from "../../_/mod.ts";
-import { SIGMA_FFI } from "../../SIGMA_FFI.ts";
+import { MX, INSTRUCTIONS_OFFSET, SIGMA_FFI } from "../../_/mod.ts";
 
 SIGMA_FFI.init();
 

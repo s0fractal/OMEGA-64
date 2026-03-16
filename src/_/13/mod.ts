@@ -2,3 +2,4 @@
 // deno-lint-ignore-file camelcase
 export * from "@g12";
 export * from "./PULSE.ts";
+export * from "./SIGMA_FFI_BRIDGE.ts";

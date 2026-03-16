@@ -93,12 +93,11 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer } from "../mod.ts";
+import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer, SIGMA_FFI } from "../mod.ts";
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
 import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
-import { SIGMA_FFI } from "../../SIGMA_FFI.ts";
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 
 
