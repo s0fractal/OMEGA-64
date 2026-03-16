@@ -477,7 +477,7 @@ for (const node of nodes.values()) {
        return true;
     });
 
-    const importsToPull = Array.from(new Set([...(node.vars || []), ...depsAsSymbols]));
+    const importsToPull = Array.from(new Set([...(node.vars || []), ...depsAsSymbols])).filter(v => v !== "TYPES");
     if (importsToPull.length > 0) {
       tsOut += `import { ${importsToPull.join(", ")} } from "@g${prevLevel}";\n`;
     }
@@ -752,6 +752,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   }
   // Additionally filter vars whose owning node (found by id in the graph) is host/standalone
   const importsToPull: string[] = (node.vars || []).filter(v => {
+    if (v === "TYPES") return false;
     if (hostOnlySymbols.has(v)) return false;
     const varNode = nodes.get(v);
     if (varNode && (varNode.tags.includes("host") || varNode.tags.includes("standalone"))) return false;
