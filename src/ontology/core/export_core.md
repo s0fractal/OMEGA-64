@@ -73,6 +73,7 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /\.wasm$/u,
   /\.log$/u,
   /\.jsonl$/u,
+  /(^|\/)src\/ontology\/verification\//u,
 ];
 
 const IMPORT_RE =
