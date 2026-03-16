@@ -516,7 +516,7 @@ const autoSnapshotRetention = parse_env_bounded_int(
   512,
 );
 
-const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "rust") ? "rust" : "as";
+const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "as") ? "as" : "rust";
 
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
@@ -556,6 +556,7 @@ const policyFingerprintSource = JSON.stringify({
     openWorld: federationOpenWorld,
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,
@@ -749,6 +750,7 @@ export const RUNTIME_POLICY = {
     },
   },
   pulse: {
+    engine: kernelMode === "rust" ? "ffi" : "wasm",
     workerCount: pulseWorkerCount,
     strictDeterminism: pulseStrictDeterminism,
     workerResponseTimeoutMs: pulseWorkerResponseTimeoutMs,

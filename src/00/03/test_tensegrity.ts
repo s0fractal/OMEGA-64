@@ -1,7 +1,7 @@
-import { AS_WASM_PATH } from "../../_/mod.ts";
-// OMEGA-64 | test_tensegrity.ts | Vector 2 Verification
-import { MX } from "@generated";
-import { INSTRUCTIONS_OFFSET } from "@generated";
+import { MX, INSTRUCTIONS_OFFSET } from "../../_/mod.ts";
+import { SIGMA_FFI } from "../../SIGMA_FFI.ts";
+
+SIGMA_FFI.init();
 
 async function runTest() {
   console.log("=== VECTOR 2: TENSEGRITY TEST ===");
@@ -9,36 +9,8 @@ async function runTest() {
   // 1. Initialize State
   MX.clear();
   const sharedBuffer = MX.buffer;
-  const wasmMemory = MX.wasmMemory;
 
-  // Load WASM
-  const wasmRes = await fetch(
-    AS_WASM_PATH,
-  );
-  const wasmBytes = await wasmRes.arrayBuffer();
-  const trace_atom = (
-    idx: number,
-    op: number,
-    gx: number,
-    gy: number,
-    _target: number,
-  ) => {
-    console.log(
-      `   [TR] Atom ${idx} | OP: 0xA5 | Mode: ${op} | P2: ${gx} | P3: ${gy}`,
-    );
-  };
-  const { instance } = await WebAssembly.instantiate(wasmBytes, {
-    index: {
-      trace_atom,
-    },
-    env: {
-      memory: wasmMemory,
-      abort: () => {},
-      trace_atom,
-    },
-  });
-
-  const execute_atom = instance.exports.execute_atom as (i: number) => void;
+  const execute_atom = (idx: number) => SIGMA_FFI.executeAtom(idx);
 
   // 2. Spawn Atom A (Index 0) and Atom B (Index 1)
   // Close together: (100, 100) and (110, 110)

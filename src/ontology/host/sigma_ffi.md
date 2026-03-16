@@ -23,11 +23,13 @@ use std::mem::ManuallyDrop;
 
 // `SigmaMatrix` logically begins at address SAFETY_BUFFER natively matching the Deno SAB.
 
-/// Creates a safely wrapped `SigmaState` mapping to the imported `SharedArrayBuffer`.
-/// `ManuallyDrop` prevents Rust from trying to deallocate the imported WASM memory when `SigmaState` correctly orchestrates its execution horizon and drops.
 unsafe fn get_ffi_state() -> ManuallyDrop<SigmaState> {
-    // In wasm32-unknown-unknown with import-memory, address 0 is the start of linear memory.
-    let base_ptr = crate::SAFETY_BUFFER as *mut crate::SigmaMatrix;
+    let lattice_ptr = crate::LATTICE_PTR.load(std::sync::atomic::Ordering::SeqCst);
+    let base_ptr = if lattice_ptr.is_null() {
+        crate::SAFETY_BUFFER as *mut crate::SigmaMatrix
+    } else {
+        unsafe { lattice_ptr.add(crate::SAFETY_BUFFER) as *mut crate::SigmaMatrix }
+    };
     let state = unsafe { SigmaState::from_raw(base_ptr) };
     ManuallyDrop::new(state)
 }
@@ -49,6 +51,17 @@ pub extern "C" fn execute_atom(idx: usize) {
     let mut state = unsafe { get_ffi_state() };
     let mut vm = crate::LambdaVM::new();
     vm.step(&mut state, idx);
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn ffi_tick_all_atoms(start_idx: usize, end_idx: usize) {
+    let mut state = unsafe { get_ffi_state() };
+    let mut vm = crate::LambdaVM::new();
+    for i in start_idx..end_idx {
+        if i < crate::MAX_ATOMS && state.matrix.ids[i] != 0 {
+            vm.step(&mut state, i);
+        }
+    }
 }
 
 #[unsafe(no_mangle)]

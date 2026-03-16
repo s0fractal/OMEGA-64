@@ -1744,6 +1744,10 @@ const dispatchRangePhase = async (
   await Promise.all(workerPromises);
 };
 const startWorkers = async (count: number): Promise<void> => {
+  if (RUNTIME_POLICY.pulse.engine === "ffi") {
+    Ld("[PULSE] FFI mode active. Skipping worker initialization.");
+    return;
+  }
   workerFaultStats.length = 0;
   workerPromises = [];
   for (let i = 0; i < count; i++) {
@@ -2114,7 +2118,7 @@ export const PULSE = {
       );
     }
 
-    if (WASM_BOOT_PRECHECK_ENABLED) {
+    if (WASM_BOOT_PRECHECK_ENABLED && RUNTIME_POLICY.pulse.engine !== "ffi") {
       const preflight = await wasmPreflight();
       wasmBootPrecheckCompleted = true;
       wasmBootArtifactBytes = preflight.bytes;
@@ -3060,12 +3064,14 @@ export const PULSE = {
       dumpA11("End of TICK phase 1");
 
       // 3.1 Tick Glyph Transport (WASM) [Stage 5.1]
-      const transportPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_GLYPH_TRANSPORT",
-        tick: currentTick,
-        pulseId: transportPulseId,
-      }, "GLYPH_TRANSPORT_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const transportPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_GLYPH_TRANSPORT",
+          tick: currentTick,
+          pulseId: transportPulseId,
+        }, "GLYPH_TRANSPORT_DONE");
+      }
 
       // 3.5 Sort Spawn Requests Deterministically
       const writeHead = Atomics.load(spawnHeadView, 0);
@@ -3105,121 +3111,129 @@ export const PULSE = {
       }
 
       // 4. Drain Spawn Queue (WASM)
-      const spawnPulseId = nextPulseId();
-      const spawnRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "DRAIN_SPAWN",
-          tick: currentTick,
-          pulseId: spawnPulseId,
-        },
-        "DRAIN_SPAWN_DONE",
-      );
-      if (spawnRes.count > 0) {
-        Ld(
-          `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        const spawnPulseId = nextPulseId();
+        const spawnRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "DRAIN_SPAWN",
+            tick: currentTick,
+            pulseId: spawnPulseId,
+          },
+          "DRAIN_SPAWN_DONE",
         );
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "spawn_seed_atom",
-          count: spawnRes.count,
-        });
+        if (spawnRes.count > 0) {
+          Ld(
+            `🌱 [PULSE] WASM Spawned ${spawnRes.count} atoms with RISC boot scripts.`,
+          );
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "spawn_seed_atom",
+            count: spawnRes.count,
+          });
+        }
+      } else {
+        // In FFI mode, spawn results are already drained in the native tick
+        // but we might still want to record telemetry if we can track the count.
+        // For now, we skip the JS side of this.
+      }
 
-        // --- STAGE 22: ADAPTIVE INCEPTION ---
-        // Find newly spawned atoms (those with IDs but empty instructions/role)
-        // and inject evolved programs.
-        for (let idx = 0; idx < MAX_ATOMS; idx++) {
-          if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
-            // This is likely a fresh spawn. Incept it.
-            const prog = genesisInceptor.selectProgram();
-            const lineageHash = prog.metadata?.ancestorHash ?? 0n;
+      // --- STAGE 22: ADAPTIVE INCEPTION ---
+      // Find newly spawned atoms (those with IDs but empty instructions/role)
+      // and inject evolved programs.
+      for (let idx = 0; idx < MAX_ATOMS; idx++) {
+        if (idsView[idx] !== 0n && instructionsView[idx * 64] === 0) {
+          // This is likely a fresh spawn. Incept it.
+          const prog = genesisInceptor.selectProgram();
+          const lineageHash = prog.metadata?.ancestorHash ?? 0n;
 
-            MX.setInstructions(idx, new Uint8Array(prog.bytecode));
-            MX.setLineage(idx, lineageHash);
+          MX.setInstructions(idx, new Uint8Array(prog.bytecode));
+          MX.setLineage(idx, lineageHash);
 
-            // Mark its role if the program is for a specific one (e.g. role hint)
-            // For now, we'll let the role be assigned by the first op if needed,
-            // or just set a default.
-          }
+          // Mark its role if the program is for a specific one (e.g. role hint)
+          // For now, we'll let the role be assigned by the first op if needed,
+          // or just set a default.
         }
       }
 
       // 5. Metabolic and Homeostasis Closure (WASM)
-      // Pass 1: Accumulate genome frequencies (Scratch Space)
-      const clearStatsPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "METABOLISM_ACCUMULATE",
-        startIdx: 0,
-        endIdx: MAX_ATOMS,
-        clear: true,
-        pulseId: clearStatsPulseId,
-      }, "METABOLISM_ACCUMULATE_DONE");
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
+        // Pass 1: Accumulate genome frequencies (Scratch Space)
+        const clearStatsPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "METABOLISM_ACCUMULATE",
+          startIdx: 0,
+          endIdx: MAX_ATOMS,
+          clear: true,
+          pulseId: clearStatsPulseId,
+        }, "METABOLISM_ACCUMULATE_DONE");
 
-      // Pass 2: Apply Metabolism (Parallel)
-      const pressureState = snapshotEvolutionPressureState();
+        // Pass 2: Apply Metabolism (Parallel)
+        const pressureState = snapshotEvolutionPressureState();
 
-      applyEvolutionPressureTerms(currentTick, activeIdx);
-      applyEnergyHomeostasisTerms(
-        currentTick,
-        activeIdx,
-        spatialHashState.overflowRatio,
-      );
-
-      // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
-      const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
-      const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
-      const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
-
-      if (currentTick % 20 === 0 && syntropy > 0.1) {
-        Li(
-          `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
-            (taxDiscount * 100).toFixed(1)
-          }% (Syntropy: ${syntropy.toFixed(3)})`,
+        applyEvolutionPressureTerms(currentTick, activeIdx);
+        applyEnergyHomeostasisTerms(
+          currentTick,
+          activeIdx,
+          spatialHashState.overflowRatio,
         );
+
+        // Sovereign Feedback: Tax reduction based on structural organization (Syntropy)
+        const baseTaxRaw = clampHomeostasisBaseTax(homeostasisBaseTaxRuntime);
+        const taxDiscount = Math.min(0.8, syntropy * 1.5); // Max 80% tax reduction at high syntropy
+        const baseTax = Math.max(0, Math.round(baseTaxRaw * (1 - taxDiscount)));
+
+        if (currentTick % 20 === 0 && syntropy > 0.1) {
+          Li(
+            `⚖️ [SOVEREIGN] Metabolic Tax Discount: ${
+              (taxDiscount * 100).toFixed(1)
+            }% (Syntropy: ${syntropy.toFixed(3)})`,
+          );
+        }
+
+        const targetEnergy = clampHomeostasisTargetEnergy(
+          homeostasisTargetEnergyRuntime,
+        );
+
+        const metabolismPromises: Promise<any>[] = [];
+        const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
+        for (let i = 0; i < runtimeWorkerCount; i++) {
+          const startIdx = i * chunkSize;
+          const endIdx = i === runtimeWorkerCount - 1
+            ? MAX_ATOMS
+            : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
+
+          metabolismPromises.push(postAndWait(
+            i,
+            workers[i],
+            {
+              type: "METABOLISM_APPLY",
+              pulseId: nextPulseId(),
+              startIdx,
+              endIdx,
+              noveltySigned: pressureState.noveltySigned,
+              symbiosisSigned: pressureState.symbiosisSigned,
+              baseTax,
+              targetEnergy,
+              homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
+              homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
+              overflowThreshold:
+                homeostasisOverflowThresholdLedgerRuntime.currentValue,
+              spatialOverflowRatio: spatialHashState.overflowRatio,
+              starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
+              subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
+            },
+            "METABOLISM_APPLY_DONE",
+          ));
+        }
+        await Promise.all(metabolismPromises);
       }
-
-      const targetEnergy = clampHomeostasisTargetEnergy(
-        homeostasisTargetEnergyRuntime,
-      );
-
-      const metabolismPromises: Promise<any>[] = [];
-      const chunkSize = Math.ceil(MAX_ATOMS / runtimeWorkerCount);
-      for (let i = 0; i < runtimeWorkerCount; i++) {
-        const startIdx = i * chunkSize;
-        const endIdx = i === runtimeWorkerCount - 1
-          ? MAX_ATOMS
-          : Math.min(MAX_ATOMS, (i + 1) * chunkSize);
-
-        metabolismPromises.push(postAndWait(
-          i,
-          workers[i],
-          {
-            type: "METABOLISM_APPLY",
-            pulseId: nextPulseId(),
-            startIdx,
-            endIdx,
-            noveltySigned: pressureState.noveltySigned,
-            symbiosisSigned: pressureState.symbiosisSigned,
-            baseTax,
-            targetEnergy,
-            homeostasisBand: homeostasisBandLedgerRuntime.currentValue,
-            homeostasisMaxDelta: homeostasisMaxDeltaLedgerRuntime.currentValue,
-            overflowThreshold:
-              homeostasisOverflowThresholdLedgerRuntime.currentValue,
-            spatialOverflowRatio: spatialHashState.overflowRatio,
-            starvationFloor: HOMEOSTASIS_STARVATION_FLOOR,
-            subsidyEnabled: HOMEOSTASIS_SUBSIDY_ENABLED,
-          },
-          "METABOLISM_APPLY_DONE",
-        ));
-      }
-      await Promise.all(metabolismPromises);
 
       // 6. Sequential Maintenance (Sequential JS)
 
       // --- STAGE 26: Immunological Phagocyte ---
-      {
+      if (RUNTIME_POLICY.pulse.engine !== "ffi") {
         const entropyPressure = MX.get_hormone(0); // H0: entropy_pressure
         const workerResponse = await postAndWait(
           0, // use primary worker

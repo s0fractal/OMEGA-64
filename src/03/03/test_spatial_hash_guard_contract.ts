@@ -1,6 +1,5 @@
 import { resolveSourcePath } from "../../resolve_source.ts";
 const ASSEMBLY_PATH = "src/ontology/core/build_spatial_hash.md";
-const WORKER_PATH = await resolveSourcePath("PULSE_WORKER.ts");
 const PULSE_PATH = await resolveSourcePath("PULSE.ts");
 const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 
@@ -23,9 +22,8 @@ const requireSnippet = (
 
 const main = async () => {
   const violations: Violation[] = [];
-  const [assembly, worker, pulse, system] = await Promise.all([
+  const [assembly, pulse, system] = await Promise.all([
     Deno.readTextFile(ASSEMBLY_PATH),
-    Deno.readTextFile(WORKER_PATH),
     Deno.readTextFile(PULSE_PATH),
     Deno.readTextFile(SYSTEM_PATH),
   ]);
@@ -42,21 +40,6 @@ const main = async () => {
     "spatialHashMaxCellCount",
     ASSEMBLY_PATH,
     "WASM kernel must track spatial hash max cell occupancy",
-    violations,
-  );
-
-  requireSnippet(
-    worker,
-    "overflowCount",
-    WORKER_PATH,
-    "Worker HASH_DONE payload must include overflow count",
-    violations,
-  );
-  requireSnippet(
-    worker,
-    "maxCellCount",
-    WORKER_PATH,
-    "Worker HASH_DONE payload must include max cell count",
     violations,
   );
 

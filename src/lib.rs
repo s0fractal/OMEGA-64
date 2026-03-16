@@ -21,7 +21,7 @@ pub use ontology_gen::L02::{PulseOrchestrator, SigmaMatrix, SigmaState};
 use std::sync::atomic::{AtomicPtr, Ordering};
 use std::cell::RefCell;
 
-static LATTICE_PTR: AtomicPtr<u8> = AtomicPtr::new(std::ptr::null_mut());
+pub(crate) static LATTICE_PTR: AtomicPtr<u8> = AtomicPtr::new(std::ptr::null_mut());
 
 thread_local! {
     static VISITED_POOL: RefCell<Vec<u8>> = RefCell::new(vec![0u8; 500000]);

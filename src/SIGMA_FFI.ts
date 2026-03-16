@@ -24,6 +24,9 @@ for (const path of searchPaths) {
     lib = Deno.dlopen(path, {
       ffi_tick: { parameters: ["pointer", "u32"], result: "void" },
       ffi_init: { parameters: ["pointer"], result: "void" },
+      execute_atom: { parameters: ["usize"], result: "void" },
+      build_spatial_hash: { parameters: [], result: "void" },
+      tick_environment: { parameters: ["u32"], result: "void" },
     });
     console.log(`[SIGMA_FFI] Native core loaded from ${path}`);
     break;
@@ -59,5 +62,8 @@ export function initFFI() {
 export const SIGMA_FFI = {
   tick: tickFFI,
   init: initFFI,
+  executeAtom: (idx: number) => lib?.symbols.execute_atom(idx),
+  buildSpatialHash: () => lib?.symbols.build_spatial_hash(),
+  tickEnvironment: (tick: number) => lib?.symbols.tick_environment(tick),
   loaded: () => !!lib,
 };

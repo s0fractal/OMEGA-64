@@ -62,7 +62,7 @@ pub struct SigmaMatrix {
     pub secretion_stats: [i32; SECRETION_STATS_SIZE],
     pub _pad_to_lineage: [u8; 4],
     pub lineage: [u64; MAX_ATOMS],
-    pub mailbox: [[i32; 2]; MAX_ATOMS],
+    pub mailbox: [[std::sync::atomic::AtomicI32; 2]; MAX_ATOMS],
     pub ledger_head: i32,
     pub ledger_data: [[i32; 4]; MAX_LEDGER_EVENTS],
     pub egress_head: i32,
@@ -287,6 +287,15 @@ impl SigmaState {
         }
     }
 
+    pub fn mailbox_atomic(&self, atom_idx: usize) -> &[std::sync::atomic::AtomicI32] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.matrix.mailbox[atom_idx].as_ptr() as *const std::sync::atomic::AtomicI32,
+                2,
+            )
+        }
+    }
+
     /// Returns a slice of AtomicI32 mapping directly to the `energy` array
     #[inline]
     pub fn energy_atomic(&self) -> &[std::sync::atomic::AtomicI32] {
@@ -391,6 +400,47 @@ impl SigmaState {
             let egress_ptr = self.matrix.egress_data.as_ptr() as *mut u8;
             let slot_ptr = egress_ptr.add(idx * 256);
             std::ptr::copy_nonoverlapping(payload.as_ptr(), slot_ptr, 256);
+        }
+    }
+
+    pub fn fossilize(&self, atom_idx: usize) {
+        let resonance = self.matrix.resonance[atom_idx];
+        let role = self.matrix.roles[atom_idx] & 0x7F;
+
+        // Condition for fossilization (Era 68)
+        let mut mass = 1;
+        for b_slot in 0..4 {
+            let target = self.matrix.bonds[(atom_idx * 4) + b_slot];
+            if target > 0 && (target as usize) < MAX_ATOMS && self.matrix.ids[target as usize] != 0 {
+                mass += 1;
+            }
+        }
+
+        let has_immunity = self.matrix.context[atom_idx][13] != 0 || self.matrix.context[atom_idx][14] != 0;
+
+        if resonance > 100 || role == 2 || role == 3 || mass > 2 || has_immunity {
+            let cx = self.matrix.xs[atom_idx] as usize;
+            let cy = self.matrix.ys[atom_idx] as usize;
+            let gx = cx / 10;
+            let gy = cy / 10;
+
+            if gx < GRID_W as usize && gy < GRID_H as usize {
+                let cell_idx = gy * GRID_W as usize + gx;
+                let current_val = self.matrix.structure_grid[cell_idx];
+                let current_type = current_val & 0xFF;
+
+                if current_type == 0 || current_type == 1 {
+                    let mut charge = resonance.clamp(10, 255);
+                    let base_charge = (current_val >> 16) & 0xFF;
+                    charge = std::cmp::max(charge, base_charge);
+
+                    let new_type = if role == 3 { 6 } else { 1 }; // STR_CAPACITOR or STR_WIRE
+                    unsafe {
+                        let grid_ptr = self.matrix.structure_grid.as_ptr() as *mut i32;
+                        *grid_ptr.add(cell_idx) = new_type | (charge << 16);
+                    }
+                }
+            }
         }
     }
 }

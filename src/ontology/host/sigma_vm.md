@@ -20,7 +20,11 @@ use crate::{
 };
 use crate::in_grid;
 use crate::GlyphOp;
-use crate::{SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND};
+use crate::{
+    SYS_TRANSFER, SYS_ATTRACT, SYS_FOLD, SYS_SPAWN, SYS_BIND, SYS_SCAN,
+    SYS_MSG, SYS_READ_INBOX, SYS_MUTATE, SYS_EMIT, SYS_BET, SYS_SPORE_DRIVE,
+    SYS_SENSE_PHASE, SYS_SET_ROLE, SYS_YIELD
+};
 use crate::{math_cos, math_sin};
 use crate::{SigmaState, MAX_ATOMS};
 
@@ -1052,6 +1056,133 @@ impl LambdaVM {
                             }
                             gas_used += if amount < 0 { 30 } else { 10 };
                         }
+                        SYS_SCAN => {
+                            let radius = r1;
+                            let ox = state.matrix.xs[atom_idx] as i32 / 10;
+                            let oy = state.matrix.ys[atom_idx] as i32 / 10;
+                            let mut closest_idx = 0;
+                            let mut min_dist_sq = i32::MAX;
+
+                            let r_grid = (radius / 10).max(1);
+                            for dy in -r_grid..=r_grid {
+                                for dx in -r_grid..=r_grid {
+                                    let nx = ox + dx;
+                                    let ny = oy + dy;
+                                    if in_grid(nx, ny) {
+                                        let count = state.get_spatial_grid_count(nx, ny);
+                                        for i in 0..count {
+                                            let neighbor = state.get_spatial_grid_atom(nx, ny, i) as usize;
+                                            if neighbor > 0 && neighbor != atom_idx && neighbor < MAX_ATOMS {
+                                                // Simple Visibility Check (Resonance Threshold)
+                                                if state.matrix.resonance[neighbor] > 20 {
+                                                    let n_xs = state.matrix.xs[neighbor] as i32;
+                                                    let n_ys = state.matrix.ys[neighbor] as i32;
+                                                    let dx_p = n_xs - (state.matrix.xs[atom_idx] as i32);
+                                                    let dy_p = n_ys - (state.matrix.ys[atom_idx] as i32);
+                                                    let dist_sq = (dx_p * dx_p + dy_p * dy_p) >> 10;
+                                                    if dist_sq < min_dist_sq {
+                                                        min_dist_sq = dist_sq;
+                                                        closest_idx = neighbor;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            context_regs[0].store(closest_idx as i32, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 20;
+                        }
+                        SYS_MSG => {
+                            let target_idx = r1 as usize;
+                            let msg_type = r2;
+                            let payload = r3;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && state.matrix.ids[target_idx] != 0 {
+                                let target_mailbox = state.mailbox_atomic(target_idx);
+                                target_mailbox[0].store(msg_type, std::sync::atomic::Ordering::Relaxed);
+                                target_mailbox[1].store(payload, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 10;
+                        }
+                        SYS_READ_INBOX => {
+                            let my_mailbox = state.mailbox_atomic(atom_idx);
+                            let msg_type = my_mailbox[0].load(std::sync::atomic::Ordering::Relaxed);
+                            let payload = my_mailbox[1].load(std::sync::atomic::Ordering::Relaxed);
+                            context_regs[0].store(msg_type, std::sync::atomic::Ordering::Relaxed);
+                            context_regs[1].store(payload, std::sync::atomic::Ordering::Relaxed);
+                            if msg_type != 0 {
+                                my_mailbox[0].store(0, std::sync::atomic::Ordering::Relaxed);
+                                my_mailbox[1].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 10;
+                        }
+                        SYS_MUTATE => {
+                            let target_idx = r1 as usize;
+                            let offset = (r2 as usize) & 63;
+                            let new_val = (r3 & 0xFF) as u8;
+                            if target_idx > 0 && target_idx < MAX_ATOMS && state.matrix.ids[target_idx] != 0 {
+                                unsafe {
+                                    let matrix_ptr = state.matrix.as_ref() as *const SigmaMatrix as *mut SigmaMatrix;
+                                    let target_inst_array = &mut (*std::ptr::addr_of_mut!((*matrix_ptr).instructions));
+                                    target_inst_array[target_idx][offset] = new_val;
+                                }
+                                // Evict entropy cache of target
+                                state.context_atomic(target_idx)[15].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 30;
+                        }
+                        SYS_EMIT => {
+                            let ev_a = r1;
+                            let ev_b = r2;
+                            let head = state.matrix.ledger_head % 1024; // MAX_LEDGER_EVENTS
+                            unsafe {
+                                let matrix_ptr = state.matrix.as_ref() as *const SigmaMatrix as *mut SigmaMatrix;
+                                let ledger_data = &mut (*std::ptr::addr_of_mut!((*matrix_ptr).ledger_data));
+                                let entry = &mut ledger_data[head as usize];
+                                entry[0] = atom_idx as i32;
+                                entry[1] = ev_a;
+                                entry[2] = ev_b;
+                                entry[3] = state.matrix.energy[atom_idx];
+                            }
+                            gas_used += 20;
+                        }
+                        SYS_BET => {
+                            let bet_energy = r1 * 1000;
+                            if energy >= bet_energy {
+                                // Simple market stub: register bet success in R1
+                                context_regs[1].store(1, std::sync::atomic::Ordering::Relaxed);
+                                state.energy_atomic()[atom_idx].fetch_sub(bet_energy, std::sync::atomic::Ordering::Relaxed);
+                                energy -= bet_energy;
+                            } else {
+                                context_regs[1].store(0, std::sync::atomic::Ordering::Relaxed);
+                            }
+                            gas_used += 20;
+                        }
+                        SYS_SPORE_DRIVE => {
+                            let nx = state.matrix.xs[atom_idx] as i32 + r1;
+                            let ny = state.matrix.ys[atom_idx] as i32 + r2;
+                            state.dispatch_egress(atom_idx, nx, ny, energy);
+                            state.energy_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                            state.ids_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
+                            energy = 0;
+                            gas_used += 50;
+                        }
+                        SYS_SENSE_PHASE => {
+                            // Returns (epochPhase & 0xFFFF) | ((theta & 0xFFFF) << 16)
+                            // We don't have theta in state yet, assuming constant or from hormones
+                            let phase = state.matrix.neural_coherence & 0xFFFF;
+                            context_regs[0].store(phase, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 10;
+                        }
+                        SYS_SET_ROLE => {
+                            let new_role = (r1 & 0x7F) as u8;
+                            let current_flags = state.matrix.roles[atom_idx] & 0x80;
+                            state.roles_atomic()[atom_idx].store(new_role | current_flags, std::sync::atomic::Ordering::Relaxed);
+                            gas_used += 15;
+                        }
+                        SYS_YIELD => {
+                            gas_limit = 0; // Forces exit from while-loop
+                        }
                         _ => {
                             gas_used += 10;
                         }
@@ -1165,6 +1296,7 @@ impl LambdaVM {
         state.energy_atomic()[atom_idx].store(final_energy, std::sync::atomic::Ordering::Relaxed);
 
         if final_energy == 0 {
+            state.fossilize(atom_idx);
             state.ids_atomic()[atom_idx].store(0, std::sync::atomic::Ordering::Relaxed);
         }
     }

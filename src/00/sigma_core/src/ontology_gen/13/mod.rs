@@ -5,9 +5,6 @@ pub use super::L12::*;
 #[path = "PULSE.rs"]
 pub mod PULSE;
 pub use PULSE::*;
-#[path = "PULSE_WORKER.rs"]
-pub mod PULSE_WORKER;
-pub use PULSE_WORKER::*;
 #[path = "REDUCTION_HARNESS.rs"]
 pub mod REDUCTION_HARNESS;
 pub use REDUCTION_HARNESS::*;
