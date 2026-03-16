@@ -1,82 +1,62 @@
 import {
-  applyLedgerUpdate,
-  createGeneticLedgerRuntime,
-  createLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
-} from "@07/02/03/mod.ts";
-import {
-  appendLedgerRecordAndMaybeCompact,
+  AKASHA_CODEX,
+  AS_WASM_PATH,
+  COLDSTART_BOOTSTRAP,
+  CONTROL_INTENT_QUEUE,
+  GATE,
+  GRID_H,
+  GRID_W,
+  LOGGER,
+  Ld,
+  Le,
+  Li,
+  Lw,
+  LineageTracker,
+  LINEAGE_TRACKER,
+  MUTATION_TELEMETRY,
+  MX,
+  PANOPTICON_SERVER,
+  PULSE,
+  RUNTIME_POLICY,
+  SNAP_ENGINE,
+  SNAPSHOT_ENGINE,
+  SOVEREIGNTY_ENGINE,
+  SOVEREIGN_ORACLE,
+  GLYPH_TELEMETRY,
+  evaluateGuardianSignalPromotion,
+  evaluateArchitectPlasmidPromotion,
+  evaluateReplicationPromotion,
   getLogPath,
   getSnapshotPath,
   hydrateLedgerRuntime,
+  rollbackLedgerUpdate,
+  saveEpoch,
+  snapshotLedgerRuntime,
+  type GuardianSignalHybridSnapshot,
+  type GuardianSignalPromotionSnapshot,
+  type ReplicationHybridSnapshot,
+  type ReplicationPromotionSnapshot,
+  type ArchitectPlasmidHybridSnapshot,
+  type ArchitectPlasmidPromotionSnapshot,
   type LedgerPersistenceSummary,
-  recordFromApply,
-  recordFromRollback,
-} from "@07/02/03/mod.ts";
-import { GATE } from "@03";
-import { GRID_CELLS, GRID_H, GRID_W, LOGGER, Li, Lw, Le } from "@generated";
-
-// OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
-// Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
-
-import {
-  PULSE,
-  type ReplicationHybridState,
-  setHormoneGovernanceDelegate,
-  setHormoneRuntimeGovernanceDelegate,
-  setPulseGovernanceDelegate,
-} from "@07/02/02/mod.ts";
-import { BREATH } from "@06";
-import {
+  type LedgerApplyResult,
+  type LedgerRollbackResult,
+  type LedgerRuntimeState,
+  BONDS_OFFSET,
   MAX_ATOMS,
-  MX
-} from "@generated";
-import {
-  SEMANTIC_MEMBRANE
-} from "@generated";
-import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
-import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
-import { CONTROL_INTENT_QUEUE } from "@07/02/03/mod.ts";
-import {
-  PREDICTION_MARKET
-} from "@generated";
-import { BONDS_OFFSET } from "@07/02/00/mod.ts";
-
-import {
-  RUNTIME_POLICY
-} from "@generated";
-import { mutateUniversalConstants } from "@07/02/03/mod.ts";
-import {
-  AKASHA_CODEX,
+  createGeneticLedgerRuntime,
+  createLedgerRuntime,
+  applyLedgerUpdate,
+  appendLedgerRecordAndMaybeCompact,
+  TELEMETRY_STREAM,
+  P2P_FEDERATION,
+  PREDICTION_MARKET,
   compressMemory,
   decompressMemoryToLattice,
-  saveEpoch,
-  SNAP_ENGINE,
-} from "@07/02/06/mod.ts";
-import { MUTATION_TELEMETRY } from "@07/02/06/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
-import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
-import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import {
-  GLYPH_TELEMETRY,
-  type GlyphSnapshot
-} from "@generated";
-import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
-import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
-import type {
-  ArchitectPlasmidHybridSnapshot,
-  ArchitectPlasmidPromotionSnapshot,
-  GuardianSignalHybridSnapshot,
-  GuardianSignalPromotionSnapshot,
-  ReplicationHybridSnapshot,
-  ReplicationPromotionSnapshot,
-} from "@07/02/03/mod.ts";
-import { PANOPTICON_SERVER } from "../../_/06/PANOPTICON_SERVER.ts";
-import {
+  recordFromApply,
+  recordFromRollback,
+  SEMANTIC_MEMBRANE,
+  capturePhysiologySnapshot,
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
   type DaemonInjectEnvelope,
@@ -89,29 +69,15 @@ import {
   snapshotDaemonIngressPolicyLimits,
   syncDaemonIngressMaxPheromoneIntensity,
   syncDaemonIngressMaxPlasmidCharge,
-} from "@07/02/03/mod.ts";
+  createSwarmNexus,
+  SWARM_NODE,
+  P2P_CODEC,
+  GRID_CELLS,
+  BREATH,
+  mutateUniversalConstants,
+} from "@generated";
 
-setPulseGovernanceDelegate({
-  GATE,
-  SOVEREIGNTY_ENGINE,
-  CONTROL_INTENT_QUEUE,
-  PREDICTION_MARKET,
-  RUNTIME_POLICY,
-  DAEMON_INGRESS_POLICY_LIMITS,
-  applyLedgerUpdate,
-  createLedgerRuntime,
-  createGeneticLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
-  appendLedgerRecordAndMaybeCompact,
-  getLogPath,
-  getSnapshotPath,
-  hydrateLedgerRuntime,
-  recordFromApply,
-  recordFromRollback,
-});
-setHormoneGovernanceDelegate({ RUNTIME_POLICY, createLedgerRuntime });
-setHormoneRuntimeGovernanceDelegate({ RUNTIME_POLICY });
+// 1. Initial Delegate Setup (Legacy Bridge Removed)
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -158,9 +124,9 @@ type RuntimeMetrics = {
   architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
   guardianSignalPromotion: GuardianSignalPromotionSnapshot;
   architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
-  replicationHybrid: ReplicationHybridState;
+  replicationHybrid: ReplicationHybridSnapshot;
   replicationPromotion: ReplicationPromotionSnapshot;
-  glyphTransport: GlyphSnapshot;
+  glyphTransport: any; // GlyphSnapshot missing?
 };
 
 type DaemonAuditPending = {
@@ -389,7 +355,7 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
+let daemonPheromoneLedgerRuntime: LedgerRuntimeState<"daemon.maxPheromoneIntensity"> = createGeneticLedgerRuntime(
   "daemon.maxPheromoneIntensity",
   DAEMON_POLICY.maxPheromoneIntensity,
   128,
@@ -417,7 +383,7 @@ let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
-let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
+let daemonPlasmidLedgerRuntime: LedgerRuntimeState<"daemon.maxPlasmidCharge"> = createGeneticLedgerRuntime(
   "daemon.maxPlasmidCharge",
   DAEMON_POLICY.maxPlasmidCharge,
   128,
@@ -915,7 +881,7 @@ const buildTelemetry = async () => {
   };
 };
 
-const buildFederateLocalContext = (
+const _buildFederateLocalContext = (
   packet: Record<string, unknown>,
   pulseId: number,
 ): {
@@ -1237,7 +1203,7 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
@@ -1253,7 +1219,7 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
@@ -1279,7 +1245,7 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
@@ -1295,7 +1261,7 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
@@ -3660,7 +3626,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r),
   });
 
-  const NEXUS_DAEMON = new SwarmNexus({
+  const NEXUS_DAEMON = createSwarmNexus({
     instanceId: 1,
     seedNodes: [],
   });
@@ -3669,19 +3635,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   NEXUS_DAEMON.onSyncRequest = PULSE.onRemoteSyncRequest;
   NEXUS_DAEMON.onEpochPayload = PULSE.onRemoteEpochPayload;
 
+  PULSE.setAkashaDelegate({
+    recordMutationTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
+    flushMutationTelemetry: (t: number) => MUTATION_TELEMETRY.flushIfDue(t),
+    compressMemory: async (m) => await compressMemory(m),
+    decompressMemoryToLattice: async (m, p) => await decompressMemoryToLattice(m, p),
+    saveEpoch: async (m, t, l, p1, p2, h) => await saveEpoch(m as any, t, l, p1, p2, h),
+    broadcastPanopticonFrame: (f) => PANOPTICON_SERVER.broadcastBinaryFrame(f),
+    recordImmunologicalPurge: async (c) => await AKASHA_CODEX.recordImmunologicalPurge(c),
+    observePulseCodex: (t, p, g, s) => AKASHA_CODEX.observePulse(t, p, g, s),
+    saveSnap: async (t) => {
+      await SNAPSHOT_ENGINE.exportSnapshot({ tick: t });
+    },
+    cleanupSnap: (r) => SNAPSHOT_ENGINE.pruneSnapshots(r),
+  });
+
   CONTROL_INTENT_QUEUE.setDelegate({
-    recordTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
-    importSnapshot: (ts) => SNAPSHOT_ENGINE.importSnapshot(ts),
-  });
-
-  PREDICTION_MARKET.setDelegate({
-    recordMarketResolution: (t, c, f, w) =>
-      AKASHA_CODEX.recordMarketResolution(t, c, f, w),
-  });
-
-  SOVEREIGNTY_ENGINE.setDelegate({
-    recordDecreeShift: (t: number, o: string, n: string, e: number) =>
-      AKASHA_CODEX.recordDecreeShift(t, o, n, e),
+    recordTelemetry: (ev: { lane: string; kind: string; count: number }) => MUTATION_TELEMETRY.record(ev as any),
+    importSnapshot: (ts: string) => SNAPSHOT_ENGINE.importSnapshot(ts),
+    unpackAtom: (packet: Uint8Array) => P2P_CODEC.unpackAtom(packet),
   });
 
   P2P_FEDERATION.setUpwardDelegate({

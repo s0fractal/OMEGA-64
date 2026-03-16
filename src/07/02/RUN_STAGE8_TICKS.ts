@@ -1,10 +1,12 @@
-import { PULSE } from "@07/02/02/mod.ts";
-import { MX } from "@07/02/00/mod.ts";
-import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
-import { LOGGER } from "@07/02/00/mod.ts";
-import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { RUNTIME_POLICY } from "@generated";
+import {
+  COLDSTART_BOOTSTRAP,
+  LOGGER,
+  MX,
+  PULSE,
+  RUNTIME_POLICY,
+  SOVEREIGN_ORACLE,
+} from "@generated";
+import { evaluateGuardianSignalPromotion } from "@generated";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");

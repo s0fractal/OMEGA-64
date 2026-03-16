@@ -851,6 +851,7 @@ mainTsOut += `const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";\n`;
 mainTsOut += `const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";\n`;
 mainTsOut += `const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;\n`;
 mainTsOut += `export const AS_WASM_PATH = new URL(wasmFile, import.meta.url.replace("src/_/mod.ts", ""));\n`;
+mainTsOut += `export const RUST_WASM_PATH = new URL("src/_rust/release.wasm", import.meta.url.replace("src/_/mod.ts", ""));\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 

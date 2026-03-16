@@ -13,6 +13,7 @@ Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric
 
 ```typescript
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
+export type KernelMode = "as" | "rust";
 type GuardianSignalExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
@@ -186,6 +187,7 @@ const rawAutoSnapshotIntervalTicks = readEnv(
   "OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS",
 );
 const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
+const rawKernelMode = readEnv("OMEGA_KERNEL_MODE");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
@@ -525,6 +527,8 @@ const autoSnapshotRetention = parse_env_bounded_int(
   512,
 );
 
+const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "rust") ? "rust" : "as";
+
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
   for (let i = 0; i < input.length; i++) {
@@ -643,6 +647,7 @@ const policyFingerprintSource = JSON.stringify({
     intervalTicks: autoSnapshotIntervalTicks,
     retention: autoSnapshotRetention,
   },
+  kernelMode,
 });
 
 const POLICY_FINGERPRINT = fnv1a32(policyFingerprintSource);
@@ -885,6 +890,7 @@ export const RUNTIME_POLICY = {
       retention: rawAutoSnapshotRetention !== undefined,
     },
   },
+  kernelMode,
   fingerprint: POLICY_FINGERPRINT,
   logFingerprintOnce: (context: string = "runtime"): string => {
     if (!policyFingerprintLogged) {
