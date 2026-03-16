@@ -256,23 +256,6 @@ pub extern "C" fn accumulate_metabolism_stats(_start: usize, _end: usize) {
     // Reduced natively in Deno JS space with the Rust `reduce_atom_deltas` side effects.
 }
 
-#[unsafe(no_mangle)]
-pub extern "C" fn apply_metabolism_kernel(
-    _param1: i32,
-    _param2: i32,
-    _param3: i32,
-    _param4: i32,
-    _param5: i32,
-    _param6: i32,
-    _param7: i32,
-    _param8: i32,
-    _param9: i32,
-    _param10: i32,
-    _param11: i32,
-    _param12: i32,
-) {
-    // Implemented internally via `pulse.rs` `apply_metabolism_kernel`.
-}
 
 #[unsafe(no_mangle)]
 pub extern "C" fn run_shadow_simulation_ffi(

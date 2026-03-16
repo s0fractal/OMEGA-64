@@ -8,12 +8,17 @@ vars:
   - LOGIC_OFFSET
 args:
   idx: i32
+rsArgs:
+  state: "&SigmaState"
+  idx: i32
 returns: i32
 ---
 
 ### Rust
 ```rust
-unimplemented!("Memory accessors are host/WASM specific");
+let b0 = state.matrix.logic[idx as usize][0] as i32;
+let b1 = state.matrix.logic[idx as usize][1] as i32;
+(b0 << 8) | b1
 ```
 
 ### TypeScript

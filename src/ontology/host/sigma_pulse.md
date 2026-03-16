@@ -6,6 +6,7 @@ deps:
   - SYSTEM_CONSTANTS
   - SYSTEM_CONSTANTS
   - sigma_memory
+  - apply_metabolism_kernel
 description: Multithreaded tick orchestrator and phase sequencer using Rayon
 ---
 
@@ -24,8 +25,47 @@ impl<'a> PulseOrchestrator<'a> {
     pub fn new(buffer: &'a mut [u8]) -> Self {
         Self { visited: buffer }
     }
-
     pub fn tick(&mut self, state: &mut SigmaState, tick_number: u32) {
+        // 0. Metabolism Phase (Resonant Autonomy)
+        
+        // --- Metabolism Reduction (Population Counting) ---
+        // Reset scratch space and count populations
+        let scratch_ptr = unsafe { (&mut *state.matrix as *mut crate::SigmaMatrix as *mut u8).add(crate::METABOLISM_SCRATCH_OFFSET) as *mut i32 };
+        unsafe { std::ptr::write_bytes(scratch_ptr, 0, (65536 * 4) + 128); }
+        
+        let mut total_pop = 0;
+        for i in 0..MAX_ATOMS {
+            if state.matrix.ids[i] != 0 {
+                total_pop += 1;
+                let key = crate::genome_key16(state, i as i32);
+                unsafe {
+                    let genome_count_ptr = scratch_ptr.add(key as usize);
+                    *genome_count_ptr += 1;
+                }
+            }
+        }
+        unsafe {
+            let population_ptr = scratch_ptr.add(65536);
+            *population_ptr = total_pop;
+        }
+
+        // Hardcoded parity with RUNTIME_POLICY defaults for now
+        apply_metabolism_kernel(
+            state,
+            0,
+            MAX_ATOMS as i32,
+            0,
+            0,
+            2,
+            1200,
+            240,
+            12,
+            5,
+            20,
+            200,
+            0,
+        );
+
         // 1. Spatial Hash
         state.build_spatial_hash();
 

@@ -5,6 +5,9 @@ pub use super::L03::*;
 #[path = "evaluate_opcodes.rs"]
 pub mod evaluate_opcodes;
 pub use evaluate_opcodes::*;
+#[path = "sigma_pulse.rs"]
+pub mod sigma_pulse;
+pub use sigma_pulse::*;
 #[path = "MX.rs"]
 pub mod MX;
 pub use MX::*;

@@ -17,6 +17,20 @@ args:
   spatialOverflowRatio: i32
   starvationFloor: i32
   subsidyEnabled: i32
+rsArgs:
+  state: "&mut SigmaState"
+  startIdx: i32
+  endIdx: i32
+  noveltySigned: i32
+  symbiosisSigned: i32
+  baseTax: i32
+  targetEnergy: i32
+  homeostasisBand: i32
+  homeostasisMaxDelta: i32
+  overflowThreshold: i32
+  spatialOverflowRatio: i32
+  starvationFloor: i32
+  subsidyEnabled: i32
 vars:
   - METABOLISM_SCRATCH_OFFSET
   - IDS_OFFSET
@@ -44,199 +58,181 @@ deps:
 ---
 
 ```rust
-unimplemented!()
+    let population = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4)) as *const i32 };
+    let population = unsafe { *population };
+    if population == 0 { return; }
+
+    let overflow_active = spatialOverflowRatio >= overflowThreshold;
+    let mut band_step = homeostasisBand >> 1;
+    if band_step < 1 { band_step = 1; }
+    let bond_polarity = if symbiosisSigned >= 0 { 1 } else { -1 };
+
+    for i in startIdx as usize..endIdx as usize {
+        if i >= crate::MAX_ATOMS { break; }
+        if state.matrix.ids[i] == 0 { continue; }
+
+        let current = state.matrix.energy[i];
+
+        // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
+        if current <= 0 {
+            let resonance = state.matrix.resonance[i];
+            let role_raw = state.matrix.roles[i];
+            let role = role_raw & 0x7F;
+            
+            let ctx13 = state.matrix.context[i][13];
+            let ctx14 = state.matrix.context[i][14];
+            let has_immunity = ctx13 != 0 || ctx14 != 0;
+
+            let cx = state.matrix.xs[i] as i32;
+            let cy = state.matrix.ys[i] as i32;
+            let gx = cx / crate::SPATIAL_CELL_SIZE;
+            let gy = cy / crate::SPATIAL_CELL_SIZE;
+            let cell_idx = (gy * crate::GRID_W + gx) as usize;
+
+            if cell_idx < crate::GRID_CELLS && (resonance > 100 || role == 2 || role == 3 || has_immunity) {
+                let mut struct_val: i32 = 0;
+                if role == 2 {
+                    struct_val = 1 | (150 << 16); // STR_WIRE = 1
+                } else if role == 3 {
+                    struct_val = 1 | (100 << 16);
+                }
+
+                if struct_val != 0 {
+                    state.matrix.structure_grid[cell_idx] = struct_val;
+                }
+
+                // Epigenetic memory spillage
+                state.matrix.memory_grid[cell_idx][4] = (ctx13 >> 24) as u8;
+                state.matrix.memory_grid[cell_idx][5] = (ctx13 >> 16) as u8;
+                state.matrix.memory_grid[cell_idx][6] = (ctx13 >> 8) as u8;
+                state.matrix.memory_grid[cell_idx][7] = ctx13 as u8;
+                
+                let boot_charge = 100u8;
+                state.matrix.memory_grid[cell_idx][0] = boot_charge;
+                state.matrix.memory_grid[cell_idx][1] = 0;
+                state.matrix.memory_grid[cell_idx][2] = 0;
+
+                state.matrix.resonance[i] = 0;
+                state.matrix.roles[i] = 0;
+                state.matrix.context[i][13] = 0;
+                state.matrix.context[i][14] = 0;
+                state.matrix.ids[i] = 0; // Final decommissioning
+            }
+            continue;
+        }
+
+        // --- PHASE 44: ENDOSYMBIOSIS ---
+        let role = state.matrix.roles[i] & 0x7F;
+        if role == 5 { // ROLE_MITOCHONDRIA
+            let host_id = state.matrix.context[i][12] as usize;
+            if host_id < crate::MAX_ATOMS && state.matrix.ids[host_id] != 0 {
+                state.matrix.xs[i] = state.matrix.xs[host_id];
+                state.matrix.ys[i] = state.matrix.ys[host_id];
+
+                if current > starvationFloor {
+                    let transfer = ((current - starvationFloor) * 9) / 10;
+                    if transfer > 0 {
+                        state.matrix.energy[host_id] += transfer;
+                        state.matrix.energy[i] = current - transfer;
+                    }
+                }
+            } else {
+                state.matrix.energy[i] = 0;
+                state.matrix.ids[i] = 0;
+            }
+            continue;
+        }
+
+        let key = genome_key16(state, i as i32);
+        let same_genome_count_ptr = unsafe { (&*state.matrix as *const SigmaMatrix as *const u8).add(crate::METABOLISM_SCRATCH_OFFSET + (key as usize * 4)) as *const i32 };
+        let same_genome_count = unsafe { *same_genome_count_ptr };
+
+        let mut delta: i32 = 0;
+
+        // Pass 1: Evolution Pressure
+        if noveltySigned != 0 {
+            delta += (noveltySigned * (population - (same_genome_count * 2))) / population;
+        }
+
+        if symbiosisSigned != 0 {
+            let mut cross_genome_bonds = 0;
+            for slot in 0..4 {
+                let target = state.matrix.bonds[i * 4 + slot] as usize;
+                if target < crate::MAX_ATOMS && state.matrix.ids[target] != 0 {
+                    if genome_key16(state, target as i32) != key {
+                        cross_genome_bonds += 1;
+                    }
+                }
+            }
+            delta += if cross_genome_bonds > 0 {
+                symbiosisSigned * cross_genome_bonds
+            } else {
+                bond_polarity * -symbiosisSigned
+            };
+        }
+
+        // 2. Homeostasis
+        let mut interim_energy = current + delta;
+        if interim_energy < 0 { interim_energy = 0; }
+
+        if baseTax > 0 && interim_energy > starvationFloor {
+            let tax = if baseTax < interim_energy { baseTax } else { interim_energy };
+            delta -= tax;
+        }
+
+        let deviation = interim_energy - targetEnergy;
+        let abs_deviation = crate::fast_abs(deviation);
+
+        if abs_deviation > homeostasisBand {
+            let gradient = abs_deviation - homeostasisBand;
+            let mut step = 1 + (gradient / band_step);
+            if step > homeostasisMaxDelta { step = homeostasisMaxDelta; }
+
+            if deviation > 0 {
+                delta -= step;
+                if overflow_active { delta -= 1; }
+            } else if subsidyEnabled != 0 {
+                let mut subsidy = step;
+                if overflow_active {
+                    subsidy = (subsidy * 6) / 10;
+                    if subsidy < 1 { subsidy = 1; }
+                }
+                delta += subsidy;
+            }
+        }
+
+        // Starvation Floor Guard
+        if interim_energy <= starvationFloor && delta < 0 {
+            let pass2_delta = delta - (interim_energy - current);
+            if pass2_delta < 0 {
+                delta = interim_energy - current;
+            }
+        }
+
+        // RESONANCE BUFFER Enhancement
+        let resonance = state.matrix.resonance[i];
+        if delta < 0 && resonance > 100 {
+            // Buffer up to 50% of the energy loss if highly resonant
+            let buffer_ratio = if resonance > 255 { 50 } else { (resonance - 100) * 50 / 155 };
+            delta = delta * (100 - buffer_ratio) / 100;
+        }
+
+        if delta != 0 {
+            let next = current + delta;
+            state.matrix.energy[i] = if next < 0 { 0 } else { next };
+            
+            // Track stats
+            unsafe {
+                let stats_ptr = (&mut *state.matrix as *mut SigmaMatrix as *mut u8).add(crate::METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4) as *mut i32;
+                *stats_ptr += 1;
+                *(stats_ptr.add(1)) += delta;
+            }
+        }
+    }
 ```
 
 ```typescript
 ```
 
 ```assemblyscript
-  const population = atomic.load<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) as usize);
-  if (population == 0) return;
-
-  const overflowActive = spatialOverflowRatio >= overflowThreshold;
-  let bandStep = homeostasisBand >> 1;
-  if (bandStep < 1) bandStep = 1;
-  const bondPolarity = symbiosisSigned >= 0 ? 1 : -1;
-
-  for (let i = startIdx; i < endIdx; i++) {
-    const pId = IDS_OFFSET + (i << 3) as usize;
-    if (load<i64>(pId) == 0) continue;
-
-    const current = get_energy(i);
-
-    // --- PHASE 43: FOSSILIZATION & NECROPOLIS ---
-    // If atom is dead (energy <= 0), fossilize it before skipping metabolism
-    if (current <= 0) {
-      let resonance = atomic.load<i32>(RESONANCE_OFFSET + (i << 2) as usize);
-      let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-      let role = roleRaw & 0x7F; // Strip metazoan flag
-      
-      let ctx13 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize);
-      let ctx14 = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize);
-      let hasImmunity = ctx13 != 0 || ctx14 != 0;
-
-      let cx = atomic.load<i16>(XS_OFFSET + (i << 1) as usize) as i32;
-      let cy = atomic.load<i16>(YS_OFFSET + (i << 1) as usize) as i32;
-      let gx = cx / SPATIAL_CELL_SIZE;
-      let gy = cy / SPATIAL_CELL_SIZE;
-      let cellIdx = gy * GRID_W + gx;
-
-      // Only attempt fossilization if it has a qualifying property
-      // 2 = ROLE_GUARDIAN, 3 = ROLE_ARCHITECT
-      if (resonance > 100 || role == 2 || role == 3 || hasImmunity) {
-
-        let structVal: i32 = 0;
-        if (role == 2) {
-            structVal = 1 | (150 << 16); // STR_WIRE = 1
-        } else if (role == 3) {
-            structVal = 1 | (100 << 16);
-        }
-
-        if (structVal != 0) {
-            atomic.store<i32>(STRUCTURE_GRID_OFF + (cellIdx << 2) as usize, structVal);
-        }
-
-        // Epigenetic memory spillage
-        let memOff = MEMORY_GRID_OFF + (cellIdx << 3) as usize;
-        
-        // Spilled CRISPR Hash (Reg 13) into bytes 4,5,6,7 in Big-Endian for test
-        atomic.store<u8>(memOff + 4, (ctx13 >>> 24) as u8);
-        atomic.store<u8>(memOff + 5, (ctx13 >>> 16) as u8);
-        atomic.store<u8>(memOff + 6, (ctx13 >>> 8) as u8);
-        atomic.store<u8>(memOff + 7, (ctx13) as u8);
-        
-        // Bootstrapping memory charge for Plasmid decay (bytes 0,1,2 in Little-Endian for test)
-        let bootCharge = 100;
-        atomic.store<u8>(memOff + 0, (bootCharge & 0xFF) as u8);
-        atomic.store<u8>(memOff + 1, ((bootCharge >>> 8) & 0xFF) as u8);
-        atomic.store<u8>(memOff + 2, ((bootCharge >>> 16) & 0xFF) as u8);
-
-        // Neutralize resonance and role so IMMUNE.ts phagocyte immediately purges this necrotic corpse
-        atomic.store<i32>(RESONANCE_OFFSET + (i << 2) as usize, 0);
-        atomic.store<u8>(ROLES_OFFSET + i as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 13) << 2) as usize, 0);
-        atomic.store<i32>(CONTEXT_OFFSET + ((i * 16 + 14) << 2) as usize, 0);
-      }
-      continue;
-    }
-
-    // --- PHASE 44: ENDOSYMBIOSIS ---
-    let roleRaw = atomic.load<u8>(ROLES_OFFSET + i as usize);
-    let role = roleRaw & 0x7F; // Strip metazoan flag
-    if (role == 5) { // ROLE_MITOCHONDRIA
-      let hostId = atomic.load<i32>(CONTEXT_OFFSET + ((i * 16 + 12) << 2) as usize);
-      if (hostId > 0 && hostId < MAX_ATOMS && atomic.load<i64>(IDS_OFFSET + (hostId << 3) as usize) != 0) {
-        // Enforce Coordinate Lock
-        let hx = atomic.load<i16>(XS_OFFSET + (hostId << 1) as usize);
-        let hy = atomic.load<i16>(YS_OFFSET + (hostId << 1) as usize);
-        atomic.store<i16>(XS_OFFSET + (i << 1) as usize, hx);
-        atomic.store<i16>(YS_OFFSET + (i << 1) as usize, hy);
-
-        // Pay up 90% of excess energy to Host
-        if (current > starvationFloor) {
-          let transfer = ((current - starvationFloor) * 9) / 10;
-          if (transfer > 0) {
-            atomic.add<i32>(ENERGY_OFFSET + (hostId << 2) as usize, transfer);
-            set_energy(i, current - transfer);
-          }
-        }
-      } else {
-        // Host died. Mitochondria perishes.
-        set_energy(i, 0);
-        atomic.store<i64>(IDS_OFFSET + (i << 3) as usize, 0);
-      }
-      continue; // Skip entropy tax and standard homeostasis
-    }
-
-    const key = genome_key16(i);
-    const sameGenomeCount = atomic.load<i32>(
-      METABOLISM_SCRATCH_OFFSET + (key << 2) as usize,
-    );
-
-    let delta: i32 = 0;
-
-    // Pass 1: Evolution Pressure (Novelty + Symbiosis)
-    if (noveltySigned != 0) {
-      let noveltyTerm = (noveltySigned * (population - (sameGenomeCount * 2))) /
-        population;
-      delta += noveltyTerm;
-    }
-
-    if (symbiosisSigned != 0) {
-      const base = i * 4;
-      let crossGenomeBonds = 0;
-      for (let slot = 0; slot < 4; slot++) {
-        const target = atomic.load<i32>(
-          BONDS_OFFSET + ((base + slot) << 2) as usize,
-        );
-        if (target <= 0 || target >= MAX_ATOMS) continue;
-        if (atomic.load<i64>(IDS_OFFSET + (target << 3) as usize) == 0) {
-          continue;
-        }
-        if (genome_key16(target) != key) crossGenomeBonds++;
-      }
-      delta += crossGenomeBonds > 0
-        ? symbiosisSigned * crossGenomeBonds
-        : bondPolarity * -symbiosisSigned;
-    }
-
-    // 2. Homeostasis
-    // Match sequential logic: Homeostasis sees energy AFTER evolution pressure
-    let interimEnergy = current + delta;
-    if (interimEnergy < 0) interimEnergy = 0;
-
-    if (baseTax > 0 && interimEnergy > starvationFloor) {
-      let tax = baseTax < interimEnergy ? baseTax : interimEnergy;
-      delta -= tax;
-    }
-
-    const deviation = interimEnergy - targetEnergy;
-    const absDeviation = fast_abs(deviation);
-
-    if (absDeviation > homeostasisBand) {
-      const gradient = absDeviation - homeostasisBand;
-      let rawStep = 1 + (gradient / bandStep);
-      let step = rawStep < homeostasisMaxDelta ? rawStep : homeostasisMaxDelta;
-
-      if (deviation > 0) {
-        delta -= step;
-        if (overflowActive) delta -= 1;
-      } else if (subsidyEnabled) {
-        let subsidy = step;
-        if (overflowActive) {
-          subsidy = (subsidy * 6) / 10;
-          if (subsidy < 1) subsidy = 1;
-        }
-        delta += subsidy;
-      }
-    }
-
-    // Starvation Floor Guard (using interim energy for sequential match)
-    if (interimEnergy <= starvationFloor && delta < 0) {
-      // If we are at or below floor after evolution pressure,
-      // block any further downward delta from homeostasis/tax.
-      // But we should subtract what was already added in Pass 1 if it was negative?
-      // Legacy logic in test: if (current <= starvationFloor && delta < 0) delta = 0;
-      // where current is energy after Pass 1.
-      // This means Pass 2 delta becomes 0.
-
-      // To match exactly:
-      const pass2Delta = delta - (interimEnergy - current);
-      if (pass2Delta < 0) {
-        delta = interimEnergy - current;
-      }
-    }
-
-    if (delta != 0) {
-      let next = current + delta;
-      if (next < 0) next = 0;
-      if (next != current) {
-        set_energy(i, next);
-        // Track stats for telemetry
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 4 as usize, 1);
-        atomic.add<i32>(METABOLISM_SCRATCH_OFFSET + (65536 * 4) + 8 as usize, delta);
-      }
-    }
-  }
 ```

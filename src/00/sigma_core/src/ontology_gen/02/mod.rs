@@ -8,9 +8,6 @@ pub use RUNTIME_POLICY::*;
 #[path = "sigma_structure.rs"]
 pub mod sigma_structure;
 pub use sigma_structure::*;
-#[path = "sigma_pulse.rs"]
-pub mod sigma_pulse;
-pub use sigma_pulse::*;
 #[path = "sigma_glyph_transport.rs"]
 pub mod sigma_glyph_transport;
 pub use sigma_glyph_transport::*;
