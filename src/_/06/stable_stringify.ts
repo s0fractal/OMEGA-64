@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/stable_stringify.md
+import { TYPES } from "@g05";
 
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {

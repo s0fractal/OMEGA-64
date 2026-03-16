@@ -14,6 +14,10 @@ min_level: 12
 
 ### TypeScript
 ```typescript
+
+
+
+
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,
 ): { mode: "GREEN" | "AMBER" | "RED"; reason: string } => {

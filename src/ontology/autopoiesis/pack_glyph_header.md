@@ -8,6 +8,8 @@ args:
   kind: i32
   amplitude: i32
 description: Auto-recovered pack_glyph_header
+deps:
+  - TYPES
 ---
 
 ---
@@ -18,6 +20,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 if (amplitude < -12000) amplitude = -12000;
 if (amplitude > 12000) amplitude = 12000;
 return (amplitude << 8) | (kind & 0xFF);

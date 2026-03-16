@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/sha256_hex.md
-import { bytes_to_hex } from "@g06";
+import { bytes_to_hex, TYPES } from "@g06";
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();

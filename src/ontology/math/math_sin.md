@@ -1,10 +1,11 @@
 ---
 id: math_sin
 type: pure_fn
-description: "Обчислення синуса з динамічною точністю"
-deps: 
+description: Обчислення синуса з динамічною точністю
+deps:
   - SIN_LUT
   - COS_LUT
+  - TYPES
 vars:
   - SIN_LUT
   - COS_LUT
@@ -13,9 +14,15 @@ args:
   highRes: i32
 returns: i32
 tests:
-  - [0, 0, 0]
-  - [1, 0, 804]
-  - [1, 1, 804]
+  - - 0
+    - 0
+    - 0
+  - - 1
+    - 0
+    - 804
+  - - 1
+    - 1
+    - 804
 ---
 
 ### Rust
@@ -45,6 +52,10 @@ s_base + term1 - term2
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (highRes == 0) {
     let idx = angle & 255;
     return SIN_LUT[idx] as i32;

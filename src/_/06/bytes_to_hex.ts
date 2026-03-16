@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/bytes_to_hex.md
+import { TYPES } from "@g05";
 
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");

@@ -1,7 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/genetic_ledger.md
-import { GeneticLedgerKey, LedgerMutability, GeneticLedgerEntry, TYPES } from "@g07";
-
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
+import { GeneticLedgerKey, LedgerMutability, GeneticLedgerEntry, RUNTIME_POLICY, TYPES } from "@g07";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -155,5 +153,4 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
 
 export const GENETIC_LEDGER = {
   geneticLedgerEntryByKey,
-  geneticLedgerBaseline
 };

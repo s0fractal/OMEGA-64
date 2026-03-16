@@ -10,25 +10,24 @@ tags:
 args: {}
 vars:
   - base64_to_bytes
-deps:
-  - base64_to_bytes
-description: WebCrypto key management interfaces and import wrappers.
-extra_symbols:
   - Ed25519SigningKey
   - Ed25519VerifyKey
   - HmacKey
+deps:
+  - base64_to_bytes
+  - TYPES
+description: WebCrypto key management interfaces and import wrappers.
+extra_symbols:
   - import_ed25519_private
   - import_ed25519_public
   - import_hmac
 ---
 
 ```typescript
-export type Ed25519SigningKey = {
-  scheme: "ed25519/v1";
-  private_key_pkcs8_b64: string;
-};
-export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
-export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+
+
+
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();

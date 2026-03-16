@@ -61,6 +61,7 @@ deps:
   - read_structure_charge
   - math_sin
   - math_cos
+  - TYPES
 ---
 
 ---
@@ -71,6 +72,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // unimplemented since user requested pure AssemblyScript isolation for VM evaluation
 return 0;
 ```

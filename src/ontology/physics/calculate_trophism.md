@@ -7,7 +7,7 @@ level: 1
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
   role: u8
 vars:
   - SPATIAL_CELL_SIZE
@@ -36,6 +36,7 @@ deps:
   - get_glyph_influence
   - read_structure_cell
   - encode_force_tuple
+  - TYPES
 description: Auto-recovered calculate_trophism
 ---
 
@@ -47,6 +48,14 @@ unimplemented!()
 ```
 
 ```typescript
+ f32 
+
+f32 
+
+f32 
+
+f32 
+
 let tx: f32 = 0;
 let ty: f32 = 0;
 const radius: f32 = 250.0;

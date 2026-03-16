@@ -5,11 +5,12 @@ tags:
   - substrate
 deps:
   - MX
+  - TYPES
 vars:
   - MX
+  - PredictionMarketAkashaDelegate
 extra_symbols:
   - PREDICTION_MARKET
-  - PredictionMarketAkashaDelegate
   - betPoolInt
   - marketBuffer
   - marketState
@@ -21,14 +22,8 @@ extra_symbols:
 
 ```typescript
 
-export interface PredictionMarketAkashaDelegate {
-  recordMarketResolution(
-    tick: number,
-    consensusReached: boolean,
-    finalThreshold: number,
-    winnersHash: string,
-  ): void;
-}
+
+
 
 let delegate: PredictionMarketAkashaDelegate | null = null;
 

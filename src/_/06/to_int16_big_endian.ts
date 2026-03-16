@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/to_int16_big_endian.md
+import { TYPES } from "@g05";
 
 export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
   const out = new Uint8Array(values.length * 2);

@@ -5,22 +5,29 @@ description: Migrated from src/07/02/export_core.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - buildExportFileList
   - renderCoreExport
+vars:
+  - ExportManifest
+  - LoadedManifest
+  - ExportProvenance
+  - ExportFileContent
 ---
 
 ### TypeScript
 
 ```typescript
-import { parse } from "jsr:@std/jsonc";
-import { dirname, extname, join, normalize } from "node:path";
+
+
+
+
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
-
 
 const MANIFEST_PATH = "deno.jsonc";
 
@@ -86,38 +93,6 @@ const isExcluded = (path: string): boolean => {
 
 const uniqueSorted = (items: Iterable<string>): string[] =>
   Array.from(new Set(items)).sort((a, b) => a.localeCompare(b));
-
-type ExportManifest = {
-  era: string;
-  runtime_root_files?: string[];
-  runtime_support_files?: string[];
-  experimental_files?: string[];
-  core_entry_files: string[];
-  required_additional_files: string[];
-  context_files: string[];
-};
-
-type LoadedManifest = {
-  era: string;
-  runtimeRootFiles: string[];
-  runtimeSupportFiles: string[];
-  experimentalFiles: string[];
-  coreEntryFiles: string[];
-  requiredArchFiles: string[];
-  contextFiles: string[];
-};
-
-type ExportProvenance = {
-  manifestSha256: string;
-  exportSetSha256: string;
-  exportContentSha256: string;
-  gitCommit: string;
-};
-
-type ExportFileContent = {
-  file: string;
-  content: string;
-};
 
 const hasTestLikeName = (path: string): boolean => {
   if (path === "src/00/03/wasm_layout_guard.ts") return false;
@@ -689,5 +664,4 @@ async function exportCore() {
 if (import.meta.main) {
   await exportCore();
 }
-
 ```

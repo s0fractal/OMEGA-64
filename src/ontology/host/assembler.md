@@ -6,18 +6,20 @@ tags:
   - host
 deps:
   - OPCODE_ARITY_LUT
+  - TYPES
 min_level: 7
 vars:
   - OPCODE_ARITY_LUT
-extra_symbols:
   - AssembleToken
+extra_symbols:
   - assemble
 ---
 
 ### TypeScript
 ```typescript
 
-export type AssembleToken = number | string;
+
+
 
 export const assemble = (instructions: AssembleToken[]): Uint8Array => {
   const binary = new Uint8Array(64);

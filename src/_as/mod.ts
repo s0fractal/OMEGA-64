@@ -14,4 +14,5 @@ export * from "./11/mod";
 export * from "./12/mod";
 export * from "./13/mod";
 export * from "./14/mod";
+export * from "./15/mod";
 // AS_WASM_PATH omitted as it is host-specific

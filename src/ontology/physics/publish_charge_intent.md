@@ -14,6 +14,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - fast_max
+  - TYPES
 description: Auto-recovered publish_charge_intent
 ---
 
@@ -25,6 +26,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
 let charge = requestedCharge;
 charge = fast_max(charge, 0);

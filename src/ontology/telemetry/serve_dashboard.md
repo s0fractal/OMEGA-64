@@ -7,11 +7,16 @@ min_level: 6
 entry: true
 extra_symbols:
   - SERVE_DASHBOARD
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
+
+
+
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
@@ -348,5 +353,4 @@ if (import.meta.main) {
 
 export const SERVE_DASHBOARD = {
 };
-
 ```

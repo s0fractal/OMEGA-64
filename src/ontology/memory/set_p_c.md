@@ -1,9 +1,10 @@
 ---
 id: set_p_c
 type: pure_fn
-description: "Set program counter of an atom"
-deps: 
+description: Set program counter of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:

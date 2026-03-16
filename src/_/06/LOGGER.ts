@@ -1,6 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/LOGGER.md
-
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+import { LogLevel, TYPES } from "@g05";
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 10,
@@ -44,8 +43,7 @@ const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
   const sink =
     (console as unknown as Record<string, (...xs: unknown[]) => void>)[
       method
-    ] ??
-      console.log;
+    ] ?? console.log;
   sink(...args);
 };
 

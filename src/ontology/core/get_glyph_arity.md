@@ -3,6 +3,7 @@ id: get_glyph_arity
 type: pure_fn
 deps:
   - GLYPH_ARITY_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -23,6 +24,9 @@ GLYPH_ARITY_LUT[(id & 63) as usize]
 ### TypeScript
 
 ```typescript
+
+
+
 
 export function get_glyph_arity(id: number): number {
   return GLYPH_ARITY_LUT[id & 63];

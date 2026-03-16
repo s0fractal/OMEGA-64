@@ -1,21 +1,25 @@
 ---
 id: GATE_VALIDATOR
 type: module
-description: "Implementation of GATE_VALIDATOR"
+description: Implementation of GATE_VALIDATOR
 tags: []
 min_level: 12
 vars:
-  - REJECTION
   - GateBridgeResolution
   - GateValidationResult
 deps:
   - TYPES
+  - REJECTION_CODES
 ---
 
+
 ### TypeScript
+
 ```typescript
-import { CANON_CAUSAL_BRIDGE } from "@g12";
-import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
+
+
+
+
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -211,7 +215,5 @@ export const validateGateProposals = async (
 };
 
 export const GATE_VALIDATOR = {
-  validateGateProposals
 };
-
 ```

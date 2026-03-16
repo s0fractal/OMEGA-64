@@ -10,6 +10,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - get_logic_byte
+  - TYPES
 description: Auto-recovered get_genome_velocity_y
 ---
 
@@ -21,6 +22,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 let vy: i32 = 0;
 for (let b = 2; b < 4; b++) {
   let byte = get_logic_byte(idx, b);

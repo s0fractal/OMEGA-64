@@ -4,6 +4,7 @@ type: pure_fn
 description: O(1) resolve of glyph category using bitwise shifts
 deps:
   - GLYPH_TYPES
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -32,6 +33,9 @@ return id >> 3;
 ### TypeScript
 
 ```typescript
+
+
+
 
 export function get_glyph_kind(id: number): number {
   if (id <= 3) return KIND_CORE;

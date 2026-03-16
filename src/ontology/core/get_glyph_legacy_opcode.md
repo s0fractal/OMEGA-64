@@ -3,6 +3,7 @@ id: get_glyph_legacy_opcode
 type: pure_fn
 deps:
   - GLYPH_LEGACY_OPCODE_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -23,6 +24,9 @@ GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
 ### TypeScript
 
 ```typescript
+
+
+
 
 export function get_glyph_legacy_opcode(id: number): number {
   return GLYPH_LEGACY_OPCODE_LUT[id & 63];

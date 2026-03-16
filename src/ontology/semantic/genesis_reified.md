@@ -5,7 +5,8 @@ description: Migrated from src/07/05/GENESIS_REIFIED.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - REIFIED_PROGRAMS

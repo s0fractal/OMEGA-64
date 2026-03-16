@@ -1,11 +1,12 @@
 ---
 id: add_resonance
 type: pure_fn
-description: "Add a delta to atom resonance in the layout"
-deps: 
+description: Add a delta to atom resonance in the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
   - get_resonance
   - set_resonance
+  - TYPES
 vars:
   - get_resonance
   - set_resonance

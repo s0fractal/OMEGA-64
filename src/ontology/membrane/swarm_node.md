@@ -1,7 +1,9 @@
 ---
 id: SWARM_NODE
 type: module
-description: RESTORED | Simple heartbeat and state broadcast logic for distributed synchronization.
+description: >-
+  RESTORED | Simple heartbeat and state broadcast logic for distributed
+  synchronization.
 tags:
   - membrane
   - host
@@ -15,6 +17,10 @@ deps:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export class MetaKuramotoNode {
   public readonly nodeId: string;
   public readonly heartbeatInterval: number;

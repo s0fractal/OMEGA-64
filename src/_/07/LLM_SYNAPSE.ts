@@ -1,9 +1,8 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_synapse.md
-import { LOGGER, Li, Lw } from "@g06";
+import { LOGGER, Li, Lw, TYPES } from "@g06";
 
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
-
 
 export const LLM_SYNAPSE = {
   /**

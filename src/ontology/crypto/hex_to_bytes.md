@@ -9,13 +9,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: 'Converts a hex string to a Uint8Array, returning null if invalid.'
 extra_symbols:
   - hex_to_bytes
 ---
 
 ```typescript
+
+
+
+
 export const hex_to_bytes = (hex: string): Uint8Array | null => {
   if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
   const out = new Uint8Array(hex.length / 2);

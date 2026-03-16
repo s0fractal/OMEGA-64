@@ -7,11 +7,12 @@ level: 1
 args:
   kind: i32
   amplitude: i32
-vars:
+vars: null
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - fast_abs
+  - TYPES
 description: Auto-recovered diffusion_share_for_kind
 ---
 
@@ -23,6 +24,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const absAmp = fast_abs(amplitude);
 let shareAmt = 0;
 if (kind == 2) { // PLASMID

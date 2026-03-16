@@ -3,6 +3,7 @@ id: get_glyph_energy
 type: pure_fn
 deps:
   - GLYPH_ENERGY_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -23,6 +24,9 @@ GLYPH_ENERGY_LUT[(id & 63) as usize]
 ### TypeScript
 
 ```typescript
+
+
+
 
 export function get_glyph_energy(id: number): number {
   return GLYPH_ENERGY_LUT[id & 63];

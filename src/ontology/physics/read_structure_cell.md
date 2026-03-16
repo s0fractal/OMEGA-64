@@ -16,6 +16,7 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
+  - TYPES
 description: Auto-recovered read_structure_cell
 ---
 
@@ -27,6 +28,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
 const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
 const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;

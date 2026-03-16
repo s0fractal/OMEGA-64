@@ -22,6 +22,7 @@ deps:
   - unpack_glyph_amplitude
   - fast_abs
   - pack_glyph_header
+  - TYPES
 description: Auto-recovered atomic_deposit_glyph_header
 ---
 
@@ -33,6 +34,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
 
 const ptr = (baseOffset + (cell << 2)) as usize;

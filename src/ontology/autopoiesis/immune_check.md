@@ -1,9 +1,14 @@
 ---
 id: immune_check
 type: pure_fn
-description: "Determines if an atom is necrotic or drifting and should be marked for recycling by the phagocytes"
-tags: ["physics", "autopoiesis"]
-deps: []
+description: >-
+  Determines if an atom is necrotic or drifting and should be marked for
+  recycling by the phagocytes
+tags:
+  - physics
+  - autopoiesis
+deps:
+  - TYPES
 args:
   energy: i32
   resonance: i32
@@ -15,7 +20,11 @@ optimization: inline
 ---
 
 ```typescript
-  if (id_handle === 0) return false;
+
+
+
+
+if (id_handle === 0) return false;
 
   // Necrotic check (Zero energy and zero resonance)
   if (energy <= 0 && resonance <= 0) return true;
@@ -57,5 +66,4 @@ optimization: inline
         }
     }
 
-    false
 ```

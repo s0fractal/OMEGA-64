@@ -1,16 +1,23 @@
 ---
 id: dir4_y
 type: pure_fn
-description: "Resolve cardinal Y-axis direction (-1, 0, 1) from 4-way compass index: 2=North, 3=South"
-deps: []
+description: >-
+  Resolve cardinal Y-axis direction (-1, 0, 1) from 4-way compass index:
+  2=North, 3=South
+deps:
+  - TYPES
 args:
-  n: i32
+  'n': i32
 returns: i32
 tests:
-  - [0, 0]
-  - [1, 0]
-  - [2, -1]
-  - [3, 1]
+  - - 0
+    - 0
+  - - 1
+    - 0
+  - - 2
+    - -1
+  - - 3
+    - 1
 ---
 
 ### Rust
@@ -26,6 +33,10 @@ if n == 2 {
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (n == 2) return -1;
 if (n == 3) return 1;
 return 0;

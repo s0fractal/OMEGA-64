@@ -1,9 +1,10 @@
 ---
 id: get_lineage
 type: pure_fn
-description: "Read atom lineage (u64) from the layout"
-deps: 
+description: Read atom lineage (u64) from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - LINEAGE_OFFSET
 args:

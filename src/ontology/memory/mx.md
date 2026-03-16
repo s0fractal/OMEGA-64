@@ -67,6 +67,7 @@ deps:
   - wasmMemory
   - xs
   - ys
+  - TYPES
 vars:
   - ATOM_CONTEXT_SIZE
   - ATOM_INSTRUCTION_SIZE
@@ -597,5 +598,4 @@ export const MX = {
   get_hormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
-
 ```

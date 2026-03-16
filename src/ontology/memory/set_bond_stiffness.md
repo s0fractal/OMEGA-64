@@ -1,9 +1,10 @@
 ---
 id: set_bond_stiffness
 type: pure_fn
-description: "Set atomic bond stiffness"
-deps: 
+description: Set atomic bond stiffness
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - STIFFNESS_OFFSET
 args:

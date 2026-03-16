@@ -1,37 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
-import { REJECTION, ReplayInvariantReport, GateRuntimeContext, StateSnapshot, DeltaProposal, GateConfig, GateDecision, BridgeModeEvent, LedgerEvent, TYPES } from "@g11";
-
-import { GRID_H } from "@g00";
-import { LOGGER, Ld, Li, Lw } from "@g06";
-import {
-  CANON_CAUSAL_BRIDGE
-} from "@g12";
-import {
-  CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY
-} from "@g08";
-import {
-  INVARIANT_PACKET
-} from "@g08";
-import {
-  LEDGER__08_00_LEDGER as LEDGER
-} from "@g08";
-import {
-  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX
-} from "@g08";
-import {
-  TOPOLOGICAL_SIGNATURE
-} from "@g08";
-
-import {
-  validateGateProposals
-} from "@g12";
-import {
-  mergeGateProposals
-} from "@g12";
-import {
-  persistGateLedgerArtifacts
-} from "@g12";
+import { ReplayInvariantReport, GateRuntimeContext, DeltaProposal, GateDecision, BridgeModeEvent, TYPES, REJECTION_CODES } from "@g11";
 
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;

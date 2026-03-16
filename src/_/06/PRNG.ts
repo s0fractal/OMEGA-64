@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/PRNG.md
-import { prng_seed_from, prng_next } from "@g05";
+import { prng_seed_from, prng_next, TYPES } from "@g05";
 
 export class PRNG {
   private state: number;

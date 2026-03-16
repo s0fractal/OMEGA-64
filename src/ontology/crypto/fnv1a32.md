@@ -9,13 +9,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Host implementation of the FNV-1a 32-bit hash.
 extra_symbols:
   - fnv1a32
 ---
 
 ```typescript
+
+
+
+
 export const fnv1a32 = (input: string): number => {
   let hash = 0x811C9DC5;
   for (let i = 0; i < input.length; i++) {

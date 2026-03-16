@@ -1,9 +1,10 @@
 ---
 id: get_phase
 type: pure_fn
-description: "Read atom phase from the layout"
-deps: 
+description: Read atom phase from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHASE_OFFSET
 args:

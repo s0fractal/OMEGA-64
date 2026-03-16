@@ -12,6 +12,7 @@ vars:
   - bytes_to_hex
 deps:
   - bytes_to_hex
+  - TYPES
 description: Async SHA-256 hashing to hex strings for both text and raw bytes.
 extra_symbols:
   - sha256_hex
@@ -19,6 +20,10 @@ extra_symbols:
 ---
 
 ```typescript
+
+
+
+
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
 

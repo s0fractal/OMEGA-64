@@ -8,6 +8,7 @@ tags:
 deps:
   - AKASHA_CODEX
   - LOGGER
+  - TYPES
 min_level: 8
 vars:
   - AKASHA_CODEX

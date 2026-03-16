@@ -1,15 +1,21 @@
 ---
 id: fast_abs
 type: pure_fn
-description: "Bitwise fast absolute value calculation utilizing sign-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast absolute value calculation utilizing sign-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   v: i32
 returns: i32
 tests:
-  - [50, 50]
-  - [-10, 10]
-  - [0, 0]
+  - - 50
+    - 50
+  - - -10
+    - 10
+  - - 0
+    - 0
 ---
 
 ### Rust
@@ -20,6 +26,10 @@ let mask = v >> 31;
 
 ### TypeScript
 ```typescript
+
+
+
+
 const mask = v >> 31;
 return (v + mask) ^ mask;
 ```

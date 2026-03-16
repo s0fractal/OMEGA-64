@@ -7,7 +7,7 @@ level: 1
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
 vars:
   - DAMPING_OFF
   - MAX_ATOMS
@@ -22,6 +22,7 @@ deps:
   - get_read_resonance
   - add_resonance_delta
   - encode_force_tuple
+  - TYPES
 description: Auto-recovered apply_bond_springs
 ---
 
@@ -33,6 +34,14 @@ unimplemented!()
 ```
 
 ```typescript
+ f32 
+
+f32 
+
+f32 
+
+f32 
+
 let fx: f32 = 0;
 let fy: f32 = 0;
 let damping = load<u8>(DAMPING_OFF + idx as usize);

@@ -1,10 +1,11 @@
 ---
 id: clamp_world_x
 type: pure_fn
-description: "Constrain an X coordinate to the absolute global bounds"
-deps: 
+description: Constrain an X coordinate to the absolute global bounds
+deps:
   - SYSTEM_CONSTANTS
   - math_clamp
+  - TYPES
 vars:
   - WORLD_MAX_X
   - math_clamp
@@ -12,7 +13,8 @@ args:
   x: i32
 returns: i32
 tests:
-  - [-5, 0]
+  - - -5
+    - 0
 ---
 
 ### Rust

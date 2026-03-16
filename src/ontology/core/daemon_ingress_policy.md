@@ -5,6 +5,7 @@ tags:
   - substrate
 deps:
   - RUNTIME_POLICY
+  - TYPES
 vars:
   - RUNTIME_POLICY
   - DaemonAction
@@ -17,13 +18,6 @@ vars:
 extra_symbols:
   - DAEMON_INGRESS_POLICY
   - DAEMON_INGRESS_POLICY_LIMITS
-  - DaemonAction
-  - DaemonIngressMetrics
-  - DaemonIngressPlan
-  - DaemonInjectEnvelope
-  - DaemonInvariantAdmission
-  - DaemonNarrativeContext
-  - PlasmidRiskProfile
   - evaluateInvariantAdmission
   - evaluatePlasmidPolicy
   - evaluatePlasmidRisk
@@ -37,6 +31,7 @@ extra_symbols:
 ---
 
 ```typescript
+
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
 
@@ -259,7 +254,7 @@ export const normalizeDaemonNarrativeContext = (
     highlights.find((entry) =>
       typeof (entry as Record<string, unknown>).genome === "string" &&
       ((entry as Record<string, unknown>).genome as string).toUpperCase() ===
-        normalizedDominantGenome
+      normalizedDominantGenome
     ) ?? highlights[0];
 
   let codexLineageLabel = "none";
@@ -592,7 +587,5 @@ export const DAEMON_INGRESS_POLICY = {
   evaluatePlasmidRisk,
   normalizeDaemonNarrativeContext,
   evaluateInvariantAdmission,
-  planInvariantIngress
 };
-
 ```

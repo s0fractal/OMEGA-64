@@ -7,6 +7,7 @@ tags:
 deps:
   - prng_seed_from
   - prng_next
+  - TYPES
 vars:
   - prng_seed_from
   - prng_next
@@ -18,6 +19,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export class PRNG {
   private state: number;
 

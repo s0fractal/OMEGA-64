@@ -1,7 +1,9 @@
 ---
 id: SWARM_NEXUS
 type: module
-description: RESTORED | Swarm Membrane for WebSocket-based peer backbone and heartbeat synchronization.
+description: >-
+  RESTORED | Swarm Membrane for WebSocket-based peer backbone and heartbeat
+  synchronization.
 tags:
   - membrane
   - host
@@ -16,6 +18,10 @@ deps:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
 
 export const OP_NEXUS_HANDSHAKE = 0x00;

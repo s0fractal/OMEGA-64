@@ -1,16 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/relic_cultivation.md
-import { DollFork, LOGGER, Li, MAX_ATOMS } from "@g06";
+import { DollFork, LOGGER, Li, MAX_ATOMS, Relic, TYPES } from "@g06";
 
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-
-export type Relic = {
-  id: string;
-  bytecode: number[];
-  role: number;
-  resonance: number;
-  energy: number;
-  extractedAtTick: number;
-};
 
 /**
  * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.

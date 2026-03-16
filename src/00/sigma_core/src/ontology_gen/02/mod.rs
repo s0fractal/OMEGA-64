@@ -200,6 +200,9 @@ pub use publish_build_intent::*;
 #[path = "reduce_atom_deltas.rs"]
 pub mod reduce_atom_deltas;
 pub use reduce_atom_deltas::*;
-#[path = "store_clamped_pos.rs"]
-pub mod store_clamped_pos;
-pub use store_clamped_pos::*;
+#[path = "clamp_world_y.rs"]
+pub mod clamp_world_y;
+pub use clamp_world_y::*;
+#[path = "clamp_world_x.rs"]
+pub mod clamp_world_x;
+pub use clamp_world_x::*;

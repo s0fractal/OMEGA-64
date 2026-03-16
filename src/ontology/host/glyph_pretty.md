@@ -7,6 +7,7 @@ tags:
 deps:
   - glyph_ir_64
   - disassembler
+  - TYPES
 min_level: 7
 vars:
   - glyphSpecById
@@ -18,7 +19,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
-import type { GlyphTapeToken } from "../07/disassembler.ts";
+
+
+
+
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {
   const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);

@@ -1,28 +1,28 @@
 ---
 id: GATE_MERGER
 type: module
-description: "Implementation of GATE_MERGER"
+description: Implementation of GATE_MERGER
 tags: []
 min_level: 12
 vars:
-  - REJECTION
   - GateAcceptedProposalMetric
   - I16Limits
 deps:
   - TYPES
+  - REJECTION_CODES
   - LOGGER
 ---
 
-### TypeScript
-```typescript
-import { LOGGER, Ld } from "@g06";
 
-import {
-  GATE_BUDGET
-} from "@g12";
-import {
-  MX
-} from "@g04";
+### TypeScript
+
+```typescript
+
+
+
+
+
+
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;
@@ -209,7 +209,5 @@ export const mergeGateProposals = (
 };
 
 export const GATE_MERGER = {
-  mergeGateProposals
 };
-
 ```

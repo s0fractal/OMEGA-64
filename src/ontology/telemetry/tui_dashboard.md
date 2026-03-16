@@ -1,7 +1,7 @@
 ---
 id: TUI_DASHBOARD
 type: module
-description: "Implementation of TUI_DASHBOARD"
+description: Implementation of TUI_DASHBOARD
 tags:
   - standalone
 entry: true
@@ -21,11 +21,15 @@ extra_symbols:
 deps:
   - LOGGER
   - PULSE
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { AgentProxy } from "../08/AGENT_PROXY.ts";
+
+
+
+
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;
@@ -158,5 +162,4 @@ if (import.meta.main) {
 }
 
 export const TUI_DASHBOARD = {};
-
 ```

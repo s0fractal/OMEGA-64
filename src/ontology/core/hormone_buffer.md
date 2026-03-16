@@ -4,16 +4,19 @@ type: module
 description: Hormone classification and ledger definition structure.
 deps:
   - GENERIC_LEDGER_SYSTEM
+  - TYPES
+  - RUNTIME_POLICY
 min_level: 5
 vars:
   - createLedgerRuntime
+  - HormoneId
+  - HormoneDomain
+  - HormoneSpec
+  - RUNTIME_POLICY
 extra_symbols:
   - HORMONE_BUFFER
   - HORMONE_BUFFER_CATALOG
   - HORMONE_BUFFER_LENGTH
-  - HormoneDomain
-  - HormoneId
-  - HormoneSpec
   - createPhysiologicalLedgerRuntime
   - HORMONE_ENTROPY_PRESSURE
   - HORMONE_TIME_VISCOSITY
@@ -29,36 +32,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
-export type HormoneId =
-  | "entropy_pressure"
-  | "time_viscosity"
-  | "aggression"
-  | "replication_bias"
-  | "repair_drive"
-  | "mutation_friction"
-  | "global_consensus";
 
-export type HormoneDomain =
-  | "systemic"
-  | "temporal"
-  | "conflict"
-  | "reproduction"
-  | "repair"
-  | "mutation";
 
-export type HormoneSpec = {
-  id: HormoneId;
-  index: number;
-  domain: HormoneDomain;
-  min: number;
-  max: number;
-  defaultValue: number;
-  controlPlane: "daemon" | "pulse" | "mixed";
-  sourcePath: string;
-  notes: string;
-};
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -200,7 +177,6 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
       "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
   }, HORMONE_GLOBAL_CONSENSUS),
 ]);
-
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
   HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),

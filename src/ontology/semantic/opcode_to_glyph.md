@@ -36,6 +36,7 @@ vars:
   - OP_SYSCALL
   - OP_TENSEGRITY
   - glyphSpecByLegacyOpcode
+  - ScriptToGlyphOptions
 extra_symbols:
   - decodeLegacyInstruction
   - legacyOpcodeLength
@@ -45,6 +46,9 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
 
 const OPCODE_NAMES = new Map<number, string>([
   [OP_NOP, "NOP"],
@@ -119,11 +123,6 @@ export const decodeLegacyInstruction = (
     length,
     args,
   };
-};
-
-type ScriptToGlyphOptions = {
-  allowUnmapped?: boolean;
-  maxSteps?: number;
 };
 
 export const scriptToGlyphTape = (

@@ -11,6 +11,7 @@ min_level: 6
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - WASM_MEMORY_PAGES
   - MIN_WASM_MEMORY_PAGES
@@ -22,6 +23,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const assert_wasm_memory_depth = (): void => {
   if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
     console.error(

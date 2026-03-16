@@ -1,9 +1,10 @@
 ---
 id: get_read_energy
 type: pure_fn
-description: "Read physics buffered atom Energy from the layout"
-deps: 
+description: Read physics buffered atom Energy from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHYSICS_READ_ENERGY_OFF
 args:

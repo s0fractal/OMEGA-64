@@ -30,6 +30,9 @@ extra_symbols:
 ### TypeScript
 ```typescript
 
+
+
+
 const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;

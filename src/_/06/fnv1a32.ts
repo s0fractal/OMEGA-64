@@ -1,4 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/fnv1a32.md
+import { TYPES } from "@g05";
 
 export const fnv1a32 = (input: string): number => {
   let hash = 0x811C9DC5;

@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/quorum_advocate.md
-import { LOGGER, MX } from "@g06";
+import { LOGGER, MX, TYPES } from "@g06";
 
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
 

@@ -6,20 +6,26 @@ tags:
   - host
   - console
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - LOGGER
   - Ld
   - Le
   - Li
-  - LogLevel
   - Lw
+vars:
+  - LogLevel
 ---
 
+
 ### TypeScript
+
 ```typescript
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+
+
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 10,
@@ -63,8 +69,7 @@ const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
   const sink =
     (console as unknown as Record<string, (...xs: unknown[]) => void>)[
       method
-    ] ??
-      console.log;
+    ] ?? console.log;
   sink(...args);
 };
 

@@ -16,14 +16,20 @@ deps:
   - sha256_hex
   - stable_stringify
   - TYPES
+  - REJECTION_CODES
 extra_symbols:
   - AGENT_SIGNATURE
 vars:
-  - REJECTION
 ---
 
+
 ### TypeScript
+
 ```typescript
+
+
+
+
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
 

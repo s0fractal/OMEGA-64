@@ -9,13 +9,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Deterministically stringifies JSON objects for signing.
 extra_symbols:
   - stable_stringify
 ---
 
 ```typescript
+
+
+
+
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {
     return "[" + value.map((v) => stable_stringify(v)).join(",") + "]";

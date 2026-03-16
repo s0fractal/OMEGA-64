@@ -5,36 +5,31 @@ description: Migrated from src/06/AKASHA_SIGNALING.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - AKASHA_SIGNALING
+vars:
+  - SignalingSession
+  - SIGNAL_TYPES
 ---
 
 ### TypeScript
 
 ```typescript
+
+
+
+
+/**
+ * @contract [akasha-webrtc-signaling] 
+ * Supported signal types: "offer", "answer", "candidate"
+ */
 const RTC_SIGNAL_PATH = "/rtc/signal";
 const MAX_SIGNAL_MESSAGE_BYTES = 128 * 1024;
 const PEER_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
 const ROOM_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
-const SIGNAL_TYPES = [
-  "offer",
-  "answer",
-  "candidate",
-  "plasmid",
-  "pheromone",
-  "telemetry",
-] as const;
-
-type SignalType = typeof SIGNAL_TYPES[number];
-type JsonMap = Record<string, unknown>;
-
-type SignalingSession = {
-  socket: WebSocket;
-  roomId: string | null;
-  peerId: string | null;
-};
 
 const signalTypeSet = new Set<string>(SIGNAL_TYPES);
 const sessions = new Map<WebSocket, SignalingSession>();

@@ -9,6 +9,7 @@ deps:
   - LOGGER
   - assembler
   - SIGMA_FFI_BRIDGE
+  - TYPES
 min_level: 14
 entry: true
 vars:
@@ -29,6 +30,8 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
 
 
 const sensoryBuffer = new Float32Array(12);

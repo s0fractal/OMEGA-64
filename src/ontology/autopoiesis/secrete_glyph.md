@@ -7,7 +7,7 @@ level: 1
 args:
   atomIdx: i32
   x: i32
-  y: i32
+  'y': i32
   kind: u8
   role: u8
   intensity: i32
@@ -23,6 +23,7 @@ deps:
   - SYSTEM_CONSTANTS
   - get_energy
   - set_energy
+  - TYPES
 description: Auto-recovered secrete_glyph
 ---
 
@@ -34,6 +35,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 if (intensity <= 0) return;
   const gx = x / SPATIAL_CELL_SIZE;
   const gy = y / SPATIAL_CELL_SIZE;

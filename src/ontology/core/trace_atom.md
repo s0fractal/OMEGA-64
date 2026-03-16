@@ -10,7 +10,8 @@ args:
   gx: i32
   gy: i32
   targetIdx: i32
-deps: []
+deps:
+  - TYPES
 vars: []
 ---
 
@@ -22,6 +23,10 @@ vars: []
 ```
 
 ```typescript
+
+
+
+
 // TS Mock No-op
 ```
 

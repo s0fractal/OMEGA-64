@@ -1,22 +1,10 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
-import { LOGGER, Ld } from "@g07";
+import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY, TYPES } from "@g07";
 
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
-
-type MutationLane =
-  | "internal_oracle"
-  | "internal_host"
-  | "internal_wasm"
-  | "canonical_gate"
-  | "external_ingress"
-  | "external_daemon";
-
-type MutationEvent = {
-  lane: MutationLane;
-  kind: string;
-  count?: number;
-};
-
+/**
+ * @contract [daemon-governance]
+ * Mutation lanes: "external_daemon", "external_ingress"
+ */
 const TELEMETRY_ENABLED = RUNTIME_POLICY.telemetry.enabled;
 const FLUSH_INTERVAL_TICKS = RUNTIME_POLICY.telemetry.flushIntervalTicks;
 const TOP_KINDS = RUNTIME_POLICY.telemetry.topKinds;

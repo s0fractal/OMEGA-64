@@ -1,9 +1,10 @@
 ---
 id: set_reg
 type: pure_fn
-description: "Write atomic execution register"
-deps: 
+description: Write atomic execution register
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:

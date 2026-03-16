@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/daemon_ingress_policy.md
-import { RUNTIME_POLICY, DaemonAction, DaemonInjectEnvelope, DaemonNarrativeContext, DaemonInvariantAdmission, PlasmidRiskProfile, DaemonIngressPlan, DaemonIngressMetrics } from "@g02";
+import { RUNTIME_POLICY, DaemonAction, DaemonInjectEnvelope, DaemonNarrativeContext, DaemonInvariantAdmission, PlasmidRiskProfile, DaemonIngressPlan, DaemonIngressMetrics, TYPES } from "@g02";
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
 
@@ -222,7 +222,7 @@ export const normalizeDaemonNarrativeContext = (
     highlights.find((entry) =>
       typeof (entry as Record<string, unknown>).genome === "string" &&
       ((entry as Record<string, unknown>).genome as string).toUpperCase() ===
-        normalizedDominantGenome
+      normalizedDominantGenome
     ) ?? highlights[0];
 
   let codexLineageLabel = "none";
@@ -555,5 +555,4 @@ export const DAEMON_INGRESS_POLICY = {
   evaluatePlasmidRisk,
   normalizeDaemonNarrativeContext,
   evaluateInvariantAdmission,
-  planInvariantIngress
 };

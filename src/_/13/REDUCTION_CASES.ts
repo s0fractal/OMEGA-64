@@ -1,57 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
-import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, OPCODE_TO_GLYPH, GATE, assembler } from "@g12";
-
-export type ReductionCaseExpectation = {
-  finalPc: number;
-  replicateCount?: number;
-  signalCount?: number;
-  buildCount?: number;
-  finalRole?: number;
-  registers?: number[];
-  finalProps?: Partial<Record<number, number>>;
-  finalHiveMemory?: Partial<Record<number, number>>;
-  finalHiveBalance?: number;
-  finalSignalGrid?: Partial<Record<number, number>>;
-
-  finalPeerEnergy?: Partial<Record<number, number>>;
-  finalPeerPc?: Partial<Record<number, number>>;
-  finalBondDistances?: Partial<Record<number, number>>;
-  finalDamping?: number;
-  finalStructureGrid?: Partial<Record<number, number>>;
-
-  branchTaken?: boolean;
-  finalBondRequests?: Partial<Record<number, number>>;
-  finalHiveEnergyPool?: Partial<Record<number, number>>;
-  finalHormones?: number[];
-};
-
-export type ReductionCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  script: Uint8Array;
-  maxSteps: number;
-  ownerAtomIdx?: number;
-  postStructureTick?: boolean;
-  initialRegs?: number[];
-
-  initialProps: Partial<Record<number, number>>;
-  initialBondTargets?: Partial<Record<number, number>>;
-  initialBondDistances?: Partial<Record<number, number>>;
-  initialDamping?: number;
-  initialPeerEnergy?: Partial<Record<number, number>>;
-  initialPeerPc?: Partial<Record<number, number>>;
-  initialCellPeers?: number[];
-  initialHiveBalance?: number;
-  initialStructureGrid?: Partial<Record<number, number>>;
-  initialStructureIntentOwner?: Partial<Record<number, number>>;
-  initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialHiveMemory?: Partial<Record<number, number>>;
-  initialHormones?: number[];
-  initialHiveEnergyPool?: Partial<Record<number, number>>;
-  nativeProgram?: string; // Key in GENESIS_PROGRAMS
-  expected: ReductionCaseExpectation;
-};
+import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, ReductionCaseExpectation, ReductionCaseDefinition, OPCODE_TO_GLYPH, GATE, assembler, TYPES } from "@g12";
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
   OP_GET, 0, PROP_ENERGY,

@@ -8,6 +8,8 @@ args:
   fx: f32
   fy: f32
 description: Auto-recovered encode_force_tuple
+deps:
+  - TYPES
 ---
 
 ---
@@ -18,6 +20,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // Reinterpret cast f32 -> i32 then pack into i64
 const xInt = reinterpret<i32>(fx);
 const yInt = reinterpret<i32>(fy);

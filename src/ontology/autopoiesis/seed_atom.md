@@ -8,7 +8,7 @@ args:
   idx: i32
   id: i64
   x: i32
-  y: i32
+  'y': i32
   energy: i32
   resonance: i32
   genomePtr: usize
@@ -28,6 +28,7 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
+  - TYPES
 description: Auto-recovered seed_atom
 ---
 
@@ -39,6 +40,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const idPtr = IDS_OFFSET + (idx << 3) as usize;
 store<i64>(idPtr, id);
 

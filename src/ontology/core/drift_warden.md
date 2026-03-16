@@ -7,6 +7,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - COHERENCE_OFFSET
@@ -16,8 +17,8 @@ vars:
   - Li
   - MAX_ATOMS
   - sharedBuffer
-extra_symbols:
   - DriftMetrics
+extra_symbols:
   - DriftWarden
 ---
 
@@ -25,14 +26,6 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-
-export type DriftMetrics = {
-  coherence: number;
-  energyVariance: number;
-  populationStability: number;
-  driftIndex: number;
-  shadowForkRecommended: boolean;
-};
 
 /**
  * DriftWarden monitors the global state for behavioral anomalies and instability.

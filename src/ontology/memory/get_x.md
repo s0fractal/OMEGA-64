@@ -1,9 +1,10 @@
 ---
 id: get_x
 type: pure_fn
-description: "Read atom X coordinate from the layout"
-deps: 
+description: Read atom X coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - XS_OFFSET
 args:

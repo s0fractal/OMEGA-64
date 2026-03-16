@@ -8,17 +8,24 @@ tags:
 deps:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY
+  - TYPES
 min_level: 6
 entry: true
 vars:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY
+  - MeshForwardAction
+  - MeshForwardEnvelope
+  - ParsedMeshInject
 ---
 
 ### TypeScript
 
 ```typescript
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+
+
+
+
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -79,24 +86,6 @@ const toFiniteNumber = (value: unknown): number | null => {
     if (Number.isFinite(parsed)) return parsed;
   }
   return null;
-};
-
-type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
-type MeshForwardEnvelope = {
-  action_type: MeshForwardAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-type ParsedMeshInject = {
-  envelope: MeshForwardEnvelope;
-  signalType: "mesh_pheromone" | "mesh_plasmid";
-  eventId: string;
-  sourcePeer: string;
 };
 
 const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {

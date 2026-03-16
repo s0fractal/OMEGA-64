@@ -57,4 +57,5 @@ export { read_structure_cell } from "./read_structure_cell";
 export { publish_charge_intent } from "./publish_charge_intent";
 export { publish_build_intent } from "./publish_build_intent";
 export { reduce_atom_deltas } from "./reduce_atom_deltas";
-export { store_clamped_pos } from "./store_clamped_pos";
+export { clamp_world_y } from "./clamp_world_y";
+export { clamp_world_x } from "./clamp_world_x";

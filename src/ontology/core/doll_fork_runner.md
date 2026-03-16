@@ -7,6 +7,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - DollFork

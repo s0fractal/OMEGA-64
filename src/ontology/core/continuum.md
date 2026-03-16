@@ -5,12 +5,13 @@ description: Migrated from src/06/CONTINUUM.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 vars:
   - LATTICE_MEMORY_END
-extra_symbols:
   - ContinuumMetadata
+extra_symbols:
   - compressMemory
   - decompressMemoryToLattice
   - loadEpoch
@@ -20,18 +21,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
 
-export type ContinuumMetadata = {
-  epochName: string;
-  tick: number;
-  memoryBounds: number;
-  population?: number;
-  coherence?: number;
-  epochHash?: string;
-  timestamp: string;
-};
+
+
+
 
 const EPOCHS_DIR = ".omega/epochs";
 

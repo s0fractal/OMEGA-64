@@ -1,9 +1,10 @@
 ---
 id: add_resonance_delta
 type: pure_fn
-description: "Atomic add to physics resonance delta array"
-deps: 
+description: Atomic add to physics resonance delta array
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - RESONANCE_DELTA_OFF
 args:

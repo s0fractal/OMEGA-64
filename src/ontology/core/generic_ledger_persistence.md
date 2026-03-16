@@ -13,12 +13,12 @@ vars:
   - createLedgerRuntime
   - rollbackLedgerUpdate
   - snapshotLedgerRuntime
-extra_symbols:
-  - GENERIC_LEDGER_PERSISTENCE
-  - LedgerHydrationResult
-  - LedgerPersistenceSummary
   - LedgerRecord
   - LedgerSnapshotRecord
+  - LedgerPersistenceSummary
+  - LedgerHydrationResult
+extra_symbols:
+  - GENERIC_LEDGER_PERSISTENCE
   - appendLedgerRecord
   - appendLedgerRecordAndMaybeCompact
   - compactLedgerPersistence
@@ -29,72 +29,9 @@ extra_symbols:
   - recordFromRollback
 deps:
   - GENERIC_LEDGER_SYSTEM
+  - TYPES
 ---
 ```typescript
-
-export type LedgerRecord<K extends GeneticLedgerKey> =
-  | {
-    kind: "apply";
-    key: K;
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: K;
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type LedgerSnapshotRecord<K extends GeneticLedgerKey> = {
-  version: 1;
-  key: K;
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: LedgerRuntimeState<K>;
-};
-
-export type LedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type LedgerHydrationResult<K extends GeneticLedgerKey> = {
-  state: LedgerRuntimeState<K>;
-  snapshot: LedgerRuntimeSnapshot<K>;
-  persistence: LedgerPersistenceSummary;
-};
-
 const ensureDir = async (): Promise<void> => {
   await Deno.mkdir(".omega/ledger", { recursive: true });
 };
@@ -454,7 +391,5 @@ export const GENERIC_LEDGER_PERSISTENCE = {
   recordFromApply,
   recordFromRollback,
   compactLedgerPersistence,
-  appendLedgerRecordAndMaybeCompact
 };
-
 ```

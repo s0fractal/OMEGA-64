@@ -17,6 +17,7 @@ deps:
   - SYSTEM_CONSTANTS
   - find_next_free_slot
   - seed_atom
+  - TYPES
 description: Auto-recovered drain_spawn_requests
 ---
 
@@ -28,6 +29,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
 const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
 

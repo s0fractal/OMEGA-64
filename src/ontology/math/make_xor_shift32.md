@@ -5,7 +5,8 @@ description: Higher-order functional generator spinning up a PRNG XorShift32 sta
 tags:
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - make_xor_shift32
@@ -13,6 +14,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const make_xor_shift32 = (seed: number): () => number => {
   let state = (seed >>> 0) || 1;
   return () => {

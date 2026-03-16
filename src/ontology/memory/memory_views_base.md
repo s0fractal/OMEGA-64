@@ -1,10 +1,13 @@
 ---
 id: memory_views_base
 type: module
-description: "Base memory views initialization"
+description: Base memory views initialization
 tags:
   - 00_memory
-deps: [SYSTEM_CONSTANTS, OMEGA_MEMORY_LAYOUT]
+deps:
+  - SYSTEM_CONSTANTS
+  - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - MIN_WASM_MEMORY_PAGES
   - WASM_MEMORY_PAGES
@@ -18,6 +21,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
     "[MX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 

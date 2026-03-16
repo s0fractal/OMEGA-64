@@ -1,7 +1,9 @@
 ---
 id: P2P_FEDERATION
 type: module
-description: RESTORED | High-level distributed migration policies and rule-genome consistency.
+description: >-
+  RESTORED | High-level distributed migration policies and rule-genome
+  consistency.
 tags:
   - membrane
   - host
@@ -20,6 +22,8 @@ deps:
 ### TypeScript
 
 ```typescript
+
+
 let delegate: P2pFederationUpwardDelegate | null = null;
 
 const CURRENT_PORT = RUNTIME_POLICY.system.port;

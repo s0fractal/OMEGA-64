@@ -1,9 +1,10 @@
 ---
 id: set_phase
 type: pure_fn
-description: "Write atom phase to the layout"
-deps: 
+description: Write atom phase to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHASE_OFFSET
 args:

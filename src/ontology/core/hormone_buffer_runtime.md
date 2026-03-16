@@ -2,37 +2,24 @@
 id: HORMONE_BUFFER_RUNTIME
 type: module
 description: Hormone Buffer Runtime Sync Logic
-deps: []
+deps:
+  - TYPES
 entry: true
 min_level: 6
 extra_symbols:
   - HORMONE_BUFFER_RUNTIME
-  - HormoneSyncInput
   - syncHormonesToLattice
+vars:
+  - HormoneSyncInput
 ---
 
 ### TypeScript
 
 ```typescript
 
-export type HormoneSyncInput = {
-  baseTax: number;
-  targetEnergy: number;
-  workerCount: number;
-  egoPressure: number;
-  fearPressure: number;
-  noveltyPressure: number;
-  symbiosisPressure: number;
-  maxPlasmidCharge: number;
-  pressureRingScale: number;
-  // Generic Ledger inputs (Stage 7.2)
-  homeostasisBand: number;
-  homeostasisMaxDelta: number;
-  homeostasisOverflowThreshold: number;
-  daemonMaxActions: number;
-  federationDegradeEnergyRatio: number;
-  globalSyntropy: number;
-};
+
+
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

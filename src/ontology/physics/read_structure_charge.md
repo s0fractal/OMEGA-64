@@ -12,6 +12,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - read_structure_cell
+  - TYPES
 description: Auto-recovered read_structure_charge
 ---
 
@@ -23,6 +24,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const cellVal = read_structure_cell(cellIdx);
 const baseCharge = (cellVal >> 16) & 0xFF;
 const intentCharge = atomic.load<i32>(

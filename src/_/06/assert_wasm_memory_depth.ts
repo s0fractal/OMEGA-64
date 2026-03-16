@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/wasm_memory_guard.md
-import { WASM_MEMORY_PAGES, MIN_WASM_MEMORY_PAGES } from "@g05";
+import { WASM_MEMORY_PAGES, MIN_WASM_MEMORY_PAGES, TYPES } from "@g05";
 
 export const assert_wasm_memory_depth = (): void => {
   if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {

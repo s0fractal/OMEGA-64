@@ -1,9 +1,10 @@
 ---
 id: get_y
 type: pure_fn
-description: "Read atom Y coordinate from the layout"
-deps: 
+description: Read atom Y coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - YS_OFFSET
 args:

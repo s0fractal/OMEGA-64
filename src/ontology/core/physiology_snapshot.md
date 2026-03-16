@@ -7,47 +7,26 @@ tags:
   - host
 deps:
   - HORMONE_BUFFER
+  - TYPES
 min_level: 9
 vars:
   - GENETIC_LEDGER_CATALOG
   - HORMONE_BUFFER_CATALOG
-extra_symbols:
+  - PhysiologySnapshotInput
   - HormoneSnapshot
   - LedgerSnapshot
   - PhysiologySnapshot
-  - PhysiologySnapshotInput
+extra_symbols:
   - capturePhysiologySnapshot
 ---
 
 ### TypeScript
 
 ```typescript
-import type { LedgerRuntimeSnapshot } from "@g12";
 
-export type PhysiologySnapshotInput = {
-  tick: number;
-  hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
-  ledger: Partial<
-    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
-  >;
-};
 
-export type HormoneSnapshot = HormoneSpec & {
-  currentValue: number;
-  deltaFromDefault: number;
-};
 
-export type LedgerSnapshot = GeneticLedgerEntry & {
-  currentValue: number;
-  deltaFromDefault: number;
-  currentSource: "runtime" | "policy";
-};
 
-export type PhysiologySnapshot = {
-  tick: number;
-  hormones: Record<HormoneId, HormoneSnapshot>;
-  ledger: Record<GeneticLedgerKey, LedgerSnapshot>;
-};
 
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,

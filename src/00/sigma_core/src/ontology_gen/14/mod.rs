@@ -2,9 +2,9 @@
 
 pub use super::L13::*;
 
+#[path = "PULSE.rs"]
+pub mod PULSE;
+pub use PULSE::*;
 #[path = "REDUCTION_HARNESS.rs"]
 pub mod REDUCTION_HARNESS;
 pub use REDUCTION_HARNESS::*;
-#[path = "SOVEREIGN_ORACLE.rs"]
-pub mod SOVEREIGN_ORACLE;
-pub use SOVEREIGN_ORACLE::*;

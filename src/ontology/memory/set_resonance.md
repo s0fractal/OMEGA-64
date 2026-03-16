@@ -1,10 +1,11 @@
 ---
 id: set_resonance
 type: pure_fn
-description: "Write atom resonance to the layout"
-deps: 
+description: Write atom resonance to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_resource
+  - TYPES
 vars:
   - RESONANCE_OFFSET
   - clamp_resource

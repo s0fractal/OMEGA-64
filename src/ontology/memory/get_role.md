@@ -1,9 +1,10 @@
 ---
 id: get_role
 type: pure_fn
-description: "Read semantic role of an atom"
-deps: 
+description: Read semantic role of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ROLES_OFFSET
 args:

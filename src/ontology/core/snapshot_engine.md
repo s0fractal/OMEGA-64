@@ -8,6 +8,7 @@ tags:
 deps:
   - LOGGER
   - SEMANTIC_MEMBRANE
+  - TYPES
 min_level: 9
 vars:
   - LOGGER
@@ -16,6 +17,7 @@ vars:
   - Lw
   - SEMANTIC_MEMBRANE
   - MX
+  - SnapshotExportOptions
 extra_symbols:
   - SNAPSHOT_ENGINE
 ---
@@ -26,18 +28,10 @@ extra_symbols:
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
 
-
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
   if (!Number.isFinite(value)) return 8;
   return Math.max(1, Math.min(512, Math.floor(value as number)));
-};
-
-type SnapshotExportOptions = {
-  tick?: number;
-  reason?: string;
-  prune?: boolean;
-  retention?: number;
 };
 
 export const SNAPSHOT_ENGINE = {

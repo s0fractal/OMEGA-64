@@ -1,9 +1,10 @@
 ---
 id: set_bond_target
 type: pure_fn
-description: "Write atom bond target by slot"
-deps: 
+description: Write atom bond target by slot
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BONDS_OFFSET
 args:

@@ -11,6 +11,7 @@ vars:
   - read_jsonl_lines
   - sha256_hex
   - stable_stringify
+  - LedgerChainReportInternal
 extra_symbols:
   - LEDGER__08_00_LEDGER
   - PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
@@ -19,6 +20,7 @@ extra_symbols:
 deps:
   - normalize_hex64
   - sha256_hex
+  - TYPES
 ---
 
 ### TypeScript
@@ -50,15 +52,6 @@ const ledgerEventHash = async (
       body,
     }),
   );
-
-type LedgerChainReportInternal = {
-  ok: boolean;
-  checkedEvents: number;
-  chainAnchoredEvents: number;
-  legacyEvents: number;
-  failures: string[];
-  tailEventHash: string | null;
-};
 
 const verifyLedgerChainDetailedInternal = async (
   path: string,

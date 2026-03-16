@@ -18,6 +18,7 @@ description: Auto-recovered publish_build_intent
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -28,6 +29,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
 const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
 const ownerToken = ownerAtomIdx + 1;

@@ -1,13 +1,19 @@
 ---
 id: parse_env_bool
 type: module
-description: "Implementation of parse_env_bool"
+description: Implementation of parse_env_bool
 tags: []
 min_level: 0
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const parse_env_bool = (
   raw: string | undefined,
   fallback: boolean,

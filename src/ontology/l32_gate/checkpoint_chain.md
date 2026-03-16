@@ -11,11 +11,13 @@ vars:
   - read_jsonl_lines
   - sha256_hex
   - stable_stringify
+  - CheckpointChainReportInternal
 extra_symbols:
   - CHECKPOINT_CHECKPOINT
 deps:
   - normalize_hex64
   - sha256_hex
+  - TYPES
 ---
 
 ### TypeScript
@@ -47,15 +49,6 @@ const checkpointRecordHash = async (
       body,
     }),
   );
-
-type CheckpointChainReportInternal = {
-  ok: boolean;
-  checkedRows: number;
-  chainAnchoredRows: number;
-  legacyRows: number;
-  failures: string[];
-  tailCheckpointHash: string | null;
-};
 
 const verifyCheckpointChainDetailedInternal = async (
   path: string,

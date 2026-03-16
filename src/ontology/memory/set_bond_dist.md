@@ -1,9 +1,10 @@
 ---
 id: set_bond_dist
 type: pure_fn
-description: "Set bond stretch distance in u8 representation"
-deps: 
+description: Set bond stretch distance in u8 representation
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BOND_DISTANCES_OFFSET
 args:

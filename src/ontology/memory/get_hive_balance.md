@@ -1,9 +1,10 @@
 ---
 id: get_hive_balance
 type: pure_fn
-description: "Read total hive energy balance"
-deps: 
+description: Read total hive energy balance
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_BALANCE_OFF
 args: {}

@@ -1,10 +1,11 @@
 ---
 id: math_cos
 type: pure_fn
-description: "Обчислення косинуса з динамічною точністю (LUT, LERP, TAYLOR2)"
-deps: 
+description: 'Обчислення косинуса з динамічною точністю (LUT, LERP, TAYLOR2)'
+deps:
   - SIN_LUT
   - COS_LUT
+  - TYPES
 vars:
   - SIN_LUT
   - COS_LUT
@@ -13,10 +14,18 @@ args:
   highRes: i32
 returns: i32
 tests:
-  - [0, 0, 32767]
-  - [64, 0, 0]
-  - [128, 0, -32767]
-  - [192, 0, 0]
+  - - 0
+    - 0
+    - 32767
+  - - 64
+    - 0
+    - 0
+  - - 128
+    - 0
+    - -32767
+  - - 192
+    - 0
+    - 0
 ---
 
 ### Rust
@@ -45,6 +54,10 @@ c_base - term1 - term2
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (highRes == 0) {
     let idx = angle & 255;
     return COS_LUT[idx] as i32;

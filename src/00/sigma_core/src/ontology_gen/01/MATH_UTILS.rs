@@ -17,7 +17,6 @@ pub fn clamp01(x: f64) -> f64 {
     } else if x > 1.0 {
         1.0
     } else {
-        x
     }
 }
 
@@ -46,5 +45,4 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
         entropy = 6000;
     }
     
-    entropy
 }

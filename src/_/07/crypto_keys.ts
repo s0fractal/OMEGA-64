@@ -1,12 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/crypto_keys.md
-import { base64_to_bytes } from "@g06";
-
-export type Ed25519SigningKey = {
-  scheme: "ed25519/v1";
-  private_key_pkcs8_b64: string;
-};
-export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
-export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+import { base64_to_bytes, Ed25519SigningKey, Ed25519VerifyKey, HmacKey, TYPES } from "@g06";
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();

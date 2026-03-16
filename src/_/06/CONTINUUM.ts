@@ -1,18 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/continuum.md
-import { LATTICE_MEMORY_END } from "@g05";
-
-import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
-
-export type ContinuumMetadata = {
-  epochName: string;
-  tick: number;
-  memoryBounds: number;
-  population?: number;
-  coherence?: number;
-  epochHash?: string;
-  timestamp: string;
-};
+import { LATTICE_MEMORY_END, ContinuumMetadata, TYPES } from "@g05";
 
 const EPOCHS_DIR = ".omega/epochs";
 

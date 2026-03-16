@@ -9,13 +9,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Converts a Uint8Array to a hex string.
 extra_symbols:
   - bytes_to_hex
 ---
 
 ```typescript
+
+
+
+
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 ```

@@ -1,14 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
-import { REJECTION, GateAcceptedProposalMetric, I16Limits, TYPES, LOGGER } from "@g11";
-
-import { LOGGER, Ld } from "@g06";
-
-import {
-  GATE_BUDGET
-} from "@g12";
-import {
-  MX
-} from "@g04";
+import { GateAcceptedProposalMetric, I16Limits, TYPES, REJECTION_CODES, LOGGER } from "@g11";
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;
@@ -195,5 +186,4 @@ export const mergeGateProposals = (
 };
 
 export const GATE_MERGER = {
-  mergeGateProposals
 };

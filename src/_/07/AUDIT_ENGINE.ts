@@ -1,12 +1,8 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/audit_engine.md
+import { AuditEngineExocortexDelegate, TYPES } from "@g06";
 
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
 // Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
-
-export interface AuditEngineExocortexDelegate {
-  generateThought(context: string): Promise<string>;
-}
-
 let delegate: AuditEngineExocortexDelegate | null = null;
 
 const ROOT = Deno.cwd();

@@ -165,7 +165,6 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
             let payload = if kind == 2 {
                 Some(state.matrix.glyph_payload[cell])
             } else {
-                None
             };
             deposit_scratch_glyph_header(state, cell as i32, kind, retained, payload);
         }
@@ -183,7 +182,6 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
                     let payload = if share >= 128 || share <= -128 {
                         Some(state.matrix.glyph_payload[cell])
                     } else {
-                        None
                     };
                     deposit_scratch_glyph_header(state, next_cell as i32, kind, share, payload);
                 }
@@ -235,11 +233,9 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
     }
 
     // Copy scratch to primary
-    state
         .matrix
         .glyph_header
         .copy_from_slice(&state.matrix.glyph_scratch_header);
-    state
         .matrix
         .glyph_payload
         .copy_from_slice(&state.matrix.glyph_scratch_payload);

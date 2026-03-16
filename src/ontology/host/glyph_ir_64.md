@@ -12,6 +12,7 @@ deps:
   - GLYPH_RGB_LUT
   - GLYPH_LEGACY_OPCODE_LUT
   - get_glyph_kind
+  - TYPES
 min_level: 7
 vars:
   - GLYPH_ARITY_LUT
@@ -27,14 +28,14 @@ vars:
   - KIND_STRUCTURAL
   - KIND_TRANSPORT
   - get_glyph_kind
+  - GlyphKind
+  - GlyphStabilityClass
+  - GlyphSpec
 extra_symbols:
   - BRIDGE_GLYPH_IDS
   - GLYPH_SPECS
   - GLYPH_SPEC_BY_ID
   - GLYPH_SPEC_BY_OPCODE
-  - GlyphKind
-  - GlyphSpec
-  - GlyphStabilityClass
   - buildGlyphSpecs
   - defaultReductionRuleRef
   - defaultStabilityClass
@@ -48,35 +49,8 @@ extra_symbols:
 ```typescript
 
 
-export type GlyphKind =
-  | "core"
-  | "control"
-  | "transport"
-  | "structural"
-  | "catalytic"
-  | "regulatory"
-  | "memory"
-  | "reserve";
 
-export type GlyphStabilityClass =
-  | "hard-invariant"
-  | "legacy-bridge"
-  | "bounded-dynamic"
-  | "reserve";
 
-export type GlyphSpec = {
-  id: number;
-  mnemonic: string;
-  kind: GlyphKind;
-  arity: number;
-  energyCost: number;
-  stabilityClass: GlyphStabilityClass;
-  reductionRuleRef: string;
-  legacyOpcode?: number;
-  notes?: string;
-  vertexIndex?: number;
-  rgb?: [number, number, number];
-};
 
 const KIND_MAPPING: Record<number, GlyphKind> = {
   [KIND_CORE]: "core",

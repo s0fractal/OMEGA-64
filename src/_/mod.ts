@@ -15,6 +15,7 @@ export * from "./11/mod.ts";
 export * from "./12/mod.ts";
 export * from "./13/mod.ts";
 export * from "./14/mod.ts";
+export * from "./15/mod.ts";
 const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";
 const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";
 const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;

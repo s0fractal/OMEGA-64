@@ -15,6 +15,7 @@ deps:
   - tick_structure_grid
   - diffuse_viral_semantics
   - glyph_transport
+  - TYPES
 ---
 
 ---

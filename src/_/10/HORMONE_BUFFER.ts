@@ -1,36 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer.md
-import { createLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "@g09";
-
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
-
-export type HormoneId =
-  | "entropy_pressure"
-  | "time_viscosity"
-  | "aggression"
-  | "replication_bias"
-  | "repair_drive"
-  | "mutation_friction"
-  | "global_consensus";
-
-export type HormoneDomain =
-  | "systemic"
-  | "temporal"
-  | "conflict"
-  | "reproduction"
-  | "repair"
-  | "mutation";
-
-export type HormoneSpec = {
-  id: HormoneId;
-  index: number;
-  domain: HormoneDomain;
-  min: number;
-  max: number;
-  defaultValue: number;
-  controlPlane: "daemon" | "pulse" | "mixed";
-  sourcePath: string;
-  notes: string;
-};
+import { createLedgerRuntime, HormoneId, HormoneDomain, HormoneSpec, RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM, TYPES } from "@g09";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -172,7 +141,6 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
       "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
   }, HORMONE_GLOBAL_CONSENSUS),
 ]);
-
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
   HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),

@@ -1,8 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
-import { REJECTION, GateBridgeResolution, GateValidationResult, TYPES } from "@g11";
-
-import { CANON_CAUSAL_BRIDGE } from "@g12";
-import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
+import { GateBridgeResolution, GateValidationResult, TYPES, REJECTION_CODES } from "@g11";
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -198,5 +195,4 @@ export const validateGateProposals = async (
 };
 
 export const GATE_VALIDATOR = {
-  validateGateProposals
 };

@@ -10,6 +10,7 @@ tags:
   - oracle
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LOGGER
@@ -24,7 +25,6 @@ extra_symbols:
 ```typescript
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
-
 
 export const LLM_SYNAPSE = {
   /**

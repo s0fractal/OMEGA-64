@@ -32,3 +32,5 @@ pub mod L12;
 pub mod L13;
 #[path = "14/mod.rs"]
 pub mod L14;
+#[path = "15/mod.rs"]
+pub mod L15;

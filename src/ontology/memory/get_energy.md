@@ -1,9 +1,10 @@
 ---
 id: get_energy
 type: pure_fn
-description: "Read atom energy from the layout"
-deps: 
+description: Read atom energy from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ENERGY_OFFSET
 args:
@@ -19,6 +20,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 // Requires `dataView: DataView` in scope
 return dataView.getInt32(ENERGY_OFFSET + (idx << 2), true);
 ```

@@ -18,6 +18,7 @@ deps:
   - GOLDEN_TRACE_CATALOG
   - GENESIS_BOOT
   - glyph_pretty
+  - TYPES
 vars:
   - GRID_H
   - GRID_W
@@ -65,170 +66,24 @@ vars:
   - GENESIS_PROGRAMS
   - reductionCaseById
   - ReductionCaseDefinition
+  - HarnessProps
+  - ShadowEffects
+  - ShadowState
+  - LegacyShadowResult
+  - ReductionShadowResult
+  - ReductionBaselineAnchor
+  - ReductionHarnessResult
+  - ReductionHarnessArtifact
 ---
 
 ### TypeScript
 
 ```typescript
-type HarnessProps = Record<number, number>;
+import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
-type ShadowEffects = {
-  replicateCount: number;
-  signalCount: number;
-  buildCount: number;
-  bondRequestCount: number;
-  sporeDriveCount: number;
-  entangleCount: number;
-  roleWrites: number[];
-  branchTaken: boolean;
-  jumpCount: number;
-};
 
-type ShadowState = {
-  atomIndex: number;
-  pc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
 
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  cellPeers: number[];
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  executed: string[];
-  energySpent: number;
-};
 
-type LegacyShadowResult = {
-  mode: "legacy";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-};
-
-type ReductionShadowResult = {
-  mode: "glyph-reduction";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-  glyphTape: GlyphTapeToken[];
-  prettyTape: string;
-};
-
-type ReductionBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  tickStart: number;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-};
-
-export type ReductionHarnessResult = {
-  caseId: string;
-  baseline: ReductionBaselineAnchor;
-  legacy: LegacyShadowResult;
-  reduction: ReductionShadowResult;
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type ReductionHarnessArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_runtime_mode: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  legacy_digest: string;
-  reduction_digest: string;
-  executed_digest_legacy: string;
-  executed_digest_reduction: string;
-  diff: {
-    final_pc_match: boolean;
-    registers_match: boolean;
-
-    role_match: boolean;
-    props_match: boolean;
-    bond_targets_match: boolean;
-    bond_distances_match: boolean;
-    damping_match: boolean;
-    peer_energy_match: boolean;
-    peer_pc_match: boolean;
-    hive_memory_match: boolean;
-    hive_balance_match: boolean;
-    signal_grid_match: boolean;
-    structure_grid_match: boolean;
-    structure_intent_owner_match: boolean;
-    structure_intent_value_match: boolean;
-    structure_charge_intent_match: boolean;
-    bond_requests_match: boolean;
-    hive_energy_pool_match: boolean;
-    replicate_count_match: boolean;
-    signal_count_match: boolean;
-    build_count_match: boolean;
-    branch_taken_match: boolean;
-    role_writes_match: boolean;
-    energy_spent_delta: number;
-  };
-  expectation_summary: ReductionCaseDefinition["expected"];
-};
 
 const REDUCTION_DIFF_ROOT = "src/ontology/verification/data/reduction_diffs";
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
@@ -1071,7 +926,6 @@ export const runReductionHarnessCase = async (
 
 const stepsToTicks = (steps: number) => Math.ceil(steps / 4);
 
-import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
 Deno.test({
   name: "Reduction Parity Harness",

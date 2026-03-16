@@ -7,7 +7,8 @@ description: >-
 tags:
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - to_int16_big_endian
@@ -15,6 +16,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
   const out = new Uint8Array(values.length * 2);
   for (let i = 0; i < values.length; i++) {

@@ -1,23 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer_runtime.md
-
-export type HormoneSyncInput = {
-  baseTax: number;
-  targetEnergy: number;
-  workerCount: number;
-  egoPressure: number;
-  fearPressure: number;
-  noveltyPressure: number;
-  symbiosisPressure: number;
-  maxPlasmidCharge: number;
-  pressureRingScale: number;
-  // Generic Ledger inputs (Stage 7.2)
-  homeostasisBand: number;
-  homeostasisMaxDelta: number;
-  homeostasisOverflowThreshold: number;
-  daemonMaxActions: number;
-  federationDegradeEnergyRatio: number;
-  globalSyntropy: number;
-};
+import { HormoneSyncInput, TYPES } from "@g05";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

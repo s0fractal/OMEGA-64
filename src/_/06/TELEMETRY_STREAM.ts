@@ -1,35 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/telemetry_stream.md
-
-type TelemetrySample = {
-  ts: number;
-  tick: number;
-  population: number;
-  avgEnergy: number;
-  neuralCoherence: number;
-  spatialOverflowRatio: number;
-  daemonSafeMode: boolean;
-};
-
-type TelemetryMetricName =
-  | "population"
-  | "avgEnergy"
-  | "neuralCoherence"
-  | "spatialOverflowRatio";
-
-type TelemetryBucket = {
-  from: number;
-  to: number;
-  count: number;
-};
-
-type TelemetryHistogram = {
-  metric: TelemetryMetricName;
-  windowMs: number;
-  count: number;
-  min: number;
-  max: number;
-  buckets: TelemetryBucket[];
-};
+import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram, TYPES } from "@g05";
 
 const HISTORY_LIMIT = 4096;
 const DEFAULT_WINDOW_MS = 60_000;

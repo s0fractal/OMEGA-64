@@ -1,21 +1,31 @@
 ---
 id: GLYPH_TELEMETRY
 type: module
-description: "Implementation of GLYPH_TELEMETRY"
+description: Implementation of GLYPH_TELEMETRY
 tags: []
 min_level: 6
 vars:
   - GlyphRoleCounters
   - GlyphSnapshot
+  - GlyphKind
+  - GRID_W
+  - GRID_H
+  - MIN_GLYPH_AMP
+  - MAX_GLYPH_AMP
+  - SECRETION_STATS_OFFSET
 deps:
+  - SYSTEM_CONSTANTS
+  - MX
   - TYPES
+  - OMEGA_MEMORY_LAYOUT
 ---
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g00";
-import { SECRETION_STATS_OFFSET } from "@g01";
-import { MX } from "@g04";
+
+
+
+
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -43,9 +53,6 @@ const getSecretionStatsView = (): Int32Array => {
   }
   return _secretionStatsView;
 };
-
-type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
-
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
@@ -200,5 +207,4 @@ export const GLYPH_TELEMETRY = {
     };
   },
 };
-
 ```

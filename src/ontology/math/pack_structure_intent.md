@@ -8,7 +8,8 @@ tags:
   - inline
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 args:
   target_type: u32
   target_value: u32
@@ -38,6 +39,10 @@ intent as i32
 
 ### TypeScript
 ```typescript
+
+
+
+
 export function pack_structure_intent(target_type: number, target_value: number, locked: boolean): number {
     let intent = target_type | (target_value << 24);
     if (locked) {

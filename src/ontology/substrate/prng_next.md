@@ -2,19 +2,24 @@
 id: prng_next
 type: module
 epoch: 8
-description: >-
-  Generates the next value and the subsequent state for the PRNG.
+description: Generates the next value and the subsequent state for the PRNG.
 tags:
   - 00_substrate
   - prng
   - oracle
   - deterministic
 min_level: 0
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | prng_next.ts | The Immutable Deterministic Oracle
 
 ```typescript
+
+
+
+
 /**
  * Generates the next value and the subsequent state for the PRNG.
  * @param state The current seed state.

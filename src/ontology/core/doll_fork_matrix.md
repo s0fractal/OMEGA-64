@@ -5,7 +5,8 @@ description: Migrated from src/07/02/DOLL_FORK_MATRIX.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 vars:
   - BONDS_OFFSET

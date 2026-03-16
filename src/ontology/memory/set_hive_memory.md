@@ -1,9 +1,10 @@
 ---
 id: set_hive_memory
 type: pure_fn
-description: "Write byte to the organism shared neural memory block"
-deps: 
+description: Write byte to the organism shared neural memory block
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_MEMORY_OFF
 args:

@@ -13,6 +13,7 @@ vars:
   - Lw
 deps:
   - LOGGER
+  - TYPES
 ---
 
 ### TypeScript
@@ -201,5 +202,4 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-
 ```

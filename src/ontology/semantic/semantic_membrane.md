@@ -1,24 +1,27 @@
 ---
 id: SEMANTIC_MEMBRANE
 type: module
-description: "Implementation of SEMANTIC_MEMBRANE"
+description: Implementation of SEMANTIC_MEMBRANE
 tags: []
 min_level: 5
 vars:
   - BehaviorFingerprint
   - BehaviorCluster
+  - BehaviorRuntime
+  - Aggregate
 deps:
   - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { GRID_W, GRID_H, GRID_CELLS } from "@g00";
+
+
+
+
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { MX } from "@g04";
-import { LLM_SYNAPSE } from "@g07";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -30,15 +33,6 @@ const BEHAVIOR_STATE_TTL_TICKS = 2048;
 const OP_REPLICATE = 0x80;
 const OP_SIGNAL = 0x81;
 const OP_BUILD = 0xA8;
-
-type BehaviorRuntime = {
-  survivalCurve: number[];
-  lastTick: number;
-  memberCount: number;
-  dominantRole: number;
-  genomeSamples: string[];
-  fingerprint: BehaviorFingerprint;
-};
 
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
@@ -136,15 +130,6 @@ export const SEMANTIC_MEMBRANE = {
     const stride = active.length > localSampleLimit
       ? Math.ceil(active.length / localSampleLimit)
       : 1;
-
-    type Aggregate = {
-      memberCount: number;
-      replicateTotal: number;
-      signalTotal: number;
-      buildTotal: number;
-      roleCounts: number[];
-      genomeSamples: string[];
-    };
 
     const aggregates = new Map<string, Aggregate>();
     for (let i = 0; i < active.length; i += stride) {
@@ -512,5 +497,4 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```

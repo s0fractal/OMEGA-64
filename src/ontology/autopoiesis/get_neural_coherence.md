@@ -14,6 +14,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - trace_atom
   - SYSTEM_CONSTANTS
+  - TYPES
 ---
 
 ---
@@ -24,6 +25,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // Unimplemented TS mock for standalone build
 return 0;
 ```

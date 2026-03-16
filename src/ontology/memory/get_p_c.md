@@ -1,9 +1,10 @@
 ---
 id: get_p_c
 type: pure_fn
-description: "Read program counter of an atom"
-deps: 
+description: Read program counter of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:

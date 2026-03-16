@@ -9,6 +9,7 @@ tags:
 deps:
   - sha256_hex
   - stable_stringify
+  - TYPES
 vars:
   - sha256_hex
   - stable_stringify
@@ -19,6 +20,9 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
 
 const CRY_DATA = {
   policy: "STABLE",

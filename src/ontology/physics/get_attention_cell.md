@@ -15,6 +15,7 @@ description: Auto-recovered get_attention_cell
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -25,6 +26,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
 return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 ```

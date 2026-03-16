@@ -9,13 +9,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Validates and normalizes 64-character hex strings (sha256 format).
 extra_symbols:
   - normalize_hex64
 ---
 
 ```typescript
+
+
+
+
 export const normalize_hex64 = (value: unknown): string | null => {
   if (typeof value !== "string") return null;
   const t = value.trim().toLowerCase();

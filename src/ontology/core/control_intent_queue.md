@@ -18,185 +18,41 @@ vars:
   - RUNTIME_POLICY
   - SCALE
   - MX
+  - ControlIntentQueueDelegate
+  - CrisisIntent
+  - FederateIntent
+  - FederationAdmissionSeverity
+  - FederationAdmissionAction
+  - FederationRuleGenomeProfile
+  - FederationBehaviorProfile
+  - FederationLocalBehaviorContext
+  - FederationCodexProfile
+  - FederationLocalCodexContext
+  - FederationPolicyFragmentSource
+  - FederationPolicyFragmentMode
+  - FederationPolicyFragment
+  - FederationAdmissionSnapshot
+  - FederateAdmissionResult
+  - MutateIntent
+  - AvatarIntent
+  - PlasmidIntent
+  - SnapshotImportIntent
+  - ControlIntent
+  - QueueDecision
+  - ApplyStats
 extra_symbols:
   - CONTROL_INTENT_QUEUE
-  - ControlIntentQueueDelegate
 deps:
   - LOGGER
   - RUNTIME_POLICY
+  - TYPES
 ---
 ```typescript
 
-export interface ControlIntentQueueDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
-  unpackAtom(packet: Uint8Array): number;
-}
+
+
 
 let delegate: ControlIntentQueueDelegate | null = null;
-
-type CrisisIntent = {
-  kind: "crisis";
-  logicBytes: Uint8Array;
-};
-
-type FederateIntent = {
-  kind: "federate";
-  packet: Uint8Array;
-  sourceNode: string;
-};
-
-type FederationAdmissionSeverity = "LOW" | "MID" | "HIGH";
-type FederationAdmissionAction =
-  | "accept"
-  | "degrade"
-  | "hybridize"
-  | "reject";
-
-type FederationRuleGenomeProfile = {
-  signature: string;
-  noveltySigned: number;
-  symbiosisSigned: number;
-  pressureRingScale: number;
-  workerCount: number;
-  strictDeterminism: boolean;
-  generatedAt: string;
-};
-
-type FederationBehaviorProfile = {
-  invariant: string;
-  dominantRole: number;
-  memberCount: number;
-  generatedAt: string;
-};
-
-type FederationLocalBehaviorContext = {
-  invariant: string;
-  dominantRole: number;
-  memberCount: number;
-};
-
-type FederationCodexProfile = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-  generatedAt: string;
-};
-
-type FederationLocalCodexContext = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-};
-
-type FederationPolicyFragmentSource =
-  | "rule_genome"
-  | "behavior"
-  | "codex";
-
-type FederationPolicyFragmentMode = "tax" | "subsidy";
-
-type FederationPolicyFragment = {
-  id: string;
-  source: FederationPolicyFragmentSource;
-  mode: FederationPolicyFragmentMode;
-  reason: string;
-  scoreDelta: number;
-  energyRatio: number;
-  resonanceRatio: number;
-};
-
-type FederationAdmissionSnapshot = {
-  tick: number;
-  atomId: string;
-  sourceNode: string;
-  action: FederationAdmissionAction;
-  severity: FederationAdmissionSeverity;
-  score: number;
-  reasons: string[];
-  localSignature: string;
-  peerSignature: string;
-  strictMismatch: boolean;
-  degraded: boolean;
-  hybridized: boolean;
-  localBehaviorInvariant: string;
-  peerBehaviorInvariant: string;
-  behaviorDistance: number;
-  localCodexLabel: string;
-  peerCodexLabel: string;
-  codexDistance: number;
-  policyFragments: FederationPolicyFragment[];
-  policyEnergyRatio: number;
-  policyResonanceRatio: number;
-};
-
-type FederateAdmissionResult = {
-  action: FederationAdmissionAction;
-  packet: {
-    logicBytes: Uint8Array;
-    energy: number;
-    resonance: number;
-  };
-  admission: FederationAdmissionSnapshot;
-};
-
-type MutateIntent = {
-  kind: "mutate";
-  x: number;
-  y: number;
-  deltaEnergy: number;
-  radius: number;
-};
-
-type AvatarIntent = {
-  kind: "avatar";
-  x: number;
-  y: number;
-  intensity: number;
-  source: "external_ingress" | "external_daemon";
-};
-
-type PlasmidIntent = {
-  kind: "plasmid";
-  x: number;
-  y: number;
-  charge: number;
-  plasmidBytes: Uint8Array;
-  source: "external_ingress" | "external_daemon";
-};
-
-type SnapshotImportIntent = {
-  kind: "snapshot_import";
-  timestamp: string;
-};
-
-type ControlIntent =
-  | CrisisIntent
-  | FederateIntent
-  | MutateIntent
-  | AvatarIntent
-  | PlasmidIntent
-  | SnapshotImportIntent;
-
-type QueueDecision = {
-  ok: boolean;
-  status: number;
-  reason: string;
-  size: number;
-  max: number;
-  admission?: FederationAdmissionSnapshot;
-};
-
-type ApplyStats = {
-  drained: number;
-  applied: number;
-  failed: number;
-  remaining: number;
-};
 
 const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;

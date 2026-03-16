@@ -10,6 +10,7 @@ tags:
 entry: true
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LOGGER

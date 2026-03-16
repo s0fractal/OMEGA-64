@@ -1,14 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/prediction_market.md
-import { MX } from "@g04";
-
-export interface PredictionMarketAkashaDelegate {
-  recordMarketResolution(
-    tick: number,
-    consensusReached: boolean,
-    finalThreshold: number,
-    winnersHash: string,
-  ): void;
-}
+import { MX, PredictionMarketAkashaDelegate, TYPES } from "@g04";
 
 let delegate: PredictionMarketAkashaDelegate | null = null;
 

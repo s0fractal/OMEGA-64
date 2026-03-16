@@ -6,9 +6,12 @@ tags: []
 min_level: 0
 extra_symbols:
   - append_jsonl
+deps:
+  - TYPES
 ---
 
 ### TypeScript
+
 ```typescript
 export const append_jsonl = async (
   path: string,
@@ -20,7 +23,9 @@ export const append_jsonl = async (
   });
 };
 ```
+
 ### AssemblyScript
+
 ```assemblyscript
 export function append_jsonl(): void {}
 ```

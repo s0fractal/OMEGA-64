@@ -5,7 +5,7 @@ dataType: null
 returns: i64
 level: 3
 entry: true
-args:
+args: null
 vars:
   - MAX_ATOMS
   - GRID_CELLS
@@ -21,7 +21,11 @@ deps:
   - get_y
   - get_phase
   - get_role
-description: Distributes atoms into a spatial hash grid for O(1) proximity lookups, tracks overflow, and returns a packed i64 tuple of (hashMaxCellCount | hashOverflowCount).
+  - TYPES
+description: >-
+  Distributes atoms into a spatial hash grid for O(1) proximity lookups, tracks
+  overflow, and returns a packed i64 tuple of (hashMaxCellCount |
+  hashOverflowCount).
 ---
 
 ```rust
@@ -29,6 +33,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 const CELL_CAPACITY: i32 = 31;
 const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
 

@@ -1,9 +1,10 @@
 ---
 id: get_resonance
 type: pure_fn
-description: "Read atom resonance from the layout"
-deps: 
+description: Read atom resonance from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - RESONANCE_OFFSET
 args:

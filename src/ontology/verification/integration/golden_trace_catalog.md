@@ -10,23 +10,20 @@ extra_symbols:
   - GOLDEN_TRACE_CATALOG
   - goldenTraceById
   - goldenTraceArtifactPaths
+vars:
+  - GoldenTraceMetricPolicy
+  - GoldenTraceScenario
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export type GoldenTraceMetricPolicy = "strict" | "bounded";
 
-export type GoldenTraceScenario = {
-  id: string;
-  scenario: string;
-  setup: string;
-  duration: string;
-  daemonEnabled: boolean;
-  metrics: readonly string[];
-  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
-  supportFiles: readonly string[];
-};
+
+
+
 
 const TRACE_ROOT = "src/ontology/verification/data/traces";
 

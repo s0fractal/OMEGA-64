@@ -2,19 +2,24 @@
 id: prng_seed_from
 type: module
 epoch: 8
-description: >-
-  Static helper to derive a deterministic seed from tick and atom ID.
+description: Static helper to derive a deterministic seed from tick and atom ID.
 tags:
   - 00_substrate
   - prng
   - oracle
   - deterministic
 min_level: 0
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | prng_seed_from.ts | The Immutable Deterministic Oracle
 
 ```typescript
+
+
+
+
 /**
  * Static helper to derive a seed from tick and atom ID.
  * @param tick Current system tick

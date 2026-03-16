@@ -1,9 +1,10 @@
 ---
 id: clamp_resource
 type: pure_fn
-description: "Clamps a resource value between 0 and RESOURCE_MAX"
-deps: 
+description: Clamps a resource value between 0 and RESOURCE_MAX
+deps:
   - SYSTEM_CONSTANTS
+  - TYPES
 vars:
   - RESOURCE_MAX
 args:
@@ -24,6 +25,10 @@ if value < 0 {
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (value < 0n) return 0;
 if (value > BigInt(RESOURCE_MAX)) return RESOURCE_MAX;
 return Number(value);

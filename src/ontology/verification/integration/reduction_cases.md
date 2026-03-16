@@ -13,6 +13,7 @@ deps:
   - GATE
   - assembler
   - pack_structure_intent
+  - TYPES
 vars:
   - GRID_W
   - pack_structure_intent
@@ -49,69 +50,22 @@ vars:
   - PROP_Y
   - STR_WIRE
   - OP_NOP
+  - ReductionCaseExpectation
+  - ReductionCaseDefinition
 extra_symbols:
   - REDUCTION_CASES
   - makeReplicatorLoopScript
   - makeArchitectLoopScript
   - reductionCaseById
-  - ReductionCaseDefinition
 ---
 
 ### TypeScript
 
 ```typescript
 
-export type ReductionCaseExpectation = {
-  finalPc: number;
-  replicateCount?: number;
-  signalCount?: number;
-  buildCount?: number;
-  finalRole?: number;
-  registers?: number[];
-  finalProps?: Partial<Record<number, number>>;
-  finalHiveMemory?: Partial<Record<number, number>>;
-  finalHiveBalance?: number;
-  finalSignalGrid?: Partial<Record<number, number>>;
 
-  finalPeerEnergy?: Partial<Record<number, number>>;
-  finalPeerPc?: Partial<Record<number, number>>;
-  finalBondDistances?: Partial<Record<number, number>>;
-  finalDamping?: number;
-  finalStructureGrid?: Partial<Record<number, number>>;
 
-  branchTaken?: boolean;
-  finalBondRequests?: Partial<Record<number, number>>;
-  finalHiveEnergyPool?: Partial<Record<number, number>>;
-  finalHormones?: number[];
-};
 
-export type ReductionCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  script: Uint8Array;
-  maxSteps: number;
-  ownerAtomIdx?: number;
-  postStructureTick?: boolean;
-  initialRegs?: number[];
-
-  initialProps: Partial<Record<number, number>>;
-  initialBondTargets?: Partial<Record<number, number>>;
-  initialBondDistances?: Partial<Record<number, number>>;
-  initialDamping?: number;
-  initialPeerEnergy?: Partial<Record<number, number>>;
-  initialPeerPc?: Partial<Record<number, number>>;
-  initialCellPeers?: number[];
-  initialHiveBalance?: number;
-  initialStructureGrid?: Partial<Record<number, number>>;
-  initialStructureIntentOwner?: Partial<Record<number, number>>;
-  initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialHiveMemory?: Partial<Record<number, number>>;
-  initialHormones?: number[];
-  initialHiveEnergyPool?: Partial<Record<number, number>>;
-  nativeProgram?: string; // Key in GENESIS_PROGRAMS
-  expected: ReductionCaseExpectation;
-};
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
   OP_GET, 0, PROP_ENERGY,

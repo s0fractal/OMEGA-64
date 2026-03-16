@@ -1,15 +1,24 @@
 ---
 id: ys
 type: module
-description: "Implementation of ys"
+description: Implementation of ys
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, YS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - YS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 ```

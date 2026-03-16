@@ -1,16 +1,25 @@
 ---
 id: fast_min
 type: pure_fn
-description: "Bitwise fast minimum calculation utilizing difference-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast minimum calculation utilizing difference-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   a: i32
   b: i32
 returns: i32
 tests:
-  - [50, 20, 20]
-  - [-10, 0, -10]
-  - [10, 10, 10]
+  - - 50
+    - 20
+    - 20
+  - - -10
+    - 0
+    - -10
+  - - 10
+    - 10
+    - 10
 ---
 
 ### Rust
@@ -21,6 +30,10 @@ b + (diff & (diff >> 31))
 
 ### TypeScript
 ```typescript
+
+
+
+
 const diff = a - b;
 return b + (diff & (diff >> 31));
 ```

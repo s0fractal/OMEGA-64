@@ -1,21 +1,13 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snapshot_engine.md
-import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX } from "@g08";
+import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions, TYPES } from "@g08";
 
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
-
 
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
   if (!Number.isFinite(value)) return 8;
   return Math.max(1, Math.min(512, Math.floor(value as number)));
-};
-
-type SnapshotExportOptions = {
-  tick?: number;
-  reason?: string;
-  prune?: boolean;
-  retention?: number;
 };
 
 export const SNAPSHOT_ENGINE = {

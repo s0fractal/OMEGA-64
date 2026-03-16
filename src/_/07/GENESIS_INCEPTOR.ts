@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_inceptor.md
-import { LOGGER } from "@g06";
+import { LOGGER, TYPES } from "@g06";
 
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
 

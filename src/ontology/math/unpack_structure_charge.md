@@ -8,7 +8,8 @@ tags:
   - inline
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 args:
   intent: i32
 returns: u32
@@ -28,6 +29,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export function unpack_structure_charge(intent: number): number {
     return ((intent >>> 0) & 0x7F000000) >>> 24;
 }

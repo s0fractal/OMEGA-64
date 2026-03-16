@@ -8,6 +8,7 @@ tags:
 deps:
   - AKASHA_CODEX
   - LOGGER
+  - TYPES
 min_level: 9
 entry: true
 vars:
@@ -23,6 +24,8 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
 
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port

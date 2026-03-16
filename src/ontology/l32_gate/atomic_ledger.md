@@ -9,25 +9,18 @@ vars:
   - LEDGER_HEAD_OFFSET
   - MAX_LEDGER_EVENTS
   - MX
+  - AtomicLedgerEvent
 extra_symbols:
   - ATOMIC_LEDGER
-  - AtomicLedgerEvent
 deps:
   - MX
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
-
-
-export type AtomicLedgerEvent = {
-  tick: number;
-  atomIdx: number;
-  r1: number;
-  r2: number;
-};
 
 export const ATOMIC_LEDGER = {
   /**
@@ -93,5 +86,4 @@ export const ATOMIC_LEDGER = {
     return events;
   },
 };
-
 ```

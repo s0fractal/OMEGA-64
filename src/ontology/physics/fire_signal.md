@@ -14,6 +14,7 @@ deps:
   - get_bond_target
   - get_bond_stiffness
   - add_resonance_delta
+  - TYPES
 description: Auto-recovered fire_signal
 ---
 
@@ -25,6 +26,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 for (let b = 0; b < 4; b++) {
   let target = get_bond_target(idx, b);
   if (target > 0 && target < MAX_ATOMS) {

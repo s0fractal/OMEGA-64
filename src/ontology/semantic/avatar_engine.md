@@ -1,11 +1,20 @@
 ---
 id: AVATAR_ENGINE
 type: module
-description: "Implementation of AVATAR_ENGINE"
+description: Implementation of AVATAR_ENGINE
 tags: []
 entry: true
 min_level: 7
+deps:
+  - TYPES
+  - GLYPH_TELEMETRY
+  - MX
+  - SYSTEM_CONSTANTS
 vars:
+  - GLYPH_TELEMETRY
+  - MX
+  - SCALE
+  - GRID_W
 ---
 
 ### TypeScript
@@ -13,9 +22,6 @@ vars:
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@g06";
-import { MX } from "@g04";
-import { GRID_W, SCALE } from "@g00";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);
@@ -53,5 +59,4 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```

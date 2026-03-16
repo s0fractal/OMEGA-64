@@ -8,6 +8,7 @@ vars:
   - GeneticLedgerKey
   - LedgerMutability
   - GeneticLedgerEntry
+  - RUNTIME_POLICY
 extra_symbols:
   - GENETIC_LEDGER
   - GENETIC_LEDGER_CATALOG
@@ -19,7 +20,10 @@ deps:
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
+
+
+
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -173,7 +177,5 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
 
 export const GENETIC_LEDGER = {
   geneticLedgerEntryByKey,
-  geneticLedgerBaseline
 };
-
 ```

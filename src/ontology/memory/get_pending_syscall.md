@@ -1,9 +1,10 @@
 ---
 id: get_pending_syscall
 type: pure_fn
-description: "Read pending syscall flag for an atom"
-deps: 
+description: Read pending syscall flag for an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:

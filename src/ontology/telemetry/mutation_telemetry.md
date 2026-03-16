@@ -8,30 +8,28 @@ min_level: 8
 vars:
   - LOGGER
   - Ld
+  - MutationLane
+  - MutationEvent
+  - RUNTIME_POLICY
 extra_symbols:
   - MUTATION_TELEMETRY
 deps:
   - LOGGER
+  - TYPES
+  - RUNTIME_POLICY
 ---
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
-type MutationLane =
-  | "internal_oracle"
-  | "internal_host"
-  | "internal_wasm"
-  | "canonical_gate"
-  | "external_ingress"
-  | "external_daemon";
 
-type MutationEvent = {
-  lane: MutationLane;
-  kind: string;
-  count?: number;
-};
 
+
+
+/**
+ * @contract [daemon-governance]
+ * Mutation lanes: "external_daemon", "external_ingress"
+ */
 const TELEMETRY_ENABLED = RUNTIME_POLICY.telemetry.enabled;
 const FLUSH_INTERVAL_TICKS = RUNTIME_POLICY.telemetry.flushIntervalTicks;
 const TOP_KINDS = RUNTIME_POLICY.telemetry.topKinds;
@@ -101,5 +99,4 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```

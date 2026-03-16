@@ -1,9 +1,10 @@
 ---
 id: set_energy
 type: pure_fn
-description: "Write atom energy to the layout"
-deps: 
+description: Write atom energy to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ENERGY_OFFSET
 args:
@@ -19,6 +20,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 // Requires `dataView: DataView` in scope
 dataView.setInt32(ENERGY_OFFSET + (idx << 2), val, true);
 ```

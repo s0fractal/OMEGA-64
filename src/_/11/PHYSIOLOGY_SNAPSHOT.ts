@@ -1,32 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/physiology_snapshot.md
-import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, HORMONE_BUFFER } from "@g10";
-
-import type { LedgerRuntimeSnapshot } from "@g12";
-
-export type PhysiologySnapshotInput = {
-  tick: number;
-  hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
-  ledger: Partial<
-    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
-  >;
-};
-
-export type HormoneSnapshot = HormoneSpec & {
-  currentValue: number;
-  deltaFromDefault: number;
-};
-
-export type LedgerSnapshot = GeneticLedgerEntry & {
-  currentValue: number;
-  deltaFromDefault: number;
-  currentSource: "runtime" | "policy";
-};
-
-export type PhysiologySnapshot = {
-  tick: number;
-  hormones: Record<HormoneId, HormoneSnapshot>;
-  ledger: Record<GeneticLedgerKey, LedgerSnapshot>;
-};
+import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, PhysiologySnapshotInput, HormoneSnapshot, LedgerSnapshot, PhysiologySnapshot, HORMONE_BUFFER, TYPES } from "@g10";
 
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,

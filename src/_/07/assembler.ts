@@ -1,7 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/assembler.md
-import { OPCODE_ARITY_LUT } from "@g06";
-
-export type AssembleToken = number | string;
+import { OPCODE_ARITY_LUT, AssembleToken, TYPES } from "@g06";
 
 export const assemble = (instructions: AssembleToken[]): Uint8Array => {
   const binary = new Uint8Array(64);

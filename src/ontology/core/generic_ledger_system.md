@@ -10,16 +10,17 @@ tags:
   - ledger
 deps:
   - GENETIC_LEDGER
+  - TYPES
 vars:
   - geneticLedgerEntryByKey
-extra_symbols:
-  - GENERIC_LEDGER_SYSTEM
+  - LedgerRuntimeEvent
+  - LedgerRuntimeState
+  - LedgerRuntimeSnapshot
   - LedgerApplyResult
   - LedgerRollbackResult
   - LedgerRuntimeConfig
-  - LedgerRuntimeEvent
-  - LedgerRuntimeSnapshot
-  - LedgerRuntimeState
+extra_symbols:
+  - GENERIC_LEDGER_SYSTEM
   - applyLedgerUpdate
   - createGeneticLedgerRuntime
   - createLedgerRuntime
@@ -33,84 +34,12 @@ This module provides the core types and functions for the Generic Ledger System.
 
 ```typescript
 
-export type LedgerRuntimeEvent<K extends string> = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
 
-export type LedgerRuntimeState<K extends string> = {
-  key: K;
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-  seq: number;
-  historyLimit: number;
-  history: readonly LedgerRuntimeEvent<K>[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
 
-export type LedgerRuntimeSnapshot<K extends string> = {
-  key: K;
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
 
-export type LedgerApplyResult<K extends string> = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: LedgerRuntimeEvent<K> | null;
-  state: LedgerRuntimeState<K>;
-};
-
-export type LedgerRollbackResult<K extends string> = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: LedgerRuntimeEvent<K> | null;
-  state: LedgerRuntimeState<K>;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
-
-export type LedgerRuntimeConfig<K extends string> = {
-  key: K;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-};
 
 export const createLedgerRuntime = <K extends string>(
   config: LedgerRuntimeConfig<K>,
@@ -338,7 +267,5 @@ export const GENERIC_LEDGER_SYSTEM = {
   applyLedgerUpdate,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
-  createGeneticLedgerRuntime
 };
-
 ```

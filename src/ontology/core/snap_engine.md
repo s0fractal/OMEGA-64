@@ -7,6 +7,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LATTICE_MEMORY_END
@@ -22,7 +23,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
+
+
+
+
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 
 const SNAP_DIR = ".omega/snap";

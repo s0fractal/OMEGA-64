@@ -3,12 +3,38 @@ id: PULSE
 type: module
 description: Implementation of PULSE
 deps:
+  - TYPES
+  - RUNTIME_POLICY
+  - HORMONE_BUFFER_RUNTIME
+  - HORMONE_BUFFER
+  - GENERIC_LEDGER_SYSTEM
+  - GENERIC_LEDGER_PERSISTENCE
+  - memory_views_base
+  - DRIFT_WARDEN
+  - DOLL_FORK_MATRIX
+  - SNAP_ENGINE
+  - GENESIS_INCEPTOR
+  - LINEAGE_TRACKER
+  - QUORUM_ADVOCATE
+  - DOLL_FORK_RUNNER
+  - MX
+  - SIGMA_FFI_BRIDGE
+  - DAEMON_INGRESS_POLICY
+  - LOGGER
+  - CONTROL_INTENT_QUEUE
+  - GLYPH_TELEMETRY
 min_level: 13
 vars:
   - BONDS_OFFSET
   - CAUSALITY_OFFSET
   - COHERENCE_OFFSET
   - CONTEXT_OFFSET
+  - HORMONE_BUFFER
+  - GENERIC_LEDGER_PERSISTENCE
+  - createGeneticLedgerRuntime
+  - applyLedgerUpdate
+  - rollbackLedgerUpdate
+  - snapshotLedgerRuntime
   - EGRESS_DATA_OFFSET
   - EGRESS_HEAD_OFFSET
   - ENERGY_OFFSET
@@ -35,6 +61,8 @@ vars:
   - OP_SPORE_DRIVE
   - OP_SUB
   - OP_SYSCALL
+  - RUNTIME_POLICY
+  - sharedBuffer
   - PHASE_OFFSET
   - PHYSICS_READ_ENERGY_OFFSET
   - PHYSICS_READ_RESONANCE_OFFSET
@@ -50,23 +78,51 @@ vars:
   - SYS_YIELD
   - XS_OFFSET
   - YS_OFFSET
+  - PulseOracleDelegate
+  - PulseAkashaDelegate
+  - PulseNoosphereDelegate
+  - EvolutionPressureState
+  - SpatialHashState
+  - HomeostasisState
+  - GeneticLedgerRuntimeState
+  - GuardianSignalHybridState
+  - ArchitectPlasmidHybridState
+  - RollingHistory
+  - DriftMetrics
+  - DriftWarden
+  - DollFork
+  - SNAP_ENGINE
+  - GenesisInceptor
+  - LineageTracker
+  - QuorumAdvocate
+  - DollForkRunner
+  - MX
+  - SIGMA_FFI
+  - ReplicationExecutionMode
+  - GeneticLedgerKey
+  - HormoneId
+  - GuardianSignalExecutionMode
+  - DAEMON_INGRESS_POLICY_LIMITS
+  - evaluateInvariantAdmission
+  - evaluatePlasmidRisk
+  - Ld
+  - CONTROL_INTENT_QUEUE
+  - GLYPH_TELEMETRY
+  - LedgerApplyResult
+  - LedgerRollbackResult
+  - LedgerRuntimeSnapshot
+  - LedgerRuntimeState
 extra_symbols:
   - ArchitectPlasmidBranch
   - ArchitectPlasmidExecutionDecision
   - ArchitectPlasmidExecutionMode
   - ArchitectPlasmidReductionDecision
-  - DriftMetrics
   - GuardianSignalBranch
   - GuardianSignalExecutionDecision
-  - GuardianSignalExecutionMode
   - GuardianSignalReductionDecision
   - PULSE
-  - PulseAkashaDelegate
-  - PulseNoosphereDelegate
-  - PulseOracleDelegate
   - ReplicationBranch
   - ReplicationExecutionDecision
-  - ReplicationExecutionMode
   - ReplicationHybridState
   - ReplicationReductionDecision
   - drainEgressEvents
@@ -82,90 +138,18 @@ extra_symbols:
   - normalizeReplicationExecutionMode
   - phasesView
   - rolesView
-  - GeneticLedgerKey
-  - LedgerApplyResult
-  - LedgerRollbackResult
-  - LedgerRuntimeSnapshot
-  - LedgerRuntimeState
-  - HormoneId
 ---
 
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer, SIGMA_FFI } from "../mod.ts";
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
-import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
-import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
-import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
+
+
+
+
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-
-
-export interface PulseOracleDelegate {
-  setNeuralCoherence(coherence: number): void;
-  getNeuralCoherence(): number;
-  gatherEpochTelemetry(): any;
-  broadcastWhisper(tick: number, telemetry: any, coherence: number): void;
-  consultOracle(regentIdx: number, telemetry: any): void;
-  drainPendingMutations(): void;
-}
 let oracleDelegate: PulseOracleDelegate | null = null;
-
-export interface PulseAkashaDelegate {
-  recordMutationTelemetry(
-    event: { lane: string; kind: string; count: number },
-  ): void;
-  flushMutationTelemetry(tick: number): void;
-  compressMemory(wasmMemory: WebAssembly.Memory): Promise<Uint8Array>;
-  decompressMemoryToLattice(
-    wasmMemory: WebAssembly.Memory,
-    payload: Uint8Array,
-  ): Promise<void>;
-  saveEpoch(
-    memory: WebAssembly.Memory,
-    tick: number,
-    label: string,
-    count1: number,
-    count2: number,
-    hash: string,
-  ): Promise<void>;
-  broadcastPanopticonFrame(frame: ArrayBuffer): void;
-  recordImmunologicalPurge(count: number): Promise<void>;
-  observePulseCodex(tick: number, pop: number, glyphs: any, syn: number): void;
-  saveSnap(tick: number): Promise<void>;
-  cleanupSnap(retention: number): void;
-}
 let akashaDelegate: PulseAkashaDelegate | null = null;
-
-export interface PulseNoosphereDelegate {
-  unpackAtom(payload: Uint8Array): number;
-  packAtom(idx: number): Uint8Array;
-  evaluateHeartbeat(
-    tick: number,
-    epochHash: string,
-    avgPhase: number,
-    egressCount: number,
-  ): void;
-  sendEpochPayload(peerId: string, payload: Uint8Array): void;
-  routeAtom(payload: Uint8Array): void;
-  startNexus(): void;
-  broadcastSyncRequest(): void;
-  broadcastEpochConsensus(tick: number, hashSum: bigint): void;
-  getNexusStatus(): {
-    mainnetEnabled: boolean;
-    bootstrapHubUrl: string;
-    seedNodesLength: number;
-    localCurrentTick: number;
-    localTps: number;
-  };
-  setNexusStatus(status: {
-    mainnetEnabled?: boolean;
-    bootstrapHubUrl?: string;
-    localCurrentTick?: number;
-    localTps?: number;
-  }): void;
-  getMedianSwarmTick(tick: number): number;
-}
 let noosphereDelegate: PulseNoosphereDelegate | null = null;
 
 const MAX_TICK_DRIFT = 50;
@@ -174,12 +158,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-
 const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
-import type {
-  LedgerPersistenceSummary
-} from "@g12";
+
 const {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -188,7 +169,6 @@ const {
   recordFromApply,
   recordFromRollback,
 } = GENERIC_LEDGER_PERSISTENCE;
-
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -249,113 +229,6 @@ const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
     Le(`Failed to cache WASM module: ${(err as Error).message}`);
     return null;
   }
-};
-type EvolutionPressureState = {
-  noveltySigned: number;
-  symbiosisSigned: number;
-  novelty: number;
-  fear: number;
-  symbiosis: number;
-  ego: number;
-  ring: {
-    enabled: boolean;
-    theta: number;
-    scale: number;
-    fearCuriosityBalance: number;
-    egoLoveBalance: number;
-  };
-};
-type SpatialHashState = {
-  tick: number;
-  overflowCount: number;
-  maxCellCount: number;
-  overflowRatio: number;
-};
-type HomeostasisState = {
-  enabled: boolean;
-  targetEnergy: number;
-  targetEnergyDefault: number;
-  targetEnergyCurrent: number;
-  band: number;
-  maxDelta: number;
-  overflowThreshold: number;
-  starvationFloor: number;
-  subsidyEnabled: boolean;
-  baseTaxDefault: number;
-  baseTaxCurrent: number;
-  lastUpdateTick: number;
-  lastUpdateSource: string;
-  lastUpdateReason: string;
-};
-type GeneticLedgerRuntimeState = {
-  homeostasisBaseTax: LedgerRuntimeSnapshot<"pulse.homeostasis.baseTax">;
-  homeostasisBaseTaxPersistence: LedgerPersistenceSummary;
-  homeostasisTargetEnergy: LedgerRuntimeSnapshot<
-    "pulse.homeostasis.targetEnergy"
-  >;
-  homeostasisTargetEnergyPersistence: LedgerPersistenceSummary;
-  pressureRingScale: LedgerRuntimeSnapshot<"pulse.pressureRing.scale">;
-  pressureRingScalePersistence: LedgerPersistenceSummary;
-  homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
-  homeostasisBandPersistence: LedgerPersistenceSummary;
-  homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
-  homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
-  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<
-    "pulse.homeostasis.overflowThreshold"
-  >;
-  homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
-  daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
-  daemonMaxActionsPersistence: LedgerPersistenceSummary;
-  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<
-    "federation.admission.degradeEnergyRatio"
-  >;
-  federationDegradeEnergyRatioPersistence: LedgerPersistenceSummary;
-};
-type GuardianSignalHybridState = {
-  mode: GuardianSignalExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  stableBranchCount: number;
-  repairBranchCount: number;
-  allowedGuardianSignals: number;
-  suppressedGuardianSignals: number;
-  shadowSuppressedGuardianSignals: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "stable"
-    | "repair"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "stable" | "repair" | "unknown";
-  lastFallbackReason: string;
-  lastMode?: GuardianSignalExecutionMode;
-};
-type ArchitectPlasmidHybridState = {
-  mode: ArchitectPlasmidExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  allowedArchitectPlasmids: number;
-  suppressedArchitectPlasmids: number;
-  shadowSuppressedArchitectPlasmids: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "emit"
-    | "suppress"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "emit" | "suppress" | "unknown";
-  lastFallbackReason: string;
-  lastMode?: ArchitectPlasmidExecutionMode;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -1150,11 +1023,6 @@ const spawnDataView = new DataView(
 const coherenceView = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 // Helper for drift & trend monitoring
-type RollingHistory = {
-  add: (val: number) => void;
-  sum: () => number;
-  size: () => number;
-};
 const createRollingHistory = (maxSize: number): RollingHistory => {
   const values = new Float64Array(maxSize);
   let head = 0;
@@ -1405,18 +1273,6 @@ const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
   return MX.getActiveIndices().length !== 0;
 };
-
-export interface DriftMetrics {
-  energyDiff: number;
-  resonanceDiff: number;
-  bondsBroken: number;
-  bondsFormed: number;
-  structuralValueChange: number;
-  populationDiff: number;
-  coherenceDiff: number;
-  divergenceTick: number;
-}
-
 // Global reference for oracle side-channel
 let shadowWasmInstance: WebAssembly.Instance | null = null;
 let run_shadow_simulation_ffi:
@@ -1620,15 +1476,9 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | LedgerApplyResult<
-      "pulse.homeostasis.baseTax"
-    >
-    | LedgerApplyResult<
-      "pulse.homeostasis.targetEnergy"
-    >
-    | LedgerApplyResult<
-      "pulse.pressureRing.scale"
-    >
+    | LedgerApplyResult<"pulse.homeostasis.baseTax">
+    | LedgerApplyResult<"pulse.homeostasis.targetEnergy">
+    | LedgerApplyResult<"pulse.pressureRing.scale">
   > => {
     if (update.key === "pulse.pressureRing.scale") {
       const result = applyPressureRingScaleLedgerUpdate({
@@ -1752,15 +1602,9 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | LedgerRollbackResult<
-      "pulse.homeostasis.baseTax"
-    >
-    | LedgerRollbackResult<
-      "pulse.homeostasis.targetEnergy"
-    >
-    | LedgerRollbackResult<
-      "pulse.pressureRing.scale"
-    >
+    | LedgerRollbackResult<"pulse.homeostasis.baseTax">
+    | LedgerRollbackResult<"pulse.homeostasis.targetEnergy">
+    | LedgerRollbackResult<"pulse.pressureRing.scale">
   > => {
     if (rollback.key === "pulse.pressureRing.scale") {
       const result = rollbackPressureRingScaleLedgerUpdate({
@@ -2493,5 +2337,4 @@ export const PULSE = {
     }
   },
 };
-
 ```

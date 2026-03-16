@@ -2,10 +2,12 @@
 id: SIGMA_FFI_BRIDGE
 type: module
 description: Interface to the Rust-based OMEGA Physics & VM Core via Deno FFI.
-tags: ["console"]
+tags:
+  - console
 min_level: 13
 deps:
   - sharedBuffer
+  - TYPES
 extra_symbols:
   - SIGMA_FFI
 ---

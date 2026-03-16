@@ -1,12 +1,15 @@
 ---
 id: P2P_CODEC
 type: module
-description: Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE).
+description: >-
+  Binary serialization for autonomous inter-node atom migration
+  (OP_SPORE_DRIVE).
 tags:
   - membrane
   - host
 deps:
   - MX
+  - TYPES
 vars:
   - MX
 min_level: 6
@@ -18,6 +21,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
 export const P2P_CODEC = {

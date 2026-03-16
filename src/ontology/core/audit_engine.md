@@ -9,16 +9,14 @@ tags:
 min_level: 7
 extra_symbols:
   - AUDIT_ENGINE
+vars:
   - AuditEngineExocortexDelegate
+deps:
+  - TYPES
 ---
 ```typescript
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
 // Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
-
-export interface AuditEngineExocortexDelegate {
-  generateThought(context: string): Promise<string>;
-}
-
 let delegate: AuditEngineExocortexDelegate | null = null;
 
 const ROOT = Deno.cwd();

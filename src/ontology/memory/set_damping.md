@@ -1,9 +1,10 @@
 ---
 id: set_damping
 type: pure_fn
-description: "Set atomic kinetic damping factor"
-deps: 
+description: Set atomic kinetic damping factor
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - DAMPING_OFF
 args:

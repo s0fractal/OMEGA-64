@@ -2,7 +2,6 @@
 
 - scenario: daemon policy block
 - setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked
-  opcode
 - duration: 256 ticks total
 - daemonEnabled: true
 - runtime_mode: legacy-runtime/api-observer-harness

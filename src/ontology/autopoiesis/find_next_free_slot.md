@@ -13,6 +13,7 @@ description: Auto-recovered find_next_free_slot
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -23,6 +24,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 for (let i = 0; i < MAX_ATOMS; i++) {
   const idx = (start + i) % MAX_ATOMS;
   const idPtr = IDS_OFFSET + (idx << 3) as usize;

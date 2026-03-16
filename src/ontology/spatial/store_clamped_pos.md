@@ -1,11 +1,14 @@
 ---
 id: store_clamped_pos
 type: pure_fn
-description: "Store an atom's physical coordinates directly into shared memory with strict bounding enforcement"
-deps: 
+description: >-
+  Store an atom's physical coordinates directly into shared memory with strict
+  bounding enforcement
+deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_world_x
   - clamp_world_y
+  - TYPES
 vars:
   - XS_OFFSET
   - YS_OFFSET
@@ -14,7 +17,7 @@ vars:
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
 returns: void
 ---
 
@@ -27,6 +30,10 @@ returns: void
 
 ### TypeScript
 ```typescript
+
+
+
+
 /*
 This function mutates shared WASM buffer memory and assumes 'store<i16>' exists in the execution environment window.
 AssemblyScript exports are intended to run natively. In Deno TS contexts this is ignored.

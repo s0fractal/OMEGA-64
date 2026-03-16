@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_bot.md
-import { LOGGER, Le, Li, Lw } from "@g06";
+import { LOGGER, Le, Li, Lw, TYPES } from "@g06";
 
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
 

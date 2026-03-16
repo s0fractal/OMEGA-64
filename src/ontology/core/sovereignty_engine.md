@@ -18,9 +18,12 @@ vars:
 extra_symbols:
   - DECREES
   - SOVEREIGNTY_ENGINE
-  - SovereigntyEngineAkashaDelegate
 ---
 ```typescript
+
+
+
+
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 
 let lastAnnouncedDecree = "NONE";

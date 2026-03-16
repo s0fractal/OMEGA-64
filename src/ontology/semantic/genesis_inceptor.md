@@ -7,6 +7,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 extra_symbols:
   - GenesisInceptor
 ---

@@ -30,12 +30,15 @@ vars:
   - OP_SENSE
   - OP_SENSE_AS
   - MX
+  - CodexLineageProfile
+  - GlyphTransportEvidence
+  - HormoneRegimeEvidence
 deps:
   - LLM_SYNAPSE
   - LOGGER
+  - TYPES
 extra_symbols:
   - AKASHA_CODEX
-  - CodexLineageProfile
 ---
 
 ### TypeScript
@@ -43,7 +46,6 @@ extra_symbols:
 ```typescript
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
-
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
@@ -69,15 +71,6 @@ const MAX_INVARIANTS = 512;
 const MAX_INVARIANT_SIGNATURES = 2048;
 const INVARIANT_SYNC_INTERVAL_MS = 15_000;
 const GLYPH_TRANSPORT_RECORD_INTERVAL = 256;
-
-export type CodexLineageProfile = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-  generatedAt: string;
-};
 
 const OPCODE_NAMES: Record<number, string> = {
   0x00: "NOP",
@@ -246,19 +239,6 @@ const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
   return "Lattice in Coherence Arc";
 };
 
-type GlyphTransportEvidence = {
-  active: boolean;
-  regime: string;
-  dominantRole: string;
-  sourceMode: string;
-  amplitudeBand: string;
-  signature: string;
-  title: string;
-  body: string;
-  summary: string;
-  metabolicPressure: number;
-};
-
 const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
   const counters = {
     neutral: snapshot.atomRolePheromone.neutral +
@@ -394,13 +374,6 @@ const buildGlyphTransportEvidence = (
 //    3=replication_bias  4=repair_drive   5=mutation_friction
 
 const HORMONE_RECORD_INTERVAL = 512;
-
-type HormoneRegimeEvidence = {
-  signature: string;
-  title: string;
-  body: string;
-  summary: string;
-};
 
 const hormoneRegimeLabel = (h: number[]): string => {
   if (h[0] > 1500) return "high_entropy";

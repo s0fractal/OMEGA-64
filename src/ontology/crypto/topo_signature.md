@@ -15,6 +15,7 @@ deps:
   - sha256_hex
   - stable_stringify
   - to_int16_big_endian
+  - TYPES
 vars:
   - fnv1a32
   - make_xor_shift32
@@ -22,17 +23,20 @@ vars:
   - sha256_hex_bytes
   - stable_stringify
   - to_int16_big_endian
-extra_symbols:
   - ProjectionOptions
-  - TOPOLOGICAL_SIGNATURE
   - ThreadProjectionConfig
   - TopologicalSignature
   - TopologicalSignatureInput
+extra_symbols:
+  - TOPOLOGICAL_SIGNATURE
   - deriveFeatureVector
 ---
 
 ### TypeScript
 ```typescript
+
+
+
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
@@ -61,39 +65,6 @@ export const deriveFeatureVector = (
   }
   return out;
 };
-
-export interface ProjectionOptions {
-  resolution?: number;
-  deterministic?: boolean;
-  noiseAmplitude?: number;
-  noiseAlpha?: number;
-}
-
-export interface ThreadProjectionConfig {
-  radial_bins: number;
-  angular_bins: number;
-}
-
-export interface TopologicalSignature {
-  artifact_hash: string;
-  state_hash: string;
-  tick: number;
-  causal_refs: string[];
-  projection_2d_hash: string;
-  thread_1d_hash: string;
-  projection_version: string;
-  witness?: string;
-}
-
-export interface TopologicalSignatureInput {
-  artifact_hash: string;
-  state_hash: string;
-  tick: number;
-  state: unknown;
-  causal_refs?: string[];
-  witness?: string;
-}
-
 const TOPO_PROJECTION_VERSION = "topo-signature/v1";
 const TOPO_CANONICAL_2D_OPTIONS: Required<ProjectionOptions> = {
   resolution: 256,

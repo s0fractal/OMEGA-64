@@ -69,3 +69,4 @@ export { get_genome_velocity_y } from "./get_genome_velocity_y";
 export { get_genome_velocity_x } from "./get_genome_velocity_x";
 export { read_structure_charge } from "./read_structure_charge";
 export { resolve_bond_requests } from "./resolve_bond_requests";
+export { store_clamped_pos } from "./store_clamped_pos";

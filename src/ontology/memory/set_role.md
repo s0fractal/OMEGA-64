@@ -1,9 +1,10 @@
 ---
 id: set_role
 type: pure_fn
-description: "Write semantic role to an atom"
-deps: 
+description: Write semantic role to an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ROLES_OFFSET
 args:

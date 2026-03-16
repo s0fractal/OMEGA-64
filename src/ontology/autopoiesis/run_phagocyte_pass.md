@@ -1,17 +1,35 @@
 ---
 id: run_phagocyte_pass
 type: pure_fn
-description: "Iterates over the atom lattice and recycles any necrotic or drifting atoms in a single WASM call."
-tags: ["physics", "autopoiesis"]
-deps: ["immune_check", "get_read_energy", "get_read_resonance", "set_energy", "set_resonance"]
-vars: ["MAX_ATOMS", "IDS_OFFSET", "ROLES_OFFSET", "BONDS_OFFSET"]
+description: >-
+  Iterates over the atom lattice and recycles any necrotic or drifting atoms in
+  a single WASM call.
+tags:
+  - physics
+  - autopoiesis
+deps:
+  - immune_check
+  - get_read_energy
+  - get_read_resonance
+  - set_energy
+  - set_resonance
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - IDS_OFFSET
+  - ROLES_OFFSET
+  - BONDS_OFFSET
 args:
   entropy_pressure: i32
 returns: i32
 optimization: hot
 ---
 ```typescript
-  // unimplemented for JS host since this is an AS WASM function
+
+
+
+
+// unimplemented for JS host since this is an AS WASM function
   return 0;
 ```
 

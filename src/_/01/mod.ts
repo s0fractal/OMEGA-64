@@ -2,5 +2,14 @@
 // deno-lint-ignore-file camelcase
 export * from "@g00";
 export * from "./OMEGA_MEMORY_LAYOUT.ts";
+export * from "./append_jsonl.ts";
+export * from "./parse_env_bounded_int.ts";
+export * from "./read_jsonl.ts";
+export * from "./read_jsonl_lines.ts";
+export * from "./parse_env_bool.ts";
 export * from "./semanticBonuses.ts";
+export * from "./IDX_TO_ID.ts";
+export * from "./prng_seed_from.ts";
+export * from "./prng_next.ts";
+export * from "./ID_TO_IDX.ts";
 export * from "./MATH_UTILS.ts";

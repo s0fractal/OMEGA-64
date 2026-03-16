@@ -16,6 +16,7 @@ deps:
   - set_bond_target
   - set_bond_stiffness
   - get_bond_target
+  - TYPES
 description: Auto-recovered resolve_bond_requests
 ---
 
@@ -27,6 +28,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 let resolved: i32 = 0;
 for (let i = start; i < end; i++) {
   const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;

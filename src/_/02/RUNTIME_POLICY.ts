@@ -1,10 +1,6 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/runtime_policy.md
-import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, TYPES, parse_env_bool, parse_env_bounded_int } from "@g01";
+import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, GuardianSignalExecutionMode, TYPES, parse_env_bool, parse_env_bounded_int } from "@g01";
 
-type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
 const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);

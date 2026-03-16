@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/crystallization_policy.md
-import { sha256_hex, stable_stringify } from "@g07";
+import { sha256_hex, stable_stringify, TYPES } from "@g07";
 
 const CRY_DATA = {
   policy: "STABLE",

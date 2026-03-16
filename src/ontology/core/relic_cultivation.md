@@ -7,14 +7,15 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - DollFork
   - LOGGER
   - Li
   - MAX_ATOMS
-extra_symbols:
   - Relic
+extra_symbols:
   - RelicCultivator
 ---
 
@@ -22,15 +23,6 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-
-export type Relic = {
-  id: string;
-  bytecode: number[];
-  role: number;
-  resonance: number;
-  energy: number;
-  extractedAtTick: number;
-};
 
 /**
  * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.

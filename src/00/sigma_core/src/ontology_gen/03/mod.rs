@@ -218,3 +218,6 @@ pub use read_structure_charge::*;
 #[path = "resolve_bond_requests.rs"]
 pub mod resolve_bond_requests;
 pub use resolve_bond_requests::*;
+#[path = "store_clamped_pos.rs"]
+pub mod store_clamped_pos;
+pub use store_clamped_pos::*;

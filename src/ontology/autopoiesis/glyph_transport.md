@@ -29,6 +29,7 @@ deps:
   - fast_max
   - fast_min
   - in_grid
+  - TYPES
 description: Auto-recovered glyph_transport
 ---
 
@@ -40,6 +41,9 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
 
 // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (GRID_CELLS) << 2);

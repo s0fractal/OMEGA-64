@@ -20,6 +20,7 @@ deps:
   - SYSTEM_CONSTANTS
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -30,6 +31,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
 const cell = gy * GRID_W + gx;
 const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);

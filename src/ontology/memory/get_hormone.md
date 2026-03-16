@@ -1,9 +1,10 @@
 ---
 id: get_hormone
 type: pure_fn
-description: "Read global hormone level atomically"
-deps: 
+description: Read global hormone level atomically
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HORMONE_OFF
 args:

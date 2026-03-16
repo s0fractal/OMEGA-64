@@ -1,18 +1,20 @@
 ---
 id: clamp_world_y
 type: pure_fn
-description: "Constrain a Y coordinate to the absolute global bounds"
-deps: 
+description: Constrain a Y coordinate to the absolute global bounds
+deps:
   - SYSTEM_CONSTANTS
   - math_clamp
+  - TYPES
 vars:
   - WORLD_MAX_Y
   - math_clamp
 args:
-  y: i32
+  'y': i32
 returns: i32
 tests:
-  - [-5, 0]
+  - - -5
+    - 0
 ---
 
 ### Rust

@@ -1,9 +1,10 @@
 ---
 id: get_logic_byte
 type: pure_fn
-description: "Read a specific byte from an atom's logic array"
-deps: 
+description: Read a specific byte from an atom's logic array
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - LOGIC_OFFSET
 args:

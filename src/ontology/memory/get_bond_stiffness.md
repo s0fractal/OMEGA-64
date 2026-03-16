@@ -1,9 +1,10 @@
 ---
 id: get_bond_stiffness
 type: pure_fn
-description: "Read atomic bond stiffness"
-deps: 
+description: Read atomic bond stiffness
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - STIFFNESS_OFFSET
 args:

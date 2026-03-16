@@ -100,7 +100,6 @@ impl SigmaState {
             self.matrix.bond_requests[ptr + 2] = 0;
         }
 
-        resolved
     }
 }
 ```

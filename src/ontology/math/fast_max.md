@@ -1,16 +1,25 @@
 ---
 id: fast_max
 type: pure_fn
-description: "Bitwise fast maximum calculation utilizing difference-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast maximum calculation utilizing difference-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   a: i32
   b: i32
 returns: i32
 tests:
-  - [50, 20, 50]
-  - [-10, 0, 0]
-  - [10, 10, 10]
+  - - 50
+    - 20
+    - 50
+  - - -10
+    - 0
+    - 0
+  - - 10
+    - 10
+    - 10
 ---
 
 ### Rust
@@ -21,6 +30,10 @@ a - (diff & (diff >> 31))
 
 ### TypeScript
 ```typescript
+
+
+
+
 const diff = a - b;
 return a - (diff & (diff >> 31));
 ```

@@ -7,6 +7,8 @@ level: 1
 args:
   header: i32
 description: Auto-recovered unpack_glyph_amplitude
+deps:
+  - TYPES
 ---
 
 ---
@@ -17,6 +19,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 return header >> 8;
 ```
 

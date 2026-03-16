@@ -12,6 +12,7 @@ vars:
   - WasmBootPolicy
   - KernelMode
   - ReplicationExecutionMode
+  - GuardianSignalExecutionMode
 extra_symbols:
   - RUNTIME_POLICY
 ---
@@ -19,10 +20,10 @@ extra_symbols:
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
 
 ```typescript
-type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
+
+
+
+
 const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);

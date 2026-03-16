@@ -1,10 +1,12 @@
 ---
 id: BREATH
 type: module
-description: "Implementation of BREATH"
+description: Implementation of BREATH
 tags: []
 min_level: 10
 entry: true
+deps:
+  - TYPES
 ---
 
 ### TypeScript
@@ -13,21 +15,7 @@ entry: true
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { MX } from "@g04";
-import { LOGGER, Li } from "@g06";
-import {
-  SEMANTIC_MEMBRANE
-} from "@g05";
-import {
-  LLM_SYNAPSE
-} from "@g07";
-import {
-  AUDIT_ENGINE
-} from "@g07";
 
-import {
-  AKASHA_CODEX
-} from "@g08";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -111,5 +99,4 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```

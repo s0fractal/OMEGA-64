@@ -8,6 +8,8 @@ tags:
   - atom
   - registry
   - index
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | ID_TO_IDX.ts
@@ -15,5 +17,9 @@ tags:
 Lightweight ID↔Index registry shared across runtime modules.
 
 ```typescript
+
+
+
+
 export const ID_TO_IDX = new Map<string, number>();
 ```

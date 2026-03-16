@@ -1,9 +1,10 @@
 ---
 id: add_hive_balance
 type: pure_fn
-description: "Atomically add integer to global hive energy pool"
-deps: 
+description: Atomically add integer to global hive energy pool
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_BALANCE_OFF
 args:

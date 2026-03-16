@@ -10,7 +10,7 @@
     "lint": "deno lint",
     "core:export": "deno run -A src/_/06/EXPORT_CORE.ts",
     "core:refresh": "deno task core:export",
-    "core:pulse": "deno run -A src/_/13/PULSE.ts",
+    "core:pulse": "deno run -A src/_/14/PULSE.ts",
     "core:breath": "deno run -A src/_/06/BREATH.ts",
     "core:ui": "deno run -A src/OBSERVER_UI.ts",
     "core:start": "deno run -A src/07/02/SYSTEM_START.ts",
@@ -167,11 +167,11 @@
   "omega": {
     "era": "69",
     "runtime_root_files": [
-      "src/_/13/PULSE.ts",
+      "src/_/14/PULSE.ts",
       "src/_/07/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_/08/MUTATION_TELEMETRY.ts",
-      "src/_/14/TUI_DASHBOARD.ts",
+      "src/_/15/TUI_DASHBOARD.ts",
       "src/_/14/AGENT_PROXY.ts",
       "src/_/07/llm_soul.ts"
     ],
@@ -181,11 +181,11 @@
     ],
     "experimental_files": [],
     "core_entry_files": [
-      "src/_/13/PULSE.ts",
+      "src/_/14/PULSE.ts",
       "src/_/07/AKASHA_SERVER.ts",
       "src/_/06/OMEGA_DAEMON.ts",
       "src/_/08/MUTATION_TELEMETRY.ts",
-      "src/_/14/TUI_DASHBOARD.ts",
+      "src/_/15/TUI_DASHBOARD.ts",
       "src/_/14/AGENT_PROXY.ts",
       "src/_/07/llm_soul.ts"
     ],

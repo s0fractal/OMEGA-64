@@ -4,7 +4,7 @@ type: substrate_module
 dataType: null
 returns: void
 level: 3
-args:
+args: null
 vars:
   - MAX_ATOMS
   - IDS_OFFSET
@@ -15,6 +15,7 @@ vars:
 deps:
   - get_energy
   - set_energy
+  - TYPES
 description: Membrane physics and tissue differentiation for Topography analysis
 ---
 
@@ -23,6 +24,10 @@ description: Membrane physics and tissue differentiation for Topography analysis
 ```
 
 ```typescript
+
+
+
+
 const membraneVisited = new StaticArray<u8>(MAX_ATOMS);
 
 function dfsMembrane(

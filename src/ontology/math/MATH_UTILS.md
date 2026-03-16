@@ -6,6 +6,7 @@ entry: true
 tags: []
 deps:
   - C_LOG2_C_LUT
+  - TYPES
 extra_symbols:
   - MATH_UTILS
   - normalize_angle
@@ -17,6 +18,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export function normalize_angle(angle: number): number {
   const tau = 2 * Math.PI;
   let a = angle % tau;
@@ -58,7 +63,6 @@ pub fn clamp01(x: f64) -> f64 {
     } else if x > 1.0 {
         1.0
     } else {
-        x
     }
 }
 
@@ -87,7 +91,6 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
         entropy = 6000;
     }
     
-    entropy
 }
 ```
 

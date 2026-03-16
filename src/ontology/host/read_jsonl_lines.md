@@ -6,10 +6,16 @@ tags: []
 min_level: 0
 extra_symbols:
   - read_jsonl_lines
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {
     const raw = await Deno.readTextFile(path);

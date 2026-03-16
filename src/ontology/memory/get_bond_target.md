@@ -1,9 +1,10 @@
 ---
 id: get_bond_target
 type: pure_fn
-description: "Read atom bond target by slot"
-deps: 
+description: Read atom bond target by slot
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BONDS_OFFSET
 args:

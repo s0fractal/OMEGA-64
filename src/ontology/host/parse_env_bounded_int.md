@@ -1,13 +1,19 @@
 ---
 id: parse_env_bounded_int
 type: module
-description: "Implementation of parse_env_bounded_int"
+description: Implementation of parse_env_bounded_int
 tags: []
 min_level: 0
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const parse_env_bounded_int = (
   raw: string | undefined,
   fallback: number,

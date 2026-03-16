@@ -1,7 +1,7 @@
 ---
 id: SOVEREIGN_ORACLE
 type: module
-description: "Implementation of SOVEREIGN_ORACLE"
+description: Implementation of SOVEREIGN_ORACLE
 tags:
   - host
 min_level: 9
@@ -23,27 +23,20 @@ vars:
   - SEMANTIC_MEMBRANE
   - SOVEREIGNTY_ENGINE
   - MX
+  - SovereignOracleAkashaDelegate
 deps:
   - LLM_SYNAPSE
   - LOGGER
   - PULSE
+  - TYPES
 extra_symbols:
   - SOVEREIGN_ORACLE
-  - SovereignOracleAkashaDelegate
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
-
-
-
-export interface SovereignOracleAkashaDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  appendObserverCommentary(tick: number, epoch: number, message: string): Promise<void>;
-}
-
 let delegate: SovereignOracleAkashaDelegate | null = null;
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
@@ -697,5 +690,4 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```

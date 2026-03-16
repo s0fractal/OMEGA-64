@@ -28,6 +28,7 @@ deps:
   - get_energy
   - get_resonance
   - set_energy
+  - TYPES
 description: Auto-recovered execute_atom
 ---
 
@@ -39,7 +40,11 @@ unimplemented!()
 ```
 
 ```typescript
-  // unimplemented: physics evaluates in WASM
+
+
+
+
+// unimplemented: physics evaluates in WASM
 ```
 
 ```assemblyscript

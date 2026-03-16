@@ -5,45 +5,25 @@ description: Migrated from src/06/TELEMETRY_STREAM.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - TELEMETRY_STREAM
+vars:
+  - TelemetrySample
+  - TelemetryMetricName
+  - TelemetryBucket
+  - TelemetryHistogram
 ---
 
 ### TypeScript
 
 ```typescript
-type TelemetrySample = {
-  ts: number;
-  tick: number;
-  population: number;
-  avgEnergy: number;
-  neuralCoherence: number;
-  spatialOverflowRatio: number;
-  daemonSafeMode: boolean;
-};
 
-type TelemetryMetricName =
-  | "population"
-  | "avgEnergy"
-  | "neuralCoherence"
-  | "spatialOverflowRatio";
 
-type TelemetryBucket = {
-  from: number;
-  to: number;
-  count: number;
-};
 
-type TelemetryHistogram = {
-  metric: TelemetryMetricName;
-  windowMs: number;
-  count: number;
-  min: number;
-  max: number;
-  buckets: TelemetryBucket[];
-};
+
 
 const HISTORY_LIMIT = 4096;
 const DEFAULT_WINDOW_MS = 60_000;

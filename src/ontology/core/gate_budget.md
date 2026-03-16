@@ -5,14 +5,19 @@ tags:
   - substrate
 deps:
   - CRYSTALLIZATION_CONFIG
+  - TYPES
 extra_symbols:
   - GATE_BUDGET
-  - GateMergedDelta
 min_level: 12
+vars:
+  - GateMergedDelta
 ---
 
 ```typescript
-export type GateMergedDelta = Array<{ level: number; value: number }>;
+
+
+
+
 
 const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {
   let total = 0;

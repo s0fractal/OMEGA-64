@@ -4,9 +4,9 @@ type: substrate_module
 target: rust
 deps:
   - SYSTEM_CONSTANTS
-  - SYSTEM_CONSTANTS
   - sigma_memory
   - apply_metabolism_kernel
+  - RUNTIME_POLICY
 description: Multithreaded tick orchestrator and phase sequencer using Rayon
 ---
 
@@ -70,19 +70,15 @@ impl<'a> PulseOrchestrator<'a> {
         state.build_spatial_hash();
 
         // 2. Sync Read Views (Double Buffering)
-        state
             .matrix
             .physics_read_xs
             .copy_from_slice(&state.matrix.xs);
-        state
             .matrix
             .physics_read_ys
             .copy_from_slice(&state.matrix.ys);
-        state
             .matrix
             .physics_read_energy
             .copy_from_slice(&state.matrix.energy);
-        state
             .matrix
             .physics_read_resonance
             .copy_from_slice(&state.matrix.resonance);

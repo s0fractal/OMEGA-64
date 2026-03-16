@@ -1,9 +1,10 @@
 ---
 id: get_hive_memory
 type: pure_fn
-description: "Read byte from the organism shared neural memory block"
-deps: 
+description: Read byte from the organism shared neural memory block
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_MEMORY_OFF
 args:
