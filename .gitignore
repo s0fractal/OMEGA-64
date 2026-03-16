@@ -56,13 +56,13 @@ render_mandala.html
 codex/
 sigma_core/target/
 target/
-src/_
+# src/_
 
 # Auto-generated AssemblyScript layer
-src/_as/
+# src/_as/
 
 # Auto-generated Ontology Rust Bindings
-src/00/sigma_core/src/ontology_gen/
+# src/00/sigma_core/src/ontology_gen/
 
 # -------------------------------------------------------------------
 # Root-Level Housekeeping

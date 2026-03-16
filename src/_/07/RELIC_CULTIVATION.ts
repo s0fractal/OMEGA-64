@@ -1,0 +1,76 @@
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/relic_cultivation.md
+import { DollFork, LOGGER, Li, MAX_ATOMS } from "@g06";
+
+// OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
+
+export type Relic = {
+  id: string;
+  bytecode: number[];
+  role: number;
+  resonance: number;
+  energy: number;
+  extractedAtTick: number;
+};
+
+/**
+ * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.
+ */
+export class RelicCultivator {
+  private fork: DollFork;
+
+  constructor(fork: DollFork) {
+    this.fork = fork;
+  }
+
+  /**
+   * Scans the shadow matrix for atoms that meet 'relic' criteria.
+   * Criteria: energy > 500, resonance > 200, non-zero bytecode.
+   */
+  public cultivateRelics(tick: number): Relic[] {
+    const relics: Relic[] = [];
+    const views = this.fork.views;
+
+    for (let i = 0; i < MAX_ATOMS; i++) {
+      const energy = views.energies[i];
+      const resonance = views.resonances[i];
+      const atomId = views.ids[i];
+
+      if (atomId !== 0n && energy > 500 && resonance > 200) {
+        const bytecode = Array.from(
+          views.logic.slice(i * 8, (i + 1) * 8),
+        ) as number[];
+
+        // Basic check: is bytecode non-zero?
+        if (bytecode.some((b) => b !== 0)) {
+          relics.push({
+            id: `relic_${tick}_${i}_${atomId}`,
+            bytecode,
+            role: views.roles[i],
+            resonance,
+            energy,
+            extractedAtTick: tick,
+          });
+        }
+      }
+    }
+
+    if (relics.length > 0) {
+      Li(
+        `[RELIC CULTIVATOR] Extracted ${relics.length} potential relics at tick ${tick}`,
+      );
+    }
+
+    return relics;
+  }
+
+  /**
+   * Persists relics to the semantic sandbox for future reification.
+   */
+  public async persistRelics(relics: Relic[]): Promise<void> {
+    for (const relic of relics) {
+      const path = `./@07/02/sandbox/relic_${relic.id}.json`;
+      await Deno.writeTextFile(path, JSON.stringify(relic, null, 2));
+      Li(`[RELIC CULTIVATOR] Saved relic to ${path}`);
+    }
+  }
+}

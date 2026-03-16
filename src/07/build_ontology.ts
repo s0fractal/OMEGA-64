@@ -387,6 +387,22 @@ for (const node of nodes.values()) {
 // 3. Constant Evaluation Pre-Pass Removed (Native Compile-time Math)
 
 // 4. File Emission
+function writeSSoTFile(path: string, content: string) {
+  try {
+    // Try to make writable if exists, so we can overwrite
+    Deno.chmodSync(path, 0o644);
+  } catch (_e) {
+    // File might not exist, ignore
+  }
+  Deno.writeTextFileSync(path, content);
+  try {
+    // Set to Read-Only
+    Deno.chmodSync(path, 0o444);
+  } catch (_e) {
+    console.warn(`[WARN] Failed to set read-only permissions for ${path}`);
+  }
+}
+
 // Wipe the entire generation directory to prevent stale files from lingering
 // if an ontology node changes causality level.
 emptyDirSync(GEN_DIR_TS);
@@ -587,7 +603,7 @@ ${(node.regions || []).map((r, i, arr) => {
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
       const ext = node.type === "verifier" ? ".test.ts" : ".ts";
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      writeSSoTFile(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -703,7 +719,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     }
   }
 
-  Deno.writeTextFileSync(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
+  writeSSoTFile(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
   
   // Generate AS
   let asOut = ``;
@@ -778,11 +794,11 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   
   if (node.type !== "substrate_module") {
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
     } else if (node.type === "module" && node.asCode) {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
     } else {
-        Deno.writeTextFileSync(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
     }
   }
 }
@@ -829,7 +845,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     }
   }).join("\n");
   if (tsModExports) lvlTsOut += tsModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathTs}/mod.ts`, lvlTsOut);
+  writeSSoTFile(`${dirPathTs}/mod.ts`, lvlTsOut);
 
   // RS Mod file generation
   const levelNodesRs = levelNodes.filter(n => !n.tags.includes("standalone"));
@@ -838,7 +854,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     return `#[path = "${n.id}.rs"]\npub mod ${n.id};\npub use ${n.id}::*;`;
   }).join("\n");
   if (rsModExports) lvlRsOut += rsModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathRs}/mod.rs`, lvlRsOut);
+  writeSSoTFile(`${dirPathRs}/mod.rs`, lvlRsOut);
 
   // AS Mod file generation
   const levelNodesAs = levelNodes.filter(n => !n.tags.includes("standalone") && n.type !== "substrate_module" && !n.tags.includes("host") && !n.tags.includes("substrate"));
@@ -850,7 +866,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     }
   }).join("\n");
   if (asModExports) lvlAsOut += asModExports + "\n";
-  Deno.writeTextFileSync(`${dirPathAs}/mod.ts`, lvlAsOut);
+  writeSSoTFile(`${dirPathAs}/mod.ts`, lvlAsOut);
   
   mainTsOut += `export * from "./${lvlStr}/mod.ts";\n`;
   mainRsOut += `#[path = "${lvlStr}/mod.rs"]\npub mod L${lvlStr};\n`;
@@ -871,9 +887,9 @@ mainTsOut += `export const RUST_WASM_PATH = new URL("src/_rust/release.wasm", im
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
-Deno.writeTextFileSync(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
-Deno.writeTextFileSync(`${GEN_DIR_RS}/mod.rs`, mainRsOut);
-Deno.writeTextFileSync(`${GEN_DIR_AS}/mod.ts`, mainAsOut);
+writeSSoTFile(`${GEN_DIR_TS}/mod.ts`, mainTsOut);
+writeSSoTFile(`${GEN_DIR_RS}/mod.rs`, mainRsOut);
+writeSSoTFile(`${GEN_DIR_AS}/mod.ts`, mainAsOut);
 
 // 5. Emission of tests
 const testsDir = `${GEN_DIR_TS}/tests`;
@@ -891,7 +907,7 @@ for (const node of nodes.values()) {
           testOut += `  assertEquals(${node.id}(${args}), ${t.expected}, "Test case ${i} failed: fn(${args}) !== ${t.expected}");\n`;
       }
       testOut += `});\n`;
-      Deno.writeTextFileSync(`${testsDir}/${node.id}.test.ts`, testOut);
+      writeSSoTFile(`${testsDir}/${node.id}.test.ts`, testOut);
     }
   }
 }
