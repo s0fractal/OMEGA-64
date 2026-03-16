@@ -561,6 +561,13 @@ export type TaxonomyResult = {
   philosophy: string;
 };
 
+export type WasmBootPolicy = "fail-fast" | "safe-noop";
+export type KernelMode = "as" | "rust";
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
 export type DaemonInjectEnvelope = {

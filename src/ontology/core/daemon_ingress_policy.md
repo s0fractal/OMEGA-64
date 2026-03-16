@@ -7,6 +7,13 @@ deps:
   - RUNTIME_POLICY
 vars:
   - RUNTIME_POLICY
+  - DaemonAction
+  - DaemonInjectEnvelope
+  - DaemonNarrativeContext
+  - DaemonInvariantAdmission
+  - PlasmidRiskProfile
+  - DaemonIngressPlan
+  - DaemonIngressMetrics
 extra_symbols:
   - DAEMON_INGRESS_POLICY
   - DAEMON_INGRESS_POLICY_LIMITS

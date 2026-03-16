@@ -5,20 +5,21 @@ min_level: 2
 tags:
   - substrate
 deps:
+  - TYPES
   - parse_env_bool
   - parse_env_bounded_int
+vars:
+  - WasmBootPolicy
+  - KernelMode
+  - ReplicationExecutionMode
+extra_symbols:
+  - RUNTIME_POLICY
 ---
 
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
 
 ```typescript
-export type WasmBootPolicy = "fail-fast" | "safe-noop";
-export type KernelMode = "as" | "rust";
 type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-export type ReplicationExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
   | "shadow-reduce";

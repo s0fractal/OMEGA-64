@@ -1,13 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/runtime_policy.md
-import { parse_env_bool, parse_env_bounded_int } from "@g01";
+import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, TYPES, parse_env_bool, parse_env_bounded_int } from "@g01";
 
-export type WasmBootPolicy = "fail-fast" | "safe-noop";
-export type KernelMode = "as" | "rust";
 type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-export type ReplicationExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
   | "shadow-reduce";

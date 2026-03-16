@@ -55,6 +55,9 @@ extra_symbols:
   - PlasmidRiskProfile
   - DaemonIngressPlan
   - DaemonIngressMetrics
+  - WasmBootPolicy
+  - KernelMode
+  - ReplicationExecutionMode
   - DaemonInvariantFrame
   - CodexNarrative
   - CodexState
@@ -626,6 +629,13 @@ export type TaxonomyResult = {
   behavior: string;
   philosophy: string;
 };
+
+export type WasmBootPolicy = "fail-fast" | "safe-noop";
+export type KernelMode = "as" | "rust";
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
 
 export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
 
