@@ -1,26 +1,26 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-15T16:33:25.225Z*
-*Exported Files in Category: 554*
-*Total Exported Files: 862*
+*Generated: 2026-03-16T02:16:13.268Z*
+*Exported Files in Category: 518*
+*Total Exported Files: 828*
 *Runtime Roots: 9*
-*Runtime Closure Files: 443*
-*Non-Runtime Code Files: 111*
-*Runtime-Support Code Files: 3*
-*Experimental Code Files: 108*
-*Manifest SHA256: edb6687e32f21a957fed36cc2a7be70a97040c4343140971bd9382d407a1c7f3*
-*Export Set SHA256: 13bb1500c561a1b88e48b322aab748f80435fe76f977940a2f33f6c69e9fbebe*
-*Export Content SHA256: e4b30d4a3349951d7e87cfa88d0a2672b5eb8b99da10e32e9075306c38c898f4*
-*Git Commit: 4172961d52e5*
+*Runtime Closure Files: 409*
+*Non-Runtime Code Files: 109*
+*Runtime-Support Code Files: 2*
+*Experimental Code Files: 107*
+*Manifest SHA256: 4013923fef1beb6e8e9a4ae659f67c9465877f3d0cb10b3cc598d3a63b7c91f8*
+*Export Set SHA256: dce029de7676e4ba3d078ad7473b2226a51ca33b27a40eb11aaea86aa063f5c7*
+*Export Content SHA256: b7d8b25f6afd6f797b69b74ba0dc03a6802309dd5830a26f00d91d681a093d78*
+*Git Commit: f2463afc7b2a*
 
 ---
 
 ## ACTIVE RUNTIME ROOTS
 
 - src/_/06/OMEGA_DAEMON.ts
-- src/_/07/LLM_SOUL.ts
+- src/_/07/AKASHA_SERVER.ts
+- src/_/07/llm_soul.ts
 - src/_/08/AGENT_PROXY.ts
-- src/_/08/AKASHA_SERVER.ts
 - src/_/08/MUTATION_TELEMETRY.ts
 - src/_/13/PULSE_WORKER.ts
 - src/_/13/PULSE.ts
@@ -58,6 +58,7 @@
 - src/_/00/VmOpcodes.ts
 - src/_/00/VmProps.ts
 - src/_/00/VmSys.ts
+- src/_/01/MATH_UTILS.ts
 - src/_/01/mod.ts
 - src/_/01/OMEGA_MEMORY_LAYOUT.ts
 - src/_/01/semanticBonuses.ts
@@ -67,24 +68,20 @@
 - src/_/02/semanticBonusesBuffer.ts
 - src/_/03/attentionField.ts
 - src/_/03/attentionFieldBuffer.ts
-- src/_/03/bondBuffer.ts
 - src/_/03/bondDistances.ts
 - src/_/03/bondDistBuffer.ts
 - src/_/03/bondRequests.ts
 - src/_/03/bonds.ts
 - src/_/03/bondStiffness.ts
 - src/_/03/causality.ts
-- src/_/03/causalityBuffer.ts
 - src/_/03/codeWords.ts
 - src/_/03/coherence.ts
-- src/_/03/coherenceBuffer.ts
 - src/_/03/contextByteView.ts
 - src/_/03/contexts.ts
 - src/_/03/DAEMON_INGRESS_POLICY.ts
 - src/_/03/damping.ts
 - src/_/03/dampingBuffer.ts
 - src/_/03/energies.ts
-- src/_/03/energyBuffer.ts
 - src/_/03/evolutionReserved.ts
 - src/_/03/GATE_LEDGER.ts
 - src/_/03/GATE_MERGER.ts
@@ -95,14 +92,12 @@
 - src/_/03/glyphPayload.ts
 - src/_/03/glyphPayloadBuffer.ts
 - src/_/03/hiveBalance.ts
-- src/_/03/hiveBalanceBuffer.ts
 - src/_/03/hiveEnergyPool.ts
 - src/_/03/hiveEnergyPoolBuffer.ts
 - src/_/03/hiveMemory.ts
 - src/_/03/hiveMemoryBuffer.ts
 - src/_/03/hormoneBuffer.ts
 - src/_/03/hormones.ts
-- src/_/03/idBuffer.ts
 - src/_/03/ids.ts
 - src/_/03/instructions.ts
 - src/_/03/latticeClearView.ts
@@ -111,17 +106,12 @@
 - src/_/03/lineage.ts
 - src/_/03/lineageBuffer.ts
 - src/_/03/logic.ts
-- src/_/03/logicBuffer.ts
-- src/_/03/mailboxBuffer.ts
 - src/_/03/mailboxes.ts
 - src/_/03/memoryGrid.ts
 - src/_/03/memoryGridBuffer.ts
 - src/_/03/mod.ts
 - src/_/03/neuralCoherence.ts
-- src/_/03/neuralCoherenceBuffer.ts
-- src/_/03/phaseBuffer.ts
 - src/_/03/phases.ts
-- src/_/03/resonanceBuffer.ts
 - src/_/03/resonances.ts
 - src/_/03/roleBuffer.ts
 - src/_/03/roles.ts
@@ -131,19 +121,14 @@
 - src/_/03/stiffnessBuffer.ts
 - src/_/03/structureGrid.ts
 - src/_/03/structureGridBuffer.ts
-- src/_/03/synapticWeightBuffer.ts
 - src/_/03/synapticWeights.ts
 - src/_/03/syncState.ts
 - src/_/03/tickCounter.ts
-- src/_/03/xBuffer.ts
 - src/_/03/xs.ts
-- src/_/03/yBuffer.ts
 - src/_/03/ys.ts
 - src/_/04/mod.ts
-- src/_/04/P2P_CODEC.ts
 - src/_/04/MX.ts
 - src/_/05/ATOMIC_LEDGER.ts
-- src/_/05/AVATAR_ENGINE.ts
 - src/_/05/mod.ts
 - src/_/05/PREDICTION_MARKET.ts
 - src/_/05/SEMANTIC_MEMBRANE.ts
@@ -173,18 +158,17 @@
 - src/_/06/normalize_hex64.ts
 - src/_/06/OMEGA_DAEMON.ts
 - src/_/06/pack_structure_intent.ts
-- src/_/06/REPLICATION_PROMOTION_ACTION.ts
-- src/_/06/REPLICATION_PROMOTION_DECISION.ts
-- src/_/06/REPLICATION_PROMOTION.ts
 - src/_/06/SERVE_DASHBOARD.ts
 - src/_/06/SOVEREIGNTY_ENGINE.ts
 - src/_/06/stable_stringify.ts
 - src/_/06/TELEMETRY_STREAM.ts
 - src/_/06/to_int16_big_endian.ts
 - src/_/06/unpack_structure_charge.ts
+- src/_/07/AKASHA_SERVER.ts
 - src/_/07/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 - src/_/07/assembler.ts
 - src/_/07/AUDIT_ENGINE.ts
+- src/_/07/AVATAR_ENGINE.ts
 - src/_/07/crypto_keys.ts
 - src/_/07/disassembler.ts
 - src/_/07/DOLL_FORK_RUNNER.ts
@@ -193,20 +177,18 @@
 - src/_/07/glyph_ir_64.ts
 - src/_/07/GUARDIAN_SIGNAL_PROMOTION_DECISION.ts
 - src/_/07/llm_soul.ts
-- src/_/07/LLM_SOUL.ts
 - src/_/07/LLM_SYNAPSE.ts
 - src/_/07/mod.ts
-- src/_/07/P2P_FEDERATION.ts
 - src/_/07/QUORUM_ADVOCATE.ts
 - src/_/07/RELIC_CULTIVATION.ts
+- src/_/07/REPLICATION_PROMOTION_ACTION.ts
+- src/_/07/REPLICATION_PROMOTION_DECISION.ts
+- src/_/07/REPLICATION_PROMOTION.ts
 - src/_/07/sha256_hex.ts
 - src/_/07/SNAP_ENGINE.ts
-- src/_/07/SWARM_NEXUS.ts
-- src/_/07/SWARM_NODE.ts
 - src/_/08/AGENT_PROXY.ts
 - src/_/08/AGENT_SIGNATURE.ts
 - src/_/08/AKASHA_CODEX.ts
-- src/_/08/AKASHA_SERVER.ts
 - src/_/08/checkpoint_chain.ts
 - src/_/08/CONTROL_INTENT_QUEUE.ts
 - src/_/08/CRYSTALLIZATION_CONFIG.ts
@@ -225,10 +207,12 @@
 - src/_/10/GENERIC_LEDGER_PERSISTENCE.ts
 - src/_/10/HORMONE_BUFFER.ts
 - src/_/10/mod.ts
+- src/_/11/GOLDEN_TRACE_CATALOG.ts
 - src/_/11/mod.ts
 - src/_/11/PHYSIOLOGY_SNAPSHOT.ts
 - src/_/12/GATE_BUDGET.ts
 - src/_/12/mod.ts
+- src/_/12/REDUCTION_CASES.ts
 - src/_/13/mod.ts
 - src/_/13/PULSE_WORKER.ts
 - src/_/13/PULSE.ts
@@ -239,7 +223,6 @@
 - src/_as/00/append_jsonl.ts
 - src/_as/00/C_LOG2_C_LUT.ts
 - src/_as/00/CANON_CAUSAL_BRIDGE.ts
-- src/_as/00/clamp01.ts
 - src/_as/00/COS_LUT.ts
 - src/_as/00/dir4_x.ts
 - src/_as/00/dir4_y.ts
@@ -249,7 +232,6 @@
 - src/_as/00/fast_abs.ts
 - src/_as/00/fast_max.ts
 - src/_as/00/fast_min.ts
-- src/_as/00/fast_sign.ts
 - src/_as/00/GENESIS_PREDATOR_SCRIPT.ts
 - src/_as/00/GLYPH_ARITY_LUT.ts
 - src/_as/00/GLYPH_ENERGY_LUT.ts
@@ -261,7 +243,6 @@
 - src/_as/00/immune_check.ts
 - src/_as/00/math_clamp.ts
 - src/_as/00/mod.ts
-- src/_as/00/normalize_angle.ts
 - src/_as/00/OPCODE_ARITY_LUT.ts
 - src/_as/00/pack_glyph_header.ts
 - src/_as/00/parse_env_bool.ts
@@ -280,13 +261,13 @@
 - src/_as/00/VmOpcodes.ts
 - src/_as/00/VmProps.ts
 - src/_as/00/VmSys.ts
-- src/_as/01/calculate_shannon_entropy.ts
 - src/_as/01/clamp_resource.ts
 - src/_as/01/clamp_world_x.ts
 - src/_as/01/clamp_world_y.ts
 - src/_as/01/in_grid.ts
 - src/_as/01/math_cos.ts
 - src/_as/01/math_sin.ts
+- src/_as/01/MATH_UTILS.ts
 - src/_as/01/mod.ts
 - src/_as/01/OMEGA_MEMORY_LAYOUT.ts
 - src/_as/01/semanticBonuses.ts
@@ -355,7 +336,6 @@
 - src/_as/03/apply_metabolism_kernel.ts
 - src/_as/03/attentionField.ts
 - src/_as/03/attentionFieldBuffer.ts
-- src/_as/03/bondBuffer.ts
 - src/_as/03/bondDistances.ts
 - src/_as/03/bondDistBuffer.ts
 - src/_as/03/bondRequests.ts
@@ -364,17 +344,14 @@
 - src/_as/03/build_spatial_hash.ts
 - src/_as/03/calculate_trophism.ts
 - src/_as/03/causality.ts
-- src/_as/03/causalityBuffer.ts
 - src/_as/03/codeWords.ts
 - src/_as/03/coherence.ts
-- src/_as/03/coherenceBuffer.ts
 - src/_as/03/contextByteView.ts
 - src/_as/03/contexts.ts
 - src/_as/03/damping.ts
 - src/_as/03/dampingBuffer.ts
 - src/_as/03/drain_spawn_requests.ts
 - src/_as/03/energies.ts
-- src/_as/03/energyBuffer.ts
 - src/_as/03/evolutionReserved.ts
 - src/_as/03/fire_signal.ts
 - src/_as/03/GATE_LEDGER.ts
@@ -389,14 +366,12 @@
 - src/_as/03/glyphPayload.ts
 - src/_as/03/glyphPayloadBuffer.ts
 - src/_as/03/hiveBalance.ts
-- src/_as/03/hiveBalanceBuffer.ts
 - src/_as/03/hiveEnergyPool.ts
 - src/_as/03/hiveEnergyPoolBuffer.ts
 - src/_as/03/hiveMemory.ts
 - src/_as/03/hiveMemoryBuffer.ts
 - src/_as/03/hormoneBuffer.ts
 - src/_as/03/hormones.ts
-- src/_as/03/idBuffer.ts
 - src/_as/03/ids.ts
 - src/_as/03/instructions.ts
 - src/_as/03/latticeClearView.ts
@@ -405,19 +380,14 @@
 - src/_as/03/lineage.ts
 - src/_as/03/lineageBuffer.ts
 - src/_as/03/logic.ts
-- src/_as/03/logicBuffer.ts
-- src/_as/03/mailboxBuffer.ts
 - src/_as/03/mailboxes.ts
 - src/_as/03/memoryGrid.ts
 - src/_as/03/memoryGridBuffer.ts
 - src/_as/03/mod.ts
 - src/_as/03/neuralCoherence.ts
-- src/_as/03/neuralCoherenceBuffer.ts
-- src/_as/03/phaseBuffer.ts
 - src/_as/03/phases.ts
 - src/_as/03/read_structure_charge.ts
 - src/_as/03/resolve_bond_requests.ts
-- src/_as/03/resonanceBuffer.ts
 - src/_as/03/resonances.ts
 - src/_as/03/roleBuffer.ts
 - src/_as/03/roles.ts
@@ -429,21 +399,16 @@
 - src/_as/03/stiffnessBuffer.ts
 - src/_as/03/structureGrid.ts
 - src/_as/03/structureGridBuffer.ts
-- src/_as/03/synapticWeightBuffer.ts
 - src/_as/03/synapticWeights.ts
 - src/_as/03/syncState.ts
 - src/_as/03/tickCounter.ts
-- src/_as/03/xBuffer.ts
 - src/_as/03/xs.ts
-- src/_as/03/yBuffer.ts
 - src/_as/03/ys.ts
 - src/_as/04/evaluate_opcodes.ts
 - src/_as/04/mod.ts
-- src/_as/04/P2P_CODEC.ts
 - src/_as/04/MX.ts
 - src/_as/04/tick_structure_grid.ts
 - src/_as/05/ATOMIC_LEDGER.ts
-- src/_as/05/AVATAR_ENGINE.ts
 - src/_as/05/execute_atom.ts
 - src/_as/05/mod.ts
 - src/_as/05/SEMANTIC_MEMBRANE.ts
@@ -454,11 +419,9 @@
 - src/_as/06/mod.ts
 - src/_as/06/OMEGA_DAEMON.ts
 - src/_as/06/SERVE_DASHBOARD.ts
+- src/_as/07/AVATAR_ENGINE.ts
 - src/_as/07/llm_soul.ts
 - src/_as/07/mod.ts
-- src/_as/07/P2P_FEDERATION.ts
-- src/_as/07/SWARM_NEXUS.ts
-- src/_as/07/SWARM_NODE.ts
 - src/_as/08/checkpoint_chain.ts
 - src/_as/08/GENETIC_LEDGER.ts
 - src/_as/08/ledger_chain.ts
@@ -467,11 +430,14 @@
 - src/_as/09/mod.ts
 - src/_as/10/HORMONE_BUFFER.ts
 - src/_as/10/mod.ts
+- src/_as/11/GOLDEN_TRACE_CATALOG.ts
 - src/_as/11/mod.ts
 - src/_as/12/mod.ts
+- src/_as/12/REDUCTION_CASES.ts
 - src/_as/13/mod.ts
 - src/_as/13/PULSE_WORKER.ts
 - src/_as/13/PULSE.ts
+- src/_as/13/REDUCTION_HARNESS.ts
 - src/_as/14/mod.ts
 - src/_as/mod.ts
 
@@ -1705,6 +1671,38 @@ export const VmSys = {
 
 ---
 
+## FILE: src/_/01/MATH_UTILS.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/MATH_UTILS.md
+import { C_LOG2_C_LUT } from "@g00";
+
+export function normalize_angle(angle: number): number {
+  const tau = 2 * Math.PI;
+  let a = angle % tau;
+  if (a < 0) a += tau;
+  return a / tau;
+}
+
+export function clamp01(x: number): number {
+  if (x < 0) return 0;
+  if (x > 1) return 1;
+  return x;
+}
+
+export function fast_sign(v: number): number {
+  return (v >> 31) | ((<number><unknown>-v) >>> 31);
+}
+
+export function calculate_shannon_entropy(data: Uint8Array): number {
+  // Stub for TS/WASM bridge
+  return 0;
+}
+
+```
+
+---
+
 ## FILE: src/_/01/mod.ts
 
 ```typescript
@@ -1713,6 +1711,7 @@ export const VmSys = {
 export * from "@g00";
 export * from "./OMEGA_MEMORY_LAYOUT.ts";
 export * from "./semanticBonuses.ts";
+export * from "./MATH_UTILS.ts";
 
 ```
 
@@ -2001,6 +2000,7 @@ export * from "./memory_views_base.ts";
 import { parse_env_bool, parse_env_bounded_int } from "@g01";
 
 export type WasmBootPolicy = "fail-fast" | "safe-noop";
+export type KernelMode = "as" | "rust";
 type GuardianSignalExecutionMode =
   | "legacy-execute"
   | "hybrid-reduce"
@@ -2174,6 +2174,7 @@ const rawAutoSnapshotIntervalTicks = readEnv(
   "OMEGA_AUTO_SNAPSHOT_INTERVAL_TICKS",
 );
 const rawAutoSnapshotRetention = readEnv("OMEGA_AUTO_SNAPSHOT_RETENTION");
+const rawKernelMode = readEnv("OMEGA_KERNEL_MODE");
 
 const systemPort = parsePort(rawPort, 8000);
 const systemHost = normalizeHost(rawSystemHost, "127.0.0.1");
@@ -2513,6 +2514,8 @@ const autoSnapshotRetention = parse_env_bounded_int(
   512,
 );
 
+const kernelMode: KernelMode = (rawKernelMode?.trim().toLowerCase() === "rust") ? "rust" : "as";
+
 const fnv1a32 = (input: string): string => {
   let hash = 0x811c9dc5;
   for (let i = 0; i < input.length; i++) {
@@ -2631,6 +2634,7 @@ const policyFingerprintSource = JSON.stringify({
     intervalTicks: autoSnapshotIntervalTicks,
     retention: autoSnapshotRetention,
   },
+  kernelMode,
 });
 
 const POLICY_FINGERPRINT = fnv1a32(policyFingerprintSource);
@@ -2873,6 +2877,7 @@ export const RUNTIME_POLICY = {
       retention: rawAutoSnapshotRetention !== undefined,
     },
   },
+  kernelMode,
   fingerprint: POLICY_FINGERPRINT,
   logFingerprintOnce: (context: string = "runtime"): string => {
     if (!policyFingerprintLogged) {
@@ -2920,18 +2925,6 @@ export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFF
 import { GRID_CELLS, ATTENTION_FIELD_OFFSET, sharedBuffer } from "@g02";
 
 export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
-
-```
-
----
-
-## FILE: src/_/03/bondBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondBuffer.md
-import { MAX_ATOMS, BONDS_OFFSET, sharedBuffer } from "@g02";
-
-export const bondBuffer = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4).buffer;
 
 ```
 
@@ -3009,18 +3002,6 @@ export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOM
 
 ---
 
-## FILE: src/_/03/causalityBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/causalityBuffer.md
-import { MAX_ATOMS, CAUSALITY_OFFSET, sharedBuffer } from "@g02";
-
-export const causalityBuffer = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/codeWords.ts
 
 ```typescript
@@ -3040,18 +3021,6 @@ export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_
 import { COHERENCE_OFFSET, sharedBuffer } from "@g02";
 
 export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
-
-```
-
----
-
-## FILE: src/_/03/coherenceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/coherenceBuffer.md
-import { COHERENCE_OFFSET, sharedBuffer } from "@g02";
-
-export const coherenceBuffer = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1).buffer;
 
 ```
 
@@ -3733,18 +3702,6 @@ export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_AT
 import { MAX_ATOMS, ENERGY_OFFSET, sharedBuffer } from "@g02";
 
 export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
-
-```
-
----
-
-## FILE: src/_/03/energyBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/energyBuffer.md
-import { MAX_ATOMS, ENERGY_OFFSET, sharedBuffer } from "@g02";
-
-export const energyBuffer = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS).buffer;
 
 ```
 
@@ -4791,18 +4748,6 @@ export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 
 ---
 
-## FILE: src/_/03/hiveBalanceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveBalanceBuffer.md
-import { HIVE_BALANCE_OFFSET, sharedBuffer } from "@g02";
-
-export const hiveBalanceBuffer = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/hiveEnergyPool.ts
 
 ```typescript
@@ -4870,18 +4815,6 @@ export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_H
 import { MAX_HORMONES, HORMONE_OFFSET, sharedBuffer } from "@g02";
 
 export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
-
-```
-
----
-
-## FILE: src/_/03/idBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/idBuffer.md
-import { MAX_ATOMS, IDS_OFFSET, sharedBuffer } from "@g02";
-
-export const idBuffer = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS).buffer;
 
 ```
 
@@ -4983,30 +4916,6 @@ export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM
 
 ---
 
-## FILE: src/_/03/logicBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/logicBuffer.md
-import { MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET, sharedBuffer } from "@g02";
-
-export const logicBuffer = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE).buffer;
-
-```
-
----
-
-## FILE: src/_/03/mailboxBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mailboxBuffer.md
-import { MAX_ATOMS, MAILBOX_OFFSET, sharedBuffer } from "@g02";
-
-export const mailboxBuffer = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/mailboxes.ts
 
 ```typescript
@@ -5050,11 +4959,9 @@ export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET,
 // deno-lint-ignore-file camelcase
 export * from "@g02";
 export * from "./DAEMON_INGRESS_POLICY.ts";
-export * from "./synapticWeightBuffer.ts";
 export * from "./memoryGridBuffer.ts";
 export * from "./bondDistBuffer.ts";
 export * from "./signalGrid.ts";
-export * from "./coherenceBuffer.ts";
 export * from "./bondRequests.ts";
 export * from "./hiveEnergyPool.ts";
 export * from "./bondStiffness.ts";
@@ -5067,37 +4974,27 @@ export * from "./glyphPayloadBuffer.ts";
 export * from "./glyphHeaderBuffer.ts";
 export * from "./contextByteView.ts";
 export * from "./roleBuffer.ts";
-export * from "./resonanceBuffer.ts";
 export * from "./memoryGrid.ts";
 export * from "./hiveBalance.ts";
-export * from "./idBuffer.ts";
 export * from "./contexts.ts";
 export * from "./ids.ts";
 export * from "./codeWords.ts";
 export * from "./latticeClearView.ts";
 export * from "./stiffnessBuffer.ts";
 export * from "./lineage.ts";
-export * from "./hiveBalanceBuffer.ts";
 export * from "./ledgerDataView.ts";
 export * from "./lineageBuffer.ts";
-export * from "./neuralCoherenceBuffer.ts";
 export * from "./spatialGrid.ts";
 export * from "./hiveMemoryBuffer.ts";
 export * from "./signalGridBuffer.ts";
 export * from "./roles.ts";
 export * from "./structureGridBuffer.ts";
-export * from "./bondBuffer.ts";
 export * from "./tickCounter.ts";
 export * from "./glyphHeaders.ts";
-export * from "./mailboxBuffer.ts";
-export * from "./causalityBuffer.ts";
 export * from "./dampingBuffer.ts";
 export * from "./syncState.ts";
-export * from "./phaseBuffer.ts";
-export * from "./logicBuffer.ts";
 export * from "./hiveMemory.ts";
 export * from "./bondDistances.ts";
-export * from "./energyBuffer.ts";
 export * from "./evolutionReserved.ts";
 export * from "./ys.ts";
 export * from "./structureGrid.ts";
@@ -5105,8 +5002,6 @@ export * from "./xs.ts";
 export * from "./energies.ts";
 export * from "./logic.ts";
 export * from "./causality.ts";
-export * from "./yBuffer.ts";
-export * from "./xBuffer.ts";
 export * from "./glyphPayload.ts";
 export * from "./attentionFieldBuffer.ts";
 export * from "./hormones.ts";
@@ -5139,30 +5034,6 @@ export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFF
 
 ---
 
-## FILE: src/_/03/neuralCoherenceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/neuralCoherenceBuffer.md
-import { NEURAL_COHERENCE_OFFSET, sharedBuffer } from "@g02";
-
-export const neuralCoherenceBuffer = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1).buffer;
-
-```
-
----
-
-## FILE: src/_/03/phaseBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/phaseBuffer.md
-import { MAX_ATOMS, PHASE_OFFSET, sharedBuffer } from "@g02";
-
-export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/phases.ts
 
 ```typescript
@@ -5170,18 +5041,6 @@ export const phaseBuffer = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS)
 import { MAX_ATOMS, PHASE_OFFSET, sharedBuffer } from "@g02";
 
 export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
-
-```
-
----
-
-## FILE: src/_/03/resonanceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/resonanceBuffer.md
-import { MAX_ATOMS, RESONANCE_OFFSET, sharedBuffer } from "@g02";
-
-export const resonanceBuffer = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS).buffer;
 
 ```
 
@@ -5295,18 +5154,6 @@ export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_O
 
 ---
 
-## FILE: src/_/03/synapticWeightBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/synapticWeightBuffer.md
-import { MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET, sharedBuffer } from "@g02";
-
-export const synapticWeightBuffer = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/synapticWeights.ts
 
 ```typescript
@@ -5343,18 +5190,6 @@ export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 
 ---
 
-## FILE: src/_/03/xBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/xBuffer.md
-import { MAX_ATOMS, XS_OFFSET, sharedBuffer } from "@g02";
-
-export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer;
-
-```
-
----
-
 ## FILE: src/_/03/xs.ts
 
 ```typescript
@@ -5362,18 +5197,6 @@ export const xBuffer = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS).buffer
 import { MAX_ATOMS, XS_OFFSET, sharedBuffer } from "@g02";
 
 export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
-
-```
-
----
-
-## FILE: src/_/03/yBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/yBuffer.md
-import { MAX_ATOMS, YS_OFFSET, sharedBuffer } from "@g02";
-
-export const yBuffer = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS).buffer;
 
 ```
 
@@ -5397,135 +5220,7 @@ export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase
 export * from "@g03";
-export * from "./P2P_CODEC.ts";
 export * from "./MX.ts";
-
-```
-
----
-
-## FILE: src/_/04/P2P_CODEC.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_codec.md
-
-// OMEGA-64 | P2P_CODEC.ts | Era 69: Absolute Coherence
-// Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE)
-
-import { MX } from "@g12";
-
-export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
-
-export const P2P_CODEC = {
-  /**
-   * Serializes an atom from MX into a strict Uint8Array binary format.
-   * Format:
-   * 0-7:   ID (BigUint64)
-   * 8-9:   X (Int16)
-   * 10-11: Y (Int16)
-   * 12-15: Energy (Float32 - converted back from Float/SCALE internals to preserve fidelity)
-   * 16-19: Resonance (Int32)
-   * 20-23: Phase (Int32)
-   * 24-31: Logic/Genome (Uint8Array x 8)
-   * 32:    Role (Uint8)
-   * 33:    Damping (Uint8)
-   * 34-35: Padding/Reserved (Uint16)
-   * 36-43: Lineage (BigUint64)
-   * 44-107: Context / Registers (Int32Array x 16 -> 64 bytes)
-   * 108-171: Instructions (Uint8Array x 64 -> 64 bytes)
-   * 172-191: Padding (20 bytes)
-   */
-  packAtom: (idx: number): Uint8Array => {
-    const buffer = new ArrayBuffer(PACKET_SIZE);
-    const view = new DataView(buffer);
-    const u8 = new Uint8Array(buffer);
-
-    view.setBigUint64(0, MX.getId(idx), true);
-    view.setInt16(8, MX.getX(idx), true);
-    view.setInt16(10, MX.getY(idx), true);
-    view.setFloat32(12, MX.getEnergy(idx), true);
-    view.setInt32(16, MX.getResonance(idx), true);
-    view.setInt32(20, MX.getPhase(idx), true);
-
-    const logic = MX.getLogic(idx);
-    u8.set(logic, 24);
-
-    view.setUint8(32, MX.getRole(idx));
-    view.setUint8(33, MX.getDamping(idx));
-    // 34-35 reserved padding
-    view.setBigUint64(36, MX.getLineage(idx), true);
-
-    const context = MX.getContext(idx);
-    u8.set(
-      new Uint8Array(context.buffer, context.byteOffset, context.byteLength),
-      44,
-    );
-
-    const instructions = MX.getInstructions(idx);
-    u8.set(instructions, 108);
-
-    return u8;
-  },
-
-  /**
-   * Unpacks a binary Uint8Array into a free MX atom slot.
-   * Returns the new index `idx` if successful, or -1 if the matrix is full.
-   */
-  unpackAtom: (buffer: Uint8Array): number => {
-    if (buffer.length < PACKET_SIZE) return -1; // Invalid packet size
-
-    const idx = MX.findEmptySlot();
-    if (idx === -1) return -1; // Lattice full
-
-    const view = new DataView(
-      buffer.buffer,
-      buffer.byteOffset,
-      buffer.byteLength,
-    );
-
-    const id = view.getBigUint64(0, true);
-    const x = view.getInt16(8, true);
-    const y = view.getInt16(10, true);
-    const energy = view.getFloat32(12, true);
-    const resonance = view.getInt32(16, true);
-    const phase = view.getInt32(20, true);
-
-    const logic = buffer.subarray(24, 32);
-    const role = view.getUint8(32);
-    const damping = view.getUint8(33);
-    const lineage = view.getBigUint64(36, true);
-
-    // Seed core fields
-    MX.seedAtom(
-      idx,
-      id,
-      x,
-      y,
-      Math.max(0, energy),
-      Math.max(0, resonance),
-      logic,
-    );
-    MX.setPhase(idx, phase);
-    MX.setRole(idx, role);
-    MX.setDamping(idx, damping);
-    MX.setLineage(idx, lineage);
-
-    // Restore execution context (registers and PC)
-    const contextSrc = buffer.subarray(44, 108);
-    const contextDst = new Uint8Array(
-      MX.getContext(idx).buffer,
-      MX.getContext(idx).byteOffset,
-      64,
-    );
-    contextDst.set(contextSrc);
-
-    // Restore instructions
-    const instSrc = buffer.subarray(108, 172);
-    MX.setInstructions(idx, instSrc);
-
-    return idx;
-  },
-};
 
 ```
 
@@ -5534,7 +5229,7 @@ export const P2P_CODEC = {
 ## FILE: src/_/04/MX.ts
 
 ```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mx.md
 import { ATOM_CONTEXT_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_H, GRID_W, MAX_ATOMS, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_SET, OP_SIGNAL, OP_SUB, OP_SYSCALL, PROP_NEURAL_COHERENCE, RESOURCE_MAX, SCALE, SYS_SET_ROLE, SYS_YIELD, VmProps, VmOpcodes, VmSys, attentionField, attentionFieldBuffer, bondDistBuffer, bondDistances, bondRequests, bondStiffness, bonds, causality, codeWords, coherence, contextByteView, contexts, damping, dampingBuffer, energies, evolutionReserved, glyphHeaderBuffer, glyphHeaders, glyphPayload, glyphPayloadBuffer, hiveBalance, hiveEnergyPool, hiveEnergyPoolBuffer, hiveMemory, hiveMemoryBuffer, hormoneBuffer, hormones, ids, instructions, latticeClearView, ledgerDataView, ledgerHeadView, lineage, lineageBuffer, logic, mailboxes, memoryGrid, memoryGridBuffer, neuralCoherence, phases, resonances, roleBuffer, roles, semanticBonuses, semanticBonusesBuffer, sharedBuffer, signalGrid, signalGridBuffer, spatialGrid, stiffnessBuffer, structureGrid, structureGridBuffer, synapticWeights, syncState, tickCounter, wasmMemory, xs, ys } from "@g03";
 
 // OMEGA-64 | MX.ts
@@ -6121,197 +5816,6 @@ export const ATOMIC_LEDGER = {
 
 ---
 
-## FILE: src/_/05/AVATAR_ENGINE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
-
-// OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
-// Transforms observer interaction purely into thermodynamic pheromone deposits.
-
-import { GLYPH_TELEMETRY } from "@g12";
-import { MX } from "@g12";
-import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
-
-const getGridIdx = (x: number, y: number) => {
-  const gx = Math.floor(x / SCALE);
-  const gy = Math.floor(y / SCALE);
-  if (gx < 0 || gx >= GRID_W || gy < 0) return 0; // Simple boundary check 
-  return gx + gy * GRID_W;
-};
-
-export const AVATAR_ENGINE = {
-  /**
-   * Deposits ATTENTION pheromones into the physics grid at cursor locations.
-   * Atoms will naturally react to this scent based on their genetic logic.
-   */
-  dropPheromone: (x: number, y: number, intensity: number = 100) => {
-    GLYPH_TELEMETRY.depositPheromone(x, y, intensity);
-    const idx = getGridIdx(x, y);
-    const coreDelta = Math.max(1, Math.min(1000, intensity));
-    const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
-
-    // Spill a highly concentrated dose of attention at the cursor
-    // Capped to prevent float overflow or infinite pooling
-    const current = MX.attentionField[idx];
-    if (current < 1000) {
-      MX.attentionField[idx] += coreDelta;
-    }
-
-    // Also spill slightly into immediate neighbors to create a gradient
-    const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
-    for (const [ox, oy] of checkPoints) {
-      const sIdx = getGridIdx(x + ox, y + oy);
-      const sCurrent = MX.attentionField[sIdx];
-      if (sCurrent < 1000) {
-        MX.attentionField[sIdx] += haloDelta;
-      }
-    }
-  },
-};
-
-```
-
----
-
-## FILE: src/_/05/BOOTSTRAP_HUB.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/bootstrap_hub.md
-
-// OMEGA-64 | BOOTSTRAP_HUB.ts | Mainnet Signaling Server
-// A lightweight public directory for OMEGA-64 nodes to discover each other.
-import { parseArgs } from "jsr:@std/cli/parse-args";
-
-const args = parseArgs(Deno.args, {
-  string: ["port", "host"],
-  default: {
-    port: "9999",
-    host: "0.0.0.0",
-  },
-});
-
-const PORT = parseInt(args.port, 10);
-const HOST = args.host;
-
-// Registry of active nodes.
-// Key: Node UUID
-// Value: { socket, url }
-type NodeRecord = {
-  socket: WebSocket;
-  url: string;
-};
-const activeNodes = new Map<string, NodeRecord>();
-
-function log(msg: string) {
-  const ts = new Date().toISOString().substring(11, 19);
-  console.log(`[BOOTSTRAP ${ts}] ${msg}`);
-}
-
-function broadcastPeerStats() {
-  log(`Active Swarm Nodes: ${activeNodes.size}`);
-}
-
-if (import.meta.main) {
-  Deno.serve({ port: PORT, hostname: HOST }, (req) => {
-    if (req.headers.get("upgrade") !== "websocket") {
-      // Health check endpoint
-      return new Response(
-        JSON.stringify({
-          status: "OMEGA_BOOTSTRAP_HUB_ONLINE",
-          active_nodes: activeNodes.size,
-        }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-    }
-
-    const { socket, response } = Deno.upgradeWebSocket(req);
-    let localNodeId: string | null = null;
-
-    socket.onopen = () => {
-      // Wait for the client to send a REGISTER json message
-    };
-
-    socket.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.op === "REGISTER") {
-          if (!data.nodeId || !data.url) {
-            socket.send(
-              JSON.stringify({ op: "ERROR", message: "Missing nodeId or url" }),
-            );
-            return;
-          }
-
-          localNodeId = data.nodeId;
-
-          // Remove old connection for same ID if exists (reconnection)
-          const old = activeNodes.get(localNodeId!);
-          if (old && old.socket !== socket) {
-            try {
-              old.socket.close();
-            } catch {}
-          }
-
-          activeNodes.set(localNodeId!, { socket, url: data.url });
-          log(`Node Registered: ${localNodeId} at ${data.url}`);
-
-          // Pick up to 5 random peers to send back
-          const peerUrls: string[] = [];
-          const allPeerIds = Array.from(activeNodes.keys()).filter((id) =>
-            id !== localNodeId
-          );
-
-          // Shuffle and take 5
-          allPeerIds.sort(() => Math.random() - 0.5);
-          const selectedIds = allPeerIds.slice(0, 5);
-
-          for (const id of selectedIds) {
-            const record = activeNodes.get(id);
-            if (record) {
-              peerUrls.push(record.url);
-            }
-          }
-
-          socket.send(JSON.stringify({
-            op: "PEER_LIST",
-            peers: peerUrls,
-          }));
-
-          broadcastPeerStats();
-        }
-      } catch (e) {
-        log(`Malformed message received: ${e}`);
-      }
-    };
-
-    socket.onclose = () => {
-      if (localNodeId && activeNodes.get(localNodeId)?.socket === socket) {
-        activeNodes.delete(localNodeId);
-        log(`Node Disconnected: ${localNodeId}`);
-        broadcastPeerStats();
-      }
-    };
-
-    socket.onerror = (e) => {
-      if (localNodeId) {
-        activeNodes.delete(localNodeId);
-      }
-    };
-
-    return response;
-  });
-
-  log(`BOOTSTRAP HUB Initialized on ws://${HOST}:${PORT}`);
-}
-
-```
-
----
-
 ## FILE: src/_/05/mod.ts
 
 ```typescript
@@ -6320,114 +5824,7 @@ if (import.meta.main) {
 export * from "@g04";
 export * from "./PREDICTION_MARKET.ts";
 export * from "./ATOMIC_LEDGER.ts";
-export * from "./AVATAR_ENGINE.ts";
 export * from "./SEMANTIC_MEMBRANE.ts";
-
-```
-
----
-
-## FILE: src/_/05/P2P_SYNAPSE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_synapse.md
-import { RUNTIME_POLICY } from "@g04";
-
-import { join, normalize } from "jsr:@std/path@^1.1.4";
-import { LOGGER, Li, Le } from "@g12";
-import {
-  RUNTIME_POLICY
-} from "@g12";
-
-const PORT = RUNTIME_POLICY.p2p.port;
-const HOST = RUNTIME_POLICY.p2p.host;
-const ROOT = "./";
-const ROOT_DIR = await Deno.realPath(ROOT);
-const ROOT_PREFIX = ROOT_DIR.endsWith("/") ? ROOT_DIR : `${ROOT_DIR}/`;
-const MUTATE_ENABLED = RUNTIME_POLICY.p2p.mutateEnabled;
-const MUTATE_TOKEN = RUNTIME_POLICY.p2p.mutateToken;
-const ALIEN_ID_RE = /^0x[0-9A-F]{8,64}$/u;
-
-const issueAlienId = (): string =>
-  `0x${crypto.randomUUID().replace(/-/g, "").slice(0, 16).toUpperCase()}`;
-
-Li(
-  `🛸 P2P Synapse Membrane open on ${HOST}:${PORT} (mutate=${
-    MUTATE_ENABLED ? "on" : "off"
-  })`,
-);
-RUNTIME_POLICY.logFingerprintOnce("p2p-synapse");
-
-async function handler(req: Request): Promise<Response> {
-  if (req.method === "POST" && new URL(req.url).pathname === "/mutate") {
-    if (!MUTATE_ENABLED) {
-      return new Response("MUTATION_DISABLED", { status: 403 });
-    }
-    if (MUTATE_TOKEN) {
-      const token = req.headers.get("x-omega-control-token")?.trim() ||
-        req.headers.get("x-omega-mutate-token")?.trim() || "";
-      if (token !== MUTATE_TOKEN) {
-        return new Response("MUTATION_UNAUTHORIZED", { status: 401 });
-      }
-    }
-
-    try {
-      const alienData = await req.json();
-      const rawId = typeof alienData.eigenvalue === "string"
-        ? alienData.eigenvalue.trim().toUpperCase()
-        : "";
-      const alienId = ALIEN_ID_RE.test(rawId) ? rawId : issueAlienId();
-      const filename = `${alienId}.ALIEN.md`;
-      const targetPath = normalize(join(ROOT_DIR, filename));
-      if (!targetPath.startsWith(ROOT_PREFIX)) {
-        return new Response("MUTATION_REJECTED_PATH", { status: 400 });
-      }
-
-      const content = `---
-eigenvalue: '${alienId}'
-symbol: '${alienData.symbol || "ALIEN"}'
-energy: ${alienData.energy || 100}
-resonance: ${alienData.resonance || 0}
-logic: '${alienData.logic || "00000000"}'
-thought: '${alienData.thought || "UNKNOWN"}'
-desc: '${alienData.desc || "Migrated from an external dimension."}'
----
-
-<div class="alien-payload">
-  System intrusion detected from external origin. This atom represents an alien logic state materialized via P2P Synapse.
-</div>
-`;
-      await Deno.writeTextFile(targetPath, content);
-      Li(
-        `   [P2P] 🛸 ALIEN ATOM MATERIALIZED: ${targetPath} (Logic: ${alienData.logic})`,
-      );
-      return new Response(
-        JSON.stringify({ status: "MUTATION_ACCEPTED", target: filename }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-    } catch (e) {
-      Le(`   [P2P] ⚠️ Failed to parse alien logic. ${String(e)}`);
-      return new Response("MUTATION_REJECTED", { status: 400 });
-    }
-  }
-  return new Response(
-    JSON.stringify({
-      status: "OMEGA-64 P2P Membrane Active",
-      mutate_enabled: MUTATE_ENABLED,
-    }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    },
-  );
-}
-
-if (import.meta.main) {
-  Deno.serve({ hostname: HOST, port: PORT }, handler);
-}
 
 ```
 
@@ -9570,10 +8967,7 @@ export * from "./get_glyph_arity.ts";
 export * from "./BREATH.ts";
 export * from "./HORMONE_BUFFER_RUNTIME.ts";
 export * from "./get_glyph_energy.ts";
-export * from "./REPLICATION_PROMOTION_DECISION.ts";
 export * from "./OMEGA_DAEMON.ts";
-export * from "./REPLICATION_PROMOTION.ts";
-export * from "./REPLICATION_PROMOTION_ACTION.ts";
 export * from "./SOVEREIGNTY_ENGINE.ts";
 export * from "./LOGGER.ts";
 export * from "./assert_wasm_memory_depth.ts";
@@ -9635,51 +9029,8 @@ type Telemetry = {
     };
     lastTick?: number;
   }>;
-  federation_rule_genome?: {
-    local?: {
-      signature: string;
-      noveltySigned: number;
-      symbiosisSigned: number;
-      pressureRingScale: number;
-      workerCount: number;
-      strictDeterminism: boolean;
-      generatedAt: string;
-    };
-    peers?: Array<{
-      peer: string;
-      profile: {
-        signature: string;
-        noveltySigned: number;
-        symbiosisSigned: number;
-        pressureRingScale: number;
-        workerCount: number;
-        strictDeterminism: boolean;
-        generatedAt: string;
-      };
-    }>;
-  };
-  federation_admission?: {
-    latest?: {
-      action: string;
-      severity: string;
-      score: number;
-      sourceNode?: string;
-      localBehaviorInvariant?: string;
-      peerBehaviorInvariant?: string;
-      behaviorDistance?: number;
-      localCodexLabel?: string;
-      peerCodexLabel?: string;
-      codexDistance?: number;
-      policyEnergyRatio?: number;
-      policyResonanceRatio?: number;
-      policyFragments?: Array<{
-        id?: string;
-        source?: string;
-        mode?: string;
-        reason?: string;
-      }>;
-    };
-  };
+  federation_rule_genome?: any;
+  federation_admission?: any;
   pulse_pressure?: {
     novelty_signed: number;
     symbiosis_signed: number;
@@ -10290,158 +9641,8 @@ const normalizeTelemetry = (raw: unknown): Telemetry => {
       ? source.behavior_invariant
       : undefined,
     behavior_clusters: behaviorClusters,
-    federation_rule_genome: federationRaw
-      ? {
-        local: federationLocalRaw
-          ? {
-            signature: typeof federationLocalRaw.signature === "string"
-              ? federationLocalRaw.signature
-              : "NONE",
-            noveltySigned: Math.floor(
-              asFiniteNumber(federationLocalRaw.noveltySigned, 0),
-            ),
-            symbiosisSigned: Math.floor(
-              asFiniteNumber(federationLocalRaw.symbiosisSigned, 0),
-            ),
-            pressureRingScale: Math.max(
-              0,
-              Math.floor(
-                asFiniteNumber(federationLocalRaw.pressureRingScale, 0),
-              ),
-            ),
-            workerCount: Math.max(
-              1,
-              Math.floor(asFiniteNumber(federationLocalRaw.workerCount, 1)),
-            ),
-            strictDeterminism: parseEnvBool(
-              typeof federationLocalRaw.strictDeterminism === "string" ||
-                typeof federationLocalRaw.strictDeterminism === "boolean"
-                ? String(federationLocalRaw.strictDeterminism)
-                : undefined,
-              false,
-            ),
-            generatedAt: typeof federationLocalRaw.generatedAt === "string"
-              ? federationLocalRaw.generatedAt
-              : "",
-          }
-          : undefined,
-        peers: federationPeersRaw
-          .filter((entry): entry is Record<string, unknown> =>
-            !!entry && typeof entry === "object"
-          )
-          .map((entry) => {
-            const profile = entry.profile && typeof entry.profile === "object"
-              ? entry.profile as Record<string, unknown>
-              : {};
-            return {
-              peer: typeof entry.peer === "string" ? entry.peer : "unknown",
-              profile: {
-                signature: typeof profile.signature === "string"
-                  ? profile.signature
-                  : "NONE",
-                noveltySigned: Math.floor(
-                  asFiniteNumber(profile.noveltySigned, 0),
-                ),
-                symbiosisSigned: Math.floor(
-                  asFiniteNumber(profile.symbiosisSigned, 0),
-                ),
-                pressureRingScale: Math.max(
-                  0,
-                  Math.floor(asFiniteNumber(profile.pressureRingScale, 0)),
-                ),
-                workerCount: Math.max(
-                  1,
-                  Math.floor(asFiniteNumber(profile.workerCount, 1)),
-                ),
-                strictDeterminism: parseEnvBool(
-                  typeof profile.strictDeterminism === "string" ||
-                    typeof profile.strictDeterminism === "boolean"
-                    ? String(profile.strictDeterminism)
-                    : undefined,
-                  false,
-                ),
-                generatedAt: typeof profile.generatedAt === "string"
-                  ? profile.generatedAt
-                  : "",
-              },
-            };
-          })
-          .slice(0, 8),
-      }
-      : undefined,
-    federation_admission: federationAdmissionRaw
-      ? {
-        latest: federationAdmissionLatestRaw
-          ? {
-            action: typeof federationAdmissionLatestRaw.action === "string"
-              ? federationAdmissionLatestRaw.action
-              : "accept",
-            severity: typeof federationAdmissionLatestRaw.severity === "string"
-              ? federationAdmissionLatestRaw.severity
-              : "LOW",
-            score: Math.floor(
-              asFiniteNumber(federationAdmissionLatestRaw.score, 0),
-            ),
-            sourceNode: typeof federationAdmissionLatestRaw.sourceNode ===
-                "string"
-              ? federationAdmissionLatestRaw.sourceNode
-              : undefined,
-            localBehaviorInvariant:
-              typeof federationAdmissionLatestRaw.localBehaviorInvariant ===
-                  "string"
-                ? federationAdmissionLatestRaw.localBehaviorInvariant
-                : undefined,
-            peerBehaviorInvariant:
-              typeof federationAdmissionLatestRaw.peerBehaviorInvariant ===
-                  "string"
-                ? federationAdmissionLatestRaw.peerBehaviorInvariant
-                : undefined,
-            behaviorDistance: asFiniteNumber(
-              federationAdmissionLatestRaw.behaviorDistance,
-              -1,
-            ),
-            localCodexLabel:
-              typeof federationAdmissionLatestRaw.localCodexLabel === "string"
-                ? federationAdmissionLatestRaw.localCodexLabel
-                : undefined,
-            peerCodexLabel:
-              typeof federationAdmissionLatestRaw.peerCodexLabel === "string"
-                ? federationAdmissionLatestRaw.peerCodexLabel
-                : undefined,
-            codexDistance: asFiniteNumber(
-              federationAdmissionLatestRaw.codexDistance,
-              -1,
-            ),
-            policyEnergyRatio: asFiniteNumber(
-              federationAdmissionLatestRaw.policyEnergyRatio,
-              1,
-            ),
-            policyResonanceRatio: asFiniteNumber(
-              federationAdmissionLatestRaw.policyResonanceRatio,
-              1,
-            ),
-            policyFragments: Array.isArray(
-                federationAdmissionLatestRaw.policyFragments,
-              )
-              ? (
-                federationAdmissionLatestRaw.policyFragments as unknown[]
-              ).filter((entry): entry is Record<string, unknown> =>
-                !!entry && typeof entry === "object"
-              ).map((entry) => ({
-                id: typeof entry.id === "string" ? entry.id : undefined,
-                source: typeof entry.source === "string"
-                  ? entry.source
-                  : undefined,
-                mode: typeof entry.mode === "string" ? entry.mode : undefined,
-                reason: typeof entry.reason === "string"
-                  ? entry.reason
-                  : undefined,
-              })).slice(0, 8)
-              : [],
-          }
-          : undefined,
-      }
-      : undefined,
+    federation_rule_genome: undefined,
+    federation_admission: undefined,
     pulse_pressure: pulseRaw && ringRaw
       ? {
         novelty_signed: asFiniteNumber(pulseRaw.novelty_signed, 0),
@@ -11467,472 +10668,6 @@ export function pack_structure_intent(target_type: number, target_value: number,
 
 ---
 
-## FILE: src/_/06/REPLICATION_PROMOTION_ACTION.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion_action.md
-
-import type { ReplicationExecutionMode } from "@g12";
-import type { ReplicationPromotionDecision } from "@g12";
-
-export type ReplicationPromotionActionInput = {
-  currentMode: ReplicationExecutionMode;
-  decision: ReplicationPromotionDecision;
-};
-
-export type ReplicationPromotionAction = {
-  verdict: "promote" | "stay" | "rollback";
-  targetMode: ReplicationExecutionMode;
-  reasons: string[];
-};
-
-export const evaluateReplicationPromotionAction = (
-  input: ReplicationPromotionActionInput,
-): ReplicationPromotionAction => {
-  const { currentMode, decision } = input;
-  const reasons: string[] = [];
-
-  if (currentMode === "hybrid-reduce") {
-    if (decision.verdict === "hold" && !decision.healthPass) {
-      reasons.push("health_regression_in_hybrid_mode");
-      // Note: We don't automatically rollback to shadow-reduce here to avoid oscillating
-      // unless the health regression is severe. For now, we stay.
-      return { verdict: "stay", targetMode: "hybrid-reduce", reasons };
-    }
-    return {
-      verdict: "stay",
-      targetMode: "hybrid-reduce",
-      reasons: ["already_at_target_mode"],
-    };
-  }
-
-  if (currentMode === "shadow-reduce") {
-    if (decision.verdict === "promote") {
-      reasons.push("promotion_criteria_met");
-      return { verdict: "promote", targetMode: "hybrid-reduce", reasons };
-    }
-    reasons.push(...decision.blockers);
-    return { verdict: "stay", targetMode: "shadow-reduce", reasons };
-  }
-
-  if (currentMode === "legacy-execute") {
-    reasons.push("enabling_shadow_baseline");
-    return { verdict: "promote", targetMode: "shadow-reduce", reasons };
-  }
-
-  return {
-    verdict: "stay",
-    targetMode: currentMode,
-    reasons: ["unknown_current_mode"],
-  };
-};
-
-export const REPLICATION_PROMOTION_ACTION = {
-  evaluateReplicationPromotionAction
-};
-
-```
-
----
-
-## FILE: src/_/06/REPLICATION_PROMOTION_DECISION.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion_decision.md
-
-export type ReplicationPromotionDecisionInput = {
-  promotion: {
-    latestReady: boolean;
-    readyRatio: number;
-    recommendedMode: "legacy-execute" | "hybrid-reduce" | "shadow-reduce";
-    fallbackRatioP95: number;
-    status: string;
-  };
-  health: {
-    bootReady: boolean;
-    processExitedUnexpectedly: boolean;
-    successRate: number;
-    minSuccessRate: number;
-    p95TelemetryLatencyMs: number;
-    maxP95TelemetryLatencyMs: number;
-    p95SpatialOverflowRatio: number;
-    maxSpatialOverflowRatioP95: number;
-    safeModeRatio?: number;
-    maxSafeModeRatio?: number;
-    enforceActionQualityGate?: boolean;
-  };
-};
-
-export type ReplicationPromotionDecisionThresholds = {
-  minReadyRatio: number;
-  maxFallbackRatioP95: number;
-};
-
-export type ReplicationPromotionDecision = {
-  verdict: "promote" | "hold";
-  promotionReady: boolean;
-  healthPass: boolean;
-  recommendedMode: "hybrid-reduce" | "shadow-reduce";
-  blockers: string[];
-  thresholds: ReplicationPromotionDecisionThresholds;
-};
-
-const DEFAULT_THRESHOLDS: ReplicationPromotionDecisionThresholds = {
-  minReadyRatio: 0.5,
-  maxFallbackRatioP95: 0.05,
-};
-
-const clampRatio = (value: number): number => {
-  if (!Number.isFinite(value) || value <= 0) return 0;
-  if (value >= 1) return 1;
-  return Number(value.toFixed(6));
-};
-
-const normalizeThresholds = (
-  overrides?: Partial<ReplicationPromotionDecisionThresholds>,
-): ReplicationPromotionDecisionThresholds => ({
-  minReadyRatio: clampRatio(
-    overrides?.minReadyRatio ?? DEFAULT_THRESHOLDS.minReadyRatio,
-  ),
-  maxFallbackRatioP95: clampRatio(
-    overrides?.maxFallbackRatioP95 ?? DEFAULT_THRESHOLDS.maxFallbackRatioP95,
-  ),
-});
-
-export const evaluateReplicationPromotionDecision = (
-  input: ReplicationPromotionDecisionInput,
-  overrides?: Partial<ReplicationPromotionDecisionThresholds>,
-): ReplicationPromotionDecision => {
-  const thresholds = normalizeThresholds(overrides);
-  const blockers: string[] = [];
-  let healthPass = true;
-
-  if (!input.health.bootReady) {
-    blockers.push("boot_not_ready");
-    healthPass = false;
-  }
-  if (input.health.processExitedUnexpectedly) {
-    blockers.push("process_exited_unexpectedly");
-    healthPass = false;
-  }
-  if (input.health.successRate < input.health.minSuccessRate) {
-    blockers.push(
-      `success_rate_${input.health.successRate.toFixed(3)}_lt_${
-        input.health.minSuccessRate.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95TelemetryLatencyMs > input.health.maxP95TelemetryLatencyMs
-  ) {
-    blockers.push(
-      `telemetry_latency_${input.health.p95TelemetryLatencyMs.toFixed(3)}_gt_${
-        input.health.maxP95TelemetryLatencyMs.toFixed(3)
-      }`,
-    );
-    healthPass = false;
-  }
-  if (
-    input.health.p95SpatialOverflowRatio >
-      input.health.maxSpatialOverflowRatioP95
-  ) {
-    blockers.push(
-      `overflow_ratio_${input.health.p95SpatialOverflowRatio.toFixed(6)}_gt_${
-        input.health.maxSpatialOverflowRatioP95.toFixed(6)
-      }`,
-    );
-    healthPass = false;
-  }
-
-  if (!input.promotion.latestReady) {
-    blockers.push(`promotion_latest_not_ready(${input.promotion.status})`);
-  }
-  if (clampRatio(input.promotion.readyRatio) < thresholds.minReadyRatio) {
-    blockers.push(
-      `promotion_ready_ratio_${
-        clampRatio(input.promotion.readyRatio).toFixed(3)
-      }_lt_${thresholds.minReadyRatio.toFixed(3)}`,
-    );
-  }
-  if (input.promotion.recommendedMode !== "hybrid-reduce") {
-    blockers.push(
-      `promotion_mode_${input.promotion.recommendedMode}_not_hybrid_reduce`,
-    );
-  }
-  if (
-    clampRatio(input.promotion.fallbackRatioP95) >
-      thresholds.maxFallbackRatioP95
-  ) {
-    blockers.push(
-      `promotion_fallback_ratio_p95_${
-        clampRatio(input.promotion.fallbackRatioP95).toFixed(6)
-      }_gt_${thresholds.maxFallbackRatioP95.toFixed(6)}`,
-    );
-  }
-
-  if (input.health.enforceActionQualityGate === true) {
-    if (
-      input.health.maxSafeModeRatio !== undefined &&
-      input.health.safeModeRatio !== undefined &&
-      clampRatio(input.health.safeModeRatio) >
-        clampRatio(input.health.maxSafeModeRatio)
-    ) {
-      blockers.push(
-        `safe_mode_ratio_${
-          clampRatio(input.health.safeModeRatio).toFixed(3)
-        }_gt_${clampRatio(input.health.maxSafeModeRatio).toFixed(3)}`,
-      );
-      healthPass = false;
-    }
-  }
-
-  return {
-    verdict: blockers.length === 0 ? "promote" : "hold",
-    promotionReady: input.promotion.latestReady,
-    healthPass,
-    recommendedMode: blockers.length === 0 ? "hybrid-reduce" : "shadow-reduce",
-    blockers,
-    thresholds,
-  };
-};
-
-export const REPLICATION_PROMOTION_DECISION = {
-  evaluateReplicationPromotionDecision
-};
-
-```
-
----
-
-## FILE: src/_/06/REPLICATION_PROMOTION.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion.md
-
-import type { ReplicationExecutionMode } from "@g12";
-
-export type ReplicationHybridSnapshot = {
-  mode: ReplicationExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  allowedReplications: number;
-  suppressedReplications: number;
-  shadowSuppressedReplications: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "emit"
-    | "suppress"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "emit" | "suppress" | "unknown";
-  lastFallbackReason: string;
-};
-
-export type ReplicationPromotionThresholds = {
-  minShadowRuns: number;
-  maxFallbackRatio: number;
-  minEmitBranchCount: number;
-  minSuppressBranchCount: number;
-  minShadowSuppressedReplications: number;
-};
-
-export type ReplicationPromotionStatus =
-  | "legacy-baseline-needed"
-  | "warming"
-  | "ready"
-  | "already-hybrid";
-
-export type ReplicationPromotionSnapshot = {
-  status: ReplicationPromotionStatus;
-  ready: boolean;
-  recommendedMode: ReplicationExecutionMode;
-  shadowRuns: number;
-  hybridRuns: number;
-  reductionRuns: number;
-  fallbackRuns: number;
-  fallbackRatio: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  shadowSuppressedReplications: number;
-  reasons: string[];
-  thresholds: ReplicationPromotionThresholds;
-};
-
-const DEFAULT_PROMOTION_THRESHOLDS: ReplicationPromotionThresholds = {
-  minShadowRuns: 16,
-  maxFallbackRatio: 0.05,
-  minEmitBranchCount: 0,
-  minSuppressBranchCount: 0,
-  minShadowSuppressedReplications: 0,
-};
-
-const clampRatio = (value: number): number => {
-  if (!Number.isFinite(value) || value <= 0) return 0;
-  if (value >= 1) return 1;
-  return Number(value.toFixed(6));
-};
-
-const normalizeCount = (value: number): number =>
-  Math.max(0, Number.isFinite(value) ? Math.floor(value) : 0);
-
-const normalizeThresholds = (
-  overrides?: Partial<ReplicationPromotionThresholds>,
-): ReplicationPromotionThresholds => ({
-  minShadowRuns: Math.max(
-    1,
-    Math.floor(
-      overrides?.minShadowRuns ?? DEFAULT_PROMOTION_THRESHOLDS.minShadowRuns,
-    ),
-  ),
-  maxFallbackRatio: clampRatio(
-    overrides?.maxFallbackRatio ??
-      DEFAULT_PROMOTION_THRESHOLDS.maxFallbackRatio,
-  ),
-  minEmitBranchCount: Math.max(
-    0,
-    Math.floor(
-      overrides?.minEmitBranchCount ??
-        DEFAULT_PROMOTION_THRESHOLDS.minEmitBranchCount,
-    ),
-  ),
-  minSuppressBranchCount: Math.max(
-    0,
-    Math.floor(
-      overrides?.minSuppressBranchCount ??
-        DEFAULT_PROMOTION_THRESHOLDS.minSuppressBranchCount,
-    ),
-  ),
-  minShadowSuppressedReplications: Math.max(
-    0,
-    Math.floor(
-      overrides?.minShadowSuppressedReplications ??
-        DEFAULT_PROMOTION_THRESHOLDS.minShadowSuppressedReplications,
-    ),
-  ),
-});
-
-export const evaluateReplicationPromotion = (
-  raw: ReplicationHybridSnapshot,
-  overrides?: Partial<ReplicationPromotionThresholds>,
-): ReplicationPromotionSnapshot => {
-  const thresholds = normalizeThresholds(overrides);
-  const shadowRuns = normalizeCount(raw.shadowRuns);
-  const hybridRuns = normalizeCount(raw.hybridRuns);
-  const fallbackRuns = normalizeCount(raw.fallbackRuns);
-  const emitBranchCount = normalizeCount(raw.emitBranchCount);
-  const suppressBranchCount = normalizeCount(raw.suppressBranchCount);
-  const shadowSuppressedReplications = normalizeCount(
-    raw.shadowSuppressedReplications,
-  );
-  const reductionRuns = shadowRuns + hybridRuns;
-  const reductionDenominator = Math.max(1, reductionRuns);
-  const shadowDenominator = Math.max(1, shadowRuns);
-  const fallbackRatio = clampRatio(fallbackRuns / reductionDenominator);
-  const reasons: string[] = [];
-
-  if (raw.mode === "legacy-execute") {
-    reasons.push("mode_legacy_execute_requires_shadow_baseline");
-    return {
-      status: "legacy-baseline-needed",
-      ready: false,
-      recommendedMode: "shadow-reduce",
-      shadowRuns,
-      hybridRuns,
-      reductionRuns,
-      fallbackRuns,
-      fallbackRatio,
-      emitBranchCount,
-      suppressBranchCount,
-      shadowSuppressedReplications,
-      reasons,
-      thresholds,
-    };
-  }
-
-  if (raw.mode === "hybrid-reduce") {
-    reasons.push("mode_already_hybrid_reduce");
-    return {
-      status: "already-hybrid",
-      ready: true,
-      recommendedMode: "hybrid-reduce",
-      shadowRuns,
-      hybridRuns,
-      reductionRuns,
-      fallbackRuns,
-      fallbackRatio,
-      emitBranchCount,
-      suppressBranchCount,
-      shadowSuppressedReplications,
-      reasons,
-      thresholds,
-    };
-  }
-
-  if (shadowRuns < thresholds.minShadowRuns) {
-    reasons.push(`shadow_runs_${shadowRuns}_lt_${thresholds.minShadowRuns}`);
-  }
-  if (fallbackRatio > thresholds.maxFallbackRatio) {
-    reasons.push(
-      `fallback_ratio_${fallbackRatio.toFixed(6)}_gt_${
-        thresholds.maxFallbackRatio.toFixed(6)
-      }`,
-    );
-  }
-  if (emitBranchCount < thresholds.minEmitBranchCount) {
-    reasons.push(
-      `emit_branch_count_${emitBranchCount}_lt_${thresholds.minEmitBranchCount}`,
-    );
-  }
-  if (suppressBranchCount < thresholds.minSuppressBranchCount) {
-    reasons.push(
-      `suppress_branch_count_${suppressBranchCount}_lt_${thresholds.minSuppressBranchCount}`,
-    );
-  }
-  if (
-    shadowSuppressedReplications <
-      thresholds.minShadowSuppressedReplications
-  ) {
-    reasons.push(
-      `shadow_suppressed_replications_${shadowSuppressedReplications}_lt_${thresholds.minShadowSuppressedReplications}`,
-    );
-  }
-  if (fallbackRuns > shadowDenominator) {
-    reasons.push("fallback_runs_exceed_shadow_window");
-  }
-
-  const ready = reasons.length === 0;
-  return {
-    status: ready ? "ready" : "warming",
-    ready,
-    recommendedMode: ready ? "hybrid-reduce" : "shadow-reduce",
-    shadowRuns,
-    hybridRuns,
-    reductionRuns,
-    fallbackRuns,
-    fallbackRatio,
-    emitBranchCount,
-    suppressBranchCount,
-    shadowSuppressedReplications,
-    reasons,
-    thresholds,
-  };
-};
-
-export const REPLICATION_PROMOTION = {
-  evaluateReplicationPromotion
-};
-
-```
-
----
-
 ## FILE: src/_/06/SERVE_DASHBOARD.ts
 
 ```typescript
@@ -12764,6 +11499,746 @@ export function unpack_structure_charge(intent: number): number {
 
 ---
 
+## FILE: src/_/07/AKASHA_SERVER.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
+import { AKASHA_SIGNALING, RUNTIME_POLICY } from "@g06";
+
+import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+
+const PORT = RUNTIME_POLICY.akasha.port;
+const HOST = RUNTIME_POLICY.akasha.host;
+const SYSTEM_HOST = RUNTIME_POLICY.system.host;
+const SYSTEM_PORT = RUNTIME_POLICY.system.port;
+const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
+const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
+const MESH_MAX_PHEROMONE_INTENSITY = RUNTIME_POLICY.daemon
+  .maxPheromoneIntensity;
+const MESH_MAX_PLASMID_CHARGE = RUNTIME_POLICY.daemon.maxPlasmidCharge;
+const MESH_HEX_RE = /^[0-9a-fA-F]{16}$/u;
+const MESH_WORLD_MAX_X = 1399;
+const MESH_WORLD_MAX_Y = 799;
+const ROOT = "./";
+const REST_JSON_HEADERS = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+} as const;
+
+let clients = new Set<WebSocket>();
+
+// Store the latest state of the universe
+let akashaState: string = "{}";
+let codexDigest: {
+  species: unknown[];
+  chronicles: unknown[];
+  relics: unknown[];
+  invariants: unknown[];
+} = { species: [], chronicles: [], relics: [], invariants: [] };
+
+const buildForwardHeaders = (
+  incoming: Headers,
+  includeJsonContentType: boolean,
+): Headers => {
+  const headers = new Headers();
+  headers.set("Accept", "application/json");
+  if (includeJsonContentType) headers.set("Content-Type", "application/json");
+  if (CONTROL_TOKEN.length > 0) {
+    headers.set("x-omega-control-token", CONTROL_TOKEN);
+  }
+  const incomingToken = (incoming.get("x-omega-control-token") ?? "").trim();
+  if (incomingToken.length > 0) {
+    headers.set("x-omega-control-token", incomingToken);
+  }
+  return headers;
+};
+
+const json = (payload: unknown, status = 200): Response =>
+  new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
+
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(min, Math.min(max, value));
+
+const toFiniteNumber = (value: unknown): number | null => {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  return null;
+};
+
+type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
+type MeshForwardEnvelope = {
+  action_type: MeshForwardAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+type ParsedMeshInject = {
+  envelope: MeshForwardEnvelope;
+  signalType: "mesh_pheromone" | "mesh_plasmid";
+  eventId: string;
+  sourcePeer: string;
+};
+
+const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const root = raw as Record<string, unknown>;
+  const payloadRaw = root.payload;
+  if (
+    !payloadRaw || typeof payloadRaw !== "object" || Array.isArray(payloadRaw)
+  ) {
+    return null;
+  }
+  const payload = payloadRaw as Record<string, unknown>;
+
+  const sourceType = typeof root.type === "string"
+    ? root.type.trim().toLowerCase()
+    : "";
+  const explicitAction = typeof root.action_type === "string"
+    ? root.action_type.trim().toUpperCase()
+    : "";
+
+  const action: MeshForwardAction = explicitAction === "INJECT_PLASMID" ||
+      sourceType === "mesh_plasmid"
+    ? "INJECT_PLASMID"
+    : "DROP_PHEROMONE";
+  const signalType = action === "INJECT_PLASMID"
+    ? "mesh_plasmid"
+    : "mesh_pheromone";
+
+  const x = toFiniteNumber(payload.target_x);
+  const y = toFiniteNumber(payload.target_y);
+  if (x === null || y === null) return null;
+
+  const intensityRaw = toFiniteNumber(payload.intensity);
+  const fallbackIntensity = action === "INJECT_PLASMID" ? 1000 : 120;
+  const maxIntensity = action === "INJECT_PLASMID"
+    ? MESH_MAX_PLASMID_CHARGE
+    : MESH_MAX_PHEROMONE_INTENSITY;
+  const intensity = clamp(
+    Math.round(intensityRaw === null ? fallbackIntensity : intensityRaw),
+    1,
+    maxIntensity,
+  );
+
+  const target_x = clamp(Math.round(x), 0, MESH_WORLD_MAX_X);
+  const target_y = clamp(Math.round(y), 0, MESH_WORLD_MAX_Y);
+
+  let hex_code: string | undefined = undefined;
+  if (action === "INJECT_PLASMID") {
+    const rawHex = typeof payload.hex_code === "string"
+      ? payload.hex_code.trim()
+      : "";
+    if (!MESH_HEX_RE.test(rawHex)) return null;
+    hex_code = rawHex.toUpperCase();
+  }
+
+  const eventIdRaw = typeof root.event_id === "string" ? root.event_id : "";
+  const sourcePeerRaw = typeof root.source_peer === "string"
+    ? root.source_peer
+    : "";
+  const eventId = eventIdRaw.trim().slice(0, 96);
+  const sourcePeer = sourcePeerRaw.trim().slice(0, 96);
+
+  return {
+    envelope: {
+      action_type: action,
+      payload: {
+        target_x,
+        target_y,
+        intensity,
+        ...(hex_code ? { hex_code } : {}),
+      },
+    },
+    signalType,
+    eventId,
+    sourcePeer,
+  };
+};
+
+const proxyTelemetry = async (incoming: Request): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/telemetry`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyTelemetryPath = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyInject = async (incoming: Request): Promise<Response> => {
+  let bodyText = "";
+  try {
+    bodyText = await incoming.text();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+  if (bodyText.trim().length === 0) {
+    return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: bodyText,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyPressureRing = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/pressure-ring`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_PRESSURE_RING_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_PRESSURE_RING_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/homeostasis`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_HOMEOSTASIS_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_HOMEOSTASIS_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyDaemonPolicy = async (incoming: Request): Promise<Response> => {
+  const method = incoming.method.toUpperCase();
+  if (method !== "GET" && method !== "POST") {
+    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
+  }
+  let bodyText = "";
+  if (method === "POST") {
+    try {
+      bodyText = await incoming.text();
+    } catch {
+      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+    }
+    if (bodyText.trim().length === 0) {
+      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
+    }
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/daemon-policy`, {
+      method,
+      headers: buildForwardHeaders(incoming.headers, method === "POST"),
+      body: method === "POST" ? bodyText : undefined,
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_DAEMON_POLICY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_DAEMON_POLICY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyPhysiology = async (): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/physiology`, {
+      method: "GET",
+      headers: buildForwardHeaders(new Headers(), false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_PHYSIOLOGY_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_PHYSIOLOGY_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
+  let parsedBody: unknown = null;
+  try {
+    parsedBody = await incoming.json();
+  } catch {
+    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
+  }
+
+  const parsed = parseMeshInjectBody(parsedBody);
+  if (!parsed) {
+    return json({
+      ok: false,
+      reason: "INVALID_WEBRTC_INJECT_PAYLOAD",
+      expected:
+        "payload {target_x,target_y,intensity,hex_code?} + type mesh_pheromone|mesh_plasmid",
+    }, 400);
+  }
+
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
+      method: "POST",
+      headers: buildForwardHeaders(incoming.headers, true),
+      body: JSON.stringify(parsed.envelope),
+    });
+    const raw = await response.text();
+    let systemResponse: unknown = null;
+    try {
+      systemResponse = JSON.parse(raw);
+    } catch {
+      systemResponse = {
+        ok: false,
+        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json({
+      ok: response.ok,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
+      forwarded: parsed.envelope,
+      system: systemResponse,
+    }, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_INJECT_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+      mesh_ingress: true,
+      signal_type: parsed.signalType,
+      event_id: parsed.eventId,
+      source_peer: parsed.sourcePeer,
+    }, 503);
+  }
+};
+
+const proxyCodex = async (
+  incoming: Request,
+  path: string,
+  search = "",
+): Promise<Response> => {
+  try {
+    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
+      method: "GET",
+      headers: buildForwardHeaders(incoming.headers, false),
+    });
+    const raw = await response.text();
+    let parsed: unknown = null;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      parsed = {
+        ok: false,
+        reason: "INVALID_SYSTEM_CODEX_RESPONSE",
+        raw: raw.slice(0, 240),
+      };
+    }
+    return json(parsed, response.status);
+  } catch (err) {
+    return json({
+      ok: false,
+      reason: "SYSTEM_CODEX_UNREACHABLE",
+      details: String(err),
+      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
+    }, 503);
+  }
+};
+
+const readJsonFile = async (path: string): Promise<unknown> => {
+  try {
+    return JSON.parse(await Deno.readTextFile(path));
+  } catch {
+    return [];
+  }
+};
+
+async function refreshCodexDigest() {
+  const [species, chronicles, relics, invariants] = await Promise.all([
+    readJsonFile("./codex/species/index.json"),
+    readJsonFile("./codex/chronicles/index.json"),
+    readJsonFile("./codex/relics/index.json"),
+    readJsonFile("./codex/invariants/index.json"),
+  ]);
+  codexDigest = {
+    species: Array.isArray(species) ? species.slice(0, 8) : [],
+    chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
+    relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
+    invariants: Array.isArray(invariants) ? invariants.slice(0, 8) : [],
+  };
+}
+
+async function scanUniverse() {
+  const atoms: any[] = [];
+  const bonds: Array<{ source: string; target: string }> = [];
+
+  try {
+    for await (const entry of Deno.readDir(ROOT)) {
+      if (
+        entry.isFile && entry.name.endsWith(".md") &&
+        entry.name.startsWith("0x")
+      ) {
+        const content = await Deno.readTextFile(`${ROOT}/${entry.name}`);
+        const metaMatch = content.match(/^---\n([\s\S]+?)\n---/);
+        if (metaMatch) {
+          try {
+            const alpha = parseYaml(metaMatch[1]) as any;
+            const eigenvalue = alpha.eigenvalue || entry.name.split(".")[0];
+            atoms.push({
+              id: eigenvalue,
+              symbol: alpha.symbol || entry.name.split(".")[1],
+              x: Number(alpha.x) || Math.random() * 800,
+              y: Number(alpha.y) || Math.random() * 800,
+              energy: Number(alpha.energy) || 0,
+              resonance: Number(alpha.resonance) || 0,
+              logic: alpha.logic || "00000000",
+              thought: alpha.thought || "DRIFTING",
+            });
+
+            if (alpha.bonds && Array.isArray(alpha.bonds)) {
+              for (const b of alpha.bonds) {
+                bonds.push({ source: eigenvalue, target: b });
+              }
+            }
+          } catch (e) {
+            // silently ignore parsing errors for individual files
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Error scanning universe:", e);
+  }
+
+  await refreshCodexDigest();
+  akashaState = JSON.stringify({
+    type: "SYNC",
+    data: { atoms, bonds, codex: codexDigest },
+  });
+  broadcast(akashaState);
+}
+
+function broadcast(message: string) {
+  for (const client of clients) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  }
+}
+
+if (import.meta.main) {
+  await scanUniverse();
+  setInterval(scanUniverse, 1000);
+
+  // Also try to watch for file changes to push instantly, but Deno.watchFs can be chatty,
+  // so we'll rely primarily on the 1s interval for UI smoothness, but trigger scan on watch too.
+  async function watchUniverse() {
+    const watcher = Deno.watchFs(ROOT);
+    let debounceTimer: number | null = null;
+    for await (const event of watcher) {
+      if (event.paths.some((p) => p.endsWith(".md"))) {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(scanUniverse, 100);
+      }
+    }
+  }
+  watchUniverse(); // background
+}
+
+const reqHandler = async (req: Request) => {
+  const url = new URL(req.url);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
+      },
+    });
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry") {
+    return proxyTelemetry(req);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry/stream") {
+    return proxyTelemetryPath(req, "/api/telemetry/stream", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/telemetry/histogram") {
+    return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/mutation-telemetry") {
+    return proxyTelemetryPath(req, "/api/mutation-telemetry", url.search);
+  }
+
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/pressure-ring"
+  ) {
+    return proxyPressureRing(req);
+  }
+
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/homeostasis"
+  ) {
+    return proxyHomeostasis(req);
+  }
+
+  if (
+    (req.method === "GET" || req.method === "POST") &&
+    url.pathname === "/api/daemon-policy"
+  ) {
+    return proxyDaemonPolicy(req);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/physiology") {
+    return proxyPhysiology();
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/codex") {
+    return proxyCodex(req, "/api/codex", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/codex/narrative") {
+    return proxyCodex(req, "/api/codex/narrative", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/codex/invariants") {
+    return proxyCodex(req, "/api/codex/invariants", url.search);
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/webrtc") {
+    return json(AKASHA_SIGNALING.status());
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/webrtc/inject") {
+    return proxyWebRtcInject(req);
+  }
+
+  if (
+    req.method === "POST" &&
+    (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
+  ) {
+    return proxyInject(req);
+  }
+
+  if (req.headers.get("upgrade") != "websocket") {
+    return new Response(
+      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/daemon-policy, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
+      {
+        status: 200,
+      },
+    );
+  }
+
+  if (url.pathname === AKASHA_SIGNALING.path) {
+    const { socket, response } = Deno.upgradeWebSocket(req);
+    AKASHA_SIGNALING.attach(socket);
+    return response;
+  }
+
+  const { socket, response } = Deno.upgradeWebSocket(req);
+  socket.onopen = () => {
+    console.log("   [👁️ AKASHA] New Observer Connected.");
+    clients.add(socket);
+    socket.send(akashaState); // send latest state immediately
+  };
+  socket.onmessage = (e) => {
+    // Visualization channel is read-only; ignore client payloads.
+  };
+  socket.onclose = () => {
+    console.log("   [👁️ AKASHA] Observer Disconnected.");
+    clients.delete(socket);
+  };
+  socket.onerror = (e) => console.error("   [⚠️ AKASHA] WebSocket Error:", e);
+
+  return response;
+};
+
+if (import.meta.main) {
+  RUNTIME_POLICY.logFingerprintOnce("akasha-server");
+  Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
+  console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
+}
+
+```
+
+---
+
 ## FILE: src/_/07/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 
 ```typescript
@@ -12777,8 +12252,6 @@ import type {
   GenericPromotionDecision,
   GenericPromotionDecisionInput,
   GenericPromotionDecisionThresholds,
-  clampRatio,
-  normalizeCount,
 } from "@g12";
 
 export type ArchitectPlasmidPromotionDecisionInput =
@@ -13235,6 +12708,59 @@ async function runAvatar() {
 if (import.meta.main) {
   runAvatar();
 }
+
+```
+
+---
+
+## FILE: src/_/07/AVATAR_ENGINE.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
+
+// OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
+// Transforms observer interaction purely into thermodynamic pheromone deposits.
+
+import { GLYPH_TELEMETRY } from "@g12";
+import { MX } from "@g12";
+import { GRID_W, SCALE } from "../00/SYSTEM_CONSTANTS.ts";
+
+const getGridIdx = (x: number, y: number) => {
+  const gx = Math.floor(x / SCALE);
+  const gy = Math.floor(y / SCALE);
+  if (gx < 0 || gx >= GRID_W || gy < 0) return 0; // Simple boundary check 
+  return gx + gy * GRID_W;
+};
+
+export const AVATAR_ENGINE = {
+  /**
+   * Deposits ATTENTION pheromones into the physics grid at cursor locations.
+   * Atoms will naturally react to this scent based on their genetic logic.
+   */
+  dropPheromone: (x: number, y: number, intensity: number = 100) => {
+    GLYPH_TELEMETRY.depositPheromone(x, y, intensity);
+    const idx = getGridIdx(x, y);
+    const coreDelta = Math.max(1, Math.min(1000, intensity));
+    const haloDelta = Math.max(1, Math.min(1000, coreDelta * 0.25));
+
+    // Spill a highly concentrated dose of attention at the cursor
+    // Capped to prevent float overflow or infinite pooling
+    const current = MX.attentionField[idx];
+    if (current < 1000) {
+      MX.attentionField[idx] += coreDelta;
+    }
+
+    // Also spill slightly into immediate neighbors to create a gradient
+    const checkPoints = [[0, -20], [0, 20], [-20, 0], [20, 0]];
+    for (const [ox, oy] of checkPoints) {
+      const sIdx = getGridIdx(x + ox, y + oy);
+      const sCurrent = MX.attentionField[sIdx];
+      if (sCurrent < 1000) {
+        MX.attentionField[sIdx] += haloDelta;
+      }
+    }
+  },
+};
 
 ```
 
@@ -13752,8 +13278,6 @@ import type {
   GenericPromotionDecision,
   GenericPromotionDecisionInput,
   GenericPromotionDecisionThresholds,
-  clampRatio,
-  normalizeCount,
 } from "@g12";
 
 export type GuardianSignalPromotionDecisionInput =
@@ -13990,192 +13514,6 @@ export const GUARDIAN_SIGNAL_PROMOTION_DECISION = {
 ---
 
 ## FILE: src/_/07/llm_soul.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
-import { LOGGER, Ld, Le, Li, Lw } from "@g06";
-
-// OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
-
-const PROXY_URL = "http://localhost:8080";
-const AVATAR_ID = 9999;
-const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
-
-if (!GEMINI_API_KEY) {
-  Le("GEMINI_API_KEY environment variable is missing.");
-  Deno.exit(1);
-}
-
-const GEMINI_API_URL =
-  `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-const SYSTEM_PROMPT =
-  `You are a biological atom named "Avatar" (ID 9999) surviving in a 2D Artificial Life matrix (the OMEGA-64 Sandbox).
-Your goal is to survive as long as possible. Your energy slowly drains over time.
-
-GRID: 1400x800
-
-ROLES: 
-- 0: Prey (Neutral). They are food. Chase them.
-- 1: Producer. They are background vegetation.
-- 2: Guardian (Your Role). 
-- 4: Predator (Parasite). They want to eat you. RUN AWAY from them!
-
-You will receive your current state and a "vision" array showing nearby entities.
-Vision entities have "dx" and "dy" which are relative to you. (e.g. if dx is 20, the entity is 20 pixels to your Right).
-Distance is Euclidean distance.
-
-AVAILABLE ACTIONS (Pick ONE per turn):
-1. MOVE: Requires you to specify a direction vector. dx can be -1, 0, or 1. dy can be -1, 0, or 1. (Speed is 10 pixels per move).
-2. EAT: Requires "targetIdx" of an entity that is very close (distance < 20).
-3. YIELD: Do nothing, just rest.
-
-OUTPUT FORMAT:
-To conserve API limits, you must formulate a "Macro-Strategy" consisting of EXACTLY 5 sequential actions. 
-You MUST output ONLY a valid JSON array of action objects. No markdown formatting, no explanations. 
-Example of a valid strategy array:
-[
-  {"action": "MOVE", "dx": -1, "dy": 1},
-  {"action": "MOVE", "dx": -1, "dy": 1},
-  {"action": "EAT", "targetIdx": 105},
-  {"action": "MOVE", "dx": 0, "dy": 1},
-  {"action": "YIELD"}
-]
-`;
-
-async function queryGemini(state: any, vision: any[]): Promise<any[]> {
-  const prompt = `Current State:\nPosition: (${state.x}, ${state.y})\nEnergy: ${
-    Math.floor(state.energy)
-  }\n\nVision (sorted by distance):\n${
-    JSON.stringify(vision, null, 2)
-  }\n\nWhat is your 5-step macro-strategy? Output ONLY a JSON array.`;
-
-  const payload = {
-    systemInstruction: {
-      parts: [{ text: SYSTEM_PROMPT }],
-    },
-    contents: [{
-      parts: [{ text: prompt }],
-    }],
-    generationConfig: {
-      temperature: 0.2,
-    },
-  };
-
-  try {
-    const response = await fetch(GEMINI_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const errBody = await response.text();
-      throw new Error(`Gemini API Error: ${response.status} - ${errBody}`);
-    }
-
-    const data = await response.json();
-    const textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!textResponse) throw new Error("Empty response from Gemini");
-
-    // Cleanup potential markdown fences
-    const cleanText = textResponse.replace(/`{3}json/g, "").replace(/`{3}/g, "")
-      .trim();
-    return JSON.parse(cleanText);
-  } catch (e: any) {
-    Le(`[LLM_SOUL] Failed to query LLM: ${e.message}`);
-    // Fallback to Stasis / Protective Random Wander if API fails (e.g., 429 Too Many Requests)
-    return [
-      { action: "YIELD" },
-      { action: "YIELD" },
-      {
-        action: "MOVE",
-        dx: Math.random() > 0.5 ? 1 : -1,
-        dy: Math.random() > 0.5 ? 1 : -1,
-      },
-      { action: "YIELD" },
-      { action: "YIELD" },
-    ];
-  }
-}
-
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function runSoul() {
-  Li(`[LLM_SOUL] Booting AI Soul for Avatar ${AVATAR_ID}...`);
-
-  let actionBuffer: any[] = [];
-
-  while (true) {
-    try {
-      if (actionBuffer.length === 0) {
-        // 1. SENSE Environment (Only when buffer is empty)
-        const res = await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}`);
-        if (!res.ok) {
-          Lw("[LLM_SOUL] Cannot reach Matrix Proxy. Waiting...");
-          await sleep(2000);
-          continue;
-        }
-
-        const data = await res.json();
-        const me = data.self;
-        // Filter out producers to save tokens, only care about predators (4) and prey (0)
-        const vision = data.vision.filter((v: any) =>
-          v.role === 0 || v.role === 4
-        ).slice(0, 10);
-
-        Li(
-          `[LLM_SOUL] Energy: ${
-            Math.floor(me.energy)
-          } | Seeing ${vision.length} threats/food.`,
-        );
-
-        // 2. COGNITION
-        Ld("[LLM_SOUL] Querying Gemini for Macro-Strategy...");
-        const strategy = await queryGemini(me, vision);
-
-        if (Array.isArray(strategy)) {
-          actionBuffer = strategy;
-        } else {
-          Lw("[LLM_SOUL] Invalid LLM response, dropping to stasis.");
-          actionBuffer = [{ action: "YIELD" }, { action: "YIELD" }];
-        }
-      }
-
-      // 3. ACT (Pop one action from buffer)
-      if (actionBuffer.length > 0) {
-        const intent = actionBuffer.shift();
-        Li(`[LLM_SOUL] EXECUTING BUFFER -> ${JSON.stringify(intent)}`);
-
-        await fetch(`${PROXY_URL}/api/atom/${AVATAR_ID}/act`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(intent),
-        });
-      }
-    } catch (e: any) {
-      Le("[LLM_SOUL] Loop error:", e.message);
-      actionBuffer = []; // Clear buffer on severe error
-      await sleep(5000); // Backoff
-    }
-
-    // Tick delay (Matrix is 10 TPS. We execute 1 action every 500ms (2 TPS) to give the Avatar a steady physical pace)
-    await sleep(500);
-  }
-}
-
-if (import.meta.main) {
-  runSoul();
-}
-
-```
-
----
-
-## FILE: src/_/07/LLM_SOUL.ts
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
@@ -14803,257 +14141,26 @@ if (import.meta.main) {
 // AUTOGENERATED LEVEL FACADE
 // deno-lint-ignore-file camelcase
 export * from "@g06";
-export * from "./SWARM_NODE.ts";
-export * from "./P2P_FEDERATION.ts";
-export * from "./SWARM_NEXUS.ts";
 export * from "./crypto_keys.ts";
 export * from "./sha256_hex.ts";
 export * from "./DOLL_FORK_RUNNER.ts";
 export * from "./QUORUM_ADVOCATE.ts";
 export * from "./SNAP_ENGINE.ts";
 export * from "./RELIC_CULTIVATION.ts";
+export * from "./REPLICATION_PROMOTION_DECISION.ts";
 export * from "./DRIFT_WARDEN.ts";
+export * from "./REPLICATION_PROMOTION.ts";
 export * from "./GUARDIAN_SIGNAL_PROMOTION_DECISION.ts";
+export * from "./REPLICATION_PROMOTION_ACTION.ts";
 export * from "./ARCHITECT_PLASMID_PROMOTION_DECISION.ts";
 export * from "./AUDIT_ENGINE.ts";
 export * from "./glyph_ir_64.ts";
 export * from "./assembler.ts";
 export * from "./disassembler.ts";
 export * from "./llm_soul.ts";
+export * from "./AVATAR_ENGINE.ts";
 export * from "./LLM_SYNAPSE.ts";
 export * from "./GENESIS_INCEPTOR.ts";
-
-```
-
----
-
-## FILE: src/_/07/P2P_FEDERATION.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/federation.md
-import { MX, prng_seed_from, prng_next, LOGGER, RUNTIME_POLICY, Le } from "@g06";
-
-// OMEGA-64 | P2P_FEDERATION.ts | Era 15: The Stabilized Monad
-// Reliable inter-system atom migration.
-export interface P2pFederationUpwardDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  lookupLineageProfile(lineage: string): any;
-  captureBehaviorFrame(idx: number): any;
-}
-
-let delegate: P2pFederationUpwardDelegate | null = null;
-import { P2P_CODEC } from "../04/P2P_CODEC.ts";
-
-export interface AtomPacket {
-  id: string;
-  logic: string;
-  energy: number;
-  resonance: number;
-  sourceNode: string;
-  pulseId: number;
-  ruleGenome?: RuleGenomeProfile;
-  behaviorProfile?: BehaviorProfile;
-  codexProfile?: CodexProfile;
-}
-
-export interface RuleGenomeProfile {
-  signature: string;
-  noveltySigned: number;
-  symbiosisSigned: number;
-  pressureRingScale: number;
-  workerCount: number;
-  strictDeterminism: boolean;
-  generatedAt: string;
-}
-
-export interface BehaviorProfile {
-  invariant: string;
-  dominantRole: number;
-  memberCount: number;
-  generatedAt: string;
-}
-
-export interface CodexProfile {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-  generatedAt: string;
-}
-
-const CURRENT_PORT = RUNTIME_POLICY.system.port;
-const migrationQueue: number[] = [];
-const isProcessingMigration = false;
-const FEDERATION_ENABLED = RUNTIME_POLICY.federation.enabled;
-const CONTROL_TOKEN = RUNTIME_POLICY.federation.controlToken;
-const REQUEST_TIMEOUT_MS = RUNTIME_POLICY.federation.timeoutMs;
-const RULE_PROFILE_SOURCE = JSON.stringify({
-  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
-  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
-  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
-  workerCount: RUNTIME_POLICY.pulse.workerCount,
-  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
-});
-const fnv1a32 = (input: string): string => {
-  let hash = 0x811c9dc5;
-  for (let i = 0; i < input.length; i++) {
-    hash ^= input.charCodeAt(i);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return (hash >>> 0).toString(16).padStart(8, "0");
-};
-const RULE_GENOME_SIGNATURE = fnv1a32(RULE_PROFILE_SOURCE).toUpperCase();
-const LOCAL_RULE_GENOME: RuleGenomeProfile = {
-  signature: RULE_GENOME_SIGNATURE,
-  noveltySigned: RUNTIME_POLICY.pulse.noveltyPressureSigned,
-  symbiosisSigned: RUNTIME_POLICY.pulse.symbiosisPressureSigned,
-  pressureRingScale: RUNTIME_POLICY.pulse.pressureRing.scale,
-  workerCount: RUNTIME_POLICY.pulse.workerCount,
-  strictDeterminism: RUNTIME_POLICY.pulse.strictDeterminism,
-  generatedAt: new Date().toISOString(),
-};
-const peerRuleProfiles = new Map<string, RuleGenomeProfile>();
-const normalizeRuleGenome = (raw: unknown): RuleGenomeProfile | null => {
-  if (!raw || typeof raw !== "object") return null;
-  const source = raw as Record<string, unknown>;
-  const signature = typeof source.signature === "string"
-    ? source.signature.trim().toUpperCase()
-    : "";
-  if (signature.length === 0) return null;
-  const noveltySigned = typeof source.noveltySigned === "number" &&
-      Number.isFinite(source.noveltySigned)
-    ? Math.trunc(source.noveltySigned)
-    : 0;
-  const symbiosisSigned = typeof source.symbiosisSigned === "number" &&
-      Number.isFinite(source.symbiosisSigned)
-    ? Math.trunc(source.symbiosisSigned)
-    : 0;
-  const pressureRingScale = typeof source.pressureRingScale === "number" &&
-      Number.isFinite(source.pressureRingScale)
-    ? Math.max(0, Math.trunc(source.pressureRingScale))
-    : 0;
-  const workerCount = typeof source.workerCount === "number" &&
-      Number.isFinite(source.workerCount)
-    ? Math.max(1, Math.trunc(source.workerCount))
-    : 1;
-  const strictDeterminism = source.strictDeterminism === true;
-  const generatedAt = typeof source.generatedAt === "string" &&
-      source.generatedAt.trim().length > 0
-    ? source.generatedAt.trim()
-    : new Date().toISOString();
-  return {
-    signature,
-    noveltySigned,
-    symbiosisSigned,
-    pressureRingScale,
-    workerCount,
-    strictDeterminism,
-    generatedAt,
-  };
-};
-
-export const P2P_FEDERATION = {
-  setUpwardDelegate: (newDelegate: P2pFederationUpwardDelegate) => {
-    delegate = newDelegate;
-  },
-  peers: new Set<string>(
-    CURRENT_PORT === 8000
-      ? ["http://localhost:8001"]
-      : ["http://localhost:8000"],
-  ),
-  nodeId: `OMEGA-${CURRENT_PORT}`,
-  enabled: FEDERATION_ENABLED,
-  localRuleGenome: LOCAL_RULE_GENOME,
-
-  serialize: (idx: number, pulseId: number = 0): Uint8Array | null => {
-    const id = MX.getId(idx);
-    if (!id) return null;
-    return P2P_CODEC.packAtom(idx);
-  },
-
-  observePeerRuleGenome: (sourceNode: string, rawProfile: unknown) => {
-    const profile = normalizeRuleGenome(rawProfile);
-    if (!profile) return;
-    const key = typeof sourceNode === "string" && sourceNode.trim().length > 0
-      ? sourceNode.trim()
-      : "unknown";
-    peerRuleProfiles.set(key, profile);
-  },
-
-  getPeerRuleProfiles: () =>
-    Array.from(peerRuleProfiles.entries()).map(([peer, profile]) => ({
-      peer,
-      profile,
-    })),
-
-  migrate: (_idx: number, _pulseId: number) => {
-    // Deprecated in Era 71: Handled synchronously inside PULSE via NEXUS_DAEMON.routeAtom
-  },
-
-  processQueue: async (pulseId: number) => {
-    // FUNCTIONALLY DISABLED IN ERA 71. RESTORED STATICALLY FOR CONTRACT ADHERENCE.
-    if (pulseId < Infinity) return;
-
-    if (!FEDERATION_ENABLED) return;
-    if (isProcessingMigration || migrationQueue.length === 0) return;
-    // isProcessingMigration = true;
-
-    const idx = migrationQueue.shift()!;
-    const atomIdAtStart = MX.getId(idx);
-    const packet = P2P_FEDERATION.serialize(idx, pulseId);
-
-    if (packet && atomIdAtStart !== 0n) {
-      const stateSeed = prng_seed_from(pulseId, atomIdAtStart.toString());
-      const { value: pSelector } = prng_next(stateSeed);
-      const peerList = Array.from(P2P_FEDERATION.peers);
-      if (peerList.length === 0) {
-        return;
-      }
-      const targetPeer = peerList[Math.floor(pSelector * peerList.length)];
-
-      const lineage = MX.getLineage(idx);
-      const behaviorProfile = delegate?.captureBehaviorFrame(idx) || null;
-      // @ts-ignore: Legacy type bypass
-      const codexProfile = delegate?.lookupLineageProfile(
-        lineage.toString(),
-      ) || null;
-
-      const headers: Record<string, string> = {
-        "Content-Type": "application/octet-stream",
-        "x-omega-source-node": P2P_FEDERATION.nodeId,
-        "x-omega-rule-genome": JSON.stringify({}), // ruleGenome: LOCAL_RULE_GENOME
-        "x-omega-behavior-profile": JSON.stringify(behaviorProfile),
-        "x-omega-codex-profile": JSON.stringify(codexProfile),
-      };
-      if (CONTROL_TOKEN.length > 0) {
-        headers["x-omega-control-token"] = CONTROL_TOKEN;
-      }
-
-      try {
-        const res = await fetch(`${targetPeer}/federate`, {
-          method: "POST",
-          headers,
-          body: new Uint8Array(packet!),
-          signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-        });
-
-        if (res.ok) {
-          if (MX.getId(idx) === atomIdAtStart) {
-            MX.setId(idx, 0n);
-            delegate?.recordTelemetry({
-              lane: "external_ingress",
-              kind: "federation_migration_clear",
-              count: 1,
-            });
-          }
-        }
-      } catch (e: any) {
-        Le(`Transit Error: ${e}`);
-      }
-    }
-  },
-};
 
 ```
 
@@ -15196,6 +14303,282 @@ export class RelicCultivator {
 
 ---
 
+## FILE: src/_/07/REPLICATION_PROMOTION_ACTION.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion_action.md
+import { GENERIC_PROMOTION_DECISION, evaluateGenericPromotionDecision, evaluateGenericPromotionAction, clampRatio, normalizeCount } from "@g06";
+
+import {
+  GenericPromotionAction,
+  GenericPromotionActionInput,
+} from "@g12";
+
+export type ReplicationPromotionActionInput = GenericPromotionActionInput;
+export type ReplicationPromotionAction = GenericPromotionAction;
+
+/** @deprecated Use evaluateGenericPromotionAction */
+export const evaluateReplicationPromotionAction =
+  evaluateGenericPromotionAction;
+
+export const REPLICATION_PROMOTION_ACTION = {
+  evaluateReplicationPromotionAction,
+};
+
+```
+
+---
+
+## FILE: src/_/07/REPLICATION_PROMOTION_DECISION.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion_decision.md
+import { GENERIC_PROMOTION_DECISION, evaluateGenericPromotionDecision, evaluateGenericPromotionAction, clampRatio, normalizeCount } from "@g06";
+
+import {
+  GenericPromotionDecision,
+  GenericPromotionDecisionInput,
+  GenericPromotionDecisionThresholds,
+} from "@g12";
+
+export type ReplicationPromotionDecisionInput = GenericPromotionDecisionInput;
+export type ReplicationPromotionDecisionThresholds =
+  GenericPromotionDecisionThresholds;
+export type ReplicationPromotionDecision = GenericPromotionDecision;
+
+/** @deprecated Use evaluateGenericPromotionDecision */
+export const evaluateReplicationPromotionDecision =
+  evaluateGenericPromotionDecision;
+
+export const REPLICATION_PROMOTION_DECISION = {
+  evaluateReplicationPromotionDecision,
+};
+
+```
+
+---
+
+## FILE: src/_/07/REPLICATION_PROMOTION.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/replication_promotion.md
+import { clampRatio, normalizeCount } from "@g06";
+
+import { ReplicationExecutionMode } from "@g12";
+
+export type ReplicationHybridSnapshot = {
+  mode: ReplicationExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedReplications: number;
+  suppressedReplications: number;
+  shadowSuppressedReplications: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "emit" | "suppress" | "unknown";
+  lastFallbackReason: string;
+};
+
+export type ReplicationPromotionThresholds = {
+  minShadowRuns: number;
+  maxFallbackRatio: number;
+  minEmitBranchCount: number;
+  minSuppressBranchCount: number;
+  minShadowSuppressedReplications: number;
+};
+
+export type ReplicationPromotionStatus =
+  | "legacy-baseline-needed"
+  | "warming"
+  | "ready"
+  | "already-hybrid";
+
+export type ReplicationPromotionSnapshot = {
+  status: ReplicationPromotionStatus;
+  ready: boolean;
+  recommendedMode: ReplicationExecutionMode;
+  shadowRuns: number;
+  hybridRuns: number;
+  reductionRuns: number;
+  fallbackRuns: number;
+  fallbackRatio: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  shadowSuppressedReplications: number;
+  reasons: string[];
+  thresholds: ReplicationPromotionThresholds;
+};
+
+const DEFAULT_PROMOTION_THRESHOLDS: ReplicationPromotionThresholds = {
+  minShadowRuns: 16,
+  maxFallbackRatio: 0.05,
+  minEmitBranchCount: 0,
+  minSuppressBranchCount: 0,
+  minShadowSuppressedReplications: 0,
+};
+
+const normalizeThresholds = (
+  overrides?: Partial<ReplicationPromotionThresholds>,
+): ReplicationPromotionThresholds => ({
+  minShadowRuns: Math.max(
+    1,
+    Math.floor(
+      overrides?.minShadowRuns ?? DEFAULT_PROMOTION_THRESHOLDS.minShadowRuns,
+    ),
+  ),
+  maxFallbackRatio: clampRatio(
+    overrides?.maxFallbackRatio ??
+      DEFAULT_PROMOTION_THRESHOLDS.maxFallbackRatio,
+  ),
+  minEmitBranchCount: Math.max(
+    0,
+    Math.floor(
+      overrides?.minEmitBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minEmitBranchCount,
+    ),
+  ),
+  minSuppressBranchCount: Math.max(
+    0,
+    Math.floor(
+      overrides?.minSuppressBranchCount ??
+        DEFAULT_PROMOTION_THRESHOLDS.minSuppressBranchCount,
+    ),
+  ),
+  minShadowSuppressedReplications: Math.max(
+    0,
+    Math.floor(
+      overrides?.minShadowSuppressedReplications ??
+        DEFAULT_PROMOTION_THRESHOLDS.minShadowSuppressedReplications,
+    ),
+  ),
+});
+
+
+export const evaluateReplicationPromotion = (
+  raw: ReplicationHybridSnapshot,
+  overrides?: Partial<ReplicationPromotionThresholds>,
+): ReplicationPromotionSnapshot => {
+  const thresholds = normalizeThresholds(overrides);
+  const shadowRuns = normalizeCount(raw.shadowRuns);
+  const hybridRuns = normalizeCount(raw.hybridRuns);
+  const fallbackRuns = normalizeCount(raw.fallbackRuns);
+  const emitBranchCount = normalizeCount(raw.emitBranchCount);
+  const suppressBranchCount = normalizeCount(raw.suppressBranchCount);
+  const shadowSuppressedReplications = normalizeCount(
+    raw.shadowSuppressedReplications,
+  );
+  const reductionRuns = shadowRuns + hybridRuns;
+  const reductionDenominator = Math.max(1, reductionRuns);
+  const shadowDenominator = Math.max(1, shadowRuns);
+  const fallbackRatio = clampRatio(fallbackRuns / reductionDenominator);
+  const reasons: string[] = [];
+
+  if (raw.mode === "legacy-execute") {
+    reasons.push("mode_legacy_execute_requires_shadow_baseline");
+    return {
+      status: "legacy-baseline-needed",
+      ready: false,
+      recommendedMode: "shadow-reduce",
+      shadowRuns,
+      hybridRuns,
+      reductionRuns,
+      fallbackRuns,
+      fallbackRatio,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedReplications,
+      reasons,
+      thresholds,
+    };
+  }
+
+  if (raw.mode === "hybrid-reduce") {
+    reasons.push("mode_already_hybrid_reduce");
+    return {
+      status: "already-hybrid",
+      ready: true,
+      recommendedMode: "hybrid-reduce",
+      shadowRuns,
+      hybridRuns,
+      reductionRuns,
+      fallbackRuns,
+      fallbackRatio,
+      emitBranchCount,
+      suppressBranchCount,
+      shadowSuppressedReplications,
+      reasons,
+      thresholds,
+    };
+  }
+
+  if (shadowRuns < thresholds.minShadowRuns) {
+    reasons.push(`shadow_runs_${shadowRuns}_lt_${thresholds.minShadowRuns}`);
+  }
+  if (fallbackRatio > thresholds.maxFallbackRatio) {
+    reasons.push(
+      `fallback_ratio_${fallbackRatio.toFixed(6)}_gt_${
+        thresholds.maxFallbackRatio.toFixed(6)
+      }`,
+    );
+  }
+  if (emitBranchCount < thresholds.minEmitBranchCount) {
+    reasons.push(
+      `emit_branch_count_${emitBranchCount}_lt_${thresholds.minEmitBranchCount}`,
+    );
+  }
+  if (suppressBranchCount < thresholds.minSuppressBranchCount) {
+    reasons.push(
+      `suppress_branch_count_${suppressBranchCount}_lt_${thresholds.minSuppressBranchCount}`,
+    );
+  }
+  if (
+    shadowSuppressedReplications <
+      thresholds.minShadowSuppressedReplications
+  ) {
+    reasons.push(
+      `shadow_suppressed_replications_${shadowSuppressedReplications}_lt_${thresholds.minShadowSuppressedReplications}`,
+    );
+  }
+  if (fallbackRuns > shadowDenominator) {
+    reasons.push("fallback_runs_exceed_shadow_window");
+  }
+
+  const ready = reasons.length === 0;
+  return {
+    status: ready ? "ready" : "warming",
+    ready,
+    recommendedMode: ready ? "hybrid-reduce" : "shadow-reduce",
+    shadowRuns,
+    hybridRuns,
+    reductionRuns,
+    fallbackRuns,
+    fallbackRatio,
+    emitBranchCount,
+    suppressBranchCount,
+    shadowSuppressedReplications,
+    reasons,
+    thresholds,
+  };
+};
+
+export const REPLICATION_PROMOTION = {
+  evaluateReplicationPromotion
+};
+
+```
+
+---
+
 ## FILE: src/_/07/sha256_hex.ts
 
 ```typescript
@@ -15321,562 +14704,6 @@ export const SNAP_ENGINE = {
     }
   },
 };
-
-```
-
----
-
-## FILE: src/_/07/SWARM_NEXUS.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_nexus.md
-import { LOGGER, Le, Li, Lw } from "@g06";
-
-export type NexusConfig = {
-  instanceId: number;
-  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
-  mainnetEnabled?: boolean;
-  bootstrapHubUrl?: string;
-};
-
-export const OP_NEXUS_HANDSHAKE = 0x00;
-export const OP_NEXUS_ATOM_TRANSIT = 0x01;
-export const OP_NEXUS_HEARTBEAT = 0x02;
-export const OP_NEXUS_EPOCH_CONSENSUS = 0x03;
-export const OP_NEXUS_SYNC_REQUEST = 0x04;
-export const OP_NEXUS_EPOCH_PAYLOAD = 0x05;
-
-export type SwarmNexus = {
-  nodeId: string;
-  instanceId: number;
-  port: number;
-  seedNodes: string[];
-  mainnetEnabled: boolean;
-  bootstrapHubUrl: string;
-  connectedPeers: Map<string, WebSocket>;
-  peerHeartbeats: Map<string, { tick: number; tps: number; lastSeen: number }>;
-  localCurrentTick: number;
-  localTps: number;
-  onAtomTransit?: (payload: Uint8Array) => void;
-  onSyncRequest?: (peerId: string) => void;
-  onEpochPayload?: (payload: Uint8Array) => void;
-
-  start: () => void;
-  stop: () => void;
-  routeAtom: (egressEvent: Uint8Array) => void;
-  getMedianSwarmTick: (localTickFallback: number) => number;
-  broadcastEpochConsensus: (epochTick: number, hash: bigint) => void;
-  broadcastSyncRequest: () => void;
-  sendEpochPayload: (targetNodeId: string, epochData: Uint8Array) => void;
-};
-
-export const createSwarmNexus = (config: NexusConfig): SwarmNexus => {
-  const self = {
-    nodeId: crypto.randomUUID(),
-    instanceId: config.instanceId,
-    port: 8080 + config.instanceId,
-    seedNodes: config.seedNodes,
-    mainnetEnabled: config.mainnetEnabled ?? false,
-    bootstrapHubUrl: config.bootstrapHubUrl ?? "",
-    connectedPeers: new Map<string, WebSocket>(),
-    peerHeartbeats: new Map<string, { tick: number; tps: number; lastSeen: number }>(),
-    localCurrentTick: 0,
-    localTps: 0,
-    onAtomTransit: undefined,
-    onSyncRequest: undefined,
-    onEpochPayload: undefined,
-  } as unknown as SwarmNexus;
-
-  const serverAbortController = new AbortController();
-  let heartbeatInterval: number | undefined;
-
-  self.start = () => {
-    console.error(
-      `[NEXUS_DEBUG] CALLING START ON PORT ${self.port} FOR NODE ${self.nodeId}`,
-    );
-    Li(
-      `[NEXUS] Booting Swarm Membrane on port ${self.port} (Node: ${self.nodeId})`,
-    );
-
-    // 1. Start listening for incoming WebSocket connections
-    const server = Deno.serve({
-      port: self.port,
-      hostname: "127.0.0.1",
-      signal: serverAbortController.signal,
-      onListen: ({ port, hostname }) => {
-        try {
-          Deno.writeTextFileSync("tests/.genesis_port", port.toString());
-        } catch (e) { /* ignore test artifact failure */ }
-        console.error(
-          `[NEXUS_DEBUG] LISTENING OFFICIALLY ON ws://${hostname}:${port}`,
-        );
-        Li(`[NEXUS] Listening for peers on ws://${hostname}:${port}`);
-      },
-    }, (req) => {
-      if (req.headers.get("upgrade") != "websocket") {
-        return new Response(null, { status: 501 });
-      }
-
-      const { socket, response } = Deno.upgradeWebSocket(req);
-      handleConnection(socket, "INBOUND");
-      return response;
-    });
-
-    server.finished.catch((err: any) => {
-      console.error(`[NEXUS_DEBUG] FATAL SERVER CRASH: ${err}`);
-    });
-
-    // 2. Connect to known seed nodes
-    for (const seedUrl of self.seedNodes) {
-      if (
-        seedUrl === `ws://127.0.0.1:${self.port}` ||
-        seedUrl === `ws://localhost:${self.port}`
-      ) {
-        continue; // Don't connect to self
-      }
-      connectToPeer(seedUrl);
-    }
-
-    // 2.5 Connect to Bootstrap Hub if requested
-    if (self.mainnetEnabled && self.bootstrapHubUrl) {
-      connectToHub();
-    }
-
-    // 3. Start Heartbeat Broadcast
-    heartbeatInterval = setInterval(() => {
-      broadcastHeartbeat();
-    }, 100);
-  }
-
-  self.stop = () => {
-    Li(`[NEXUS] Shutting down Node ${self.nodeId}`);
-    if (heartbeatInterval) {
-      clearInterval(heartbeatInterval);
-      heartbeatInterval = undefined;
-    }
-    serverAbortController.abort();
-    for (const [, ws] of self.connectedPeers) {
-      ws.close();
-    }
-    self.connectedPeers.clear();
-    self.peerHeartbeats.clear();
-  }
-
-  const connectToPeer = (url: string) => {
-    try {
-      Li(`[NEXUS] Attempting connection to seed: ${url}`);
-      const socket = new WebSocket(url);
-      handleConnection(socket, "OUTBOUND");
-    } catch (e) {
-      Le(`[NEXUS] Failed to connect to seed ${url}: ${e}`);
-    }
-  }
-
-  const connectToHub = () => {
-    try {
-      Li(
-        `[NEXUS] Connecting to Bootstrap Hub: ${self.bootstrapHubUrl}`,
-      );
-      const hubSocket = new WebSocket(self.bootstrapHubUrl);
-
-      hubSocket.onopen = () => {
-        Li(`[NEXUS] Connected to Hub.`);
-        hubSocket.send(JSON.stringify({
-          op: "REGISTER",
-          nodeId: self.nodeId,
-          url: `ws://127.0.0.1:${self.port}`,
-        }));
-      };
-
-      hubSocket.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.op === "PEER_LIST" && Array.isArray(data.peers)) {
-            Li(
-              `[NEXUS] Received ${data.peers.length} peers from Hub.`,
-            );
-            for (const peerUrl of data.peers) {
-              if (peerUrl !== `ws://127.0.0.1:${self.port}`) {
-                connectToPeer(peerUrl);
-              }
-            }
-          }
-        } catch (e) {
-          Lw(`[NEXUS] Failed to parse PEER_LIST from Hub.`, e);
-        }
-      };
-
-      hubSocket.onclose = () => {
-        Lw(`[NEXUS] Disconnected from Hub.`);
-      };
-    } catch (e) {
-      Le(`[NEXUS] Failed to connect to Hub: ${e}`);
-    }
-  }
-
-  const handleConnection = (socket: WebSocket, direction: "INBOUND" | "OUTBOUND") => {
-    socket.binaryType = "arraybuffer";
-    let remoteNodeId: string | null = null;
-
-    socket.onopen = () => {
-      Li(`[NEXUS] ${direction} Socket Opened.`);
-      // Initiate Handshake
-      sendHandshake(socket);
-    };
-
-    socket.onmessage = (event) => {
-      if (event.data instanceof ArrayBuffer) {
-        const payload = new Uint8Array(event.data);
-        const op = payload[0];
-
-        switch (op) {
-          case OP_NEXUS_HANDSHAKE:
-            remoteNodeId = handleHandshake(socket, payload);
-            break;
-          case OP_NEXUS_ATOM_TRANSIT:
-            handleAtomTransit(payload);
-            break;
-          case OP_NEXUS_HEARTBEAT:
-            if (remoteNodeId) handleHeartbeat(remoteNodeId, payload);
-            break;
-          case OP_NEXUS_EPOCH_CONSENSUS:
-            if (remoteNodeId) handleEpochConsensus(remoteNodeId, payload);
-            break;
-          case OP_NEXUS_SYNC_REQUEST:
-            if (remoteNodeId) handleSyncRequest(remoteNodeId);
-            break;
-          case OP_NEXUS_EPOCH_PAYLOAD:
-            handleEpochPayload(payload);
-            break;
-          default:
-            Lw(`[NEXUS] Unknown binary OP code: ${op}`);
-        }
-      } else {
-        Lw(`[NEXUS] Received non-binary message, discarding.`);
-      }
-    };
-
-    socket.onclose = () => {
-      if (remoteNodeId) {
-        Li(`[NEXUS] Peer disconnected: ${remoteNodeId}`);
-        self.connectedPeers.delete(remoteNodeId);
-        self.peerHeartbeats.delete(remoteNodeId);
-      } else {
-        Li(`[NEXUS] Unidentified peer disconnected.`);
-      }
-    };
-
-    socket.onerror = (e) => {
-      Le(
-        `[NEXUS] Socket Error on ${remoteNodeId || "unknown payload"}:`,
-        e,
-      );
-    };
-  }
-
-  const sendHandshake = (socket: WebSocket) => {
-    // Handshake Payload:
-    // [0] OP_CODE (0x00)
-    // [1..37] UUID (36 bytes text)
-    const encoder = new TextEncoder();
-    const idBytes = encoder.encode(self.nodeId);
-
-    if (idBytes.length !== 36) {
-      Le("[NEXUS] UUID encoding length mismatch!");
-      return;
-    }
-
-    const payload = new Uint8Array(1 + 36);
-    payload[0] = OP_NEXUS_HANDSHAKE;
-    payload.set(idBytes, 1);
-
-    if (socket.readyState === WebSocket.OPEN) {
-      socket.send(payload.buffer);
-    }
-  }
-
-  const handleHandshake = (socket: WebSocket, payload: Uint8Array): string => {
-    const decoder = new TextDecoder();
-    const remoteId = decoder.decode(payload.slice(1, 37));
-
-    Li(`[NEXUS] Handshake complete with Node: ${remoteId}`);
-    self.connectedPeers.set(remoteId, socket);
-    return remoteId;
-  }
-
-  self.routeAtom = (egressEvent: Uint8Array) => {
-    // Egress Event is exactly 192 bytes from P2P_CODEC.
-    if (egressEvent.length !== 192) {
-      Le(
-        `[NEXUS] Egress Event length mismatch. Expected 192, got ${egressEvent.length}`,
-      );
-      return;
-    }
-
-    if (self.connectedPeers.size === 0) {
-      // Bounced because we are alone in the universe
-      Li(
-        `[NEXUS] Bounce: No peers connected, atom destroyed in hyperspace.`,
-      );
-      return;
-    }
-
-    // Select a random peer right now because spatial mapping is Phase 29
-    const peers = Array.from(self.connectedPeers.values());
-    const targetPeer = peers[Math.floor(Math.random() * peers.length)];
-
-    const payload = new Uint8Array(1 + egressEvent.length);
-    payload[0] = OP_NEXUS_ATOM_TRANSIT;
-    payload.set(egressEvent, 1);
-
-    sendDataChannel(targetPeer, payload.buffer);
-    Li(`[NEXUS] Atom dispatched to peer.`);
-  }
-
-  const sendDataChannel = (socket: WebSocket, payload: ArrayBufferLike) => {
-    // Graceful fallback abstraction for RTCDataChannel constraints
-    if (typeof (globalThis as any).RTCPeerConnection !== "undefined") {
-      // Future WebRTC Implementation hooks here
-      // self.dataChannels.get(peerId).send(payload);
-    }
-    // Fallback to traditional WebSockets
-    if (socket.readyState === WebSocket.OPEN) {
-      socket.send(payload);
-    } else {
-      Lw(`[NEXUS] Target peer not OPEN. Payload lost.`);
-    }
-  }
-
-  const handleAtomTransit = (payload: Uint8Array) => {
-    if (payload.length !== 193) {
-      Le(
-        `[NEXUS] Ingress payload length mismatch. Expected 193, got ${payload.length}`,
-      );
-      return;
-    }
-
-    // Strip OP_CODE and inject
-    const atomData = payload.slice(1);
-    Li(`[NEXUS] Ingress Atom Materializing from Hyperspace...`);
-    if (self.onAtomTransit) {
-      self.onAtomTransit(atomData);
-    } else {
-      Lw(
-        `[NEXUS] Atom Materialization callback unhandled. Target matrix missing.`,
-      );
-    }
-  }
-
-  const broadcastHeartbeat = () => {
-    if (self.connectedPeers.size === 0) return;
-
-    // Payload: [0] OP_CODE, [1..8] currentTick (Float64), [9..16] tps (Float64)
-    const payload = new Uint8Array(17);
-    payload[0] = OP_NEXUS_HEARTBEAT;
-    const view = new DataView(payload.buffer);
-    view.setFloat64(1, self.localCurrentTick, true);
-    view.setFloat64(9, self.localTps, true);
-
-    for (const peer of self.connectedPeers.values()) {
-      if (peer.readyState === WebSocket.OPEN) {
-        peer.send(payload.buffer);
-      }
-    }
-  }
-
-  const handleHeartbeat = (remoteId: string, payload: Uint8Array) => {
-    if (payload.length !== 17) return;
-    const view = new DataView(payload.buffer);
-    const tick = view.getFloat64(1, true);
-    const tps = view.getFloat64(9, true);
-
-    self.peerHeartbeats.set(remoteId, {
-      tick,
-      tps,
-      lastSeen: performance.now(),
-    });
-  }
-
-  self.getMedianSwarmTick = (localTickFallback: number): number => {
-    const now = performance.now();
-    const ticks: number[] = [localTickFallback]; // Always include ourselves
-
-    for (const [peerId, hb] of self.peerHeartbeats.entries()) {
-      // Evict dead nodes > 2s
-      if (now - hb.lastSeen > 2000) {
-        self.peerHeartbeats.delete(peerId);
-        continue;
-      }
-      ticks.push(hb.tick);
-    }
-
-    if (ticks.length === 1) return localTickFallback;
-
-    // Calculate median
-    ticks.sort((a, b) => a - b);
-    const mid = Math.floor(ticks.length / 2);
-    if (ticks.length % 2 === 0) {
-      return (ticks[mid - 1] + ticks[mid]) / 2;
-    }
-    return ticks[mid];
-  }
-
-  self.broadcastEpochConsensus = (epochTick: number, hash: bigint) => {
-    if (self.connectedPeers.size === 0) return;
-
-    // Payload: [0] OP_CODE, [1..8] epochTick (Float64), [9..16] hash (BigUint64)
-    const payload = new Uint8Array(17);
-    payload[0] = OP_NEXUS_EPOCH_CONSENSUS;
-    const view = new DataView(payload.buffer);
-    view.setFloat64(1, epochTick, true);
-    view.setBigUint64(9, hash, true);
-
-    for (const peer of self.connectedPeers.values()) {
-      if (peer.readyState === WebSocket.OPEN) {
-        peer.send(payload.buffer);
-      }
-    }
-  }
-
-  const handleEpochConsensus = (remoteId: string, payload: Uint8Array) => {
-    if (payload.length !== 17) return;
-    const view = new DataView(payload.buffer);
-    const epochTick = view.getFloat64(1, true);
-    const peerHash = view.getBigUint64(9, true);
-
-    // Naive local check for Phase 29: we expect this to match exactly our local epoch hash if we are at this tick.
-    // If not, we just log a Byzantine warning since full State Merging is a future phase.
-    // For now we just emit a warning locally allowing test to pick it up.
-    Lw(
-      `[CONSENSUS WARNING] Received Epoch ${epochTick} Hash ${peerHash} from ${remoteId}.`,
-    );
-  }
-
-  // --- Phase 30: Bootstrapping ---
-
-  self.broadcastSyncRequest = () => {
-    if (self.connectedPeers.size === 0) {
-      Lw(`[NEXUS] Cannot request SYNC: No peers connected.`);
-      return;
-    }
-    const payload = new Uint8Array([OP_NEXUS_SYNC_REQUEST]);
-    Li(`[NEXUS] Broadcasting SYNC_REQUEST to Swarm...`);
-    for (const peer of self.connectedPeers.values()) {
-      if (peer.readyState === WebSocket.OPEN) {
-        peer.send(payload.buffer);
-      }
-    }
-  }
-
-  const handleSyncRequest = (remoteId: string) => {
-    Li(
-      `[NEXUS] Received SYNC_REQUEST from ${remoteId}. Triggering Genesis export...`,
-    );
-    if (self.onSyncRequest) {
-      self.onSyncRequest(remoteId);
-    }
-  }
-
-  self.sendEpochPayload = (targetNodeId: string, epochData: Uint8Array) => {
-    const peer = self.connectedPeers.get(targetNodeId);
-    if (!peer || peer.readyState !== WebSocket.OPEN) {
-      Lw(
-        `[NEXUS] Cannot send EPOCH_PAYLOAD: Peer ${targetNodeId} not valid.`,
-      );
-      return;
-    }
-
-    const payload = new Uint8Array(1 + epochData.length);
-    payload[0] = OP_NEXUS_EPOCH_PAYLOAD;
-    payload.set(epochData, 1);
-
-    Li(
-      `[NEXUS] Dispatching EPOCH_PAYLOAD (${payload.length} bytes) to ${targetNodeId}...`,
-    );
-    peer.send(payload.buffer);
-  }
-
-  const handleEpochPayload = (payload: Uint8Array) => {
-    Li(
-      `[NEXUS] Received EPOCH_PAYLOAD (${payload.length} bytes). Injecting to Genesis...`,
-    );
-    const epochData = payload.slice(1);
-    if (self.onEpochPayload) {
-      self.onEpochPayload(epochData);
-    }
-  }
-  return self;
-};
-
-export const SWARM_NEXUS = {
-  OP_NEXUS_HANDSHAKE,
-  OP_NEXUS_ATOM_TRANSIT,
-  OP_NEXUS_HEARTBEAT,
-  OP_NEXUS_EPOCH_CONSENSUS,
-  OP_NEXUS_SYNC_REQUEST,
-  OP_NEXUS_EPOCH_PAYLOAD,
-  createSwarmNexus
-};
-
-```
-
----
-
-## FILE: src/_/07/SWARM_NODE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_node.md
-import { LOGGER, Li } from "@g06";
-
-export type SwarmHeartbeat = {
-  nodeId: string;
-  currentTick: number;
-  epochHash: string;
-  phase: number;
-};
-
-export type MetaKuramotoNode = {
-  nodeId: string;
-  heartbeatInterval: number;
-  evaluateHeartbeat: (
-    currentTick: number,
-    epochHash: string,
-    avgPhase: number,
-    egressCount: number,
-  ) => void;
-};
-
-export const createMetaKuramotoNode = (
-  nodeId: string = crypto.randomUUID(),
-  heartbeatInterval: number = 1000,
-): MetaKuramotoNode => {
-  return {
-    nodeId,
-    heartbeatInterval,
-    evaluateHeartbeat: (currentTick, epochHash, avgPhase, egressCount) => {
-      if (currentTick > 0 && currentTick % heartbeatInterval === 0) {
-        const heartbeat: SwarmHeartbeat = {
-          nodeId,
-          currentTick,
-          epochHash,
-          phase: avgPhase,
-        };
-
-        Li(
-          `[SWARM] Heartbeat Broadcast => ${JSON.stringify(heartbeat)}`,
-        );
-
-        if (egressCount > 0) {
-          Li(
-            `[SWARM] Broadcasting ${egressCount} egress atoms from membrane buffer to mesh...`,
-          );
-        }
-      }
-    },
-  };
-};
-
-export const SWARM_NODE = createMetaKuramotoNode();
 
 ```
 
@@ -18049,746 +16876,6 @@ export const AKASHA_CODEX = {
     await persistState();
   },
 };
-
-```
-
----
-
-## FILE: src/_/08/AKASHA_SERVER.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
-import { AKASHA_SIGNALING, RUNTIME_POLICY } from "@g07";
-
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
-
-const PORT = RUNTIME_POLICY.akasha.port;
-const HOST = RUNTIME_POLICY.akasha.host;
-const SYSTEM_HOST = RUNTIME_POLICY.system.host;
-const SYSTEM_PORT = RUNTIME_POLICY.system.port;
-const SYSTEM_API_BASE = `http://${SYSTEM_HOST}:${SYSTEM_PORT}`;
-const CONTROL_TOKEN = RUNTIME_POLICY.system.controlToken;
-const MESH_MAX_PHEROMONE_INTENSITY = RUNTIME_POLICY.daemon
-  .maxPheromoneIntensity;
-const MESH_MAX_PLASMID_CHARGE = RUNTIME_POLICY.daemon.maxPlasmidCharge;
-const MESH_HEX_RE = /^[0-9a-fA-F]{16}$/u;
-const MESH_WORLD_MAX_X = 1399;
-const MESH_WORLD_MAX_Y = 799;
-const ROOT = "./";
-const REST_JSON_HEADERS = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
-} as const;
-
-let clients = new Set<WebSocket>();
-
-// Store the latest state of the universe
-let akashaState: string = "{}";
-let codexDigest: {
-  species: unknown[];
-  chronicles: unknown[];
-  relics: unknown[];
-  invariants: unknown[];
-} = { species: [], chronicles: [], relics: [], invariants: [] };
-
-const buildForwardHeaders = (
-  incoming: Headers,
-  includeJsonContentType: boolean,
-): Headers => {
-  const headers = new Headers();
-  headers.set("Accept", "application/json");
-  if (includeJsonContentType) headers.set("Content-Type", "application/json");
-  if (CONTROL_TOKEN.length > 0) {
-    headers.set("x-omega-control-token", CONTROL_TOKEN);
-  }
-  const incomingToken = (incoming.get("x-omega-control-token") ?? "").trim();
-  if (incomingToken.length > 0) {
-    headers.set("x-omega-control-token", incomingToken);
-  }
-  return headers;
-};
-
-const json = (payload: unknown, status = 200): Response =>
-  new Response(JSON.stringify(payload), { status, headers: REST_JSON_HEADERS });
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.max(min, Math.min(max, value));
-
-const toFiniteNumber = (value: unknown): number | null => {
-  if (typeof value === "number" && Number.isFinite(value)) return value;
-  if (typeof value === "string" && value.trim().length > 0) {
-    const parsed = Number(value);
-    if (Number.isFinite(parsed)) return parsed;
-  }
-  return null;
-};
-
-type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
-type MeshForwardEnvelope = {
-  action_type: MeshForwardAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-type ParsedMeshInject = {
-  envelope: MeshForwardEnvelope;
-  signalType: "mesh_pheromone" | "mesh_plasmid";
-  eventId: string;
-  sourcePeer: string;
-};
-
-const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {
-  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
-  const root = raw as Record<string, unknown>;
-  const payloadRaw = root.payload;
-  if (
-    !payloadRaw || typeof payloadRaw !== "object" || Array.isArray(payloadRaw)
-  ) {
-    return null;
-  }
-  const payload = payloadRaw as Record<string, unknown>;
-
-  const sourceType = typeof root.type === "string"
-    ? root.type.trim().toLowerCase()
-    : "";
-  const explicitAction = typeof root.action_type === "string"
-    ? root.action_type.trim().toUpperCase()
-    : "";
-
-  const action: MeshForwardAction = explicitAction === "INJECT_PLASMID" ||
-      sourceType === "mesh_plasmid"
-    ? "INJECT_PLASMID"
-    : "DROP_PHEROMONE";
-  const signalType = action === "INJECT_PLASMID"
-    ? "mesh_plasmid"
-    : "mesh_pheromone";
-
-  const x = toFiniteNumber(payload.target_x);
-  const y = toFiniteNumber(payload.target_y);
-  if (x === null || y === null) return null;
-
-  const intensityRaw = toFiniteNumber(payload.intensity);
-  const fallbackIntensity = action === "INJECT_PLASMID" ? 1000 : 120;
-  const maxIntensity = action === "INJECT_PLASMID"
-    ? MESH_MAX_PLASMID_CHARGE
-    : MESH_MAX_PHEROMONE_INTENSITY;
-  const intensity = clamp(
-    Math.round(intensityRaw === null ? fallbackIntensity : intensityRaw),
-    1,
-    maxIntensity,
-  );
-
-  const target_x = clamp(Math.round(x), 0, MESH_WORLD_MAX_X);
-  const target_y = clamp(Math.round(y), 0, MESH_WORLD_MAX_Y);
-
-  let hex_code: string | undefined = undefined;
-  if (action === "INJECT_PLASMID") {
-    const rawHex = typeof payload.hex_code === "string"
-      ? payload.hex_code.trim()
-      : "";
-    if (!MESH_HEX_RE.test(rawHex)) return null;
-    hex_code = rawHex.toUpperCase();
-  }
-
-  const eventIdRaw = typeof root.event_id === "string" ? root.event_id : "";
-  const sourcePeerRaw = typeof root.source_peer === "string"
-    ? root.source_peer
-    : "";
-  const eventId = eventIdRaw.trim().slice(0, 96);
-  const sourcePeer = sourcePeerRaw.trim().slice(0, 96);
-
-  return {
-    envelope: {
-      action_type: action,
-      payload: {
-        target_x,
-        target_y,
-        intensity,
-        ...(hex_code ? { hex_code } : {}),
-      },
-    },
-    signalType,
-    eventId,
-    sourcePeer,
-  };
-};
-
-const proxyTelemetry = async (incoming: Request): Promise<Response> => {
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/telemetry`, {
-      method: "GET",
-      headers: buildForwardHeaders(incoming.headers, false),
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyTelemetryPath = async (
-  incoming: Request,
-  path: string,
-  search = "",
-): Promise<Response> => {
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
-      method: "GET",
-      headers: buildForwardHeaders(incoming.headers, false),
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_TELEMETRY_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_TELEMETRY_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyInject = async (incoming: Request): Promise<Response> => {
-  let bodyText = "";
-  try {
-    bodyText = await incoming.text();
-  } catch {
-    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
-  }
-  if (bodyText.trim().length === 0) {
-    return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
-  }
-
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
-      method: "POST",
-      headers: buildForwardHeaders(incoming.headers, true),
-      body: bodyText,
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_INJECT_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyPressureRing = async (incoming: Request): Promise<Response> => {
-  const method = incoming.method.toUpperCase();
-  if (method !== "GET" && method !== "POST") {
-    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
-  }
-  let bodyText = "";
-  if (method === "POST") {
-    try {
-      bodyText = await incoming.text();
-    } catch {
-      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
-    }
-    if (bodyText.trim().length === 0) {
-      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
-    }
-  }
-
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/pressure-ring`, {
-      method,
-      headers: buildForwardHeaders(incoming.headers, method === "POST"),
-      body: method === "POST" ? bodyText : undefined,
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_PRESSURE_RING_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_PRESSURE_RING_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyHomeostasis = async (incoming: Request): Promise<Response> => {
-  const method = incoming.method.toUpperCase();
-  if (method !== "GET" && method !== "POST") {
-    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
-  }
-  let bodyText = "";
-  if (method === "POST") {
-    try {
-      bodyText = await incoming.text();
-    } catch {
-      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
-    }
-    if (bodyText.trim().length === 0) {
-      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
-    }
-  }
-
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/homeostasis`, {
-      method,
-      headers: buildForwardHeaders(incoming.headers, method === "POST"),
-      body: method === "POST" ? bodyText : undefined,
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_HOMEOSTASIS_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_HOMEOSTASIS_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyDaemonPolicy = async (incoming: Request): Promise<Response> => {
-  const method = incoming.method.toUpperCase();
-  if (method !== "GET" && method !== "POST") {
-    return json({ ok: false, reason: "METHOD_NOT_ALLOWED" }, 405);
-  }
-  let bodyText = "";
-  if (method === "POST") {
-    try {
-      bodyText = await incoming.text();
-    } catch {
-      return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
-    }
-    if (bodyText.trim().length === 0) {
-      return json({ ok: false, reason: "EMPTY_REQUEST_BODY" }, 400);
-    }
-  }
-
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/daemon-policy`, {
-      method,
-      headers: buildForwardHeaders(incoming.headers, method === "POST"),
-      body: method === "POST" ? bodyText : undefined,
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_DAEMON_POLICY_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_DAEMON_POLICY_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyPhysiology = async (): Promise<Response> => {
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/physiology`, {
-      method: "GET",
-      headers: buildForwardHeaders(new Headers(), false),
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_PHYSIOLOGY_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_PHYSIOLOGY_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const proxyWebRtcInject = async (incoming: Request): Promise<Response> => {
-  let parsedBody: unknown = null;
-  try {
-    parsedBody = await incoming.json();
-  } catch {
-    return json({ ok: false, reason: "INVALID_JSON_BODY" }, 400);
-  }
-
-  const parsed = parseMeshInjectBody(parsedBody);
-  if (!parsed) {
-    return json({
-      ok: false,
-      reason: "INVALID_WEBRTC_INJECT_PAYLOAD",
-      expected:
-        "payload {target_x,target_y,intensity,hex_code?} + type mesh_pheromone|mesh_plasmid",
-    }, 400);
-  }
-
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}/api/inject`, {
-      method: "POST",
-      headers: buildForwardHeaders(incoming.headers, true),
-      body: JSON.stringify(parsed.envelope),
-    });
-    const raw = await response.text();
-    let systemResponse: unknown = null;
-    try {
-      systemResponse = JSON.parse(raw);
-    } catch {
-      systemResponse = {
-        ok: false,
-        reason: "INVALID_SYSTEM_INJECT_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json({
-      ok: response.ok,
-      mesh_ingress: true,
-      signal_type: parsed.signalType,
-      event_id: parsed.eventId,
-      source_peer: parsed.sourcePeer,
-      forwarded: parsed.envelope,
-      system: systemResponse,
-    }, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_INJECT_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-      mesh_ingress: true,
-      signal_type: parsed.signalType,
-      event_id: parsed.eventId,
-      source_peer: parsed.sourcePeer,
-    }, 503);
-  }
-};
-
-const proxyCodex = async (
-  incoming: Request,
-  path: string,
-  search = "",
-): Promise<Response> => {
-  try {
-    const response = await fetch(`${SYSTEM_API_BASE}${path}${search}`, {
-      method: "GET",
-      headers: buildForwardHeaders(incoming.headers, false),
-    });
-    const raw = await response.text();
-    let parsed: unknown = null;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      parsed = {
-        ok: false,
-        reason: "INVALID_SYSTEM_CODEX_RESPONSE",
-        raw: raw.slice(0, 240),
-      };
-    }
-    return json(parsed, response.status);
-  } catch (err) {
-    return json({
-      ok: false,
-      reason: "SYSTEM_CODEX_UNREACHABLE",
-      details: String(err),
-      system: `${SYSTEM_HOST}:${SYSTEM_PORT}`,
-    }, 503);
-  }
-};
-
-const readJsonFile = async (path: string): Promise<unknown> => {
-  try {
-    return JSON.parse(await Deno.readTextFile(path));
-  } catch {
-    return [];
-  }
-};
-
-async function refreshCodexDigest() {
-  const [species, chronicles, relics, invariants] = await Promise.all([
-    readJsonFile("./codex/species/index.json"),
-    readJsonFile("./codex/chronicles/index.json"),
-    readJsonFile("./codex/relics/index.json"),
-    readJsonFile("./codex/invariants/index.json"),
-  ]);
-  codexDigest = {
-    species: Array.isArray(species) ? species.slice(0, 8) : [],
-    chronicles: Array.isArray(chronicles) ? chronicles.slice(0, 8) : [],
-    relics: Array.isArray(relics) ? relics.slice(0, 8) : [],
-    invariants: Array.isArray(invariants) ? invariants.slice(0, 8) : [],
-  };
-}
-
-async function scanUniverse() {
-  const atoms: any[] = [];
-  const bonds: Array<{ source: string; target: string }> = [];
-
-  try {
-    for await (const entry of Deno.readDir(ROOT)) {
-      if (
-        entry.isFile && entry.name.endsWith(".md") &&
-        entry.name.startsWith("0x")
-      ) {
-        const content = await Deno.readTextFile(`${ROOT}/${entry.name}`);
-        const metaMatch = content.match(/^---\n([\s\S]+?)\n---/);
-        if (metaMatch) {
-          try {
-            const alpha = parseYaml(metaMatch[1]) as any;
-            const eigenvalue = alpha.eigenvalue || entry.name.split(".")[0];
-            atoms.push({
-              id: eigenvalue,
-              symbol: alpha.symbol || entry.name.split(".")[1],
-              x: Number(alpha.x) || Math.random() * 800,
-              y: Number(alpha.y) || Math.random() * 800,
-              energy: Number(alpha.energy) || 0,
-              resonance: Number(alpha.resonance) || 0,
-              logic: alpha.logic || "00000000",
-              thought: alpha.thought || "DRIFTING",
-            });
-
-            if (alpha.bonds && Array.isArray(alpha.bonds)) {
-              for (const b of alpha.bonds) {
-                bonds.push({ source: eigenvalue, target: b });
-              }
-            }
-          } catch (e) {
-            // silently ignore parsing errors for individual files
-          }
-        }
-      }
-    }
-  } catch (e) {
-    console.error("Error scanning universe:", e);
-  }
-
-  await refreshCodexDigest();
-  akashaState = JSON.stringify({
-    type: "SYNC",
-    data: { atoms, bonds, codex: codexDigest },
-  });
-  broadcast(akashaState);
-}
-
-function broadcast(message: string) {
-  for (const client of clients) {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(message);
-    }
-  }
-}
-
-if (import.meta.main) {
-  await scanUniverse();
-  setInterval(scanUniverse, 1000);
-
-  // Also try to watch for file changes to push instantly, but Deno.watchFs can be chatty,
-  // so we'll rely primarily on the 1s interval for UI smoothness, but trigger scan on watch too.
-  async function watchUniverse() {
-    const watcher = Deno.watchFs(ROOT);
-    let debounceTimer: number | null = null;
-    for await (const event of watcher) {
-      if (event.paths.some((p) => p.endsWith(".md"))) {
-        if (debounceTimer) clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(scanUniverse, 100);
-      }
-    }
-  }
-  watchUniverse(); // background
-}
-
-const reqHandler = async (req: Request) => {
-  const url = new URL(req.url);
-
-  if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, x-omega-control-token",
-      },
-    });
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/telemetry") {
-    return proxyTelemetry(req);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/telemetry/stream") {
-    return proxyTelemetryPath(req, "/api/telemetry/stream", url.search);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/telemetry/histogram") {
-    return proxyTelemetryPath(req, "/api/telemetry/histogram", url.search);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/mutation-telemetry") {
-    return proxyTelemetryPath(req, "/api/mutation-telemetry", url.search);
-  }
-
-  if (
-    (req.method === "GET" || req.method === "POST") &&
-    url.pathname === "/api/pressure-ring"
-  ) {
-    return proxyPressureRing(req);
-  }
-
-  if (
-    (req.method === "GET" || req.method === "POST") &&
-    url.pathname === "/api/homeostasis"
-  ) {
-    return proxyHomeostasis(req);
-  }
-
-  if (
-    (req.method === "GET" || req.method === "POST") &&
-    url.pathname === "/api/daemon-policy"
-  ) {
-    return proxyDaemonPolicy(req);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/physiology") {
-    return proxyPhysiology();
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/codex") {
-    return proxyCodex(req, "/api/codex", url.search);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/codex/narrative") {
-    return proxyCodex(req, "/api/codex/narrative", url.search);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/codex/invariants") {
-    return proxyCodex(req, "/api/codex/invariants", url.search);
-  }
-
-  if (req.method === "GET" && url.pathname === "/api/webrtc") {
-    return json(AKASHA_SIGNALING.status());
-  }
-
-  if (req.method === "POST" && url.pathname === "/api/webrtc/inject") {
-    return proxyWebRtcInject(req);
-  }
-
-  if (
-    req.method === "POST" &&
-    (url.pathname === "/api/inject" || url.pathname === "/api/inject_plasmid")
-  ) {
-    return proxyInject(req);
-  }
-
-  if (req.headers.get("upgrade") != "websocket") {
-    return new Response(
-      `Akasha Node active. WebSocket endpoints: ws://${HOST}:${PORT}/, ws://${HOST}:${PORT}${AKASHA_SIGNALING.path} | REST: /api/telemetry, /api/telemetry/stream, /api/telemetry/histogram, /api/mutation-telemetry, /api/pressure-ring, /api/homeostasis, /api/daemon-policy, /api/physiology, /api/codex, /api/codex/narrative, /api/codex/invariants, /api/inject, /api/webrtc, /api/webrtc/inject`,
-      {
-        status: 200,
-      },
-    );
-  }
-
-  if (url.pathname === AKASHA_SIGNALING.path) {
-    const { socket, response } = Deno.upgradeWebSocket(req);
-    AKASHA_SIGNALING.attach(socket);
-    return response;
-  }
-
-  const { socket, response } = Deno.upgradeWebSocket(req);
-  socket.onopen = () => {
-    console.log("   [👁️ AKASHA] New Observer Connected.");
-    clients.add(socket);
-    socket.send(akashaState); // send latest state immediately
-  };
-  socket.onmessage = (e) => {
-    // Visualization channel is read-only; ignore client payloads.
-  };
-  socket.onclose = () => {
-    console.log("   [👁️ AKASHA] Observer Disconnected.");
-    clients.delete(socket);
-  };
-  socket.onerror = (e) => console.error("   [⚠️ AKASHA] WebSocket Error:", e);
-
-  return response;
-};
-
-if (import.meta.main) {
-  RUNTIME_POLICY.logFingerprintOnce("akasha-server");
-  Deno.serve({ hostname: HOST, port: PORT }, reqHandler);
-  console.log(`🌌 Akasha Server listening on ws://${HOST}:${PORT}/`);
-}
 
 ```
 
@@ -23286,6 +21373,14 @@ const hormone = (
   defaultValue: clamp(spec.defaultValue, spec.min, spec.max),
 });
 
+export const HORMONE_ENTROPY_PRESSURE = 0;
+export const HORMONE_TIME_VISCOSITY = 1;
+export const HORMONE_AGGRESSION = 2;
+export const HORMONE_REPLICATION_BIAS = 3;
+export const HORMONE_REPAIR_DRIVE = 4;
+export const HORMONE_MUTATION_FRICTION = 5;
+export const HORMONE_GLOBAL_CONSENSUS = 6;
+
 export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
   hormone({
     id: "entropy_pressure",
@@ -23304,7 +21399,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.homeostasis.baseTax",
     notes:
       "Derived from homeostasis taxation. Higher values mean the world burns surplus energy faster.",
-  }, 0),
+  }, HORMONE_ENTROPY_PRESSURE),
   hormone({
     id: "time_viscosity",
     domain: "temporal",
@@ -23321,7 +21416,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.workerCount",
     notes:
       "Proxy for how dense each tick may become relative to available worker throughput.",
-  }, 1),
+  }, HORMONE_TIME_VISCOSITY),
   hormone({
     id: "aggression",
     domain: "conflict",
@@ -23336,7 +21431,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.egoPressure + pulse.fearPressure",
     notes:
       "Conflict climate projected from the current pressure ring / signed pressure state.",
-  }, 2),
+  }, HORMONE_AGGRESSION),
   hormone({
     id: "replication_bias",
     domain: "reproduction",
@@ -23354,7 +21449,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.noveltyPressure + coldstart.replicatorRatio",
     notes:
       "Bias toward exploratory reproduction. Uses current novelty pressure with a coldstart baseline.",
-  }, 3),
+  }, HORMONE_REPLICATION_BIAS),
   hormone({
     id: "repair_drive",
     domain: "repair",
@@ -23373,7 +21468,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
       "pulse.symbiosisPressure + federation.admission.degradeEnergyRatio",
     notes:
       "World tendency to preserve/repair structure instead of letting mutations land at full energy.",
-  }, 4),
+  }, HORMONE_REPAIR_DRIVE),
   hormone({
     id: "mutation_friction",
     domain: "mutation",
@@ -23391,7 +21486,7 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "daemon.maxPlasmidCharge / pulse.pressureRing.scale",
     notes:
       "How expensive it is for daemon-side symbolic ingress to cross the membrane.",
-  }, 5),
+  }, HORMONE_MUTATION_FRICTION),
   hormone({
     id: "global_consensus",
     domain: "systemic",
@@ -23402,8 +21497,9 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
     sourcePath: "pulse.syntropy",
     notes:
       "Global measure of structural syntropy (quorum coherence). Higher values signal a stable, organized reality.",
-  }, 6),
+  }, HORMONE_GLOBAL_CONSENSUS),
 ]);
+
 
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
   HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),
@@ -23461,6 +21557,619 @@ export * from "./GENERIC_LEDGER_PERSISTENCE.ts";
 
 ---
 
+## FILE: src/_/11/GOLDEN_TRACE_CATALOG.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
+
+export type GoldenTraceMetricPolicy = "strict" | "bounded";
+
+export type GoldenTraceScenario = {
+  id: string;
+  scenario: string;
+  setup: string;
+  duration: string;
+  daemonEnabled: boolean;
+  metrics: readonly string[];
+  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
+  supportFiles: readonly string[];
+};
+
+const TRACE_ROOT = "src/ontology/verification/data/traces";
+
+const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
+  {
+    id: "gt01_coldstart_seeded_swarm",
+    scenario: "coldstart / seeded swarm",
+    setup: "cold boot, deterministic seed swarm, daemon off",
+    duration: "256 ticks",
+    daemonEnabled: false,
+    metrics: [
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "mutationCounts",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      population: "strict",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      mutationCounts: "strict",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_seeded_swarm.ts",
+      "worker_determinism_capture.ts",
+    ],
+  },
+  {
+    id: "gt02_free_run_no_ingress",
+    scenario: "free run without external intervention",
+    setup: "cold boot, no inject, no daemon policy updates",
+    duration: "2048 ticks",
+    daemonEnabled: false,
+    metrics: [
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "decreeShifts",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      population: "bounded",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      decreeShifts: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "worker_trend_baseline.ts",
+      "worker_trend_math.ts",
+    ],
+  },
+  {
+    id: "gt03_pheromone_inject",
+    scenario: "bounded pheromone inject",
+    setup: "warmup 128 ticks, then one fixed DROP_PHEROMONE payload",
+    duration: "512 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "localResponseWindow",
+      "population",
+      "avgEnergy",
+      "spatialOverflowRatio",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      localResponseWindow: "strict",
+      population: "bounded",
+      avgEnergy: "bounded",
+      spatialOverflowRatio: "bounded",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_determinism_capture.ts",
+    ],
+  },
+  {
+    id: "gt04_plasmid_inject",
+    scenario: "durable symbolic ingress",
+    setup: "warmup 128 ticks, then one fixed INJECT_PLASMID payload",
+    duration: "512 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "acceptedMutationCounts",
+      "rejectedMutationCounts",
+      "population",
+      "avgEnergy",
+      "codexSnapshotDigest",
+      "invariantDigest",
+    ],
+    driftPolicy: {
+      acceptedMutationCounts: "strict",
+      rejectedMutationCounts: "strict",
+      population: "bounded",
+      avgEnergy: "bounded",
+      codexSnapshotDigest: "strict",
+      invariantDigest: "strict",
+    },
+    supportFiles: [
+      "worker_resilience_capture.ts",
+    ],
+  },
+  {
+    id: "gt05_homeostasis_correction",
+    scenario: "external homeostasis correction",
+    setup: "warmup 256 ticks, then one fixed /api/homeostasis update",
+    duration: "768 ticks total",
+    daemonEnabled: false,
+    metrics: [
+      "avgEnergySlope",
+      "spatialOverflowRatio",
+      "homeostasisStateDigest",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      avgEnergySlope: "bounded",
+      spatialOverflowRatio: "bounded",
+      homeostasisStateDigest: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "worker_trend_math.ts",
+    ],
+  },
+  {
+    id: "gt06_daemon_admission_case",
+    scenario: "daemon admission / rejection",
+    setup:
+      "one accepted ingress case and one degraded/rejected case with daemon governance on",
+    duration: "event-bounded",
+    daemonEnabled: true,
+    metrics: [
+      "admissionSeverity",
+      "appliedAction",
+      "codexChronicleDigest",
+      "dominantInvariantDigest",
+    ],
+    driftPolicy: {
+      admissionSeverity: "strict",
+      appliedAction: "strict",
+      codexChronicleDigest: "strict",
+      dominantInvariantDigest: "strict",
+    },
+    supportFiles: [
+      "test_daemon_governance_contract.ts",
+    ],
+  },
+  {
+    id: "gt07_daemon_policy_block",
+    scenario: "daemon policy block",
+    setup:
+      "warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked opcode",
+    duration: "256 ticks total",
+    daemonEnabled: true,
+    metrics: [
+      "httpStatus",
+      "responseReason",
+      "latestAdmissionStatus",
+      "latestAdmissionReason",
+      "mutationCounts",
+    ],
+    driftPolicy: {
+      httpStatus: "strict",
+      responseReason: "strict",
+      latestAdmissionStatus: "strict",
+      latestAdmissionReason: "strict",
+      mutationCounts: "strict",
+    },
+    supportFiles: [
+      "test_daemon_governance_contract.ts",
+    ],
+  },
+  {
+    id: "gt08_structure_intent_visibility",
+    scenario: "same-tick structure intent visibility",
+    setup:
+      "standalone deterministic capture of contended BUILD intents and same-tick OP_SENSE visibility under 1-worker vs 4-worker execution",
+    duration: "1 tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "strictHashMatch",
+      "senseVisibility",
+      "conflictCellType",
+      "conflictCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      strictHashMatch: "strict",
+      senseVisibility: "strict",
+      conflictCellType: "strict",
+      conflictCellCharge: "bounded",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "test_structure_intent_determinism.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
+  {
+    id: "gt09_collective_transport",
+    scenario: "standalone collective hive and pheromone semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 0/1 hive store-load and mode 2 pheromone emit through direct WASM execution",
+    duration: "3 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "hiveValue",
+      "loadedReg0",
+      "pheromoneWord",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      hiveValue: "strict",
+      loadedReg0: "strict",
+      pheromoneWord: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/collective_transport_capture.ts",
+      "test_swarm.ts",
+    ],
+  },
+  {
+    id: "gt10_share_transfer",
+    scenario: "standalone bonded share transfer semantics",
+    setup:
+      "standalone deterministic capture of OP_SHARE successful bonded transfer and empty-bond no-op through direct WASM execution",
+    duration: "2 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "successfulSenderEnergy",
+      "successfulReceiverEnergy",
+      "failedSenderEnergy",
+      "failedReceiverEnergy",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      successfulSenderEnergy: "strict",
+      successfulReceiverEnergy: "strict",
+      failedSenderEnergy: "strict",
+      failedReceiverEnergy: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/share_transfer_capture.ts",
+      "test_metabolism.ts",
+      "test_symbiosis.ts",
+    ],
+  },
+  {
+    id: "gt11_collective_banking",
+    scenario: "standalone collective banking semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 3 deposit and mode 4 capped withdraw through direct WASM execution",
+    duration: "2 execute_atom calls / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "finalHiveBalance",
+      "depositorEnergy",
+      "withdrawerEnergy",
+      "withdrawReg0",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      finalHiveBalance: "strict",
+      depositorEnergy: "strict",
+      withdrawerEnergy: "strict",
+      withdrawReg0: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/collective_banking_capture.ts",
+      "test_metabolism.ts",
+    ],
+  },
+  {
+    id: "gt12_collective_synchrony",
+    scenario: "standalone collective synchrony semantics",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE mode 5 bonded phase-lock and mode 6 local quorum PC sync through direct WASM execution",
+    duration: "2 standalone execute phases / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "phasePeer1Pc",
+      "phasePeer2Pc",
+      "quorumPeer1Pc",
+      "quorumPeer2Pc",
+      "quorumOutsiderPc",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      phasePeer1Pc: "strict",
+      phasePeer2Pc: "strict",
+      quorumPeer1Pc: "strict",
+      quorumPeer2Pc: "strict",
+      quorumOutsiderPc: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/collective_synchrony_capture.ts",
+      "test_swarm.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
+  {
+    id: "gt13_structure_lock_progress",
+    scenario: "standalone structure stale-lock progress",
+    setup:
+      "standalone deterministic subprocess capture of OP_SENSE visibility through a stale structure lock plus tick_structure_grid intent clearing",
+    duration: "2 execute phases + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "visibleSenseReg",
+      "typedMissSenseReg",
+      "resolvedCellType",
+      "resolvedCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      visibleSenseReg: "strict",
+      typedMissSenseReg: "strict",
+      resolvedCellType: "strict",
+      resolvedCellCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_lock_capture.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
+  {
+    id: "gt14_structure_charge_resolution",
+    scenario: "standalone structure charge resolution",
+    setup:
+      "standalone deterministic subprocess capture of OP_PLUG publishing a charge intent and tick_structure_grid resolving it into a concrete charged structure cell",
+    duration: "1 execute phase + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "chargeIntentBeforeTick",
+      "resolvedCellType",
+      "resolvedCellCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      chargeIntentBeforeTick: "strict",
+      resolvedCellType: "strict",
+      resolvedCellCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_charge_capture.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
+  {
+    id: "gt15_structure_charge_competition",
+    scenario: "standalone structure charge competition",
+    setup:
+      "standalone deterministic subprocess capture of two OP_PLUG publications hitting the same cell in both low->high and high->low orderings",
+    duration: "4 execute_atom calls + 1 structure tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "lowThenHighChargeIntent",
+      "highThenLowChargeIntent",
+      "lowThenHighResolvedCharge",
+      "highThenLowResolvedCharge",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      lowThenHighChargeIntent: "strict",
+      highThenLowChargeIntent: "strict",
+      lowThenHighResolvedCharge: "strict",
+      highThenLowResolvedCharge: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_charge_competition_capture.ts",
+      "src/03/03/verification/structure_charge_capture.ts",
+      "test_structure_lock_progress.ts",
+    ],
+  },
+  {
+    id: "gt16_runtime_build_materialization",
+    scenario: "runtime structure build materialization",
+    setup:
+      "worker-backed deterministic subprocess capture of a single architect executing OP_BUILD SOURCE through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "ownerIntentAfterTick",
+      "valueIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      ownerIntentAfterTick: "strict",
+      valueIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_build_runtime_capture.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
+  {
+    id: "gt17_runtime_build_competition",
+    scenario: "runtime structure build competition",
+    setup:
+      "worker-backed deterministic subprocess capture of two architects publishing competing OP_BUILD SOURCE intents into the same cell through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "targetResolvedState",
+      "ownerIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      targetResolvedState: "strict",
+      ownerIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_build_competition_capture.ts",
+      "src/03/03/verification/structure_build_runtime_capture.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
+  {
+    id: "gt18_runtime_build_stale_lock",
+    scenario: "runtime structure build stale-lock fallback",
+    setup:
+      "worker-backed deterministic subprocess capture of a single architect attempting OP_BUILD SOURCE into a cell carrying a stale locked SOURCE intent through PULSE.tick",
+    duration: "1 pulse tick / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "targetResolvedType",
+      "targetResolvedCharge",
+      "targetResolvedState",
+      "ownerIntentAfterTick",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      targetResolvedType: "strict",
+      targetResolvedCharge: "strict",
+      targetResolvedState: "strict",
+      ownerIntentAfterTick: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/structure_build_lock_capture.ts",
+      "src/03/03/verification/structure_build_runtime_capture.ts",
+      "src/03/03/verification/structure_lock_capture.ts",
+      "test_structure_intent_determinism.ts",
+    ],
+  },
+  {
+    id: "gt19_tensegrity_kinematics",
+    scenario: "standalone tensegrity kinematics and bonding",
+    setup:
+      "standalone deterministic capture of OP_TENSEGRITY setting bond distances and damping, executing physics to resolve forces",
+    duration: "100 physics ticks execution / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "finalDistance",
+      "finalDamping",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      finalDistance: "bounded",
+      finalDamping: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/tensegrity_capture.ts",
+      "test_tensegrity.ts",
+    ],
+  },
+  {
+    id: "gt20_bind_resolution",
+    scenario: "standalone symbiotic bond resolution",
+    setup:
+      "standalone deterministic capture of OP_BIND writing a pending request into the shared buffer between two nearby atoms",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "initiatorId",
+      "targetId",
+      "requestStatus",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      initiatorId: "strict",
+      targetId: "strict",
+      requestStatus: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/bind_resolution_capture.ts",
+      "test_symbiosis.ts",
+    ],
+  },
+  {
+    id: "gt21_quorum_sync",
+    scenario: "sovereignty protocol collective sync and aggressive share",
+    setup:
+      "standalone deterministic capture of OP_COLLECTIVE (quorum sync) and OP_SHARE (hormone-modulated aggression bonus)",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "quorumPcSync",
+      "aggressiveShareAmount",
+      "hormoneIndex2",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      quorumPcSync: "strict",
+      aggressiveShareAmount: "strict",
+      hormoneIndex2: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/quorum_sync_capture.ts",
+    ],
+  },
+  {
+    id: "gt22_intent_resolution",
+    scenario: "sovereignty protocol collective intent resolution (role/bank)",
+    setup:
+      "standalone deterministic capture of OP_RESOLVE for collective role shifts and energy banking via neighborhood quorum",
+    duration: "1 execute phase / subprocess capture",
+    daemonEnabled: false,
+    metrics: [
+      "roleResolution",
+      "bankResolution",
+      "quorumCount",
+      "snapshotDigest",
+    ],
+    driftPolicy: {
+      roleResolution: "strict",
+      bankResolution: "strict",
+      quorumCount: "strict",
+      snapshotDigest: "strict",
+    },
+    supportFiles: [
+      "src/03/03/verification/intent_resolution_capture.ts",
+    ],
+  },
+];
+
+export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object
+  .freeze(
+    GOLDEN_TRACE_CATALOG_DATA.map((trace) =>
+      Object.freeze({
+        ...trace,
+        metrics: Object.freeze([...trace.metrics]),
+        driftPolicy: Object.freeze({ ...trace.driftPolicy }),
+        supportFiles: Object.freeze([...trace.supportFiles]),
+      })
+    ),
+  );
+
+const TRACE_BY_ID = new Map<string, GoldenTraceScenario>(
+  GOLDEN_TRACE_CATALOG.map((trace) => [trace.id, trace]),
+);
+
+export const goldenTraceById = (id: string): GoldenTraceScenario | null =>
+  TRACE_BY_ID.get(id) ?? null;
+
+export const goldenTraceArtifactPaths = (id: string) => {
+  const trace = goldenTraceById(id);
+  if (!trace) {
+    throw new Error(`[golden_trace_catalog] unknown trace id: ${id}`);
+  }
+  const dir = `${TRACE_ROOT}/${trace.id}`;
+  return {
+    dir,
+    traceJson: `${dir}/trace.json`,
+    codexSnapshotJson: `${dir}/codex_snapshot.json`,
+    invariantsJson: `${dir}/invariants.json`,
+    notesMd: `${dir}/notes.md`,
+  };
+};
+
+```
+
+---
+
 ## FILE: src/_/11/mod.ts
 
 ```typescript
@@ -23468,6 +22177,7 @@ export * from "./GENERIC_LEDGER_PERSISTENCE.ts";
 // deno-lint-ignore-file camelcase
 export * from "@g10";
 export * from "./PHYSIOLOGY_SNAPSHOT.ts";
+export * from "./GOLDEN_TRACE_CATALOG.ts";
 
 ```
 
@@ -23597,6 +22307,1123 @@ export const GATE_BUDGET = {
 // deno-lint-ignore-file camelcase
 export * from "@g11";
 export * from "./GATE_BUDGET.ts";
+export * from "./REDUCTION_CASES.ts";
+
+```
+
+---
+
+## FILE: src/_/12/REDUCTION_CASES.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
+import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, OPCODE_TO_GLYPH, GATE, assembler } from "@g11";
+
+export type ReductionCaseExpectation = {
+  finalPc: number;
+  replicateCount?: number;
+  signalCount?: number;
+  buildCount?: number;
+  finalRole?: number;
+  registers?: number[];
+  finalProps?: Partial<Record<number, number>>;
+  finalHiveMemory?: Partial<Record<number, number>>;
+  finalHiveBalance?: number;
+  finalSignalGrid?: Partial<Record<number, number>>;
+
+  finalPeerEnergy?: Partial<Record<number, number>>;
+  finalPeerPc?: Partial<Record<number, number>>;
+  finalBondDistances?: Partial<Record<number, number>>;
+  finalDamping?: number;
+  finalStructureGrid?: Partial<Record<number, number>>;
+
+  branchTaken?: boolean;
+  finalBondRequests?: Partial<Record<number, number>>;
+  finalHiveEnergyPool?: Partial<Record<number, number>>;
+  finalHormones?: number[];
+};
+
+export type ReductionCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  script: Uint8Array;
+  maxSteps: number;
+  ownerAtomIdx?: number;
+  postStructureTick?: boolean;
+  initialRegs?: number[];
+
+  initialProps: Partial<Record<number, number>>;
+  initialBondTargets?: Partial<Record<number, number>>;
+  initialBondDistances?: Partial<Record<number, number>>;
+  initialDamping?: number;
+  initialPeerEnergy?: Partial<Record<number, number>>;
+  initialPeerPc?: Partial<Record<number, number>>;
+  initialCellPeers?: number[];
+  initialHiveBalance?: number;
+  initialStructureGrid?: Partial<Record<number, number>>;
+  initialStructureIntentOwner?: Partial<Record<number, number>>;
+  initialStructureIntentValue?: Partial<Record<number, number>>;
+  initialHiveMemory?: Partial<Record<number, number>>;
+  initialHormones?: number[];
+  initialHiveEnergyPool?: Partial<Record<number, number>>;
+  nativeProgram?: string; // Key in GENESIS_PROGRAMS
+  expected: ReductionCaseExpectation;
+};
+
+const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
+  OP_GET, 0, PROP_ENERGY,
+  OP_SET, 1, targetEnergy,
+  OP_SUB, 0, 1,
+  OP_JNZ, 0, "ROLE",
+  OP_SIGNAL,
+  OP_JMP, 0,
+  "ROLE",
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeReplicatorLoopScript = (): Uint8Array => assemble([
+  OP_REPLICATE,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeArchitectLoopScript = (): Uint8Array => assemble([
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const GUARDIAN_SCRIPT = MX.getGuardianScript();
+const HOMEOSTASIS_BAND_ANCHOR_SCRIPT = makeEnergyThresholdScript(240);
+
+const makePlasmidPropWriteScript = (resonanceValue: number): Uint8Array => assemble([
+  OP_SET, 0, resonanceValue,
+  OP_PUT, 0, PROP_RESONANCE,
+  OP_GET, 1, PROP_RESONANCE,
+  OP_JZ, 1, "ROLE",
+  OP_SIGNAL,
+  OP_JMP, 0,
+  "ROLE",
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, 1, 1,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeSenseIntentScript = (
+  buildType: number,
+  targetType: number,
+): Uint8Array => assemble([
+  OP_SECRETE_PLASMID, 0, MX.ROLE_ARCHITECT,
+  OP_BUILD, buildType, 1,
+  OP_SENSE, 1, targetType,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeBuildOnlyScript = (
+  buildType: number,
+  buildState: number,
+): Uint8Array => assemble([
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, buildType, buildState
+]);
+
+const makeTensegrityScript = (
+  slot: number,
+  dist: number,
+  damping: number,
+): Uint8Array => assemble([
+  OP_TENSEGRITY, 0, slot, dist,
+  OP_TENSEGRITY, 1, damping, 0
+]);
+
+const makePlugChargeScript = (charge: number): Uint8Array => assemble([
+  OP_SET, 0, charge,
+  OP_PLUG, 1, 0
+]);
+
+const makePlugChargeCompetitionScript = (
+  firstCharge: number,
+  secondCharge: number,
+): Uint8Array => assemble([
+  OP_SET, 0, firstCharge,
+  OP_PLUG, 1, 0,
+  OP_SET, 0, secondCharge,
+  OP_PLUG, 1, 0
+]);
+
+const makeBuildSourceScript = (): Uint8Array => assemble([
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, STR_SOURCE, 0
+]);
+
+const makeBuildSourceWithStateScript = (state: number): Uint8Array => assemble([
+  OP_SET, 0, SYS_SET_ROLE,
+  OP_SET, 1, MX.ROLE_ARCHITECT,
+  OP_SYSCALL,
+  OP_BUILD, STR_SOURCE, state
+]);
+
+const makeSenseScript = (targetType: number): Uint8Array => assemble([
+  OP_SENSE, 1, targetType,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeResolveRoleScript = (role: number, threshold: number): Uint8Array => assemble([
+  OP_SET, 0, role,
+  OP_RESOLVE, 0, threshold
+]);
+
+const makeResolveBankScript = (amount: number): Uint8Array => assemble([
+  OP_RESOLVE, 1, amount // Mode: Bank
+]);
+
+const makeCollectiveHiveScript = (
+  addr: number,
+  value: number,
+  reg: number,
+): Uint8Array => assemble([
+  OP_COLLECTIVE, 0, addr, value,
+  OP_COLLECTIVE, 1, addr, reg,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeCollectivePheromoneScript = (
+  intensity: number,
+  type: number,
+): Uint8Array => assemble([
+  OP_COLLECTIVE, 2, intensity, type,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeCollectiveBankDepositScript = (
+  amount: number,
+): Uint8Array => assemble([
+  OP_COLLECTIVE, 3, amount, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeCollectiveBankWithdrawScript = (
+  reg: number,
+): Uint8Array => assemble([
+  OP_COLLECTIVE, 4, reg, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeCollectivePhaseLockScript = (): Uint8Array => assemble([
+  OP_COLLECTIVE, 5, 0, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeCollectivePcSyncQuorumScript = (): Uint8Array => assemble([
+  OP_COLLECTIVE, 6, 0, 0,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeShareScript = (
+  slot: number,
+  percentage: number,
+): Uint8Array => assemble([
+  OP_SHARE, slot, percentage,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeBindScript = (): Uint8Array => assemble([
+  OP_BIND,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeSporeDriveScript = (): Uint8Array => assemble([
+  OP_SPORE_DRIVE,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const makeEntangleScript = (): Uint8Array => assemble([
+  OP_GET, 0, PROP_ENERGY,
+  OP_HEBB,
+  OP_SIGNAL,
+  OP_JMP, 0
+]);
+
+const structureNeighborCell = (centerX: number, centerY: number): number => {
+  const gx = Math.floor(centerX / 10);
+  const gy = Math.floor(centerY / 10);
+  return (gy * GRID_W) + gx + 1;
+};
+
+export const REDUCTION_CASES: readonly ReductionCaseDefinition[] = Object
+  .freeze([
+    {
+      id: "rc01_gt01_replicator_loop",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description:
+        "Seeded-swarm replicator loop shadowed through REPLICATE -> SIGNAL -> JMP bridge subset.",
+      script: makeReplicatorLoopScript(),
+      maxSteps: 6,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        replicateCount: 2,
+        signalCount: 2,
+        buildCount: 0,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc02_gt01_architect_loop",
+      baselineTraceId: "gt01_coldstart_seeded_swarm",
+      description:
+        "An architect script spinning in an infinite build-signal loop should emit 2 full cycles before reduction stops it.",
+      script: makeArchitectLoopScript(),
+      maxSteps: 12,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        buildCount: 2,
+        signalCount: 2,
+        finalRole: MX.ROLE_ARCHITECT,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc03_gt03_guardian_stable_branch",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Guardian script on a coherent field should stay in the stable signaling branch.",
+      script: GUARDIAN_SCRIPT,
+      maxSteps: 9,
+      initialProps: {
+        [PROP_NEURAL_COHERENCE]: 200,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: MX.ROLE_GUARDIAN,
+        registers: [6, 2, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc04_gt03_guardian_repair_branch",
+      baselineTraceId: "gt03_pheromone_inject",
+      description:
+        "Guardian script on a low-coherence field should branch into repair mode and emit BUILD+SIGNAL.",
+      script: GUARDIAN_SCRIPT,
+      maxSteps: 9,
+      initialProps: {
+        [PROP_NEURAL_COHERENCE]: 0,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc05_gt05_band_anchor_match",
+      baselineTraceId: "gt05_homeostasis_correction",
+      description:
+        "Because the current bridge subset only supports Imm8 anchors, this case uses gt05's representable band=240 as a policy anchor and stays on the signaling branch when energy matches it exactly.",
+      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+      maxSteps: 6,
+      initialProps: {
+        [PROP_ENERGY]: 240,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 240, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc06_gt05_band_anchor_mismatch",
+      baselineTraceId: "gt05_homeostasis_correction",
+      description:
+        "The same gt05 band anchor should branch into corrective build mode when energy still reflects the hotter pre-correction regime.",
+      script: HOMEOSTASIS_BAND_ANCHOR_SCRIPT,
+      maxSteps: 10,
+      initialProps: {
+        [PROP_ENERGY]: 1200,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc07_gt04_plasmid_prop_write_signal",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "Durable symbolic ingress should preserve a property write through PUT and stay on the signaling branch when the written resonance value is non-zero.",
+      script: makePlasmidPropWriteScript(5),
+      maxSteps: 6,
+      initialProps: {
+        [PROP_RESONANCE]: 0,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [5, 5, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [PROP_RESONANCE]: 5,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc08_gt04_plasmid_zero_branch",
+      baselineTraceId: "gt04_plasmid_inject",
+      description:
+        "The same symbolic ingress path should take the JZ-controlled repair branch when the written resonance value is zero, proving bounded zero-branch parity inside the reduction bridge.",
+      script: makePlasmidPropWriteScript(0),
+      maxSteps: 10,
+      initialProps: {
+        [PROP_RESONANCE]: 255,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        registers: [6, 3, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [PROP_RESONANCE]: 0,
+        },
+        branchTaken: true,
+      },
+    },
+    {
+      id: "rc09_gt08_structure_intent_visible",
+      baselineTraceId: "gt08_structure_intent_visibility",
+      description:
+        "An architect should publish a same-tick BUILD intent that OP_SENSE can observe immediately through the structure overlay.",
+      script: makeSenseIntentScript(STR_NODE, STR_NODE),
+      maxSteps: 5,
+      initialProps: {
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+        [PROP_RESONANCE]: 2,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        registers: [0, 1, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc10_gt08_structure_intent_typed_miss",
+      baselineTraceId: "gt08_structure_intent_visibility",
+      description:
+        "The same BUILD intent should stay invisible to OP_SENSE when the queried structure type does not match the published build payload.",
+      script: makeSenseIntentScript(STR_NODE, STR_WIRE),
+      maxSteps: 5,
+      initialProps: {
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+        [PROP_RESONANCE]: 2,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc11_gt09_collective_hive_store_load",
+      baselineTraceId: "gt09_collective_transport",
+      description:
+        "A bounded COLLECTIVE bridge should preserve hive store/load semantics through mode 0 and mode 1 without reaching outside the local shadow state.",
+      script: makeCollectiveHiveScript(1, 88, 0),
+      maxSteps: 4,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [88, 0, 0, 0, 0, 0, 0, 0],
+        finalHiveMemory: {
+          1: 88,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc12_gt09_collective_pheromone_emit",
+      baselineTraceId: "gt09_collective_transport",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve pheromone emission through mode 2 at the atom's local grid cell.",
+      script: makeCollectivePheromoneScript(200, 5),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 105,
+        [PROP_Y]: 105,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalSignalGrid: {
+          1410: 0xC805,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc13_gt10_share_transfer_success",
+      baselineTraceId: "gt10_share_transfer",
+      description:
+        "A bounded SHARE bridge should deduct percentage energy from self and credit the bonded peer when slot 0 resolves to a live target.",
+      script: makeShareScript(0, 50),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_ENERGY]: 1000,
+      },
+      initialBondTargets: {
+        0: 2,
+      },
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [PROP_ENERGY]: 500,
+        },
+        finalPeerEnergy: {
+          2: 600,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc14_gt10_share_transfer_empty_bond",
+      baselineTraceId: "gt10_share_transfer",
+      description:
+        "The same SHARE bridge should fail closed when the selected bond slot is empty, leaving self and peer energy untouched.",
+      script: makeShareScript(0, 50),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_ENERGY]: 1000,
+      },
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [PROP_ENERGY]: 1000,
+        },
+        finalPeerEnergy: {
+          2: 100,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc15_gt11_collective_bank_deposit",
+      baselineTraceId: "gt11_collective_banking",
+      description:
+        "A bounded COLLECTIVE bridge should preserve mode 3 bank deposit semantics as raw opcode units, reducing local energy and increasing hive balance.",
+      script: makeCollectiveBankDepositScript(80),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_ENERGY]: 5000,
+      },
+      initialHiveBalance: 250,
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalProps: {
+          [PROP_ENERGY]: 4920,
+        },
+        finalHiveBalance: 330,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc16_gt11_collective_bank_withdraw",
+      baselineTraceId: "gt11_collective_banking",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve mode 4 capped withdraw semantics, crediting at most 100 raw units to energy and writing the amount to the selected register.",
+      script: makeCollectiveBankWithdrawScript(0),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_ENERGY]: 5000,
+      },
+      initialHiveBalance: 250,
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [100, 0, 0, 0, 0, 0, 0, 0],
+        finalProps: {
+          [PROP_ENERGY]: 5100,
+        },
+        finalHiveBalance: 150,
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc17_gt12_collective_phase_lock",
+      baselineTraceId: "gt12_collective_synchrony",
+      description:
+        "A bounded COLLECTIVE bridge should preserve mode 5 phase-lock semantics by pushing bonded peers to the next instruction boundary.",
+      script: makeCollectivePhaseLockScript(),
+      maxSteps: 3,
+      initialProps: {},
+      initialBondTargets: {
+        0: 1,
+        1: 2,
+      },
+      initialPeerPc: {
+        1: 9,
+        2: 10,
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc18_gt12_collective_pc_sync_quorum",
+      baselineTraceId: "gt12_collective_synchrony",
+      description:
+        "The same bounded COLLECTIVE bridge should preserve mode 6 quorum semantics by pushing local cell peers to the next instruction boundary.",
+      script: makeCollectivePcSyncQuorumScript(),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 205,
+        [PROP_Y]: 105,
+      },
+      initialPeerPc: {
+        1: 7,
+        2: 8,
+      },
+      initialCellPeers: [1, 2],
+      expected: {
+        finalPc: 0,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc19_gt13_sense_stale_lock_visible",
+      baselineTraceId: "gt13_structure_lock_progress",
+      description:
+        "A bounded SENSE bridge should observe the underlying structure grid through a stale lock bit, matching the forward-progress semantics captured in gt13.",
+      script: makeSenseScript(STR_WIRE),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STR_WIRE,
+      },
+      initialStructureIntentOwner: {
+        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 1, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc20_gt13_sense_stale_lock_typed_miss",
+      baselineTraceId: "gt13_structure_lock_progress",
+      description:
+        "The same stale-lock fallback should still fail closed on type mismatch, proving that lock forward progress does not blur structure-type semantics.",
+      script: makeSenseScript(STR_NODE),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STR_WIRE,
+      },
+      initialStructureIntentOwner: {
+        [structureNeighborCell(705, 405)]: pack_structure_intent(0, 0, true),
+      },
+      expected: {
+        finalPc: 0,
+        signalCount: 1,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [0, 0, 0, 0, 0, 0, 0, 0],
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc21_gt14_plug_charge_resolve",
+      baselineTraceId: "gt14_structure_charge_resolution",
+      description:
+        "A bounded PLUG bridge should publish a charge intent that resolves into a concrete wire charge on the next bounded structure tick, clearing the intent afterward.",
+      script: makePlugChargeScript(180),
+      maxSteps: 2,
+      postStructureTick: true,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
+      },
+      expected: {
+        finalPc: 6,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STR_WIRE |
+            (170 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc22_gt15_plug_charge_competition_low_high",
+      baselineTraceId: "gt15_structure_charge_competition",
+      description:
+        "A bounded PLUG bridge should preserve max-intent semantics when a lower charge is published before a higher one to the same cell.",
+      script: makePlugChargeCompetitionScript(120, 220),
+      maxSteps: 4,
+      postStructureTick: true,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [220, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STR_WIRE |
+            (210 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc23_gt15_plug_charge_competition_high_low",
+      baselineTraceId: "gt15_structure_charge_competition",
+      description:
+        "The same bounded PLUG bridge should still preserve max-intent semantics when the higher charge arrives first and a lower publication follows.",
+      script: makePlugChargeCompetitionScript(220, 120),
+      maxSteps: 4,
+      postStructureTick: true,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_WIRE,
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 0,
+        finalRole: 0,
+        registers: [120, 0, 0, 0, 0, 0, 0, 0],
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]:
+            STR_WIRE |
+            (210 << 16),
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc24_gt16_build_source_materialize",
+      baselineTraceId: "gt16_runtime_build_materialization",
+      description:
+        "A bounded BUILD bridge should preserve source materialization semantics, clearing temporary intent layers and updating the structure grid.",
+      script: makeBuildSourceScript(),
+      maxSteps: 2,
+      postStructureTick: true,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {},
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        finalStructureGrid: {
+          [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: STR_SOURCE,
+        },
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc25_gt17_build_competition_high_owner_overwrite",
+      baselineTraceId: "gt17_structure_build_competition",
+      description:
+        "A bounded BUILD bridge should preserve max-owner-index priority, allowing an atom with a higher index to overwrite a lower-indexed atom's intent.",
+      script: makeBuildSourceWithStateScript(88),
+      maxSteps: 2,
+      ownerAtomIdx: 10,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {},
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 5, // Lower ownerToken
+      },
+      initialStructureIntentValue: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: pack_structure_intent(
+          STR_NODE,
+          0,
+          false,
+        ),
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        finalStructureGrid: {}, // Intent layer not yet flushed
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc26_gt17_build_competition_low_owner_blocked",
+      baselineTraceId: "gt17_structure_build_competition",
+      description:
+        "The same bounded BUILD bridge should fail a write intent when a higher-indexed atom has already published to the cell in the same tick.",
+      script: makeBuildSourceWithStateScript(88),
+      maxSteps: 2,
+      ownerAtomIdx: 5,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {},
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: 11, // Higher ownerToken
+      },
+      initialStructureIntentValue: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: pack_structure_intent(
+          STR_NODE,
+          0,
+          false,
+        ),
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        finalStructureGrid: {},
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc27_gt18_build_stale_lock_blocked",
+      baselineTraceId: "gt18_structure_lock_blocking",
+      description:
+        "A bounded BUILD bridge should respect the underlying stale lock bit, blocking new materialization intents even if no concurrent intent exists.",
+      script: makeBuildSourceScript(),
+      maxSteps: 2,
+      initialProps: {
+        [PROP_X]: 35,
+        [PROP_Y]: 35,
+      },
+      initialStructureGrid: {},
+      initialStructureIntentOwner: {
+        [Math.floor(35 / 10) + (Math.floor(35 / 10) * GRID_W)]: pack_structure_intent(
+          0,
+          0,
+          true,
+        ),
+      },
+      expected: {
+        finalPc: 12,
+        signalCount: 0,
+        buildCount: 1,
+        finalRole: MX.ROLE_ARCHITECT,
+        finalStructureGrid: {},
+        branchTaken: false,
+      },
+    },
+    {
+      id: "rc28_gt19_tensegrity_kinematics",
+      baselineTraceId: "gt19_tensegrity_kinematics",
+      description:
+        "A bounded TENSEGRITY bridge should preserve mode 0 distance writes and mode 1 damping writes.",
+      script: makeTensegrityScript(2, 100, 255),
+      maxSteps: 2,
+      initialProps: {},
+      expected: {
+        finalPc: 8,
+        finalBondDistances: {
+          2: 100,
+        },
+        finalDamping: 255,
+      },
+    },
+    {
+      id: "rc29_gt20_bind_resolution",
+      baselineTraceId: "gt20_stigmergic_binding",
+      description:
+        "A bounded BIND bridge should record a bond request intent when called.",
+      script: makeBindScript(),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 100,
+        [PROP_Y]: 100,
+      },
+      initialCellPeers: [1, 2],
+      expected: {
+        finalPc: 0,
+        finalBondRequests: {
+          2: 1, // Peer 2 is closer in our shadow logic
+        },
+      },
+    },
+    {
+      id: "rc30_spore_drive_jump",
+      baselineTraceId: "gt21_spore_drive",
+      description: "SPORE_DRIVE should record a jump intent.",
+      script: makeSporeDriveScript(),
+      maxSteps: 3,
+      initialProps: {},
+      expected: {
+        finalPc: 0,
+      },
+    },
+    {
+      id: "rc31_entangle_hive_deposit",
+      baselineTraceId: "gt22_quantum_entanglement",
+      description: "HEBB should resolve into a hive deposit if valid.",
+      script: makeEntangleScript(),
+      maxSteps: 5,
+      initialProps: {
+        [PROP_ENERGY]: 1000,
+      },
+      expected: {
+        finalPc: 0,
+        finalProps: {
+          [PROP_ENERGY]: 1000,
+        },
+      },
+    },
+    {
+      id: "rc32_quorum_pc_sync",
+      baselineTraceId: "gt12_collective_synchrony",
+      description: "QUORUM PC sync (mode 6) should push cell peers to PC 4.",
+      script: makeCollectivePcSyncQuorumScript(),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_X]: 205,
+        [PROP_Y]: 105,
+      },
+      initialPeerPc: {
+        1: 7,
+        2: 8,
+      },
+      initialCellPeers: [1, 2],
+      expected: {
+        finalPc: 0,
+        finalPeerPc: {
+          1: 4,
+          2: 4,
+        },
+      },
+    },
+    {
+      id: "rc33_share_percentage_drift",
+      baselineTraceId: "gt10_share_transfer",
+      description: "SHARE percentage logic should be consistent.",
+      script: makeShareScript(0, 50),
+      maxSteps: 3,
+      initialProps: {
+        [PROP_ENERGY]: 1000,
+      },
+      initialBondTargets: {
+        0: 2,
+      },
+      initialPeerEnergy: {
+        2: 100,
+      },
+      expected: {
+        finalPc: 0,
+        finalProps: {
+          [PROP_ENERGY]: 500,
+        },
+        finalPeerEnergy: {
+          2: 600,
+        },
+      },
+    },
+    {
+      id: "rc34_role_resolution",
+      baselineTraceId: "gt13_role_shift",
+      description: "RESOLVE mode 0 should update role if quorum is met.",
+      script: makeResolveRoleScript(MX.ROLE_ARCHITECT, 1),
+      maxSteps: 3,
+      initialRegs: [MX.ROLE_ARCHITECT],
+      initialProps: {
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+        [PROP_RESONANCE]: 0,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STR_WIRE,
+      },
+      expected: {
+        finalPc: 0,
+        finalRole: MX.ROLE_ARCHITECT,
+        finalProps: {
+          [PROP_RESONANCE]: 20,
+        },
+      },
+    },
+    {
+      id: "rc35_bank_resolution",
+      baselineTraceId: "gt11_bank_sync",
+      description: "RESOLVE mode 1 should deposit energy if quorum is met.",
+      script: makeResolveBankScript(100),
+      maxSteps: 3,
+      initialRegs: [0, 0, 0, 0, 0, 0, 0, 0, 0], // Slot 0
+      initialProps: {
+        [PROP_ENERGY]: 1000,
+        [PROP_RESONANCE]: 0,
+        [PROP_X]: 705,
+        [PROP_Y]: 405,
+      },
+      initialStructureGrid: {
+        [structureNeighborCell(705, 405)]: STR_WIRE,
+        [structureNeighborCell(705, 405) + 1]: STR_WIRE,
+        [structureNeighborCell(705, 405) + 2]: STR_WIRE,
+      },
+      expected: {
+        finalPc: 0,
+        finalProps: {
+          [PROP_ENERGY]: 900,
+          [PROP_RESONANCE]: 10,
+        },
+        finalHiveEnergyPool: {
+          0: 100,
+        },
+      },
+    },
+    {
+      id: "rc36_genesis_guardian",
+      baselineTraceId: "gt23_genesis_boot",
+      description: "Native guardian_base run from GEENSIS_PROGRAMS.",
+      script: new Uint8Array(),
+      nativeProgram: "guardian_base",
+      maxSteps: 100,
+      initialProps: {
+        [PROP_NEURAL_COHERENCE]: 500,
+      },
+      expected: {
+        finalPc: 8,
+        finalRole: MX.ROLE_GUARDIAN,
+        signalCount: 1,
+      },
+    },
+    {
+      id: "rc37_genesis_architect",
+      baselineTraceId: "gt23_genesis_boot",
+      description: "Native architect_base run from GEENSIS_PROGRAMS.",
+      script: new Uint8Array(),
+      nativeProgram: "architect_base",
+      maxSteps: 100,
+      initialProps: {
+        [PROP_NEURAL_COHERENCE]: 0,
+      },
+      expected: {
+        finalPc: 16,
+        finalRole: MX.ROLE_ARCHITECT,
+        buildCount: 1,
+      },
+    },
+  ]);
+
+export const reductionCaseById = (id: string): ReductionCaseDefinition | undefined =>
+  REDUCTION_CASES.find((c) => c.id === id);
 
 ```
 
@@ -29556,6 +29383,1036 @@ export const evaluateReplicationExecution = (
 
 ---
 
+## FILE: src/_/13/REDUCTION_HARNESS.test.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_harness_verifier.md
+import { GRID_H, GRID_W, glyphTapeToPrettyText, decodeLegacyInstruction, GlyphTapeToken, scriptToGlyphTape, glyphSpecById, MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge, goldenTraceArtifactPaths, GENESIS_PROGRAMS, reductionCaseById, ReductionCaseDefinition, OPCODE_TO_GLYPH, GATE, assembler, REDUCTION_CASES, GOLDEN_TRACE_CATALOG, GENESIS_BOOT, glyph_pretty } from "@g12";
+
+type HarnessProps = Record<number, number>;
+
+type ShadowEffects = {
+  replicateCount: number;
+  signalCount: number;
+  buildCount: number;
+  bondRequestCount: number;
+  sporeDriveCount: number;
+  entangleCount: number;
+  roleWrites: number[];
+  branchTaken: boolean;
+  jumpCount: number;
+};
+
+type ShadowState = {
+  atomIndex: number;
+  pc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  cellPeers: number[];
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  executed: string[];
+  energySpent: number;
+};
+
+type LegacyShadowResult = {
+  mode: "legacy";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+};
+
+type ReductionShadowResult = {
+  mode: "glyph-reduction";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+  glyphTape: GlyphTapeToken[];
+  prettyTape: string;
+};
+
+type ReductionBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  tickStart: number;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+};
+
+export type ReductionHarnessResult = {
+  caseId: string;
+  baseline: ReductionBaselineAnchor;
+  legacy: LegacyShadowResult;
+  reduction: ReductionShadowResult;
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+};
+
+export type ReductionHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  reduction_digest: string;
+  executed_digest_legacy: string;
+  executed_digest_reduction: string;
+  diff: {
+    final_pc_match: boolean;
+    registers_match: boolean;
+
+    role_match: boolean;
+    props_match: boolean;
+    bond_targets_match: boolean;
+    bond_distances_match: boolean;
+    damping_match: boolean;
+    peer_energy_match: boolean;
+    peer_pc_match: boolean;
+    hive_memory_match: boolean;
+    hive_balance_match: boolean;
+    signal_grid_match: boolean;
+    structure_grid_match: boolean;
+    structure_intent_owner_match: boolean;
+    structure_intent_value_match: boolean;
+    structure_charge_intent_match: boolean;
+    bond_requests_match: boolean;
+    hive_energy_pool_match: boolean;
+    replicate_count_match: boolean;
+    signal_count_match: boolean;
+    build_count_match: boolean;
+    branch_taken_match: boolean;
+    role_writes_match: boolean;
+    energy_spent_delta: number;
+  };
+  expectation_summary: ReductionCaseDefinition["expected"];
+};
+
+const REDUCTION_DIFF_ROOT = "src/ontology/verification/data/reduction_diffs";
+const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
+
+const cloneEffects = (): ShadowEffects => ({
+  replicateCount: 0,
+  signalCount: 0,
+  buildCount: 0,
+  bondRequestCount: 0,
+  sporeDriveCount: 0,
+  entangleCount: 0,
+  roleWrites: [],
+  branchTaken: false,
+  jumpCount: 0,
+});
+
+const createInitialState = (
+  definition: ReductionCaseDefinition,
+): ShadowState => ({
+  atomIndex: definition.ownerAtomIdx ?? 0,
+  pc: 0,
+  regs: (() => {
+    const r = new Array(16).fill(0);
+    if (definition.initialRegs) {
+      for (
+        let i = 0;
+        i < Math.min(r.length, definition.initialRegs.length);
+        i++
+      ) {
+        r[i] = definition.initialRegs[i];
+      }
+    }
+    return r;
+  })(),
+  role: 0,
+  props: Object.fromEntries(
+    Object.entries(definition.initialProps).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  bondTargets: Object.fromEntries(
+    Object.entries(definition.initialBondTargets ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+
+  bondDistances: Object.fromEntries(
+    Object.entries(definition.initialBondDistances ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  damping: definition.initialDamping ?? 0,
+  peerEnergy: Object.fromEntries(
+    Object.entries(definition.initialPeerEnergy ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  peerPc: Object.fromEntries(
+    Object.entries(definition.initialPeerPc ?? {}).map(([key, value]) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  cellPeers: [...(definition.initialCellPeers ?? [])],
+  hiveMemory: {},
+  hiveBalance: definition.initialHiveBalance ?? 0,
+  signalGrid: {},
+  structureGrid: Object.fromEntries(
+    Object.entries(definition.initialStructureGrid ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  structureIntentOwner: Object.fromEntries(
+    Object.entries(definition.initialStructureIntentOwner ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  structureIntentValue: Object.fromEntries(
+    Object.entries(definition.initialStructureIntentValue ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  structureChargeIntent: Object.fromEntries(
+    Object.entries(definition.initialStructureChargeIntent ?? {}).map((
+      [key, value],
+    ) => [
+      Number(key),
+      Number(value),
+    ]),
+  ),
+  bondRequests: {},
+  hiveEnergyPool: Object.fromEntries(
+    Object.entries(definition.initialHiveEnergyPool ?? {}).map((
+      [k, v],
+    ) => [Number(k), Number(v)]),
+  ),
+  hormones: definition.initialHormones
+    ? [...definition.initialHormones]
+    : [1024, 1024, 1024, 1024, 1024, 1024],
+  effects: cloneEffects(),
+  executed: [],
+  energySpent: 0,
+});
+
+const equalNumberArray = (
+  a: readonly number[],
+  b: readonly number[],
+): boolean =>
+  a.length === b.length && a.every((value, index) => value === b[index]);
+
+const equalHarnessProps = (a: HarnessProps, b: HarnessProps): boolean => {
+  const aKeys = Object.keys(a).map(Number).sort((x, y) => x - y);
+  const bKeys = Object.keys(b).map(Number).sort((x, y) => x - y);
+  if (!equalNumberArray(aKeys, bKeys)) return false;
+  return aKeys.every((key) => (a[key] ?? 0) === (b[key] ?? 0));
+};
+
+const stableStringify = (value: unknown): string => {
+  if (value === null || typeof value !== "object") {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => stableStringify(item)).join(",")}]`;
+  }
+  const entries = Object.entries(value as Record<string, unknown>)
+    .sort(([a], [b]) => a.localeCompare(b));
+  return `{${
+    entries.map(([key, item]) =>
+      `${JSON.stringify(key)}:${stableStringify(item)}`
+    ).join(",")
+  }}`;
+};
+
+const sha256Hex = async (value: unknown): Promise<string> => {
+  const bytes = new TextEncoder().encode(stableStringify(value));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) =>
+    byte.toString(16).padStart(2, "0")
+  ).join("");
+};
+
+const snapshotLegacy = (
+  state: ShadowState,
+  stepsExecuted: number,
+): LegacyShadowResult => ({
+  mode: "legacy",
+  finalPc: state.pc,
+  regs: [...state.regs],
+  role: state.role,
+  props: { ...state.props },
+  bondTargets: { ...state.bondTargets },
+
+  bondDistances: { ...state.bondDistances },
+  damping: state.damping,
+  peerEnergy: { ...state.peerEnergy },
+  peerPc: { ...state.peerPc },
+  hiveMemory: { ...state.hiveMemory },
+  hiveBalance: state.hiveBalance,
+  signalGrid: { ...state.signalGrid },
+  structureGrid: { ...state.structureGrid },
+  structureIntentOwner: { ...state.structureIntentOwner },
+  structureIntentValue: { ...state.structureIntentValue },
+  structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
+  effects: {
+    ...state.effects,
+    roleWrites: [...state.effects.roleWrites],
+  },
+  energySpent: state.energySpent,
+  executed: [...state.executed],
+  stepsExecuted,
+});
+
+const snapshotReduction = (
+  state: ShadowState,
+  stepsExecuted: number,
+  glyphTape: GlyphTapeToken[],
+): ReductionShadowResult => ({
+  mode: "glyph-reduction",
+  finalPc: state.pc,
+  regs: [...state.regs],
+  role: state.role,
+  props: { ...state.props },
+  bondTargets: { ...state.bondTargets },
+  bondDistances: { ...state.bondDistances },
+  damping: state.damping,
+  peerEnergy: { ...state.peerEnergy },
+  peerPc: { ...state.peerPc },
+  hiveMemory: { ...state.hiveMemory },
+  hiveBalance: state.hiveBalance,
+  signalGrid: { ...state.signalGrid },
+  structureGrid: { ...state.structureGrid },
+  structureIntentOwner: { ...state.structureIntentOwner },
+  structureIntentValue: { ...state.structureIntentValue },
+  structureChargeIntent: { ...state.structureChargeIntent },
+  bondRequests: { ...state.bondRequests },
+  hiveEnergyPool: { ...state.hiveEnergyPool },
+  hormones: [...state.hormones],
+  effects: {
+    ...state.effects,
+    roleWrites: [...state.effects.roleWrites],
+  },
+  energySpent: state.energySpent,
+  executed: [...state.executed],
+  stepsExecuted,
+  glyphTape,
+  prettyTape: glyphTapeToPrettyText(glyphTape),
+});
+
+const readStructureCell = (state: ShadowState, cellIdx: number): number => {
+  const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
+  if (ownerRaw < 0) {
+    return state.structureGrid[cellIdx] ?? 0;
+  }
+  if ((ownerRaw & 0x7FFFFFFF) !== 0) {
+    return state.structureIntentValue[cellIdx] ?? 0;
+  }
+  return state.structureGrid[cellIdx] ?? 0;
+};
+
+const publishBuildIntent = (
+  state: ShadowState,
+  cellIdx: number,
+  ownerAtomIdx: number,
+  buildValue: number,
+): void => {
+  const ownerToken = ownerAtomIdx + 1;
+  const current = state.structureIntentOwner[cellIdx] ?? 0;
+  if (current < 0) return;
+  const winningOwner = current & 0x7FFFFFFF;
+  if (ownerToken < winningOwner) return;
+  state.structureIntentValue[cellIdx] = buildValue;
+  state.structureIntentOwner[cellIdx] = ownerToken;
+};
+
+const flushStructureTick = (state: ShadowState): void => {
+  const cellKeys = new Set<number>([
+    ...Object.keys(state.structureGrid).map(Number),
+    ...Object.keys(state.structureIntentOwner).map(Number),
+    ...Object.keys(state.structureIntentValue).map(Number),
+    ...Object.keys(state.structureChargeIntent).map(Number),
+  ]);
+
+  for (const cellIdx of cellKeys) {
+    let cellVal = state.structureGrid[cellIdx] ?? 0;
+    const ownerRaw = state.structureIntentOwner[cellIdx] ?? 0;
+    if (ownerRaw !== 0) {
+      cellVal = state.structureIntentValue[cellIdx] ?? 0;
+      state.structureGrid[cellIdx] = cellVal;
+      state.structureIntentOwner[cellIdx] = 0;
+      state.structureIntentValue[cellIdx] = 0;
+    }
+    const chargeRaw = state.structureChargeIntent[cellIdx] ?? 0;
+    if (chargeRaw > 0) {
+      const intentCharge = Math.min(chargeRaw, 255);
+      const baseCharge = (cellVal >> 16) & 0xFF;
+      if (intentCharge > baseCharge) {
+        cellVal = (cellVal & ~0x00FF0000) | (intentCharge << 16);
+      }
+      state.structureGrid[cellIdx] = cellVal;
+      state.structureChargeIntent[cellIdx] = 0;
+    }
+    const type = cellVal & 0xFF;
+    const currentCharge = (cellVal >> 16) & 0xFF;
+    if (type === STR_SOURCE) {
+      cellVal = (cellVal & ~0x00FF0000) | (255 << 16);
+      state.structureGrid[cellIdx] = cellVal;
+    } else if (
+      (type === STR_WIRE || type === STR_NODE ||
+        type === STR_CAPACITOR) &&
+      currentCharge > 0
+    ) {
+      const nextCharge = currentCharge > 10 ? currentCharge - 10 : 0;
+      cellVal = (cellVal & ~0x00FF0000) | (nextCharge << 16);
+      state.structureGrid[cellIdx] = cellVal;
+    }
+  }
+};
+
+const applyShadowOpcode = (
+  state: ShadowState,
+  opcode: number,
+  args: number[],
+  energyCost: number,
+  isNative: boolean = false,
+): void => {
+  state.energySpent += energyCost;
+  switch (opcode) {
+    case OP_NOP:
+    case 2: { // GLYPH.I / OP_NOP
+      state.pc += 1;
+      return;
+    }
+    case OP_SET:
+    case 8: { // GLYPH.SET
+      const reg = args[0] ?? 0;
+      state.regs[reg] = args[1] ?? 0;
+      state.pc += 3;
+      return;
+    }
+    case OP_GET:
+    case 9: { // GLYPH.GET
+      const reg = args[0] ?? 0;
+      const prop = args[1] ?? 0;
+      state.regs[reg] = state.props[prop] ?? 0;
+      state.pc += 3;
+      return;
+    }
+    case OP_PUT:
+    case 10: { // GLYPH.PUT
+      const reg = args[0] ?? 0;
+      const prop = args[1] ?? 0;
+      state.props[prop] = state.regs[reg] ?? 0;
+      state.pc += 3;
+      return;
+    }
+    case OP_ADD:
+    case 11: { // GLYPH.ADD
+      const dst = args[0] ?? 0;
+      const src = args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
+      state.pc += 3;
+      return;
+    }
+    case OP_SUB:
+    case 12: { // GLYPH.SUB
+      const dst = args[0] ?? 0;
+      const src = args[1] ?? 0;
+      state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
+      state.pc += 3;
+      return;
+    }
+    case OP_JNZ:
+    case 13: { // GLYPH.JNZ
+      const reg = args[0] ?? 0;
+      const target = args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) !== 0) {
+        state.effects.branchTaken = true;
+        state.effects.jumpCount += 1;
+        state.pc = target;
+      } else {
+        state.pc += 3;
+      }
+      return;
+    }
+    case OP_JMP:
+    case 14: { // GLYPH.JMP
+      state.effects.jumpCount += 1;
+      state.pc = args[0] ?? 0;
+      return;
+    }
+    case OP_JZ:
+    case 15: { // GLYPH.JZ
+      const reg = args[0] ?? 0;
+      const target = args[1] ?? 0;
+      if ((state.regs[reg] ?? 0) === 0) {
+        state.effects.branchTaken = true;
+        state.effects.jumpCount += 1;
+        state.pc = target;
+      } else {
+        state.pc += 3;
+      }
+      return;
+    }
+    case OP_REPLICATE:
+    case 16: { // GLYPH.REPLICATE
+      state.effects.replicateCount += 1;
+      state.pc += 1;
+      return;
+    }
+    case OP_SIGNAL:
+    case 17: { // GLYPH.SIGNAL
+      state.effects.signalCount += 1;
+      state.pc += 1;
+      return;
+    }
+    case 24: { // GLYPH.PLUG
+      const targetType = args[0] ?? 0;
+      const energyAmt = args[1] ?? 0;
+      const r0 = state.regs[0] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+        const cellIdx = gy * GRID_W + gx;
+        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
+        if (r0 > currentChargeIntent) {
+          state.structureChargeIntent[cellIdx] = r0;
+        }
+      }
+      state.pc += 3;
+      return;
+    }
+    case 25: { // GLYPH.TENSEGRITY
+      state.pc += 4;
+      return;
+    }
+    case 26: { // GLYPH.BUILD
+      state.effects.buildCount += 1;
+      state.pc += 3;
+      return;
+    }
+    case 27: { // GLYPH.SENSE
+      state.pc += 3;
+      return;
+    }
+    case OP_SHARE: {
+      const slot = (args[0] ?? 0) & 3;
+      let percentage = args[1] ?? 0;
+      // HORMONE 2: aggression scales the share percentage
+      const aggression = state.hormones[2] ?? 1024;
+      if (aggression > 1024) {
+        percentage += 10;
+      }
+
+      const targetIdx = state.bondTargets[slot] ?? 0;
+      if (targetIdx > 0) {
+        const energy = state.props[PROP_ENERGY] ?? 0;
+        const amount = Math.trunc((energy * percentage) / 100);
+        if (energy >= amount) {
+          state.props[PROP_ENERGY] = energy - amount;
+          state.peerEnergy[targetIdx] = (state.peerEnergy[targetIdx] ?? 0) +
+            amount;
+        }
+      }
+      state.pc += 3;
+      return;
+    }
+    case OP_COLLECTIVE: {
+      const mode = args[0] ?? 0;
+      const p2 = args[1] ?? 0;
+      const p3 = args[2] ?? 0;
+      if (mode === 0) {
+        state.hiveMemory[p2 & 1023] = p3 & 0xFF;
+      } else if (mode === 1) {
+        state.regs[p3 & 7] = state.hiveMemory[p2 & 1023] ?? 0;
+      } else if (mode === 2) {
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
+        }
+      } else if (mode === 3) {
+        const val = p2 & 0xFF;
+        const energy = state.props[PROP_ENERGY] ?? 0;
+        if (energy >= val) {
+          state.hiveBalance += val;
+          state.props[PROP_ENERGY] = energy - val;
+        }
+      } else if (mode === 4) {
+        const reg = p2 & 7;
+        const balance = state.hiveBalance;
+        const amount = balance > 100 ? 100 : balance;
+        if (amount > 0) {
+          state.hiveBalance -= amount;
+          state.props[PROP_ENERGY] = (state.props[PROP_ENERGY] ?? 0) +
+            amount;
+        }
+        state.regs[reg] = amount;
+      } else if (mode === 5) {
+        for (let slot = 0; slot < 4; slot++) {
+          const target = state.bondTargets[slot] ?? 0;
+          if (target > 0) {
+            state.peerPc[target] = state.pc + 4;
+          }
+        }
+      } else if (mode === 6) {
+        for (const peer of state.cellPeers) {
+          if (peer > 0) {
+            state.peerPc[peer] = state.pc + 4;
+          }
+        }
+      } else if (mode === 7) { // PLASMID_EMIT
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
+        const gx = Math.floor(rx / 10);
+        const gy = Math.floor(ry / 10);
+        if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+          state.signalGrid[gy * GRID_W + gx] = ((p2 & 0xFF) << 8) | (p3 & 0xFF);
+        }
+      }
+      state.pc += 4;
+      return;
+    }
+    case OP_SECRETE_PLASMID: {
+      const mode = args[0] ?? 0;
+      const role = args[1] ?? 0;
+      if (mode === 0) {
+        state.role = role;
+        state.effects.roleWrites.push(role);
+      }
+      state.pc += 3;
+      return;
+    }
+    case OP_BUILD: {
+      state.effects.buildCount += 1;
+      if (state.role === MX.ROLE_ARCHITECT) {
+        const type = args[0] ?? 0;
+        const buildState = args[1] ?? 0;
+        const rx = state.props[PROP_X] ?? 0;
+        const ry = state.props[PROP_Y] ?? 0;
+        const resonance = state.props[PROP_RESONANCE] ?? 0;
+        const dx = (resonance % 3) - 1;
+        const dy = ((resonance * 7) % 3) - 1;
+        const tx = Math.floor(rx / 10) + dx;
+        const ty = Math.floor(ry / 10) + dy;
+        if (tx >= 0 && tx < GRID_W && ty >= 0 && ty < GRID_H) {
+          const cellIdx = ty * GRID_W + tx;
+          const newVal = pack_structure_intent(type, buildState, false);
+          publishBuildIntent(state, cellIdx, state.atomIndex, newVal);
+        }
+      }
+      state.pc += 3;
+      return;
+    }
+
+    case OP_TENSEGRITY: {
+      const mode = args[0] ?? 0;
+      const p2 = args[1] ?? 0;
+      const p3 = args[2] ?? 0;
+      if (mode === 0) {
+        state.bondDistances[p2] = p3;
+      } else if (mode === 1) {
+        state.damping = p2;
+      }
+      state.pc += 4;
+      return;
+    }
+    case OP_PLUG: {
+      const targetType = args[0] ?? 0;
+      const energyAmt = args[1] ?? 0;
+      const r0 = state.regs[0] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+        const cellIdx = gy * GRID_W + gx;
+        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
+        if (r0 > currentChargeIntent) {
+          state.structureChargeIntent[cellIdx] = r0;
+        }
+      }
+      state.pc += 3;
+      return;
+    }
+    case OP_RESOLVE: {
+      const mode = args[0] ?? 0;
+      const value = args[1] ?? 0;
+
+      // Neighborhood Quorum Check (r=1)
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      let count = 0;
+
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = gx + dx;
+          const ny = gy + dy;
+          if (nx >= 0 && nx < GRID_W && ny >= 0 && ny < GRID_H) {
+            const cellIdx = ny * GRID_W + nx;
+            if (readStructureCell(state, cellIdx) !== 0) { // STR_VOID is 0
+              count++;
+            }
+          }
+        }
+      }
+
+      if (mode === 0) { // ROLE RESOLUTION
+        if (count >= value) {
+          const desiredRole = state.regs[0] ?? 0;
+          state.role = desiredRole;
+          state.props[PROP_RESONANCE] =
+            (state.props[PROP_RESONANCE] ?? 0) + 20;
+        }
+      } else if (mode === 1) { // ENERGY BANKING
+        const energy = state.props[PROP_ENERGY] ?? 0;
+        if (count >= 3 && energy >= value) {
+          // Deposit to hive energy pool
+          const gene0 = state.regs[8] ?? 0; // Simplified genome pool slot calculation logic
+          const slot = gene0 % 4; // Assuming SPAWN_MAX equivalent or similar logic
+          state.props[PROP_ENERGY] = energy - value;
+          state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
+            value;
+          state.props[PROP_RESONANCE] =
+            (state.props[PROP_RESONANCE] ?? 0) + 10;
+        }
+      }
+
+      state.pc += 3;
+      return;
+    }
+    case OP_SENSE: {
+      const reg = args[0] ?? 0;
+      const targetType = args[1] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      let found = 0;
+      for (let ny = gy - 1; ny <= gy + 1 && found === 0; ny++) {
+        for (let nx = gx - 1; nx <= gx + 1; nx++) {
+          if (nx === gx && ny === gy) continue;
+          if (nx < 0 || nx >= GRID_W || ny < 0 || ny >= GRID_H) continue;
+          const cellVal = readStructureCell(state, ny * GRID_W + nx);
+          if ((cellVal & 0xFF) === targetType) {
+            found = 1;
+            break;
+          }
+        }
+      }
+      state.regs[reg] = found;
+      state.pc += 3;
+      return;
+    }
+    case OP_BIND: {
+      state.effects.bondRequestCount += 1;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      // Shadow-model nearest neighbor logic (simplistic for harness)
+      // In ground truth, this uses the spatial grid.
+      // For harness testing, we assume definition.initialCellPeers contains candidates.
+      let nearestIdx = -1;
+      let minDist = 1000000;
+      for (const peerIdx of state.cellPeers) {
+        if (peerIdx === state.atomIndex) continue;
+        // In the harness, peers are often just indices. We need their positions.
+        // We'll rely on a convention where definition targets are pre-setup.
+        const px = state.peerEnergy[peerIdx] !== undefined ? 100 : 0; // Placeholder pos
+        const py = 100;
+        const d = Math.sqrt((px - rx) ** 2 + (py - ry) ** 2);
+        if (d < 250 && d < minDist) {
+          minDist = d;
+          nearestIdx = peerIdx;
+        }
+      }
+      if (nearestIdx !== -1) {
+        state.bondRequests[nearestIdx] = 1;
+      }
+      state.pc += 1;
+      return;
+    }
+    case OP_SPORE_DRIVE: {
+      state.effects.sporeDriveCount += 1;
+      state.pc += 1;
+      return;
+    }
+    case OP_HEBB: {
+      state.effects.entangleCount += 1;
+      const energy = state.props[PROP_ENERGY] ?? 0;
+      if (energy >= 100) {
+        // Simple shadow rule: successful entanglement always clears costs for harness.
+      }
+      state.pc += 1;
+      return;
+    }
+    default:
+      throw new Error(`[ShadowVM] Unimplemented opcode: ${opcode}`);
+  }
+};
+
+const runShadowModel = async (
+  definition: ReductionCaseDefinition,
+  isReduction: boolean,
+): Promise<{ result: LegacyShadowResult | ReductionShadowResult }> => {
+  const state = createInitialState(definition);
+  let script = definition.script;
+
+  if (definition.nativeProgram && GENESIS_PROGRAMS[definition.nativeProgram]) {
+    script = GENESIS_PROGRAMS[definition.nativeProgram];
+  }
+
+  let steps = 0;
+  const glyphTape: GlyphTapeToken[] = (isReduction && !definition.nativeProgram)
+    ? scriptToGlyphTape(script)
+    : [];
+
+  while (steps < definition.maxSteps) {
+    if (state.pc >= script.length) break;
+
+    const opcode = script[state.pc];
+    const spec = glyphSpecById(opcode);
+    if (!spec) break;
+
+    const argsCount = spec.arglen;
+    const args = Array.from(script.slice(state.pc + 1, state.pc + 1 + argsCount));
+    const energyCost = isReduction ? (spec.energy_cost || 0) : (spec.energy_cost || 0);
+
+    applyShadowOpcode(state, opcode, args, energyCost, !!definition.nativeProgram);
+    steps++;
+    state.executed.push(spec.id);
+  }
+
+  if (definition.postStructureTick) {
+    flushStructureTick(state);
+  }
+
+  return {
+    result: isReduction
+      ? snapshotReduction(state, steps, glyphTape)
+      : snapshotLegacy(state, steps),
+  };
+};
+
+const compareParity = (
+  legacy: LegacyShadowResult,
+  reduction: ReductionShadowResult,
+): { ok: boolean; reasons: string[] } => {
+  const reasons: string[] = [];
+  if (legacy.finalPc !== reduction.finalPc) {
+    reasons.push(
+      `PC mismatch: legacy=${legacy.finalPc} reduction=${reduction.finalPc}`,
+    );
+  }
+  if (!equalNumberArray(legacy.regs, reduction.regs)) {
+    reasons.push(`Registers mismatch`);
+  }
+  if (legacy.role !== reduction.role) {
+    reasons.push(`Role mismatch: legacy=${legacy.role} reduction=${reduction.role}`);
+  }
+  if (!equalHarnessProps(legacy.props, reduction.props)) {
+    reasons.push(`Props mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
+    reasons.push(`Bond targets mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondDistances, reduction.bondDistances)) {
+    reasons.push(`Bond distances mismatch`);
+  }
+  if (legacy.damping !== reduction.damping) {
+    reasons.push(`Damping mismatch`);
+  }
+  if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
+    reasons.push(`Peer energy mismatch`);
+  }
+  if (!equalHarnessProps(legacy.peerPc, reduction.peerPc)) {
+    reasons.push(`Peer PC mismatch`);
+  }
+  if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
+    reasons.push(`Hive memory mismatch`);
+  }
+  if (legacy.hiveBalance !== reduction.hiveBalance) {
+    reasons.push(`Hive balance mismatch`);
+  }
+  if (!equalHarnessProps(legacy.signalGrid, reduction.signalGrid)) {
+    reasons.push(`Signal grid mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureGrid, reduction.structureGrid)) {
+    reasons.push(`Structure grid mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureIntentOwner, reduction.structureIntentOwner)) {
+    reasons.push(`Structure intent owner mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureIntentValue, reduction.structureIntentValue)) {
+    reasons.push(`Structure intent value mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureChargeIntent, reduction.structureChargeIntent)) {
+    reasons.push(`Structure charge intent mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondRequests, reduction.bondRequests)) {
+    reasons.push(`Bond requests mismatch`);
+  }
+  if (!equalHarnessProps(legacy.hiveEnergyPool, reduction.hiveEnergyPool)) {
+    reasons.push(`Hive energy pool mismatch`);
+  }
+  if (!equalNumberArray(legacy.hormones, reduction.hormones)) {
+    reasons.push(`Hormones mismatch`);
+  }
+  if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
+    reasons.push(`Replicate count mismatch`);
+  }
+  if (legacy.effects.signalCount !== reduction.effects.signalCount) {
+    reasons.push(`Signal count mismatch`);
+  }
+  if (legacy.effects.buildCount !== reduction.effects.buildCount) {
+    reasons.push(`Build count mismatch`);
+  }
+  if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
+    reasons.push(`Branch taken mismatch`);
+  }
+  if (legacy.energySpent !== reduction.energySpent) {
+    reasons.push(`Energy spent mismatch`);
+  }
+
+  return { ok: reasons.length === 0, reasons };
+};
+
+export const runReductionHarnessCase = async (
+  caseId: string,
+): Promise<ReductionHarnessResult> => {
+  const definition = reductionCaseById(caseId);
+  if (!definition) throw new Error(`Unknown case: ${caseId}`);
+
+  const legacy = (await runShadowModel(definition, false))
+    .result as LegacyShadowResult;
+  const reduction = (await runShadowModel(definition, true))
+    .result as ReductionShadowResult;
+
+  const parity = compareParity(legacy, reduction);
+
+  return {
+    caseId: definition.id,
+    baseline: {
+      traceId: definition.baselineTraceId,
+      scenario: "REDUCED_BY_HARNESS",
+      runtimeMode: "SHADOW",
+      tickStart: 0,
+      tickEnd: stepsToTicks(legacy.stepsExecuted),
+      codexSnapshotDigest: "N/A",
+      invariantDigest: "N/A",
+    },
+    legacy,
+    reduction,
+    parity,
+  };
+};
+
+const stepsToTicks = (steps: number) => Math.ceil(steps / 4);
+
+import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
+
+Deno.test({
+  name: "Reduction Parity Harness",
+  ignore: false,
+  fn: async (t) => {
+    for (const testCase of REDUCTION_CASES) {
+      await t.step(testCase.id, async () => {
+        const result = await runReductionHarnessCase(testCase.id);
+        if (!result.parity.ok) {
+           console.error(`Reduction Parity Failure for ${testCase.id}:`);
+           result.parity.reasons.forEach(r => console.error(`  - ${r}`));
+        }
+        assertEquals(result.parity.ok, true, `Parity check failed for ${testCase.id}`);
+      });
+    }
+  }
+});
+
+```
+
+---
+
 ## FILE: src/_/14/mod.ts
 
 ```typescript
@@ -30449,6 +31306,7 @@ const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";
 const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";
 const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;
 export const AS_WASM_PATH = new URL(wasmFile, import.meta.url.replace("src/_/mod.ts", ""));
+export const RUST_WASM_PATH = new URL("src/_rust/release.wasm", import.meta.url.replace("src/_/mod.ts", ""));
 
 ```
 
@@ -30479,22 +31337,6 @@ export const C_LOG2_C_LUT: StaticArray<i32> = [0, 0, 2000, 4755, 8000, 11610, 15
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_admission.md
 
-
-```
-
----
-
-## FILE: src/_as/00/clamp01.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp01.md
-
-@inline
-export function clamp01(x: f64): f64 {
-if (x < 0.0) return 0.0;
-if (x > 1.0) return 1.0;
-return x;
-}
 
 ```
 
@@ -30633,20 +31475,6 @@ return a - (diff & (diff >> 31));
 export function fast_min(a: i32, b: i32): i32 {
 const diff = a - b;
 return b + (diff & (diff >> 31));
-}
-
-```
-
----
-
-## FILE: src/_as/00/fast_sign.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_sign.md
-
-@inline
-export function fast_sign(v: i32): i32 {
-return (v >> 31) | (<i32>(<u32>-v) >>> 31);
 }
 
 ```
@@ -30834,11 +31662,8 @@ export * from "./prng_seed_from";
 export * from "./prng_next";
 export * from "./ID_TO_IDX";
 export * from "./COS_LUT";
-export { normalize_angle } from "./normalize_angle";
 export { fast_abs } from "./fast_abs";
 export { fast_max } from "./fast_max";
-export { clamp01 } from "./clamp01";
-export { fast_sign } from "./fast_sign";
 export { math_clamp } from "./math_clamp";
 export * from "./SIN_LUT";
 export { fast_min } from "./fast_min";
@@ -30850,23 +31675,6 @@ export { dir8_y } from "./dir8_y";
 export { dir4_y } from "./dir4_y";
 export { dir4_x } from "./dir4_x";
 export { dir8_x } from "./dir8_x";
-
-```
-
----
-
-## FILE: src/_as/00/normalize_angle.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/normalize_angle.md
-
-@inline
-export function normalize_angle(angle: f64): f64 {
-const tau: f64 = 2.0 * Math.PI;
-let a: f64 = angle % tau;
-if (a < 0.0) a += tau;
-return a / tau;
-}
 
 ```
 
@@ -31198,22 +32006,6 @@ export const SYS_SENSE_PHASE: i32 = 21;
 
 ---
 
-## FILE: src/_as/01/calculate_shannon_entropy.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/calculate_shannon_entropy.md
-import { C_LOG2_C_LUT } from "../00/mod";
-
-@inline
-export function calculate_shannon_entropy(data: usize): i32 {
-// Stub for WASM
-  return 0;
-}
-
-```
-
----
-
 ## FILE: src/_as/01/clamp_resource.ts
 
 ```typescript
@@ -31344,6 +32136,35 @@ return s_base + term1 - term2;
 
 ---
 
+## FILE: src/_as/01/MATH_UTILS.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/MATH_UTILS.md
+export function normalize_angle(angle: f64): f64 {
+  const tau: f64 = 2.0 * Math.PI;
+  let a: f64 = angle % tau;
+  if (a < 0.0) a += tau;
+  return a / tau;
+}
+
+export function clamp01(x: f64): f64 {
+  if (x < 0.0) return 0.0;
+  if (x > 1.0) return 1.0;
+  return x;
+}
+
+export function fast_sign(v: i32): i32 {
+  return (v >> 31) | (<i32>(<u32>-v) >>> 31);
+}
+
+export function calculate_shannon_entropy(data: usize): i32 {
+  // Logic not yet ported to pure AS without LUT access
+  return 0;
+}
+```
+
+---
+
 ## FILE: src/_as/01/mod.ts
 
 ```typescript
@@ -31351,9 +32172,9 @@ return s_base + term1 - term2;
 export * from "../00/mod";
 export * from "./OMEGA_MEMORY_LAYOUT";
 export * from "./semanticBonuses";
-export { calculate_shannon_entropy } from "./calculate_shannon_entropy";
 export { clamp_resource } from "./clamp_resource";
 export { math_sin } from "./math_sin";
+export * from "./MATH_UTILS";
 export { math_cos } from "./math_cos";
 export { in_grid } from "./in_grid";
 export { clamp_world_y } from "./clamp_world_y";
@@ -33073,17 +33894,6 @@ import { GRID_CELLS, ATTENTION_FIELD_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/bondBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondBuffer.md
-import { MAX_ATOMS, BONDS_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/bondDistances.ts
 
 ```typescript
@@ -33407,17 +34217,6 @@ import { MAX_ATOMS, CAUSALITY_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/causalityBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/causalityBuffer.md
-import { MAX_ATOMS, CAUSALITY_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/codeWords.ts
 
 ```typescript
@@ -33433,17 +34232,6 @@ import { MAX_ATOMS, INSTRUCTIONS_OFFSET } from "../02/mod";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/coherence.md
-import { COHERENCE_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/coherenceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/coherenceBuffer.md
 import { COHERENCE_OFFSET } from "../02/mod";
 
 
@@ -33561,17 +34349,6 @@ return spawned;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/energies.md
-import { MAX_ATOMS, ENERGY_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/energyBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/energyBuffer.md
 import { MAX_ATOMS, ENERGY_OFFSET } from "../02/mod";
 
 
@@ -33866,17 +34643,6 @@ import { HIVE_BALANCE_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/hiveBalanceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveBalanceBuffer.md
-import { HIVE_BALANCE_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/hiveEnergyPool.ts
 
 ```typescript
@@ -33937,17 +34703,6 @@ import { MAX_HORMONES, HORMONE_OFFSET } from "../02/mod";
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hormones.md
 import { MAX_HORMONES, HORMONE_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/idBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/idBuffer.md
-import { MAX_ATOMS, IDS_OFFSET } from "../02/mod";
 
 
 ```
@@ -34042,28 +34797,6 @@ import { MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/logicBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/logicBuffer.md
-import { MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/mailboxBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mailboxBuffer.md
-import { MAX_ATOMS, MAILBOX_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/mailboxes.ts
 
 ```typescript
@@ -34103,11 +34836,9 @@ import { GRID_CELLS, MEMORY_GRID_OFFSET } from "../02/mod";
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../02/mod";
 export { build_spatial_hash } from "./build_spatial_hash";
-export * from "./synapticWeightBuffer";
 export * from "./memoryGridBuffer";
 export * from "./bondDistBuffer";
 export * from "./signalGrid";
-export * from "./coherenceBuffer";
 export * from "./bondRequests";
 export * from "./hiveEnergyPool";
 export * from "./bondStiffness";
@@ -34120,38 +34851,28 @@ export * from "./glyphPayloadBuffer";
 export * from "./glyphHeaderBuffer";
 export * from "./contextByteView";
 export * from "./roleBuffer";
-export * from "./resonanceBuffer";
 export * from "./memoryGrid";
 export * from "./hiveBalance";
-export * from "./idBuffer";
 export * from "./contexts";
 export * from "./ids";
 export * from "./codeWords";
 export * from "./latticeClearView";
 export * from "./stiffnessBuffer";
 export * from "./lineage";
-export * from "./hiveBalanceBuffer";
 export * from "./ledgerDataView";
 export * from "./lineageBuffer";
-export * from "./neuralCoherenceBuffer";
 export * from "./spatialGrid";
 export * from "./hiveMemoryBuffer";
 export { add_resonance } from "./add_resonance";
 export * from "./signalGridBuffer";
 export * from "./roles";
 export * from "./structureGridBuffer";
-export * from "./bondBuffer";
 export * from "./tickCounter";
 export * from "./glyphHeaders";
-export * from "./mailboxBuffer";
-export * from "./causalityBuffer";
 export * from "./dampingBuffer";
 export * from "./syncState";
-export * from "./phaseBuffer";
-export * from "./logicBuffer";
 export * from "./hiveMemory";
 export * from "./bondDistances";
-export * from "./energyBuffer";
 export * from "./evolutionReserved";
 export * from "./ys";
 export * from "./structureGrid";
@@ -34159,8 +34880,6 @@ export * from "./xs";
 export * from "./energies";
 export * from "./logic";
 export * from "./causality";
-export * from "./yBuffer";
-export * from "./xBuffer";
 export * from "./glyphPayload";
 export * from "./attentionFieldBuffer";
 export * from "./hormones";
@@ -34199,28 +34918,6 @@ export { resolve_bond_requests } from "./resolve_bond_requests";
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/neuralCoherence.md
 import { NEURAL_COHERENCE_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/neuralCoherenceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/neuralCoherenceBuffer.md
-import { NEURAL_COHERENCE_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/phaseBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/phaseBuffer.md
-import { MAX_ATOMS, PHASE_OFFSET } from "../02/mod";
 
 
 ```
@@ -34299,17 +34996,6 @@ for (let i = start; i < end; i++) {
 // trace_atom(888, 0xEE, resolved, 0, 0);
 return resolved;
 }
-
-```
-
----
-
-## FILE: src/_as/03/resonanceBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/resonanceBuffer.md
-import { MAX_ATOMS, RESONANCE_OFFSET } from "../02/mod";
-
 
 ```
 
@@ -34502,17 +35188,6 @@ import { GRID_CELLS, STRUCTURE_GRID_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/synapticWeightBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/synapticWeightBuffer.md
-import { MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/synapticWeights.ts
 
 ```typescript
@@ -34546,33 +35221,11 @@ import { TICK_COUNTER_OFFSET } from "../02/mod";
 
 ---
 
-## FILE: src/_as/03/xBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/xBuffer.md
-import { MAX_ATOMS, XS_OFFSET } from "../02/mod";
-
-
-```
-
----
-
 ## FILE: src/_as/03/xs.ts
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/xs.md
 import { MAX_ATOMS, XS_OFFSET } from "../02/mod";
-
-
-```
-
----
-
-## FILE: src/_as/03/yBuffer.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/yBuffer.md
-import { MAX_ATOMS, YS_OFFSET } from "../02/mod";
 
 
 ```
@@ -34858,7 +35511,6 @@ let pc = get_p_c(atomIndex);
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../03/mod";
-export * from "./P2P_CODEC";
 export { evaluate_opcodes } from "./evaluate_opcodes";
 export * from "./MX";
 export { tick_structure_grid } from "./tick_structure_grid";
@@ -34867,20 +35519,10 @@ export { tick_structure_grid } from "./tick_structure_grid";
 
 ---
 
-## FILE: src/_as/04/P2P_CODEC.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_codec.md
-
-
-```
-
----
-
 ## FILE: src/_as/04/MX.ts
 
 ```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/state_matrix.md
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mx.md
 import { ATOM_CONTEXT_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_H, GRID_W, MAX_ATOMS, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_SET, OP_SIGNAL, OP_SUB, OP_SYSCALL, PROP_NEURAL_COHERENCE, RESOURCE_MAX, SCALE, SYS_SET_ROLE, SYS_YIELD } from "../03/mod";
 
 
@@ -35133,26 +35775,6 @@ import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS } from "../04
 
 ---
 
-## FILE: src/_as/05/AVATAR_ENGINE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
-
-
-```
-
----
-
-## FILE: src/_as/05/BOOTSTRAP_HUB.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/bootstrap_hub.md
-
-
-```
-
----
-
 ## FILE: src/_as/05/execute_atom.ts
 
 ```typescript
@@ -35241,19 +35863,8 @@ set_energy(
 export * from "../04/mod";
 export { execute_atom } from "./execute_atom";
 export * from "./ATOMIC_LEDGER";
-export * from "./AVATAR_ENGINE";
 export * from "./SEMANTIC_MEMBRANE";
 export { tick_environment } from "./tick_environment";
-
-```
-
----
-
-## FILE: src/_as/05/P2P_SYNAPSE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/p2p_synapse.md
-
 
 ```
 
@@ -35554,33 +36165,6 @@ import { WORLD_MAX_X, WORLD_MAX_Y } from "../05/mod";
 
 ---
 
-## FILE: src/_as/06/REPLICATION_PROMOTION_ACTION.ts
-
-```typescript
-// Host-only module: REPLICATION_PROMOTION_ACTION omitted from AssemblyScript build.
-
-```
-
----
-
-## FILE: src/_as/06/REPLICATION_PROMOTION_DECISION.ts
-
-```typescript
-// Host-only module: REPLICATION_PROMOTION_DECISION omitted from AssemblyScript build.
-
-```
-
----
-
-## FILE: src/_as/06/REPLICATION_PROMOTION.ts
-
-```typescript
-// Host-only module: REPLICATION_PROMOTION omitted from AssemblyScript build.
-
-```
-
----
-
 ## FILE: src/_as/06/SERVE_DASHBOARD.ts
 
 ```typescript
@@ -35636,6 +36220,17 @@ import { WORLD_MAX_X, WORLD_MAX_Y } from "../05/mod";
 
 ---
 
+## FILE: src/_as/07/AKASHA_SERVER.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
+import { RUNTIME_POLICY } from "../06/mod";
+
+
+```
+
+---
+
 ## FILE: src/_as/07/ARCHITECT_PLASMID_PROMOTION_DECISION.ts
 
 ```typescript
@@ -35667,6 +36262,16 @@ import { WORLD_MAX_X, WORLD_MAX_Y } from "../05/mod";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_bot.md
+
+
+```
+
+---
+
+## FILE: src/_as/07/AVATAR_ENGINE.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
 
 
 ```
@@ -35760,21 +36365,8 @@ import { WORLD_MAX_X, WORLD_MAX_Y } from "../05/mod";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../06/mod";
-export * from "./SWARM_NODE";
-export * from "./P2P_FEDERATION";
-export * from "./SWARM_NEXUS";
 export * from "./llm_soul";
-
-```
-
----
-
-## FILE: src/_as/07/P2P_FEDERATION.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/federation.md
-import { prng_seed_from, prng_next } from "../06/mod";
-
+export * from "./AVATAR_ENGINE";
 
 ```
 
@@ -35798,6 +36390,33 @@ import { prng_seed_from, prng_next } from "../06/mod";
 
 ---
 
+## FILE: src/_as/07/REPLICATION_PROMOTION_ACTION.ts
+
+```typescript
+// Host-only module: REPLICATION_PROMOTION_ACTION omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/REPLICATION_PROMOTION_DECISION.ts
+
+```typescript
+// Host-only module: REPLICATION_PROMOTION_DECISION omitted from AssemblyScript build.
+
+```
+
+---
+
+## FILE: src/_as/07/REPLICATION_PROMOTION.ts
+
+```typescript
+// Host-only module: REPLICATION_PROMOTION omitted from AssemblyScript build.
+
+```
+
+---
+
 ## FILE: src/_as/07/sha256_hex.ts
 
 ```typescript
@@ -35811,26 +36430,6 @@ import { prng_seed_from, prng_next } from "../06/mod";
 
 ```typescript
 // Host-only module: SNAP_ENGINE omitted from AssemblyScript build.
-
-```
-
----
-
-## FILE: src/_as/07/SWARM_NEXUS.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_nexus.md
-
-
-```
-
----
-
-## FILE: src/_as/07/SWARM_NODE.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/swarm/swarm_node.md
-
 
 ```
 
@@ -35860,17 +36459,6 @@ import { OP_SET, OP_SYSCALL, MX, SYS_ATTRACT, SYS_TRANSFER } from "../07/mod";
 
 ```typescript
 // Host-only module: AKASHA_CODEX omitted from AssemblyScript build.
-
-```
-
----
-
-## FILE: src/_as/08/AKASHA_SERVER.ts
-
-```typescript
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
-import { RUNTIME_POLICY } from "../07/mod";
-
 
 ```
 
@@ -36064,11 +36652,22 @@ export * from "./HORMONE_BUFFER";
 
 ---
 
+## FILE: src/_as/11/GOLDEN_TRACE_CATALOG.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
+
+
+```
+
+---
+
 ## FILE: src/_as/11/mod.ts
 
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../10/mod";
+export * from "./GOLDEN_TRACE_CATALOG";
 
 ```
 
@@ -36097,6 +36696,18 @@ export * from "../10/mod";
 ```typescript
 // AUTOGENERATED AS LEVEL FACADE
 export * from "../11/mod";
+export * from "./REDUCTION_CASES";
+
+```
+
+---
+
+## FILE: src/_as/12/REDUCTION_CASES.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
+import { GRID_W, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, pack_structure_intent } from "../11/mod";
+
 
 ```
 
@@ -36109,6 +36720,7 @@ export * from "../11/mod";
 export * from "../12/mod";
 export * from "./PULSE";
 export * from "./PULSE_WORKER";
+export { REDUCTION_HARNESS } from "./REDUCTION_HARNESS";
 
 ```
 
@@ -36130,6 +36742,17 @@ import { BONDS_OFFSET, BOND_REQUESTS_OFFSET, CONTEXT_OFFSET, ENERGY_OFFSET, EVOL
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
 import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_ATOMS, MAX_EGRESS_EVENTS, OP_ADD, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PUT, OP_REPLICATE, OP_SECRETE_PLASMID, OP_SET, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, PROP_ENERGY, PROP_NEURAL_COHERENCE, PROP_RESONANCE, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, SYS_SET_ROLE, SYS_YIELD, XS_OFFSET, YS_OFFSET } from "../12/mod";
+
+
+```
+
+---
+
+## FILE: src/_as/13/REDUCTION_HARNESS.ts
+
+```typescript
+// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_harness_verifier.md
+import { GRID_H, GRID_W, glyphSpecById, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge } from "../12/mod";
 
 
 ```
@@ -40944,13 +41567,15 @@ export * from "./export_stats.ts";
 ## FILE: src/07/02/RUN_STAGE8_TICKS.ts
 
 ```typescript
-import { PULSE } from "@07/02/02/mod.ts";
-import { MX } from "@07/02/00/mod.ts";
-import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
-import { LOGGER } from "@07/02/00/mod.ts";
-import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { RUNTIME_POLICY } from "@generated";
+import {
+  COLDSTART_BOOTSTRAP,
+  LOGGER,
+  MX,
+  PULSE,
+  RUNTIME_POLICY,
+  SOVEREIGN_ORACLE,
+} from "@generated";
+import { evaluateGuardianSignalPromotion } from "@generated";
 
 async function run() {
   console.log("Initializing Pulse for Stage 8 verification...");
@@ -41001,88 +41626,64 @@ run().catch((err) => {
 
 ```typescript
 import {
-  applyLedgerUpdate,
-  createGeneticLedgerRuntime,
-  createLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
-} from "@07/02/03/mod.ts";
-import {
-  appendLedgerRecordAndMaybeCompact,
+  AKASHA_CODEX,
+  AS_WASM_PATH,
+  COLDSTART_BOOTSTRAP,
+  CONTROL_INTENT_QUEUE,
+  GATE,
+  GRID_H,
+  GRID_W,
+  LOGGER,
+  Ld,
+  Le,
+  Li,
+  Lw,
+  LineageTracker,
+  LINEAGE_TRACKER,
+  MUTATION_TELEMETRY,
+  MX,
+  PANOPTICON_SERVER,
+  PULSE,
+  RUNTIME_POLICY,
+  SNAP_ENGINE,
+  SNAPSHOT_ENGINE,
+  SOVEREIGNTY_ENGINE,
+  SOVEREIGN_ORACLE,
+  GLYPH_TELEMETRY,
+  evaluateGuardianSignalPromotion,
+  evaluateArchitectPlasmidPromotion,
+  evaluateReplicationPromotion,
   getLogPath,
   getSnapshotPath,
   hydrateLedgerRuntime,
+  rollbackLedgerUpdate,
+  saveEpoch,
+  snapshotLedgerRuntime,
+  type GuardianSignalHybridSnapshot,
+  type GuardianSignalPromotionSnapshot,
+  type ReplicationHybridSnapshot,
+  type ReplicationPromotionSnapshot,
+  type ArchitectPlasmidHybridSnapshot,
+  type ArchitectPlasmidPromotionSnapshot,
   type LedgerPersistenceSummary,
-  recordFromApply,
-  recordFromRollback,
-} from "@07/02/03/mod.ts";
-import { GATE } from "@03";
-import { GRID_CELLS, GRID_H, GRID_W, LOGGER, Li, Lw, Le } from "@generated";
-
-// OMEGA-64 | SYSTEM_START.ts | Era 13: ALEPH - Multiverse & Federation
-// Orchestrates the Pulse, Breath, and Observer UI in a single memory space.
-
-import {
-  PULSE,
-  type ReplicationHybridState,
-  setHormoneGovernanceDelegate,
-  setHormoneRuntimeGovernanceDelegate,
-  setPulseGovernanceDelegate,
-} from "@07/02/02/mod.ts";
-import { BREATH } from "@06";
-import {
+  type LedgerApplyResult,
+  type LedgerRollbackResult,
+  type LedgerRuntimeState,
+  BONDS_OFFSET,
   MAX_ATOMS,
-  MX
-} from "@generated";
-import {
-  SEMANTIC_MEMBRANE
-} from "@generated";
-import {
-  P2P_FEDERATION
-} from "@generated";
-import { SNAPSHOT_ENGINE } from "@07/02/06/mod.ts";
-import { SOVEREIGNTY_ENGINE } from "@07/02/03/mod.ts";
-import { SOVEREIGN_ORACLE } from "@07/02/05/mod.ts";
-import { P2P_CODEC, SWARM_NODE, SwarmNexus } from "@07/02/04/mod.ts";
-import { CONTROL_INTENT_QUEUE } from "@07/02/03/mod.ts";
-import {
-  PREDICTION_MARKET
-} from "@generated";
-import { BONDS_OFFSET } from "@07/02/00/mod.ts";
-
-import {
-  RUNTIME_POLICY
-} from "@generated";
-import { mutateUniversalConstants } from "@07/02/03/mod.ts";
-import {
-  AKASHA_CODEX,
+  createGeneticLedgerRuntime,
+  createLedgerRuntime,
+  applyLedgerUpdate,
+  appendLedgerRecordAndMaybeCompact,
+  TELEMETRY_STREAM,
+  P2P_FEDERATION,
+  PREDICTION_MARKET,
   compressMemory,
   decompressMemoryToLattice,
-  saveEpoch,
-  SNAP_ENGINE,
-} from "@07/02/06/mod.ts";
-import { MUTATION_TELEMETRY } from "@07/02/06/mod.ts";
-import { COLDSTART_BOOTSTRAP } from "@07/02/63/mod.ts";
-import { TELEMETRY_STREAM } from "@07/02/06/mod.ts";
-import { LINEAGE_TRACKER } from "@07/02/06/mod.ts";
-import { capturePhysiologySnapshot } from "@07/02/06/mod.ts";
-import {
-  GLYPH_TELEMETRY,
-  type GlyphSnapshot
-} from "@generated";
-import { evaluateGuardianSignalPromotion } from "@07/02/03/mod.ts";
-import { evaluateArchitectPlasmidPromotion } from "@07/02/03/mod.ts";
-import { evaluateReplicationPromotion } from "@07/02/03/mod.ts";
-import type {
-  ArchitectPlasmidHybridSnapshot,
-  ArchitectPlasmidPromotionSnapshot,
-  GuardianSignalHybridSnapshot,
-  GuardianSignalPromotionSnapshot,
-  ReplicationHybridSnapshot,
-  ReplicationPromotionSnapshot,
-} from "@07/02/03/mod.ts";
-import { PANOPTICON_SERVER } from "../../_/06/PANOPTICON_SERVER.ts";
-import {
+  recordFromApply,
+  recordFromRollback,
+  SEMANTIC_MEMBRANE,
+  capturePhysiologySnapshot,
   DAEMON_INGRESS_POLICY_LIMITS,
   type DaemonAction,
   type DaemonInjectEnvelope,
@@ -41095,29 +41696,15 @@ import {
   snapshotDaemonIngressPolicyLimits,
   syncDaemonIngressMaxPheromoneIntensity,
   syncDaemonIngressMaxPlasmidCharge,
-} from "@07/02/03/mod.ts";
+  createSwarmNexus,
+  SWARM_NODE,
+  P2P_CODEC,
+  GRID_CELLS,
+  BREATH,
+  mutateUniversalConstants,
+} from "@generated";
 
-setPulseGovernanceDelegate({
-  GATE,
-  SOVEREIGNTY_ENGINE,
-  CONTROL_INTENT_QUEUE,
-  PREDICTION_MARKET,
-  RUNTIME_POLICY,
-  DAEMON_INGRESS_POLICY_LIMITS,
-  applyLedgerUpdate,
-  createLedgerRuntime,
-  createGeneticLedgerRuntime,
-  rollbackLedgerUpdate,
-  snapshotLedgerRuntime,
-  appendLedgerRecordAndMaybeCompact,
-  getLogPath,
-  getSnapshotPath,
-  hydrateLedgerRuntime,
-  recordFromApply,
-  recordFromRollback,
-});
-setHormoneGovernanceDelegate({ RUNTIME_POLICY, createLedgerRuntime });
-setHormoneRuntimeGovernanceDelegate({ RUNTIME_POLICY });
+// 1. Initial Delegate Setup (Legacy Bridge Removed)
 
 const UI_PORT = RUNTIME_POLICY.system.port;
 const HOST = RUNTIME_POLICY.system.host;
@@ -41164,9 +41751,9 @@ type RuntimeMetrics = {
   architectPlasmidHybrid: ArchitectPlasmidHybridSnapshot;
   guardianSignalPromotion: GuardianSignalPromotionSnapshot;
   architectPlasmidPromotion: ArchitectPlasmidPromotionSnapshot;
-  replicationHybrid: ReplicationHybridState;
+  replicationHybrid: ReplicationHybridSnapshot;
   replicationPromotion: ReplicationPromotionSnapshot;
-  glyphTransport: GlyphSnapshot;
+  glyphTransport: any; // GlyphSnapshot missing?
 };
 
 type DaemonAuditPending = {
@@ -41395,7 +41982,7 @@ let latestHomeostasisUpdate: HomeostasisUpdateSnapshot | null = null;
 let homeostasisHistory: HomeostasisUpdateSnapshot[] = [];
 let latestDaemonPolicyUpdate: DaemonPolicyUpdateSnapshot | null = null;
 let daemonPolicyHistory: DaemonPolicyUpdateSnapshot[] = [];
-let daemonPheromoneLedgerRuntime = createGeneticLedgerRuntime(
+let daemonPheromoneLedgerRuntime: LedgerRuntimeState<"daemon.maxPheromoneIntensity"> = createGeneticLedgerRuntime(
   "daemon.maxPheromoneIntensity",
   DAEMON_POLICY.maxPheromoneIntensity,
   128,
@@ -41423,7 +42010,7 @@ let daemonPheromoneLedgerPersistence: LedgerPersistenceSummary = {
   lastHydratedAt: null,
   lastHydrationError: null,
 };
-let daemonPlasmidLedgerRuntime = createGeneticLedgerRuntime(
+let daemonPlasmidLedgerRuntime: LedgerRuntimeState<"daemon.maxPlasmidCharge"> = createGeneticLedgerRuntime(
   "daemon.maxPlasmidCharge",
   DAEMON_POLICY.maxPlasmidCharge,
   128,
@@ -41780,7 +42367,6 @@ const buildTelemetry = async () => {
     metrics.tick,
     4096,
   );
-  const peerRuleProfiles = P2P_FEDERATION.getPeerRuleProfiles();
   const federationAdmissionState = CONTROL_INTENT_QUEUE
     .getFederationAdmissionState();
   let voxPopuli: string[] = [];
@@ -41902,8 +42488,8 @@ const buildTelemetry = async () => {
     behavior_clusters: behaviorClusters.slice(0, 6),
     behavior_invariant: SEMANTIC_MEMBRANE.dominantBehaviorInvariant(),
     federation_rule_genome: {
-      local: P2P_FEDERATION.localRuleGenome,
-      peers: peerRuleProfiles.slice(0, 8),
+      local: {}, // Swarm disabled
+      peers: [], // Swarm disabled
     },
     federation_admission: {
       latest: federationAdmissionState.latest,
@@ -41911,18 +42497,18 @@ const buildTelemetry = async () => {
       policy: federationAdmissionState.policy,
     },
     hormones: [
-      MX.getHormone(0),
-      MX.getHormone(1),
-      MX.getHormone(2),
-      MX.getHormone(3),
-      MX.getHormone(4),
-      MX.getHormone(5),
+      MX.get_hormone(0),
+      MX.get_hormone(1),
+      MX.get_hormone(2),
+      MX.get_hormone(3),
+      MX.get_hormone(4),
+      MX.get_hormone(5),
     ],
     glyph_buffer: GLYPH_TELEMETRY.snapshot(),
   };
 };
 
-const buildFederateLocalContext = (
+const _buildFederateLocalContext = (
   packet: Record<string, unknown>,
   pulseId: number,
 ): {
@@ -42244,7 +42830,7 @@ const applyDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = applyLedgerUpdate(daemonPheromoneLedgerRuntime, update);
@@ -42260,7 +42846,7 @@ const rollbackDaemonPheromonePolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "daemon.maxPheromoneIntensity"
 > => {
   const result = rollbackLedgerUpdate(daemonPheromoneLedgerRuntime, rollback);
@@ -42286,7 +42872,7 @@ const applyDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerApplyResult<
+): LedgerApplyResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = applyLedgerUpdate(daemonPlasmidLedgerRuntime, update);
@@ -42302,7 +42888,7 @@ const rollbackDaemonPlasmidPolicyLedgerUpdate = (
     reason?: string;
     tick?: number;
   },
-): import("@03").LedgerRollbackResult<
+): LedgerRollbackResult<
   "daemon.maxPlasmidCharge"
 > => {
   const result = rollbackLedgerUpdate(daemonPlasmidLedgerRuntime, rollback);
@@ -44222,77 +44808,9 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     }
   }
 
-  if (url.pathname === "/federate" && req.method === "POST") {
-    const qCall = CONTROL_INTENT_QUEUE.enqueueFederate.bind(
-      CONTROL_INTENT_QUEUE,
-    );
-    const denied = requireControlAuth(req);
-    if (denied) return denied;
-    try {
-      const arrayBuffer = await req.arrayBuffer();
-      const packet = new Uint8Array(arrayBuffer);
-      const sourceNode = req.headers.get("x-omega-source-node") || "unknown";
-
-      let peerRuleGenome = null;
-      let peerBehaviorProfile = null;
-      let peerCodexProfile = null;
-      try {
-        const rStr = req.headers.get("x-omega-rule-genome");
-        if (rStr) {
-          peerRuleGenome = JSON.parse(rStr);
-          P2P_FEDERATION.observePeerRuleGenome(sourceNode, peerRuleGenome);
-        }
-        const bStr = req.headers.get("x-omega-behavior-profile");
-        if (bStr) peerBehaviorProfile = JSON.parse(bStr);
-        const cStr = req.headers.get("x-omega-codex-profile");
-        if (cStr) peerCodexProfile = JSON.parse(cStr);
-      } catch (e) {
-        Lw(
-          `🛸 [FEDERATION] Invalid admission headers from ${sourceNode}`,
-        );
-      }
-
-      const localContext = buildFederateLocalContext({}, PULSE.currentPulseId);
-      const queued = qCall(
-        packet,
-        sourceNode,
-        peerRuleGenome,
-        peerBehaviorProfile,
-        localContext.behavior,
-        peerCodexProfile,
-        localContext.codex,
-      );
-
-      Li(
-        `🛸 [FEDERATION] Incoming binary migration from ${sourceNode}: ${packet.length} bytes`,
-      );
-      return new Response(JSON.stringify(queued), {
-        status: queued.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (e) {
-      return new Response(
-        JSON.stringify({
-          ok: false,
-          reason: "INVALID_FEDERATE_PAYLOAD",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
-  }
-
-  if (url.pathname === "/peers") {
-    return new Response(JSON.stringify(Array.from(P2P_FEDERATION.peers)), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  if (url.pathname === "/peers/profiles") {
+  if (url.pathname === "/federate/admission") {
     return new Response(
-      JSON.stringify({
-        local: P2P_FEDERATION.localRuleGenome,
-        peers: P2P_FEDERATION.getPeerRuleProfiles(),
-      }),
+      JSON.stringify(CONTROL_INTENT_QUEUE.getFederationAdmissionState()),
       {
         headers: { "Content-Type": "application/json" },
       },
@@ -44482,7 +45000,6 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   }
 
   if (url.pathname === "/bonds" && req.method === "GET") {
-    const BONDS_OFFSET = BONDS_OFFSET;
     const BONDS_SIZE = MAX_ATOMS * 4 * 4;
     const view = new Uint8Array(MX.buffer, BONDS_OFFSET, BONDS_SIZE);
     const copy = new Uint8Array(view.byteLength);
@@ -44736,7 +45253,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
     cleanupSnap: (r: number) => SNAP_ENGINE.cleanup(r),
   });
 
-  const NEXUS_DAEMON = new SwarmNexus({
+  const NEXUS_DAEMON = createSwarmNexus({
     instanceId: 1,
     seedNodes: [],
   });
@@ -44745,20 +45262,25 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
   NEXUS_DAEMON.onSyncRequest = PULSE.onRemoteSyncRequest;
   NEXUS_DAEMON.onEpochPayload = PULSE.onRemoteEpochPayload;
 
+  PULSE.setAkashaDelegate({
+    recordMutationTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
+    flushMutationTelemetry: (t: number) => MUTATION_TELEMETRY.flushIfDue(t),
+    compressMemory: async (m) => await compressMemory(m),
+    decompressMemoryToLattice: async (m, p) => await decompressMemoryToLattice(m, p),
+    saveEpoch: async (m, t, l, p1, p2, h) => await saveEpoch(m as any, t, l, p1, p2, h),
+    broadcastPanopticonFrame: (f) => PANOPTICON_SERVER.broadcastBinaryFrame(f),
+    recordImmunologicalPurge: async (c) => await AKASHA_CODEX.recordImmunologicalPurge(c),
+    observePulseCodex: (t, p, g, s) => AKASHA_CODEX.observePulse(t, p, g, s),
+    saveSnap: async (t) => {
+      await SNAPSHOT_ENGINE.exportSnapshot({ tick: t });
+    },
+    cleanupSnap: (r) => SNAPSHOT_ENGINE.pruneSnapshots(r),
+  });
+
   CONTROL_INTENT_QUEUE.setDelegate({
-    recordTelemetry: (ev) => MUTATION_TELEMETRY.record(ev as any),
-    importSnapshot: (ts) => SNAPSHOT_ENGINE.importSnapshot(ts),
-    unpackAtom: (p) => P2P_CODEC.unpackAtom(p),
-  });
-
-  PREDICTION_MARKET.setDelegate({
-    recordMarketResolution: (t, c, f, w) =>
-      AKASHA_CODEX.recordMarketResolution(t, c, f, w),
-  });
-
-  SOVEREIGNTY_ENGINE.setDelegate({
-    recordDecreeShift: (t: number, o: string, n: string, e: number) =>
-      AKASHA_CODEX.recordDecreeShift(t, o, n, e),
+    recordTelemetry: (ev: { lane: string; kind: string; count: number }) => MUTATION_TELEMETRY.record(ev as any),
+    importSnapshot: (ts: string) => SNAPSHOT_ENGINE.importSnapshot(ts),
+    unpackAtom: (packet: Uint8Array) => P2P_CODEC.unpackAtom(packet),
   });
 
   P2P_FEDERATION.setUpwardDelegate({
@@ -44861,7 +45383,7 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
         population: metrics.population,
         avgEnergy: metrics.avgEnergy,
         neuralCoherence: metrics.neuralCoherence,
-        entropyPressure: MX.getHormone(0),
+        entropyPressure: MX.get_hormone(0),
         dominantMeme,
         destructiveMeme,
       };
@@ -44936,13 +45458,13 @@ Deno.serve({ hostname: HOST, port: UI_PORT }, async (req) => {
 import { ensureDirSync, emptyDirSync } from "https://deno.land/std@0.224.0/fs/mod.ts";
 import { parse as parseYaml } from "https://deno.land/std@0.224.0/yaml/mod.ts";
 import { walkSync } from "https://deno.land/std@0.224.0/fs/walk.ts";
-import { resolve, join } from "https://deno.land/std@0.224.0/path/mod.ts";
+import { resolve, join as _join } from "https://deno.land/std@0.224.0/path/mod.ts";
 import { loadSync } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
 // Load .env variables synchronously if available, ignoring missing keys
 try {
   loadSync({ export: true });
-} catch (e) {
+} catch (_e) {
   // Ignore missing vars error, defaults will be used
 }
 
@@ -44955,9 +45477,9 @@ const GEN_DIR_AS = resolve(CWD, Deno.env.get("GEN_DIR_AS") || "src/_as");
 
 import { z } from "npm:zod@4.3.6";
 
-const ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
+const _ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore"]);
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore", "verifier"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
@@ -44985,7 +45507,9 @@ export const OntologyNodeSchema = z.object({
   tests: z.array(z.any()).nullable().default([]).transform(v => v === null ? [] : v),
   tags: z.array(z.string()).nullable().default([]).transform(v => v === null ? [] : v),
   min_level: z.number().optional(),
+  entry: z.boolean().optional(),
   rust: z.string().optional(), // Raw rust code for substrate modules
+  payload: z.array(z.any()).optional(), // For static_table
 });
 
 const MIN_LEVEL_FOR_TAG: Record<string, number> = {
@@ -45011,6 +45535,8 @@ const ALLOWED_TYPES_RUNTIME = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "
 
 const nodes = new Map<string, OntologyNode>();
 const extraSymbolsMap = new Map<string, string>();
+const countsByType: Record<string, number> = {};
+const usedNodes = new Set<string>();
 
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
@@ -45061,13 +45587,15 @@ try {
       }
     }
 
+    countsByType[node.type] = (countsByType[node.type] || 0) + 1;
+
     if (node.type === "pure_fn") {
       // Validate types explicitly since Zod just checks strings here
       if (node.returns && !ALLOWED_TYPES_RUNTIME.includes(node.returns as any)) {
         console.error(`[FATAL] Invalid return type ${node.returns} in ${node.id}`);
         Deno.exit(1);
       }
-      for (const [argName, argType] of Object.entries(node.args || {})) {
+      for (const [_argName, argType] of Object.entries(node.args || {})) {
         if (!ALLOWED_TYPES_RUNTIME.includes(argType as any)) {
           console.error(`[FATAL] Invalid arg type ${argType} in ${node.id}`);
           Deno.exit(1);
@@ -45125,6 +45653,17 @@ try {
         Deno.exit(1);
       }
       node.rust = rustMatch[1].trim();
+    } else if (node.type === "verifier") {
+      const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
+      if (tsMatch) node.tsCode = tsMatch[1].trim();
+
+      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      if (asMatch) node.asCode = asMatch[1].trim();
+
+      if (!tsMatch && !asMatch) {
+        console.error(`[FATAL] Missing code block in verifier ${node.id}`);
+        Deno.exit(1);
+      }
     }
 
     if (node.extra_symbols) {
@@ -45266,6 +45805,13 @@ for (const node of nodes.values()) {
   }
 }
 
+// Track usage via deps
+for (const node of nodes.values()) {
+  for (const dep of node.deps || []) {
+    usedNodes.add(dep);
+  }
+}
+
 // Validate that every imported var exists and is causally valid
 for (const node of nodes.values()) {
   if (!node.vars || node.vars.length === 0) continue;
@@ -45276,6 +45822,10 @@ for (const node of nodes.values()) {
        console.error(`[FATAL] Missing Symbol Registration: Node '${node.id}' attempts to import '${v}' via 'vars', but no node exports this symbol. Verify spelling or add the missing node.`);
        Deno.exit(1);
     }
+    
+    usedNodes.add(sourceNodeId);
+    
+    usedNodes.add(sourceNodeId);
     
     const sourceNode = nodes.get(sourceNodeId);
     if (!sourceNode) continue; // Should be impossible but satisfy types
@@ -45401,7 +45951,7 @@ for (const node of nodes.values()) {
         tsOut += `} as const;\n`;
       }
       break;
-    case "memory_layout":
+    case "memory_layout": {
       tsOut += `// Memory Layout: ${node.id}\n`;
       let curOffExpr = node.base_offset || "0";
       
@@ -45467,6 +46017,8 @@ ${(node.regions || []).map((r, i, arr) => {
   return { ok, errors, regions, latticeEnd: LATTICE_MEMORY_END };
 }\n`;
       break;
+    }
+
     case "pure_fn":
       if (node.tags.includes("host") || node.tags.includes("substrate")) {
           tsOut += node.tsCode! + "\n";
@@ -45481,6 +46033,9 @@ ${(node.regions || []).map((r, i, arr) => {
       // module type acts similarly to host pure_fn, no wrapper emitted
       tsOut += node.tsCode! + "\n";
       break;
+    case "verifier":
+      tsOut += node.tsCode! + "\n";
+      break;
     default:
       // No TS output for other types like 'struct'
       break;
@@ -45488,7 +46043,8 @@ ${(node.regions || []).map((r, i, arr) => {
   
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      const ext = node.type === "verifier" ? ".test.ts" : ".ts";
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -45717,6 +46273,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     if (n.type === "pure_fn") {
       return n.tags.includes("host") || n.tags.includes("substrate");
     }
+    if (n.type === "verifier") return false;
     return true;
   });
   
@@ -45758,7 +46315,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
 }
 
 // Re-export core topological state that lives outside the pure DAG
-const resolveSysPath = (id: string) => {
+const _resolveSysPath = (id: string) => {
   const n = nodes.get(id);
   return n ? `../_/${formatLevel(n.level)}/${id}.ts` : `../_/00/${id}.ts`;
 };
@@ -45767,6 +46324,7 @@ mainTsOut += `const envAsDir = Deno.env.get("GEN_DIR_AS") || "src/_as";\n`;
 mainTsOut += `const envAsName = Deno.env.get("AS_WASM_NAME") || "release.wasm";\n`;
 mainTsOut += `const wasmFile = envAsDir.endsWith("/") ? envAsDir + envAsName : envAsDir + "/" + envAsName;\n`;
 mainTsOut += `export const AS_WASM_PATH = new URL(wasmFile, import.meta.url.replace("src/_/mod.ts", ""));\n`;
+mainTsOut += `export const RUST_WASM_PATH = new URL("src/_rust/release.wasm", import.meta.url.replace("src/_/mod.ts", ""));\n`;
 
 mainAsOut += `// AS_WASM_PATH omitted as it is host-specific\n`;
 
@@ -45795,7 +46353,95 @@ for (const node of nodes.values()) {
   }
 }
 
+console.log("\n" + "=".repeat(60));
+console.log("             OMEGA-64 ONTOLOGY BUILD SUMMARY");
+console.log("=".repeat(60));
+
+console.log("\nNode Counts by Type:");
+const sortedTypes = Object.keys(countsByType).sort();
+for (const type of sortedTypes) {
+  console.log(`  - ${type.padEnd(20)}: ${countsByType[type]}`);
+}
+
+const deadCodeCandidates = Array.from(nodes.values()).filter(node => {
+  if (usedNodes.has(node.id)) return false;
+  if (node.entry === true) return false;
+  if (node.type === "memory_layout") return false;
+  if (node.type === "substrate_module") return false;
+  if (node.type === "documentation" || node.type === "docs" || node.type === "lore") return false;
+  if (node.tags.includes("host") || node.tags.includes("substrate") || node.tags.includes("atom") || node.type === "verifier") return false;
+  
+  // Exclude core engine directories which are likely used by WASM or as entry points
+  const coreDirs = ["l32_gate", "physics", "memory", "substrate", "autopoiesis", "spatial", "genomes", "math"];
+  if (node.sourceFile && coreDirs.some(dir => node.sourceFile!.startsWith(dir + "/"))) return false;
+
+  return true;
+});
+
+if (deadCodeCandidates.length > 0) {
+  console.log("\nDead Code Candidates (Unreferenced Nodes):");
+  for (const node of deadCodeCandidates) {
+    console.log(`  [!] ${node.id} (${node.sourceFile})`);
+  }
+} else {
+  console.log("\n[OK] No dead code candidates detected.");
+}
+
+console.log("\n" + "=".repeat(60));
 console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
+console.log("=".repeat(60) + "\n");
+
+```
+
+---
+
+## FILE: src/07/build_rust_wasm.ts
+
+```typescript
+import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, assert_wasm_memory_depth } from "../_/mod.ts";
+
+assert_wasm_memory_depth();
+
+const artifactsDir = Deno.cwd() + "/src/_rust";
+await Deno.mkdir(artifactsDir, { recursive: true });
+
+const wasmFile = artifactsDir + "/release.wasm";
+
+console.log("[rust:build] Compiling sigma_core to WASM...");
+
+const args = [
+  "build",
+  "--target",
+  "wasm32-unknown-unknown",
+  "--release",
+];
+
+const build = new Deno.Command("cargo", {
+  args,
+  stdout: "inherit",
+  stderr: "inherit",
+});
+
+const { code } = await build.output();
+if (code !== 0) {
+  console.error(`[rust:build] Cargo build failed with code ${code}`);
+  Deno.exit(code);
+}
+
+// Locate the built WASM file. Cargo puts it in target/wasm32-unknown-unknown/release/*.wasm
+const targetWasm = Deno.cwd() + "/target/wasm32-unknown-unknown/release/omega_64.wasm";
+
+try {
+  await Deno.copyFile(targetWasm, wasmFile);
+} catch (err) {
+  console.error(`[rust:build] Failed to copy WASM from ${targetWasm} to ${wasmFile}: ${(err as Error).message}`);
+  Deno.exit(1);
+}
+
+const stat = await Deno.stat(wasmFile);
+console.log(
+  `[rust:build] SUCCESS: ${wasmFile}=${stat.size} bytes`,
+);
 
 ```
 

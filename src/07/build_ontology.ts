@@ -22,7 +22,7 @@ import { z } from "npm:zod@4.3.6";
 
 const _ALLOWED_TYPES = ["i32", "i64", "f32", "f64", "u8", "u16", "u32", "u64", "i16", "usize", "boolean", "bool", "void"] as const;
 
-export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore"]);
+export const NodeTypeSchema = z.enum(["pure_fn", "module", "struct", "enum", "constants", "static_table", "memory_layout", "substrate_module", "documentation", "docs", "lore", "verifier"]);
 export type NodeType = z.infer<typeof NodeTypeSchema>;
 
 export const OntologyNodeSchema = z.object({
@@ -196,6 +196,17 @@ try {
         Deno.exit(1);
       }
       node.rust = rustMatch[1].trim();
+    } else if (node.type === "verifier") {
+      const tsMatch = raw.match(/```typescript\n([\s\S]*?)```/);
+      if (tsMatch) node.tsCode = tsMatch[1].trim();
+
+      const asMatch = raw.match(/```(?:assemblyscript|assembly)\n([\s\S]*?)```/);
+      if (asMatch) node.asCode = asMatch[1].trim();
+
+      if (!tsMatch && !asMatch) {
+        console.error(`[FATAL] Missing code block in verifier ${node.id}`);
+        Deno.exit(1);
+      }
     }
 
     if (node.extra_symbols) {
@@ -565,6 +576,9 @@ ${(node.regions || []).map((r, i, arr) => {
       // module type acts similarly to host pure_fn, no wrapper emitted
       tsOut += node.tsCode! + "\n";
       break;
+    case "verifier":
+      tsOut += node.tsCode! + "\n";
+      break;
     default:
       // No TS output for other types like 'struct'
       break;
@@ -572,7 +586,8 @@ ${(node.regions || []).map((r, i, arr) => {
   
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
-      Deno.writeTextFileSync(`${dirPathTs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      const ext = node.type === "verifier" ? ".test.ts" : ".ts";
+      Deno.writeTextFileSync(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -801,6 +816,7 @@ for (let lvl = 0; lvl <= maxLevel; lvl++) {
     if (n.type === "pure_fn") {
       return n.tags.includes("host") || n.tags.includes("substrate");
     }
+    if (n.type === "verifier") return false;
     return true;
   });
   
@@ -896,7 +912,7 @@ const deadCodeCandidates = Array.from(nodes.values()).filter(node => {
   if (node.type === "memory_layout") return false;
   if (node.type === "substrate_module") return false;
   if (node.type === "documentation" || node.type === "docs" || node.type === "lore") return false;
-  if (node.tags.includes("host") || node.tags.includes("substrate") || node.tags.includes("atom")) return false;
+  if (node.tags.includes("host") || node.tags.includes("substrate") || node.tags.includes("atom") || node.type === "verifier") return false;
   
   // Exclude core engine directories which are likely used by WASM or as entry points
   const coreDirs = ["l32_gate", "physics", "memory", "substrate", "autopoiesis", "spatial", "genomes", "math"];

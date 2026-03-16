@@ -1,3 +1,20 @@
+---
+id: GOLDEN_TRACE_CATALOG
+type: module
+tags:
+  - core
+  - host
+min_level: 11
+description: Catalog of golden traces for system verification.
+extra_symbols:
+  - GOLDEN_TRACE_CATALOG
+  - goldenTraceById
+  - goldenTraceArtifactPaths
+---
+
+### TypeScript
+
+```typescript
 export type GoldenTraceMetricPolicy = "strict" | "bounded";
 
 export type GoldenTraceScenario = {
@@ -11,7 +28,7 @@ export type GoldenTraceScenario = {
   supportFiles: readonly string[];
 };
 
-const TRACE_ROOT = "src/03/03/verification/traces";
+const TRACE_ROOT = "src/ontology/verification/data/traces";
 
 const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
   {
@@ -566,109 +583,6 @@ const GOLDEN_TRACE_CATALOG_DATA: GoldenTraceScenario[] = [
       "src/03/03/verification/intent_resolution_capture.ts",
     ],
   },
-  /*
-  {
-    id: "gt23_cognitive_vector",
-    scenario: "standalone cognitive vector math and resonance resolution",
-    setup:
-      "standalone deterministic capture of OP_RESOLVE math precision tiers and OP_RESONATE_KURAMOTO spatial grid convergence",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "fastMathValue",
-      "preciseMathValue",
-      "fastMathEnergy",
-      "preciseMathEnergy",
-      "atom200PhaseAfter",
-      "atom201PhaseAfter",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      fastMathValue: "strict",
-      preciseMathValue: "strict",
-      fastMathEnergy: "strict",
-      preciseMathEnergy: "strict",
-      atom200PhaseAfter: "strict",
-      atom201PhaseAfter: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/cognitive_vector_capture.ts",
-      "test_kuramoto_lut.ts",
-    ],
-  },
-  {
-    id: "gt24_kuramoto_sync_threshold",
-    scenario: "standalone kuramoto phase sink at critical K",
-    setup:
-      "standalone deterministic capture of K-coupling scaling by neural coherence in OP_RESONATE_KURAMOTO",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "diffLowK",
-      "diffHighK",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      diffLowK: "strict",
-      diffHighK: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/kuramoto_sync_capture.ts",
-    ],
-  },
-  {
-    id: "gt25_lut_accuracy_tradeoff",
-    scenario: "standalone math LUT accuracy vs gas tradeoff",
-    setup:
-      "standalone deterministic capture of varying OP_RESOLVE metabolic cost depending on targeted math precision mode",
-    duration: "1 execute phase / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "val0",
-      "val1",
-      "val4",
-      "cost0",
-      "cost1",
-      "cost4",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      val0: "strict",
-      val1: "strict",
-      val4: "strict",
-      cost0: "strict",
-      cost1: "strict",
-      cost4: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/lut_accuracy_capture.ts",
-    ],
-  },
-  {
-    id: "gt26_resolution_phase_transition",
-    scenario: "standalone execution resource survival with coherence fields",
-    setup:
-      "standalone deterministic capture showing high phase resonance under large K resulting in metabolic survival",
-    duration: "10 execute phases / subprocess capture",
-    daemonEnabled: false,
-    metrics: [
-      "survivalCount",
-      "finalPhaseAvg",
-      "snapshotDigest",
-    ],
-    driftPolicy: {
-      survivalCount: "strict",
-      finalPhaseAvg: "strict",
-      snapshotDigest: "strict",
-    },
-    supportFiles: [
-      "src/03/03/verification/resolution_phase_capture.ts",
-    ],
-  },
-  */
 ];
 
 export const GOLDEN_TRACE_CATALOG: readonly GoldenTraceScenario[] = Object
@@ -704,3 +618,4 @@ export const goldenTraceArtifactPaths = (id: string) => {
     notesMd: `${dir}/notes.md`,
   };
 };
+```

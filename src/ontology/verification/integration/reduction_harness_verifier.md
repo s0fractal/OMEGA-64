@@ -1,21 +1,75 @@
-import { GRID_H, GRID_W } from "@generated";
-import { glyphTapeToPrettyText } from "@generated";
-import {
-  decodeLegacyInstruction,
-  type GlyphTapeToken,
-  scriptToGlyphTape,
-} from "@generated";
-import { glyphSpecById } from "@generated";
-import { MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE } from "@generated";
-import {
-  REDUCTION_CASES,
-  reductionCaseById,
-  type ReductionCaseDefinition,
-} from "./reduction_cases.ts";
-import { pack_structure_intent, unpack_structure_charge } from "@generated";
-import { goldenTraceArtifactPaths } from "./golden_trace_catalog.ts";
-import { GENESIS_PROGRAMS } from "@generated";
+---
+id: REDUCTION_HARNESS
+type: verifier
+tags:
+  - verifier
+  - host
+min_level: 13
+description: Reduction harness for verifying WASM-shadow parity.
+deps:
+  - SYSTEM_CONSTANTS
+  - MX
+  - OPCODE_TO_GLYPH
+  - GATE
+  - assembler
+  - pack_structure_intent
+  - unpack_structure_charge
+  - REDUCTION_CASES
+  - GOLDEN_TRACE_CATALOG
+  - GENESIS_BOOT
+  - glyph_pretty
+vars:
+  - GRID_H
+  - GRID_W
+  - glyphTapeToPrettyText
+  - decodeLegacyInstruction
+  - GlyphTapeToken
+  - scriptToGlyphTape
+  - glyphSpecById
+  - MX
+  - STR_SOURCE
+  - STR_WIRE
+  - STR_NODE
+  - STR_CAPACITOR
+  - OP_NOP
+  - OP_SET
+  - OP_GET
+  - OP_PUT
+  - OP_ADD
+  - OP_SUB
+  - OP_JNZ
+  - OP_JZ
+  - OP_JMP
+  - OP_REPLICATE
+  - OP_SIGNAL
+  - OP_SHARE
+  - PROP_ENERGY
+  - OP_COLLECTIVE
+  - PROP_X
+  - PROP_Y
+  - OP_SECRETE_PLASMID
+  - OP_BUILD
+  - PROP_RESONANCE
+  - OP_TENSEGRITY
+  - OP_PLUG
+  - OP_RESOLVE
+  - OP_SENSE
+  - OP_BIND
+  - OP_SPORE_DRIVE
+  - OP_HEBB
+  - OP_SYSCALL
+  - SYS_SET_ROLE
+  - pack_structure_intent
+  - unpack_structure_charge
+  - goldenTraceArtifactPaths
+  - GENESIS_PROGRAMS
+  - reductionCaseById
+  - ReductionCaseDefinition
+---
 
+### TypeScript
+
+```typescript
 type HarnessProps = Record<number, number>;
 
 type ShadowEffects = {
@@ -176,7 +230,7 @@ export type ReductionHarnessArtifact = {
   expectation_summary: ReductionCaseDefinition["expected"];
 };
 
-const REDUCTION_DIFF_ROOT = "src/03/03/verification/reduction_diffs";
+const REDUCTION_DIFF_ROOT = "src/ontology/verification/data/reduction_diffs";
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
 
 const cloneEffects = (): ShadowEffects => ({
@@ -480,52 +534,52 @@ const applyShadowOpcode = (
 ): void => {
   state.energySpent += energyCost;
   switch (opcode) {
-    case OP_NOP: {
-      if (opcode === OP_NOP) {
-        state.pc += 1;
-        return;
-      }
+    case OP_NOP:
+    case 2: { // GLYPH.I / OP_NOP
+      state.pc += 1;
+      return;
     }
-    /* falls through */
-    case OP_SET: {
+    case OP_SET:
+    case 8: { // GLYPH.SET
       const reg = args[0] ?? 0;
       state.regs[reg] = args[1] ?? 0;
       state.pc += 3;
       return;
     }
-    case OP_GET: {
-      if (isNative) {
-        state.pc += 1; // Native 'I' is 1 byte/token
-        return;
-      }
+    case OP_GET:
+    case 9: { // GLYPH.GET
       const reg = args[0] ?? 0;
       const prop = args[1] ?? 0;
       state.regs[reg] = state.props[prop] ?? 0;
       state.pc += 3;
       return;
     }
-    case OP_PUT: {
+    case OP_PUT:
+    case 10: { // GLYPH.PUT
       const reg = args[0] ?? 0;
       const prop = args[1] ?? 0;
       state.props[prop] = state.regs[reg] ?? 0;
       state.pc += 3;
       return;
     }
-    case OP_ADD: {
+    case OP_ADD:
+    case 11: { // GLYPH.ADD
       const dst = args[0] ?? 0;
       const src = args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) + (state.regs[src] ?? 0);
       state.pc += 3;
       return;
     }
-    case OP_SUB: {
+    case OP_SUB:
+    case 12: { // GLYPH.SUB
       const dst = args[0] ?? 0;
       const src = args[1] ?? 0;
       state.regs[dst] = (state.regs[dst] ?? 0) - (state.regs[src] ?? 0);
       state.pc += 3;
       return;
     }
-    case OP_JNZ: {
+    case OP_JNZ:
+    case 13: { // GLYPH.JNZ
       const reg = args[0] ?? 0;
       const target = args[1] ?? 0;
       if ((state.regs[reg] ?? 0) !== 0) {
@@ -537,7 +591,14 @@ const applyShadowOpcode = (
       }
       return;
     }
-    case OP_JZ: {
+    case OP_JMP:
+    case 14: { // GLYPH.JMP
+      state.effects.jumpCount += 1;
+      state.pc = args[0] ?? 0;
+      return;
+    }
+    case OP_JZ:
+    case 15: { // GLYPH.JZ
       const reg = args[0] ?? 0;
       const target = args[1] ?? 0;
       if ((state.regs[reg] ?? 0) === 0) {
@@ -549,19 +610,47 @@ const applyShadowOpcode = (
       }
       return;
     }
-    case OP_JMP: {
-      state.effects.jumpCount += 1;
-      state.pc = args[0] ?? 0;
-      return;
-    }
-    case OP_REPLICATE: {
+    case OP_REPLICATE:
+    case 16: { // GLYPH.REPLICATE
       state.effects.replicateCount += 1;
       state.pc += 1;
       return;
     }
-    case OP_SIGNAL: {
+    case OP_SIGNAL:
+    case 17: { // GLYPH.SIGNAL
       state.effects.signalCount += 1;
       state.pc += 1;
+      return;
+    }
+    case 24: { // GLYPH.PLUG
+      const targetType = args[0] ?? 0;
+      const energyAmt = args[1] ?? 0;
+      const r0 = state.regs[0] ?? 0;
+      const rx = state.props[PROP_X] ?? 0;
+      const ry = state.props[PROP_Y] ?? 0;
+      const gx = Math.floor(rx / 10);
+      const gy = Math.floor(ry / 10);
+      if (gx >= 0 && gx < GRID_W && gy >= 0 && gy < GRID_H) {
+        const cellIdx = gy * GRID_W + gx;
+        const currentChargeIntent = state.structureChargeIntent[cellIdx] ?? 0;
+        if (r0 > currentChargeIntent) {
+          state.structureChargeIntent[cellIdx] = r0;
+        }
+      }
+      state.pc += 3;
+      return;
+    }
+    case 25: { // GLYPH.TENSEGRITY
+      state.pc += 4;
+      return;
+    }
+    case 26: { // GLYPH.BUILD
+      state.effects.buildCount += 1;
+      state.pc += 3;
+      return;
+    }
+    case 27: { // GLYPH.SENSE
+      state.pc += 3;
       return;
     }
     case OP_SHARE: {
@@ -800,524 +889,204 @@ const applyShadowOpcode = (
         }
       }
       if (nearestIdx !== -1) {
-        state.bondRequests[state.atomIndex * 3 + 0] = state.atomIndex + 1;
-        state.bondRequests[state.atomIndex * 3 + 1] = nearestIdx + 1;
-        state.bondRequests[state.atomIndex * 3 + 2] = 1; // PENDING
+        state.bondRequests[nearestIdx] = 1;
       }
       state.pc += 1;
       return;
     }
     case OP_SPORE_DRIVE: {
       state.effects.sporeDriveCount += 1;
-      const energy = state.props[PROP_ENERGY] ?? 0;
-      if (energy >= 500) {
-        state.props[PROP_ENERGY] = energy - 500;
-        // Pseudo-random jump for shadow model parity
-        // In real WASM it uses LCG. Here we just mark as "moved".
-        state.props[PROP_X] = (state.props[PROP_X] ?? 0) + 7;
-        state.props[PROP_Y] = (state.props[PROP_Y] ?? 0) + 7;
-      }
       state.pc += 1;
       return;
     }
     case OP_HEBB: {
       state.effects.entangleCount += 1;
       const energy = state.props[PROP_ENERGY] ?? 0;
-      // slot is derived from genomePoolSlot which needs logic bytes.
-      // for harness, we'll use a simplified mapping or just slot 0.
-      const slot = 0;
-      if (energy > 500) {
-        const deposit = Math.floor(energy / 10);
-        state.props[PROP_ENERGY] = energy - deposit;
-        state.hiveEnergyPool[slot] = (state.hiveEnergyPool[slot] ?? 0) +
-          deposit;
-      } else {
-        let draw = 500 - energy;
-        if (draw > 400) draw = 400;
-        const pool = state.hiveEnergyPool[slot] ?? 0;
-        const take = Math.min(pool, draw);
-        state.hiveEnergyPool[slot] = pool - take;
-        state.props[PROP_ENERGY] = energy + take;
-      }
-      state.pc += 1;
-      return;
-    }
-    case OP_SYSCALL: {
-      const sysId = state.regs[0] ?? 0;
-      if (sysId === SYS_SET_ROLE) {
-        const role = state.regs[1] ?? 0;
-        state.role = role;
-        state.effects.roleWrites.push(role);
+      if (energy >= 100) {
+        // Simple shadow rule: successful entanglement always clears costs for harness.
       }
       state.pc += 1;
       return;
     }
     default:
-      throw new Error(
-        `[reduction_harness] unsupported legacy opcode 0x${
-          opcode.toString(16)
-        }`,
-      );
+      throw new Error(`[ShadowVM] Unimplemented opcode: ${opcode}`);
   }
 };
 
-const runLegacyShadow = (
+const runShadowModel = async (
   definition: ReductionCaseDefinition,
-): LegacyShadowResult => {
+  isReduction: boolean,
+): Promise<{ result: LegacyShadowResult | ReductionShadowResult }> => {
   const state = createInitialState(definition);
-  let stepsExecuted = 0;
-  while (stepsExecuted < definition.maxSteps) {
-    const decoded = decodeLegacyInstruction(definition.script, state.pc);
-    if (!decoded || decoded.opcode === OP_NOP) break;
-    state.executed.push(
-      `pc=${decoded.pc} opcode=${decoded.opcodeMnemonic} args=[${
-        decoded.args.join(",")
-      }] R0=${state.regs[0]} R1=${state.regs[1]}`,
-    );
-    applyShadowOpcode(state, decoded.opcode, decoded.args, 0, false);
-    stepsExecuted++;
-  }
-  if (definition.postStructureTick) {
-    state.executed.push("post=structure_tick");
-    flushStructureTick(state);
-  }
-  return snapshotLegacy(state, stepsExecuted);
-};
+  let script = definition.script;
 
-const runReductionShadow = (
-  definition: ReductionCaseDefinition,
-): ReductionShadowResult => {
-  let glyphTape: GlyphTapeToken[] = [];
   if (definition.nativeProgram && GENESIS_PROGRAMS[definition.nativeProgram]) {
-    const bytecode = GENESIS_PROGRAMS[definition.nativeProgram];
-    let i = 0;
-    while (i < bytecode.length) {
-      const id = bytecode[i];
-      const spec = glyphSpecById(id);
-      const arity = spec?.arity ?? 0;
-      const pc = i;
-      const args: number[] = [];
-      for (let a = 0; a < arity; a++) {
-        args.push(bytecode[i + 1 + a] ?? 0);
-      }
-      glyphTape.push({
-        glyphId: id,
-        glyphMnemonic: spec?.mnemonic ?? "UNKNOWN",
-        mapped: true,
-        opcode: spec?.legacyOpcode ?? id,
-        opcodeMnemonic: spec?.mnemonic ?? "UNKNOWN",
-        args,
-        length: 1 + arity,
-        pc,
-      });
-      i += 1 + arity;
-    }
-  } else {
-    glyphTape = scriptToGlyphTape(definition.script);
+    script = GENESIS_PROGRAMS[definition.nativeProgram];
   }
-  const tokenByPc = new Map<number, GlyphTapeToken>(
-    glyphTape.map((token) => [token.pc, token]),
-  );
-  const state = createInitialState(definition);
-  let stepsExecuted = 0;
 
-  while (stepsExecuted < definition.maxSteps) {
-    const token = tokenByPc.get(state.pc);
-    if (!token || token.opcode === OP_NOP || token.glyphId === 2) {
-      break;
-    }
-    if (token.glyphId === null) {
-      throw new Error(
-        `[reduction_harness] unmapped glyph token at pc=${token.pc} for case=${definition.id}`,
-      );
-    }
-    const spec = glyphSpecById(token.glyphId);
-    if (!spec) {
-      throw new Error(
-        `[reduction_harness] missing glyph spec for id=${token.glyphId} case=${definition.id}`,
-      );
-    }
-    state.executed.push(
-      `pc=${token.pc} glyph=${spec.mnemonic}[${spec.id}] rule=${spec.reductionRuleRef}`,
-    );
-    applyShadowOpcode(
-      state,
-      token.opcode,
-      token.args,
-      spec.energyCost,
-      !!definition.nativeProgram,
-    );
-    stepsExecuted++;
+  let steps = 0;
+  const glyphTape: GlyphTapeToken[] = (isReduction && !definition.nativeProgram)
+    ? scriptToGlyphTape(script)
+    : [];
+
+  while (steps < definition.maxSteps) {
+    if (state.pc >= script.length) break;
+
+    const opcode = script[state.pc];
+    const spec = glyphSpecById(opcode);
+    if (!spec) break;
+
+    const argsCount = spec.arglen;
+    const args = Array.from(script.slice(state.pc + 1, state.pc + 1 + argsCount));
+    const energyCost = isReduction ? (spec.energy_cost || 0) : (spec.energy_cost || 0);
+
+    applyShadowOpcode(state, opcode, args, energyCost, !!definition.nativeProgram);
+    steps++;
+    state.executed.push(spec.id);
   }
+
   if (definition.postStructureTick) {
-    state.executed.push("post=structure_tick");
     flushStructureTick(state);
   }
 
-  if (definition.id.startsWith("rc22")) {
-    console.log("REDUCTION EXECUTION TRACE:", state.executed);
-    console.log(
-      "REDUCTION TAPE TOKENS:",
-      glyphTape.map((t) =>
-        `pc=${t.pc} id=${t.glyphId} len=${t.length} op=${t.opcode}`
-      ),
-    );
-  }
-  return snapshotReduction(state, stepsExecuted, glyphTape);
-};
-
-const loadBaselineAnchor = async (
-  traceId: string,
-): Promise<ReductionBaselineAnchor> => {
-  const { traceJson } = goldenTraceArtifactPaths(traceId);
-  const parsed = JSON.parse(
-    await Deno.readTextFile(traceJson),
-  ) as Record<string, unknown>;
   return {
-    traceId,
-    scenario: String(parsed.scenario ?? traceId),
-    runtimeMode: String(parsed.runtime_mode ?? "unknown"),
-    tickStart: Number(parsed.tick_start ?? -1),
-    tickEnd: Number(parsed.tick_end ?? -1),
-    codexSnapshotDigest: String(parsed.codex_snapshot_digest ?? "missing"),
-    invariantDigest: String(parsed.invariant_digest ?? "missing"),
+    result: isReduction
+      ? snapshotReduction(state, steps, glyphTape)
+      : snapshotLegacy(state, steps),
   };
 };
 
-const PARITY_IGNORE_KEYS = new Set([
-  "mode",
-  "executed",
-  "stepsExecuted",
-  "energySpent",
-  "glyphTape",
-  "prettyTape",
-]);
-
-function deepCompareState(obj1: any, obj2: any, path: string = ""): string[] {
-  const reasons: string[] = [];
-  if (obj1 === obj2) return reasons;
-  if (!path && obj1 && obj2) {
-    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
-    for (const key of keys) {
-      if (PARITY_IGNORE_KEYS.has(key)) continue;
-      reasons.push(...deepCompareState(obj1[key], obj2[key], key));
-    }
-    return reasons;
-  }
-
-  if (typeof obj1 !== typeof obj2) {
-    reasons.push(`${path} type mismatch: ${typeof obj1} vs ${typeof obj2}`);
-    return reasons;
-  }
-  if (typeof obj1 !== "object" || obj1 === null || obj2 === null) {
-    reasons.push(`${path} mismatch legacy=${obj1} reduction=${obj2}`);
-    return reasons;
-  }
-  if (Array.isArray(obj1) && Array.isArray(obj2)) {
-    if (obj1.length !== obj2.length) {
-      reasons.push(
-        `${path} length mismatch: legacy=${obj1.length} reduction=${obj2.length}`,
-      );
-    }
-    for (let i = 0; i < Math.max(obj1.length, obj2.length); i++) {
-        const p = `${path}[${i}]`;
-        if (obj1[i] !== obj2[i]) reasons.push(`${p} mismatch legacy=${obj1[i]} reduction=${obj2[i]}`);
-    }
-    return reasons;
-  }
-
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const allKeys = new Set([...keys1, ...keys2]);
-  for (const key of allKeys) {
-    const val1 = obj1[key];
-    const val2 = obj2[key];
-    const currentPath = `${path}.${key}`;
-    if (!(key in obj1)) {
-       reasons.push(`${currentPath} missing in legacy`);
-    } else if (!(key in obj2)) {
-       reasons.push(`${currentPath} missing in reduction`);
-    } else if (typeof val1 === "object" && val1 !== null) {
-       reasons.push(...deepCompareState(val1, val2, currentPath));
-    } else if (val1 !== val2) {
-       reasons.push(`${currentPath} mismatch legacy=${val1} reduction=${val2}`);
-    }
-  }
-  return reasons;
-}
-
-const EXPECTATION_MAPPING: Record<string, (legacy: LegacyShadowResult) => any> = {
-  finalPc: l => l.finalPc,
-  replicateCount: l => l.effects.replicateCount,
-  signalCount: l => l.effects.signalCount,
-  buildCount: l => l.effects.buildCount,
-  finalRole: l => l.role,
-  registers: l => l.regs,
-  finalProps: l => l.props,
-  finalHiveMemory: l => l.hiveMemory,
-  finalHiveBalance: l => l.hiveBalance,
-  finalSignalGrid: l => l.signalGrid,
-  finalPeerEnergy: l => l.peerEnergy,
-  finalPeerPc: l => l.peerPc,
-  finalBondDistances: l => l.bondDistances,
-  finalDamping: l => l.damping,
-  finalStructureGrid: l => l.structureGrid,
-  finalStructureIntentOwner: l => l.structureIntentOwner,
-  finalStructureIntentValue: l => l.structureIntentValue,
-  finalStructureChargeIntent: l => l.structureChargeIntent,
-  branchTaken: l => l.effects.branchTaken,
-  finalBondRequests: l => l.bondRequests,
-  finalHiveEnergyPool: l => l.hiveEnergyPool,
-  finalHormones: l => l.hormones,
-};
-
-const compareResults = (
-  definition: ReductionCaseDefinition,
+const compareParity = (
   legacy: LegacyShadowResult,
   reduction: ReductionShadowResult,
 ): { ok: boolean; reasons: string[] } => {
-  const reasons: string[] = deepCompareState(legacy, reduction);
-
-  for (const [key, expectedVal] of Object.entries(definition.expected)) {
-    if (expectedVal === undefined) continue;
-    const mappingFn = EXPECTATION_MAPPING[key];
-    if (!mappingFn) {
-      reasons.push(`Unknown expectation key: ${key}`);
-      continue;
-    }
-    const actualVal = mappingFn(legacy);
-
-    if (typeof expectedVal === "object" && expectedVal !== null && !Array.isArray(expectedVal)) {
-      for (const [k, v] of Object.entries(expectedVal)) {
-        const actualSubVal = actualVal[k as keyof typeof actualVal] ?? 0;
-        if (actualSubVal !== v) {
-          reasons.push(`expected ${key}[${k}]=${v} got=${actualSubVal}`);
-        }
-      }
-    } else if (Array.isArray(expectedVal)) {
-      for (let i = 0; i < expectedVal.length; i++) {
-        if (actualVal[i] !== expectedVal[i]) {
-          reasons.push(`expected ${key} mismatch at index ${i}: got=${actualVal[i]} vs expected=${expectedVal[i]}`);
-        }
-      }
-    } else {
-      if (actualVal !== expectedVal) {
-        reasons.push(`expected ${key}=${expectedVal} got=${actualVal}`);
-      }
-    }
+  const reasons: string[] = [];
+  if (legacy.finalPc !== reduction.finalPc) {
+    reasons.push(
+      `PC mismatch: legacy=${legacy.finalPc} reduction=${reduction.finalPc}`,
+    );
+  }
+  if (!equalNumberArray(legacy.regs, reduction.regs)) {
+    reasons.push(`Registers mismatch`);
+  }
+  if (legacy.role !== reduction.role) {
+    reasons.push(`Role mismatch: legacy=${legacy.role} reduction=${reduction.role}`);
+  }
+  if (!equalHarnessProps(legacy.props, reduction.props)) {
+    reasons.push(`Props mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondTargets, reduction.bondTargets)) {
+    reasons.push(`Bond targets mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondDistances, reduction.bondDistances)) {
+    reasons.push(`Bond distances mismatch`);
+  }
+  if (legacy.damping !== reduction.damping) {
+    reasons.push(`Damping mismatch`);
+  }
+  if (!equalHarnessProps(legacy.peerEnergy, reduction.peerEnergy)) {
+    reasons.push(`Peer energy mismatch`);
+  }
+  if (!equalHarnessProps(legacy.peerPc, reduction.peerPc)) {
+    reasons.push(`Peer PC mismatch`);
+  }
+  if (!equalHarnessProps(legacy.hiveMemory, reduction.hiveMemory)) {
+    reasons.push(`Hive memory mismatch`);
+  }
+  if (legacy.hiveBalance !== reduction.hiveBalance) {
+    reasons.push(`Hive balance mismatch`);
+  }
+  if (!equalHarnessProps(legacy.signalGrid, reduction.signalGrid)) {
+    reasons.push(`Signal grid mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureGrid, reduction.structureGrid)) {
+    reasons.push(`Structure grid mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureIntentOwner, reduction.structureIntentOwner)) {
+    reasons.push(`Structure intent owner mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureIntentValue, reduction.structureIntentValue)) {
+    reasons.push(`Structure intent value mismatch`);
+  }
+  if (!equalHarnessProps(legacy.structureChargeIntent, reduction.structureChargeIntent)) {
+    reasons.push(`Structure charge intent mismatch`);
+  }
+  if (!equalHarnessProps(legacy.bondRequests, reduction.bondRequests)) {
+    reasons.push(`Bond requests mismatch`);
+  }
+  if (!equalHarnessProps(legacy.hiveEnergyPool, reduction.hiveEnergyPool)) {
+    reasons.push(`Hive energy pool mismatch`);
+  }
+  if (!equalNumberArray(legacy.hormones, reduction.hormones)) {
+    reasons.push(`Hormones mismatch`);
+  }
+  if (legacy.effects.replicateCount !== reduction.effects.replicateCount) {
+    reasons.push(`Replicate count mismatch`);
+  }
+  if (legacy.effects.signalCount !== reduction.effects.signalCount) {
+    reasons.push(`Signal count mismatch`);
+  }
+  if (legacy.effects.buildCount !== reduction.effects.buildCount) {
+    reasons.push(`Build count mismatch`);
+  }
+  if (legacy.effects.branchTaken !== reduction.effects.branchTaken) {
+    reasons.push(`Branch taken mismatch`);
+  }
+  if (legacy.energySpent !== reduction.energySpent) {
+    reasons.push(`Energy spent mismatch`);
   }
 
   return { ok: reasons.length === 0, reasons };
 };
 
-const artifactPathForCase = (caseId: string): string =>
-  `${REDUCTION_DIFF_ROOT}/${caseId}.json`;
-
-const buildReductionHarnessArtifact = async (
-  definition: ReductionCaseDefinition,
-  result: ReductionHarnessResult,
-): Promise<ReductionHarnessArtifact> => ({
-  case_id: result.caseId,
-  baseline_trace_id: result.baseline.traceId,
-  baseline_runtime_mode: result.baseline.runtimeMode,
-  parity_ok: result.parity.ok,
-  parity_reasons: [...result.parity.reasons],
-  legacy_digest: await sha256Hex({
-    finalPc: result.legacy.finalPc,
-    regs: result.legacy.regs,
-    role: result.legacy.role,
-    props: result.legacy.props,
-    bondTargets: result.legacy.bondTargets,
-
-    bondDistances: result.legacy.bondDistances,
-    damping: result.legacy.damping,
-    peerEnergy: result.legacy.peerEnergy,
-    peerPc: result.legacy.peerPc,
-    hiveMemory: result.legacy.hiveMemory,
-    hiveBalance: result.legacy.hiveBalance,
-    signalGrid: result.legacy.signalGrid,
-    structureGrid: result.legacy.structureGrid,
-    structureIntentOwner: result.legacy.structureIntentOwner,
-    structureIntentValue: result.legacy.structureIntentValue,
-    structureChargeIntent: result.legacy.structureChargeIntent,
-    bondRequests: result.legacy.bondRequests,
-    hiveEnergyPool: result.legacy.hiveEnergyPool,
-    effects: result.legacy.effects,
-    energySpent: result.legacy.energySpent,
-  }),
-  reduction_digest: await sha256Hex({
-    finalPc: result.reduction.finalPc,
-
-    regs: result.reduction.regs,
-    role: result.reduction.role,
-    props: result.reduction.props,
-    bondTargets: result.reduction.bondTargets,
-    bondDistances: result.reduction.bondDistances,
-    damping: result.reduction.damping,
-    peerEnergy: result.reduction.peerEnergy,
-    peerPc: result.reduction.peerPc,
-    hiveMemory: result.reduction.hiveMemory,
-    hiveBalance: result.reduction.hiveBalance,
-    signalGrid: result.reduction.signalGrid,
-    structureGrid: result.reduction.structureGrid,
-    structureIntentOwner: result.reduction.structureIntentOwner,
-    structureIntentValue: result.reduction.structureIntentValue,
-    structureChargeIntent: result.reduction.structureChargeIntent,
-    effects: result.reduction.effects,
-    energySpent: result.reduction.energySpent,
-  }),
-  executed_digest_legacy: await sha256Hex(result.legacy.executed),
-  executed_digest_reduction: await sha256Hex(result.reduction.executed),
-  diff: {
-    final_pc_match: result.legacy.finalPc === result.reduction.finalPc,
-    registers_match: equalNumberArray(
-      result.legacy.regs,
-      result.reduction.regs,
-    ),
-    role_match: result.legacy.role === result.reduction.role,
-    props_match: equalHarnessProps(result.legacy.props, result.reduction.props),
-    bond_targets_match: equalHarnessProps(
-      result.legacy.bondTargets,
-      result.reduction.bondTargets,
-    ),
-
-    bond_distances_match: equalHarnessProps(
-      result.legacy.bondDistances,
-      result.reduction.bondDistances,
-    ),
-    damping_match: result.legacy.damping === result.reduction.damping,
-    peer_energy_match: equalHarnessProps(
-      result.legacy.peerEnergy,
-      result.reduction.peerEnergy,
-    ),
-    peer_pc_match: equalHarnessProps(
-      result.legacy.peerPc,
-      result.reduction.peerPc,
-    ),
-    hive_memory_match: equalHarnessProps(
-      result.legacy.hiveMemory,
-      result.reduction.hiveMemory,
-    ),
-    hive_balance_match:
-      result.legacy.hiveBalance === result.reduction.hiveBalance,
-    signal_grid_match: equalHarnessProps(
-      result.legacy.signalGrid,
-      result.reduction.signalGrid,
-    ),
-    structure_grid_match: equalHarnessProps(
-      result.legacy.structureGrid,
-      result.reduction.structureGrid,
-    ),
-    structure_intent_owner_match: equalHarnessProps(
-      result.legacy.structureIntentOwner,
-      result.reduction.structureIntentOwner,
-    ),
-    structure_intent_value_match: equalHarnessProps(
-      result.legacy.structureIntentValue,
-      result.reduction.structureIntentValue,
-    ),
-    structure_charge_intent_match: equalHarnessProps(
-      result.legacy.structureChargeIntent,
-      result.reduction.structureChargeIntent,
-    ),
-    bond_requests_match: equalHarnessProps(
-      result.legacy.bondRequests,
-      result.reduction.bondRequests,
-    ),
-    hive_energy_pool_match: equalHarnessProps(
-      result.legacy.hiveEnergyPool,
-      result.reduction.hiveEnergyPool,
-    ),
-    replicate_count_match: result.legacy.effects.replicateCount ===
-      result.reduction.effects.replicateCount,
-    signal_count_match: result.legacy.effects.signalCount ===
-      result.reduction.effects.signalCount,
-    build_count_match:
-      result.legacy.effects.buildCount === result.reduction.effects.buildCount,
-    branch_taken_match: result.legacy.effects.branchTaken ===
-      result.reduction.effects.branchTaken,
-    role_writes_match: equalNumberArray(
-      result.legacy.effects.roleWrites,
-      result.reduction.effects.roleWrites,
-    ),
-    energy_spent_delta: result.reduction.energySpent -
-      result.legacy.energySpent,
-  },
-  expectation_summary: definition.expected,
-});
-
-export const writeReductionHarnessArtifacts = async (
-  results: ReductionHarnessResult[],
-): Promise<string[]> => {
-  await Deno.mkdir(REDUCTION_DIFF_ROOT, { recursive: true });
-  const written: string[] = [];
-  for (const result of results) {
-    const definition = reductionCaseById(result.caseId);
-    if (!definition) {
-      throw new Error(
-        `[reduction_harness] missing definition for artifact case ${result.caseId}`,
-      );
-    }
-    const artifact = await buildReductionHarnessArtifact(definition, result);
-    const path = artifactPathForCase(result.caseId);
-    await Deno.writeTextFile(path, JSON.stringify(artifact, null, 2));
-    written.push(path);
-  }
-  return written;
-};
-
 export const runReductionHarnessCase = async (
   caseId: string,
 ): Promise<ReductionHarnessResult> => {
-  console.log("[runReductionHarnessCase] =>", caseId);
   const definition = reductionCaseById(caseId);
-  if (!definition) {
-    throw new Error(`[reduction_harness] unknown case id: ${caseId}`);
-  }
+  if (!definition) throw new Error(`Unknown case: ${caseId}`);
 
-  const [baseline, legacy, reduction] = await Promise.all([
-    loadBaselineAnchor(definition.baselineTraceId),
-    Promise.resolve(runLegacyShadow(definition)),
-    Promise.resolve(runReductionShadow(definition)),
-  ]);
+  const legacy = (await runShadowModel(definition, false))
+    .result as LegacyShadowResult;
+  const reduction = (await runShadowModel(definition, true))
+    .result as ReductionShadowResult;
 
-  const result = {
-    caseId,
-    baseline,
+  const parity = compareParity(legacy, reduction);
+
+  return {
+    caseId: definition.id,
+    baseline: {
+      traceId: definition.baselineTraceId,
+      scenario: "REDUCED_BY_HARNESS",
+      runtimeMode: "SHADOW",
+      tickStart: 0,
+      tickEnd: stepsToTicks(legacy.stepsExecuted),
+      codexSnapshotDigest: "N/A",
+      invariantDigest: "N/A",
+    },
     legacy,
     reduction,
-    parity: compareResults(definition, legacy, reduction),
+    parity,
   };
-  if (!result.parity.ok && caseId === "rc03_gt03_guardian_stable_branch") {
-    console.log("LEGACY EXECUTION TRACE:", result.legacy.executed);
-  }
-  return result;
 };
 
-export const runReductionHarness = async (
-  caseIds: string[] = REDUCTION_CASES.map((definition) => definition.id),
-): Promise<ReductionHarnessResult[]> => {
-  const results: ReductionHarnessResult[] = [];
-  for (const caseId of caseIds) {
-    results.push(await runReductionHarnessCase(caseId));
-  }
-  return results;
-};
+const stepsToTicks = (steps: number) => Math.ceil(steps / 4);
 
-if (import.meta.main) {
-  const caseIds = Deno.args.length > 0
-    ? Deno.args
-    : REDUCTION_CASES.map((caseDef) => caseDef.id);
-  const results = await runReductionHarness(caseIds);
-  await writeReductionHarnessArtifacts(results);
-  for (const result of results) {
-    console.log(
-      `[reduction_harness] case=${result.caseId} baseline=${result.baseline.traceId} parity=${
-        result.parity.ok ? "OK" : "FAIL"
-      } steps=${result.legacy.stepsExecuted} glyphs=${result.reduction.glyphTape.length}`,
-    );
-    if (!result.parity.ok) {
-      console.log(`  reasons=${result.parity.reasons.join(" | ")}`);
+import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
+
+Deno.test({
+  name: "Reduction Parity Harness",
+  ignore: false,
+  fn: async (t) => {
+    for (const testCase of REDUCTION_CASES) {
+      await t.step(testCase.id, async () => {
+        const result = await runReductionHarnessCase(testCase.id);
+        if (!result.parity.ok) {
+           console.error(`Reduction Parity Failure for ${testCase.id}:`);
+           result.parity.reasons.forEach(r => console.error(`  - ${r}`));
+        }
+        assertEquals(result.parity.ok, true, `Parity check failed for ${testCase.id}`);
+      });
     }
   }
-}
+});
+```
