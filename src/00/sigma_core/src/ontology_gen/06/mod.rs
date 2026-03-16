@@ -71,6 +71,9 @@ pub use pack_structure_intent::*;
 #[path = "make_xor_shift32.rs"]
 pub mod make_xor_shift32;
 pub use make_xor_shift32::*;
+#[path = "PRNG.rs"]
+pub mod PRNG;
+pub use PRNG::*;
 #[path = "unpack_structure_charge.rs"]
 pub mod unpack_structure_charge;
 pub use unpack_structure_charge::*;
@@ -89,6 +92,9 @@ pub use GLYPH_TELEMETRY::*;
 #[path = "SERVE_DASHBOARD.rs"]
 pub mod SERVE_DASHBOARD;
 pub use SERVE_DASHBOARD::*;
+#[path = "P2P_CODEC.rs"]
+pub mod P2P_CODEC;
+pub use P2P_CODEC::*;
 #[path = "TELEMETRY_STREAM.rs"]
 pub mod TELEMETRY_STREAM;
 pub use TELEMETRY_STREAM::*;

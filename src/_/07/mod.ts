@@ -21,3 +21,6 @@ export * from "./llm_soul.ts";
 export * from "./AVATAR_ENGINE.ts";
 export * from "./LLM_SYNAPSE.ts";
 export * from "./GENESIS_INCEPTOR.ts";
+export * from "./SWARM_NODE.ts";
+export * from "./P2P_FEDERATION.ts";
+export * from "./SWARM_NEXUS.ts";
