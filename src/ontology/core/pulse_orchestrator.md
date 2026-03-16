@@ -98,6 +98,7 @@ import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rol
 import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
 import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
 import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
+import { SIGMA_FFI } from "../../SIGMA_FFI.ts";
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 
 
@@ -2712,13 +2713,16 @@ export const PULSE = {
       );
     }
     isTicking = true;
-    if (workers.length === 0) {
+    if (RUNTIME_POLICY.pulse.engine === "ffi" && !SIGMA_FFI.loaded()) {
+      SIGMA_FFI.init();
+    }
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       await PULSE.initWorkers();
     }
     if (wasmBootDegraded) {
       return;
     }
-    if (workers.length === 0) {
+    if (workers.length === 0 && RUNTIME_POLICY.pulse.engine !== "ffi") {
       throw new Error(
         `[PULSE] No workers ready for tick. reason=${
           wasmBootReason || "WORKERS_UNAVAILABLE"
@@ -2787,15 +2791,20 @@ export const PULSE = {
 
       const noveltyDriftRatio = (noveltyHistory.sum() / noveltyHistory.size()) /
         1000.0;
-      // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
-      const coherencePulseId = nextPulseId();
-      const coherenceRes = await postAndWait<{ coherence: number }>(
-        0,
-        workers[0],
-        { type: "POLL_COHERENCE", pulseId: coherencePulseId },
-        "COHERENCE_VAL",
-      );
-      const coherence = coherenceRes.coherence ?? 0;
+      let coherence = 0;
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        coherence = Atomics.load(MX.neuralCoherence, 0);
+      } else if (workers.length > 0) {
+        // Poll Coherence from Worker 0 (WASM primary) - MUST happen before reset
+        const coherencePulseId = nextPulseId();
+        const coherenceRes = await postAndWait<{ coherence: number }>(
+          0,
+          workers[0],
+          { type: "POLL_COHERENCE", pulseId: coherencePulseId },
+          "COHERENCE_VAL",
+        );
+        coherence = coherenceRes.coherence ?? 0;
+      }
       oracleDelegate?.setNeuralCoherence(coherence);
 
       dumpA11("Before Hormones");
@@ -2806,11 +2815,13 @@ export const PULSE = {
 
       // Broadcast a threshold-clamped coherence channel for guardian scripts.
       const guardianChannel = Math.max(0, Math.min(200, coherence));
-      workers[0].postMessage({
-        type: "SET_COHERENCE",
-        coherence: guardianChannel,
-        pulseId: nextPulseId(),
-      });
+      if (workers.length > 0) {
+        workers[0].postMessage({
+          type: "SET_COHERENCE",
+          coherence: guardianChannel,
+          pulseId: nextPulseId(),
+        });
+      }
 
       dumpA11("Before Bonds");
 
@@ -2864,100 +2875,107 @@ export const PULSE = {
         }
       }
 
-      // 1. Resolve Sequential Logic (WASM)
-      const bondPulseId = nextPulseId();
-      const bondRes = await postAndWait<{ count: number }>(
-        0,
-        workers[0],
-        {
-          type: "RESOLVE_BONDS",
-          pulseId: bondPulseId,
-          startIdx: 0,
-          endIdx: MAX_ATOMS,
-        },
-        "RESOLVE_BONDS_DONE",
-      );
-      if (bondRes.count > 0) {
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_pair_resolution",
-          count: bondRes.count,
-        });
-        akashaDelegate?.recordMutationTelemetry({
-          lane: "internal_wasm",
-          kind: "bond_request_clear",
-          count: bondRes.count,
-        });
-      }
-
-      dumpA11("After Bonds");
-
-      // 2. Parallel Physics & WASM Kernel
-      // 2a. Rebuild Spatial Lattice (WASM)
-      const hashPulseId = nextPulseId();
-      const hashRes = await postAndWait<
-        { overflowCount?: number; maxCellCount?: number }
-      >(
-        0,
-        workers[0],
-        {
-          type: "BUILD_SPATIAL_HASH",
-          pulseId: hashPulseId,
-        },
-        "HASH_DONE",
-      );
-      const overflowCount = Number.isFinite(hashRes.overflowCount)
-        ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
-        : 0;
-      const maxCellCount = Number.isFinite(hashRes.maxCellCount)
-        ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
-        : 0;
-      const activeCount = Math.max(1, activeIdx.length);
-      spatialHashState = {
-        tick: currentTick,
-        overflowCount,
-        maxCellCount,
-        overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
-      };
-      if (overflowCount > 0 && currentTick % 20 === 0) {
-        Lw(
-          `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
+      if (RUNTIME_POLICY.pulse.engine === "ffi") {
+        // --- PHASE 1-4: NATIVE CORE EXECUTION ---
+        SIGMA_FFI.tick(currentTick);
+        dumpA11("After FFI Native Tick");
+      } else {
+        // --- PHASE 1-4: DISTRIBUTED WORKER EXECUTION ---
+        // 1. Resolve Sequential Logic (WASM)
+        const bondPulseId = nextPulseId();
+        const bondRes = await postAndWait<{ count: number }>(
+          0,
+          workers[0],
+          {
+            type: "RESOLVE_BONDS",
+            pulseId: bondPulseId,
+            startIdx: 0,
+            endIdx: MAX_ATOMS,
+          },
+          "RESOLVE_BONDS_DONE",
         );
-      }
+        if (bondRes.count > 0) {
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_pair_resolution",
+            count: bondRes.count,
+          });
+          akashaDelegate?.recordMutationTelemetry({
+            lane: "internal_wasm",
+            kind: "bond_request_clear",
+            count: bondRes.count,
+          });
+        }
 
-      // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
-      {
-        readXsView.set(xsView);
-        readYsView.set(ysView);
-        readEnergiesView.set(energiesView);
-        readResonancesView.set(resonancesView);
-        if (currentTick <= 104) {
-          Li(
-            `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
-              xsView[11]
-            }, readXsView[11]=${readXsView[11]}`,
+        dumpA11("After Bonds");
+
+        // 2. Parallel Physics & WASM Kernel
+        // 2a. Rebuild Spatial Lattice (WASM)
+        const hashPulseId = nextPulseId();
+        const hashRes = await postAndWait<
+          { overflowCount?: number; maxCellCount?: number }
+        >(
+          0,
+          workers[0],
+          {
+            type: "BUILD_SPATIAL_HASH",
+            pulseId: hashPulseId,
+          },
+          "HASH_DONE",
+        );
+        const overflowCount = Number.isFinite(hashRes.overflowCount)
+          ? Math.max(0, Math.floor(Number(hashRes.overflowCount)))
+          : 0;
+        const maxCellCount = Number.isFinite(hashRes.maxCellCount)
+          ? Math.max(0, Math.floor(Number(hashRes.maxCellCount)))
+          : 0;
+        const activeCount = Math.max(1, activeIdx.length);
+        spatialHashState = {
+          tick: currentTick,
+          overflowCount,
+          maxCellCount,
+          overflowRatio: Number((overflowCount / activeCount).toFixed(6)),
+        };
+        if (overflowCount > 0 && currentTick % 20 === 0) {
+          Lw(
+            `⚠️ [SPATIAL_HASH] overflow=${overflowCount} maxCell=${maxCellCount} active=${activeIdx.length}`,
           );
         }
+
+        // 2a.1 Freeze position snapshot for deterministic physics reads across workers.
+        {
+          readXsView.set(xsView);
+          readYsView.set(ysView);
+          readEnergiesView.set(energiesView);
+          readResonancesView.set(resonancesView);
+          if (currentTick <= 104) {
+            Li(
+              `DEBUG [PULSE.ts]: tick=${currentTick} xsView[11]=${
+                xsView[11]
+              }, readXsView[11]=${readXsView[11]}`,
+            );
+          }
+        }
+        // 2b. Execute Physics (WASM)
+        // Transition to WASM_TICKING (1) to unblock workers
+        Atomics.store(syncState, 0, SYNC.WASM_TICKING);
+        Atomics.notify(syncState, 0);
+        await dispatchRangePhase("PULSE", "DONE");
+
+        // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
+        await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
+        dumpA11("After Reduce Deltas");
+
+        // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
+        // worker.ts message handler for 'TICK_ENVIRONMENT'.
+        const environmentPulseId = nextPulseId();
+        await postAndWait(0, workers[0], {
+          type: "TICK_ENVIRONMENT",
+          tick: currentTick,
+          pulseId: environmentPulseId,
+        }, "ENVIRONMENT_DONE");
+        dumpA11("After Environment");
       }
-      // 2b. Execute Physics (WASM)
-      // Transition to WASM_TICKING (1) to unblock workers
-      Atomics.store(syncState, 0, SYNC.WASM_TICKING);
-      Atomics.notify(syncState, 0);
-      await dispatchRangePhase("PULSE", "DONE");
-
-      // 2c. Reduce cross-atom deltas inside WASM over deterministic index ranges.
-      await dispatchRangePhase("REDUCE_DELTAS", "DELTA_DONE");
-      dumpA11("After Reduce Deltas");
-
-      // --- PHASE 2: Matrix Environment Execution (Worker 0 ONLY) ---
-      // worker.ts message handler for 'TICK_ENVIRONMENT'.
-      const environmentPulseId = nextPulseId();
-      await postAndWait(0, workers[0], {
-        type: "TICK_ENVIRONMENT",
-        tick: currentTick,
-        pulseId: environmentPulseId,
-      }, "ENVIRONMENT_DONE");
-      dumpA11("After Environment");
 
       // --- TRANSITION TO HOST_LOCK ---
       // Matrix is now settled, workers are done. Lock for host-side logic & SNAPSHOTS.
