@@ -24,6 +24,8 @@ vars:
 
 
 
+import { parse } from "https://deno.land/std@0.224.0/jsonc/mod.ts";
+import { normalize, join, dirname, extname } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.

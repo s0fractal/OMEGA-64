@@ -1,17 +1,17 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T15:12:06.682Z*
-*Exported Files in Category: 309*
-*Total Exported Files: 822*
+*Generated: 2026-03-16T17:49:35.194Z*
+*Exported Files in Category: 310*
+*Total Exported Files: 830*
 *Runtime Roots: 7*
-*Runtime Closure Files: 188*
-*Non-Runtime Code Files: 325*
+*Runtime Closure Files: 187*
+*Non-Runtime Code Files: 333*
 *Runtime-Support Code Files: 2*
-*Experimental Code Files: 323*
-*Manifest SHA256: 47f0062aa4a44161dd8b999cfbfb8d858cd1348e9bf52fa6b30df20b51f58629*
-*Export Set SHA256: a69d1850701dd12202811e4e47ba208ab506ff86f6995eea2cc711af39a15ca6*
-*Export Content SHA256: 6fae3291f6e4646dd27b3392630829420065df45071f7ad8380897ad03255aad*
-*Git Commit: 87d29da98dcf*
+*Experimental Code Files: 331*
+*Manifest SHA256: b066e6b1dcdc1e1632d70f6067842be4d10935ed38f31f19c9fc5e60abad5aff*
+*Export Set SHA256: 2a4b5d11ac3c37605d64e79e88684a8321a26f1f94a0461900654f7014285e17*
+*Export Content SHA256: 2f9d598d676d7788a88af2be39d86b8e11f3246be6a41266566304d062cfdc33*
+*Git Commit: d945a76812cf*
 
 ---
 
@@ -335,6 +335,7 @@ deps:
   - unpack_glyph_amplitude
   - fast_abs
   - pack_glyph_header
+  - TYPES
 description: Auto-recovered atomic_deposit_glyph_header
 ---
 
@@ -346,6 +347,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (amplitude == 0 || cell < 0 || cell >= (GRID_CELLS as i32)) return;
 
 const ptr = (baseOffset + (cell << 2)) as usize;
@@ -547,11 +556,12 @@ level: 1
 args:
   kind: i32
   amplitude: i32
-vars:
+vars: null
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - fast_abs
+  - TYPES
 description: Auto-recovered decay_for_kind
 ---
 
@@ -563,6 +573,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const absAmp = fast_abs(amplitude);
 let decayAmt = 0;
 if (kind == 2) { // PLASMID
@@ -686,11 +700,12 @@ level: 1
 args:
   kind: i32
   amplitude: i32
-vars:
+vars: null
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - fast_abs
+  - TYPES
 description: Auto-recovered diffusion_share_for_kind
 ---
 
@@ -702,6 +717,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const absAmp = fast_abs(amplitude);
 let shareAmt = 0;
 if (kind == 2) { // PLASMID
@@ -749,6 +768,7 @@ deps:
   - SYSTEM_CONSTANTS
   - find_next_free_slot
   - seed_atom
+  - TYPES
 description: Auto-recovered drain_spawn_requests
 ---
 
@@ -760,6 +780,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const writeHead = atomic.load<i32>(SPAWN_HEAD_OFF);
 const readHead = atomic.load<i32>(SPAWN_HEAD_OFF + 4);
 
@@ -865,6 +889,7 @@ description: Auto-recovered find_next_free_slot
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -875,6 +900,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 for (let i = 0; i < MAX_ATOMS; i++) {
   const idx = (start + i) % MAX_ATOMS;
   const idPtr = IDS_OFFSET + (idx << 3) as usize;
@@ -915,6 +944,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - trace_atom
   - SYSTEM_CONSTANTS
+  - TYPES
 ---
 
 ---
@@ -925,6 +955,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // Unimplemented TS mock for standalone build
 return 0;
 ```
@@ -1000,6 +1034,7 @@ deps:
   - fast_max
   - fast_min
   - in_grid
+  - TYPES
 description: Auto-recovered glyph_transport
 ---
 
@@ -1011,6 +1046,9 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
 
 // Sampling grid for internal reflection (Stage 5.1/5.2)
   memory.fill(GLYPH_SCRATCH_HEADER_OFF, 0, (GRID_CELLS) << 2);
@@ -1226,9 +1264,14 @@ unimplemented!()
 ---
 id: immune_check
 type: pure_fn
-description: "Determines if an atom is necrotic or drifting and should be marked for recycling by the phagocytes"
-tags: ["physics", "autopoiesis"]
-deps: []
+description: >-
+  Determines if an atom is necrotic or drifting and should be marked for
+  recycling by the phagocytes
+tags:
+  - physics
+  - autopoiesis
+deps:
+  - TYPES
 args:
   energy: i32
   resonance: i32
@@ -1240,7 +1283,11 @@ optimization: inline
 ---
 
 ```typescript
-  if (id_handle === 0) return false;
+
+
+
+
+if (id_handle === 0) return false;
 
   // Necrotic check (Zero energy and zero resonance)
   if (energy <= 0 && resonance <= 0) return true;
@@ -1282,7 +1329,6 @@ optimization: inline
         }
     }
 
-    false
 ```
 
 ```
@@ -1302,6 +1348,8 @@ args:
   kind: i32
   amplitude: i32
 description: Auto-recovered pack_glyph_header
+deps:
+  - TYPES
 ---
 
 ---
@@ -1312,6 +1360,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 if (amplitude < -12000) amplitude = -12000;
 if (amplitude > 12000) amplitude = 12000;
 return (amplitude << 8) | (kind & 0xFF);
@@ -1367,17 +1419,35 @@ unimplemented!()
 ---
 id: run_phagocyte_pass
 type: pure_fn
-description: "Iterates over the atom lattice and recycles any necrotic or drifting atoms in a single WASM call."
-tags: ["physics", "autopoiesis"]
-deps: ["immune_check", "get_read_energy", "get_read_resonance", "set_energy", "set_resonance"]
-vars: ["MAX_ATOMS", "IDS_OFFSET", "ROLES_OFFSET", "BONDS_OFFSET"]
+description: >-
+  Iterates over the atom lattice and recycles any necrotic or drifting atoms in
+  a single WASM call.
+tags:
+  - physics
+  - autopoiesis
+deps:
+  - immune_check
+  - get_read_energy
+  - get_read_resonance
+  - set_energy
+  - set_resonance
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - IDS_OFFSET
+  - ROLES_OFFSET
+  - BONDS_OFFSET
 args:
   entropy_pressure: i32
 returns: i32
 optimization: hot
 ---
 ```typescript
-  // unimplemented for JS host since this is an AS WASM function
+
+
+
+
+// unimplemented for JS host since this is an AS WASM function
   return 0;
 ```
 
@@ -1426,7 +1496,7 @@ level: 1
 args:
   atomIdx: i32
   x: i32
-  y: i32
+  'y': i32
   kind: u8
   role: u8
   intensity: i32
@@ -1442,6 +1512,7 @@ deps:
   - SYSTEM_CONSTANTS
   - get_energy
   - set_energy
+  - TYPES
 description: Auto-recovered secrete_glyph
 ---
 
@@ -1453,6 +1524,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 if (intensity <= 0) return;
   const gx = x / SPATIAL_CELL_SIZE;
   const gy = y / SPATIAL_CELL_SIZE;
@@ -1551,7 +1626,7 @@ args:
   idx: i32
   id: i64
   x: i32
-  y: i32
+  'y': i32
   energy: i32
   resonance: i32
   genomePtr: usize
@@ -1571,6 +1646,7 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
+  - TYPES
 description: Auto-recovered seed_atom
 ---
 
@@ -1582,6 +1658,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const idPtr = IDS_OFFSET + (idx << 3) as usize;
 store<i64>(idPtr, id);
 
@@ -1705,7 +1785,7 @@ type: substrate_module
 dataType: null
 returns: void
 level: 3
-args:
+args: null
 vars:
   - MAX_ATOMS
   - IDS_OFFSET
@@ -1716,6 +1796,7 @@ vars:
 deps:
   - get_energy
   - set_energy
+  - TYPES
 description: Membrane physics and tissue differentiation for Topography analysis
 ---
 
@@ -1724,6 +1805,10 @@ description: Membrane physics and tissue differentiation for Topography analysis
 ```
 
 ```typescript
+
+
+
+
 const membraneVisited = new StaticArray<u8>(MAX_ATOMS);
 
 function dfsMembrane(
@@ -2059,6 +2144,8 @@ level: 1
 args:
   header: i32
 description: Auto-recovered unpack_glyph_amplitude
+deps:
+  - TYPES
 ---
 
 ---
@@ -2069,6 +2156,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 return header >> 8;
 ```
 
@@ -2092,6 +2183,8 @@ level: 1
 args:
   header: i32
 description: Auto-recovered unpack_glyph_kind
+deps:
+  - TYPES
 ---
 
 ---
@@ -2102,6 +2195,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 return header & 0xFF;
 ```
 
@@ -2127,16 +2224,14 @@ tags:
 min_level: 7
 extra_symbols:
   - AUDIT_ENGINE
+vars:
   - AuditEngineExocortexDelegate
+deps:
+  - TYPES
 ---
 ```typescript
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
 // Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
-
-export interface AuditEngineExocortexDelegate {
-  generateThought(context: string): Promise<string>;
-}
-
 let delegate: AuditEngineExocortexDelegate | null = null;
 
 const ROOT = Deno.cwd();
@@ -2219,10 +2314,12 @@ export const AUDIT_ENGINE = {
 ---
 id: BREATH
 type: module
-description: "Implementation of BREATH"
+description: Implementation of BREATH
 tags: []
 min_level: 10
 entry: true
+deps:
+  - TYPES
 ---
 
 ### TypeScript
@@ -2231,21 +2328,7 @@ entry: true
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
 
-import { MX } from "@g04";
-import { LOGGER, Li } from "@g06";
-import {
-  SEMANTIC_MEMBRANE
-} from "@g05";
-import {
-  LLM_SYNAPSE
-} from "@g07";
-import {
-  AUDIT_ENGINE
-} from "@g07";
 
-import {
-  AKASHA_CODEX
-} from "@g08";
 const PULSE_LOG = "AKASHA.log";
 const BREATH_INTERVAL_MS = 150000; // ~50 pulses if pulse is 3s
 
@@ -2329,7 +2412,6 @@ export const BREATH = {
 if (import.meta.main) {
   BREATH.inhale();
 }
-
 ```
 
 ```
@@ -2346,7 +2428,7 @@ dataType: null
 returns: i64
 level: 3
 entry: true
-args:
+args: null
 vars:
   - MAX_ATOMS
   - GRID_CELLS
@@ -2362,7 +2444,11 @@ deps:
   - get_y
   - get_phase
   - get_role
-description: Distributes atoms into a spatial hash grid for O(1) proximity lookups, tracks overflow, and returns a packed i64 tuple of (hashMaxCellCount | hashOverflowCount).
+  - TYPES
+description: >-
+  Distributes atoms into a spatial hash grid for O(1) proximity lookups, tracks
+  overflow, and returns a packed i64 tuple of (hashMaxCellCount |
+  hashOverflowCount).
 ---
 
 ```rust
@@ -2370,6 +2456,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 const CELL_CAPACITY: i32 = 31;
 const MAX_ATOM_SLOTS: i32 = CELL_CAPACITY - 1;
 
@@ -2537,12 +2631,13 @@ description: Migrated from src/06/CONTINUUM.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 vars:
   - LATTICE_MEMORY_END
-extra_symbols:
   - ContinuumMetadata
+extra_symbols:
   - compressMemory
   - decompressMemoryToLattice
   - loadEpoch
@@ -2552,18 +2647,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { join } from "https://deno.land/std@0.212.0/path/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
 
-export type ContinuumMetadata = {
-  epochName: string;
-  tick: number;
-  memoryBounds: number;
-  population?: number;
-  coherence?: number;
-  epochHash?: string;
-  timestamp: string;
-};
+
+
+
 
 const EPOCHS_DIR = ".omega/epochs";
 
@@ -2720,185 +2807,41 @@ vars:
   - RUNTIME_POLICY
   - SCALE
   - MX
+  - ControlIntentQueueDelegate
+  - CrisisIntent
+  - FederateIntent
+  - FederationAdmissionSeverity
+  - FederationAdmissionAction
+  - FederationRuleGenomeProfile
+  - FederationBehaviorProfile
+  - FederationLocalBehaviorContext
+  - FederationCodexProfile
+  - FederationLocalCodexContext
+  - FederationPolicyFragmentSource
+  - FederationPolicyFragmentMode
+  - FederationPolicyFragment
+  - FederationAdmissionSnapshot
+  - FederateAdmissionResult
+  - MutateIntent
+  - AvatarIntent
+  - PlasmidIntent
+  - SnapshotImportIntent
+  - ControlIntent
+  - QueueDecision
+  - ApplyStats
 extra_symbols:
   - CONTROL_INTENT_QUEUE
-  - ControlIntentQueueDelegate
 deps:
   - LOGGER
   - RUNTIME_POLICY
+  - TYPES
 ---
 ```typescript
 
-export interface ControlIntentQueueDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
-  unpackAtom(packet: Uint8Array): number;
-}
+
+
 
 let delegate: ControlIntentQueueDelegate | null = null;
-
-type CrisisIntent = {
-  kind: "crisis";
-  logicBytes: Uint8Array;
-};
-
-type FederateIntent = {
-  kind: "federate";
-  packet: Uint8Array;
-  sourceNode: string;
-};
-
-type FederationAdmissionSeverity = "LOW" | "MID" | "HIGH";
-type FederationAdmissionAction =
-  | "accept"
-  | "degrade"
-  | "hybridize"
-  | "reject";
-
-type FederationRuleGenomeProfile = {
-  signature: string;
-  noveltySigned: number;
-  symbiosisSigned: number;
-  pressureRingScale: number;
-  workerCount: number;
-  strictDeterminism: boolean;
-  generatedAt: string;
-};
-
-type FederationBehaviorProfile = {
-  invariant: string;
-  dominantRole: number;
-  memberCount: number;
-  generatedAt: string;
-};
-
-type FederationLocalBehaviorContext = {
-  invariant: string;
-  dominantRole: number;
-  memberCount: number;
-};
-
-type FederationCodexProfile = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-  generatedAt: string;
-};
-
-type FederationLocalCodexContext = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-};
-
-type FederationPolicyFragmentSource =
-  | "rule_genome"
-  | "behavior"
-  | "codex";
-
-type FederationPolicyFragmentMode = "tax" | "subsidy";
-
-type FederationPolicyFragment = {
-  id: string;
-  source: FederationPolicyFragmentSource;
-  mode: FederationPolicyFragmentMode;
-  reason: string;
-  scoreDelta: number;
-  energyRatio: number;
-  resonanceRatio: number;
-};
-
-type FederationAdmissionSnapshot = {
-  tick: number;
-  atomId: string;
-  sourceNode: string;
-  action: FederationAdmissionAction;
-  severity: FederationAdmissionSeverity;
-  score: number;
-  reasons: string[];
-  localSignature: string;
-  peerSignature: string;
-  strictMismatch: boolean;
-  degraded: boolean;
-  hybridized: boolean;
-  localBehaviorInvariant: string;
-  peerBehaviorInvariant: string;
-  behaviorDistance: number;
-  localCodexLabel: string;
-  peerCodexLabel: string;
-  codexDistance: number;
-  policyFragments: FederationPolicyFragment[];
-  policyEnergyRatio: number;
-  policyResonanceRatio: number;
-};
-
-type FederateAdmissionResult = {
-  action: FederationAdmissionAction;
-  packet: {
-    logicBytes: Uint8Array;
-    energy: number;
-    resonance: number;
-  };
-  admission: FederationAdmissionSnapshot;
-};
-
-type MutateIntent = {
-  kind: "mutate";
-  x: number;
-  y: number;
-  deltaEnergy: number;
-  radius: number;
-};
-
-type AvatarIntent = {
-  kind: "avatar";
-  x: number;
-  y: number;
-  intensity: number;
-  source: "external_ingress" | "external_daemon";
-};
-
-type PlasmidIntent = {
-  kind: "plasmid";
-  x: number;
-  y: number;
-  charge: number;
-  plasmidBytes: Uint8Array;
-  source: "external_ingress" | "external_daemon";
-};
-
-type SnapshotImportIntent = {
-  kind: "snapshot_import";
-  timestamp: string;
-};
-
-type ControlIntent =
-  | CrisisIntent
-  | FederateIntent
-  | MutateIntent
-  | AvatarIntent
-  | PlasmidIntent
-  | SnapshotImportIntent;
-
-type QueueDecision = {
-  ok: boolean;
-  status: number;
-  reason: string;
-  size: number;
-  max: number;
-  admission?: FederationAdmissionSnapshot;
-};
-
-type ApplyStats = {
-  drained: number;
-  applied: number;
-  failed: number;
-  remaining: number;
-};
 
 const MAX_PENDING = RUNTIME_POLICY.controlIntent.maxPending;
 const APPLY_BUDGET_PER_TICK = RUNTIME_POLICY.controlIntent.applyBudgetPerTick;
@@ -4140,18 +4083,19 @@ tags:
   - substrate
 deps:
   - RUNTIME_POLICY
+  - TYPES
 vars:
   - RUNTIME_POLICY
+  - DaemonAction
+  - DaemonInjectEnvelope
+  - DaemonNarrativeContext
+  - DaemonInvariantAdmission
+  - PlasmidRiskProfile
+  - DaemonIngressPlan
+  - DaemonIngressMetrics
 extra_symbols:
   - DAEMON_INGRESS_POLICY
   - DAEMON_INGRESS_POLICY_LIMITS
-  - DaemonAction
-  - DaemonIngressMetrics
-  - DaemonIngressPlan
-  - DaemonInjectEnvelope
-  - DaemonInvariantAdmission
-  - DaemonNarrativeContext
-  - PlasmidRiskProfile
   - evaluateInvariantAdmission
   - evaluatePlasmidPolicy
   - evaluatePlasmidRisk
@@ -4166,59 +4110,6 @@ extra_symbols:
 
 ```typescript
 
-export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-
-export type DaemonInjectEnvelope = {
-  action_type: DaemonAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-export type DaemonNarrativeContext = {
-  mood: string;
-  sharedCenter: string;
-  dominantInvariantVector: string;
-  codexLineageLabel: string;
-  codexLineageGuardScore: number;
-  codexLineageGuardReasons: string[];
-  glyphStatus: string;
-  glyphRegime: string;
-  glyphDominantRole: string;
-  glyphSourceMode: string;
-  metabolicPressure: number;
-  hormoneRegime: string;
-};
-
-export type DaemonInvariantAdmission = {
-  score: number;
-  severity: "LOW" | "MID" | "HIGH";
-  reasons: string[];
-  context: DaemonNarrativeContext;
-};
-
-export type PlasmidRiskProfile = {
-  level: "LOW" | "MID" | "HIGH";
-  score: number;
-  reasons: string[];
-  opcode: number;
-};
-
-export type DaemonIngressPlan = {
-  requested: DaemonInjectEnvelope;
-  applied: DaemonInjectEnvelope;
-  degraded: boolean;
-  degradeReason: string | null;
-  admission: DaemonInvariantAdmission;
-};
-
-export type DaemonIngressMetrics = {
-  population: number;
-  avgEnergy: number;
-};
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
 
@@ -4441,7 +4332,7 @@ export const normalizeDaemonNarrativeContext = (
     highlights.find((entry) =>
       typeof (entry as Record<string, unknown>).genome === "string" &&
       ((entry as Record<string, unknown>).genome as string).toUpperCase() ===
-        normalizedDominantGenome
+      normalizedDominantGenome
     ) ?? highlights[0];
 
   let codexLineageLabel = "none";
@@ -4774,9 +4665,7 @@ export const DAEMON_INGRESS_POLICY = {
   evaluatePlasmidRisk,
   normalizeDaemonNarrativeContext,
   evaluateInvariantAdmission,
-  planInvariantIngress
 };
-
 ```
 
 ```
@@ -4793,7 +4682,8 @@ description: Migrated from src/07/02/DOLL_FORK_MATRIX.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 vars:
   - BONDS_OFFSET
@@ -5007,6 +4897,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - DollFork
@@ -5130,6 +5021,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - COHERENCE_OFFSET
@@ -5139,8 +5031,8 @@ vars:
   - Li
   - MAX_ATOMS
   - sharedBuffer
-extra_symbols:
   - DriftMetrics
+extra_symbols:
   - DriftWarden
 ---
 
@@ -5148,14 +5040,6 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
-
-export type DriftMetrics = {
-  coherence: number;
-  energyVariance: number;
-  populationStability: number;
-  driftIndex: number;
-  shadowForkRecommended: boolean;
-};
 
 /**
  * DriftWarden monitors the global state for behavioral anomalies and instability.
@@ -5322,6 +5206,7 @@ deps:
   - read_structure_charge
   - math_sin
   - math_cos
+  - TYPES
 ---
 
 ---
@@ -5332,6 +5217,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // unimplemented since user requested pure AssemblyScript isolation for VM evaluation
 return 0;
 ```
@@ -5625,6 +5514,7 @@ deps:
   - get_energy
   - get_resonance
   - set_energy
+  - TYPES
 description: Auto-recovered execute_atom
 ---
 
@@ -5636,7 +5526,11 @@ unimplemented!()
 ```
 
 ```typescript
-  // unimplemented: physics evaluates in WASM
+
+
+
+
+// unimplemented: physics evaluates in WASM
 ```
 
 ```assemblyscript
@@ -5723,22 +5617,31 @@ description: Migrated from src/07/02/export_core.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - buildExportFileList
   - renderCoreExport
+vars:
+  - ExportManifest
+  - LoadedManifest
+  - ExportProvenance
+  - ExportFileContent
 ---
 
 ### TypeScript
 
 ```typescript
-import { parse } from "jsr:@std/jsonc";
-import { dirname, extname, join, normalize } from "node:path";
+
+
+
+import { parse } from "https://deno.land/std@0.224.0/jsonc/mod.ts";
+import { normalize, join, dirname, extname } from "https://deno.land/std@0.224.0/path/mod.ts";
+
 // OMEGA-64 | export_core.ts | System Consolidation Utility (Era 69)
 // Builds OMEGA_CORE_LOGIC.md from the active architecture graph.
 // Guards against accidental export drift (tests/archive artifacts).
-
 
 const MANIFEST_PATH = "deno.jsonc";
 
@@ -5804,38 +5707,6 @@ const isExcluded = (path: string): boolean => {
 
 const uniqueSorted = (items: Iterable<string>): string[] =>
   Array.from(new Set(items)).sort((a, b) => a.localeCompare(b));
-
-type ExportManifest = {
-  era: string;
-  runtime_root_files?: string[];
-  runtime_support_files?: string[];
-  experimental_files?: string[];
-  core_entry_files: string[];
-  required_additional_files: string[];
-  context_files: string[];
-};
-
-type LoadedManifest = {
-  era: string;
-  runtimeRootFiles: string[];
-  runtimeSupportFiles: string[];
-  experimentalFiles: string[];
-  coreEntryFiles: string[];
-  requiredArchFiles: string[];
-  contextFiles: string[];
-};
-
-type ExportProvenance = {
-  manifestSha256: string;
-  exportSetSha256: string;
-  exportContentSha256: string;
-  gitCommit: string;
-};
-
-type ExportFileContent = {
-  file: string;
-  content: string;
-};
 
 const hasTestLikeName = (path: string): boolean => {
   if (path === "src/00/03/wasm_layout_guard.ts") return false;
@@ -6407,7 +6278,6 @@ async function exportCore() {
 if (import.meta.main) {
   await exportCore();
 }
-
 ```
 
 ```
@@ -6424,14 +6294,19 @@ tags:
   - substrate
 deps:
   - CRYSTALLIZATION_CONFIG
+  - TYPES
 extra_symbols:
   - GATE_BUDGET
-  - GateMergedDelta
 min_level: 12
+vars:
+  - GateMergedDelta
 ---
 
 ```typescript
-export type GateMergedDelta = Array<{ level: number; value: number }>;
+
+
+
+
 
 const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {
   let total = 0;
@@ -6488,12 +6363,12 @@ vars:
   - createLedgerRuntime
   - rollbackLedgerUpdate
   - snapshotLedgerRuntime
-extra_symbols:
-  - GENERIC_LEDGER_PERSISTENCE
-  - LedgerHydrationResult
-  - LedgerPersistenceSummary
   - LedgerRecord
   - LedgerSnapshotRecord
+  - LedgerPersistenceSummary
+  - LedgerHydrationResult
+extra_symbols:
+  - GENERIC_LEDGER_PERSISTENCE
   - appendLedgerRecord
   - appendLedgerRecordAndMaybeCompact
   - compactLedgerPersistence
@@ -6504,72 +6379,9 @@ extra_symbols:
   - recordFromRollback
 deps:
   - GENERIC_LEDGER_SYSTEM
+  - TYPES
 ---
 ```typescript
-
-export type LedgerRecord<K extends GeneticLedgerKey> =
-  | {
-    kind: "apply";
-    key: K;
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    previous_value: number;
-    next_value: number;
-    recorded_at: string;
-  }
-  | {
-    kind: "rollback";
-    key: K;
-    rollback_token: string;
-    tick: number;
-    source: string;
-    reason: string;
-    recorded_at: string;
-  };
-
-export type LedgerSnapshotRecord<K extends GeneticLedgerKey> = {
-  version: 1;
-  key: K;
-  representedRecordCount: number;
-  representedApplyCount: number;
-  representedRollbackCount: number;
-  compactedAt: string;
-  compactedTick: number;
-  state: LedgerRuntimeState<K>;
-};
-
-export type LedgerPersistenceSummary = {
-  path: string;
-  snapshotPath: string;
-  exists: boolean;
-  snapshotExists: boolean;
-  recordCount: number;
-  applyCount: number;
-  rollbackCount: number;
-  tailRecordCount: number;
-  tailApplyCount: number;
-  tailRollbackCount: number;
-  snapshotRecordCount: number;
-  snapshotApplyCount: number;
-  snapshotRollbackCount: number;
-  compactionEnabled: boolean;
-  compactionThreshold: number;
-  compactionKeepTail: number;
-  lastCompactedAt: string | null;
-  lastCompactedTick: number;
-  hydrated: boolean;
-  lastHydratedAt: string | null;
-  lastHydrationError: string | null;
-};
-
-export type LedgerHydrationResult<K extends GeneticLedgerKey> = {
-  state: LedgerRuntimeState<K>;
-  snapshot: LedgerRuntimeSnapshot<K>;
-  persistence: LedgerPersistenceSummary;
-};
-
 const ensureDir = async (): Promise<void> => {
   await Deno.mkdir(".omega/ledger", { recursive: true });
 };
@@ -6929,9 +6741,7 @@ export const GENERIC_LEDGER_PERSISTENCE = {
   recordFromApply,
   recordFromRollback,
   compactLedgerPersistence,
-  appendLedgerRecordAndMaybeCompact
 };
-
 ```
 
 ```
@@ -6953,16 +6763,17 @@ tags:
   - ledger
 deps:
   - GENETIC_LEDGER
+  - TYPES
 vars:
   - geneticLedgerEntryByKey
-extra_symbols:
-  - GENERIC_LEDGER_SYSTEM
+  - LedgerRuntimeEvent
+  - LedgerRuntimeState
+  - LedgerRuntimeSnapshot
   - LedgerApplyResult
   - LedgerRollbackResult
   - LedgerRuntimeConfig
-  - LedgerRuntimeEvent
-  - LedgerRuntimeSnapshot
-  - LedgerRuntimeState
+extra_symbols:
+  - GENERIC_LEDGER_SYSTEM
   - applyLedgerUpdate
   - createGeneticLedgerRuntime
   - createLedgerRuntime
@@ -6976,84 +6787,12 @@ This module provides the core types and functions for the Generic Ledger System.
 
 ```typescript
 
-export type LedgerRuntimeEvent<K extends string> = {
-  rollbackToken: string;
-  previousValue: number;
-  nextValue: number;
-  tick: number;
-  source: string;
-  reason: string;
-  rolledBackAtTick: number | null;
-  rolledBackSource: string | null;
-  rolledBackReason: string | null;
-};
 
-export type LedgerRuntimeState<K extends string> = {
-  key: K;
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-  seq: number;
-  historyLimit: number;
-  history: readonly LedgerRuntimeEvent<K>[];
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
 
-export type LedgerRuntimeSnapshot<K extends string> = {
-  key: K;
-  currentValue: number;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-  historyDepth: number;
-  lastAppliedTick: number;
-  lastAppliedSource: string;
-  lastAppliedReason: string;
-  lastAppliedRollbackToken: string | null;
-  lastRollbackTick: number;
-  lastRollbackSource: string;
-  lastRollbackReason: string;
-  lastRollbackToken: string | null;
-};
 
-export type LedgerApplyResult<K extends string> = {
-  status: "applied" | "noop";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: LedgerRuntimeEvent<K> | null;
-  state: LedgerRuntimeState<K>;
-};
-
-export type LedgerRollbackResult<K extends string> = {
-  status: "rolled_back" | "missing" | "consumed" | "stale";
-  changed: boolean;
-  previousValue: number;
-  nextValue: number;
-  mutation: LedgerRuntimeEvent<K> | null;
-  state: LedgerRuntimeState<K>;
-};
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
-
-export type LedgerRuntimeConfig<K extends string> = {
-  key: K;
-  defaultValue: number;
-  min: number;
-  max: number;
-  rollbackClass: "immediate" | "epochal";
-};
 
 export const createLedgerRuntime = <K extends string>(
   config: LedgerRuntimeConfig<K>,
@@ -7281,9 +7020,7 @@ export const GENERIC_LEDGER_SYSTEM = {
   applyLedgerUpdate,
   rollbackLedgerUpdate,
   snapshotLedgerRuntime,
-  createGeneticLedgerRuntime
 };
-
 ```
 
 ```
@@ -7298,6 +7035,7 @@ id: get_glyph_arity
 type: pure_fn
 deps:
   - GLYPH_ARITY_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -7319,6 +7057,9 @@ GLYPH_ARITY_LUT[(id & 63) as usize]
 
 ```typescript
 
+
+
+
 export function get_glyph_arity(id: number): number {
   return GLYPH_ARITY_LUT[id & 63];
 }
@@ -7336,6 +7077,7 @@ id: get_glyph_energy
 type: pure_fn
 deps:
   - GLYPH_ENERGY_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -7357,6 +7099,9 @@ GLYPH_ENERGY_LUT[(id & 63) as usize]
 
 ```typescript
 
+
+
+
 export function get_glyph_energy(id: number): number {
   return GLYPH_ENERGY_LUT[id & 63];
 }
@@ -7375,6 +7120,7 @@ type: pure_fn
 description: O(1) resolve of glyph category using bitwise shifts
 deps:
   - GLYPH_TYPES
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -7404,6 +7150,9 @@ return id >> 3;
 
 ```typescript
 
+
+
+
 export function get_glyph_kind(id: number): number {
   if (id <= 3) return KIND_CORE;
   if (id <= 15) return KIND_CONTROL;
@@ -7423,6 +7172,7 @@ id: get_glyph_legacy_opcode
 type: pure_fn
 deps:
   - GLYPH_LEGACY_OPCODE_LUT
+  - TYPES
 tags:
   - host
 min_level: 6
@@ -7443,6 +7193,9 @@ GLYPH_LEGACY_OPCODE_LUT[(id & 63) as usize]
 ### TypeScript
 
 ```typescript
+
+
+
 
 export function get_glyph_legacy_opcode(id: number): number {
   return GLYPH_LEGACY_OPCODE_LUT[id & 63];
@@ -7557,37 +7310,24 @@ values:
 id: HORMONE_BUFFER_RUNTIME
 type: module
 description: Hormone Buffer Runtime Sync Logic
-deps: []
+deps:
+  - TYPES
 entry: true
 min_level: 6
 extra_symbols:
   - HORMONE_BUFFER_RUNTIME
-  - HormoneSyncInput
   - syncHormonesToLattice
+vars:
+  - HormoneSyncInput
 ---
 
 ### TypeScript
 
 ```typescript
 
-export type HormoneSyncInput = {
-  baseTax: number;
-  targetEnergy: number;
-  workerCount: number;
-  egoPressure: number;
-  fearPressure: number;
-  noveltyPressure: number;
-  symbiosisPressure: number;
-  maxPlasmidCharge: number;
-  pressureRingScale: number;
-  // Generic Ledger inputs (Stage 7.2)
-  homeostasisBand: number;
-  homeostasisMaxDelta: number;
-  homeostasisOverflowThreshold: number;
-  daemonMaxActions: number;
-  federationDegradeEnergyRatio: number;
-  globalSyntropy: number;
-};
+
+
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -7661,16 +7401,19 @@ type: module
 description: Hormone classification and ledger definition structure.
 deps:
   - GENERIC_LEDGER_SYSTEM
+  - TYPES
+  - RUNTIME_POLICY
 min_level: 5
 vars:
   - createLedgerRuntime
+  - HormoneId
+  - HormoneDomain
+  - HormoneSpec
+  - RUNTIME_POLICY
 extra_symbols:
   - HORMONE_BUFFER
   - HORMONE_BUFFER_CATALOG
   - HORMONE_BUFFER_LENGTH
-  - HormoneDomain
-  - HormoneId
-  - HormoneSpec
   - createPhysiologicalLedgerRuntime
   - HORMONE_ENTROPY_PRESSURE
   - HORMONE_TIME_VISCOSITY
@@ -7686,36 +7429,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
-export type HormoneId =
-  | "entropy_pressure"
-  | "time_viscosity"
-  | "aggression"
-  | "replication_bias"
-  | "repair_drive"
-  | "mutation_friction"
-  | "global_consensus";
 
-export type HormoneDomain =
-  | "systemic"
-  | "temporal"
-  | "conflict"
-  | "reproduction"
-  | "repair"
-  | "mutation";
 
-export type HormoneSpec = {
-  id: HormoneId;
-  index: number;
-  domain: HormoneDomain;
-  min: number;
-  max: number;
-  defaultValue: number;
-  controlPlane: "daemon" | "pulse" | "mixed";
-  sourcePath: string;
-  notes: string;
-};
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -7858,7 +7575,6 @@ export const HORMONE_BUFFER_CATALOG: readonly HormoneSpec[] = Object.freeze([
   }, HORMONE_GLOBAL_CONSENSUS),
 ]);
 
-
 const HORMONE_BY_ID = new Map<HormoneId, HormoneSpec>(
   HORMONE_BUFFER_CATALOG.map((spec) => [spec.id, spec]),
 );
@@ -7916,6 +7632,7 @@ tags:
 deps:
   - AKASHA_CODEX
   - LOGGER
+  - TYPES
 min_level: 8
 vars:
   - AKASHA_CODEX
@@ -8043,8 +7760,18 @@ entry: true
 vars:
   - WORLD_MAX_X
   - WORLD_MAX_Y
+  - Telemetry
+  - CodexNarrative
+  - ActionType
+  - DaemonDecision
+  - InvariantSignal
+  - InvariantFrame
+  - OpenAIChoice
+  - OpenAIResponse
 extra_symbols:
   - OMEGA_DAEMON
+deps:
+  - TYPES
 ---
 
 ### TypeScript
@@ -8052,157 +7779,6 @@ extra_symbols:
 ```typescript
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
-
-type Telemetry = {
-  tick: number;
-  avgEnergy: number;
-  dominantGenomes: string[];
-  voxPopuli: string[];
-  behavior_invariant?: string;
-  behavior_clusters?: Array<{
-    behaviorSignature: string;
-    memberCount: number;
-    dominantRole: number;
-    genomeSamples: string[];
-    fingerprint?: {
-      replicateRatio: number;
-      signalRatio: number;
-      buildRatio: number;
-      survivalCurve: number[];
-    };
-    lastTick?: number;
-  }>;
-  federation_rule_genome?: any;
-  federation_admission?: any;
-  pulse_pressure?: {
-    novelty_signed: number;
-    symbiosis_signed: number;
-    novelty: number;
-    fear: number;
-    symbiosis: number;
-    ego: number;
-    ring: {
-      enabled: boolean;
-      theta: number;
-      scale: number;
-      fear_curiosity_balance: number;
-      ego_love_balance: number;
-      novelty_axis_from_ring: boolean;
-      symbiosis_axis_from_ring: boolean;
-    };
-  };
-  daemon_governance?: {
-    safe_mode: boolean;
-    safe_mode_reason: string;
-    actions_used_in_window: number;
-    actions_max_in_window: number;
-    window_reset_in_ms: number;
-    max_pheromone_intensity: number;
-    max_plasmid_charge: number;
-    invariant_drift_mid_score: number;
-    invariant_drift_high_score: number;
-    last_admission?: unknown;
-    last_admission_history?: unknown[];
-    last_pressure_ring_update?: unknown;
-    last_pressure_ring_history?: unknown[];
-    last_homeostasis_update?: unknown;
-    last_homeostasis_history?: unknown[];
-    homeostasis?: {
-      enabled: boolean;
-      target_energy: number;
-      target_energy_default?: number;
-      target_energy_current?: number;
-      band: number;
-      max_delta: number;
-      overflow_threshold: number;
-      starvation_floor: number;
-      subsidy_enabled: boolean;
-      base_tax_default: number;
-      base_tax_current: number;
-      last_update_tick: number;
-      last_update_source: string;
-      last_update_reason: string;
-    };
-  };
-  spatial_hash_guard?: {
-    overflow_ratio: number;
-    overflow_count: number;
-    max_cell_count: number;
-  };
-  hormones?: number[];
-};
-
-type CodexNarrative = {
-  tick: number;
-  epoch: number;
-  mood: string;
-  title: string;
-  summary: string;
-  relicStatus: string;
-  glyphStatus: string;
-  glyphRegime: string;
-  glyphDominantRole: string;
-  glyphSourceMode: string;
-  daemonEffectStatus: string;
-  daemonEffectLineage: string;
-  daemonEffectDeltaBand: string;
-  hormoneRegime: string;
-  promptBridge: string;
-  hippocampusRecall?: {
-    tick: number;
-    epoch: number;
-    summary: string;
-    distance: number;
-    distanceType: string;
-  };
-  recentChronicles: Array<{
-    tick: number;
-    epoch: number;
-    type: string;
-    title: string;
-  }>;
-};
-
-type ActionType = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
-
-type DaemonDecision = {
-  internal_monologue: string;
-  action_type: ActionType;
-  payload: {
-    target_x: number;
-    target_y: number;
-    hex_code?: string;
-    intensity: number;
-  };
-};
-
-type InvariantSignal = {
-  key: string;
-  vector: string;
-  weight: number;
-  evidence: string[];
-};
-
-type InvariantFrame = {
-  tick: number;
-  epoch: number;
-  center: string;
-  signature: string;
-  invariants: InvariantSignal[];
-  summary: string;
-  created_at: string;
-  hormones: number[];
-};
-
-type OpenAIChoice = {
-  message?: {
-    content?: string;
-  };
-};
-
-type OpenAIResponse = {
-  choices?: OpenAIChoice[];
-};
 
 const ANSI = {
   reset: "\x1b[0m",
@@ -9689,7 +9265,6 @@ if (import.meta.main) {
 }
 
 export const OMEGA_DAEMON = {};
-
 ```
 
 ```
@@ -10003,47 +9578,26 @@ tags:
   - host
 deps:
   - HORMONE_BUFFER
+  - TYPES
 min_level: 9
 vars:
   - GENETIC_LEDGER_CATALOG
   - HORMONE_BUFFER_CATALOG
-extra_symbols:
+  - PhysiologySnapshotInput
   - HormoneSnapshot
   - LedgerSnapshot
   - PhysiologySnapshot
-  - PhysiologySnapshotInput
+extra_symbols:
   - capturePhysiologySnapshot
 ---
 
 ### TypeScript
 
 ```typescript
-import type { LedgerRuntimeSnapshot } from "@g12";
 
-export type PhysiologySnapshotInput = {
-  tick: number;
-  hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
-  ledger: Partial<
-    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
-  >;
-};
 
-export type HormoneSnapshot = HormoneSpec & {
-  currentValue: number;
-  deltaFromDefault: number;
-};
 
-export type LedgerSnapshot = GeneticLedgerEntry & {
-  currentValue: number;
-  deltaFromDefault: number;
-  currentSource: "runtime" | "policy";
-};
 
-export type PhysiologySnapshot = {
-  tick: number;
-  hormones: Record<HormoneId, HormoneSnapshot>;
-  ledger: Record<GeneticLedgerKey, LedgerSnapshot>;
-};
 
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,
@@ -10096,11 +9650,12 @@ tags:
   - substrate
 deps:
   - MX
+  - TYPES
 vars:
   - MX
+  - PredictionMarketAkashaDelegate
 extra_symbols:
   - PREDICTION_MARKET
-  - PredictionMarketAkashaDelegate
   - betPoolInt
   - marketBuffer
   - marketState
@@ -10112,14 +9667,8 @@ extra_symbols:
 
 ```typescript
 
-export interface PredictionMarketAkashaDelegate {
-  recordMarketResolution(
-    tick: number,
-    consensusReached: boolean,
-    finalThreshold: number,
-    winnersHash: string,
-  ): void;
-}
+
+
 
 let delegate: PredictionMarketAkashaDelegate | null = null;
 
@@ -10284,12 +9833,38 @@ id: PULSE
 type: module
 description: Implementation of PULSE
 deps:
+  - TYPES
+  - RUNTIME_POLICY
+  - HORMONE_BUFFER_RUNTIME
+  - HORMONE_BUFFER
+  - GENERIC_LEDGER_SYSTEM
+  - GENERIC_LEDGER_PERSISTENCE
+  - memory_views_base
+  - DRIFT_WARDEN
+  - DOLL_FORK_MATRIX
+  - SNAP_ENGINE
+  - GENESIS_INCEPTOR
+  - LINEAGE_TRACKER
+  - QUORUM_ADVOCATE
+  - DOLL_FORK_RUNNER
+  - MX
+  - SIGMA_FFI_BRIDGE
+  - DAEMON_INGRESS_POLICY
+  - LOGGER
+  - CONTROL_INTENT_QUEUE
+  - GLYPH_TELEMETRY
 min_level: 13
 vars:
   - BONDS_OFFSET
   - CAUSALITY_OFFSET
   - COHERENCE_OFFSET
   - CONTEXT_OFFSET
+  - HORMONE_BUFFER
+  - GENERIC_LEDGER_PERSISTENCE
+  - createGeneticLedgerRuntime
+  - applyLedgerUpdate
+  - rollbackLedgerUpdate
+  - snapshotLedgerRuntime
   - EGRESS_DATA_OFFSET
   - EGRESS_HEAD_OFFSET
   - ENERGY_OFFSET
@@ -10316,6 +9891,8 @@ vars:
   - OP_SPORE_DRIVE
   - OP_SUB
   - OP_SYSCALL
+  - RUNTIME_POLICY
+  - sharedBuffer
   - PHASE_OFFSET
   - PHYSICS_READ_ENERGY_OFFSET
   - PHYSICS_READ_RESONANCE_OFFSET
@@ -10331,23 +9908,51 @@ vars:
   - SYS_YIELD
   - XS_OFFSET
   - YS_OFFSET
+  - PulseOracleDelegate
+  - PulseAkashaDelegate
+  - PulseNoosphereDelegate
+  - EvolutionPressureState
+  - SpatialHashState
+  - HomeostasisState
+  - GeneticLedgerRuntimeState
+  - GuardianSignalHybridState
+  - ArchitectPlasmidHybridState
+  - RollingHistory
+  - DriftMetrics
+  - DriftWarden
+  - DollFork
+  - SNAP_ENGINE
+  - GenesisInceptor
+  - LineageTracker
+  - QuorumAdvocate
+  - DollForkRunner
+  - MX
+  - SIGMA_FFI
+  - ReplicationExecutionMode
+  - GeneticLedgerKey
+  - HormoneId
+  - GuardianSignalExecutionMode
+  - DAEMON_INGRESS_POLICY_LIMITS
+  - evaluateInvariantAdmission
+  - evaluatePlasmidRisk
+  - Ld
+  - CONTROL_INTENT_QUEUE
+  - GLYPH_TELEMETRY
+  - LedgerApplyResult
+  - LedgerRollbackResult
+  - LedgerRuntimeSnapshot
+  - LedgerRuntimeState
 extra_symbols:
   - ArchitectPlasmidBranch
   - ArchitectPlasmidExecutionDecision
   - ArchitectPlasmidExecutionMode
   - ArchitectPlasmidReductionDecision
-  - DriftMetrics
   - GuardianSignalBranch
   - GuardianSignalExecutionDecision
-  - GuardianSignalExecutionMode
   - GuardianSignalReductionDecision
   - PULSE
-  - PulseAkashaDelegate
-  - PulseNoosphereDelegate
-  - PulseOracleDelegate
   - ReplicationBranch
   - ReplicationExecutionDecision
-  - ReplicationExecutionMode
   - ReplicationHybridState
   - ReplicationReductionDecision
   - drainEgressEvents
@@ -10363,90 +9968,18 @@ extra_symbols:
   - normalizeReplicationExecutionMode
   - phasesView
   - rolesView
-  - GeneticLedgerKey
-  - LedgerApplyResult
-  - LedgerRollbackResult
-  - LedgerRuntimeSnapshot
-  - LedgerRuntimeState
-  - HormoneId
 ---
 
 ### TypeScript
 
 ```typescript
-import { AS_WASM_PATH, CONTROL_INTENT_QUEUE, DAEMON_INGRESS_POLICY_LIMITS, DollFork, DollForkRunner, DriftWarden, GATE, GLYPH_TELEMETRY, GenesisInceptor, LOGGER, Ld, Le, Li, LineageTracker, Lw, PREDICTION_MARKET, QuorumAdvocate, REIFIED_PROGRAMS, RUNTIME_POLICY, SOVEREIGNTY_ENGINE, MX, sharedBuffer, SIGMA_FFI } from "../mod.ts";
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, GENERIC_LEDGER_SYSTEM } from "../09/GENERIC_LEDGER_SYSTEM.ts";
-import { GENERIC_LEDGER_PERSISTENCE } from "../10/GENERIC_LEDGER_PERSISTENCE.ts";
-import { HORMONE_BUFFER } from "../10/HORMONE_BUFFER.ts";
-import { HORMONE_BUFFER_RUNTIME } from "../06/HORMONE_BUFFER_RUNTIME.ts";
+
+
+
+
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
-
-
-export interface PulseOracleDelegate {
-  setNeuralCoherence(coherence: number): void;
-  getNeuralCoherence(): number;
-  gatherEpochTelemetry(): any;
-  broadcastWhisper(tick: number, telemetry: any, coherence: number): void;
-  consultOracle(regentIdx: number, telemetry: any): void;
-  drainPendingMutations(): void;
-}
 let oracleDelegate: PulseOracleDelegate | null = null;
-
-export interface PulseAkashaDelegate {
-  recordMutationTelemetry(
-    event: { lane: string; kind: string; count: number },
-  ): void;
-  flushMutationTelemetry(tick: number): void;
-  compressMemory(wasmMemory: WebAssembly.Memory): Promise<Uint8Array>;
-  decompressMemoryToLattice(
-    wasmMemory: WebAssembly.Memory,
-    payload: Uint8Array,
-  ): Promise<void>;
-  saveEpoch(
-    memory: WebAssembly.Memory,
-    tick: number,
-    label: string,
-    count1: number,
-    count2: number,
-    hash: string,
-  ): Promise<void>;
-  broadcastPanopticonFrame(frame: ArrayBuffer): void;
-  recordImmunologicalPurge(count: number): Promise<void>;
-  observePulseCodex(tick: number, pop: number, glyphs: any, syn: number): void;
-  saveSnap(tick: number): Promise<void>;
-  cleanupSnap(retention: number): void;
-}
 let akashaDelegate: PulseAkashaDelegate | null = null;
-
-export interface PulseNoosphereDelegate {
-  unpackAtom(payload: Uint8Array): number;
-  packAtom(idx: number): Uint8Array;
-  evaluateHeartbeat(
-    tick: number,
-    epochHash: string,
-    avgPhase: number,
-    egressCount: number,
-  ): void;
-  sendEpochPayload(peerId: string, payload: Uint8Array): void;
-  routeAtom(payload: Uint8Array): void;
-  startNexus(): void;
-  broadcastSyncRequest(): void;
-  broadcastEpochConsensus(tick: number, hashSum: bigint): void;
-  getNexusStatus(): {
-    mainnetEnabled: boolean;
-    bootstrapHubUrl: string;
-    seedNodesLength: number;
-    localCurrentTick: number;
-    localTps: number;
-  };
-  setNexusStatus(status: {
-    mainnetEnabled?: boolean;
-    bootstrapHubUrl?: string;
-    localCurrentTick?: number;
-    localTps?: number;
-  }): void;
-  getMedianSwarmTick(tick: number): number;
-}
 let noosphereDelegate: PulseNoosphereDelegate | null = null;
 
 const MAX_TICK_DRIFT = 50;
@@ -10455,12 +9988,9 @@ let lastPanopticonBroadcastTime = 0;
 let tickCountLog = 0;
 let genesisPromiseResolver: (() => void) | null = null;
 
-
 const { syncHormonesToLattice } = HORMONE_BUFFER_RUNTIME;
 const { createPhysiologicalLedgerRuntime, HORMONE_BUFFER_CATALOG } = HORMONE_BUFFER;
-import type {
-  LedgerPersistenceSummary
-} from "@g12";
+
 const {
   appendLedgerRecordAndMaybeCompact,
   getLogPath,
@@ -10469,7 +9999,6 @@ const {
   recordFromApply,
   recordFromRollback,
 } = GENERIC_LEDGER_PERSISTENCE;
-
 
 const WORKER_COUNT = RUNTIME_POLICY.pulse.workerCount;
 const STRICT_DETERMINISM = RUNTIME_POLICY.pulse.strictDeterminism;
@@ -10530,113 +10059,6 @@ const CACHE_WASM = async (): Promise<WebAssembly.Module | null> => {
     Le(`Failed to cache WASM module: ${(err as Error).message}`);
     return null;
   }
-};
-type EvolutionPressureState = {
-  noveltySigned: number;
-  symbiosisSigned: number;
-  novelty: number;
-  fear: number;
-  symbiosis: number;
-  ego: number;
-  ring: {
-    enabled: boolean;
-    theta: number;
-    scale: number;
-    fearCuriosityBalance: number;
-    egoLoveBalance: number;
-  };
-};
-type SpatialHashState = {
-  tick: number;
-  overflowCount: number;
-  maxCellCount: number;
-  overflowRatio: number;
-};
-type HomeostasisState = {
-  enabled: boolean;
-  targetEnergy: number;
-  targetEnergyDefault: number;
-  targetEnergyCurrent: number;
-  band: number;
-  maxDelta: number;
-  overflowThreshold: number;
-  starvationFloor: number;
-  subsidyEnabled: boolean;
-  baseTaxDefault: number;
-  baseTaxCurrent: number;
-  lastUpdateTick: number;
-  lastUpdateSource: string;
-  lastUpdateReason: string;
-};
-type GeneticLedgerRuntimeState = {
-  homeostasisBaseTax: LedgerRuntimeSnapshot<"pulse.homeostasis.baseTax">;
-  homeostasisBaseTaxPersistence: LedgerPersistenceSummary;
-  homeostasisTargetEnergy: LedgerRuntimeSnapshot<
-    "pulse.homeostasis.targetEnergy"
-  >;
-  homeostasisTargetEnergyPersistence: LedgerPersistenceSummary;
-  pressureRingScale: LedgerRuntimeSnapshot<"pulse.pressureRing.scale">;
-  pressureRingScalePersistence: LedgerPersistenceSummary;
-  homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
-  homeostasisBandPersistence: LedgerPersistenceSummary;
-  homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
-  homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
-  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<
-    "pulse.homeostasis.overflowThreshold"
-  >;
-  homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
-  daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
-  daemonMaxActionsPersistence: LedgerPersistenceSummary;
-  federationDegradeEnergyRatio: LedgerRuntimeSnapshot<
-    "federation.admission.degradeEnergyRatio"
-  >;
-  federationDegradeEnergyRatioPersistence: LedgerPersistenceSummary;
-};
-type GuardianSignalHybridState = {
-  mode: GuardianSignalExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  stableBranchCount: number;
-  repairBranchCount: number;
-  allowedGuardianSignals: number;
-  suppressedGuardianSignals: number;
-  shadowSuppressedGuardianSignals: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "stable"
-    | "repair"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "stable" | "repair" | "unknown";
-  lastFallbackReason: string;
-  lastMode?: GuardianSignalExecutionMode;
-};
-type ArchitectPlasmidHybridState = {
-  mode: ArchitectPlasmidExecutionMode;
-  hybridRuns: number;
-  shadowRuns: number;
-  fallbackRuns: number;
-  emitBranchCount: number;
-  suppressBranchCount: number;
-  allowedArchitectPlasmids: number;
-  suppressedArchitectPlasmids: number;
-  shadowSuppressedArchitectPlasmids: number;
-  lastTick: number;
-  lastStatus:
-    | "legacy"
-    | "emit"
-    | "suppress"
-    | "fallback"
-    | "shadow"
-    | "hybrid"
-    | "legacy-blocked";
-  lastBranch: "emit" | "suppress" | "unknown";
-  lastFallbackReason: string;
-  lastMode?: ArchitectPlasmidExecutionMode;
 };
 
 const clampPressureTerm = (value: number): number =>
@@ -11431,11 +10853,6 @@ const spawnDataView = new DataView(
 const coherenceView = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 // Helper for drift & trend monitoring
-type RollingHistory = {
-  add: (val: number) => void;
-  sum: () => number;
-  size: () => number;
-};
 const createRollingHistory = (maxSize: number): RollingHistory => {
   const values = new Float64Array(maxSize);
   let head = 0;
@@ -11686,18 +11103,6 @@ const startupSelfTestBreached = (): boolean => {
   if (Atomics.load(idsView, 0) !== 0n) return true;
   return MX.getActiveIndices().length !== 0;
 };
-
-export interface DriftMetrics {
-  energyDiff: number;
-  resonanceDiff: number;
-  bondsBroken: number;
-  bondsFormed: number;
-  structuralValueChange: number;
-  populationDiff: number;
-  coherenceDiff: number;
-  divergenceTick: number;
-}
-
 // Global reference for oracle side-channel
 let shadowWasmInstance: WebAssembly.Instance | null = null;
 let run_shadow_simulation_ffi:
@@ -11901,15 +11306,9 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | LedgerApplyResult<
-      "pulse.homeostasis.baseTax"
-    >
-    | LedgerApplyResult<
-      "pulse.homeostasis.targetEnergy"
-    >
-    | LedgerApplyResult<
-      "pulse.pressureRing.scale"
-    >
+    | LedgerApplyResult<"pulse.homeostasis.baseTax">
+    | LedgerApplyResult<"pulse.homeostasis.targetEnergy">
+    | LedgerApplyResult<"pulse.pressureRing.scale">
   > => {
     if (update.key === "pulse.pressureRing.scale") {
       const result = applyPressureRingScaleLedgerUpdate({
@@ -12033,15 +11432,9 @@ export const PULSE = {
       tick?: number;
     },
   ): Promise<
-    | LedgerRollbackResult<
-      "pulse.homeostasis.baseTax"
-    >
-    | LedgerRollbackResult<
-      "pulse.homeostasis.targetEnergy"
-    >
-    | LedgerRollbackResult<
-      "pulse.pressureRing.scale"
-    >
+    | LedgerRollbackResult<"pulse.homeostasis.baseTax">
+    | LedgerRollbackResult<"pulse.homeostasis.targetEnergy">
+    | LedgerRollbackResult<"pulse.pressureRing.scale">
   > => {
     if (rollback.key === "pulse.pressureRing.scale") {
       const result = rollbackPressureRingScaleLedgerUpdate({
@@ -12774,7 +12167,6 @@ export const PULSE = {
     }
   },
 };
-
 ```
 
 ```
@@ -12793,6 +12185,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LOGGER
@@ -12852,6 +12245,46 @@ export class QuorumAdvocate {
 
 ---
 
+## FILE: src/ontology/core/REJECTION_CODES.md
+
+```markdown
+---
+id: REJECTION_CODES
+type: module
+description: Canonical Rejection Reasons
+extra_symbols:
+deps: []
+---
+
+
+### TypeScript
+
+```typescript
+/**
+ * Canonical Rejection Reasons
+ */
+export const REJECTION = {
+  SCHEMA_INVALID: "SCHEMA_INVALID",
+  TICK_MISMATCH: "TICK_MISMATCH",
+  BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
+  UNKNOWN_AGENT: "UNKNOWN_AGENT",
+  COST_OVER_BUDGET: "COST_OVER_BUDGET",
+  EMPTY_DELTA: "EMPTY_DELTA",
+  OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
+  CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
+  SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
+  SIGNATURE_INVALID: "SIGNATURE_INVALID",
+  SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
+  SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
+  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
+  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
+};
+```
+
+```
+
+---
+
 ## FILE: src/ontology/core/relic_cultivation.md
 
 ```markdown
@@ -12864,14 +12297,15 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - DollFork
   - LOGGER
   - Li
   - MAX_ATOMS
-extra_symbols:
   - Relic
+extra_symbols:
   - RelicCultivator
 ---
 
@@ -12879,15 +12313,6 @@ extra_symbols:
 
 ```typescript
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
-
-export type Relic = {
-  id: string;
-  bytecode: number[];
-  role: number;
-  resonance: number;
-  energy: number;
-  extractedAtTick: number;
-};
 
 /**
  * RelicCultivator identifies stable, high-resonance evolutionary patterns in the shadow matrix.
@@ -12967,23 +12392,25 @@ min_level: 2
 tags:
   - substrate
 deps:
+  - TYPES
   - parse_env_bool
   - parse_env_bounded_int
+vars:
+  - WasmBootPolicy
+  - KernelMode
+  - ReplicationExecutionMode
+  - GuardianSignalExecutionMode
+extra_symbols:
+  - RUNTIME_POLICY
 ---
 
 Configures the Omega 64 engine via `Deno.env`. Exposes default behavior, numeric limits, and the global mutation framework.
 
 ```typescript
-export type WasmBootPolicy = "fail-fast" | "safe-noop";
-export type KernelMode = "as" | "rust";
-type GuardianSignalExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
-export type ReplicationExecutionMode =
-  | "legacy-execute"
-  | "hybrid-reduce"
-  | "shadow-reduce";
+
+
+
+
 const TAU = Math.PI * 2;
 
 const readEnv = (key: string): string | undefined => Deno.env.get(key);
@@ -13884,6 +13311,7 @@ tags:
   - host
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LATTICE_MEMORY_END
@@ -13899,7 +13327,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
-import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
+
+
+
+
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 
 const SNAP_DIR = ".omega/snap";
@@ -14011,6 +13442,7 @@ tags:
 deps:
   - LOGGER
   - SEMANTIC_MEMBRANE
+  - TYPES
 min_level: 9
 vars:
   - LOGGER
@@ -14019,6 +13451,7 @@ vars:
   - Lw
   - SEMANTIC_MEMBRANE
   - MX
+  - SnapshotExportOptions
 extra_symbols:
   - SNAPSHOT_ENGINE
 ---
@@ -14029,18 +13462,10 @@ extra_symbols:
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
 
-
 const SNAPSHOT_DIR = ".omega/snapshots";
 const normalizeRetention = (value: number | undefined): number => {
   if (!Number.isFinite(value)) return 8;
   return Math.max(1, Math.min(512, Math.floor(value as number)));
-};
-
-type SnapshotExportOptions = {
-  tick?: number;
-  reason?: string;
-  prune?: boolean;
-  retention?: number;
 };
 
 export const SNAPSHOT_ENGINE = {
@@ -14261,22 +13686,21 @@ tags:
   - governance
   - host
 min_level: 6
+deps:
+  - MX
+  - TYPES
 vars:
   - MX
+  - SovereigntyEngineAkashaDelegate
 extra_symbols:
   - DECREES
   - SOVEREIGNTY_ENGINE
-  - SovereigntyEngineAkashaDelegate
 ---
 ```typescript
-export interface SovereigntyEngineAkashaDelegate {
-  recordDecreeShift(
-    tick: number,
-    oldDecree: string,
-    newDecree: string,
-    newEpochCount: number,
-  ): void;
-}
+
+
+
+
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 
 let lastAnnouncedDecree = "NONE";
@@ -14663,7 +14087,8 @@ args:
   gx: i32
   gy: i32
   targetIdx: i32
-deps: []
+deps:
+  - TYPES
 vars: []
 ---
 
@@ -14675,6 +14100,10 @@ vars: []
 ```
 
 ```typescript
+
+
+
+
 // TS Mock No-op
 ```
 
@@ -14685,6 +14114,2069 @@ vars: []
 // For now, in OMEGA-64, trace_atom is already globally declared in `pulse_orchestrator.ts`.
 // But to make it topological, we declare it as an external import.
 ```
+
+```
+
+---
+
+## FILE: src/ontology/core/TYPES.md
+
+```markdown
+---
+id: TYPES
+type: module
+description: Centralized TypeScript types for the OMEGA-64 ontology.
+tags:
+  - core
+  - substrate
+min_level: 0
+extra_symbols:
+  - ActionType
+  - AgentSignatureKey
+  - AgentSignatureScheme
+  - Aggregate
+  - ApplyStats
+  - ArchitectPlasmidHybridState
+  - AssembleToken
+  - AtomicLedgerEvent
+  - AuditEngineExocortexDelegate
+  - AutonomyState
+  - AvatarIntent
+  - BehaviorCluster
+  - BehaviorFingerprint
+  - BehaviorRuntime
+  - BridgeInvariantReportLike
+  - BridgeModeEvent
+  - CheckpointChainReportInternal
+  - ChronicleEntry
+  - CodexLineageProfile
+  - CodexNarrative
+  - CodexState
+  - ContinuumMetadata
+  - ControlIntent
+  - ControlIntentQueueDelegate
+  - CrisisIntent
+  - DaemonAction
+  - DaemonDecision
+  - DaemonIngressMetrics
+  - DaemonIngressPlan
+  - DaemonInjectEnvelope
+  - DaemonInvariantAdmission
+  - DaemonInvariantFrame
+  - DaemonNarrativeContext
+  - DeltaProposal
+  - DriftMetrics
+  - Ed25519SigningKey
+  - Ed25519VerifyKey
+  - EvolutionPressureState
+  - ExportFileContent
+  - ExportManifest
+  - ExportProvenance
+  - FederateAdmissionResult
+  - FederateIntent
+  - FederationAdmissionAction
+  - FederationAdmissionSeverity
+  - FederationAdmissionSnapshot
+  - FederationBehaviorProfile
+  - FederationCodexProfile
+  - FederationLocalBehaviorContext
+  - FederationLocalCodexContext
+  - FederationPolicyFragment
+  - FederationPolicyFragmentMode
+  - FederationPolicyFragmentSource
+  - FederationRuleGenomeProfile
+  - GateAcceptedProposalMetric
+  - GateBridgeResolution
+  - GateDecision
+  - GateMergedDelta
+  - GateRuntimeContext
+  - GateValidationResult
+  - GeneticLedgerEntry
+  - GeneticLedgerKey
+  - GeneticLedgerRuntimeState
+  - GenomeStats
+  - GlyphKind
+  - GlyphRoleCounters
+  - GlyphSnapshot
+  - GlyphSpec
+  - GlyphStabilityClass
+  - GlyphTapeToken
+  - GlyphTransportEvidence
+  - GoldenTraceMetricPolicy
+  - GoldenTraceScenario
+  - GuardianSignalExecutionMode
+  - GuardianSignalHybridState
+  - HarnessProps
+  - HmacKey
+  - HomeostasisState
+  - HormoneDomain
+  - HormoneId
+  - HormoneRegimeEvidence
+  - HormoneSnapshot
+  - HormoneSpec
+  - HormoneSyncInput
+  - I16Limits
+  - InceptiveProgram
+  - InvariantEntry
+  - InvariantFrame
+  - InvariantPacket
+  - InvariantPacketSigningKey
+  - InvariantSignal
+  - JsonMap
+  - KernelMode
+  - LedgerApplyResult
+  - LedgerChainReportInternal
+  - LedgerHydrationResult
+  - LedgerMutability
+  - LedgerPersistenceSummary
+  - LedgerRecord
+  - LedgerRollbackResult
+  - LedgerRuntimeConfig
+  - LedgerRuntimeEvent
+  - LedgerRuntimeSnapshot
+  - LedgerRuntimeState
+  - LedgerSnapshot
+  - LedgerSnapshotRecord
+  - LegacyInstruction
+  - LegacyShadowResult
+  - LoadedManifest
+  - LogLevel
+  - MeshForwardAction
+  - MeshForwardEnvelope
+  - MutateIntent
+  - MutationEvent
+  - MutationLane
+  - NexusConfig
+  - OpenAIChoice
+  - OpenAIResponse
+  - OracleDrainStats
+  - OraclePendingMutation
+  - P2pFederationUpwardDelegate
+  - ParsedMeshInject
+  - PhysiologySnapshot
+  - PhysiologySnapshotInput
+  - PlasmidIntent
+  - PlasmidRiskProfile
+  - PredictionMarketAkashaDelegate
+  - ProjectionOptions
+  - PulseAkashaDelegate
+  - PulseNoosphereDelegate
+  - PulseOracleDelegate
+  - QueueDecision
+  - ReductionBaselineAnchor
+  - ReductionCaseDefinition
+  - ReductionCaseExpectation
+  - ReductionHarnessArtifact
+  - ReductionHarnessResult
+  - ReductionShadowResult
+  - Relic
+  - RelicCandidate
+  - RelicEntry
+  - ReplayInvariantReport
+  - ReplicationExecutionMode
+  - RolePreamble
+  - RollingHistory
+  - ScriptToGlyphOptions
+  - ShadowEffects
+  - ShadowState
+  - SignalingSession
+  - SIGNAL_TYPES
+  - SignalType
+  - SignaturePolicy
+  - SnapshotExportOptions
+  - SnapshotImportIntent
+  - SovereignOracleAkashaDelegate
+  - SovereigntyEngineAkashaDelegate
+  - SpatialHashState
+  - SpeciesEntry
+  - SwarmHeartbeat
+  - TaxonomyResult
+  - Telemetry
+  - TelemetryBucket
+  - TelemetryHistogram
+  - TelemetryMetricName
+  - TelemetrySample
+  - ThreadProjectionConfig
+  - TopologicalSignature
+  - TopologicalSignatureInput
+  - WasmBootPolicy
+---
+
+### TypeScript
+
+```typescript
+
+/**
+ * StateSnapshot: The canonical state of the system at a specific tick.
+ */
+export interface StateSnapshot {
+  tick: number;
+  state_i16: Int16Array;
+  state_hash: string;
+  phase_u16?: Uint16Array;
+  stability_q15?: Float32Array;
+  entropy_i16?: Int16Array;
+}
+
+/**
+ * AutonomyState: Represents the sovereignty levels of the system.
+ */
+export interface AutonomyState {
+  state: number;
+  gov: number;
+  code: number;
+}
+
+/**
+ * DeltaProposal: A request from an agent to modify the state.
+ */
+export interface DeltaProposal {
+  proposal_id: string;
+  tick: number;
+  base_state_hash: string;
+  agent_id: string;
+  agent_phase_u16?: number;
+  intent?: string;
+  confidence: number;
+  delta: Array<{ level: number; value: number }>;
+  cost_estimate?: number;
+  artifact_hash?: string;
+  semantic_fingerprint?: string;
+  causal_refs?: string[];
+  target_path?: "LOCAL" | "CANON";
+  quorum_strength?: number;
+  origin_atom_idx?: number;
+  resonance?: number;
+  signature_scheme?: AgentSignatureScheme;
+  agent_signature?: string;
+  proposal_envelope_hash?: string;
+}
+
+export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
+export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
+export type AgentSignatureKey =
+  | { scheme: "ed25519/v1"; public_key_b64: string }
+  | { scheme: "hmac-sha256/v1"; secret: string };
+
+/**
+ * GateConfig: Configuration for the L32 Gate.
+ */
+export interface GateConfig {
+  max_abs_delta_per_level: number;
+  max_total_abs_delta_per_tick: number;
+  max_total_cost_per_tick?: number;
+  max_cost_per_agent: number;
+  reliability_weight: Map<string, number>;
+  reliability_mode?: "STATIC" | "PHASE_COHERENCE";
+  reliability_floor?: number;
+  dry_run: boolean;
+  global_syntropy?: number;
+  signature_policy?: SignaturePolicy;
+  agent_signature_keys?: Map<string, AgentSignatureKey>;
+  anti_replay_window_ticks?: number;
+}
+
+/**
+ * GateDecision: The result of the L32 Gate processing.
+ */
+export interface GateDecision {
+  accepted_proposals: string[];
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  budget_used: number;
+  cost_used: number;
+  accepted_delta: Array<{ level: number; value: number }>;
+}
+
+/**
+ * LedgerEvent: The canonical record of a state transition.
+ */
+export interface LedgerEvent {
+  event_id: string;
+  tick: number;
+  ts_unix_ms: number;
+  state_before_hash: string;
+  state_after_hash: string;
+  accepted_delta: Array<{ level: number; value: number }>;
+  proposal_digest: string;
+  accepted_proposals: string[];
+  accepted_proposal_metrics?: Array<{
+    proposal_id: string;
+    agent_id: string;
+    confidence: number;
+    reliability_base: number;
+    reliability_effective: number;
+    phase_coherence?: number;
+    weight: number;
+    physical_cost: number;
+    agent_phase_u16?: number;
+  }>;
+  accepted_proposal_envelopes?: Array<
+    { proposal_id: string; envelope_hash: string }
+  >;
+  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
+  cost_total: number;
+  cost_limit?: number;
+  budget_used: number;
+  budget_limit?: number;
+  gate_config_version: string;
+  signature_artifact_hash?: string;
+  signature_tick?: number;
+  signature_causal_refs?: string[];
+  projection_2d_hash?: string;
+  thread_1d_hash?: string;
+  projection_version?: string;
+  policy_version?: string;
+  policy_hash?: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+/**
+ * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
+ */
+export interface BridgeModeEvent {
+  event_type: "BRIDGE_MODE_EVENT";
+  tick: number;
+  state_hash: string;
+  mode: "GREEN" | "AMBER" | "RED";
+  index_chain_checked: boolean;
+  index_chain_ok: boolean;
+  index_chain_checked_records: number;
+  index_chain_failures: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_checked_records?: number;
+  gate_admission_index_chain_failures?: string[];
+  invariant_packet_hash?: string;
+  canon_bound_proposals: string[];
+  blocked_canon_proposals: string[];
+  reason: string;
+  chain_version?: string;
+  prev_event_hash?: string | null;
+  event_hash?: string;
+  witness?: string;
+}
+
+export interface ReplayInvariantReport {
+  index_chain_checked: boolean;
+  index_chain_ok: boolean;
+  index_chain_checked_records: number;
+  index_chain_failures: string[];
+  gate_admission_index_chain_checked: boolean;
+  gate_admission_index_chain_ok: boolean;
+  gate_admission_index_chain_checked_records: number;
+  gate_admission_index_chain_failures: string[];
+}
+
+export interface GateRuntimeContext {
+  bridge_invariant_report?: ReplayInvariantReport;
+  witness?: string;
+}
+
+export type GeneticLedgerKey =
+  | "pulse.homeostasis.targetEnergy"
+  | "pulse.homeostasis.band"
+  | "pulse.homeostasis.maxDelta"
+  | "pulse.homeostasis.overflowThreshold"
+  | "pulse.homeostasis.baseTax"
+  | "pulse.pressureRing.scale"
+  | "daemon.maxActionsPerWindow"
+  | "daemon.maxPheromoneIntensity"
+  | "daemon.maxPlasmidCharge"
+  | "federation.admission.degradeEnergyRatio"
+  | "federation.admission.degradeResonanceRatio";
+
+export type LedgerMutability =
+  | "hard-invariant"
+  | "bounded-runtime"
+  | "daemon-governed";
+
+export type GeneticLedgerEntry = {
+  key: GeneticLedgerKey;
+  defaultValue: number;
+  min: number;
+  max: number;
+  mutability: LedgerMutability;
+  hormoneLink: string | null;
+  rollbackClass: "immediate" | "epochal";
+  sourcePath: string;
+  notes: string;
+};
+
+export type SwarmHeartbeat = {
+  nodeId: string;
+  currentTick: number;
+  epochHash: string;
+  phase: number;
+};
+
+export interface P2pFederationUpwardDelegate {
+  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
+  lookupLineageProfile(lineage: string): any;
+  captureBehaviorFrame(idx: number): any;
+}
+
+export type NexusConfig = {
+  instanceId: number;
+  seedNodes: string[];
+  mainnetEnabled?: boolean;
+  bootstrapHubUrl?: string;
+};
+
+export type BehaviorFingerprint = {
+  replicateRatio: number;
+  signalRatio: number;
+  buildRatio: number;
+  survivalCurve: number[];
+};
+
+export type BehaviorCluster = {
+  behaviorSignature: string;
+  memberCount: number;
+  dominantRole: number;
+  genomeSamples: string[];
+  fingerprint: BehaviorFingerprint;
+};
+
+export type GlyphRoleCounters = {
+  neutral: number;
+  producer: number;
+  guardian: number;
+  architect: number;
+  parasite: number;
+};
+
+export type GlyphSnapshot = {
+  activeCells: number;
+  pheromoneCells: number;
+  plasmidCells: number;
+  maxAmplitude: number;
+  totalAmplitude: number;
+  roleCounters: GlyphRoleCounters;
+  avgEnergy: number;
+  avgResonance: number;
+  dominantRole: number;
+  tick: number;
+};
+
+export interface InceptiveProgram {
+  bytecode: number[];
+  metadata?: {
+    ancestorHash?: bigint;
+    roleHint?: number;
+  };
+}
+
+export type LegacyInstruction = {
+  pc: number;
+  opcode: number;
+  opcodeMnemonic: string;
+  length: number;
+  args: number[];
+};
+
+export type GlyphTapeToken = LegacyInstruction & {
+  glyphId: number | null;
+  glyphMnemonic: string | null;
+  mapped: boolean;
+};
+
+export type RolePreamble = {
+  roleId: number;
+  bytecode: number[];
+};
+
+export type CodexLineageProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+};
+
+export interface SovereignOracleAkashaDelegate {
+  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
+  appendObserverCommentary(tick: number, epoch: number, message: string): Promise<void>;
+}
+
+export type GateAcceptedProposalMetric = {
+  proposal_id: string;
+  agent_id: string;
+  confidence: number;
+  reliability_base: number;
+  reliability_effective: number;
+  phase_coherence?: number;
+  weight: number;
+  physical_cost: number;
+  agent_phase_u16?: number;
+};
+
+export type GateValidationResult = {
+  validProposals: DeltaProposal[];
+  proposalDigest: string;
+  envelopeHashByProposal: Map<string, string>;
+  canonBoundProposals: string[];
+  blockedCanonProposals: string[];
+};
+
+export type BridgeInvariantReportLike = {
+  index_chain_checked?: boolean;
+  index_chain_ok?: boolean;
+  index_chain_failures?: string[];
+  gate_admission_index_chain_checked?: boolean;
+  gate_admission_index_chain_ok?: boolean;
+  gate_admission_index_chain_failures?: string[];
+};
+
+export type GateBridgeResolution = {
+  mode: "GREEN" | "AMBER" | "RED";
+  reason: string;
+};
+
+export type OracleDrainStats = {
+  applied: number;
+  skipped: number;
+  dropped: number;
+  remaining: number;
+};
+
+export type OraclePendingMutation =
+  | {
+    kind: "oracle_head_mutation";
+    regentIndex: number;
+    headBytes: Uint8Array;
+    genomeHex: string;
+  }
+  | {
+    kind: "oracle_memetic_injection";
+    regentIndex: number;
+    memeBytes: Uint8Array;
+  }
+  | {
+    kind: "oracle_cache_fallback";
+    regentIndex: number;
+    logicBytes: Uint8Array;
+    cachedHex: string;
+  }
+  | {
+    kind: "oracle_whisper_broadcast";
+    gridIdx: number;
+    charge: number;
+    memeBytes: Uint8Array;
+  }
+  | {
+    kind: "oracle_plasmid_injection";
+    gridIdx: number;
+    charge: number;
+    plasmidBytes: Uint8Array;
+    source: "oracle_guidance" | "oracle_cache_fallback";
+  };
+
+export type I16Limits = {
+  max: number;
+  span: number;
+};
+
+export type SpeciesEntry = {
+  id: string;
+  genome: string;
+  latinName: string;
+  behavior: string;
+  philosophy: string;
+  dominantInstructions: string[];
+  firstRecordedTick: number;
+  lastDominantTick: number;
+  dominantEpochs: number;
+  peakShare: number;
+  filePath: string;
+  createdAt: string;
+};
+
+export type ChronicleEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  type: string;
+  title: string;
+  body: string;
+  createdAt: string;
+};
+
+export type RelicEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  signature: string;
+  size: number;
+  bounds: { x0: number; y0: number; x1: number; y1: number };
+  summary: string;
+  snapshotPath: string;
+  filePath: string;
+  createdAt: string;
+};
+
+export type InvariantSignal = {
+  key: string;
+  vector: string;
+  weight: number;
+  evidence: string[];
+};
+
+export type InvariantEntry = {
+  id: string;
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  dominantVector: string;
+  signals: InvariantSignal[];
+  source: string;
+  filePath: string;
+  createdAt: string;
+  hormones: number[];
+};
+
+export type DaemonInvariantFrame = {
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  summary: string;
+  invariants: InvariantSignal[];
+  created_at: string;
+  hormones: number[];
+};
+
+export type CodexNarrative = {
+  tick: number;
+  epoch: number;
+  mood: "ASCENDANT" | "STABLE" | "FRAGILE";
+  title: string;
+  summary: string;
+  sharedCenter: string;
+  speciesHighlights: Array<{
+    latinName: string;
+    genome: string;
+    dominantEpochs: number;
+    peakShare: number;
+  }>;
+  invariantHighlights: Array<{
+    tick: number;
+    epoch: number;
+    center: string;
+    signature: string;
+    dominantVector: string;
+    summary: string;
+  }>;
+  recentChronicles: Array<{
+    tick: number;
+    epoch: number;
+    type: string;
+    title: string;
+  }>;
+  relicStatus: string;
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
+  metabolicPressure: number;
+  daemonEffectStatus: string;
+  daemonEffectLineage: string;
+  daemonEffectDeltaBand: string;
+  hormoneRegime: string;
+  promptBridge: string;
+  hippocampusRecall?: {
+    tick: number;
+    epoch: number;
+    summary: string;
+    distance: number;
+    distanceType: string;
+  };
+};
+
+export type CodexState = {
+  version: number;
+  epochTicks: number;
+  lastEpochScanTick: number;
+  populationPeak: number;
+  lastPopulation: number;
+  lastMassExtinctionTick: number;
+  lastDecree: string;
+  lastDecreeTick: number;
+  genomeEpochs: Record<string, number[]>;
+  relicSignatures: string[];
+  invariantSignatures: string[];
+  lastGlyphTransportSignature: string;
+  lastGlyphTransportTick: number;
+  lastGlyphTransportRegime: string;
+  lastGlyphTransportSummary: string;
+  lastGlyphTransportDominantRole: string;
+  lastGlyphTransportSourceMode: string;
+  lastHormoneRegimeSignature: string;
+  lastHormoneRegimeTick: number;
+  lastHormoneRegimeSummary: string;
+  lastDaemonEffectTick: number;
+  lastDaemonEffectSummary: string;
+  lastDaemonEffectLineage: string;
+  lastDaemonEffectDeltaBand: string;
+  lastSyntropy: number;
+  lastImmunePurgeTick: number;
+  lastImmunePurgeCount: number;
+};
+
+export type GenomeStats = {
+  genome: string;
+  count: number;
+  share: number;
+  sampleIndices: number[];
+};
+
+export type RelicCandidate = {
+  cells: number[];
+  bounds: { x0: number; y0: number; x1: number; y1: number };
+  size: number;
+  signatureBase: string;
+};
+
+export type TaxonomyResult = {
+  latinName: string;
+  behavior: string;
+  philosophy: string;
+};
+
+export type WasmBootPolicy = "fail-fast" | "safe-noop";
+export type KernelMode = "as" | "rust";
+export type ReplicationExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type DaemonAction = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+export type DaemonInjectEnvelope = {
+  action_type: DaemonAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+};
+
+export type DaemonNarrativeContext = {
+  mood: string;
+  sharedCenter: string;
+  dominantInvariantVector: string;
+  codexLineageLabel: string;
+  codexLineageGuardScore: number;
+  codexLineageGuardReasons: string[];
+  glyphStatus: string;
+  glyphRegime: string;
+  glyphDominantRole: string;
+  glyphSourceMode: string;
+  metabolicPressure: number;
+  hormoneRegime: string;
+};
+
+export type DaemonInvariantAdmission = {
+  score: number;
+  severity: "LOW" | "MID" | "HIGH";
+  reasons: string[];
+  context: DaemonNarrativeContext;
+};
+
+export type PlasmidRiskProfile = {
+  level: "LOW" | "MID" | "HIGH";
+  score: number;
+  reasons: string[];
+  opcode: number;
+};
+
+export type DaemonIngressPlan = {
+  requested: DaemonInjectEnvelope;
+  applied: DaemonInjectEnvelope;
+  degraded: boolean;
+  degradeReason: string | null;
+  admission: DaemonInvariantAdmission;
+};
+
+export type DaemonIngressMetrics = {
+  population: number;
+  avgEnergy: number;
+};
+
+export interface SovereigntyEngineAkashaDelegate {
+  recordDecreeShift(
+    tick: number,
+    oldDecree: string,
+    newDecree: string,
+    newEpochCount: number,
+  ): void;
+}
+
+export interface InvariantPacket {
+  version: string;
+  tick_anchor: number;
+  canon_index_chain_checked: boolean;
+  canon_index_chain_ok: boolean;
+  gate_admission_index_chain_checked: boolean;
+  gate_admission_index_chain_ok: boolean;
+  ledger_chain_checked?: boolean;
+  ledger_chain_ok?: boolean;
+  witness?: string;
+  packet_hash?: string;
+  signature_scheme?: "hmac-sha256/v1";
+  packet_signature?: string;
+}
+
+export type InvariantPacketSigningKey = {
+  scheme: "hmac-sha256/v1";
+  secret: string;
+};
+
+export interface ProjectionOptions {
+  resolution?: number;
+  deterministic?: boolean;
+  noiseAmplitude?: number;
+  noiseAlpha?: number;
+}
+
+export interface ThreadProjectionConfig {
+  radial_bins: number;
+  angular_bins: number;
+}
+
+export interface TopologicalSignature {
+  artifact_hash: string;
+  state_hash: string;
+  tick: number;
+  causal_refs: string[];
+  projection_2d_hash: string;
+  thread_1d_hash: string;
+  projection_version: string;
+  witness?: string;
+}
+
+export interface TopologicalSignatureInput {
+  artifact_hash: string;
+  state_hash: string;
+  tick: number;
+  state: unknown;
+  causal_refs?: string[];
+  witness?: string;
+}
+
+export type Ed25519SigningKey = {
+  scheme: "ed25519/v1";
+  private_key_pkcs8_b64: string;
+};
+
+export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
+
+export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+export type PhysiologySnapshotInput = {
+  tick: number;
+  hormones: Record<HormoneId, LedgerRuntimeSnapshot<HormoneId>>;
+  ledger: Partial<
+    Record<GeneticLedgerKey, LedgerRuntimeSnapshot<GeneticLedgerKey>>
+  >;
+};
+
+export type HormoneSnapshot = HormoneSpec & {
+  currentValue: number;
+  deltaFromDefault: number;
+}
+
+export type LedgerSnapshot = GeneticLedgerEntry & {
+  currentValue: number;
+  deltaFromDefault: number;
+  currentSource: "runtime" | "policy";
+}
+
+export interface PredictionMarketAkashaDelegate {
+  recordMarketResolution(
+    tick: number,
+    consensusReached: boolean,
+    finalThreshold: number,
+    winnersHash: string,
+  ): void;
+}
+
+export type ExportManifest = {
+  era: string;
+  runtime_root_files?: string[];
+  runtime_support_files?: string[];
+  experimental_files?: string[];
+  core_entry_files: string[];
+  required_additional_files: string[];
+  context_files: string[];
+}
+
+export type LoadedManifest = {
+  era: string;
+  runtimeRootFiles: string[];
+  runtimeSupportFiles: string[];
+  experimentalFiles: string[];
+  coreEntryFiles: string[];
+  requiredArchFiles: string[];
+  contextFiles: string[];
+}
+
+export type ExportProvenance = {
+  manifestSha256: string;
+  exportSetSha256: string;
+  exportContentSha256: string;
+  gitCommit: string;
+}
+
+export type ExportFileContent = {
+  file: string;
+  content: string;
+}
+
+export type HormoneId =
+  | "entropy_pressure"
+  | "time_viscosity"
+  | "aggression"
+  | "replication_bias"
+  | "repair_drive"
+  | "mutation_friction"
+  | "global_consensus";
+
+export type HormoneDomain =
+  | "systemic"
+  | "temporal"
+  | "conflict"
+  | "reproduction"
+  | "repair"
+  | "mutation";
+
+export type HormoneSpec = {
+  id: HormoneId;
+  index: number;
+  domain: HormoneDomain;
+  min: number;
+  max: number;
+  defaultValue: number;
+  controlPlane: "daemon" | "pulse" | "mixed";
+  sourcePath: string;
+  notes: string;
+};
+
+export type ContinuumMetadata = {
+  epochName: string;
+  tick: number;
+  memoryBounds: number;
+  population?: number;
+  coherence?: number;
+  epochHash?: string;
+  timestamp: string;
+}
+
+export interface ControlIntentQueueDelegate {
+  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
+  importSnapshot(timestamp: string): Promise<{ success?: boolean }>;
+  unpackAtom(packet: Uint8Array): number;
+}
+
+export type CrisisIntent = {
+  kind: "crisis";
+  logicBytes: Uint8Array;
+}
+
+export type FederateIntent = {
+  kind: "federate";
+  packet: Uint8Array;
+  sourceNode: string;
+}
+
+export type FederationAdmissionSeverity = "LOW" | "MID" | "HIGH";
+
+export type FederationAdmissionAction =
+  | "accept"
+  | "degrade"
+  | "hybridize"
+  | "reject";
+
+export type FederationRuleGenomeProfile = {
+  signature: string;
+  noveltySigned: number;
+  symbiosisSigned: number;
+  pressureRingScale: number;
+  workerCount: number;
+  strictDeterminism: boolean;
+  generatedAt: string;
+}
+
+export type FederationBehaviorProfile = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+  generatedAt: string;
+}
+
+export type FederationLocalBehaviorContext = {
+  invariant: string;
+  dominantRole: number;
+  memberCount: number;
+}
+
+export type FederationCodexProfile = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+  generatedAt: string;
+}
+
+export type FederationLocalCodexContext = {
+  genome: string;
+  label: string;
+  dominantEpochs: number;
+  peakShare: number;
+  known: boolean;
+}
+
+export type FederationPolicyFragmentSource =
+  | "rule_genome"
+  | "behavior"
+  | "codex";
+
+export type FederationPolicyFragmentMode = "tax" | "subsidy";
+
+export type FederationAdmissionSnapshot = {
+  tick: number;
+  atomId: string;
+  sourceNode: string;
+  action: FederationAdmissionAction;
+  severity: FederationAdmissionSeverity;
+  score: number;
+  reasons: string[];
+  localSignature: string;
+  peerSignature: string;
+  strictMismatch: boolean;
+  degraded: boolean;
+  hybridized: boolean;
+  localBehaviorInvariant: string;
+  peerBehaviorInvariant: string;
+  behaviorDistance: number;
+  localCodexLabel: string;
+  peerCodexLabel: string;
+  codexDistance: number;
+  policyFragments: FederationPolicyFragment[];
+  policyEnergyRatio: number;
+  policyResonanceRatio: number;
+}
+
+export type FederateAdmissionResult = {
+  action: FederationAdmissionAction;
+  packet: {
+    logicBytes: Uint8Array;
+    energy: number;
+    resonance: number;
+  };
+  admission: FederationAdmissionSnapshot;
+}
+
+export type MutateIntent = {
+  kind: "mutate";
+  x: number;
+  y: number;
+  deltaEnergy: number;
+  radius: number;
+}
+
+export type AvatarIntent = {
+  kind: "avatar";
+  x: number;
+  y: number;
+  intensity: number;
+  source: "external_ingress" | "external_daemon";
+}
+
+export type PlasmidIntent = {
+  kind: "plasmid";
+  x: number;
+  y: number;
+  charge: number;
+  plasmidBytes: Uint8Array;
+  source: "external_ingress" | "external_daemon";
+}
+
+export type SnapshotImportIntent = {
+  kind: "snapshot_import";
+  timestamp: string;
+}
+
+export type QueueDecision = {
+  ok: boolean;
+  status: number;
+  reason: string;
+  size: number;
+  max: number;
+  admission?: FederationAdmissionSnapshot;
+}
+
+export type ApplyStats = {
+  drained: number;
+  applied: number;
+  failed: number;
+  remaining: number;
+}
+
+export type HormoneSyncInput = {
+  baseTax: number;
+  targetEnergy: number;
+  workerCount: number;
+  egoPressure: number;
+  fearPressure: number;
+  noveltyPressure: number;
+  symbiosisPressure: number;
+  maxPlasmidCharge: number;
+  pressureRingScale: number;
+  // Generic Ledger inputs (Stage 7.2)
+  homeostasisBand: number;
+  homeostasisMaxDelta: number;
+  homeostasisOverflowThreshold: number;
+  daemonMaxActions: number;
+  federationDegradeEnergyRatio: number;
+  globalSyntropy: number;
+}
+
+export type SnapshotExportOptions = {
+  tick?: number;
+  reason?: string;
+  prune?: boolean;
+  retention?: number;
+}
+
+export type GateMergedDelta = Array<{ level: number; value: number }>;
+
+export type Telemetry = {
+  tick: number;
+  avgEnergy: number;
+  dominantGenomes: string[];
+  voxPopuli: string[];
+  behavior_invariant?: string;
+  behavior_clusters?: Array<{
+    behaviorSignature: string;
+    memberCount: number;
+    dominantRole: number;
+    genomeSamples: string[];
+    fingerprint?: {
+      replicateRatio: number;
+      signalRatio: number;
+      buildRatio: number;
+      survivalCurve: number[];
+    };
+    lastTick?: number;
+  }>;
+  federation_rule_genome?: any;
+  federation_admission?: any;
+  pulse_pressure?: {
+    novelty_signed: number;
+    symbiosis_signed: number;
+    novelty: number;
+    fear: number;
+    symbiosis: number;
+    ego: number;
+    ring: {
+      enabled: boolean;
+      theta: number;
+      scale: number;
+      fear_curiosity_balance: number;
+      ego_love_balance: number;
+      novelty_axis_from_ring: boolean;
+      symbiosis_axis_from_ring: boolean;
+    };
+  };
+  daemon_governance?: {
+    safe_mode: boolean;
+    safe_mode_reason: string;
+    actions_used_in_window: number;
+    actions_max_in_window: number;
+    window_reset_in_ms: number;
+    max_pheromone_intensity: number;
+    max_plasmid_charge: number;
+    invariant_drift_mid_score: number;
+    invariant_drift_high_score: number;
+    last_admission?: unknown;
+    last_admission_history?: unknown[];
+    last_pressure_ring_update?: unknown;
+    last_pressure_ring_history?: unknown[];
+    last_homeostasis_update?: unknown;
+    last_homeostasis_history?: unknown[];
+    homeostasis?: {
+      enabled: boolean;
+      target_energy: number;
+      target_energy_default?: number;
+      target_energy_current?: number;
+      band: number;
+      max_delta: number;
+      overflow_threshold: number;
+      starvation_floor: number;
+      subsidy_enabled: boolean;
+      base_tax_default: number;
+      base_tax_current: number;
+      last_update_tick: number;
+      last_update_source: string;
+      last_update_reason: string;
+    };
+  };
+  spatial_hash_guard?: {
+    overflow_ratio: number;
+    overflow_count: number;
+    max_cell_count: number;
+  };
+  hormones?: number[];
+}
+
+export type ActionType = "DROP_PHEROMONE" | "INJECT_PLASMID" | "OBSERVE";
+
+export type DaemonDecision = {
+  internal_monologue: string;
+  action_type: ActionType;
+  payload: {
+    target_x: number;
+    target_y: number;
+    hex_code?: string;
+    intensity: number;
+  };
+}
+
+export type InvariantFrame = {
+  tick: number;
+  epoch: number;
+  center: string;
+  signature: string;
+  invariants: InvariantSignal[];
+  summary: string;
+  created_at: string;
+  hormones: number[];
+}
+
+export type OpenAIChoice = {
+  message?: {
+    content?: string;
+  };
+}
+
+export type OpenAIResponse = {
+  choices?: OpenAIChoice[];
+}
+
+export type LedgerRecord<K extends GeneticLedgerKey> =
+  | {
+    kind: "apply";
+    key: K;
+    rollback_token: string;
+    tick: number;
+    source: string;
+    reason: string;
+    previous_value: number;
+    next_value: number;
+    recorded_at: string;
+  }
+
+export type LedgerSnapshotRecord<K extends GeneticLedgerKey> = {
+  version: 1;
+  key: K;
+  representedRecordCount: number;
+  representedApplyCount: number;
+  representedRollbackCount: number;
+  compactedAt: string;
+  compactedTick: number;
+  state: LedgerRuntimeState<K>;
+}
+
+export type LedgerPersistenceSummary = {
+  path: string;
+  snapshotPath: string;
+  exists: boolean;
+  snapshotExists: boolean;
+  recordCount: number;
+  applyCount: number;
+  rollbackCount: number;
+  tailRecordCount: number;
+  tailApplyCount: number;
+  tailRollbackCount: number;
+  snapshotRecordCount: number;
+  snapshotApplyCount: number;
+  snapshotRollbackCount: number;
+  compactionEnabled: boolean;
+  compactionThreshold: number;
+  compactionKeepTail: number;
+  lastCompactedAt: string | null;
+  lastCompactedTick: number;
+  hydrated: boolean;
+  lastHydratedAt: string | null;
+  lastHydrationError: string | null;
+}
+
+export type LedgerHydrationResult<K extends GeneticLedgerKey> = {
+  state: LedgerRuntimeState<K>;
+  snapshot: LedgerRuntimeSnapshot<K>;
+  persistence: LedgerPersistenceSummary;
+}
+
+export type DriftMetrics = {
+  coherence: number;
+  energyVariance: number;
+  populationStability: number;
+  driftIndex: number;
+  shadowForkRecommended: boolean;
+}
+
+export interface PulseOracleDelegate {
+  setNeuralCoherence(coherence: number): void;
+  getNeuralCoherence(): number;
+  gatherEpochTelemetry(): any;
+  broadcastWhisper(tick: number, telemetry: any, coherence: number): void;
+  consultOracle(regentIdx: number, telemetry: any): void;
+  drainPendingMutations(): void;
+}
+
+export interface PulseAkashaDelegate {
+  recordMutationTelemetry(
+    event: { lane: string; kind: string; count: number },
+  ): void;
+  flushMutationTelemetry(tick: number): void;
+  compressMemory(wasmMemory: WebAssembly.Memory): Promise<Uint8Array>;
+  decompressMemoryToLattice(
+    wasmMemory: WebAssembly.Memory,
+    payload: Uint8Array,
+  ): Promise<void>;
+  saveEpoch(
+    memory: WebAssembly.Memory,
+    tick: number,
+    label: string,
+    count1: number,
+    count2: number,
+    hash: string,
+  ): Promise<void>;
+  broadcastPanopticonFrame(frame: ArrayBuffer): void;
+  recordImmunologicalPurge(count: number): Promise<void>;
+  observePulseCodex(tick: number, pop: number, glyphs: any, syn: number): void;
+  saveSnap(tick: number): Promise<void>;
+  cleanupSnap(retention: number): void;
+}
+
+export interface PulseNoosphereDelegate {
+  unpackAtom(payload: Uint8Array): number;
+  packAtom(idx: number): Uint8Array;
+  evaluateHeartbeat(
+    tick: number,
+    epochHash: string,
+    avgPhase: number,
+    egressCount: number,
+  ): void;
+  sendEpochPayload(peerId: string, payload: Uint8Array): void;
+  routeAtom(payload: Uint8Array): void;
+  startNexus(): void;
+  broadcastSyncRequest(): void;
+  broadcastEpochConsensus(tick: number, hashSum: bigint): void;
+  getNexusStatus(): {
+    mainnetEnabled: boolean;
+    bootstrapHubUrl: string;
+    seedNodesLength: number;
+    localCurrentTick: number;
+    localTps: number;
+  };
+  setNexusStatus(status: {
+    mainnetEnabled?: boolean;
+    bootstrapHubUrl?: string;
+    localCurrentTick?: number;
+    localTps?: number;
+  }): void;
+  getMedianSwarmTick(tick: number): number;
+}
+
+export type EvolutionPressureState = {
+  noveltySigned: number;
+  symbiosisSigned: number;
+  novelty: number;
+  fear: number;
+  symbiosis: number;
+  ego: number;
+  ring: {
+    enabled: boolean;
+    theta: number;
+    scale: number;
+    fearCuriosityBalance: number;
+    egoLoveBalance: number;
+  };
+};
+
+export type SpatialHashState = {
+  tick: number;
+  overflowCount: number;
+  maxCellCount: number;
+  overflowRatio: number;
+};
+
+export type HomeostasisState = {
+  enabled: boolean;
+  targetEnergy: number;
+  targetEnergyDefault: number;
+  targetEnergyCurrent: number;
+  band: number;
+  maxDelta: number;
+  overflowThreshold: number;
+  starvationFloor: number;
+  subsidyEnabled: boolean;
+  baseTaxDefault: number;
+  baseTaxCurrent: number;
+  lastUpdateTick: number;
+  lastUpdateSource: string;
+  lastUpdateReason: string;
+};
+
+export type GeneticLedgerRuntimeState = {
+  homeostasisBaseTax: LedgerRuntimeSnapshot<"pulse.homeostasis.baseTax">;
+  homeostasisBaseTaxPersistence: LedgerPersistenceSummary;
+  homeostasisTargetEnergy: LedgerRuntimeSnapshot<
+    "pulse.homeostasis.targetEnergy"
+  >;
+  homeostasisTargetEnergyPersistence: LedgerPersistenceSummary;
+  pressureRingScale: LedgerRuntimeSnapshot<"pulse.pressureRing.scale">;
+  pressureRingScalePersistence: LedgerPersistenceSummary;
+  homeostasisBand: LedgerRuntimeSnapshot<"pulse.homeostasis.band">;
+  homeostasisBandPersistence: LedgerPersistenceSummary;
+  homeostasisMaxDelta: LedgerRuntimeSnapshot<"pulse.homeostasis.maxDelta">;
+  homeostasisMaxDeltaPersistence: LedgerPersistenceSummary;
+  homeostasisOverflowThreshold: LedgerRuntimeSnapshot<
+    "pulse.homeostasis.overflowThreshold"
+  >;
+  homeostasisOverflowThresholdPersistence: LedgerPersistenceSummary;
+  daemonMaxActions: LedgerRuntimeSnapshot<"daemon.maxActionsPerWindow">;
+  daemonMaxActionsPersistence: LedgerPersistenceSummary;
+  federationDegradeResonanceRatio: LedgerRuntimeSnapshot<
+    "federation.admission.degradeResonanceRatio"
+  >;
+  federationDegradeResonanceRatioPersistence: LedgerPersistenceSummary;
+};
+
+export type GuardianSignalHybridState = {
+  mode: GuardianSignalExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  stableBranchCount: number;
+  repairBranchCount: number;
+  allowedGuardianSignals: number;
+  suppressedGuardianSignals: number;
+  shadowSuppressedGuardianSignals: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "stable"
+    | "repair"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "stable" | "repair" | "unknown";
+  lastFallbackReason: string;
+  lastMode?: GuardianSignalExecutionMode;
+}
+
+export type ArchitectPlasmidHybridState = {
+  mode: ArchitectPlasmidExecutionMode;
+  hybridRuns: number;
+  shadowRuns: number;
+  fallbackRuns: number;
+  emitBranchCount: number;
+  suppressBranchCount: number;
+  allowedArchitectPlasmids: number;
+  suppressedArchitectPlasmids: number;
+  shadowSuppressedArchitectPlasmids: number;
+  lastTick: number;
+  lastStatus:
+    | "legacy"
+    | "emit"
+    | "suppress"
+    | "fallback"
+    | "shadow"
+    | "hybrid"
+    | "legacy-blocked";
+  lastBranch: "emit" | "suppress" | "unknown";
+  lastFallbackReason: string;
+  lastMode?: ArchitectPlasmidExecutionMode;
+}
+
+export type RollingHistory = {
+  add: (val: number) => void;
+  sum: () => number;
+  size: () => number;
+}
+
+export interface AuditEngineExocortexDelegate {
+  generateThought(context: string): Promise<string>;
+}
+
+export type LedgerRuntimeEvent<K extends string> = {
+  rollbackToken: string;
+  previousValue: number;
+  nextValue: number;
+  tick: number;
+  source: string;
+  reason: string;
+  rolledBackAtTick: number | null;
+  rolledBackSource: string | null;
+  rolledBackReason: string | null;
+}
+
+export type LedgerRuntimeState<K extends string> = {
+  key: K;
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+  seq: number;
+  historyLimit: number;
+  history: readonly LedgerRuntimeEvent<K>[];
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+}
+
+export type LedgerRuntimeSnapshot<K extends string> = {
+  key: K;
+  currentValue: number;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+  historyDepth: number;
+  lastAppliedTick: number;
+  lastAppliedSource: string;
+  lastAppliedReason: string;
+  lastAppliedRollbackToken: string | null;
+  lastRollbackTick: number;
+  lastRollbackSource: string;
+  lastRollbackReason: string;
+  lastRollbackToken: string | null;
+}
+
+export type LedgerApplyResult<K extends string> = {
+  status: "applied" | "noop";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: LedgerRuntimeEvent<K> | null;
+  state: LedgerRuntimeState<K>;
+}
+
+export type LedgerRollbackResult<K extends string> = {
+  status: "rolled_back" | "missing" | "consumed" | "stale";
+  changed: boolean;
+  previousValue: number;
+  nextValue: number;
+  mutation: LedgerRuntimeEvent<K> | null;
+  state: LedgerRuntimeState<K>;
+}
+
+export type LedgerRuntimeConfig<K extends string> = {
+  key: K;
+  defaultValue: number;
+  min: number;
+  max: number;
+  rollbackClass: "immediate" | "epochal";
+}
+
+export type GuardianSignalExecutionMode =
+  | "legacy-execute"
+  | "hybrid-reduce"
+  | "shadow-reduce";
+
+export type GlyphKind =
+  | "core"
+  | "control"
+  | "transport"
+  | "structural"
+  | "catalytic"
+  | "regulatory"
+  | "memory"
+  | "reserve";
+
+export type GlyphStabilityClass =
+  | "hard-invariant"
+  | "legacy-bridge"
+  | "bounded-dynamic"
+  | "reserve";
+
+export type GlyphSpec = {
+  id: number;
+  mnemonic: string;
+  kind: GlyphKind;
+  arity: number;
+  energyCost: number;
+  stabilityClass: GlyphStabilityClass;
+  reductionRuleRef: string;
+  legacyOpcode?: number;
+  notes?: string;
+  vertexIndex?: number;
+  rgb?: [number, number, number];
+}
+
+export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+export type AssembleToken = number | string;
+
+export type HarnessProps = Record<number, number>;
+
+export type ShadowEffects = {
+  replicateCount: number;
+  signalCount: number;
+  buildCount: number;
+  bondRequestCount: number;
+  sporeDriveCount: number;
+  entangleCount: number;
+  roleWrites: number[];
+  branchTaken: boolean;
+  jumpCount: number;
+}
+
+export type ShadowState = {
+  atomIndex: number;
+  pc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  cellPeers: number[];
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  executed: string[];
+  energySpent: number;
+}
+
+export type LegacyShadowResult = {
+  mode: "legacy";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+}
+
+export type ReductionShadowResult = {
+  mode: "glyph-reduction";
+  finalPc: number;
+  regs: number[];
+  role: number;
+  props: HarnessProps;
+  bondTargets: HarnessProps;
+  bondDistances: HarnessProps;
+  damping: number;
+  peerEnergy: HarnessProps;
+  peerPc: HarnessProps;
+  hiveMemory: HarnessProps;
+  hiveBalance: number;
+  signalGrid: HarnessProps;
+  structureGrid: HarnessProps;
+  structureIntentOwner: HarnessProps;
+  structureIntentValue: HarnessProps;
+  structureChargeIntent: HarnessProps;
+  bondRequests: HarnessProps;
+  hiveEnergyPool: HarnessProps;
+  hormones: number[];
+  effects: ShadowEffects;
+  energySpent: number;
+  executed: string[];
+  stepsExecuted: number;
+  glyphTape: GlyphTapeToken[];
+  prettyTape: string;
+}
+
+export type ReductionBaselineAnchor = {
+  traceId: string;
+  scenario: string;
+  runtimeMode: string;
+  tickStart: number;
+  tickEnd: number;
+  codexSnapshotDigest: string;
+  invariantDigest: string;
+}
+
+export type ReductionHarnessResult = {
+  caseId: string;
+  baseline: ReductionBaselineAnchor;
+  legacy: LegacyShadowResult;
+  reduction: ReductionShadowResult;
+  parity: {
+    ok: boolean;
+    reasons: string[];
+  };
+}
+
+export type ReductionHarnessArtifact = {
+  case_id: string;
+  baseline_trace_id: string;
+  baseline_runtime_mode: string;
+  parity_ok: boolean;
+  parity_reasons: string[];
+  legacy_digest: string;
+  reduction_digest: string;
+  executed_digest_legacy: string;
+  executed_digest_reduction: string;
+  diff: {
+    final_pc_match: boolean;
+    registers_match: boolean;
+
+    role_match: boolean;
+    props_match: boolean;
+    bond_targets_match: boolean;
+    bond_distances_match: boolean;
+    damping_match: boolean;
+    peer_energy_match: boolean;
+    peer_pc_match: boolean;
+    hive_memory_match: boolean;
+    hive_balance_match: boolean;
+    signal_grid_match: boolean;
+    structure_grid_match: boolean;
+    structure_intent_owner_match: boolean;
+    structure_intent_value_match: boolean;
+    structure_charge_intent_match: boolean;
+    bond_requests_match: boolean;
+    hive_energy_pool_match: boolean;
+    replicate_count_match: boolean;
+    signal_count_match: boolean;
+    build_count_match: boolean;
+    branch_taken_match: boolean;
+    role_writes_match: boolean;
+    energy_spent_delta: number;
+  };
+  expectation_summary: ReductionCaseDefinition["expected"];
+}
+
+export type GoldenTraceMetricPolicy = "strict" | "bounded";
+
+export type GoldenTraceScenario = {
+  id: string;
+  scenario: string;
+  setup: string;
+  duration: string;
+  daemonEnabled: boolean;
+  metrics: readonly string[];
+  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
+  supportFiles: readonly string[];
+}
+
+export type ReductionCaseExpectation = {
+  finalPc: number;
+  replicateCount?: number;
+  signalCount?: number;
+  buildCount?: number;
+  finalRole?: number;
+  registers?: number[];
+  finalProps?: Partial<Record<number, number>>;
+  finalHiveMemory?: Partial<Record<number, number>>;
+  finalHiveBalance?: number;
+  finalSignalGrid?: Partial<Record<number, number>>;
+
+  finalPeerEnergy?: Partial<Record<number, number>>;
+  finalPeerPc?: Partial<Record<number, number>>;
+  finalBondDistances?: Partial<Record<number, number>>;
+  finalDamping?: number;
+  finalStructureGrid?: Partial<Record<number, number>>;
+
+  branchTaken?: boolean;
+  finalBondRequests?: Partial<Record<number, number>>;
+  finalHiveEnergyPool?: Partial<Record<number, number>>;
+  finalHormones?: number[];
+}
+
+export type ReductionCaseDefinition = {
+  id: string;
+  baselineTraceId: string;
+  description: string;
+  script: Uint8Array;
+  maxSteps: number;
+  ownerAtomIdx?: number;
+  postStructureTick?: boolean;
+  initialRegs?: number[];
+
+  initialProps: Partial<Record<number, number>>;
+  initialBondTargets?: Partial<Record<number, number>>;
+  initialBondDistances?: Partial<Record<number, number>>;
+  initialDamping?: number;
+  initialPeerEnergy?: Partial<Record<number, number>>;
+  initialPeerPc?: Partial<Record<number, number>>;
+  initialCellPeers?: number[];
+  initialHiveBalance?: number;
+  initialStructureGrid?: Partial<Record<number, number>>;
+  initialStructureIntentOwner?: Partial<Record<number, number>>;
+  initialStructureIntentValue?: Partial<Record<number, number>>;
+  initialHiveMemory?: Partial<Record<number, number>>;
+  initialHormones?: number[];
+  initialHiveEnergyPool?: Partial<Record<number, number>>;
+  nativeProgram?: string; // Key in GENESIS_PROGRAMS
+  expected: ReductionCaseExpectation;
+}
+
+export type AtomicLedgerEvent = {
+  tick: number;
+  atomIdx: number;
+  r1: number;
+  r2: number;
+}
+
+export type LedgerChainReportInternal = {
+  ok: boolean;
+  checkedEvents: number;
+  chainAnchoredEvents: number;
+  legacyEvents: number;
+  failures: string[];
+  tailEventHash: string | null;
+}
+
+export type CheckpointChainReportInternal = {
+  ok: boolean;
+  checkedRows: number;
+  chainAnchoredRows: number;
+  legacyRows: number;
+  failures: string[];
+  tailCheckpointHash: string | null;
+}
+
+export type GlyphTransportEvidence = {
+  active: boolean;
+  regime: string;
+  dominantRole: string;
+  sourceMode: string;
+  amplitudeBand: string;
+  signature: string;
+  title: string;
+  body: string;
+  summary: string;
+  metabolicPressure: number;
+}
+
+export type HormoneRegimeEvidence = {
+  signature: string;
+  title: string;
+  body: string;
+  summary: string;
+}
+
+export type ScriptToGlyphOptions = {
+  allowUnmapped?: boolean;
+  maxSteps?: number;
+}
+
+export type BehaviorRuntime = {
+  survivalCurve: number[];
+  lastTick: number;
+  memberCount: number;
+  dominantRole: number;
+  genomeSamples: string[];
+  fingerprint: BehaviorFingerprint;
+}
+
+export type Aggregate = {
+      memberCount: number;
+      replicateTotal: number;
+      signalTotal: number;
+      buildTotal: number;
+      roleCounts: number[];
+      genomeSamples: string[];
+    }
+
+export type MutationLane =
+  | "internal_oracle"
+  | "internal_host"
+  | "internal_wasm"
+  | "canonical_gate"
+  | "external_ingress"
+  | "external_daemon";
+
+export type MutationEvent = {
+  lane: MutationLane;
+  kind: string;
+  count?: number;
+}
+
+export type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
+
+export type MeshForwardEnvelope = {
+  action_type: MeshForwardAction;
+  payload: {
+    target_x: number;
+    target_y: number;
+    intensity: number;
+    hex_code?: string;
+  };
+}
+
+export type ParsedMeshInject = {
+  envelope: MeshForwardEnvelope;
+  signalType: "mesh_pheromone" | "mesh_plasmid";
+  eventId: string;
+  sourcePeer: string;
+}
+
+export type TelemetrySample = {
+  ts: number;
+  tick: number;
+  population: number;
+  avgEnergy: number;
+  neuralCoherence: number;
+  spatialOverflowRatio: number;
+  daemonSafeMode: boolean;
+}
+
+export type TelemetryMetricName =
+  | "population"
+  | "avgEnergy"
+  | "neuralCoherence"
+  | "spatialOverflowRatio";
+
+export type TelemetryBucket = {
+  from: number;
+  to: number;
+  count: number;
+}
+
+export type TelemetryHistogram = {
+  metric: TelemetryMetricName;
+  windowMs: number;
+  count: number;
+  min: number;
+  max: number;
+  buckets: TelemetryBucket[];
+}
+
+export const SIGNAL_TYPES = [
+  "offer",
+  "answer",
+  "candidate",
+  "plasmid",
+  "pheromone",
+  "telemetry",
+] as const;
+
+export type SignalType = typeof SIGNAL_TYPES[number];
+
+export type JsonMap = Record<string, unknown>;
+
+export type SignalingSession = {
+  socket: WebSocket;
+  roomId: string | null;
+  peerId: string | null;
+}
+export type PhysiologySnapshot = {
+  tick: number;
+  hormones: Record<string, HormoneSnapshot>;
+  ledger: Record<string, LedgerSnapshot>;
+};
+
+export type Relic = {
+  id: string;
+  bytecode: number[];
+  role: number;
+  resonance: number;
+  energy: number;
+  extractedAtTick: number;
+};
+
+export type CrisisIntent = {
+  kind: "crisis";
+  logicBytes: Uint8Array;
+};
+
+export type FederateIntent = {
+  kind: "federate";
+  packet: Uint8Array;
+  sourceNode: string;
+};
+
+export type FederationPolicyFragmentSource =
+  | "rule_genome"
+  | "behavior"
+  | "codex";
+
+export type FederationPolicyFragmentMode = "tax" | "subsidy";
+
+export type FederationPolicyFragment = {
+  id: string;
+  source: FederationPolicyFragmentSource;
+  mode: FederationPolicyFragmentMode;
+  reason: string;
+  scoreDelta: number;
+  energyRatio: number;
+  resonanceRatio: number;
+};
+
+export type ControlIntent =
+  | CrisisIntent
+  | FederateIntent
+  | MutateIntent
+  | AvatarIntent
+  | PlasmidIntent
+  | SnapshotImportIntent;
+
+export type QueueDecision = {
+  ok: boolean;
+  status: number;
+  reason: string;
+  size: number;
+  max: number;
+  admission?: FederationAdmissionSnapshot;
+};
+
+export type ApplyStats = {
+  drained: number;
+  applied: number;
+  failed: number;
+  remaining: number;
+};
+```
+export const TYPES = {};
 
 ```
 
@@ -14816,13 +16308,21 @@ deps:
   - crypto_keys
   - sha256_hex
   - stable_stringify
-  - STATE_SNAPSHOT
+  - TYPES
+  - REJECTION_CODES
 extra_symbols:
   - AGENT_SIGNATURE
+vars:
 ---
 
+
 ### TypeScript
+
 ```typescript
+
+
+
+
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
 
@@ -14968,13 +16468,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Converts a base64 string to a Uint8Array.
 extra_symbols:
   - base64_to_bytes
 ---
 
 ```typescript
+
+
+
+
 export const base64_to_bytes = (b64: string): Uint8Array =>
   Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
 ```
@@ -14997,13 +16502,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Converts a Uint8Array to a base64 string.
 extra_symbols:
   - bytes_to_base64
 ---
 
 ```typescript
+
+
+
+
 export const bytes_to_base64 = (bytes: Uint8Array): string =>
   btoa(String.fromCharCode(...bytes));
 ```
@@ -15026,13 +16536,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Converts a Uint8Array to a hex string.
 extra_symbols:
   - bytes_to_hex
 ---
 
 ```typescript
+
+
+
+
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
 ```
@@ -15056,25 +16571,24 @@ tags:
 args: {}
 vars:
   - base64_to_bytes
-deps:
-  - base64_to_bytes
-description: WebCrypto key management interfaces and import wrappers.
-extra_symbols:
   - Ed25519SigningKey
   - Ed25519VerifyKey
   - HmacKey
+deps:
+  - base64_to_bytes
+  - TYPES
+description: WebCrypto key management interfaces and import wrappers.
+extra_symbols:
   - import_ed25519_private
   - import_ed25519_public
   - import_hmac
 ---
 
 ```typescript
-export type Ed25519SigningKey = {
-  scheme: "ed25519/v1";
-  private_key_pkcs8_b64: string;
-};
-export type Ed25519VerifyKey = { scheme: "ed25519/v1"; public_key_b64: string };
-export type HmacKey = { scheme: "hmac-sha256/v1"; secret: string };
+
+
+
+
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
@@ -15128,13 +16642,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Host implementation of the FNV-1a 32-bit hash.
 extra_symbols:
   - fnv1a32
 ---
 
 ```typescript
+
+
+
+
 export const fnv1a32 = (input: string): number => {
   let hash = 0x811C9DC5;
   for (let i = 0; i < input.length; i++) {
@@ -15163,13 +16682,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: 'Converts a hex string to a Uint8Array, returning null if invalid.'
 extra_symbols:
   - hex_to_bytes
 ---
 
 ```typescript
+
+
+
+
 export const hex_to_bytes = (hex: string): Uint8Array | null => {
   if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
   const out = new Uint8Array(hex.length / 2);
@@ -15205,12 +16729,15 @@ deps:
   - crypto_keys
   - sha256_hex
   - stable_stringify
+  - TYPES
 vars:
   - base64_to_bytes
   - bytes_to_base64
   - import_hmac
   - sha256_hex
   - stable_stringify
+  - InvariantPacket
+  - InvariantPacketSigningKey
 extra_symbols:
   - INVARIANT_PACKET
 ---
@@ -15218,22 +16745,8 @@ extra_symbols:
 ### TypeScript
 ```typescript
 
-export interface INVARIANT_PACKET {
-  version: string;
-  tick_anchor: number;
-  canon_index_chain_checked: boolean;
-  canon_index_chain_ok: boolean;
-  gate_admission_index_chain_checked: boolean;
-  gate_admission_index_chain_ok: boolean;
-  ledger_chain_checked?: boolean;
-  ledger_chain_ok?: boolean;
-  witness?: string;
-  packet_hash?: string;
-  signature_scheme?: "hmac-sha256/v1";
-  packet_signature?: string;
-}
 
-type InvariantPacketSigningKey = { scheme: "hmac-sha256/v1"; secret: string };
+
 
 const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
 const encoder = new TextEncoder();
@@ -15250,13 +16763,13 @@ const packetSigningSecret = (
 };
 
 const canonicalInvariantPacket = (
-  packet: Partial<INVARIANT_PACKET>,
-): INVARIANT_PACKET => {
+  packet: Partial<InvariantPacket>,
+): InvariantPacket => {
   const tickAnchor =
     Number.isInteger(packet.tick_anchor) && packet.tick_anchor! >= 0
       ? packet.tick_anchor!
       : 0;
-  const normalized: INVARIANT_PACKET = {
+  const normalized: InvariantPacket = {
     version: INVARIANT_PACKET_VERSION,
     tick_anchor: tickAnchor,
     canon_index_chain_checked: packet.canon_index_chain_checked === true,
@@ -15287,7 +16800,7 @@ const canonicalInvariantPacket = (
 };
 
 const canonicalInvariantPacketPayload = (
-  packet: INVARIANT_PACKET,
+  packet: InvariantPacket,
 ): string =>
   stable_stringify({
     version: packet.version,
@@ -15336,7 +16849,7 @@ export const INVARIANT_PACKET = {
   VERSION: INVARIANT_PACKET_VERSION,
 
   hash: async (
-    packet: Partial<INVARIANT_PACKET> | string,
+    packet: Partial<InvariantPacket> | string,
   ): Promise<string> => {
     if (typeof packet === "string") {
       return await sha256_hex(stable_stringify(packet));
@@ -15346,12 +16859,12 @@ export const INVARIANT_PACKET = {
   },
 
   seal: async (
-    packet: Partial<INVARIANT_PACKET>,
+    packet: Partial<InvariantPacket>,
     signingKey?: InvariantPacketSigningKey,
-  ): Promise<INVARIANT_PACKET> => {
+  ): Promise<InvariantPacket> => {
     const normalized = canonicalInvariantPacket(packet);
     const packetHash = await INVARIANT_PACKET.hash(normalized);
-    const sealed: INVARIANT_PACKET = {
+    const sealed: InvariantPacket = {
       ...normalized,
       packet_hash: packetHash,
     };
@@ -15367,7 +16880,7 @@ export const INVARIANT_PACKET = {
   },
 
   verify: async (
-    packet: Partial<INVARIANT_PACKET>,
+    packet: Partial<InvariantPacket>,
     verifyKey?: InvariantPacketSigningKey,
   ): Promise<{
     ok: boolean;
@@ -15442,7 +16955,7 @@ export const INVARIANT_PACKET = {
   fromInvariantReport: async (
     report: any, // Use `any` to break circular dependency with SHIMS.ts ReplayInvariantReport type
     opts: { tick_anchor: number; witness?: string } = { tick_anchor: 0 },
-  ): Promise<INVARIANT_PACKET> =>
+  ): Promise<InvariantPacket> =>
     await INVARIANT_PACKET.seal({
       tick_anchor: opts.tick_anchor,
       witness: opts.witness,
@@ -15457,7 +16970,7 @@ export const INVARIANT_PACKET = {
     }),
 
   toInvariantReport: (
-    packet: Partial<INVARIANT_PACKET>,
+    packet: Partial<InvariantPacket>,
   ): any => {
     const p = canonicalInvariantPacket(packet);
     const out: Record<string, unknown> = {
@@ -15506,13 +17019,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Validates and normalizes 64-character hex strings (sha256 format).
 extra_symbols:
   - normalize_hex64
 ---
 
 ```typescript
+
+
+
+
 export const normalize_hex64 = (value: unknown): string | null => {
   if (typeof value !== "string") return null;
   const t = value.trim().toLowerCase();
@@ -15541,6 +17059,7 @@ vars:
   - bytes_to_hex
 deps:
   - bytes_to_hex
+  - TYPES
 description: Async SHA-256 hashing to hex strings for both text and raw bytes.
 extra_symbols:
   - sha256_hex
@@ -15548,6 +17067,10 @@ extra_symbols:
 ---
 
 ```typescript
+
+
+
+
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
 
@@ -15583,13 +17106,18 @@ tags:
   - host
 args: {}
 vars: []
-deps: []
+deps:
+  - TYPES
 description: Deterministically stringifies JSON objects for signing.
 extra_symbols:
   - stable_stringify
 ---
 
 ```typescript
+
+
+
+
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {
     return "[" + value.map((v) => stable_stringify(v)).join(",") + "]";
@@ -15630,6 +17158,7 @@ deps:
   - sha256_hex
   - stable_stringify
   - to_int16_big_endian
+  - TYPES
 vars:
   - fnv1a32
   - make_xor_shift32
@@ -15637,17 +17166,20 @@ vars:
   - sha256_hex_bytes
   - stable_stringify
   - to_int16_big_endian
-extra_symbols:
   - ProjectionOptions
-  - TOPOLOGICAL_SIGNATURE
   - ThreadProjectionConfig
   - TopologicalSignature
   - TopologicalSignatureInput
+extra_symbols:
+  - TOPOLOGICAL_SIGNATURE
   - deriveFeatureVector
 ---
 
 ### TypeScript
 ```typescript
+
+
+
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
@@ -15676,39 +17208,6 @@ export const deriveFeatureVector = (
   }
   return out;
 };
-
-export interface ProjectionOptions {
-  resolution?: number;
-  deterministic?: boolean;
-  noiseAmplitude?: number;
-  noiseAlpha?: number;
-}
-
-export interface ThreadProjectionConfig {
-  radial_bins: number;
-  angular_bins: number;
-}
-
-export interface TopologicalSignature {
-  artifact_hash: string;
-  state_hash: string;
-  tick: number;
-  causal_refs: string[];
-  projection_2d_hash: string;
-  thread_1d_hash: string;
-  projection_version: string;
-  witness?: string;
-}
-
-export interface TopologicalSignatureInput {
-  artifact_hash: string;
-  state_hash: string;
-  tick: number;
-  state: unknown;
-  causal_refs?: string[];
-  witness?: string;
-}
-
 const TOPO_PROJECTION_VERSION = "topo-signature/v1";
 const TOPO_CANONICAL_2D_OPTIONS: Required<ProjectionOptions> = {
   resolution: 256,
@@ -16067,9 +17566,12 @@ tags: []
 min_level: 0
 extra_symbols:
   - append_jsonl
+deps:
+  - TYPES
 ---
 
 ### TypeScript
+
 ```typescript
 export const append_jsonl = async (
   path: string,
@@ -16081,7 +17583,9 @@ export const append_jsonl = async (
   });
 };
 ```
+
 ### AssemblyScript
+
 ```assemblyscript
 export function append_jsonl(): void {}
 ```
@@ -16101,18 +17605,20 @@ tags:
   - host
 deps:
   - OPCODE_ARITY_LUT
+  - TYPES
 min_level: 7
 vars:
   - OPCODE_ARITY_LUT
-extra_symbols:
   - AssembleToken
+extra_symbols:
   - assemble
 ---
 
 ### TypeScript
 ```typescript
 
-export type AssembleToken = number | string;
+
+
 
 export const assemble = (instructions: AssembleToken[]): Uint8Array => {
   const binary = new Uint8Array(64);
@@ -16175,15 +17681,16 @@ tags:
   - host
 deps:
   - OPCODE_ARITY_LUT
+  - TYPES
 min_level: 7
 vars:
   - OPCODE_ARITY_LUT
 ---
 
-### TypeScript
-```typescript
-import { OPCODE_ARITY_LUT } from "@g00";
 
+### TypeScript
+
+```typescript
 export const disassembler = {
   // Minimal placeholder if missing or re-export from @g00 if it moved
 };
@@ -16210,6 +17717,7 @@ deps:
   - GLYPH_RGB_LUT
   - GLYPH_LEGACY_OPCODE_LUT
   - get_glyph_kind
+  - TYPES
 min_level: 7
 vars:
   - GLYPH_ARITY_LUT
@@ -16225,14 +17733,14 @@ vars:
   - KIND_STRUCTURAL
   - KIND_TRANSPORT
   - get_glyph_kind
+  - GlyphKind
+  - GlyphStabilityClass
+  - GlyphSpec
 extra_symbols:
   - BRIDGE_GLYPH_IDS
   - GLYPH_SPECS
   - GLYPH_SPEC_BY_ID
   - GLYPH_SPEC_BY_OPCODE
-  - GlyphKind
-  - GlyphSpec
-  - GlyphStabilityClass
   - buildGlyphSpecs
   - defaultReductionRuleRef
   - defaultStabilityClass
@@ -16246,35 +17754,8 @@ extra_symbols:
 ```typescript
 
 
-export type GlyphKind =
-  | "core"
-  | "control"
-  | "transport"
-  | "structural"
-  | "catalytic"
-  | "regulatory"
-  | "memory"
-  | "reserve";
 
-export type GlyphStabilityClass =
-  | "hard-invariant"
-  | "legacy-bridge"
-  | "bounded-dynamic"
-  | "reserve";
 
-export type GlyphSpec = {
-  id: number;
-  mnemonic: string;
-  kind: GlyphKind;
-  arity: number;
-  energyCost: number;
-  stabilityClass: GlyphStabilityClass;
-  reductionRuleRef: string;
-  legacyOpcode?: number;
-  notes?: string;
-  vertexIndex?: number;
-  rgb?: [number, number, number];
-};
 
 const KIND_MAPPING: Record<number, GlyphKind> = {
   [KIND_CORE]: "core",
@@ -16420,6 +17901,7 @@ tags:
 deps:
   - glyph_ir_64
   - disassembler
+  - TYPES
 min_level: 7
 vars:
   - glyphSpecById
@@ -16431,7 +17913,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
-import type { GlyphTapeToken } from "../07/disassembler.ts";
+
+
+
+
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {
   const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);
@@ -16467,20 +17952,26 @@ tags:
   - host
   - console
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - LOGGER
   - Ld
   - Le
   - Li
-  - LogLevel
   - Lw
+vars:
+  - LogLevel
 ---
 
+
 ### TypeScript
+
 ```typescript
-export type LogLevel = "debug" | "info" | "warn" | "error" | "silent";
+
+
+
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 10,
@@ -16524,8 +18015,7 @@ const emit = (method: "debug" | "info" | "warn" | "error", args: unknown[]) => {
   const sink =
     (console as unknown as Record<string, (...xs: unknown[]) => void>)[
       method
-    ] ??
-      console.log;
+    ] ?? console.log;
   sink(...args);
 };
 
@@ -16568,13 +18058,19 @@ export const Le = LOGGER.error;
 ---
 id: parse_env_bool
 type: module
-description: "Implementation of parse_env_bool"
+description: Implementation of parse_env_bool
 tags: []
 min_level: 0
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const parse_env_bool = (
   raw: string | undefined,
   fallback: boolean,
@@ -16601,13 +18097,19 @@ export const parse_env_bool = (
 ---
 id: parse_env_bounded_int
 type: module
-description: "Implementation of parse_env_bounded_int"
+description: Implementation of parse_env_bounded_int
 tags: []
 min_level: 0
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const parse_env_bounded_int = (
   raw: string | undefined,
   fallback: number,
@@ -16636,10 +18138,16 @@ tags: []
 min_level: 0
 extra_symbols:
   - read_jsonl_lines
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {
     const raw = await Deno.readTextFile(path);
@@ -16669,10 +18177,16 @@ tags: []
 min_level: 0
 extra_symbols:
   - read_jsonl
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   try {
     const raw = await Deno.readTextFile(path);
@@ -16855,7 +18369,6 @@ impl SigmaState {
             self.matrix.bond_requests[ptr + 2] = 0;
         }
 
-        resolved
     }
 }
 ```
@@ -17034,7 +18547,6 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
             let payload = if kind == 2 {
                 Some(state.matrix.glyph_payload[cell])
             } else {
-                None
             };
             deposit_scratch_glyph_header(state, cell as i32, kind, retained, payload);
         }
@@ -17052,7 +18564,6 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
                     let payload = if share >= 128 || share <= -128 {
                         Some(state.matrix.glyph_payload[cell])
                     } else {
-                        None
                     };
                     deposit_scratch_glyph_header(state, next_cell as i32, kind, share, payload);
                 }
@@ -17104,11 +18615,9 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
     }
 
     // Copy scratch to primary
-    state
         .matrix
         .glyph_header
         .copy_from_slice(&state.matrix.glyph_scratch_header);
-    state
         .matrix
         .glyph_payload
         .copy_from_slice(&state.matrix.glyph_scratch_payload);
@@ -17447,10 +18956,12 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 id: SIGMA_FFI_BRIDGE
 type: module
 description: Interface to the Rust-based OMEGA Physics & VM Core via Deno FFI.
-tags: ["console"]
+tags:
+  - console
 min_level: 13
 deps:
   - sharedBuffer
+  - TYPES
 extra_symbols:
   - SIGMA_FFI
 ---
@@ -18538,7 +20049,6 @@ impl SigmaState {
                 return Some(i);
             }
         }
-        None
     }
 
     pub fn recycle_atom(&mut self, idx: usize) {
@@ -18571,7 +20081,6 @@ impl SigmaState {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
-            None
         }
     }
 
@@ -18948,9 +20457,9 @@ type: substrate_module
 target: rust
 deps:
   - SYSTEM_CONSTANTS
-  - SYSTEM_CONSTANTS
   - sigma_memory
   - apply_metabolism_kernel
+  - RUNTIME_POLICY
 description: Multithreaded tick orchestrator and phase sequencer using Rayon
 ---
 
@@ -19014,19 +20523,15 @@ impl<'a> PulseOrchestrator<'a> {
         state.build_spatial_hash();
 
         // 2. Sync Read Views (Double Buffering)
-        state
             .matrix
             .physics_read_xs
             .copy_from_slice(&state.matrix.xs);
-        state
             .matrix
             .physics_read_ys
             .copy_from_slice(&state.matrix.ys);
-        state
             .matrix
             .physics_read_energy
             .copy_from_slice(&state.matrix.energy);
-        state
             .matrix
             .physics_read_resonance
             .copy_from_slice(&state.matrix.resonance);
@@ -19393,7 +20898,6 @@ impl SigmaState {
         // Close transaction
         self.matrix.spawn_requests[4..8].copy_from_slice(&cursor.to_le_bytes());
         self.free_search_cursor = free_search_cursor;
-        spawned
     }
 }
 ```
@@ -19854,7 +21358,6 @@ impl LambdaVM {
     #[inline(always)]
     pub fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
-        state
             .matrix
             .instructions
             .get(atom_idx)
@@ -21137,25 +22640,18 @@ vars:
   - LEDGER_HEAD_OFFSET
   - MAX_LEDGER_EVENTS
   - MX
+  - AtomicLedgerEvent
 extra_symbols:
   - ATOMIC_LEDGER
-  - AtomicLedgerEvent
 deps:
   - MX
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
-
-
-export type AtomicLedgerEvent = {
-  tick: number;
-  atomIdx: number;
-  r1: number;
-  r2: number;
-};
 
 export const ATOMIC_LEDGER = {
   /**
@@ -21221,7 +22717,6 @@ export const ATOMIC_LEDGER = {
     return events;
   },
 };
-
 ```
 
 ```
@@ -21244,11 +22739,13 @@ vars:
   - read_jsonl_lines
   - sha256_hex
   - stable_stringify
+  - CheckpointChainReportInternal
 extra_symbols:
   - CHECKPOINT_CHECKPOINT
 deps:
   - normalize_hex64
   - sha256_hex
+  - TYPES
 ---
 
 ### TypeScript
@@ -21280,15 +22777,6 @@ const checkpointRecordHash = async (
       body,
     }),
   );
-
-type CheckpointChainReportInternal = {
-  ok: boolean;
-  checkedRows: number;
-  chainAnchoredRows: number;
-  legacyRows: number;
-  failures: string[];
-  tailCheckpointHash: string | null;
-};
 
 const verifyCheckpointChainDetailedInternal = async (
   path: string,
@@ -21464,6 +22952,7 @@ tags:
 deps:
   - sha256_hex
   - stable_stringify
+  - TYPES
 vars:
   - sha256_hex
   - stable_stringify
@@ -21474,6 +22963,9 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
 
 const CRY_DATA = {
   policy: "STABLE",
@@ -21557,22 +23049,18 @@ name: Canon Causal Bridge Admission
 description: Gate admission verification logic prioritizing invariant integrity chains.
 tags:
   - gate
-extra_symbols:
+vars:
   - BridgeInvariantReportLike
-  - CANON_CAUSAL_BRIDGE
+deps:
+  - TYPES
 min_level: 12
 ---
 
 ### TypeScript
 ```typescript
-export type BridgeInvariantReportLike = {
-  index_chain_checked?: boolean;
-  index_chain_ok?: boolean;
-  index_chain_failures?: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_failures?: string[];
-};
+
+
+
 
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,
@@ -21710,12 +23198,16 @@ min_level: 12
 extra_symbols:
   - GATE_LEDGER
   - persistGateLedgerArtifacts
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { type BridgeModeEvent, type LedgerEvent, type GateConfig } from "@g00";
-import { LEDGER__08_00_LEDGER as LEDGER, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX, CHECKPOINT_CHECKPOINT as CHECKPOINT } from "@g08";
+
+
+
+
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -21754,9 +23246,7 @@ export const persistGateLedgerArtifacts = async (
 };
 
 export const GATE_LEDGER = {
-  persistGateLedgerArtifacts
 };
-
 ```
 
 ```
@@ -21769,39 +23259,28 @@ export const GATE_LEDGER = {
 ---
 id: GATE_MERGER
 type: module
-description: "Implementation of GATE_MERGER"
+description: Implementation of GATE_MERGER
 tags: []
 min_level: 12
+vars:
+  - GateAcceptedProposalMetric
+  - I16Limits
+deps:
+  - TYPES
+  - REJECTION_CODES
+  - LOGGER
 ---
 
+
 ### TypeScript
+
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
-import { LOGGER, Ld } from "@g06";
 
-import {
-  GATE_BUDGET
-} from "@g12";
-import {
-  MX
-} from "@g04";
 
-type I16Limits = {
-  max: number;
-  span: number;
-};
 
-export type GateAcceptedProposalMetric = {
-  proposal_id: string;
-  agent_id: string;
-  confidence: number;
-  reliability_base: number;
-  reliability_effective: number;
-  phase_coherence?: number;
-  weight: number;
-  physical_cost: number;
-  agent_phase_u16?: number;
-};
+
+
+
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;
@@ -21988,9 +23467,7 @@ export const mergeGateProposals = (
 };
 
 export const GATE_MERGER = {
-  mergeGateProposals
 };
-
 ```
 
 ```
@@ -22003,29 +23480,25 @@ export const GATE_MERGER = {
 ---
 id: GATE_VALIDATOR
 type: module
-description: "Implementation of GATE_VALIDATOR"
+description: Implementation of GATE_VALIDATOR
 tags: []
 min_level: 12
+vars:
+  - GateBridgeResolution
+  - GateValidationResult
+deps:
+  - TYPES
+  - REJECTION_CODES
 ---
 
+
 ### TypeScript
+
 ```typescript
-import { type DeltaProposal, type GateConfig, type GateDecision, REJECTION, type StateSnapshot } from "@g00";
-import { CANON_CAUSAL_BRIDGE } from "@g12";
-import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
 
-type GateBridgeResolution = {
-  mode: "GREEN" | "AMBER" | "RED";
-  reason: string;
-};
 
-export type GateValidationResult = {
-  validProposals: DeltaProposal[];
-  proposalDigest: string;
-  envelopeHashByProposal: Map<string, string>;
-  canonBoundProposals: string[];
-  blockedCanonProposals: string[];
-};
+
+
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -22221,9 +23694,7 @@ export const validateGateProposals = async (
 };
 
 export const GATE_VALIDATOR = {
-  validateGateProposals
 };
-
 ```
 
 ```
@@ -22236,60 +23707,28 @@ export const GATE_VALIDATOR = {
 ---
 id: GATE
 type: module
-description: "Implementation of GATE"
+description: Implementation of GATE
 tags: []
 min_level: 12
+vars:
+  - ReplayInvariantReport
+  - GateRuntimeContext
+  - DeltaProposal
+  - GateDecision
+  - BridgeModeEvent
+deps:
+  - TYPES
+  - REJECTION_CODES
 ---
 
 ### TypeScript
 
 ```typescript
-import { GRID_H } from "@g00";
-import { type BridgeModeEvent, type DeltaProposal, type GateConfig, type GateDecision, type StateSnapshot } from "@g00";
-import { LOGGER, Ld, Li, Lw } from "@g06";
-import {
-  type LedgerEvent
-} from "@g00";
-import {
-  CANON_CAUSAL_BRIDGE
-} from "@g12";
-import {
-  CRYSTALLIZATION_CONFIG,
-  CRYSTALLIZATION_POLICY
-} from "@g08";
-import {
-  INVARIANT_PACKET
-} from "@g08";
-import {
-  LEDGER__08_00_LEDGER as LEDGER
-} from "@g08";
-import {
-  PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX
-} from "@g08";
-import {
-  TOPOLOGICAL_SIGNATURE
-} from "@g08";
 
-import {
-  validateGateProposals
-} from "@g12";
-import {
-  mergeGateProposals
-} from "@g12";
-import {
-  persistGateLedgerArtifacts
-} from "@g12";
 
-export interface ReplayInvariantReport {
-  index_chain_checked: boolean;
-  index_chain_ok: boolean;
-  index_chain_checked_records: number;
-  index_chain_failures: string[];
-  gate_admission_index_chain_checked: boolean;
-  gate_admission_index_chain_ok: boolean;
-  gate_admission_index_chain_checked_records: number;
-  gate_admission_index_chain_failures: string[];
-}
+
+
+
 
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -22301,11 +23740,6 @@ const I16 = {
   LEVEL_COUNT: 64,
 };
 const I16_CLAMP = (x: number): number => Math.max(-32768, Math.min(32767, x));
-
-export interface GateRuntimeContext {
-  bridge_invariant_report?: ReplayInvariantReport;
-  witness?: string;
-}
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -22734,50 +24168,25 @@ description: Implementation of GENETIC_LEDGER
 tags: []
 min_level: 8
 vars:
+  - GeneticLedgerKey
+  - LedgerMutability
+  - GeneticLedgerEntry
+  - RUNTIME_POLICY
 extra_symbols:
   - GENETIC_LEDGER
   - GENETIC_LEDGER_CATALOG
-  - GeneticLedgerEntry
-  - GeneticLedgerKey
-  - LedgerMutability
   - geneticLedgerBaseline
   - geneticLedgerEntryByKey
 deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
-export type GeneticLedgerKey =
-  | "pulse.homeostasis.targetEnergy"
-  | "pulse.homeostasis.band"
-  | "pulse.homeostasis.maxDelta"
-  | "pulse.homeostasis.overflowThreshold"
-  | "pulse.homeostasis.baseTax"
-  | "pulse.pressureRing.scale"
-  | "daemon.maxActionsPerWindow"
-  | "daemon.maxPheromoneIntensity"
-  | "daemon.maxPlasmidCharge"
-  | "federation.admission.degradeEnergyRatio"
-  | "federation.admission.degradeResonanceRatio";
 
-export type LedgerMutability =
-  | "hard-invariant"
-  | "bounded-runtime"
-  | "daemon-governed";
 
-export type GeneticLedgerEntry = {
-  key: GeneticLedgerKey;
-  defaultValue: number;
-  min: number;
-  max: number;
-  mutability: LedgerMutability;
-  hormoneLink: string | null;
-  rollbackClass: "immediate" | "epochal";
-  sourcePath: string;
-  notes: string;
-};
+
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -22931,9 +24340,7 @@ export const geneticLedgerBaseline = (): Record<GeneticLedgerKey, number> =>
 
 export const GENETIC_LEDGER = {
   geneticLedgerEntryByKey,
-  geneticLedgerBaseline
 };
-
 ```
 
 ```
@@ -22956,6 +24363,7 @@ vars:
   - read_jsonl_lines
   - sha256_hex
   - stable_stringify
+  - LedgerChainReportInternal
 extra_symbols:
   - LEDGER__08_00_LEDGER
   - PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX
@@ -22964,6 +24372,7 @@ extra_symbols:
 deps:
   - normalize_hex64
   - sha256_hex
+  - TYPES
 ---
 
 ### TypeScript
@@ -22995,15 +24404,6 @@ const ledgerEventHash = async (
       body,
     }),
   );
-
-type LedgerChainReportInternal = {
-  ok: boolean;
-  checkedEvents: number;
-  chainAnchoredEvents: number;
-  legacyEvents: number;
-  failures: string[];
-  tailEventHash: string | null;
-};
 
 const verifyLedgerChainDetailedInternal = async (
   path: string,
@@ -23428,9 +24828,10 @@ dataType: i32
 ---
 id: clamp_resource
 type: pure_fn
-description: "Clamps a resource value between 0 and RESOURCE_MAX"
-deps: 
+description: Clamps a resource value between 0 and RESOURCE_MAX
+deps:
   - SYSTEM_CONSTANTS
+  - TYPES
 vars:
   - RESOURCE_MAX
 args:
@@ -23451,6 +24852,10 @@ if value < 0 {
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (value < 0n) return 0;
 if (value > BigInt(RESOURCE_MAX)) return RESOURCE_MAX;
 return Number(value);
@@ -23490,15 +24895,21 @@ dataType: i16
 ---
 id: fast_abs
 type: pure_fn
-description: "Bitwise fast absolute value calculation utilizing sign-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast absolute value calculation utilizing sign-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   v: i32
 returns: i32
 tests:
-  - [50, 50]
-  - [-10, 10]
-  - [0, 0]
+  - - 50
+    - 50
+  - - -10
+    - 10
+  - - 0
+    - 0
 ---
 
 ### Rust
@@ -23509,6 +24920,10 @@ let mask = v >> 31;
 
 ### TypeScript
 ```typescript
+
+
+
+
 const mask = v >> 31;
 return (v + mask) ^ mask;
 ```
@@ -23529,16 +24944,25 @@ return (v + mask) ^ mask;
 ---
 id: fast_max
 type: pure_fn
-description: "Bitwise fast maximum calculation utilizing difference-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast maximum calculation utilizing difference-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   a: i32
   b: i32
 returns: i32
 tests:
-  - [50, 20, 50]
-  - [-10, 0, 0]
-  - [10, 10, 10]
+  - - 50
+    - 20
+    - 50
+  - - -10
+    - 0
+    - 0
+  - - 10
+    - 10
+    - 10
 ---
 
 ### Rust
@@ -23549,6 +24973,10 @@ a - (diff & (diff >> 31))
 
 ### TypeScript
 ```typescript
+
+
+
+
 const diff = a - b;
 return a - (diff & (diff >> 31));
 ```
@@ -23569,16 +24997,25 @@ return a - (diff & (diff >> 31));
 ---
 id: fast_min
 type: pure_fn
-description: "Bitwise fast minimum calculation utilizing difference-masking without branching (i32)"
-deps: []
+description: >-
+  Bitwise fast minimum calculation utilizing difference-masking without
+  branching (i32)
+deps:
+  - TYPES
 args:
   a: i32
   b: i32
 returns: i32
 tests:
-  - [50, 20, 20]
-  - [-10, 0, -10]
-  - [10, 10, 10]
+  - - 50
+    - 20
+    - 20
+  - - -10
+    - 0
+    - -10
+  - - 10
+    - 10
+    - 10
 ---
 
 ### Rust
@@ -23589,6 +25026,10 @@ b + (diff & (diff >> 31))
 
 ### TypeScript
 ```typescript
+
+
+
+
 const diff = a - b;
 return b + (diff & (diff >> 31));
 ```
@@ -23613,7 +25054,8 @@ description: Higher-order functional generator spinning up a PRNG XorShift32 sta
 tags:
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - make_xor_shift32
@@ -23621,6 +25063,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const make_xor_shift32 = (seed: number): () => number => {
   let state = (seed >>> 0) || 1;
   return () => {
@@ -23642,32 +25088,43 @@ export const make_xor_shift32 = (seed: number): () => number => {
 ---
 id: math_clamp
 type: pure_fn
-description: "Universal boundary enforcement function"
-deps: []
+description: Universal boundary enforcement function
+deps:
+  - TYPES
 args:
   val: i32
   min: i32
   max: i32
 returns: i32
 tests:
-  - [50, 0, 100, 50]
-  - [-10, 0, 100, 0]
-  - [150, 0, 100, 100]
+  - - 50
+    - 0
+    - 100
+    - 50
+  - - -10
+    - 0
+    - 100
+    - 0
+  - - 150
+    - 0
+    - 100
+    - 100
 ---
 
 ### Rust
 ```rust
 if val < min {
-    min
 } else if val > max {
-    max
 } else {
-    val
 }
 ```
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (val < min) return min;
 if (val > max) return max;
 return val;
@@ -23690,10 +25147,11 @@ return val;
 ---
 id: math_cos
 type: pure_fn
-description: "Обчислення косинуса з динамічною точністю (LUT, LERP, TAYLOR2)"
-deps: 
+description: 'Обчислення косинуса з динамічною точністю (LUT, LERP, TAYLOR2)'
+deps:
   - SIN_LUT
   - COS_LUT
+  - TYPES
 vars:
   - SIN_LUT
   - COS_LUT
@@ -23702,10 +25160,18 @@ args:
   highRes: i32
 returns: i32
 tests:
-  - [0, 0, 32767]
-  - [64, 0, 0]
-  - [128, 0, -32767]
-  - [192, 0, 0]
+  - - 0
+    - 0
+    - 32767
+  - - 64
+    - 0
+    - 0
+  - - 128
+    - 0
+    - -32767
+  - - 192
+    - 0
+    - 0
 ---
 
 ### Rust
@@ -23734,6 +25200,10 @@ c_base - term1 - term2
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (highRes == 0) {
     let idx = angle & 255;
     return COS_LUT[idx] as i32;
@@ -23766,10 +25236,11 @@ return c_base - term1 - term2;
 ---
 id: math_sin
 type: pure_fn
-description: "Обчислення синуса з динамічною точністю"
-deps: 
+description: Обчислення синуса з динамічною точністю
+deps:
   - SIN_LUT
   - COS_LUT
+  - TYPES
 vars:
   - SIN_LUT
   - COS_LUT
@@ -23778,9 +25249,15 @@ args:
   highRes: i32
 returns: i32
 tests:
-  - [0, 0, 0]
-  - [1, 0, 804]
-  - [1, 1, 804]
+  - - 0
+    - 0
+    - 0
+  - - 1
+    - 0
+    - 804
+  - - 1
+    - 1
+    - 804
 ---
 
 ### Rust
@@ -23810,6 +25287,10 @@ s_base + term1 - term2
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (highRes == 0) {
     let idx = angle & 255;
     return SIN_LUT[idx] as i32;
@@ -23847,6 +25328,7 @@ entry: true
 tags: []
 deps:
   - C_LOG2_C_LUT
+  - TYPES
 extra_symbols:
   - MATH_UTILS
   - normalize_angle
@@ -23858,6 +25340,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export function normalize_angle(angle: number): number {
   const tau = 2 * Math.PI;
   let a = angle % tau;
@@ -23899,7 +25385,6 @@ pub fn clamp01(x: f64) -> f64 {
     } else if x > 1.0 {
         1.0
     } else {
-        x
     }
 }
 
@@ -23928,7 +25413,6 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
         entropy = 6000;
     }
     
-    entropy
 }
 ```
 
@@ -23975,7 +25459,8 @@ tags:
   - inline
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 args:
   target_type: u32
   target_value: u32
@@ -24005,6 +25490,10 @@ intent as i32
 
 ### TypeScript
 ```typescript
+
+
+
+
 export function pack_structure_intent(target_type: number, target_value: number, locked: boolean): number {
     let intent = target_type | (target_value << 24);
     if (locked) {
@@ -24039,6 +25528,7 @@ tags:
 deps:
   - prng_seed_from
   - prng_next
+  - TYPES
 vars:
   - prng_seed_from
   - prng_next
@@ -24050,6 +25540,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export class PRNG {
   private state: number;
 
@@ -24102,7 +25596,8 @@ description: >-
 tags:
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 returns: void
 extra_symbols:
   - to_int16_big_endian
@@ -24110,6 +25605,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
   const out = new Uint8Array(values.length * 2);
   for (let i = 0; i < values.length; i++) {
@@ -24138,7 +25637,8 @@ tags:
   - inline
   - host
 min_level: 6
-deps: []
+deps:
+  - TYPES
 args:
   intent: i32
 returns: u32
@@ -24158,6 +25658,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export function unpack_structure_charge(intent: number): number {
     return ((intent >>> 0) & 0x7F000000) >>> 24;
 }
@@ -24186,6 +25690,7 @@ deps:
   - LOGGER
   - assembler
   - SIGMA_FFI_BRIDGE
+  - TYPES
 min_level: 14
 entry: true
 vars:
@@ -24206,6 +25711,8 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
 
 
 const sensoryBuffer = new Float32Array(12);
@@ -24430,17 +25937,24 @@ tags:
 deps:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY
+  - TYPES
 min_level: 6
 entry: true
 vars:
   - AKASHA_SIGNALING
   - RUNTIME_POLICY
+  - MeshForwardAction
+  - MeshForwardEnvelope
+  - ParsedMeshInject
 ---
 
 ### TypeScript
 
 ```typescript
-import { parse as parseYaml } from "jsr:@std/yaml@^1.0.5";
+
+
+
+
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -24501,24 +26015,6 @@ const toFiniteNumber = (value: unknown): number | null => {
     if (Number.isFinite(parsed)) return parsed;
   }
   return null;
-};
-
-type MeshForwardAction = "DROP_PHEROMONE" | "INJECT_PLASMID";
-type MeshForwardEnvelope = {
-  action_type: MeshForwardAction;
-  payload: {
-    target_x: number;
-    target_y: number;
-    intensity: number;
-    hex_code?: string;
-  };
-};
-
-type ParsedMeshInject = {
-  envelope: MeshForwardEnvelope;
-  signalType: "mesh_pheromone" | "mesh_plasmid";
-  eventId: string;
-  sourcePeer: string;
 };
 
 const parseMeshInjectBody = (raw: unknown): ParsedMeshInject | null => {
@@ -25185,36 +26681,31 @@ description: Migrated from src/06/AKASHA_SIGNALING.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - AKASHA_SIGNALING
+vars:
+  - SignalingSession
+  - SIGNAL_TYPES
 ---
 
 ### TypeScript
 
 ```typescript
+
+
+
+
+/**
+ * @contract [akasha-webrtc-signaling] 
+ * Supported signal types: "offer", "answer", "candidate"
+ */
 const RTC_SIGNAL_PATH = "/rtc/signal";
 const MAX_SIGNAL_MESSAGE_BYTES = 128 * 1024;
 const PEER_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
 const ROOM_ID_RE = /^[A-Za-z0-9._:-]{1,64}$/u;
-const SIGNAL_TYPES = [
-  "offer",
-  "answer",
-  "candidate",
-  "plasmid",
-  "pheromone",
-  "telemetry",
-] as const;
-
-type SignalType = typeof SIGNAL_TYPES[number];
-type JsonMap = Record<string, unknown>;
-
-type SignalingSession = {
-  socket: WebSocket;
-  roomId: string | null;
-  peerId: string | null;
-};
 
 const signalTypeSet = new Set<string>(SIGNAL_TYPES);
 const sessions = new Map<WebSocket, SignalingSession>();
@@ -25511,12 +27002,15 @@ export const AKASHA_SIGNALING = {
 ---
 id: P2P_CODEC
 type: module
-description: Binary serialization for autonomous inter-node atom migration (OP_SPORE_DRIVE).
+description: >-
+  Binary serialization for autonomous inter-node atom migration
+  (OP_SPORE_DRIVE).
 tags:
   - membrane
   - host
 deps:
   - MX
+  - TYPES
 vars:
   - MX
 min_level: 6
@@ -25528,6 +27022,10 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
+
+
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
 export const P2P_CODEC = {
@@ -25652,29 +27150,28 @@ export const P2P_CODEC = {
 ---
 id: P2P_FEDERATION
 type: module
-description: RESTORED | High-level distributed migration policies and rule-genome consistency.
+description: >-
+  RESTORED | High-level distributed migration policies and rule-genome
+  consistency.
 tags:
   - membrane
   - host
+min_level: 6
+vars:
+  - P2pFederationUpwardDelegate
 deps:
   - MX
   - PRNG
   - LOGGER
   - RUNTIME_POLICY
   - P2P_CODEC
-min_level: 6
-extra_symbols:
-  - P2P_FEDERATION
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export interface P2pFederationUpwardDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  lookupLineageProfile(lineage: string): any;
-  captureBehaviorFrame(idx: number): any;
-}
+
 
 let delegate: P2pFederationUpwardDelegate | null = null;
 
@@ -25767,6 +27264,7 @@ tags:
 deps:
   - AKASHA_CODEX
   - LOGGER
+  - TYPES
 min_level: 9
 entry: true
 vars:
@@ -25782,6 +27280,8 @@ extra_symbols:
 ### TypeScript
 
 ```typescript
+
+
 
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
@@ -25905,35 +27405,28 @@ export const PANOPTICON_SERVER = {
 ---
 id: SWARM_NEXUS
 type: module
-description: RESTORED | Swarm Membrane for WebSocket-based peer backbone and heartbeat synchronization.
+description: >-
+  RESTORED | Swarm Membrane for WebSocket-based peer backbone and heartbeat
+  synchronization.
 tags:
   - membrane
   - host
+min_level: 6
+vars:
+  - NexusConfig
 deps:
   - LOGGER
-min_level: 6
-extra_symbols:
-  - SwarmNexus
-  - createSwarmNexus
-  - OP_NEXUS_HANDSHAKE
-  - OP_NEXUS_ATOM_TRANSIT
-  - OP_NEXUS_HEARTBEAT
-  - OP_NEXUS_EPOCH_CONSENSUS
-  - OP_NEXUS_SYNC_REQUEST
-  - OP_NEXUS_EPOCH_PAYLOAD
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
 
-export type NexusConfig = {
-  instanceId: number;
-  seedNodes: string[]; // e.g ["ws://127.0.0.1:8081"]
-  mainnetEnabled?: boolean;
-  bootstrapHubUrl?: string;
-};
+
+
+
+export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
 
 export const OP_NEXUS_HANDSHAKE = 0x00;
 export const OP_NEXUS_ATOM_TRANSIT = 0x01;
@@ -26285,27 +27778,25 @@ export class SwarmNexus {
 ---
 id: SWARM_NODE
 type: module
-description: RESTORED | Simple heartbeat and state broadcast logic for distributed synchronization.
+description: >-
+  RESTORED | Simple heartbeat and state broadcast logic for distributed
+  synchronization.
 tags:
   - membrane
   - host
+vars:
+  - SwarmHeartbeat
 deps:
   - LOGGER
-min_level: 6
-extra_symbols:
-  - SWARM_NODE
-  - MetaKuramotoNode
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export type SwarmHeartbeat = {
-  nodeId: string;
-  currentTick: number;
-  epochHash: string;
-  phase: number;
-};
+
+
+
 
 export class MetaKuramotoNode {
   public readonly nodeId: string;
@@ -26359,45 +27850,25 @@ description: Migrated from src/06/TELEMETRY_STREAM.ts
 tags:
   - membrane
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - TELEMETRY_STREAM
+vars:
+  - TelemetrySample
+  - TelemetryMetricName
+  - TelemetryBucket
+  - TelemetryHistogram
 ---
 
 ### TypeScript
 
 ```typescript
-type TelemetrySample = {
-  ts: number;
-  tick: number;
-  population: number;
-  avgEnergy: number;
-  neuralCoherence: number;
-  spatialOverflowRatio: number;
-  daemonSafeMode: boolean;
-};
 
-type TelemetryMetricName =
-  | "population"
-  | "avgEnergy"
-  | "neuralCoherence"
-  | "spatialOverflowRatio";
 
-type TelemetryBucket = {
-  from: number;
-  to: number;
-  count: number;
-};
 
-type TelemetryHistogram = {
-  metric: TelemetryMetricName;
-  windowMs: number;
-  count: number;
-  min: number;
-  max: number;
-  buckets: TelemetryBucket[];
-};
+
 
 const HISTORY_LIMIT = 4096;
 const DEFAULT_WINDOW_MS = 60_000;
@@ -26587,9 +28058,10 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 ---
 id: add_energy_delta
 type: pure_fn
-description: "Atomic add to physics energy delta array"
-deps: 
+description: Atomic add to physics energy delta array
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ENERGY_DELTA_OFF
 args:
@@ -26627,9 +28099,10 @@ if (delta != 0) {
 ---
 id: add_hive_balance
 type: pure_fn
-description: "Atomically add integer to global hive energy pool"
-deps: 
+description: Atomically add integer to global hive energy pool
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_BALANCE_OFF
 args:
@@ -26662,9 +28135,10 @@ return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 ---
 id: add_resonance_delta
 type: pure_fn
-description: "Atomic add to physics resonance delta array"
-deps: 
+description: Atomic add to physics resonance delta array
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - RESONANCE_DELTA_OFF
 args:
@@ -26702,11 +28176,12 @@ if (delta != 0) {
 ---
 id: add_resonance
 type: pure_fn
-description: "Add a delta to atom resonance in the layout"
-deps: 
+description: Add a delta to atom resonance in the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
   - get_resonance
   - set_resonance
+  - TYPES
 vars:
   - get_resonance
   - set_resonance
@@ -26741,16 +28216,24 @@ set_resonance(idx, get_resonance(idx) + delta);
 ---
 id: attentionField
 type: module
-description: "Implementation of attentionField"
+description: Implementation of attentionField
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, ATTENTION_FIELD_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - ATTENTION_FIELD_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
 ```
 
@@ -26764,16 +28247,24 @@ export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFF
 ---
 id: attentionFieldBuffer
 type: module
-description: "Implementation of attentionFieldBuffer"
+description: Implementation of attentionFieldBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, ATTENTION_FIELD_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - ATTENTION_FIELD_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
 ```
 
@@ -26787,16 +28278,25 @@ export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIE
 ---
 id: bondDistances
 type: module
-description: "Implementation of bondDistances"
+description: Implementation of bondDistances
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, BOND_DISTANCES_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - BOND_DISTANCES_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
 ```
 
@@ -26810,16 +28310,25 @@ export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET,
 ---
 id: bondDistBuffer
 type: module
-description: "Implementation of bondDistBuffer"
+description: Implementation of bondDistBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, BOND_DISTANCES_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - BOND_DISTANCES_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
 ```
 
@@ -26833,16 +28342,25 @@ export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET
 ---
 id: bondRequests
 type: module
-description: "Implementation of bondRequests"
+description: Implementation of bondRequests
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, BOND_REQUESTS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - BOND_REQUESTS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
 ```
 
@@ -26856,16 +28374,25 @@ export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, M
 ---
 id: bonds
 type: module
-description: "Implementation of bonds"
+description: Implementation of bonds
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, BONDS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - BONDS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 ```
 
@@ -26879,16 +28406,25 @@ export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 ---
 id: bondStiffness
 type: module
-description: "Implementation of bondStiffness"
+description: Implementation of bondStiffness
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, STIFFNESS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - STIFFNESS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
 ```
 
@@ -26902,16 +28438,25 @@ export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MA
 ---
 id: causality
 type: module
-description: "Implementation of causality"
+description: Implementation of causality
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, CAUSALITY_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - CAUSALITY_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
 ```
 
@@ -26925,16 +28470,25 @@ export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOM
 ---
 id: codeWords
 type: module
-description: "Implementation of codeWords"
+description: Implementation of codeWords
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, INSTRUCTIONS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - INSTRUCTIONS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 ```
 
@@ -26948,16 +28502,23 @@ export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_
 ---
 id: coherence
 type: module
-description: "Implementation of coherence"
+description: Implementation of coherence
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [COHERENCE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - COHERENCE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 ```
 
@@ -26971,16 +28532,26 @@ export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 ---
 id: contextByteView
 type: module
-description: "Implementation of contextByteView"
+description: Implementation of contextByteView
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ATOM_CONTEXT_SIZE
+  - CONTEXT_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
 ```
 
@@ -26994,16 +28565,26 @@ export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_
 ---
 id: contexts
 type: module
-description: "Implementation of contexts"
+description: Implementation of contexts
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ATOM_CONTEXT_SIZE
+  - CONTEXT_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
 ```
 
@@ -27017,16 +28598,25 @@ export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS *
 ---
 id: damping
 type: module
-description: "Implementation of damping"
+description: Implementation of damping
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, DAMPING_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - DAMPING_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 ```
 
@@ -27040,16 +28630,25 @@ export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 ---
 id: dampingBuffer
 type: module
-description: "Implementation of dampingBuffer"
+description: Implementation of dampingBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, DAMPING_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - DAMPING_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
 ```
 
@@ -27063,16 +28662,25 @@ export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_AT
 ---
 id: energies
 type: module
-description: "Implementation of energies"
+description: Implementation of energies
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ENERGY_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ENERGY_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 ```
 
@@ -27086,16 +28694,25 @@ export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 ---
 id: evolutionReserved
 type: module
-description: "Implementation of evolutionReserved"
+description: Implementation of evolutionReserved
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, EVOLUTION_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - EVOLUTION_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
 ```
 
@@ -27109,15 +28726,16 @@ export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, 
 ---
 id: genome_key16
 type: pure_fn
-description: "Read the first two logic bytes of an atom"
-deps: 
+description: Read the first two logic bytes of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - LOGIC_OFFSET
 args:
   idx: i32
 rsArgs:
-  state: "&SigmaState"
+  state: '&SigmaState'
   idx: i32
 returns: i32
 ---
@@ -27131,6 +28749,14 @@ let b1 = state.matrix.logic[idx as usize][1] as i32;
 
 ### TypeScript
 ```typescript
+ b0 
+
+b0 
+
+b0 
+
+b0 
+
 const b0 = dataView.getUint8(LOGIC_OFFSET + (idx << 3));
 const b1 = dataView.getUint8(LOGIC_OFFSET + (idx << 3) + 1);
 return (b0 << 8) | b1;
@@ -27154,9 +28780,10 @@ return (b0 << 8) | b1;
 ---
 id: get_bond_stiffness
 type: pure_fn
-description: "Read atomic bond stiffness"
-deps: 
+description: Read atomic bond stiffness
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - STIFFNESS_OFFSET
 args:
@@ -27190,9 +28817,10 @@ return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
 ---
 id: get_bond_target
 type: pure_fn
-description: "Read atom bond target by slot"
-deps: 
+description: Read atom bond target by slot
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BONDS_OFFSET
 args:
@@ -27226,9 +28854,10 @@ return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
 ---
 id: get_energy
 type: pure_fn
-description: "Read atom energy from the layout"
-deps: 
+description: Read atom energy from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ENERGY_OFFSET
 args:
@@ -27244,6 +28873,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 // Requires `dataView: DataView` in scope
 return dataView.getInt32(ENERGY_OFFSET + (idx << 2), true);
 ```
@@ -27263,9 +28896,10 @@ return load<i32>(ENERGY_OFFSET + (idx << 2));
 ---
 id: get_hive_balance
 type: pure_fn
-description: "Read total hive energy balance"
-deps: 
+description: Read total hive energy balance
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_BALANCE_OFF
 args: {}
@@ -27297,9 +28931,10 @@ return atomic.load<i32>(HIVE_BALANCE_OFF);
 ---
 id: get_hive_memory
 type: pure_fn
-description: "Read byte from the organism shared neural memory block"
-deps: 
+description: Read byte from the organism shared neural memory block
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_MEMORY_OFF
 args:
@@ -27332,9 +28967,10 @@ return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
 ---
 id: get_hormone
 type: pure_fn
-description: "Read global hormone level atomically"
-deps: 
+description: Read global hormone level atomically
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HORMONE_OFF
 args:
@@ -27367,9 +29003,10 @@ return atomic.load<u16>(HORMONE_OFF + (id << 1));
 ---
 id: get_lineage
 type: pure_fn
-description: "Read atom lineage (u64) from the layout"
-deps: 
+description: Read atom lineage (u64) from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - LINEAGE_OFFSET
 args:
@@ -27402,9 +29039,10 @@ return load<u64>(LINEAGE_OFFSET + (idx << 3));
 ---
 id: get_logic_byte
 type: pure_fn
-description: "Read a specific byte from an atom's logic array"
-deps: 
+description: Read a specific byte from an atom's logic array
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - LOGIC_OFFSET
 args:
@@ -27438,9 +29076,10 @@ return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
 ---
 id: get_p_c
 type: pure_fn
-description: "Read program counter of an atom"
-deps: 
+description: Read program counter of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -27473,9 +29112,10 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
 ---
 id: get_pending_syscall
 type: pure_fn
-description: "Read pending syscall flag for an atom"
-deps: 
+description: Read pending syscall flag for an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -27508,9 +29148,10 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
 ---
 id: get_phase
 type: pure_fn
-description: "Read atom phase from the layout"
-deps: 
+description: Read atom phase from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHASE_OFFSET
 args:
@@ -27543,9 +29184,10 @@ return load<i32>(PHASE_OFFSET + (idx << 2));
 ---
 id: get_read_energy
 type: pure_fn
-description: "Read physics buffered atom Energy from the layout"
-deps: 
+description: Read physics buffered atom Energy from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHYSICS_READ_ENERGY_OFF
 args:
@@ -27578,9 +29220,10 @@ return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
 ---
 id: get_read_resonance
 type: pure_fn
-description: "Read physics buffered atom Resonance from the layout"
-deps: 
+description: Read physics buffered atom Resonance from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHYSICS_READ_RESONANCE_OFF
 args:
@@ -27613,9 +29256,10 @@ return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
 ---
 id: get_read_x
 type: pure_fn
-description: "Read physics buffered atom X coordinate from the layout"
-deps: 
+description: Read physics buffered atom X coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHYSICS_READ_XS_OFF
 args:
@@ -27648,9 +29292,10 @@ return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
 ---
 id: get_read_y
 type: pure_fn
-description: "Read physics buffered atom Y coordinate from the layout"
-deps: 
+description: Read physics buffered atom Y coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHYSICS_READ_YS_OFF
 args:
@@ -27683,9 +29328,10 @@ return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
 ---
 id: get_reg
 type: pure_fn
-description: "Read atomic execution register"
-deps: 
+description: Read atomic execution register
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -27719,9 +29365,10 @@ return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
 ---
 id: get_resonance
 type: pure_fn
-description: "Read atom resonance from the layout"
-deps: 
+description: Read atom resonance from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - RESONANCE_OFFSET
 args:
@@ -27754,9 +29401,10 @@ return load<i32>(RESONANCE_OFFSET + (idx << 2));
 ---
 id: get_role
 type: pure_fn
-description: "Read semantic role of an atom"
-deps: 
+description: Read semantic role of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ROLES_OFFSET
 args:
@@ -27789,9 +29437,10 @@ return load<u8>(ROLES_OFFSET + atomIdx);
 ---
 id: get_spatial_grid_atom
 type: pure_fn
-description: "Read atom reference index at grid slot"
-deps: 
+description: Read atom reference index at grid slot
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - SPATIAL_GRID_OFFSET
   - GRID_W
@@ -27809,6 +29458,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 const cellIdx = gy * GRID_W + gx;
 return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7) + ((subIdx + 1) << 2), true);
 ```
@@ -27831,9 +29484,10 @@ return load<i32>(
 ---
 id: get_spatial_grid_count
 type: pure_fn
-description: "Read population density in a spatial cell"
-deps: 
+description: Read population density in a spatial cell
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - SPATIAL_GRID_OFFSET
   - GRID_W
@@ -27850,6 +29504,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 const cellIdx = gy * GRID_W + gx;
 return dataView.getInt32(SPATIAL_GRID_OFFSET + (cellIdx << 7), true);
 ```
@@ -27870,9 +29528,10 @@ return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
 ---
 id: get_x
 type: pure_fn
-description: "Read atom X coordinate from the layout"
-deps: 
+description: Read atom X coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - XS_OFFSET
 args:
@@ -27905,9 +29564,10 @@ return load<i16>(XS_OFFSET + (idx << 1));
 ---
 id: get_y
 type: pure_fn
-description: "Read atom Y coordinate from the layout"
-deps: 
+description: Read atom Y coordinate from the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - YS_OFFSET
 args:
@@ -27940,16 +29600,24 @@ return load<i16>(YS_OFFSET + (idx << 1));
 ---
 id: glyphHeaderBuffer
 type: module
-description: "Implementation of glyphHeaderBuffer"
+description: Implementation of glyphHeaderBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, GLYPH_HEADER_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - GLYPH_HEADER_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
 ```
 
@@ -27963,16 +29631,24 @@ export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSE
 ---
 id: glyphHeaders
 type: module
-description: "Implementation of glyphHeaders"
+description: Implementation of glyphHeaders
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, GLYPH_HEADER_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - GLYPH_HEADER_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
 ```
 
@@ -27986,16 +29662,24 @@ export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GR
 ---
 id: glyphPayload
 type: module
-description: "Implementation of glyphPayload"
+description: Implementation of glyphPayload
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, GLYPH_PAYLOAD_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - GLYPH_PAYLOAD_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
 ```
 
@@ -28009,16 +29693,24 @@ export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, G
 ---
 id: glyphPayloadBuffer
 type: module
-description: "Implementation of glyphPayloadBuffer"
+description: Implementation of glyphPayloadBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, GLYPH_PAYLOAD_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - GLYPH_PAYLOAD_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
 ```
 
@@ -28032,16 +29724,23 @@ export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFF
 ---
 id: hiveBalance
 type: module
-description: "Implementation of hiveBalance"
+description: Implementation of hiveBalance
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [HIVE_BALANCE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - HIVE_BALANCE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 ```
 
@@ -28055,16 +29754,24 @@ export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 ---
 id: hiveEnergyPool
 type: module
-description: "Implementation of hiveEnergyPool"
+description: Implementation of hiveEnergyPool
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - HIVE_ENERGY_POOL_SIZE
+  - HIVE_ENERGY_POOL_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
 ```
 
@@ -28078,16 +29785,24 @@ export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFS
 ---
 id: hiveEnergyPoolBuffer
 type: module
-description: "Implementation of hiveEnergyPoolBuffer"
+description: Implementation of hiveEnergyPoolBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - HIVE_ENERGY_POOL_SIZE
+  - HIVE_ENERGY_POOL_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
 ```
 
@@ -28101,16 +29816,24 @@ export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POO
 ---
 id: hiveMemory
 type: module
-description: "Implementation of hiveMemory"
+description: Implementation of hiveMemory
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - HIVE_MEMORY_SIZE
+  - HIVE_MEMORY_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
 ```
 
@@ -28124,16 +29847,24 @@ export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_
 ---
 id: hiveMemoryBuffer
 type: module
-description: "Implementation of hiveMemoryBuffer"
+description: Implementation of hiveMemoryBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - HIVE_MEMORY_SIZE
+  - HIVE_MEMORY_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
 ```
 
@@ -28147,16 +29878,24 @@ export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET,
 ---
 id: hormoneBuffer
 type: module
-description: "Implementation of hormoneBuffer"
+description: Implementation of hormoneBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [MAX_HORMONES, HORMONE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - MAX_HORMONES
+  - HORMONE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
 ```
 
@@ -28170,16 +29909,24 @@ export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_H
 ---
 id: hormones
 type: module
-description: "Implementation of hormones"
+description: Implementation of hormones
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [MAX_HORMONES, HORMONE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - MAX_HORMONES
+  - HORMONE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
 ```
 
@@ -28193,16 +29940,25 @@ export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMON
 ---
 id: ids
 type: module
-description: "Implementation of ids"
+description: Implementation of ids
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, IDS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - IDS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 ```
 
@@ -28216,16 +29972,26 @@ export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 ---
 id: instructions
 type: module
-description: "Implementation of instructions"
+description: Implementation of instructions
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ATOM_INSTRUCTION_SIZE, INSTRUCTIONS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ATOM_INSTRUCTION_SIZE
+  - INSTRUCTIONS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
 ```
 
@@ -28239,16 +30005,23 @@ export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MA
 ---
 id: latticeClearView
 type: module
-description: "Implementation of latticeClearView"
+description: Implementation of latticeClearView
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [TICK_COUNTER_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - TICK_COUNTER_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
 ```
 
@@ -28262,16 +30035,24 @@ export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET
 ---
 id: ledgerDataView
 type: module
-description: "Implementation of ledgerDataView"
+description: Implementation of ledgerDataView
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [MAX_LEDGER_EVENTS, LEDGER_DATA_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - MAX_LEDGER_EVENTS
+  - LEDGER_DATA_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
 ```
 
@@ -28285,16 +30066,23 @@ export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, M
 ---
 id: ledgerHeadView
 type: module
-description: "Implementation of ledgerHeadView"
+description: Implementation of ledgerHeadView
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [LEDGER_HEAD_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - LEDGER_HEAD_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
 ```
 
@@ -28308,16 +30096,25 @@ export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1
 ---
 id: lineage
 type: module
-description: "Implementation of lineage"
+description: Implementation of lineage
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, LINEAGE_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - LINEAGE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
 ```
 
@@ -28331,16 +30128,25 @@ export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOM
 ---
 id: lineageBuffer
 type: module
-description: "Implementation of lineageBuffer"
+description: Implementation of lineageBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, LINEAGE_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - LINEAGE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
 ```
 
@@ -28354,16 +30160,26 @@ export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MA
 ---
 id: logic
 type: module
-description: "Implementation of logic"
+description: Implementation of logic
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ATOM_GENOME_SIZE
+  - LOGIC_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
 ```
 
@@ -28377,16 +30193,25 @@ export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM
 ---
 id: mailboxes
 type: module
-description: "Implementation of mailboxes"
+description: Implementation of mailboxes
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, MAILBOX_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - MAILBOX_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
 ```
 
@@ -28400,10 +30225,13 @@ export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS 
 ---
 id: memory_views_base
 type: module
-description: "Base memory views initialization"
+description: Base memory views initialization
 tags:
   - 00_memory
-deps: [SYSTEM_CONSTANTS, OMEGA_MEMORY_LAYOUT]
+deps:
+  - SYSTEM_CONSTANTS
+  - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - MIN_WASM_MEMORY_PAGES
   - WASM_MEMORY_PAGES
@@ -28417,6 +30245,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
     "[MX] WASM memory too small: pages=" + WASM_MEMORY_PAGES + 
@@ -28452,16 +30284,24 @@ export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 ---
 id: memoryGrid
 type: module
-description: "Implementation of memoryGrid"
+description: Implementation of memoryGrid
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, MEMORY_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - MEMORY_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
 ```
 
@@ -28475,16 +30315,24 @@ export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_
 ---
 id: memoryGridBuffer
 type: module
-description: "Implementation of memoryGridBuffer"
+description: Implementation of memoryGridBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, MEMORY_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - MEMORY_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
 ```
 
@@ -28564,6 +30412,7 @@ deps:
   - wasmMemory
   - xs
   - ys
+  - TYPES
 vars:
   - ATOM_CONTEXT_SIZE
   - ATOM_INSTRUCTION_SIZE
@@ -29094,7 +30943,6 @@ export const MX = {
   get_hormone: (id: number) => Atomics.load(hormones, id),
   setHormone: (id: number, val: number) => Atomics.store(hormones, id, val),
 };
-
 ```
 
 ```
@@ -29107,16 +30955,23 @@ export const MX = {
 ---
 id: neuralCoherence
 type: module
-description: "Implementation of neuralCoherence"
+description: Implementation of neuralCoherence
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [NEURAL_COHERENCE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - NEURAL_COHERENCE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
 ```
 
@@ -29130,16 +30985,25 @@ export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFF
 ---
 id: phases
 type: module
-description: "Implementation of phases"
+description: Implementation of phases
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, PHASE_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - PHASE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 ```
 
@@ -29153,16 +31017,25 @@ export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 ---
 id: resonances
 type: module
-description: "Implementation of resonances"
+description: Implementation of resonances
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, RESONANCE_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - RESONANCE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
 ```
 
@@ -29176,16 +31049,25 @@ export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATO
 ---
 id: roleBuffer
 type: module
-description: "Implementation of roleBuffer"
+description: Implementation of roleBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ROLES_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ROLES_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
 ```
 
@@ -29199,16 +31081,25 @@ export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).
 ---
 id: roles
 type: module
-description: "Implementation of roles"
+description: Implementation of roles
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, ROLES_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - ROLES_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 ```
 
@@ -29222,16 +31113,21 @@ export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 ---
 id: semanticBonuses
 type: module
-description: "Implementation of semanticBonuses"
+description: Implementation of semanticBonuses
 tags:
   - 00_memory
-deps: [SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS]
+deps:
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
 
 
 export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
@@ -29247,16 +31143,22 @@ export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * 
 ---
 id: semanticBonusesBuffer
 type: module
-description: "Implementation of semanticBonusesBuffer"
+description: Implementation of semanticBonusesBuffer
 tags:
   - 00_memory
-deps: [semanticBonuses]
+deps:
+  - semanticBonuses
+  - TYPES
 vars: []
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const semanticBonusesBuffer = semanticBonuses.buffer;
 ```
 
@@ -29270,9 +31172,10 @@ export const semanticBonusesBuffer = semanticBonuses.buffer;
 ---
 id: set_bond_dist
 type: pure_fn
-description: "Set bond stretch distance in u8 representation"
-deps: 
+description: Set bond stretch distance in u8 representation
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BOND_DISTANCES_OFFSET
 args:
@@ -29307,9 +31210,10 @@ store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
 ---
 id: set_bond_stiffness
 type: pure_fn
-description: "Set atomic bond stiffness"
-deps: 
+description: Set atomic bond stiffness
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - STIFFNESS_OFFSET
 args:
@@ -29344,9 +31248,10 @@ store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
 ---
 id: set_bond_target
 type: pure_fn
-description: "Write atom bond target by slot"
-deps: 
+description: Write atom bond target by slot
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - BONDS_OFFSET
 args:
@@ -29381,9 +31286,10 @@ store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
 ---
 id: set_damping
 type: pure_fn
-description: "Set atomic kinetic damping factor"
-deps: 
+description: Set atomic kinetic damping factor
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - DAMPING_OFF
 args:
@@ -29417,9 +31323,10 @@ store<u8>(DAMPING_OFF + atomIdx, val);
 ---
 id: set_energy
 type: pure_fn
-description: "Write atom energy to the layout"
-deps: 
+description: Write atom energy to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ENERGY_OFFSET
 args:
@@ -29435,6 +31342,10 @@ unimplemented!("Memory accessors are host/WASM specific");
 
 ### TypeScript
 ```typescript
+
+
+
+
 // Requires `dataView: DataView` in scope
 dataView.setInt32(ENERGY_OFFSET + (idx << 2), val, true);
 ```
@@ -29454,9 +31365,10 @@ store<i32>(ENERGY_OFFSET + (idx << 2), val);
 ---
 id: set_hive_memory
 type: pure_fn
-description: "Write byte to the organism shared neural memory block"
-deps: 
+description: Write byte to the organism shared neural memory block
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - HIVE_MEMORY_OFF
 args:
@@ -29490,9 +31402,10 @@ store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
 ---
 id: set_p_c
 type: pure_fn
-description: "Set program counter of an atom"
-deps: 
+description: Set program counter of an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -29526,9 +31439,10 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
 ---
 id: set_pending_syscall
 type: pure_fn
-description: "Set pending syscall flag for an atom"
-deps: 
+description: Set pending syscall flag for an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -29562,9 +31476,10 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
 ---
 id: set_phase
 type: pure_fn
-description: "Write atom phase to the layout"
-deps: 
+description: Write atom phase to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - PHASE_OFFSET
 args:
@@ -29598,9 +31513,10 @@ store<i32>(PHASE_OFFSET + (idx << 2), val);
 ---
 id: set_reg
 type: pure_fn
-description: "Write atomic execution register"
-deps: 
+description: Write atomic execution register
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - CONTEXT_OFFSET
 args:
@@ -29635,10 +31551,11 @@ store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
 ---
 id: set_resonance
 type: pure_fn
-description: "Write atom resonance to the layout"
-deps: 
+description: Write atom resonance to the layout
+deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_resource
+  - TYPES
 vars:
   - RESONANCE_OFFSET
   - clamp_resource
@@ -29673,9 +31590,10 @@ store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
 ---
 id: set_role
 type: pure_fn
-description: "Write semantic role to an atom"
-deps: 
+description: Write semantic role to an atom
+deps:
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - ROLES_OFFSET
 args:
@@ -29709,16 +31627,24 @@ store<u8>(ROLES_OFFSET + atomIdx, val);
 ---
 id: signalGrid
 type: module
-description: "Implementation of signalGrid"
+description: Implementation of signalGrid
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, SIGNAL_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - SIGNAL_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
 ```
 
@@ -29732,16 +31658,24 @@ export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_
 ---
 id: signalGridBuffer
 type: module
-description: "Implementation of signalGridBuffer"
+description: Implementation of signalGridBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, SIGNAL_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - SIGNAL_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
 ```
 
@@ -29755,232 +31689,25 @@ export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET,
 ---
 id: spatialGrid
 type: module
-description: "Implementation of spatialGrid"
+description: Implementation of spatialGrid
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, SPATIAL_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - SPATIAL_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
-```
-
-```
-
----
-
-## FILE: src/ontology/memory/state_snapshot.md
-
-```markdown
----
-id: STATE_SNAPSHOT
-type: module
-description: Implementation of STATE_SNAPSHOT
-tags: []
-min_level: 0
-extra_symbols:
-  - AgentSignatureKey
-  - AgentSignatureScheme
-  - AutonomyState
-  - BridgeModeEvent
-  - DeltaProposal
-  - GateConfig
-  - GateDecision
-  - LedgerEvent
-  - REJECTION
-  - STATE_SNAPSHOT
-  - SignaturePolicy
-  - StateSnapshot
----
-
-### TypeScript
-```typescript
-// STATE_SNAPSHOT.ts
-// 🛡️ OMEGA-64 | Glider Lite | State & Proposal Types
-// Normative definitions for the Gemini Glider Lite runtime.
-
-/**
- * StateSnapshot: The canonical state of the system at a specific tick.
- * This is the input for all agents.
- */
-export interface StateSnapshot {
-  tick: number; // uint64
-  state_i16: Int16Array; // int16[64] - The core state vector
-  state_hash: string; // hex32 - Identity anchor
-
-  // Optional projections (for observablity)
-  phase_u16?: Uint16Array; // uint16[64]
-  stability_q15?: Float32Array; // 0..1
-  entropy_i16?: Int16Array; // -32768..32767
-}
-
-/**
- * AutonomyState: Represents the sovereignty levels of the system.
- */
-export interface AutonomyState {
-  state: number; // [0..1]
-  gov: number; // [0..1]
-  code: number; // [0..1]
-}
-
-/**
- * DeltaProposal: A request from an agent to modify the state.
- */
-export interface DeltaProposal {
-  proposal_id: string; // UUID or unique semantic ID
-  tick: number; // Must match StateSnapshot.tick
-  base_state_hash: string; // Must match StateSnapshot.state_hash
-  agent_id: string; // Who is proposing?
-  agent_phase_u16?: number; // Optional agent phase anchor [0..65535] for LOAD mismatch cost
-  intent?: string; // Human-readable intent
-  confidence: number; // float32 (0..1)
-  delta: Array<{ level: number; value: number }>; // Sparse delta: level (0-63), value (int16)
-  cost_estimate?: number; // uint64
-  artifact_hash?: string; // Identity anchor of the agent's internal state
-  semantic_fingerprint?: string; // hex32 - Semantic drift metric
-  causal_refs?: string[]; // hex32[] - Optional lineage anchors
-  target_path?: "LOCAL" | "CANON"; // optional routing hint for L32 membrane
-  quorum_strength?: number; // range [0..1] - Local group coherence factor for Stage 25
-  origin_atom_idx?: number; // index of the proposing atom in the lattice
-  resonance?: number; // resonance level of the proposing atom
-  signature_scheme?: AgentSignatureScheme; // optional signature scheme marker
-  agent_signature?: string; // optional signed envelope for proposal integrity/authenticity
-  proposal_envelope_hash?: string; // optional precomputed envelope hash anchor
-}
-
-/**
- * GateConfig: Configuration for the L32 Gate.
- */
-export interface GateConfig {
-  max_abs_delta_per_level: number; // uint16
-  max_total_abs_delta_per_tick: number; // uint32
-  max_total_cost_per_tick?: number; // uint64 (optional global cost cap)
-  max_cost_per_agent: number; // uint64
-  reliability_weight: Map<string, number>; // agent_id -> weight (0..1)
-  reliability_mode?: "STATIC" | "PHASE_COHERENCE"; // optional admission weighting mode
-  reliability_floor?: number; // optional [0..1] floor when PHASE_COHERENCE is active
-  dry_run: boolean; // If true, state is NOT mutated
-  global_syntropy?: number; // range [0..1] - System-wide structural organization for Stage 25
-  signature_policy?: SignaturePolicy; // DISABLED (default), OPTIONAL, REQUIRED
-  agent_signature_keys?: Map<string, AgentSignatureKey>; // agent_id -> shared verification key
-  anti_replay_window_ticks?: number; // reject replays of same proposal envelope within recent window
-}
-
-export type AgentSignatureScheme = "ed25519/v1" | "hmac-sha256/v1";
-export type SignaturePolicy = "DISABLED" | "OPTIONAL" | "REQUIRED";
-export type AgentSignatureKey =
-  | { scheme: "ed25519/v1"; public_key_b64: string }
-  | { scheme: "hmac-sha256/v1"; secret: string };
-
-/**
- * GateDecision: The result of the L32 Gate processing.
- */
-export interface GateDecision {
-  accepted_proposals: string[]; // IDs of accepted proposals
-  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
-  budget_used: number; // uint32
-  cost_used: number; // uint64
-  accepted_delta: Array<{ level: number; value: number }>; // The final merged delta
-}
-
-/**
- * LedgerEvent: The canonical record of a state transition.
- */
-export interface LedgerEvent {
-  event_id: string;
-  tick: number;
-  ts_unix_ms: number;
-  state_before_hash: string;
-  state_after_hash: string;
-  accepted_delta: Array<{ level: number; value: number }>;
-  proposal_digest: string; // Hash of all proposals (for integrity)
-  accepted_proposals: string[];
-  accepted_proposal_metrics?: Array<{
-    proposal_id: string;
-    agent_id: string;
-    confidence: number;
-    reliability_base: number;
-    reliability_effective: number;
-    phase_coherence?: number;
-    weight: number;
-    physical_cost: number;
-    agent_phase_u16?: number;
-  }>;
-  accepted_proposal_envelopes?: Array<
-    { proposal_id: string; envelope_hash: string }
-  >;
-  rejected_proposals: Array<{ proposal_id: string; reason: string }>;
-  cost_total: number;
-  cost_limit?: number;
-  budget_used: number;
-  budget_limit?: number; // max_total_abs_delta_per_tick used by the gate
-  gate_config_version: string;
-  signature_artifact_hash?: string; // hash anchor of transition artifact (usually proposal_digest)
-  signature_tick?: number; // tick used by topological signature builder
-  signature_causal_refs?: string[]; // canonical sorted causal refs
-  projection_2d_hash?: string; // deterministic 2D projection hash
-  thread_1d_hash?: string; // deterministic 1D thread hash
-  projection_version?: string; // signature projection version
-  policy_version?: string; // crystallization/gate policy version
-  policy_hash?: string; // SHA-256 of canonical crystallization policy payload
-  chain_version?: string; // ledger hash-chain schema version
-  prev_event_hash?: string | null; // hash anchor to previous ledger line
-  event_hash?: string; // hash of this event payload + prev_event_hash
-  witness?: string;
-}
-
-/**
- * BridgeModeEvent: L32 membrane trace for canon causal integrity mode.
- * Includes invariant packet hash for lightweight witness exchange.
- */
-export interface BridgeModeEvent {
-  event_type: "BRIDGE_MODE_EVENT";
-  tick: number;
-  state_hash: string;
-  mode: "GREEN" | "AMBER" | "RED";
-  index_chain_checked: boolean;
-  index_chain_ok: boolean;
-  index_chain_checked_records: number;
-  index_chain_failures: string[];
-  gate_admission_index_chain_checked?: boolean;
-  gate_admission_index_chain_ok?: boolean;
-  gate_admission_index_chain_checked_records?: number;
-  gate_admission_index_chain_failures?: string[];
-  invariant_packet_hash?: string;
-  canon_bound_proposals: string[];
-  blocked_canon_proposals: string[];
-  reason: string;
-  chain_version?: string;
-  prev_event_hash?: string | null;
-  event_hash?: string;
-  witness?: string;
-}
-
-// Canonical Rejection Reasons
-export const REJECTION = {
-  SCHEMA_INVALID: "SCHEMA_INVALID",
-  TICK_MISMATCH: "TICK_MISMATCH",
-  BASE_HASH_MISMATCH: "BASE_HASH_MISMATCH",
-  UNKNOWN_AGENT: "UNKNOWN_AGENT",
-  COST_OVER_BUDGET: "COST_OVER_BUDGET",
-  EMPTY_DELTA: "EMPTY_DELTA",
-  OUT_OF_RANGE_VALUE: "OUT_OF_RANGE_VALUE",
-  CANON_PATH_REQUIRES_GREEN_BRIDGE: "CANON_PATH_REQUIRES_GREEN_BRIDGE",
-  SIGNATURE_REQUIRED: "SIGNATURE_REQUIRED",
-  SIGNATURE_INVALID: "SIGNATURE_INVALID",
-  SIGNATURE_KEY_MISSING: "SIGNATURE_KEY_MISSING",
-  SIGNATURE_SCHEME_UNSUPPORTED: "SIGNATURE_SCHEME_UNSUPPORTED",
-  PROPOSAL_ENVELOPE_HASH_MISMATCH: "PROPOSAL_ENVELOPE_HASH_MISMATCH",
-  REPLAY_ENVELOPE_DUPLICATE: "REPLAY_ENVELOPE_DUPLICATE",
-};
-
-export const STATE_SNAPSHOT = {
-  REJECTION
-};
-
 ```
 
 ```
@@ -29993,16 +31720,25 @@ export const STATE_SNAPSHOT = {
 ---
 id: stiffnessBuffer
 type: module
-description: "Implementation of stiffnessBuffer"
+description: Implementation of stiffnessBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, STIFFNESS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - STIFFNESS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
 ```
 
@@ -30016,16 +31752,24 @@ export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, 
 ---
 id: structureGrid
 type: module
-description: "Implementation of structureGrid"
+description: Implementation of structureGrid
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, STRUCTURE_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - STRUCTURE_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
 ```
 
@@ -30039,16 +31783,24 @@ export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET,
 ---
 id: structureGridBuffer
 type: module
-description: "Implementation of structureGridBuffer"
+description: Implementation of structureGridBuffer
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [GRID_CELLS, STRUCTURE_GRID_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - GRID_CELLS
+  - STRUCTURE_GRID_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
 ```
 
@@ -30062,16 +31814,25 @@ export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_O
 ---
 id: synapticWeights
 type: module
-description: "Implementation of synapticWeights"
+description: Implementation of synapticWeights
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - SYNAPTIC_WEIGHTS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
 ```
 
@@ -30085,16 +31846,23 @@ export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFF
 ---
 id: syncState
 type: module
-description: "Implementation of syncState"
+description: Implementation of syncState
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [SYNC_STATE_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - SYNC_STATE_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 ```
 
@@ -30108,16 +31876,23 @@ export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 ---
 id: tickCounter
 type: module
-description: "Implementation of tickCounter"
+description: Implementation of tickCounter
 tags:
   - 00_memory
-deps: [sharedBuffer]
-vars: [TICK_COUNTER_OFFSET]
+deps:
+  - sharedBuffer
+  - TYPES
+vars:
+  - TICK_COUNTER_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 ```
 
@@ -30141,6 +31916,7 @@ min_level: 6
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 vars:
   - WASM_MEMORY_PAGES
   - MIN_WASM_MEMORY_PAGES
@@ -30152,6 +31928,10 @@ extra_symbols:
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const assert_wasm_memory_depth = (): void => {
   if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
     console.error(
@@ -30172,16 +31952,25 @@ export const assert_wasm_memory_depth = (): void => {
 ---
 id: xs
 type: module
-description: "Implementation of xs"
+description: Implementation of xs
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, XS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - XS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 ```
 
@@ -30195,16 +31984,25 @@ export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 ---
 id: ys
 type: module
-description: "Implementation of ys"
+description: Implementation of ys
 tags:
   - 00_memory
-deps: [sharedBuffer, SYSTEM_CONSTANTS]
-vars: [MAX_ATOMS, YS_OFFSET]
+deps:
+  - sharedBuffer
+  - SYSTEM_CONSTANTS
+  - TYPES
+vars:
+  - MAX_ATOMS
+  - YS_OFFSET
 min_level: 0
 ---
 
 ### TypeScript
 ```typescript
+
+
+
+
 export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 ```
 
@@ -30224,7 +32022,7 @@ level: 1
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
 vars:
   - DAMPING_OFF
   - MAX_ATOMS
@@ -30239,6 +32037,7 @@ deps:
   - get_read_resonance
   - add_resonance_delta
   - encode_force_tuple
+  - TYPES
 description: Auto-recovered apply_bond_springs
 ---
 
@@ -30250,6 +32049,14 @@ unimplemented!()
 ```
 
 ```typescript
+ f32 
+
+f32 
+
+f32 
+
+f32 
+
 let fx: f32 = 0;
 let fy: f32 = 0;
 let damping = load<u8>(DAMPING_OFF + idx as usize);
@@ -30398,7 +32205,7 @@ level: 1
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
   role: u8
 vars:
   - SPATIAL_CELL_SIZE
@@ -30427,6 +32234,7 @@ deps:
   - get_glyph_influence
   - read_structure_cell
   - encode_force_tuple
+  - TYPES
 description: Auto-recovered calculate_trophism
 ---
 
@@ -30438,6 +32246,14 @@ unimplemented!()
 ```
 
 ```typescript
+ f32 
+
+f32 
+
+f32 
+
+f32 
+
 let tx: f32 = 0;
 let ty: f32 = 0;
 const radius: f32 = 250.0;
@@ -30770,6 +32586,8 @@ args:
   fx: f32
   fy: f32
 description: Auto-recovered encode_force_tuple
+deps:
+  - TYPES
 ---
 
 ---
@@ -30780,6 +32598,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 // Reinterpret cast f32 -> i32 then pack into i64
 const xInt = reinterpret<i32>(fx);
 const yInt = reinterpret<i32>(fy);
@@ -30816,6 +32638,7 @@ deps:
   - get_bond_target
   - get_bond_stiffness
   - add_resonance_delta
+  - TYPES
 description: Auto-recovered fire_signal
 ---
 
@@ -30827,6 +32650,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 for (let b = 0; b < 4; b++) {
   let target = get_bond_target(idx, b);
   if (target > 0 && target < MAX_ATOMS) {
@@ -30872,6 +32699,7 @@ description: Auto-recovered get_attention_cell
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -30882,6 +32710,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
 return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 ```
@@ -30910,6 +32746,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - get_logic_byte
+  - TYPES
 description: Auto-recovered get_genome_velocity_x
 ---
 
@@ -30921,6 +32758,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 let vx: i32 = 0;
 for (let b = 0; b < 2; b++) {
   let byte = get_logic_byte(idx, b);
@@ -30963,6 +32808,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - get_logic_byte
+  - TYPES
 description: Auto-recovered get_genome_velocity_y
 ---
 
@@ -30974,6 +32820,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 let vy: i32 = 0;
 for (let b = 2; b < 4; b++) {
   let byte = get_logic_byte(idx, b);
@@ -31026,6 +32880,7 @@ deps:
   - SYSTEM_CONSTANTS
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -31036,6 +32891,14 @@ unimplemented!()
 ```
 
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (gx < 0 || gx >= GRID_W || gy < 0 || gy >= GRID_H) return 0.0;
 const cell = gy * GRID_W + gx;
 const header = atomic.load<i32>(GLYPH_HEADER_OFF + (cell << 2) as usize);
@@ -31114,6 +32977,7 @@ description: Auto-recovered publish_build_intent
 deps:
   - SYSTEM_CONSTANTS
   - OMEGA_MEMORY_LAYOUT
+  - TYPES
 ---
 
 ---
@@ -31124,6 +32988,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
 const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
 const ownerToken = ownerAtomIdx + 1;
@@ -31196,6 +33064,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - fast_max
+  - TYPES
 description: Auto-recovered publish_charge_intent
 ---
 
@@ -31207,6 +33076,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ptr = STRUCTURE_CHARGE_INTENT_OFF + (cellIdx << 2) as usize;
 let charge = requestedCharge;
 charge = fast_max(charge, 0);
@@ -31259,6 +33132,7 @@ vars:
 deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
+  - TYPES
 description: Auto-recovered read_structure_cell
 ---
 
@@ -31270,6 +33144,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const ownerPtr = STRUCTURE_BUILD_OWNER_OFF + (cellIdx << 2) as usize;
 const valuePtr = STRUCTURE_BUILD_VALUE_OFF + (cellIdx << 2) as usize;
 const gridPtr = STRUCTURE_GRID_OFF + (cellIdx << 2) as usize;
@@ -31326,6 +33204,7 @@ deps:
   - OMEGA_MEMORY_LAYOUT
   - SYSTEM_CONSTANTS
   - read_structure_cell
+  - TYPES
 description: Auto-recovered read_structure_charge
 ---
 
@@ -31337,6 +33216,10 @@ unimplemented!()
 ```
 
 ```typescript
+
+
+
+
 const cellVal = read_structure_cell(cellIdx);
 const baseCharge = (cellVal >> 16) & 0xFF;
 const intentCharge = atomic.load<i32>(
@@ -31444,6 +33327,7 @@ deps:
   - set_bond_target
   - set_bond_stiffness
   - get_bond_target
+  - TYPES
 description: Auto-recovered resolve_bond_requests
 ---
 
@@ -31455,6 +33339,14 @@ unimplemented!()
 ```
 
 ```typescript
+ i32 
+
+i32 
+
+i32 
+
+i32 
+
 let resolved: i32 = 0;
 for (let i = start; i < end; i++) {
   const ptr = BOND_REQUESTS_OFFSET + (i * 12) as usize;
@@ -31548,6 +33440,7 @@ deps:
   - tick_structure_grid
   - diffuse_viral_semantics
   - glyph_transport
+  - TYPES
 ---
 
 ---
@@ -31872,11 +33765,19 @@ description: Migrated from src/06/AKASHA_CODEX.ts
 tags:
   - membrane
   - host
-deps:
-  - LLM_SYNAPSE
-  - LOGGER
 min_level: 8
 vars:
+  - SpeciesEntry
+  - ChronicleEntry
+  - RelicEntry
+  - InvariantSignal
+  - InvariantEntry
+  - DaemonInvariantFrame
+  - CodexNarrative
+  - CodexState
+  - GenomeStats
+  - RelicCandidate
+  - TaxonomyResult
   - GRID_CELLS
   - GRID_H
   - GRID_W
@@ -31889,9 +33790,15 @@ vars:
   - OP_SENSE
   - OP_SENSE_AS
   - MX
+  - CodexLineageProfile
+  - GlyphTransportEvidence
+  - HormoneRegimeEvidence
+deps:
+  - LLM_SYNAPSE
+  - LOGGER
+  - TYPES
 extra_symbols:
   - AKASHA_CODEX
-  - CodexLineageProfile
 ---
 
 ### TypeScript
@@ -31899,11 +33806,6 @@ extra_symbols:
 ```typescript
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
-
-import type {
-  GlyphSnapshot
-} from "@g06";
-
 
 const CODEX_ROOT = "codex";
 const SPECIES_DIR = `${CODEX_ROOT}/species`;
@@ -31929,183 +33831,6 @@ const MAX_INVARIANTS = 512;
 const MAX_INVARIANT_SIGNATURES = 2048;
 const INVARIANT_SYNC_INTERVAL_MS = 15_000;
 const GLYPH_TRANSPORT_RECORD_INTERVAL = 256;
-
-type SpeciesEntry = {
-  id: string;
-  genome: string;
-  latinName: string;
-  behavior: string;
-  philosophy: string;
-  dominantInstructions: string[];
-  firstRecordedTick: number;
-  lastDominantTick: number;
-  dominantEpochs: number;
-  peakShare: number;
-  filePath: string;
-  createdAt: string;
-};
-
-type ChronicleEntry = {
-  id: string;
-  tick: number;
-  epoch: number;
-  type: string;
-  title: string;
-  body: string;
-  createdAt: string;
-};
-
-type RelicEntry = {
-  id: string;
-  tick: number;
-  epoch: number;
-  signature: string;
-  size: number;
-  bounds: { x0: number; y0: number; x1: number; y1: number };
-  summary: string;
-  snapshotPath: string;
-  filePath: string;
-  createdAt: string;
-};
-
-type InvariantSignal = {
-  key: string;
-  vector: string;
-  weight: number;
-  evidence: string[];
-};
-
-type InvariantEntry = {
-  id: string;
-  tick: number;
-  epoch: number;
-  center: string;
-  signature: string;
-  summary: string;
-  dominantVector: string;
-  signals: InvariantSignal[];
-  source: string;
-  filePath: string;
-  createdAt: string;
-  hormones: number[];
-};
-
-type DaemonInvariantFrame = {
-  tick: number;
-  epoch: number;
-  center: string;
-  signature: string;
-  summary: string;
-  invariants: InvariantSignal[];
-  created_at: string;
-  hormones: number[];
-};
-
-type CodexNarrative = {
-  tick: number;
-  epoch: number;
-  mood: "ASCENDANT" | "STABLE" | "FRAGILE";
-  title: string;
-  summary: string;
-  sharedCenter: string;
-  speciesHighlights: Array<{
-    latinName: string;
-    genome: string;
-    dominantEpochs: number;
-    peakShare: number;
-  }>;
-  invariantHighlights: Array<{
-    tick: number;
-    epoch: number;
-    center: string;
-    signature: string;
-    dominantVector: string;
-    summary: string;
-  }>;
-  recentChronicles: Array<{
-    tick: number;
-    epoch: number;
-    type: string;
-    title: string;
-  }>;
-  relicStatus: string;
-  glyphStatus: string;
-  glyphRegime: string;
-  glyphDominantRole: string;
-  glyphSourceMode: string;
-  metabolicPressure: number;
-  daemonEffectStatus: string;
-  daemonEffectLineage: string;
-  daemonEffectDeltaBand: string;
-  hormoneRegime: string;
-  promptBridge: string;
-  hippocampusRecall?: {
-    tick: number;
-    epoch: number;
-    summary: string;
-    distance: number;
-    distanceType: string;
-  };
-};
-
-type CodexState = {
-  version: number;
-  epochTicks: number;
-  lastEpochScanTick: number;
-  populationPeak: number;
-  lastPopulation: number;
-  lastMassExtinctionTick: number;
-  lastDecree: string;
-  lastDecreeTick: number;
-  genomeEpochs: Record<string, number[]>;
-  relicSignatures: string[];
-  invariantSignatures: string[];
-  lastGlyphTransportSignature: string;
-  lastGlyphTransportTick: number;
-  lastGlyphTransportRegime: string;
-  lastGlyphTransportSummary: string;
-  lastGlyphTransportDominantRole: string;
-  lastGlyphTransportSourceMode: string;
-  lastHormoneRegimeSignature: string;
-  lastHormoneRegimeTick: number;
-  lastHormoneRegimeSummary: string;
-  lastDaemonEffectTick: number;
-  lastDaemonEffectSummary: string;
-  lastDaemonEffectLineage: string;
-  lastDaemonEffectDeltaBand: string;
-  lastSyntropy: number;
-  lastImmunePurgeTick: number;
-  lastImmunePurgeCount: number;
-};
-
-type GenomeStats = {
-  genome: string;
-  count: number;
-  share: number;
-  sampleIndices: number[];
-};
-
-type RelicCandidate = {
-  cells: number[];
-  bounds: { x0: number; y0: number; x1: number; y1: number };
-  size: number;
-  signatureBase: string;
-};
-
-type TaxonomyResult = {
-  latinName: string;
-  behavior: string;
-  philosophy: string;
-};
-
-export type CodexLineageProfile = {
-  genome: string;
-  label: string;
-  dominantEpochs: number;
-  peakShare: number;
-  known: boolean;
-  generatedAt: string;
-};
 
 const OPCODE_NAMES: Record<number, string> = {
   0x00: "NOP",
@@ -32274,19 +33999,6 @@ const narrativeTitleForMood = (mood: CodexNarrative["mood"]): string => {
   return "Lattice in Coherence Arc";
 };
 
-type GlyphTransportEvidence = {
-  active: boolean;
-  regime: string;
-  dominantRole: string;
-  sourceMode: string;
-  amplitudeBand: string;
-  signature: string;
-  title: string;
-  body: string;
-  summary: string;
-  metabolicPressure: number;
-};
-
 const dominantGlyphRole = (snapshot: GlyphSnapshot): string => {
   const counters = {
     neutral: snapshot.atomRolePheromone.neutral +
@@ -32422,13 +34134,6 @@ const buildGlyphTransportEvidence = (
 //    3=replication_bias  4=repair_drive   5=mutation_friction
 
 const HORMONE_RECORD_INTERVAL = 512;
-
-type HormoneRegimeEvidence = {
-  signature: string;
-  title: string;
-  body: string;
-  summary: string;
-};
 
 const hormoneRegimeLabel = (h: number[]): string => {
   if (h[0] > 1500) return "high_entropy";
@@ -33710,6 +35415,7 @@ tags:
 entry: true
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LOGGER
@@ -33813,11 +35519,20 @@ if (import.meta.main) {
 ---
 id: AVATAR_ENGINE
 type: module
-description: "Implementation of AVATAR_ENGINE"
+description: Implementation of AVATAR_ENGINE
 tags: []
 entry: true
 min_level: 7
+deps:
+  - TYPES
+  - GLYPH_TELEMETRY
+  - MX
+  - SYSTEM_CONSTANTS
 vars:
+  - GLYPH_TELEMETRY
+  - MX
+  - SCALE
+  - GRID_W
 ---
 
 ### TypeScript
@@ -33825,9 +35540,6 @@ vars:
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
 
-import { GLYPH_TELEMETRY } from "@g06";
-import { MX } from "@g04";
-import { GRID_W, SCALE } from "@g00";
 
 const getGridIdx = (x: number, y: number) => {
   const gx = Math.floor(x / SCALE);
@@ -33865,7 +35577,6 @@ export const AVATAR_ENGINE = {
     }
   },
 };
-
 ```
 
 ```
@@ -33882,17 +35593,23 @@ description: Migrated from src/07/05/GENESIS_BOOT.ts
 tags:
   - core
   - host
-deps: []
 min_level: 6
+vars:
+  - RolePreamble
+deps:
+  - TYPES
 extra_symbols:
   - GENESIS_PROGRAMS
   - GLYPH
-  - RolePreamble
 ---
 
 ### TypeScript
 
 ```typescript
+
+
+
+
 /**
  * GENESIS_BOOT.ts
  * Axiomatic bytecode definitions for OMEGA-64 Stage 20.
@@ -33930,11 +35647,6 @@ export const GLYPH = {
   COLLECTIVE: 32,
   ROLE: 33,
   RESOLVE: 34,
-};
-
-export type RolePreamble = {
-  roleId: number;
-  bytecode: number[];
 };
 
 /**
@@ -34049,29 +35761,15 @@ tags:
   - host
 deps:
   - LOGGER
-min_level: 7
-vars:
-  - GENESIS_PROGRAMS
-  - LOGGER
-  - Ld
-  - REIFIED_PROGRAMS
+  - TYPES
 extra_symbols:
   - GenesisInceptor
-  - InceptiveProgram
 ---
 
 ### TypeScript
 
 ```typescript
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
-
-export interface InceptiveProgram {
-  bytecode: number[];
-  metadata?: {
-    ancestorHash?: bigint;
-    roleHint?: number;
-  };
-}
 
 /**
  * GenesisInceptor manages the selection of bytecode for new atomic entities.
@@ -34121,7 +35819,8 @@ description: Migrated from src/07/05/GENESIS_REIFIED.ts
 tags:
   - core
   - host
-deps: []
+deps:
+  - TYPES
 min_level: 6
 extra_symbols:
   - REIFIED_PROGRAMS
@@ -34156,6 +35855,7 @@ vars:
   - Lw
 deps:
   - LOGGER
+  - TYPES
 ---
 
 ### TypeScript
@@ -34344,7 +36044,6 @@ async function runSoul() {
 if (import.meta.main) {
   runSoul();
 }
-
 ```
 
 ```
@@ -34366,6 +36065,7 @@ tags:
   - oracle
 deps:
   - LOGGER
+  - TYPES
 min_level: 7
 vars:
   - LOGGER
@@ -34380,7 +36080,6 @@ extra_symbols:
 ```typescript
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
-
 
 export const LLM_SYNAPSE = {
   /**
@@ -34821,8 +36520,11 @@ tags:
   - host
 deps:
   - glyph_ir_64
+  - TYPES
 min_level: 8
 vars:
+  - LegacyInstruction
+  - GlyphTapeToken
   - OP_ADD
   - OP_BIND
   - OP_BUILD
@@ -34847,9 +36549,8 @@ vars:
   - OP_SYSCALL
   - OP_TENSEGRITY
   - glyphSpecByLegacyOpcode
+  - ScriptToGlyphOptions
 extra_symbols:
-  - GlyphTapeToken
-  - LegacyInstruction
   - decodeLegacyInstruction
   - legacyOpcodeLength
   - scriptToGlyphTape
@@ -34859,19 +36560,8 @@ extra_symbols:
 
 ```typescript
 
-export type LegacyInstruction = {
-  pc: number;
-  opcode: number;
-  opcodeMnemonic: string;
-  length: number;
-  args: number[];
-};
 
-export type GlyphTapeToken = LegacyInstruction & {
-  glyphId: number | null;
-  glyphMnemonic: string | null;
-  mapped: boolean;
-};
+
 
 const OPCODE_NAMES = new Map<number, string>([
   [OP_NOP, "NOP"],
@@ -34948,11 +36638,6 @@ export const decodeLegacyInstruction = (
   };
 };
 
-type ScriptToGlyphOptions = {
-  allowUnmapped?: boolean;
-  maxSteps?: number;
-};
-
 export const scriptToGlyphTape = (
   script: Uint8Array,
   options: ScriptToGlyphOptions = {},
@@ -35000,19 +36685,27 @@ export const scriptToGlyphTape = (
 ---
 id: SEMANTIC_MEMBRANE
 type: module
-description: "Implementation of SEMANTIC_MEMBRANE"
+description: Implementation of SEMANTIC_MEMBRANE
 tags: []
 min_level: 5
+vars:
+  - BehaviorFingerprint
+  - BehaviorCluster
+  - BehaviorRuntime
+  - Aggregate
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { GRID_W, GRID_H, GRID_CELLS } from "../00/SYSTEM_CONSTANTS.ts";
+
+
+
+
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
 
-import { MX } from "@g04";
-import { LLM_SYNAPSE } from "@g07";
 
 const PROJECTION_SIZE = 64;
 const projectionMatrix = new Float32Array(PROJECTION_SIZE * PROJECTION_SIZE);
@@ -35024,31 +36717,6 @@ const BEHAVIOR_STATE_TTL_TICKS = 2048;
 const OP_REPLICATE = 0x80;
 const OP_SIGNAL = 0x81;
 const OP_BUILD = 0xA8;
-
-export type BehaviorFingerprint = {
-  replicateRatio: number;
-  signalRatio: number;
-  buildRatio: number;
-  survivalCurve: number[];
-};
-
-export type BehaviorCluster = {
-  behaviorSignature: string;
-  memberCount: number;
-  dominantRole: number;
-  genomeSamples: string[];
-  fingerprint: BehaviorFingerprint;
-  lastTick: number;
-};
-
-type BehaviorRuntime = {
-  survivalCurve: number[];
-  lastTick: number;
-  memberCount: number;
-  dominantRole: number;
-  genomeSamples: string[];
-  fingerprint: BehaviorFingerprint;
-};
 
 // Initialize with deterministic pseudo-random resonance
 for (let i = 0; i < projectionMatrix.length; i++) {
@@ -35146,15 +36814,6 @@ export const SEMANTIC_MEMBRANE = {
     const stride = active.length > localSampleLimit
       ? Math.ceil(active.length / localSampleLimit)
       : 1;
-
-    type Aggregate = {
-      memberCount: number;
-      replicateTotal: number;
-      signalTotal: number;
-      buildTotal: number;
-      roleCounts: number[];
-      genomeSamples: string[];
-    };
 
     const aggregates = new Map<string, Aggregate>();
     for (let i = 0; i < active.length; i += stride) {
@@ -35522,7 +37181,6 @@ export const SEMANTIC_MEMBRANE = {
     return ruins.slice(0, 5);
   },
 };
-
 ```
 
 ```
@@ -35535,11 +37193,13 @@ export const SEMANTIC_MEMBRANE = {
 ---
 id: SOVEREIGN_ORACLE
 type: module
-description: "Implementation of SOVEREIGN_ORACLE"
+description: Implementation of SOVEREIGN_ORACLE
 tags:
   - host
 min_level: 9
 vars:
+  - OraclePendingMutation
+  - OracleDrainStats
   - GRID_H
   - GRID_W
   - LLM_SYNAPSE
@@ -35555,67 +37215,21 @@ vars:
   - SEMANTIC_MEMBRANE
   - SOVEREIGNTY_ENGINE
   - MX
-extra_symbols:
-  - SOVEREIGN_ORACLE
   - SovereignOracleAkashaDelegate
 deps:
   - LLM_SYNAPSE
   - LOGGER
   - PULSE
+  - TYPES
+extra_symbols:
+  - SOVEREIGN_ORACLE
 ---
 
 ### TypeScript
 ```typescript
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
-
-
-
-export interface SovereignOracleAkashaDelegate {
-  recordTelemetry(event: { lane: string; kind: string; count: number }): void;
-  appendObserverCommentary(tick: number, epoch: number, message: string): Promise<void>;
-}
-
 let delegate: SovereignOracleAkashaDelegate | null = null;
-
-type OraclePendingMutation =
-  | {
-    kind: "oracle_head_mutation";
-    regentIndex: number;
-    headBytes: Uint8Array;
-    genomeHex: string;
-  }
-  | {
-    kind: "oracle_memetic_injection";
-    regentIndex: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_cache_fallback";
-    regentIndex: number;
-    logicBytes: Uint8Array;
-    cachedHex: string;
-  }
-  | {
-    kind: "oracle_whisper_broadcast";
-    gridIdx: number;
-    charge: number;
-    memeBytes: Uint8Array;
-  }
-  | {
-    kind: "oracle_plasmid_injection";
-    gridIdx: number;
-    charge: number;
-    plasmidBytes: Uint8Array;
-    source: "oracle_guidance" | "oracle_cache_fallback";
-  };
-
-type OracleDrainStats = {
-  applied: number;
-  skipped: number;
-  dropped: number;
-  remaining: number;
-};
 
 const ORACLE_PENDING_MAX = RUNTIME_POLICY.oracle.pendingMax;
 const ORACLE_MUTATION_MODE = RUNTIME_POLICY.oracle.mutationMode;
@@ -36268,7 +37882,6 @@ export const SOVEREIGN_ORACLE = {
     }
   },
 };
-
 ```
 
 ```
@@ -36281,10 +37894,11 @@ export const SOVEREIGN_ORACLE = {
 ---
 id: clamp_world_x
 type: pure_fn
-description: "Constrain an X coordinate to the absolute global bounds"
-deps: 
+description: Constrain an X coordinate to the absolute global bounds
+deps:
   - SYSTEM_CONSTANTS
   - math_clamp
+  - TYPES
 vars:
   - WORLD_MAX_X
   - math_clamp
@@ -36292,7 +37906,8 @@ args:
   x: i32
 returns: i32
 tests:
-  - [-5, 0]
+  - - -5
+    - 0
 ---
 
 ### Rust
@@ -36320,18 +37935,20 @@ return math_clamp(x, 0, WORLD_MAX_X);
 ---
 id: clamp_world_y
 type: pure_fn
-description: "Constrain a Y coordinate to the absolute global bounds"
-deps: 
+description: Constrain a Y coordinate to the absolute global bounds
+deps:
   - SYSTEM_CONSTANTS
   - math_clamp
+  - TYPES
 vars:
   - WORLD_MAX_Y
   - math_clamp
 args:
-  y: i32
+  'y': i32
 returns: i32
 tests:
-  - [-5, 0]
+  - - -5
+    - 0
 ---
 
 ### Rust
@@ -36359,16 +37976,23 @@ return math_clamp(y, 0, WORLD_MAX_Y);
 ---
 id: dir4_x
 type: pure_fn
-description: "Resolve cardinal X-axis direction (-1, 0, 1) from 4-way compass index: 0=West, 1=East"
-deps: []
+description: >-
+  Resolve cardinal X-axis direction (-1, 0, 1) from 4-way compass index: 0=West,
+  1=East
+deps:
+  - TYPES
 args:
-  n: i32
+  'n': i32
 returns: i32
 tests:
-  - [0, -1]
-  - [1, 1]
-  - [2, 0]
-  - [3, 0]
+  - - 0
+    - -1
+  - - 1
+    - 1
+  - - 2
+    - 0
+  - - 3
+    - 0
 ---
 
 ### Rust
@@ -36384,6 +38008,10 @@ if n == 0 {
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (n == 0) return -1;
 if (n == 1) return 1;
 return 0;
@@ -36406,16 +38034,23 @@ return 0;
 ---
 id: dir4_y
 type: pure_fn
-description: "Resolve cardinal Y-axis direction (-1, 0, 1) from 4-way compass index: 2=North, 3=South"
-deps: []
+description: >-
+  Resolve cardinal Y-axis direction (-1, 0, 1) from 4-way compass index:
+  2=North, 3=South
+deps:
+  - TYPES
 args:
-  n: i32
+  'n': i32
 returns: i32
 tests:
-  - [0, 0]
-  - [1, 0]
-  - [2, -1]
-  - [3, 1]
+  - - 0
+    - 0
+  - - 1
+    - 0
+  - - 2
+    - -1
+  - - 3
+    - 1
 ---
 
 ### Rust
@@ -36431,6 +38066,10 @@ if n == 2 {
 
 ### TypeScript
 ```typescript
+
+
+
+
 if (n == 2) return -1;
 if (n == 3) return 1;
 return 0;
@@ -36453,16 +38092,23 @@ return 0;
 ---
 id: dir8_x
 type: pure_fn
-description: "Resolve X-axis direction (-1, 0, 1) from 8-way compass index: 0=NW, 1=NE, 2=N, 3=S, 4=W, 5=E, 6=SW, 7=SE"
-deps: []
+description: >-
+  Resolve X-axis direction (-1, 0, 1) from 8-way compass index: 0=NW, 1=NE, 2=N,
+  3=S, 4=W, 5=E, 6=SW, 7=SE
+deps:
+  - TYPES
 args:
-  n: i32
+  'n': i32
 returns: i32
 tests:
-  - [0, -1]
-  - [1, 1]
-  - [2, 0]
-  - [3, 0]
+  - - 0
+    - -1
+  - - 1
+    - 1
+  - - 2
+    - 0
+  - - 3
+    - 0
 ---
 
 ### Rust
@@ -36478,6 +38124,14 @@ if n == 0 || n == 4 || n == 6 {
 
 ### TypeScript
 ```typescript
+ 0 
+
+0 
+
+0 
+
+0 
+
 if (n == 0 || n == 4 || n == 6) return -1;
 if (n == 1 || n == 5 || n == 7) return 1;
 return 0;
@@ -36500,18 +38154,25 @@ return 0;
 ---
 id: dir8_y
 type: pure_fn
-description: "Resolve Y-axis direction (-1, 0, 1) from 8-way compass index"
-deps: []
+description: 'Resolve Y-axis direction (-1, 0, 1) from 8-way compass index'
+deps:
+  - TYPES
 args:
-  n: i32
+  'n': i32
 returns: i32
 tests:
-  - [2, -1]
-  - [4, -1]
-  - [5, -1]
-  - [3, 1]
-  - [6, 1]
-  - [7, 1]
+  - - 2
+    - -1
+  - - 4
+    - -1
+  - - 5
+    - -1
+  - - 3
+    - 1
+  - - 6
+    - 1
+  - - 7
+    - 1
 ---
 
 ### Rust
@@ -36527,6 +38188,14 @@ if n == 2 || n == 4 || n == 5 {
 
 ### TypeScript
 ```typescript
+ 2 
+
+2 
+
+2 
+
+2 
+
 if (n == 2 || n == 4 || n == 5) return -1;
 if (n == 3 || n == 6 || n == 7) return 1;
 return 0;
@@ -36549,19 +38218,24 @@ return 0;
 ---
 id: in_grid
 type: pure_fn
-description: "Verify if provided coordinates fall within the topological cell grid bounds"
-deps: 
+description: Verify if provided coordinates fall within the topological cell grid bounds
+deps:
   - SYSTEM_CONSTANTS
+  - TYPES
 vars:
   - GRID_W
   - GRID_H
 args:
   x: i32
-  y: i32
+  'y': i32
 returns: boolean
 tests:
-  - [-1, 5, false]
-  - [5, -1, false]
+  - - -1
+    - 5
+    - false
+  - - 5
+    - -1
+    - false
 ---
 
 ### Rust
@@ -36571,6 +38245,10 @@ x >= 0 && x < GRID_W && y >= 0 && y < GRID_H
 
 ### TypeScript
 ```typescript
+
+
+
+
 return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ```
 
@@ -36589,11 +38267,14 @@ return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 ---
 id: store_clamped_pos
 type: pure_fn
-description: "Store an atom's physical coordinates directly into shared memory with strict bounding enforcement"
-deps: 
+description: >-
+  Store an atom's physical coordinates directly into shared memory with strict
+  bounding enforcement
+deps:
   - OMEGA_MEMORY_LAYOUT
   - clamp_world_x
   - clamp_world_y
+  - TYPES
 vars:
   - XS_OFFSET
   - YS_OFFSET
@@ -36602,7 +38283,7 @@ vars:
 args:
   idx: i32
   x: i32
-  y: i32
+  'y': i32
 returns: void
 ---
 
@@ -36615,6 +38296,10 @@ returns: void
 
 ### TypeScript
 ```typescript
+
+
+
+
 /*
 This function mutates shared WASM buffer memory and assumes 'store<i16>' exists in the execution environment window.
 AssemblyScript exports are intended to run natively. In Deno TS contexts this is ignored.
@@ -36645,6 +38330,8 @@ tags:
   - atom
   - registry
   - index
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | ID_TO_IDX.ts
@@ -36652,6 +38339,10 @@ tags:
 Lightweight ID↔Index registry shared across runtime modules.
 
 ```typescript
+
+
+
+
 export const ID_TO_IDX = new Map<string, number>();
 ```
 
@@ -36672,6 +38363,8 @@ tags:
   - atom
   - registry
   - index
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | IDX_TO_ID.ts
@@ -36679,6 +38372,10 @@ tags:
 Lightweight ID↔Index registry shared across runtime modules.
 
 ```typescript
+
+
+
+
 export const IDX_TO_ID = new Map<number, string>();
 ```
 
@@ -36693,19 +38390,24 @@ export const IDX_TO_ID = new Map<number, string>();
 id: prng_next
 type: module
 epoch: 8
-description: >-
-  Generates the next value and the subsequent state for the PRNG.
+description: Generates the next value and the subsequent state for the PRNG.
 tags:
   - 00_substrate
   - prng
   - oracle
   - deterministic
 min_level: 0
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | prng_next.ts | The Immutable Deterministic Oracle
 
 ```typescript
+
+
+
+
 /**
  * Generates the next value and the subsequent state for the PRNG.
  * @param state The current seed state.
@@ -36740,19 +38442,24 @@ export function prng_next(state: u32): u32 {
 id: prng_seed_from
 type: module
 epoch: 8
-description: >-
-  Static helper to derive a deterministic seed from tick and atom ID.
+description: Static helper to derive a deterministic seed from tick and atom ID.
 tags:
   - 00_substrate
   - prng
   - oracle
   - deterministic
 min_level: 0
+deps:
+  - TYPES
 ---
 
 # OMEGA-64 | prng_seed_from.ts | The Immutable Deterministic Oracle
 
 ```typescript
+
+
+
+
 /**
  * Static helper to derive a seed from tick and atom ID.
  * @param tick Current system tick
@@ -36792,16 +38499,31 @@ export function prng_seed_from(tick: u32, atomId: string): u32 {
 ---
 id: GLYPH_TELEMETRY
 type: module
-description: "Implementation of GLYPH_TELEMETRY"
+description: Implementation of GLYPH_TELEMETRY
 tags: []
 min_level: 6
+vars:
+  - GlyphRoleCounters
+  - GlyphSnapshot
+  - GlyphKind
+  - GRID_W
+  - GRID_H
+  - MIN_GLYPH_AMP
+  - MAX_GLYPH_AMP
+  - SECRETION_STATS_OFFSET
+deps:
+  - SYSTEM_CONSTANTS
+  - MX
+  - TYPES
+  - OMEGA_MEMORY_LAYOUT
 ---
 
 ### TypeScript
 ```typescript
-import { GRID_CELLS, GRID_H, GRID_W, MAX_GLYPH_AMP, MIN_GLYPH_AMP } from "@g00";
-import { SECRETION_STATS_OFFSET } from "@g01";
-import { MX } from "@g04";
+
+
+
+
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -36829,31 +38551,6 @@ const getSecretionStatsView = (): Int32Array => {
   }
   return _secretionStatsView;
 };
-
-type GlyphKind = typeof GLYPH_KIND[keyof typeof GLYPH_KIND];
-
-export type GlyphRoleCounters = {
-  neutral: number;
-  producer: number;
-  guardian: number;
-  architect: number;
-  parasite: number;
-};
-
-export type GlyphSnapshot = {
-  activeCells: number;
-  pheromoneCells: number;
-  plasmidCells: number;
-  maxAmplitude: number;
-  totalAmplitude: number;
-  internalSignalSeeds: number;
-  internalMemorySeeds: number;
-  internalAtomPheromoneSeeds: number;
-  internalAtomPlasmidSeeds: number;
-  atomRolePheromone: GlyphRoleCounters;
-  atomRolePlasmid: GlyphRoleCounters;
-};
-
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
 
@@ -37008,7 +38705,6 @@ export const GLYPH_TELEMETRY = {
     };
   },
 };
-
 ```
 
 ```
@@ -37028,30 +38724,28 @@ min_level: 8
 vars:
   - LOGGER
   - Ld
+  - MutationLane
+  - MutationEvent
+  - RUNTIME_POLICY
 extra_symbols:
   - MUTATION_TELEMETRY
 deps:
   - LOGGER
+  - TYPES
+  - RUNTIME_POLICY
 ---
 
 ### TypeScript
 ```typescript
-import { RUNTIME_POLICY } from "../02/RUNTIME_POLICY.ts";
 
-type MutationLane =
-  | "internal_oracle"
-  | "internal_host"
-  | "internal_wasm"
-  | "canonical_gate"
-  | "external_ingress"
-  | "external_daemon";
 
-type MutationEvent = {
-  lane: MutationLane;
-  kind: string;
-  count?: number;
-};
 
+
+
+/**
+ * @contract [daemon-governance]
+ * Mutation lanes: "external_daemon", "external_ingress"
+ */
 const TELEMETRY_ENABLED = RUNTIME_POLICY.telemetry.enabled;
 const FLUSH_INTERVAL_TICKS = RUNTIME_POLICY.telemetry.flushIntervalTicks;
 const TOP_KINDS = RUNTIME_POLICY.telemetry.topKinds;
@@ -37121,7 +38815,6 @@ export const MUTATION_TELEMETRY = {
       .slice(0, TOP_KINDS),
   }),
 };
-
 ```
 
 ```
@@ -37140,11 +38833,16 @@ min_level: 6
 entry: true
 extra_symbols:
   - SERVE_DASHBOARD
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
+
+
+
 import {
   parse as parseYaml,
   stringify as stringifyYaml,
@@ -37481,7 +39179,6 @@ if (import.meta.main) {
 
 export const SERVE_DASHBOARD = {
 };
-
 ```
 
 ```
@@ -37494,7 +39191,7 @@ export const SERVE_DASHBOARD = {
 ---
 id: TUI_DASHBOARD
 type: module
-description: "Implementation of TUI_DASHBOARD"
+description: Implementation of TUI_DASHBOARD
 tags:
   - standalone
 entry: true
@@ -37514,11 +39211,15 @@ extra_symbols:
 deps:
   - LOGGER
   - PULSE
+  - TYPES
 ---
 
 ### TypeScript
 ```typescript
-import { AgentProxy } from "../08/AGENT_PROXY.ts";
+
+
+
+
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;
@@ -37651,7 +39352,6 @@ if (import.meta.main) {
 }
 
 export const TUI_DASHBOARD = {};
-
 ```
 
 ```
@@ -37876,7 +39576,6 @@ export const TUI_DASHBOARD = {};
 
 - scenario: daemon policy block
 - setup: warmup 128 ticks, then one fixed INJECT_PLASMID payload with a blocked
-  opcode
 - duration: 256 ticks total
 - daemonEnabled: true
 - runtime_mode: legacy-runtime/api-observer-harness
@@ -38327,23 +40026,20 @@ extra_symbols:
   - GOLDEN_TRACE_CATALOG
   - goldenTraceById
   - goldenTraceArtifactPaths
+vars:
+  - GoldenTraceMetricPolicy
+  - GoldenTraceScenario
+deps:
+  - TYPES
 ---
 
 ### TypeScript
 
 ```typescript
-export type GoldenTraceMetricPolicy = "strict" | "bounded";
 
-export type GoldenTraceScenario = {
-  id: string;
-  scenario: string;
-  setup: string;
-  duration: string;
-  daemonEnabled: boolean;
-  metrics: readonly string[];
-  driftPolicy: Readonly<Record<string, GoldenTraceMetricPolicy>>;
-  supportFiles: readonly string[];
-};
+
+
+
 
 const TRACE_ROOT = "src/ontology/verification/data/traces";
 
@@ -38959,6 +40655,7 @@ deps:
   - GATE
   - assembler
   - pack_structure_intent
+  - TYPES
 vars:
   - GRID_W
   - pack_structure_intent
@@ -38995,69 +40692,22 @@ vars:
   - PROP_Y
   - STR_WIRE
   - OP_NOP
+  - ReductionCaseExpectation
+  - ReductionCaseDefinition
 extra_symbols:
   - REDUCTION_CASES
   - makeReplicatorLoopScript
   - makeArchitectLoopScript
   - reductionCaseById
-  - ReductionCaseDefinition
 ---
 
 ### TypeScript
 
 ```typescript
 
-export type ReductionCaseExpectation = {
-  finalPc: number;
-  replicateCount?: number;
-  signalCount?: number;
-  buildCount?: number;
-  finalRole?: number;
-  registers?: number[];
-  finalProps?: Partial<Record<number, number>>;
-  finalHiveMemory?: Partial<Record<number, number>>;
-  finalHiveBalance?: number;
-  finalSignalGrid?: Partial<Record<number, number>>;
 
-  finalPeerEnergy?: Partial<Record<number, number>>;
-  finalPeerPc?: Partial<Record<number, number>>;
-  finalBondDistances?: Partial<Record<number, number>>;
-  finalDamping?: number;
-  finalStructureGrid?: Partial<Record<number, number>>;
 
-  branchTaken?: boolean;
-  finalBondRequests?: Partial<Record<number, number>>;
-  finalHiveEnergyPool?: Partial<Record<number, number>>;
-  finalHormones?: number[];
-};
 
-export type ReductionCaseDefinition = {
-  id: string;
-  baselineTraceId: string;
-  description: string;
-  script: Uint8Array;
-  maxSteps: number;
-  ownerAtomIdx?: number;
-  postStructureTick?: boolean;
-  initialRegs?: number[];
-
-  initialProps: Partial<Record<number, number>>;
-  initialBondTargets?: Partial<Record<number, number>>;
-  initialBondDistances?: Partial<Record<number, number>>;
-  initialDamping?: number;
-  initialPeerEnergy?: Partial<Record<number, number>>;
-  initialPeerPc?: Partial<Record<number, number>>;
-  initialCellPeers?: number[];
-  initialHiveBalance?: number;
-  initialStructureGrid?: Partial<Record<number, number>>;
-  initialStructureIntentOwner?: Partial<Record<number, number>>;
-  initialStructureIntentValue?: Partial<Record<number, number>>;
-  initialHiveMemory?: Partial<Record<number, number>>;
-  initialHormones?: number[];
-  initialHiveEnergyPool?: Partial<Record<number, number>>;
-  nativeProgram?: string; // Key in GENESIS_PROGRAMS
-  expected: ReductionCaseExpectation;
-};
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
   OP_GET, 0, PROP_ENERGY,
@@ -40141,6 +41791,7 @@ deps:
   - GOLDEN_TRACE_CATALOG
   - GENESIS_BOOT
   - glyph_pretty
+  - TYPES
 vars:
   - GRID_H
   - GRID_W
@@ -40188,170 +41839,24 @@ vars:
   - GENESIS_PROGRAMS
   - reductionCaseById
   - ReductionCaseDefinition
+  - HarnessProps
+  - ShadowEffects
+  - ShadowState
+  - LegacyShadowResult
+  - ReductionShadowResult
+  - ReductionBaselineAnchor
+  - ReductionHarnessResult
+  - ReductionHarnessArtifact
 ---
 
 ### TypeScript
 
 ```typescript
-type HarnessProps = Record<number, number>;
+import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
-type ShadowEffects = {
-  replicateCount: number;
-  signalCount: number;
-  buildCount: number;
-  bondRequestCount: number;
-  sporeDriveCount: number;
-  entangleCount: number;
-  roleWrites: number[];
-  branchTaken: boolean;
-  jumpCount: number;
-};
 
-type ShadowState = {
-  atomIndex: number;
-  pc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
 
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  cellPeers: number[];
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  executed: string[];
-  energySpent: number;
-};
 
-type LegacyShadowResult = {
-  mode: "legacy";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-};
-
-type ReductionShadowResult = {
-  mode: "glyph-reduction";
-  finalPc: number;
-  regs: number[];
-  role: number;
-  props: HarnessProps;
-  bondTargets: HarnessProps;
-  bondDistances: HarnessProps;
-  damping: number;
-  peerEnergy: HarnessProps;
-  peerPc: HarnessProps;
-  hiveMemory: HarnessProps;
-  hiveBalance: number;
-  signalGrid: HarnessProps;
-  structureGrid: HarnessProps;
-  structureIntentOwner: HarnessProps;
-  structureIntentValue: HarnessProps;
-  structureChargeIntent: HarnessProps;
-  bondRequests: HarnessProps;
-  hiveEnergyPool: HarnessProps;
-  hormones: number[];
-  effects: ShadowEffects;
-  energySpent: number;
-  executed: string[];
-  stepsExecuted: number;
-  glyphTape: GlyphTapeToken[];
-  prettyTape: string;
-};
-
-type ReductionBaselineAnchor = {
-  traceId: string;
-  scenario: string;
-  runtimeMode: string;
-  tickStart: number;
-  tickEnd: number;
-  codexSnapshotDigest: string;
-  invariantDigest: string;
-};
-
-export type ReductionHarnessResult = {
-  caseId: string;
-  baseline: ReductionBaselineAnchor;
-  legacy: LegacyShadowResult;
-  reduction: ReductionShadowResult;
-  parity: {
-    ok: boolean;
-    reasons: string[];
-  };
-};
-
-export type ReductionHarnessArtifact = {
-  case_id: string;
-  baseline_trace_id: string;
-  baseline_runtime_mode: string;
-  parity_ok: boolean;
-  parity_reasons: string[];
-  legacy_digest: string;
-  reduction_digest: string;
-  executed_digest_legacy: string;
-  executed_digest_reduction: string;
-  diff: {
-    final_pc_match: boolean;
-    registers_match: boolean;
-
-    role_match: boolean;
-    props_match: boolean;
-    bond_targets_match: boolean;
-    bond_distances_match: boolean;
-    damping_match: boolean;
-    peer_energy_match: boolean;
-    peer_pc_match: boolean;
-    hive_memory_match: boolean;
-    hive_balance_match: boolean;
-    signal_grid_match: boolean;
-    structure_grid_match: boolean;
-    structure_intent_owner_match: boolean;
-    structure_intent_value_match: boolean;
-    structure_charge_intent_match: boolean;
-    bond_requests_match: boolean;
-    hive_energy_pool_match: boolean;
-    replicate_count_match: boolean;
-    signal_count_match: boolean;
-    build_count_match: boolean;
-    branch_taken_match: boolean;
-    role_writes_match: boolean;
-    energy_spent_delta: number;
-  };
-  expectation_summary: ReductionCaseDefinition["expected"];
-};
 
 const REDUCTION_DIFF_ROOT = "src/ontology/verification/data/reduction_diffs";
 const STRUCTURE_INTENT_LOCK_BIT = -2147483648;
@@ -41194,7 +42699,6 @@ export const runReductionHarnessCase = async (
 
 const stepsToTicks = (steps: number) => Math.ceil(steps / 4);
 
-import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
 Deno.test({
   name: "Reduction Parity Harness",
