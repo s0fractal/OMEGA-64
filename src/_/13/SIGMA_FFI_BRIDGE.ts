@@ -20,6 +20,7 @@ let lib: Deno.DynamicLibrary<{
   execute_atom: { parameters: ["usize"], result: "void" };
   build_spatial_hash: { parameters: [], result: "void" };
   tick_environment: { parameters: ["u32"], result: "void" };
+  ffi_get_sensory_vector: { parameters: ["usize", "pointer"], result: "void" };
 }> | null = null;
 
 for (const path of searchPaths) {
@@ -30,6 +31,7 @@ for (const path of searchPaths) {
       execute_atom: { parameters: ["usize"], result: "void" },
       build_spatial_hash: { parameters: [], result: "void" },
       tick_environment: { parameters: ["u32"], result: "void" },
+      ffi_get_sensory_vector: { parameters: ["usize", "pointer"], result: "void" },
     });
     console.log(`[SIGMA_FFI] Native core loaded from ${path}`);
     break;
@@ -68,5 +70,7 @@ export const SIGMA_FFI = {
   executeAtom: (idx: number) => lib?.symbols.execute_atom(idx),
   buildSpatialHash: () => lib?.symbols.build_spatial_hash(),
   tickEnvironment: (tick: number) => lib?.symbols.tick_environment(tick),
+  getSensoryVector: (atomIdx: number, resultPtr: Deno.PointerValue) =>
+    lib?.symbols.ffi_get_sensory_vector(atomIdx, resultPtr),
   loaded: () => !!lib,
 };

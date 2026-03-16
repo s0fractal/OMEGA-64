@@ -303,6 +303,108 @@ pub extern "C" fn run_shadow_simulation_ffi(
 }
 
 #[unsafe(no_mangle)]
+pub extern "C" fn ffi_get_sensory_vector(atom_id: usize, result_ptr: *mut f32) {
+    let state = unsafe { get_ffi_state() };
+    if atom_id >= crate::MAX_ATOMS || state.matrix.ids[atom_id] == 0 {
+        return;
+    }
+
+    let x = state.matrix.xs[atom_id] as f32;
+    let y = state.matrix.ys[atom_id] as f32;
+
+    // Result mapping: [N, E, S, W] for Trophic, Threat, Glyph (12 floats)
+    let result = unsafe { std::slice::from_raw_parts_mut(result_ptr, 12) };
+    result.fill(0.0);
+
+    let gx = (x as i32 / crate::SPATIAL_CELL_SIZE) as i32;
+    let gy = (y as i32 / crate::SPATIAL_CELL_SIZE) as i32;
+
+    // Search 5x5 window (2 cells radius)
+    for dy in -2..=2 {
+        for dx in -2..=2 {
+            let cx = gx + dx;
+            let cy = gy + dy;
+
+            if cx < 0 || cx >= crate::GRID_W || cy < 0 || cy >= crate::GRID_H {
+                continue;
+            }
+
+            let cell_idx = (cy * crate::GRID_W + cx) as usize;
+
+            // 1. Accumulate Glyph (Signal) gradients
+            let signal = state.matrix.signal_grid[cell_idx] as f32;
+            if signal > 0.0 {
+                let dist_sq = (dx * dx + dy * dy) as f32;
+                let weight = 1.0 / (1.0 + dist_sq);
+                if dy < 0 {
+                    result[8] += signal * weight;
+                } // North
+                if dx > 0 {
+                    result[9] += signal * weight;
+                } // East
+                if dy > 0 {
+                    result[10] += signal * weight;
+                } // South
+                if dx < 0 {
+                    result[11] += signal * weight;
+                } // West
+            }
+
+            // 2. Accumulate Atom-based gradients (Trophic & Threat)
+            let offset = cell_idx * 32;
+            let count = state.matrix.spatial_grid[offset] as usize;
+            let occupancy = if count > 31 { 31 } else { count };
+
+            for i in 1..=occupancy {
+                let neighbor_id = state.matrix.spatial_grid[offset + i] as usize;
+                if neighbor_id == atom_id || neighbor_id >= crate::MAX_ATOMS {
+                    continue;
+                }
+
+                let nx = state.matrix.xs[neighbor_id] as f32;
+                let ny = state.matrix.ys[neighbor_id] as f32;
+                let rx = nx - x;
+                let ry = ny - y;
+                let dist_sq = rx * rx + ry * ry;
+                if dist_sq < 1.0 {
+                    continue;
+                }
+                let dist = dist_sq.sqrt();
+                let weight = 1.0 / dist;
+
+                // Sectorization
+                let (idx_off, val) = if state.matrix.roles[neighbor_id] == crate::ROLE_PARASITE {
+                    (4, 1.0 / dist_sq) // Threat (Inverse Square)
+                } else {
+                    (0, state.matrix.energy[neighbor_id] as f32 * weight) // Trophic (Inverse)
+                };
+
+                if ry.abs() > rx.abs() {
+                    if ry < 0.0 {
+                        result[idx_off + 0] += val;
+                    } // North
+                    else {
+                        result[idx_off + 2] += val;
+                    } // South
+                } else {
+                    if rx < 0.0 {
+                        result[idx_off + 3] += val;
+                    } // West
+                    else {
+                        result[idx_off + 1] += val;
+                    } // East
+                }
+            }
+        }
+    }
+
+    // Normalization (Sigmoid-like squash)
+    for i in 0..12 {
+        result[i] = result[i] / (1000.0 + result[i]);
+    }
+}
+
+#[unsafe(no_mangle)]
 pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
     use sha2::{Digest, Sha256};
     let state = unsafe { get_ffi_state() };

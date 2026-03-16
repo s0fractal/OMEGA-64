@@ -8,7 +8,8 @@ tags:
 deps:
   - LOGGER
   - assembler
-min_level: 8
+  - SIGMA_FFI_BRIDGE
+min_level: 14
 entry: true
 vars:
   - LOGGER
@@ -20,6 +21,7 @@ vars:
   - SYS_ATTRACT
   - SYS_TRANSFER
   - assemble
+  - SIGMA_FFI
 extra_symbols:
   - AgentProxy
 ---
@@ -28,6 +30,9 @@ extra_symbols:
 
 ```typescript
 
+
+const sensoryBuffer = new Float32Array(12);
+const sensoryPtr = Deno.UnsafePointer.of(sensoryBuffer);
 
 export class AgentProxy {
   port: number;
@@ -119,44 +124,22 @@ export class AgentProxy {
     const energy = MX.getEnergy(atomId);
     const role = MX.getRole(atomId);
 
-    // Radar scan (radius 50 units = 5 cells)
-    const vision = [];
-    const MAX_DISTANCE_SQ = 50 * 50;
-
-    // Bounded scan over MX to avoid legacy SPATIAL_HASH O(1) grid overhead
-    // which requires constant upkeep from workers.
-    for (let currentAt = 1; currentAt <= 10000; currentAt++) {
-      if (currentAt === atomId) continue;
-
-      const nId = Number(MX.getId(currentAt));
-      if (nId <= 0) continue;
-
-      const nX = MX.getX(currentAt);
-      const nY = MX.getY(currentAt);
-
-      const dx = nX - x;
-      const dy = nY - y;
-      const dSq = dx * dx + dy * dy;
-
-      if (dSq <= MAX_DISTANCE_SQ) {
-        vision.push({
-          id: nId,
-          idx: currentAt,
-          dx,
-          dy,
-          role: MX.getRole(currentAt),
-          distance: Math.sqrt(dSq),
-        });
-      }
+    // Phase 4: Vector Vision (Directional Gradients)
+    if (SIGMA_FFI.loaded()) {
+      SIGMA_FFI.getSensoryVector(atomId, sensoryPtr);
+    } else {
+      sensoryBuffer.fill(0);
     }
-
-    vision.sort((a, b) => a.distance - b.distance);
-    vision.splice(30); // Keep only nearest 30
 
     return new Response(
       JSON.stringify({
         self: { id, idx: atomId, x, y, energy, role },
-        vision,
+        sensory_tensor: {
+          trophic: Array.from(sensoryBuffer.slice(0, 4)),
+          threat: Array.from(sensoryBuffer.slice(4, 8)),
+          glyph: Array.from(sensoryBuffer.slice(8, 12)),
+          directions: ["N", "E", "S", "W"],
+        },
       }),
       { headers: { "Content-Type": "application/json" } },
     );
