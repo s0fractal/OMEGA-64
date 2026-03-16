@@ -621,3 +621,32 @@ export type DaemonIngressMetrics = {
   population: number;
   avgEnergy: number;
 };
+
+export interface SovereigntyEngineAkashaDelegate {
+  recordDecreeShift(
+    tick: number,
+    oldDecree: string,
+    newDecree: string,
+    newEpochCount: number,
+  ): void;
+}
+
+export interface InvariantPacket {
+  version: string;
+  tick_anchor: number;
+  canon_index_chain_checked: boolean;
+  canon_index_chain_ok: boolean;
+  gate_admission_index_chain_checked: boolean;
+  gate_admission_index_chain_ok: boolean;
+  ledger_chain_checked?: boolean;
+  ledger_chain_ok?: boolean;
+  witness?: string;
+  packet_hash?: string;
+  signature_scheme?: "hmac-sha256/v1";
+  packet_signature?: string;
+}
+
+export type InvariantPacketSigningKey = {
+  scheme: "hmac-sha256/v1";
+  secret: string;
+};

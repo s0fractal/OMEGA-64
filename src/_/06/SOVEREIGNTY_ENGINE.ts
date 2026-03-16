@@ -1,14 +1,6 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/sovereignty_engine.md
-import { MX } from "@g05";
+import { MX, SovereigntyEngineAkashaDelegate, TYPES } from "@g05";
 
-export interface SovereigntyEngineAkashaDelegate {
-  recordDecreeShift(
-    tick: number,
-    oldDecree: string,
-    newDecree: string,
-    newEpochCount: number,
-  ): void;
-}
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 
 let lastAnnouncedDecree = "NONE";

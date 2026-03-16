@@ -80,6 +80,8 @@ const nodes = new Map<string, OntologyNode>();
 const extraSymbolsMap = new Map<string, string>();
 const countsByType: Record<string, number> = {};
 const usedNodes = new Set<string>();
+const filesWithTypes = new Set<string>();
+const filesWithImports = new Set<string>();
 
 try {
   for (const entry of walkSync(SRC_ONTOLOGY_DIR, { exts: [".md"], includeDirs: false })) {
@@ -214,6 +216,18 @@ try {
         extraSymbolsMap.set(sym, node.id);
       }
     }
+
+    // Check for types/interfaces/imports in TS code
+    if (node.tsCode) {
+      const absPath = resolve(CWD, entry.path);
+      if (/\b(?:type|interface)\s/.test(node.tsCode)) {
+        filesWithTypes.add(absPath);
+      }
+      if (/\bimport\b/.test(node.tsCode)) {
+        filesWithImports.add(absPath);
+      }
+    }
+
     nodes.set(node.id, node);
   }
 } catch (e) {
@@ -948,4 +962,19 @@ if (deadCodeCandidates.length > 0) {
 
 console.log("\n" + "=".repeat(60));
 console.log(`[Genesis Builder] Successfully compiled ontology into ${nodes.size} atoms and ${maxLevel + 1} Causality Layers.`);
+
+if (filesWithTypes.size > 0) {
+  console.log("\n[WARNING] Nodes with local Type/Interface definitions (Move to TYPES.md):");
+  for (const f of Array.from(filesWithTypes).sort()) {
+    console.log(`  - ${f}`);
+  }
+}
+
+if (filesWithImports.size > 0) {
+  console.log("\n[WARNING] Nodes with manual 'import' statements (Use 'deps'/'vars'):");
+  for (const f of Array.from(filesWithImports).sort()) {
+    console.log(`  - ${f}`);
+  }
+}
+
 console.log("=".repeat(60) + "\n");

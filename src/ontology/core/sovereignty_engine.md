@@ -9,22 +9,18 @@ tags:
   - governance
   - host
 min_level: 6
+deps:
+  - MX
+  - TYPES
 vars:
   - MX
+  - SovereigntyEngineAkashaDelegate
 extra_symbols:
   - DECREES
   - SOVEREIGNTY_ENGINE
   - SovereigntyEngineAkashaDelegate
 ---
 ```typescript
-export interface SovereigntyEngineAkashaDelegate {
-  recordDecreeShift(
-    tick: number,
-    oldDecree: string,
-    newDecree: string,
-    newEpochCount: number,
-  ): void;
-}
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 
 let lastAnnouncedDecree = "NONE";
