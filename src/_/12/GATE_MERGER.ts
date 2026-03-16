@@ -1,7 +1,6 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
-import { GateAcceptedProposalMetric, I16Limits, TYPES, LOGGER } from "@g11";
+import { REJECTION, GateAcceptedProposalMetric, I16Limits, TYPES, LOGGER } from "@g11";
 
-import { REJECTION } from "@g00";
 import { LOGGER, Ld } from "@g06";
 
 import {

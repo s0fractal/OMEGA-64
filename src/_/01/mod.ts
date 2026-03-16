@@ -3,5 +3,4 @@
 export * from "@g00";
 export * from "./OMEGA_MEMORY_LAYOUT.ts";
 export * from "./semanticBonuses.ts";
-export * from "./STATE_SNAPSHOT.ts";
 export * from "./MATH_UTILS.ts";

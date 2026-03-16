@@ -5,6 +5,7 @@ description: "Implementation of GATE_MERGER"
 tags: []
 min_level: 12
 vars:
+  - REJECTION
   - GateAcceptedProposalMetric
   - I16Limits
 deps:
@@ -14,7 +15,6 @@ deps:
 
 ### TypeScript
 ```typescript
-import { REJECTION } from "@g00";
 import { LOGGER, Ld } from "@g06";
 
 import {

@@ -2,7 +2,6 @@
 export * from "../00/mod";
 export * from "./OMEGA_MEMORY_LAYOUT";
 export * from "./semanticBonuses";
-export * from "./STATE_SNAPSHOT";
 export { clamp_resource } from "./clamp_resource";
 export { math_sin } from "./math_sin";
 export * from "./MATH_UTILS";

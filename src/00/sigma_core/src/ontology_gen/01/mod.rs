@@ -11,9 +11,6 @@ pub use sigma_memory::*;
 #[path = "semanticBonuses.rs"]
 pub mod semanticBonuses;
 pub use semanticBonuses::*;
-#[path = "STATE_SNAPSHOT.rs"]
-pub mod STATE_SNAPSHOT;
-pub use STATE_SNAPSHOT::*;
 #[path = "clamp_resource.rs"]
 pub mod clamp_resource;
 pub use clamp_resource::*;

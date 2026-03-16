@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/AGENT_SIGNATURE.md
-import { bytes_to_base64, bytes_to_hex, hex_to_bytes, crypto_keys, sha256_hex, stable_stringify, STATE_SNAPSHOT } from "@g07";
+import { REJECTION, bytes_to_base64, bytes_to_hex, hex_to_bytes, crypto_keys, sha256_hex, stable_stringify, TYPES } from "@g07";
 
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;

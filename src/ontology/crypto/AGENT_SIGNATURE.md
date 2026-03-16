@@ -15,9 +15,11 @@ deps:
   - crypto_keys
   - sha256_hex
   - stable_stringify
-  - STATE_SNAPSHOT
+  - TYPES
 extra_symbols:
   - AGENT_SIGNATURE
+vars:
+  - REJECTION
 ---
 
 ### TypeScript

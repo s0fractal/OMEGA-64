@@ -5,6 +5,7 @@ description: "Implementation of GATE_VALIDATOR"
 tags: []
 min_level: 12
 vars:
+  - REJECTION
   - GateBridgeResolution
   - GateValidationResult
 deps:
@@ -13,7 +14,6 @@ deps:
 
 ### TypeScript
 ```typescript
-import { REJECTION } from "@g00";
 import { CANON_CAUSAL_BRIDGE } from "@g12";
 import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
 

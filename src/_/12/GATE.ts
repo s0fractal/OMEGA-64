@@ -1,7 +1,7 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
-import { ReplayInvariantReport, GateRuntimeContext, StateSnapshot, DeltaProposal, GateConfig, GateDecision, BridgeModeEvent, LedgerEvent, TYPES } from "@g11";
+import { REJECTION, ReplayInvariantReport, GateRuntimeContext, StateSnapshot, DeltaProposal, GateConfig, GateDecision, BridgeModeEvent, LedgerEvent, TYPES } from "@g11";
 
-import { GRID_H, REJECTION } from "@g00";
+import { GRID_H } from "@g00";
 import { LOGGER, Ld, Li, Lw } from "@g06";
 import {
   CANON_CAUSAL_BRIDGE

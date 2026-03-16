@@ -5,6 +5,7 @@ description: "Implementation of GATE"
 tags: []
 min_level: 12
 vars:
+  - REJECTION
   - ReplayInvariantReport
   - GateRuntimeContext
   - StateSnapshot
@@ -20,7 +21,7 @@ deps:
 ### TypeScript
 
 ```typescript
-import { GRID_H, REJECTION } from "@g00";
+import { GRID_H } from "@g00";
 import { LOGGER, Ld, Li, Lw } from "@g06";
 import {
   CANON_CAUSAL_BRIDGE

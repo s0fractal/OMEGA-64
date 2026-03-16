@@ -1,7 +1,6 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
-import { GateBridgeResolution, GateValidationResult, TYPES } from "@g11";
+import { REJECTION, GateBridgeResolution, GateValidationResult, TYPES } from "@g11";
 
-import { REJECTION } from "@g00";
 import { CANON_CAUSAL_BRIDGE } from "@g12";
 import { AGENT_SIGNATURE, PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX as PROPOSAL_ENVELOPE_INDEX } from "@g08";
 
