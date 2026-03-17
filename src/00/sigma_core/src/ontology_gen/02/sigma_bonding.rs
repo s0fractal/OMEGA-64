@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_bonding.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_bonding.md
 // Substrate Node: sigma_bonding
 // Level: 2
 // Solves simultaneous structural bonding intents using spatial hashes
@@ -93,6 +93,6 @@ impl SigmaState {
             self.matrix.bond_requests[ptr + 1] = 0;
             self.matrix.bond_requests[ptr + 2] = 0;
         }
-
+        resolved
     }
 }

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_hive_balance.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/add_hive_balance.md
 import { HIVE_BALANCE_OFF } from "../01/mod";
 
 @inline

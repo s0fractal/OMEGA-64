@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_shadow.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_shadow.md
 // Substrate Node: sigma_shadow
 // Level: 2
 // Implements the speculative execution engine for quantum divergence

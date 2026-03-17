@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/drain_spawn_requests.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/drain_spawn_requests.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

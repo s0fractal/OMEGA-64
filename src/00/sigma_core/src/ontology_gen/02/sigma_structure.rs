@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_structure.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_structure.md
 // Substrate Node: sigma_structure
 // Level: 2
 // Handles the cellular automaton lifecycle of the crystalline grid

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/fast_min.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/fast_min.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

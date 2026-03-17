@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snapshot_engine.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/snapshot_engine.md
 #![allow(unused_imports)]
 use super::super::L08::*;
 

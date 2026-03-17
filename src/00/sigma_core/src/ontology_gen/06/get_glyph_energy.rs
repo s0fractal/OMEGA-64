@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_energy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/get_glyph_energy.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_y.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_genome_velocity_y.md
 import { get_logic_byte } from "../02/mod";
 
 @inline

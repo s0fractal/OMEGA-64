@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_memory.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_memory.md
 // Substrate Node: sigma_memory
 // Level: 1
 // The central Data-Oriented memory matrix that perfectly aligns with Deno's SharedArrayBuffer
@@ -332,6 +332,7 @@ impl SigmaState {
                 return Some(i);
             }
         }
+        None
     }
 
     pub fn recycle_atom(&mut self, idx: usize) {
@@ -364,6 +365,7 @@ impl SigmaState {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
+            None
         }
     }
 

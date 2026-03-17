@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_x.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/clamp_world_x.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

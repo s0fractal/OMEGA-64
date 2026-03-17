@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_kind.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/get_glyph_kind.md
 import { KIND_CONTROL, KIND_CORE, GLYPH_TYPES } from "@g05";
 
 export function get_glyph_kind(id: number): number {

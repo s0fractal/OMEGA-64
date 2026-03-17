@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/telemetry/glyph_telemetry.md
 import { GlyphRoleCounters, GlyphSnapshot, GlyphKind, GRID_W, GRID_H, MIN_GLYPH_AMP, MAX_GLYPH_AMP, SECRETION_STATS_OFFSET, MX } from "@g05";
 
 const GLYPH_KIND_MASK = 0xFF;

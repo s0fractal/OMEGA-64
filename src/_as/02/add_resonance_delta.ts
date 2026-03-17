@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance_delta.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/add_resonance_delta.md
 import { RESONANCE_DELTA_OFF } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_isa.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_isa.md
 // Substrate Node: sigma_isa
 // Level: 0
 // Defines the Instruction Set Architecture values for the interpreter.

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/agent_proxy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/agent_proxy.md
 import { LOGGER, Le, Li, OP_SET, OP_SYSCALL, MX, SYS_ATTRACT, SYS_TRANSFER, assemble, SIGMA_FFI, assembler, SIGMA_FFI_BRIDGE } from "@g13";
 
 const sensoryBuffer = new Float32Array(12);

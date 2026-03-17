@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/clamp_world_y.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/clamp_world_y.md
 import { WORLD_MAX_Y, math_clamp } from "../01/mod";
 
 @inline

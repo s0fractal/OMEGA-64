@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/pack_structure_intent.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/pack_structure_intent.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

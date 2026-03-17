@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/clamp_resource.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/clamp_resource.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

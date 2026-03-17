@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/lineage_tracker.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/lineage_tracker.md
 import { AKASHA_CODEX, LOGGER, Ld, MX } from "@g08";
 
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix

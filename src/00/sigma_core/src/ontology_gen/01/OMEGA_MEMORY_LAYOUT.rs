@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OMEGA_MEMORY_LAYOUT.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/OMEGA_MEMORY_LAYOUT.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

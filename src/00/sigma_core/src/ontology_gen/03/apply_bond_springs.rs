@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/apply_bond_springs.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/apply_bond_springs.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

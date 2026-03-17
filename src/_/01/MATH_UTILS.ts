@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/MATH_UTILS.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/MATH_UTILS.md
 import { C_LOG2_C_LUT } from "@g00";
 
 export function normalize_angle(angle: number): number {

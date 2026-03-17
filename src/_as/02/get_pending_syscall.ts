@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_pending_syscall.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_pending_syscall.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
 @inline

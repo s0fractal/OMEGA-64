@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_x.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_x.md
 import { XS_OFFSET } from "../01/mod";
 
 @inline

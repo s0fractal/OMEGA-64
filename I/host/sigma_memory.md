@@ -337,6 +337,7 @@ impl SigmaState {
                 return Some(i);
             }
         }
+        None
     }
 
     pub fn recycle_atom(&mut self, idx: usize) {
@@ -369,6 +370,7 @@ impl SigmaState {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
+            None
         }
     }
 

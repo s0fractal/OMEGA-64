@@ -1,3 +1,3 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/structureGrid.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/structureGrid.md
 import { GRID_CELLS, STRUCTURE_GRID_OFFSET } from "../02/mod";
 

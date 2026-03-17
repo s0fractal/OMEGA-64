@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmSys.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmSys.md
 
 // Enum: VmSys
 export const SYS_YIELD: number = 1;

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/parse_env_bool.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/parse_env_bool.md
 
 export const parse_env_bool = (
   raw: string | undefined,

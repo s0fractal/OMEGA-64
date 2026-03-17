@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/encode_force_tuple.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/encode_force_tuple.md
 
 @inline
 export function encode_force_tuple(fx: f32, fy: f32): void {

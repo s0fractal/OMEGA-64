@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_damping.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_damping.md
 import { DAMPING_OFF } from "../01/mod";
 
 @inline

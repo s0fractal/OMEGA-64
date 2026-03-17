@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_bond_dist.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_bond_dist.md
 import { BOND_DISTANCES_OFFSET } from "../01/mod";
 
 @inline

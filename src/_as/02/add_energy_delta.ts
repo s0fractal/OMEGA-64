@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_energy_delta.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/add_energy_delta.md
 import { ENERGY_DELTA_OFF } from "../01/mod";
 
 @inline

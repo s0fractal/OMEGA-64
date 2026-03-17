@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/set_neural_coherence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/set_neural_coherence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

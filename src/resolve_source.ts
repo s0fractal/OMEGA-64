@@ -32,7 +32,7 @@ export async function resolveSourcePath(basename: string): Promise<string> {
     return null;
   }
 
-  const found = await searchDir("src");
+  const found = await searchDir("src") || await searchDir("I");
   if (found) return found;
-  throw new Error(`[resolveSourcePath] Could not find ${basename} in src/`);
+  throw new Error(`[resolveSourcePath] Could not find ${basename} in src/ or I/`);
 }

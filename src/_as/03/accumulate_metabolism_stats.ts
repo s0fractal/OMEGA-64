@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/accumulate_metabolism_stats.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/accumulate_metabolism_stats.md
 import { IDS_OFFSET, METABOLISM_SCRATCH_OFFSET, genome_key16 } from "../02/mod";
 
 @inline

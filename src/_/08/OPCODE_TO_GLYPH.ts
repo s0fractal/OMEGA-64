@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/opcode_to_glyph.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/opcode_to_glyph.md
 import { LegacyInstruction, GlyphTapeToken, OP_ADD, OP_BIND, OP_BUILD, OP_COLLECTIVE, OP_GET, OP_HEBB, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PLUG, OP_PUT, OP_REPLICATE, OP_RESOLVE, OP_SECRETE_PLASMID, OP_SENSE, OP_SET, OP_SHARE, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, OP_TENSEGRITY, glyphSpecByLegacyOpcode, ScriptToGlyphOptions, glyph_ir_64 } from "@g07";
 
 const OPCODE_NAMES = new Map<number, string>([

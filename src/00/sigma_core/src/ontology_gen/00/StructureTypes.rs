@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/StructureTypes.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/StructureTypes.md
 #![allow(unused_imports)]
 
 // Enum: StructureTypes

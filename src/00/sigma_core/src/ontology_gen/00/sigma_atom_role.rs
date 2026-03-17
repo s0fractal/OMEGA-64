@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_atom_role.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_atom_role.md
 // Substrate Node: sigma_atom_role
 // Level: 0
 // Defines the role enumerations for OMEGA atoms

@@ -1,2 +1,2 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/semanticBonusesBuffer.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/semanticBonusesBuffer.md
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/reset_neural_coherence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/reset_neural_coherence.md
 import { COHERENCE_OFF } from "../01/mod";
 
 @inline

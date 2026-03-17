@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_cell.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/read_structure_cell.md
 import { STRUCTURE_BUILD_OWNER_OFF, STRUCTURE_BUILD_VALUE_OFF, STRUCTURE_GRID_OFF, STRUCTURE_INTENT_SPIN_LIMIT, STRUCTURE_INTENT_LOCK_BIT, STRUCTURE_INTENT_OWNER_MASK } from "../01/mod";
 
 @inline

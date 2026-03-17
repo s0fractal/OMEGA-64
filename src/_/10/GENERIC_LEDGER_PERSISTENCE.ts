@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/generic_ledger_persistence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/generic_ledger_persistence.md
 import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, LedgerRecord, LedgerSnapshotRecord, LedgerPersistenceSummary, LedgerHydrationResult, GENERIC_LEDGER_SYSTEM } from "@g09";
 
 const ensureDir = async (): Promise<void> => {

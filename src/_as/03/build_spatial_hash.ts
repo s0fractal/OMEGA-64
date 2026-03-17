@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/build_spatial_hash.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/build_spatial_hash.md
 import { MAX_ATOMS, GRID_CELLS, GRID_W, WORLD_MAX_X, WORLD_MAX_Y, SPATIAL_CELL_SIZE, SPATIAL_GRID_OFFSET, QUORUM_OFFSET, IDS_OFFSET, get_x, get_y, get_phase, get_role } from "../02/mod";
 
 @inline

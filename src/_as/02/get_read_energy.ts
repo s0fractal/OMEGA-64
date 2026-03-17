@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_energy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_read_energy.md
 import { PHYSICS_READ_ENERGY_OFF } from "../01/mod";
 
 @inline

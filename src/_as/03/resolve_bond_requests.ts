@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/resolve_bond_requests.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/resolve_bond_requests.md
 import { BOND_REQUESTS_OFFSET, MAX_ATOMS, set_bond_target, set_bond_stiffness, get_bond_target } from "../02/mod";
 
 @inline

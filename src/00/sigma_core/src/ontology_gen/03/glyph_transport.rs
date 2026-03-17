@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/glyph_transport.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/glyph_transport.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

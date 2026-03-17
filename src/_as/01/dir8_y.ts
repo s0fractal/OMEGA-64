@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir8_y.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/dir8_y.md
 
 @inline
 export function dir8_y(n: i32): i32 {

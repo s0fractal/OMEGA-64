@@ -1,3 +1,3 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/TYPES.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/TYPES.md
 #![allow(unused_imports)]
 

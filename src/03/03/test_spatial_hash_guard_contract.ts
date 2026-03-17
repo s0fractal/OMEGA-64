@@ -1,5 +1,5 @@
 import { resolveSourcePath } from "../../resolve_source.ts";
-const ASSEMBLY_PATH = "src/ontology/core/build_spatial_hash.md";
+const ASSEMBLY_PATH = "I/core/build_spatial_hash.md";
 const PULSE_PATH = await resolveSourcePath("PULSE.ts");
 const SYSTEM_PATH = await resolveSourcePath("SYSTEM_START.ts");
 

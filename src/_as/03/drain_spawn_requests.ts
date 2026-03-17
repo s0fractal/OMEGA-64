@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/drain_spawn_requests.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/drain_spawn_requests.md
 import { SPAWN_HEAD_OFF, SPAWN_DATA_OFF, SPAWN_MAX, SPAWN_SLOT, MAX_ATOMS, find_next_free_slot, seed_atom } from "../02/mod";
 
 @inline

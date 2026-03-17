@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_glyph_influence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_glyph_influence.md
 import { GRID_W, GRID_H, GLYPH_HEADER_OFF, ROLE_PARASITE, ROLE_GUARDIAN, ROLE_ARCHITECT } from "../01/mod";
 
 @inline

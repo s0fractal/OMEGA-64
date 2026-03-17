@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/panopticon_server.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/panopticon_server.md
 import { AKASHA_CODEX, LOGGER, Li, Lw, MX } from "@g08";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port

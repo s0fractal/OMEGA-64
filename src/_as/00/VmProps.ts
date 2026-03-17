@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmProps.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmProps.md
 
 export const PROP_ENERGY: u8 = 0;
 export const PROP_RESONANCE: u8 = 1;

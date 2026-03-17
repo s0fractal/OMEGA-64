@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/immune_check.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/immune_check.md
 
 @inline
 export function immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entropy_pressure: i32): bool {

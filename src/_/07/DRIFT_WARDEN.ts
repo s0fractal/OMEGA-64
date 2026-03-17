@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/drift_warden.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/drift_warden.md
 import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, LOGGER, Li, MAX_ATOMS, sharedBuffer, DriftMetrics } from "@g06";
 
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response

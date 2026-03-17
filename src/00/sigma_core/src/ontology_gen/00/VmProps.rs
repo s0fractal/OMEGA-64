@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmProps.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmProps.md
 #![allow(unused_imports)]
 
 // Enum: VmProps

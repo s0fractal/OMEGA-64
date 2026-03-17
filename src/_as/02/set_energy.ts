@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_energy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_energy.md
 import { ENERGY_OFFSET } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/clear_secretion_stats.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/clear_secretion_stats.md
 import { SECRETION_STATS_OFF } from "../01/mod";
 
 @inline

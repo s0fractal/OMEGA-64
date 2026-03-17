@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/StructureTypes.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/StructureTypes.md
 
 // Enum: StructureTypes
 export const STR_VOID: number = 0;

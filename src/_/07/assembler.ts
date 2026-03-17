@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/assembler.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/assembler.md
 import { OPCODE_ARITY_LUT, AssembleToken } from "@g06";
 
 export const assemble = (instructions: AssembleToken[]): Uint8Array => {

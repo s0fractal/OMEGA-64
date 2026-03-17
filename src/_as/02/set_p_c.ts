@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_p_c.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_p_c.md
 import { CONTEXT_OFFSET } from "../01/mod";
 
 @inline

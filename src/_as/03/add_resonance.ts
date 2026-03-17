@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/add_resonance.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/add_resonance.md
 import { get_resonance, set_resonance } from "../02/mod";
 
 @inline

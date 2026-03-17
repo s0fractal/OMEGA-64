@@ -1,2 +1,2 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/semantic_membrane.md
 

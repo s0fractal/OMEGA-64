@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/pack_glyph_header.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/pack_glyph_header.md
 
 @inline
 export function pack_glyph_header(kind: i32, amplitude: i32): i32 {

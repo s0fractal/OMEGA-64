@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_TYPES.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/GLYPH_TYPES.md
 
 export const KIND_CORE: u8 = 0;
 export const KIND_CONTROL: u8 = 1;

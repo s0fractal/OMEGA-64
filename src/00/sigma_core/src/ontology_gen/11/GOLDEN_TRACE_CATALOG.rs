@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/verification/integration/golden_trace_catalog.md
 #![allow(unused_imports)]
 use super::super::L10::*;
 

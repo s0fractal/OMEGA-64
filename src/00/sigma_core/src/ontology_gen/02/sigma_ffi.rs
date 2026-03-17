@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_ffi.md
 // Substrate Node: sigma_ffi
 // Level: 2
 // FFI bridging logic and memory alignment for WebAssembly workers

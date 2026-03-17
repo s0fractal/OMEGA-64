@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/SYSTEM_CONSTANTS.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/SYSTEM_CONSTANTS.md
 
 // Constants: SYSTEM_CONSTANTS
 export const MAX_ATOMS: number = 500000;

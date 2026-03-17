@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_charge_intent.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/publish_charge_intent.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

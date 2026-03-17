@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_genome_velocity_x.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_genome_velocity_x.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

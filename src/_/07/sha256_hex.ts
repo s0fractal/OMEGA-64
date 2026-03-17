@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/sha256_hex.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/crypto/sha256_hex.md
 import { bytes_to_hex } from "@g06";
 
 const crypto = globalThis.crypto;

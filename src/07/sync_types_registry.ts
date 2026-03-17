@@ -2,7 +2,7 @@ import { parse as parseYaml, stringify as stringifyYaml } from "https://deno.lan
 import { resolve } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const CWD = Deno.cwd();
-const TYPES_PATH = resolve(CWD, "src/ontology/core/TYPES.md");
+const TYPES_PATH = resolve(CWD, "I/core/TYPES.md");
 
 const raw = Deno.readTextFileSync(TYPES_PATH);
 const yamlMatch = raw.match(/^---\n([\s\S]*?)\n---/);

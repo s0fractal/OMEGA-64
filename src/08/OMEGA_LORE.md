@@ -1,6 +1,6 @@
 # OMEGA-64 | ARCHITECTURE LORE (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-17T07:50:08.452Z*
+*Generated: 2026-03-17T08:37:25.584Z*
 *Exported Files in Category: 285*
 *Total Exported Files: 805*
 *Runtime Roots: 7*
@@ -8,14 +8,14 @@
 *Non-Runtime Code Files: 333*
 *Runtime-Support Code Files: 2*
 *Experimental Code Files: 331*
-*Manifest SHA256: 35b0536b830c118d3e4c672936d958184c72f0805cd77b638f6e72bef443edd1*
-*Export Set SHA256: 475ca760586672d0ef7f05b132ca1ea1e624b9547bd4a736045c5a148f7bb331*
-*Export Content SHA256: abb953a81f59f9e382a97d244013ea1524477afb06fd4257f7f9c81adbf32087*
-*Git Commit: 5a8b5ea0a708*
+*Manifest SHA256: fc05e52947c54a5bf76112c0b4a1f7ebad2df44fd6bb894e7a2aea3f50a511b5*
+*Export Set SHA256: 9d6baae5296586bcacfa0ec763fe94e6b13c52610da0f7f9113f2ea12902fbc1*
+*Export Content SHA256: fe2321038c73b6f6a11be756150bd2d4f94450d07d4b07c4c8229703fdc2fd79*
+*Git Commit: 13d9aec7f093*
 
 ---
 
-## FILE: src/ontology/autopoiesis/accumulate_metabolism_stats.md
+## FILE: I/autopoiesis/accumulate_metabolism_stats.md
 
 ---
 id: accumulate_metabolism_stats
@@ -55,7 +55,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/apply_metabolism_kernel.md
+## FILE: I/autopoiesis/apply_metabolism_kernel.md
 
 ---
 id: apply_metabolism_kernel
@@ -294,7 +294,7 @@ deps:
 
 ---
 
-## FILE: src/ontology/autopoiesis/atomic_deposit_glyph_header.md
+## FILE: I/autopoiesis/atomic_deposit_glyph_header.md
 
 ---
 id: atomic_deposit_glyph_header
@@ -453,7 +453,7 @@ for (let spin = 0; spin < 128; spin++) {
 
 ---
 
-## FILE: src/ontology/autopoiesis/clear_metabolism_stats.md
+## FILE: I/autopoiesis/clear_metabolism_stats.md
 
 ---
 id: clear_metabolism_stats
@@ -482,7 +482,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/clear_secretion_stats.md
+## FILE: I/autopoiesis/clear_secretion_stats.md
 
 ---
 id: clear_secretion_stats
@@ -509,7 +509,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/decay_for_kind.md
+## FILE: I/autopoiesis/decay_for_kind.md
 
 ---
 id: decay_for_kind
@@ -564,7 +564,7 @@ return amplitude > 0 ? decayAmt : -decayAmt;
 
 ---
 
-## FILE: src/ontology/autopoiesis/diffuse_viral_semantics.md
+## FILE: I/autopoiesis/diffuse_viral_semantics.md
 
 ---
 id: diffuse_viral_semantics
@@ -639,7 +639,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/diffusion_share_for_kind.md
+## FILE: I/autopoiesis/diffusion_share_for_kind.md
 
 ---
 id: diffusion_share_for_kind
@@ -690,7 +690,7 @@ return amplitude > 0 ? shareAmt : -shareAmt;
 
 ---
 
-## FILE: src/ontology/autopoiesis/drain_spawn_requests.md
+## FILE: I/autopoiesis/drain_spawn_requests.md
 
 ---
 id: drain_spawn_requests
@@ -808,7 +808,7 @@ return spawned;
 
 ---
 
-## FILE: src/ontology/autopoiesis/find_next_free_slot.md
+## FILE: I/autopoiesis/find_next_free_slot.md
 
 ---
 id: find_next_free_slot
@@ -855,7 +855,7 @@ return -1;
 
 ---
 
-## FILE: src/ontology/autopoiesis/get_neural_coherence.md
+## FILE: I/autopoiesis/get_neural_coherence.md
 
 ---
 id: get_neural_coherence
@@ -923,7 +923,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/autopoiesis/glyph_transport.md
+## FILE: I/autopoiesis/glyph_transport.md
 
 ---
 id: glyph_transport
@@ -1174,7 +1174,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/immune_check.md
+## FILE: I/autopoiesis/immune_check.md
 
 ---
 id: immune_check
@@ -1244,11 +1244,13 @@ if (id_handle === 0) return false;
         }
     }
 
+    false
+
 ```
 
 ---
 
-## FILE: src/ontology/autopoiesis/pack_glyph_header.md
+## FILE: I/autopoiesis/pack_glyph_header.md
 
 ---
 id: pack_glyph_header
@@ -1285,7 +1287,7 @@ return (amplitude << 8) | (kind & 0xFF);
 
 ---
 
-## FILE: src/ontology/autopoiesis/reset_neural_coherence.md
+## FILE: I/autopoiesis/reset_neural_coherence.md
 
 ---
 id: reset_neural_coherence
@@ -1312,7 +1314,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/run_phagocyte_pass.md
+## FILE: I/autopoiesis/run_phagocyte_pass.md
 
 ---
 id: run_phagocyte_pass
@@ -1380,7 +1382,7 @@ optimization: hot
 
 ---
 
-## FILE: src/ontology/autopoiesis/secrete_glyph.md
+## FILE: I/autopoiesis/secrete_glyph.md
 
 ---
 id: secrete_glyph
@@ -1502,7 +1504,7 @@ if (intensity <= 0) return;
 
 ---
 
-## FILE: src/ontology/autopoiesis/seed_atom.md
+## FILE: I/autopoiesis/seed_atom.md
 
 ---
 id: seed_atom
@@ -1623,7 +1625,7 @@ for (let b = 0; b < 64; b++) {
 
 ---
 
-## FILE: src/ontology/autopoiesis/set_neural_coherence.md
+## FILE: I/autopoiesis/set_neural_coherence.md
 
 ---
 id: set_neural_coherence
@@ -1651,7 +1653,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/autopoiesis/tick_membrane_physics.md
+## FILE: I/autopoiesis/tick_membrane_physics.md
 
 ---
 id: tick_membrane_physics
@@ -2004,7 +2006,7 @@ export function tick_membrane_physics(): void {
 
 ---
 
-## FILE: src/ontology/autopoiesis/unpack_glyph_amplitude.md
+## FILE: I/autopoiesis/unpack_glyph_amplitude.md
 
 ---
 id: unpack_glyph_amplitude
@@ -2036,7 +2038,7 @@ return header >> 8;
 
 ---
 
-## FILE: src/ontology/autopoiesis/unpack_glyph_kind.md
+## FILE: I/autopoiesis/unpack_glyph_kind.md
 
 ---
 id: unpack_glyph_kind
@@ -2068,7 +2070,7 @@ return header & 0xFF;
 
 ---
 
-## FILE: src/ontology/core/audit_engine.md
+## FILE: I/core/audit_engine.md
 
 ---
 id: AUDIT_ENGINE
@@ -2163,7 +2165,7 @@ export const AUDIT_ENGINE = {
 
 ---
 
-## FILE: src/ontology/core/breath_cycle.md
+## FILE: I/core/breath_cycle.md
 
 ---
 id: BREATH
@@ -2269,7 +2271,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/core/build_spatial_hash.md
+## FILE: I/core/build_spatial_hash.md
 
 ---
 id: build_spatial_hash
@@ -2469,7 +2471,7 @@ return ((spatialHashMaxCellCount as i64) << 32) | ((spatialHashOverflowCount as 
 
 ---
 
-## FILE: src/ontology/core/continuum.md
+## FILE: I/core/continuum.md
 
 ---
 id: CONTINUUM
@@ -2628,7 +2630,7 @@ export async function decompressMemoryToLattice(
 
 ---
 
-## FILE: src/ontology/core/control_intent_queue.md
+## FILE: I/core/control_intent_queue.md
 
 ---
 id: CONTROL_INTENT_QUEUE
@@ -3914,7 +3916,7 @@ export const CONTROL_INTENT_QUEUE = {
 
 ---
 
-## FILE: src/ontology/core/daemon_ingress_policy.md
+## FILE: I/core/daemon_ingress_policy.md
 
 ---
 id: DAEMON_INGRESS_POLICY
@@ -4510,7 +4512,7 @@ export const DAEMON_INGRESS_POLICY = {
 
 ---
 
-## FILE: src/ontology/core/doll_fork_matrix.md
+## FILE: I/core/doll_fork_matrix.md
 
 ---
 id: DOLL_FORK_MATRIX
@@ -4719,7 +4721,7 @@ export class DollFork {
 
 ---
 
-## FILE: src/ontology/core/doll_fork_runner.md
+## FILE: I/core/doll_fork_runner.md
 
 ---
 id: DOLL_FORK_RUNNER
@@ -4839,7 +4841,7 @@ export class DollForkRunner {
 
 ---
 
-## FILE: src/ontology/core/drift_warden.md
+## FILE: I/core/drift_warden.md
 
 ---
 id: DRIFT_WARDEN
@@ -4966,7 +4968,7 @@ export class DriftWarden {
 
 ---
 
-## FILE: src/ontology/core/evaluate_opcodes.md
+## FILE: I/core/evaluate_opcodes.md
 
 ---
 id: evaluate_opcodes
@@ -5300,7 +5302,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/core/execute_atom.md
+## FILE: I/core/execute_atom.md
 
 ---
 id: execute_atom
@@ -5419,7 +5421,7 @@ set_energy(
 
 ---
 
-## FILE: src/ontology/core/export_core.md
+## FILE: I/core/export_core.md
 
 ---
 id: EXPORT_CORE
@@ -5495,7 +5497,7 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /\.wasm$/u,
   /\.log$/u,
   /\.jsonl$/u,
-  /(^|\/)src\/ontology\/verification\//u,
+  /(^|\/)I\/verification\//u,
 ];
 
 const IMPORT_RE =
@@ -5800,7 +5802,7 @@ const discoverCodeFiles = async (dir: string): Promise<string[]> => {
           queue.push(entryPath);
         } else if (
           entry.isFile &&
-          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") || (entry.name.endsWith(".md") && entryPath.startsWith("src/ontology/")))
+          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") || (entry.name.endsWith(".md") && entryPath.startsWith("I/")))
         ) {
           discovered.push(entryPath);
         }
@@ -6099,7 +6101,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/core/gate_budget.md
+## FILE: I/core/gate_budget.md
 
 ---
 id: GATE_BUDGET
@@ -6157,7 +6159,7 @@ export const GATE_BUDGET = {
 
 ---
 
-## FILE: src/ontology/core/generic_ledger_persistence.md
+## FILE: I/core/generic_ledger_persistence.md
 
 ---
 id: GENERIC_LEDGER_PERSISTENCE
@@ -6557,7 +6559,7 @@ export const GENERIC_LEDGER_PERSISTENCE = {
 
 ---
 
-## FILE: src/ontology/core/generic_ledger_system.md
+## FILE: I/core/generic_ledger_system.md
 
 ---
 type: module
@@ -6833,7 +6835,7 @@ export const GENERIC_LEDGER_SYSTEM = {
 
 ---
 
-## FILE: src/ontology/core/get_glyph_arity.md
+## FILE: I/core/get_glyph_arity.md
 
 ---
 id: get_glyph_arity
@@ -6871,7 +6873,7 @@ export function get_glyph_arity(id: number): number {
 
 ---
 
-## FILE: src/ontology/core/get_glyph_energy.md
+## FILE: I/core/get_glyph_energy.md
 
 ---
 id: get_glyph_energy
@@ -6909,7 +6911,7 @@ export function get_glyph_energy(id: number): number {
 
 ---
 
-## FILE: src/ontology/core/get_glyph_kind.md
+## FILE: I/core/get_glyph_kind.md
 
 ---
 id: get_glyph_kind
@@ -6958,7 +6960,7 @@ export function get_glyph_kind(id: number): number {
 
 ---
 
-## FILE: src/ontology/core/get_glyph_legacy_opcode.md
+## FILE: I/core/get_glyph_legacy_opcode.md
 
 ---
 id: get_glyph_legacy_opcode
@@ -6996,7 +6998,7 @@ export function get_glyph_legacy_opcode(id: number): number {
 
 ---
 
-## FILE: src/ontology/core/GLYPH_ARITY_LUT.md
+## FILE: I/core/GLYPH_ARITY_LUT.md
 
 ---
 id: GLYPH_ARITY_LUT
@@ -7010,7 +7012,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/core/GLYPH_ENERGY_LUT.md
+## FILE: I/core/GLYPH_ENERGY_LUT.md
 
 ---
 id: GLYPH_ENERGY_LUT
@@ -7024,7 +7026,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
+## FILE: I/core/GLYPH_LEGACY_OPCODE_LUT.md
 
 ---
 id: GLYPH_LEGACY_OPCODE_LUT
@@ -7038,7 +7040,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/core/GLYPH_RGB_LUT.md
+## FILE: I/core/GLYPH_RGB_LUT.md
 
 ---
 id: GLYPH_RGB_LUT
@@ -7052,7 +7054,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/core/GLYPH_TYPES.md
+## FILE: I/core/GLYPH_TYPES.md
 
 ---
 id: GLYPH_TYPES
@@ -7077,7 +7079,7 @@ values:
 
 ---
 
-## FILE: src/ontology/core/hormone_buffer_runtime.md
+## FILE: I/core/hormone_buffer_runtime.md
 
 ---
 id: HORMONE_BUFFER_RUNTIME
@@ -7162,7 +7164,7 @@ export const HORMONE_BUFFER_RUNTIME = { syncHormonesToLattice };
 
 ---
 
-## FILE: src/ontology/core/hormone_buffer.md
+## FILE: I/core/hormone_buffer.md
 
 ---
 id: HORMONE_BUFFER
@@ -7385,7 +7387,7 @@ export const HORMONE_BUFFER = {
 
 ---
 
-## FILE: src/ontology/core/lineage_tracker.md
+## FILE: I/core/lineage_tracker.md
 
 ---
 id: LINEAGE_TRACKER
@@ -7447,7 +7449,7 @@ export class LineageTracker {
 
 ---
 
-## FILE: src/ontology/core/META_LORE.md
+## FILE: I/core/META_LORE.md
 
 ---
 id: META_LORE
@@ -7506,7 +7508,7 @@ tags: ["core", "physics", "llm_context", "meta"]
 
 ---
 
-## FILE: src/ontology/core/omega_daemon.md
+## FILE: I/core/omega_daemon.md
 
 ---
 id: OMEGA_DAEMON
@@ -9026,7 +9028,7 @@ export const OMEGA_DAEMON = {};
 
 ---
 
-## FILE: src/ontology/core/OMEGA_MEMORY_LAYOUT.md
+## FILE: I/core/OMEGA_MEMORY_LAYOUT.md
 
 ---
 id: OMEGA_MEMORY_LAYOUT
@@ -9214,7 +9216,7 @@ extra_symbols:
 
 ---
 
-## FILE: src/ontology/core/OPCODE_ARITY_LUT.md
+## FILE: I/core/OPCODE_ARITY_LUT.md
 
 ---
 id: OPCODE_ARITY_LUT
@@ -9228,7 +9230,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/core/OPTICAL_PHYSICS_LORE.md
+## FILE: I/core/OPTICAL_PHYSICS_LORE.md
 
 ---
 id: OPTICAL_PHYSICS_LORE
@@ -9312,7 +9314,7 @@ OMEGA-64 — це P2P-розподілена система. Різні архі
 
 ---
 
-## FILE: src/ontology/core/physiology_snapshot.md
+## FILE: I/core/physiology_snapshot.md
 
 ---
 id: PHYSIOLOGY_SNAPSHOT
@@ -9382,7 +9384,7 @@ export const capturePhysiologySnapshot = (
 
 ---
 
-## FILE: src/ontology/core/prediction_market.md
+## FILE: I/core/prediction_market.md
 
 ---
 id: PREDICTION_MARKET
@@ -9564,7 +9566,7 @@ export const PREDICTION_MARKET = {
 
 ---
 
-## FILE: src/ontology/core/pulse_orchestrator.md
+## FILE: I/core/pulse_orchestrator.md
 
 ---
 id: PULSE
@@ -11908,7 +11910,7 @@ export const PULSE = {
 
 ---
 
-## FILE: src/ontology/core/quorum_advocate.md
+## FILE: I/core/quorum_advocate.md
 
 ---
 id: QUORUM_ADVOCATE
@@ -11976,7 +11978,7 @@ export class QuorumAdvocate {
 
 ---
 
-## FILE: src/ontology/core/REJECTION_CODES.md
+## FILE: I/core/REJECTION_CODES.md
 
 ---
 id: REJECTION_CODES
@@ -12012,7 +12014,7 @@ export const REJECTION = {
 
 ---
 
-## FILE: src/ontology/core/relic_cultivation.md
+## FILE: I/core/relic_cultivation.md
 
 ---
 id: RELIC_CULTIVATION
@@ -12105,7 +12107,7 @@ export class RelicCultivator {
 
 ---
 
-## FILE: src/ontology/core/runtime_policy.md
+## FILE: I/core/runtime_policy.md
 
 ---
 id: RUNTIME_POLICY
@@ -13019,7 +13021,7 @@ export const RUNTIME_POLICY = {
 
 ---
 
-## FILE: src/ontology/core/snap_engine.md
+## FILE: I/core/snap_engine.md
 
 ---
 id: SNAP_ENGINE
@@ -13145,7 +13147,7 @@ export const SNAP_ENGINE = {
 
 ---
 
-## FILE: src/ontology/core/snapshot_engine.md
+## FILE: I/core/snapshot_engine.md
 
 ---
 id: SNAPSHOT_ENGINE
@@ -13384,7 +13386,7 @@ export const SNAPSHOT_ENGINE = {
 
 ---
 
-## FILE: src/ontology/core/sovereignty_engine.md
+## FILE: I/core/sovereignty_engine.md
 
 ---
 id: SOVEREIGNTY_ENGINE
@@ -13608,7 +13610,7 @@ export const SOVEREIGNTY_ENGINE: any = {
 
 ---
 
-## FILE: src/ontology/core/StructureTypes.md
+## FILE: I/core/StructureTypes.md
 
 ---
 id: StructureTypes
@@ -13630,7 +13632,7 @@ values:
 
 ---
 
-## FILE: src/ontology/core/SYSTEM_CONSTANTS.md
+## FILE: I/core/SYSTEM_CONSTANTS.md
 
 ---
 id: SYSTEM_CONSTANTS
@@ -13774,7 +13776,7 @@ values:
 
 ---
 
-## FILE: src/ontology/core/trace_atom.md
+## FILE: I/core/trace_atom.md
 
 ---
 id: trace_atom
@@ -13814,7 +13816,7 @@ vars: []
 
 ---
 
-## FILE: src/ontology/core/TYPES.md
+## FILE: I/core/TYPES.md
 
 ---
 id: TYPES
@@ -15873,7 +15875,7 @@ export const TYPES = {};
 
 ---
 
-## FILE: src/ontology/core/VmOpcodes.md
+## FILE: I/core/VmOpcodes.md
 
 ---
 id: VmOpcodes
@@ -15914,7 +15916,7 @@ values:
 
 ---
 
-## FILE: src/ontology/core/VmProps.md
+## FILE: I/core/VmProps.md
 
 ---
 id: VmProps
@@ -15937,7 +15939,7 @@ values:
 
 ---
 
-## FILE: src/ontology/core/VmSys.md
+## FILE: I/core/VmSys.md
 
 ---
 id: VmSys
@@ -15970,7 +15972,7 @@ values:
 
 ---
 
-## FILE: src/ontology/crypto/AGENT_SIGNATURE.md
+## FILE: I/crypto/AGENT_SIGNATURE.md
 
 ---
 id: AGENT_SIGNATURE
@@ -16132,7 +16134,7 @@ export const AGENT_SIGNATURE = {
 
 ---
 
-## FILE: src/ontology/crypto/base64_to_bytes.md
+## FILE: I/crypto/base64_to_bytes.md
 
 ---
 id: base64_to_bytes
@@ -16163,7 +16165,7 @@ export const base64_to_bytes = (b64: string): Uint8Array =>
 
 ---
 
-## FILE: src/ontology/crypto/bytes_to_base64.md
+## FILE: I/crypto/bytes_to_base64.md
 
 ---
 id: bytes_to_base64
@@ -16194,7 +16196,7 @@ export const bytes_to_base64 = (bytes: Uint8Array): string =>
 
 ---
 
-## FILE: src/ontology/crypto/bytes_to_hex.md
+## FILE: I/crypto/bytes_to_hex.md
 
 ---
 id: bytes_to_hex
@@ -16225,7 +16227,7 @@ export const bytes_to_hex = (bytes: Uint8Array): string =>
 
 ---
 
-## FILE: src/ontology/crypto/crypto_keys.md
+## FILE: I/crypto/crypto_keys.md
 
 ---
 id: crypto_keys
@@ -16294,7 +16296,7 @@ export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
 
 ---
 
-## FILE: src/ontology/crypto/fnv1a32.md
+## FILE: I/crypto/fnv1a32.md
 
 ---
 id: fnv1a32
@@ -16331,7 +16333,7 @@ export const fnv1a32 = (input: string): number => {
 
 ---
 
-## FILE: src/ontology/crypto/hex_to_bytes.md
+## FILE: I/crypto/hex_to_bytes.md
 
 ---
 id: hex_to_bytes
@@ -16370,7 +16372,7 @@ export const hex_to_bytes = (hex: string): Uint8Array | null => {
 
 ---
 
-## FILE: src/ontology/crypto/invariant_packet.md
+## FILE: I/crypto/invariant_packet.md
 
 ---
 id: INVARIANT_PACKET
@@ -16662,7 +16664,7 @@ export const INVARIANT_PACKET = {
 
 ---
 
-## FILE: src/ontology/crypto/normalize_hex64.md
+## FILE: I/crypto/normalize_hex64.md
 
 ---
 id: normalize_hex64
@@ -16696,7 +16698,7 @@ export const normalize_hex64 = (value: unknown): string | null => {
 
 ---
 
-## FILE: src/ontology/crypto/sha256_hex.md
+## FILE: I/crypto/sha256_hex.md
 
 ---
 id: sha256_hex
@@ -16743,7 +16745,7 @@ export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
 
 ---
 
-## FILE: src/ontology/crypto/stable_stringify.md
+## FILE: I/crypto/stable_stringify.md
 
 ---
 id: stable_stringify
@@ -16786,7 +16788,7 @@ export const stable_stringify = (value: unknown): string => {
 
 ---
 
-## FILE: src/ontology/crypto/topo_signature.md
+## FILE: I/crypto/topo_signature.md
 
 ---
 id: TOPOLOGICAL_SIGNATURE
@@ -17183,7 +17185,7 @@ export const TOPOLOGICAL_SIGNATURE = {
 
 ---
 
-## FILE: src/ontology/genomes/GENESIS_PREDATOR_SCRIPT.md
+## FILE: I/genomes/GENESIS_PREDATOR_SCRIPT.md
 
 ---
 id: GENESIS_PREDATOR_SCRIPT
@@ -17197,7 +17199,7 @@ deps: []
 
 ---
 
-## FILE: src/ontology/host/append_jsonl.md
+## FILE: I/host/append_jsonl.md
 
 ---
 id: append_jsonl
@@ -17231,7 +17233,7 @@ export function append_jsonl(): void {}
 
 ---
 
-## FILE: src/ontology/host/assembler.md
+## FILE: I/host/assembler.md
 
 ---
 id: assembler
@@ -17304,7 +17306,7 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 
 ---
 
-## FILE: src/ontology/host/disassembler.md
+## FILE: I/host/disassembler.md
 
 ---
 id: disassembler
@@ -17330,7 +17332,7 @@ export const disassembler = {
 
 ---
 
-## FILE: src/ontology/host/glyph_ir_64.md
+## FILE: I/host/glyph_ir_64.md
 
 ---
 id: glyph_ir_64
@@ -17516,7 +17518,7 @@ export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
 
 ---
 
-## FILE: src/ontology/host/glyph_pretty.md
+## FILE: I/host/glyph_pretty.md
 
 ---
 id: glyph_pretty
@@ -17565,7 +17567,7 @@ export const glyphTapeToPrettyText = (
 
 ---
 
-## FILE: src/ontology/host/LOGGER.md
+## FILE: I/host/LOGGER.md
 
 ---
 id: LOGGER
@@ -17672,7 +17674,7 @@ export const Le = LOGGER.error;
 
 ---
 
-## FILE: src/ontology/host/parse_env_bool.md
+## FILE: I/host/parse_env_bool.md
 
 ---
 id: parse_env_bool
@@ -17708,7 +17710,7 @@ export const parse_env_bool = (
 
 ---
 
-## FILE: src/ontology/host/parse_env_bounded_int.md
+## FILE: I/host/parse_env_bounded_int.md
 
 ---
 id: parse_env_bounded_int
@@ -17741,7 +17743,7 @@ export const parse_env_bounded_int = (
 
 ---
 
-## FILE: src/ontology/host/read_jsonl_lines.md
+## FILE: I/host/read_jsonl_lines.md
 
 ---
 id: read_jsonl_lines
@@ -17777,7 +17779,7 @@ export function read_jsonl_lines(): void {}
 
 ---
 
-## FILE: src/ontology/host/read_jsonl.md
+## FILE: I/host/read_jsonl.md
 
 ---
 id: read_jsonl
@@ -17821,7 +17823,7 @@ export function read_jsonl(): void {}
 
 ---
 
-## FILE: src/ontology/host/sigma_atom_role.md
+## FILE: I/host/sigma_atom_role.md
 
 ---
 id: sigma_atom_role
@@ -17869,7 +17871,7 @@ impl AtomRole {
 
 ---
 
-## FILE: src/ontology/host/sigma_bonding.md
+## FILE: I/host/sigma_bonding.md
 
 ---
 id: sigma_bonding
@@ -17972,14 +17974,14 @@ impl SigmaState {
             self.matrix.bond_requests[ptr + 1] = 0;
             self.matrix.bond_requests[ptr + 2] = 0;
         }
-
+        resolved
     }
 }
 ```
 
 ---
 
-## FILE: src/ontology/host/sigma_environment.md
+## FILE: I/host/sigma_environment.md
 
 ---
 id: sigma_environment
@@ -18148,6 +18150,7 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
             let payload = if kind == 2 {
                 Some(state.matrix.glyph_payload[cell])
             } else {
+                None
             };
             deposit_scratch_glyph_header(state, cell as i32, kind, retained, payload);
         }
@@ -18165,6 +18168,7 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
                     let payload = if share >= 128 || share <= -128 {
                         Some(state.matrix.glyph_payload[cell])
                     } else {
+                        None
                     };
                     deposit_scratch_glyph_header(state, next_cell as i32, kind, share, payload);
                 }
@@ -18215,13 +18219,9 @@ pub fn tick_glyph_transport(state: &mut SigmaState) {
         }
     }
 
-    // Copy scratch to primary
-        .matrix
-        .glyph_header
-        .copy_from_slice(&state.matrix.glyph_scratch_header);
-        .matrix
-        .glyph_payload
-        .copy_from_slice(&state.matrix.glyph_scratch_payload);
+    // 2. Clear scratch to primary
+    state.matrix.glyph_header.copy_from_slice(&state.matrix.glyph_scratch_header);
+    state.matrix.glyph_payload.copy_from_slice(&state.matrix.glyph_scratch_payload);
 }
 
 fn dir8_x(n: i32) -> i32 {
@@ -18548,7 +18548,7 @@ fn tick_synaptic_decay(state: &mut SigmaState, tick: i32) {
 
 ---
 
-## FILE: src/ontology/host/sigma_ffi_bridge.md
+## FILE: I/host/sigma_ffi_bridge.md
 
 ---
 id: SIGMA_FFI_BRIDGE
@@ -18643,7 +18643,7 @@ export const SIGMA_FFI = {
 
 ---
 
-## FILE: src/ontology/host/sigma_ffi.md
+## FILE: I/host/sigma_ffi.md
 
 ---
 id: sigma_ffi
@@ -19103,7 +19103,7 @@ pub extern "C" fn generate_epoch_proof_ffi(tick: u32, result_ptr: u32) {
 
 ---
 
-## FILE: src/ontology/host/sigma_glyph_transport.md
+## FILE: I/host/sigma_glyph_transport.md
 
 ---
 id: sigma_glyph_transport
@@ -19185,7 +19185,7 @@ impl SigmaState {
 
 ---
 
-## FILE: src/ontology/host/sigma_isa.md
+## FILE: I/host/sigma_isa.md
 
 ---
 id: sigma_isa
@@ -19269,7 +19269,7 @@ impl From<u8> for GlyphOp {
 
 ---
 
-## FILE: src/ontology/host/sigma_math.md
+## FILE: I/host/sigma_math.md
 
 ---
 id: sigma_math
@@ -19290,7 +19290,7 @@ pub use crate::ontology_gen::L00::*;
 
 ---
 
-## FILE: src/ontology/host/sigma_memory.md
+## FILE: I/host/sigma_memory.md
 
 ---
 id: sigma_memory
@@ -19631,6 +19631,7 @@ impl SigmaState {
                 return Some(i);
             }
         }
+        None
     }
 
     pub fn recycle_atom(&mut self, idx: usize) {
@@ -19663,6 +19664,7 @@ impl SigmaState {
         if index < MAX_ATOMS {
             Some(&self.matrix.logic[index])
         } else {
+            None
         }
     }
 
@@ -20028,7 +20030,7 @@ mod tests {
 
 ---
 
-## FILE: src/ontology/host/sigma_pulse.md
+## FILE: I/host/sigma_pulse.md
 
 ---
 id: sigma_pulse
@@ -20102,18 +20104,10 @@ impl<'a> PulseOrchestrator<'a> {
         state.build_spatial_hash();
 
         // 2. Sync Read Views (Double Buffering)
-            .matrix
-            .physics_read_xs
-            .copy_from_slice(&state.matrix.xs);
-            .matrix
-            .physics_read_ys
-            .copy_from_slice(&state.matrix.ys);
-            .matrix
-            .physics_read_energy
-            .copy_from_slice(&state.matrix.energy);
-            .matrix
-            .physics_read_resonance
-            .copy_from_slice(&state.matrix.resonance);
+        state.matrix.physics_read_xs.copy_from_slice(&state.matrix.xs);
+        state.matrix.physics_read_ys.copy_from_slice(&state.matrix.ys);
+        state.matrix.physics_read_energy.copy_from_slice(&state.matrix.energy);
+        state.matrix.physics_read_resonance.copy_from_slice(&state.matrix.resonance);
 
         // 3. Execution Phase (Parallelizing over all logical atom indices)
         (0..MAX_ATOMS).for_each(|i| {
@@ -20274,7 +20268,7 @@ impl<'a> PulseOrchestrator<'a> {
 
 ---
 
-## FILE: src/ontology/host/sigma_replication.md
+## FILE: I/host/sigma_replication.md
 
 ---
 id: sigma_replication
@@ -20474,13 +20468,14 @@ impl SigmaState {
         // Close transaction
         self.matrix.spawn_requests[4..8].copy_from_slice(&cursor.to_le_bytes());
         self.free_search_cursor = free_search_cursor;
+        spawned
     }
 }
 ```
 
 ---
 
-## FILE: src/ontology/host/sigma_shadow.md
+## FILE: I/host/sigma_shadow.md
 
 ---
 id: sigma_shadow
@@ -20621,7 +20616,7 @@ pub fn run_shadow_simulation(
 
 ---
 
-## FILE: src/ontology/host/sigma_spatial.md
+## FILE: I/host/sigma_spatial.md
 
 ---
 id: sigma_spatial
@@ -20751,7 +20746,7 @@ impl SigmaState {
 
 ---
 
-## FILE: src/ontology/host/sigma_structure.md
+## FILE: I/host/sigma_structure.md
 
 ---
 id: sigma_structure
@@ -20880,7 +20875,7 @@ impl SigmaState {
 
 ---
 
-## FILE: src/ontology/host/sigma_vm.md
+## FILE: I/host/sigma_vm.md
 
 ---
 id: sigma_vm
@@ -20922,6 +20917,7 @@ impl LambdaVM {
     #[inline(always)]
     pub fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
+        state
             .matrix
             .instructions
             .get(atom_idx)
@@ -22188,7 +22184,7 @@ impl LambdaVM {
 
 ---
 
-## FILE: src/ontology/l32_gate/atomic_ledger.md
+## FILE: I/l32_gate/atomic_ledger.md
 
 ---
 id: ATOMIC_LEDGER
@@ -22282,7 +22278,7 @@ export const ATOMIC_LEDGER = {
 
 ---
 
-## FILE: src/ontology/l32_gate/checkpoint_chain.md
+## FILE: I/l32_gate/checkpoint_chain.md
 
 ---
 id: checkpoint_chain
@@ -22493,7 +22489,7 @@ export const CHECKPOINT_CHECKPOINT = {
 
 ---
 
-## FILE: src/ontology/l32_gate/crystallization_policy.md
+## FILE: I/l32_gate/crystallization_policy.md
 
 ---
 id: CRYSTALLIZATION_CONFIG
@@ -22591,7 +22587,7 @@ export const CRYSTALLIZATION_POLICY = {
 
 ---
 
-## FILE: src/ontology/l32_gate/gate_admission.md
+## FILE: I/l32_gate/gate_admission.md
 
 ---
 id: CANON_CAUSAL_BRIDGE
@@ -22735,7 +22731,7 @@ export const CANON_CAUSAL_BRIDGE = {
 
 ---
 
-## FILE: src/ontology/l32_gate/gate_ledger.md
+## FILE: I/l32_gate/gate_ledger.md
 
 ---
 id: GATE_LEDGER
@@ -22799,7 +22795,7 @@ export const GATE_LEDGER = {
 
 ---
 
-## FILE: src/ontology/l32_gate/gate_merger.md
+## FILE: I/l32_gate/gate_merger.md
 
 ---
 id: GATE_MERGER
@@ -23016,7 +23012,7 @@ export const GATE_MERGER = {
 
 ---
 
-## FILE: src/ontology/l32_gate/gate_validator.md
+## FILE: I/l32_gate/gate_validator.md
 
 ---
 id: GATE_VALIDATOR
@@ -23239,7 +23235,7 @@ export const GATE_VALIDATOR = {
 
 ---
 
-## FILE: src/ontology/l32_gate/gate.md
+## FILE: I/l32_gate/gate.md
 
 ---
 id: GATE
@@ -23692,7 +23688,7 @@ export const GATE = {
 
 ---
 
-## FILE: src/ontology/l32_gate/genetic_ledger.md
+## FILE: I/l32_gate/genetic_ledger.md
 
 ---
 id: GENETIC_LEDGER
@@ -23878,7 +23874,7 @@ export const GENETIC_LEDGER = {
 
 ---
 
-## FILE: src/ontology/l32_gate/ledger_chain.md
+## FILE: I/l32_gate/ledger_chain.md
 
 ---
 id: ledger_chain
@@ -24332,7 +24328,7 @@ export const PROPOSAL_ENVELOPE_INDEX__08_00_PROPOSAL_ENVELOPE_INDEX = {
 
 ---
 
-## FILE: src/ontology/math/C_LOG2_C_LUT.md
+## FILE: I/math/C_LOG2_C_LUT.md
 
 ---
 id: C_LOG2_C_LUT
@@ -24346,7 +24342,7 @@ dataType: i32
 
 ---
 
-## FILE: src/ontology/math/clamp_resource.md
+## FILE: I/math/clamp_resource.md
 
 ---
 id: clamp_resource
@@ -24393,7 +24389,7 @@ return value as i32;
 
 ---
 
-## FILE: src/ontology/math/COS_LUT.md
+## FILE: I/math/COS_LUT.md
 
 ---
 id: COS_LUT
@@ -24407,7 +24403,7 @@ dataType: i16
 
 ---
 
-## FILE: src/ontology/math/fast_abs.md
+## FILE: I/math/fast_abs.md
 
 ---
 id: fast_abs
@@ -24453,7 +24449,7 @@ return (v + mask) ^ mask;
 
 ---
 
-## FILE: src/ontology/math/fast_max.md
+## FILE: I/math/fast_max.md
 
 ---
 id: fast_max
@@ -24503,7 +24499,7 @@ return a - (diff & (diff >> 31));
 
 ---
 
-## FILE: src/ontology/math/fast_min.md
+## FILE: I/math/fast_min.md
 
 ---
 id: fast_min
@@ -24553,7 +24549,7 @@ return b + (diff & (diff >> 31));
 
 ---
 
-## FILE: src/ontology/math/make_xor_shift32.md
+## FILE: I/math/make_xor_shift32.md
 
 ---
 id: make_xor_shift32
@@ -24588,7 +24584,7 @@ export const make_xor_shift32 = (seed: number): () => number => {
 
 ---
 
-## FILE: src/ontology/math/math_clamp.md
+## FILE: I/math/math_clamp.md
 
 ---
 id: math_clamp
@@ -24619,8 +24615,11 @@ tests:
 ### Rust
 ```rust
 if val < min {
+    min
 } else if val > max {
+    max
 } else {
+    val
 }
 ```
 
@@ -24644,7 +24643,7 @@ return val;
 
 ---
 
-## FILE: src/ontology/math/math_cos.md
+## FILE: I/math/math_cos.md
 
 ---
 id: math_cos
@@ -24730,7 +24729,7 @@ return c_base - term1 - term2;
 
 ---
 
-## FILE: src/ontology/math/math_sin.md
+## FILE: I/math/math_sin.md
 
 ---
 id: math_sin
@@ -24814,7 +24813,7 @@ return s_base + term1 - term2;
 
 ---
 
-## FILE: src/ontology/math/MATH_UTILS.md
+## FILE: I/math/MATH_UTILS.md
 
 ---
 id: MATH_UTILS
@@ -24880,6 +24879,7 @@ pub fn clamp01(x: f64) -> f64 {
     } else if x > 1.0 {
         1.0
     } else {
+        x
     }
 }
 
@@ -24908,6 +24908,7 @@ pub fn calculate_shannon_entropy(data: &[u8; 64]) -> i32 {
         entropy = 6000;
     }
     
+    entropy
 }
 ```
 
@@ -24938,7 +24939,7 @@ export function calculate_shannon_entropy(data: usize): i32 {
 
 ---
 
-## FILE: src/ontology/math/pack_structure_intent.md
+## FILE: I/math/pack_structure_intent.md
 
 ---
 id: pack_structure_intent
@@ -25005,7 +25006,7 @@ return intent as i32;
 
 ---
 
-## FILE: src/ontology/math/PRNG.md
+## FILE: I/math/PRNG.md
 
 ---
 id: PRNG
@@ -25052,7 +25053,7 @@ export class PRNG {
 
 ---
 
-## FILE: src/ontology/math/SIN_LUT.md
+## FILE: I/math/SIN_LUT.md
 
 ---
 id: SIN_LUT
@@ -25066,7 +25067,7 @@ dataType: i16
 
 ---
 
-## FILE: src/ontology/math/to_int16_big_endian.md
+## FILE: I/math/to_int16_big_endian.md
 
 ---
 id: to_int16_big_endian
@@ -25103,7 +25104,7 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
 
 ---
 
-## FILE: src/ontology/math/unpack_structure_charge.md
+## FILE: I/math/unpack_structure_charge.md
 
 ---
 id: unpack_structure_charge
@@ -25152,7 +25153,7 @@ return ((intent as u32) & 0x7F000000) >> 24;
 
 ---
 
-## FILE: src/ontology/membrane/agent_proxy.md
+## FILE: I/membrane/agent_proxy.md
 
 ---
 id: AGENT_PROXY
@@ -25396,7 +25397,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/membrane/akasha_server.md
+## FILE: I/membrane/akasha_server.md
 
 ---
 id: AKASHA_SERVER
@@ -26139,7 +26140,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/membrane/akasha_signaling.md
+## FILE: I/membrane/akasha_signaling.md
 
 ---
 id: AKASHA_SIGNALING
@@ -26460,7 +26461,7 @@ export const AKASHA_SIGNALING = {
 
 ---
 
-## FILE: src/ontology/membrane/p2p_codec.md
+## FILE: I/membrane/p2p_codec.md
 
 ---
 id: P2P_CODEC
@@ -26604,7 +26605,7 @@ export const P2P_CODEC = {
 
 ---
 
-## FILE: src/ontology/membrane/p2p_federation.md
+## FILE: I/membrane/p2p_federation.md
 
 ---
 id: P2P_FEDERATION
@@ -26707,7 +26708,7 @@ export const P2P_FEDERATION = {
 
 ---
 
-## FILE: src/ontology/membrane/panopticon_server.md
+## FILE: I/membrane/panopticon_server.md
 
 ---
 id: PANOPTICON_SERVER
@@ -26851,7 +26852,7 @@ export const PANOPTICON_SERVER = {
 
 ---
 
-## FILE: src/ontology/membrane/swarm_nexus.md
+## FILE: I/membrane/swarm_nexus.md
 
 ---
 id: SWARM_NEXUS
@@ -27220,7 +27221,7 @@ export class SwarmNexus {
 
 ---
 
-## FILE: src/ontology/membrane/swarm_node.md
+## FILE: I/membrane/swarm_node.md
 
 ---
 id: SWARM_NODE
@@ -27284,7 +27285,7 @@ export const SWARM_NODE = new MetaKuramotoNode();
 
 ---
 
-## FILE: src/ontology/membrane/telemetry_stream.md
+## FILE: I/membrane/telemetry_stream.md
 
 ---
 id: TELEMETRY_STREAM
@@ -27492,7 +27493,7 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ---
 
-## FILE: src/ontology/memory/add_energy_delta.md
+## FILE: I/memory/add_energy_delta.md
 
 ---
 id: add_energy_delta
@@ -27530,7 +27531,7 @@ if (delta != 0) {
 
 ---
 
-## FILE: src/ontology/memory/add_hive_balance.md
+## FILE: I/memory/add_hive_balance.md
 
 ---
 id: add_hive_balance
@@ -27563,7 +27564,7 @@ return atomic.add<i32>(HIVE_BALANCE_OFF, val);
 
 ---
 
-## FILE: src/ontology/memory/add_resonance_delta.md
+## FILE: I/memory/add_resonance_delta.md
 
 ---
 id: add_resonance_delta
@@ -27601,7 +27602,7 @@ if (delta != 0) {
 
 ---
 
-## FILE: src/ontology/memory/add_resonance.md
+## FILE: I/memory/add_resonance.md
 
 ---
 id: add_resonance
@@ -27638,7 +27639,7 @@ set_resonance(idx, get_resonance(idx) + delta);
 
 ---
 
-## FILE: src/ontology/memory/attentionField.md
+## FILE: I/memory/attentionField.md
 
 ---
 id: attentionField
@@ -27666,7 +27667,7 @@ export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFF
 
 ---
 
-## FILE: src/ontology/memory/attentionFieldBuffer.md
+## FILE: I/memory/attentionFieldBuffer.md
 
 ---
 id: attentionFieldBuffer
@@ -27694,7 +27695,7 @@ export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIE
 
 ---
 
-## FILE: src/ontology/memory/bondDistances.md
+## FILE: I/memory/bondDistances.md
 
 ---
 id: bondDistances
@@ -27723,7 +27724,7 @@ export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET,
 
 ---
 
-## FILE: src/ontology/memory/bondDistBuffer.md
+## FILE: I/memory/bondDistBuffer.md
 
 ---
 id: bondDistBuffer
@@ -27752,7 +27753,7 @@ export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET
 
 ---
 
-## FILE: src/ontology/memory/bondRequests.md
+## FILE: I/memory/bondRequests.md
 
 ---
 id: bondRequests
@@ -27781,7 +27782,7 @@ export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, M
 
 ---
 
-## FILE: src/ontology/memory/bonds.md
+## FILE: I/memory/bonds.md
 
 ---
 id: bonds
@@ -27810,7 +27811,7 @@ export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 
 ---
 
-## FILE: src/ontology/memory/bondStiffness.md
+## FILE: I/memory/bondStiffness.md
 
 ---
 id: bondStiffness
@@ -27839,7 +27840,7 @@ export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MA
 
 ---
 
-## FILE: src/ontology/memory/causality.md
+## FILE: I/memory/causality.md
 
 ---
 id: causality
@@ -27868,7 +27869,7 @@ export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOM
 
 ---
 
-## FILE: src/ontology/memory/codeWords.md
+## FILE: I/memory/codeWords.md
 
 ---
 id: codeWords
@@ -27897,7 +27898,7 @@ export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_
 
 ---
 
-## FILE: src/ontology/memory/coherence.md
+## FILE: I/memory/coherence.md
 
 ---
 id: coherence
@@ -27924,7 +27925,7 @@ export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 ---
 
-## FILE: src/ontology/memory/contextByteView.md
+## FILE: I/memory/contextByteView.md
 
 ---
 id: contextByteView
@@ -27954,7 +27955,7 @@ export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_
 
 ---
 
-## FILE: src/ontology/memory/contexts.md
+## FILE: I/memory/contexts.md
 
 ---
 id: contexts
@@ -27984,7 +27985,7 @@ export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS *
 
 ---
 
-## FILE: src/ontology/memory/damping.md
+## FILE: I/memory/damping.md
 
 ---
 id: damping
@@ -28013,7 +28014,7 @@ export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/dampingBuffer.md
+## FILE: I/memory/dampingBuffer.md
 
 ---
 id: dampingBuffer
@@ -28042,7 +28043,7 @@ export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_AT
 
 ---
 
-## FILE: src/ontology/memory/energies.md
+## FILE: I/memory/energies.md
 
 ---
 id: energies
@@ -28071,7 +28072,7 @@ export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/evolutionReserved.md
+## FILE: I/memory/evolutionReserved.md
 
 ---
 id: evolutionReserved
@@ -28100,7 +28101,7 @@ export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, 
 
 ---
 
-## FILE: src/ontology/memory/genome_key16.md
+## FILE: I/memory/genome_key16.md
 
 ---
 id: genome_key16
@@ -28151,7 +28152,7 @@ return (b0 << 8) | b1;
 
 ---
 
-## FILE: src/ontology/memory/get_bond_stiffness.md
+## FILE: I/memory/get_bond_stiffness.md
 
 ---
 id: get_bond_stiffness
@@ -28185,7 +28186,7 @@ return load<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_bond_target.md
+## FILE: I/memory/get_bond_target.md
 
 ---
 id: get_bond_target
@@ -28219,7 +28220,7 @@ return load<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_energy.md
+## FILE: I/memory/get_energy.md
 
 ---
 id: get_energy
@@ -28258,7 +28259,7 @@ return load<i32>(ENERGY_OFFSET + (idx << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_hive_balance.md
+## FILE: I/memory/get_hive_balance.md
 
 ---
 id: get_hive_balance
@@ -28290,7 +28291,7 @@ return atomic.load<i32>(HIVE_BALANCE_OFF);
 
 ---
 
-## FILE: src/ontology/memory/get_hive_memory.md
+## FILE: I/memory/get_hive_memory.md
 
 ---
 id: get_hive_memory
@@ -28323,7 +28324,7 @@ return load<u8>(HIVE_MEMORY_OFF + (addr & 1023));
 
 ---
 
-## FILE: src/ontology/memory/get_hormone.md
+## FILE: I/memory/get_hormone.md
 
 ---
 id: get_hormone
@@ -28356,7 +28357,7 @@ return atomic.load<u16>(HORMONE_OFF + (id << 1));
 
 ---
 
-## FILE: src/ontology/memory/get_lineage.md
+## FILE: I/memory/get_lineage.md
 
 ---
 id: get_lineage
@@ -28389,7 +28390,7 @@ return load<u64>(LINEAGE_OFFSET + (idx << 3));
 
 ---
 
-## FILE: src/ontology/memory/get_logic_byte.md
+## FILE: I/memory/get_logic_byte.md
 
 ---
 id: get_logic_byte
@@ -28423,7 +28424,7 @@ return load<u8>(LOGIC_OFFSET + (idx << 3) + slot);
 
 ---
 
-## FILE: src/ontology/memory/get_p_c.md
+## FILE: I/memory/get_p_c.md
 
 ---
 id: get_p_c
@@ -28456,7 +28457,7 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32);
 
 ---
 
-## FILE: src/ontology/memory/get_pending_syscall.md
+## FILE: I/memory/get_pending_syscall.md
 
 ---
 id: get_pending_syscall
@@ -28489,7 +28490,7 @@ return load<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33);
 
 ---
 
-## FILE: src/ontology/memory/get_phase.md
+## FILE: I/memory/get_phase.md
 
 ---
 id: get_phase
@@ -28522,7 +28523,7 @@ return load<i32>(PHASE_OFFSET + (idx << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_read_energy.md
+## FILE: I/memory/get_read_energy.md
 
 ---
 id: get_read_energy
@@ -28555,7 +28556,7 @@ return load<i32>(PHYSICS_READ_ENERGY_OFF + (idx << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_read_resonance.md
+## FILE: I/memory/get_read_resonance.md
 
 ---
 id: get_read_resonance
@@ -28588,7 +28589,7 @@ return load<i32>(PHYSICS_READ_RESONANCE_OFF + (idx << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_read_x.md
+## FILE: I/memory/get_read_x.md
 
 ---
 id: get_read_x
@@ -28621,7 +28622,7 @@ return load<i16>(PHYSICS_READ_XS_OFF + (idx << 1));
 
 ---
 
-## FILE: src/ontology/memory/get_read_y.md
+## FILE: I/memory/get_read_y.md
 
 ---
 id: get_read_y
@@ -28654,7 +28655,7 @@ return load<i16>(PHYSICS_READ_YS_OFF + (idx << 1));
 
 ---
 
-## FILE: src/ontology/memory/get_reg.md
+## FILE: I/memory/get_reg.md
 
 ---
 id: get_reg
@@ -28688,7 +28689,7 @@ return load<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_resonance.md
+## FILE: I/memory/get_resonance.md
 
 ---
 id: get_resonance
@@ -28721,7 +28722,7 @@ return load<i32>(RESONANCE_OFFSET + (idx << 2));
 
 ---
 
-## FILE: src/ontology/memory/get_role.md
+## FILE: I/memory/get_role.md
 
 ---
 id: get_role
@@ -28754,7 +28755,7 @@ return load<u8>(ROLES_OFFSET + atomIdx);
 
 ---
 
-## FILE: src/ontology/memory/get_spatial_grid_atom.md
+## FILE: I/memory/get_spatial_grid_atom.md
 
 ---
 id: get_spatial_grid_atom
@@ -28798,7 +28799,7 @@ return load<i32>(
 
 ---
 
-## FILE: src/ontology/memory/get_spatial_grid_count.md
+## FILE: I/memory/get_spatial_grid_count.md
 
 ---
 id: get_spatial_grid_count
@@ -28839,7 +28840,7 @@ return load<i32>(SPATIAL_GRID_OFFSET + (cellIdx << 7));
 
 ---
 
-## FILE: src/ontology/memory/get_x.md
+## FILE: I/memory/get_x.md
 
 ---
 id: get_x
@@ -28872,7 +28873,7 @@ return load<i16>(XS_OFFSET + (idx << 1));
 
 ---
 
-## FILE: src/ontology/memory/get_y.md
+## FILE: I/memory/get_y.md
 
 ---
 id: get_y
@@ -28905,7 +28906,7 @@ return load<i16>(YS_OFFSET + (idx << 1));
 
 ---
 
-## FILE: src/ontology/memory/glyphHeaderBuffer.md
+## FILE: I/memory/glyphHeaderBuffer.md
 
 ---
 id: glyphHeaderBuffer
@@ -28933,7 +28934,7 @@ export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSE
 
 ---
 
-## FILE: src/ontology/memory/glyphHeaders.md
+## FILE: I/memory/glyphHeaders.md
 
 ---
 id: glyphHeaders
@@ -28961,7 +28962,7 @@ export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GR
 
 ---
 
-## FILE: src/ontology/memory/glyphPayload.md
+## FILE: I/memory/glyphPayload.md
 
 ---
 id: glyphPayload
@@ -28989,7 +28990,7 @@ export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, G
 
 ---
 
-## FILE: src/ontology/memory/glyphPayloadBuffer.md
+## FILE: I/memory/glyphPayloadBuffer.md
 
 ---
 id: glyphPayloadBuffer
@@ -29017,7 +29018,7 @@ export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFF
 
 ---
 
-## FILE: src/ontology/memory/hiveBalance.md
+## FILE: I/memory/hiveBalance.md
 
 ---
 id: hiveBalance
@@ -29044,7 +29045,7 @@ export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 
 ---
 
-## FILE: src/ontology/memory/hiveEnergyPool.md
+## FILE: I/memory/hiveEnergyPool.md
 
 ---
 id: hiveEnergyPool
@@ -29072,7 +29073,7 @@ export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFS
 
 ---
 
-## FILE: src/ontology/memory/hiveEnergyPoolBuffer.md
+## FILE: I/memory/hiveEnergyPoolBuffer.md
 
 ---
 id: hiveEnergyPoolBuffer
@@ -29100,7 +29101,7 @@ export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POO
 
 ---
 
-## FILE: src/ontology/memory/hiveMemory.md
+## FILE: I/memory/hiveMemory.md
 
 ---
 id: hiveMemory
@@ -29128,7 +29129,7 @@ export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_
 
 ---
 
-## FILE: src/ontology/memory/hiveMemoryBuffer.md
+## FILE: I/memory/hiveMemoryBuffer.md
 
 ---
 id: hiveMemoryBuffer
@@ -29156,7 +29157,7 @@ export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET,
 
 ---
 
-## FILE: src/ontology/memory/hormoneBuffer.md
+## FILE: I/memory/hormoneBuffer.md
 
 ---
 id: hormoneBuffer
@@ -29184,7 +29185,7 @@ export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_H
 
 ---
 
-## FILE: src/ontology/memory/hormones.md
+## FILE: I/memory/hormones.md
 
 ---
 id: hormones
@@ -29212,7 +29213,7 @@ export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMON
 
 ---
 
-## FILE: src/ontology/memory/ids.md
+## FILE: I/memory/ids.md
 
 ---
 id: ids
@@ -29241,7 +29242,7 @@ export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/instructions.md
+## FILE: I/memory/instructions.md
 
 ---
 id: instructions
@@ -29271,7 +29272,7 @@ export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MA
 
 ---
 
-## FILE: src/ontology/memory/latticeClearView.md
+## FILE: I/memory/latticeClearView.md
 
 ---
 id: latticeClearView
@@ -29298,7 +29299,7 @@ export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET
 
 ---
 
-## FILE: src/ontology/memory/ledgerDataView.md
+## FILE: I/memory/ledgerDataView.md
 
 ---
 id: ledgerDataView
@@ -29326,7 +29327,7 @@ export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, M
 
 ---
 
-## FILE: src/ontology/memory/ledgerHeadView.md
+## FILE: I/memory/ledgerHeadView.md
 
 ---
 id: ledgerHeadView
@@ -29353,7 +29354,7 @@ export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1
 
 ---
 
-## FILE: src/ontology/memory/lineage.md
+## FILE: I/memory/lineage.md
 
 ---
 id: lineage
@@ -29382,7 +29383,7 @@ export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOM
 
 ---
 
-## FILE: src/ontology/memory/lineageBuffer.md
+## FILE: I/memory/lineageBuffer.md
 
 ---
 id: lineageBuffer
@@ -29411,7 +29412,7 @@ export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MA
 
 ---
 
-## FILE: src/ontology/memory/logic.md
+## FILE: I/memory/logic.md
 
 ---
 id: logic
@@ -29441,7 +29442,7 @@ export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM
 
 ---
 
-## FILE: src/ontology/memory/mailboxes.md
+## FILE: I/memory/mailboxes.md
 
 ---
 id: mailboxes
@@ -29470,7 +29471,7 @@ export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS 
 
 ---
 
-## FILE: src/ontology/memory/memory_views_base.md
+## FILE: I/memory/memory_views_base.md
 
 ---
 id: memory_views_base
@@ -29526,7 +29527,7 @@ export const sharedBuffer = wasmMemory.buffer as SharedArrayBuffer;
 
 ---
 
-## FILE: src/ontology/memory/memoryGrid.md
+## FILE: I/memory/memoryGrid.md
 
 ---
 id: memoryGrid
@@ -29554,7 +29555,7 @@ export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_
 
 ---
 
-## FILE: src/ontology/memory/memoryGridBuffer.md
+## FILE: I/memory/memoryGridBuffer.md
 
 ---
 id: memoryGridBuffer
@@ -29582,7 +29583,7 @@ export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET,
 
 ---
 
-## FILE: src/ontology/memory/mx.md
+## FILE: I/memory/mx.md
 
 ---
 id: MX
@@ -30188,7 +30189,7 @@ export const MX = {
 
 ---
 
-## FILE: src/ontology/memory/neuralCoherence.md
+## FILE: I/memory/neuralCoherence.md
 
 ---
 id: neuralCoherence
@@ -30215,7 +30216,7 @@ export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFF
 
 ---
 
-## FILE: src/ontology/memory/phases.md
+## FILE: I/memory/phases.md
 
 ---
 id: phases
@@ -30244,7 +30245,7 @@ export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/resonances.md
+## FILE: I/memory/resonances.md
 
 ---
 id: resonances
@@ -30273,7 +30274,7 @@ export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATO
 
 ---
 
-## FILE: src/ontology/memory/roleBuffer.md
+## FILE: I/memory/roleBuffer.md
 
 ---
 id: roleBuffer
@@ -30302,7 +30303,7 @@ export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).
 
 ---
 
-## FILE: src/ontology/memory/roles.md
+## FILE: I/memory/roles.md
 
 ---
 id: roles
@@ -30331,7 +30332,7 @@ export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/semanticBonuses.md
+## FILE: I/memory/semanticBonuses.md
 
 ---
 id: semanticBonuses
@@ -30358,7 +30359,7 @@ export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * 
 
 ---
 
-## FILE: src/ontology/memory/semanticBonusesBuffer.md
+## FILE: I/memory/semanticBonusesBuffer.md
 
 ---
 id: semanticBonusesBuffer
@@ -30384,7 +30385,7 @@ export const semanticBonusesBuffer = semanticBonuses.buffer;
 
 ---
 
-## FILE: src/ontology/memory/set_bond_dist.md
+## FILE: I/memory/set_bond_dist.md
 
 ---
 id: set_bond_dist
@@ -30419,7 +30420,7 @@ store<u8>(BOND_DISTANCES_OFFSET + (atomIdx << 2) + slot, dist);
 
 ---
 
-## FILE: src/ontology/memory/set_bond_stiffness.md
+## FILE: I/memory/set_bond_stiffness.md
 
 ---
 id: set_bond_stiffness
@@ -30454,7 +30455,7 @@ store<f32>(STIFFNESS_OFFSET + (atomIdx << 4) + (slot << 2), val);
 
 ---
 
-## FILE: src/ontology/memory/set_bond_target.md
+## FILE: I/memory/set_bond_target.md
 
 ---
 id: set_bond_target
@@ -30489,7 +30490,7 @@ store<i32>(BONDS_OFFSET + (atomIdx << 4) + (slot << 2), targetIdx);
 
 ---
 
-## FILE: src/ontology/memory/set_damping.md
+## FILE: I/memory/set_damping.md
 
 ---
 id: set_damping
@@ -30523,7 +30524,7 @@ store<u8>(DAMPING_OFF + atomIdx, val);
 
 ---
 
-## FILE: src/ontology/memory/set_energy.md
+## FILE: I/memory/set_energy.md
 
 ---
 id: set_energy
@@ -30562,7 +30563,7 @@ store<i32>(ENERGY_OFFSET + (idx << 2), val);
 
 ---
 
-## FILE: src/ontology/memory/set_hive_memory.md
+## FILE: I/memory/set_hive_memory.md
 
 ---
 id: set_hive_memory
@@ -30596,7 +30597,7 @@ store<u8>(HIVE_MEMORY_OFF + (addr & 1023), val);
 
 ---
 
-## FILE: src/ontology/memory/set_p_c.md
+## FILE: I/memory/set_p_c.md
 
 ---
 id: set_p_c
@@ -30630,7 +30631,7 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 32, val);
 
 ---
 
-## FILE: src/ontology/memory/set_pending_syscall.md
+## FILE: I/memory/set_pending_syscall.md
 
 ---
 id: set_pending_syscall
@@ -30664,7 +30665,7 @@ store<u8>(CONTEXT_OFFSET + (atomIdx << 6) + 33, val);
 
 ---
 
-## FILE: src/ontology/memory/set_phase.md
+## FILE: I/memory/set_phase.md
 
 ---
 id: set_phase
@@ -30698,7 +30699,7 @@ store<i32>(PHASE_OFFSET + (idx << 2), val);
 
 ---
 
-## FILE: src/ontology/memory/set_reg.md
+## FILE: I/memory/set_reg.md
 
 ---
 id: set_reg
@@ -30733,7 +30734,7 @@ store<i32>(CONTEXT_OFFSET + (atomIdx << 6) + (reg << 2), val);
 
 ---
 
-## FILE: src/ontology/memory/set_resonance.md
+## FILE: I/memory/set_resonance.md
 
 ---
 id: set_resonance
@@ -30769,7 +30770,7 @@ store<i32>(RESONANCE_OFFSET + (idx << 2), clamp_resource(val as i64));
 
 ---
 
-## FILE: src/ontology/memory/set_role.md
+## FILE: I/memory/set_role.md
 
 ---
 id: set_role
@@ -30803,7 +30804,7 @@ store<u8>(ROLES_OFFSET + atomIdx, val);
 
 ---
 
-## FILE: src/ontology/memory/signalGrid.md
+## FILE: I/memory/signalGrid.md
 
 ---
 id: signalGrid
@@ -30831,7 +30832,7 @@ export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_
 
 ---
 
-## FILE: src/ontology/memory/signalGridBuffer.md
+## FILE: I/memory/signalGridBuffer.md
 
 ---
 id: signalGridBuffer
@@ -30859,7 +30860,7 @@ export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET,
 
 ---
 
-## FILE: src/ontology/memory/spatialGrid.md
+## FILE: I/memory/spatialGrid.md
 
 ---
 id: spatialGrid
@@ -30887,7 +30888,7 @@ export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRI
 
 ---
 
-## FILE: src/ontology/memory/stiffnessBuffer.md
+## FILE: I/memory/stiffnessBuffer.md
 
 ---
 id: stiffnessBuffer
@@ -30916,7 +30917,7 @@ export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, 
 
 ---
 
-## FILE: src/ontology/memory/structureGrid.md
+## FILE: I/memory/structureGrid.md
 
 ---
 id: structureGrid
@@ -30944,7 +30945,7 @@ export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET,
 
 ---
 
-## FILE: src/ontology/memory/structureGridBuffer.md
+## FILE: I/memory/structureGridBuffer.md
 
 ---
 id: structureGridBuffer
@@ -30972,7 +30973,7 @@ export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_O
 
 ---
 
-## FILE: src/ontology/memory/synapticWeights.md
+## FILE: I/memory/synapticWeights.md
 
 ---
 id: synapticWeights
@@ -31001,7 +31002,7 @@ export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFF
 
 ---
 
-## FILE: src/ontology/memory/syncState.md
+## FILE: I/memory/syncState.md
 
 ---
 id: syncState
@@ -31028,7 +31029,7 @@ export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 
 ---
 
-## FILE: src/ontology/memory/tickCounter.md
+## FILE: I/memory/tickCounter.md
 
 ---
 id: tickCounter
@@ -31055,7 +31056,7 @@ export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 
 ---
 
-## FILE: src/ontology/memory/wasm_memory_guard.md
+## FILE: I/memory/wasm_memory_guard.md
 
 ---
 id: assert_wasm_memory_depth
@@ -31098,7 +31099,7 @@ export const assert_wasm_memory_depth = (): void => {
 
 ---
 
-## FILE: src/ontology/memory/xs.md
+## FILE: I/memory/xs.md
 
 ---
 id: xs
@@ -31127,7 +31128,7 @@ export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/memory/ys.md
+## FILE: I/memory/ys.md
 
 ---
 id: ys
@@ -31156,7 +31157,7 @@ export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 
 ---
 
-## FILE: src/ontology/physics/apply_bond_springs.md
+## FILE: I/physics/apply_bond_springs.md
 
 ---
 id: apply_bond_springs
@@ -31332,7 +31333,7 @@ return encode_force_tuple(fx, fy);
 
 ---
 
-## FILE: src/ontology/physics/calculate_trophism.md
+## FILE: I/physics/calculate_trophism.md
 
 ---
 id: calculate_trophism
@@ -31705,7 +31706,7 @@ return encode_force_tuple(tx, ty);
 
 ---
 
-## FILE: src/ontology/physics/encode_force_tuple.md
+## FILE: I/physics/encode_force_tuple.md
 
 ---
 id: encode_force_tuple
@@ -31744,7 +31745,7 @@ return ((xInt as i64) << 32) | ((yInt as i64) & 0xFFFFFFFF);
 
 ---
 
-## FILE: src/ontology/physics/fire_signal.md
+## FILE: I/physics/fire_signal.md
 
 ---
 id: fire_signal
@@ -31797,7 +31798,7 @@ for (let b = 0; b < 4; b++) {
 
 ---
 
-## FILE: src/ontology/physics/get_attention_cell.md
+## FILE: I/physics/get_attention_cell.md
 
 ---
 id: get_attention_cell
@@ -31842,7 +31843,7 @@ return load<f32>(ATTENTION_FIELD_OFF + ((gy * GRID_W + gx) << 2) as usize);
 
 ---
 
-## FILE: src/ontology/physics/get_genome_velocity_x.md
+## FILE: I/physics/get_genome_velocity_x.md
 
 ---
 id: get_genome_velocity_x
@@ -31897,7 +31898,7 @@ return vx;
 
 ---
 
-## FILE: src/ontology/physics/get_genome_velocity_y.md
+## FILE: I/physics/get_genome_velocity_y.md
 
 ---
 id: get_genome_velocity_y
@@ -31952,7 +31953,7 @@ return vy;
 
 ---
 
-## FILE: src/ontology/physics/get_glyph_influence.md
+## FILE: I/physics/get_glyph_influence.md
 
 ---
 id: get_glyph_influence
@@ -32044,7 +32045,7 @@ return 0.0;
 
 ---
 
-## FILE: src/ontology/physics/publish_build_intent.md
+## FILE: I/physics/publish_build_intent.md
 
 ---
 id: publish_build_intent
@@ -32128,7 +32129,7 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 
 ---
 
-## FILE: src/ontology/physics/publish_charge_intent.md
+## FILE: I/physics/publish_charge_intent.md
 
 ---
 id: publish_charge_intent
@@ -32187,7 +32188,7 @@ for (let spin = 0; spin < STRUCTURE_INTENT_SPIN_LIMIT; spin++) {
 
 ---
 
-## FILE: src/ontology/physics/read_structure_cell.md
+## FILE: I/physics/read_structure_cell.md
 
 ---
 id: read_structure_cell
@@ -32256,7 +32257,7 @@ return atomic.load<i32>(gridPtr);
 
 ---
 
-## FILE: src/ontology/physics/read_structure_charge.md
+## FILE: I/physics/read_structure_charge.md
 
 ---
 id: read_structure_charge
@@ -32303,7 +32304,7 @@ return intentCharge > baseCharge ? intentCharge : baseCharge;
 
 ---
 
-## FILE: src/ontology/physics/reduce_atom_deltas.md
+## FILE: I/physics/reduce_atom_deltas.md
 
 ---
 id: reduce_atom_deltas
@@ -32361,7 +32362,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/physics/resolve_bond_requests.md
+## FILE: I/physics/resolve_bond_requests.md
 
 ---
 id: resolve_bond_requests
@@ -32468,7 +32469,7 @@ return resolved;
 
 ---
 
-## FILE: src/ontology/physics/tick_environment.md
+## FILE: I/physics/tick_environment.md
 
 ---
 id: tick_environment
@@ -32519,7 +32520,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/physics/tick_structure_grid.md
+## FILE: I/physics/tick_structure_grid.md
 
 ---
 id: tick_structure_grid
@@ -32789,7 +32790,7 @@ unimplemented!()
 
 ---
 
-## FILE: src/ontology/semantic/akasha_codex.md
+## FILE: I/semantic/akasha_codex.md
 
 ---
 id: AKASHA_CODEX
@@ -34430,7 +34431,7 @@ export const AKASHA_CODEX = {
 
 ---
 
-## FILE: src/ontology/semantic/avatar_bot.md
+## FILE: I/semantic/avatar_bot.md
 
 ---
 id: AVATAR_BOT
@@ -34539,7 +34540,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/semantic/avatar_engine.md
+## FILE: I/semantic/avatar_engine.md
 
 ---
 id: AVATAR_ENGINE
@@ -34606,7 +34607,7 @@ export const AVATAR_ENGINE = {
 
 ---
 
-## FILE: src/ontology/semantic/genesis_boot.md
+## FILE: I/semantic/genesis_boot.md
 
 ---
 id: GENESIS_BOOT
@@ -34768,7 +34769,7 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
 
 ---
 
-## FILE: src/ontology/semantic/genesis_inceptor.md
+## FILE: I/semantic/genesis_inceptor.md
 
 ---
 id: GENESIS_INCEPTOR
@@ -34824,7 +34825,7 @@ export class GenesisInceptor {
 
 ---
 
-## FILE: src/ontology/semantic/genesis_reified.md
+## FILE: I/semantic/genesis_reified.md
 
 ---
 id: GENESIS_REIFIED
@@ -34848,7 +34849,7 @@ export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 
 ---
 
-## FILE: src/ontology/semantic/llm_soul.md
+## FILE: I/semantic/llm_soul.md
 
 ---
 id: llm_soul
@@ -35058,7 +35059,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/semantic/llm_synapse.md
+## FILE: I/semantic/llm_synapse.md
 
 ---
 id: LLM_SYNAPSE
@@ -35512,7 +35513,7 @@ if (import.meta.main) {
 
 ---
 
-## FILE: src/ontology/semantic/opcode_to_glyph.md
+## FILE: I/semantic/opcode_to_glyph.md
 
 ---
 id: OPCODE_TO_GLYPH
@@ -35679,7 +35680,7 @@ export const scriptToGlyphTape = (
 
 ---
 
-## FILE: src/ontology/semantic/semantic_membrane.md
+## FILE: I/semantic/semantic_membrane.md
 
 ---
 id: SEMANTIC_MEMBRANE
@@ -36184,7 +36185,7 @@ export const SEMANTIC_MEMBRANE = {
 
 ---
 
-## FILE: src/ontology/semantic/sovereign_oracle.md
+## FILE: I/semantic/sovereign_oracle.md
 
 ---
 id: SOVEREIGN_ORACLE
@@ -36882,7 +36883,7 @@ export const SOVEREIGN_ORACLE = {
 
 ---
 
-## FILE: src/ontology/spatial/clamp_world_x.md
+## FILE: I/spatial/clamp_world_x.md
 
 ---
 id: clamp_world_x
@@ -36920,7 +36921,7 @@ return math_clamp(x, 0, WORLD_MAX_X);
 
 ---
 
-## FILE: src/ontology/spatial/clamp_world_y.md
+## FILE: I/spatial/clamp_world_y.md
 
 ---
 id: clamp_world_y
@@ -36958,7 +36959,7 @@ return math_clamp(y, 0, WORLD_MAX_Y);
 
 ---
 
-## FILE: src/ontology/spatial/dir4_x.md
+## FILE: I/spatial/dir4_x.md
 
 ---
 id: dir4_x
@@ -37013,7 +37014,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/spatial/dir4_y.md
+## FILE: I/spatial/dir4_y.md
 
 ---
 id: dir4_y
@@ -37068,7 +37069,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/spatial/dir8_x.md
+## FILE: I/spatial/dir8_x.md
 
 ---
 id: dir8_x
@@ -37127,7 +37128,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/spatial/dir8_y.md
+## FILE: I/spatial/dir8_y.md
 
 ---
 id: dir8_y
@@ -37188,7 +37189,7 @@ return 0;
 
 ---
 
-## FILE: src/ontology/spatial/in_grid.md
+## FILE: I/spatial/in_grid.md
 
 ---
 id: in_grid
@@ -37234,7 +37235,7 @@ return x >= 0 && x < GRID_W && y >= 0 && y < GRID_H;
 
 ---
 
-## FILE: src/ontology/spatial/store_clamped_pos.md
+## FILE: I/spatial/store_clamped_pos.md
 
 ---
 id: store_clamped_pos
@@ -37287,7 +37288,7 @@ store<i16>(YS_OFFSET + (<usize>idx << 1), <i16>clamp_world_y(y));
 
 ---
 
-## FILE: src/ontology/substrate/ID_TO_IDX.md
+## FILE: I/substrate/ID_TO_IDX.md
 
 ---
 id: ID_TO_IDX
@@ -37317,7 +37318,7 @@ export const ID_TO_IDX = new Map<string, number>();
 
 ---
 
-## FILE: src/ontology/substrate/IDX_TO_ID.md
+## FILE: I/substrate/IDX_TO_ID.md
 
 ---
 id: IDX_TO_ID
@@ -37347,7 +37348,7 @@ export const IDX_TO_ID = new Map<number, string>();
 
 ---
 
-## FILE: src/ontology/substrate/prng_next.md
+## FILE: I/substrate/prng_next.md
 
 ---
 id: prng_next
@@ -37396,7 +37397,7 @@ export function prng_next(state: u32): u32 {
 
 ---
 
-## FILE: src/ontology/substrate/prng_seed_from.md
+## FILE: I/substrate/prng_seed_from.md
 
 ---
 id: prng_seed_from
@@ -37451,7 +37452,7 @@ export function prng_seed_from(tick: u32, atomId: string): u32 {
 
 ---
 
-## FILE: src/ontology/telemetry/glyph_telemetry.md
+## FILE: I/telemetry/glyph_telemetry.md
 
 ---
 id: GLYPH_TELEMETRY
@@ -37666,7 +37667,7 @@ export const GLYPH_TELEMETRY = {
 
 ---
 
-## FILE: src/ontology/telemetry/mutation_telemetry.md
+## FILE: I/telemetry/mutation_telemetry.md
 
 ---
 id: MUTATION_TELEMETRY
@@ -37773,7 +37774,7 @@ export const MUTATION_TELEMETRY = {
 
 ---
 
-## FILE: src/ontology/telemetry/serve_dashboard.md
+## FILE: I/telemetry/serve_dashboard.md
 
 ---
 id: SERVE_DASHBOARD
@@ -38134,7 +38135,7 @@ export const SERVE_DASHBOARD = {
 
 ---
 
-## FILE: src/ontology/telemetry/tui_dashboard.md
+## FILE: I/telemetry/tui_dashboard.md
 
 ---
 id: TUI_DASHBOARD

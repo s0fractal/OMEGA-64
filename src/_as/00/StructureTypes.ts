@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/StructureTypes.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/StructureTypes.md
 
 export const STR_VOID: u8 = 0;
 export const STR_WIRE: u8 = 1;

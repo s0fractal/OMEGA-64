@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_synapse.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/llm_synapse.md
 import { LOGGER, Li, Lw } from "@g06";
 
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge

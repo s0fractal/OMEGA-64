@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/akasha_codex.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/akasha_codex.md
 import { SpeciesEntry, ChronicleEntry, RelicEntry, InvariantSignal, InvariantEntry, DaemonInvariantFrame, CodexNarrative, CodexState, GenomeStats, RelicCandidate, TaxonomyResult, GRID_CELLS, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Li, Lw, OP_BUILD, OP_RESONATE_KURAMOTO, OP_SENSE, OP_SENSE_AS, MX, CodexLineageProfile, GlyphTransportEvidence, HormoneRegimeEvidence } from "@g07";
 
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone

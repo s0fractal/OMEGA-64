@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/avatar_engine.md
 import { GLYPH_TELEMETRY, MX, SCALE, GRID_W } from "@g06";
 
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar

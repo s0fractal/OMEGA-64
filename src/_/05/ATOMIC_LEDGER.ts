@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/atomic_ledger.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/l32_gate/atomic_ledger.md
 import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS, MX, AtomicLedgerEvent } from "@g04";
 
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70

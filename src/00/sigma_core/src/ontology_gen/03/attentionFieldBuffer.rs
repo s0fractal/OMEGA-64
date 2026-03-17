@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/attentionFieldBuffer.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/attentionFieldBuffer.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

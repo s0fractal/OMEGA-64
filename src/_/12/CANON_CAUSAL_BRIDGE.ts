@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_admission.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/l32_gate/gate_admission.md
 import { BridgeInvariantReportLike } from "@g11";
 
 const resolveBridgeMode = (

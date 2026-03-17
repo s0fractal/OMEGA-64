@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/resolve_bond_requests.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/resolve_bond_requests.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

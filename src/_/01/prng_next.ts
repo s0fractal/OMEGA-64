@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_next.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/substrate/prng_next.md
 
 /**
  * Generates the next value and the subsequent state for the PRNG.

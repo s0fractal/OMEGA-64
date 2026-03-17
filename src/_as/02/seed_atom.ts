@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/seed_atom.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/seed_atom.md
 import { IDS_OFFSET, XS_OFFSET, YS_OFFSET, ENERGY_OFFSET, RESONANCE_OFFSET, PHASE_OFFSET, ROLES_OFFSET, LOGIC_OFFSET, LINEAGE_OFFSET, INSTRUCTIONS_OFFSET, CONTEXT_OFFSET } from "../01/mod";
 
 @inline

@@ -1,2 +1,2 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/llm_soul.md
 

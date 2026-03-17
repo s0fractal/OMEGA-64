@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_math.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_math.md
 // Substrate Node: sigma_math
 // Level: 0
 // Mathematical Coprocessor (Deterministic LUT Trigonometry)

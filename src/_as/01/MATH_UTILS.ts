@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/MATH_UTILS.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/MATH_UTILS.md
 export function normalize_angle(angle: f64): f64 {
   const tau: f64 = 2.0 * Math.PI;
   let a: f64 = angle % tau;

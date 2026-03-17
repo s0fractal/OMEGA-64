@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl_lines.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/read_jsonl_lines.md
 
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {

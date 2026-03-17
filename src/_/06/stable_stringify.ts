@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/stable_stringify.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/crypto/stable_stringify.md
 
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {

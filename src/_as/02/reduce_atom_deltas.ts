@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/reduce_atom_deltas.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/reduce_atom_deltas.md
 import { ENERGY_DELTA_OFF, ENERGY_OFFSET, RESONANCE_DELTA_OFF, RESONANCE_OFFSET, MAX_ATOMS, clamp_resource } from "../01/mod";
 
 @inline

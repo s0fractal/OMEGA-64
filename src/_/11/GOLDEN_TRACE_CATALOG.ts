@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/verification/integration/golden_trace_catalog.md
 import { GoldenTraceMetricPolicy, GoldenTraceScenario } from "@g10";
 
 const TRACE_ROOT = "src/ontology/verification/data/traces";

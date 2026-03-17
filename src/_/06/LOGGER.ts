@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/LOGGER.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/LOGGER.md
 import { LogLevel } from "@g05";
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {

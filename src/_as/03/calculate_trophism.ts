@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/calculate_trophism.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/calculate_trophism.md
 import { SPATIAL_CELL_SIZE, MAX_ATOMS, ROLE_PRODUCER, ROLE_NEUTRAL, ROLE_GUARDIAN, ROLE_PARASITE, ROLE_ARCHITECT, GRID_W, fast_min, get_read_energy, in_grid, get_spatial_grid_count, get_spatial_grid_atom, get_read_x, get_read_y, get_role, add_energy_delta, add_resonance_delta, get_read_resonance, get_attention_cell, get_glyph_influence, read_structure_cell, encode_force_tuple } from "../02/mod";
 
 @inline

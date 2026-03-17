@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/glyph_transport.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/glyph_transport.md
 import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, GLYPH_SCRATCH_HEADER_OFF, GRID_W, SIGNAL_GRID_OFF, SECRETION_STATS_OFF, MEMORY_GRID_OFF, atomic_deposit_glyph_header, diffusion_share_for_kind, decay_for_kind, pack_glyph_header, unpack_glyph_amplitude, unpack_glyph_kind, fast_abs, fast_max, fast_min, in_grid } from "../02/mod";
 
 @inline

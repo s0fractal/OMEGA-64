@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_ir_64.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/glyph_ir_64.md
 import { GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_LEGACY_OPCODE_LUT, GLYPH_RGB_LUT, KIND_CATALYTIC, KIND_CONTROL, KIND_CORE, KIND_MEMORY, KIND_REGULATORY, KIND_RESERVE, KIND_STRUCTURAL, KIND_TRANSPORT, get_glyph_kind, GlyphKind, GlyphStabilityClass, GlyphSpec, GLYPH_TYPES } from "@g06";
 
 const KIND_MAPPING: Record<number, GlyphKind> = {

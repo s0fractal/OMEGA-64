@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_lineage.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_lineage.md
 import { LINEAGE_OFFSET } from "../01/mod";
 
 @inline

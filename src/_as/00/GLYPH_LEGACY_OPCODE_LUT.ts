@@ -1,3 +1,3 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_LEGACY_OPCODE_LUT.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/GLYPH_LEGACY_OPCODE_LUT.md
 
 export const GLYPH_LEGACY_OPCODE_LUT: StaticArray<i32> = [255, 255, 255, 255, 255, 255, 255, 255, 1, 2, 3, 4, 5, 17, 18, 16, 128, 129, 131, 255, 167, 138, 96, 255, 164, 165, 168, 169, 255, 255, 255, 255, 166, 170, 176, 130, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];

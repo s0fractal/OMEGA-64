@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/llm_soul.md
 import { LOGGER, Ld, Le, Li, Lw } from "@g06";
 
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain

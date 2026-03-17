@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_attention_cell.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_attention_cell.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

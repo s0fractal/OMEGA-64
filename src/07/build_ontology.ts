@@ -13,7 +13,7 @@ try {
 
 const CWD = Deno.cwd();
 
-const SRC_ONTOLOGY_DIR = resolve(CWD, Deno.env.get("SRC_ONTOLOGY_DIR") || "src/ontology");
+const SRC_ONTOLOGY_DIR = resolve(CWD, Deno.env.get("SRC_ONTOLOGY_DIR") || "I");
 const GEN_DIR_TS = resolve(CWD, Deno.env.get("GEN_DIR_TS") || "src/_");
 const GEN_DIR_RS = resolve(CWD, Deno.env.get("GEN_DIR_RS") || "src/00/sigma_core/src/ontology_gen");
 const GEN_DIR_AS = resolve(CWD, Deno.env.get("GEN_DIR_AS") || "src/_as");
@@ -617,7 +617,7 @@ ${(node.regions || []).map((r, i, arr) => {
   if (node.type !== "substrate_module") {
     if (tsOut.trim()) {
       const ext = node.type === "verifier" ? ".test.ts" : ".ts";
-      writeSSoTFile(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + tsOut);
+      writeSSoTFile(`${dirPathTs}/${node.id}${ext}`, `// SSoT: file://${Deno.cwd()}/I/${node.sourceFile}\n` + tsOut);
     }
   }
 
@@ -733,7 +733,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     }
   }
 
-  writeSSoTFile(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + rsOut);
+  writeSSoTFile(`${dirPathRs}/${node.id}.rs`, `// SSoT: file://${Deno.cwd()}/I/${node.sourceFile}\n` + rsOut);
   
   // Generate AS
   let asOut = ``;
@@ -811,9 +811,9 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
     if (node.tags.includes("host") || node.tags.includes("substrate")) {
         writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// Host-only module: ${node.id} omitted from AssemblyScript build.\n`);
     } else if (node.type === "module" && node.asCode) {
-        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + node.asCode);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/I/${node.sourceFile}\n` + node.asCode);
     } else {
-        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/src/ontology/${node.sourceFile}\n` + asOut);
+        writeSSoTFile(`${dirPathAs}/${node.id}.ts`, `// SSoT: file://${Deno.cwd()}/I/${node.sourceFile}\n` + asOut);
     }
   }
 }

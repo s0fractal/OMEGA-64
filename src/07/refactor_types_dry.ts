@@ -2,7 +2,7 @@ import { parse as parseYaml, stringify as stringifyYaml } from "https://deno.lan
 import { resolve } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const CWD = Deno.cwd();
-const SRC_ONTOLOGY_DIR = resolve(CWD, "src/ontology");
+const SRC_ONTOLOGY_DIR = resolve(CWD, "I");
 const TYPES_PATH = resolve(SRC_ONTOLOGY_DIR, "core/TYPES.md");
 
 function extractTypes(tsCode: string): { types: string[]; names: string[]; remainingTs: string } {

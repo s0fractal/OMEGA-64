@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/wasm_memory_guard.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/wasm_memory_guard.md
 #![allow(unused_imports)]
 use super::super::L05::*;
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memoryGridBuffer.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/memoryGridBuffer.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/execute_atom.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/execute_atom.md
 import { IDS_OFFSET, INSTRUCTIONS_OFFSET, BONDS_OFFSET, MAX_ATOMS, NEURAL_COHERENCE_OFF, evaluate_opcodes, get_p_c, get_read_energy, get_read_resonance, get_hormone, get_phase, set_phase, set_resonance, fire_signal, get_energy, get_resonance, set_energy } from "../04/mod";
 
 @inline

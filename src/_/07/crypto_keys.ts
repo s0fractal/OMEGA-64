@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/crypto_keys.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/crypto/crypto_keys.md
 import { base64_to_bytes, Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "@g06";
 
 const crypto = globalThis.crypto;

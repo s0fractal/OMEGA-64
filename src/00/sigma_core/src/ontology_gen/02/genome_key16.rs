@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/genome_key16.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/genome_key16.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

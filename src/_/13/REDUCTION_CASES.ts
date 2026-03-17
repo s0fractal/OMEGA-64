@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/verification/integration/reduction_cases.md
 import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, ReductionCaseExpectation, ReductionCaseDefinition, OPCODE_TO_GLYPH, GATE, assembler } from "@g12";
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([

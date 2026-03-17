@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/PRNG.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/PRNG.md
 import { prng_seed_from, prng_next } from "@g05";
 
 export class PRNG {

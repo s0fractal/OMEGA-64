@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmSys.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmSys.md
 #![allow(unused_imports)]
 
 // Enum: VmSys

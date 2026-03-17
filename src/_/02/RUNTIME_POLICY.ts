@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/runtime_policy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/runtime_policy.md
 import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, GuardianSignalExecutionMode, parse_env_bool, parse_env_bounded_int } from "@g01";
 
 const TAU = Math.PI * 2;

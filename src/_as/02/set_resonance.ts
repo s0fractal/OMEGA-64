@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_resonance.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_resonance.md
 import { RESONANCE_OFFSET, clamp_resource } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/OMEGA_MEMORY_LAYOUT.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/OMEGA_MEMORY_LAYOUT.md
 import { MAX_ATOMS, SAFETY_BUFFER, GRID_CELLS } from "@g00";
 
 // Memory Layout: OMEGA_MEMORY_LAYOUT

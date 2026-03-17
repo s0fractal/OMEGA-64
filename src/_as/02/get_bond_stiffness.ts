@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_stiffness.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_bond_stiffness.md
 import { STIFFNESS_OFFSET } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/TYPES.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/TYPES.md
 
 /**
  * StateSnapshot: The canonical state of the system at a specific tick.

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_replication.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_replication.md
 // Substrate Node: sigma_replication
 // Level: 2
 // Manages autopoietic mitosis processes and genome verification
@@ -190,5 +190,6 @@ impl SigmaState {
         // Close transaction
         self.matrix.spawn_requests[4..8].copy_from_slice(&cursor.to_le_bytes());
         self.free_search_cursor = free_search_cursor;
+        spawned
     }
 }

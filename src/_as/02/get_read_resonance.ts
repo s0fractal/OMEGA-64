@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_read_resonance.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_read_resonance.md
 import { PHYSICS_READ_RESONANCE_OFF } from "../01/mod";
 
 @inline

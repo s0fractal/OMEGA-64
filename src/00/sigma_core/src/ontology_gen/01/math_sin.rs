@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/math_sin.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/math/math_sin.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

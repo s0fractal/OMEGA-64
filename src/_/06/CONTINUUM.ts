@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/continuum.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/continuum.md
 import { LATTICE_MEMORY_END, ContinuumMetadata } from "@g05";
 
 const EPOCHS_DIR = ".omega/epochs";

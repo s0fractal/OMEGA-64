@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/lineageBuffer.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/lineageBuffer.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

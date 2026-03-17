@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/build_spatial_hash.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/build_spatial_hash.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

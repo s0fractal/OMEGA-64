@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hormoneBuffer.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/hormoneBuffer.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

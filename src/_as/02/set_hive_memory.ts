@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_hive_memory.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_hive_memory.md
 import { HIVE_MEMORY_OFF } from "../01/mod";
 
 @inline

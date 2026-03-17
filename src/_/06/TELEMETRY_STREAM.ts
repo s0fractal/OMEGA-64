@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/telemetry_stream.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/telemetry_stream.md
 import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram } from "@g05";
 
 const HISTORY_LIMIT = 4096;

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_vm.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_vm.md
 // Substrate Node: sigma_vm
 // Level: 3
 // LambdaVM Execution Engine
@@ -29,6 +29,7 @@ impl LambdaVM {
     #[inline(always)]
     pub fn fetch_instruction(&self, state: &SigmaState, atom_idx: usize, pc: u8, offset: u8) -> u8 {
         let actual_pc = (pc.wrapping_add(offset)) & 63;
+        state
             .matrix
             .instructions
             .get(atom_idx)

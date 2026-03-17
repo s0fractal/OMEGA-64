@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_next.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/substrate/prng_next.md
 // @ts-ignore
 @inline
 export function prng_next(state: u32): u32 {

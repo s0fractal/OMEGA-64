@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/in_grid.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/in_grid.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

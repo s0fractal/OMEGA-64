@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/dir4_y.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/dir4_y.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

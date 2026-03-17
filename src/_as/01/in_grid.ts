@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/in_grid.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/in_grid.md
 import { GRID_W, GRID_H } from "../00/mod";
 
 @inline

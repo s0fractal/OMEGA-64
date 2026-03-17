@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/telemetry/mutation_telemetry.md
 import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY } from "@g07";
 
 /**

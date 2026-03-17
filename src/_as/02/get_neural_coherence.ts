@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/get_neural_coherence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/get_neural_coherence.md
 import { GRID_CELLS, STRUCTURE_GRID_OFF, MEMORY_GRID_OFF, COHERENCE_OFF, trace_atom } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_glyph_transport.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_glyph_transport.md
 // Substrate Node: sigma_glyph_transport
 // Level: 2
 // Handles wave interference physics and optical secretion

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/gate_budget.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/gate_budget.md
 import { GateMergedDelta, CRYSTALLIZATION_CONFIG } from "@g11";
 
 const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {

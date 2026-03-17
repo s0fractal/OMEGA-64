@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_glyph_influence.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_glyph_influence.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/akasha_server.md
 import { AKASHA_SIGNALING, RUNTIME_POLICY, MeshForwardAction, MeshForwardEnvelope, ParsedMeshInject } from "@g06";
 
 const PORT = RUNTIME_POLICY.akasha.port;

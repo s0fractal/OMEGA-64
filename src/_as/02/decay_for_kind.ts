@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/decay_for_kind.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/decay_for_kind.md
 import { fast_abs } from "../01/mod";
 
 @inline

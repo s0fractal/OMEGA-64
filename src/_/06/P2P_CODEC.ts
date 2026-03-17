@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_codec.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/p2p_codec.md
 import { MX } from "@g05";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion

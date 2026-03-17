@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_node.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/swarm_node.md
 import { SwarmHeartbeat, LOGGER } from "@g06";
 
 export class MetaKuramotoNode {

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/immune_check.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/immune_check.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 
@@ -18,4 +18,6 @@ pub fn immune_check(energy: i32, resonance: i32, id_handle: i32, role: u8, entro
                 return true;
             }
         }
+    
+        false
 }

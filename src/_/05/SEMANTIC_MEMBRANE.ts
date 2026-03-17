@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/semantic/semantic_membrane.md
 import { BehaviorFingerprint, BehaviorCluster, BehaviorRuntime, Aggregate } from "@g04";
 
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)

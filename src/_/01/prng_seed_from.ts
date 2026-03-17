@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_seed_from.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/substrate/prng_seed_from.md
 
 /**
  * Static helper to derive a seed from tick and atom ID.

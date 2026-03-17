@@ -72,7 +72,7 @@ const EXCLUDE_PATTERNS: RegExp[] = [
   /\.wasm$/u,
   /\.log$/u,
   /\.jsonl$/u,
-  /(^|\/)src\/ontology\/verification\//u,
+  /(^|\/)I\/verification\//u,
 ];
 
 const IMPORT_RE =
@@ -377,7 +377,7 @@ const discoverCodeFiles = async (dir: string): Promise<string[]> => {
           queue.push(entryPath);
         } else if (
           entry.isFile &&
-          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") || (entry.name.endsWith(".md") && entryPath.startsWith("src/ontology/")))
+          (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx") || (entry.name.endsWith(".md") && entryPath.startsWith("I/")))
         ) {
           discovered.push(entryPath);
         }

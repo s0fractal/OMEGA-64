@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/seed_atom.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/seed_atom.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

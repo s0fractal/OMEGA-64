@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_pulse.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_pulse.md
 // Substrate Node: sigma_pulse
 // Level: 4
 // Multithreaded tick orchestrator and phase sequencer using Rayon
@@ -63,18 +63,10 @@ impl<'a> PulseOrchestrator<'a> {
         state.build_spatial_hash();
 
         // 2. Sync Read Views (Double Buffering)
-            .matrix
-            .physics_read_xs
-            .copy_from_slice(&state.matrix.xs);
-            .matrix
-            .physics_read_ys
-            .copy_from_slice(&state.matrix.ys);
-            .matrix
-            .physics_read_energy
-            .copy_from_slice(&state.matrix.energy);
-            .matrix
-            .physics_read_resonance
-            .copy_from_slice(&state.matrix.resonance);
+        state.matrix.physics_read_xs.copy_from_slice(&state.matrix.xs);
+        state.matrix.physics_read_ys.copy_from_slice(&state.matrix.ys);
+        state.matrix.physics_read_energy.copy_from_slice(&state.matrix.energy);
+        state.matrix.physics_read_resonance.copy_from_slice(&state.matrix.resonance);
 
         // 3. Execution Phase (Parallelizing over all logical atom indices)
         (0..MAX_ATOMS).for_each(|i| {

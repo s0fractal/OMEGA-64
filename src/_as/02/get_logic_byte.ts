@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_logic_byte.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_logic_byte.md
 import { LOGIC_OFFSET } from "../01/mod";
 
 @inline

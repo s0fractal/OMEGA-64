@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmOpcodes.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmOpcodes.md
 
 // Enum: VmOpcodes
 export const OP_NOP: number = 0;

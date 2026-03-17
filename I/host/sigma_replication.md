@@ -196,6 +196,7 @@ impl SigmaState {
         // Close transaction
         self.matrix.spawn_requests[4..8].copy_from_slice(&cursor.to_le_bytes());
         self.free_search_cursor = free_search_cursor;
+        spawned
     }
 }
 ```

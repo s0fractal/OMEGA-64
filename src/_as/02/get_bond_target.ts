@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_bond_target.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_bond_target.md
 import { BONDS_OFFSET } from "../01/mod";
 
 @inline

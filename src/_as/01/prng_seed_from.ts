@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_seed_from.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/substrate/prng_seed_from.md
 // @ts-ignore
 @inline
 export function prng_seed_from(tick: u32, atomId: string): u32 {

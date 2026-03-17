@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/spatial/store_clamped_pos.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/spatial/store_clamped_pos.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

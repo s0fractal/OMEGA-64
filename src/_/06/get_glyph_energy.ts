@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_energy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/get_glyph_energy.md
 import { GLYPH_ENERGY_LUT } from "@g05";
 
 export function get_glyph_energy(id: number): number {

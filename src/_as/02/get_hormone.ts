@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_hormone.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_hormone.md
 import { HORMONE_OFF } from "../01/mod";
 
 @inline

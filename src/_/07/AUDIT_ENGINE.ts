@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/audit_engine.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/audit_engine.md
 import { AuditEngineExocortexDelegate } from "@g06";
 
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology

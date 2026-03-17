@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/get_reg.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/get_reg.md
 #![allow(unused_imports)]
 use super::super::L01::*;
 

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/pack_glyph_header.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/pack_glyph_header.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

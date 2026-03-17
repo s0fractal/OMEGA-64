@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/trace_atom.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/trace_atom.md
 
 @inline
 export function trace_atom(idx: i32, opcode: i32, gx: i32, gy: i32, targetIdx: i32): void {

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/daemon_ingress_policy.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/daemon_ingress_policy.md
 import { RUNTIME_POLICY, DaemonAction, DaemonInjectEnvelope, DaemonNarrativeContext, DaemonInvariantAdmission, PlasmidRiskProfile, DaemonIngressPlan, DaemonIngressMetrics } from "@g02";
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/execute_atom.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/execute_atom.md
 #![allow(unused_imports)]
 use super::super::L04::*;
 

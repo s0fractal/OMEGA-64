@@ -91,7 +91,7 @@
   },
   "lint": {
     "exclude": [
-      "I.ts",
+      "I/",
       "UI/",
       "63/",
       "public/"

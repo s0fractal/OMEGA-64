@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/disassembler.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/disassembler.md
 import { OPCODE_ARITY_LUT } from "@g06";
 
 export const disassembler = {

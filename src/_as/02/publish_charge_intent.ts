@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/publish_charge_intent.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/publish_charge_intent.md
 import { STRUCTURE_CHARGE_INTENT_OFF, STRUCTURE_INTENT_SPIN_LIMIT, fast_max } from "../01/mod";
 
 @inline

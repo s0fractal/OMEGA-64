@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_spatial.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/host/sigma_spatial.md
 // Substrate Node: sigma_spatial
 // Level: 2
 // Implements the 2D grid hashing algorithm enabling fast localized queries

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/unpack_glyph_kind.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/unpack_glyph_kind.md
 #![allow(unused_imports)]
 use super::super::L00::*;
 

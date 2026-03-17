@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/find_next_free_slot.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/find_next_free_slot.md
 import { MAX_ATOMS, IDS_OFFSET } from "../01/mod";
 
 @inline

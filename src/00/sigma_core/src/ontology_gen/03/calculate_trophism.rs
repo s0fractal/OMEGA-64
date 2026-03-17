@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/calculate_trophism.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/calculate_trophism.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

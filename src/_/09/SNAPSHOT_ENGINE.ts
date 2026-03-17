@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snapshot_engine.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/snapshot_engine.md
 import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions } from "@g08";
 
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint

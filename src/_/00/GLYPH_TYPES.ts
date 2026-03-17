@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/GLYPH_TYPES.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/GLYPH_TYPES.md
 
 // Enum: GLYPH_TYPES
 export const KIND_CORE: number = 0;

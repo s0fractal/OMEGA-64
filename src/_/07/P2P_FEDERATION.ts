@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_federation.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/membrane/p2p_federation.md
 import { P2pFederationUpwardDelegate, MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC } from "@g06";
 
 let delegate: P2pFederationUpwardDelegate | null = null;

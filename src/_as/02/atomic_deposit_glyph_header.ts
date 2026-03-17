@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/atomic_deposit_glyph_header.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/atomic_deposit_glyph_header.md
 import { GRID_CELLS, GLYPH_HEADER_OFF, GLYPH_PAYLOAD_OFF, GLYPH_SCRATCH_PAYLOAD_OFF, unpack_glyph_kind, unpack_glyph_amplitude, fast_abs, pack_glyph_header } from "../01/mod";
 
 @inline

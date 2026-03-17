@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/ys.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/ys.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 

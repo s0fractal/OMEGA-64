@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/AGENT_SIGNATURE.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/crypto/AGENT_SIGNATURE.md
 import { bytes_to_base64, bytes_to_hex, hex_to_bytes, crypto_keys, sha256_hex, stable_stringify, REJECTION_CODES } from "@g07";
 
 const encoder = new TextEncoder();

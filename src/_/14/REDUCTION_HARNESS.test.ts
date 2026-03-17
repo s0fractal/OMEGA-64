@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_harness_verifier.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/verification/integration/reduction_harness_verifier.md
 import { GRID_H, GRID_W, glyphTapeToPrettyText, decodeLegacyInstruction, GlyphTapeToken, scriptToGlyphTape, glyphSpecById, MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge, goldenTraceArtifactPaths, GENESIS_PROGRAMS, reductionCaseById, ReductionCaseDefinition, HarnessProps, ShadowEffects, ShadowState, LegacyShadowResult, ReductionShadowResult, ReductionBaselineAnchor, ReductionHarnessResult, ReductionHarnessArtifact, OPCODE_TO_GLYPH, GATE, assembler, REDUCTION_CASES, GOLDEN_TRACE_CATALOG, GENESIS_BOOT, glyph_pretty } from "@g13";
 
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";

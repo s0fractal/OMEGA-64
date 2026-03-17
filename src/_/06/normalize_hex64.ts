@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/normalize_hex64.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/crypto/normalize_hex64.md
 
 export const normalize_hex64 = (value: unknown): string | null => {
   if (typeof value !== "string") return null;

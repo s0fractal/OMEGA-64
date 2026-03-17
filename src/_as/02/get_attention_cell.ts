@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/get_attention_cell.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/get_attention_cell.md
 import { GRID_W, GRID_H, ATTENTION_FIELD_OFF } from "../01/mod";
 
 @inline

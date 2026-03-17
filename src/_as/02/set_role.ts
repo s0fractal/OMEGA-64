@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/set_role.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/memory/set_role.md
 import { ROLES_OFFSET } from "../01/mod";
 
 @inline

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/VmSys.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/VmSys.md
 
 export const SYS_YIELD: i32 = 1;
 export const SYS_READ_MEM: i32 = 2;

@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/autopoiesis/secrete_glyph.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/autopoiesis/secrete_glyph.md
 import { SPATIAL_CELL_SIZE, GRID_W, GRID_H, SECRETION_STATS_OFF, PHEROMONE_COST_BASE, PLASMID_COST_BASE, get_energy, set_energy } from "../02/mod";
 
 @inline

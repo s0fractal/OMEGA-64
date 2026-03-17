@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/omega_daemon.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/core/omega_daemon.md
 import { WORLD_MAX_X, WORLD_MAX_Y, Telemetry, CodexNarrative, ActionType, DaemonDecision, InvariantSignal, InvariantFrame, OpenAIChoice, OpenAIResponse } from "@g05";
 
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon

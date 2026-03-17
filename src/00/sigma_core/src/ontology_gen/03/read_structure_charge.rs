@@ -1,4 +1,4 @@
-// SSoT: file:///Users/s0fractal/OMEGA/src/ontology/physics/read_structure_charge.md
+// SSoT: file:///Users/s0fractal/OMEGA/I/physics/read_structure_charge.md
 #![allow(unused_imports)]
 use super::super::L02::*;
 
