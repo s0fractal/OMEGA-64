@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl_lines.md
-import { TYPES } from "@g00";
 
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {

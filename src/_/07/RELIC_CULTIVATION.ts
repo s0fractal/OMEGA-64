@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/relic_cultivation.md
-import { DollFork, LOGGER, Li, MAX_ATOMS, Relic, TYPES } from "@g06";
+import { DollFork, LOGGER, Li, MAX_ATOMS, Relic } from "@g06";
 
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
 

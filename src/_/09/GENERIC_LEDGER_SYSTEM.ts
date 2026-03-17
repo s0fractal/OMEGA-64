@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/generic_ledger_system.md
-import { geneticLedgerEntryByKey, LedgerRuntimeEvent, LedgerRuntimeState, LedgerRuntimeSnapshot, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeConfig, GENETIC_LEDGER, TYPES } from "@g08";
+import { geneticLedgerEntryByKey, LedgerRuntimeEvent, LedgerRuntimeState, LedgerRuntimeSnapshot, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeConfig, GENETIC_LEDGER } from "@g08";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

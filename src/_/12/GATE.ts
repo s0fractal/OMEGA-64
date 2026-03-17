@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
-import { ReplayInvariantReport, GateRuntimeContext, DeltaProposal, GateDecision, BridgeModeEvent, TYPES, REJECTION_CODES } from "@g11";
+import { ReplayInvariantReport, GateRuntimeContext, DeltaProposal, GateDecision, BridgeModeEvent, REJECTION_CODES } from "@g11";
 
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;

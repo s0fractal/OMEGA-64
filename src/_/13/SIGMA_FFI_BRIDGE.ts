@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi_bridge.md
-import { sharedBuffer, TYPES } from "@g12";
+import { sharedBuffer } from "@g12";
 
 // OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
 

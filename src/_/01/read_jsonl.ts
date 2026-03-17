@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl.md
-import { TYPES } from "@g00";
 
 export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   try {

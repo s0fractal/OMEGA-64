@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/hex_to_bytes.md
-import { TYPES } from "@g05";
 
 export const hex_to_bytes = (hex: string): Uint8Array | null => {
   if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;

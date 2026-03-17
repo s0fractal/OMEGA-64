@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_pretty.md
-import { glyphSpecById, glyph_ir_64, disassembler, TYPES } from "@g07";
+import { glyphSpecById, glyph_ir_64, disassembler } from "@g07";
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {
   const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);

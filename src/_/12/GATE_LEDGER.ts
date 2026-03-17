@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_ledger.md
-import { TYPES } from "@g11";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,

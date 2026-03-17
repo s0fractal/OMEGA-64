@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/ledger_chain.md
-import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, LedgerChainReportInternal, TYPES } from "@g07";
+import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, LedgerChainReportInternal } from "@g07";
 
 // OMEGA-64 | ledger_chain.ts
 // Ledger Chain and Proposal Envelope Index verification

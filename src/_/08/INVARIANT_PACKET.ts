@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/invariant_packet.md
-import { base64_to_bytes, bytes_to_base64, import_hmac, sha256_hex, stable_stringify, InvariantPacket, InvariantPacketSigningKey, crypto_keys, TYPES } from "@g07";
+import { base64_to_bytes, bytes_to_base64, import_hmac, sha256_hex, stable_stringify, InvariantPacket, InvariantPacketSigningKey, crypto_keys } from "@g07";
 
 const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
 const encoder = new TextEncoder();

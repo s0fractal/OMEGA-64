@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snap_engine.md
-import { LATTICE_MEMORY_END, LOGGER, Le, Li, Lw, sharedBuffer, TYPES } from "@g06";
+import { LATTICE_MEMORY_END, LOGGER, Le, Li, Lw, sharedBuffer } from "@g06";
 
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 

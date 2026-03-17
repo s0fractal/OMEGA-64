@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/prediction_market.md
-import { MX, PredictionMarketAkashaDelegate, TYPES } from "@g04";
+import { MX, PredictionMarketAkashaDelegate } from "@g04";
 
 let delegate: PredictionMarketAkashaDelegate | null = null;
 

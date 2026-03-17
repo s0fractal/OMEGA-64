@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer_runtime.md
-import { HormoneSyncInput, TYPES } from "@g05";
+import { HormoneSyncInput } from "@g05";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

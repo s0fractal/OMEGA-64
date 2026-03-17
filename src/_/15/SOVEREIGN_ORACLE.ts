@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
-import { OraclePendingMutation, OracleDrainStats, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX, SovereignOracleAkashaDelegate, TYPES } from "@g14";
+import { OraclePendingMutation, OracleDrainStats, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX, SovereignOracleAkashaDelegate } from "@g14";
 
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.

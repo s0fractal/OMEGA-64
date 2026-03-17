@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/panopticon_server.md
-import { AKASHA_CODEX, LOGGER, Li, Lw, MX, TYPES } from "@g08";
+import { AKASHA_CODEX, LOGGER, Li, Lw, MX } from "@g08";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload

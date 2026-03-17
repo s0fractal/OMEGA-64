@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_codec.md
-import { MX, TYPES } from "@g05";
+import { MX } from "@g05";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 

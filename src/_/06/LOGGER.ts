@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/LOGGER.md
-import { LogLevel, TYPES } from "@g05";
+import { LogLevel } from "@g05";
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 10,

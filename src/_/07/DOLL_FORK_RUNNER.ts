@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/doll_fork_runner.md
-import { DollFork, LOGGER, Le, MAX_ATOMS, TYPES } from "@g06";
+import { DollFork, LOGGER, Le, MAX_ATOMS } from "@g06";
 
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
 

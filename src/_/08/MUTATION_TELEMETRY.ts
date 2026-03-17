@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
-import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY, TYPES } from "@g07";
+import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY } from "@g07";
 
 /**
  * @contract [daemon-governance]

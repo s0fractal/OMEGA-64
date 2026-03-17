@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snapshot_engine.md
-import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions, TYPES } from "@g08";
+import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions } from "@g08";
 
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)

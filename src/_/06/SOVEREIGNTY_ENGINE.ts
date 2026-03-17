@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/sovereignty_engine.md
-import { MX, SovereigntyEngineAkashaDelegate, TYPES } from "@g05";
+import { MX, SovereigntyEngineAkashaDelegate } from "@g05";
 
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 

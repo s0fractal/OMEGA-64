@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_signaling.md
-import { SignalingSession, SIGNAL_TYPES, TYPES } from "@g05";
+import { SignalingSession, SIGNAL_TYPES } from "@g05";
 
 /**
  * @contract [akasha-webrtc-signaling] 

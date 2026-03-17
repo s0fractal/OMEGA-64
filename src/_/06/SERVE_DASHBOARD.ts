@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/serve_dashboard.md
-import { TYPES } from "@g05";
 
 import {
   parse as parseYaml,

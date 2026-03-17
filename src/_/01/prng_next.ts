@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_next.md
-import { TYPES } from "@g00";
 
 /**
  * Generates the next value and the subsequent state for the PRNG.

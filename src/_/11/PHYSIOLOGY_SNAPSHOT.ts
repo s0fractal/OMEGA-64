@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/physiology_snapshot.md
-import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, PhysiologySnapshotInput, HormoneSnapshot, LedgerSnapshot, PhysiologySnapshot, HORMONE_BUFFER, TYPES } from "@g10";
+import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, PhysiologySnapshotInput, HormoneSnapshot, LedgerSnapshot, PhysiologySnapshot, HORMONE_BUFFER } from "@g10";
 
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,

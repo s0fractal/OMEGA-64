@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/parse_env_bounded_int.md
-import { TYPES } from "@g00";
 
 export const parse_env_bounded_int = (
   raw: string | undefined,

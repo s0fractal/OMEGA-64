@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer.md
-import { createLedgerRuntime, HormoneId, HormoneDomain, HormoneSpec, RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM, TYPES } from "@g09";
+import { createLedgerRuntime, HormoneId, HormoneDomain, HormoneSpec, RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM } from "@g09";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));

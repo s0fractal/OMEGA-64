@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
-import { GateAcceptedProposalMetric, I16Limits, TYPES, REJECTION_CODES, LOGGER } from "@g11";
+import { GateAcceptedProposalMetric, I16Limits, REJECTION_CODES, LOGGER } from "@g11";
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;

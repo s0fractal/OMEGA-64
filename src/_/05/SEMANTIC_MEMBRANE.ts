@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
-import { BehaviorFingerprint, BehaviorCluster, BehaviorRuntime, Aggregate, TYPES } from "@g04";
+import { BehaviorFingerprint, BehaviorCluster, BehaviorRuntime, Aggregate } from "@g04";
 
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).

@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/telemetry_stream.md
-import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram, TYPES } from "@g05";
+import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram } from "@g05";
 
 const HISTORY_LIMIT = 4096;
 const DEFAULT_WINDOW_MS = 60_000;

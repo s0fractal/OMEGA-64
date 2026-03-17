@@ -1,5 +1,4 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/append_jsonl.md
-import { TYPES } from "@g00";
 
 export const append_jsonl = async (
   path: string,

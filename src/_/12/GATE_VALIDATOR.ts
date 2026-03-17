@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
-import { GateBridgeResolution, GateValidationResult, TYPES, REJECTION_CODES } from "@g11";
+import { GateBridgeResolution, GateValidationResult, REJECTION_CODES } from "@g11";
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {

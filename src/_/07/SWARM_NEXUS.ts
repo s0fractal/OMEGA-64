@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_nexus.md
-import { NexusConfig, LOGGER, TYPES } from "@g06";
+import { NexusConfig, LOGGER } from "@g06";
 
 export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
 

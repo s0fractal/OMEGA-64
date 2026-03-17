@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/omega_daemon.md
-import { WORLD_MAX_X, WORLD_MAX_Y, Telemetry, CodexNarrative, ActionType, DaemonDecision, InvariantSignal, InvariantFrame, OpenAIChoice, OpenAIResponse, TYPES } from "@g05";
+import { WORLD_MAX_X, WORLD_MAX_Y, Telemetry, CodexNarrative, ActionType, DaemonDecision, InvariantSignal, InvariantFrame, OpenAIChoice, OpenAIResponse } from "@g05";
 
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.

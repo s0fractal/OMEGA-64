@@ -1,6 +1,6 @@
 # OMEGA-64 | RUNTIME LOGIC (ERA 69: THE COHERENT LATTICE)
 
-*Generated: 2026-03-16T18:21:55.342Z*
+*Generated: 2026-03-17T07:50:08.450Z*
 *Exported Files in Category: 520*
 *Total Exported Files: 805*
 *Runtime Roots: 7*
@@ -10,8 +10,8 @@
 *Experimental Code Files: 331*
 *Manifest SHA256: 35b0536b830c118d3e4c672936d958184c72f0805cd77b638f6e72bef443edd1*
 *Export Set SHA256: 475ca760586672d0ef7f05b132ca1ea1e624b9547bd4a736045c5a148f7bb331*
-*Export Content SHA256: 7a17453b7f4b77f76c98f4aa597a7ab5575b771ee2f4c5b3b00875343ec6c8c5*
-*Git Commit: 8a4ab37c89d5*
+*Export Content SHA256: abb953a81f59f9e382a97d244013ea1524477afb06fd4257f7f9c81adbf32087*
+*Git Commit: 5a8b5ea0a708*
 
 ---
 
@@ -2757,7 +2757,6 @@ export const VmSys = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/append_jsonl.md
-import { TYPES } from "@g00";
 
 export const append_jsonl = async (
   path: string,
@@ -2776,7 +2775,6 @@ export const append_jsonl = async (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/ID_TO_IDX.md
-import { TYPES } from "@g00";
 
 export const ID_TO_IDX = new Map<string, number>();
 ```
@@ -2787,7 +2785,6 @@ export const ID_TO_IDX = new Map<string, number>();
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/IDX_TO_ID.md
-import { TYPES } from "@g00";
 
 export const IDX_TO_ID = new Map<number, string>();
 ```
@@ -2798,7 +2795,7 @@ export const IDX_TO_ID = new Map<number, string>();
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/MATH_UTILS.md
-import { C_LOG2_C_LUT, TYPES } from "@g00";
+import { C_LOG2_C_LUT } from "@g00";
 
 export function normalize_angle(angle: number): number {
   const tau = 2 * Math.PI;
@@ -3066,7 +3063,6 @@ export function validateMemoryLayout(memorySize: number) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/parse_env_bool.md
-import { TYPES } from "@g00";
 
 export const parse_env_bool = (
   raw: string | undefined,
@@ -3090,7 +3086,6 @@ export const parse_env_bool = (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/parse_env_bounded_int.md
-import { TYPES } from "@g00";
 
 export const parse_env_bounded_int = (
   raw: string | undefined,
@@ -3111,7 +3106,6 @@ export const parse_env_bounded_int = (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_next.md
-import { TYPES } from "@g00";
 
 /**
  * Generates the next value and the subsequent state for the PRNG.
@@ -3134,7 +3128,6 @@ export function prng_next(state: number): { value: number; nextState: number } {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/substrate/prng_seed_from.md
-import { TYPES } from "@g00";
 
 /**
  * Static helper to derive a seed from tick and atom ID.
@@ -3158,7 +3151,6 @@ export function prng_seed_from(tick: number, atomId: string): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl_lines.md
-import { TYPES } from "@g00";
 
 export const read_jsonl_lines = async (path: string): Promise<string[]> => {
   try {
@@ -3176,7 +3168,6 @@ export const read_jsonl_lines = async (path: string): Promise<string[]> => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/read_jsonl.md
-import { TYPES } from "@g00";
 
 export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
   try {
@@ -3202,7 +3193,7 @@ export const read_jsonl = async function* (path: string): AsyncGenerator<any> {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/semanticBonuses.md
-import { MAX_ATOMS, TYPES } from "@g00";
+import { MAX_ATOMS } from "@g00";
 
 export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * Int32Array.BYTES_PER_ELEMENT));
 ```
@@ -3213,7 +3204,7 @@ export const semanticBonuses = new Int32Array(new SharedArrayBuffer(MAX_ATOMS * 
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memory_views_base.md
-import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, WASM_MEMORY_BYTES, validateMemoryLayout, TYPES } from "@g01";
+import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, WASM_MEMORY_BYTES, validateMemoryLayout } from "@g01";
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
@@ -3259,7 +3250,7 @@ export * from "./memory_views_base.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/runtime_policy.md
-import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, GuardianSignalExecutionMode, TYPES, parse_env_bool, parse_env_bounded_int } from "@g01";
+import { WasmBootPolicy, KernelMode, ReplicationExecutionMode, GuardianSignalExecutionMode, parse_env_bool, parse_env_bounded_int } from "@g01";
 
 const TAU = Math.PI * 2;
 
@@ -4151,7 +4142,7 @@ export const RUNTIME_POLICY = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/semanticBonusesBuffer.md
-import { semanticBonuses, TYPES } from "@g01";
+import { semanticBonuses } from "@g01";
 
 export const semanticBonusesBuffer = semanticBonuses.buffer;
 ```
@@ -4162,7 +4153,7 @@ export const semanticBonusesBuffer = semanticBonuses.buffer;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/attentionField.md
-import { GRID_CELLS, ATTENTION_FIELD_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, ATTENTION_FIELD_OFFSET, sharedBuffer } from "@g02";
 
 export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS);
 ```
@@ -4173,7 +4164,7 @@ export const attentionField = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFF
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/attentionFieldBuffer.md
-import { GRID_CELLS, ATTENTION_FIELD_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, ATTENTION_FIELD_OFFSET, sharedBuffer } from "@g02";
 
 export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIELD_OFFSET, GRID_CELLS).buffer;
 ```
@@ -4184,7 +4175,7 @@ export const attentionFieldBuffer = new Float32Array(sharedBuffer, ATTENTION_FIE
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondDistances.md
-import { MAX_ATOMS, BOND_DISTANCES_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, BOND_DISTANCES_OFFSET, sharedBuffer } from "@g02";
 
 export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4);
 ```
@@ -4195,7 +4186,7 @@ export const bondDistances = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET,
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondDistBuffer.md
-import { MAX_ATOMS, BOND_DISTANCES_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, BOND_DISTANCES_OFFSET, sharedBuffer } from "@g02";
 
 export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET, MAX_ATOMS * 4).buffer;
 ```
@@ -4206,7 +4197,7 @@ export const bondDistBuffer = new Uint8Array(sharedBuffer, BOND_DISTANCES_OFFSET
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondRequests.md
-import { MAX_ATOMS, BOND_REQUESTS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, BOND_REQUESTS_OFFSET, sharedBuffer } from "@g02";
 
 export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, MAX_ATOMS * 3);
 ```
@@ -4217,7 +4208,7 @@ export const bondRequests = new Int32Array(sharedBuffer, BOND_REQUESTS_OFFSET, M
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bonds.md
-import { MAX_ATOMS, BONDS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, BONDS_OFFSET, sharedBuffer } from "@g02";
 
 export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 ```
@@ -4228,7 +4219,7 @@ export const bonds = new Uint32Array(sharedBuffer, BONDS_OFFSET, MAX_ATOMS * 4);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/bondStiffness.md
-import { MAX_ATOMS, STIFFNESS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, STIFFNESS_OFFSET, sharedBuffer } from "@g02";
 
 export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4);
 ```
@@ -4239,7 +4230,7 @@ export const bondStiffness = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MA
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/causality.md
-import { MAX_ATOMS, CAUSALITY_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, CAUSALITY_OFFSET, sharedBuffer } from "@g02";
 
 export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOMS);
 ```
@@ -4250,7 +4241,7 @@ export const causality = new Uint8Array(sharedBuffer, CAUSALITY_OFFSET, MAX_ATOM
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/codeWords.md
-import { MAX_ATOMS, INSTRUCTIONS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, INSTRUCTIONS_OFFSET, sharedBuffer } from "@g02";
 
 export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * 16);
 ```
@@ -4261,7 +4252,7 @@ export const codeWords = new Uint32Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/coherence.md
-import { COHERENCE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { COHERENCE_OFFSET, sharedBuffer } from "@g02";
 
 export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 ```
@@ -4272,7 +4263,7 @@ export const coherence = new Int32Array(sharedBuffer, COHERENCE_OFFSET, 1);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/contextByteView.md
-import { MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET, sharedBuffer } from "@g02";
 
 export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * (ATOM_CONTEXT_SIZE * 4));
 ```
@@ -4283,7 +4274,7 @@ export const contextByteView = new Uint8Array(sharedBuffer, CONTEXT_OFFSET, MAX_
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/contexts.md
-import { MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ATOM_CONTEXT_SIZE, CONTEXT_OFFSET, sharedBuffer } from "@g02";
 
 export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS * ATOM_CONTEXT_SIZE);
 ```
@@ -4294,7 +4285,7 @@ export const contexts = new Int32Array(sharedBuffer, CONTEXT_OFFSET, MAX_ATOMS *
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/daemon_ingress_policy.md
-import { RUNTIME_POLICY, DaemonAction, DaemonInjectEnvelope, DaemonNarrativeContext, DaemonInvariantAdmission, PlasmidRiskProfile, DaemonIngressPlan, DaemonIngressMetrics, TYPES } from "@g02";
+import { RUNTIME_POLICY, DaemonAction, DaemonInjectEnvelope, DaemonNarrativeContext, DaemonInvariantAdmission, PlasmidRiskProfile, DaemonIngressPlan, DaemonIngressMetrics } from "@g02";
 
 const DAEMON_POLICY = RUNTIME_POLICY.daemon;
 
@@ -4859,7 +4850,7 @@ export const DAEMON_INGRESS_POLICY = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/damping.md
-import { MAX_ATOMS, DAMPING_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, DAMPING_OFFSET, sharedBuffer } from "@g02";
 
 export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 ```
@@ -4870,7 +4861,7 @@ export const damping = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/dampingBuffer.md
-import { MAX_ATOMS, DAMPING_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, DAMPING_OFFSET, sharedBuffer } from "@g02";
 
 export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_ATOMS).buffer;
 ```
@@ -4881,7 +4872,7 @@ export const dampingBuffer = new Uint8Array(sharedBuffer, DAMPING_OFFSET, MAX_AT
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/energies.md
-import { MAX_ATOMS, ENERGY_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ENERGY_OFFSET, sharedBuffer } from "@g02";
 
 export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 ```
@@ -4892,7 +4883,7 @@ export const energies = new Int32Array(sharedBuffer, ENERGY_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/evolutionReserved.md
-import { MAX_ATOMS, EVOLUTION_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, EVOLUTION_OFFSET, sharedBuffer } from "@g02";
 
 export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, MAX_ATOMS);
 ```
@@ -4903,7 +4894,7 @@ export const evolutionReserved = new Int32Array(sharedBuffer, EVOLUTION_OFFSET, 
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/glyphHeaderBuffer.md
-import { GRID_CELLS, GLYPH_HEADER_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, GLYPH_HEADER_OFFSET, sharedBuffer } from "@g02";
 
 export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS).buffer;
 ```
@@ -4914,7 +4905,7 @@ export const glyphHeaderBuffer = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSE
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/glyphHeaders.md
-import { GRID_CELLS, GLYPH_HEADER_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, GLYPH_HEADER_OFFSET, sharedBuffer } from "@g02";
 
 export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GRID_CELLS);
 ```
@@ -4925,7 +4916,7 @@ export const glyphHeaders = new Int32Array(sharedBuffer, GLYPH_HEADER_OFFSET, GR
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/glyphPayload.md
-import { GRID_CELLS, GLYPH_PAYLOAD_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, GLYPH_PAYLOAD_OFFSET, sharedBuffer } from "@g02";
 
 export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8);
 ```
@@ -4936,7 +4927,7 @@ export const glyphPayload = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, G
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/glyphPayloadBuffer.md
-import { GRID_CELLS, GLYPH_PAYLOAD_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, GLYPH_PAYLOAD_OFFSET, sharedBuffer } from "@g02";
 
 export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFFSET, GRID_CELLS * 8).buffer;
 ```
@@ -4947,7 +4938,7 @@ export const glyphPayloadBuffer = new Uint8Array(sharedBuffer, GLYPH_PAYLOAD_OFF
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveBalance.md
-import { HIVE_BALANCE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { HIVE_BALANCE_OFFSET, sharedBuffer } from "@g02";
 
 export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 ```
@@ -4958,7 +4949,7 @@ export const hiveBalance = new Int32Array(sharedBuffer, HIVE_BALANCE_OFFSET, 1);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveEnergyPool.md
-import { HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET, sharedBuffer } from "@g02";
 
 export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE);
 ```
@@ -4969,7 +4960,7 @@ export const hiveEnergyPool = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFS
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveEnergyPoolBuffer.md
-import { HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { HIVE_ENERGY_POOL_SIZE, HIVE_ENERGY_POOL_OFFSET, sharedBuffer } from "@g02";
 
 export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POOL_OFFSET, HIVE_ENERGY_POOL_SIZE).buffer;
 ```
@@ -4980,7 +4971,7 @@ export const hiveEnergyPoolBuffer = new Int32Array(sharedBuffer, HIVE_ENERGY_POO
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveMemory.md
-import { HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET, sharedBuffer } from "@g02";
 
 export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE);
 ```
@@ -4991,7 +4982,7 @@ export const hiveMemory = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hiveMemoryBuffer.md
-import { HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { HIVE_MEMORY_SIZE, HIVE_MEMORY_OFFSET, sharedBuffer } from "@g02";
 
 export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET, HIVE_MEMORY_SIZE).buffer;
 ```
@@ -5002,7 +4993,7 @@ export const hiveMemoryBuffer = new Uint8Array(sharedBuffer, HIVE_MEMORY_OFFSET,
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hormoneBuffer.md
-import { MAX_HORMONES, HORMONE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_HORMONES, HORMONE_OFFSET, sharedBuffer } from "@g02";
 
 export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES).buffer;
 ```
@@ -5013,7 +5004,7 @@ export const hormoneBuffer = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_H
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/hormones.md
-import { MAX_HORMONES, HORMONE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_HORMONES, HORMONE_OFFSET, sharedBuffer } from "@g02";
 
 export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMONES);
 ```
@@ -5024,7 +5015,7 @@ export const hormones = new Uint16Array(sharedBuffer, HORMONE_OFFSET, MAX_HORMON
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/ids.md
-import { MAX_ATOMS, IDS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, IDS_OFFSET, sharedBuffer } from "@g02";
 
 export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 ```
@@ -5035,7 +5026,7 @@ export const ids = new BigUint64Array(sharedBuffer, IDS_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/instructions.md
-import { MAX_ATOMS, ATOM_INSTRUCTION_SIZE, INSTRUCTIONS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ATOM_INSTRUCTION_SIZE, INSTRUCTIONS_OFFSET, sharedBuffer } from "@g02";
 
 export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MAX_ATOMS * ATOM_INSTRUCTION_SIZE);
 ```
@@ -5046,7 +5037,7 @@ export const instructions = new Uint8Array(sharedBuffer, INSTRUCTIONS_OFFSET, MA
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/latticeClearView.md
-import { TICK_COUNTER_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { TICK_COUNTER_OFFSET, sharedBuffer } from "@g02";
 
 export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET);
 ```
@@ -5057,7 +5048,7 @@ export const latticeClearView = new Uint8Array(sharedBuffer, TICK_COUNTER_OFFSET
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/ledgerDataView.md
-import { MAX_LEDGER_EVENTS, LEDGER_DATA_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_LEDGER_EVENTS, LEDGER_DATA_OFFSET, sharedBuffer } from "@g02";
 
 export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, MAX_LEDGER_EVENTS * 4);
 ```
@@ -5068,7 +5059,7 @@ export const ledgerDataView = new Int32Array(sharedBuffer, LEDGER_DATA_OFFSET, M
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/ledgerHeadView.md
-import { LEDGER_HEAD_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { LEDGER_HEAD_OFFSET, sharedBuffer } from "@g02";
 
 export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1);
 ```
@@ -5079,7 +5070,7 @@ export const ledgerHeadView = new Int32Array(sharedBuffer, LEDGER_HEAD_OFFSET, 1
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/lineage.md
-import { MAX_ATOMS, LINEAGE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, LINEAGE_OFFSET, sharedBuffer } from "@g02";
 
 export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS);
 ```
@@ -5090,7 +5081,7 @@ export const lineage = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOM
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/lineageBuffer.md
-import { MAX_ATOMS, LINEAGE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, LINEAGE_OFFSET, sharedBuffer } from "@g02";
 
 export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MAX_ATOMS).buffer;
 ```
@@ -5101,7 +5092,7 @@ export const lineageBuffer = new BigUint64Array(sharedBuffer, LINEAGE_OFFSET, MA
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/logic.md
-import { MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ATOM_GENOME_SIZE, LOGIC_OFFSET, sharedBuffer } from "@g02";
 
 export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM_GENOME_SIZE);
 ```
@@ -5112,7 +5103,7 @@ export const logic = new Uint8Array(sharedBuffer, LOGIC_OFFSET, MAX_ATOMS * ATOM
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mailboxes.md
-import { MAX_ATOMS, MAILBOX_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, MAILBOX_OFFSET, sharedBuffer } from "@g02";
 
 export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS * 2);
 ```
@@ -5123,7 +5114,7 @@ export const mailboxes = new Int32Array(sharedBuffer, MAILBOX_OFFSET, MAX_ATOMS 
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memoryGrid.md
-import { GRID_CELLS, MEMORY_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, MEMORY_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8);
 ```
@@ -5134,7 +5125,7 @@ export const memoryGrid = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memoryGridBuffer.md
-import { GRID_CELLS, MEMORY_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, MEMORY_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const memoryGridBuffer = new Uint8Array(sharedBuffer, MEMORY_GRID_OFFSET, GRID_CELLS * 8).buffer;
 ```
@@ -5210,7 +5201,7 @@ export * from "./coherence.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/neuralCoherence.md
-import { NEURAL_COHERENCE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { NEURAL_COHERENCE_OFFSET, sharedBuffer } from "@g02";
 
 export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFFSET, 1);
 ```
@@ -5221,7 +5212,7 @@ export const neuralCoherence = new Int32Array(sharedBuffer, NEURAL_COHERENCE_OFF
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/phases.md
-import { MAX_ATOMS, PHASE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, PHASE_OFFSET, sharedBuffer } from "@g02";
 
 export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 ```
@@ -5232,7 +5223,7 @@ export const phases = new Int32Array(sharedBuffer, PHASE_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/resonances.md
-import { MAX_ATOMS, RESONANCE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, RESONANCE_OFFSET, sharedBuffer } from "@g02";
 
 export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATOMS);
 ```
@@ -5243,7 +5234,7 @@ export const resonances = new Int32Array(sharedBuffer, RESONANCE_OFFSET, MAX_ATO
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/roleBuffer.md
-import { MAX_ATOMS, ROLES_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ROLES_OFFSET, sharedBuffer } from "@g02";
 
 export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).buffer;
 ```
@@ -5254,7 +5245,7 @@ export const roleBuffer = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS).
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/roles.md
-import { MAX_ATOMS, ROLES_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, ROLES_OFFSET, sharedBuffer } from "@g02";
 
 export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 ```
@@ -5265,7 +5256,7 @@ export const roles = new Uint8Array(sharedBuffer, ROLES_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/signalGrid.md
-import { GRID_CELLS, SIGNAL_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, SIGNAL_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS);
 ```
@@ -5276,7 +5267,7 @@ export const signalGrid = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/signalGridBuffer.md
-import { GRID_CELLS, SIGNAL_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, SIGNAL_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET, GRID_CELLS).buffer;
 ```
@@ -5287,7 +5278,7 @@ export const signalGridBuffer = new Int32Array(sharedBuffer, SIGNAL_GRID_OFFSET,
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/spatialGrid.md
-import { GRID_CELLS, SPATIAL_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, SPATIAL_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRID_CELLS * 32);
 ```
@@ -5298,7 +5289,7 @@ export const spatialGrid = new Int32Array(sharedBuffer, SPATIAL_GRID_OFFSET, GRI
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/stiffnessBuffer.md
-import { MAX_ATOMS, STIFFNESS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, STIFFNESS_OFFSET, sharedBuffer } from "@g02";
 
 export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, MAX_ATOMS * 4).buffer;
 ```
@@ -5309,7 +5300,7 @@ export const stiffnessBuffer = new Float32Array(sharedBuffer, STIFFNESS_OFFSET, 
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/structureGrid.md
-import { GRID_CELLS, STRUCTURE_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, STRUCTURE_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS);
 ```
@@ -5320,7 +5311,7 @@ export const structureGrid = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET,
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/structureGridBuffer.md
-import { GRID_CELLS, STRUCTURE_GRID_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { GRID_CELLS, STRUCTURE_GRID_OFFSET, sharedBuffer } from "@g02";
 
 export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_OFFSET, GRID_CELLS).buffer;
 ```
@@ -5331,7 +5322,7 @@ export const structureGridBuffer = new Int32Array(sharedBuffer, STRUCTURE_GRID_O
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/synapticWeights.md
-import { MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, SYNAPTIC_WEIGHTS_OFFSET, sharedBuffer } from "@g02";
 
 export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFFSET, MAX_ATOMS * 4);
 ```
@@ -5342,7 +5333,7 @@ export const synapticWeights = new Uint8Array(sharedBuffer, SYNAPTIC_WEIGHTS_OFF
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/syncState.md
-import { SYNC_STATE_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { SYNC_STATE_OFFSET, sharedBuffer } from "@g02";
 
 export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 ```
@@ -5353,7 +5344,7 @@ export const syncState = new Int32Array(sharedBuffer, SYNC_STATE_OFFSET, 1);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/tickCounter.md
-import { TICK_COUNTER_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { TICK_COUNTER_OFFSET, sharedBuffer } from "@g02";
 
 export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 ```
@@ -5364,7 +5355,7 @@ export const tickCounter = new Int32Array(sharedBuffer, TICK_COUNTER_OFFSET, 1);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/xs.md
-import { MAX_ATOMS, XS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, XS_OFFSET, sharedBuffer } from "@g02";
 
 export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 ```
@@ -5375,7 +5366,7 @@ export const xs = new Int16Array(sharedBuffer, XS_OFFSET, MAX_ATOMS);
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/ys.md
-import { MAX_ATOMS, YS_OFFSET, sharedBuffer, TYPES } from "@g02";
+import { MAX_ATOMS, YS_OFFSET, sharedBuffer } from "@g02";
 
 export const ys = new Int16Array(sharedBuffer, YS_OFFSET, MAX_ATOMS);
 ```
@@ -5397,7 +5388,7 @@ export * from "./MX.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/mx.md
-import { ATOM_CONTEXT_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_H, GRID_W, MAX_ATOMS, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_SET, OP_SIGNAL, OP_SUB, OP_SYSCALL, PROP_NEURAL_COHERENCE, RESOURCE_MAX, SCALE, SYS_SET_ROLE, SYS_YIELD, VmProps, VmOpcodes, VmSys, attentionField, attentionFieldBuffer, bondDistBuffer, bondDistances, bondRequests, bondStiffness, bonds, causality, codeWords, coherence, contextByteView, contexts, damping, dampingBuffer, energies, evolutionReserved, glyphHeaderBuffer, glyphHeaders, glyphPayload, glyphPayloadBuffer, hiveBalance, hiveEnergyPool, hiveEnergyPoolBuffer, hiveMemory, hiveMemoryBuffer, hormoneBuffer, hormones, ids, instructions, latticeClearView, ledgerDataView, ledgerHeadView, lineage, lineageBuffer, logic, mailboxes, memoryGrid, memoryGridBuffer, neuralCoherence, phases, resonances, roleBuffer, roles, semanticBonuses, semanticBonusesBuffer, sharedBuffer, signalGrid, signalGridBuffer, spatialGrid, stiffnessBuffer, structureGrid, structureGridBuffer, synapticWeights, syncState, tickCounter, wasmMemory, xs, ys, TYPES } from "@g03";
+import { ATOM_CONTEXT_SIZE, ATOM_INSTRUCTION_SIZE, GRID_CELLS, GRID_H, GRID_W, MAX_ATOMS, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_SET, OP_SIGNAL, OP_SUB, OP_SYSCALL, PROP_NEURAL_COHERENCE, RESOURCE_MAX, SCALE, SYS_SET_ROLE, SYS_YIELD, VmProps, VmOpcodes, VmSys, attentionField, attentionFieldBuffer, bondDistBuffer, bondDistances, bondRequests, bondStiffness, bonds, causality, codeWords, coherence, contextByteView, contexts, damping, dampingBuffer, energies, evolutionReserved, glyphHeaderBuffer, glyphHeaders, glyphPayload, glyphPayloadBuffer, hiveBalance, hiveEnergyPool, hiveEnergyPoolBuffer, hiveMemory, hiveMemoryBuffer, hormoneBuffer, hormones, ids, instructions, latticeClearView, ledgerDataView, ledgerHeadView, lineage, lineageBuffer, logic, mailboxes, memoryGrid, memoryGridBuffer, neuralCoherence, phases, resonances, roleBuffer, roles, semanticBonuses, semanticBonusesBuffer, sharedBuffer, signalGrid, signalGridBuffer, spatialGrid, stiffnessBuffer, structureGrid, structureGridBuffer, synapticWeights, syncState, tickCounter, wasmMemory, xs, ys } from "@g03";
 
 // OMEGA-64 | MX.ts
 
@@ -5908,7 +5899,7 @@ export const MX = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/atomic_ledger.md
-import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS, MX, AtomicLedgerEvent, TYPES } from "@g04";
+import { LEDGER_DATA_OFFSET, LEDGER_HEAD_OFFSET, MAX_LEDGER_EVENTS, MX, AtomicLedgerEvent } from "@g04";
 
 // OMEGA-64 | ATOMIC_LEDGER.ts | Era 70
 // Binary Event Ring Buffer (Memory-Mapped)
@@ -5998,7 +5989,7 @@ export * from "./SEMANTIC_MEMBRANE.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/prediction_market.md
-import { MX, PredictionMarketAkashaDelegate, TYPES } from "@g04";
+import { MX, PredictionMarketAkashaDelegate } from "@g04";
 
 let delegate: PredictionMarketAkashaDelegate | null = null;
 
@@ -6157,7 +6148,7 @@ export const PREDICTION_MARKET = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/semantic_membrane.md
-import { BehaviorFingerprint, BehaviorCluster, BehaviorRuntime, Aggregate, TYPES } from "@g04";
+import { BehaviorFingerprint, BehaviorCluster, BehaviorRuntime, Aggregate } from "@g04";
 
 // OMEGA-64 | SEMANTIC_MEMBRANE.ts | Homeostatic Embeddings (Era 17)
 // Advanced semantic grouping with synaptic scaling and homeostasis (L8).
@@ -6645,7 +6636,7 @@ export const SEMANTIC_MEMBRANE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_signaling.md
-import { SignalingSession, SIGNAL_TYPES, TYPES } from "@g05";
+import { SignalingSession, SIGNAL_TYPES } from "@g05";
 
 /**
  * @contract [akasha-webrtc-signaling] 
@@ -6947,7 +6938,7 @@ export const AKASHA_SIGNALING = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/wasm_memory_guard.md
-import { WASM_MEMORY_PAGES, MIN_WASM_MEMORY_PAGES, TYPES } from "@g05";
+import { WASM_MEMORY_PAGES, MIN_WASM_MEMORY_PAGES } from "@g05";
 
 export const assert_wasm_memory_depth = (): void => {
   if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
@@ -6965,7 +6956,6 @@ export const assert_wasm_memory_depth = (): void => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/base64_to_bytes.md
-import { TYPES } from "@g05";
 
 export const base64_to_bytes = (b64: string): Uint8Array =>
   Uint8Array.from(atob(b64), (ch) => ch.charCodeAt(0));
@@ -6977,7 +6967,6 @@ export const base64_to_bytes = (b64: string): Uint8Array =>
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/bytes_to_base64.md
-import { TYPES } from "@g05";
 
 export const bytes_to_base64 = (bytes: Uint8Array): string =>
   btoa(String.fromCharCode(...bytes));
@@ -6989,7 +6978,6 @@ export const bytes_to_base64 = (bytes: Uint8Array): string =>
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/bytes_to_hex.md
-import { TYPES } from "@g05";
 
 export const bytes_to_hex = (bytes: Uint8Array): string =>
   Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -7001,7 +6989,7 @@ export const bytes_to_hex = (bytes: Uint8Array): string =>
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/continuum.md
-import { LATTICE_MEMORY_END, ContinuumMetadata, TYPES } from "@g05";
+import { LATTICE_MEMORY_END, ContinuumMetadata } from "@g05";
 
 const EPOCHS_DIR = ".omega/epochs";
 
@@ -7137,7 +7125,7 @@ export async function decompressMemoryToLattice(
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/doll_fork_matrix.md
-import { BONDS_OFFSET, BOND_DISTANCES_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, DAMPING_OFFSET, ENERGY_OFFSET, GLYPH_HEADER_OFFSET, GLYPH_PAYLOAD_OFFSET, GRID_CELLS, HORMONE_OFFSET, IDS_OFFSET, LOGIC_OFFSET, MAX_ATOMS, MEMORY_GRID_OFFSET, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SIGNAL_GRID_OFFSET, STIFFNESS_OFFSET, STRUCTURE_GRID_OFFSET, WASM_MEMORY_PAGES, XS_OFFSET, YS_OFFSET, TYPES } from "@g05";
+import { BONDS_OFFSET, BOND_DISTANCES_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, DAMPING_OFFSET, ENERGY_OFFSET, GLYPH_HEADER_OFFSET, GLYPH_PAYLOAD_OFFSET, GRID_CELLS, HORMONE_OFFSET, IDS_OFFSET, LOGIC_OFFSET, MAX_ATOMS, MEMORY_GRID_OFFSET, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, RESONANCE_OFFSET, ROLES_OFFSET, SIGNAL_GRID_OFFSET, STIFFNESS_OFFSET, STRUCTURE_GRID_OFFSET, WASM_MEMORY_PAGES, XS_OFFSET, YS_OFFSET } from "@g05";
 
 // OMEGA-64 | DOLL_FORK_MATRIX.ts | Stage 21: The Doll Fork
 
@@ -7306,7 +7294,7 @@ export class DollFork {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/export_core.md
-import { ExportManifest, LoadedManifest, ExportProvenance, ExportFileContent, TYPES } from "@g05";
+import { ExportManifest, LoadedManifest, ExportProvenance, ExportFileContent } from "@g05";
 
 import { parse } from "https://deno.land/std@0.224.0/jsonc/mod.ts";
 import { normalize, join, dirname, extname } from "https://deno.land/std@0.224.0/path/mod.ts";
@@ -7965,7 +7953,6 @@ if (import.meta.main) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/fnv1a32.md
-import { TYPES } from "@g05";
 
 export const fnv1a32 = (input: string): number => {
   let hash = 0x811C9DC5;
@@ -7983,7 +7970,7 @@ export const fnv1a32 = (input: string): number => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_boot.md
-import { RolePreamble, TYPES } from "@g05";
+import { RolePreamble } from "@g05";
 
 /**
  * GENESIS_BOOT.ts
@@ -8126,7 +8113,6 @@ export const GENESIS_PROGRAMS: Record<string, number[]> = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_reified.md
-import { TYPES } from "@g05";
 
 // OMEGA-64 | GENESIS_REIFIED.ts | Cultivated Relics
 export const REIFIED_PROGRAMS: Record<string, number[]> = {};
@@ -8138,7 +8124,7 @@ export const REIFIED_PROGRAMS: Record<string, number[]> = {};
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_arity.md
-import { GLYPH_ARITY_LUT, TYPES } from "@g05";
+import { GLYPH_ARITY_LUT } from "@g05";
 
 export function get_glyph_arity(id: number): number {
   return GLYPH_ARITY_LUT[id & 63];
@@ -8151,7 +8137,7 @@ export function get_glyph_arity(id: number): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_energy.md
-import { GLYPH_ENERGY_LUT, TYPES } from "@g05";
+import { GLYPH_ENERGY_LUT } from "@g05";
 
 export function get_glyph_energy(id: number): number {
   return GLYPH_ENERGY_LUT[id & 63];
@@ -8164,7 +8150,7 @@ export function get_glyph_energy(id: number): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_kind.md
-import { KIND_CONTROL, KIND_CORE, GLYPH_TYPES, TYPES } from "@g05";
+import { KIND_CONTROL, KIND_CORE, GLYPH_TYPES } from "@g05";
 
 export function get_glyph_kind(id: number): number {
   if (id <= 3) return KIND_CORE;
@@ -8179,7 +8165,7 @@ export function get_glyph_kind(id: number): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/get_glyph_legacy_opcode.md
-import { GLYPH_LEGACY_OPCODE_LUT, TYPES } from "@g05";
+import { GLYPH_LEGACY_OPCODE_LUT } from "@g05";
 
 export function get_glyph_legacy_opcode(id: number): number {
   return GLYPH_LEGACY_OPCODE_LUT[id & 63];
@@ -8192,7 +8178,7 @@ export function get_glyph_legacy_opcode(id: number): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/glyph_telemetry.md
-import { GlyphRoleCounters, GlyphSnapshot, GlyphKind, GRID_W, GRID_H, MIN_GLYPH_AMP, MAX_GLYPH_AMP, SECRETION_STATS_OFFSET, MX, TYPES } from "@g05";
+import { GlyphRoleCounters, GlyphSnapshot, GlyphKind, GRID_W, GRID_H, MIN_GLYPH_AMP, MAX_GLYPH_AMP, SECRETION_STATS_OFFSET, MX } from "@g05";
 
 const GLYPH_KIND_MASK = 0xFF;
 const GLYPH_AMPLITUDE_SHIFT = 8;
@@ -8382,7 +8368,6 @@ export const GLYPH_TELEMETRY = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/hex_to_bytes.md
-import { TYPES } from "@g05";
 
 export const hex_to_bytes = (hex: string): Uint8Array | null => {
   if (!/^[0-9a-fA-F]*$/u.test(hex) || hex.length % 2 !== 0) return null;
@@ -8402,7 +8387,7 @@ export const hex_to_bytes = (hex: string): Uint8Array | null => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer_runtime.md
-import { HormoneSyncInput, TYPES } from "@g05";
+import { HormoneSyncInput } from "@g05";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -8469,7 +8454,7 @@ export const HORMONE_BUFFER_RUNTIME = { syncHormonesToLattice };
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/LOGGER.md
-import { LogLevel, TYPES } from "@g05";
+import { LogLevel } from "@g05";
 
 const LEVEL_WEIGHT: Record<LogLevel, number> = {
   debug: 10,
@@ -8552,7 +8537,6 @@ export const Le = LOGGER.error;
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/make_xor_shift32.md
-import { TYPES } from "@g05";
 
 export const make_xor_shift32 = (seed: number): () => number => {
   let state = (seed >>> 0) || 1;
@@ -8612,7 +8596,6 @@ export * from "./AKASHA_SIGNALING.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/normalize_hex64.md
-import { TYPES } from "@g05";
 
 export const normalize_hex64 = (value: unknown): string | null => {
   if (typeof value !== "string") return null;
@@ -8627,7 +8610,7 @@ export const normalize_hex64 = (value: unknown): string | null => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/omega_daemon.md
-import { WORLD_MAX_X, WORLD_MAX_Y, Telemetry, CodexNarrative, ActionType, DaemonDecision, InvariantSignal, InvariantFrame, OpenAIChoice, OpenAIResponse, TYPES } from "@g05";
+import { WORLD_MAX_X, WORLD_MAX_Y, Telemetry, CodexNarrative, ActionType, DaemonDecision, InvariantSignal, InvariantFrame, OpenAIChoice, OpenAIResponse } from "@g05";
 
 // OMEGA-64 | OMEGA_DAEMON.ts | Era 70: Mycelial Observer Daemon
 // Autonomous companion loop: reads telemetry, reasons via OpenAI, injects stimuli.
@@ -10125,7 +10108,7 @@ export const OMEGA_DAEMON = {};
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_codec.md
-import { MX, TYPES } from "@g05";
+import { MX } from "@g05";
 
 export const PACKET_SIZE = 192; // 172 bytes payload + 20 bytes padding for future expansion
 
@@ -10247,7 +10230,6 @@ export const P2P_CODEC = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/pack_structure_intent.md
-import { TYPES } from "@g05";
 
 export function pack_structure_intent(target_type: number, target_value: number, locked: boolean): number {
     let intent = target_type | (target_value << 24);
@@ -10264,7 +10246,7 @@ export function pack_structure_intent(target_type: number, target_value: number,
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/PRNG.md
-import { prng_seed_from, prng_next, TYPES } from "@g05";
+import { prng_seed_from, prng_next } from "@g05";
 
 export class PRNG {
   private state: number;
@@ -10291,7 +10273,6 @@ export class PRNG {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/serve_dashboard.md
-import { TYPES } from "@g05";
 
 import {
   parse as parseYaml,
@@ -10637,7 +10618,7 @@ export const SERVE_DASHBOARD = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/sovereignty_engine.md
-import { MX, SovereigntyEngineAkashaDelegate, TYPES } from "@g05";
+import { MX, SovereigntyEngineAkashaDelegate } from "@g05";
 
 let delegate: SovereigntyEngineAkashaDelegate | null = null;
 
@@ -10839,7 +10820,6 @@ export const SOVEREIGNTY_ENGINE: any = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/stable_stringify.md
-import { TYPES } from "@g05";
 
 export const stable_stringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -10863,7 +10843,7 @@ export const stable_stringify = (value: unknown): string => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/telemetry_stream.md
-import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram, TYPES } from "@g05";
+import { TelemetrySample, TelemetryMetricName, TelemetryBucket, TelemetryHistogram } from "@g05";
 
 const HISTORY_LIMIT = 4096;
 const DEFAULT_WINDOW_MS = 60_000;
@@ -11049,7 +11029,6 @@ export type { TelemetryHistogram, TelemetryMetricName, TelemetrySample };
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/to_int16_big_endian.md
-import { TYPES } from "@g05";
 
 export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
   const out = new Uint8Array(values.length * 2);
@@ -11068,7 +11047,6 @@ export const to_int16_big_endian = (values: Int16Array): Uint8Array => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/math/unpack_structure_charge.md
-import { TYPES } from "@g05";
 
 export function unpack_structure_charge(intent: number): number {
     return ((intent >>> 0) & 0x7F000000) >>> 24;
@@ -11081,7 +11059,7 @@ export function unpack_structure_charge(intent: number): number {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/akasha_server.md
-import { AKASHA_SIGNALING, RUNTIME_POLICY, MeshForwardAction, MeshForwardEnvelope, ParsedMeshInject, TYPES } from "@g06";
+import { AKASHA_SIGNALING, RUNTIME_POLICY, MeshForwardAction, MeshForwardEnvelope, ParsedMeshInject } from "@g06";
 
 const PORT = RUNTIME_POLICY.akasha.port;
 const HOST = RUNTIME_POLICY.akasha.host;
@@ -11800,7 +11778,7 @@ if (import.meta.main) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/assembler.md
-import { OPCODE_ARITY_LUT, AssembleToken, TYPES } from "@g06";
+import { OPCODE_ARITY_LUT, AssembleToken } from "@g06";
 
 export const assemble = (instructions: AssembleToken[]): Uint8Array => {
   const binary = new Uint8Array(64);
@@ -11854,7 +11832,7 @@ export const assemble = (instructions: AssembleToken[]): Uint8Array => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/audit_engine.md
-import { AuditEngineExocortexDelegate, TYPES } from "@g06";
+import { AuditEngineExocortexDelegate } from "@g06";
 
 // OMEGA-64 | AUDIT_ENGINE.ts | Era 34: Digital Archaeology
 // Scans "Flatland" (disk) for archived memories and deciphers ancient intent.
@@ -11936,7 +11914,7 @@ export const AUDIT_ENGINE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_bot.md
-import { LOGGER, Le, Li, Lw, TYPES } from "@g06";
+import { LOGGER, Le, Li, Lw } from "@g06";
 
 // OMEGA-64 | avatar_bot.ts | Stage 38 Demonstration
 
@@ -12026,7 +12004,7 @@ if (import.meta.main) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/avatar_engine.md
-import { GLYPH_TELEMETRY, MX, SCALE, GRID_W, TYPES } from "@g06";
+import { GLYPH_TELEMETRY, MX, SCALE, GRID_W } from "@g06";
 
 // OMEGA-64 | AVATAR_ENGINE.ts | Era 18: Emergent Avatar
 // Transforms observer interaction purely into thermodynamic pheromone deposits.
@@ -12076,7 +12054,7 @@ export const AVATAR_ENGINE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/crypto_keys.md
-import { base64_to_bytes, Ed25519SigningKey, Ed25519VerifyKey, HmacKey, TYPES } from "@g06";
+import { base64_to_bytes, Ed25519SigningKey, Ed25519VerifyKey, HmacKey } from "@g06";
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
@@ -12118,7 +12096,7 @@ export const import_ed25519_public = async (b64: string): Promise<CryptoKey> =>
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/disassembler.md
-import { OPCODE_ARITY_LUT, TYPES } from "@g06";
+import { OPCODE_ARITY_LUT } from "@g06";
 
 export const disassembler = {
   // Minimal placeholder if missing or re-export from @g00 if it moved
@@ -12131,7 +12109,7 @@ export const disassembler = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/doll_fork_runner.md
-import { DollFork, LOGGER, Le, MAX_ATOMS, TYPES } from "@g06";
+import { DollFork, LOGGER, Le, MAX_ATOMS } from "@g06";
 
 // OMEGA-64 | DOLL_FORK_RUNNER.ts | Stage 21: The Doll Fork
 
@@ -12233,7 +12211,7 @@ export class DollForkRunner {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/drift_warden.md
-import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, LOGGER, Li, MAX_ATOMS, sharedBuffer, DriftMetrics, TYPES } from "@g06";
+import { COHERENCE_OFFSET, ENERGY_OFFSET, IDS_OFFSET, LOGGER, Li, MAX_ATOMS, sharedBuffer, DriftMetrics } from "@g06";
 
 // OMEGA-64 | DRIFT_WARDEN.ts | Stage 22: Adaptive Genesis & Drift Response
 
@@ -12338,7 +12316,7 @@ export class DriftWarden {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/genesis_inceptor.md
-import { LOGGER, TYPES } from "@g06";
+import { LOGGER } from "@g06";
 
 // OMEGA-64 | GENESIS_INCEPTOR.ts | Stage 22: Adaptive Genesis & Drift Response
 
@@ -12382,7 +12360,7 @@ export class GenesisInceptor {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_ir_64.md
-import { GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_LEGACY_OPCODE_LUT, GLYPH_RGB_LUT, KIND_CATALYTIC, KIND_CONTROL, KIND_CORE, KIND_MEMORY, KIND_REGULATORY, KIND_RESERVE, KIND_STRUCTURAL, KIND_TRANSPORT, get_glyph_kind, GlyphKind, GlyphStabilityClass, GlyphSpec, GLYPH_TYPES, TYPES } from "@g06";
+import { GLYPH_ARITY_LUT, GLYPH_ENERGY_LUT, GLYPH_LEGACY_OPCODE_LUT, GLYPH_RGB_LUT, KIND_CATALYTIC, KIND_CONTROL, KIND_CORE, KIND_MEMORY, KIND_REGULATORY, KIND_RESERVE, KIND_STRUCTURAL, KIND_TRANSPORT, get_glyph_kind, GlyphKind, GlyphStabilityClass, GlyphSpec, GLYPH_TYPES } from "@g06";
 
 const KIND_MAPPING: Record<number, GlyphKind> = {
   [KIND_CORE]: "core",
@@ -12518,7 +12496,7 @@ export const listGlyphSpecsByKind = (kind: GlyphKind): GlyphSpec[] =>
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_soul.md
-import { LOGGER, Ld, Le, Li, Lw, TYPES } from "@g06";
+import { LOGGER, Ld, Le, Li, Lw } from "@g06";
 
 // OMEGA-64 | llm_soul.ts | Stage 39 Gemini External Brain
 
@@ -12712,7 +12690,7 @@ if (import.meta.main) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/llm_synapse.md
-import { LOGGER, Li, Lw, TYPES } from "@g06";
+import { LOGGER, Li, Lw } from "@g06";
 
 // OMEGA-64 | LLM_SYNAPSE.ts | Era 10: Cognitive Bridge
 // Communicates with external LLMs to generate emergent thoughts.
@@ -13174,7 +13152,7 @@ export * from "./SWARM_NEXUS.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/p2p_federation.md
-import { P2pFederationUpwardDelegate, MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC, TYPES } from "@g06";
+import { P2pFederationUpwardDelegate, MX, PRNG, LOGGER, RUNTIME_POLICY, P2P_CODEC } from "@g06";
 
 let delegate: P2pFederationUpwardDelegate | null = null;
 
@@ -13256,7 +13234,7 @@ export const P2P_FEDERATION = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/quorum_advocate.md
-import { LOGGER, MX, TYPES } from "@g06";
+import { LOGGER, MX } from "@g06";
 
 // OMEGA-64 | QUORUM_ADVOCATE.ts | Stage 24: Stigmergic Synthesis
 
@@ -13308,7 +13286,7 @@ export class QuorumAdvocate {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/relic_cultivation.md
-import { DollFork, LOGGER, Li, MAX_ATOMS, Relic, TYPES } from "@g06";
+import { DollFork, LOGGER, Li, MAX_ATOMS, Relic } from "@g06";
 
 // OMEGA-64 | RELIC_CULTIVATION.ts | Stage 21: The Doll Fork
 
@@ -13382,7 +13360,7 @@ export class RelicCultivator {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/sha256_hex.md
-import { bytes_to_hex, TYPES } from "@g06";
+import { bytes_to_hex } from "@g06";
 
 const crypto = globalThis.crypto;
 const encoder = new TextEncoder();
@@ -13407,7 +13385,7 @@ export const sha256_hex_bytes = async (bytes: Uint8Array): Promise<string> => {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snap_engine.md
-import { LATTICE_MEMORY_END, LOGGER, Le, Li, Lw, sharedBuffer, TYPES } from "@g06";
+import { LATTICE_MEMORY_END, LOGGER, Le, Li, Lw, sharedBuffer } from "@g06";
 
 // OMEGA-64 | SNAP_ENGINE.ts | Era 71: The Quantum Snap
 
@@ -13509,7 +13487,7 @@ export const SNAP_ENGINE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_nexus.md
-import { NexusConfig, LOGGER, TYPES } from "@g06";
+import { NexusConfig, LOGGER } from "@g06";
 
 export const createSwarmNexus = (config: NexusConfig) => new SwarmNexus(config);
 
@@ -13859,7 +13837,7 @@ export class SwarmNexus {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/swarm_node.md
-import { SwarmHeartbeat, LOGGER, TYPES } from "@g06";
+import { SwarmHeartbeat, LOGGER } from "@g06";
 
 export class MetaKuramotoNode {
   public readonly nodeId: string;
@@ -13905,7 +13883,7 @@ export const SWARM_NODE = new MetaKuramotoNode();
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/AGENT_SIGNATURE.md
-import { bytes_to_base64, bytes_to_hex, hex_to_bytes, crypto_keys, sha256_hex, stable_stringify, TYPES, REJECTION_CODES } from "@g07";
+import { bytes_to_base64, bytes_to_hex, hex_to_bytes, crypto_keys, sha256_hex, stable_stringify, REJECTION_CODES } from "@g07";
 
 const encoder = new TextEncoder();
 const crypto = globalThis.crypto;
@@ -14040,7 +14018,7 @@ export const AGENT_SIGNATURE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/akasha_codex.md
-import { SpeciesEntry, ChronicleEntry, RelicEntry, InvariantSignal, InvariantEntry, DaemonInvariantFrame, CodexNarrative, CodexState, GenomeStats, RelicCandidate, TaxonomyResult, GRID_CELLS, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Li, Lw, OP_BUILD, OP_RESONATE_KURAMOTO, OP_SENSE, OP_SENSE_AS, MX, CodexLineageProfile, GlyphTransportEvidence, HormoneRegimeEvidence, TYPES } from "@g07";
+import { SpeciesEntry, ChronicleEntry, RelicEntry, InvariantSignal, InvariantEntry, DaemonInvariantFrame, CodexNarrative, CodexState, GenomeStats, RelicCandidate, TaxonomyResult, GRID_CELLS, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Li, Lw, OP_BUILD, OP_RESONATE_KURAMOTO, OP_SENSE, OP_SENSE_AS, MX, CodexLineageProfile, GlyphTransportEvidence, HormoneRegimeEvidence } from "@g07";
 
 // OMEGA-64 | AKASHA_CODEX.ts | Era 70: The Human Pheromone
 // Persistent, human-readable archive of species, chronicles, and relics.
@@ -15640,7 +15618,7 @@ export const AKASHA_CODEX = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/checkpoint_chain.md
-import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, CheckpointChainReportInternal, TYPES } from "@g07";
+import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, CheckpointChainReportInternal } from "@g07";
 
 // OMEGA-64 | checkpoint_chain.ts
 // Replay Invariant State Hash Checkpointing
@@ -15831,7 +15809,7 @@ export const CHECKPOINT_CHECKPOINT = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/control_intent_queue.md
-import { GLYPH_TELEMETRY, GRID_H, GRID_W, LOGGER, Li, Lw, MAX_ATOMS, PREDICTION_MARKET, RUNTIME_POLICY, SCALE, MX, ControlIntentQueueDelegate, CrisisIntent, FederateIntent, FederationAdmissionSeverity, FederationAdmissionAction, FederationRuleGenomeProfile, FederationBehaviorProfile, FederationLocalBehaviorContext, FederationCodexProfile, FederationLocalCodexContext, FederationPolicyFragmentSource, FederationPolicyFragmentMode, FederationPolicyFragment, FederationAdmissionSnapshot, FederateAdmissionResult, MutateIntent, AvatarIntent, PlasmidIntent, SnapshotImportIntent, ControlIntent, QueueDecision, ApplyStats, TYPES } from "@g07";
+import { GLYPH_TELEMETRY, GRID_H, GRID_W, LOGGER, Li, Lw, MAX_ATOMS, PREDICTION_MARKET, RUNTIME_POLICY, SCALE, MX, ControlIntentQueueDelegate, CrisisIntent, FederateIntent, FederationAdmissionSeverity, FederationAdmissionAction, FederationRuleGenomeProfile, FederationBehaviorProfile, FederationLocalBehaviorContext, FederationCodexProfile, FederationLocalCodexContext, FederationPolicyFragmentSource, FederationPolicyFragmentMode, FederationPolicyFragment, FederationAdmissionSnapshot, FederateAdmissionResult, MutateIntent, AvatarIntent, PlasmidIntent, SnapshotImportIntent, ControlIntent, QueueDecision, ApplyStats } from "@g07";
 
 let delegate: ControlIntentQueueDelegate | null = null;
 
@@ -17067,7 +17045,7 @@ export const CONTROL_INTENT_QUEUE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/crystallization_policy.md
-import { sha256_hex, stable_stringify, TYPES } from "@g07";
+import { sha256_hex, stable_stringify } from "@g07";
 
 const CRY_DATA = {
   policy: "STABLE",
@@ -17143,7 +17121,7 @@ export const CRYSTALLIZATION_POLICY = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/genetic_ledger.md
-import { GeneticLedgerKey, LedgerMutability, GeneticLedgerEntry, RUNTIME_POLICY, TYPES } from "@g07";
+import { GeneticLedgerKey, LedgerMutability, GeneticLedgerEntry, RUNTIME_POLICY } from "@g07";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -17306,7 +17284,7 @@ export const GENETIC_LEDGER = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/glyph_pretty.md
-import { glyphSpecById, glyph_ir_64, disassembler, TYPES } from "@g07";
+import { glyphSpecById, glyph_ir_64, disassembler } from "@g07";
 
 export const describeGlyphToken = (token: GlyphTapeToken): string => {
   const spec = token.glyphId === null ? null : glyphSpecById(token.glyphId);
@@ -17333,7 +17311,7 @@ export const glyphTapeToPrettyText = (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/invariant_packet.md
-import { base64_to_bytes, bytes_to_base64, import_hmac, sha256_hex, stable_stringify, InvariantPacket, InvariantPacketSigningKey, crypto_keys, TYPES } from "@g07";
+import { base64_to_bytes, bytes_to_base64, import_hmac, sha256_hex, stable_stringify, InvariantPacket, InvariantPacketSigningKey, crypto_keys } from "@g07";
 
 const INVARIANT_PACKET_VERSION = "invariant-packet/v1";
 const encoder = new TextEncoder();
@@ -17594,7 +17572,7 @@ export const INVARIANT_PACKET = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/ledger_chain.md
-import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, LedgerChainReportInternal, TYPES } from "@g07";
+import { append_jsonl, normalize_hex64, read_jsonl, read_jsonl_lines, sha256_hex, stable_stringify, LedgerChainReportInternal } from "@g07";
 
 // OMEGA-64 | ledger_chain.ts
 // Ledger Chain and Proposal Envelope Index verification
@@ -18047,7 +18025,7 @@ export * from "./MUTATION_TELEMETRY.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/mutation_telemetry.md
-import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY, TYPES } from "@g07";
+import { LOGGER, Ld, MutationLane, MutationEvent, RUNTIME_POLICY } from "@g07";
 
 /**
  * @contract [daemon-governance]
@@ -18130,7 +18108,7 @@ export const MUTATION_TELEMETRY = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/opcode_to_glyph.md
-import { LegacyInstruction, GlyphTapeToken, OP_ADD, OP_BIND, OP_BUILD, OP_COLLECTIVE, OP_GET, OP_HEBB, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PLUG, OP_PUT, OP_REPLICATE, OP_RESOLVE, OP_SECRETE_PLASMID, OP_SENSE, OP_SET, OP_SHARE, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, OP_TENSEGRITY, glyphSpecByLegacyOpcode, ScriptToGlyphOptions, glyph_ir_64, TYPES } from "@g07";
+import { LegacyInstruction, GlyphTapeToken, OP_ADD, OP_BIND, OP_BUILD, OP_COLLECTIVE, OP_GET, OP_HEBB, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PLUG, OP_PUT, OP_REPLICATE, OP_RESOLVE, OP_SECRETE_PLASMID, OP_SENSE, OP_SET, OP_SHARE, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, OP_TENSEGRITY, glyphSpecByLegacyOpcode, ScriptToGlyphOptions, glyph_ir_64 } from "@g07";
 
 const OPCODE_NAMES = new Map<number, string>([
   [OP_NOP, "NOP"],
@@ -18250,7 +18228,7 @@ export const scriptToGlyphTape = (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/crypto/topo_signature.md
-import { fnv1a32, make_xor_shift32, normalize_hex64, sha256_hex_bytes, stable_stringify, to_int16_big_endian, ProjectionOptions, ThreadProjectionConfig, TopologicalSignature, TopologicalSignatureInput, sha256_hex, TYPES } from "@g07";
+import { fnv1a32, make_xor_shift32, normalize_hex64, sha256_hex_bytes, stable_stringify, to_int16_big_endian, ProjectionOptions, ThreadProjectionConfig, TopologicalSignature, TopologicalSignatureInput, sha256_hex } from "@g07";
 
 const clampByte = (x: number): number => Math.max(0, Math.min(255, Math.round(x)));
 const clampI16 = (x: number): number => Math.max(-32768, Math.min(32767, x));
@@ -18611,7 +18589,7 @@ export const TOPOLOGICAL_SIGNATURE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/generic_ledger_system.md
-import { geneticLedgerEntryByKey, LedgerRuntimeEvent, LedgerRuntimeState, LedgerRuntimeSnapshot, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeConfig, GENETIC_LEDGER, TYPES } from "@g08";
+import { geneticLedgerEntryByKey, LedgerRuntimeEvent, LedgerRuntimeState, LedgerRuntimeSnapshot, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeConfig, GENETIC_LEDGER } from "@g08";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -18851,7 +18829,7 @@ export const GENERIC_LEDGER_SYSTEM = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/lineage_tracker.md
-import { AKASHA_CODEX, LOGGER, Ld, MX, TYPES } from "@g08";
+import { AKASHA_CODEX, LOGGER, Ld, MX } from "@g08";
 
 // OMEGA-64 | LINEAGE_TRACKER.ts | Stage 23: The Memory Matrix
 
@@ -18907,7 +18885,7 @@ export * from "./GENERIC_LEDGER_SYSTEM.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/panopticon_server.md
-import { AKASHA_CODEX, LOGGER, Li, Lw, MX, TYPES } from "@g08";
+import { AKASHA_CODEX, LOGGER, Li, Lw, MX } from "@g08";
 
 const PORT = 8086; // Dedicated Panopticon Telemetry Port
 const FPS = 20; // Lower FPS for dense binary payload
@@ -19026,7 +19004,7 @@ export const PANOPTICON_SERVER = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/snapshot_engine.md
-import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions, TYPES } from "@g08";
+import { LOGGER, Le, Li, Lw, SEMANTIC_MEMBRANE, MX, SnapshotExportOptions } from "@g08";
 
 // OMEGA-64 | SNAPSHOT_ENGINE.ts | Era 19: The Genesis Checkpoint
 // Rapid Binary Dumps of the volatile Memory Matrix (MX.buffer)
@@ -19243,7 +19221,6 @@ export const SNAPSHOT_ENGINE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/breath_cycle.md
-import { TYPES } from "@g09";
 
 // OMEGA-64 | BREATH.ts | Era 10: Autonomous Feedback Loop
 // Periodically samples the Matrix and injects new conceptual spores.
@@ -19340,7 +19317,7 @@ if (import.meta.main) {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/generic_ledger_persistence.md
-import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, LedgerRecord, LedgerSnapshotRecord, LedgerPersistenceSummary, LedgerHydrationResult, GENERIC_LEDGER_SYSTEM, TYPES } from "@g09";
+import { applyLedgerUpdate, createGeneticLedgerRuntime, createLedgerRuntime, rollbackLedgerUpdate, snapshotLedgerRuntime, LedgerRecord, LedgerSnapshotRecord, LedgerPersistenceSummary, LedgerHydrationResult, GENERIC_LEDGER_SYSTEM } from "@g09";
 
 const ensureDir = async (): Promise<void> => {
   await Deno.mkdir(".omega/ledger", { recursive: true });
@@ -19710,7 +19687,7 @@ export const GENERIC_LEDGER_PERSISTENCE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/hormone_buffer.md
-import { createLedgerRuntime, HormoneId, HormoneDomain, HormoneSpec, RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM, TYPES } from "@g09";
+import { createLedgerRuntime, HormoneId, HormoneDomain, HormoneSpec, RUNTIME_POLICY, GENERIC_LEDGER_SYSTEM } from "@g09";
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(min, Math.min(max, value));
@@ -19912,7 +19889,7 @@ export * from "./GENERIC_LEDGER_PERSISTENCE.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/golden_trace_catalog.md
-import { GoldenTraceMetricPolicy, GoldenTraceScenario, TYPES } from "@g10";
+import { GoldenTraceMetricPolicy, GoldenTraceScenario } from "@g10";
 
 const TRACE_ROOT = "src/ontology/verification/data/traces";
 
@@ -20524,7 +20501,7 @@ export * from "./GOLDEN_TRACE_CATALOG.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/physiology_snapshot.md
-import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, PhysiologySnapshotInput, HormoneSnapshot, LedgerSnapshot, PhysiologySnapshot, HORMONE_BUFFER, TYPES } from "@g10";
+import { GENETIC_LEDGER_CATALOG, HORMONE_BUFFER_CATALOG, PhysiologySnapshotInput, HormoneSnapshot, LedgerSnapshot, PhysiologySnapshot, HORMONE_BUFFER } from "@g10";
 
 export const capturePhysiologySnapshot = (
   input: PhysiologySnapshotInput,
@@ -20569,7 +20546,7 @@ export const capturePhysiologySnapshot = (
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_admission.md
-import { BridgeInvariantReportLike, TYPES } from "@g11";
+import { BridgeInvariantReportLike } from "@g11";
 
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,
@@ -20697,7 +20674,7 @@ export const CANON_CAUSAL_BRIDGE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/gate_budget.md
-import { GateMergedDelta, CRYSTALLIZATION_CONFIG, TYPES } from "@g11";
+import { GateMergedDelta, CRYSTALLIZATION_CONFIG } from "@g11";
 
 const totalAbsDeltaRounded = (combinedDelta: Map<number, number>): number => {
   let total = 0;
@@ -20738,7 +20715,6 @@ export const GATE_BUDGET = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_ledger.md
-import { TYPES } from "@g11";
 
 export const persistGateLedgerArtifacts = async (
   bridgeEvent: BridgeModeEvent,
@@ -20786,7 +20762,7 @@ export const GATE_LEDGER = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_merger.md
-import { GateAcceptedProposalMetric, I16Limits, TYPES, REJECTION_CODES, LOGGER } from "@g11";
+import { GateAcceptedProposalMetric, I16Limits, REJECTION_CODES, LOGGER } from "@g11";
 
 const clamp01 = (x: number): number => {
   if (x < 0) return 0;
@@ -20982,7 +20958,7 @@ export const GATE_MERGER = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_validator.md
-import { GateBridgeResolution, GateValidationResult, TYPES, REJECTION_CODES } from "@g11";
+import { GateBridgeResolution, GateValidationResult, REJECTION_CODES } from "@g11";
 
 const stableStringify = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -21187,7 +21163,7 @@ export const GATE_VALIDATOR = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate.md
-import { ReplayInvariantReport, GateRuntimeContext, DeltaProposal, GateDecision, BridgeModeEvent, TYPES, REJECTION_CODES } from "@g11";
+import { ReplayInvariantReport, GateRuntimeContext, DeltaProposal, GateDecision, BridgeModeEvent, REJECTION_CODES } from "@g11";
 
 const GATE_VERSION = "v0.3-pure";
 const AUTO_CHECKPOINT_INTERVAL = 128;
@@ -21647,7 +21623,7 @@ export * from "./REDUCTION_CASES.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_cases.md
-import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, ReductionCaseExpectation, ReductionCaseDefinition, OPCODE_TO_GLYPH, GATE, assembler, TYPES } from "@g12";
+import { GRID_W, pack_structure_intent, assemble, MX, OP_GET, PROP_ENERGY, OP_SET, OP_SUB, OP_JNZ, OP_SIGNAL, OP_JMP, SYS_SET_ROLE, OP_SYSCALL, OP_BUILD, OP_REPLICATE, OP_PUT, PROP_RESONANCE, OP_JZ, OP_SECRETE_PLASMID, OP_SENSE, OP_TENSEGRITY, OP_PLUG, STR_SOURCE, OP_RESOLVE, OP_COLLECTIVE, OP_SHARE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, PROP_NEURAL_COHERENCE, STR_NODE, PROP_X, PROP_Y, STR_WIRE, OP_NOP, ReductionCaseExpectation, ReductionCaseDefinition, OPCODE_TO_GLYPH, GATE, assembler } from "@g12";
 
 const makeEnergyThresholdScript = (targetEnergy: number): Uint8Array => assemble([
   OP_GET, 0, PROP_ENERGY,
@@ -22710,7 +22686,7 @@ export const reductionCaseById = (id: string): ReductionCaseDefinition | undefin
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/host/sigma_ffi_bridge.md
-import { sharedBuffer, TYPES } from "@g12";
+import { sharedBuffer } from "@g12";
 
 // OMEGA-64 | SIGMA_FFI_BRIDGE.ts | Era 75: The Singularity Bridge
 
@@ -22793,7 +22769,7 @@ export const SIGMA_FFI = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/membrane/agent_proxy.md
-import { LOGGER, Le, Li, OP_SET, OP_SYSCALL, MX, SYS_ATTRACT, SYS_TRANSFER, assemble, SIGMA_FFI, assembler, SIGMA_FFI_BRIDGE, TYPES } from "@g13";
+import { LOGGER, Le, Li, OP_SET, OP_SYSCALL, MX, SYS_ATTRACT, SYS_TRANSFER, assemble, SIGMA_FFI, assembler, SIGMA_FFI_BRIDGE } from "@g13";
 
 const sensoryBuffer = new Float32Array(12);
 const sensoryPtr = Deno.UnsafePointer.of(sensoryBuffer);
@@ -23017,7 +22993,7 @@ export * from "./PULSE.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/core/pulse_orchestrator.md
-import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, HORMONE_BUFFER, GENERIC_LEDGER_PERSISTENCE, createGeneticLedgerRuntime, applyLedgerUpdate, rollbackLedgerUpdate, snapshotLedgerRuntime, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_ATOMS, MAX_EGRESS_EVENTS, OP_ADD, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PUT, OP_REPLICATE, OP_SECRETE_PLASMID, OP_SET, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, RUNTIME_POLICY, sharedBuffer, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, PROP_ENERGY, PROP_NEURAL_COHERENCE, PROP_RESONANCE, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, SYS_SET_ROLE, SYS_YIELD, XS_OFFSET, YS_OFFSET, PulseOracleDelegate, PulseAkashaDelegate, PulseNoosphereDelegate, EvolutionPressureState, SpatialHashState, HomeostasisState, GeneticLedgerRuntimeState, GuardianSignalHybridState, ArchitectPlasmidHybridState, RollingHistory, DriftMetrics, DriftWarden, DollFork, SNAP_ENGINE, GenesisInceptor, LineageTracker, QuorumAdvocate, DollForkRunner, MX, SIGMA_FFI, ReplicationExecutionMode, GeneticLedgerKey, HormoneId, GuardianSignalExecutionMode, DAEMON_INGRESS_POLICY_LIMITS, evaluateInvariantAdmission, evaluatePlasmidRisk, Ld, CONTROL_INTENT_QUEUE, GLYPH_TELEMETRY, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeSnapshot, LedgerRuntimeState, TYPES, HORMONE_BUFFER_RUNTIME, GENERIC_LEDGER_SYSTEM, memory_views_base, DRIFT_WARDEN, DOLL_FORK_MATRIX, GENESIS_INCEPTOR, LINEAGE_TRACKER, QUORUM_ADVOCATE, DOLL_FORK_RUNNER, SIGMA_FFI_BRIDGE, DAEMON_INGRESS_POLICY, LOGGER } from "@g13";
+import { BONDS_OFFSET, CAUSALITY_OFFSET, COHERENCE_OFFSET, CONTEXT_OFFSET, HORMONE_BUFFER, GENERIC_LEDGER_PERSISTENCE, createGeneticLedgerRuntime, applyLedgerUpdate, rollbackLedgerUpdate, snapshotLedgerRuntime, EGRESS_DATA_OFFSET, EGRESS_HEAD_OFFSET, ENERGY_OFFSET, GRID_H, GRID_W, IDS_OFFSET, INSTRUCTIONS_OFFSET, LATTICE_MEMORY_END, LOGIC_OFFSET, MAX_ATOMS, MAX_EGRESS_EVENTS, OP_ADD, OP_BUILD, OP_GET, OP_JMP, OP_JNZ, OP_JZ, OP_NOP, OP_PUT, OP_REPLICATE, OP_SECRETE_PLASMID, OP_SET, OP_SIGNAL, OP_SPORE_DRIVE, OP_SUB, OP_SYSCALL, RUNTIME_POLICY, sharedBuffer, PHASE_OFFSET, PHYSICS_READ_ENERGY_OFFSET, PHYSICS_READ_RESONANCE_OFFSET, PHYSICS_READ_XS_OFFSET, PHYSICS_READ_YS_OFFSET, PROP_ENERGY, PROP_NEURAL_COHERENCE, PROP_RESONANCE, RESONANCE_OFFSET, ROLES_OFFSET, SPAWN_REQUESTS_OFFSET, SYS_SET_ROLE, SYS_YIELD, XS_OFFSET, YS_OFFSET, PulseOracleDelegate, PulseAkashaDelegate, PulseNoosphereDelegate, EvolutionPressureState, SpatialHashState, HomeostasisState, GeneticLedgerRuntimeState, GuardianSignalHybridState, ArchitectPlasmidHybridState, RollingHistory, DriftMetrics, DriftWarden, DollFork, SNAP_ENGINE, GenesisInceptor, LineageTracker, QuorumAdvocate, DollForkRunner, MX, SIGMA_FFI, ReplicationExecutionMode, GeneticLedgerKey, HormoneId, GuardianSignalExecutionMode, DAEMON_INGRESS_POLICY_LIMITS, evaluateInvariantAdmission, evaluatePlasmidRisk, Ld, CONTROL_INTENT_QUEUE, GLYPH_TELEMETRY, LedgerApplyResult, LedgerRollbackResult, LedgerRuntimeSnapshot, LedgerRuntimeState, HORMONE_BUFFER_RUNTIME, GENERIC_LEDGER_SYSTEM, memory_views_base, DRIFT_WARDEN, DOLL_FORK_MATRIX, GENESIS_INCEPTOR, LINEAGE_TRACKER, QUORUM_ADVOCATE, DOLL_FORK_RUNNER, SIGMA_FFI_BRIDGE, DAEMON_INGRESS_POLICY, LOGGER } from "@g13";
 
 // OMEGA-64 | PULSE.ts | Era 68: Absolute Coherence
 let oracleDelegate: PulseOracleDelegate | null = null;
@@ -25217,7 +25193,7 @@ export const PULSE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/verification/integration/reduction_harness_verifier.md
-import { GRID_H, GRID_W, glyphTapeToPrettyText, decodeLegacyInstruction, GlyphTapeToken, scriptToGlyphTape, glyphSpecById, MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge, goldenTraceArtifactPaths, GENESIS_PROGRAMS, reductionCaseById, ReductionCaseDefinition, HarnessProps, ShadowEffects, ShadowState, LegacyShadowResult, ReductionShadowResult, ReductionBaselineAnchor, ReductionHarnessResult, ReductionHarnessArtifact, OPCODE_TO_GLYPH, GATE, assembler, REDUCTION_CASES, GOLDEN_TRACE_CATALOG, GENESIS_BOOT, glyph_pretty, TYPES } from "@g13";
+import { GRID_H, GRID_W, glyphTapeToPrettyText, decodeLegacyInstruction, GlyphTapeToken, scriptToGlyphTape, glyphSpecById, MX, STR_SOURCE, STR_WIRE, STR_NODE, STR_CAPACITOR, OP_NOP, OP_SET, OP_GET, OP_PUT, OP_ADD, OP_SUB, OP_JNZ, OP_JZ, OP_JMP, OP_REPLICATE, OP_SIGNAL, OP_SHARE, PROP_ENERGY, OP_COLLECTIVE, PROP_X, PROP_Y, OP_SECRETE_PLASMID, OP_BUILD, PROP_RESONANCE, OP_TENSEGRITY, OP_PLUG, OP_RESOLVE, OP_SENSE, OP_BIND, OP_SPORE_DRIVE, OP_HEBB, OP_SYSCALL, SYS_SET_ROLE, pack_structure_intent, unpack_structure_charge, goldenTraceArtifactPaths, GENESIS_PROGRAMS, reductionCaseById, ReductionCaseDefinition, HarnessProps, ShadowEffects, ShadowState, LegacyShadowResult, ReductionShadowResult, ReductionBaselineAnchor, ReductionHarnessResult, ReductionHarnessArtifact, OPCODE_TO_GLYPH, GATE, assembler, REDUCTION_CASES, GOLDEN_TRACE_CATALOG, GENESIS_BOOT, glyph_pretty } from "@g13";
 
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 
@@ -26102,7 +26078,7 @@ export * from "./SOVEREIGN_ORACLE.ts";
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/semantic/sovereign_oracle.md
-import { OraclePendingMutation, OracleDrainStats, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX, SovereignOracleAkashaDelegate, TYPES } from "@g14";
+import { OraclePendingMutation, OracleDrainStats, GRID_H, GRID_W, LLM_SYNAPSE, LOGGER, Ld, Le, Li, Lw, MAX_GLYPH_AMP, MIN_GLYPH_AMP, PULSE, RUNTIME_POLICY, SEMANTIC_MEMBRANE, SOVEREIGNTY_ENGINE, MX, SovereignOracleAkashaDelegate } from "@g14";
 
 // OMEGA-64 | SOVEREIGN_ORACLE.ts | Era 67: LLM-Guided Exocortex
 // Manages asynchronous LLM interruptions to rewrite Regent genomes dynamically.
@@ -26767,7 +26743,7 @@ export const SOVEREIGN_ORACLE = {
 
 ```typescript
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/telemetry/tui_dashboard.md
-import { GENESIS_PREDATOR_SCRIPT, GRID_H, GRID_W, LOGGER, PULSE, SPATIAL_CELL_SIZE, MX, WORLD_MAX_X, WORLD_MAX_Y, TYPES } from "@g14";
+import { GENESIS_PREDATOR_SCRIPT, GRID_H, GRID_W, LOGGER, PULSE, SPATIAL_CELL_SIZE, MX, WORLD_MAX_X, WORLD_MAX_Y } from "@g14";
 
 const STARTING_PREY = 500;
 const STARTING_PREDATORS = 50;
@@ -37924,7 +37900,7 @@ for (const node of nodes.values()) {
        return true;
     });
 
-    const importsToPull = Array.from(new Set([...(node.vars || []), ...depsAsSymbols]));
+    const importsToPull = Array.from(new Set([...(node.vars || []), ...depsAsSymbols])).filter(v => v !== "TYPES");
     if (importsToPull.length > 0) {
       tsOut += `import { ${importsToPull.join(", ")} } from "@g${prevLevel}";\n`;
     }
@@ -38199,6 +38175,7 @@ ${node.description ? `// ${node.description}\n` : ""}\n`;
   }
   // Additionally filter vars whose owning node (found by id in the graph) is host/standalone
   const importsToPull: string[] = (node.vars || []).filter(v => {
+    if (v === "TYPES") return false;
     if (hostOnlySymbols.has(v)) return false;
     const varNode = nodes.get(v);
     if (varNode && (varNode.tags.includes("host") || varNode.tags.includes("standalone"))) return false;

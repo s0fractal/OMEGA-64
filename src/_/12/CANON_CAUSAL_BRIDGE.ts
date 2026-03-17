@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/l32_gate/gate_admission.md
-import { BridgeInvariantReportLike, TYPES } from "@g11";
+import { BridgeInvariantReportLike } from "@g11";
 
 const resolveBridgeMode = (
   report?: BridgeInvariantReportLike,

@@ -1,5 +1,5 @@
 // SSoT: file:///Users/s0fractal/OMEGA/src/ontology/memory/memory_views_base.md
-import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, WASM_MEMORY_BYTES, validateMemoryLayout, TYPES } from "@g01";
+import { MIN_WASM_MEMORY_PAGES, WASM_MEMORY_PAGES, WASM_MEMORY_BYTES, validateMemoryLayout } from "@g01";
 
 if (WASM_MEMORY_PAGES < MIN_WASM_MEMORY_PAGES) {
   throw new Error(
